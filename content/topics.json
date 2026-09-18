@@ -1558,6 +1558,61 @@
       "title_es": "Cómo evitar que el hilo destiña sobre la tela al lavar un punto de cruz",
       "title_en": "How to Prevent Floss from Bleeding onto Cross Stitch Fabric",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 141,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "easter",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Patrones de punto de cruz de Pascua que se ven modernos",
+      "title_en": "Modern Easter Cross Stitch Patterns for Decor and Gifts",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 142,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "spring",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Patrones de punto de cruz de primavera: flores, lluvia y color",
+      "title_en": "Spring Cross Stitch Patterns: Flowers, Rain and Bright Color",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 143,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "autumn",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Patrones de punto de cruz de otoño: color, setas y días acogedores",
+      "title_en": "Autumn Cross Stitch Patterns: Color, Mushrooms and Cozy Days",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 144,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "birthday",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Ideas de punto de cruz para regalos de cumpleaños personalizados",
+      "title_en": "Personalized Cross Stitch Birthday Gift Ideas",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 145,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "retirement",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Ideas de punto de cruz para regalar en una jubilación",
+      "title_en": "Cross Stitch Gift Ideas for Retirement",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {
