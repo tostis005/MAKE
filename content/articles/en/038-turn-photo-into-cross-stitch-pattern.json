@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 38,
+  "translation_group": "038-turn-photo-into-cross-stitch-pattern",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "custom",
+      "terms": [
+        "custom",
+        "photo-conversion",
+        "patterns"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "intermediate",
+        "advanced"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "custom-pattern"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to",
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-038-photo-pattern",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "People converting personal photographs into usable charts while controlling color count and confetti.",
+  "title": "How to Turn a Photo into a Cross Stitch Pattern",
+  "slug": "turn-photo-into-cross-stitch-pattern",
+  "seo": {
+    "title": "How to Turn a Photo into a Cross Stitch Pattern",
+    "meta_description": "Choose grid size, reduce colors, clean confetti and manually review a photo conversion to create a usable cross stitch chart.",
+    "search_intent": "Learn how to convert a photograph into a usable cross stitch pattern."
+  },
+  "excerpt": "Automatic conversion is only the beginning. Grid size, palette and manual editing are what make a photo chart enjoyable to stitch.",
+  "content_html": "<p>Turning a photo into a cross stitch pattern sounds simple: upload an image, choose a size and let software convert it into squares. The problem is that an automatic conversion can preserve too much noise, create dozens of nearly identical colors and produce a chart that is technically valid but unpleasant to stitch.</p>\n<p>A strong conversion involves decisions: which detail matters, what can be simplified, how many colors are genuinely useful and what grid size keeps the subject recognizable without turning the project into an endless commitment.</p>\n<h2>Start with a photo that contains useful information</h2>\n<p>Photographs with good light, sharp focus and a subject clearly separated from the background usually convert better. A dark image full of shadows may produce many shades without preserving useful detail.</p>\n<p>Background matters. If the subject sits in front of a room full of objects, every object can generate patches of color and confetti. Cropping or removing the background before conversion can simplify the chart dramatically.</p>\n<p>Avoid very small or blurry images. Software cannot create reliable detail that is missing from the source photograph.</p>\n<p>Contrast helps particularly with portraits and pets. Eyes, face outline and important markings should already be visible before you start the conversion.</p>\n<p>If you have several photos of the same subject, do not automatically choose your favorite. Choose the one that separates shapes and tones most clearly.</p>\n<h2>Size and color count are the two main decisions</h2>\n<p>A larger grid can preserve more information, but it also increases stitch count and physical project size.</p>\n<p>Shrinking a photograph too far forces details to merge. An eye, hand or texture may become only a few crosses and lose its shape. Increasing size can improve readability, but eventually it simply adds work.</p>\n<p>Color count behaves in a similar way. More shades create smoother transitions, but they also increase thread changes. Not every tiny photographic variation needs to become a separate floss reference.</p>\n<p>A useful approach is starting with a moderate palette, reviewing the result and adding colors only when they solve a visible problem. It is better to add one necessary shade than begin with fifty by default.</p>\n<p>Pay particular attention to faces, eyes and important edges. If those areas work, the rest of the image can often tolerate significant simplification.</p>\n<h2>Manual editing is what turns a conversion into a usable chart</h2>\n<p>After generating the grid, look for isolated stitches in colors that are almost identical to their neighbors. Many can be absorbed into a nearby shade without changing the image from normal viewing distance.</p>\n<p>Check strange outlines too. Image compression can create dark pixels that conversion software interprets as meaningful detail even though they become random spots in stitching.</p>\n<p>Grouping colors reduces confetti and makes the project more pleasant. The goal is not to copy the photograph mathematically; it is to create a thread-based interpretation that works.</p>\n<p>Review the key and make sure every chart color is identified correctly. If someone else will use the pattern, choose symbols that are clearly different.</p>\n<p>View or print the chart at the size in which it will actually be used. A grid that looks perfect on a large monitor may be frustrating if symbols become tiny in the PDF.</p>\n<h2>How to know when the conversion is ready to stitch</h2>\n<p>Look first at a reduced preview. If the subject is not recognizable from some distance, adding many more hours of stitching probably will not fix the underlying problem.</p>\n<p>Calculate physical size, color count and approximate stitch density. The conversion needs to be realistic for the kind of project you want to make.</p>\n<p>Stitch a small test of a critical area if you are uncertain. An eye, skin transition or section of fur can reveal whether the chosen shades work on actual fabric.</p>\n<p>Keep the original photo, palette and final chart version. If a correction is needed later, you will have a clear reference point.</p>\n<p>Remember that a cross stitch pattern does not have to be a pixelated photograph. The best conversions often remove information. They preserve what makes the image recognizable and discard tiny variations that would only add work.</p>\n<p>If you eventually offer custom patterns as a service, this editing stage is where much of the value lives. Any software can reduce a photo to a grid; producing a clear, balanced and enjoyable chart requires judgment.</p><p>If you are uncertain between two options, make a small test before committing the whole project. Comparing a few stitches, a fabric sample or a reduced version often reveals more than continuing to think in the abstract. That quick check lets you decide with real materials and can prevent hours of reworking later.</p><p>If you are uncertain between two options, make a small test before committing the whole project. Comparing a few stitches, a fabric sample or a reduced version often reveals more than continuing to think in the abstract. That quick check lets you decide with real materials and can prevent hours of reworking later.</p>",
+  "image": {
+    "concept": "Original photograph beside a pixelated version and a cleaned cross stitch chart.",
+    "alt": "Process of turning a photo into a cross stitch pattern"
+  }
+}
