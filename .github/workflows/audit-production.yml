@@ -86,6 +86,13 @@ jobs:
             if command -v apache2ctl >/dev/null 2>&1; then
               echo SERVER=apache
               apache2ctl -M 2>/dev/null | grep rewrite || true
+              apache2ctl -S 2>/dev/null || true
+              echo "DOCROOT_STATE:"
+              ls -ld /var/www /var/www/html /var/www/html/.htaccess 2>/dev/null || true
+              echo "DOCKER_PHP_CONF:"
+              sed -n "1,160p" /etc/apache2/conf-enabled/docker-php.conf 2>/dev/null || true
+              echo "VHOSTS:"
+              grep -R "DocumentRoot\|<Directory" /etc/apache2/sites-enabled /etc/apache2/conf-enabled 2>/dev/null | head -80 || true
               grep -R "AllowOverride" /etc/apache2 2>/dev/null | head -20 || true
             elif command -v nginx >/dev/null 2>&1; then
               echo SERVER=nginx
