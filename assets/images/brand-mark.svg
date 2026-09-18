@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+<title>Cross-stitch flower mark</title>
+<rect width="64" height="64" rx="18" fill="#F3DDE2"/>
+<g fill="none" stroke-linecap="round" stroke-width="4.2">
+  <path d="M18 16l10 10M28 16L18 26" stroke="#A95870"/>
+  <path d="M36 16l10 10M46 16L36 26" stroke="#A95870"/>
+  <path d="M18 34l10 10M28 34L18 44" stroke="#A95870"/>
+  <path d="M36 34l10 10M46 34L36 44" stroke="#A95870"/>
+  <path d="M27 25l10 10M37 25L27 35" stroke="#6F4B65"/>
+</g>
+<path d="M31.5 41c-1 6-4.5 9-9 11" fill="none" stroke="#91A58A" stroke-width="3" stroke-linecap="round"/>
+<path d="M29 46c-5-1-8 1-10 4 5 1 8-1 10-4Z" fill="#A9B99F"/>
+</svg>
