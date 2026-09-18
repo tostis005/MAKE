@@ -62,18 +62,21 @@ jobs:
                 "post_type"=>"post","post_status"=>"publish","posts_per_page"=>-1,"fields"=>"ids",
                 "meta_query"=>array(array("key"=>"_make_managed_article","value"=>1)),
             ));
-            $missing_title=$missing_desc=$missing_lang=$missing_group=0;
+            $missing_title=$missing_desc=$missing_lang=$missing_group=$featured_images=0;
             foreach ($managed->posts as $id) {
                 if (!get_post_meta($id,"_make_seo_title",true)) $missing_title++;
                 if (!get_post_meta($id,"_make_meta_description",true)) $missing_desc++;
                 if (!get_post_meta($id,"_make_language",true)) $missing_lang++;
                 if (!get_post_meta($id,"_make_translation_group",true)) $missing_group++;
+                if (has_post_thumbnail($id)) $featured_images++;
             }
             echo "MANAGED_POSTS=" . count($managed->posts) . PHP_EOL;
             echo "MISSING_SEO_TITLE=$missing_title" . PHP_EOL;
             echo "MISSING_META_DESCRIPTION=$missing_desc" . PHP_EOL;
             echo "MISSING_LANGUAGE=$missing_lang" . PHP_EOL;
             echo "MISSING_TRANSLATION_GROUP=$missing_group" . PHP_EOL;
+            echo "FEATURED_IMAGE_COUNT=$featured_images" . PHP_EOL;
+            echo "PLACEHOLDER_IMAGE_COUNT=" . (count($managed->posts)-$featured_images) . PHP_EOL;
             $latest = get_posts(array(
                 "post_type"=>"post","post_status"=>"publish","posts_per_page"=>1,
                 "meta_key"=>"_make_managed_article","meta_value"=>1,
