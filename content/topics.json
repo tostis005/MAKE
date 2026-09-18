@@ -843,6 +843,61 @@
       "title_es": "Cómo colocar y tensar tela Aida en un bastidor correctamente",
       "title_en": "How to Put Aida in a Hoop and Get the Tension Right",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 76,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "nature",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Patrones de setas en punto de cruz: modernos, retro y cottagecore",
+      "title_en": "Mushroom Cross Stitch Patterns: Modern, Retro and Cottagecore",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 77,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "kawaii",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Patrones kawaii de punto de cruz que siguen viéndose modernos",
+      "title_en": "Kawaii Cross Stitch Patterns That Still Feel Modern",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 78,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "cottagecore",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Patrones cottagecore de punto de cruz para una estética cálida y moderna",
+      "title_en": "Cottagecore Cross Stitch Patterns for a Warm, Modern Look",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 79,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "gothic",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Patrones góticos de punto de cruz: oscuros, gráficos y modernos",
+      "title_en": "Gothic Cross Stitch Patterns: Dark, Graphic and Modern",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 80,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "travel",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Patrones de ciudades y viajes en punto de cruz para guardar recuerdos",
+      "title_en": "City and Travel Cross Stitch Patterns for Keeping Memories",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {
