@@ -22,9 +22,14 @@ $site_name = make_brand_name();
       </div>
 
       <div class="hero-art" aria-hidden="true">
-        <span class="hero-label"><?php echo esc_html( make_t( 'Tu próximo proyecto ✦', 'Your next project ✦' ) ); ?></span>
-        <div class="stitch-board"><?php for ( $i = 0; $i < 196; $i++ ) : ?><span></span><?php endfor; ?></div>
-        <div class="stitch-hoop"></div>
+        <div class="hero-art-inner">
+          <span class="hero-label"><?php echo esc_html( make_t( 'Un rato para ti ✦', 'A little time for you ✦' ) ); ?></span>
+          <img class="hero-cross-stitch" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/hero-botanical-cross-stitch.svg' ); ?>" alt="" width="760" height="760" fetchpriority="high">
+          <div class="hero-caption">
+            <span class="hero-caption-flower">✿</span>
+            <span><?php echo esc_html( make_t( 'puntada a puntada', 'stitch by stitch' ) ); ?></span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
