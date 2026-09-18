@@ -1,0 +1,104 @@
+name: Bootstrap MAKE theme source
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'theme.part4.b64'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: make-theme-bootstrap
+  cancel-in-progress: true
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Rebuild and validate theme package
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat theme.part1.b64 theme.part2.b64 theme.part3.b64 theme.part4.b64 | base64 -d > /tmp/make-theme.zip
+          echo "083574f310a2a26eaf5eb04884cd1eb1026f36ef8274e62888ad85a309d370f1  /tmp/make-theme.zip" | sha256sum -c -
+          rm -rf /tmp/make-theme
+          mkdir -p /tmp/make-theme
+          unzip -q /tmp/make-theme.zip -d /tmp/make-theme
+          test -s /tmp/make-theme/style.css
+          test -s /tmp/make-theme/functions.php
+          test -s /tmp/make-theme/header.php
+          test -s /tmp/make-theme/front-page.php
+          find /tmp/make-theme -type f -name '*.php' -print0 | xargs -0 -r -n1 php -l
+          node --check /tmp/make-theme/assets/js/site.js
+
+      - name: Expand validated source into main
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp -a /tmp/make-theme/. .
+          rm -f theme.part1.b64 theme.part2.b64 theme.part3.b64 theme.part4.b64
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Theme source already expanded."
+          else
+            git commit -m "Expand MAKE WordPress theme source"
+            git push origin HEAD:main
+          fi
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/make_deploy_key
+          chmod 600 ~/.ssh/make_deploy_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Package and upload validated theme
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          tar -C /tmp/make-theme -czf /tmp/make-theme.tar.gz .
+          scp -i ~/.ssh/make_deploy_key /tmp/make-theme.tar.gz "$VPS_USER@$VPS_HOST:/tmp/make-theme-${GITHUB_RUN_ID}.tar.gz"
+
+      - name: Deploy into make-wp container
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/make_deploy_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/make-theme-${GITHUB_RUN_ID}.tar.gz"
+          STAGE="/tmp/make-theme-${GITHUB_RUN_ID}"
+          TARGET="/var/www/html/wp-content/themes/make"
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE"; }
+          trap cleanup EXIT
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+          rm -rf "$STAGE" && mkdir -p "$STAGE" && tar -xzf "$ARCHIVE" -C "$STAGE"
+          "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '$TARGET' && mkdir -p '$TARGET'"
+          "${DOCKER[@]}" cp "$STAGE/." "make-wp:$TARGET/"
+          "${DOCKER[@]}" exec make-wp sh -lc "chown -R www-data:www-data '$TARGET' && find '$TARGET' -type d -exec chmod 755 {} + && find '$TARGET' -type f -exec chmod 644 {} + && test -s '$TARGET/style.css' && test -s '$TARGET/functions.php'"
+          "${DOCKER[@]}" exec make-wp php -r 'require "/var/www/html/wp-load.php"; flush_rewrite_rules(false); echo "MAKE theme deployed\n";'
+          REMOTE
