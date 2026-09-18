@@ -80,19 +80,15 @@ jobs:
           "${DOCKER[@]}" exec make-wp sh -lc "chown -R www-data:www-data '$TARGET' && find '$TARGET' -type d -exec chmod 755 {} + && find '$TARGET' -type f -exec chmod 644 {} + && test -s '$TARGET/style.css' && test -s '$TARGET/functions.php'"
           "${DOCKER[@]}" exec make-wp php -r '
             require "/var/www/html/wp-load.php";
-            require_once ABSPATH . "wp-admin/includes/misc.php";
             $structure = (string) get_option("permalink_structure", "");
-            if ($structure === "") {
-                update_option("permalink_structure", "/%postname%/");
-                echo "MAKE_PERMALINK_STRUCTURE=/%postname%/ (configured)" . PHP_EOL;
+            if ($structure === "/%postname%/") {
+                update_option("permalink_structure", "");
+                $structure = "";
+                echo "MAKE_PERMALINK_STRUCTURE=plain (restored for current server)" . PHP_EOL;
             } else {
-                echo "MAKE_PERMALINK_STRUCTURE=" . $structure . PHP_EOL;
+                echo "MAKE_PERMALINK_STRUCTURE=" . ($structure === "" ? "plain" : $structure) . PHP_EOL;
             }
-            flush_rewrite_rules(true);
-            if (function_exists("save_mod_rewrite_rules")) {
-                $saved = save_mod_rewrite_rules();
-                echo "MAKE_HTACCESS_WRITTEN=" . ($saved ? "yes" : "no") . PHP_EOL;
-            }
+            flush_rewrite_rules(false);
             echo "MAKE theme deployed" . PHP_EOL;
           '
           "${DOCKER[@]}" exec make-wp php -r '
@@ -107,8 +103,8 @@ jobs:
                 ));
                 echo "MAKE_JOURNAL_" . strtoupper($lang) . "_COUNT=" . (int) $q->found_posts . PHP_EOL;
             }
-            echo "MAKE_JOURNAL_ES_URL=" . home_url("/journal/") . PHP_EOL;
-            echo "MAKE_JOURNAL_EN_URL=" . home_url("/en/journal/") . PHP_EOL;
+            echo "MAKE_JOURNAL_ES_URL=" . add_query_arg(array("make_journal"=>"1","make_lang"=>"es"), home_url("/")) . PHP_EOL;
+            echo "MAKE_JOURNAL_EN_URL=" . add_query_arg(array("make_journal"=>"1","make_lang"=>"en"), home_url("/")) . PHP_EOL;
             echo "MAKE_POLYLANG=" . (function_exists("pll_current_language") ? "yes" : "no") . PHP_EOL;
             $posts_page = (int) get_option("page_for_posts");
             echo "MAKE_PAGE_FOR_POSTS=" . $posts_page . PHP_EOL;
@@ -126,7 +122,12 @@ jobs:
             }
           '
           SITE_HOST="$( "${DOCKER[@]}" exec make-wp php -r 'require "/var/www/html/wp-load.php"; $u=parse_url(home_url("/")); echo $u["host"] . (isset($u["port"]) ? ":" . $u["port"] : "");' )"
-          for ROUTE in /journal/ /en/journal/; do
+          ROUTES=(
+            '/?make_journal=1&make_lang=es'
+            '/?make_journal=1&make_lang=en'
+            '/?make_journal=1&make_lang=es&paged=2'
+          )
+          for ROUTE in "${ROUTES[@]}"; do
             "${DOCKER[@]}" exec \
               -e MAKE_SMOKE_HOST="$SITE_HOST" \
               -e MAKE_SMOKE_ROUTE="$ROUTE" \
@@ -144,7 +145,7 @@ jobs:
                 ));
                 $html = @file_get_contents("http://127.0.0.1" . $route, false, $context);
                 $status = isset($http_response_header[0]) ? $http_response_header[0] : "no-status";
-                $needle = str_starts_with($route, "/en/") ? "Latest articles" : "Últimos artículos";
+                $needle = strpos($route, "make_lang=en") !== false ? "Latest articles" : "Últimos artículos";
                 if ($html === false || strpos($status, "200") === false || strpos($html, $needle) === false || strpos($html, "post-card") === false) {
                     fwrite(STDERR, "Journal HTTP smoke test failed for " . $route . " status=" . $status . PHP_EOL);
                     exit(2);

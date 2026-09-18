@@ -48,8 +48,22 @@ $total    = (int) $GLOBALS['wp_query']->found_posts;
       </div>
 
       <?php
+      $current_page = max( 1, (int) get_query_var( 'paged' ) );
+      $page_base = add_query_arg(
+          array(
+              'make_journal' => '1',
+              'make_lang'    => $language,
+              'paged'        => '%#%',
+          ),
+          home_url( '/' )
+      );
+      $page_base = str_replace( '%25%23%25', '%#%', $page_base );
       $pagination = paginate_links(
           array(
+              'base'      => $page_base,
+              'format'    => '',
+              'current'   => $current_page,
+              'total'     => max( 1, (int) $GLOBALS['wp_query']->max_num_pages ),
               'type'      => 'list',
               'prev_text' => make_t( '← Anterior', '← Previous' ),
               'next_text' => make_t( 'Siguiente →', 'Next →' ),

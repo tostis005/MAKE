@@ -43,6 +43,10 @@ function make_current_language(): string {
         $pll = pll_current_language( 'slug' );
         if ( in_array( $pll, array( 'es', 'en' ), true ) ) { return $pll; }
     }
+    if ( function_exists( 'is_singular' ) && is_singular( 'post' ) ) {
+        $post_language = (string) get_post_meta( get_queried_object_id(), '_make_language', true );
+        if ( in_array( $post_language, array( 'es', 'en' ), true ) ) { return $post_language; }
+    }
     return 'es';
 }
 
@@ -55,7 +59,10 @@ function make_home_url( string $language = '' ): string {
         $url = pll_home_url( $language );
         if ( $url ) { return $url; }
     }
-    return 'en' === $language ? home_url( '/en/' ) : home_url( '/' );
+    if ( 'en' === $language ) {
+        return add_query_arg( 'make_lang', 'en', home_url( '/' ) );
+    }
+    return home_url( '/' );
 }
 
 function make_language_switch_url( string $language ): string {
@@ -67,7 +74,31 @@ function make_language_switch_url( string $language ): string {
         $translated = (int) pll_get_post( get_queried_object_id(), $language );
         if ( $translated ) { return get_permalink( $translated ); }
     }
-    if ( is_search() ) { return add_query_arg( 's', get_search_query(), make_home_url( $language ) ); }
+    if ( is_singular( 'post' ) ) {
+        $group = (string) get_post_meta( get_queried_object_id(), '_make_translation_group', true );
+        if ( '' !== $group ) {
+            $matches = get_posts(
+                array(
+                    'post_type'      => 'post',
+                    'post_status'    => 'publish',
+                    'posts_per_page' => 1,
+                    'fields'         => 'ids',
+                    'meta_query'     => array(
+                        'relation' => 'AND',
+                        array( 'key' => '_make_translation_group', 'value' => $group ),
+                        array( 'key' => '_make_language', 'value' => $language ),
+                    ),
+                )
+            );
+            if ( ! empty( $matches ) ) { return get_permalink( (int) $matches[0] ); }
+        }
+    }
+    if ( is_search() ) {
+        return add_query_arg(
+            array( 's' => get_search_query(), 'make_lang' => $language ),
+            home_url( '/' )
+        );
+    }
     return make_home_url( $language );
 }
 
@@ -92,7 +123,7 @@ function make_template_router( string $template ): string {
         $journal = locate_template( 'home.php' );
         if ( $journal ) { return $journal; }
     }
-    if ( '/en' === make_request_path() ) {
+    if ( ( '/en' === make_request_path() || ( '/' === make_request_path() && 'en' === (string) get_query_var( 'make_lang' ) ) ) ) {
         $front = locate_template( 'front-page.php' );
         if ( $front ) { return $front; }
     }
@@ -149,7 +180,13 @@ function make_brand_tagline(): string {
 
 function make_journal_url( string $language = '' ): string {
     $language = in_array( $language, array( 'es','en' ), true ) ? $language : make_current_language();
-    return 'en' === $language ? home_url( '/en/journal/' ) : home_url( '/journal/' );
+    return add_query_arg(
+        array(
+            'make_journal' => '1',
+            'make_lang'    => $language,
+        ),
+        home_url( '/' )
+    );
 }
 
 function make_cart_count(): int {
