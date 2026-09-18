@@ -14,7 +14,7 @@ $nav              = array(
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#f7f3ea">
+<meta name="theme-color" content="#fbf5f3">
 <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
@@ -28,7 +28,7 @@ $nav              = array(
 <header class="site-header">
   <div class="container header-main">
     <a class="site-brand" href="<?php echo esc_url( $home_url ); ?>" aria-label="<?php echo esc_attr( $site_name ); ?>">
-      <span class="brand-mark" aria-hidden="true"><?php for ( $i = 0; $i < 9; $i++ ) : ?><i></i><?php endfor; ?></span>
+      <span class="brand-mark" aria-hidden="true"><img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/brand-mark.svg' ); ?>" alt="" width="44" height="44"></span>
       <span class="brand-copy">
         <strong class="brand-word"><?php echo esc_html( $site_name ); ?></strong>
         <small class="brand-tagline"><?php echo esc_html( $site_tagline ); ?></small>
