@@ -3,7 +3,7 @@ Theme Name: Custom Craft Storefront
 Theme URI: https://github.com/tostis005/MAKE
 Author: Custom Craft Project
 Description: Self-contained editorial-commerce WordPress theme for digital craft patterns. Cross stitch first, ready for crochet and future crafts.
-Version: 1.1.1
+Version: 1.1.2
 Requires at least: 6.4
 Requires PHP: 8.1
 Text Domain: make
@@ -656,4 +656,43 @@ body{background:var(--mk-cream);color:var(--mk-ink)}
   .journal-archive-grid{grid-template-columns:1fr;gap:18px}
   .journal-archive-grid .post-card-body h2{font-size:27px}
   .journal-pagination .page-numbers{gap:6px}
+}
+
+
+/* Final artwork polish — v1.1.2 */
+.promise-visual::after{
+  content:"Create\A Slowly";
+  white-space:pre;
+  position:absolute;
+  z-index:3;
+  left:16%;
+  top:23%;
+  width:62%;
+  font:500 clamp(43px,4.8vw,58px)/1.04 Georgia,"Times New Roman",serif;
+  letter-spacing:-.045em;
+  text-transform:none;
+  color:var(--mk-red-deep);
+  transform:rotate(-5deg);
+  text-shadow:0 1px 0 rgba(255,255,255,.32);
+}
+.thread-ball{
+  z-index:2;
+  right:5%;
+  bottom:7%;
+  width:150px;
+  height:150px;
+}
+@media(max-width:640px){
+  .promise-visual::after{
+    left:15%;
+    top:25%;
+    width:68%;
+    font-size:42px;
+    line-height:1.03;
+  }
+  .thread-ball{
+    right:4%;
+    width:132px;
+    height:132px;
+  }
 }
