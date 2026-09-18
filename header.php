@@ -77,6 +77,7 @@ $nav              = array(
       <h2 class="overlay-title" id="make-search-title"><?php echo esc_html( make_t( '¿Qué quieres crear?', 'What do you want to make?' ) ); ?></h2>
       <form class="overlay-search-form" role="search" method="get" action="<?php echo esc_url( $home_url ); ?>">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M15.5 15.5 21 21"></path></svg>
+        <input type="hidden" name="make_lang" value="<?php echo esc_attr( $current_language ); ?>">
         <input data-overlay-autofocus type="search" name="s" value="<?php echo esc_attr( get_search_query() ); ?>" placeholder="<?php echo esc_attr( make_t( 'Patrones, flores, retratos…', 'Patterns, flowers, portraits…' ) ); ?>">
         <button type="submit"><?php echo esc_html( make_t( 'Buscar', 'Search' ) ); ?></button>
       </form>

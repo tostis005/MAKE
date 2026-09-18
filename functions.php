@@ -85,7 +85,8 @@ add_action( 'init', 'make_register_editorial_taxonomies', 5 );
 
 function make_assets(): void {
     $version = wp_get_theme()->get( 'Version' ) ?: '1.0.0';
-    wp_enqueue_style( 'make-style', get_stylesheet_uri(), array(), $version );
+    $css = get_stylesheet_directory() . '/style.css';
+    wp_enqueue_style( 'make-style', get_stylesheet_uri(), array(), is_file( $css ) ? (string) filemtime( $css ) : $version );
     $js = get_template_directory() . '/assets/js/site.js';
     wp_enqueue_script( 'make-site', get_template_directory_uri() . '/assets/js/site.js', array(), is_file( $js ) ? (string) filemtime( $js ) : $version, true );
 }
@@ -417,3 +418,335 @@ function make_fallback_favicon(): void {
     echo '<link rel="icon" href="' . esc_url( $icon ) . '" type="image/svg+xml">' . "\n";
 }
 add_action( 'wp_head', 'make_fallback_favicon', 2 );
+
+
+/* ========================================================================
+   Editorial discovery, internal linking and SEO fallbacks
+   ======================================================================== */
+
+function make_editorial_section_config(): array {
+    return array(
+        'learn' => array(
+            'es' => array(
+                'slug' => 'aprender',
+                'label' => 'Aprender',
+                'description' => 'Técnicas, materiales y respuestas claras para bordar con más seguridad.',
+            ),
+            'en' => array(
+                'slug' => 'learn',
+                'label' => 'Learn',
+                'description' => 'Techniques, materials and clear answers for stitching with more confidence.',
+            ),
+        ),
+        'ideas' => array(
+            'es' => array(
+                'slug' => 'ideas',
+                'label' => 'Ideas e inspiración',
+                'description' => 'Temas, estilos y proyectos para encontrar algo que de verdad apetezca bordar.',
+            ),
+            'en' => array(
+                'slug' => 'inspiration',
+                'label' => 'Ideas & inspiration',
+                'description' => 'Themes, styles and projects for finding something you genuinely want to stitch.',
+            ),
+        ),
+        'buying-guides' => array(
+            'es' => array(
+                'slug' => 'guias-de-compra',
+                'label' => 'Guías de compra',
+                'description' => 'Comparativas y criterios prácticos para elegir patrones, materiales y herramientas.',
+            ),
+            'en' => array(
+                'slug' => 'buying-guides',
+                'label' => 'Buying guides',
+                'description' => 'Practical comparisons for choosing patterns, materials and tools.',
+            ),
+        ),
+    );
+}
+
+function make_editorial_sections( string $language = '' ): array {
+    $language = in_array( $language, array( 'es', 'en' ), true ) ? $language : make_current_language();
+    $sections = array();
+
+    foreach ( make_editorial_section_config() as $id => $localized ) {
+        $cfg = $localized[ $language ];
+        $term = get_category_by_slug( $cfg['slug'] );
+        if ( ! $term instanceof WP_Term || (int) $term->count < 1 ) { continue; }
+
+        $url = get_category_link( $term );
+        if ( is_wp_error( $url ) ) { continue; }
+
+        $sections[] = array(
+            'id'          => $id,
+            'label'       => $cfg['label'],
+            'description' => $cfg['description'],
+            'count'       => (int) $term->count,
+            'url'         => $url,
+        );
+    }
+
+    return $sections;
+}
+
+function make_editorial_archive_description(): string {
+    if ( ! is_category() ) { return ''; }
+    $term = get_queried_object();
+    if ( ! $term instanceof WP_Term ) { return ''; }
+
+    $section_id = (string) get_term_meta( $term->term_id, '_make_section_id', true );
+    $config = make_editorial_section_config();
+    $language = (string) get_term_meta( $term->term_id, '_make_language', true );
+    $language = in_array( $language, array( 'es', 'en' ), true ) ? $language : make_current_language();
+
+    return isset( $config[ $section_id ][ $language ]['description'] )
+        ? (string) $config[ $section_id ][ $language ]['description']
+        : '';
+}
+
+function make_editorial_placeholder_html( int $post_id = 0 ): string {
+    $post_id = $post_id ?: get_the_ID();
+    $number  = (int) get_post_meta( $post_id, '_make_article_number', true );
+    $seed    = $number > 0 ? $number : $post_id;
+    $variant = ( abs( $seed ) % 5 ) + 1;
+
+    return '<span class="make-editorial-art make-editorial-art--v' . esc_attr( (string) $variant ) . '" aria-hidden="true">'
+        . '<span class="make-editorial-art-grid"></span>'
+        . '<span class="make-editorial-art-motif"><i>×</i><i>×</i><i>×</i><i>×</i><i>×</i></span>'
+        . '</span>';
+}
+
+function make_related_articles( int $post_id, int $limit = 3 ): array {
+    $language = (string) get_post_meta( $post_id, '_make_language', true );
+    $language = in_array( $language, array( 'es', 'en' ), true ) ? $language : make_current_language();
+    $weighted_taxonomies = array(
+        'make_topic'        => 5,
+        'make_style'        => 3,
+        'make_project_type' => 2,
+        'make_article_type' => 1,
+    );
+    $source_terms = array();
+    $tax_query = array( 'relation' => 'OR' );
+
+    foreach ( $weighted_taxonomies as $taxonomy => $weight ) {
+        $terms = get_the_terms( $post_id, $taxonomy );
+        if ( is_wp_error( $terms ) || empty( $terms ) ) { continue; }
+        $ids = array_map( 'intval', wp_list_pluck( $terms, 'term_id' ) );
+        if ( empty( $ids ) ) { continue; }
+        $source_terms[ $taxonomy ] = $ids;
+        $tax_query[] = array(
+            'taxonomy' => $taxonomy,
+            'field'    => 'term_id',
+            'terms'    => $ids,
+        );
+    }
+
+    $candidate_ids = array();
+    if ( count( $tax_query ) > 1 ) {
+        $candidate_query = new WP_Query(
+            array(
+                'post_type'           => 'post',
+                'post_status'         => 'publish',
+                'posts_per_page'      => 30,
+                'fields'              => 'ids',
+                'post__not_in'        => array( $post_id ),
+                'ignore_sticky_posts' => true,
+                'meta_query'          => array(
+                    array(
+                        'key'   => '_make_language',
+                        'value' => $language,
+                    ),
+                ),
+                'tax_query'            => $tax_query,
+            )
+        );
+        $candidate_ids = array_map( 'intval', $candidate_query->posts );
+    }
+
+    $scores = array();
+    foreach ( $candidate_ids as $candidate_id ) {
+        $score = 0;
+        foreach ( $source_terms as $taxonomy => $source_ids ) {
+            $candidate_terms = get_the_terms( $candidate_id, $taxonomy );
+            if ( is_wp_error( $candidate_terms ) || empty( $candidate_terms ) ) { continue; }
+            $candidate_term_ids = array_map( 'intval', wp_list_pluck( $candidate_terms, 'term_id' ) );
+            $shared = count( array_intersect( $source_ids, $candidate_term_ids ) );
+            $score += $shared * $weighted_taxonomies[ $taxonomy ];
+        }
+        $scores[ $candidate_id ] = $score;
+    }
+
+    arsort( $scores, SORT_NUMERIC );
+    $related = array_slice( array_keys( $scores ), 0, $limit );
+
+    if ( count( $related ) < $limit ) {
+        $fallback = get_posts(
+            array(
+                'post_type'           => 'post',
+                'post_status'         => 'publish',
+                'posts_per_page'      => $limit - count( $related ),
+                'fields'              => 'ids',
+                'post__not_in'        => array_merge( array( $post_id ), $related ),
+                'ignore_sticky_posts' => true,
+                'meta_query'          => array(
+                    array(
+                        'key'   => '_make_language',
+                        'value' => $language,
+                    ),
+                ),
+            )
+        );
+        $related = array_merge( $related, array_map( 'intval', $fallback ) );
+    }
+
+    return array_slice( $related, 0, $limit );
+}
+
+function make_search_main_query( WP_Query $query ): void {
+    if ( is_admin() || ! $query->is_main_query() || ! $query->is_search() ) { return; }
+
+    $query->set( 'post_type', array( 'post', 'product' ) );
+    $query->set( 'posts_per_page', 12 );
+    $query->set( 'ignore_sticky_posts', true );
+    $query->set(
+        'meta_query',
+        array(
+            'relation' => 'OR',
+            array(
+                'key'   => '_make_language',
+                'value' => make_current_language(),
+            ),
+            array(
+                'key'     => '_make_language',
+                'compare' => 'NOT EXISTS',
+            ),
+        )
+    );
+}
+add_action( 'pre_get_posts', 'make_search_main_query', 25 );
+
+function make_has_seo_plugin(): bool {
+    return defined( 'WPSEO_VERSION' )
+        || defined( 'RANK_MATH_VERSION' )
+        || defined( 'AIOSEO_VERSION' )
+        || class_exists( 'WPSEO_Frontend' )
+        || class_exists( 'RankMath' );
+}
+
+function make_editorial_document_title( string $title ): string {
+    if ( make_has_seo_plugin() ) { return $title; }
+
+    if ( is_singular( 'post' ) ) {
+        $seo_title = trim( (string) get_post_meta( get_queried_object_id(), '_make_seo_title', true ) );
+        if ( '' !== $seo_title ) { return $seo_title . ' | ' . make_brand_name(); }
+    }
+
+    if ( (int) get_query_var( 'make_journal' ) === 1 ) {
+        return make_t( 'Guías e ideas de punto de cruz', 'Cross stitch guides and ideas' ) . ' | ' . make_brand_name();
+    }
+
+    return $title;
+}
+add_filter( 'pre_get_document_title', 'make_editorial_document_title', 20 );
+
+function make_editorial_head_meta(): void {
+    $description = '';
+    $canonical = '';
+
+    if ( is_singular( 'post' ) ) {
+        $post_id = get_queried_object_id();
+        $description = trim( (string) get_post_meta( $post_id, '_make_meta_description', true ) );
+
+        if ( ! make_has_seo_plugin() ) {
+            $schema = array(
+                '@context' => 'https://schema.org',
+                '@type' => 'Article',
+                'headline' => get_the_title( $post_id ),
+                'description' => $description,
+                'inLanguage' => make_is_english() ? 'en-US' : 'es-ES',
+                'mainEntityOfPage' => get_permalink( $post_id ),
+                'datePublished' => get_post_time( DATE_W3C, true, $post_id ),
+                'dateModified' => get_post_modified_time( DATE_W3C, true, $post_id ),
+                'author' => array(
+                    '@type' => 'Organization',
+                    'name' => make_brand_name(),
+                ),
+                'publisher' => array(
+                    '@type' => 'Organization',
+                    'name' => make_brand_name(),
+                ),
+            );
+            if ( has_post_thumbnail( $post_id ) ) {
+                $image = wp_get_attachment_image_url( get_post_thumbnail_id( $post_id ), 'full' );
+                if ( $image ) { $schema['image'] = array( $image ); }
+            }
+            echo '<script type="application/ld+json">' . wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
+        }
+
+        if ( ! function_exists( 'pll_current_language' ) ) {
+            $group = (string) get_post_meta( $post_id, '_make_translation_group', true );
+            if ( '' !== $group ) {
+                foreach ( array( 'es' => 'es-ES', 'en' => 'en-US' ) as $lang => $hreflang ) {
+                    $matches = get_posts(
+                        array(
+                            'post_type' => 'post',
+                            'post_status' => 'publish',
+                            'posts_per_page' => 1,
+                            'fields' => 'ids',
+                            'meta_query' => array(
+                                'relation' => 'AND',
+                                array( 'key' => '_make_translation_group', 'value' => $group ),
+                                array( 'key' => '_make_language', 'value' => $lang ),
+                            ),
+                        )
+                    );
+                    if ( ! empty( $matches ) ) {
+                        echo '<link rel="alternate" hreflang="' . esc_attr( $hreflang ) . '" href="' . esc_url( get_permalink( (int) $matches[0] ) ) . '">' . "\n";
+                    }
+                }
+            }
+        }
+    } elseif ( (int) get_query_var( 'make_journal' ) === 1 ) {
+        $description = make_t(
+            'Guías claras, ideas y proyectos de punto de cruz para aprender técnicas, elegir materiales y encontrar tu siguiente patrón.',
+            'Clear cross stitch guides, ideas and projects for learning techniques, choosing materials and finding your next pattern.'
+        );
+        $page = max( 1, (int) get_query_var( 'paged' ) );
+        $canonical = make_journal_url();
+        if ( $page > 1 ) { $canonical = add_query_arg( 'paged', $page, $canonical ); }
+
+        foreach ( array( 'es' => 'es-ES', 'en' => 'en-US' ) as $lang => $hreflang ) {
+            $url = make_journal_url( $lang );
+            if ( $page > 1 ) { $url = add_query_arg( 'paged', $page, $url ); }
+            echo '<link rel="alternate" hreflang="' . esc_attr( $hreflang ) . '" href="' . esc_url( $url ) . '">' . "\n";
+        }
+    }
+
+    if ( ! make_has_seo_plugin() && '' !== $description ) {
+        echo '<meta name="description" content="' . esc_attr( $description ) . '">' . "\n";
+    }
+    if ( ! make_has_seo_plugin() && '' !== $canonical ) {
+        echo '<link rel="canonical" href="' . esc_url( $canonical ) . '">' . "\n";
+    }
+}
+add_action( 'wp_head', 'make_editorial_head_meta', 6 );
+
+function make_editorial_robots( array $robots ): array {
+    if ( is_search() || is_author() || is_date() || is_category() || is_tag() ) {
+        $robots['noindex'] = true;
+        $robots['follow']  = true;
+    }
+    return $robots;
+}
+add_filter( 'wp_robots', 'make_editorial_robots', 20 );
+
+function make_editorial_sitemap_taxonomies( array $taxonomies ): array {
+    unset( $taxonomies['category'], $taxonomies['post_tag'] );
+    return $taxonomies;
+}
+add_filter( 'wp_sitemaps_taxonomies', 'make_editorial_sitemap_taxonomies' );
+
+function make_editorial_sitemap_providers( $provider, string $name ) {
+    return 'users' === $name ? false : $provider;
+}
+add_filter( 'wp_sitemaps_add_provider', 'make_editorial_sitemap_providers', 10, 2 );

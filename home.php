@@ -3,6 +3,7 @@ get_header();
 
 $language = make_current_language();
 $total    = (int) $GLOBALS['wp_query']->found_posts;
+$sections = make_editorial_sections( $language );
 ?>
 <section class="editorial-hero editorial-hero--journal">
   <div class="container">
@@ -17,6 +18,23 @@ $total    = (int) $GLOBALS['wp_query']->found_posts;
   </div>
 </section>
 
+<?php if ( ! empty( $sections ) ) : ?>
+<section class="journal-paths" aria-label="<?php echo esc_attr( make_t( 'Explorar artículos', 'Explore articles' ) ); ?>">
+  <div class="container">
+    <div class="journal-paths-grid">
+      <?php foreach ( $sections as $section ) : ?>
+        <a class="journal-path-card journal-path-card--<?php echo esc_attr( $section['id'] ); ?>" href="<?php echo esc_url( $section['url'] ); ?>">
+          <span class="section-kicker"><?php echo esc_html( $section['label'] ); ?></span>
+          <strong><?php echo esc_html( sprintf( make_t( '%d artículos', '%d articles' ), $section['count'] ) ); ?></strong>
+          <p><?php echo esc_html( $section['description'] ); ?></p>
+          <span class="journal-path-arrow" aria-hidden="true">→</span>
+        </a>
+      <?php endforeach; ?>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
+
 <section class="archive-wrap editorial-archive editorial-archive--journal">
   <div class="container">
     <?php if ( have_posts() ) : ?>
@@ -28,9 +46,7 @@ $total    = (int) $GLOBALS['wp_query']->found_posts;
                 <?php if ( has_post_thumbnail() ) : ?>
                   <?php the_post_thumbnail( 'make-journal', array( 'loading' => 'lazy', 'decoding' => 'async' ) ); ?>
                 <?php else : ?>
-                  <span class="post-placeholder" aria-hidden="true">
-                    <span class="post-placeholder-mark">× ×<br>× ×</span>
-                  </span>
+                  <?php echo make_editorial_placeholder_html( get_the_ID() ); ?>
                 <?php endif; ?>
               </div>
               <div class="post-card-body">

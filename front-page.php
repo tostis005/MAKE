@@ -164,6 +164,12 @@ $journal = new WP_Query(
         'post_status'         => 'publish',
         'posts_per_page'      => 3,
         'ignore_sticky_posts' => true,
+        'meta_query'          => array(
+            array(
+                'key'   => '_make_language',
+                'value' => make_current_language(),
+            ),
+        ),
     )
 );
 ?>
@@ -182,7 +188,7 @@ $journal = new WP_Query(
         <?php while ( $journal->have_posts() ) : $journal->the_post(); ?>
           <article class="journal-card">
             <a href="<?php the_permalink(); ?>">
-              <div class="journal-media"><?php if ( has_post_thumbnail() ) : the_post_thumbnail( 'make-journal', array( 'loading' => 'lazy', 'decoding' => 'async' ) ); else : ?><span class="journal-placeholder" aria-hidden="true">✦</span><?php endif; ?></div>
+              <div class="journal-media"><?php if ( has_post_thumbnail() ) : the_post_thumbnail( 'make-journal', array( 'loading' => 'lazy', 'decoding' => 'async' ) ); else : ?><?php echo make_editorial_placeholder_html( get_the_ID() ); ?><?php endif; ?></div>
               <div class="journal-body">
                 <span class="journal-meta"><?php echo esc_html( make_reading_time( get_the_ID() ) ); ?></span>
                 <h3 class="journal-title"><?php the_title(); ?></h3>
