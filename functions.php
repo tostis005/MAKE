@@ -258,3 +258,14 @@ function make_shop_body_class( array $classes ): array {
     return $classes;
 }
 add_filter( 'body_class', 'make_shop_body_class', 30 );
+
+
+add_filter( 'woocommerce_show_page_title', '__return_false' );
+
+function make_cart_count_fragment( array $fragments ): array {
+    $count = make_cart_count();
+    $html  = $count ? '<span class="cart-count">' . esc_html( (string) $count ) . '</span>' : '<span class="cart-count" hidden></span>';
+    $fragments['.cart-count'] = $html;
+    return $fragments;
+}
+add_filter( 'woocommerce_add_to_cart_fragments', 'make_cart_count_fragment' );
