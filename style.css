@@ -3,7 +3,7 @@ Theme Name: Custom Craft Storefront
 Theme URI: https://github.com/tostis005/MAKE
 Author: Custom Craft Project
 Description: Self-contained editorial-commerce WordPress theme for digital craft patterns. Cross stitch first, ready for crochet and future crafts.
-Version: 1.0.0
+Version: 1.1.0
 Requires at least: 6.4
 Requires PHP: 8.1
 Text Domain: make
@@ -375,4 +375,234 @@ button{color:inherit}
   .make-product-reassurance{grid-template-columns:1fr}
   .woocommerce div.product .woocommerce-tabs ul.tabs{gap:14px;overflow-x:auto}
   .woocommerce-cart .woocommerce,.woocommerce-checkout .woocommerce,.woocommerce-account .woocommerce{width:min(calc(100% - 28px),var(--mk-max));margin-top:36px}
+}
+
+
+/* ========================================================================
+   Feminine studio refresh — v1.1
+   Soft, grown-up craft palette with botanical cross-stitch details.
+   ======================================================================== */
+:root{
+  --mk-ink:#3f3038;
+  --mk-muted:#786b70;
+  --mk-cream:#fbf5f3;
+  --mk-paper:#fffaf9;
+  --mk-soft:#f3e6e5;
+  --mk-line:#e8d8da;
+  --mk-red:#b9657d;
+  --mk-red-deep:#8f445b;
+  --mk-pink:#e7b8c6;
+  --mk-blue:#bdccd0;
+  --mk-green:#9cad94;
+  --mk-yellow:#d7b269;
+  --mk-plum:#6f4b65;
+  --mk-shadow:0 24px 65px rgba(92,63,76,.12);
+}
+body{background:var(--mk-cream);color:var(--mk-ink)}
+.make-announcement{background:var(--mk-plum);color:#fff8f6;letter-spacing:.11em}
+.site-header{background:rgba(251,245,243,.94);border-bottom-color:rgba(111,75,101,.12)}
+.header-main{min-height:84px}
+.site-brand{gap:12px}
+.brand-mark{
+  width:44px;height:44px;padding:0;border-radius:14px;display:block;background:transparent;
+  transform:none;overflow:visible;box-shadow:0 8px 22px rgba(111,75,101,.10)
+}
+.brand-mark img{width:44px;height:44px;display:block}
+.brand-word{font-weight:500;font-size:30px;letter-spacing:-.045em}
+.brand-tagline{color:#9a7f89;letter-spacing:.12em}
+.primary-nav a{color:#594b51}
+.icon-button:hover{background:#f3e3e6}
+.cart-count{background:var(--mk-red-deep)}
+.button-primary{background:var(--mk-plum)}
+.button-primary:hover{background:var(--mk-red-deep)}
+.button-secondary{border-color:#d9bdc5;background:rgba(255,250,249,.58)}
+.eyebrow,.section-kicker,.journal-meta,.product-type,.overlay-eyebrow{color:var(--mk-red-deep)}
+.text-link{color:var(--mk-red-deep)}
+
+/* Hero: floral embroidery rather than abstract pixels */
+.hero{padding-top:30px}
+.hero-shell{
+  min-height:660px;
+  background:linear-gradient(135deg,#f5e6e4 0%,#f8ece8 46%,#f0e4e7 100%);
+  border-color:rgba(126,83,100,.10);
+  box-shadow:0 28px 75px rgba(103,70,85,.11)
+}
+.hero-copy::after{
+  content:"";
+  position:absolute;
+  width:130px;height:130px;
+  left:7%;bottom:4%;
+  border-radius:50%;
+  background:radial-gradient(circle,#d9b2bd 1.2px,transparent 1.6px);
+  background-size:12px 12px;
+  opacity:.26;
+  pointer-events:none
+}
+.hero h1{max-width:9.2ch}
+.hero h1 em{color:var(--mk-red-deep)}
+.hero-copy>p{color:#6f6065}
+.hero-note{color:#89757c}
+.hero-art{
+  min-height:660px;
+  background:
+    radial-gradient(circle at 77% 18%,rgba(255,255,255,.72) 0 13%,transparent 13.5%),
+    linear-gradient(150deg,#efd1d7 0%,#e5c5cc 38%,#c8d2c1 100%)
+}
+.hero-art::before{
+  content:"";
+  position:absolute;
+  inset:7% 6% 7% 2%;
+  border-radius:44% 56% 46% 54% / 55% 45% 55% 45%;
+  background:rgba(255,250,247,.55);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.42);
+  transform:rotate(2deg)
+}
+.hero-art::after{
+  content:"✦  ·  ✿";
+  position:absolute;
+  right:7%;bottom:7%;
+  color:rgba(111,75,101,.34);
+  font:500 18px/1 Georgia,serif;
+  letter-spacing:.32em
+}
+.hero-art-inner{position:relative;z-index:2;width:100%;height:100%;min-height:660px;display:grid;place-items:center}
+.hero-cross-stitch{
+  position:relative;
+  width:min(91%,610px);
+  height:auto;
+  filter:drop-shadow(0 22px 26px rgba(90,58,72,.12));
+  transform:rotate(-1.5deg);
+  transition:transform .35s ease
+}
+.hero-shell:hover .hero-cross-stitch{transform:rotate(-.5deg) translateY(-4px)}
+.hero-label{
+  left:auto;right:7%;top:8%;
+  background:rgba(255,250,249,.92);
+  color:var(--mk-plum);
+  border:1px solid rgba(185,101,125,.14);
+  box-shadow:0 12px 32px rgba(96,63,77,.10);
+  transform:rotate(3deg)
+}
+.hero-caption{
+  position:absolute;left:8%;bottom:8%;
+  display:flex;align-items:center;gap:9px;
+  padding:10px 14px;border-radius:999px;
+  background:rgba(255,250,249,.91);
+  color:#7d626c;
+  border:1px solid rgba(111,75,101,.10);
+  box-shadow:0 10px 26px rgba(89,61,73,.08);
+  font:italic 13px/1 Georgia,serif
+}
+.hero-caption-flower{color:var(--mk-red);font-style:normal}
+
+/* Softer discovery cards */
+.craft-card{border-color:rgba(111,75,101,.09);box-shadow:0 10px 30px rgba(91,63,75,.035)}
+.craft-card--feature{background:#ead5d7}
+.craft-card--feature::before{
+  border-color:#c08e68;
+  background:repeating-linear-gradient(90deg,#fff9f3 0,#fff9f3 15px,#f3e7df 15px,#f3e7df 16px)
+}
+.craft-card--feature::after{color:var(--mk-red-deep)}
+.craft-card:nth-child(2){background:#f1e2e2}
+.craft-card:nth-child(3){background:#e5ece0}
+.craft-card:nth-child(4){background:#eee2eb}
+.craft-icon{color:rgba(111,75,101,.22)}
+.craft-card p{color:#76676c}
+
+/* Storefront: warmer plum + blush */
+.products-section{background:#4c3544;color:#fff8f4}
+.products-section .section-kicker{color:#efbccb}
+.products-section .text-link{color:#f7d5df}
+.product-card{border-radius:24px;background:#fffaf9}
+.product-media{background:#eedfe0}
+.product-badge{background:rgba(255,250,249,.94);color:var(--mk-plum)}
+.product-placeholder{background:linear-gradient(145deg,#f1dde2,#ddc6cd)}
+.product-placeholder .mini-grid{background:#fff9f5}
+.product-placeholder .mini-grid i{background:#eadcdf}
+.product-placeholder .mini-grid i:nth-child(4n+1){background:var(--mk-red)}
+.product-placeholder .mini-grid i:nth-child(7n+2){background:var(--mk-plum)}
+.product-placeholder .mini-grid i:nth-child(9n+3){background:var(--mk-green)}
+.empty-products{border-color:rgba(255,255,255,.20)}
+.empty-products strong{color:#fff8f4}
+.empty-products small{color:#d9c5cd}
+
+/* Brand-neutral handmade visual */
+.promise-visual{background:linear-gradient(145deg,#ead6da,#dbc9d0)}
+.promise-visual::before{background:#fff8f3}
+.promise-visual::after{content:"CREATE\A SLOWLY";color:var(--mk-red-deep);font-weight:500}
+.thread-ball{
+  background:repeating-radial-gradient(ellipse at center,#7f5a74 0 5px,#93708a 6px 10px);
+  box-shadow:0 24px 45px rgba(85,55,78,.16)
+}
+.promise-copy{background:#fffaf9}
+.promise-item strong{color:#59444f}
+
+/* Editorial cards and overlays */
+.journal-card,.post-card{border-color:var(--mk-line);border-radius:24px}
+.journal-media,.post-card-media{background:linear-gradient(145deg,#f0dfe3,#e1d2d0)}
+.journal-placeholder,.post-placeholder{color:var(--mk-red-deep);background:linear-gradient(145deg,#f4e4e7,#eee5dd)}
+.make-overlay{background:#fbf5f3}
+.overlay-top{border-bottom-color:#ead9dd}
+.overlay-close:hover{background:#f0e0e4}
+.overlay-search-form{border-color:#dec7cd;background:#fffaf9}
+.overlay-search-form button{background:var(--mk-plum)}
+.language-option{background:#fffaf9}
+.language-option:hover,.language-option.is-current{border-color:var(--mk-red)}
+.mobile-menu-nav a::after{color:var(--mk-red-deep)}
+.mobile-menu-language{background:#fffaf9}
+.mobile-shop-link{background:var(--mk-plum)}
+
+/* Editorial article details */
+.article-featured{box-shadow:0 20px 55px rgba(92,63,76,.08)}
+.entry-content blockquote{border-left-color:var(--mk-red);background:#f4e6e7}
+.article-footer-card{background:#fffaf9}
+.entry-content th{background:#f4e6e7}
+
+/* Shop, product and checkout */
+.shop-hero{background:linear-gradient(180deg,rgba(239,216,222,.34),transparent)}
+.shop-trust{color:#7b6870}
+.woocommerce ul.products li.product{background:#fffaf9!important;border-color:#ead8dc!important;border-radius:24px!important}
+.woocommerce ul.products li.product a img{border-radius:23px 23px 0 0}
+.woocommerce span.onsale{background:var(--mk-red-deep)!important}
+.make-product-view{color:var(--mk-red-deep)}
+.woocommerce nav.woocommerce-pagination ul li span.current{background:var(--mk-plum)!important}
+.woocommerce-shell--single div.product .woocommerce-product-gallery__wrapper{background:#efe2e3}
+.woocommerce button.button.alt,.woocommerce a.button.alt,.woocommerce #respond input#submit.alt{background:var(--mk-red-deep)!important}
+.woocommerce button.button.alt:hover,.woocommerce a.button.alt:hover{background:var(--mk-plum)!important}
+.make-product-reassurance>span{background:#fffaf9}
+.make-product-reassurance i{background:#f2e1e5;color:var(--mk-red-deep)}
+.woocommerce div.product .woocommerce-tabs ul.tabs li.active{border-bottom-color:var(--mk-red-deep)!important}
+.woocommerce table.shop_table{background:#fffaf9}
+.woocommerce .button:not(.alt){background:var(--mk-plum)!important}
+.woocommerce form.checkout_coupon,.woocommerce form.login,.woocommerce form.register{background:#fffaf9}
+.woocommerce-checkout #payment{background:#f1e2e5!important}
+.woocommerce-message,.woocommerce-info,.woocommerce-error{background:#fffaf9!important}
+
+/* CTA + footer */
+.shop-cta-inner{background:linear-gradient(135deg,#b9657d,#8d536c)}
+.shop-cta-inner::after{content:"✿  ×  ✿  ×";opacity:.22}
+.shop-cta-inner .button-primary{background:#4c3544;border-color:#4c3544}
+.site-footer{background:#3d2d37;color:#fff8f4}
+.footer-copy{color:#cbbbc1}
+.footer-title{color:#ad929c}
+.footer-links a{color:#eadde1}
+.footer-bottom{color:#ab959d;border-top-color:rgba(255,255,255,.10)}
+
+/* Small tactile flourishes */
+.section-title::selection,.hero h1::selection{background:#e8bdc8;color:#49323f}
+.product-card,.journal-card,.post-card,.craft-card,.article-footer-card,.promise-copy{box-shadow:0 8px 30px rgba(92,63,76,.025)}
+
+@media(max-width:820px){
+  .hero-shell{min-height:auto}
+  .hero-art,.hero-art-inner{min-height:510px}
+  .hero-cross-stitch{width:min(92%,500px)}
+  .hero-caption{left:6%;bottom:5%}
+}
+@media(max-width:560px){
+  .brand-tagline{display:none}
+  .brand-word{font-size:27px}
+  .hero-art,.hero-art-inner{min-height:430px}
+  .hero-cross-stitch{width:96%}
+  .hero-label{right:5%;top:5%;font-size:9px}
+  .hero-caption{font-size:11px;padding:8px 11px}
 }
