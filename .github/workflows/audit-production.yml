@@ -1,0 +1,148 @@
+name: Audit MAKE production editorial
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/audit-production.yml'
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/make_audit_key
+          chmod 600 ~/.ssh/make_audit_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Audit WordPress editorial production
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/make_audit_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          echo "=== WordPress editorial state ==="
+          "${DOCKER[@]}" exec make-wp php -r '
+            require "/var/www/html/wp-load.php";
+            echo "HOME_URL=" . home_url("/") . PHP_EOL;
+            echo "PERMALINK_STRUCTURE=" . ((string) get_option("permalink_structure", "") ?: "plain") . PHP_EOL;
+            foreach (array("es","en") as $lang) {
+                $q = new WP_Query(array(
+                    "post_type"=>"post",
+                    "post_status"=>"publish",
+                    "posts_per_page"=>1,
+                    "meta_query"=>array(array("key"=>"_make_language","value"=>$lang)),
+                ));
+                echo "POST_COUNT_" . strtoupper($lang) . "=" . (int) $q->found_posts . PHP_EOL;
+            }
+            $managed = new WP_Query(array(
+                "post_type"=>"post","post_status"=>"publish","posts_per_page"=>-1,"fields"=>"ids",
+                "meta_query"=>array(array("key"=>"_make_managed_article","value"=>1)),
+            ));
+            $missing_title=$missing_desc=$missing_lang=$missing_group=0;
+            foreach ($managed->posts as $id) {
+                if (!get_post_meta($id,"_make_seo_title",true)) $missing_title++;
+                if (!get_post_meta($id,"_make_meta_description",true)) $missing_desc++;
+                if (!get_post_meta($id,"_make_language",true)) $missing_lang++;
+                if (!get_post_meta($id,"_make_translation_group",true)) $missing_group++;
+            }
+            echo "MANAGED_POSTS=" . count($managed->posts) . PHP_EOL;
+            echo "MISSING_SEO_TITLE=$missing_title" . PHP_EOL;
+            echo "MISSING_META_DESCRIPTION=$missing_desc" . PHP_EOL;
+            echo "MISSING_LANGUAGE=$missing_lang" . PHP_EOL;
+            echo "MISSING_TRANSLATION_GROUP=$missing_group" . PHP_EOL;
+            $latest = get_posts(array(
+                "post_type"=>"post","post_status"=>"publish","posts_per_page"=>1,
+                "meta_key"=>"_make_managed_article","meta_value"=>1,
+            ));
+            if ($latest) {
+                $p=$latest[0];
+                echo "SAMPLE_ID=" . $p->ID . PHP_EOL;
+                echo "SAMPLE_SLUG=" . $p->post_name . PHP_EOL;
+                echo "SAMPLE_PERMALINK=" . get_permalink($p->ID) . PHP_EOL;
+            }
+          '
+
+          echo "=== Web server rewrite state ==="
+          "${DOCKER[@]}" exec make-wp sh -lc '
+            if command -v apache2ctl >/dev/null 2>&1; then
+              echo SERVER=apache
+              apache2ctl -M 2>/dev/null | grep rewrite || true
+              grep -R "AllowOverride" /etc/apache2 2>/dev/null | head -20 || true
+            elif command -v nginx >/dev/null 2>&1; then
+              echo SERVER=nginx
+              nginx -T 2>/dev/null | grep -E "try_files|rewrite" | head -30 || true
+            else
+              echo SERVER=unknown
+            fi
+            if [ -f /var/www/html/.htaccess ]; then
+              echo HTACCESS_PRESENT=yes
+              sed -n "1,120p" /var/www/html/.htaccess
+            else
+              echo HTACCESS_PRESENT=no
+            fi
+          '
+
+          SITE_HOST="$("${DOCKER[@]}" exec make-wp php -r 'require "/var/www/html/wp-load.php"; $u=parse_url(home_url("/")); echo $u["host"] . (isset($u["port"]) ? ":" . $u["port"] : "");')"
+          SAMPLE_ID="$("${DOCKER[@]}" exec make-wp php -r 'require "/var/www/html/wp-load.php"; $p=get_posts(array("post_type"=>"post","post_status"=>"publish","posts_per_page"=>1,"meta_key"=>"_make_managed_article","meta_value"=>1)); echo $p ? $p[0]->ID : 0;')"
+          SAMPLE_SLUG="$("${DOCKER[@]}" exec make-wp php -r 'require "/var/www/html/wp-load.php"; $p=get_posts(array("post_type"=>"post","post_status"=>"publish","posts_per_page"=>1,"meta_key"=>"_make_managed_article","meta_value"=>1)); echo $p ? $p[0]->post_name : "";')"
+
+          check_route(){
+            local route="$1"
+            local label="$2"
+            "${DOCKER[@]}" exec -e AUDIT_HOST="$SITE_HOST" -e AUDIT_ROUTE="$route" -e AUDIT_LABEL="$label" make-wp php -r '
+              $host=getenv("AUDIT_HOST"); $route=getenv("AUDIT_ROUTE"); $label=getenv("AUDIT_LABEL");
+              $ctx=stream_context_create(array("http"=>array(
+                "method"=>"GET",
+                "header"=>"Host: ".$host."\r\nUser-Agent: MAKE-Editorial-Audit\r\n",
+                "ignore_errors"=>true,"follow_location"=>0,"timeout"=>15
+              )));
+              $html=@file_get_contents("http://127.0.0.1".$route,false,$ctx);
+              $status=$http_response_header[0] ?? "no-status";
+              echo $label . "_STATUS=" . $status . PHP_EOL;
+              if ($html !== false) {
+                echo $label . "_BYTES=" . strlen($html) . PHP_EOL;
+                if ($label === "SAMPLE") {
+                  foreach (array(
+                    "META_DESCRIPTION"=>"<meta name=\"description\"",
+                    "ARTICLE_SCHEMA"=>"\"@type\":\"Article\"",
+                    "RELATED_BLOCK"=>"article-related-grid",
+                    "READING_TIME"=>"min",
+                    "HREFLANG"=>"hreflang=",
+                  ) as $name=>$needle) {
+                    echo $label . "_" . $name . "=" . (strpos($html,$needle)!==false ? "yes" : "no") . PHP_EOL;
+                  }
+                }
+                if ($label === "SITEMAP") {
+                  echo "SITEMAP_HAS_POSTS=" . (strpos($html,"wp-sitemap-posts-post")!==false ? "yes" : "no") . PHP_EOL;
+                  echo "SITEMAP_HAS_CATEGORIES=" . (strpos($html,"wp-sitemap-taxonomies-category")!==false ? "yes" : "no") . PHP_EOL;
+                  echo "SITEMAP_HAS_USERS=" . (strpos($html,"wp-sitemap-users")!==false ? "yes" : "no") . PHP_EOL;
+                }
+              }
+            '
+          }
+
+          echo "=== HTTP smoke checks ==="
+          check_route "/?p=$SAMPLE_ID" "SAMPLE"
+          check_route "/$SAMPLE_SLUG/" "PRETTY_SAMPLE"
+          check_route "/journal/" "PRETTY_JOURNAL"
+          check_route "/wp-sitemap.xml" "SITEMAP"
+          REMOTE
