@@ -1,0 +1,81 @@
+name: Deploy MAKE theme to WordPress
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '*.php'
+      - 'style.css'
+      - 'assets/**'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: make-production-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate WordPress theme
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s style.css
+          test -s functions.php
+          test -s header.php
+          test -s front-page.php
+          find . -type f -name '*.php' -print0 | xargs -0 -r -n1 php -l
+          node --check assets/js/site.js
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/make_deploy_key
+          chmod 600 ~/.ssh/make_deploy_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Package theme
+        run: tar --exclude='./.git' --exclude='./.github' --exclude='./README.md' -czf /tmp/make-theme.tar.gz .
+
+      - name: Upload theme
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: scp -i ~/.ssh/make_deploy_key /tmp/make-theme.tar.gz "$VPS_USER@$VPS_HOST:/tmp/make-theme-${GITHUB_RUN_ID}.tar.gz"
+
+      - name: Deploy into make-wp container
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/make_deploy_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/make-theme-${GITHUB_RUN_ID}.tar.gz"
+          STAGE="/tmp/make-theme-${GITHUB_RUN_ID}"
+          TARGET="/var/www/html/wp-content/themes/make"
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE"; }
+          trap cleanup EXIT
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+          rm -rf "$STAGE" && mkdir -p "$STAGE" && tar -xzf "$ARCHIVE" -C "$STAGE"
+          "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '$TARGET' && mkdir -p '$TARGET'"
+          "${DOCKER[@]}" cp "$STAGE/." "make-wp:$TARGET/"
+          "${DOCKER[@]}" exec make-wp sh -lc "chown -R www-data:www-data '$TARGET' && find '$TARGET' -type d -exec chmod 755 {} + && find '$TARGET' -type f -exec chmod 644 {} + && test -s '$TARGET/style.css' && test -s '$TARGET/functions.php'"
+          "${DOCKER[@]}" exec make-wp php -r 'require "/var/www/html/wp-load.php"; flush_rewrite_rules(false); echo "MAKE theme deployed\n";'
+          REMOTE
