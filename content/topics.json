@@ -1448,6 +1448,61 @@
       "title_es": "Punto de cruz memorial de mascota: ideas para un recuerdo personal",
       "title_en": "Pet Memorial Cross Stitch: Ideas for a Personal Keepsake",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 131,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "books",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Patrones de punto de cruz para lectores y amantes de los libros",
+      "title_en": "Cross Stitch Patterns for Readers and Book Lovers",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 132,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "coffee",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Patrones de café en punto de cruz: ideas modernas, retro y pop",
+      "title_en": "Coffee Cross Stitch Patterns: Modern, Retro and Pop Ideas",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 133,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "music",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Patrones de música en punto de cruz: instrumentos, vinilos y ondas",
+      "title_en": "Music Cross Stitch Patterns: Instruments, Vinyl and Sound Waves",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 134,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "gardening",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Patrones de punto de cruz para amantes de la jardinería",
+      "title_en": "Cross Stitch Patterns for Gardeners and Plant Lovers",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 135,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "gaming",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Patrones gaming de punto de cruz: pixel art, mandos e ideas originales",
+      "title_en": "Gaming Cross Stitch Patterns: Pixel Art, Controllers and Original Ideas",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {
