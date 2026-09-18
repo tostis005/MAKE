@@ -788,6 +788,61 @@
       "title_es": "Ideas de punto de cruz para regalar el Día de la Madre",
       "title_en": "Cross Stitch Gift Ideas for Mother's Day",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 71,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "technique",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo hacer backstitch en punto de cruz y conseguir contornos limpios",
+      "title_en": "How to Backstitch in Cross Stitch for Clean, Sharp Outlines",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 72,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "technique",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo hacer nudos franceses en punto de cruz sin que se deshagan",
+      "title_en": "How to Make French Knots in Cross Stitch Without the Frustration",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 73,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "technique",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Puntadas fraccionarias en punto de cruz: medias, cuartos y tres cuartos",
+      "title_en": "Fractional Stitches in Cross Stitch: Half, Quarter and Three-Quarter Stitches",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 74,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "materials",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo hacer punto de cruz sobre tela Aida negra sin perder la vista",
+      "title_en": "How to Cross Stitch on Black Aida Without Straining Your Eyes",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 75,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "tools",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo colocar y tensar tela Aida en un bastidor correctamente",
+      "title_en": "How to Put Aida in a Hoop and Get the Tension Right",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {

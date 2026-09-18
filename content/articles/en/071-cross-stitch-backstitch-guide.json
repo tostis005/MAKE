@@ -1,0 +1,68 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 71,
+  "translation_group": "071-cross-stitch-backstitch-guide",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "technique",
+      "terms": [
+        "technique",
+        "backstitch"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to",
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-071-backstitch",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Stitchers encountering backstitch in a chart and learning how and when to work it.",
+  "title": "How to Backstitch in Cross Stitch for Clean, Sharp Outlines",
+  "slug": "cross-stitch-backstitch-guide",
+  "seo": {
+    "title": "How to Backstitch in Cross Stitch",
+    "meta_description": "Learn to read backstitch lines, maintain clean tension, choose when to add outlines and avoid loose or overly tight line work.",
+    "search_intent": "Learn how to backstitch in a cross stitch pattern."
+  },
+  "excerpt": "Backstitch is the line drawing of a pattern: a few simple outlines can transform a soft image into something much more defined.",
+  "content_html": "<p>Backstitch appears at the end of many cross stitch patterns to add outlines, fine details and separation between areas that would otherwise look soft. It can seem like a different technique, but it is actually simple: you are drawing lines with thread across a grid you already understand.</p>\n<p>The main challenge is not forming the stitch. It is reading where each line travels and keeping tension even so the outline looks clean without pulling the fabric inward.</p>\n<h2>What backstitch does and why it changes a design so much</h2>\n<p>A cross occupies a square; backstitch connects specific grid points with a line. That makes it possible to draw a mouth, separate petals, define a beak or outline a cup without adding dozens of full crosses.</p>\n<p>This is why a piece can look slightly blurry before outlining and suddenly become much sharper afterward.</p>\n<p>Patterns use backstitch differently. Some add only a handful of lines while others depend on it heavily for detail.</p>\n<p>Check the key because outline color may differ from nearby crosses and the strand count may not be the same.</p>\n<h2>How to work backstitch cleanly</h2>\n<p>Bring the needle up at one marked grid point and take it down at the next. Then come up one point farther ahead and return to the end of the previous stitch. This gradually creates a continuous line.</p>\n<p>On short paths, work one segment at a time. Avoid covering too many squares in a single long stitch because the thread can become loose or move out of position.</p>\n<p>Tension should be firm enough for the line to rest neatly on the stitching, but not so tight that it sinks into the crosses.</p>\n<p>When the chart shows a diagonal, follow the exact marked points. There is no need to pass through the center of every square unless the chart says so.</p>\n<h2>When should you add backstitch?</h2>\n<p>Most projects are easier if you complete the crosses in an area first and add outlines afterward. The line then sits over a finished surface.</p>\n<p>On large projects, you can work section by section: complete the crosses and then the outlines, provided later hoop placement will not damage them.</p>\n<p>Avoid trapping long backstitch lines under a tight hoop for weeks. If you know the frame will move frequently, leaving outlines until later may be safer.</p>\n<p>Before considering a section complete, compare it with the preview. One missing line can change a face or object more than you expect.</p>\n<h2>Common mistakes and how to avoid them</h2>\n<p>One common mistake is pulling too hard to make the line “straight.” That can distort the fabric and create visible dips.</p>\n<p>Another is skipping a point and turning two short segments into one long stitch. It may look similar on the chart, but physically the longer thread moves more.</p>\n<p>When dark outlining crosses pale fabric, avoid unnecessary carries behind open areas where the thread might show through.</p>\n<p>Use manageable thread lengths to reduce twist, and let the needle hang freely when the floss begins forming little spirals.</p>\n<p>Backstitch is not merely an optional decoration when the designer uses it to define the picture. It is part of the drawing. Once you understand the chart lines, it often becomes one of the fastest and most satisfying stages because the image sharpens almost immediately.</p><p>If you have never tried it, begin with a chart that uses only a few clear outlines. Learning on a flower, simple animal or lettering is much easier than starting with a design where most of the illustration depends on fine line work.</p><p>If you have never tried it, begin with a chart that uses only a few clear outlines. Learning on a flower, simple animal or lettering is much easier than starting with a design where most of the illustration depends on fine line work.</p><p>If you have never tried it, begin with a chart that uses only a few clear outlines. Learning on a flower, simple animal or lettering is much easier than starting with a design where most of the illustration depends on fine line work.</p><p>If you have never tried it, begin with a chart that uses only a few clear outlines. Learning on a flower, simple animal or lettering is much easier than starting with a design where most of the illustration depends on fine line work.</p><p>If you have never tried it, begin with a chart that uses only a few clear outlines. Learning on a flower, simple animal or lettering is much easier than starting with a design where most of the illustration depends on fine line work.</p><p>If you have never tried it, begin with a chart that uses only a few clear outlines. Learning on a flower, simple animal or lettering is much easier than starting with a design where most of the illustration depends on fine line work.</p>",
+  "image": {
+    "concept": "Before-and-after detail showing backstitch added to a stitched flower and small face.",
+    "alt": "How to backstitch in cross stitch"
+  }
+}

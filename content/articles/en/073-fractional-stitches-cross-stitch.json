@@ -1,0 +1,68 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 73,
+  "translation_group": "073-fractional-stitches-cross-stitch",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "technique",
+      "terms": [
+        "technique",
+        "fractional-stitches"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to",
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-073-fractional",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Stitchers encountering half, quarter and three-quarter stitches in a chart.",
+  "title": "Fractional Stitches in Cross Stitch: Half, Quarter and Three-Quarter Stitches",
+  "slug": "fractional-stitches-cross-stitch",
+  "seo": {
+    "title": "Fractional Stitches in Cross Stitch",
+    "meta_description": "Learn to read and stitch half, quarter and three-quarter stitches on Aida without distorting fabric or losing the intended shape.",
+    "search_intent": "Learn how to read and stitch fractional cross stitches."
+  },
+  "excerpt": "Fractional stitches soften curves inside the grid. The main challenge is reading the square correctly rather than forming the stitch itself.",
+  "content_html": "<p>Fractional stitches —half, quarter and three-quarter stitches— allow curves and fine detail inside a grid that would otherwise be built only from square blocks. They often appear in more detailed charts and can look confusing at first because you are no longer always stitching corner to corner.</p>\n<p>The key is identifying exactly which part of the square the symbol occupies and following the designer's legend.</p>\n<h2>Half, quarter and three-quarter stitches</h2>\n<p>A half stitch uses only one diagonal of the X. It is common in backgrounds, shading and areas where lighter coverage is useful.</p>\n<p>A quarter stitch travels from one corner to the center of the square. On Aida, this may require piercing the middle of the fabric block.</p>\n<p>A three-quarter stitch combines one full diagonal with a second line that reaches only the center.</p>\n<p>These forms can round a cheek, leaf or letter without filling the entire square with one color.</p>\n<h2>How to read fractional stitches on a chart</h2>\n<p>Software often represents them with smaller symbols placed inside a particular portion of the square.</p>\n<p>Do not assume a tiny symbol means the same thing in every pattern. Check the legend and instructions.</p>\n<p>When two colors share one square, the chart may call for two quarter stitches, two three-quarter stitches or another combination.</p>\n<p>Zoom into the PDF when necessary. These differences can be difficult to see on a small printout.</p>\n<h2>Working fractions on Aida</h2>\n<p>Aida provides clear corner holes but no prepared center hole. Quarter stitches may require gently separating the fibers in the middle of the block.</p>\n<p>A sufficiently fine needle helps you pass through without distorting the cloth too much.</p>\n<p>Do not force the needle when you meet resistance. Find the visual center of the square and pierce with controlled pressure.</p>\n<p>On evenweave or linen, fractional stitches often feel more natural because the fabric structure offers more intermediate points.</p>\n<h2>How to keep them looking even</h2>\n<p>Use the same general tension as the rest of the project. A small stitch pulled too tightly can sink into the fabric and almost disappear.</p>\n<p>When two colors share a square, consider which one should sit visually on top. Stitching order can affect how the edge reads.</p>\n<p>Backstitch added later may cover part of the join and make the transition look much cleaner.</p>\n<p>Practice on a small area first if the pattern uses many fractions in an important section such as a face.</p>\n<h2>When is a pattern with fractional stitches worth choosing?</h2>\n<p>If you like smooth curves, portraits, lettering or detailed flowers, these stitches add precision without dramatically increasing the grid size.</p>\n<p>They are not necessary for a first project. You can learn comfortably with full crosses and add fractions when you want more detail.</p>\n<p>Do not treat them as an automatic sign of an “advanced” pattern. The technique itself is straightforward once the square makes sense; difficulty comes more from how densely and frequently it is used.</p>\n<p>Fractional stitches are simply a tool for escaping the rigidity of the square. Used sparingly, they can transform a curve or outline without making the chart radically more complicated.</p><p>When buying a PDF, check that the chart can be viewed at a useful scale. On patterns with many quarter and three-quarter stitches, chart readability matters just as much as the artwork itself.</p><p>When buying a PDF, check that the chart can be viewed at a useful scale. On patterns with many quarter and three-quarter stitches, chart readability matters just as much as the artwork itself.</p><p>When buying a PDF, check that the chart can be viewed at a useful scale. On patterns with many quarter and three-quarter stitches, chart readability matters just as much as the artwork itself.</p><p>When buying a PDF, check that the chart can be viewed at a useful scale. On patterns with many quarter and three-quarter stitches, chart readability matters just as much as the artwork itself.</p><p>When buying a PDF, check that the chart can be viewed at a useful scale. On patterns with many quarter and three-quarter stitches, chart readability matters just as much as the artwork itself.</p><p>When buying a PDF, check that the chart can be viewed at a useful scale. On patterns with many quarter and three-quarter stitches, chart readability matters just as much as the artwork itself.</p><p>When buying a PDF, check that the chart can be viewed at a useful scale. On patterns with many quarter and three-quarter stitches, chart readability matters just as much as the artwork itself.</p><p>When buying a PDF, check that the chart can be viewed at a useful scale. On patterns with many quarter and three-quarter stitches, chart readability matters just as much as the artwork itself.</p><p>When buying a PDF, check that the chart can be viewed at a useful scale. On patterns with many quarter and three-quarter stitches, chart readability matters just as much as the artwork itself.</p>",
+  "image": {
+    "concept": "Magnified grid square showing half, quarter and three-quarter stitches.",
+    "alt": "Fractional cross stitches"
+  }
+}
