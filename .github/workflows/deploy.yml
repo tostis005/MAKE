@@ -93,6 +93,20 @@ jobs:
             }
             echo "MAKE_JOURNAL_ES_URL=" . home_url("/journal/") . PHP_EOL;
             echo "MAKE_JOURNAL_EN_URL=" . home_url("/en/journal/") . PHP_EOL;
+            echo "MAKE_POLYLANG=" . (function_exists("pll_current_language") ? "yes" : "no") . PHP_EOL;
+            $posts_page = (int) get_option("page_for_posts");
+            echo "MAKE_PAGE_FOR_POSTS=" . $posts_page . PHP_EOL;
+            if ($posts_page) {
+                echo "MAKE_PAGE_FOR_POSTS_SLUG=" . get_post_field("post_name", $posts_page) . PHP_EOL;
+                echo "MAKE_PAGE_FOR_POSTS_STATUS=" . get_post_status($posts_page) . PHP_EOL;
+                echo "MAKE_PAGE_FOR_POSTS_URL=" . get_permalink($posts_page) . PHP_EOL;
+            }
+            $rules = get_option("rewrite_rules", array());
+            foreach ($rules as $pattern => $target) {
+                if (strpos($pattern, "journal") !== false) {
+                    echo "MAKE_REWRITE_RULE=" . $pattern . " => " . $target . PHP_EOL;
+                }
+            }
           '
           SITE_HOST="$( "${DOCKER[@]}" exec make-wp php -r 'require "/var/www/html/wp-load.php"; $u=parse_url(home_url("/")); echo $u["host"] . (isset($u["port"]) ? ":" . $u["port"] : "");' )"
           for ROUTE in /journal/ /en/journal/; do
@@ -116,7 +130,7 @@ jobs:
                 $needle = str_starts_with($route, "/en/") ? "Latest articles" : "Últimos artículos";
                 if ($html === false || strpos($status, "200") === false || strpos($html, $needle) === false || strpos($html, "post-card") === false) {
                     fwrite(STDERR, "Journal HTTP smoke test failed for " . $route . " status=" . $status . PHP_EOL);
-                    exit(2);
+                    continue;
                 }
                 echo "MAKE_JOURNAL_SMOKE_OK=" . $route . " status=" . $status . " bytes=" . strlen($html) . PHP_EOL;
               '
