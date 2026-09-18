@@ -678,6 +678,61 @@
       "title_es": "Cuánto se tarda en hacer un patrón de punto de cruz",
       "title_en": "How Long Does a Cross Stitch Pattern Take to Finish?",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 61,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "animals",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Patrones de punto de cruz de pájaros y aves para todos los niveles",
+      "title_en": "Bird Cross Stitch Patterns for Every Skill Level",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 62,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "animals",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Patrones de mariposas, abejas e insectos en punto de cruz",
+      "title_en": "Butterfly, Bee and Insect Cross Stitch Patterns",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 63,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "landscapes",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Patrones de paisajes en punto de cruz: de lo minimalista a lo detallado",
+      "title_en": "Landscape Cross Stitch Patterns: From Minimal to Detailed",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 64,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "architecture",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Patrones de casas y arquitectura en punto de cruz",
+      "title_en": "House and Architecture Cross Stitch Patterns",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 65,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "ocean",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Patrones de punto de cruz del mar: peces, ballenas y vida marina",
+      "title_en": "Ocean Cross Stitch Patterns: Fish, Whales and Marine Life",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {
