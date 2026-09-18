@@ -1,0 +1,68 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 52,
+  "translation_group": "052-unpick-cross-stitch",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "troubleshooting",
+      "terms": [
+        "troubleshooting",
+        "unpick"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to",
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-052-unpick",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Stitchers removing incorrect stitches while protecting the fabric and correct surrounding work.",
+  "title": "How to Unpick Cross Stitch Without Damaging the Fabric",
+  "slug": "how-to-unpick-cross-stitch",
+  "seo": {
+    "title": "How to Unpick Cross Stitch Without Damaging Fabric",
+    "meta_description": "Remove incorrect crosses safely, know when to cut floss, tidy Aida afterward and decide whether the removed thread can be reused.",
+    "search_intent": "Learn how to safely unpick cross stitch."
+  },
+  "excerpt": "Unpicking is not about pulling harder. Reversing the thread path in small sections protects Aida and nearby stitches much better.",
+  "content_html": "<p>Unpicking cross stitch —often called “frogging”— is something almost every stitcher eventually needs to do. The cause may be a wrong color, a shifted row or a section you simply dislike. Working slowly lets you recover the fabric without enlarging holes, stretching Aida or leaving the weave full of loose fibers.</p>\n<p>The main rule is not to pull hard. Stitches interact with the fabric and with nearby crosses; the rougher the movement, the greater the chance of damaging something you intended to keep.</p>\n<h2>Start from the last stitch whenever possible</h2>\n<p>If you have just noticed the mistake, find where that thread section ended. Reversing the original stitching path is usually cleaner than cutting into the middle.</p>\n<p>Slide the blunt needle under the most recent leg of the cross and release the floss gently. Follow the original path in reverse.</p>\n<p>On a larger section, work gradually. Remove a few crosses and inspect the fabric again to make sure correct stitches are not becoming trapped.</p>\n<p>Do not try to remove ten stitches at once by pulling one long strand. Friction increases and the floss can catch the fibers of the Aida.</p>\n<h2>When cutting the floss is more practical</h2>\n<p>If the mistake is far from the point where the thread finished, cutting one incorrect stitch may be easier than reversing a long path.</p>\n<p>Use small sharp scissors and cut only the embroidery floss. Work under good light and keep the scissor point away from the fabric itself.</p>\n<p>Remove short fragments with the needle or smooth-tipped tweezers rather than scraping the Aida.</p>\n<p>If the remaining ends are long enough, secure them under nearby correct stitches. If they are too short, remove them and restart with fresh floss.</p>\n<h2>How to prepare the fabric for restitching</h2>\n<p>It is normal for holes to look slightly enlarged immediately after stitches are removed. They often recover much of their shape with gentle handling and later during the final wash.</p>\n<p>Use a clean fingernail or the blunt needle tip to nudge displaced threads back toward the grid. Do not force the weave.</p>\n<p>Remove lint and small thread fragments before restitching. Fibers from the wrong color can otherwise show between new crosses.</p>\n<p>If the area looks heavily disturbed, let the fabric rest for a few minutes before rebuilding it. The weave can relax noticeably on its own.</p>\n<h2>Can you reuse the floss you removed?</h2>\n<p>Thread that has travelled through many stitches is often weaker, more twisted and fuzzier. Even when it feels wasteful, replacing it may produce a much more even finish.</p>\n<p>If you removed only a few crosses and the floss remains smooth, reuse may be perfectly fine. Check for worn or flattened areas first.</p>\n<p>Do not store tiny unidentified scraps. Similar shades are easy to confuse, particularly in charts with neighboring colors.</p>\n<p>When you restitch, complete a small section first and compare it with the original area. That confirms that tension and coverage still match.</p>\n<p>Unpicking is not losing the whole project; it is a correction stage. Removing twenty or fifty stitches can be frustrating, but it is usually much faster than continuing to build on the wrong section.</p><p>If the problem covers a large area, break the unpicking into shorter sessions as well. Fatigue makes it easier to cut a correct stitch or pull too aggressively. A five-minute break can protect several hours of work that does not need to be disturbed.</p><p>If the problem covers a large area, break the unpicking into shorter sessions as well. Fatigue makes it easier to cut a correct stitch or pull too aggressively. A five-minute break can protect several hours of work that does not need to be disturbed.</p><p>If the problem covers a large area, break the unpicking into shorter sessions as well. Fatigue makes it easier to cut a correct stitch or pull too aggressively. A five-minute break can protect several hours of work that does not need to be disturbed.</p><p>If the problem covers a large area, break the unpicking into shorter sessions as well. Fatigue makes it easier to cut a correct stitch or pull too aggressively. A five-minute break can protect several hours of work that does not need to be disturbed.</p><p>If the problem covers a large area, break the unpicking into shorter sessions as well. Fatigue makes it easier to cut a correct stitch or pull too aggressively. A five-minute break can protect several hours of work that does not need to be disturbed.</p><p>If the problem covers a large area, break the unpicking into shorter sessions as well. Fatigue makes it easier to cut a correct stitch or pull too aggressively. A five-minute break can protect several hours of work that does not need to be disturbed.</p>",
+  "image": {
+    "concept": "Blunt needle carefully removing a few crosses from Aida while correct stitches remain intact.",
+    "alt": "How to unpick cross stitch safely"
+  }
+}

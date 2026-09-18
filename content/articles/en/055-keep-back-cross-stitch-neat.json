@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 55,
+  "translation_group": "055-neat-back",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "technique",
+      "terms": [
+        "technique",
+        "finishing",
+        "back"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to",
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-055-neat-back",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Stitchers wanting a flatter, more organized back without chasing unnecessary perfection.",
+  "title": "How to Keep the Back of Cross Stitch Neat Without Obsessing Over It",
+  "slug": "keep-back-cross-stitch-neat",
+  "seo": {
+    "title": "How to Keep the Back of Cross Stitch Neat",
+    "meta_description": "Avoid knots, long carries and stacked thread tails to keep the back flatter and easier to manage without chasing unnecessary perfection.",
+    "search_intent": "Learn how to keep the back of cross stitch neat."
+  },
+  "excerpt": "A useful back does not need to be perfect. Avoid bulky knots, long carries and piles of thread that interfere with stitching or framing.",
+  "content_html": "<p>A neat back in cross stitch does not need to look like a photograph of the front. The useful goal is not perfection; it is avoiding bulky knots, very long tails and unnecessary carries that can create lumps, show through the fabric or catch the working thread.</p>\n<p>On most framed projects nobody will see the back. Even so, keeping it reasonably organized makes stitching easier and can help the finished piece lie more evenly.</p>\n<h2>Start and finish thread with short, secure paths</h2>\n<p>A loop start is a clean option when working with an even number of strands because it removes one starting tail.</p>\n<p>When that method is not available, secure the end beneath existing stitches or use a few anchoring stitches that will later be covered.</p>\n<p>At the end, slide the needle beneath several stitches on the back in an area that is not already crowded. Trim close rather than leaving a long tail.</p>\n<p>Avoid large knots unless a specific technique calls for them. They can create bumps and make mounting more difficult.</p>\n<h2>Avoid carrying floss across long distances</h2>\n<p>A short jump between nearby crosses is normal. The problem begins when thread travels several inches behind the fabric only to avoid ending it.</p>\n<p>Besides using extra floss, long carries can catch the needle or become visible through pale fabric when the color is dark.</p>\n<p>If the next area is far away, finish and restart. The extra few seconds are often less work than dealing with a back full of long loose paths.</p>\n<p>When you do make a short carry, pass it beneath existing stitches when possible so it remains controlled.</p>\n<h2>Plan the route without turning it into an obsession</h2>\n<p>Working consistently across a row reduces unnecessary movement on the back, but you do not need to calculate a perfect route for every symbol.</p>\n<p>If a section contains several colors, finish compact blocks rather than chasing one shade across the entire chart.</p>\n<p>The goal is simply reasonable travel distances and distributed thread ends. A back containing some diagonals is still completely acceptable.</p>\n<p>Full-coverage designs can look dense on the back simply because there are so many stitches. Density is not the same thing as disorder.</p>\n<h2>Why too much bulk can cause real problems</h2>\n<p>Many thread ends secured in one place create a lump that may become noticeable during framing.</p>\n<p>Large knots and tangles make it harder to pass the needle and increase the chance of piercing existing thread.</p>\n<p>On pale fabric, dark carries may show through areas that remain unstitched.</p>\n<p>A heavy mass of floss also makes correction harder because individual thread paths are difficult to identify.</p>\n<p>Distributing finishes and trimming unnecessary tails keeps the back flatter without turning stitching into a competition for perfection.</p>\n<h2>When to stop worrying about the back</h2>\n<p>If the front looks even, the fabric remains flat and there are no bulky knots causing trouble, the back is probably neat enough.</p>\n<p>Do not remove correct stitches simply because one diagonal on the reverse is not attractive. That creates work without improving the visible result.</p>\n<p>Reversible pieces or finishes where the back will remain visible require more planning, but framed wall art usually does not.</p>\n<p>For framed work, prioritize even tension, low bulk and securely finished ends.</p>\n<p>A neat back is mostly the result of efficient habits: short finishes, sensible carries and good organization. Once those habits become normal, the reverse improves without demanding attention on every single stitch.</p><p>If you want to check your progress, inspect the back at the end of a section rather than after every row. That is often enough to catch a bulky area or unnecessary carry without turning the reverse into the main goal of the project.</p><p>If you want to check your progress, inspect the back at the end of a section rather than after every row. That is often enough to catch a bulky area or unnecessary carry without turning the reverse into the main goal of the project.</p><p>If you want to check your progress, inspect the back at the end of a section rather than after every row. That is often enough to catch a bulky area or unnecessary carry without turning the reverse into the main goal of the project.</p><p>If you want to check your progress, inspect the back at the end of a section rather than after every row. That is often enough to catch a bulky area or unnecessary carry without turning the reverse into the main goal of the project.</p><p>If you want to check your progress, inspect the back at the end of a section rather than after every row. That is often enough to catch a bulky area or unnecessary carry without turning the reverse into the main goal of the project.</p>",
+  "image": {
+    "concept": "Comparison of two cross stitch backs: one tidy with short thread paths and one with long carries and knots.",
+    "alt": "Neat back of cross stitch"
+  }
+}

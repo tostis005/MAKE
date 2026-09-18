@@ -1,0 +1,68 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 51,
+  "translation_group": "051-fix-counting-mistake",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "troubleshooting",
+      "terms": [
+        "troubleshooting",
+        "counting"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to",
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-051-counting-error",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Stitchers who found a shifted row or counting mistake and want to correct only what is necessary.",
+  "title": "How to Fix a Cross Stitch Counting Mistake Without Undoing Everything",
+  "slug": "fix-cross-stitch-counting-mistake",
+  "seo": {
+    "title": "How to Fix a Cross Stitch Counting Mistake",
+    "meta_description": "Find where a shift began, decide whether it affects the chart and remove only the stitches necessary to restore the correct position.",
+    "search_intent": "Fix a counting mistake in a cross stitch project."
+  },
+  "excerpt": "Before unpicking, find the first place where fabric and chart stop matching. Not every mistake requires removing the entire section.",
+  "content_html": "<p>Finding a counting mistake in cross stitch does not automatically mean removing half the project. Before touching anything, work out what kind of error you have: one cross in the wrong square, a shifted row, an entire section moved or simply a gap that was never filled.</p>\n<p>The distinction matters because not every mistake affects the rest of the chart. Some can be corrected locally, while others change the position of everything that follows and are worth fixing early.</p>\n<h2>Find the first point where fabric and chart stop matching</h2>\n<p>Do not immediately start unpicking from the most recent stitch. Compare the fabric with the chart and look for the first place where the structure stops matching. The original mistake may be several rows back.</p>\n<p>Use obvious reference points: a corner, color change, straight edge or open area. Count from two different references when possible. If both lead to the same square, you can be much more confident that you found the source.</p>\n<p>On larger charts, ten-square grid lines are extremely useful. Check which block the shape should occupy and whether its edge lines up with the grid.</p>\n<p>Mark the problem area on the chart so you do not lose it while correcting. If you use a digital app, temporarily unmark the uncertain section and record it again afterward.</p>\n<h2>Decide whether the error actually changes what comes next</h2>\n<p>One isolated cross placed slightly wrong may not require a major correction if it does not alter the outline or serve as a reference for another section.</p>\n<p>A whole row shifted by one square is different. If later stitching will use that row as a counting base, fixing it before moving on is usually safer.</p>\n<p>Geometric patterns, lettering and symmetrical designs tolerate shifts poorly because the error is easy to see. In an organic texture such as fur, leaves or sky, a tiny variation may be less noticeable.</p>\n<p>Do not confuse “I can hide it” with “it does not matter.” If leaving the mistake forces you to adapt several future areas, you create more decisions and increase the chance of another error.</p>\n<h2>Correct only the stitches that need removing</h2>\n<p>If the problem is concentrated in a small area, remove only the crosses that stop you restoring the correct position. There is no reason to undo complete rows when part of them can remain.</p>\n<p>Work backward from the newest stitches and release the floss carefully. Reuse it only if it remains smooth and undamaged; fuzzy or heavily twisted thread is better replaced.</p>\n<p>Once the area is clear, count again from a reliable reference and stitch two or three anchor points first. When those positions are confirmed, fill the rest.</p>\n<p>Avoid trying to compensate by adding a square here and removing one there unless the design is very organic and you understand the visual effect. In most charts, correcting the source is simpler.</p>\n<h2>How to stop a small mistake becoming a large one</h2>\n<p>Mark progress on the chart, especially in areas containing similar symbols. Working from memory for too long is a common cause of shifts.</p>\n<p>Count long distances in groups of five or ten rather than one sequence of thirty or forty squares.</p>\n<p>Every so often, verify one known point: the center, a page boundary, a ten-square line or the corner of a block. A quick check can stop a small error from growing for another hour.</p>\n<p>If the chart contains motifs separated by large areas of open fabric, consider gridding. Long jumps are exactly where a one-square difference becomes harder to notice.</p>\n<p>Counting mistakes are a normal part of cross stitch. The useful skill is not avoiding every mistake forever; it is identifying what happened early and removing the smallest amount of work needed to return to a reliable reference.</p><p>After correcting the area, resist the urge to rush in order to “make up” the lost time. The first few new stitches are a good moment to verify position and tension again. Five calm minutes can prevent the same shift from reappearing farther across the chart.</p><p>After correcting the area, resist the urge to rush in order to “make up” the lost time. The first few new stitches are a good moment to verify position and tension again. Five calm minutes can prevent the same shift from reappearing farther across the chart.</p><p>After correcting the area, resist the urge to rush in order to “make up” the lost time. The first few new stitches are a good moment to verify position and tension again. Five calm minutes can prevent the same shift from reappearing farther across the chart.</p><p>After correcting the area, resist the urge to rush in order to “make up” the lost time. The first few new stitches are a good moment to verify position and tension again. Five calm minutes can prevent the same shift from reappearing farther across the chart.</p>",
+  "image": {
+    "concept": "Chart and stitching compared with a shifted row and the source of the error marked.",
+    "alt": "Fixing a cross stitch counting mistake"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 54,
+  "translation_group": "054-change-colors",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "technique",
+      "terms": [
+        "technique",
+        "colors",
+        "floss"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to",
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-054-change-colors",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Stitchers working multicolor charts and wanting clean color changes without long carries and loose tails.",
+  "title": "How to Change Colors in Cross Stitch Without Making a Mess",
+  "slug": "change-colors-cross-stitch",
+  "seo": {
+    "title": "How to Change Colors in Cross Stitch",
+    "meta_description": "Learn when to finish thread, when a short carry is fine, how to organize needles and keep transitions clean in multicolor charts.",
+    "search_intent": "Learn how to manage color changes in cross stitch."
+  },
+  "excerpt": "You do not need to finish an entire color before using another. Choose by distance and by section to keep the project clean and manageable.",
+  "content_html": "<p>Changing colors in cross stitch is not difficult, but doing it every few minutes can break your rhythm and fill the back with loose ends if you have no system. The best approach depends on the distance between areas of the same color and how tidy you want the project to remain.</p>\n<p>There is no requirement to finish one entire color before starting another. You can work by area, by symbol or mix methods depending on the chart.</p>\n<h2>When to end the thread and when a short carry is fine</h2>\n<p>If the next area of the same color is far away, finishing the thread and restarting is normally cleaner. Carrying floss several inches behind the fabric uses material and can show through pale cloth.</p>\n<p>As a practical rule, compare the length of the jump with the thread required to finish and restart. Over long distances, cutting is often both neater and more efficient.</p>\n<p>It is also sensible to finish when the thread would cross an area that will remain unstitched. A dark line behind white Aida can sometimes be visible from the front.</p>\n<p>If the next stitches are only two or three squares away and the carried thread will sit beneath an area that is later covered, a short carry may be completely reasonable.</p>\n<h2>Working by color or by small section</h2>\n<p>Completing one color across a whole section reduces needle changes and can be very comfortable in patterns built from large blocks.</p>\n<p>However, jumping too far increases counting risk. In scattered designs it is often safer to finish a compact area containing several colors before moving away.</p>\n<p>Working by section also creates visual reference points. A completed block makes the next area easier to position accurately.</p>\n<p>You do not need one method for the entire project. Work by color across a large background and by section around a face or detailed area if that feels more natural.</p>\n<h2>How to organize several colors without wasting time</h2>\n<p>Label every thread with its reference and chart symbol. When shades are similar, relying on memory eventually causes mistakes.</p>\n<p>You can prepare several threaded needles when one section constantly alternates between the same colors. A needle minder or organizer keeps them separated.</p>\n<p>Do not leave long loose strands hanging behind the fabric while changing colors. They tangle easily and make the back difficult to manage.</p>\n<p>If you mark progress digitally, complete each symbol as you stitch it. On paper, use a highlighter that does not obscure the chart.</p>\n<h2>How to keep color transitions clean</h2>\n<p>Maintain the same tension when changing thread. A newly started area should not become tighter simply because the floss is fresh.</p>\n<p>Secure the tail beneath enough stitches to hold it, but avoid stacking many ends in one small place. A thick lump behind the fabric can affect how it lies.</p>\n<p>When several colors meet in a compact area, vary where you finish each thread so the extra thickness is distributed.</p>\n<p>On shaded charts, verify the symbol twice before beginning a new shade. Mistakes are easier when three nearby colors look almost identical.</p>\n<p>Changing color should be a brief transition rather than a major interruption. Once you make sensible decisions about carries and label thread clearly, even charts with many shades become much easier to manage.</p><p>If a section forces you to switch thread every two or three stitches, prepare the workspace before starting. Having needles already identified and the chart clearly marked reduces the feeling of constant interruption and makes color changes part of the normal stitching rhythm.</p><p>If a section forces you to switch thread every two or three stitches, prepare the workspace before starting. Having needles already identified and the chart clearly marked reduces the feeling of constant interruption and makes color changes part of the normal stitching rhythm.</p><p>If a section forces you to switch thread every two or three stitches, prepare the workspace before starting. Having needles already identified and the chart clearly marked reduces the feeling of constant interruption and makes color changes part of the normal stitching rhythm.</p><p>If a section forces you to switch thread every two or three stitches, prepare the workspace before starting. Having needles already identified and the chart clearly marked reduces the feeling of constant interruption and makes color changes part of the normal stitching rhythm.</p><p>If a section forces you to switch thread every two or three stitches, prepare the workspace before starting. Having needles already identified and the chart clearly marked reduces the feeling of constant interruption and makes color changes part of the normal stitching rhythm.</p><p>If a section forces you to switch thread every two or three stitches, prepare the workspace before starting. Having needles already identified and the chart clearly marked reduces the feeling of constant interruption and makes color changes part of the normal stitching rhythm.</p>",
+  "image": {
+    "concept": "Several labeled threaded needles beside a small multicolor cross stitch section.",
+    "alt": "Changing colors in a cross stitch pattern"
+  }
+}

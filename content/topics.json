@@ -568,6 +568,61 @@
       "title_es": "Cómo elegir colores para un patrón de punto de cruz pop art",
       "title_en": "How to Choose Colors for a Pop Art Cross Stitch Pattern",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 51,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "troubleshooting",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo corregir un error de conteo en punto de cruz sin deshacer todo",
+      "title_en": "How to Fix a Cross Stitch Counting Mistake Without Undoing Everything",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 52,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "troubleshooting",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo deshacer punto de cruz sin dañar la tela",
+      "title_en": "How to Unpick Cross Stitch Without Damaging the Fabric",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 53,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "fabric",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo encontrar el centro de la tela para empezar un punto de cruz",
+      "title_en": "How to Find the Center of Cross Stitch Fabric Before You Start",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 54,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "technique",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo cambiar de color en punto de cruz sin complicarte",
+      "title_en": "How to Change Colors in Cross Stitch Without Making a Mess",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 55,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "technique",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo conseguir un reverso limpio en punto de cruz sin obsesionarte",
+      "title_en": "How to Keep the Back of Cross Stitch Neat Without Obsessing Over It",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {

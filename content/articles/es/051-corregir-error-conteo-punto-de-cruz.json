@@ -1,0 +1,68 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 51,
+  "translation_group": "051-fix-counting-mistake",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "troubleshooting",
+      "terms": [
+        "troubleshooting",
+        "counting"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to",
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "es-051-error-conteo",
+  "language": "es",
+  "locale": "es-ES",
+  "market_context": "Personas que han detectado un desplazamiento o error de conteo y quieren corregir solo lo necesario.",
+  "title": "Cómo corregir un error de conteo en punto de cruz sin deshacer todo",
+  "slug": "corregir-error-conteo-punto-de-cruz",
+  "seo": {
+    "title": "Cómo corregir un error de conteo en punto de cruz",
+    "meta_description": "Localiza dónde empezó un desplazamiento, decide si afecta al patrón y corrige solo las puntadas necesarias sin deshacer media labor.",
+    "search_intent": "Corregir un error de conteo en un proyecto de punto de cruz."
+  },
+  "excerpt": "Antes de deshacer, encuentra el primer punto donde tela y gráfico dejan de coincidir. No todos los errores exigen retirar toda la sección.",
+  "content_html": "<p>Descubrir un error de conteo en punto de cruz no significa que tengas que deshacer media labor. Antes de tocar nada, averigua qué tipo de error es: una cruz en la casilla equivocada, una fila desplazada, una zona completa movida o simplemente un hueco que olvidaste rellenar.</p>\n<p>La diferencia importa porque no todos los fallos afectan al resto del patrón. Algunos pueden corregirse de forma local; otros cambian la posición de todo lo que viene después y conviene arreglarlos cuanto antes.</p>\n<h2>Localiza el primer punto donde tela y gráfico dejan de coincidir</h2>\n<p>No empieces a deshacer desde la última puntada solo porque es la más reciente. Compara el bordado con el patrón y busca el primer lugar donde la estructura deja de coincidir. Muchas veces el origen está varias filas atrás.</p>\n<p>Utiliza referencias fáciles: una esquina, un cambio de color, una línea recta o una zona vacía. Cuenta desde dos puntos distintos siempre que puedas. Si ambos te llevan al mismo lugar, tendrás mucha más seguridad de haber encontrado el origen.</p>\n<p>En patrones grandes, las líneas de diez casillas ayudan mucho. Comprueba en qué bloque debería caer la forma y si el borde coincide con la cuadrícula del gráfico.</p>\n<p>Marca la zona problemática en el patrón para no perderla mientras corriges. Si trabajas con aplicación digital, desmarca temporalmente la parte dudosa y vuelve a registrar el progreso después.</p>\n<h2>Decide si el error cambia realmente lo que viene después</h2>\n<p>Una cruz aislada ligeramente desplazada puede no requerir una gran corrección si no altera el contorno ni sirve como referencia para otra sección.</p>\n<p>Una fila entera movida una casilla es diferente. Si vas a utilizar esa fila como base para seguir contando, lo más seguro suele ser corregirla antes de avanzar.</p>\n<p>Los patrones geométricos, las letras y los diseños simétricos toleran peor los desplazamientos porque el error se percibe con facilidad. En una textura orgánica —pelo, hojas o cielo— una variación mínima puede ser menos visible.</p>\n<p>No confundas “puedo esconderlo” con “no afecta”. Si dejar el error te obliga a adaptar varias zonas futuras, terminarás tomando más decisiones y aumentando el riesgo de otro fallo.</p>\n<h2>Corrige solo las puntadas necesarias</h2>\n<p>Si el problema está concentrado en un área pequeña, deshaz únicamente las cruces que impiden recuperar la posición correcta. No hace falta retirar filas completas si parte del trabajo puede quedarse.</p>\n<p>Trabaja desde las puntadas más recientes hacia atrás y libera el hilo con cuidado. Si todavía está liso y puedes reutilizarlo sin deformarlo, hazlo; si está peludo o muy retorcido, empieza con una hebra nueva.</p>\n<p>Cuando la zona esté limpia, vuelve a contar desde una referencia fiable y borda primero dos o tres puntos que confirmen la posición. Después completa el resto.</p>\n<p>Evita “compensar” añadiendo una casilla aquí y quitando otra allí salvo que el diseño sea muy orgánico y entiendas perfectamente el efecto. En la mayoría de patrones, corregir el origen es más sencillo.</p>\n<h2>Cómo evitar que un pequeño fallo crezca</h2>\n<p>Marca el progreso en el gráfico, sobre todo en zonas con símbolos parecidos. Trabajar de memoria durante demasiado tiempo es una causa frecuente de desplazamientos.</p>\n<p>Cuenta distancias largas en grupos de cinco o diez en lugar de una única secuencia de treinta o cuarenta casillas.</p>\n<p>Comprueba cada cierto tiempo un punto conocido: centro, borde de página, línea de diez o esquina de un bloque. Una verificación rápida puede evitar que un error pequeño crezca durante otra hora.</p>\n<p>Si el patrón tiene elementos separados por mucha tela vacía, plantéate marcar una cuadrícula. Es precisamente en esos saltos largos donde una casilla de diferencia pasa más desapercibida.</p>\n<p>Equivocarse al contar forma parte normal del punto de cruz. La habilidad útil no es no fallar nunca, sino detectar pronto qué ocurrió y retirar la mínima cantidad de trabajo necesaria para volver a una referencia segura.</p><p>Cuando corrijas, no tengas prisa por recuperar el tiempo “perdido”. Las primeras puntadas después del arreglo son una oportunidad para comprobar de nuevo la posición y la tensión. Cinco minutos de revisión valen más que repetir el mismo desplazamiento dos bloques más adelante.</p><p>Cuando corrijas, no tengas prisa por recuperar el tiempo “perdido”. Las primeras puntadas después del arreglo son una oportunidad para comprobar de nuevo la posición y la tensión. Cinco minutos de revisión valen más que repetir el mismo desplazamiento dos bloques más adelante.</p><p>Cuando corrijas, no tengas prisa por recuperar el tiempo “perdido”. Las primeras puntadas después del arreglo son una oportunidad para comprobar de nuevo la posición y la tensión. Cinco minutos de revisión valen más que repetir el mismo desplazamiento dos bloques más adelante.</p><p>Cuando corrijas, no tengas prisa por recuperar el tiempo “perdido”. Las primeras puntadas después del arreglo son una oportunidad para comprobar de nuevo la posición y la tensión. Cinco minutos de revisión valen más que repetir el mismo desplazamiento dos bloques más adelante.</p>",
+  "image": {
+    "concept": "Patrón y bordado comparados con una fila desplazada marcada y el origen del error señalado.",
+    "alt": "Corrección de un error de conteo en punto de cruz"
+  }
+}

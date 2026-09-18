@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 53,
+  "translation_group": "053-find-center-fabric",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "fabric",
+      "terms": [
+        "fabric",
+        "starting",
+        "counting"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to",
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-053-center-fabric",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Beginners positioning a design correctly before making the first stitch.",
+  "title": "How to Find the Center of Cross Stitch Fabric Before You Start",
+  "slug": "find-center-cross-stitch-fabric",
+  "seo": {
+    "title": "How to Find the Center of Cross Stitch Fabric",
+    "meta_description": "Find the center of Aida, connect it with the chart and avoid starting too close to an edge or rotating the fabric accidentally.",
+    "search_intent": "Learn how to find the center of cross stitch fabric and chart."
+  },
+  "excerpt": "The center does not always need to be your first stitch, but it is a reliable reference for checking that the design fits with margin.",
+  "content_html": "<p>Finding the center of your fabric is one of the simplest ways to avoid starting a pattern too close to an edge. Many charts are designed so stitchers can begin roughly in the center and work outward, particularly when they are not using a full fabric grid.</p>\n<p>You do not have to start in the center, but knowing where it is gives you a reliable reference for confirming that the design fits with enough margin on every side.</p>\n<h2>How to find the center of Aida fabric</h2>\n<p>Fold the fabric gently in half from left to right without pressing a hard crease. Mark the midpoint with your fingers or a small pin placed outside the future stitched area.</p>\n<p>Then fold from top to bottom. The intersection of the two midpoints is the physical center of the fabric.</p>\n<p>You can also measure with a ruler if you prefer not to fold. Divide the width and height by two and locate the point where those measurements cross.</p>\n<p>If the fabric has uneven edges, measure from the real boundaries you intend to use for mounting rather than sections you already plan to trim away.</p>\n<h2>How to connect that point with the center of the chart</h2>\n<p>Many charts show center arrows on the top and side margins. Follow both guides until they meet at the center square.</p>\n<p>If the chart does not mark it, divide the stitch width and height roughly in half. You do not need mathematical perfection when the exact center falls between squares; you need a consistent reference.</p>\n<p>Check which symbol appears near that position and whether the designer recommends beginning there or simply using the center for placement.</p>\n<p>Before making the first stitch, count toward the chart edges and confirm that the available fabric margin matches your earlier size calculation.</p>\n<h2>When starting exactly in the center is not ideal</h2>\n<p>Some stitchers prefer beginning in a corner when using a complete grid or parking methods on very large projects. The center is still useful for verifying placement even when it is not the starting point.</p>\n<p>A chart with a large empty area in the middle may also make center starting inconvenient. Use the center as a reference and move to the nearest actual stitched area.</p>\n<p>If the design contains several separate motifs, you may prefer starting with one of them and checking its distance from the center before stitching.</p>\n<p>The important thing is not following one rule; it is knowing exactly where you are on both fabric and chart.</p>\n<h2>Common mistakes when positioning the first stitch</h2>\n<p>The most common problem is calculating design size but forgetting framing margin. A design fitting physically on the fabric does not mean there is enough cloth left to mount it comfortably.</p>\n<p>Another mistake is confusing the center of the stitched area with the center of one PDF page. On multi-page charts, page one may be nowhere near the center of the entire design.</p>\n<p>Check fabric orientation too. If the pattern is vertical and the Aida cut is rectangular, make sure it has not been rotated accidentally.</p>\n<p>Mark the center temporarily and discreetly. Avoid permanent products or marks that could remain visible later.</p>\n<p>Finding the center takes only a minute or two and gives you a reference that remains useful throughout the project. Even if you later work from a corner, knowing that point greatly reduces the chance of discovering too late that the whole design has shifted.</p><p>Before putting the fabric in a hoop or frame, check center and orientation one final time. It is a tiny routine that feels unnecessary right up until the day it prevents a tall design from being started across the short side of the cloth.</p><p>Before putting the fabric in a hoop or frame, check center and orientation one final time. It is a tiny routine that feels unnecessary right up until the day it prevents a tall design from being started across the short side of the cloth.</p><p>Before putting the fabric in a hoop or frame, check center and orientation one final time. It is a tiny routine that feels unnecessary right up until the day it prevents a tall design from being started across the short side of the cloth.</p><p>Before putting the fabric in a hoop or frame, check center and orientation one final time. It is a tiny routine that feels unnecessary right up until the day it prevents a tall design from being started across the short side of the cloth.</p><p>Before putting the fabric in a hoop or frame, check center and orientation one final time. It is a tiny routine that feels unnecessary right up until the day it prevents a tall design from being started across the short side of the cloth.</p>",
+  "image": {
+    "concept": "Aida folded gently in two directions with the center marked beside chart center arrows.",
+    "alt": "Finding the center of Aida for cross stitch"
+  }
+}
