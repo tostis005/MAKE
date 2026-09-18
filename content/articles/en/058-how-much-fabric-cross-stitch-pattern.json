@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 58,
+  "translation_group": "058-how-much-fabric-cross-stitch",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "materials",
+      "terms": [
+        "materials",
+        "fabric",
+        "size"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide",
+        "buying-guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-058-fabric",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Stitchers preparing a pattern and calculating the full fabric cut including finishing margin.",
+  "title": "How Much Fabric Do You Need for a Cross Stitch Pattern?",
+  "slug": "how-much-fabric-cross-stitch-pattern",
+  "seo": {
+    "title": "How Much Fabric Do You Need for Cross Stitch?",
+    "meta_description": "Calculate stitched size, add margin on all four sides and adapt the Aida cut to your intended finishing method before starting.",
+    "search_intent": "Calculate how much Aida fabric to cut for a cross stitch pattern."
+  },
+  "excerpt": "Finished stitched size is only the beginning. Extra fabric is needed for holding, washing, tensioning and framing comfortably.",
+  "content_html": "<p>Calculating how much fabric you need for cross stitch is different from calculating the finished stitched size. First you work out how much space the stitches occupy, then add enough margin for holding, washing, tensioning and framing the piece.</p>\n<p>That extra margin may look excessive at the beginning, but trimming spare fabric later is far easier than mounting a finished project that ends only an inch from the edge.</p>\n<h2>Start with the physical size of the stitched area</h2>\n<p>You need the chart width and height in stitches and the fabric count. Divide stitch dimensions by the count to get inches, then convert to centimeters if preferred.</p>\n<p>For example, a chart 140 stitches wide on 14-count Aida measures 10 inches, or about 25.4 centimeters.</p>\n<p>Repeat the calculation for height. These dimensions describe only the area containing stitches, not the complete fabric cut.</p>\n<p>If the pattern already gives finished sizes for several fabric counts, use them as a reference and check that they roughly match your calculation.</p>\n<h2>Add margin on all four sides</h2>\n<p>For a framed project, several inches or centimeters on each side normally provide enough flexibility for centering and mounting.</p>\n<p>Do not add the margin only once to the width. If you want three inches on each side, add six inches to the total width and six to the total height.</p>\n<p>Very small pieces can sometimes use less, but a narrow edge makes both hoop placement and finishing awkward.</p>\n<p>If you do not yet know how the project will be finished, leave more fabric. That reserve gives you the freedom to switch from a hoop finish to a matted frame later.</p>\n<h2>Think about the final finish before cutting</h2>\n<p>A framed piece mounted under tension often needs more spare fabric than a hoop finish where the excess is gathered behind the ring.</p>\n<p>A wide mat can also change how much visible fabric you want around the design even though the stitch dimensions remain unchanged.</p>\n<p>For pillows, bags and other sewn projects, account for seam allowances, hems and the construction of the final object.</p>\n<p>Do not think of margin as waste. It is part of the material required to finish the project comfortably.</p>\n<h2>Check orientation and possible shrinkage</h2>\n<p>Before cutting, place the fabric in the correct orientation for the design. A tall rectangular pattern needs the long side of the fabric available for its height.</p>\n<p>If you plan to prewash ordinary fabric, do it before final measuring and cutting so any small dimensional change happens first.</p>\n<p>For dyed or specialty fabrics, follow the manufacturer's care guidance before washing anything.</p>\n<p>Use paper or a ruler to visualize the approximate stitched rectangle inside the fabric cut. Seeing it physically often reveals a calculation mistake immediately.</p>\n<p>When uncertain, cut slightly more. The cost of a little extra Aida is usually tiny compared with the time invested in a finished project that cannot be mounted the way you intended.</p><p>Keep the measurements with the pattern: stitch dimensions, fabric count, finished stitched size and final fabric cut. That small note is especially useful when preparing several projects at once or returning to a chart months later after forgetting the original calculation.</p><p>Keep the measurements with the pattern: stitch dimensions, fabric count, finished stitched size and final fabric cut. That small note is especially useful when preparing several projects at once or returning to a chart months later after forgetting the original calculation.</p><p>Keep the measurements with the pattern: stitch dimensions, fabric count, finished stitched size and final fabric cut. That small note is especially useful when preparing several projects at once or returning to a chart months later after forgetting the original calculation.</p><p>Keep the measurements with the pattern: stitch dimensions, fabric count, finished stitched size and final fabric cut. That small note is especially useful when preparing several projects at once or returning to a chart months later after forgetting the original calculation.</p><p>Keep the measurements with the pattern: stitch dimensions, fabric count, finished stitched size and final fabric cut. That small note is especially useful when preparing several projects at once or returning to a chart months later after forgetting the original calculation.</p><p>Keep the measurements with the pattern: stitch dimensions, fabric count, finished stitched size and final fabric cut. That small note is especially useful when preparing several projects at once or returning to a chart months later after forgetting the original calculation.</p><p>Keep the measurements with the pattern: stitch dimensions, fabric count, finished stitched size and final fabric cut. That small note is especially useful when preparing several projects at once or returning to a chart months later after forgetting the original calculation.</p><p>Keep the measurements with the pattern: stitch dimensions, fabric count, finished stitched size and final fabric cut. That small note is especially useful when preparing several projects at once or returning to a chart months later after forgetting the original calculation.</p>",
+  "image": {
+    "concept": "Aida with the stitched rectangle marked and generous margin around it beside a ruler and chart.",
+    "alt": "Calculating fabric needed for cross stitch"
+  }
+}

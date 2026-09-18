@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 59,
+  "translation_group": "059-how-much-floss-cross-stitch",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "materials",
+      "terms": [
+        "materials",
+        "floss",
+        "planning"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide",
+        "buying-guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-059-floss",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Stitchers buying enough floss without accumulating unnecessary extra skeins.",
+  "title": "How to Estimate How Much Floss a Cross Stitch Pattern Needs",
+  "slug": "how-much-floss-cross-stitch-pattern",
+  "seo": {
+    "title": "How Much Floss Does a Cross Stitch Pattern Need?",
+    "meta_description": "Estimate floss use from stitch count, strand count, tension, carries and dominant colors so you buy enough without unnecessary extras.",
+    "search_intent": "Estimate how many skeins a cross stitch pattern requires."
+  },
+  "excerpt": "Floss use depends on stitch count, strands and technique. Dominant colors are the ones worth checking carefully before buying.",
+  "content_html": "<p>Estimating floss before starting prevents two common problems: buying ten unnecessary skeins or discovering halfway through that you have run out of the main color. The estimate is never perfect because tension, fabric count and strand number all matter, but it can still be very useful.</p>\n<p>On small patterns, one skein is more than enough for many colors. On large full-coverage designs, one or two dominant shades can disappear surprisingly quickly and are worth checking in advance.</p>\n<h2>Stitch count is the most useful starting point</h2>\n<p>If the pattern tells you how many crosses use each color, you already have an excellent basis. More stitches generally mean more floss.</p>\n<p>Design software often generates thread estimates, although they should be treated as approximate because they assume particular tension and thread usage.</p>\n<p>If the PDF does not give consumption by color, identify the shades covering large areas and consider an extra skein of those dominant colors on a large project.</p>\n<p>A color used for twenty isolated crosses needs very little material even when those stitches are spread across the whole chart.</p>\n<h2>The number of strands changes consumption</h2>\n<p>Stitching with three strands uses more material than stitching with two, even though the exact ratio also depends on waste and your starting and finishing method.</p>\n<p>Many stitchers use two strands on 14-count Aida, but some designs or coverage preferences lead to three.</p>\n<p>If you plan to change the pattern recommendation, adjust the amount of floss you buy as well.</p>\n<p>Backstitch generally consumes relatively little compared with broad areas of full crosses, although a heavily outlined design can still use a noticeable amount.</p>\n<h2>Tension, finishing and carries also affect the total</h2>\n<p>Very loose tension uses slightly more floss per stitch. Tightening your technique simply to save thread is not worthwhile.</p>\n<p>The tails used to start and finish each length are material that never appears on the front but still contributes to consumption.</p>\n<p>Long carries behind the fabric use floss too. On charts with heavy confetti, those small distances add up.</p>\n<p>Beginners may want a little extra margin because practice, corrections and unpicking often create slightly more waste.</p>\n<h2>When should you buy more than one skein?</h2>\n<p>On a large project, consider an extra skein for colors used in backgrounds, broad blocks or full-coverage sections.</p>\n<p>With hand-dyed floss, buying enough from the same dye lot can be important because separate batches may vary.</p>\n<p>Standard DMC is generally consistent, but having enough on hand still avoids interrupting the project.</p>\n<p>You do not need to duplicate every color. Concentrate extra purchases on shades that truly dominate the chart.</p>\n<p>Keep leftovers labeled. Many shorter pieces are enough for future small motifs and prevent opening a new skein for only a few stitches.</p><p>If you design your own patterns, including a floss estimate improves the user's experience, particularly for the two or three dominant colors. The number does not need to be presented as exact; simply state that it is approximate and specify the fabric count and strand count used for the estimate.</p><p>If you design your own patterns, including a floss estimate improves the user's experience, particularly for the two or three dominant colors. The number does not need to be presented as exact; simply state that it is approximate and specify the fabric count and strand count used for the estimate.</p><p>If you design your own patterns, including a floss estimate improves the user's experience, particularly for the two or three dominant colors. The number does not need to be presented as exact; simply state that it is approximate and specify the fabric count and strand count used for the estimate.</p><p>If you design your own patterns, including a floss estimate improves the user's experience, particularly for the two or three dominant colors. The number does not need to be presented as exact; simply state that it is approximate and specify the fabric count and strand count used for the estimate.</p><p>If you design your own patterns, including a floss estimate improves the user's experience, particularly for the two or three dominant colors. The number does not need to be presented as exact; simply state that it is approximate and specify the fabric count and strand count used for the estimate.</p><p>If you design your own patterns, including a floss estimate improves the user's experience, particularly for the two or three dominant colors. The number does not need to be presented as exact; simply state that it is approximate and specify the fabric count and strand count used for the estimate.</p><p>If you design your own patterns, including a floss estimate improves the user's experience, particularly for the two or three dominant colors. The number does not need to be presented as exact; simply state that it is approximate and specify the fabric count and strand count used for the estimate.</p>",
+  "image": {
+    "concept": "Labeled skeins beside a color key showing stitch counts and estimated floss use.",
+    "alt": "Estimating floss needed for cross stitch"
+  }
+}
