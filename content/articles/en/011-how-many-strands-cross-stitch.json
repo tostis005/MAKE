@@ -1,0 +1,58 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 11,
+  "translation_group": "011-how-many-strands-cross-stitch",
+  "taxonomy": {
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "materials",
+      "terms": [
+        "materials",
+        "floss",
+        "technique"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "primary": "beginner",
+      "terms": [
+        "beginner"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide",
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-011-how-many-strands-cross-stitch",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Beginners who need to understand how many floss strands to use for different fabrics and coverage preferences.",
+  "title": "How Many Strands of Floss Should You Use for Cross Stitch?",
+  "slug": "how-many-strands-floss-cross-stitch",
+  "seo": {
+    "title": "How Many Strands of Floss for Cross Stitch?",
+    "meta_description": "A practical guide to using one, two or three strands of floss based on Aida count, coverage, tension and the style of your cross stitch.",
+    "search_intent": "Learn how many strands of embroidery floss to use for cross stitch."
+  },
+  "excerpt": "Two strands is a common answer, but not a universal rule. Learn how fabric, color, tension and coverage change the choice.",
+  "content_html": "<p>One of the first questions that appears when you open a skein of embroidery floss is completely reasonable: if the thread is made from six strands, are you supposed to use all six? In cross stitch, usually not. The skein contains six fine strands that can be separated so the thickness of the stitch suits the fabric and the look of the pattern.</p>\n<p>The most common answer for 14-count Aida is “two strands,” but it helps to understand why before turning that into a rigid rule. Coverage changes with fabric count, fabric color, floss color, tension and how much of the grid you personally like to see between stitches.</p>\n<h2>What one, two or three strands actually means</h2>\n<p>When a pattern says “2 strands,” the needle should effectively carry two individual strands from the six that make up the floss. This matters when you use different starting methods. With a loop start, for example, one long strand folded in half creates two working strands on the fabric.</p>\n<p>One strand creates a fine stitch and leaves more fabric visible. It can be useful on higher counts, delicate details or backstitch. Two strands provide balanced coverage for many Aida combinations and are the most common starting point. Three strands create a fuller, rounder cross, but they also add bulk and can make it harder to pass the needle through areas where several stitches meet.</p>\n<p>On 14-count Aida, two strands often work beautifully. Two are also common on 16 count. On 18 count, one or two may be appropriate depending on the design and the coverage you want. These are useful defaults, not replacements for the chart instructions. If the designer specifies a different number, start there.</p>\n<h2>Coverage changes with color, fabric and tension</h2>\n<p>The same number of strands does not look identical in every situation. Black floss on white Aida creates strong contrast, so tiny glimpses of fabric between the crosses are easy to notice. A pale beige stitched on cream fabric may hide the same amount of exposed cloth almost completely.</p>\n<p>Tension changes the appearance too. Pull very tightly and the strands squeeze together, making the cross look thinner; leave them far too loose and the floss may lift or catch. The goal is to let the thread rest on the surface without distorting the fabric.</p>\n<p>It also helps to let the needle dangle occasionally so the floss can untwist. When two strands twist tightly around one another, coverage may look uneven. When they lie more parallel, they spread slightly and reflect light more consistently.</p>\n<p>That is why two stitchers can use the same chart, fabric and floss and still produce a slightly different texture. It does not automatically mean one person is doing it wrong. Coverage includes a genuine element of preference.</p>\n<h2>How to separate floss without creating a knot</h2>\n<p>Cut a manageable length first. For a beginner, something roughly from your hand to your elbow is easy to control. Then take one strand at the end and pull it gently upward while holding the remaining bundle. The cut floss may bunch up temporarily, but it usually settles back without tangling.</p>\n<p>Repeat until you have the number of strands you need, then place them together. Pulling two or three out at the same time tends to create more tangles. If you plan to use a loop start with two strands, pull one longer strand and fold it in half instead.</p>\n<p>Very long working lengths are rarely worth the apparent convenience. The longer the floss, the more it rubs against the fabric, the more it wears and the more chances it has to knot. Replacing the thread a little sooner often saves time overall.</p>\n<h2>Make a quick test whenever you change fabric or style</h2>\n<p>If you cannot decide between two and three strands, there is no need to guess. Stitch a 10 × 10 square in a spare edge of the fabric with two strands and another small block with three. Look at them from the distance at which you expect to view the finished piece.</p>\n<p>Ask yourself whether you like seeing a hint of the grid. In some modern, pixel-inspired designs, visible fabric reinforces the handmade texture. In a densely stitched portrait, you may prefer a more solid surface.</p>\n<p>Test for comfort as well as appearance. Three strands may look excellent, but if every stitch feels difficult to pull through the fabric, you may not want that experience for several thousand crosses. The best choice is practical and visual at the same time.</p>\n<p>When a chart gives no guidance, two strands on 14-count Aida are a sensible place to begin. From there, let the sample tell you whether to change. Cross stitch contains many decisions that become much easier when you can compare two small stitched areas rather than trying to imagine the entire finished piece.</p>",
+  "image": {
+    "concept": "DMC floss separated into individual strands beside samples stitched with one, two and three strands.",
+    "alt": "Cross stitch samples using one, two and three strands of floss"
+  }
+}

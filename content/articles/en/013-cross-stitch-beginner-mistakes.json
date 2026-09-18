@@ -1,0 +1,57 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 13,
+  "translation_group": "013-cross-stitch-beginner-mistakes",
+  "taxonomy": {
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "technique",
+      "terms": [
+        "technique",
+        "beginners"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "primary": "beginner",
+      "terms": [
+        "beginner"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide",
+        "troubleshooting"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-013-cross-stitch-beginner-mistakes",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Beginners who want to prevent common counting, tension, floss and preparation mistakes.",
+  "title": "Cross Stitch Mistakes Almost Everyone Makes as a Beginner",
+  "slug": "cross-stitch-beginner-mistakes",
+  "seo": {
+    "title": "Common Cross Stitch Beginner Mistakes and How to Fix Them",
+    "meta_description": "Avoid common cross stitch mistakes including miscounting, tight tension, too many strands, long floss, reversed crosses and small fabric margins.",
+    "search_intent": "Identify, prevent and fix common beginner cross stitch mistakes."
+  },
+  "excerpt": "Miscounting one square, pulling too tightly or starting without enough margin are normal beginner mistakes. Learn how to catch them early.",
+  "content_html": "<p>Most early cross stitch mistakes are not really about “being bad at embroidery.” They are much smaller: counting one square too far, starting too close to the edge, using all six strands because nobody explained they separate, or continuing to stitch while the working thread has already twisted itself into knots.</p>\n<p>The good news is that almost all of these problems are easy to prevent and even easier to fix when you notice them early. You do not need perfect technique. You need a few simple habits that stop a tiny issue from becoming obvious two hours later.</p>\n<h2>Miscounting and waiting too long to check</h2>\n<p>The classic mistake is shifting an area by one square. One misplaced cross does not look serious, but if you use it as the reference point for the next stitches, the error spreads. Suddenly a flower no longer meets its stem or two blocks that should touch have a gap between them.</p>\n<p>The best defense is working from nearby confirmed reference points. Instead of counting thirty squares from the center, move from an area you have already stitched and checked. Use the heavy ten-square grid lines and compare the outline every few rows.</p>\n<p>If you find an error early, remove the necessary stitches. Adjusting the entire design around a wrong square may work in a loose organic motif, but in graphic designs, lettering and symmetry it usually creates more trouble.</p>\n<p>Marking the chart as you work also prevents mistakes. The important thing is being able to see instantly what is finished and what still belongs to the unstitched area.</p>\n<h2>Using uncomfortable tension or too many strands</h2>\n<p>Beginners sometimes pull hard because a stitch feels as though it should be “secure.” The result can be puckered fabric and crosses that look sunken. Floss should rest on the surface rather than squeeze the weave.</p>\n<p>At the opposite extreme, very loose tension leaves loops that catch and makes the stitches look inconsistent. Aim for a repeatable feeling: pull until the thread lies neatly against the fabric, then stop.</p>\n<p>Using all six strands from the skein is another common discovery. On 14-count Aida, two strands are a much more typical starting point. If the crosses feel so bulky that the needle struggles through the holes, check the strand count in the pattern.</p>\n<p>Stitch a small test before committing to a large area. Changing from two strands to three after ten crosses is easy; changing after five hundred is not.</p>\n<h2>Working with floss that is too long and ignoring stitch direction</h2>\n<p>An extremely long working thread looks like a way to avoid frequent changes, but it usually creates more tangles. Every pass through the fabric also wears the cotton. By the end of a long length, the floss may look duller and fuzzier than it did at the beginning.</p>\n<p>Use manageable lengths and let the needle dangle occasionally so the thread can untwist. If you feel sudden resistance, do not pull harder. Check the back. A small knot has often formed and can still be loosened before it tightens.</p>\n<p>Another small habit that improves the finished surface is keeping the top arm of every cross facing the same direction. You can stitch ////// first and return with \\\\\\, or reverse that order. The exact direction matters less than consistency.</p>\n<p>If you discover a few reversed stitches, decide whether they are genuinely visible before undoing half the project. Learning includes knowing the difference between a structural mistake and a tiny imperfection nobody will notice at normal viewing distance.</p>\n<h2>Forgetting margins, lighting and the finished piece</h2>\n<p>Starting too close to the edge is one of the most frustrating mistakes because you may not discover it until late in the project. Calculate the finished size before cutting and leave several extra inches around the design for handling and framing.</p>\n<p>Lighting matters more than it first appears. When your eyes are straining, counting becomes harder and similar colors are easier to confuse. A clear lamp can improve accuracy and make longer stitching sessions much more comfortable.</p>\n<p>Finally, think briefly about finishing before you begin. If you want to use a particular frame size, check that the chosen fabric count produces something compatible. If the piece will be a gift, leave enough cloth to mount it neatly.</p>\n<p>None of these mistakes automatically ruins a project. Cross stitch is wonderfully repairable: you can unpick, recount, replace thread and continue. Skill grows when you recognize problems sooner, not when you somehow stop making them altogether.</p>\n<p>After one or two projects, most of these checks become automatic. You look at the margin, separate two strands, find the center and work in small blocks without consciously thinking about the process. That is the real transition from beginner to confident stitcher: not doing everything perfectly, but knowing what to check when something does not look right.</p>",
+  "image": {
+    "concept": "Cross stitch hoop with a small area being unpicked so a one-square counting mistake can be corrected.",
+    "alt": "Correcting a counting mistake in a cross stitch project"
+  }
+}
