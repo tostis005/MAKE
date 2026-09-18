@@ -953,6 +953,61 @@
       "title_es": "Cómo guardar un punto de cruz a medias sin arrugarlo ni perder nada",
       "title_en": "How to Store Unfinished Cross Stitch Without Creases or Lost Supplies",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 86,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "patterns",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Patrones monocromáticos de punto de cruz: mucho diseño con un solo color",
+      "title_en": "Monochrome Cross Stitch Patterns: Strong Design with One Color",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 87,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "lettering",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Alfabetos de punto de cruz: cómo añadir nombres, fechas y palabras",
+      "title_en": "Cross Stitch Alphabets: How to Add Names, Dates and Words",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 88,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "borders",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Cenefas de punto de cruz: ideas modernas y cómo adaptarlas al tamaño",
+      "title_en": "Cross Stitch Borders: Modern Ideas and How to Resize Them",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 89,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "pixel-art",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Pixel art y punto de cruz: por qué funcionan tan bien juntos",
+      "title_en": "Pixel Art and Cross Stitch: Why They Work So Well Together",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 90,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "pixel-art",
+      "intent": "informational-commercial",
+      "status": "drafted",
+      "title_es": "Cómo convertir pixel art en un patrón de punto de cruz paso a paso",
+      "title_en": "How to Turn Pixel Art into a Cross Stitch Pattern Step by Step",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {

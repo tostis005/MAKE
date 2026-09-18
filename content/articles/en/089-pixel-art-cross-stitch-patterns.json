@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 89,
+  "translation_group": "089-pixel-art-cross-stitch-patterns",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "ideas",
+      "terms": [
+        "ideas"
+      ]
+    },
+    "topic": {
+      "primary": "pixel-art",
+      "terms": [
+        "pixel-art",
+        "patterns"
+      ]
+    },
+    "style": {
+      "terms": [
+        "pixel-art",
+        "modern",
+        "retro"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project",
+        "wall-art",
+        "gifts"
+      ]
+    },
+    "article_type": {
+      "primary": "inspiration",
+      "terms": [
+        "inspiration",
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-089-pixel-art",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "People interested in pixel art as a source and aesthetic for cross stitch patterns.",
+  "title": "Pixel Art and Cross Stitch: Why They Work So Well Together",
+  "slug": "pixel-art-cross-stitch-patterns",
+  "seo": {
+    "title": "Pixel Art and Cross Stitch",
+    "meta_description": "Learn why pixel art translates naturally to cross stitch, which designs work best, how to choose scale and map digital colors to floss.",
+    "search_intent": "Understand how to use pixel art as cross stitch."
+  },
+  "excerpt": "Pixel art already speaks the language of the grid, so it needs far less simplification than a photograph before becoming cross stitch.",
+  "content_html": "<p>Pixel art and cross stitch share almost the same visual logic: both build images from a grid. That means many pixel-art designs can become charts almost directly, especially when the palette is limited and each pixel corresponds to one cross.</p>\n<p>Not every piece of pixel art automatically becomes a good pattern, though. Scale, color mapping and transparent backgrounds still require decisions.</p>\n<h2>Why pixel art and cross stitch fit together so naturally</h2>\n<p>Shapes are already defined in discrete units, so there is no need to interpret photographic curves.</p>\n<p>Outlines are usually clear and palettes relatively short.</p>\n<p>The style accepts a visible grid instead of trying to hide it.</p>\n<p>This removes much of the simplification required when converting a photograph.</p>\n<h2>What kind of pixel art works best as a chart?</h2>\n<p>Icons, small characters, objects, food and retro landscapes translate especially well.</p>\n<p>Designs using hundreds of shades or transparency effects may need cleanup.</p>\n<p>A small sprite can become a quick mini frame or gift.</p>\n<p>A larger scene keeps the retro aesthetic but may still require thousands of stitches.</p>\n<h2>Scale: one pixel does not always have to equal one cross</h2>\n<p>The most direct approach is 1:1, where each source pixel becomes one stitch.</p>\n<p>If the physical result would be too small, each pixel can become a 2 × 2 block of crosses, although the overall dimensions increase dramatically.</p>\n<p>You can also use lower-count fabric to enlarge the finished piece without modifying the chart.</p>\n<p>Calculate size first because a 64 × 64 sprite may look tiny on a screen while becoming quite substantial on 14-count Aida.</p>\n<h2>Color and physical floss references</h2>\n<p>Digital colors do not automatically match physical DMC shades.</p>\n<p>Choose sensible equivalents and prioritize relative contrast over an exact screen match.</p>\n<p>When two digital colors are almost identical, merging them may simplify the chart without harming the image.</p>\n<p>Test the palette on actual fabric because the background changes how every shade appears.</p>\n<h2>Copyright and original designs</h2>\n<p>An image being pixel art does not mean it is free to use commercially.</p>\n<p>If you create patterns for sale, work with your own designs, appropriately licensed art or material you are legally allowed to use.</p>\n<p>For personal projects, it is still good practice to respect the original artist and not redistribute their work as your own chart.</p>\n<p>Pixel art is one of the best ways to understand cross stitch design because it forces you to think about shape, color and readability inside a grid. The same discipline can help you create original patterns that are clearer and much more pleasant to stitch.</p><p>If you are beginning to design your own charts, start with an icon around 20 to 40 pixels wide. It is small enough to review every square manually while still large enough to teach you how outlines, palette and negative space behave.</p><p>If you are beginning to design your own charts, start with an icon around 20 to 40 pixels wide. It is small enough to review every square manually while still large enough to teach you how outlines, palette and negative space behave.</p><p>If you are beginning to design your own charts, start with an icon around 20 to 40 pixels wide. It is small enough to review every square manually while still large enough to teach you how outlines, palette and negative space behave.</p><p>If you are beginning to design your own charts, start with an icon around 20 to 40 pixels wide. It is small enough to review every square manually while still large enough to teach you how outlines, palette and negative space behave.</p><p>If you are beginning to design your own charts, start with an icon around 20 to 40 pixels wide. It is small enough to review every square manually while still large enough to teach you how outlines, palette and negative space behave.</p><p>If you are beginning to design your own charts, start with an icon around 20 to 40 pixels wide. It is small enough to review every square manually while still large enough to teach you how outlines, palette and negative space behave.</p><p>If you are beginning to design your own charts, start with an icon around 20 to 40 pixels wide. It is small enough to review every square manually while still large enough to teach you how outlines, palette and negative space behave.</p><p>If you are beginning to design your own charts, start with an icon around 20 to 40 pixels wide. It is small enough to review every square manually while still large enough to teach you how outlines, palette and negative space behave.</p><p>If you are beginning to design your own charts, start with an icon around 20 to 40 pixels wide. It is small enough to review every square manually while still large enough to teach you how outlines, palette and negative space behave.</p>",
+  "image": {
+    "concept": "Pixel-art sprite beside its stitch-for-stitch equivalent on Aida.",
+    "alt": "Pixel art converted to cross stitch"
+  }
+}

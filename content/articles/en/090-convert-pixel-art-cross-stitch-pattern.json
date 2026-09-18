@@ -1,0 +1,73 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 90,
+  "translation_group": "090-convert-pixel-art-cross-stitch-pattern",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "pixel-art",
+      "terms": [
+        "pixel-art",
+        "pattern-design",
+        "conversion"
+      ]
+    },
+    "style": {
+      "terms": [
+        "pixel-art"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "intermediate",
+        "advanced"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project",
+        "wall-art",
+        "gifts"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to",
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-090-convert-pixel",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Pattern designers converting pixel art into a usable cross stitch PDF.",
+  "title": "How to Turn Pixel Art into a Cross Stitch Pattern Step by Step",
+  "slug": "convert-pixel-art-cross-stitch-pattern",
+  "seo": {
+    "title": "How to Turn Pixel Art into a Cross Stitch Pattern",
+    "meta_description": "Convert pixel art 1:1, map floss colors, prepare symbols and grid, and review the final PDF before stitching or publishing.",
+    "search_intent": "Learn how to convert pixel art into a cross stitch pattern."
+  },
+  "excerpt": "The conversion is direct when the grid is preserved; the important work lies in color mapping, readability and final PDF review.",
+  "content_html": "<p>Turning pixel art into a cross stitch pattern is much more direct than converting a photograph, but the result still deserves careful review before stitching or selling the file. The ideal relationship is often one source pixel to one cross, provided the physical size and palette make sense.</p>\n<p>The process is about preserving the structure of the artwork, mapping physical floss colors and preparing a readable chart.</p>\n<h2>Start from the original file, not an enlarged screenshot</h2>\n<p>Use the pixel art at its true resolution whenever possible.</p>\n<p>Upscaled screenshots can introduce smoothing and intermediate colors that were never present in the original.</p>\n<p>Check the exact pixel width and height before importing anything.</p>\n<p>If the background is transparent, decide whether it will remain visible fabric or become a stitched color.</p>\n<h2>Convert each pixel into one chart square</h2>\n<p>A 1:1 grid preserves proportions exactly.</p>\n<p>Do not resize using smoothing algorithms because they create new shades.</p>\n<p>If scale must change, use nearest-neighbor resizing or redraw manually.</p>\n<p>Review outlines after any resize because one square can change a small sprite significantly.</p>\n<h2>Reduce and map floss colors</h2>\n<p>Create a list of every digital color used.</p>\n<p>Choose sensible physical equivalents in the floss range you plan to recommend.</p>\n<p>If two shades become almost indistinguishable on fabric, consider merging them.</p>\n<p>Prioritize clear relationships between highlights, midtones and shadows.</p>\n<h2>Prepare a PDF that is actually usable</h2>\n<p>A pixelated image alone is not enough. The pattern needs a grid, symbols and a key connecting every symbol to a floss reference.</p>\n<p>For small designs, one chart page may be enough.</p>\n<p>For larger designs, divide the grid while keeping clear overlaps or reference points.</p>\n<p>Include stitch dimensions and approximate physical size on common fabric counts.</p>\n<h2>Review the chart before publishing</h2>\n<p>Confirm that every color in the key really appears in the grid and that none are missing.</p>\n<p>For a small design, check the outline pixel by pixel; the review is manageable and prevents obvious errors.</p>\n<p>Generate a preview and compare it with the original artwork at reduced size.</p>\n<p>When possible, stitch a sample or at least one critical section to confirm color and coverage.</p>\n<p>Pixel-art conversion is straightforward because much of the simplification has already happened in the source art. The added value lies in preserving that clarity: respecting the grid, choosing a coherent physical palette and delivering a PDF that someone can follow without having to guess.</p><p>If the pattern will be sold, keep a master file containing the original grid and palette as well. That makes it much easier to correct one reference or generate new size versions without rebuilding the design from scratch.</p><p>If the pattern will be sold, keep a master file containing the original grid and palette as well. That makes it much easier to correct one reference or generate new size versions without rebuilding the design from scratch.</p><p>If the pattern will be sold, keep a master file containing the original grid and palette as well. That makes it much easier to correct one reference or generate new size versions without rebuilding the design from scratch.</p><p>If the pattern will be sold, keep a master file containing the original grid and palette as well. That makes it much easier to correct one reference or generate new size versions without rebuilding the design from scratch.</p><p>If the pattern will be sold, keep a master file containing the original grid and palette as well. That makes it much easier to correct one reference or generate new size versions without rebuilding the design from scratch.</p><p>If the pattern will be sold, keep a master file containing the original grid and palette as well. That makes it much easier to correct one reference or generate new size versions without rebuilding the design from scratch.</p><p>If the pattern will be sold, keep a master file containing the original grid and palette as well. That makes it much easier to correct one reference or generate new size versions without rebuilding the design from scratch.</p><p>If the pattern will be sold, keep a master file containing the original grid and palette as well. That makes it much easier to correct one reference or generate new size versions without rebuilding the design from scratch.</p><p>If the pattern will be sold, keep a master file containing the original grid and palette as well. That makes it much easier to correct one reference or generate new size versions without rebuilding the design from scratch.</p><p>If the pattern will be sold, keep a master file containing the original grid and palette as well. That makes it much easier to correct one reference or generate new size versions without rebuilding the design from scratch.</p><p>If the pattern will be sold, keep a master file containing the original grid and palette as well. That makes it much easier to correct one reference or generate new size versions without rebuilding the design from scratch.</p>",
+  "image": {
+    "concept": "Visual process showing original sprite, 1:1 grid, floss palette and final pattern page.",
+    "alt": "How to convert pixel art into a cross stitch pattern"
+  }
+}

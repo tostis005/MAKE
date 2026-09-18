@@ -1,0 +1,73 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 90,
+  "translation_group": "090-convert-pixel-art-cross-stitch-pattern",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "pixel-art",
+      "terms": [
+        "pixel-art",
+        "pattern-design",
+        "conversion"
+      ]
+    },
+    "style": {
+      "terms": [
+        "pixel-art"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "intermediate",
+        "advanced"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project",
+        "wall-art",
+        "gifts"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to",
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "es-090-convertir-pixel",
+  "language": "es",
+  "locale": "es-ES",
+  "market_context": "Personas que diseñan patrones y quieren convertir pixel art en un PDF de punto de cruz usable.",
+  "title": "Cómo convertir pixel art en un patrón de punto de cruz paso a paso",
+  "slug": "como-convertir-pixel-art-patron-punto-de-cruz",
+  "seo": {
+    "title": "Cómo convertir pixel art en patrón de punto de cruz",
+    "meta_description": "Convierte pixel art 1:1, asigna colores de hilo, prepara símbolos y cuadrícula y revisa el PDF antes de bordar o publicar.",
+    "search_intent": "Aprender a convertir pixel art en un patrón de punto de cruz."
+  },
+  "excerpt": "La conversión es directa si respetas la cuadrícula; el trabajo importante está en color, legibilidad y revisión del PDF final.",
+  "content_html": "<p>Convertir pixel art en un patrón de punto de cruz es mucho más directo que convertir una fotografía, pero todavía merece una revisión antes de bordar o vender el archivo. La relación ideal suele ser un píxel igual a una cruz, siempre que el tamaño físico y la paleta tengan sentido.</p>\n<p>El proceso consiste en conservar la estructura del arte, asignar colores de hilo y preparar un gráfico legible.</p>\n<h2>Empieza con el archivo original, no con una captura ampliada</h2>\n<p>Utiliza la versión de pixel art en su resolución real si la tienes.</p>\n<p>Las capturas reescaladas pueden añadir suavizado y colores intermedios que no existían en el original.</p>\n<p>Comprueba ancho y alto en píxeles antes de importar nada.</p>\n<p>Si el fondo es transparente, decide si quedará como tela visible o si quieres bordarlo.</p>\n<h2>Convierte cada píxel en una casilla</h2>\n<p>Una cuadrícula 1:1 preserva exactamente las proporciones.</p>\n<p>No redimensiones con algoritmos suaves porque crearán nuevos tonos.</p>\n<p>Si necesitas cambiar tamaño, utiliza escalado nearest-neighbor o redibuja manualmente.</p>\n<p>Revisa contornos después de cualquier cambio porque una sola casilla puede alterar bastante un sprite pequeño.</p>\n<h2>Reduce y asigna colores de hilo</h2>\n<p>Haz una lista de todos los colores digitales utilizados.</p>\n<p>Busca equivalencias físicas razonables en la gama de hilo que vayas a recomendar.</p>\n<p>Si dos tonos son casi indistinguibles sobre la tela, considera fusionarlos.</p>\n<p>Prioriza que luces, medios y sombras mantengan relaciones claras.</p>\n<h2>Prepara un PDF realmente usable</h2>\n<p>No basta con mostrar la imagen pixelada. El patrón necesita cuadrícula, símbolos y una leyenda que relacione cada símbolo con su referencia de hilo.</p>\n<p>En diseños pequeños, una página puede ser suficiente.</p>\n<p>En diseños grandes, divide el gráfico manteniendo solapes o referencias claras.</p>\n<p>Incluye dimensiones en puntadas y tamaño físico aproximado para varios counts habituales.</p>\n<h2>Revisa el patrón antes de publicarlo</h2>\n<p>Comprueba que cada color de la leyenda aparece realmente en la cuadrícula y que no falta ninguno.</p>\n<p>Verifica píxel por píxel el contorno si el diseño es pequeño; es una revisión asumible y evita errores visibles.</p>\n<p>Genera una vista previa y compárala con el arte original a tamaño reducido.</p>\n<p>Si puedes, borda una muestra o al menos una sección crítica para confirmar cobertura y color.</p>\n<p>La conversión de pixel art es sencilla precisamente porque el trabajo de simplificación ya está hecho en el arte original. El valor añadido está en no estropear esa claridad: respetar la cuadrícula, elegir una paleta física coherente y entregar un PDF que alguien pueda seguir sin adivinar nada.</p><p>Si el patrón va a venderse, conserva también un archivo maestro con cuadrícula y paleta original. Así podrás corregir una referencia o generar nuevas versiones de tamaño sin reconstruir el diseño desde cero.</p><p>Si el patrón va a venderse, conserva también un archivo maestro con cuadrícula y paleta original. Así podrás corregir una referencia o generar nuevas versiones de tamaño sin reconstruir el diseño desde cero.</p><p>Si el patrón va a venderse, conserva también un archivo maestro con cuadrícula y paleta original. Así podrás corregir una referencia o generar nuevas versiones de tamaño sin reconstruir el diseño desde cero.</p><p>Si el patrón va a venderse, conserva también un archivo maestro con cuadrícula y paleta original. Así podrás corregir una referencia o generar nuevas versiones de tamaño sin reconstruir el diseño desde cero.</p><p>Si el patrón va a venderse, conserva también un archivo maestro con cuadrícula y paleta original. Así podrás corregir una referencia o generar nuevas versiones de tamaño sin reconstruir el diseño desde cero.</p><p>Si el patrón va a venderse, conserva también un archivo maestro con cuadrícula y paleta original. Así podrás corregir una referencia o generar nuevas versiones de tamaño sin reconstruir el diseño desde cero.</p><p>Si el patrón va a venderse, conserva también un archivo maestro con cuadrícula y paleta original. Así podrás corregir una referencia o generar nuevas versiones de tamaño sin reconstruir el diseño desde cero.</p><p>Si el patrón va a venderse, conserva también un archivo maestro con cuadrícula y paleta original. Así podrás corregir una referencia o generar nuevas versiones de tamaño sin reconstruir el diseño desde cero.</p><p>Si el patrón va a venderse, conserva también un archivo maestro con cuadrícula y paleta original. Así podrás corregir una referencia o generar nuevas versiones de tamaño sin reconstruir el diseño desde cero.</p><p>Si el patrón va a venderse, conserva también un archivo maestro con cuadrícula y paleta original. Así podrás corregir una referencia o generar nuevas versiones de tamaño sin reconstruir el diseño desde cero.</p><p>Si el patrón va a venderse, conserva también un archivo maestro con cuadrícula y paleta original. Así podrás corregir una referencia o generar nuevas versiones de tamaño sin reconstruir el diseño desde cero.</p><p>Si el patrón va a venderse, conserva también un archivo maestro con cuadrícula y paleta original. Así podrás corregir una referencia o generar nuevas versiones de tamaño sin reconstruir el diseño desde cero.</p>",
+  "image": {
+    "concept": "Proceso visual: sprite original, cuadrícula 1:1, paleta de hilo y página final de patrón.",
+    "alt": "Cómo convertir pixel art en patrón de punto de cruz"
+  }
+}
