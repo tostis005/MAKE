@@ -733,6 +733,61 @@
       "title_es": "Patrones de punto de cruz del mar: peces, ballenas y vida marina",
       "title_en": "Ocean Cross Stitch Patterns: Fish, Whales and Marine Life",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 66,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "baby",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Patrones de punto de cruz para bebé que no parecen demasiado infantiles",
+      "title_en": "Baby Cross Stitch Patterns That Do Not Feel Too Childish",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 67,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "wedding",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Patrones de punto de cruz para bodas y regalos personalizados",
+      "title_en": "Wedding Cross Stitch Patterns and Personalized Gift Ideas",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 68,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "couples",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Ideas de punto de cruz para parejas y aniversarios",
+      "title_en": "Cross Stitch Ideas for Couples and Anniversaries",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 69,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "valentines",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Patrones de punto de cruz para San Valentín que puedes terminar a tiempo",
+      "title_en": "Valentine's Cross Stitch Patterns You Can Actually Finish in Time",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 70,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "mothers-day",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Ideas de punto de cruz para regalar el Día de la Madre",
+      "title_en": "Cross Stitch Gift Ideas for Mother's Day",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {
