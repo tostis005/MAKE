@@ -1118,6 +1118,61 @@
       "title_es": "Waste canvas vs canvas soluble: cuál usar para punto de cruz sobre tela",
       "title_en": "Waste Canvas vs Water-Soluble Canvas for Cross Stitch",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 101,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "coasters",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Posavasos de punto de cruz: patrones, materiales y acabados",
+      "title_en": "Cross Stitch Coasters: Patterns, Materials and Finishing Ideas",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 102,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "keychains",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Llaveros de punto de cruz: ideas pequeñas y cómo terminarlos",
+      "title_en": "Cross Stitch Keychains: Tiny Ideas and How to Finish Them",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 103,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "kitchen",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Patrones de punto de cruz para cocina que se ven modernos",
+      "title_en": "Kitchen Cross Stitch Patterns That Actually Feel Modern",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 104,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "kids",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Punto de cruz para niños: cómo empezar con proyectos fáciles y seguros",
+      "title_en": "Cross Stitch for Kids: How to Start with Easy, Safe Projects",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 105,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "technique",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo añadir cuentas a punto de cruz sin complicar el acabado",
+      "title_en": "How to Add Beads to Cross Stitch Without Complicating the Finish",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {
