@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 30,
+  "translation_group": "030-wash-iron-finished-cross-stitch",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "finishing",
+      "terms": [
+        "finishing",
+        "care"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "wall-art",
+        "home-decor"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to",
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-030-wash-iron",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "People who have finished a cross stitch project and want to clean and prepare it safely for framing.",
+  "title": "How to Wash and Iron Finished Cross Stitch",
+  "slug": "how-to-wash-iron-finished-cross-stitch",
+  "seo": {
+    "title": "How to Wash and Iron Finished Cross Stitch",
+    "meta_description": "A gentle guide to washing, drying and pressing finished cross stitch before framing, including precautions for specialty thread and fabric.",
+    "search_intent": "Learn how to wash and press finished cross stitch."
+  },
+  "excerpt": "Cleaning finished stitching can be simple when the materials are known: gentle washing, flat drying and pressing from the back are the basics.",
+  "content_html": "<p>After many hours of stitching, washing a finished piece can feel more intimidating than starting the chart. Done carefully, however, washing can remove hand marks, dust and small creases and prepare the fabric for a much cleaner finish.</p>\n<p>Not every fabric and thread behaves the same way, so the main rule is simple: if you used specialty materials, hand-dyed fabric or thread with unknown colorfastness, check the manufacturer’s instructions first and test before washing the whole project. The cleaning method should adapt to the materials rather than forcing every piece through the same routine.</p>\n<h2>Before putting the finished stitching in water</h2>\n<p>Inspect the piece from both front and back. Secure any loose thread that has not been finished properly and remove pencil or marker only according to the instructions for that particular product. Some markers disappear in water while others need a different method.</p>\n<p>If you used standard washable cotton floss and ordinary Aida, the process is usually straightforward. Metallic thread, silk, wool, hand-dyed fabric and very intense colors deserve more caution.</p>\n<p>Test for color transfer if you are unsure. A small spare piece of the same thread and fabric can reveal a problem before the entire project is at risk. Test any unfamiliar soap as well.</p>\n<p>Remove the work from its hoop or frame. Washing while it is under tension is not useful, and the fabric needs to move freely in the water.</p>\n<p>Check for forgotten pins, needles or other metal objects too. It may sound unlikely, but it is better to catch them before the fabric goes into water.</p>\n<h2>How to wash cross stitch gently</h2>\n<p>Use cool or lukewarm water rather than very hot water. Add a small amount of mild soap without aggressive bleaching agents and allow the piece to become fully wet.</p>\n<p>Do not scrub the crosses or twist the fabric. Move the water gently with your hands and allow ordinary surface dirt to release. A normally handled decorative piece rarely needs harsh treatment.</p>\n<p>Rinse with clean water until no soap remains. If you see color beginning to run, remove the piece and follow the specific guidance for that thread or fabric.</p>\n<p>To remove excess water, place the stitching between clean towels and press gently. Do not wring or twist it. The goal is to absorb moisture rather than treat the fabric like a garment that needs to be squeezed dry.</p>\n<p>Avoid strong fragrances, fabric softeners and aggressive stain removers unless you know they are compatible with every material in the project. With decorative needlework, less is usually safer.</p>\n<h2>Drying and pressing without flattening the stitches</h2>\n<p>Let the piece dry flat on a clean towel and gently reshape it with your hands if the fabric has distorted slightly. Avoid hanging it while wet if the weight could stretch the cloth.</p>\n<p>Once dry or only slightly damp, press from the back. Place a clean soft towel underneath so the crosses have space and are not crushed completely flat.</p>\n<p>Use a temperature appropriate for the fabric and thread fibers. Start lower when you are uncertain and avoid heavy steam on materials you do not know well.</p>\n<p>Do not drag the iron aggressively across the cloth. Press, lift and move to a new area. This reduces the risk of distorting the grid and protects the texture of the stitches.</p>\n<p>If one crease remains stubborn, use several gentle passes instead of immediately increasing the heat. Excessive temperature can damage synthetic fibers, specialty threads or dyes.</p>\n<h2>What to do before framing</h2>\n<p>Make sure the piece is completely dry. Trapping moisture inside a frame can cause problems, and there is no benefit in rushing this part.</p>\n<p>Check that the fabric is square. If one area has pulled out of shape, gently adjust it while there is still a little moisture and allow it to dry flat.</p>\n<p>Do not trim until you know exactly how the piece will be mounted. Keeping extra margin gives you far more room for centering, tensioning and correcting small alignment issues.</p>\n<p>If the project contains specialty materials you do not want to wash, a more conservative cleaning approach may be appropriate. Not every finished piece needs identical treatment.</p>\n<p>Before closing the frame, inspect the surface under good light. A loose thread or tiny fiber is much easier to remove now than after the piece is fully mounted.</p>\n<p>Washing and pressing should not transform the stitching; they prepare it for display. Gentle handling, understanding the materials and avoiding haste matter more than following one rigid recipe. After dozens of hours of stitching, giving the finishing stage proper attention is what makes the piece look truly complete.</p>",
+  "image": {
+    "concept": "Finished cross stitch resting on a clean towel beside a bowl of water and an iron ready for pressing from the back.",
+    "alt": "Washing and pressing finished cross stitch"
+  }
+}
