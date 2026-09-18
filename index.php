@@ -25,7 +25,7 @@ get_header();
                 <span class="section-kicker"><?php echo esc_html( ! empty( $cats ) ? $cats[0]->name : make_t( 'Artículo', 'Article' ) ); ?></span>
                 <h2><?php the_title(); ?></h2>
                 <p><?php echo esc_html( wp_trim_words( get_the_excerpt(), 22 ) ); ?></p>
-                <div class="post-card-meta"><span><?php echo esc_html( get_the_date() ); ?></span><span><?php echo esc_html( make_reading_time( get_the_ID() ) ); ?></span></div>
+                <div class="post-card-meta"><span><?php echo esc_html( make_reading_time( get_the_ID() ) ); ?></span></div>
               </div>
             </a>
           </article>
