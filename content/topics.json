@@ -898,6 +898,61 @@
       "title_es": "Patrones de ciudades y viajes en punto de cruz para guardar recuerdos",
       "title_en": "City and Travel Cross Stitch Patterns for Keeping Memories",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 81,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "technique",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo hacer punto de cruz sin bastidor: ventajas y trucos",
+      "title_en": "How to Cross Stitch Without a Hoop: Benefits and Practical Tips",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 82,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "technique",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Parking method en punto de cruz: cómo organizar muchos colores",
+      "title_en": "The Parking Method in Cross Stitch: How to Manage Lots of Colors",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 83,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "technique",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Railroading en punto de cruz: qué es y cuándo merece la pena",
+      "title_en": "Railroading in Cross Stitch: What It Is and When It Is Worth It",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 84,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "patterns",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Punto de cruz full coverage: qué esperar antes de empezar",
+      "title_en": "Full-Coverage Cross Stitch: What to Expect Before You Start",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 85,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "organization",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo guardar un punto de cruz a medias sin arrugarlo ni perder nada",
+      "title_en": "How to Store Unfinished Cross Stitch Without Creases or Lost Supplies",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {
