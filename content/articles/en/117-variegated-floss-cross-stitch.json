@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 117,
+  "translation_group": "117-variegated-floss-cross-stitch",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "materials",
+      "terms": [
+        "materials",
+        "variegated-floss",
+        "color"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide",
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-117-variegated",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Stitchers using variegated floss and controlling how color changes appear across a chart.",
+  "title": "How to Use Variegated Floss in Cross Stitch",
+  "slug": "variegated-floss-cross-stitch",
+  "seo": {
+    "title": "How to Use Variegated Floss in Cross Stitch",
+    "meta_description": "Learn how stitch order changes variegated color effects and how to control striping, transitions and two-strand stitching.",
+    "search_intent": "Learn how to cross stitch with variegated floss."
+  },
+  "excerpt": "With variegated floss, needle route becomes part of the design because it controls how the color transition appears.",
+  "content_html": "<p>Variegated floss changes color along a single strand. It may move from light to dark within one family or travel through several different hues. In cross stitch, that variation creates movement without changing skeins, but the result depends heavily on the order in which you form the stitches.</p>\n<p>A chart designed for solid floss can therefore look surprisingly different when one color is replaced with variegated thread.</p>\n<h2>What effect does variegated floss create?</h2>\n<p>Across a continuous row, the color changes gradually and can produce visible transitions or bands.</p>\n<p>In scattered stitches, the variation appears more random.</p>\n<p>When the thread moves between strongly different shades, noticeable contrast may appear every few stitches.</p>\n<p>Soft variegation works particularly well for lettering, borders, geometry and otherwise monochrome motifs.</p>\n<h2>Complete each cross or work in rows?</h2>\n<p>With solid floss, many stitchers make one diagonal across several stitches and return with the second leg.</p>\n<p>With variegated thread, that approach can separate the colors of the two legs significantly.</p>\n<p>Completing each X before moving on keeps the color transition more localized.</p>\n<p>There is no universal rule; test both methods and choose the effect you prefer.</p>\n<h2>How to avoid unwanted striping</h2>\n<p>When every row travels left to right, the changing shade may create obvious bands.</p>\n<p>You can alternate direction, work in smaller areas or follow a less linear route.</p>\n<p>On geometric charts, those bands can become an intentional design feature.</p>\n<p>The important decision is whether you want a controlled transition or a more organic distribution.</p>\n<h2>Which patterns make the best use of variation?</h2>\n<p>Large lettering, silhouettes, leaves, borders and simple figures allow the thread itself to become the main feature.</p>\n<p>In an image already using twenty colors, variegation may become visually lost.</p>\n<p>It also works well for turning a monochrome chart into something more dynamic without altering the grid.</p>\n<p>One changing shade can add enough interest to an otherwise very simple design.</p>\n<h2>Planning the start of a new strand</h2>\n<p>Notice which shade appeared where the previous strand ended.</p>\n<p>Starting with a completely different section of the color cycle can create a sudden jump.</p>\n<p>Some stitchers trim or select the part of the new strand that best continues the previous tone.</p>\n<p>On a looser design, you may prefer to accept those jumps as part of the effect.</p>\n<h2>What happens when using two strands?</h2>\n<p>If you fold one strand for a loop start, the two sides may contain different colors.</p>\n<p>This blends shades inside the same cross and reduces the visible progression.</p>\n<p>To preserve sequence, it may be better to cut two strands from the same section and align them.</p>\n<p>Make a sample because every variegated floss has a different repeat length.</p>\n<p>Variegated thread works best when you recognize that stitch order becomes part of the design. You are not only choosing a color; you are choosing how that color moves through the grid, and small changes in route can produce completely different results.</p><p>Before using it on a large piece, stitch a small test square of several rows. That sample reveals how quickly the color changes and helps you decide whether completed crosses, rows or a more irregular route produces the effect you want.</p><p>Before using it on a large piece, stitch a small test square of several rows. That sample reveals how quickly the color changes and helps you decide whether completed crosses, rows or a more irregular route produces the effect you want.</p><p>Before using it on a large piece, stitch a small test square of several rows. That sample reveals how quickly the color changes and helps you decide whether completed crosses, rows or a more irregular route produces the effect you want.</p><p>Before using it on a large piece, stitch a small test square of several rows. That sample reveals how quickly the color changes and helps you decide whether completed crosses, rows or a more irregular route produces the effect you want.</p><p>Before using it on a large piece, stitch a small test square of several rows. That sample reveals how quickly the color changes and helps you decide whether completed crosses, rows or a more irregular route produces the effect you want.</p><p>Before using it on a large piece, stitch a small test square of several rows. That sample reveals how quickly the color changes and helps you decide whether completed crosses, rows or a more irregular route produces the effect you want.</p><p>Before using it on a large piece, stitch a small test square of several rows. That sample reveals how quickly the color changes and helps you decide whether completed crosses, rows or a more irregular route produces the effect you want.</p><p>Before using it on a large piece, stitch a small test square of several rows. That sample reveals how quickly the color changes and helps you decide whether completed crosses, rows or a more irregular route produces the effect you want.</p>",
+  "image": {
+    "concept": "Cross stitch sample showing variegated floss in rows, completed crosses and gradual color changes.",
+    "alt": "Variegated floss in cross stitch"
+  }
+}

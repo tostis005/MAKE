@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 116,
+  "translation_group": "116-substitute-dmc-colors",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "materials",
+      "terms": [
+        "materials",
+        "dmc",
+        "color-substitution"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide",
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-116-substitute-dmc",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Stitchers missing an exact DMC reference or recoloring a palette while preserving contrast.",
+  "title": "How to Substitute DMC Colors in a Cross Stitch Pattern",
+  "slug": "substitute-dmc-colors-cross-stitch",
+  "seo": {
+    "title": "How to Substitute DMC Colors in Cross Stitch",
+    "meta_description": "Compare value, contrast and color function to replace DMC references or recolor a palette without losing depth.",
+    "search_intent": "Learn how to substitute DMC colors in a cross stitch pattern."
+  },
+  "excerpt": "The best substitute preserves the visual role of the color —highlight, shadow or accent— even when the hue is not identical.",
+  "content_html": "<p>Substituting a DMC color is not simply about finding the shade that looks “closest” on a screen. The real goal is preserving the role that color plays inside the pattern: if it was a shadow, it should remain darker; if it was an accent, it still needs enough contrast to stand out.</p>\n<p>With physical comparison and a little attention to value, most substitutions can be made without damaging the design.</p>\n<h2>Start by understanding what the color is doing</h2>\n<p>Before choosing a replacement, look at where the shade appears in the chart.</p>\n<p>It may belong to a gradient, define an outline or appear only as one isolated accent.</p>\n<p>If it sits between two neighboring colors, the replacement needs to fit between them.</p>\n<p>If it appears only in a tiny flower or accessory, you have much more freedom.</p>\n<h2>Compare physical floss whenever possible</h2>\n<p>Digital color charts are useful for orientation, but every screen changes brightness and temperature.</p>\n<p>Place skeins together under neutral light and compare them against the actual project fabric.</p>\n<p>A green that looks perfect on white may disappear on gray Aida.</p>\n<p>A physical color card is helpful, but remember that several stitched strands can still look slightly different from a single sample.</p>\n<h2>Think about value as well as hue</h2>\n<p>Value describes how light or dark a color is.</p>\n<p>Two blues can belong to a similar family and still fail as substitutes if one is dramatically darker.</p>\n<p>Squint at the colors or take a black-and-white photo to compare relative contrast.</p>\n<p>In portraits and landscapes, preserving the value progression is often more important than matching the exact hue.</p>\n<h2>What to do when the exact reference is unavailable</h2>\n<p>Begin within the same color family and compare the candidate with surrounding shades.</p>\n<p>If the substitute becomes almost identical to another color already in the chart, a slightly more distinct option may work better.</p>\n<p>On limited-color designs, one replacement can change the whole mood, so stitch a small test.</p>\n<p>On large projects, avoid changing a critical shade after hundreds of stitches unless you can maintain visual continuity.</p>\n<h2>Replacing an entire palette</h2>\n<p>Sometimes you are not replacing one floss color; you want a complete recolor.</p>\n<p>Preserve hierarchy by identifying highlights, midtones, shadows and accents.</p>\n<p>A blue palette can become green when each replacement keeps roughly the same light-to-dark relationship.</p>\n<p>Graphic patterns and pop art usually tolerate dramatic changes more easily than photographic conversions.</p>\n<h2>Test before committing</h2>\n<p>Stitch a small sample with the new shade beside its neighboring colors.</p>\n<p>View it close up and from the distance where the finished piece will normally be seen.</p>\n<p>Check it in daylight and under the room lighting where it may eventually hang.</p>\n<p>If the replacement does not create an obvious visual gap or strange jump, it is probably working.</p>\n<p>DMC substitution is a design decision rather than a mathematical operation. Preserving contrast, value and function within the composition usually creates a more convincing result than chasing a perfect digital color match.</p><p>When making an important substitution, write the new reference directly onto a copy of the key. That prevents accidentally returning to the original number weeks later and lets you reproduce the same palette if you stitch another version.</p><p>When making an important substitution, write the new reference directly onto a copy of the key. That prevents accidentally returning to the original number weeks later and lets you reproduce the same palette if you stitch another version.</p><p>When making an important substitution, write the new reference directly onto a copy of the key. That prevents accidentally returning to the original number weeks later and lets you reproduce the same palette if you stitch another version.</p><p>When making an important substitution, write the new reference directly onto a copy of the key. That prevents accidentally returning to the original number weeks later and lets you reproduce the same palette if you stitch another version.</p><p>When making an important substitution, write the new reference directly onto a copy of the key. That prevents accidentally returning to the original number weeks later and lets you reproduce the same palette if you stitch another version.</p><p>When making an important substitution, write the new reference directly onto a copy of the key. That prevents accidentally returning to the original number weeks later and lets you reproduce the same palette if you stitch another version.</p><p>When making an important substitution, write the new reference directly onto a copy of the key. That prevents accidentally returning to the original number weeks later and lets you reproduce the same palette if you stitch another version.</p><p>When making an important substitution, write the new reference directly onto a copy of the key. That prevents accidentally returning to the original number weeks later and lets you reproduce the same palette if you stitch another version.</p>",
+  "image": {
+    "concept": "DMC skeins compared on Aida with a small light, midtone and dark value scale.",
+    "alt": "How to substitute DMC colors"
+  }
+}

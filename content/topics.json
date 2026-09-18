@@ -1283,6 +1283,61 @@
       "title_es": "Ergonomía para punto de cruz: postura, manos y descansos",
       "title_en": "Cross Stitch Ergonomics: Posture, Hands and Breaks",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 116,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "materials",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo sustituir colores DMC en un patrón de punto de cruz",
+      "title_en": "How to Substitute DMC Colors in a Cross Stitch Pattern",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 117,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "materials",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo usar hilo matizado o variegated en punto de cruz",
+      "title_en": "How to Use Variegated Floss in Cross Stitch",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 118,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "materials",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Acondicionador de hilo para punto de cruz: cuándo sirve y cuándo no",
+      "title_en": "Thread Conditioner for Cross Stitch: When It Helps and When It Does Not",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 119,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "tools",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Soportes para punto de cruz: mesa, regazo o suelo",
+      "title_en": "Cross Stitch Stands: Table, Lap or Floor?",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 120,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "tools",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Lupas para punto de cruz: cuánto aumento necesitas de verdad",
+      "title_en": "Cross Stitch Magnifiers: How Much Magnification Do You Really Need?",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {
