@@ -1,0 +1,71 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 91,
+  "translation_group": "091-aida-vs-evenweave-vs-linen",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "materials",
+      "terms": [
+        "materials",
+        "fabric",
+        "aida",
+        "evenweave",
+        "linen"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide",
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-091-fabrics",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Stitchers comparing Aida, evenweave and linen by ease, texture and finish.",
+  "title": "Aida vs Evenweave vs Linen: Which Cross Stitch Fabric Should You Choose?",
+  "slug": "aida-vs-evenweave-vs-linen-cross-stitch",
+  "seo": {
+    "title": "Aida vs Evenweave vs Linen for Cross Stitch",
+    "meta_description": "Compare weave, count, ease, texture and finished appearance of Aida, evenweave and linen before choosing fabric.",
+    "search_intent": "Compare Aida, evenweave and linen for cross stitch."
+  },
+  "excerpt": "All three fabrics work for cross stitch; they change how you read the grid, the texture and the final appearance.",
+  "content_html": "<p>Aida, evenweave and linen can all be used for cross stitch, but they feel noticeably different in the hand. The basic pattern logic does not change: you are still counting a grid. What changes is fabric construction, how entry points are found and the finished appearance.</p>\n<p>For a first project, Aida is usually the most direct option. Once you want finer texture or a surface that looks less obviously gridded, evenweave and linen open other possibilities.</p>\n<h2>Aida: the most straightforward option</h2>\n<p>Aida has clearly defined blocks with visible holes at each corner, which makes counting very intuitive.</p>\n<p>It is widely available in different counts and colors and works well in hoops, Q-Snaps or even in hand when the fabric is fairly stiff.</p>\n<p>The finished surface keeps a visible grid, which may be part of the style or something you prefer to reduce.</p>\n<p>For beginners and graphic charts, it is an excellent choice.</p>\n<h2>Evenweave: a finer regular grid</h2>\n<p>Evenweave has a consistent weave, but the threads are finer than the blocks of Aida.</p>\n<p>Many cross stitch projects are worked “over two,” meaning each cross spans two fabric threads in each direction.</p>\n<p>This makes fractional stitches and intermediate placement more natural.</p>\n<p>The surface often looks more refined and less obviously square than Aida.</p>\n<h2>Linen: a more organic texture</h2>\n<p>Linen may contain small variations in thread thickness and has a more natural visual texture.</p>\n<p>It is also commonly worked over two, but requires slightly more attention because the weave may not look as perfectly regular as evenweave.</p>\n<p>It can add beautiful texture to samplers, botanicals and designs where much of the background remains visible.</p>\n<p>You do not need linen to achieve a “premium” finish; it simply creates a different aesthetic.</p>\n<h2>How to compare fabric counts</h2>\n<p>On 14-count Aida, one cross normally occupies one block.</p>\n<p>On 28-count evenweave worked over two, the effective density is similar to 14 count because each cross spans two threads and ends up at roughly the same physical size.</p>\n<p>The same logic makes 32 count over two broadly comparable to 16-count Aida.</p>\n<p>Before cutting, confirm how the fabric will be worked because that decision changes the finished size completely.</p>\n<h2>Which fabric suits different projects?</h2>\n<p>For a first chart, Aida reduces decisions and makes counting easier.</p>\n<p>For fine lettering, fractional stitches or a more delicate visible background, evenweave is a useful next step.</p>\n<p>If you enjoy organic texture and do not mind paying closer attention to the weave, test linen on a small project before committing to a huge piece.</p>\n<p>The best fabric is not the “most advanced” one. It is the fabric that suits the design and remains comfortable to read for hours.</p>\n<p>Trying several fabrics on mini projects is more useful than choosing by prestige. After a few sessions you will quickly discover which surface, stiffness and hole size match the way you like to stitch.</p><p>When moving from Aida to evenweave or linen, begin with pale fabric and a simple chart. Reducing variables makes it much easier to learn the weave without combining that new skill with a complicated pattern.</p><p>When moving from Aida to evenweave or linen, begin with pale fabric and a simple chart. Reducing variables makes it much easier to learn the weave without combining that new skill with a complicated pattern.</p><p>When moving from Aida to evenweave or linen, begin with pale fabric and a simple chart. Reducing variables makes it much easier to learn the weave without combining that new skill with a complicated pattern.</p><p>When moving from Aida to evenweave or linen, begin with pale fabric and a simple chart. Reducing variables makes it much easier to learn the weave without combining that new skill with a complicated pattern.</p><p>When moving from Aida to evenweave or linen, begin with pale fabric and a simple chart. Reducing variables makes it much easier to learn the weave without combining that new skill with a complicated pattern.</p><p>When moving from Aida to evenweave or linen, begin with pale fabric and a simple chart. Reducing variables makes it much easier to learn the weave without combining that new skill with a complicated pattern.</p><p>When moving from Aida to evenweave or linen, begin with pale fabric and a simple chart. Reducing variables makes it much easier to learn the weave without combining that new skill with a complicated pattern.</p><p>When moving from Aida to evenweave or linen, begin with pale fabric and a simple chart. Reducing variables makes it much easier to learn the weave without combining that new skill with a complicated pattern.</p><p>When moving from Aida to evenweave or linen, begin with pale fabric and a simple chart. Reducing variables makes it much easier to learn the weave without combining that new skill with a complicated pattern.</p>",
+  "image": {
+    "concept": "Three labeled samples of Aida, evenweave and linen with the same small motif stitched on each.",
+    "alt": "Aida, evenweave and linen comparison"
+  }
+}

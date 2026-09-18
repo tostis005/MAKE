@@ -1008,6 +1008,61 @@
       "title_es": "Cómo convertir pixel art en un patrón de punto de cruz paso a paso",
       "title_en": "How to Turn Pixel Art into a Cross Stitch Pattern Step by Step",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 91,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "materials",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Aida vs evenweave vs lino: qué tela elegir para punto de cruz",
+      "title_en": "Aida vs Evenweave vs Linen: Which Cross Stitch Fabric Should You Choose?",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 92,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "materials",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo elegir el color de tela para un patrón de punto de cruz",
+      "title_en": "How to Choose Fabric Color for a Cross Stitch Pattern",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 93,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "materials",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo evitar que la tela Aida se deshilache mientras bordas",
+      "title_en": "How to Stop Aida Fabric from Fraying While You Stitch",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 94,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "finishing",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo quitar las marcas del bastidor en un punto de cruz terminado",
+      "title_en": "How to Remove Hoop Marks from Finished Cross Stitch",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 95,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "organization",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo mantener limpio un punto de cruz mientras lo estás bordando",
+      "title_en": "How to Keep Cross Stitch Clean While You Are Working on It",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {
