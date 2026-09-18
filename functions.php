@@ -97,7 +97,24 @@ add_filter( 'language_attributes', 'make_language_attributes', 20 );
 function make_body_classes( array $classes ): array { $classes[] = 'make-lang-' . make_current_language(); return $classes; }
 add_filter( 'body_class', 'make_body_classes' );
 
-function make_brand_name(): string { return 'MAKE'; }
+function make_brand_name(): string {
+    $name = trim( (string) get_bloginfo( 'name' ) );
+    return $name !== '' ? $name : make_t( 'Taller creativo', 'Creative studio' );
+}
+
+function make_brand_tagline(): string {
+    $tagline = trim( (string) get_bloginfo( 'description' ) );
+    return $tagline !== '' ? $tagline : make_t( 'patrones digitales para crear despacio', 'digital patterns for slow making' );
+}
+
+function make_journal_url(): string {
+    $posts_page = (int) get_option( 'page_for_posts' );
+    if ( $posts_page ) {
+        $url = get_permalink( $posts_page );
+        if ( $url ) { return $url; }
+    }
+    return home_url( '/journal/' );
+}
 
 function make_cart_count(): int {
     return function_exists( 'WC' ) && WC()->cart ? (int) WC()->cart->get_cart_contents_count() : 0;
@@ -138,3 +155,106 @@ function make_reading_time( int $post_id ): string {
 
 add_filter( 'excerpt_length', static fn(): int => 22, 999 );
 add_filter( 'excerpt_more', static fn(): string => '…' );
+
+
+/**
+ * First-run conveniences: the theme remains self-contained and does not rely on
+ * a commercial parent theme. We only create the posts index if the site does not
+ * already have one, so activating the theme immediately gives the editorial area
+ * a stable URL without overwriting existing content.
+ */
+function make_after_switch_theme(): void {
+    if ( ! get_option( 'page_for_posts' ) ) {
+        $existing = get_page_by_path( 'journal' );
+        $page_id  = $existing instanceof WP_Post ? $existing->ID : wp_insert_post(
+            array(
+                'post_title'  => 'Journal',
+                'post_name'   => 'journal',
+                'post_status' => 'publish',
+                'post_type'   => 'page',
+            ),
+            true
+        );
+        if ( ! is_wp_error( $page_id ) && $page_id ) {
+            update_option( 'page_for_posts', (int) $page_id );
+        }
+    }
+    flush_rewrite_rules();
+}
+add_action( 'after_switch_theme', 'make_after_switch_theme' );
+
+function make_archive_title(): string {
+    if ( function_exists( 'is_shop' ) && is_shop() ) {
+        return make_t( 'Tienda de patrones', 'Pattern shop' );
+    }
+    if ( is_category() || is_tag() || is_tax() ) {
+        return single_term_title( '', false );
+    }
+    if ( is_post_type_archive() ) {
+        return post_type_archive_title( '', false );
+    }
+    return make_t( 'Últimos artículos', 'Latest articles' );
+}
+
+/* WooCommerce presentation layer. */
+function make_woocommerce_setup_hooks(): void {
+    if ( ! class_exists( 'WooCommerce' ) ) { return; }
+
+    remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
+    remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 );
+    remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
+
+    remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
+    remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
+    add_action( 'woocommerce_after_shop_loop_item', 'make_product_card_link', 12 );
+
+    add_action( 'woocommerce_single_product_summary', 'make_single_product_reassurance', 25 );
+}
+add_action( 'wp', 'make_woocommerce_setup_hooks' );
+
+function make_product_card_link(): void {
+    global $product;
+    if ( ! $product instanceof WC_Product ) { return; }
+    echo '<a class="make-product-view" href="' . esc_url( get_permalink( $product->get_id() ) ) . '">' .
+        esc_html( make_t( 'Ver patrón', 'View pattern' ) ) . ' <span aria-hidden="true">→</span></a>';
+}
+
+function make_single_product_reassurance(): void {
+    echo '<div class="make-product-reassurance">';
+    echo '<span><i aria-hidden="true">↓</i><strong>' . esc_html( make_t( 'Descarga digital', 'Digital download' ) ) . '</strong><small>' . esc_html( make_t( 'Acceso tras la compra', 'Access after purchase' ) ) . '</small></span>';
+    echo '<span><i aria-hidden="true">✓</i><strong>' . esc_html( make_t( 'Archivo preparado', 'Prepared file' ) ) . '</strong><small>' . esc_html( make_t( 'Pensado para imprimir', 'Made for printing' ) ) . '</small></span>';
+    echo '<span><i aria-hidden="true">♡</i><strong>' . esc_html( make_t( 'Hecho con cuidado', 'Made with care' ) ) . '</strong><small>' . esc_html( make_t( 'Diseño revisado', 'Checked design' ) ) . '</small></span>';
+    echo '</div>';
+}
+
+add_filter( 'loop_shop_columns', static fn(): int => 3, 20 );
+add_filter( 'loop_shop_per_page', static fn(): int => 12, 20 );
+
+function make_loop_product_classes( array $classes, $product ): array {
+    if ( is_a( $product, 'WC_Product' ) ) { $classes[] = 'make-pattern-card'; }
+    return $classes;
+}
+add_filter( 'woocommerce_post_class', 'make_loop_product_classes', 20, 2 );
+
+function make_sale_flash( string $html ): string {
+    return '<span class="onsale">' . esc_html( make_t( 'Oferta', 'Sale' ) ) . '</span>';
+}
+add_filter( 'woocommerce_sale_flash', 'make_sale_flash' );
+
+function make_product_tabs( array $tabs ): array {
+    if ( isset( $tabs['description'] ) ) {
+        $tabs['description']['title'] = make_t( 'Sobre este patrón', 'About this pattern' );
+    }
+    if ( isset( $tabs['additional_information'] ) ) {
+        $tabs['additional_information']['title'] = make_t( 'Detalles', 'Details' );
+    }
+    return $tabs;
+}
+add_filter( 'woocommerce_product_tabs', 'make_product_tabs', 20 );
+
+function make_shop_body_class( array $classes ): array {
+    if ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) { $classes[] = 'make-commerce'; }
+    if ( function_exists( 'is_product' ) && is_product() ) { $classes[] = 'make-single-product'; }
+    return $classes;
+}
+add_filter( 'body_class', 'make_shop_body_class', 30 );
