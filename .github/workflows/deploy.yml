@@ -100,20 +100,25 @@ jobs:
               -e MAKE_SMOKE_HOST="$SITE_HOST" \
               -e MAKE_SMOKE_ROUTE="$ROUTE" \
               make-wp php -r '
-                $_SERVER["HTTP_HOST"] = getenv("MAKE_SMOKE_HOST");
-                $_SERVER["REQUEST_URI"] = getenv("MAKE_SMOKE_ROUTE");
-                $_SERVER["REQUEST_METHOD"] = "GET";
-                $_SERVER["SERVER_PROTOCOL"] = "HTTP/1.1";
-                ob_start();
-                require "/var/www/html/index.php";
-                $html = ob_get_clean();
+                $host = getenv("MAKE_SMOKE_HOST");
                 $route = getenv("MAKE_SMOKE_ROUTE");
+                $context = stream_context_create(array(
+                    "http" => array(
+                        "method" => "GET",
+                        "header" => "Host: " . $host . "\r\nUser-Agent: MAKE-Journal-Smoke\r\n",
+                        "ignore_errors" => true,
+                        "follow_location" => 0,
+                        "timeout" => 15,
+                    ),
+                ));
+                $html = @file_get_contents("http://127.0.0.1" . $route, false, $context);
+                $status = isset($http_response_header[0]) ? $http_response_header[0] : "no-status";
                 $needle = str_starts_with($route, "/en/") ? "Latest articles" : "Últimos artículos";
-                if (strpos($html, $needle) === false || strpos($html, "post-card") === false) {
-                    fwrite(STDERR, "Journal smoke test failed for " . $route . PHP_EOL);
+                if ($html === false || strpos($status, "200") === false || strpos($html, $needle) === false || strpos($html, "post-card") === false) {
+                    fwrite(STDERR, "Journal HTTP smoke test failed for " . $route . " status=" . $status . PHP_EOL);
                     exit(2);
                 }
-                echo "MAKE_JOURNAL_SMOKE_OK=" . $route . " bytes=" . strlen($html) . PHP_EOL;
+                echo "MAKE_JOURNAL_SMOKE_OK=" . $route . " status=" . $status . " bytes=" . strlen($html) . PHP_EOL;
               '
           done
           REMOTE
