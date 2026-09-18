@@ -1228,6 +1228,61 @@
       "title_es": "Punto de cruz sobre papel perforado: guía para tarjetas y mini proyectos",
       "title_en": "Cross Stitch on Perforated Paper: A Guide for Cards and Small Projects",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 111,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "organization",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo organizar los hilos de un proyecto grande de punto de cruz",
+      "title_en": "How to Organize Floss for a Large Cross Stitch Project",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 112,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "tools",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Qué es un needle minder y cómo usarlo en punto de cruz",
+      "title_en": "What Is a Needle Minder and How Do You Use One for Cross Stitch?",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 113,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "tools",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Iluminación para punto de cruz: cómo ver mejor sin cansarte la vista",
+      "title_en": "Cross Stitch Lighting: How to See Better Without Straining Your Eyes",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 114,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "technique",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo hacer punto de cruz más rápido sin perder calidad",
+      "title_en": "How to Cross Stitch Faster Without Sacrificing Quality",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 115,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "comfort",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Ergonomía para punto de cruz: postura, manos y descansos",
+      "title_en": "Cross Stitch Ergonomics: Posture, Hands and Breaks",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {
