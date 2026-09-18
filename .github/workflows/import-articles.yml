@@ -1,0 +1,182 @@
+name: Import MAKE JSON articles
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/articles/es/*.json'
+      - 'content/articles/en/*.json'
+      - 'content/topics.json'
+      - 'content/tools/import-articles.php'
+      - '.github/workflows/import-articles.yml'
+  workflow_dispatch:
+    inputs:
+      language:
+        description: 'Language to import'
+        required: true
+        type: choice
+        options: [es, en, all]
+        default: all
+      from:
+        description: 'First article number'
+        required: true
+        default: '1'
+      to:
+        description: 'Last article number'
+        required: true
+        default: '999999'
+      status:
+        description: 'WordPress status override'
+        required: true
+        type: choice
+        options: [publish, draft, json]
+        default: json
+      force:
+        description: 'Force rewrite even when JSON hash is unchanged'
+        required: true
+        type: boolean
+        default: false
+
+concurrency:
+  group: make-json-article-import
+  cancel-in-progress: false
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    env:
+      IMPORT_LANGUAGE: ${{ inputs.language || 'all' }}
+      IMPORT_FROM: ${{ inputs.from || '1' }}
+      IMPORT_TO: ${{ inputs.to || '999999' }}
+      IMPORT_STATUS: ${{ inputs.status || 'json' }}
+      IMPORT_FORCE: ${{ inputs.force || false }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate importer and article JSON
+        run: |
+          set -euo pipefail
+          php -l content/tools/import-articles.php
+          python3 - <<'PY'
+          import json, re
+          from pathlib import Path
+
+          required = {
+              'schema_version','id','article_number','translation_group','language','locale',
+              'market_context','title','slug','seo','excerpt','taxonomy','content_html',
+              'faq','sources','image','status'
+          }
+          files = sorted(Path('content/articles').glob('*/*.json'))
+          if not files:
+              raise SystemExit('No article JSON files found')
+
+          ids = set()
+          pairs = set()
+          groups = {}
+          tag_re = re.compile(r'<[^>]+>')
+          word_re = re.compile(r"[A-Za-zÀ-ÖØ-öø-ÿ0-9’'-]+", re.UNICODE)
+
+          for path in files:
+              data = json.loads(path.read_text(encoding='utf-8'))
+              missing = required - data.keys()
+              if missing:
+                  raise SystemExit(f'{path}: missing {sorted(missing)}')
+
+              lang = data['language']
+              if lang not in {'es','en'} or path.parent.name != lang:
+                  raise SystemExit(f'{path}: invalid language/directory')
+              if data['id'] in ids:
+                  raise SystemExit(f"{path}: duplicate id {data['id']}")
+              ids.add(data['id'])
+
+              pair = (int(data['article_number']), lang)
+              if pair in pairs:
+                  raise SystemExit(f'{path}: duplicate article/language {pair}')
+              pairs.add(pair)
+
+              html = data.get('content_html', '')
+              if not isinstance(html, str) or not html.strip():
+                  raise SystemExit(f'{path}: empty content_html')
+              text = tag_re.sub(' ', html)
+              words = word_re.findall(text)
+              if len(words) < 750:
+                  raise SystemExit(f'{path}: only {len(words)} words; minimum is 750')
+
+              h2_count = len(re.findall(r'<h2\b', html, flags=re.I))
+              if h2_count > 6:
+                  raise SystemExit(f'{path}: {h2_count} H2 sections; keep sections substantial')
+
+              group = data['translation_group']
+              groups.setdefault(group, set()).add(lang)
+
+          incomplete = {g: sorted(v) for g, v in groups.items() if v != {'es','en'}}
+          if incomplete:
+              raise SystemExit(f'Incomplete translation groups: {incomplete}')
+
+          print(f'Validated {len(files)} JSON articles in {len(groups)} bilingual groups')
+          PY
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/make_import_key
+          chmod 600 ~/.ssh/make_import_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Package articles and importer
+        run: |
+          set -euo pipefail
+          tar -czf /tmp/make-content.tgz content/articles content/tools/import-articles.php
+
+      - name: Upload content package
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          scp -i ~/.ssh/make_import_key /tmp/make-content.tgz "$VPS_USER@$VPS_HOST:/tmp/make-content-${GITHUB_RUN_ID}.tgz"
+
+      - name: Import into MAKE WordPress
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/make_import_key "$VPS_USER@$VPS_HOST" \
+            "GITHUB_RUN_ID='${GITHUB_RUN_ID}' IMPORT_LANGUAGE='$IMPORT_LANGUAGE' IMPORT_FROM='$IMPORT_FROM' IMPORT_TO='$IMPORT_TO' IMPORT_STATUS='$IMPORT_STATUS' IMPORT_FORCE='$IMPORT_FORCE' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/make-content-${GITHUB_RUN_ID}.tgz"
+          STAGE="/tmp/make-content-${GITHUB_RUN_ID}"
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE"; }
+          trap cleanup EXIT
+
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+
+          "${DOCKER[@]}" cp "$STAGE/content/articles/." make-wp:/tmp/make-articles/
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-articles.php" make-wp:/tmp/make-import-articles.php
+
+          "${DOCKER[@]}" exec make-wp php /tmp/make-import-articles.php \
+            /var/www/html /tmp/make-articles \
+            "--language=$IMPORT_LANGUAGE" \
+            "--from=$IMPORT_FROM" \
+            "--to=$IMPORT_TO" \
+            "--status=$IMPORT_STATUS" \
+            "--force=$IMPORT_FORCE"
+
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/make-articles /tmp/make-import-articles.php'
+          REMOTE
