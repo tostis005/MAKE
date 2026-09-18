@@ -60,6 +60,9 @@ function make_home_url( string $language = '' ): string {
 
 function make_language_switch_url( string $language ): string {
     $language = in_array( $language, array( 'es','en' ), true ) ? $language : 'es';
+    if ( (int) get_query_var( 'make_journal' ) === 1 ) {
+        return make_journal_url( $language );
+    }
     if ( is_singular() && function_exists( 'pll_get_post' ) ) {
         $translated = (int) pll_get_post( get_queried_object_id(), $language );
         if ( $translated ) { return get_permalink( $translated ); }
@@ -69,21 +72,1039 @@ function make_language_switch_url( string $language ): string {
 }
 
 function make_rewrite_rules(): void {
-    add_rewrite_rule( '^en/?$', 'index.php?make_lang=en', 'top' );
+    add_rewrite_rule( '^en/?
+function make_language_attributes( string $output ): string {
+    $lang = make_is_english() ? 'en-US' : 'es-ES';
+    if ( preg_match( '/lang=("|\')[^"\']+("|\')/i', $output ) ) {
+        return (string) preg_replace( '/lang=("|\')[^"\']+("|\')/i', 'lang="' . esc_attr( $lang ) . '"', $output, 1 );
+    }
+    return trim( $output . ' lang="' . esc_attr( $lang ) . '"' );
+}
+add_filter( 'language_attributes', 'make_language_attributes', 20 );
+
+function make_body_classes( array $classes ): array { $classes[] = 'make-lang-' . make_current_language(); return $classes; }
+add_filter( 'body_class', 'make_body_classes' );
+
+function make_brand_name(): string {
+    $name = trim( (string) get_bloginfo( 'name' ) );
+    return $name !== '' ? $name : make_t( 'Taller creativo', 'Creative studio' );
+}
+
+function make_brand_tagline(): string {
+    $tagline = trim( (string) get_bloginfo( 'description' ) );
+    return $tagline !== '' ? $tagline : make_t( 'patrones digitales para crear despacio', 'digital patterns for slow making' );
+}
+
+function make_journal_url( string $language = '' ): string {
+    $language = in_array( $language, array( 'es','en' ), true ) ? $language : make_current_language();
+    return 'en' === $language ? home_url( '/en/journal/' ) : home_url( '/journal/' );
+}
+
+function make_cart_count(): int {
+    return function_exists( 'WC' ) && WC()->cart ? (int) WC()->cart->get_cart_contents_count() : 0;
+}
+
+function make_cart_url(): string {
+    return function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url( '/cart/' );
+}
+
+function make_shop_url(): string {
+    if ( function_exists( 'wc_get_page_permalink' ) ) {
+        $url = wc_get_page_permalink( 'shop' );
+        if ( $url ) { return $url; }
+    }
+    return add_query_arg( 'post_type', 'product', make_home_url() );
+}
+
+function make_cross_stitch_url(): string {
+    if ( taxonomy_exists( 'product_cat' ) ) {
+        foreach ( array( 'cross-stitch', 'punto-de-cruz', 'cross-stitch-patterns' ) as $slug ) {
+            $term = get_term_by( 'slug', $slug, 'product_cat' );
+            if ( $term instanceof WP_Term ) {
+                $url = get_term_link( $term );
+                if ( ! is_wp_error( $url ) ) { return $url; }
+            }
+        }
+    }
+    return add_query_arg( 's', make_t( 'punto de cruz', 'cross stitch' ), make_home_url() );
+}
+
+function make_pattern_url( string $query ): string { return add_query_arg( 's', $query, make_home_url() ); }
+
+function make_reading_time( int $post_id ): string {
+    $words = str_word_count( wp_strip_all_tags( (string) get_post_field( 'post_content', $post_id ) ) );
+    $minutes = max( 1, (int) ceil( $words / 220 ) );
+    return sprintf( make_t( '%d min de lectura', '%d min read' ), $minutes );
+}
+
+add_filter( 'excerpt_length', static fn(): int => 22, 999 );
+add_filter( 'excerpt_more', static fn(): string => '…' );
+
+
+/**
+ * First-run conveniences: the theme remains self-contained and does not rely on
+ * a commercial parent theme. We only create the posts index if the site does not
+ * already have one, so activating the theme immediately gives the editorial area
+ * a stable URL without overwriting existing content.
+ */
+function make_after_switch_theme(): void {
+    if ( ! get_option( 'page_for_posts' ) ) {
+        $existing = get_page_by_path( 'journal' );
+        $page_id  = $existing instanceof WP_Post ? $existing->ID : wp_insert_post(
+            array(
+                'post_title'  => 'Journal',
+                'post_name'   => 'journal',
+                'post_status' => 'publish',
+                'post_type'   => 'page',
+            ),
+            true
+        );
+        if ( ! is_wp_error( $page_id ) && $page_id ) {
+            update_option( 'page_for_posts', (int) $page_id );
+        }
+    }
+    flush_rewrite_rules();
+}
+add_action( 'after_switch_theme', 'make_after_switch_theme' );
+
+function make_archive_title(): string {
+    if ( function_exists( 'is_shop' ) && is_shop() ) {
+        return make_t( 'Tienda de patrones', 'Pattern shop' );
+    }
+    if ( is_category() || is_tag() || is_tax() ) {
+        return single_term_title( '', false );
+    }
+    if ( is_post_type_archive() ) {
+        return post_type_archive_title( '', false );
+    }
+    return make_t( 'Últimos artículos', 'Latest articles' );
+}
+
+/* WooCommerce presentation layer. */
+function make_woocommerce_setup_hooks(): void {
+    if ( ! class_exists( 'WooCommerce' ) ) { return; }
+
+    remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
+    remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 );
+    remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
+
+    remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
+    remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
+    add_action( 'woocommerce_after_shop_loop_item', 'make_product_card_link', 12 );
+
+    add_action( 'woocommerce_single_product_summary', 'make_single_product_reassurance', 25 );
+}
+add_action( 'wp', 'make_woocommerce_setup_hooks' );
+
+function make_product_card_link(): void {
+    global $product;
+    if ( ! $product instanceof WC_Product ) { return; }
+    echo '<a class="make-product-view" href="' . esc_url( get_permalink( $product->get_id() ) ) . '">' .
+        esc_html( make_t( 'Ver patrón', 'View pattern' ) ) . ' <span aria-hidden="true">→</span></a>';
+}
+
+function make_single_product_reassurance(): void {
+    echo '<div class="make-product-reassurance">';
+    echo '<span><i aria-hidden="true">↓</i><strong>' . esc_html( make_t( 'Descarga digital', 'Digital download' ) ) . '</strong><small>' . esc_html( make_t( 'Acceso tras la compra', 'Access after purchase' ) ) . '</small></span>';
+    echo '<span><i aria-hidden="true">✓</i><strong>' . esc_html( make_t( 'Archivo preparado', 'Prepared file' ) ) . '</strong><small>' . esc_html( make_t( 'Pensado para imprimir', 'Made for printing' ) ) . '</small></span>';
+    echo '<span><i aria-hidden="true">♡</i><strong>' . esc_html( make_t( 'Hecho con cuidado', 'Made with care' ) ) . '</strong><small>' . esc_html( make_t( 'Diseño revisado', 'Checked design' ) ) . '</small></span>';
+    echo '</div>';
+}
+
+add_filter( 'loop_shop_columns', static fn(): int => 3, 20 );
+add_filter( 'loop_shop_per_page', static fn(): int => 12, 20 );
+
+function make_loop_product_classes( array $classes, $product ): array {
+    if ( is_a( $product, 'WC_Product' ) ) { $classes[] = 'make-pattern-card'; }
+    return $classes;
+}
+add_filter( 'woocommerce_post_class', 'make_loop_product_classes', 20, 2 );
+
+function make_sale_flash( string $html ): string {
+    return '<span class="onsale">' . esc_html( make_t( 'Oferta', 'Sale' ) ) . '</span>';
+}
+add_filter( 'woocommerce_sale_flash', 'make_sale_flash' );
+
+function make_product_tabs( array $tabs ): array {
+    if ( isset( $tabs['description'] ) ) {
+        $tabs['description']['title'] = make_t( 'Sobre este patrón', 'About this pattern' );
+    }
+    if ( isset( $tabs['additional_information'] ) ) {
+        $tabs['additional_information']['title'] = make_t( 'Detalles', 'Details' );
+    }
+    return $tabs;
+}
+add_filter( 'woocommerce_product_tabs', 'make_product_tabs', 20 );
+
+function make_shop_body_class( array $classes ): array {
+    if ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) { $classes[] = 'make-commerce'; }
+    if ( function_exists( 'is_product' ) && is_product() ) { $classes[] = 'make-single-product'; }
+    return $classes;
+}
+add_filter( 'body_class', 'make_shop_body_class', 30 );
+
+
+add_filter( 'woocommerce_show_page_title', '__return_false' );
+
+function make_cart_count_fragment( array $fragments ): array {
+    $count = make_cart_count();
+    $html  = $count ? '<span class="cart-count">' . esc_html( (string) $count ) . '</span>' : '<span class="cart-count" hidden></span>';
+    $fragments['.cart-count'] = $html;
+    return $fragments;
+}
+add_filter( 'woocommerce_add_to_cart_fragments', 'make_cart_count_fragment' );
+
+
+/**
+ * Reuse the stitch-flower mark as a favicon until a custom Site Icon is set
+ * in WordPress. A WordPress Site Icon always takes precedence.
+ */
+function make_fallback_favicon(): void {
+    if ( function_exists( 'has_site_icon' ) && has_site_icon() ) { return; }
+    $icon = get_template_directory_uri() . '/assets/images/brand-mark.svg';
+    echo '<link rel="icon" href="' . esc_url( $icon ) . '" type="image/svg+xml">' . "\n";
+}
+add_action( 'wp_head', 'make_fallback_favicon', 2 );
+, 'index.php?make_lang=en', 'top' );
+    add_rewrite_rule( '^journal/?
+function make_language_attributes( string $output ): string {
+    $lang = make_is_english() ? 'en-US' : 'es-ES';
+    if ( preg_match( '/lang=("|\')[^"\']+("|\')/i', $output ) ) {
+        return (string) preg_replace( '/lang=("|\')[^"\']+("|\')/i', 'lang="' . esc_attr( $lang ) . '"', $output, 1 );
+    }
+    return trim( $output . ' lang="' . esc_attr( $lang ) . '"' );
+}
+add_filter( 'language_attributes', 'make_language_attributes', 20 );
+
+function make_body_classes( array $classes ): array { $classes[] = 'make-lang-' . make_current_language(); return $classes; }
+add_filter( 'body_class', 'make_body_classes' );
+
+function make_brand_name(): string {
+    $name = trim( (string) get_bloginfo( 'name' ) );
+    return $name !== '' ? $name : make_t( 'Taller creativo', 'Creative studio' );
+}
+
+function make_brand_tagline(): string {
+    $tagline = trim( (string) get_bloginfo( 'description' ) );
+    return $tagline !== '' ? $tagline : make_t( 'patrones digitales para crear despacio', 'digital patterns for slow making' );
+}
+
+function make_journal_url(): string {
+    $posts_page = (int) get_option( 'page_for_posts' );
+    if ( $posts_page ) {
+        $url = get_permalink( $posts_page );
+        if ( $url ) { return $url; }
+    }
+    return home_url( '/journal/' );
+}
+
+function make_cart_count(): int {
+    return function_exists( 'WC' ) && WC()->cart ? (int) WC()->cart->get_cart_contents_count() : 0;
+}
+
+function make_cart_url(): string {
+    return function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url( '/cart/' );
+}
+
+function make_shop_url(): string {
+    if ( function_exists( 'wc_get_page_permalink' ) ) {
+        $url = wc_get_page_permalink( 'shop' );
+        if ( $url ) { return $url; }
+    }
+    return add_query_arg( 'post_type', 'product', make_home_url() );
+}
+
+function make_cross_stitch_url(): string {
+    if ( taxonomy_exists( 'product_cat' ) ) {
+        foreach ( array( 'cross-stitch', 'punto-de-cruz', 'cross-stitch-patterns' ) as $slug ) {
+            $term = get_term_by( 'slug', $slug, 'product_cat' );
+            if ( $term instanceof WP_Term ) {
+                $url = get_term_link( $term );
+                if ( ! is_wp_error( $url ) ) { return $url; }
+            }
+        }
+    }
+    return add_query_arg( 's', make_t( 'punto de cruz', 'cross stitch' ), make_home_url() );
+}
+
+function make_pattern_url( string $query ): string { return add_query_arg( 's', $query, make_home_url() ); }
+
+function make_reading_time( int $post_id ): string {
+    $words = str_word_count( wp_strip_all_tags( (string) get_post_field( 'post_content', $post_id ) ) );
+    $minutes = max( 1, (int) ceil( $words / 220 ) );
+    return sprintf( make_t( '%d min de lectura', '%d min read' ), $minutes );
+}
+
+add_filter( 'excerpt_length', static fn(): int => 22, 999 );
+add_filter( 'excerpt_more', static fn(): string => '…' );
+
+
+/**
+ * First-run conveniences: the theme remains self-contained and does not rely on
+ * a commercial parent theme. We only create the posts index if the site does not
+ * already have one, so activating the theme immediately gives the editorial area
+ * a stable URL without overwriting existing content.
+ */
+function make_after_switch_theme(): void {
+    if ( ! get_option( 'page_for_posts' ) ) {
+        $existing = get_page_by_path( 'journal' );
+        $page_id  = $existing instanceof WP_Post ? $existing->ID : wp_insert_post(
+            array(
+                'post_title'  => 'Journal',
+                'post_name'   => 'journal',
+                'post_status' => 'publish',
+                'post_type'   => 'page',
+            ),
+            true
+        );
+        if ( ! is_wp_error( $page_id ) && $page_id ) {
+            update_option( 'page_for_posts', (int) $page_id );
+        }
+    }
+    flush_rewrite_rules();
+}
+add_action( 'after_switch_theme', 'make_after_switch_theme' );
+
+function make_archive_title(): string {
+    if ( function_exists( 'is_shop' ) && is_shop() ) {
+        return make_t( 'Tienda de patrones', 'Pattern shop' );
+    }
+    if ( is_category() || is_tag() || is_tax() ) {
+        return single_term_title( '', false );
+    }
+    if ( is_post_type_archive() ) {
+        return post_type_archive_title( '', false );
+    }
+    return make_t( 'Últimos artículos', 'Latest articles' );
+}
+
+/* WooCommerce presentation layer. */
+function make_woocommerce_setup_hooks(): void {
+    if ( ! class_exists( 'WooCommerce' ) ) { return; }
+
+    remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
+    remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 );
+    remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
+
+    remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
+    remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
+    add_action( 'woocommerce_after_shop_loop_item', 'make_product_card_link', 12 );
+
+    add_action( 'woocommerce_single_product_summary', 'make_single_product_reassurance', 25 );
+}
+add_action( 'wp', 'make_woocommerce_setup_hooks' );
+
+function make_product_card_link(): void {
+    global $product;
+    if ( ! $product instanceof WC_Product ) { return; }
+    echo '<a class="make-product-view" href="' . esc_url( get_permalink( $product->get_id() ) ) . '">' .
+        esc_html( make_t( 'Ver patrón', 'View pattern' ) ) . ' <span aria-hidden="true">→</span></a>';
+}
+
+function make_single_product_reassurance(): void {
+    echo '<div class="make-product-reassurance">';
+    echo '<span><i aria-hidden="true">↓</i><strong>' . esc_html( make_t( 'Descarga digital', 'Digital download' ) ) . '</strong><small>' . esc_html( make_t( 'Acceso tras la compra', 'Access after purchase' ) ) . '</small></span>';
+    echo '<span><i aria-hidden="true">✓</i><strong>' . esc_html( make_t( 'Archivo preparado', 'Prepared file' ) ) . '</strong><small>' . esc_html( make_t( 'Pensado para imprimir', 'Made for printing' ) ) . '</small></span>';
+    echo '<span><i aria-hidden="true">♡</i><strong>' . esc_html( make_t( 'Hecho con cuidado', 'Made with care' ) ) . '</strong><small>' . esc_html( make_t( 'Diseño revisado', 'Checked design' ) ) . '</small></span>';
+    echo '</div>';
+}
+
+add_filter( 'loop_shop_columns', static fn(): int => 3, 20 );
+add_filter( 'loop_shop_per_page', static fn(): int => 12, 20 );
+
+function make_loop_product_classes( array $classes, $product ): array {
+    if ( is_a( $product, 'WC_Product' ) ) { $classes[] = 'make-pattern-card'; }
+    return $classes;
+}
+add_filter( 'woocommerce_post_class', 'make_loop_product_classes', 20, 2 );
+
+function make_sale_flash( string $html ): string {
+    return '<span class="onsale">' . esc_html( make_t( 'Oferta', 'Sale' ) ) . '</span>';
+}
+add_filter( 'woocommerce_sale_flash', 'make_sale_flash' );
+
+function make_product_tabs( array $tabs ): array {
+    if ( isset( $tabs['description'] ) ) {
+        $tabs['description']['title'] = make_t( 'Sobre este patrón', 'About this pattern' );
+    }
+    if ( isset( $tabs['additional_information'] ) ) {
+        $tabs['additional_information']['title'] = make_t( 'Detalles', 'Details' );
+    }
+    return $tabs;
+}
+add_filter( 'woocommerce_product_tabs', 'make_product_tabs', 20 );
+
+function make_shop_body_class( array $classes ): array {
+    if ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) { $classes[] = 'make-commerce'; }
+    if ( function_exists( 'is_product' ) && is_product() ) { $classes[] = 'make-single-product'; }
+    return $classes;
+}
+add_filter( 'body_class', 'make_shop_body_class', 30 );
+
+
+add_filter( 'woocommerce_show_page_title', '__return_false' );
+
+function make_cart_count_fragment( array $fragments ): array {
+    $count = make_cart_count();
+    $html  = $count ? '<span class="cart-count">' . esc_html( (string) $count ) . '</span>' : '<span class="cart-count" hidden></span>';
+    $fragments['.cart-count'] = $html;
+    return $fragments;
+}
+add_filter( 'woocommerce_add_to_cart_fragments', 'make_cart_count_fragment' );
+
+
+/**
+ * Reuse the stitch-flower mark as a favicon until a custom Site Icon is set
+ * in WordPress. A WordPress Site Icon always takes precedence.
+ */
+function make_fallback_favicon(): void {
+    if ( function_exists( 'has_site_icon' ) && has_site_icon() ) { return; }
+    $icon = get_template_directory_uri() . '/assets/images/brand-mark.svg';
+    echo '<link rel="icon" href="' . esc_url( $icon ) . '" type="image/svg+xml">' . "\n";
+}
+add_action( 'wp_head', 'make_fallback_favicon', 2 );
+, 'index.php?make_journal=1&make_lang=es', 'top' );
+    add_rewrite_rule( '^journal/page/([0-9]+)/?
+function make_language_attributes( string $output ): string {
+    $lang = make_is_english() ? 'en-US' : 'es-ES';
+    if ( preg_match( '/lang=("|\')[^"\']+("|\')/i', $output ) ) {
+        return (string) preg_replace( '/lang=("|\')[^"\']+("|\')/i', 'lang="' . esc_attr( $lang ) . '"', $output, 1 );
+    }
+    return trim( $output . ' lang="' . esc_attr( $lang ) . '"' );
+}
+add_filter( 'language_attributes', 'make_language_attributes', 20 );
+
+function make_body_classes( array $classes ): array { $classes[] = 'make-lang-' . make_current_language(); return $classes; }
+add_filter( 'body_class', 'make_body_classes' );
+
+function make_brand_name(): string {
+    $name = trim( (string) get_bloginfo( 'name' ) );
+    return $name !== '' ? $name : make_t( 'Taller creativo', 'Creative studio' );
+}
+
+function make_brand_tagline(): string {
+    $tagline = trim( (string) get_bloginfo( 'description' ) );
+    return $tagline !== '' ? $tagline : make_t( 'patrones digitales para crear despacio', 'digital patterns for slow making' );
+}
+
+function make_journal_url(): string {
+    $posts_page = (int) get_option( 'page_for_posts' );
+    if ( $posts_page ) {
+        $url = get_permalink( $posts_page );
+        if ( $url ) { return $url; }
+    }
+    return home_url( '/journal/' );
+}
+
+function make_cart_count(): int {
+    return function_exists( 'WC' ) && WC()->cart ? (int) WC()->cart->get_cart_contents_count() : 0;
+}
+
+function make_cart_url(): string {
+    return function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url( '/cart/' );
+}
+
+function make_shop_url(): string {
+    if ( function_exists( 'wc_get_page_permalink' ) ) {
+        $url = wc_get_page_permalink( 'shop' );
+        if ( $url ) { return $url; }
+    }
+    return add_query_arg( 'post_type', 'product', make_home_url() );
+}
+
+function make_cross_stitch_url(): string {
+    if ( taxonomy_exists( 'product_cat' ) ) {
+        foreach ( array( 'cross-stitch', 'punto-de-cruz', 'cross-stitch-patterns' ) as $slug ) {
+            $term = get_term_by( 'slug', $slug, 'product_cat' );
+            if ( $term instanceof WP_Term ) {
+                $url = get_term_link( $term );
+                if ( ! is_wp_error( $url ) ) { return $url; }
+            }
+        }
+    }
+    return add_query_arg( 's', make_t( 'punto de cruz', 'cross stitch' ), make_home_url() );
+}
+
+function make_pattern_url( string $query ): string { return add_query_arg( 's', $query, make_home_url() ); }
+
+function make_reading_time( int $post_id ): string {
+    $words = str_word_count( wp_strip_all_tags( (string) get_post_field( 'post_content', $post_id ) ) );
+    $minutes = max( 1, (int) ceil( $words / 220 ) );
+    return sprintf( make_t( '%d min de lectura', '%d min read' ), $minutes );
+}
+
+add_filter( 'excerpt_length', static fn(): int => 22, 999 );
+add_filter( 'excerpt_more', static fn(): string => '…' );
+
+
+/**
+ * First-run conveniences: the theme remains self-contained and does not rely on
+ * a commercial parent theme. We only create the posts index if the site does not
+ * already have one, so activating the theme immediately gives the editorial area
+ * a stable URL without overwriting existing content.
+ */
+function make_after_switch_theme(): void {
+    if ( ! get_option( 'page_for_posts' ) ) {
+        $existing = get_page_by_path( 'journal' );
+        $page_id  = $existing instanceof WP_Post ? $existing->ID : wp_insert_post(
+            array(
+                'post_title'  => 'Journal',
+                'post_name'   => 'journal',
+                'post_status' => 'publish',
+                'post_type'   => 'page',
+            ),
+            true
+        );
+        if ( ! is_wp_error( $page_id ) && $page_id ) {
+            update_option( 'page_for_posts', (int) $page_id );
+        }
+    }
+    flush_rewrite_rules();
+}
+add_action( 'after_switch_theme', 'make_after_switch_theme' );
+
+function make_archive_title(): string {
+    if ( function_exists( 'is_shop' ) && is_shop() ) {
+        return make_t( 'Tienda de patrones', 'Pattern shop' );
+    }
+    if ( is_category() || is_tag() || is_tax() ) {
+        return single_term_title( '', false );
+    }
+    if ( is_post_type_archive() ) {
+        return post_type_archive_title( '', false );
+    }
+    return make_t( 'Últimos artículos', 'Latest articles' );
+}
+
+/* WooCommerce presentation layer. */
+function make_woocommerce_setup_hooks(): void {
+    if ( ! class_exists( 'WooCommerce' ) ) { return; }
+
+    remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
+    remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 );
+    remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
+
+    remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
+    remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
+    add_action( 'woocommerce_after_shop_loop_item', 'make_product_card_link', 12 );
+
+    add_action( 'woocommerce_single_product_summary', 'make_single_product_reassurance', 25 );
+}
+add_action( 'wp', 'make_woocommerce_setup_hooks' );
+
+function make_product_card_link(): void {
+    global $product;
+    if ( ! $product instanceof WC_Product ) { return; }
+    echo '<a class="make-product-view" href="' . esc_url( get_permalink( $product->get_id() ) ) . '">' .
+        esc_html( make_t( 'Ver patrón', 'View pattern' ) ) . ' <span aria-hidden="true">→</span></a>';
+}
+
+function make_single_product_reassurance(): void {
+    echo '<div class="make-product-reassurance">';
+    echo '<span><i aria-hidden="true">↓</i><strong>' . esc_html( make_t( 'Descarga digital', 'Digital download' ) ) . '</strong><small>' . esc_html( make_t( 'Acceso tras la compra', 'Access after purchase' ) ) . '</small></span>';
+    echo '<span><i aria-hidden="true">✓</i><strong>' . esc_html( make_t( 'Archivo preparado', 'Prepared file' ) ) . '</strong><small>' . esc_html( make_t( 'Pensado para imprimir', 'Made for printing' ) ) . '</small></span>';
+    echo '<span><i aria-hidden="true">♡</i><strong>' . esc_html( make_t( 'Hecho con cuidado', 'Made with care' ) ) . '</strong><small>' . esc_html( make_t( 'Diseño revisado', 'Checked design' ) ) . '</small></span>';
+    echo '</div>';
+}
+
+add_filter( 'loop_shop_columns', static fn(): int => 3, 20 );
+add_filter( 'loop_shop_per_page', static fn(): int => 12, 20 );
+
+function make_loop_product_classes( array $classes, $product ): array {
+    if ( is_a( $product, 'WC_Product' ) ) { $classes[] = 'make-pattern-card'; }
+    return $classes;
+}
+add_filter( 'woocommerce_post_class', 'make_loop_product_classes', 20, 2 );
+
+function make_sale_flash( string $html ): string {
+    return '<span class="onsale">' . esc_html( make_t( 'Oferta', 'Sale' ) ) . '</span>';
+}
+add_filter( 'woocommerce_sale_flash', 'make_sale_flash' );
+
+function make_product_tabs( array $tabs ): array {
+    if ( isset( $tabs['description'] ) ) {
+        $tabs['description']['title'] = make_t( 'Sobre este patrón', 'About this pattern' );
+    }
+    if ( isset( $tabs['additional_information'] ) ) {
+        $tabs['additional_information']['title'] = make_t( 'Detalles', 'Details' );
+    }
+    return $tabs;
+}
+add_filter( 'woocommerce_product_tabs', 'make_product_tabs', 20 );
+
+function make_shop_body_class( array $classes ): array {
+    if ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) { $classes[] = 'make-commerce'; }
+    if ( function_exists( 'is_product' ) && is_product() ) { $classes[] = 'make-single-product'; }
+    return $classes;
+}
+add_filter( 'body_class', 'make_shop_body_class', 30 );
+
+
+add_filter( 'woocommerce_show_page_title', '__return_false' );
+
+function make_cart_count_fragment( array $fragments ): array {
+    $count = make_cart_count();
+    $html  = $count ? '<span class="cart-count">' . esc_html( (string) $count ) . '</span>' : '<span class="cart-count" hidden></span>';
+    $fragments['.cart-count'] = $html;
+    return $fragments;
+}
+add_filter( 'woocommerce_add_to_cart_fragments', 'make_cart_count_fragment' );
+
+
+/**
+ * Reuse the stitch-flower mark as a favicon until a custom Site Icon is set
+ * in WordPress. A WordPress Site Icon always takes precedence.
+ */
+function make_fallback_favicon(): void {
+    if ( function_exists( 'has_site_icon' ) && has_site_icon() ) { return; }
+    $icon = get_template_directory_uri() . '/assets/images/brand-mark.svg';
+    echo '<link rel="icon" href="' . esc_url( $icon ) . '" type="image/svg+xml">' . "\n";
+}
+add_action( 'wp_head', 'make_fallback_favicon', 2 );
+, 'index.php?make_journal=1&make_lang=es&paged=$matches[1]', 'top' );
+    add_rewrite_rule( '^en/journal/?
+function make_language_attributes( string $output ): string {
+    $lang = make_is_english() ? 'en-US' : 'es-ES';
+    if ( preg_match( '/lang=("|\')[^"\']+("|\')/i', $output ) ) {
+        return (string) preg_replace( '/lang=("|\')[^"\']+("|\')/i', 'lang="' . esc_attr( $lang ) . '"', $output, 1 );
+    }
+    return trim( $output . ' lang="' . esc_attr( $lang ) . '"' );
+}
+add_filter( 'language_attributes', 'make_language_attributes', 20 );
+
+function make_body_classes( array $classes ): array { $classes[] = 'make-lang-' . make_current_language(); return $classes; }
+add_filter( 'body_class', 'make_body_classes' );
+
+function make_brand_name(): string {
+    $name = trim( (string) get_bloginfo( 'name' ) );
+    return $name !== '' ? $name : make_t( 'Taller creativo', 'Creative studio' );
+}
+
+function make_brand_tagline(): string {
+    $tagline = trim( (string) get_bloginfo( 'description' ) );
+    return $tagline !== '' ? $tagline : make_t( 'patrones digitales para crear despacio', 'digital patterns for slow making' );
+}
+
+function make_journal_url(): string {
+    $posts_page = (int) get_option( 'page_for_posts' );
+    if ( $posts_page ) {
+        $url = get_permalink( $posts_page );
+        if ( $url ) { return $url; }
+    }
+    return home_url( '/journal/' );
+}
+
+function make_cart_count(): int {
+    return function_exists( 'WC' ) && WC()->cart ? (int) WC()->cart->get_cart_contents_count() : 0;
+}
+
+function make_cart_url(): string {
+    return function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url( '/cart/' );
+}
+
+function make_shop_url(): string {
+    if ( function_exists( 'wc_get_page_permalink' ) ) {
+        $url = wc_get_page_permalink( 'shop' );
+        if ( $url ) { return $url; }
+    }
+    return add_query_arg( 'post_type', 'product', make_home_url() );
+}
+
+function make_cross_stitch_url(): string {
+    if ( taxonomy_exists( 'product_cat' ) ) {
+        foreach ( array( 'cross-stitch', 'punto-de-cruz', 'cross-stitch-patterns' ) as $slug ) {
+            $term = get_term_by( 'slug', $slug, 'product_cat' );
+            if ( $term instanceof WP_Term ) {
+                $url = get_term_link( $term );
+                if ( ! is_wp_error( $url ) ) { return $url; }
+            }
+        }
+    }
+    return add_query_arg( 's', make_t( 'punto de cruz', 'cross stitch' ), make_home_url() );
+}
+
+function make_pattern_url( string $query ): string { return add_query_arg( 's', $query, make_home_url() ); }
+
+function make_reading_time( int $post_id ): string {
+    $words = str_word_count( wp_strip_all_tags( (string) get_post_field( 'post_content', $post_id ) ) );
+    $minutes = max( 1, (int) ceil( $words / 220 ) );
+    return sprintf( make_t( '%d min de lectura', '%d min read' ), $minutes );
+}
+
+add_filter( 'excerpt_length', static fn(): int => 22, 999 );
+add_filter( 'excerpt_more', static fn(): string => '…' );
+
+
+/**
+ * First-run conveniences: the theme remains self-contained and does not rely on
+ * a commercial parent theme. We only create the posts index if the site does not
+ * already have one, so activating the theme immediately gives the editorial area
+ * a stable URL without overwriting existing content.
+ */
+function make_after_switch_theme(): void {
+    if ( ! get_option( 'page_for_posts' ) ) {
+        $existing = get_page_by_path( 'journal' );
+        $page_id  = $existing instanceof WP_Post ? $existing->ID : wp_insert_post(
+            array(
+                'post_title'  => 'Journal',
+                'post_name'   => 'journal',
+                'post_status' => 'publish',
+                'post_type'   => 'page',
+            ),
+            true
+        );
+        if ( ! is_wp_error( $page_id ) && $page_id ) {
+            update_option( 'page_for_posts', (int) $page_id );
+        }
+    }
+    flush_rewrite_rules();
+}
+add_action( 'after_switch_theme', 'make_after_switch_theme' );
+
+function make_archive_title(): string {
+    if ( function_exists( 'is_shop' ) && is_shop() ) {
+        return make_t( 'Tienda de patrones', 'Pattern shop' );
+    }
+    if ( is_category() || is_tag() || is_tax() ) {
+        return single_term_title( '', false );
+    }
+    if ( is_post_type_archive() ) {
+        return post_type_archive_title( '', false );
+    }
+    return make_t( 'Últimos artículos', 'Latest articles' );
+}
+
+/* WooCommerce presentation layer. */
+function make_woocommerce_setup_hooks(): void {
+    if ( ! class_exists( 'WooCommerce' ) ) { return; }
+
+    remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
+    remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 );
+    remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
+
+    remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
+    remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
+    add_action( 'woocommerce_after_shop_loop_item', 'make_product_card_link', 12 );
+
+    add_action( 'woocommerce_single_product_summary', 'make_single_product_reassurance', 25 );
+}
+add_action( 'wp', 'make_woocommerce_setup_hooks' );
+
+function make_product_card_link(): void {
+    global $product;
+    if ( ! $product instanceof WC_Product ) { return; }
+    echo '<a class="make-product-view" href="' . esc_url( get_permalink( $product->get_id() ) ) . '">' .
+        esc_html( make_t( 'Ver patrón', 'View pattern' ) ) . ' <span aria-hidden="true">→</span></a>';
+}
+
+function make_single_product_reassurance(): void {
+    echo '<div class="make-product-reassurance">';
+    echo '<span><i aria-hidden="true">↓</i><strong>' . esc_html( make_t( 'Descarga digital', 'Digital download' ) ) . '</strong><small>' . esc_html( make_t( 'Acceso tras la compra', 'Access after purchase' ) ) . '</small></span>';
+    echo '<span><i aria-hidden="true">✓</i><strong>' . esc_html( make_t( 'Archivo preparado', 'Prepared file' ) ) . '</strong><small>' . esc_html( make_t( 'Pensado para imprimir', 'Made for printing' ) ) . '</small></span>';
+    echo '<span><i aria-hidden="true">♡</i><strong>' . esc_html( make_t( 'Hecho con cuidado', 'Made with care' ) ) . '</strong><small>' . esc_html( make_t( 'Diseño revisado', 'Checked design' ) ) . '</small></span>';
+    echo '</div>';
+}
+
+add_filter( 'loop_shop_columns', static fn(): int => 3, 20 );
+add_filter( 'loop_shop_per_page', static fn(): int => 12, 20 );
+
+function make_loop_product_classes( array $classes, $product ): array {
+    if ( is_a( $product, 'WC_Product' ) ) { $classes[] = 'make-pattern-card'; }
+    return $classes;
+}
+add_filter( 'woocommerce_post_class', 'make_loop_product_classes', 20, 2 );
+
+function make_sale_flash( string $html ): string {
+    return '<span class="onsale">' . esc_html( make_t( 'Oferta', 'Sale' ) ) . '</span>';
+}
+add_filter( 'woocommerce_sale_flash', 'make_sale_flash' );
+
+function make_product_tabs( array $tabs ): array {
+    if ( isset( $tabs['description'] ) ) {
+        $tabs['description']['title'] = make_t( 'Sobre este patrón', 'About this pattern' );
+    }
+    if ( isset( $tabs['additional_information'] ) ) {
+        $tabs['additional_information']['title'] = make_t( 'Detalles', 'Details' );
+    }
+    return $tabs;
+}
+add_filter( 'woocommerce_product_tabs', 'make_product_tabs', 20 );
+
+function make_shop_body_class( array $classes ): array {
+    if ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) { $classes[] = 'make-commerce'; }
+    if ( function_exists( 'is_product' ) && is_product() ) { $classes[] = 'make-single-product'; }
+    return $classes;
+}
+add_filter( 'body_class', 'make_shop_body_class', 30 );
+
+
+add_filter( 'woocommerce_show_page_title', '__return_false' );
+
+function make_cart_count_fragment( array $fragments ): array {
+    $count = make_cart_count();
+    $html  = $count ? '<span class="cart-count">' . esc_html( (string) $count ) . '</span>' : '<span class="cart-count" hidden></span>';
+    $fragments['.cart-count'] = $html;
+    return $fragments;
+}
+add_filter( 'woocommerce_add_to_cart_fragments', 'make_cart_count_fragment' );
+
+
+/**
+ * Reuse the stitch-flower mark as a favicon until a custom Site Icon is set
+ * in WordPress. A WordPress Site Icon always takes precedence.
+ */
+function make_fallback_favicon(): void {
+    if ( function_exists( 'has_site_icon' ) && has_site_icon() ) { return; }
+    $icon = get_template_directory_uri() . '/assets/images/brand-mark.svg';
+    echo '<link rel="icon" href="' . esc_url( $icon ) . '" type="image/svg+xml">' . "\n";
+}
+add_action( 'wp_head', 'make_fallback_favicon', 2 );
+, 'index.php?make_journal=1&make_lang=en', 'top' );
+    add_rewrite_rule( '^en/journal/page/([0-9]+)/?
+function make_language_attributes( string $output ): string {
+    $lang = make_is_english() ? 'en-US' : 'es-ES';
+    if ( preg_match( '/lang=("|\')[^"\']+("|\')/i', $output ) ) {
+        return (string) preg_replace( '/lang=("|\')[^"\']+("|\')/i', 'lang="' . esc_attr( $lang ) . '"', $output, 1 );
+    }
+    return trim( $output . ' lang="' . esc_attr( $lang ) . '"' );
+}
+add_filter( 'language_attributes', 'make_language_attributes', 20 );
+
+function make_body_classes( array $classes ): array { $classes[] = 'make-lang-' . make_current_language(); return $classes; }
+add_filter( 'body_class', 'make_body_classes' );
+
+function make_brand_name(): string {
+    $name = trim( (string) get_bloginfo( 'name' ) );
+    return $name !== '' ? $name : make_t( 'Taller creativo', 'Creative studio' );
+}
+
+function make_brand_tagline(): string {
+    $tagline = trim( (string) get_bloginfo( 'description' ) );
+    return $tagline !== '' ? $tagline : make_t( 'patrones digitales para crear despacio', 'digital patterns for slow making' );
+}
+
+function make_journal_url(): string {
+    $posts_page = (int) get_option( 'page_for_posts' );
+    if ( $posts_page ) {
+        $url = get_permalink( $posts_page );
+        if ( $url ) { return $url; }
+    }
+    return home_url( '/journal/' );
+}
+
+function make_cart_count(): int {
+    return function_exists( 'WC' ) && WC()->cart ? (int) WC()->cart->get_cart_contents_count() : 0;
+}
+
+function make_cart_url(): string {
+    return function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url( '/cart/' );
+}
+
+function make_shop_url(): string {
+    if ( function_exists( 'wc_get_page_permalink' ) ) {
+        $url = wc_get_page_permalink( 'shop' );
+        if ( $url ) { return $url; }
+    }
+    return add_query_arg( 'post_type', 'product', make_home_url() );
+}
+
+function make_cross_stitch_url(): string {
+    if ( taxonomy_exists( 'product_cat' ) ) {
+        foreach ( array( 'cross-stitch', 'punto-de-cruz', 'cross-stitch-patterns' ) as $slug ) {
+            $term = get_term_by( 'slug', $slug, 'product_cat' );
+            if ( $term instanceof WP_Term ) {
+                $url = get_term_link( $term );
+                if ( ! is_wp_error( $url ) ) { return $url; }
+            }
+        }
+    }
+    return add_query_arg( 's', make_t( 'punto de cruz', 'cross stitch' ), make_home_url() );
+}
+
+function make_pattern_url( string $query ): string { return add_query_arg( 's', $query, make_home_url() ); }
+
+function make_reading_time( int $post_id ): string {
+    $words = str_word_count( wp_strip_all_tags( (string) get_post_field( 'post_content', $post_id ) ) );
+    $minutes = max( 1, (int) ceil( $words / 220 ) );
+    return sprintf( make_t( '%d min de lectura', '%d min read' ), $minutes );
+}
+
+add_filter( 'excerpt_length', static fn(): int => 22, 999 );
+add_filter( 'excerpt_more', static fn(): string => '…' );
+
+
+/**
+ * First-run conveniences: the theme remains self-contained and does not rely on
+ * a commercial parent theme. We only create the posts index if the site does not
+ * already have one, so activating the theme immediately gives the editorial area
+ * a stable URL without overwriting existing content.
+ */
+function make_after_switch_theme(): void {
+    if ( ! get_option( 'page_for_posts' ) ) {
+        $existing = get_page_by_path( 'journal' );
+        $page_id  = $existing instanceof WP_Post ? $existing->ID : wp_insert_post(
+            array(
+                'post_title'  => 'Journal',
+                'post_name'   => 'journal',
+                'post_status' => 'publish',
+                'post_type'   => 'page',
+            ),
+            true
+        );
+        if ( ! is_wp_error( $page_id ) && $page_id ) {
+            update_option( 'page_for_posts', (int) $page_id );
+        }
+    }
+    flush_rewrite_rules();
+}
+add_action( 'after_switch_theme', 'make_after_switch_theme' );
+
+function make_archive_title(): string {
+    if ( function_exists( 'is_shop' ) && is_shop() ) {
+        return make_t( 'Tienda de patrones', 'Pattern shop' );
+    }
+    if ( is_category() || is_tag() || is_tax() ) {
+        return single_term_title( '', false );
+    }
+    if ( is_post_type_archive() ) {
+        return post_type_archive_title( '', false );
+    }
+    return make_t( 'Últimos artículos', 'Latest articles' );
+}
+
+/* WooCommerce presentation layer. */
+function make_woocommerce_setup_hooks(): void {
+    if ( ! class_exists( 'WooCommerce' ) ) { return; }
+
+    remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
+    remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 );
+    remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
+
+    remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
+    remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
+    add_action( 'woocommerce_after_shop_loop_item', 'make_product_card_link', 12 );
+
+    add_action( 'woocommerce_single_product_summary', 'make_single_product_reassurance', 25 );
+}
+add_action( 'wp', 'make_woocommerce_setup_hooks' );
+
+function make_product_card_link(): void {
+    global $product;
+    if ( ! $product instanceof WC_Product ) { return; }
+    echo '<a class="make-product-view" href="' . esc_url( get_permalink( $product->get_id() ) ) . '">' .
+        esc_html( make_t( 'Ver patrón', 'View pattern' ) ) . ' <span aria-hidden="true">→</span></a>';
+}
+
+function make_single_product_reassurance(): void {
+    echo '<div class="make-product-reassurance">';
+    echo '<span><i aria-hidden="true">↓</i><strong>' . esc_html( make_t( 'Descarga digital', 'Digital download' ) ) . '</strong><small>' . esc_html( make_t( 'Acceso tras la compra', 'Access after purchase' ) ) . '</small></span>';
+    echo '<span><i aria-hidden="true">✓</i><strong>' . esc_html( make_t( 'Archivo preparado', 'Prepared file' ) ) . '</strong><small>' . esc_html( make_t( 'Pensado para imprimir', 'Made for printing' ) ) . '</small></span>';
+    echo '<span><i aria-hidden="true">♡</i><strong>' . esc_html( make_t( 'Hecho con cuidado', 'Made with care' ) ) . '</strong><small>' . esc_html( make_t( 'Diseño revisado', 'Checked design' ) ) . '</small></span>';
+    echo '</div>';
+}
+
+add_filter( 'loop_shop_columns', static fn(): int => 3, 20 );
+add_filter( 'loop_shop_per_page', static fn(): int => 12, 20 );
+
+function make_loop_product_classes( array $classes, $product ): array {
+    if ( is_a( $product, 'WC_Product' ) ) { $classes[] = 'make-pattern-card'; }
+    return $classes;
+}
+add_filter( 'woocommerce_post_class', 'make_loop_product_classes', 20, 2 );
+
+function make_sale_flash( string $html ): string {
+    return '<span class="onsale">' . esc_html( make_t( 'Oferta', 'Sale' ) ) . '</span>';
+}
+add_filter( 'woocommerce_sale_flash', 'make_sale_flash' );
+
+function make_product_tabs( array $tabs ): array {
+    if ( isset( $tabs['description'] ) ) {
+        $tabs['description']['title'] = make_t( 'Sobre este patrón', 'About this pattern' );
+    }
+    if ( isset( $tabs['additional_information'] ) ) {
+        $tabs['additional_information']['title'] = make_t( 'Detalles', 'Details' );
+    }
+    return $tabs;
+}
+add_filter( 'woocommerce_product_tabs', 'make_product_tabs', 20 );
+
+function make_shop_body_class( array $classes ): array {
+    if ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) { $classes[] = 'make-commerce'; }
+    if ( function_exists( 'is_product' ) && is_product() ) { $classes[] = 'make-single-product'; }
+    return $classes;
+}
+add_filter( 'body_class', 'make_shop_body_class', 30 );
+
+
+add_filter( 'woocommerce_show_page_title', '__return_false' );
+
+function make_cart_count_fragment( array $fragments ): array {
+    $count = make_cart_count();
+    $html  = $count ? '<span class="cart-count">' . esc_html( (string) $count ) . '</span>' : '<span class="cart-count" hidden></span>';
+    $fragments['.cart-count'] = $html;
+    return $fragments;
+}
+add_filter( 'woocommerce_add_to_cart_fragments', 'make_cart_count_fragment' );
+
+
+/**
+ * Reuse the stitch-flower mark as a favicon until a custom Site Icon is set
+ * in WordPress. A WordPress Site Icon always takes precedence.
+ */
+function make_fallback_favicon(): void {
+    if ( function_exists( 'has_site_icon' ) && has_site_icon() ) { return; }
+    $icon = get_template_directory_uri() . '/assets/images/brand-mark.svg';
+    echo '<link rel="icon" href="' . esc_url( $icon ) . '" type="image/svg+xml">' . "\n";
+}
+add_action( 'wp_head', 'make_fallback_favicon', 2 );
+, 'index.php?make_journal=1&make_lang=en&paged=$matches[1]', 'top' );
 }
 add_action( 'init', 'make_rewrite_rules' );
 
-function make_query_vars( array $vars ): array { $vars[] = 'make_lang'; return $vars; }
+function make_query_vars( array $vars ): array {
+    $vars[] = 'make_lang';
+    $vars[] = 'make_journal';
+    return $vars;
+}
 add_filter( 'query_vars', 'make_query_vars' );
 
-function make_front_template( string $template ): string {
+function make_template_router( string $template ): string {
+    if ( (int) get_query_var( 'make_journal' ) === 1 ) {
+        $journal = locate_template( 'home.php' );
+        if ( $journal ) { return $journal; }
+    }
     if ( '/en' === make_request_path() ) {
         $front = locate_template( 'front-page.php' );
         if ( $front ) { return $front; }
     }
     return $template;
 }
-add_filter( 'template_include', 'make_front_template', 99 );
+add_filter( 'template_include', 'make_template_router', 99 );
+
+function make_journal_main_query( WP_Query $query ): void {
+    if ( is_admin() || ! $query->is_main_query() || (int) get_query_var( 'make_journal' ) !== 1 ) {
+        return;
+    }
+
+    $query->set( 'post_type', 'post' );
+    $query->set( 'post_status', 'publish' );
+    $query->set( 'posts_per_page', 12 );
+    $query->set( 'ignore_sticky_posts', true );
+    $query->set(
+        'meta_query',
+        array(
+            array(
+                'key'   => '_make_language',
+                'value' => make_current_language(),
+            ),
+        )
+    );
+
+    $query->is_home     = true;
+    $query->is_page     = false;
+    $query->is_singular = false;
+}
+add_action( 'pre_get_posts', 'make_journal_main_query', 20 );
 
 function make_language_attributes( string $output ): string {
     $lang = make_is_english() ? 'en-US' : 'es-ES';
