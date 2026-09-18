@@ -526,14 +526,7 @@ function make_editorial_archive_description(): string {
 
 function make_editorial_placeholder_html( int $post_id = 0 ): string {
     $post_id = $post_id ?: get_the_ID();
-    $number  = (int) get_post_meta( $post_id, '_make_article_number', true );
-    $seed    = $number > 0 ? $number : $post_id;
-    $variant = ( abs( $seed ) % 5 ) + 1;
-
-    return '<span class="make-editorial-art make-editorial-art--v' . esc_attr( (string) $variant ) . '" aria-hidden="true">'
-        . '<span class="make-editorial-art-grid"></span>'
-        . '<span class="make-editorial-art-motif"><i>×</i><i>×</i><i>×</i><i>×</i><i>×</i></span>'
-        . '</span>';
+    return make_stitch_theme_art_html( make_article_stitch_theme( $post_id ), 'make-editorial-art' );
 }
 
 function make_related_articles( int $post_id, int $limit = 3 ): array {
@@ -768,3 +761,319 @@ function make_editorial_sitemap_providers( $provider, string $name ) {
     return 'users' === $name ? false : $provider;
 }
 add_filter( 'wp_sitemaps_add_provider', 'make_editorial_sitemap_providers', 10, 2 );
+
+
+/**
+ * Visual topic system for the editorial journal.
+ * These are presentation groups over the existing make_topic/make_style terms.
+ * They do not replace the underlying taxonomy, so the content model stays future-proof.
+ */
+function make_stitch_theme_config(): array {
+    return array(
+        'florals' => array(
+            'es' => array( 'label'=>'Flores y botánica', 'description'=>'Flores, hojas, plantas y motivos naturales.' ),
+            'en' => array( 'label'=>'Florals & botanical', 'description'=>'Flowers, leaves, plants and botanical motifs.' ),
+            'topic' => array( 'florals','nature','gardening','spring' ),
+            'style' => array( 'botanical' ),
+        ),
+        'animals' => array(
+            'es' => array( 'label'=>'Animales y mascotas', 'description'=>'Gatos, perros y diseños para amantes de los animales.' ),
+            'en' => array( 'label'=>'Animals & pets', 'description'=>'Cats, dogs and designs for animal lovers.' ),
+            'topic' => array( 'animals','pets' ),
+            'style' => array(),
+        ),
+        'pop-art' => array(
+            'es' => array( 'label'=>'Pop art', 'description'=>'Color, contraste y diseños con mucha personalidad.' ),
+            'en' => array( 'label'=>'Pop art', 'description'=>'Color, contrast and designs with plenty of personality.' ),
+            'topic' => array( 'pop-art' ),
+            'style' => array( 'pop-art','modern' ),
+        ),
+        'retro' => array(
+            'es' => array( 'label'=>'Retro y vintage', 'description'=>'Guiños nostálgicos, formas setenteras y estética vintage.' ),
+            'en' => array( 'label'=>'Retro & vintage', 'description'=>'Nostalgic references, seventies shapes and vintage style.' ),
+            'topic' => array( 'retro' ),
+            'style' => array( 'retro','vintage' ),
+        ),
+        'geometric' => array(
+            'es' => array( 'label'=>'Minimal y geométrico', 'description'=>'Formas limpias, abstractas y fáciles de integrar en casa.' ),
+            'en' => array( 'label'=>'Minimal & geometric', 'description'=>'Clean, abstract shapes that fit easily into modern homes.' ),
+            'topic' => array( 'minimalist','geometric' ),
+            'style' => array( 'minimalist','geometric' ),
+        ),
+        'celestial' => array(
+            'es' => array( 'label'=>'Cielo y fantasía', 'description'=>'Lunas, estrellas, constelaciones y motivos de fantasía.' ),
+            'en' => array( 'label'=>'Celestial & fantasy', 'description'=>'Moons, stars, constellations and fantasy motifs.' ),
+            'topic' => array( 'celestial','fantasy' ),
+            'style' => array(),
+        ),
+        'food' => array(
+            'es' => array( 'label'=>'Comida y café', 'description'=>'Café, repostería y pequeños diseños para cocinas con carácter.' ),
+            'en' => array( 'label'=>'Food & coffee', 'description'=>'Coffee, baking and playful designs for kitchens with character.' ),
+            'topic' => array( 'food','coffee','baking' ),
+            'style' => array(),
+        ),
+        'quotes' => array(
+            'es' => array( 'label'=>'Frases', 'description'=>'Mensajes divertidos, modernos y pensados para regalar.' ),
+            'en' => array( 'label'=>'Quotes', 'description'=>'Funny, modern messages made for stitching and gifting.' ),
+            'topic' => array( 'quotes' ),
+            'style' => array(),
+        ),
+        'seasonal' => array(
+            'es' => array( 'label'=>'Temporada', 'description'=>'Navidad, Halloween, Pascua y estaciones del año.' ),
+            'en' => array( 'label'=>'Seasonal', 'description'=>'Christmas, Halloween, Easter and seasonal projects.' ),
+            'topic' => array( 'christmas','halloween','easter','spring','autumn' ),
+            'style' => array(),
+        ),
+    );
+}
+
+function make_current_stitch_theme(): string {
+    $theme = sanitize_key( (string) get_query_var( 'make_theme' ) );
+    return isset( make_stitch_theme_config()[ $theme ] ) ? $theme : '';
+}
+
+function make_stitch_theme_url( string $theme, string $language = '', int $page = 1 ): string {
+    $theme = sanitize_key( $theme );
+    if ( ! isset( make_stitch_theme_config()[ $theme ] ) ) { return make_journal_url( $language ); }
+    $url = make_journal_page_url( max( 1, $page ), $language );
+    return add_query_arg( 'make_theme', $theme, $url );
+}
+
+function make_stitch_theme_cards( string $language = '' ): array {
+    $language = in_array( $language, array('es','en'), true ) ? $language : make_current_language();
+    $cards = array();
+
+    foreach ( make_stitch_theme_config() as $id=>$config ) {
+        $has_content = false;
+        foreach ( array( 'make_topic'=>'topic', 'make_style'=>'style' ) as $taxonomy=>$dimension ) {
+            foreach ( $config[ $dimension ] as $slug ) {
+                $term = get_term_by( 'slug', $slug, $taxonomy );
+                if ( $term instanceof WP_Term && (int) $term->count > 0 ) { $has_content = true; break 2; }
+            }
+        }
+        if ( ! $has_content ) { continue; }
+
+        $cards[] = array(
+            'id'          => $id,
+            'label'       => $config[ $language ]['label'],
+            'description' => $config[ $language ]['description'],
+            'url'         => make_stitch_theme_url( $id, $language ),
+        );
+    }
+    return $cards;
+}
+
+function make_article_stitch_theme( int $post_id ): string {
+    $topic_slugs = wp_get_post_terms( $post_id, 'make_topic', array( 'fields'=>'slugs' ) );
+    $style_slugs = wp_get_post_terms( $post_id, 'make_style', array( 'fields'=>'slugs' ) );
+    $topic_slugs = is_wp_error( $topic_slugs ) ? array() : $topic_slugs;
+    $style_slugs = is_wp_error( $style_slugs ) ? array() : $style_slugs;
+
+    foreach ( make_stitch_theme_config() as $id=>$config ) {
+        if ( array_intersect( $topic_slugs, $config['topic'] ) || array_intersect( $style_slugs, $config['style'] ) ) {
+            return $id;
+        }
+    }
+    return 'florals';
+}
+
+function make_stitch_theme_pattern( string $theme ): array {
+    $patterns = array(
+        'florals' => array(
+            '.....r.....',
+            '...rrrrr...',
+            '...rryrr...',
+            '.....g.....',
+            '...g.g.....',
+            '..g...g....',
+            '...g.g.....',
+        ),
+        'animals' => array(
+            '..p.....p..',
+            '.ppp...ppp.',
+            '.p..ppp..p.',
+            '.p.r...r.p.',
+            '..p..y..p..',
+            '...pp.pp...',
+            '....pp.....',
+        ),
+        'pop-art' => array(
+            '..rrrrrr...',
+            '.rppppppr..',
+            'rrr.....rrr',
+            '.rrrrrrrrr.',
+            '..r.....r..',
+            '.y..y..y...',
+            '..y..y.....',
+        ),
+        'retro' => array(
+            '...yyyyy...',
+            '..y..p..y..',
+            '.y.p.p.p.y.',
+            '..y..p..y..',
+            '...yyyyy...',
+            '....g.g....',
+            '...g...g...',
+        ),
+        'geometric' => array(
+            '..p.....p..',
+            '...p...p...',
+            '....p.p....',
+            '.....p.....',
+            '....p.p....',
+            '...p...p...',
+            '..p.....p..',
+        ),
+        'celestial' => array(
+            '...bbbbb...',
+            '..bb.......',
+            '.bb....y...',
+            '.bb..y...y.',
+            '.bb....y...',
+            '..bb.......',
+            '...bbbbb...',
+        ),
+        'food' => array(
+            '..rrrr.....',
+            '.r....r....',
+            '.r....rr...',
+            '.r....r.r..',
+            '..rrrrrr...',
+            '...ggg.....',
+            '..ggggg....',
+        ),
+        'quotes' => array(
+            '..pp...pp..',
+            '..pp...pp..',
+            '...p....p..',
+            '...........',
+            '..rr...rr..',
+            '..rr...rr..',
+            '...r....r..',
+        ),
+        'seasonal' => array(
+            '.....y.....',
+            '....ggg....',
+            '...ggggg...',
+            '..ggggggg..',
+            '....ggg....',
+            '....ppp....',
+            '...ppppp...',
+        ),
+    );
+    return $patterns[ $theme ] ?? $patterns['florals'];
+}
+
+function make_stitch_theme_art_html( string $theme, string $class = 'stitch-theme-art' ): string {
+    if ( ! isset( make_stitch_theme_config()[ $theme ] ) ) { $theme = 'florals'; }
+    $pattern = make_stitch_theme_pattern( $theme );
+    $palette = array(
+        'r'=>'#b9657d',
+        'p'=>'#704d68',
+        'g'=>'#8fa58a',
+        'y'=>'#d7ad62',
+        'b'=>'#8daebd',
+    );
+    $cell = 24;
+    $cols = 11;
+    $rows = count( $pattern );
+    $w = $cols * $cell;
+    $h = $rows * $cell;
+    $grid_id = 'grid-' . $theme . '-' . wp_rand( 1000, 999999 );
+    $svg = '<svg viewBox="0 0 ' . $w . ' ' . $h . '" aria-hidden="true" focusable="false">'
+        . '<defs><pattern id="' . esc_attr( $grid_id ) . '" width="' . $cell . '" height="' . $cell . '" patternUnits="userSpaceOnUse">'
+        . '<rect width="' . $cell . '" height="' . $cell . '" fill="#fffaf6"></rect>'
+        . '<path d="M' . $cell . ' 0H0V' . $cell . '" fill="none" stroke="#eadcdf" stroke-width="1"></path>'
+        . '</pattern></defs>'
+        . '<rect width="100%" height="100%" rx="18" fill="url(#' . esc_attr( $grid_id ) . ')"></rect>';
+
+    foreach ( $pattern as $row_index=>$row ) {
+        foreach ( str_split( $row ) as $col_index=>$code ) {
+            if ( ! isset( $palette[ $code ] ) ) { continue; }
+            $cx = $col_index * $cell + ( $cell / 2 );
+            $cy = $row_index * $cell + ( $cell / 2 );
+            $d = 6;
+            $color = $palette[ $code ];
+            $svg .= '<path d="M' . ( $cx-$d ) . ' ' . ( $cy-$d ) . 'L' . ( $cx+$d ) . ' ' . ( $cy+$d )
+                . 'M' . ( $cx+$d ) . ' ' . ( $cy-$d ) . 'L' . ( $cx-$d ) . ' ' . ( $cy+$d )
+                . '" fill="none" stroke="' . esc_attr( $color ) . '" stroke-width="5" stroke-linecap="round"></path>';
+        }
+    }
+    $svg .= '</svg>';
+
+    return '<span class="' . esc_attr( $class . ' ' . $class . '--' . $theme ) . '" aria-hidden="true">' . $svg . '</span>';
+}
+
+function make_stitch_theme_tax_query( string $theme ): array {
+    $config = make_stitch_theme_config();
+    if ( ! isset( $config[ $theme ] ) ) { return array(); }
+
+    $tax_query = array( 'relation'=>'OR' );
+    if ( ! empty( $config[ $theme ]['topic'] ) ) {
+        $tax_query[] = array(
+            'taxonomy'=>'make_topic',
+            'field'=>'slug',
+            'terms'=>$config[ $theme ]['topic'],
+        );
+    }
+    if ( ! empty( $config[ $theme ]['style'] ) ) {
+        $tax_query[] = array(
+            'taxonomy'=>'make_style',
+            'field'=>'slug',
+            'terms'=>$config[ $theme ]['style'],
+        );
+    }
+    return count( $tax_query ) > 1 ? $tax_query : array();
+}
+
+function make_stitch_theme_query_var( array $vars ): array {
+    $vars[] = 'make_theme';
+    return $vars;
+}
+add_filter( 'query_vars', 'make_stitch_theme_query_var', 20 );
+
+function make_stitch_theme_main_query( WP_Query $query ): void {
+    if ( is_admin() || ! $query->is_main_query() || (int) get_query_var( 'make_journal' ) !== 1 ) { return; }
+    $theme = make_current_stitch_theme();
+    if ( '' === $theme ) { return; }
+    $tax_query = make_stitch_theme_tax_query( $theme );
+    if ( ! empty( $tax_query ) ) { $query->set( 'tax_query', $tax_query ); }
+}
+add_action( 'pre_get_posts', 'make_stitch_theme_main_query', 22 );
+
+function make_journal_pagination_html( WP_Query $query, string $language = '', string $theme = '' ): string {
+    $total = max( 1, (int) $query->max_num_pages );
+    if ( $total < 2 ) { return ''; }
+
+    $current = max( 1, (int) get_query_var( 'paged' ) );
+    $language = in_array( $language, array('es','en'), true ) ? $language : make_current_language();
+    $pages = array();
+
+    $link = static function( int $page, string $label, string $class = '' ) use ( $language, $theme ): string {
+        $url = '' !== $theme ? make_stitch_theme_url( $theme, $language, $page ) : make_journal_page_url( $page, $language );
+        return '<a class="page-number ' . esc_attr( $class ) . '" href="' . esc_url( $url ) . '">' . esc_html( $label ) . '</a>';
+    };
+
+    if ( $current > 1 ) { $pages[] = $link( $current-1, make_t( '← Anterior', '← Previous' ), 'page-number--prev' ); }
+
+    $start = max( 1, $current - 2 );
+    $end = min( $total, $current + 2 );
+    if ( $start > 1 ) {
+        $pages[] = $link( 1, '1' );
+        if ( $start > 2 ) { $pages[] = '<span class="page-number page-number--dots" aria-hidden="true">…</span>'; }
+    }
+    for ( $page=$start; $page<=$end; $page++ ) {
+        if ( $page === $current ) {
+            $pages[] = '<span class="page-number is-current" aria-current="page">' . esc_html( (string) $page ) . '</span>';
+        } else {
+            $pages[] = $link( $page, (string) $page );
+        }
+    }
+    if ( $end < $total ) {
+        if ( $end < $total-1 ) { $pages[] = '<span class="page-number page-number--dots" aria-hidden="true">…</span>'; }
+        $pages[] = $link( $total, (string) $total );
+    }
+    if ( $current < $total ) { $pages[] = $link( $current+1, make_t( 'Siguiente →', 'Next →' ), 'page-number--next' ); }
+
+    return '<div class="journal-pagination-buttons">' . implode( '', $pages ) . '</div>';
+}
