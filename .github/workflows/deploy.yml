@@ -94,4 +94,26 @@ jobs:
             echo "MAKE_JOURNAL_ES_URL=" . home_url("/journal/") . PHP_EOL;
             echo "MAKE_JOURNAL_EN_URL=" . home_url("/en/journal/") . PHP_EOL;
           '
+          SITE_HOST="$( "${DOCKER[@]}" exec make-wp php -r 'require "/var/www/html/wp-load.php"; $u=parse_url(home_url("/")); echo $u["host"] . (isset($u["port"]) ? ":" . $u["port"] : "");' )"
+          for ROUTE in /journal/ /en/journal/; do
+            "${DOCKER[@]}" exec \
+              -e MAKE_SMOKE_HOST="$SITE_HOST" \
+              -e MAKE_SMOKE_ROUTE="$ROUTE" \
+              make-wp php -r '
+                $_SERVER["HTTP_HOST"] = getenv("MAKE_SMOKE_HOST");
+                $_SERVER["REQUEST_URI"] = getenv("MAKE_SMOKE_ROUTE");
+                $_SERVER["REQUEST_METHOD"] = "GET";
+                $_SERVER["SERVER_PROTOCOL"] = "HTTP/1.1";
+                ob_start();
+                require "/var/www/html/index.php";
+                $html = ob_get_clean();
+                $route = getenv("MAKE_SMOKE_ROUTE");
+                $needle = str_starts_with($route, "/en/") ? "Latest articles" : "Últimos artículos";
+                if (strpos($html, $needle) === false || strpos($html, "post-card") === false) {
+                    fwrite(STDERR, "Journal smoke test failed for " . $route . PHP_EOL);
+                    exit(2);
+                }
+                echo "MAKE_JOURNAL_SMOKE_OK=" . $route . " bytes=" . strlen($html) . PHP_EOL;
+              '
+          done
           REMOTE
