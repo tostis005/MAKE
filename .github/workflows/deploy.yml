@@ -80,6 +80,7 @@ jobs:
           "${DOCKER[@]}" exec make-wp sh -lc "chown -R www-data:www-data '$TARGET' && find '$TARGET' -type d -exec chmod 755 {} + && find '$TARGET' -type f -exec chmod 644 {} + && test -s '$TARGET/style.css' && test -s '$TARGET/functions.php'"
           "${DOCKER[@]}" exec make-wp php -r '
             require "/var/www/html/wp-load.php";
+            require_once ABSPATH . "wp-admin/includes/misc.php";
             $structure = (string) get_option("permalink_structure", "");
             if ($structure === "") {
                 update_option("permalink_structure", "/%postname%/");
@@ -88,6 +89,10 @@ jobs:
                 echo "MAKE_PERMALINK_STRUCTURE=" . $structure . PHP_EOL;
             }
             flush_rewrite_rules(true);
+            if (function_exists("save_mod_rewrite_rules")) {
+                $saved = save_mod_rewrite_rules();
+                echo "MAKE_HTACCESS_WRITTEN=" . ($saved ? "yes" : "no") . PHP_EOL;
+            }
             echo "MAKE theme deployed" . PHP_EOL;
           '
           "${DOCKER[@]}" exec make-wp php -r '
