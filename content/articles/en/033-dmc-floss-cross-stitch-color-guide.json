@@ -1,0 +1,68 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 33,
+  "translation_group": "033-dmc-floss-color-guide",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "materials",
+      "terms": [
+        "materials",
+        "floss",
+        "colors"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-033-dmc",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Stitchers learning how DMC references, color families, substitutions and floss organization work.",
+  "title": "DMC Floss for Cross Stitch: A Practical Color Guide",
+  "slug": "dmc-floss-cross-stitch-color-guide",
+  "seo": {
+    "title": "DMC Floss for Cross Stitch: A Practical Color Guide",
+    "meta_description": "Learn how to read DMC references, organize floss, understand neighboring shades and substitute colors while preserving light and shadow.",
+    "search_intent": "Understand DMC color references for cross stitch."
+  },
+  "excerpt": "You do not need to memorize DMC codes. Learn to read the key, label floss clearly and preserve relationships between shades.",
+  "content_html": "<p>DMC numbers appear in a huge number of cross stitch patterns and can look like a mysterious code at first. Their purpose is simple: each reference identifies a specific floss color, allowing a designer and a stitcher to refer to the same shade even when they are in different countries.</p>\n<p>You do not need to memorize the numbers. The useful skills are reading a key, organizing the floss and making substitutions when necessary without losing the relationship between highlights and shadows.</p>\n<h2>How to read a DMC color list</h2>\n<p>A pattern normally links each chart symbol to a floss reference. It may also provide an approximate color name, but the number is usually the most useful identifier because names can vary between software and languages.</p>\n<p>When preparing a project, work through that list and mark which colors you already own. This avoids buying duplicate skeins and lets you discover missing shades before you begin.</p>\n<p>Do not rely entirely on screen color. Brightness and monitor settings can make a shade look different. When precision matters, compare physical floss or use a real thread color card.</p>\n<p>In designs containing many neighboring shades, keep the number with the thread. Two pinks or greens can look almost identical outside the chart and are easy to mix accidentally.</p>\n<p>If you use bobbins or cards, write the reference clearly. That small labeling habit saves a surprising amount of time when you return to a project several days later.</p>\n<h2>Why a chart may use several colors that look almost the same</h2>\n<p>Neighboring shades create depth. In a flower, portrait or animal, small differences between light, medium and dark allow the design to suggest shadow without changing the basic cross stitch technique.</p>\n<p>That does not mean every design needs dozens of shades. A graphic chart may become stronger by reducing the palette and using larger contrast. Color count is part of the visual style.</p>\n<p>When two references look identical in the skein, compare them stitched next to one another. The difference is often easier to see on fabric and from a normal viewing distance.</p>\n<p>Background color matters too. A medium beige can look darker on white Aida and much lighter on brown fabric. A palette never exists completely separately from the cloth.</p>\n<p>If closely related colors feel overwhelming, begin with patterns that use clearer blocks and fewer shades. Move into complex shading once you have an organization system that feels comfortable.</p>\n<h2>How to substitute a color without damaging the design</h2>\n<p>The safest approach is preserving the role of the original shade. If you replace a medium pink, choose another color that is still medium in relation to its neighbors. A much lighter replacement may remove an important shadow.</p>\n<p>In multi-shade palettes, replace the whole family when necessary rather than one isolated reference. If a pink flower becomes blue, find a light, medium and dark blue that maintain a similar progression.</p>\n<p>Minimalist and pop-art charts give you more freedom. If the design uses three flat colors that are not trying to model realistic light, swapping red for green may cause no structural problem at all.</p>\n<p>Make a small test on the actual fabric. Placing skeins together is useful, but a few stitched crosses show how the background and thread texture change the combination.</p>\n<p>Keep a note of substitutions. If you need more floss months later or want to repeat the design, you will be glad to know exactly which reference was used.</p>\n<h2>How to organize a floss collection without making it complicated</h2>\n<p>You do not need to buy an entire color range to start. Purchase the shades required by each project and let the collection grow naturally. That gives you a stash built from colors you genuinely use.</p>\n<p>You can store full skeins, wind floss onto bobbins or use bags and cards. The best system is the one that keeps the reference visible and stops colors becoming mixed.</p>\n<p>Sorting by number makes a particular reference easy to find. Sorting by color is more visual but requires remembering where each code belongs. With a small collection, either method works.</p>\n<p>Keep useful leftovers too. A shorter length may cover several isolated stitches in another chart and save opening a new skein.</p>\n<p>The value of the DMC numbering system is that it makes color reproducible. You do not need to remember a shade by eye: the chart gives you a reference and you can organize the entire project around it.</p>\n<p>Over time you may recognize a few frequently used numbers, but memorization is not the goal. What matters is keeping the chart key, your labels and the physical floss connected clearly so your attention stays on stitching rather than guessing which green is in your hand.</p>",
+  "image": {
+    "concept": "DMC skeins organized by reference beside a chart key and small stitched color samples.",
+    "alt": "DMC floss and color references for cross stitch"
+  }
+}

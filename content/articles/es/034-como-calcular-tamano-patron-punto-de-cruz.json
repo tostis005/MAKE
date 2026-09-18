@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 34,
+  "translation_group": "034-calculate-cross-stitch-finished-size",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "patterns",
+      "terms": [
+        "patterns",
+        "size",
+        "fabric"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to",
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "es-034-calcular-tamano",
+  "language": "es",
+  "locale": "es-ES",
+  "market_context": "Personas que necesitan calcular el tamaño físico de un patrón antes de cortar tela o comprar un marco.",
+  "title": "Cómo calcular el tamaño final de un patrón de punto de cruz",
+  "slug": "como-calcular-tamano-patron-punto-de-cruz",
+  "seo": {
+    "title": "Cómo calcular el tamaño final de un patrón de punto de cruz",
+    "meta_description": "Fórmula sencilla para convertir puntadas y count de tela en tamaño final, calcular margen y elegir Aida 14, 16 o 18.",
+    "search_intent": "Calcular el tamaño final de un patrón de punto de cruz."
+  },
+  "excerpt": "Con el número de puntadas y el count de la tela puedes saber exactamente cuánto ocupará el diseño antes de cortar o enmarcar.",
+  "content_html": "<p>Un patrón puede parecer pequeño en pantalla y terminar ocupando media pared, o parecer enorme y caber en un marco bastante manejable. La razón es que el tamaño final de un punto de cruz depende de dos datos: cuántas puntadas tiene el diseño y cuántos cuadros por pulgada o centímetro tiene la tela.</p>\n<p>Aprender esta cuenta evita comprar tela demasiado pequeña, elegir un marco incorrecto o descubrir tarde que el proyecto tendrá una escala muy distinta a la que imaginabas.</p>\n<h2>La fórmula básica para calcular el tamaño bordado</h2>\n<p>Busca primero las dimensiones del patrón en puntadas: ancho por alto. Un diseño podría medir, por ejemplo, 140 × 196 puntadas.</p>\n<p>Si utilizas Aida 14, divide cada dimensión entre 14 para obtener pulgadas. En el ejemplo, 140 puntadas serían 10 pulgadas de ancho y 196 serían 14 pulgadas de alto.</p>\n<p>Para trabajar en centímetros, puedes convertir después las pulgadas multiplicando por 2,54. También puedes utilizar una calculadora, pero entender la fórmula ayuda a detectar errores.</p>\n<p>En Aida 16, el mismo patrón será más pequeño porque caben más cruces en cada pulgada. En Aida 18 será todavía más compacto. El número de puntadas no cambia; cambia la densidad de la tela.</p>\n<p>Si bordas sobre lino o evenweave “over two”, la cuenta efectiva puede ser distinta de la cifra impresa en la tela. Comprueba cómo se trabaja ese tejido antes de aplicar la fórmula.</p>\n<h2>No confundas tamaño del diseño con tamaño de tela que necesitas</h2>\n<p>La medida calculada corresponde solo a la zona bordada. Necesitas tela adicional alrededor para colocar bastidor, manipular el proyecto y enmarcarlo después.</p>\n<p>Como práctica general, deja varios centímetros de margen por cada lado. La cantidad exacta dependerá del tipo de acabado, pero quedarse corto limita mucho las opciones de montaje.</p>\n<p>Si el diseño final mide 25 × 35 cm, no cortes una tela de 25 × 35. Añade el margen a ambos lados del ancho y del alto.</p>\n<p>Para marcos grandes o montajes con paspartú, puede interesarte dejar todavía más tela. Es mucho más fácil recortar al final que añadir tejido que ya no existe.</p>\n<p>Marca el centro o los límites aproximados antes de empezar. Una comprobación de dos minutos puede evitar descubrir después que comenzaste demasiado cerca de un borde.</p>\n<h2>Cómo elegir el count según el tamaño que quieres</h2>\n<p>Si te gusta un patrón pero necesitas que ocupe menos, aumentar el count puede reducir el tamaño físico sin modificar la cuadrícula. Pasar de Aida 14 a 16 o 18 compacta el diseño.</p>\n<p>Sin embargo, las cruces también se vuelven más pequeñas. Eso afecta a la facilidad para ver los agujeros y a la cobertura del hilo. No elijas un count solo por las dimensiones si después no te resulta cómodo bordarlo.</p>\n<p>Para ampliar una pieza, una tela de count menor produce cruces más grandes. Puede ser útil para decoración de pared o para alguien que prefiere agujeros más visibles.</p>\n<p>Los patrones con líneas muy finas pueden cambiar de aspecto al ampliarse. Una línea de una sola cruz se verá más gruesa en Aida 11 que en 18. La escala no solo afecta al marco, también al estilo visual.</p>\n<p>Si tienes un marco concreto, calcula el tamaño del patrón en varios counts antes de comprar la tela. A menudo encontrarás una combinación que encaja sin tener que modificar el diseño.</p>\n<h2>Haz siempre una última comprobación antes de cortar</h2>\n<p>Anota ancho y alto en puntadas, el count elegido, el tamaño calculado y el margen que vas a añadir. Tener los cuatro datos juntos reduce confusiones.</p>\n<p>Comprueba las unidades. Mezclar pulgadas y centímetros es una fuente clásica de errores. Si una cifra parece extraña, vuelve a hacer la cuenta antes de cortar.</p>\n<p>Si el patrón ya ofrece una tabla de tamaños para distintos counts, úsala como referencia y verifica que coincide aproximadamente con tu cálculo.</p>\n<p>En diseños enormes, ten en cuenta también el tamaño de bastidor o soporte que usarás durante el trabajo. La tela puede ser mucho mayor que la zona que cabe en un bastidor pequeño, aunque puedas moverlo por secciones.</p>\n<p>Calcular el tamaño final es una de esas habilidades que después haces casi automáticamente. Solo necesitas número de puntadas y count. Con esa pequeña cuenta puedes tomar decisiones mucho mejores sobre tela, marco, escala y tiempo antes de dar la primera puntada.</p><p>Antes de dar el proyecto por preparado, merece la pena hacer una pequeña prueba con los materiales reales y anotar cualquier cambio que hayas decidido. Esa comprobación evita tener que improvisar más adelante y convierte decisiones que parecen pequeñas en una rutina sencilla. En punto de cruz, muchas frustraciones desaparecen cuando la preparación está clara desde el principio y puedes concentrarte únicamente en avanzar puntada a puntada.</p><p>Antes de dar el proyecto por preparado, merece la pena hacer una pequeña prueba con los materiales reales y anotar cualquier cambio que hayas decidido. Esa comprobación evita tener que improvisar más adelante y convierte decisiones que parecen pequeñas en una rutina sencilla. En punto de cruz, muchas frustraciones desaparecen cuando la preparación está clara desde el principio y puedes concentrarte únicamente en avanzar puntada a puntada.</p>",
+  "image": {
+    "concept": "Patrón con medidas en puntadas, calculadora, regla y tres muestras de Aida con distintos counts.",
+    "alt": "Cálculo del tamaño final de un patrón de punto de cruz"
+  }
+}
