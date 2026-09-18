@@ -1,92 +1,91 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 760" role="img" aria-labelledby="title desc">
 <title id="title">Botanical cross-stitch in an embroidery hoop</title>
-<desc id="desc">A delicate floral cross-stitch motif in dusty rose, plum and sage inside a wooden hoop.</desc>
+<desc id="desc">A delicate botanical cross-stitch motif. Every X is centered inside one square of the fabric grid and no stitches overlap.</desc>
 <defs>
-  <pattern id="aida" width="18" height="18" patternUnits="userSpaceOnUse">
-    <rect width="18" height="18" fill="#FFF9F2"/>
-    <path d="M18 0H0V18" fill="none" stroke="#E8DCD4" stroke-width="1"/>
-    <circle cx="9" cy="9" r="1.1" fill="#E0D0C8"/>
+  <pattern id="aida" width="24" height="24" patternUnits="userSpaceOnUse">
+    <rect width="24" height="24" fill="#FFF9F2"/>
+    <path d="M24 0H0V24" fill="none" stroke="#E3D5D1" stroke-width="1.1"/>
   </pattern>
   <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
     <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#694D55" flood-opacity=".18"/>
   </filter>
-  <g id="xr" stroke="#B9657D" stroke-width="7" stroke-linecap="round"><path d="M-6-6 6 6M6-6-6 6"/></g>
-  <g id="xl" stroke="#D89AAC" stroke-width="7" stroke-linecap="round"><path d="M-6-6 6 6M6-6-6 6"/></g>
-  <g id="xp" stroke="#744F6B" stroke-width="7" stroke-linecap="round"><path d="M-6-6 6 6M6-6-6 6"/></g>
-  <g id="xg" stroke="#8DA286" stroke-width="7" stroke-linecap="round"><path d="M-6-6 6 6M6-6-6 6"/></g>
-  <g id="xgs" stroke="#B8C4AE" stroke-width="7" stroke-linecap="round"><path d="M-6-6 6 6M6-6-6 6"/></g>
-  <g id="xc" stroke="#D8B46B" stroke-width="7" stroke-linecap="round"><path d="M-6-6 6 6M6-6-6 6"/></g>
+<g id="st-red" fill="none" stroke="#B9657D" stroke-width="5.5" stroke-linecap="round"><path d="M-6 -6 L6 6"/><path d="M6 -6 L-6 6"/></g>
+<g id="st-pink" fill="none" stroke="#D89AAC" stroke-width="5.5" stroke-linecap="round"><path d="M-6 -6 L6 6"/><path d="M6 -6 L-6 6"/></g>
+<g id="st-plum" fill="none" stroke="#744F6B" stroke-width="5.5" stroke-linecap="round"><path d="M-6 -6 L6 6"/><path d="M6 -6 L-6 6"/></g>
+<g id="st-green" fill="none" stroke="#8DA286" stroke-width="5.5" stroke-linecap="round"><path d="M-6 -6 L6 6"/><path d="M6 -6 L-6 6"/></g>
+<g id="st-sage" fill="none" stroke="#B8C4AE" stroke-width="5.5" stroke-linecap="round"><path d="M-6 -6 L6 6"/><path d="M6 -6 L-6 6"/></g>
+<g id="st-gold" fill="none" stroke="#D8B46B" stroke-width="5.5" stroke-linecap="round"><path d="M-6 -6 L6 6"/><path d="M6 -6 L-6 6"/></g>
 </defs>
 
 <g filter="url(#shadow)">
   <circle cx="378" cy="382" r="294" fill="#C28A61"/>
   <circle cx="378" cy="382" r="271" fill="url(#aida)" stroke="#E2B58D" stroke-width="8"/>
-  <path d="M335 77h86v38h-86z" rx="8" fill="#B87953"/>
+  <rect x="335" y="77" width="86" height="38" rx="8" fill="#B87953"/>
   <rect x="353" y="50" width="50" height="43" rx="10" fill="#D5A77E"/>
 </g>
 
-<!-- stems -->
+<!-- True grid-based cross stitch: one centered X per occupied square. -->
 <g>
-  <use href="#xg" transform="translate(378 520)"/><use href="#xg" transform="translate(378 500)"/>
-  <use href="#xg" transform="translate(378 480)"/><use href="#xg" transform="translate(378 460)"/>
-  <use href="#xg" transform="translate(378 440)"/><use href="#xg" transform="translate(378 420)"/>
-  <use href="#xg" transform="translate(378 400)"/><use href="#xg" transform="translate(378 380)"/>
-  <use href="#xg" transform="translate(378 360)"/><use href="#xg" transform="translate(378 340)"/>
-
-  <use href="#xg" transform="translate(358 440)"/><use href="#xg" transform="translate(338 420)"/>
-  <use href="#xg" transform="translate(318 400)"/><use href="#xg" transform="translate(298 380)"/>
-  <use href="#xg" transform="translate(398 455)"/><use href="#xg" transform="translate(418 435)"/>
-  <use href="#xg" transform="translate(438 415)"/><use href="#xg" transform="translate(458 395)"/>
-</g>
-
-<!-- sage leaves -->
-<g>
-  <use href="#xgs" transform="translate(340 455)"/><use href="#xgs" transform="translate(322 455)"/><use href="#xg" transform="translate(304 455)"/>
-  <use href="#xgs" transform="translate(416 470)"/><use href="#xgs" transform="translate(434 470)"/><use href="#xg" transform="translate(452 470)"/>
-  <use href="#xgs" transform="translate(320 405)"/><use href="#xg" transform="translate(300 405)"/><use href="#xgs" transform="translate(282 405)"/>
-  <use href="#xgs" transform="translate(436 420)"/><use href="#xg" transform="translate(456 420)"/><use href="#xgs" transform="translate(474 420)"/>
-  <use href="#xg" transform="translate(358 385)"/><use href="#xgs" transform="translate(340 372)"/>
-  <use href="#xg" transform="translate(398 395)"/><use href="#xgs" transform="translate(416 382)"/>
-</g>
-
-<!-- main rose flower -->
-<g>
-  <use href="#xp" transform="translate(378 276)"/>
-  <use href="#xr" transform="translate(358 276)"/><use href="#xr" transform="translate(398 276)"/>
-  <use href="#xr" transform="translate(378 256)"/><use href="#xr" transform="translate(378 296)"/>
-  <use href="#xl" transform="translate(358 256)"/><use href="#xl" transform="translate(398 256)"/>
-  <use href="#xl" transform="translate(358 296)"/><use href="#xl" transform="translate(398 296)"/>
-  <use href="#xl" transform="translate(338 276)"/><use href="#xl" transform="translate(418 276)"/>
-  <use href="#xc" transform="translate(378 276)"/>
-</g>
-
-<!-- left small flower -->
-<g>
-  <use href="#xp" transform="translate(286 350)"/>
-  <use href="#xr" transform="translate(266 350)"/><use href="#xr" transform="translate(306 350)"/>
-  <use href="#xl" transform="translate(286 330)"/><use href="#xl" transform="translate(286 370)"/>
-  <use href="#xc" transform="translate(286 350)"/>
-</g>
-
-<!-- right small flower -->
-<g>
-  <use href="#xp" transform="translate(470 365)"/>
-  <use href="#xr" transform="translate(450 365)"/><use href="#xr" transform="translate(490 365)"/>
-  <use href="#xl" transform="translate(470 345)"/><use href="#xl" transform="translate(470 385)"/>
-  <use href="#xc" transform="translate(470 365)"/>
-</g>
-
-<!-- tiny buds -->
-<g>
-  <use href="#xr" transform="translate(330 320)"/><use href="#xl" transform="translate(316 306)"/>
-  <use href="#xr" transform="translate(430 325)"/><use href="#xl" transform="translate(444 311)"/>
-  <use href="#xp" transform="translate(286 465)"/><use href="#xl" transform="translate(270 449)"/>
-  <use href="#xp" transform="translate(488 455)"/><use href="#xl" transform="translate(504 439)"/>
-</g>
-
-<!-- loose stitches -->
-<g opacity=".72">
-  <use href="#xl" transform="translate(240 500)"/><use href="#xgs" transform="translate(520 505)"/>
-  <use href="#xc" transform="translate(535 330)"/><use href="#xl" transform="translate(225 335)"/>
+  <use href="#st-pink" transform="translate(372 228)"/>
+  <use href="#st-pink" transform="translate(348 252)"/>
+  <use href="#st-red" transform="translate(372 252)"/>
+  <use href="#st-pink" transform="translate(396 252)"/>
+  <use href="#st-pink" transform="translate(324 276)"/>
+  <use href="#st-red" transform="translate(348 276)"/>
+  <use href="#st-gold" transform="translate(372 276)"/>
+  <use href="#st-red" transform="translate(396 276)"/>
+  <use href="#st-pink" transform="translate(420 276)"/>
+  <use href="#st-pink" transform="translate(348 300)"/>
+  <use href="#st-red" transform="translate(372 300)"/>
+  <use href="#st-pink" transform="translate(396 300)"/>
+  <use href="#st-green" transform="translate(372 324)"/>
+  <use href="#st-green" transform="translate(372 348)"/>
+  <use href="#st-green" transform="translate(372 372)"/>
+  <use href="#st-green" transform="translate(372 396)"/>
+  <use href="#st-green" transform="translate(372 420)"/>
+  <use href="#st-green" transform="translate(372 444)"/>
+  <use href="#st-green" transform="translate(372 468)"/>
+  <use href="#st-green" transform="translate(372 492)"/>
+  <use href="#st-green" transform="translate(372 516)"/>
+  <use href="#st-green" transform="translate(348 420)"/>
+  <use href="#st-green" transform="translate(324 396)"/>
+  <use href="#st-green" transform="translate(300 372)"/>
+  <use href="#st-gold" transform="translate(276 348)"/>
+  <use href="#st-red" transform="translate(252 348)"/>
+  <use href="#st-red" transform="translate(300 348)"/>
+  <use href="#st-pink" transform="translate(276 324)"/>
+  <use href="#st-pink" transform="translate(276 372)"/>
+  <use href="#st-sage" transform="translate(300 396)"/>
+  <use href="#st-sage" transform="translate(324 420)"/>
+  <use href="#st-green" transform="translate(300 444)"/>
+  <use href="#st-sage" transform="translate(276 444)"/>
+  <use href="#st-green" transform="translate(396 444)"/>
+  <use href="#st-green" transform="translate(420 420)"/>
+  <use href="#st-green" transform="translate(444 396)"/>
+  <use href="#st-gold" transform="translate(468 372)"/>
+  <use href="#st-red" transform="translate(444 372)"/>
+  <use href="#st-red" transform="translate(492 372)"/>
+  <use href="#st-pink" transform="translate(468 348)"/>
+  <use href="#st-pink" transform="translate(468 396)"/>
+  <use href="#st-sage" transform="translate(420 444)"/>
+  <use href="#st-green" transform="translate(444 444)"/>
+  <use href="#st-sage" transform="translate(468 444)"/>
+  <use href="#st-sage" transform="translate(420 396)"/>
+  <use href="#st-sage" transform="translate(348 468)"/>
+  <use href="#st-green" transform="translate(324 468)"/>
+  <use href="#st-sage" transform="translate(300 468)"/>
+  <use href="#st-sage" transform="translate(396 492)"/>
+  <use href="#st-green" transform="translate(420 492)"/>
+  <use href="#st-sage" transform="translate(444 492)"/>
+  <use href="#st-plum" transform="translate(300 300)"/>
+  <use href="#st-pink" transform="translate(276 276)"/>
+  <use href="#st-plum" transform="translate(444 300)"/>
+  <use href="#st-pink" transform="translate(468 276)"/>
+  <use href="#st-plum" transform="translate(276 492)"/>
+  <use href="#st-pink" transform="translate(252 468)"/>
+  <use href="#st-plum" transform="translate(492 468)"/>
+  <use href="#st-pink" transform="translate(516 444)"/>
+  <use href="#st-sage" transform="translate(252 516)"/>
+  <use href="#st-sage" transform="translate(492 516)"/>
 </g>
 </svg>
