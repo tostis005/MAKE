@@ -135,7 +135,9 @@ function make_home_url( string $language = '' ): string {
 function make_language_switch_url( string $language ): string {
     $language = in_array( $language, array( 'es','en' ), true ) ? $language : 'es';
     if ( (int) get_query_var( 'make_journal' ) === 1 ) {
-        return make_journal_page_url( max( 1, (int) get_query_var( 'paged' ) ), $language );
+        $page  = max( 1, (int) get_query_var( 'paged' ) );
+        $theme = function_exists( 'make_current_stitch_theme' ) ? make_current_stitch_theme() : '';
+        return '' !== $theme ? make_stitch_theme_url( $theme, $language, $page ) : make_journal_page_url( $page, $language );
     }
     if ( is_singular() && function_exists( 'pll_get_post' ) ) {
         $translated = (int) pll_get_post( get_queried_object_id(), $language );
@@ -655,6 +657,11 @@ function make_editorial_document_title( string $title ): string {
     }
 
     if ( (int) get_query_var( 'make_journal' ) === 1 ) {
+        $theme = function_exists( 'make_current_stitch_theme' ) ? make_current_stitch_theme() : '';
+        $config = function_exists( 'make_stitch_theme_config' ) ? make_stitch_theme_config() : array();
+        if ( '' !== $theme && isset( $config[ $theme ][ make_current_language() ]['label'] ) ) {
+            return $config[ $theme ][ make_current_language() ]['label'] . ' · ' . make_t( 'Punto de cruz', 'Cross stitch' ) . ' | ' . make_brand_name();
+        }
         return make_t( 'Guías e ideas de punto de cruz', 'Cross stitch guides and ideas' ) . ' | ' . make_brand_name();
     }
 
@@ -725,10 +732,11 @@ function make_editorial_head_meta(): void {
             'Clear cross stitch guides, ideas and projects for learning techniques, choosing materials and finding your next pattern.'
         );
         $page = max( 1, (int) get_query_var( 'paged' ) );
-        $canonical = make_journal_page_url( $page );
+        $theme = function_exists( 'make_current_stitch_theme' ) ? make_current_stitch_theme() : '';
+        $canonical = '' !== $theme ? make_stitch_theme_url( $theme, make_current_language(), $page ) : make_journal_page_url( $page );
 
         foreach ( array( 'es' => 'es-ES', 'en' => 'en-US' ) as $lang => $hreflang ) {
-            $url = make_journal_page_url( $page, $lang );
+            $url = '' !== $theme ? make_stitch_theme_url( $theme, $lang, $page ) : make_journal_page_url( $page, $lang );
             echo '<link rel="alternate" hreflang="' . esc_attr( $hreflang ) . '" href="' . esc_url( $url ) . '">' . "\n";
         }
     }
