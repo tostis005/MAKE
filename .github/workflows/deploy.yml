@@ -29,6 +29,7 @@ jobs:
           test -s functions.php
           test -s header.php
           test -s front-page.php
+          test -s home.php
           find . -type f -name '*.php' -print0 | xargs -0 -r -n1 php -l
           node --check assets/js/site.js
 
@@ -78,4 +79,19 @@ jobs:
           "${DOCKER[@]}" cp "$STAGE/." "make-wp:$TARGET/"
           "${DOCKER[@]}" exec make-wp sh -lc "chown -R www-data:www-data '$TARGET' && find '$TARGET' -type d -exec chmod 755 {} + && find '$TARGET' -type f -exec chmod 644 {} + && test -s '$TARGET/style.css' && test -s '$TARGET/functions.php'"
           "${DOCKER[@]}" exec make-wp php -r 'require "/var/www/html/wp-load.php"; flush_rewrite_rules(false); echo "MAKE theme deployed\n";'
+          "${DOCKER[@]}" exec make-wp php -r '
+            require "/var/www/html/wp-load.php";
+            echo "MAKE_SITE_URL=" . home_url("/") . PHP_EOL;
+            foreach (array("es","en") as $lang) {
+                $q = new WP_Query(array(
+                    "post_type" => "post",
+                    "post_status" => "publish",
+                    "posts_per_page" => 1,
+                    "meta_query" => array(array("key" => "_make_language", "value" => $lang)),
+                ));
+                echo "MAKE_JOURNAL_" . strtoupper($lang) . "_COUNT=" . (int) $q->found_posts . PHP_EOL;
+            }
+            echo "MAKE_JOURNAL_ES_URL=" . home_url("/journal/") . PHP_EOL;
+            echo "MAKE_JOURNAL_EN_URL=" . home_url("/en/journal/") . PHP_EOL;
+          '
           REMOTE
