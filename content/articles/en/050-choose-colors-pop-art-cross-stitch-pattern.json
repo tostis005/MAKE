@@ -1,0 +1,73 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 50,
+  "translation_group": "050-pop-art-cross-stitch-color-palette",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "ideas",
+      "terms": [
+        "ideas"
+      ]
+    },
+    "topic": {
+      "primary": "pop-art",
+      "terms": [
+        "pop-art",
+        "colors",
+        "patterns"
+      ]
+    },
+    "style": {
+      "terms": [
+        "pop-art",
+        "modern"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "wall-art",
+        "home-decor"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide",
+        "inspiration"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-050-pop-colors",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "People designing or recoloring pop-art cross stitch and wanting strong limited palettes.",
+  "title": "How to Choose Colors for a Pop Art Cross Stitch Pattern",
+  "slug": "choose-colors-pop-art-cross-stitch-pattern",
+  "seo": {
+    "title": "How to Choose Colors for Pop Art Cross Stitch",
+    "meta_description": "Build pop-art palettes using contrast, dominant colors, limited shades and repeatable combinations for modern cross stitch designs.",
+    "search_intent": "Choose a color palette for a pop-art cross stitch pattern."
+  },
+  "excerpt": "Pop art does not need many colors. It needs hierarchy, contrast and shades with clear jobs inside the image.",
+  "content_html": "<p>Pop art translates naturally to cross stitch because both can embrace flat color, strong contrast and simplified shapes. The right palette can give a simple design enormous presence without requiring dozens of shades.</p>\n<p>The goal is not simply using very bright colors. A strong pop palette needs clear relationships between background, skin, shadows, objects and accents so the image remains readable.</p>\n<h2>Start by deciding which color should dominate</h2>\n<p>Choose one or two lead colors first. Hot pink, red, electric blue, yellow or green can become the main visual signal.</p>\n<p>Then add colors that either contrast or support them. Red can become stronger beside pale pink; blue can stand out against orange or yellow; intense green can be balanced by cream.</p>\n<p>Not every color needs to compete. If five shades are equally saturated, the image may lose hierarchy.</p>\n<p>A neutral —off-white, cream, black or gray— can provide rest and make the stronger colors feel even more intense.</p>\n<p>Consider the fabric too. When it remains visible, it becomes part of the palette and can replace a stitched background color.</p>\n<h2>Use contrast to keep the image recognizable</h2>\n<p>When a portrait or object is simplified, the main shapes need to remain separate even when the colors are unrealistic.</p>\n<p>A pink face can work perfectly when eyes, hair and shadows have enough contrast.</p>\n<p>Avoid using two colors with very similar value in areas that need a clear boundary. They may look different in the skein and merge when viewed from a distance.</p>\n<p>Try a grayscale preview when uncertain. If every important area becomes the same gray, the palette may lack contrast even when the colors look attractive together.</p>\n<p>Dark lines or limited outlines can help, but you do not need to surround every shape with black when the color blocks already read clearly.</p>\n<h2>Reduce colors instead of adding them for reassurance</h2>\n<p>A pop palette often becomes stronger when every shade has a clear job. Adding five nearly identical pinks to soften a face can push the design toward realism and away from the graphic effect.</p>\n<p>Start with roughly three to six main colors. Add a shade only when it solves a genuine loss of shape or an important transition.</p>\n<p>Large blocks work particularly well in hair, clothing and backgrounds.</p>\n<p>When the pattern comes from a photo, remove shades created only by accidental shadows or image noise. Not every variation in the source deserves a separate skein.</p>\n<p>Simplification also makes the chart more enjoyable to stitch and gives the finished piece a clearer visual identity.</p>\n<h2>How to build a coherent pop-art collection</h2>\n<p>If you design several patterns, repeat part of the palette. For example, every piece might share red and cream while changing the third dominant color.</p>\n<p>Keep a similar contrast logic: pale backgrounds with intense subjects, or saturated backgrounds with dark defining shapes.</p>\n<p>The designs do not need identical color proportions. Partial repetition is enough to make them feel related.</p>\n<p>You can even offer palette variants of the same chart. A pink-and-red portrait can have a blue-and-orange version without changing the grid.</p>\n<p>Before finalizing the palette, view the design both small and large. It should work as an image from a distance and remain interesting when the individual crosses are visible up close.</p>\n<p>The strongest pop-art palette is not trying to prove how many colors are available. It uses a limited set intentionally, creates contrast and allows the grid itself to become part of the style. That combination can produce designs that are distinctive, modern and much easier to stitch than a traditional photo conversion.</p><p>Before deciding, compare the actual project rather than only the listing image. Stitch dimensions, materials, file format and clarity of information reveal much more about the experience than a generic label. A few minutes checking those details can save hours of frustration later.</p><p>Before deciding, compare the actual project rather than only the listing image. Stitch dimensions, materials, file format and clarity of information reveal much more about the experience than a generic label. A few minutes checking those details can save hours of frustration later.</p><p>Before deciding, compare the actual project rather than only the listing image. Stitch dimensions, materials, file format and clarity of information reveal much more about the experience than a generic label. A few minutes checking those details can save hours of frustration later.</p><p>Before deciding, compare the actual project rather than only the listing image. Stitch dimensions, materials, file format and clarity of information reveal much more about the experience than a generic label. A few minutes checking those details can save hours of frustration later.</p><p>Before deciding, compare the actual project rather than only the listing image. Stitch dimensions, materials, file format and clarity of information reveal much more about the experience than a generic label. A few minutes checking those details can save hours of frustration later.</p>",
+  "image": {
+    "concept": "Six saturated skeins beside a pixel-inspired pop-art portrait built from large color blocks.",
+    "alt": "Color palette for a pop-art cross stitch pattern"
+  }
+}
