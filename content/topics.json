@@ -1173,6 +1173,61 @@
       "title_es": "Cómo añadir cuentas a punto de cruz sin complicar el acabado",
       "title_en": "How to Add Beads to Cross Stitch Without Complicating the Finish",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 106,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "materials",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo bordar con hilo metálico en punto de cruz sin desesperarte",
+      "title_en": "How to Stitch with Metallic Thread Without Losing Your Mind",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 107,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "finishing",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo terminar un punto de cruz en bastidor para colgarlo directamente",
+      "title_en": "How to Finish Cross Stitch in a Hoop and Hang It",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 108,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "cushion",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Cómo convertir un punto de cruz en un cojín decorativo",
+      "title_en": "How to Turn Cross Stitch into a Decorative Cushion or Pillow",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 109,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "materials",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Plastic canvas para punto de cruz: qué es y qué proyectos puedes hacer",
+      "title_en": "Plastic Canvas for Cross Stitch: What It Is and What You Can Make",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 110,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "materials",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Punto de cruz sobre papel perforado: guía para tarjetas y mini proyectos",
+      "title_en": "Cross Stitch on Perforated Paper: A Guide for Cards and Small Projects",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {
