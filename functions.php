@@ -269,3 +269,15 @@ function make_cart_count_fragment( array $fragments ): array {
     return $fragments;
 }
 add_filter( 'woocommerce_add_to_cart_fragments', 'make_cart_count_fragment' );
+
+
+/**
+ * Reuse the stitch-flower mark as a favicon until a custom Site Icon is set
+ * in WordPress. A WordPress Site Icon always takes precedence.
+ */
+function make_fallback_favicon(): void {
+    if ( function_exists( 'has_site_icon' ) && has_site_icon() ) { return; }
+    $icon = get_template_directory_uri() . '/assets/images/brand-mark.svg';
+    echo '<link rel="icon" href="' . esc_url( $icon ) . '" type="image/svg+xml">' . "\n";
+}
+add_action( 'wp_head', 'make_fallback_favicon', 2 );
