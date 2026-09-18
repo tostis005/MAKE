@@ -1393,6 +1393,61 @@
       "title_es": "Cómo ampliar un patrón de punto de cruz sin cambiar el tamaño del bordado",
       "title_en": "How to Enlarge a Cross Stitch Chart Without Changing the Finished Size",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 126,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "fathers-day",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Ideas de punto de cruz para regalar el Día del Padre",
+      "title_en": "Cross Stitch Gift Ideas for Father's Day",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 127,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "housewarming",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Ideas de punto de cruz para regalar en una nueva casa",
+      "title_en": "Cross Stitch Housewarming Gift Ideas for a New Home",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 128,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "teachers",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Ideas de punto de cruz para regalar a profesores",
+      "title_en": "Cross Stitch Gift Ideas for Teachers",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 129,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "graduation",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Ideas de punto de cruz para regalar en una graduación",
+      "title_en": "Cross Stitch Gift Ideas for Graduation",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 130,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "pets",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Punto de cruz memorial de mascota: ideas para un recuerdo personal",
+      "title_en": "Pet Memorial Cross Stitch: Ideas for a Personal Keepsake",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {
