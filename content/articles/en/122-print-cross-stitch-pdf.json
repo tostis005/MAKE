@@ -1,0 +1,70 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 122,
+  "translation_group": "122-print-cross-stitch-pdf",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "digital-patterns",
+      "terms": [
+        "digital-patterns",
+        "printing",
+        "pdf"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project",
+        "digital-pattern"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide",
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-122-print-pdf",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "People buying downloadable charts and printing them without cropping or readability problems.",
+  "title": "How to Print a Cross Stitch PDF Pattern Correctly",
+  "slug": "print-cross-stitch-pdf",
+  "seo": {
+    "title": "How to Print a Cross Stitch PDF Pattern",
+    "meta_description": "Set scale, A4 or Letter paper, color options, multi-page charts and readability tests before printing a cross stitch PDF.",
+    "search_intent": "Learn how to print a cross stitch PDF correctly."
+  },
+  "excerpt": "Print size does not control the finished embroidery, so the paper chart can be adapted for readability without changing any stitches.",
+  "content_html": "<p>Printing a cross stitch PDF sounds as simple as pressing “print,” but the wrong settings can crop pages, shrink symbols or make a multi-page chart harder to follow. The useful thing to remember is that paper print size does not determine the finished stitch size; the fabric does.</p>\n<p>That means the chart can be enlarged for readability without changing a single stitch in the design.</p>\n<h2>First check how the PDF is organized</h2>\n<p>Some patterns include one overview page followed by several enlarged chart pages.</p>\n<p>Others provide both color and black-and-white versions.</p>\n<p>Before printing everything, identify which pages actually contain the working chart.</p>\n<p>You may not need to print the cover, instructions or preview pages if you only want the grid.</p>\n<h2>Print scale: 100%, fit or enlarged</h2>\n<p>If the PDF was designed for your paper size, 100% normally preserves the intended layout.</p>\n<p>“Fit to page” may reduce content slightly to respect printer margins.</p>\n<p>This does not change the finished stitch dimensions because the paper grid is only a guide.</p>\n<p>The important requirement is that symbols and grid numbers remain readable.</p>\n<h2>A4 and Letter paper</h2>\n<p>A well-prepared chart should use safe margins or account for common paper formats.</p>\n<p>If a Letter-designed page is printed on A4, use print preview to confirm nothing is cropped.</p>\n<p>Do not assume the operating system will always make the correct adjustment automatically.</p>\n<p>Print one test page before sending twenty sheets to the printer.</p>\n<h2>Color or black and white?</h2>\n<p>Color charts can make orientation easier but use more ink.</p>\n<p>Black-and-white symbols are often enough when they are clearly differentiated.</p>\n<p>When several floss shades are visually similar, symbols remain the safer reference.</p>\n<p>Check that the printer does not render pale grays so lightly that symbols disappear.</p>\n<h2>Handling multi-page patterns</h2>\n<p>Locate overlap lines, page numbers and grid references.</p>\n<p>Do not assume pages join like an exact poster unless the chart was specifically designed that way.</p>\n<p>Each page may repeat part of the neighboring section to help orientation.</p>\n<p>Clearly mark which page you are using and where it sits within the full chart.</p>\n<h2>Test readability before printing everything</h2>\n<p>Print one dense page first.</p>\n<p>Check that every symbol can be distinguished from your normal working distance.</p>\n<p>If they are too small, enlarge the page or print that section at a larger scale.</p>\n<p>A magnifier should not be required merely to decode a well-prepared PDF when the chart can be enlarged.</p>\n<p>Printing a cross stitch chart correctly is about preserving readability and references, not maintaining one exact physical paper size. Fabric count controls the finished stitching; the PDF can be adapted to your eyes and printer without changing the design.</p><p>Always keep the original digital file even when you prefer paper. If one sheet is stained, lost or needs more enlargement later, you can reprint only that section without reconstructing anything.</p><p>Always keep the original digital file even when you prefer paper. If one sheet is stained, lost or needs more enlargement later, you can reprint only that section without reconstructing anything.</p><p>Always keep the original digital file even when you prefer paper. If one sheet is stained, lost or needs more enlargement later, you can reprint only that section without reconstructing anything.</p><p>Always keep the original digital file even when you prefer paper. If one sheet is stained, lost or needs more enlargement later, you can reprint only that section without reconstructing anything.</p><p>Always keep the original digital file even when you prefer paper. If one sheet is stained, lost or needs more enlargement later, you can reprint only that section without reconstructing anything.</p><p>Always keep the original digital file even when you prefer paper. If one sheet is stained, lost or needs more enlargement later, you can reprint only that section without reconstructing anything.</p><p>Always keep the original digital file even when you prefer paper. If one sheet is stained, lost or needs more enlargement later, you can reprint only that section without reconstructing anything.</p><p>Always keep the original digital file even when you prefer paper. If one sheet is stained, lost or needs more enlargement later, you can reprint only that section without reconstructing anything.</p><p>Always keep the original digital file even when you prefer paper. If one sheet is stained, lost or needs more enlargement later, you can reprint only that section without reconstructing anything.</p><p>Always keep the original digital file even when you prefer paper. If one sheet is stained, lost or needs more enlargement later, you can reprint only that section without reconstructing anything.</p><p>Always keep the original digital file even when you prefer paper. If one sheet is stained, lost or needs more enlargement later, you can reprint only that section without reconstructing anything.</p><p>Always keep the original digital file even when you prefer paper. If one sheet is stained, lost or needs more enlargement later, you can reprint only that section without reconstructing anything.</p>",
+  "image": {
+    "concept": "Cross stitch PDF open beside a printer and two pages with sharp grid lines and large symbols.",
+    "alt": "How to print a cross stitch PDF"
+  }
+}

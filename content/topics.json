@@ -1338,6 +1338,61 @@
       "title_es": "Lupas para punto de cruz: cuánto aumento necesitas de verdad",
       "title_en": "Cross Stitch Magnifiers: How Much Magnification Do You Really Need?",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 121,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "tools",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Scroll frame para punto de cruz: cuándo merece la pena usar uno",
+      "title_en": "Scroll Frames for Cross Stitch: When Are They Worth Using?",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 122,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "digital-patterns",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo imprimir un patrón de punto de cruz en PDF correctamente",
+      "title_en": "How to Print a Cross Stitch PDF Pattern Correctly",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 123,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "digital-patterns",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo marcar el progreso en un patrón de punto de cruz sin perderte",
+      "title_en": "How to Mark Cross Stitch Chart Progress Without Losing Your Place",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 124,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "digital-patterns",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Patrones de punto de cruz en color vs símbolos: qué formato es mejor",
+      "title_en": "Color vs Symbol Cross Stitch Charts: Which Format Is Better?",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 125,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "digital-patterns",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo ampliar un patrón de punto de cruz sin cambiar el tamaño del bordado",
+      "title_en": "How to Enlarge a Cross Stitch Chart Without Changing the Finished Size",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {

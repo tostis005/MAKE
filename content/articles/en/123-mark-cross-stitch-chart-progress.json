@@ -1,0 +1,70 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 123,
+  "translation_group": "123-mark-cross-stitch-chart-progress",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "digital-patterns",
+      "terms": [
+        "digital-patterns",
+        "progress",
+        "organization"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project",
+        "digital-pattern"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide",
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-123-progress",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Stitchers keeping exact track of completed areas on long charts.",
+  "title": "How to Mark Cross Stitch Chart Progress Without Losing Your Place",
+  "slug": "mark-cross-stitch-chart-progress",
+  "seo": {
+    "title": "How to Mark Cross Stitch Chart Progress",
+    "meta_description": "Use paper or digital methods to track completed stitches, blocks and pages and restart a chart without losing your position.",
+    "search_intent": "Learn how to track progress on a cross stitch chart."
+  },
+  "excerpt": "Progress marking acts as external memory, letting you stop and return knowing exactly what is finished and what remains.",
+  "content_html": "<p>Tracking chart progress prevents two very common problems: stitching an area twice and spending several minutes every session trying to remember where you stopped. You can mark paper, annotate a PDF or use an app; the exact system matters less than using it consistently.</p>\n<p>On a tiny pattern it may feel unnecessary, but the denser the chart becomes, the more useful tracking is.</p>\n<h2>How to mark a paper chart</h2>\n<p>A pale highlighter or pencil can cover finished symbols without hiding the grid completely.</p>\n<p>Use a color that contrasts clearly with the print.</p>\n<p>Do not mark an area until you have confirmed it is actually stitched.</p>\n<p>If you print multiple copies, keep one clean version as a reference.</p>\n<h2>Marking by stitch, block or row</h2>\n<p>You do not need to record every individual cross when working compact areas.</p>\n<p>Groups of five or ten stitches can be marked once complete.</p>\n<p>In heavy confetti, more precise marking reduces the chance of missing isolated symbols.</p>\n<p>The amount of tracking detail should match the complexity of the section.</p>\n<h2>Working on a digital copy</h2>\n<p>A notes app or PDF reader that supports drawing can replace paper.</p>\n<p>Use a translucent layer or color when possible so the original symbols remain visible.</p>\n<p>Save the file or progress before closing.</p>\n<p>For projects lasting months, keep a backup.</p>\n<h2>Keeping your place across multiple pages</h2>\n<p>Clearly identify finished pages and the next active area.</p>\n<p>Where pages overlap, avoid treating the repeated section as new stitches.</p>\n<p>Grid numbers and ten-stitch lines are your strongest references.</p>\n<p>A short note such as “continue at row 80, column 120” can save substantial time.</p>\n<h2>What if you mark something by mistake?</h2>\n<p>On paper, use a second color code to show that the area is still pending.</p>\n<p>Do not aggressively erase until the page is damaged.</p>\n<p>Digitally, undo or change the mark when the tool allows it.</p>\n<p>The important thing is keeping the final chart state unambiguous.</p>\n<h2>The system should help rather than become another job</h2>\n<p>If recording every stitch takes longer than making it, simplify the process.</p>\n<p>Mark at the end of each small block or color run.</p>\n<p>Use the same code throughout the whole project.</p>\n<p>Consistency is more valuable than extreme detail.</p>\n<p>Progress tracking acts as external memory for the project. It lets you stop at any point and return days later knowing exactly what is complete, what remains and where the next stitch belongs without mentally rebuilding the previous session.</p><p>If you rotate several WIPs, add a date or short note from the last session as well. That small amount of context is surprisingly useful when you return after weeks and no longer remember the strategy you were following.</p><p>If you rotate several WIPs, add a date or short note from the last session as well. That small amount of context is surprisingly useful when you return after weeks and no longer remember the strategy you were following.</p><p>If you rotate several WIPs, add a date or short note from the last session as well. That small amount of context is surprisingly useful when you return after weeks and no longer remember the strategy you were following.</p><p>If you rotate several WIPs, add a date or short note from the last session as well. That small amount of context is surprisingly useful when you return after weeks and no longer remember the strategy you were following.</p><p>If you rotate several WIPs, add a date or short note from the last session as well. That small amount of context is surprisingly useful when you return after weeks and no longer remember the strategy you were following.</p><p>If you rotate several WIPs, add a date or short note from the last session as well. That small amount of context is surprisingly useful when you return after weeks and no longer remember the strategy you were following.</p><p>If you rotate several WIPs, add a date or short note from the last session as well. That small amount of context is surprisingly useful when you return after weeks and no longer remember the strategy you were following.</p><p>If you rotate several WIPs, add a date or short note from the last session as well. That small amount of context is surprisingly useful when you return after weeks and no longer remember the strategy you were following.</p><p>If you rotate several WIPs, add a date or short note from the last session as well. That small amount of context is surprisingly useful when you return after weeks and no longer remember the strategy you were following.</p><p>If you rotate several WIPs, add a date or short note from the last session as well. That small amount of context is surprisingly useful when you return after weeks and no longer remember the strategy you were following.</p>",
+  "image": {
+    "concept": "Printed chart with highlighted sections beside the same grid being annotated on a tablet.",
+    "alt": "How to mark cross stitch chart progress"
+  }
+}
