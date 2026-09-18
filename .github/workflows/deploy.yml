@@ -80,15 +80,15 @@ jobs:
           "${DOCKER[@]}" exec make-wp sh -lc "chown -R www-data:www-data '$TARGET' && find '$TARGET' -type d -exec chmod 755 {} + && find '$TARGET' -type f -exec chmod 644 {} + && test -s '$TARGET/style.css' && test -s '$TARGET/functions.php'"
           "${DOCKER[@]}" exec make-wp php -r '
             require "/var/www/html/wp-load.php";
-            $structure = (string) get_option("permalink_structure", "");
-            if ($structure === "/%postname%/") {
-                update_option("permalink_structure", "");
-                $structure = "";
-                echo "MAKE_PERMALINK_STRUCTURE=plain (restored for current server)" . PHP_EOL;
-            } else {
-                echo "MAKE_PERMALINK_STRUCTURE=" . ($structure === "" ? "plain" : $structure) . PHP_EOL;
+            $desired = "/%postname%/";
+            if ((string) get_option("permalink_structure", "") !== $desired) {
+                update_option("permalink_structure", $desired);
             }
-            flush_rewrite_rules(false);
+            require_once ABSPATH . "wp-admin/includes/misc.php";
+            flush_rewrite_rules(true);
+            save_mod_rewrite_rules();
+            echo "MAKE_PERMALINK_STRUCTURE=" . (string) get_option("permalink_structure", "") . PHP_EOL;
+            echo "MAKE_HTACCESS=" . (is_readable(ABSPATH . ".htaccess") ? "present" : "missing") . PHP_EOL;
             echo "MAKE theme deployed" . PHP_EOL;
           '
           "${DOCKER[@]}" exec make-wp php -r '
@@ -103,8 +103,8 @@ jobs:
                 ));
                 echo "MAKE_JOURNAL_" . strtoupper($lang) . "_COUNT=" . (int) $q->found_posts . PHP_EOL;
             }
-            echo "MAKE_JOURNAL_ES_URL=" . add_query_arg(array("make_journal"=>"1","make_lang"=>"es"), home_url("/")) . PHP_EOL;
-            echo "MAKE_JOURNAL_EN_URL=" . add_query_arg(array("make_journal"=>"1","make_lang"=>"en"), home_url("/")) . PHP_EOL;
+            echo "MAKE_JOURNAL_ES_URL=" . (function_exists("make_journal_url") ? make_journal_url("es") : home_url("/journal/")) . PHP_EOL;
+            echo "MAKE_JOURNAL_EN_URL=" . (function_exists("make_journal_url") ? make_journal_url("en") : home_url("/en/journal/")) . PHP_EOL;
             echo "MAKE_POLYLANG=" . (function_exists("pll_current_language") ? "yes" : "no") . PHP_EOL;
             $posts_page = (int) get_option("page_for_posts");
             echo "MAKE_PAGE_FOR_POSTS=" . $posts_page . PHP_EOL;
@@ -122,35 +122,42 @@ jobs:
             }
           '
           SITE_HOST="$( "${DOCKER[@]}" exec make-wp php -r 'require "/var/www/html/wp-load.php"; $u=parse_url(home_url("/")); echo $u["host"] . (isset($u["port"]) ? ":" . $u["port"] : "");' )"
-          ROUTES=(
-            '/?make_journal=1&make_lang=es'
-            '/?make_journal=1&make_lang=en'
-            '/?make_journal=1&make_lang=es&paged=2'
-          )
-          for ROUTE in "${ROUTES[@]}"; do
+          SAMPLE_SLUG="$( "${DOCKER[@]}" exec make-wp php -r 'require "/var/www/html/wp-load.php"; $p=get_posts(array("post_type"=>"post","post_status"=>"publish","posts_per_page"=>1,"meta_key"=>"_make_managed_article","meta_value"=>1)); echo $p ? $p[0]->post_name : "";' )"
+
+          check_html(){
+            local route="$1"
+            local needle="$2"
+            local label="$3"
             "${DOCKER[@]}" exec \
               -e MAKE_SMOKE_HOST="$SITE_HOST" \
-              -e MAKE_SMOKE_ROUTE="$ROUTE" \
+              -e MAKE_SMOKE_ROUTE="$route" \
+              -e MAKE_SMOKE_NEEDLE="$needle" \
+              -e MAKE_SMOKE_LABEL="$label" \
               make-wp php -r '
-                $host = getenv("MAKE_SMOKE_HOST");
-                $route = getenv("MAKE_SMOKE_ROUTE");
-                $context = stream_context_create(array(
-                    "http" => array(
-                        "method" => "GET",
-                        "header" => "Host: " . $host . "\r\nUser-Agent: MAKE-Journal-Smoke\r\n",
-                        "ignore_errors" => true,
-                        "follow_location" => 0,
-                        "timeout" => 15,
-                    ),
-                ));
-                $html = @file_get_contents("http://127.0.0.1" . $route, false, $context);
-                $status = isset($http_response_header[0]) ? $http_response_header[0] : "no-status";
-                $needle = strpos($route, "make_lang=en") !== false ? "Latest articles" : "Últimos artículos";
-                if ($html === false || strpos($status, "200") === false || strpos($html, $needle) === false || strpos($html, "post-card") === false) {
-                    fwrite(STDERR, "Journal HTTP smoke test failed for " . $route . " status=" . $status . PHP_EOL);
+                $host=getenv("MAKE_SMOKE_HOST");
+                $route=getenv("MAKE_SMOKE_ROUTE");
+                $needle=getenv("MAKE_SMOKE_NEEDLE");
+                $label=getenv("MAKE_SMOKE_LABEL");
+                $context=stream_context_create(array("http"=>array(
+                    "method"=>"GET",
+                    "header"=>"Host: ".$host."\r\nUser-Agent: MAKE-Smoke\r\n",
+                    "ignore_errors"=>true,
+                    "follow_location"=>0,
+                    "timeout"=>15,
+                )));
+                $html=@file_get_contents("http://127.0.0.1".$route,false,$context);
+                $status=$http_response_header[0] ?? "no-status";
+                if ($html===false || strpos($status,"200")===false || ($needle!=="" && strpos($html,$needle)===false)) {
+                    fwrite(STDERR,$label." smoke test failed route=".$route." status=".$status.PHP_EOL);
                     exit(2);
                 }
-                echo "MAKE_JOURNAL_SMOKE_OK=" . $route . " status=" . $status . " bytes=" . strlen($html) . PHP_EOL;
+                echo "MAKE_SMOKE_OK=".$label." route=".$route." status=".$status." bytes=".strlen($html).PHP_EOL;
               '
-          done
+          }
+
+          check_html "/journal/" "Últimos artículos" "journal-es"
+          check_html "/en/journal/" "Latest articles" "journal-en"
+          check_html "/journal/page/2/" "Últimos artículos" "journal-page-2"
+          check_html "/$SAMPLE_SLUG/" "article-related-grid" "single-article"
+          check_html "/wp-sitemap.xml" "wp-sitemap-posts-post" "sitemap"
           REMOTE

@@ -124,6 +124,9 @@ function make_home_url( string $language = '' ): string {
         if ( $url ) { return $url; }
     }
     if ( 'en' === $language ) {
+        if ( '' !== (string) get_option( 'permalink_structure', '' ) ) {
+            return home_url( '/en/' );
+        }
         return add_query_arg( 'make_lang', 'en', home_url( '/' ) );
     }
     return home_url( '/' );
@@ -132,7 +135,7 @@ function make_home_url( string $language = '' ): string {
 function make_language_switch_url( string $language ): string {
     $language = in_array( $language, array( 'es','en' ), true ) ? $language : 'es';
     if ( (int) get_query_var( 'make_journal' ) === 1 ) {
-        return make_journal_url( $language );
+        return make_journal_page_url( max( 1, (int) get_query_var( 'paged' ) ), $language );
     }
     if ( is_singular() && function_exists( 'pll_get_post' ) ) {
         $translated = (int) pll_get_post( get_queried_object_id(), $language );
@@ -244,6 +247,11 @@ function make_brand_tagline(): string {
 
 function make_journal_url( string $language = '' ): string {
     $language = in_array( $language, array( 'es','en' ), true ) ? $language : make_current_language();
+
+    if ( '' !== (string) get_option( 'permalink_structure', '' ) ) {
+        return home_url( 'en' === $language ? '/en/journal/' : '/journal/' );
+    }
+
     return add_query_arg(
         array(
             'make_journal' => '1',
@@ -251,6 +259,18 @@ function make_journal_url( string $language = '' ): string {
         ),
         home_url( '/' )
     );
+}
+
+function make_journal_page_url( int $page = 1, string $language = '' ): string {
+    $page = max( 1, $page );
+    $base = make_journal_url( $language );
+    if ( 1 === $page ) { return $base; }
+
+    if ( '' !== (string) get_option( 'permalink_structure', '' ) ) {
+        return trailingslashit( $base ) . 'page/' . $page . '/';
+    }
+
+    return add_query_arg( 'paged', $page, $base );
 }
 
 function make_cart_count(): int {
@@ -712,12 +732,10 @@ function make_editorial_head_meta(): void {
             'Clear cross stitch guides, ideas and projects for learning techniques, choosing materials and finding your next pattern.'
         );
         $page = max( 1, (int) get_query_var( 'paged' ) );
-        $canonical = make_journal_url();
-        if ( $page > 1 ) { $canonical = add_query_arg( 'paged', $page, $canonical ); }
+        $canonical = make_journal_page_url( $page );
 
         foreach ( array( 'es' => 'es-ES', 'en' => 'en-US' ) as $lang => $hreflang ) {
-            $url = make_journal_url( $lang );
-            if ( $page > 1 ) { $url = add_query_arg( 'paged', $page, $url ); }
+            $url = make_journal_page_url( $page, $lang );
             echo '<link rel="alternate" hreflang="' . esc_attr( $hreflang ) . '" href="' . esc_url( $url ) . '">' . "\n";
         }
     }

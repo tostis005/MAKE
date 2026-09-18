@@ -65,15 +65,19 @@ $sections = make_editorial_sections( $language );
 
       <?php
       $current_page = max( 1, (int) get_query_var( 'paged' ) );
-      $page_base = add_query_arg(
-          array(
-              'make_journal' => '1',
-              'make_lang'    => $language,
-              'paged'        => '%#%',
-          ),
-          home_url( '/' )
-      );
-      $page_base = str_replace( '%25%23%25', '%#%', $page_base );
+      if ( '' !== (string) get_option( 'permalink_structure', '' ) ) {
+          $page_base = trailingslashit( make_journal_url( $language ) ) . 'page/%#%/';
+      } else {
+          $page_base = add_query_arg(
+              array(
+                  'make_journal' => '1',
+                  'make_lang'    => $language,
+                  'paged'        => '%#%',
+              ),
+              home_url( '/' )
+          );
+          $page_base = str_replace( '%25%23%25', '%#%', $page_base );
+      }
       $pagination = paginate_links(
           array(
               'base'      => $page_base,
