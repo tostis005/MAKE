@@ -1063,6 +1063,61 @@
       "title_es": "Cómo mantener limpio un punto de cruz mientras lo estás bordando",
       "title_en": "How to Keep Cross Stitch Clean While You Are Working on It",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 96,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "bookmarks",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Marcapáginas de punto de cruz: patrones, tamaños y acabados",
+      "title_en": "Cross Stitch Bookmarks: Patterns, Sizing and Finishing Ideas",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 97,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "ornaments",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Adornos de punto de cruz: ideas pequeñas para colgar y regalar",
+      "title_en": "Cross Stitch Ornaments: Small Ideas to Hang and Gift",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 98,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "cards",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Tarjetas de punto de cruz: cómo crear un detalle bordado pequeño",
+      "title_en": "Cross Stitch Cards: How to Make a Small Stitched Greeting",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 99,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "clothing",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo hacer punto de cruz sobre ropa, denim y tote bags",
+      "title_en": "How to Cross Stitch on Clothes, Denim and Tote Bags",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 100,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "materials",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Waste canvas vs canvas soluble: cuál usar para punto de cruz sobre tela",
+      "title_en": "Waste Canvas vs Water-Soluble Canvas for Cross Stitch",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {
