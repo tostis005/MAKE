@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "purpose": "Future-proof editorial taxonomy for MAKE. Only cross-stitch is surfaced today; future crafts can be enabled without changing the editorial model.",
+  "dimensions": {
+    "craft": {
+      "active": [
+        "cross-stitch"
+      ],
+      "future": [
+        "crochet",
+        "embroidery",
+        "woodworking"
+      ],
+      "examples": {
+        "cross-stitch": [
+          "patterns",
+          "materials",
+          "technique",
+          "finishing"
+        ],
+        "crochet": [
+          "patterns",
+          "yarn",
+          "stitches",
+          "garments",
+          "blankets"
+        ],
+        "woodworking": [
+          "plans",
+          "materials",
+          "joinery",
+          "tools",
+          "furniture"
+        ]
+      }
+    },
+    "section": [
+      "learn",
+      "ideas",
+      "buying-guides"
+    ],
+    "topic": [
+      "beginners",
+      "patterns",
+      "materials",
+      "technique",
+      "animals",
+      "florals",
+      "nature",
+      "retro",
+      "minimalist",
+      "geometric",
+      "food",
+      "celestial",
+      "fantasy",
+      "quotes",
+      "seasonal",
+      "gifts",
+      "finishing",
+      "custom",
+      "decor"
+    ],
+    "style": [
+      "modern",
+      "pop-art",
+      "minimalist",
+      "retro",
+      "vintage",
+      "geometric",
+      "botanical"
+    ],
+    "skill": [
+      "beginner",
+      "intermediate",
+      "advanced"
+    ],
+    "project_type": [
+      "wall-art",
+      "home-decor",
+      "accessories",
+      "garments",
+      "blankets",
+      "toys",
+      "furniture",
+      "storage"
+    ],
+    "article_type": [
+      "guide",
+      "how-to",
+      "comparison",
+      "inspiration",
+      "buying-guide",
+      "troubleshooting"
+    ]
+  },
+  "visibility": {
+    "now": "Only cross-stitch should be linked in the frontend. Future craft terms exist as architecture, not empty navigation.",
+    "later": "When a new craft has enough products/content, add it to navigation and landing pages without moving existing articles."
+  }
+}

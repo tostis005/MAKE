@@ -20,6 +20,69 @@ function make_theme_setup(): void {
 }
 add_action( 'after_setup_theme', 'make_theme_setup' );
 
+
+/**
+ * Editorial dimensions are deliberately independent from the current craft.
+ * Cross stitch is the only active craft today, but the same data model can
+ * later hold crochet, embroidery, woodworking or other maker disciplines
+ * without changing article templates or the import pipeline.
+ */
+function make_register_editorial_taxonomies(): void {
+    $taxonomies = array(
+        'make_craft' => array(
+            'single' => 'Craft',
+            'plural' => 'Crafts',
+            'hierarchical' => true,
+        ),
+        'make_topic' => array(
+            'single' => 'Topic',
+            'plural' => 'Topics',
+            'hierarchical' => true,
+        ),
+        'make_style' => array(
+            'single' => 'Style',
+            'plural' => 'Styles',
+            'hierarchical' => true,
+        ),
+        'make_skill' => array(
+            'single' => 'Skill level',
+            'plural' => 'Skill levels',
+            'hierarchical' => false,
+        ),
+        'make_project_type' => array(
+            'single' => 'Project type',
+            'plural' => 'Project types',
+            'hierarchical' => true,
+        ),
+        'make_article_type' => array(
+            'single' => 'Article type',
+            'plural' => 'Article types',
+            'hierarchical' => false,
+        ),
+    );
+
+    foreach ( $taxonomies as $taxonomy => $config ) {
+        register_taxonomy(
+            $taxonomy,
+            array( 'post' ),
+            array(
+                'labels' => array(
+                    'name' => $config['plural'],
+                    'singular_name' => $config['single'],
+                ),
+                'public' => false,
+                'show_ui' => true,
+                'show_admin_column' => true,
+                'show_in_rest' => true,
+                'hierarchical' => (bool) $config['hierarchical'],
+                'rewrite' => false,
+                'query_var' => false,
+            )
+        );
+    }
+}
+add_action( 'init', 'make_register_editorial_taxonomies', 5 );
+
 function make_assets(): void {
     $version = wp_get_theme()->get( 'Version' ) ?: '1.0.0';
     wp_enqueue_style( 'make-style', get_stylesheet_uri(), array(), $version );

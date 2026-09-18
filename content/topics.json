@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "site": "MAKE",
   "languages": [
     "es",
@@ -27,7 +27,8 @@
       "intent": "informational",
       "status": "drafted",
       "title_es": "Punto de cruz para principiantes: guía completa para empezar desde cero",
-      "title_en": "Cross Stitch for Beginners: A Complete Guide to Getting Started"
+      "title_en": "Cross Stitch for Beginners: A Complete Guide to Getting Started",
+      "craft": "cross-stitch"
     },
     {
       "number": 2,
@@ -37,7 +38,8 @@
       "intent": "informational",
       "status": "drafted",
       "title_es": "Cómo leer un patrón de punto de cruz sin perderte",
-      "title_en": "How to Read a Cross Stitch Pattern Without Getting Lost"
+      "title_en": "How to Read a Cross Stitch Pattern Without Getting Lost",
+      "craft": "cross-stitch"
     },
     {
       "number": 3,
@@ -47,7 +49,8 @@
       "intent": "commercial",
       "status": "drafted",
       "title_es": "Cómo elegir tu primer patrón de punto de cruz",
-      "title_en": "How to Choose Your First Cross Stitch Pattern"
+      "title_en": "How to Choose Your First Cross Stitch Pattern",
+      "craft": "cross-stitch"
     },
     {
       "number": 4,
@@ -57,7 +60,8 @@
       "intent": "informational-commercial",
       "status": "drafted",
       "title_es": "Aida 14, 16 o 18: qué tela elegir para punto de cruz",
-      "title_en": "Aida 14 vs 16 vs 18: Which Cross Stitch Fabric Should You Choose?"
+      "title_en": "Aida 14 vs 16 vs 18: Which Cross Stitch Fabric Should You Choose?",
+      "craft": "cross-stitch"
     },
     {
       "number": 5,
@@ -67,7 +71,8 @@
       "intent": "commercial",
       "status": "drafted",
       "title_es": "Qué debe incluir un buen patrón de punto de cruz en PDF",
-      "title_en": "What a Good Cross Stitch PDF Pattern Should Include"
+      "title_en": "What a Good Cross Stitch PDF Pattern Should Include",
+      "craft": "cross-stitch"
     },
     {
       "number": 6,
@@ -77,7 +82,8 @@
       "intent": "commercial",
       "status": "drafted",
       "title_es": "Mejores patrones de punto de cruz fáciles para principiantes",
-      "title_en": "Best Easy Cross Stitch Patterns for Beginners"
+      "title_en": "Best Easy Cross Stitch Patterns for Beginners",
+      "craft": "cross-stitch"
     },
     {
       "number": 7,
@@ -87,7 +93,8 @@
       "intent": "commercial",
       "status": "drafted",
       "title_es": "Ideas de punto de cruz moderno para una casa contemporánea",
-      "title_en": "Modern Cross Stitch Ideas for a Contemporary Home"
+      "title_en": "Modern Cross Stitch Ideas for a Contemporary Home",
+      "craft": "cross-stitch"
     },
     {
       "number": 8,
@@ -97,7 +104,8 @@
       "intent": "commercial",
       "status": "drafted",
       "title_es": "Punto de cruz pop art: ideas, colores y diseños para inspirarte",
-      "title_en": "Pop Art Cross Stitch: Ideas, Colors and Designs to Inspire You"
+      "title_en": "Pop Art Cross Stitch: Ideas, Colors and Designs to Inspire You",
+      "craft": "cross-stitch"
     },
     {
       "number": 9,
@@ -107,7 +115,8 @@
       "intent": "commercial",
       "status": "drafted",
       "title_es": "Patrones de punto de cruz pequeños para terminar en pocos días",
-      "title_en": "Small Cross Stitch Patterns You Can Finish in a Few Days"
+      "title_en": "Small Cross Stitch Patterns You Can Finish in a Few Days",
+      "craft": "cross-stitch"
     },
     {
       "number": 10,
@@ -117,7 +126,8 @@
       "intent": "informational",
       "status": "drafted",
       "title_es": "Qué necesitas para empezar a hacer punto de cruz",
-      "title_en": "What You Need to Start Cross Stitching"
+      "title_en": "What You Need to Start Cross Stitching",
+      "craft": "cross-stitch"
     },
     {
       "number": 11,
@@ -127,7 +137,8 @@
       "intent": "informational",
       "status": "drafted",
       "title_es": "Cuántas hebras de hilo usar en punto de cruz",
-      "title_en": "How Many Strands of Floss Should You Use for Cross Stitch?"
+      "title_en": "How Many Strands of Floss Should You Use for Cross Stitch?",
+      "craft": "cross-stitch"
     },
     {
       "number": 12,
@@ -137,7 +148,8 @@
       "intent": "informational",
       "status": "drafted",
       "title_es": "Cómo empezar y terminar el hilo en punto de cruz sin nudos",
-      "title_en": "How to Start and Finish Cross Stitch Thread Without Knots"
+      "title_en": "How to Start and Finish Cross Stitch Thread Without Knots",
+      "craft": "cross-stitch"
     },
     {
       "number": 13,
@@ -147,7 +159,8 @@
       "intent": "informational",
       "status": "drafted",
       "title_es": "Errores de punto de cruz que casi todos cometemos al empezar",
-      "title_en": "Cross Stitch Mistakes Almost Everyone Makes as a Beginner"
+      "title_en": "Cross Stitch Mistakes Almost Everyone Makes as a Beginner",
+      "craft": "cross-stitch"
     },
     {
       "number": 14,
@@ -157,7 +170,8 @@
       "intent": "commercial",
       "status": "drafted",
       "title_es": "Patrón de punto de cruz PDF o kit completo: qué elegir",
-      "title_en": "Cross Stitch PDF Pattern or Full Kit: Which Should You Choose?"
+      "title_en": "Cross Stitch PDF Pattern or Full Kit: Which Should You Choose?",
+      "craft": "cross-stitch"
     },
     {
       "number": 15,
@@ -167,7 +181,8 @@
       "intent": "commercial",
       "status": "drafted",
       "title_es": "Patrones de punto de cruz gratis vs de pago: qué cambia de verdad",
-      "title_en": "Free vs Paid Cross Stitch Patterns: What Really Changes?"
+      "title_en": "Free vs Paid Cross Stitch Patterns: What Really Changes?",
+      "craft": "cross-stitch"
     },
     {
       "number": 16,
@@ -177,7 +192,8 @@
       "intent": "commercial",
       "status": "planned",
       "title_es": "Patrones de punto de cruz de gatos: ideas para todos los niveles",
-      "title_en": "Cat Cross Stitch Patterns: Ideas for Every Skill Level"
+      "title_en": "Cat Cross Stitch Patterns: Ideas for Every Skill Level",
+      "craft": "cross-stitch"
     },
     {
       "number": 17,
@@ -187,7 +203,8 @@
       "intent": "commercial",
       "status": "planned",
       "title_es": "Patrones de punto de cruz de perros para amantes de los animales",
-      "title_en": "Dog Cross Stitch Patterns for Animal Lovers"
+      "title_en": "Dog Cross Stitch Patterns for Animal Lovers",
+      "craft": "cross-stitch"
     },
     {
       "number": 18,
@@ -197,7 +214,8 @@
       "intent": "commercial",
       "status": "planned",
       "title_es": "Patrones florales de punto de cruz: del botánico al moderno",
-      "title_en": "Floral Cross Stitch Patterns: From Botanical to Modern"
+      "title_en": "Floral Cross Stitch Patterns: From Botanical to Modern",
+      "craft": "cross-stitch"
     },
     {
       "number": 19,
@@ -207,7 +225,8 @@
       "intent": "commercial",
       "status": "planned",
       "title_es": "Patrones de punto de cruz de plantas, hojas y botánica",
-      "title_en": "Plant, Leaf and Botanical Cross Stitch Patterns"
+      "title_en": "Plant, Leaf and Botanical Cross Stitch Patterns",
+      "craft": "cross-stitch"
     },
     {
       "number": 20,
@@ -217,7 +236,8 @@
       "intent": "commercial",
       "status": "planned",
       "title_es": "Patrones de punto de cruz retro y vintage con personalidad",
-      "title_en": "Retro and Vintage Cross Stitch Patterns with Personality"
+      "title_en": "Retro and Vintage Cross Stitch Patterns with Personality",
+      "craft": "cross-stitch"
     },
     {
       "number": 21,
@@ -227,7 +247,8 @@
       "intent": "commercial",
       "status": "planned",
       "title_es": "Patrones de punto de cruz minimalistas que no parecen tradicionales",
-      "title_en": "Minimalist Cross Stitch Patterns That Feel Anything but Traditional"
+      "title_en": "Minimalist Cross Stitch Patterns That Feel Anything but Traditional",
+      "craft": "cross-stitch"
     },
     {
       "number": 22,
@@ -237,7 +258,8 @@
       "intent": "commercial",
       "status": "planned",
       "title_es": "Patrones geométricos y abstractos de punto de cruz",
-      "title_en": "Geometric and Abstract Cross Stitch Patterns"
+      "title_en": "Geometric and Abstract Cross Stitch Patterns",
+      "craft": "cross-stitch"
     },
     {
       "number": 23,
@@ -247,7 +269,8 @@
       "intent": "commercial",
       "status": "planned",
       "title_es": "Patrones de punto de cruz de comida y bebida para cocinas con personalidad",
-      "title_en": "Food and Drink Cross Stitch Patterns for Kitchens with Personality"
+      "title_en": "Food and Drink Cross Stitch Patterns for Kitchens with Personality",
+      "craft": "cross-stitch"
     },
     {
       "number": 24,
@@ -257,7 +280,8 @@
       "intent": "commercial",
       "status": "planned",
       "title_es": "Patrones de luna, estrellas y constelaciones en punto de cruz",
-      "title_en": "Moon, Star and Constellation Cross Stitch Patterns"
+      "title_en": "Moon, Star and Constellation Cross Stitch Patterns",
+      "craft": "cross-stitch"
     },
     {
       "number": 25,
@@ -267,7 +291,8 @@
       "intent": "commercial",
       "status": "planned",
       "title_es": "Patrones de punto de cruz de fantasía para proyectos diferentes",
-      "title_en": "Fantasy Cross Stitch Patterns for Something Different"
+      "title_en": "Fantasy Cross Stitch Patterns for Something Different",
+      "craft": "cross-stitch"
     },
     {
       "number": 26,
@@ -277,7 +302,8 @@
       "intent": "commercial",
       "status": "planned",
       "title_es": "Patrones de punto de cruz con frases divertidas y modernas",
-      "title_en": "Funny and Modern Quote Cross Stitch Patterns"
+      "title_en": "Funny and Modern Quote Cross Stitch Patterns",
+      "craft": "cross-stitch"
     },
     {
       "number": 27,
@@ -287,7 +313,8 @@
       "intent": "commercial-seasonal",
       "status": "planned",
       "title_es": "Patrones de punto de cruz de Navidad: ideas para decorar y regalar",
-      "title_en": "Christmas Cross Stitch Patterns for Decorating and Gifting"
+      "title_en": "Christmas Cross Stitch Patterns for Decorating and Gifting",
+      "craft": "cross-stitch"
     },
     {
       "number": 28,
@@ -297,7 +324,8 @@
       "intent": "commercial-seasonal",
       "status": "planned",
       "title_es": "Patrones de punto de cruz de Halloween: bonitos, oscuros y divertidos",
-      "title_en": "Halloween Cross Stitch Patterns: Cute, Dark and Fun"
+      "title_en": "Halloween Cross Stitch Patterns: Cute, Dark and Fun",
+      "craft": "cross-stitch"
     },
     {
       "number": 29,
@@ -307,7 +335,8 @@
       "intent": "commercial",
       "status": "planned",
       "title_es": "Ideas de punto de cruz para regalar sin caer en lo típico",
-      "title_en": "Cross Stitch Gift Ideas That Do Not Feel Generic"
+      "title_en": "Cross Stitch Gift Ideas That Do Not Feel Generic",
+      "craft": "cross-stitch"
     },
     {
       "number": 30,
@@ -317,7 +346,8 @@
       "intent": "informational",
       "status": "planned",
       "title_es": "Cómo lavar y planchar un punto de cruz terminado",
-      "title_en": "How to Wash and Iron Finished Cross Stitch"
+      "title_en": "How to Wash and Iron Finished Cross Stitch",
+      "craft": "cross-stitch"
     },
     {
       "number": 31,
@@ -327,7 +357,8 @@
       "intent": "informational",
       "status": "planned",
       "title_es": "Cómo enmarcar un punto de cruz para que quede realmente bien",
-      "title_en": "How to Frame Cross Stitch So It Actually Looks Good"
+      "title_en": "How to Frame Cross Stitch So It Actually Looks Good",
+      "craft": "cross-stitch"
     },
     {
       "number": 32,
@@ -337,7 +368,8 @@
       "intent": "informational",
       "status": "planned",
       "title_es": "Qué aguja usar para punto de cruz según la tela",
-      "title_en": "What Needle Size to Use for Cross Stitch Fabric"
+      "title_en": "What Needle Size to Use for Cross Stitch Fabric",
+      "craft": "cross-stitch"
     },
     {
       "number": 33,
@@ -347,7 +379,8 @@
       "intent": "informational",
       "status": "planned",
       "title_es": "Hilos DMC para punto de cruz: guía práctica para entender los colores",
-      "title_en": "DMC Floss for Cross Stitch: A Practical Color Guide"
+      "title_en": "DMC Floss for Cross Stitch: A Practical Color Guide",
+      "craft": "cross-stitch"
     },
     {
       "number": 34,
@@ -357,7 +390,8 @@
       "intent": "informational",
       "status": "planned",
       "title_es": "Cómo calcular el tamaño final de un patrón de punto de cruz",
-      "title_en": "How to Calculate the Finished Size of a Cross Stitch Pattern"
+      "title_en": "How to Calculate the Finished Size of a Cross Stitch Pattern",
+      "craft": "cross-stitch"
     },
     {
       "number": 35,
@@ -367,7 +401,8 @@
       "intent": "informational",
       "status": "planned",
       "title_es": "Cómo saber si un patrón de punto de cruz será fácil o difícil",
-      "title_en": "How to Tell Whether a Cross Stitch Pattern Will Be Easy or Hard"
+      "title_en": "How to Tell Whether a Cross Stitch Pattern Will Be Easy or Hard",
+      "craft": "cross-stitch"
     },
     {
       "number": 36,
@@ -377,7 +412,8 @@
       "intent": "commercial",
       "status": "planned",
       "title_es": "Punto de cruz de pocos colores: cuándo es una ventaja",
-      "title_en": "Low-Color Cross Stitch Patterns: When Fewer Colors Are Better"
+      "title_en": "Low-Color Cross Stitch Patterns: When Fewer Colors Are Better",
+      "craft": "cross-stitch"
     },
     {
       "number": 37,
@@ -387,7 +423,8 @@
       "intent": "commercial",
       "status": "planned",
       "title_es": "Patrones grandes vs pequeños: cómo elegir tu próximo proyecto",
-      "title_en": "Large vs Small Cross Stitch Patterns: Choosing Your Next Project"
+      "title_en": "Large vs Small Cross Stitch Patterns: Choosing Your Next Project",
+      "craft": "cross-stitch"
     },
     {
       "number": 38,
@@ -397,7 +434,8 @@
       "intent": "informational-commercial",
       "status": "planned",
       "title_es": "Cómo convertir una foto en un patrón de punto de cruz",
-      "title_en": "How to Turn a Photo into a Cross Stitch Pattern"
+      "title_en": "How to Turn a Photo into a Cross Stitch Pattern",
+      "craft": "cross-stitch"
     },
     {
       "number": 39,
@@ -407,7 +445,8 @@
       "intent": "informational-commercial",
       "status": "planned",
       "title_es": "Cómo elegir una foto para convertirla en punto de cruz",
-      "title_en": "How to Choose a Photo to Turn into Cross Stitch"
+      "title_en": "How to Choose a Photo to Turn into Cross Stitch",
+      "craft": "cross-stitch"
     },
     {
       "number": 40,
@@ -417,7 +456,8 @@
       "intent": "commercial",
       "status": "planned",
       "title_es": "Cómo convertir la foto de tu mascota en un patrón de punto de cruz",
-      "title_en": "How to Turn a Pet Photo into a Cross Stitch Pattern"
+      "title_en": "How to Turn a Pet Photo into a Cross Stitch Pattern",
+      "craft": "cross-stitch"
     },
     {
       "number": 41,
@@ -427,7 +467,8 @@
       "intent": "commercial",
       "status": "planned",
       "title_es": "Cómo decorar una pared con varios cuadros de punto de cruz",
-      "title_en": "How to Style a Wall with Multiple Cross Stitch Pieces"
+      "title_en": "How to Style a Wall with Multiple Cross Stitch Pieces",
+      "craft": "cross-stitch"
     },
     {
       "number": 42,
@@ -437,7 +478,8 @@
       "intent": "commercial",
       "status": "planned",
       "title_es": "Cómo hacer que el punto de cruz se vea moderno en casa",
-      "title_en": "How to Make Cross Stitch Look Modern at Home"
+      "title_en": "How to Make Cross Stitch Look Modern at Home",
+      "craft": "cross-stitch"
     },
     {
       "number": 43,
@@ -447,7 +489,8 @@
       "intent": "informational",
       "status": "planned",
       "title_es": "Cómo evitar nudos y enredos en el hilo de punto de cruz",
-      "title_en": "How to Avoid Knots and Tangled Floss in Cross Stitch"
+      "title_en": "How to Avoid Knots and Tangled Floss in Cross Stitch",
+      "craft": "cross-stitch"
     },
     {
       "number": 44,
@@ -457,7 +500,8 @@
       "intent": "informational",
       "status": "planned",
       "title_es": "Cómo bordar zonas grandes del mismo color sin perderte",
-      "title_en": "How to Stitch Large Areas of One Color Without Losing Your Place"
+      "title_en": "How to Stitch Large Areas of One Color Without Losing Your Place",
+      "craft": "cross-stitch"
     },
     {
       "number": 45,
@@ -467,7 +511,8 @@
       "intent": "informational",
       "status": "planned",
       "title_es": "Cómo marcar una cuadrícula en tela Aida y cuándo merece la pena",
-      "title_en": "How to Grid Aida Fabric and When It Is Worth Doing"
+      "title_en": "How to Grid Aida Fabric and When It Is Worth Doing",
+      "craft": "cross-stitch"
     },
     {
       "number": 46,
@@ -477,7 +522,8 @@
       "intent": "commercial",
       "status": "planned",
       "title_es": "Dónde comprar patrones de punto de cruz online y qué mirar antes",
-      "title_en": "Where to Buy Cross Stitch Patterns Online and What to Check First"
+      "title_en": "Where to Buy Cross Stitch Patterns Online and What to Check First",
+      "craft": "cross-stitch"
     },
     {
       "number": 47,
@@ -487,7 +533,8 @@
       "intent": "commercial",
       "status": "planned",
       "title_es": "Cómo saber si un patrón descargable está bien diseñado antes de comprarlo",
-      "title_en": "How to Tell if a Downloadable Cross Stitch Pattern Is Well Designed Before Buying"
+      "title_en": "How to Tell if a Downloadable Cross Stitch Pattern Is Well Designed Before Buying",
+      "craft": "cross-stitch"
     },
     {
       "number": 48,
@@ -497,7 +544,8 @@
       "intent": "informational-commercial",
       "status": "planned",
       "title_es": "Patrones de punto de cruz gratis en PDF para practicar",
-      "title_en": "Free PDF Cross Stitch Patterns for Practice"
+      "title_en": "Free PDF Cross Stitch Patterns for Practice",
+      "craft": "cross-stitch"
     },
     {
       "number": 49,
@@ -507,7 +555,8 @@
       "intent": "commercial",
       "status": "planned",
       "title_es": "Proyectos de punto de cruz para terminar en un fin de semana",
-      "title_en": "Cross Stitch Projects You Can Finish in a Weekend"
+      "title_en": "Cross Stitch Projects You Can Finish in a Weekend",
+      "craft": "cross-stitch"
     },
     {
       "number": 50,
@@ -517,7 +566,28 @@
       "intent": "commercial",
       "status": "planned",
       "title_es": "Cómo elegir colores para un patrón de punto de cruz pop art",
-      "title_en": "How to Choose Colors for a Pop Art Cross Stitch Pattern"
+      "title_en": "How to Choose Colors for a Pop Art Cross Stitch Pattern",
+      "craft": "cross-stitch"
     }
-  ]
+  ],
+  "taxonomy_strategy": {
+    "principle": "Keep the craft separate from subject, style and editorial purpose so the site can add new maker disciplines without restructuring existing content.",
+    "visible_now": [
+      "cross-stitch"
+    ],
+    "horizon": [
+      "crochet",
+      "embroidery",
+      "woodworking"
+    ],
+    "dimensions": {
+      "craft": "The making discipline: cross-stitch now; crochet, embroidery or woodworking later.",
+      "section": "Editorial job of the page: learn, ideas or buying-guides.",
+      "topic": "What the article is about: patterns, materials, animals, florals, finishing, decor, etc.",
+      "style": "Optional aesthetic layer: modern, pop-art, minimalist, retro, geometric, botanical, etc.",
+      "skill": "Optional difficulty/audience layer.",
+      "project_type": "Optional physical outcome: wall-art, home-decor, blanket, garment, furniture, storage, etc.",
+      "article_type": "Guide, how-to, comparison, inspiration, buying-guide and similar editorial formats."
+    }
+  }
 }

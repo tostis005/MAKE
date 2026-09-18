@@ -97,6 +97,50 @@ function make_import_ensure_sections() {
     }
     return $result;
 }
+function make_import_dimension_terms( $taxonomy, $key ) {
+    if ( empty( $taxonomy[$key] ) || ! is_array( $taxonomy[$key] ) ) { return array(); }
+    $terms = array();
+    if ( ! empty( $taxonomy[$key]['terms'] ) && is_array( $taxonomy[$key]['terms'] ) ) {
+        $terms = $taxonomy[$key]['terms'];
+    } elseif ( ! empty( $taxonomy[$key]['primary'] ) && is_string( $taxonomy[$key]['primary'] ) ) {
+        $terms = array( $taxonomy[$key]['primary'] );
+    }
+    return array_values( array_unique( array_filter( array_map( 'sanitize_title', $terms ) ) ) );
+}
+function make_import_sync_dimensions( $post_id, $taxonomy ) {
+    $map = array(
+        'craft'        => 'make_craft',
+        'topic'        => 'make_topic',
+        'style'        => 'make_style',
+        'skill'        => 'make_skill',
+        'project_type' => 'make_project_type',
+        'article_type' => 'make_article_type',
+    );
+
+    if ( empty( $taxonomy['craft'] ) ) {
+        $taxonomy['craft'] = array( 'primary'=>'cross-stitch', 'terms'=>array('cross-stitch') );
+    }
+
+    foreach ( $map as $key=>$wp_taxonomy ) {
+        if ( ! taxonomy_exists( $wp_taxonomy ) ) { continue; }
+        $terms = make_import_dimension_terms( $taxonomy, $key );
+        if ( empty( $terms ) ) {
+            wp_set_object_terms( $post_id, array(), $wp_taxonomy, false );
+            continue;
+        }
+
+        foreach ( $terms as $slug ) {
+            if ( ! term_exists( $slug, $wp_taxonomy ) ) {
+                $name = ucwords( str_replace( '-', ' ', $slug ) );
+                $created = wp_insert_term( $name, $wp_taxonomy, array( 'slug'=>$slug ) );
+                if ( is_wp_error( $created ) && 'term_exists' !== $created->get_error_code() ) {
+                    throw new RuntimeException( $created->get_error_message() );
+                }
+            }
+        }
+        wp_set_object_terms( $post_id, $terms, $wp_taxonomy, false );
+    }
+}
 function make_import_primary_section( $taxonomy ) {
     if ( isset( $taxonomy['section']['primary'] ) && is_string( $taxonomy['section']['primary'] ) ) {
         return $taxonomy['section']['primary'];
@@ -187,6 +231,7 @@ foreach ( $files as $file ) {
         $hash = hash( 'sha256', $raw );
         $existing = make_import_find_existing( $source_id, $slug, $language );
         if ( $existing instanceof WP_Post && ! $options['force'] && hash_equals( $hash, (string) get_post_meta( $existing->ID, '_make_source_hash', true ) ) ) {
+            make_import_sync_dimensions( (int) $existing->ID, $taxonomy );
             $groups[]=$group; ++$skipped; echo "SKIP {$language} #{$number} {$slug}\n"; continue;
         }
 
@@ -214,6 +259,7 @@ foreach ( $files as $file ) {
         $section = make_import_primary_section( $taxonomy );
         if ( ! isset( $sections[$section][$language] ) ) { throw new RuntimeException( "Unknown section {$section}" ); }
         wp_set_post_categories( $post_id, array( $sections[$section][$language] ), false );
+        make_import_sync_dimensions( $post_id, $taxonomy );
 
         update_post_meta( $post_id, '_make_source_id', $source_id );
         update_post_meta( $post_id, '_make_source_hash', $hash );
