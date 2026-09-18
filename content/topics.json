@@ -1613,6 +1613,61 @@
       "title_es": "Ideas de punto de cruz para regalar en una jubilación",
       "title_en": "Cross Stitch Gift Ideas for Retirement",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 146,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "baking",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Patrones de repostería en punto de cruz: tartas, pan y utensilios",
+      "title_en": "Baking Cross Stitch Patterns: Cakes, Bread and Tools",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 147,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "hiking",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Patrones de senderismo y camping en punto de cruz",
+      "title_en": "Hiking and Camping Cross Stitch Patterns",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 148,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "cycling",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Patrones de ciclismo en punto de cruz: bicicletas, rutas y regalos",
+      "title_en": "Cycling Cross Stitch Patterns: Bikes, Routes and Gifts",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 149,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "crafts",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Patrones de punto de cruz para costura y amantes de las manualidades",
+      "title_en": "Cross Stitch Patterns for Sewing and Craft Lovers",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 150,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "cars",
+      "intent": "commercial",
+      "status": "drafted",
+      "title_es": "Patrones de coches y motos en punto de cruz para amantes del motor",
+      "title_en": "Car and Motorcycle Cross Stitch Patterns for Motoring Fans",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {
