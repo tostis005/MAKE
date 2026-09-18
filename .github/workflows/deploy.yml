@@ -78,7 +78,18 @@ jobs:
           "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '$TARGET' && mkdir -p '$TARGET'"
           "${DOCKER[@]}" cp "$STAGE/." "make-wp:$TARGET/"
           "${DOCKER[@]}" exec make-wp sh -lc "chown -R www-data:www-data '$TARGET' && find '$TARGET' -type d -exec chmod 755 {} + && find '$TARGET' -type f -exec chmod 644 {} + && test -s '$TARGET/style.css' && test -s '$TARGET/functions.php'"
-          "${DOCKER[@]}" exec make-wp php -r 'require "/var/www/html/wp-load.php"; flush_rewrite_rules(false); echo "MAKE theme deployed\n";'
+          "${DOCKER[@]}" exec make-wp php -r '
+            require "/var/www/html/wp-load.php";
+            $structure = (string) get_option("permalink_structure", "");
+            if ($structure === "") {
+                update_option("permalink_structure", "/%postname%/");
+                echo "MAKE_PERMALINK_STRUCTURE=/%postname%/ (configured)" . PHP_EOL;
+            } else {
+                echo "MAKE_PERMALINK_STRUCTURE=" . $structure . PHP_EOL;
+            }
+            flush_rewrite_rules(true);
+            echo "MAKE theme deployed" . PHP_EOL;
+          '
           "${DOCKER[@]}" exec make-wp php -r '
             require "/var/www/html/wp-load.php";
             echo "MAKE_SITE_URL=" . home_url("/") . PHP_EOL;
@@ -102,6 +113,7 @@ jobs:
                 echo "MAKE_PAGE_FOR_POSTS_URL=" . get_permalink($posts_page) . PHP_EOL;
             }
             $rules = get_option("rewrite_rules", array());
+            $rules = is_array($rules) ? $rules : array();
             foreach ($rules as $pattern => $target) {
                 if (strpos($pattern, "journal") !== false) {
                     echo "MAKE_REWRITE_RULE=" . $pattern . " => " . $target . PHP_EOL;
@@ -130,7 +142,7 @@ jobs:
                 $needle = str_starts_with($route, "/en/") ? "Latest articles" : "Últimos artículos";
                 if ($html === false || strpos($status, "200") === false || strpos($html, $needle) === false || strpos($html, "post-card") === false) {
                     fwrite(STDERR, "Journal HTTP smoke test failed for " . $route . " status=" . $status . PHP_EOL);
-                    continue;
+                    exit(2);
                 }
                 echo "MAKE_JOURNAL_SMOKE_OK=" . $route . " status=" . $status . " bytes=" . strlen($html) . PHP_EOL;
               '
