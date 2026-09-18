@@ -14,8 +14,6 @@ if ( have_posts() ) :
     <h1 class="article-title"><?php the_title(); ?></h1>
     <p class="article-deck"><?php echo esc_html( wp_trim_words( get_the_excerpt(), 28 ) ); ?></p>
     <div class="article-meta">
-      <span><?php echo esc_html( get_the_date() ); ?></span>
-      <span aria-hidden="true">·</span>
       <span><?php echo esc_html( make_reading_time( get_the_ID() ) ); ?></span>
     </div>
   </header>
