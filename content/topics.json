@@ -1503,6 +1503,61 @@
       "title_es": "Patrones gaming de punto de cruz: pixel art, mandos e ideas originales",
       "title_en": "Gaming Cross Stitch Patterns: Pixel Art, Controllers and Original Ideas",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 136,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "materials",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo usar hilos teñidos a mano en punto de cruz",
+      "title_en": "How to Use Hand-Dyed Floss in Cross Stitch",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 137,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "materials",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Hilo de seda para punto de cruz: qué cambia frente al algodón",
+      "title_en": "Silk Floss for Cross Stitch: What Changes Compared with Cotton?",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 138,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "materials",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Algodón perlé en punto de cruz: cuándo usarlo y qué cambia",
+      "title_en": "Pearl Cotton in Cross Stitch: When to Use It and What Changes",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 139,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "materials",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "¿Hay que prelavar la tela o el hilo antes de hacer punto de cruz?",
+      "title_en": "Should You Prewash Cross Stitch Fabric or Floss?",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 140,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "materials",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo evitar que el hilo destiña sobre la tela al lavar un punto de cruz",
+      "title_en": "How to Prevent Floss from Bleeding onto Cross Stitch Fabric",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {
