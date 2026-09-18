@@ -85,10 +85,13 @@ jobs:
                 update_option("permalink_structure", $desired);
             }
             require_once ABSPATH . "wp-admin/includes/misc.php";
-            flush_rewrite_rules(true);
-            save_mod_rewrite_rules();
+            flush_rewrite_rules(false);
+            global $wp_rewrite;
+            $rules = explode("\n", trim((string) $wp_rewrite->mod_rewrite_rules()));
+            $written = insert_with_markers(ABSPATH . ".htaccess", "WordPress", $rules);
             echo "MAKE_PERMALINK_STRUCTURE=" . (string) get_option("permalink_structure", "") . PHP_EOL;
             echo "MAKE_HTACCESS=" . (is_readable(ABSPATH . ".htaccess") ? "present" : "missing") . PHP_EOL;
+            echo "MAKE_HTACCESS_RULES=" . ($written ? "written" : "failed") . PHP_EOL;
             echo "MAKE theme deployed" . PHP_EOL;
           '
           "${DOCKER[@]}" exec make-wp php -r '
