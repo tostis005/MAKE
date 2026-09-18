@@ -3,7 +3,7 @@ Theme Name: Custom Craft Storefront
 Theme URI: https://github.com/tostis005/MAKE
 Author: Custom Craft Project
 Description: Self-contained editorial-commerce WordPress theme for digital craft patterns. Cross stitch first, ready for crochet and future crafts.
-Version: 1.1.2
+Version: 1.2.0
 Requires at least: 6.4
 Requires PHP: 8.1
 Text Domain: make
@@ -761,4 +761,92 @@ body{background:var(--mk-cream);color:var(--mk-ink)}
   .article-featured--placeholder{height:330px}
   .article-related{padding-bottom:42px}
   .article-related-head h2{font-size:30px}
+}
+
+
+/* Journal themes + pagination polish — v1.2.0 */
+.journal-themes{padding:12px 0 34px}
+.journal-themes-head{
+  display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);gap:34px;align-items:end;margin-bottom:22px
+}
+.journal-themes-head h2{margin:7px 0 0;font:500 clamp(34px,4vw,50px)/1.02 Georgia,serif;letter-spacing:-.045em}
+.journal-themes-head p{max-width:520px;margin:0;color:var(--mk-muted);font-size:13px;line-height:1.65}
+.journal-theme-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.journal-theme-card{
+  overflow:hidden;border:1px solid var(--mk-line);border-radius:25px;background:var(--mk-paper);
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease
+}
+.journal-theme-card:hover{transform:translateY(-4px);box-shadow:var(--mk-shadow);border-color:#d9bcc5;color:var(--mk-ink)}
+.journal-theme-card.is-active{border-color:var(--mk-red);box-shadow:0 16px 42px rgba(143,68,91,.10)}
+.journal-theme-media{display:block;aspect-ratio:16/9;overflow:hidden;background:#f3e6e8}
+.journal-theme-art{display:block;width:100%;height:100%;padding:14px;background:linear-gradient(145deg,#f2e3e7,#eee6df)}
+.journal-theme-art svg{display:block;width:100%;height:100%;filter:drop-shadow(0 10px 18px rgba(86,57,70,.08))}
+.journal-theme-art--animals{background:linear-gradient(145deg,#eee2e9,#f3e8df)}
+.journal-theme-art--pop-art{background:linear-gradient(145deg,#f0cfd8,#ead8a5)}
+.journal-theme-art--retro{background:linear-gradient(145deg,#efe2c8,#e2d0df)}
+.journal-theme-art--geometric{background:linear-gradient(145deg,#e8e1ef,#f1e5e4)}
+.journal-theme-art--celestial{background:linear-gradient(145deg,#dfe6ee,#ece2ec)}
+.journal-theme-art--food{background:linear-gradient(145deg,#f2ddd8,#e5eadf)}
+.journal-theme-art--quotes{background:linear-gradient(145deg,#eee0e7,#f1e9dd)}
+.journal-theme-art--seasonal{background:linear-gradient(145deg,#e2eadf,#f0dedf)}
+.journal-theme-copy{position:relative;display:block;min-height:135px;padding:20px 48px 20px 20px}
+.journal-theme-copy strong{display:block;font:500 25px/1.05 Georgia,serif;letter-spacing:-.035em}
+.journal-theme-copy small{display:block;margin-top:8px;color:var(--mk-muted);font-size:11.5px;line-height:1.5}
+.journal-theme-copy i{position:absolute;right:20px;top:21px;color:var(--mk-red-deep);font-style:normal;font-size:20px}
+.journal-back-link{display:inline-flex;margin-bottom:18px;color:var(--mk-red-deep);font-size:11px;font-weight:850}
+
+/* Article placeholders inherit their thematic stitch artwork. */
+.make-editorial-art{
+  display:grid;place-items:center;padding:18px;background:linear-gradient(145deg,#f2e2e5,#e7dbd5)
+}
+.make-editorial-art svg{display:block;width:min(90%,420px);height:auto;max-height:90%;filter:drop-shadow(0 12px 22px rgba(85,57,69,.08))}
+.make-editorial-art--animals{background:linear-gradient(145deg,#eee2e9,#f3e8df)}
+.make-editorial-art--pop-art{background:linear-gradient(145deg,#f0cfd8,#ead8a5)}
+.make-editorial-art--retro{background:linear-gradient(145deg,#efe2c8,#e2d0df)}
+.make-editorial-art--geometric{background:linear-gradient(145deg,#e8e1ef,#f1e5e4)}
+.make-editorial-art--celestial{background:linear-gradient(145deg,#dfe6ee,#ece2ec)}
+.make-editorial-art--food{background:linear-gradient(145deg,#f2ddd8,#e5eadf)}
+.make-editorial-art--quotes{background:linear-gradient(145deg,#eee0e7,#f1e9dd)}
+.make-editorial-art--seasonal{background:linear-gradient(145deg,#e2eadf,#f0dedf)}
+
+/* Pagination: no container pill/border, only individual controls. */
+.pagination.journal-pagination{
+  margin-top:42px;padding:0!important;border:0!important;background:transparent!important;
+  box-shadow:none!important;border-radius:0!important
+}
+.journal-pagination-buttons{
+  display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px;
+  margin:0;padding:0;border:0!important;background:transparent!important;box-shadow:none!important
+}
+.journal-pagination .page-number{
+  min-width:42px;height:42px;display:inline-grid;place-items:center;padding:0 13px;
+  border:1px solid var(--mk-line);border-radius:999px;background:var(--mk-paper);
+  color:var(--mk-ink);font-size:11px;font-weight:850;line-height:1;box-shadow:none;text-decoration:none
+}
+.journal-pagination a.page-number:hover{border-color:var(--mk-red);color:var(--mk-red-deep);background:#fff7f7}
+.journal-pagination .page-number.is-current{
+  background:var(--mk-plum);border-color:var(--mk-plum);color:#fff
+}
+.journal-pagination .page-number--dots{
+  min-width:26px;padding:0;border:0;background:transparent;color:var(--mk-muted)
+}
+.journal-pagination .page-number--prev,.journal-pagination .page-number--next{padding-inline:17px}
+.journal-pagination>.page-numbers,
+.journal-pagination ul.page-numbers{
+  margin:0!important;padding:0!important;border:0!important;border-radius:0!important;
+  background:transparent!important;box-shadow:none!important
+}
+
+@media(max-width:980px){
+  .journal-theme-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .journal-themes-head{grid-template-columns:1fr;gap:14px}
+}
+@media(max-width:600px){
+  .journal-themes{padding-top:4px}
+  .journal-theme-grid{grid-template-columns:1fr;gap:13px}
+  .journal-theme-copy{min-height:118px}
+  .journal-theme-copy strong{font-size:23px}
+  .journal-pagination-buttons{gap:6px}
+  .journal-pagination .page-number{min-width:38px;height:38px;padding:0 10px}
+  .journal-pagination .page-number--prev,.journal-pagination .page-number--next{padding-inline:13px}
 }
