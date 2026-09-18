@@ -44,6 +44,11 @@ jobs:
             require "/var/www/html/wp-load.php";
             echo "HOME_URL=" . home_url("/") . PHP_EOL;
             echo "PERMALINK_STRUCTURE=" . ((string) get_option("permalink_structure", "") ?: "plain") . PHP_EOL;
+            echo "BLOG_PUBLIC=" . (string) get_option("blog_public", "missing") . PHP_EOL;
+            if (function_exists("wp_sitemaps_get_server")) {
+                $server = wp_sitemaps_get_server();
+                echo "SITEMAPS_ENABLED=" . (method_exists($server, "sitemaps_enabled") && $server->sitemaps_enabled() ? "yes" : "no") . PHP_EOL;
+            }
             foreach (array("es","en") as $lang) {
                 $q = new WP_Query(array(
                     "post_type"=>"post",
