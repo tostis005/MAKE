@@ -1,0 +1,66 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 160,
+  "translation_group": "160-cross-stitch-samplers",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "samplers",
+      "terms": [
+        "samplers"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-160-samplers",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "People looking for an explanation of cross stitch samplers and how to choose one.",
+  "title": "Cross Stitch Samplers: What They Are and How to Choose One",
+  "slug": "cross-stitch-samplers-how-to-choose",
+  "seo": {
+    "title": "Cross Stitch Samplers: What They Are",
+    "meta_description": "Learn what cross stitch samplers are, the main styles, how to judge difficulty, choose fabric and read a well-designed sampler chart.",
+    "search_intent": "Understand cross stitch samplers and choose a suitable pattern."
+  },
+  "excerpt": "What defines a sampler, how traditional and modern styles differ, and what to check before choosing a chart.",
+  "content_html": "<p>A cross stitch sampler brings letters, numbers, borders, dates and small motifs into one organized composition. Historically, samplers were used to practice and preserve needlework skills; today they can be decorative, commemorative or simply a satisfying way to stitch many small elements within one larger project.</p>\n<p>The term now covers a wide range of designs. Some reproduce historical layouts with alphabets, houses, birds and flowers; others use contemporary typography, geometry, pop motifs or personalized names and dates. The shared idea is structure: a sampler usually reads as a collection of related parts rather than one continuous illustration.</p>\n<h2>What actually defines a sampler</h2>\n<p>There is no single rule that separates every sampler from every other cross stitch pattern. In practice, a sampler usually contains several independent elements arranged according to one visual system. An alphabet might sit above a row of flowers, a border may frame numbers and initials, or small icons may repeat around a central date.</p>\n<p>That modular structure changes the stitching experience. You can finish one small section at a time, switch motifs regularly and see progress even when the final piece is large. Stitchers who find large full-coverage areas repetitive often enjoy this rhythm.</p>\n<p>Before choosing a chart, look at the complete composition rather than one attractive detail. The individual motifs should feel related through scale, color, spacing or subject.</p>\n<h2>Traditional, commemorative and modern styles</h2>\n<p>Traditional samplers often use alphabets, houses, birds, floral borders and restrained palettes. Historical reproductions may preserve old spelling, unusual spacing or even mistakes from the original piece, while modern adaptations sometimes regularize those details.</p>\n<p>Commemorative samplers add a specific event: a birth, wedding, anniversary or family name. In these designs, lettering and empty space matter as much as decoration because the personalized text needs to remain legible after names and dates are inserted.</p>\n<p>Modern samplers do not need to imitate antiques. A grid of graphic symbols, a collection of food icons, a geometric alphabet or a pop-art composition can all use sampler logic while feeling completely contemporary.</p>\n<h2>How to judge difficulty</h2>\n<p>Open background does not automatically mean easy. A sampler can contain many color changes, backstitch, fractional stitches, specialty stitches or very fine lettering even when most of the fabric remains unstitched.</p>\n<p>For a first sampler, look for full crosses, a controlled palette and clearly separated motifs. Being able to finish one small area during a session helps maintain momentum and reduces the risk of losing your place.</p>\n<p>Check the total stitch dimensions as well. A design with dozens of small motifs can still take a long time simply because the finished rectangle is large.</p>\n<h2>Fabric, count and finished size</h2>\n<p>Samplers often leave large areas of fabric visible, so the background becomes part of the design. Linen and evenweave are popular for fine lettering and a traditional surface, while Aida remains completely valid and makes counting easier.</p>\n<p>Fabric count changes the physical size without changing the chart. A higher count can make a large sampler fit a smaller frame, but tiny letters and narrow borders will also become physically smaller. Calculate the finished measurement before buying fabric.</p>\n<p>Leave enough margin for mounting and framing. A sampler that took months to stitch should not become difficult to finish because the fabric was cut too close to the outer border.</p>\n<h2>Historical reproductions versus original designs</h2>\n<p>If you are buying a historical reproduction, check what the designer has preserved and what has been adapted: thread colors, original errors, fabric count, spacing and specialty stitches can all vary between editions.</p>\n<p>For a new design, judge whether the motifs form a coherent visual language rather than a random collection. Repetition, spacing and hierarchy should make the whole piece feel intentional even when individual elements are very different.</p>\n<p>For our own catalogue, the opportunity is to use the sampler structure with an original MAKE visual language rather than simply copying the look of antique pieces.</p>\n<h2>What a good sampler pattern should include</h2>\n<p>A full overview is essential because the stitcher needs to understand the entire composition before working through separate chart pages. Page breaks, overlap and long borders should be easy to follow.</p>\n<p>If personalization is possible, the pattern should include the alphabet, available space and a clear centering method. A name should not require the customer to redraw half the border.</p>\n<p>The PDF should also state stitch dimensions, recommended fabric counts, thread list and any specialty stitches. A sampler can be visually complex, but its documentation should make the project easier rather than adding another layer of puzzle solving.</p>\n<p>A strong sampler balances variety with structure. That same principle should guide our own patterns: give the stitcher enough visual interest to enjoy the project while keeping the chart organized, readable and predictable to work from.</p>",
+  "image": {
+    "concept": "Modern cross stitch sampler combining lettering, small motifs and a clean border.",
+    "alt": "Cross stitch sampler pattern"
+  }
+}
