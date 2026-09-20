@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 280,
+  "translation_group": "280-cross-stitch-pdf-page-overlap-avoid-duplicate-stitches",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "patterns",
+      "terms": [
+        "patterns",
+        "pdf",
+        "chart-reading"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide",
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "es-280-solape-paginas-patron",
+  "language": "es",
+  "locale": "es-ES",
+  "market_context": "Personas que usan gráficos PDF de varias páginas y no saben si los símbolos del borde son solape repetido o puntadas nuevas.",
+  "title": "Cómo usar el solape entre páginas de un patrón PDF sin bordar filas dos veces",
+  "slug": "solape-paginas-patron-pdf-punto-de-cruz-sin-duplicar",
+  "seo": {
+    "title": "Cómo usar el solape entre páginas de un patrón PDF sin bordar filas dos veces",
+    "meta_description": "Aprende cómo funcionan las filas y columnas repetidas entre páginas de un PDF de punto de cruz y cómo evitar bordarlas dos veces o saltarlas.",
+    "search_intent": "Personas que usan gráficos PDF de varias páginas y no saben si los símbolos del borde son solape repetido o puntadas nuevas."
+  },
+  "excerpt": "Cómo identificar zonas solapadas, comparar coordenadas y cruzar límites de página sin duplicar ni perder filas.",
+  "content_html": "<p>Los gráficos grandes de punto de cruz suelen dividirse en varias páginas PDF. Para facilitar el cambio, algunos diseñadores repiten unas filas o columnas de la página vecina. Ese solape sirve como referencia, no es diseño adicional. Si lo interpretas como casillas nuevas, puedes bordar dos veces la misma zona y desplazar todo lo que venga después.</p>\n<h2>Busca instrucciones de solape dentro del PDF</h2>\n<p>Muchos patrones explican el sistema en las primeras páginas. Pueden indicar que se repiten dos filas, sombrear una banda, añadir flechas o mostrar un mapa general con la posición de cada hoja. Lee esas notas antes de asumir que todas las casillas impresas son únicas.</p>\n<p>Si no existe explicación, compara directamente dos páginas contiguas. Una secuencia idéntica de símbolos cerca de ambos bordes suele revelar la zona repetida.</p>\n<h2>Compara coordenadas, no los bordes físicos del papel</h2>\n<p>El borde de una hoja no existe en la tela. Lo importante es la coordenada global del punto. Si una página llega hasta la columna 80 y la siguiente empieza mostrando otra vez desde la 71, las columnas 71–80 son referencia repetida.</p>\n<p>Utiliza los números de fila y columna si el gráfico los incluye. Son mucho más fiables que los márgenes de impresión, que pueden variar entre páginas o impresoras.</p>\n<h2>Marca el solape completado en las dos páginas</h2>\n<p>Cuando termines una zona que también aparece en la hoja siguiente, márcala allí como hecha. En papel puedes sombrear suavemente la franja repetida. En una app de anotación, marca el mismo tramo en ambas páginas o utiliza un sistema de progreso basado en coordenadas.</p>\n<p>Así la hoja nueva no parece completamente vacía cuando una parte solo está repitiendo puntos que ya has bordado.</p>\n<h2>No remates el hilo solo porque termine una página</h2>\n<p>Si un color continúa al otro lado del límite, puedes seguir con él. Las divisiones de página son una necesidad de impresión, no una costura real en el diseño. Cruzarlas de forma natural también ayuda a evitar diferencias visibles de tensión en full coverage.</p>\n<p>Mantén visible la página siguiente y verifica símbolos mientras avanzas. Lo importante es conservar la posición correcta, no tratar cada hoja como un rectángulo independiente.</p>\n<h2>Comprueba también que no estés saltando filas</h2>\n<p>El error contrario también existe. Si supones que hay solape cuando las páginas en realidad se unen directamente, puedes omitir una fila o columna. Antes de continuar, busca dos o tres símbolos distintivos cerca del borde y confirma su secuencia.</p>\n<p>En gráficos con muchas hojas, el mapa de páginas resulta muy útil. Marca qué número queda arriba, abajo y a cada lado para no comparar accidentalmente secciones que no son vecinas.</p>\n<h2>Usa el mismo sistema de referencia durante todo el proyecto</h2>\n<p>Trabajes en papel, tablet o una app especializada, apóyate en coordenadas, líneas gruesas de 10 por 10 y puntadas ya confirmadas en lugar del borde físico de la página. Esas referencias continúan de una hoja a otra aunque cambien los márgenes.</p>\n<p>El solape está pensado para facilitar los gráficos grandes. Identifica una vez qué banda se repite, márcala de manera consistente y considera todo el patrón una sola cuadrícula continua. Así evitas tanto duplicar cruces como dejar huecos en las uniones.</p><p>Algunos gráficos repiten el solape solo en uno de los lados de cada página. Por ejemplo, el borde derecho puede aparecer de nuevo en la hoja siguiente mientras el izquierdo no repite nada de la anterior. No des por hecho que siempre existen exactamente las mismas filas de solape salvo que las instrucciones lo indiquen. Comprueba la convención entre las primeras páginas y vuelve a verificarla al cambiar de dirección en el mapa.</p><p>Si imprimes el patrón, anota suavemente en cada hoja el rango global de filas y columnas. Una nota del tipo «filas 1–60; zona nueva 1–50» resulta muy útil al retomar el proyecto semanas después. En tablet puedes usar marcadores o nombres de página para conseguir la misma referencia.</p><p>Cuando el solape incluye símbolos de backstitch o puntos especiales además de cruces, compáralos también. Las líneas pueden atravesar el borde de página y repetirse de manera menos evidente que una fila completa de símbolos. Confirma primero las cruces del área y después usa puntos comunes como referencia para continuar el trazado.</p><p>Antes de avanzar una zona grande, haz una comprobación pequeña en la unión: elige un símbolo distintivo próximo al solape y cuenta su distancia desde una línea gruesa de 10 por 10 en las dos páginas. Si coinciden coordenada y símbolos vecinos, has emparejado bien las hojas. Esa revisión rápida puede evitar que una página completa quede desplazada por repetir o saltar una sola fila.</p>",
+  "image": {
+    "concept": "Vista editorial de dos páginas PDF de punto de cruz con una franja de solape repetida y coordenadas coincidentes.",
+    "alt": "Páginas de patrón PDF mostrando una zona de solape repetida"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 279,
+  "translation_group": "279-stop-cross-stitch-needle-unthreading",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "technique",
+      "terms": [
+        "technique",
+        "needle",
+        "thread"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide",
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-279-stop-cross-stitch",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Cross stitchers whose needle repeatedly slips off the working floss while they stitch.",
+  "title": "Why Your Cross Stitch Needle Keeps Unthreading and How to Stop It",
+  "slug": "stop-cross-stitch-needle-unthreading",
+  "seo": {
+    "title": "Why Your Cross Stitch Needle Keeps Unthreading and How to Stop It",
+    "meta_description": "Learn why a cross stitch needle keeps sliding off the floss and how tail length, needle eye size, thread wear and hand movement affect unthreading.",
+    "search_intent": "Cross stitchers whose needle repeatedly slips off the working floss while they stitch."
+  },
+  "excerpt": "Simple fixes for a needle that keeps unthreading: longer tails, better needle size, gentler pulling and replacing worn floss.",
+  "content_html": "<p>A cross stitch needle is not tied to the floss, so it can slide off whenever the tail through the eye becomes too short. If this happens constantly, the problem is usually a combination of working length, needle size and how the thread is pulled rather than a defective needle. A few small adjustments make the needle much less likely to unthread.</p>\n<h2>Leave a longer tail through the eye</h2>\n<p>The simplest fix is to keep several centimeters of floss beyond the needle eye instead of working with a tiny tail. Each stitch creates friction that can draw the short end backward through the eye, especially when the working thread catches on the fabric.</p>\n<p>As the main thread gets shorter, periodically pull a little more of the tail through the needle so the proportions stay comfortable. Do not wait until only a centimeter remains.</p>\n<h2>Check whether the needle eye matches the thread bundle</h2>\n<p>If you force three or four strands through an eye that is barely large enough, the floss can bunch and move unpredictably. If the eye is extremely large relative to a single fine strand, the thread may also slide too freely. A tapestry needle appropriate for the fabric count and strand number should let the floss pass without scraping while still feeling controlled.</p>\n<p>If the thread is fraying at the eye, try a fresh needle of the same size before changing technique. A rough or damaged eye can weaken the tail until it slips out.</p>\n<h2>Watch how you pull the needle through</h2>\n<p>If you grip the needle and pull sharply while the floss is caught behind the fabric, the sudden resistance can strip the needle off the tail. When a stitch stops unexpectedly, check for a loop or snag instead of pulling harder.</p>\n<p>Some stitchers pinch the tail lightly against the needle with a finger for the first part of the pull, especially when the thread is short. You do not need to hold it for every stitch once a comfortable length is established.</p>\n<h2>Avoid working the floss down to the final centimeters</h2>\n<p>Trying to use every last bit of a strand makes unthreading more common. Near the end, there is little difference between the length needed to form a stitch and the tail needed to keep the needle attached. Finish and restart before the working thread becomes awkward.</p>\n<p>This also reduces wear. A strand that has passed through the fabric dozens of times becomes fuzzier and more flexible, making the final short section harder to control.</p>\n<h2>Separate and align strands before threading</h2>\n<p>When using two or more strands, make sure their ends are aligned through the eye. If one strand has a much shorter tail, it can slip out while the others remain, leaving you suddenly stitching with the wrong strand count.</p>\n<p>Trim badly frayed tips before threading and smooth the strands together. A clean end passes through the eye more easily and stays balanced during stitching.</p>\n<h2>Change the setup if unthreading happens every few stitches</h2>\n<p>If you are constantly rethreading despite a long tail, compare another needle, a slightly different eye size and a fresh length of floss. The problem should not require special knots at the eye. Tying floss to the needle can create a bulky point that is unpleasant to pull through Aida.</p>\n<p>A stable setup is simple: enough tail, a smooth eye, a sensible thread length and no violent pulling against snags. Once those variables are right, the needle should stay attached through normal stitching without needing to be locked to the floss.</p><p>How you thread the needle also matters with a loop start. The folded working setup may leave two cut ends through the eye and the loop at the opposite end; keep those cut ends long enough that both remain secure. If one slips out, the strand balance changes immediately. With three separate strands, align all three tails rather than allowing one to sit noticeably shorter.</p><p>Needle parking can contribute too. If you leave the needle hanging from a very short working length between sessions, gravity and movement inside a project bag may pull it free. Park the needle through a safe blank area or on a needle minder, and leave enough floss through the eye that handling the project cannot strip it off.</p><p>If your hands are very dry, static can also make fine strands separate and move unpredictably around the eye. Keeping hands comfortable and using a fresh, clean cut on the floss helps more than licking or repeatedly twisting the end. The aim is to make the tail behave consistently, not to stiffen it permanently.</p>",
+  "image": {
+    "concept": "Macro editorial view of a tapestry needle with a correctly sized floss tail compared with an almost-unthreaded short tail.",
+    "alt": "Cross stitch needle with a secure floss tail to prevent unthreading"
+  }
+}
