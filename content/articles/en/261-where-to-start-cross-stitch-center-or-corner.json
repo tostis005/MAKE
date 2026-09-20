@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 261,
+  "translation_group": "261-where-to-start-cross-stitch-center-or-corner",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "technique",
+      "terms": [
+        "technique",
+        "starting",
+        "counting"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide",
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-261-where-to-start",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "People deciding whether to start a counted cross stitch pattern from the center or a corner and wanting to avoid placement or fabric-size mistakes.",
+  "title": "Where Should You Start a Cross Stitch Pattern: Center or Corner?",
+  "slug": "where-to-start-cross-stitch-center-or-corner",
+  "seo": {
+    "title": "Where Should You Start a Cross Stitch Pattern: Center or Corner?",
+    "meta_description": "Learn whether to start cross stitch in the center or a corner, when each method works best, and how to avoid placement and margin mistakes.",
+    "search_intent": "People deciding whether to start a counted cross stitch pattern from the center or a corner and wanting to avoid placement or fabric-size mistakes."
+  },
+  "excerpt": "A practical comparison of center and corner starts, including project size, margins, full coverage and the checks to make before the first stitch.",
+  "content_html": "<p>When you open a new counted cross stitch pattern, one of the first practical decisions is where to place the very first stitch. Many beginner instructions say to start in the center, while large full-coverage projects are often started from the top-left corner. Both methods can work. The important difference is how each one controls placement, counting and the risk of running out of fabric.</p>\n<h2>Why starting in the center is the traditional method</h2>\n<p>Starting in the center is popular because it automatically helps center the design on the fabric. You find the midpoint of the chart, find the midpoint of the fabric, match those two reference points and begin stitching nearby. If your fabric has a generous margin on every side, this method leaves roughly equal unused space around the finished design without requiring you to calculate a corner position first.</p>\n<p>It is especially useful for small and medium designs, kits with pre-cut fabric and patterns where the stitched area is surrounded by a lot of empty fabric. Center starting also reduces the consequence of a small measuring error at the beginning. Even if your fold or center mark is a few threads off, the project usually remains safely within the available fabric as long as the margins are sensible.</p>\n<h2>When starting from a corner makes more sense</h2>\n<p>Corner starting is common on large charts, especially full-coverage projects worked page by page. Instead of locating a central symbol and then stitching outward in several directions, you establish the top-left, top-right, bottom-left or bottom-right edge of the design and move through the chart from a fixed boundary. Many stitchers find this easier to track because the work progresses in a predictable direction.</p>\n<p>The trade-off is that your initial measurement must be accurate. Before placing the first stitch, confirm the fabric count, calculate the stitched width and height, and decide how much margin you need for framing or finishing. Then measure that margin from the fabric edge to the corner of the design. A corner start is reliable when those numbers are checked; it is risky when the starting point is guessed.</p>\n<h2>How project size changes the decision</h2>\n<p>For a small motif on a single-page chart, the center method is usually simple and forgiving. You can fold the fabric into quarters, identify the chart center and begin without creating a full grid. On a very large pattern, however, the center may fall on a page you will not naturally reach for a long time, and working outward can make chart navigation feel less orderly.</p>\n<p>Full-coverage patterns also behave differently because almost every square will eventually contain a stitch. Starting from one corner lets you build a continuous stitched area and can pair well with parking or page-based working. By contrast, a design with isolated motifs or large empty spaces may be easier from the center because the center marks give you a trustworthy reference without measuring long empty distances from an outer corner.</p>\n<h2>What to check before a corner start</h2>\n<p>Never use the raw edge of the fabric as your only reference until you know the piece was cut straight and the required margin is present. Measure the fabric itself, verify its orientation and calculate the design dimensions from the stitch count and fabric count. If a chart is 280 stitches wide on 14-count Aida, for example, the stitched width is about 20 inches before adding any margin.</p>\n<p>Marking a few temporary grid lines can make a corner start safer. You do not have to grid the entire project. A short 10-by-10 reference near the starting corner is often enough to confirm that the first block of symbols lines up with the chart. If the pattern has blank rows or columns before the first visible stitch, remember that the design boundary and the first colored stitch are not always the same point.</p>\n<h2>What to check before a center start</h2>\n<p>Find the center of the fabric by folding it gently in half horizontally and vertically, or by measuring if you prefer not to crease it. On the chart, look for center arrows or center lines. Their intersection may fall on a grid line rather than inside a symbol, so choose a nearby stitch and count carefully from that center reference.</p>\n<p>Do not assume that the geometric center of the printed page is the center of the design. Multi-page PDFs can have margins, legends or overlapping rows that make the page itself misleading. Use the chart markings or the stated stitch dimensions. Once you have matched fabric center to design center, stitch a compact area first rather than making several long counting jumps in different directions.</p>\n<h2>Center or corner: how to choose for your project</h2>\n<p>Choose the center when you want the safest automatic placement, especially for a first project, a kit or a design with plenty of unstitched background. Choose a corner when the project is large, the chart is naturally worked page by page, or you prefer moving through the design in one consistent direction. Neither method changes the finished stitches; it changes how you manage position and counting.</p>\n<p>Whichever starting point you use, the real protection comes from checking the same three things before stitching: fabric count, finished design dimensions and margin. A precisely measured corner is safer than a badly identified center, and a correctly matched center is safer than a guessed corner. Once those references are right, you can start wherever the structure of the pattern feels easiest to follow.</p>",
+  "image": {
+    "concept": "Modern editorial view of cross stitch fabric with center marks and a top-left corner starting point indicated.",
+    "alt": "Cross stitch fabric showing center and corner starting points"
+  }
+}
