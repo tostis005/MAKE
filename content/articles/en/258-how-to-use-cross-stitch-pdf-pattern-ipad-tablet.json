@@ -1,0 +1,66 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 258,
+  "translation_group": "258-how-to-use-cross-stitch-pdf-pattern-ipad-tablet",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "digital-patterns",
+      "terms": [
+        "digital-patterns"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-258-cross-stitch-pdf-tablet",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Cross stitchers who want to read, zoom and mark PDF patterns on an iPad or tablet instead of printing them.",
+  "title": "How to Use a Cross Stitch PDF Pattern on an iPad or Tablet",
+  "slug": "how-to-use-cross-stitch-pdf-pattern-ipad-tablet",
+  "seo": {
+    "title": "How to Use a Cross Stitch PDF Pattern on an iPad or Tablet",
+    "meta_description": "Learn how to use a cross stitch PDF on an iPad or tablet: organize the file, zoom without losing your place, mark completed stitches and choose a safe annotation workflow.",
+    "search_intent": "Show how to work from a cross stitch PDF on a tablet with a practical, app-neutral workflow for file storage, navigation, annotations and backups."
+  },
+  "excerpt": "A practical app-neutral workflow for reading cross stitch PDFs on a tablet, zooming the chart, marking progress, protecting the original file and avoiding lost annotations.",
+  "content_html": "<p>A tablet can replace a stack of printed chart pages without changing the pattern itself. The main advantages are zoom, searchable or selectable content when the PDF supports it, and the ability to mark progress without writing on paper. The important part is to build a reliable workflow before you are hundreds of stitches into the project, because losing your place or overwriting the only copy of the pattern is much more frustrating than learning the controls at the beginning.</p><h2>Save the original PDF before you start marking it</h2><p>Keep one untouched copy of the purchased or downloaded PDF and make a separate working copy for annotations. Store the original somewhere you can recover it from, such as your normal file storage or backed-up cloud folder. The working copy can then collect highlights, notes and page marks without risking the clean source file.</p><p>Use a clear filename that includes the pattern name and perhaps “working” or the start date. Avoid opening the same working file independently in several annotation apps unless you understand how each one saves changes, because conflicting versions can leave you unsure which progress marks are current.</p><h2>Choose a PDF reader that fits the chart</h2><p>A basic PDF reader may be enough if all you need is zoom and manual highlighting. More advanced readers can offer layers, drawing tools, bookmarks or easier page navigation. Dedicated cross-stitch apps may recognize symbols or provide stitch-specific marking, but compatibility depends on how the PDF was generated.</p><p>Test the actual pattern before committing to an app. Open several pages, zoom into dense symbols, try a few temporary marks and close and reopen the file. If the marks remain in place and the chart stays sharp enough to read, the basic workflow is working.</p><h2>Set up zoom and navigation so you do not lose your place</h2><p>Start at a zoom level where the current ten-by-ten grid area is easy to read without displaying so much of the page that symbols become tiny. Use grid numbers, page labels and the chart center as fixed reference points. When you pan across the pattern, pause at recognizable grid lines rather than moving randomly.</p><p>On multi-page charts, know how overlapping rows or columns are represented before stitching across a page boundary. Some patterns repeat a small overlap for orientation while others continue directly. The tablet does not remove the need to understand the chart's page system.</p><h2>Mark completed stitches in a reversible way</h2><p>A translucent highlight is useful because the printed symbol remains visible underneath. Some stitchers mark a completed ten-by-ten block; others highlight individual symbols or color areas. Choose a method detailed enough to prevent mistakes without turning progress tracking into more work than stitching.</p><p>Use one consistent meaning for each annotation. For example, one highlight can mean “stitched” while a different note or mark means “needs checking”. Avoid covering grid numbers, page arrows or symbols that you still need to read. If your app supports undo history only temporarily, save deliberately after major sections.</p><h2>Protect the tablet and the pattern during long sessions</h2><p>Disable or lengthen automatic screen locking if that is comfortable and appropriate, but balance convenience with battery use. A stable stand keeps the screen visible without placing the tablet on fabric or floss. Keep drinks, loose needles and scissors away from the device just as you would protect a paper chart from spills.</p><p>Brightness matters too. A very bright screen in a dark room can be tiring, while a screen that is too dim makes similar symbols harder to distinguish. Adjust the display and room lighting together rather than compensating by leaning closer for hours.</p><h2>Back up progress and know when paper is still useful</h2><p>Check that your annotated file is actually being saved where you expect. A quick test early in the project is worth doing: make a harmless mark, close the app completely, reopen the file and confirm the annotation remains. If the project will take months, keep periodic backups rather than trusting one device.</p><p>Paper can still be useful for a small reference key, a floss list or a section you want visible while the main chart stays zoomed elsewhere. Digital and printed workflows do not have to be all-or-nothing. The best setup is the one that lets you read symbols clearly and record progress reliably.</p><p>Before a long trip or stitching session away from home, confirm that the working PDF is available offline. A file that exists only through a network connection can become inaccessible at exactly the wrong moment. Open it once without connectivity if possible and verify that both the chart and recent annotations are stored locally.</p><p>A well-made PDF should remain useful whether it is printed or viewed on a screen. On a tablet, the key is not a particular brand of app but preserving the original file, testing compatibility, creating a consistent marking system and backing up the working copy before the chart contains weeks of progress.</p>",
+  "image": {
+    "concept": "Modern editorial tablet displaying a symbol cross stitch chart beside fabric, floss and a needle minder.",
+    "alt": "Using a cross stitch PDF pattern on a tablet"
+  }
+}

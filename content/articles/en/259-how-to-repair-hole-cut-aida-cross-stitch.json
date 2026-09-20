@@ -1,0 +1,66 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 259,
+  "translation_group": "259-how-to-repair-hole-cut-aida-cross-stitch",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "fabric",
+      "terms": [
+        "fabric"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-259-repair-aida-hole",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Cross stitchers who have accidentally cut, torn or damaged Aida fabric and need to decide whether and how the project can be repaired.",
+  "title": "How to Repair a Hole or Accidental Cut in Aida Fabric",
+  "slug": "how-to-repair-hole-cut-aida-cross-stitch",
+  "seo": {
+    "title": "How to Repair a Hole or Accidental Cut in Aida Fabric",
+    "meta_description": "Accidentally cut or tore your Aida? Learn how to assess the damage, stabilize loose threads, patch from behind and decide when moving or restarting is safer.",
+    "search_intent": "Help readers assess and repair small accidental holes or cuts in Aida while being honest about when the weave is too damaged for an invisible repair."
+  },
+  "excerpt": "A careful guide to damaged Aida: assess the cut, stop fraying, support the weave from behind, disguise small repairs and know when restarting is safer.",
+  "content_html": "<p>Accidentally catching Aida with scissors or pulling a damaged thread can feel catastrophic, especially when the project already contains hours of stitching. Small damage is sometimes repairable, but the best method depends on whether you have cut a single woven strand, opened a small hole or removed enough structure that the stitch grid no longer holds its shape. The priority is to stop the damage spreading before trying to make it invisible.</p><h2>Assess the damage before trimming anything else</h2><p>Put the scissors down and examine the area under good light. Identify whether the problem is a fuzzy surface thread, one severed woven strand, a slit across several Aida blocks or a true hole with missing fabric. Do not pull loose ends to “see what happens”; that can enlarge a minor cut into a much harder repair.</p><p>Count the surrounding blocks and compare them with an undamaged area. If the holes and squares still line up, the grid may be structurally usable. If several intersections have collapsed or the opening is growing when the fabric moves, the area needs stabilization before more stitching.</p><h2>Stop fraying and reduce movement around the cut</h2><p>Remove the project from very strong hoop or frame tension so the damaged area is not being pulled apart. Lay it flat and keep the loose fibers in their natural position. Avoid repeatedly handling the cut while deciding what to do.</p><p>For a tiny severed thread, the neighboring weave and later stitches may provide enough support, but a larger slit often benefits from a backing patch. The support should stabilize the fabric rather than create a thick lump that changes how the stitches sit. Test any repair material on spare fabric if you are unsure how it behaves through washing or finishing.</p><h2>Support a small hole from the back</h2><p>A practical repair for a small damaged area is to place a piece of compatible fabric behind it so the original grid has support. A scrap of Aida with a similar count can work when its holes are carefully aligned with the main fabric. Some stitchers prefer a fine stable fabric behind the area when exact hole alignment is not needed because the repair will be fully covered by stitching.</p><p>Baste the support in place outside the damaged blocks before trying to stitch over the repair. Keep the patch larger than the hole but small enough that it does not create an obvious stiff rectangle. The goal is to make the area stable enough to accept stitches without pulling the cut wider.</p><h2>Rebuild the visual grid only as much as necessary</h2><p>If one or two Aida bars have been cut, you may be able to mimic their position with a few carefully placed support threads before covering the area with cross stitches. This is delicate work: adding too much thread can block the holes and make the repair more visible than the original damage.</p><p>Use the intact surrounding blocks as your guide. Do not invent a new hole position just because it is easier to reach. If the design has full coverage over the area, a structurally sound repair can become much less noticeable because the crosses conceal the backing and rebuilt threads.</p><h2>Decide whether the design can help hide the repair</h2><p>Damage inside a dense stitched area is easier to disguise than damage in exposed background fabric. If the cut falls under future full crosses, the stitches can visually integrate the repair. If it lies in a large unstitched margin or open negative space, even a strong repair may remain visible.</p><p>For a pattern with flexibility, moving a small motif or adding an intentional decorative element may sometimes cover a repaired spot, but do not distort the whole composition merely to avoid restarting. Check the final framing area too: damage far outside the stitched design may disappear behind mounting or a mat if sufficient margin remains.</p><h2>Know when restarting is the safer option</h2><p>If the hole is large, the count can no longer be followed accurately or the fabric continues to split under gentle handling, an invisible and durable repair may not be realistic. Restarting is painful, but it can be safer than investing many more hours in a base fabric that may fail during washing, blocking or framing.</p><p>The stage of the project matters. A tiny repair after months of work deserves more effort than the same damage after twenty stitches. Also consider the intended use: a framed piece experiences little handling, while a cushion, bag or washable textile places much more stress on the repaired area.</p><p>Once the repair is stable, stitch the first few crosses around it slowly and check the back after each one. If the weave begins opening again, stop rather than tightening the stitches. A successful Aida repair is not about pulling the hole closed; it is about restoring enough support that the grid can carry normal stitching without further damage.</p>",
+  "image": {
+    "concept": "Editorial macro of a small accidental cut in Aida fabric beside a carefully stabilized repaired area.",
+    "alt": "Repairing a small hole or cut in Aida fabric"
+  }
+}

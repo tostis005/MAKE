@@ -1,0 +1,66 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 256,
+  "translation_group": "256-does-aida-have-right-wrong-side-cross-stitch",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "fabric",
+      "terms": [
+        "fabric"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-256-aida-right-wrong",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Cross stitchers wondering whether Aida has a right side and wrong side and which face should be used for stitching.",
+  "title": "Does Aida Fabric Have a Right and Wrong Side for Cross Stitch?",
+  "slug": "does-aida-have-right-wrong-side-cross-stitch",
+  "seo": {
+    "title": "Does Aida Fabric Have a Right and Wrong Side for Cross Stitch?",
+    "meta_description": "Does Aida have a right and wrong side? Learn when both faces are effectively usable, what differences to inspect and how dyed, printed or special Aida can change the answer.",
+    "search_intent": "Answer whether Aida has a right and wrong side, explain exceptions and give a practical method for choosing the face before starting a project."
+  },
+  "excerpt": "A practical guide to the right and wrong side of Aida, including standard fabric, selvages, printing, dyeing, texture and what to check before stitching.",
+  "content_html": "<p>Standard Aida often looks almost identical on both sides, which is why beginners frequently stop before the first stitch and wonder whether they are about to use the fabric backwards. In most ordinary cross-stitch Aida, there is no dramatic front and back in the way there is with printed cotton or patterned fabric. Both faces can usually accept stitches. The useful question is not simply “which side is correct?” but whether this particular piece has any finish, print, dye effect or surface difference that makes one side preferable.</p><h2>Standard Aida is usually usable on either side</h2><p>Aida is woven to create regular blocks with clearly defined corner holes. On a plain, evenly finished piece, the structure is generally visible from both faces and either side can function as the front. If you accidentally begin on the face you first thought was the back, that alone does not normally ruin the project.</p><p>Look at the fabric under good light. If color, weave and texture appear the same on both sides and there is no printing or special surface treatment, choose the face that looks cleanest and most even to you. Consistency after you begin matters more than finding an invisible “official” front.</p><h2>Why one face can still look slightly better</h2><p>Manufacturing, finishing and handling can leave subtle differences. One side may have slightly flatter fibers, fewer fuzzy areas or more even-looking holes. A cut piece may also have been stored against another material, causing one face to pick up lint or crease differently.</p><p>These differences are cosmetic rather than a universal rule. Inspect a central area instead of judging only by a frayed edge. If one side clearly looks smoother or has more regular blocks, using that face as the front is sensible because it will remain visible around the stitches.</p><h2>Selvages do not give a universal front-side rule</h2><p>Some stitchers try to identify the front from the selvage, holes along the edge or the direction in which manufacturing marks face. That can sometimes tell you how a particular piece came off a roll, but it is not a reliable universal method for every Aida brand and cut.</p><p>More importantly, many precut pieces have no selvage at all. A practical decision should therefore come from the actual surface of the fabric rather than a rule that disappears as soon as the edges are trimmed. Check the weave, color and finish directly.</p><h2>Dyed, printed and specialty Aida can have a preferred face</h2><p>Hand-dyed fabric may show stronger mottling, speckles or color movement on one side. Printed Aida can have a clearly intended design face, and fabrics with glitter, metallic effects or other surface treatments may also look different front to back. In those cases, the visual treatment determines which side should face outward.</p><p>Before stitching, unfold the entire piece and compare both sides from normal viewing distance. A dramatic dye pattern can look attractive in one corner but place an unwanted dark patch behind the central motif. Choosing the face also means choosing the placement of that surface effect.</p><h2>Mark the chosen side before a large project</h2><p>Once you decide which side will be the front, keep that decision consistent. For a large blank piece that will be handled, gridded or mounted several times, it can be useful to place a removable note on the margin or attach a small tag outside the stitching area. This avoids turning the work over later and wondering which face you intended to use.</p><p>If you mark fabric directly, use only a method you already trust for that material and keep it outside the final stitched and finishing area. A paper clip, loose basting thread in the margin or external label avoids introducing an unnecessary permanent mark.</p><h2>What matters more than the side you choose</h2><p>Fabric orientation, sufficient margin, correct count and clean handling have a much larger effect on the finished project than choosing between two visually identical faces of plain Aida. Make sure the cut is large enough, the weave is not distorted and any gridding or center marks are understood before the first stitch.</p><p>If the fabric has a visible flaw, small stain or rough patch on one face, check whether it also shows through from the other. Turning the fabric over can sometimes hide a superficial imperfection, but it cannot repair a damaged weave. Move the design if necessary rather than assuming the back will conceal a structural problem.</p><p>For ordinary undyed, unprinted Aida, you can therefore stop worrying about a secret correct side. Compare both faces, use the cleaner or more attractive one if you can see a difference, and reserve strict front-versus-back rules for fabrics whose dye, print or special finish genuinely creates one.</p>",
+  "image": {
+    "concept": "Editorial close-up showing both faces of white Aida fabric side by side under natural light.",
+    "alt": "Right and wrong sides of Aida fabric compared"
+  }
+}

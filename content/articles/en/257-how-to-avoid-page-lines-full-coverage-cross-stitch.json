@@ -1,0 +1,66 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 257,
+  "translation_group": "257-how-to-avoid-page-lines-full-coverage-cross-stitch",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "technique",
+      "terms": [
+        "technique"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-257-avoid-page-lines",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Full-coverage cross stitchers trying to prevent visible vertical or horizontal lines where chart pages or stitching sections meet.",
+  "title": "How to Avoid Page Lines in Full-Coverage Cross Stitch",
+  "slug": "how-to-avoid-page-lines-full-coverage-cross-stitch",
+  "seo": {
+    "title": "How to Avoid Page Lines in Full-Coverage Cross Stitch",
+    "meta_description": "Learn why page lines appear in full-coverage cross stitch and how feathering, section overlap, tension control and better stopping points can keep page boundaries invisible.",
+    "search_intent": "Explain what causes visible page boundaries in full-coverage stitching and provide practical ways to prevent or reduce them while working from multi-page charts."
+  },
+  "excerpt": "Prevent visible page boundaries in full coverage by changing where colors stop, feathering sections, controlling tension and checking the work before the next page.",
+  "content_html": "<p>Large full-coverage charts are often divided into printable pages or screen sections, but the fabric does not know where those digital boundaries are. A visible vertical or horizontal ridge can appear if many colors stop and restart along the same straight line. These “page lines” are not printed marks on the fabric; they are differences in thread tension, stitch order or density that happen to follow the edge of a chart page.</p><h2>Why a straight page boundary can become visible</h2><p>If you finish every symbol exactly at the final column of one page, secure the threads, and later restart them in the first column of the next page, hundreds of tiny starts and stops accumulate along one line. Even when each individual stitch looks acceptable, the combined change in tension and thread direction can create a faint seam.</p><p>The effect is easier to notice in large areas of similar color or smooth shading because the eye expects an uninterrupted surface. Busy confetti can hide a boundary better, but it can still appear if the stitching method changes sharply from one side to the other.</p><h2>Feather the edge instead of stopping in a straight line</h2><p>Feathering means ending different colors at slightly different positions rather than completing a perfect page-shaped rectangle. One color might continue several stitches into the next chart section while another stops earlier. The edge becomes irregular, so there is no single vertical or horizontal line where every thread changes behavior.</p><p>You do not need to create a complicated zigzag. The goal is simply to avoid a ruler-straight stopping point across a large area. If your digital chart allows you to view adjacent pages or sections, look ahead far enough to see where the current colors continue.</p><h2>Keep tension consistent across the boundary</h2><p>Feathering cannot compensate for a major tension change. If you stitch one page in a tight hoop, remove the project for weeks and then work the next page much more loosely, the surface can still show a difference. Try to maintain the same fabric tension and similar hand tension throughout neighboring sections.</p><p>Be especially careful when restarting a color near the boundary. A new thread can tempt you to pull the first few stitches tighter to secure them. Anchor securely without cinching the fabric, and compare those stitches with the surrounding area before moving on.</p><h2>Avoid treating the printed page as a physical stitching box</h2><p>A page break is primarily a chart-layout convenience. It does not have to dictate where you park, finish a color or stop for the day. When possible, follow logical color areas, ten-by-ten grid blocks or manageable working zones that cross the printed boundary rather than obeying it rigidly.</p><p>If you prefer completing one page at a time, you can still stitch a small irregular extension into the neighboring page. Mark the completed symbols carefully so you do not stitch them twice when you officially move to the next sheet.</p><h2>What to do if a page line has already appeared</h2><p>First decide whether you are seeing true fabric distortion or only a temporary difference in thread lay. View the work without the hoop or frame and from normal distance. Freshly stitched sections can sometimes look different because the floss has not relaxed like older areas.</p><p>If the line comes from a few unusually tight stitches or carries, correcting those specific threads may help while the area is still accessible. Mild surface differences may reduce after appropriate washing and blocking, but a strongly cinched boundary is harder to remove. Avoid aggressive stretching that risks distorting the rest of the piece.</p><h2>Build page-line prevention into your working method</h2><p>Before finishing a page, inspect the next chart section and identify colors that continue across the border. Let some of them cross by different amounts, keep starts and finishes distributed, and preserve the same general tension. Digital marking tools can make this easier because you can track symbols beyond the nominal page edge without losing your place.</p><p>For parking, stagger parked threads rather than lining them all up exactly on the final column. For cross-country stitching, follow a color shape a reasonable distance into the adjacent section when doing so remains easy to count. Neither method needs to respect a straight paper boundary.</p><p>The most important idea is that the chart page is an organizational device, not part of the design. When your stitches cross that artificial boundary naturally, the finished fabric is much less likely to reveal where one sheet ended and the next one began.</p>",
+  "image": {
+    "concept": "Editorial macro of full-coverage cross stitch with a subtle chart-page boundary beside a smoothly feathered section.",
+    "alt": "Avoiding page lines in full-coverage cross stitch"
+  }
+}
