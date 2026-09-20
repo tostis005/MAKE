@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 281,
+  "translation_group": "281-does-print-scale-change-cross-stitch-pattern-size",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "patterns",
+      "terms": [
+        "patterns",
+        "pdf",
+        "printing"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide",
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "es-281-imprimir-patron-punto",
+  "language": "es",
+  "locale": "es-ES",
+  "market_context": "Personas que dudan si ampliar o reducir un gráfico de punto de cruz al imprimir modifica las dimensiones físicas del bordado.",
+  "title": "¿Imprimir un patrón de punto de cruz más grande cambia el tamaño final?",
+  "slug": "imprimir-patron-punto-de-cruz-mas-grande-cambia-tamano",
+  "seo": {
+    "title": "¿Imprimir un patrón de punto de cruz más grande cambia el tamaño final?",
+    "meta_description": "Descubre si imprimir un PDF al 100%, ajustar a página o ampliarlo cambia el tamaño final del bordado y qué ajustes sí importan.",
+    "search_intent": "Personas que dudan si ampliar o reducir un gráfico de punto de cruz al imprimir modifica las dimensiones físicas del bordado."
+  },
+  "excerpt": "Por qué puedes ampliar un gráfico contado para leerlo mejor sin cambiar número de puntos, count de tela ni tamaño final.",
+  "content_html": "<p>Un gráfico contado de punto de cruz no funciona como un patrón de costura a tamaño real. La casilla que ves impresa no debe medir lo mismo que una cruz sobre la tela. Cada celda representa un punto independientemente del tamaño que tenga en papel o pantalla. Por eso ampliar un PDF para leerlo mejor normalmente no hace que el bordado terminado sea más grande: mandan el número de puntos y el count.</p>\n<h2>El gráfico es un mapa, no una plantilla a escala real</h2>\n<p>Si un diseño tiene 140 puntos de ancho, seguirá teniendo 140 aunque lo imprimas en una página, lo amplíes a cuatro hojas o lo mires al 300% en una tablet. Continúas haciendo una cruz por cada casilla. Los milímetros impresos solo ayudan a leer símbolos y contar.</p>\n<p>Por eso una persona puede ampliar mucho el gráfico sin recalcular el bordado. No estás calcando el papel sobre la tela; estás reproduciendo posiciones dentro de otra cuadrícula formada por la Aida o el evenweave.</p>\n<h2>El count de la tela determina la medida física</h2>\n<p>El ancho final se calcula dividiendo los puntos entre la densidad efectiva. Un gráfico de 140 puntos sobre Aida 14 mide unas 10 pulgadas; sobre Aida 18 ronda 7,8. Que el PDF se imprima al 80%, 100% o 150% no aparece en esa fórmula.</p>\n<p>En lino y evenweave ocurre lo mismo, teniendo en cuenta si bordas over one u over two. Cambiar cómo usas la tela sí cambia la escala del proyecto. Cambiar el tamaño visual del papel no.</p>\n<h2>Cuándo sí importa imprimir al 100%</h2>\n<p>Algunos archivos incluyen además del gráfico una regla, plantilla para tarjeta, línea de corte, guía de acabado o elemento que debe tener una medida física concreta. Para esas partes puede ser imprescindible utilizar “tamaño real” o 100%. Sigue cualquier indicación específica del diseñador.</p>\n<p>También puede recomendarse 100% para conservar exactamente la distribución y los solapes entre páginas. Si cambias la escala, el número de cruces no varía, pero tu impresora puede reorganizar dónde termina cada hoja.</p>\n<h2>Ajustar a página puede afectar legibilidad y divisiones</h2>\n<p>Opciones como “ajustar”, “reducir páginas grandes” o “adaptar al área imprimible” hacen los símbolos algo más pequeños. El gráfico sigue representando los mismos puntos, pero puede resultar más difícil distinguir signos parecidos o leer números de filas.</p>\n<p>Al ampliar, una página original puede repartirse en varias hojas nuevas. Eso tampoco cambia el diseño, aunque obliga a distinguir entre los límites creados por la impresora y los límites originales del PDF. Conviene anotar coordenadas para no confundirlos.</p>\n<h2>Cómo ampliar el gráfico sin modificar el bordado</h2>\n<p>Aumenta la escala desde el lector PDF o utiliza impresión tipo póster/mosaico si tu impresora la admite. Prueba primero una página y comprueba que los símbolos, números y líneas gruesas de 10 por 10 siguen siendo nítidos.</p>\n<p>Un PDF vectorial puede ampliarse con mucha limpieza. Un escaneo de baja resolución se pixelará al crecer. En ese caso, quizá resulte más práctico utilizar zoom digital en tablet en lugar de imprimir una cuadrícula enorme y borrosa.</p>\n<h2>Qué debes comprobar antes de cortar la tela</h2>\n<p>No utilices el ancho físico de la cuadrícula impresa para calcular material. Busca el ancho y alto en puntos, el count, si trabajas sobre uno o dos hilos y el margen que quieres alrededor. Esos datos son los que determinan el corte.</p>\n<p>La escala de impresión es una preferencia de lectura salvo que exista una plantilla física. Haz el gráfico tan grande como necesites, mantén claras las coordenadas y el orden de páginas, y recuerda que el bordado solo cambia de tamaño si modificas el número de cruces o la densidad de la tela.</p><p>Otra fuente habitual de confusión es la imagen previa del bordado que algunos PDF muestran junto al gráfico de símbolos. Esa ilustración puede cambiar de tamaño al imprimir, pero solo sirve como referencia visual. No la midas para calcular la tela: las dimensiones en puntos del patrón siguen siendo la referencia correcta.</p><p>Si llevas el archivo a una copistería o creas una versión ampliada en mosaico, anota antes el número de páginas originales y sus coordenadas. Así podrás relacionar cada hoja nueva con la estructura del diseñador y no perder información de solapes aunque la impresora haya creado divisiones adicionales.</p><p>También conviene distinguir entre ampliar para leer y editar el propio PDF. Si recortas páginas o conviertes el archivo a imagen con baja resolución, puedes degradar los símbolos. Siempre que sea posible, conserva una copia original intacta y genera una copia de trabajo para imprimir.</p>",
+  "image": {
+    "concept": "Comparación editorial del mismo gráfico impreso a dos escalas junto a una tela con idéntico número de cruces.",
+    "alt": "Mismo patrón de punto de cruz impreso a escalas diferentes"
+  }
+}
