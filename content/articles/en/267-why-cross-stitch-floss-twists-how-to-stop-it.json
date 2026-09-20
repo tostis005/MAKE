@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 267,
+  "translation_group": "267-stop-cross-stitch-floss-twisting",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "technique",
+      "terms": [
+        "technique",
+        "thread",
+        "tension"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide",
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-267-why-cross-stitch",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Cross stitchers whose embroidery floss keeps twisting, tangling or turning into a cord while they stitch.",
+  "title": "Why Cross Stitch Floss Twists and How to Stop It",
+  "slug": "why-cross-stitch-floss-twists-how-to-stop-it",
+  "seo": {
+    "title": "Why Cross Stitch Floss Twists and How to Stop It",
+    "meta_description": "Learn why embroidery floss twists while cross stitching and how to reduce tangles with strand separation, shorter lengths, needle hanging and railroading.",
+    "search_intent": "Cross stitchers whose embroidery floss keeps twisting, tangling or turning into a cord while they stitch."
+  },
+  "excerpt": "Why floss twists during cross stitch and the practical habits that reduce tangles, corded strands and uneven coverage.",
+  "content_html": "<p>Embroidery floss naturally twists while you cross stitch because the needle rotates a little each time you pick it up, turn it or pull it through the fabric. After enough stitches, two strands that started side by side can wind into a cord. The result is more tangles, uneven coverage and crosses that look thinner than their neighbors. You do not need to eliminate every trace of twist, but managing it regularly makes stitching noticeably smoother.</p>\n<h2>Why floss twists even when your technique is correct</h2>\n<p>The needle is the main source of rotation. Most people roll it slightly between thumb and finger without noticing, especially when turning the point toward the next hole. If you always rotate in the same direction, that tiny movement accumulates along the working length. Pulling through the fabric then transfers the twist into the strands.</p>\n<p>Thread construction also matters. Stranded cotton already has its own manufacturing twist, and separating strands changes how they sit together. Metallic and specialty fibers can be even more sensitive. A twisting thread is therefore not proof that you are holding the needle incorrectly; it is a normal mechanical effect that simply needs occasional release.</p>\n<h2>Let the needle hang and untwist itself</h2>\n<p>The easiest correction is to stop every few minutes, let the needle hang freely below the work and allow it to spin. Gravity releases accumulated rotation and the strands relax. You can do this whenever the floss begins to look like a small rope or when the needle starts trying to loop around the working thread.</p>\n<p>Do not wait until the thread has formed a hard knot. Untwisting early takes a second; untangling a tight knot can damage the floss and waste much more time. On large blocks of one color, build this pause into your rhythm. A few seconds of hanging the needle after a row or a short group of stitches keeps the problem from becoming visible in the coverage.</p>\n<h2>Start with strands that are properly separated</h2>\n<p>If you need two strands, pulling two together from the six-strand bundle can leave them wrapped around each other from the beginning. A cleaner method is to remove individual strands one at a time and then place them together for stitching. They begin more parallel and are less likely to behave like one thick cord.</p>\n<p>After combining them, run your fingers lightly along the length without stretching. If one strand is longer, looped or visibly wound around the other, straighten it before threading the needle. Starting with aligned strands does not prevent later rotation, but it means you are not adding manufacturing and separation twist to the twist created by your hand.</p>\n<h2>Use a thread length that is easy to control</h2>\n<p>Very long floss has more opportunity to twist around itself and catch on fabric, clothing or the frame. It also experiences more passes through the Aida before the length is finished. A comfortable working length is easier to keep straight and usually suffers less abrasion by the time you reach the final stitches.</p>\n<p>Shorter is not automatically better, because constant starts and finishes interrupt your rhythm. Use a length that moves freely without forming loops behind the fabric. If you notice the last third of every length becoming tangled, try cutting slightly shorter pieces rather than fighting the same problem repeatedly.</p>\n<h2>Railroading can improve how twisted strands lie</h2>\n<p>Railroading is a technique where the needle passes between the strands as you form a leg of the cross, encouraging them to lie side by side on the surface. It does not remove twist from the entire working length, but it can stop two strands from landing on the fabric as one narrow cord. This can improve coverage in highly visible solid areas.</p>\n<p>You do not have to railroad every stitch. Some stitchers use it only for the top leg, dark colors on light fabric or sections where smooth coverage matters most. If the thread is already badly twisted, let the needle hang first. Railroading works best with relaxed strands; it should not become a way of forcing a tightly twisted bundle flat.</p>\n<h2>Check your needle movement if twisting returns very quickly</h2>\n<p>If the floss winds into a cord after only a handful of stitches, watch what your fingers are doing. You may be rolling the needle a full half-turn each time you bring it to the front. Try picking it up in a more consistent orientation or passing it between your fingers with less deliberate rotation.</p>\n<p>Two-handed stitching can change the direction and amount of needle rotation because each hand approaches the needle differently. The same is true when switching between Danish and English methods. There is no single correct hand movement, so focus on whether one sequence creates excessive twist and adjust that sequence rather than trying to make every stitch mechanically identical.</p>\n<p><strong>Know when twist is actually affecting the finished work.</strong></p>\n<p>A small amount of twist is harmless if the crosses look even and the thread moves freely. It becomes worth correcting when strands coil tightly, knots appear often, coverage varies or the surface loses the flat look you want. Dark floss on pale fabric makes these differences more obvious because a narrow twisted bundle exposes more background.</p>\n<p>The practical routine is simple: separate strands individually, use a manageable length, let the needle hang before the thread becomes troublesome and use railroading when you want flatter placement. Those habits address the twist without slowing every stitch. The goal is not perfectly parallel fibers at all times; it is consistent coverage and a thread that remains easy to control.</p>",
+  "image": {
+    "concept": "Macro editorial view of two embroidery floss strands twisting near a needle beside a flatter untwisted stitch sample.",
+    "alt": "Twisted and untwisted embroidery floss during cross stitch"
+  }
+}
