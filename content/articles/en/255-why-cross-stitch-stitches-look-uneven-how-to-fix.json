@@ -1,0 +1,66 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 255,
+  "translation_group": "255-why-cross-stitch-stitches-look-uneven-how-to-fix",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "technique",
+      "terms": [
+        "technique"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-255-uneven-cross-stitch",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Cross stitchers whose finished crosses look inconsistent, twisted, bulky or uneven despite following the chart correctly.",
+  "title": "Why Your Cross Stitch Stitches Look Uneven and How to Fix Them",
+  "slug": "why-cross-stitch-stitches-look-uneven-how-to-fix",
+  "seo": {
+    "title": "Why Your Cross Stitch Stitches Look Uneven and How to Fix Them",
+    "meta_description": "Learn why cross stitches can look uneven even when counted correctly, from leg direction and thread twist to tension, strand placement, fabric holes and worn floss.",
+    "search_intent": "Diagnose visual unevenness in cross stitch and show how to improve leg direction, thread lay, tension, hole placement and consistency."
+  },
+  "excerpt": "A troubleshooting guide for uneven-looking crosses: check leg direction, thread twist, tension, strand placement, fabric holes and floss condition.",
+  "content_html": "<p>A chart can be counted perfectly and the finished stitches can still look uneven. Some crosses appear thicker, some sit at different angles and others show a small gap of fabric even though the same number of strands was used. The cause is usually not one dramatic mistake but a combination of thread direction, twist, tension and how consistently the needle enters the fabric.</p><h2>Make sure every top leg runs the same way</h2><p>The most visible source of inconsistency is changing the direction of the upper diagonal. If most top legs run from lower left to upper right and a few run the opposite way, light reflects differently from those stitches and they stand out immediately.</p><p>Choose one direction for the bottom leg and one for the top leg, then keep that order throughout the project. It does not matter which convention you choose as long as it remains consistent. When switching between English and Danish stitching methods, pay extra attention so the final top leg does not accidentally reverse.</p><h2>Control thread twist before it changes coverage</h2><p>As the needle rotates in your fingers, the floss gradually twists. Two strands that began lying side by side can turn into a small cord. A twisted pair covers less width than two parallel strands and can make one cross look thin while the next looks full.</p><p>Let the needle hang occasionally so the thread can untwist. If the design has large areas of one color, this small habit can make a surprisingly large visual difference. Railroading or a laying technique can help when you want especially flat coverage, but simply releasing twist regularly is often enough.</p><h2>Watch tension without trying to make every stitch tight</h2><p>Uneven tension creates crosses of different apparent sizes. A tight stitch sinks into the holes and exposes more fabric between its legs; a loose stitch can sit high and look puffy. The target is consistent contact with the fabric, not maximum tightness.</p><p>If you notice your tension changes when the thread becomes short, replace it a little earlier. Very short floss is harder to pull smoothly and encourages abrupt movements. Also check whether your hand position changes near the edge of a hoop, because awkward access often produces tighter or looser stitches.</p><h2>Place the needle in the same part of each hole</h2><p>Aida holes are larger than the needle, so there is room to enter slightly differently from one stitch to the next. On high-contrast fabric, those small placement changes can make rows look jagged. Try to approach each hole consistently and avoid splitting existing floss unless the technique intentionally requires it.</p><p>When several crosses share the same hole, do not force all strands through the exact same tiny path. Let the needle find space beside previous thread. This reduces abrasion and keeps the corner from becoming a bulky knot of fiber.</p><h2>Check the condition and length of the floss</h2><p>Floss changes as it travels repeatedly through the fabric. It can become fuzzy, thinner or slightly dull, especially in dense areas or with a rough needle eye. A worn section will not lie like fresh thread, so the last few stitches of a long length may look different from the first ones.</p><p>Use a comfortable thread length and replace floss when it begins to fray rather than trying to use every final centimeter. If only one color behaves badly, inspect the skein and the needle eye. Metallic, variegated and specialty threads may need different handling from standard cotton.</p><h2>Fix what matters and leave harmless variation alone</h2><p>If one cross has a reversed top leg or is obviously much tighter than its neighbors, it may be worth unpicking while the area is accessible. For small differences in thread lay, you can sometimes nudge the strands gently with the needle tip so they sit more parallel. Avoid repeatedly picking at finished stitches because that can damage the floss faster than it improves the appearance.</p><p>Step back from the work before deciding it is uneven. Macro photographs and very close inspection exaggerate tiny differences that disappear at normal viewing distance. Handmade stitching will not look mechanically identical, and that is not the same as poor technique.</p><p>If the unevenness is limited to one color, compare a fresh length from the same skein and inspect the needle eye. A rough eye, unusually fuzzy floss or a specialty fiber can change how the strand lays even when your hand tension has not changed. Testing the material prevents you from correcting a technique that was not actually the problem.</p><p>The most effective improvement comes from consistency: same top-leg direction, regularly untwisted floss, steady tension, sensible thread length and deliberate needle placement. Once those habits become automatic, rows usually begin to look smoother without having to pull each stitch tighter or work much more slowly.</p>",
+  "image": {
+    "concept": "Macro editorial comparison of even and uneven cross stitches, showing thread twist and leg direction.",
+    "alt": "Even and uneven cross stitches compared"
+  }
+}

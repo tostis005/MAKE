@@ -1,0 +1,66 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 253,
+  "translation_group": "253-how-to-pin-stitch-cross-stitch-start-finish-thread",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "technique",
+      "terms": [
+        "technique"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-253-pin-stitch-cross",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Cross stitchers looking for a secure, low-bulk way to start or finish thread, especially for isolated stitches.",
+  "title": "How to Pin Stitch in Cross Stitch to Start and Finish Thread",
+  "slug": "how-to-pin-stitch-cross-stitch-start-finish-thread",
+  "seo": {
+    "title": "How to Pin Stitch in Cross Stitch to Start and Finish Thread",
+    "meta_description": "Learn how the pin stitch works in cross stitch, when to use it for starting or ending thread, how to place it neatly and when another method is safer.",
+    "search_intent": "Teach the pin stitch as a practical starting and finishing method, with clear placement, use cases, limitations and troubleshooting."
+  },
+  "excerpt": "A practical pin stitch guide for starting and ending thread securely, especially around isolated stitches where running under nearby stitches is difficult.",
+  "content_html": "<p>A pin stitch is a compact way to secure floss directly in or beside the area you are stitching. It is especially useful when there are no finished stitches nearby to run the thread under, which makes it popular for isolated crosses, confetti and designs with frequent color changes. The method creates a tiny anchoring structure that is later covered or visually absorbed by the cross stitch.</p><h2>What a pin stitch does</h2><p>Instead of leaving a knot or carrying the thread across a long empty area, a pin stitch anchors the floss locally. The exact movement can vary slightly depending on fabric and whether you are starting or finishing, but the principle is the same: the thread passes through the fabric in a very small area so friction and the later stitch hold it in place.</p><p>On Aida, the center of the block can be used for the tiny anchoring movement even though the normal cross stitch uses the corner holes. The pin stitch should remain small enough to disappear beneath the finished cross rather than creating a visible lump.</p><h2>How to start with a pin stitch</h2><p>Bring the needle up through the center of the Aida block where the cross will be worked, leaving only a short tail at the back. Take the needle down very close to the same central area so the thread catches part of the weave, then bring it up again in the center or according to the pin-stitch variation you use. The goal is to trap the short tail securely without forming a bulky knot.</p><p>After the anchor is formed, stitch the normal cross over that block. Pull firmly enough for the tiny anchoring stitch to settle into the fabric, but not so hard that the center hole enlarges or the Aida distorts. If the tail still slides when you apply gentle tension, redo the anchor before continuing.</p><h2>How to finish thread with a pin stitch</h2><p>A finishing pin stitch uses a similarly compact anchor at the end of the thread. It is useful when the last stitch of a color is isolated and there are no convenient stitches nearby to weave under. Place the small securing movement where it will be hidden by the existing stitch structure or in a position that does not remain visible from the front.</p><p>Once secure, trim the tail close enough that it cannot work loose but not so aggressively that you cut into the fabric or the anchoring stitch itself. Check the front before trimming. If a tiny speck of thread is visible in the center of the cross, the placement may need adjusting.</p><h2>When pin stitch is most useful</h2><p>Pin stitch is particularly helpful for confetti, scattered stars, freckles, snowflakes, single-letter details or any design where one color appears in isolated points. It reduces long carried threads and avoids having to wait for surrounding stitches before securing a new color.</p><p>It can also keep the back of a full-coverage project more controlled when many colors start and stop in a small region. That does not mean every color change needs a pin stitch. If several finished stitches are already nearby, running the floss under them can be quicker and perfectly secure.</p><h2>When another start or finish may be better</h2><p>The loop start is extremely efficient when the strand setup allows it, especially with an even number of strands folded from a single length. Running under existing stitches is also simple and reliable. A pin stitch becomes valuable when those options do not fit the situation, not because it must replace them.</p><p>Very open linen or loosely woven evenweave can require extra care because the tiny anchor may not behave exactly as it does on Aida. Thick specialty threads can also make a central pin stitch more visible. Test the method on a spare section before using it in a prominent light-colored area.</p><h2>How to keep pin stitches neat and secure</h2><p>Use a sharp enough needle movement to split the intended part of the weave cleanly rather than forcing a large hole. Keep the anchor short, control the tension and make sure the normal cross covers it. If the center of the block becomes enlarged, you are probably pulling too hard or repeatedly using the same opening.</p><p>For dark thread on pale fabric, inspect both front and back because a short tail can sometimes show through an unstitched area. Trim only after the pin stitch has been tested with gentle tension. For very slippery or metallic threads, the method may need more caution because they do not grip fabric in the same way as standard cotton floss.</p><p>The pin stitch is best treated as one tool among several. Learn it for the situations where a loop start or nearby anchoring stitch is unavailable, and it becomes a very efficient solution for isolated color changes without knots, long carries or unnecessary bulk.</p>",
+  "image": {
+    "concept": "Modern close-up of a cross stitch pin stitch sequence on Aida, showing the center of one stitch block.",
+    "alt": "How to make a pin stitch in cross stitch"
+  }
+}

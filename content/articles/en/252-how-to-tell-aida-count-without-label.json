@@ -1,0 +1,66 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 252,
+  "translation_group": "252-how-to-identify-aida-count-without-label",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "fabric",
+      "terms": [
+        "fabric"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-252-identify-aida-count",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "People with unlabeled Aida fabric who need to identify its count before starting a cross stitch project.",
+  "title": "How to Tell What Count Aida Fabric Is Without the Label",
+  "slug": "how-to-tell-aida-count-without-label",
+  "seo": {
+    "title": "How to Tell What Count Aida Fabric Is Without the Label",
+    "meta_description": "Learn how to identify Aida count without a label by measuring blocks accurately, checking common counts and avoiding mistakes caused by stretching, fraying or uneven fabric.",
+    "search_intent": "Show how to measure unknown Aida fabric accurately, identify likely counts and verify the result before calculating finished project size."
+  },
+  "excerpt": "A practical way to identify unlabeled Aida by measuring its blocks, checking common counts and confirming the result before cutting or stitching.",
+  "content_html": "<p>Finding an unlabeled piece of Aida in a drawer is common, especially after several projects or when fabric has been cut from a larger roll. Before using it, it is worth identifying the count rather than guessing. Aida count tells you how many stitchable blocks fit into one inch, so the answer directly affects finished size, fabric requirements, needle choice and the visual scale of the design.</p>\n<h2>What Aida count measures</h2>\n<p>Aida count is the number of visible stitch blocks in one inch of fabric. Fourteen-count Aida has approximately 14 blocks per inch, 16-count has about 16 and 18-count has about 18. The higher the count, the smaller each block and therefore the smaller each cross stitch.</p>\n<p>The easiest mistake is to count holes instead of blocks. A stitch sits over one woven Aida block, using the corner holes around it. For identification, you want to count the actual squares or blocks that would each hold one full cross.</p>\n<h2>Measure a full inch whenever possible</h2>\n<p>Lay the fabric flat without stretching it and place a ruler across a clean central area. Align the zero mark with the edge of one block, then count how many complete blocks fit into exactly one inch. If you count about 14, the fabric is likely 14-count; about 16 suggests 16-count; about 18 suggests 18-count.</p>\n<p>A transparent quilting ruler or a ruler with a clear, fine edge makes the job easier, but an ordinary ruler works if the inch marks are precise. Good light is more important than special equipment. If the weave is difficult to see, place the fabric over a contrasting surface so the holes become more obvious.</p>\n<h2>Use a larger measurement if the result is unclear</h2>\n<p>Counting only half an inch can magnify small errors. If the fabric is soft, old or slightly distorted, measure two inches and divide the number of blocks by two. For example, 28 blocks across two inches indicates approximately 14-count Aida; 32 blocks indicates 16-count; 36 blocks indicates 18-count.</p>\n<p>Measuring a longer section is also helpful with very high counts because the difference between individual block sizes becomes harder to judge by eye. Repeat the measurement in another area of the fabric if the first result sits between two expected counts.</p>\n<h2>Check for stretching, shrinking and distortion</h2>\n<p>Fabric can change slightly after washing, dyeing or heavy tension in a hoop. If one direction measures differently from the other, check both warp and weft. Aida should be reasonably square, but a piece that has been pulled, blocked or washed aggressively may no longer measure perfectly the same in both directions.</p>\n<p>Do not measure close to a frayed edge because the weave can spread and distort there. Move several centimeters inward and use an area that lies naturally flat. If the piece has strong fold lines, avoid measuring directly across the crease until it has relaxed.</p>\n<h2>Use finished-size math as a second check</h2>\n<p>Once you have a likely count, test it against a small design or a known stitched sample if one is already present on the fabric. A 140-stitch-wide chart would measure about 10 inches on 14-count, 8.75 inches on 16-count and about 7.8 inches on 18-count. If your physical test sample clearly disagrees with the calculated result, measure the fabric again.</p>\n<p>This second check is especially useful when dealing with unusual counts such as 11, 20 or 22. Not every Aida in a stash will be 14, 16 or 18, and relying only on the most familiar options can force an incorrect answer.</p>\n<h2>Label the fabric once you identify it</h2>\n<p>After measuring, store the piece with a small paper label that records count, dimensions and, if known, brand or color. Avoid writing directly on a section that may later be stitched unless the marking method is designed to wash out safely. A zip bag, fabric tag or paper band works well for remnants.</p>\n<p>If you are still uncertain between two counts, cut a tiny corner sample only if the fabric is large enough to spare and stitch a few crosses with the strand count you expect to use. Coverage and physical size can help confirm the measurement. The important part is to settle the count before calculating margins or starting a large chart.</p>\n<p>Identifying unknown Aida is therefore mostly a measurement problem: count stitch blocks over a full inch or more, avoid distorted areas, repeat the reading and verify it with finished-size math. A few careful minutes can prevent an entire project from coming out at the wrong size.</p>",
+  "image": {
+    "concept": "Editorial close-up of unlabeled Aida fabric beside a ruler, with the visible woven blocks being counted.",
+    "alt": "Measuring Aida fabric count with a ruler"
+  }
+}
