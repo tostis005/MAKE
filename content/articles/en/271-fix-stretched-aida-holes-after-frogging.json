@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 271,
+  "translation_group": "271-fix-stretched-aida-holes-after-frogging",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "fabric",
+      "terms": [
+        "fabric",
+        "repair",
+        "frogging"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide",
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-271-fix-stretched-aida",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Cross stitchers who have removed stitches and are left with enlarged or distorted Aida holes that may remain visible.",
+  "title": "How to Fix Stretched Aida Holes After Frogging Cross Stitch",
+  "slug": "fix-stretched-aida-holes-after-frogging",
+  "seo": {
+    "title": "How to Fix Stretched Aida Holes After Frogging Cross Stitch",
+    "meta_description": "Learn how to reduce stretched Aida holes after unpicking cross stitch, when washing helps, when to leave them alone and how to avoid further damage.",
+    "search_intent": "Cross stitchers who have removed stitches and are left with enlarged or distorted Aida holes that may remain visible."
+  },
+  "excerpt": "What to do when frogging leaves large Aida holes: relax the weave, reshape fibers gently and decide whether the area can be restitched or left blank.",
+  "content_html": "<p>Removing a section of cross stitch can leave the Aida looking worse than the mistake that was there before. The holes may appear enlarged, the woven blocks can look pulled out of shape and a blank area may suddenly seem very obvious. In many cases this damage is temporary rather than permanent. Aida is a woven fabric, and the fibers often relax again once the pressure from the stitches and needle is removed.</p>\n<h2>Why frogging can make Aida holes look larger</h2>\n<p>Every stitch pulls several strands of floss through the same corner holes. When you unpick a dense area, especially one stitched with multiple strands, those holes have already been used many times. The needle and floss temporarily push the fabric threads apart. If you also tug while removing the stitches, the surrounding blocks can be pulled sideways and the opening looks larger than it did before.</p>\n<p>A blunt tapestry needle normally separates fabric threads rather than cutting them, so enlarged holes are often a matter of displacement. That is different from a hole caused by a cut or broken fabric thread. If the weave is intact, you have a good chance of improving the appearance without adding any patch or reinforcement.</p>\n<h2>Let the fabric rest before judging the damage</h2>\n<p>Immediately after frogging, the Aida may still hold the shape created by the old stitches. Put the project flat and leave the area alone for a while. With clean fingers or the blunt side of a needle, you can gently nudge the woven blocks back toward a square shape. Do not scrape the holes or pull individual fabric threads aggressively.</p>\n<p>If you plan to restitch the same area, often there is no need to make the holes look perfect first. New crosses will cover much of the disturbed weave. The important question is whether the fabric threads are still present and strong enough to hold the replacement stitches.</p>\n<h2>Washing can help the weave relax</h2>\n<p>On ordinary washable Aida with colorfast thread, a gentle wash can help cotton fibers swell and settle back into position. Lukewarm or cool water is usually enough. Avoid twisting the fabric. Let it soak, move it gently through the water and then dry it flat or according to the care requirements of the project.</p>\n<p>This is especially useful if the damaged area will remain unstitched. A hole that looks dramatic while the fabric is dry and under frame tension can become much less noticeable after washing and finishing. If the project contains hand-dyed fabric, specialty thread or anything with uncertain colorfastness, test or follow the material instructions before soaking.</p>\n<h2>When to restitch over the stretched area</h2>\n<p>If the chart places new stitches over the same location, work with a slightly gentler tension than before. A very tight replacement stitch can pull the already-disturbed hole open again. Let the floss sit on the surface rather than using it to force the Aida block back into shape.</p>\n<p>Choose a needle appropriate for the count and avoid an unnecessarily large needle that widens the opening further. If several neighboring holes have been stretched, build the new area gradually instead of repeatedly entering one corner from awkward angles. Once the crosses are in place, the enlarged openings usually become difficult to see from normal viewing distance.</p>\n<h2>What if the area is supposed to stay blank?</h2>\n<p>Blank background makes fabric irregularities easier to notice, so this is where patience matters most. After the project is finished, wash and block it if the materials allow. Mounting for framing can also even out the weave slightly because the fabric is held square and flat.</p>\n<p>Do not add extra stitches solely to hide a hole unless they belong in the design. Likewise, adding glue or heavy backing to an intact piece of Aida can create a stiffer, more visible patch. If the fibers are merely displaced, the least invasive treatment is usually the best one.</p>\n<h2>How to tell if the fabric is actually damaged</h2>\n<p>Look closely for broken or missing woven threads. If a horizontal or vertical strand has been cut, the structure will not simply shrink back with washing. A small damaged area under full coverage may still be stitchable with care, but a larger break may need reinforcement from the back. That situation is closer to repairing a cut in Aida than fixing stretched holes.</p>\n<p>For ordinary frogging marks, give the weave time, reshape it gently and let washing do part of the work. Avoid trying to “close” a hole by pulling surrounding stitches tighter. Most displaced Aida improves considerably once the project is off the frame, washed and viewed at normal distance rather than under magnification.</p>",
+  "image": {
+    "concept": "Macro editorial before-and-after of Aida holes stretched by removed stitches and then relaxed back into shape.",
+    "alt": "Stretched Aida holes after frogging cross stitch"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 274,
+  "translation_group": "274-remove-hidden-knot-back-cross-stitch",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "technique",
+      "terms": [
+        "technique",
+        "repair",
+        "thread"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide",
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-274-fix-knot-back",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Cross stitchers who discover an accidental knot or loop on the back only after they have stitched well beyond it.",
+  "title": "How to Fix a Knot on the Back of Cross Stitch After You Have Stitched Over It",
+  "slug": "fix-knot-back-cross-stitch-after-stitched-over",
+  "seo": {
+    "title": "How to Fix a Knot on the Back of Cross Stitch After You Have Stitched Over It",
+    "meta_description": "Learn how to deal with an accidental knot on the back of cross stitch after later stitches have trapped it, and when it is safe to leave it alone.",
+    "search_intent": "Cross stitchers who discover an accidental knot or loop on the back only after they have stitched well beyond it."
+  },
+  "excerpt": "How to assess and repair a hidden knot on the back without automatically undoing a large section of finished stitching.",
+  "content_html": "<p>An accidental knot on the back of cross stitch is easiest to fix the moment it forms. The frustrating version is the knot you discover much later, after several new rows have trapped the same thread. At that point, undoing everything may cause more work than the knot itself deserves. The right response depends on whether it affects tension, creates a visible bump or threatens to loosen.</p>\n<h2>First decide whether the knot is actually a problem</h2>\n<p>Turn the project over and look at the knot without pulling it. A tiny secure knot lying flat between other stitches may never affect the finished front. If the fabric will be framed with normal backing space and the knot is not creating a lump, leaving it can be the least damaging option.</p>\n<p>A large loop, a knot that pulls neighboring crosses tight or a hard bump in an area that will be mounted directly against a board deserves more attention. Also check whether the knot has shortened the working thread enough to distort stitches on the front.</p>\n<h2>Try to loosen an accessible knot with a blunt needle</h2>\n<p>If you can still reach the knot, use the tip of a tapestry needle to identify its loops. Work from the outermost loop and tease it open gradually. Do not pull the thread ends in opposite directions, because that usually tightens the knot. A second needle can help hold one loop while the first needle opens another.</p>\n<p>Good light and magnification make this much easier. Take your time. Cotton floss can become fuzzy if repeatedly scraped, so stop if you are damaging the fibers more than you are improving the knot.</p>\n<h2>What to do when later stitches trap the thread</h2>\n<p>If the knotted thread passes underneath several newer stitches, you may not be able to pull the entire length free even after loosening the knot. In that case, separate the problem into two tasks: release the knot itself, then decide whether the remaining thread can stay woven under those later stitches.</p>\n<p>If the knot opens and the thread lies flat, there is no need to reconstruct its exact original path. Secure any loose tail under nearby stitches and trim only after it is safely held. The back does not have to look as though the mistake never happened; it only needs to remain stable and flat enough for finishing.</p>\n<h2>Cut only when you understand both sides of the thread</h2>\n<p>Cutting a knot can be useful when it is impossible to untie, but identify where each side goes first. If you snip blindly, you may release several finished crosses. Once you know the thread path, cut the knot carefully and treat the two resulting ends like normal finishing tails.</p>\n<p>Thread each end under neighboring stitches if there is enough length. For very short ends, a fine needle or thread loop can help pull them beneath established stitches. Avoid relying on a drop of household glue for an ordinary repair; a woven finish remains softer and more compatible with washing.</p>\n<h2>When undoing stitches is the cleaner solution</h2>\n<p>If the knot has pulled a visible group of crosses out of shape, or it sits directly under an area where a smooth surface is essential, unpicking some later stitches may be worth the effort. You do not necessarily need to frog back to the very beginning of the thread. Remove only enough to expose and secure the problem safely.</p>\n<p>Mark your place on the chart before undoing a complicated section. Keep the removed colors organized so you can rebuild them accurately. A controlled small repair is less risky than aggressively poking at a knot buried under dense full coverage.</p>\n<h2>Prevent hidden knots from travelling unnoticed</h2>\n<p>Most accidental back knots begin as a loop that forms while pulling thread through. Develop the habit of feeling the thread tension with each pass. If a stitch suddenly stops before the floss reaches the fabric, do not pull harder; check the back first. Letting the needle hang periodically also reduces twist that can form loops.</p>\n<p>On a large frame where the reverse is hard to see, occasionally run a clean finger lightly across the back of the recent working area. A new knot is easier to fix than one buried under 200 later stitches. If you do find an old knot, judge its real effect before dismantling the project. Stability and a smooth front matter more than a perfectly flawless reverse.</p><p>If the knot sits under a very pale unstitched area, check the front against strong side light before deciding to leave it. A dark knot can sometimes cast a small shadow through thin fabric even when it is physically flat. In that case, cutting and burying the ends may improve the appearance. Under dense stitching or opaque fabric, the same knot may be completely irrelevant.</p>",
+  "image": {
+    "concept": "Macro editorial reverse side of cross stitch with one accidental knot being loosened carefully with a needle.",
+    "alt": "Accidental knot on the back of cross stitch being repaired"
+  }
+}

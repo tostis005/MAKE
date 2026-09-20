@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 275,
+  "translation_group": "275-loop-start-three-strands-odd-number-cross-stitch",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "technique",
+      "terms": [
+        "technique",
+        "starting",
+        "thread"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide",
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-275-loop-start-three",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Cross stitchers who like loop starts but have a pattern calling for three strands or another odd strand count.",
+  "title": "How to Loop Start Cross Stitch with 3 Strands or an Odd Number of Strands",
+  "slug": "loop-start-three-strands-odd-number-cross-stitch",
+  "seo": {
+    "title": "How to Loop Start Cross Stitch with 3 Strands or an Odd Number of Strands",
+    "meta_description": "Learn why the standard loop start works naturally with even strand counts and how to adapt starting methods when cross stitch uses 1, 3 or another odd number.",
+    "search_intent": "Cross stitchers who like loop starts but have a pattern calling for three strands or another odd strand count."
+  },
+  "excerpt": "Why a normal folded loop creates even strand counts, plus practical options for starting cleanly with three strands or other odd numbers.",
+  "content_html": "<p>The standard loop start is beautifully simple with two strands: cut one long strand, fold it in half, thread the two cut ends through the needle and anchor the first stitch through the folded loop on the back. The same logic naturally creates four or six working strands if you fold two or three strands. That is why a pattern calling for three strands creates confusion. A normal folded loop cannot produce an odd number by simple doubling.</p>\n<h2>Why the regular loop start always creates an even number</h2>\n<p>Folding a length of floss doubles whatever goes through the needle. One original strand becomes two working strands, two become four and three become six. If you need exactly three on the surface, using three strands folded in half would make the stitch twice as thick as intended.</p>\n<p>This matters on lower-count Aida where patterns often specify three strands for fuller coverage. The goal is not just to anchor the thread; you must keep the correct final strand count through every cross.</p>\n<h2>The simplest option is to stitch over a tail</h2>\n<p>For three strands, cut three normal working strands, align them and leave a short tail on the back when you begin. Hold the tail so your first several stitches pass over it, trapping it securely. Once enough of the tail is covered, trim the loose end if necessary.</p>\n<p>This method is quick, works with any strand count and does not require a special sequence. The main disadvantage is that you have to manage the tail during the first few stitches. On a dense project, however, it often becomes invisible and secure almost immediately.</p>\n<h2>Pin stitch is another clean starting method</h2>\n<p>A pin stitch can anchor thread inside the area of a future cross. Because it does not rely on folding the working strand in half, it can be used with odd strand counts when the fabric count and coverage allow the anchor to hide neatly. This is particularly useful when there are no nearby stitches under which to bury a tail.</p>\n<p>With three thick strands on low-count Aida, test the result because the anchor can become bulky. Keep the tension moderate. The purpose is to lock the fibers in place, not to pack a knot-like mass into the center hole.</p>\n<h2>Odd-strand loop techniques use a different construction</h2>\n<p>There are specialized loop-style starts for one, three or other odd numbers of strands. Instead of simply folding all working fibers in half, these methods create a small temporary loop or hitch with the end of the thread and then pull that anchor to the back. They are more complex than the classic two-strand loop and require a little practice.</p>\n<p>The exact sequence matters because a loose hitch can release if it is not formed correctly. Practice on scrap fabric before using it in an important project. Once you understand the path, it can create a compact start without leaving a long tail behind.</p>\n<h2>Choose the start based on the area you are stitching</h2>\n<p>A three-strand block surrounded by existing stitches is easy to start by weaving the tail under the back. An isolated confetti stitch may be better with a pin stitch or an odd-strand loop technique. If you are starting at the edge of a large solid area, stitching over a tail is usually the simplest and fastest option.</p>\n<p>You do not need one starting method for the entire project. The best anchor is the one that remains secure without creating visible bulk. Changing techniques between dense and isolated areas is completely reasonable.</p>\n<h2>Check coverage before committing to three strands</h2>\n<p>If you are choosing three strands yourself rather than following a pattern, stitch a small sample first. On 14-count Aida, three strands can give fuller coverage but also make crowded holes thicker, especially where many crosses meet. Needle size and thread tension influence how comfortable it feels.</p>\n<p>When a chart explicitly calls for three strands, preserve that count even if your favorite loop start normally uses two. Use a tail, pin stitch or practiced odd-strand loop instead of doubling the material accidentally. The loop start is a convenience, not a requirement; correct coverage and a secure, flat start matter more than forcing every project into the same method.</p><p>Odd-strand starts are also useful with blended or variegated threads because folding can change the order in which color sections appear or force you to double a strand you wanted to keep single. A tail or pin stitch preserves the original orientation of each working strand. That makes these alternatives valuable even when you already know how to perform a specialized odd-number loop.</p>",
+  "image": {
+    "concept": "Step-focused editorial view of three floss strands at the back of Aida demonstrating an odd-strand loop-style start.",
+    "alt": "Three-strand loop-style start in cross stitch"
+  }
+}

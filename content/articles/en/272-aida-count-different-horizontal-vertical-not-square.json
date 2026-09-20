@@ -1,0 +1,69 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 272,
+  "translation_group": "272-aida-count-different-horizontal-vertical-not-square",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "fabric",
+      "terms": [
+        "fabric",
+        "aida",
+        "count"
+      ]
+    },
+    "style": {
+      "terms": []
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide",
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-272-aida-count-different",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Cross stitchers who discover that the same number of stitches measures differently across the width and height of their Aida.",
+  "title": "Why Aida Can Measure Differently Horizontally and Vertically",
+  "slug": "aida-count-different-horizontal-vertical-not-square",
+  "seo": {
+    "title": "Why Aida Can Measure Differently Horizontally and Vertically",
+    "meta_description": "Learn why some Aida is not perfectly square, how to measure horizontal and vertical count, and what uneven weave means for finished cross stitch dimensions.",
+    "search_intent": "Cross stitchers who discover that the same number of stitches measures differently across the width and height of their Aida."
+  },
+  "excerpt": "Why some Aida has a different effective count in each direction, how to measure it and when the distortion matters for a pattern.",
+  "content_html": "<p>Cross stitch charts use square grid cells, so it is reasonable to expect 100 stitches across and 100 stitches down to form a perfect square. On some Aida, however, the finished block can be slightly wider or taller. That does not necessarily mean your tension is wrong. The fabric itself may have a different effective density in the warp and weft directions.</p>\n<h2>Aida is woven fabric, not a printed mathematical grid</h2>\n<p>Aida is made from groups of threads woven together to create visible blocks and holes. Manufacturing aims to keep those blocks regular, but real fabric can vary. The yarn thickness, finishing process, tension on the loom and later treatment can make the spacing in one direction slightly different from the other.</p>\n<p>Higher-quality fabrics are usually consistent enough that the difference is small, but even then they are textiles rather than precision graph paper. A piece labeled 14 count is expected to be around 14 stitchable blocks per inch, yet one direction might measure a little differently when checked over a long distance.</p>\n<h2>Measure both directions over several inches</h2>\n<p>If a stitched square looks rectangular, test the unworked fabric before blaming your stitches. Lay the Aida flat without stretching it and count blocks over two, four or more inches horizontally. Repeat vertically. Dividing the total blocks by the measured inches gives the effective count in each direction.</p>\n<p>Measuring a longer section reduces errors caused by lining up a ruler slightly off one hole. For example, a small difference that is almost invisible over one inch can become clear over six inches. Make the measurements in an unstitched area because dense stitching can pull the fabric slightly and confuse the test.</p>\n<h2>How different counts change the finished size</h2>\n<p>If the effective count is lower horizontally, each stitch is physically wider in that direction. A design that should be square according to the chart will therefore become a shallow rectangle. The effect grows with project size because every row adds another tiny difference.</p>\n<p>You can estimate the finished dimensions separately: divide the chart width by the horizontal effective count and the chart height by the vertical count. This is more accurate than using one nominal count for both directions when you already know the fabric is uneven.</p>\n<h2>Check whether tension is also contributing</h2>\n<p>Fabric irregularity is not the only reason a project can stretch. An over-tight hoop, very tight stitches or mounting that pulls one axis more strongly can also change shape. That is why measuring untouched Aida is useful: it tells you whether the difference existed before your embroidery.</p>\n<p>If the blank fabric measures evenly but the stitched area does not, review your working tension and frame setup. If the blank fabric already has different counts, your technique cannot fully correct that structural difference. Pulling harder in one direction is not a safe way to force the design back into square proportions.</p>\n<h2>Does the difference matter for every design?</h2>\n<p>For flowers, landscapes, animals and many decorative motifs, a small percentage of distortion may be almost impossible to notice. Geometric patterns, circles, mandalas, lettering inside precise borders and portraits can reveal it more clearly because the eye expects symmetry.</p>\n<p>If exact proportions matter, test the fabric before beginning a large project. Stitch or mark a 50-by-50 or 100-by-100 block and measure it, or simply count the fabric over several inches. Choosing a more even piece at the start is easier than correcting proportions after tens of thousands of stitches.</p>\n<h2>Can you rotate the fabric to solve the problem?</h2>\n<p>Rotating the Aida 90 degrees swaps which direction becomes the width and height, but it does not remove the difference. That can be useful if a pattern is naturally wider or taller and you prefer the direction of stretch, but calculate both dimensions first. Also check hand-dyed patterns, printed effects or fabric orientation before rotating.</p>\n<p>Aida that is slightly non-square is not automatically unusable. Measure it, understand the direction of the difference and decide whether the design is sensitive to distortion. For precision-heavy projects, choose the most even fabric you can. For many ordinary motifs, a small variation remains invisible once the work is framed and viewed as a whole.</p><p>Before cutting fabric for a precision project, measure both axes at the exact place you plan to use. Aida can also change slightly after washing or dyeing, so an old measurement from another piece of the same brand is not a guarantee. Recording the two effective counts in your project notes helps later if you need to calculate framing dimensions, compare stitched measurements or explain why a nominally square motif finished a little rectangular.</p>",
+  "image": {
+    "concept": "Editorial measurement of Aida with rulers showing slightly different block density horizontally and vertically.",
+    "alt": "Aida measured horizontally and vertically with different effective counts"
+  }
+}
