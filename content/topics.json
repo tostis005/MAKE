@@ -3648,6 +3648,61 @@
       "title_es": "Patrones de ciervos en punto de cruz: naturaleza, Navidad y estilo gótico",
       "title_en": "Deer Cross Stitch Patterns: Nature, Christmas and Gothic Styles",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 331,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "animals",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Patrones de mapaches en punto de cruz: ideas woodland y kawaii",
+      "title_en": "Raccoon Cross Stitch Patterns: Woodland and Kawaii Ideas",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 332,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "animals",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Patrones de erizos en punto de cruz: bosque, otoño y cottagecore",
+      "title_en": "Hedgehog Cross Stitch Patterns: Woodland, Autumn and Cottagecore",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 333,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "gothic",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Patrones de murciélagos en punto de cruz: Halloween, gótico y diseños adorables",
+      "title_en": "Bat Cross Stitch Patterns: Halloween, Gothic and Cute Designs",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 334,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "halloween",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Patrones de fantasmas en punto de cruz: de cute spooky a gótico",
+      "title_en": "Ghost Cross Stitch Patterns: From Cute Spooky to Gothic",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 335,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "gothic",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Patrones de lunas góticas en punto de cruz: fases lunares, flores y símbolos",
+      "title_en": "Gothic Moon Cross Stitch Patterns: Moon Phases, Flowers and Symbols",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {
@@ -3678,7 +3733,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 330,
-    "bilingual_groups": 330
+    "last_indexed_article": 335,
+    "bilingual_groups": 335
   }
 }
