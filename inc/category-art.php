@@ -3,8 +3,8 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 /**
  * High-density Drielo cross-stitch category artwork.
- * The approved motifs are stored as compact 80×45 stitch maps, avoiding
- * compressed bitmap sprites so every X stays crisp on standard and Retina screens.
+ * Motifs use compact 80×45 stitch maps and are served as cacheable SVG images,
+ * keeping every X crisp without bloating journal HTML.
  */
 function make_stitch_theme_pattern_rle(): array {
     static $patterns = null;
@@ -30,10 +30,18 @@ function make_stitch_decode_row( string $encoded ): string {
 function make_stitch_theme_pattern( string $theme ): array {
     $patterns = make_stitch_theme_pattern_rle();
     if ( ! isset( $patterns[ $theme ] ) ) { $theme = 'florals'; }
-    return array_map( 'make_stitch_decode_row', $patterns[ $theme ] );
+
+    $rows = array_map( 'make_stitch_decode_row', $patterns[ $theme ] );
+    $rows = array_slice( $rows, 0, 45 );
+    while ( count( $rows ) < 45 ) { $rows[] = str_repeat( '.', 80 ); }
+
+    return array_map(
+        static fn( string $row ): string => substr( str_pad( $row, 80, '.' ), 0, 80 ),
+        $rows
+    );
 }
 
-function make_stitch_theme_art_html( string $theme, string $class = 'stitch-theme-art' ): string {
+function make_stitch_theme_svg( string $theme ): string {
     if ( ! isset( make_stitch_theme_config()[ $theme ] ) ) { $theme = 'florals'; }
 
     $pattern = make_stitch_theme_pattern( $theme );
@@ -52,44 +60,80 @@ function make_stitch_theme_art_html( string $theme, string $class = 'stitch-them
     );
 
     $cell = 6;
-    $cols = strlen( (string) $pattern[0] );
-    $rows = count( $pattern );
-    $width = $cols * $cell;
-    $height = $rows * $cell;
-    $arm = 1.82;
-    $grid_id = 'grid-' . $theme . '-' . wp_rand( 1000, 999999 );
+    $arm = 2;
     $paths = array_fill_keys( array_keys( $palette ), '' );
 
     foreach ( $pattern as $row_index => $row ) {
         foreach ( str_split( $row ) as $col_index => $code ) {
             if ( ! isset( $palette[ $code ] ) ) { continue; }
 
-            $cx = $col_index * $cell + ( $cell / 2 );
-            $cy = $row_index * $cell + ( $cell / 2 );
-            $x1 = round( $cx - $arm, 2 );
-            $x2 = round( $cx + $arm, 2 );
-            $y1 = round( $cy - $arm, 2 );
-            $y2 = round( $cy + $arm, 2 );
+            $cx = $col_index * $cell + 3;
+            $cy = $row_index * $cell + 3;
+            $x1 = $cx - $arm;
+            $x2 = $cx + $arm;
+            $y1 = $cy - $arm;
 
-            $paths[ $code ] .= 'M' . $x1 . ' ' . $y1 . 'L' . $x2 . ' ' . $y2
-                . 'M' . $x2 . ' ' . $y1 . 'L' . $x1 . ' ' . $y2;
+            $paths[ $code ] .= 'M' . $x1 . ' ' . $y1 . 'l4 4M' . $x2 . ' ' . $y1 . 'l-4 4';
         }
     }
 
-    $svg = '<svg viewBox="0 0 ' . $width . ' ' . $height . '" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid meet">'
-        . '<defs><pattern id="' . esc_attr( $grid_id ) . '" width="' . $cell . '" height="' . $cell . '" patternUnits="userSpaceOnUse">'
-        . '<rect width="' . $cell . '" height="' . $cell . '" fill="#FCF8F2"></rect>'
-        . '<path d="M' . $cell . ' 0H0V' . $cell . '" fill="none" stroke="#E8DED5" stroke-width=".34"></path>'
+    $svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" aria-hidden="true" focusable="false">'
+        . '<defs><pattern id="g" width="6" height="6" patternUnits="userSpaceOnUse">'
+        . '<rect width="6" height="6" fill="#FCF8F2"/>'
+        . '<path d="M6 0H0V6" fill="none" stroke="#E8DED5" stroke-width=".28"/>'
         . '</pattern></defs>'
-        . '<rect width="100%" height="100%" rx="12" fill="url(#' . esc_attr( $grid_id ) . ')"></rect>';
+        . '<rect width="480" height="270" rx="12" fill="url(#g)"/>';
 
     foreach ( $paths as $code => $d ) {
         if ( '' === $d ) { continue; }
-        $svg .= '<path d="' . esc_attr( $d ) . '" fill="none" stroke="#FFFFFF" stroke-opacity=".34" stroke-width="2.05" stroke-linecap="round"></path>'
-            . '<path d="' . esc_attr( $d ) . '" fill="none" stroke="' . esc_attr( $palette[ $code ] ) . '" stroke-width="1.38" stroke-linecap="round"></path>';
+        $svg .= '<path d="' . esc_attr( $d ) . '" fill="none" stroke="' . esc_attr( $palette[ $code ] )
+            . '" stroke-width="1.45" stroke-linecap="round"/>';
     }
 
-    $svg .= '</svg>';
-
-    return '<span class="' . esc_attr( $class . ' ' . $class . '--' . $theme ) . '" aria-hidden="true">' . $svg . '</span>';
+    return $svg . '</svg>';
 }
+
+function make_category_art_url( string $theme ): string {
+    $theme = sanitize_key( $theme );
+    if ( ! isset( make_stitch_theme_config()[ $theme ] ) ) { $theme = 'florals'; }
+    return home_url( '/category-art/' . rawurlencode( $theme ) . '.svg' );
+}
+
+function make_stitch_theme_art_html( string $theme, string $class = 'stitch-theme-art' ): string {
+    if ( ! isset( make_stitch_theme_config()[ $theme ] ) ) { $theme = 'florals'; }
+
+    return '<span class="' . esc_attr( $class . ' ' . $class . '--' . $theme ) . '" aria-hidden="true">'
+        . '<img src="' . esc_url( make_category_art_url( $theme ) ) . '" alt="" width="480" height="270" loading="lazy" decoding="async">'
+        . '</span>';
+}
+
+function make_category_art_rewrite_rule(): void {
+    add_rewrite_rule( '^category-art/([a-z0-9-]+)\.svg$', 'index.php?make_category_art=$matches[1]', 'top' );
+}
+add_action( 'init', 'make_category_art_rewrite_rule', 4 );
+
+add_filter(
+    'query_vars',
+    static function( array $vars ): array {
+        $vars[] = 'make_category_art';
+        return $vars;
+    }
+);
+
+function make_maybe_render_category_art(): void {
+    $theme = sanitize_key( (string) get_query_var( 'make_category_art' ) );
+    if ( '' === $theme ) { return; }
+
+    if ( ! isset( make_stitch_theme_config()[ $theme ] ) ) {
+        status_header( 404 );
+        exit;
+    }
+
+    status_header( 200 );
+    header( 'Content-Type: image/svg+xml; charset=UTF-8' );
+    header( 'Cache-Control: public, max-age=604800, immutable' );
+    header( 'X-Content-Type-Options: nosniff' );
+    echo make_stitch_theme_svg( $theme );
+    exit;
+}
+add_action( 'template_redirect', 'make_maybe_render_category_art', -120 );
