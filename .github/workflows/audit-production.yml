@@ -1,4 +1,4 @@
-name: Audit MAKE production editorial
+name: Audit Drielo production editorial
 
 on:
   workflow_dispatch:
@@ -123,7 +123,7 @@ jobs:
               $host=getenv("AUDIT_HOST"); $route=getenv("AUDIT_ROUTE"); $label=getenv("AUDIT_LABEL");
               $ctx=stream_context_create(array("http"=>array(
                 "method"=>"GET",
-                "header"=>"Host: ".$host."\r\nUser-Agent: MAKE-Editorial-Audit\r\n",
+                "header"=>"Host: ".$host."\r\nUser-Agent: Drielo-Editorial-Audit\r\n",
                 "ignore_errors"=>true,"follow_location"=>0,"timeout"=>15
               )));
               $html=@file_get_contents("http://127.0.0.1".$route,false,$ctx);
