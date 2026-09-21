@@ -792,9 +792,9 @@ body{background:var(--mk-cream);color:var(--mk-ink)}
 
 /* Article placeholders inherit their thematic stitch artwork. */
 .make-editorial-art{
-  display:grid;place-items:center;padding:18px;background:linear-gradient(145deg,#f2e2e5,#e7dbd5)
+  display:grid;place-items:center;padding:14px;background:linear-gradient(145deg,#f5e8eb,#efe7e0)
 }
-.make-editorial-art svg{display:block;width:min(90%,420px);height:auto;max-height:90%;filter:drop-shadow(0 12px 22px rgba(85,57,69,.08))}
+.make-editorial-art svg{display:block;width:min(94%,520px);height:auto;max-height:94%;filter:drop-shadow(0 8px 14px rgba(82,40,61,.065))}
 .make-editorial-art--animals{background:linear-gradient(145deg,#f0e6e9,#f5eee7)}
 .make-editorial-art--pop-art{background:linear-gradient(145deg,#ecd4dd,#f2e0dc)}
 .make-editorial-art--retro{background:linear-gradient(145deg,#f1e3dc,#eadde6)}
