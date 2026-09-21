@@ -167,6 +167,7 @@ jobs:
 
           check_html "/journal/" "Últimos artículos" "journal-es"
           check_html "/en/journal/" "Latest articles" "journal-en"
+          check_html "/category-art/florals.svg" "<svg" "category-art"
           check_html "/journal/page/2/" "Últimos artículos" "journal-page-2"
           check_html "/$SAMPLE_SLUG/" "article-related-grid" "single-article"
           check_html "/sitemap.xml" "<sitemapindex" "sitemap-index"
