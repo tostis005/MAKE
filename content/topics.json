@@ -3593,6 +3593,61 @@
       "title_es": "¿Todas las cruces deben ir en la misma dirección? Cómo conseguir un bordado uniforme",
       "title_en": "Should Every Cross Stitch Face the Same Direction? How to Keep Stitches Even",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 326,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "patterns",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo cambiar el tamaño de un patrón de punto de cruz usando otra tela Aida",
+      "title_en": "How to Resize a Cross Stitch Pattern by Changing Aida Count",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 327,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "digital-patterns",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo convertir un patrón de punto de cruz impreso en un patrón digital para marcar el progreso",
+      "title_en": "How to Turn a Printed Cross Stitch Chart into a Digital Progress Tracker",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 328,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "community",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "WIP, FO, SAL, frog y otros términos de punto de cruz: diccionario para principiantes",
+      "title_en": "WIP, FO, SAL, Frog and Other Cross Stitch Terms: A Beginner Glossary",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 329,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "animals",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Patrones de osos en punto de cruz: bosque, montaña y habitaciones infantiles",
+      "title_en": "Bear Cross Stitch Patterns: Woodland, Mountain and Nursery Ideas",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 330,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "animals",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Patrones de ciervos en punto de cruz: naturaleza, Navidad y estilo gótico",
+      "title_en": "Deer Cross Stitch Patterns: Nature, Christmas and Gothic Styles",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {
@@ -3623,7 +3678,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 325,
-    "bilingual_groups": 325
+    "last_indexed_article": 330,
+    "bilingual_groups": 330
   }
 }
