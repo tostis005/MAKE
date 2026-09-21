@@ -7,3 +7,81 @@
   document.addEventListener('click',function(e){var opener=e.target.closest('[data-open-overlay]');if(opener){e.preventDefault();open(opener.getAttribute('data-open-overlay'),opener);return;}var closer=e.target.closest('[data-close-overlay]');if(closer){e.preventDefault();close(closer.closest('[data-make-overlay]'));return;}var menuLink=e.target.closest('.mobile-menu-nav a');if(menuLink&&active&&active.id==='make-mobile-menu')close(active,false);});
   document.addEventListener('keydown',function(e){if(!active)return;if(e.key==='Escape'){e.preventDefault();close(active);return;}if(e.key!=='Tab')return;var list=focusables(active);if(!list.length)return;var first=list[0],last=list[list.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}});
 })();
+
+
+(function(){
+  'use strict';
+
+  function cookie(name){
+    var prefix=name+'=';
+    var parts=document.cookie ? document.cookie.split(';') : [];
+    for(var i=0;i<parts.length;i++){
+      var part=parts[i].trim();
+      if(part.indexOf(prefix)===0)return decodeURIComponent(part.slice(prefix.length));
+    }
+    return '';
+  }
+
+  function pageCurrency(){
+    if(document.body.classList.contains('make-currency-eur'))return 'EUR';
+    return 'USD';
+  }
+
+  function parseAmount(text){
+    var cleaned=(text||'').replace(/\u00a0/g,' ').replace(/[^0-9,.-]/g,'').trim();
+    if(!cleaned)return NaN;
+    var lastComma=cleaned.lastIndexOf(',');
+    var lastDot=cleaned.lastIndexOf('.');
+    if(lastComma>-1&&lastDot>-1){
+      if(lastComma>lastDot)cleaned=cleaned.replace(/\./g,'').replace(',','.');
+      else cleaned=cleaned.replace(/,/g,'');
+    }else if(lastComma>-1){
+      cleaned=cleaned.replace(',','.');
+    }
+    return parseFloat(cleaned);
+  }
+
+  function renderAmount(node,value,currency){
+    if(!isFinite(value))return;
+    var lang=(document.documentElement.lang||'es').toLowerCase();
+    var locale=lang.indexOf('en')===0?'en-US':'es-ES';
+    var number=new Intl.NumberFormat(locale,{minimumFractionDigits:2,maximumFractionDigits:2}).format(value);
+    var bdi=document.createElement('bdi');
+    var symbol=document.createElement('span');
+    symbol.className='woocommerce-Price-currencySymbol';
+    symbol.textContent=currency==='EUR'?'€':'$';
+    bdi.appendChild(symbol);
+    bdi.appendChild(document.createTextNode(number));
+    while(node.firstChild)node.removeChild(node.firstChild);
+    node.appendChild(bdi);
+  }
+
+  function syncCurrencyPrices(){
+    if(!document.body)return;
+    var target=(cookie('drielo_currency')||'USD').toUpperCase();
+    if(target!=='EUR'&&target!=='USD')target='USD';
+
+    var source=pageCurrency();
+    var rate=parseFloat(cookie('drielo_usd_eur_rate'));
+    if(!isFinite(rate)||rate<=0)rate=0.87032;
+
+    var amounts=document.querySelectorAll('.woocommerce-Price-amount');
+    for(var i=0;i<amounts.length;i++){
+      var value=parseAmount(amounts[i].textContent);
+      if(!isFinite(value))continue;
+      if(source==='USD'&&target==='EUR')value=value*rate;
+      else if(source==='EUR'&&target==='USD')value=value/rate;
+      renderAmount(amounts[i],value,target);
+    }
+
+    document.body.classList.remove('make-currency-usd','make-currency-eur');
+    document.body.classList.add('make-currency-'+target.toLowerCase());
+  }
+
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',syncCurrencyPrices);
+  else syncCurrencyPrices();
+
+  if(window.jQuery){
+    window.jQuery(document.body).on('updated_cart_totals updated_checkout wc_fragments_refreshed added_to_cart',syncCurrencyPrices);
+  }
+})();
