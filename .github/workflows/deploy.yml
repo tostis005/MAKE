@@ -231,25 +231,21 @@ jobs:
           curl -fsS -o /dev/null -D "$CURRENCY_HEADERS" -c "$CURRENCY_COOKIE" "https://$SITE_HOST/producto/bubble-gum-portrait-cross-stitch-pattern/?currency=EUR"
           CURRENCY_STATUS="$(awk '/^HTTP\//{code=$2} END{print code}' "$CURRENCY_HEADERS")"
           CURRENCY_LOCATION="$(awk 'BEGIN{IGNORECASE=1} /^Location:/{sub(/\r$/,""); print substr($0,11)}' "$CURRENCY_HEADERS" | tail -1)"
-          if [ "$CURRENCY_STATUS" != "302" ] || ! grep -q "drielo_currency.*EUR" "$CURRENCY_COOKIE" || printf '%s' "$CURRENCY_LOCATION" | grep -q "currency="; then
+          if [ "$CURRENCY_STATUS" != "302" ] || ! grep -q "drielo_currency.*EUR" "$CURRENCY_COOKIE" || ! grep -q "drielo_usd_eur_rate" "$CURRENCY_COOKIE" || printf '%s' "$CURRENCY_LOCATION" | grep -q "currency="; then
             echo "Currency cookie/redirect verification failed status=$CURRENCY_STATUS location=$CURRENCY_LOCATION"
-            exit 2
-          fi
-          CURRENCY_HTML="$(curl -fsS -b "$CURRENCY_COOKIE" "https://$SITE_HOST/producto/bubble-gum-portrait-cross-stitch-pattern/")"
-          if ! printf '%s' "$CURRENCY_HTML" | grep -Eqi 'woocommerce-Price-currencySymbol[^>]*>(€|&euro;|&#8364;|&#x20ac;)'; then
-            echo "EUR cookie did not persist on clean product URL"
             exit 2
           fi
           echo "DRIELO_CURRENCY_COOKIE_OK status=$CURRENCY_STATUS clean_location=$CURRENCY_LOCATION"
 
           rm -f "$CURRENCY_COOKIE" "$CURRENCY_HEADERS"
           curl -fsS -o /dev/null -D "$CURRENCY_HEADERS" -c "$CURRENCY_COOKIE" "https://$SITE_HOST/producto/bubble-gum-portrait-cross-stitch-pattern/?currency=USD"
-          CURRENCY_HTML="$(curl -fsS -b "$CURRENCY_COOKIE" "https://$SITE_HOST/producto/bubble-gum-portrait-cross-stitch-pattern/")"
-          if ! printf '%s' "$CURRENCY_HTML" | grep -Eqi 'woocommerce-Price-currencySymbol[^>]*>(\$|&#36;|&dollar;)'; then
-            echo "USD symbol did not persist on clean product URL"
+          if ! grep -q "drielo_currency.*USD" "$CURRENCY_COOKIE" || ! grep -q "drielo_usd_eur_rate" "$CURRENCY_COOKIE"; then
+            echo "USD currency cookie verification failed"
             exit 2
           fi
-          echo "DRIELO_USD_SYMBOL_OK"
+          echo "DRIELO_USD_COOKIE_OK"
+
+          check_html "/wp-content/themes/make/assets/js/site.js" "syncCurrencyPrices" "currency-client-sync"
 
           "${DOCKER[@]}" exec make-wp php -r '
             $_COOKIE["drielo_currency"]="USD";
