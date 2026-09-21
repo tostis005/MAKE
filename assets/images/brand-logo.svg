@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 150" role="img" aria-labelledby="title desc">
+<title id="title">Drielo</title>
+<desc id="desc">Drielo logo with an embroidery hoop, cross-stitched D and heart.</desc>
+<defs>
+  <g id="sx" fill="none" stroke-linecap="round">
+    <path d="M-4-4L4 4M4-4L-4 4"/>
+  </g>
+</defs>
+<g transform="translate(6 7)">
+  <circle cx="66" cy="68" r="53" fill="none" stroke="#C9A995" stroke-width="5"/>
+  <path d="M55 10v-8h22v8M58 2h16" fill="none" stroke="#B28E7A" stroke-width="5" stroke-linecap="round"/>
+  <g stroke="#5A2E46" stroke-width="5.2">
+    <use href="#sx" x="42" y="38"/><use href="#sx" x="53" y="38"/><use href="#sx" x="64" y="38"/>
+    <use href="#sx" x="75" y="42"/><use href="#sx" x="83" y="50"/>
+    <use href="#sx" x="38" y="49"/><use href="#sx" x="38" y="60"/><use href="#sx" x="38" y="71"/><use href="#sx" x="38" y="82"/><use href="#sx" x="38" y="93"/>
+    <use href="#sx" x="84" y="61"/><use href="#sx" x="84" y="72"/><use href="#sx" x="82" y="83"/>
+    <use href="#sx" x="75" y="93"/><use href="#sx" x="64" y="98"/><use href="#sx" x="53" y="98"/><use href="#sx" x="42" y="96"/>
+  </g>
+  <g stroke="#C98FA0" stroke-width="5.2">
+    <use href="#sx" x="49" y="45"/><use href="#sx" x="60" y="45"/><use href="#sx" x="70" y="48"/>
+    <use href="#sx" x="46" y="88"/><use href="#sx" x="57" y="92"/><use href="#sx" x="68" y="91"/>
+  </g>
+  <g stroke="#E9AEB8" stroke-width="4.7">
+    <use href="#sx" x="59" y="64"/><use href="#sx" x="69" y="64"/><use href="#sx" x="64" y="73"/>
+  </g>
+  <path d="M91 98c5 6 8 13 10 22" fill="none" stroke="#6F7C57" stroke-width="3" stroke-linecap="round"/>
+  <path d="M98 108c7-5 12-4 16-1-5 5-10 7-16 1ZM101 116c6-3 11-1 13 3-5 3-10 3-13-3Z" fill="#7D8B63"/>
+  <g stroke="#C98FA0" stroke-width="3.8">
+    <use href="#sx" x="105" y="99"/><use href="#sx" x="114" y="103"/>
+  </g>
+</g>
+<text x="145" y="96" fill="#52283D" font-family="Georgia, 'Times New Roman', serif" font-size="82" font-weight="600" letter-spacing="-3">Drıelo</text>
+<g transform="translate(269 31)" stroke="#E5A3AF" stroke-width="4.4" fill="none" stroke-linecap="round">
+  <path d="M-5-5L5 5M5-5L-5 5M6-5L16 5M16-5L6 5M.5 4L10.5 14M10.5 4L.5 14"/>
+</g>
+<text x="149" y="125" fill="#A98F82" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" letter-spacing="3.1">DIGITAL PATTERNS FOR A BRIGHTER EVERYDAY</text>
+</svg>
