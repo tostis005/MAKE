@@ -721,6 +721,12 @@ function make_editorial_document_title( string $title ): string {
         if ( '' !== $seo_title ) { return $seo_title . ' | ' . make_brand_name(); }
     }
 
+    if ( is_singular( 'product' ) ) {
+        $language  = make_current_language();
+        $seo_title = trim( (string) get_post_meta( get_queried_object_id(), '_drielo_seo_title_' . $language, true ) );
+        if ( '' !== $seo_title ) { return $seo_title; }
+    }
+
     if ( (int) get_query_var( 'make_journal' ) === 1 ) {
         $theme = function_exists( 'make_current_stitch_theme' ) ? make_current_stitch_theme() : '';
         $config = function_exists( 'make_stitch_theme_config' ) ? make_stitch_theme_config() : array();
@@ -790,6 +796,20 @@ function make_editorial_head_meta(): void {
                     }
                 }
             }
+        }
+    } elseif ( is_singular( 'product' ) ) {
+        $post_id  = get_queried_object_id();
+        $language = make_current_language();
+        $description = trim( (string) get_post_meta( $post_id, '_drielo_meta_description_' . $language, true ) );
+        $canonical = get_permalink( $post_id );
+        if ( 'en' === $language ) {
+            $canonical = add_query_arg( 'make_lang', 'en', $canonical );
+        }
+
+        if ( ! function_exists( 'pll_current_language' ) ) {
+            echo '<link rel="alternate" hreflang="es-ES" href="' . esc_url( get_permalink( $post_id ) ) . '">' . "\n";
+            echo '<link rel="alternate" hreflang="en-US" href="' . esc_url( add_query_arg( 'make_lang', 'en', get_permalink( $post_id ) ) ) . '">' . "\n";
+            echo '<link rel="alternate" hreflang="x-default" href="' . esc_url( get_permalink( $post_id ) ) . '">' . "\n";
         }
     } elseif ( (int) get_query_var( 'make_journal' ) === 1 ) {
         $description = make_t(
