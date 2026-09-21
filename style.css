@@ -259,19 +259,19 @@ button{color:inherit}
 .woocommerce-shell--archive .woocommerce-ordering{margin:0 0 22px!important}
 .woocommerce-shell--archive .woocommerce-ordering select{min-height:42px;padding:0 40px 0 14px;border:1px solid var(--mk-line);border-radius:999px;background:var(--mk-paper);color:var(--mk-ink);font-size:11px;font-weight:750}
 .woocommerce-shell--archive .products{clear:both}
-.woocommerce .products{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:22px!important}
+.woocommerce .products{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:18px!important}
 .woocommerce ul.products li.product{
   position:relative;padding:0 0 20px!important;border-radius:22px!important;background:var(--mk-paper)!important;
   transition:transform .22s ease,box-shadow .22s ease
 }
 .woocommerce ul.products li.product:hover{transform:translateY(-4px);box-shadow:var(--mk-shadow)}
-.woocommerce ul.products li.product a img{aspect-ratio:4/5;margin:0 0 17px!important;border-radius:21px 21px 0 0;object-fit:cover}
-.woocommerce ul.products li.product .woocommerce-loop-product__title{padding:0!important;margin:0 17px 8px!important;font:500 22px/1.08 Georgia,serif!important;letter-spacing:-.025em}
-.woocommerce ul.products li.product .price{display:block;margin:0 17px 15px!important;color:var(--mk-ink)!important;font-size:13px!important;font-weight:850!important}
+.woocommerce ul.products li.product a img{display:block;width:100%!important;aspect-ratio:1/1;margin:0 0 14px!important;border-radius:21px 21px 0 0;object-fit:cover}
+.woocommerce ul.products li.product .woocommerce-loop-product__title{padding:0!important;margin:0 15px 7px!important;font:500 18px/1.08 Georgia,serif!important;letter-spacing:-.02em}
+.woocommerce ul.products li.product .price{display:block;margin:0 15px 13px!important;color:var(--mk-ink)!important;font-size:12px!important;font-weight:850!important}
 .woocommerce ul.products li.product .price del{opacity:.45}
 .woocommerce ul.products li.product .price ins{text-decoration:none}
 .woocommerce ul.products li.product .star-rating{margin:0 17px 10px!important;color:var(--mk-yellow)}
-.make-product-view{display:flex!important;align-items:center;justify-content:space-between;margin:0 17px!important;padding-top:14px;border-top:1px solid var(--mk-line);font-size:11px;font-weight:850}
+.make-product-view{display:flex!important;align-items:center;justify-content:space-between;margin:0 15px!important;padding-top:12px;border-top:1px solid var(--mk-line);font-size:10.5px;font-weight:850}
 .woocommerce span.onsale{
   left:12px!important;top:12px!important;min-width:auto!important;min-height:auto!important;line-height:1!important;
   padding:8px 10px!important;border-radius:999px!important;background:var(--mk-red)!important;font-size:9px!important;letter-spacing:.08em;text-transform:uppercase
@@ -281,6 +281,10 @@ button{color:inherit}
 .woocommerce nav.woocommerce-pagination ul li{border:0!important}
 .woocommerce nav.woocommerce-pagination ul li a,.woocommerce nav.woocommerce-pagination ul li span{min-width:38px!important;height:38px!important;display:grid!important;place-items:center;padding:0!important;border:1px solid var(--mk-line);border-radius:50%;background:var(--mk-paper)}
 .woocommerce nav.woocommerce-pagination ul li span.current{background:var(--mk-ink)!important;color:#fff!important}
+@media(max-width:1180px){.woocommerce .products{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:860px){.woocommerce .products{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:560px){.woocommerce .products{grid-template-columns:1fr!important}}
+
 
 /* Single product */
 .make-product-page{padding:42px 0 90px}
@@ -911,11 +915,11 @@ body{background:var(--mk-cream);color:var(--mk-ink)}
 }
 
 .drielo-collection-note{
-  display:flex;align-items:center;justify-content:space-between;gap:24px;margin:0 0 24px;padding:18px 20px;
+  display:flex;align-items:center;gap:14px;margin:0 0 24px;padding:16px 18px;
   border:1px solid var(--mk-line);border-radius:18px;background:#fffaf9
 }
 .drielo-collection-note>div{display:flex;align-items:center;gap:13px}
-.drielo-collection-note p{max-width:650px;margin:0;color:var(--mk-muted);font-size:11px}
+.drielo-collection-note p{display:none}
 .drielo-product-collection{
   margin:0 17px 7px;color:var(--mk-red-deep);font-size:8.5px;font-weight:900;
   letter-spacing:.09em;text-transform:uppercase
