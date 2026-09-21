@@ -40,6 +40,13 @@ $nav              = array(
     </nav>
 
     <div class="header-actions">
+      <?php if ( class_exists( 'WooCommerce' ) ) : ?>
+        <div class="currency-switcher" aria-label="<?php echo esc_attr( make_t( 'Moneda', 'Currency' ) ); ?>">
+          <a class="<?php echo 'USD' === make_store_currency() ? 'is-active' : ''; ?>" href="<?php echo esc_url( make_currency_switch_url( 'USD' ) ); ?>" aria-label="USD">$</a>
+          <a class="<?php echo 'EUR' === make_store_currency() ? 'is-active' : ''; ?>" href="<?php echo esc_url( make_currency_switch_url( 'EUR' ) ); ?>" aria-label="EUR">€</a>
+        </div>
+      <?php endif; ?>
+
       <button class="icon-button language-trigger" type="button" data-open-overlay="make-language-overlay" aria-label="<?php echo esc_attr( make_t( 'Cambiar idioma', 'Change language' ) ); ?>" aria-haspopup="dialog">
         <span class="language-flag" aria-hidden="true"><?php echo esc_html( $current_flag ); ?></span>
       </button>
