@@ -14,7 +14,7 @@
       "es",
       "en"
     ],
-    "avoid_cannibalization_with_published_through": 320
+    "avoid_cannibalization_with_published_through": 325
   },
   "topics": [
     {
@@ -463,7 +463,7 @@
       "section": "learn",
       "topic": "patterns",
       "intent": "informational",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Cómo cambiar el tamaño de un patrón de punto de cruz usando otra tela Aida",
       "title_en": "How to Resize a Cross Stitch Pattern by Changing Aida Count",
       "craft": "cross-stitch"
@@ -474,7 +474,7 @@
       "section": "learn",
       "topic": "digital-patterns",
       "intent": "informational",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Cómo convertir un patrón de punto de cruz impreso en un patrón digital para marcar el progreso",
       "title_en": "How to Turn a Printed Cross Stitch Chart into a Digital Progress Tracker",
       "craft": "cross-stitch"
@@ -485,7 +485,7 @@
       "section": "learn",
       "topic": "community",
       "intent": "informational",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "WIP, FO, SAL, frog y otros términos de punto de cruz: diccionario para principiantes",
       "title_en": "WIP, FO, SAL, Frog and Other Cross Stitch Terms: A Beginner Glossary",
       "craft": "cross-stitch"
@@ -496,7 +496,7 @@
       "section": "ideas",
       "topic": "animals",
       "intent": "commercial",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Patrones de osos en punto de cruz: bosque, montaña y habitaciones infantiles",
       "title_en": "Bear Cross Stitch Patterns: Woodland, Mountain and Nursery Ideas",
       "craft": "cross-stitch"
@@ -507,7 +507,7 @@
       "section": "ideas",
       "topic": "animals",
       "intent": "commercial",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Patrones de ciervos en punto de cruz: naturaleza, Navidad y estilo gótico",
       "title_en": "Deer Cross Stitch Patterns: Nature, Christmas and Gothic Styles",
       "craft": "cross-stitch"

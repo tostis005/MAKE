@@ -1,0 +1,71 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 326,
+  "translation_group": "326-resize-cross-stitch-by-aida-count",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "patterns",
+      "terms": [
+        "patterns"
+      ]
+    },
+    "style": {
+      "terms": [
+        "aida",
+        "resizing",
+        "fabric-count"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide",
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-326-resize-aida",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Stitchers who want to change the finished size of a cross stitch pattern by using a different Aida count without redesigning the chart.",
+  "title": "How to Resize a Cross Stitch Pattern by Changing Aida Count",
+  "slug": "resize-cross-stitch-pattern-aida-count",
+  "seo": {
+    "title": "How to Resize a Cross Stitch Pattern by Changing Aida Count",
+    "meta_description": "Learn how changing Aida count changes finished cross stitch size, with formulas, examples, fabric margins, coverage considerations and common exceptions.",
+    "search_intent": "Stitchers who want to change the finished size of a cross stitch pattern by using a different Aida count without redesigning the chart."
+  },
+  "excerpt": "Changing Aida count changes the physical size of the finished piece without changing the number of stitches. Here is how to calculate it correctly.",
+  "content_html": "<p>One of the easiest ways to change the finished size of a cross stitch pattern is to stitch it on a different Aida count. The chart itself does not change: if the design is 140 by 196 stitches, it remains exactly 140 by 196 stitches. What changes is the physical size of each stitched square.</p>\n<p>On standard Aida, the count tells you approximately how many blocks fit into one inch. That means the same chart stitched on 18-count Aida will finish smaller than it would on 14-count, while 11-count will make it larger. This lets you adapt a design to a frame, wall space or personal preference without redrawing the pattern.</p>\n<h2>The finished-size formula is simple</h2>\n<p>To calculate the approximate size in inches, divide the number of stitches by the fabric count. A chart that is 140 stitches wide will measure about 10 inches on 14-count Aida. On 18-count Aida, the same 140 stitches will measure about 7.8 inches.</p>\n<p>Calculate width and height separately. A 140-by-196-stitch pattern is roughly 10 by 14 inches on 14-count Aida, about 8.75 by 12.25 inches on 16-count, and around 7.8 by 10.9 inches on 18-count.</p>\n<p>Those measurements cover only the stitched area. You still need extra fabric around the design for handling, mounting or framing.</p>\n<h2>Changing fabric count does not change the chart</h2>\n<p>The symbols stay exactly where they are. You do not enlarge the grid, move stitches or recalculate colors. Each chart square still represents one cross over one Aida block.</p>\n<p>This is different from digitally enlarging a design by adding more chart squares. Changing Aida count changes physical scale; resizing the grid changes the actual artwork.</p>\n<p>That distinction is why fabric count is such a safe way to adjust a pattern when you already like the design but want a different finished dimension.</p>\n<h2>Fabric margin must be recalculated too</h2>\n<p>After finding the stitched dimensions, add enough fabric on all four sides for your intended finish. Framed pieces usually need several extra inches or centimeters so the fabric can be tensioned and mounted comfortably.</p>\n<p>If the hoop will become the final frame, check its actual inside diameter before cutting. Cushions, sewn ornaments and textile panels also need seam allowance beyond the stitched area.</p>\n<p>Do not cut fabric to the exact design dimensions. A chart that fits inside a 20-centimeter area still needs additional cloth around it so you can hold, stitch and finish the project safely.</p>\n<h2>Thread coverage can look different on another count</h2>\n<p>Each cross occupies less physical space on higher-count fabric, so two strands of floss usually appear denser on 18-count Aida than on 14-count. On lower counts, the same strand number may leave more fabric visible between stitches.</p>\n<p>That does not mean you must automatically change the number of strands. Make a small test with one dark and one light color on the chosen cloth. Look at the sample from normal viewing distance and decide whether you like the coverage.</p>\n<p>If the chart includes backstitch, French knots or many fractional stitches, also consider how those details will feel on the new count. Higher-count fabric makes all of those elements physically more compact.</p>\n<h2>A different count also changes the stitching experience</h2>\n<p>18-count Aida produces a smaller, finer result, but the holes are closer together. If you find small grids tiring, you may need stronger lighting, magnification or shorter stitching sessions.</p>\n<p>11- or 14-count Aida is easier for many stitchers to see and handle, and it creates physically larger crosses. That can suit beginners, children's projects or pieces intended to have a larger visual presence.</p>\n<p>Do not choose count based on finished size alone. A chart reduced to the highest count you can find is not an improvement if it becomes uncomfortable to stitch.</p>\n<h2>When changing fabric count needs extra checking</h2>\n<p>Charts made mainly from full crosses usually adapt easily. Patterns containing beads, charms, buttons or other embellishments with fixed physical dimensions need more thought because those objects do not shrink when the stitches do.</p>\n<p>Also check patterns designed to fit a specific object, such as a lid, precut card, ornament insert or frame opening. Calculate the new dimensions before buying materials.</p>\n<p>Very small lettering remains exactly the same in chart squares, but it becomes physically smaller on higher-count fabric. Consider the normal viewing distance of the finished piece.</p>\n<p>The practical rule is straightforward: keep the stitch count, divide width and height by the new fabric count, then add your finishing margin. After that, check thread coverage, comfort and any fixed-size embellishments. With those steps, you can resize a cross stitch pattern without redesigning it and know what the finished piece will measure before you start.</p>",
+  "image": {
+    "concept": "Comparison diagram of the same cross stitch pattern stitched on 14, 16 and 18 count Aida, showing different finished sizes.",
+    "alt": "How to resize a cross stitch pattern by changing Aida count"
+  }
+}
