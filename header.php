@@ -28,7 +28,7 @@ $nav              = array(
 <header class="site-header">
   <div class="container header-main">
     <a class="site-brand" href="<?php echo esc_url( $home_url ); ?>" aria-label="<?php echo esc_attr( $site_name ); ?>">
-      <img class="brand-logo" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/brand-logo.svg' ); ?>" alt="<?php echo esc_attr( $site_name ); ?>" width="320" height="67">
+      <img class="brand-logo" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/brand-logo.png?v=3' ); ?>" alt="<?php echo esc_attr( $site_name ); ?>" width="600" height="200">
     </a>
 
     <nav class="primary-nav" aria-label="<?php echo esc_attr( make_t( 'Navegación principal', 'Primary navigation' ) ); ?>">
