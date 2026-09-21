@@ -258,6 +258,26 @@ function make_store_body_class( array $classes ): array {
 }
 add_filter( 'body_class', 'make_store_body_class', 35 );
 
+function make_store_disable_page_cache(): void {
+    if ( is_admin() ) { return; }
+
+    $is_storefront = ( function_exists( 'is_woocommerce' ) && is_woocommerce() )
+        || ( function_exists( 'is_cart' ) && is_cart() )
+        || ( function_exists( 'is_checkout' ) && is_checkout() )
+        || ( function_exists( 'is_account_page' ) && is_account_page() )
+        || is_tax( 'product_collection' );
+
+    if ( ! $is_storefront ) { return; }
+
+    if ( ! defined( 'DONOTCACHEPAGE' ) ) { define( 'DONOTCACHEPAGE', true ); }
+    if ( ! defined( 'DONOTCACHEOBJECT' ) ) { define( 'DONOTCACHEOBJECT', true ); }
+
+    nocache_headers();
+    header( 'Cache-Control: private, no-store, no-cache, must-revalidate, max-age=0', true );
+    header( 'Vary: Cookie', false );
+}
+add_action( 'template_redirect', 'make_store_disable_page_cache', 0 );
+
 /**
  * New simple products default to digital pattern settings. A manually supplied
  * price is never overwritten, so exceptions can be priced product by product.
