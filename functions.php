@@ -434,14 +434,14 @@ add_filter( 'woocommerce_add_to_cart_fragments', 'make_cart_count_fragment' );
  * This also replaces any older WordPress Site Icon URL without touching content.
  */
 function make_drielo_site_icon_url( string $url, int $size = 512, int $blog_id = 0 ): string {
-    return get_template_directory_uri() . '/assets/images/brand-mark.svg';
+    return get_template_directory_uri() . '/assets/images/brand-mark.png?v=3';
 }
 add_filter( 'get_site_icon_url', 'make_drielo_site_icon_url', 20, 3 );
 
 function make_fallback_favicon(): void {
     if ( function_exists( 'has_site_icon' ) && has_site_icon() ) { return; }
     $icon = get_template_directory_uri() . '/assets/images/brand-mark.svg';
-    echo '<link rel="icon" href="' . esc_url( $icon ) . '" type="image/svg+xml">' . "\n";
+    echo '<link rel="icon" href="' . esc_url( $icon ) . '" type="image/png">' . "\n";
 }
 add_action( 'wp_head', 'make_fallback_favicon', 2 );
 
