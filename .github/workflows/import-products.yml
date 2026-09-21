@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: drielo-product-import
@@ -86,6 +86,21 @@ jobs:
                   raise SystemExit(f'{filename}: gallery download too small')
               print(f'{filename}: {target.stat().st_size} bytes')
           PY
+
+      - name: Persist refreshed gallery assets
+        if: ${{ hashFiles('content/products/gallery-sources.json') != '' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/products/assets
+          if git diff --cached --quiet; then
+            echo "No gallery asset changes to persist."
+          else
+            git commit -m "Refresh product gallery assets [skip ci]"
+            git push origin HEAD:main
+          fi
 
       - name: Validate product catalogue
         shell: bash
