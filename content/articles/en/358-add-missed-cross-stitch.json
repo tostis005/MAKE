@@ -1,0 +1,70 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 358,
+  "translation_group": "358-add-missed-cross-stitch",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "troubleshooting",
+      "terms": [
+        "troubleshooting"
+      ]
+    },
+    "style": {
+      "terms": [
+        "missed-stitch",
+        "repair",
+        "finished-section"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-358-missed-stitch",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Stitchers who discover one omitted cross inside a completed area and want to add it without unpicking the surrounding stitches.",
+  "title": "How to Add a Missed Cross Stitch to a Finished Section",
+  "slug": "add-missed-cross-stitch-finished-section",
+  "seo": {
+    "title": "How to Add a Missed Cross Stitch to a Finished Section",
+    "meta_description": "How to add a missed cross inside a stitched area by accessing the hole, securing a new thread, avoiding split stitches and working through full coverage.",
+    "search_intent": "Stitchers who discover one omitted cross inside a completed area and want to add it without unpicking the surrounding stitches."
+  },
+  "excerpt": "A missed cross can usually be added later without unpicking the surrounding area if the holes remain accessible and the new thread is secured carefully.",
+  "content_html": "<p>Finding one empty square inside an otherwise completed section is annoying, but it usually does not require unpicking the surrounding stitches. If the four corner holes remain accessible, you can add the missing cross with a new length of floss and secure it on the back like any other small repair.</p>\n<p>The job becomes more awkward in full coverage or when the reverse is dense because the holes may already contain several thread passes. Even then, careful needle placement usually lets you complete the square without disturbing the rest of the stitching.</p>\n<h2>First confirm that a stitch is actually missing</h2>\n<p>Compare the square with the chart and the neighboring rows before threading a needle. On complex charts, an apparently empty area may intentionally show fabric or be reserved for a specialty stitch added later.</p>\n<p>Check the exact symbol and floss color as well. Filling the gap with the wrong shade only creates another correction.</p>\n<p>If you use an app or highlighted working copy, mark the stitch complete only after the repair is actually finished.</p>\n<h2>Use the existing holes instead of piercing nearby floss</h2>\n<p>Bring the needle through the same Aida hole you would have used originally, looking for the small opening between threads already passing through it.</p>\n<p>Avoid pushing directly through a neighboring cross when an open path exists. Splitting existing floss can disturb tension and make any later repair more difficult.</p>\n<p>A fine blunt tapestry needle can help find the route between existing strands instead of puncturing them.</p>\n<h2>Secure the new thread with as little bulk as possible</h2>\n<p>If you stitch with two strands and the area allows it, a loop start can avoid a long starting tail. Otherwise, run the end beneath several stitches on the reverse.</p>\n<p>Do not make a large knot behind one isolated square. A concentrated lump can push the fabric forward and may become noticeable when the piece is mounted.</p>\n<p>At the end, weave the floss under several nearby stitches and trim it with enough tail to remain secure.</p>\n<h2>Match the direction and tension of surrounding crosses</h2>\n<p>The added stitch should have the same top-leg direction as the rest of the project. A single reversed cross can attract more attention than the original empty square.</p>\n<p>Watch tension too. If you pull hard because the holes are crowded, the new cross may sink into the fabric and look smaller than its neighbors.</p>\n<p>Place the first diagonal, inspect how it lies, then complete the second with the same pressure you normally use.</p>\n<h2>Full coverage may require a different route on the back</h2>\n<p>In a dense reverse, you may not be able to secure the thread directly beside the gap. Look for nearby stitches under which the needle can slide without creating a bulky cluster.</p>\n<p>If a hole is heavily occupied, approach gently from a slightly different angle while keeping the actual exit point in the correct opening.</p>\n<p>Do not force a large needle through thick layers. Temporarily using a slightly finer tapestry needle can make the repair easier without stretching the fabric.</p>\n<h2>After washing or framing, weigh the correction against the risk</h2>\n<p>Before final finishing, a missed cross is almost always easy enough to add. Once a piece is stretched and framed, accessing the reverse may require partially dismantling the finish.</p>\n<p>If the gap cannot be seen at normal viewing distance and the frame is fully closed, decide whether the repair is worth disturbing the piece. Not every tiny imperfection needs an invasive correction.</p>\n<p>On sewn ornaments or finished textiles, adding a stitch after assembly can be even harder because the back is no longer accessible.</p>\n<p>The best habit is a final chart check before washing and finishing. But when one missing cross appears late, the repair is usually local: confirm the color, find the four holes, secure a fresh thread, match direction and tension, and finish with minimal bulk. One empty square rarely requires rebuilding the whole section.</p>",
+  "image": {
+    "concept": "Nearly finished cross stitch area with one empty square and a needle adding the missing cross.",
+    "alt": "How to add a missed cross stitch to a completed section"
+  }
+}
