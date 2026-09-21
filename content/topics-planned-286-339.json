@@ -14,7 +14,7 @@
       "es",
       "en"
     ],
-    "avoid_cannibalization_with_published_through": 300
+    "avoid_cannibalization_with_published_through": 305
   },
   "topics": [
     {
@@ -243,7 +243,7 @@
       "section": "ideas",
       "topic": "gothic",
       "intent": "commercial",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Memento mori en punto de cruz: calaveras, relojes de arena y estética victoriana",
       "title_en": "Memento Mori Cross Stitch: Skulls, Hourglasses and Victorian Style",
       "craft": "cross-stitch"
@@ -254,7 +254,7 @@
       "section": "ideas",
       "topic": "gothic",
       "intent": "commercial",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Patrones de calaveras y cuervos en punto de cruz: ideas góticas para bordar",
       "title_en": "Skull and Raven Cross Stitch Patterns: Gothic Ideas to Stitch",
       "craft": "cross-stitch"
@@ -265,7 +265,7 @@
       "section": "ideas",
       "topic": "gothic",
       "intent": "commercial",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Casas encantadas y mansiones góticas en punto de cruz: patrones e ideas",
       "title_en": "Haunted House and Gothic Mansion Cross Stitch Patterns",
       "craft": "cross-stitch"
@@ -276,7 +276,7 @@
       "section": "ideas",
       "topic": "gothic",
       "intent": "commercial",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Patrones de polillas en punto de cruz: luna, flores y estética witchy",
       "title_en": "Moth Cross Stitch Patterns: Moon, Flowers and Witchy Style",
       "craft": "cross-stitch"
@@ -287,7 +287,7 @@
       "section": "ideas",
       "topic": "fantasy",
       "intent": "commercial",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Patrones de dragones en punto de cruz: de diseños sencillos a full coverage",
       "title_en": "Dragon Cross Stitch Patterns: From Simple Designs to Full Coverage",
       "craft": "cross-stitch"
