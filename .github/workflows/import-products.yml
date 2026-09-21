@@ -1,0 +1,123 @@
+name: Import Drielo products
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/products/**'
+      - 'content/tools/import-products.php'
+      - '.github/workflows/import-products.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: drielo-product-import
+  cancel-in-progress: true
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate product catalogue
+        shell: bash
+        run: |
+          set -euo pipefail
+          php -l content/tools/import-products.php
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          p = Path('content/products/catalog.json')
+          data = json.loads(p.read_text(encoding='utf-8'))
+          products = data.get('products', [])
+          if not products:
+              raise SystemExit('No products in catalogue')
+
+          seen_sku = set()
+          seen_code = set()
+          for row in products:
+              for key in ('code','sku','title','slug','price','collection','gallery','download'):
+                  if key not in row:
+                      raise SystemExit(f"Missing {key} in {row}")
+              if row['sku'] in seen_sku or row['code'] in seen_code:
+                  raise SystemExit('Duplicate SKU or code')
+              seen_sku.add(row['sku']); seen_code.add(row['code'])
+              if float(row['price']) <= 0:
+                  raise SystemExit(f"Invalid price for {row['sku']}")
+              for asset in row['gallery']:
+                  if not (Path('content/products') / asset).is_file():
+                      raise SystemExit(f"Missing gallery asset: {asset}")
+
+          print(f"Validated {len(products)} products")
+          PY
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_products_key
+          chmod 600 ~/.ssh/drielo_products_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Package products
+        run: |
+          set -euo pipefail
+          tar -czf /tmp/drielo-products.tgz content/products content/tools/import-products.php
+
+      - name: Upload product package
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: scp -i ~/.ssh/drielo_products_key /tmp/drielo-products.tgz "$VPS_USER@$VPS_HOST:/tmp/drielo-products-${GITHUB_RUN_ID}.tgz"
+
+      - name: Import into WooCommerce
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_products_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-products-${GITHUB_RUN_ID}.tgz"
+          STAGE="/tmp/drielo-products-${GITHUB_RUN_ID}"
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE"; }
+          trap cleanup EXIT
+
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+
+          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
+
+          "${DOCKER[@]}" exec make-wp php -r '
+            require "/var/www/html/wp-load.php";
+            $ids=get_posts(array("post_type"=>"product","post_status"=>"publish","posts_per_page"=>-1,"fields"=>"ids","meta_key"=>"_drielo_managed_product","meta_value"=>"1"));
+            echo "DRIELO_PRODUCTS=" . count($ids) . PHP_EOL;
+            foreach ($ids as $id) {
+              $p=wc_get_product($id);
+              echo $p->get_sku() . " id=" . $id . " status=" . $p->get_status() . " stock=" . $p->get_stock_status() . " images=" . (1+count($p->get_gallery_image_ids())) . " downloads=" . count($p->get_downloads()) . " url=" . get_permalink($id) . PHP_EOL;
+            }
+            $terms=get_terms(array("taxonomy"=>"product_collection","hide_empty"=>false));
+            if (!is_wp_error($terms)) foreach($terms as $t) echo "COLLECTION=" . $t->slug . " count=" . $t->count . " url=" . get_term_link($t) . PHP_EOL;
+          '
+
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
+          REMOTE
