@@ -150,7 +150,7 @@ jobs:
             $rules = get_option("rewrite_rules", array());
             $rules = is_array($rules) ? $rules : array();
             foreach ($rules as $pattern => $target) {
-                if (strpos($pattern, "journal") !== false) {
+                if (strpos($pattern, "journal") !== false || strpos($pattern, "categoria") !== false || strpos($pattern, "category") !== false) {
                     echo "MAKE_REWRITE_RULE=" . $pattern . " => " . $target . PHP_EOL;
                 }
             }
@@ -191,6 +191,8 @@ jobs:
 
           check_html "/journal/" "Últimos artículos" "journal-es"
           check_html "/en/journal/" "Latest articles" "journal-en"
+          check_html "/categoria/florals/" "Flores y botánica" "journal-category-es"
+          check_html "/en/category/florals/" "Florals & botanical" "journal-category-en"
           check_html "/wp-content/themes/make/assets/images/categories/category-art-generated.webp" "RIFF" "category-art-image"
           check_html "/journal/" "category-art-generated.webp" "journal-category-art"
           check_html "/journal/page/2/" "Últimos artículos" "journal-page-2"
@@ -198,4 +200,18 @@ jobs:
           check_html "/sitemap.xml" "<sitemapindex" "sitemap-index"
           check_html "/sitemap-es.xml" "<urlset" "sitemap-es"
           check_html "/sitemap-en.xml" "<urlset" "sitemap-en"
+
+          "${DOCKER[@]}" exec make-wp php -r '
+            require "/var/www/html/wp-load.php";
+            foreach (array("es","en") as $language) {
+                foreach (make_sitemap_urls($language) as $entry) {
+                    $loc=(string)($entry["loc"] ?? "");
+                    if (strpos($loc,"make_theme=")!==false) {
+                        fwrite(STDERR,"Legacy make_theme query URL found in sitemap: ".$loc.PHP_EOL);
+                        exit(2);
+                    }
+                }
+            }
+            echo "MAKE_SITEMAP_CATEGORY_URLS=clean".PHP_EOL;
+          '
           REMOTE
