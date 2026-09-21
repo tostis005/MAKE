@@ -21,18 +21,26 @@ else :
     }
 
     $intro = make_t(
-        'Explora cada patrón por separado o descubre colecciones que comparten la misma paleta de colores e hilos.',
-        'Browse each pattern individually or discover collections that share the same colour and thread palette.'
+        'Explora cada patrón por separado o descubre colecciones que comparten una misma paleta de color.',
+        'Browse each pattern individually or discover collections that share the same colour palette.'
     );
 
     if ( is_tax( 'product_collection' ) ) {
         $term = get_queried_object();
-        if ( $term instanceof WP_Term && '' !== trim( (string) $term->description ) ) {
-            $intro = wp_strip_all_tags( $term->description );
-        } else {
+        if ( $term instanceof WP_Term ) {
+            if ( function_exists( 'make_collection_display_name' ) ) {
+                $title = make_collection_display_name( $term );
+            }
+            if ( function_exists( 'make_collection_display_description' ) ) {
+                $localized_intro = make_collection_display_description( $term );
+                if ( '' !== $localized_intro ) { $intro = $localized_intro; }
+            }
+        }
+
+        if ( '' === trim( (string) $intro ) ) {
             $intro = make_t(
-                'Todos los diseños de esta colección reutilizan la misma paleta, para que puedas cambiar de proyecto sin cambiar de hilos.',
-                'Every design in this collection reuses the same palette, so you can switch projects without switching threads.'
+                'Diseños que comparten una misma paleta de color para que puedas combinarlos dentro de la colección.',
+                'Designs that share one colour palette so you can combine them within the collection.'
             );
         }
     }
@@ -53,13 +61,15 @@ else :
   <div class="container">
     <?php if ( function_exists( 'make_render_shop_view_switcher' ) ) { make_render_shop_view_switcher(); } ?>
 
-    <div class="shop-intro-row">
-      <div class="shop-trust">
-        <span>✓ <?php echo esc_html( make_t( 'PDF descargable', 'Downloadable PDF' ) ); ?></span>
-        <span>✓ <?php echo esc_html( make_t( 'USD o EUR', 'USD or EUR' ) ); ?></span>
-        <span>✓ <?php echo esc_html( make_t( 'Acceso tras la compra', 'Access after purchase' ) ); ?></span>
+    <?php if ( ! is_tax( 'product_collection' ) ) : ?>
+      <div class="shop-intro-row">
+        <div class="shop-trust">
+          <span>✓ <?php echo esc_html( make_t( 'PDF descargable', 'Downloadable PDF' ) ); ?></span>
+          <span>✓ <?php echo esc_html( make_t( 'USD o EUR', 'USD or EUR' ) ); ?></span>
+          <span>✓ <?php echo esc_html( make_t( 'Acceso tras la compra', 'Access after purchase' ) ); ?></span>
+        </div>
       </div>
-    </div>
+    <?php endif; ?>
 
     <?php if ( function_exists( 'make_collection_archive_note' ) ) { make_collection_archive_note(); } ?>
 
