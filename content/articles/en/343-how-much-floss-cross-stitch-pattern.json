@@ -1,0 +1,71 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 343,
+  "translation_group": "343-estimate-cross-stitch-floss",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "floss",
+      "terms": [
+        "floss"
+      ]
+    },
+    "style": {
+      "terms": [
+        "floss-estimate",
+        "skeins",
+        "materials",
+        "planning"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-343-estimate-floss",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Stitchers who want to estimate how many skeins of floss a cross stitch pattern needs before buying supplies or starting a project.",
+  "title": "How Much Floss Do You Need for a Cross Stitch Pattern?",
+  "slug": "how-much-floss-cross-stitch-pattern",
+  "seo": {
+    "title": "How Much Floss Do You Need for a Cross Stitch Pattern?",
+    "meta_description": "Learn how to estimate cross stitch floss from stitch count, Aida count, strand count, coverage and a practical allowance for starts, mistakes and waste.",
+    "search_intent": "Stitchers who want to estimate how many skeins of floss a cross stitch pattern needs before buying supplies or starting a project."
+  },
+  "excerpt": "Floss use can be estimated before you start when you know stitches per color, fabric count and strand count, but a safety margin is always useful.",
+  "content_html": "<p>Estimating floss before you begin prevents one of the most annoying project problems: discovering halfway through that you are short of an important color. There is no exact universal figure because tension, thread length, strand count, starts and finishes all change consumption, but you can get close enough to buy supplies with confidence.</p>\n<p>The most useful number is the stitch count for each color. Many digital patterns provide it. If yours does not, the overall stitch count can still give you a rough total, although dividing that estimate among individual colors becomes less precise.</p>\n<h2>Start with the stitch count for each color</h2>\n<p>If one shade contains 2,400 full crosses and another contains only 180, they clearly do not need the same amount of floss. Per-color counts show which shades may need spare skeins and which will use only a fraction of one.</p>\n<p>On a full-coverage chart, width multiplied by height gives the maximum number of stitched squares in the design area, but you still need the color distribution. On charts with large unstitched backgrounds, width times height significantly overestimates floss usage.</p>\n<p>Backstitch, knots and specialty stitches also consume thread, although usually far less than thousands of full crosses. Add a small allowance when one color is used heavily for outlining.</p>\n<h2>One standard skein covers thousands of crosses, not hundreds</h2>\n<p>As a rough planning benchmark, a standard skein on 14-count Aida with two strands often covers somewhere around 1,500 to 1,800 full cross stitches. Your own result can fall outside that range, so treat it as an estimate rather than a guarantee.</p>\n<p>For example, 5,000 total crosses on 14-count Aida with two strands might use roughly three to four skein-equivalents spread across all colors. That does not mean buying four skeins of every shade; the per-color distribution is what matters.</p>\n<p>If one individual color clearly exceeds about 1,500 stitches, start considering a second skein. If it approaches 3,000 stitches, planning for more than one from the beginning is sensible.</p>\n<h2>Fabric count changes how much thread each cross uses</h2>\n<p>Higher-count fabric creates physically smaller crosses, so the same chart generally uses less floss on 18-count Aida than on 14-count when the same number of strands is used.</p>\n<p>On 11-count Aida, each diagonal is longer and stitchers often use three strands, so thread consumption rises substantially. Do not apply a 14-count estimate unchanged.</p>\n<p>If you switch fabric count to change the finished size, recalculate floss as well. The number of chart stitches stays the same, but the physical length of every stitch changes.</p>\n<h2>Strand count affects consumption almost directly</h2>\n<p>A three-strand project uses roughly 50 percent more floss than the same project stitched with two strands before allowing for waste. A one-strand project uses much less.</p>\n<p>Loop starts also affect how you prepare the thread. With two strands, one long single strand can be folded to create two working strands, while other starting methods use cut ends differently.</p>\n<p>You do not need a complicated equation for every choice. The important point is that your estimate should use the same strand count you actually plan to stitch.</p>\n<h2>Add an allowance for starts, finishes, mistakes and tangles</h2>\n<p>You never use every last centimeter of a cut length. There are tails at starts and finishes, occasional unpicking, knots and sections that become worn.</p>\n<p>Adding roughly 10–20 percent above the theoretical estimate is a practical safety margin. On large projects, that buffer can prevent you from running out of a dominant color late in the work.</p>\n<p>For hand-dyed, discontinued or difficult-to-replace shades, be more conservative and buy the amount you expect to need in one purchase so later color variation is less likely to matter.</p>\n<h2>Buy according to dominant colors, not only total project usage</h2>\n<p>A chart may contain thirty colors and use only six skein-equivalents in total, while one dominant shade needs two whole skeins and twenty minor shades use less than a tenth of a skein each.</p>\n<p>Review the symbol key and identify the colors with the highest stitch counts. Those are the shades worth buying in duplicate when the estimate is close to a full-skein boundary.</p>\n<p>Minor colors normally do not need a spare when you are already buying one full skein. Their leftovers can be stored for future projects.</p>\n<p>A practical workflow is simple: get the stitch count by color, adjust for fabric count and strands, use a rough skein-yield benchmark, then add a safety margin. The result will not be mathematically exact, but it is far more reliable than buying one skein of every shade and hoping each one lasts.</p>",
+  "image": {
+    "concept": "Embroidery floss skeins beside a chart showing stitch counts by color and a simple floss-use calculation.",
+    "alt": "How much floss you need for a cross stitch pattern"
+  }
+}
