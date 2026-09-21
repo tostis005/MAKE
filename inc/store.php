@@ -38,6 +38,24 @@ function make_register_store_taxonomies(): void {
 }
 add_action( 'init', 'make_register_store_taxonomies', 6 );
 
+
+function make_redirect_legacy_collection_url(): void {
+    if ( is_admin() ) { return; }
+
+    $request_uri = isset( $_SERVER['REQUEST_URI'] ) ? (string) wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
+    $path = (string) wp_parse_url( $request_uri, PHP_URL_PATH );
+    if ( ! preg_match( '#/collection/marilyn-pop-portraits/?$#i', $path ) ) { return; }
+
+    $term = get_term_by( 'slug', 'pop-art-portraits', 'product_collection' );
+    if ( ! $term instanceof WP_Term ) { return; }
+    $url = get_term_link( $term );
+    if ( is_wp_error( $url ) ) { return; }
+
+    wp_safe_redirect( $url, 301 );
+    exit;
+}
+add_action( 'template_redirect', 'make_redirect_legacy_collection_url', 3 );
+
 function make_store_maybe_flush_rewrites(): void {
     $schema_version = '1';
     if ( $schema_version === (string) get_option( 'drielo_store_schema_version', '' ) ) { return; }
