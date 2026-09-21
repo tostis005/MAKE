@@ -1,0 +1,71 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 379,
+  "translation_group": "379-scroll-frame-side-tension",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "scroll-frames",
+      "terms": [
+        "scroll-frames"
+      ]
+    },
+    "style": {
+      "terms": [
+        "scroll-frame",
+        "side-tension",
+        "tensioners",
+        "large-project"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-379-scroll-tension",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Stitchers using a scroll frame who have good vertical tension but loose, bowed or distorted fabric along the sides.",
+  "title": "How to Get Even Side Tension on a Cross Stitch Scroll Frame",
+  "slug": "even-side-tension-cross-stitch-scroll-frame",
+  "seo": {
+    "title": "How to Get Even Side Tension on a Cross Stitch Scroll Frame",
+    "meta_description": "How to improve side tension on a cross stitch scroll frame by mounting fabric straight, rolling evenly, adjusting rods and using side tensioners when useful.",
+    "search_intent": "Stitchers using a scroll frame who have good vertical tension but loose, bowed or distorted fabric along the sides."
+  },
+  "excerpt": "Scroll frames tension fabric mainly top to bottom, so sides can feel looser. Straight mounting and controlled side tension solve most of the problem.",
+  "content_html": "<p>A scroll frame applies most of its tension between the top and bottom rods. That means the center can feel firm while the side edges curve or develop slight waves. This does not always mean the frame is poor quality. The fabric may be mounted slightly off-square or simply need a small amount of lateral support.</p>\n<p>Before adding accessories, check the basic setup. A correctly mounted scroll frame should keep the grid reasonably straight even if the side edges do not feel quite as drum-tight as a Q-snap.</p>\n<h2>Mount the fabric parallel to the rods from the beginning</h2>\n<p>If the top edge begins even half an inch crooked, each turn of the rod magnifies that difference. One corner eventually becomes tighter than the other.</p>\n<p>Use an Aida or evenweave row as a visual reference and make sure it runs parallel to the rod.</p>\n<p>When attaching fabric with webbing, hook-and-loop tape, split rods or clamps, start near the center and work outward rather than anchoring one corner first.</p>\n<h2>Roll the fabric evenly across the full width</h2>\n<p>Before tightening, check that the cloth enters the roll consistently. Extra layers in one area slightly change the roll diameter and can create uneven pull.</p>\n<p>Turn the rods gradually and alternate small adjustments between top and bottom.</p>\n<p>Do not try to fix one loose side by tightening only the top rod dramatically. That increases vertical tension without necessarily transferring it to the edge.</p>\n<h2>Fabric width and rod width both matter</h2>\n<p>The full fabric cut should fit comfortably between the frame sides. If the material is folded or compressed just to fit, the weave cannot tension evenly.</p>\n<p>In general, rods need to accommodate the mounted fabric width, not merely the stitched design width.</p>\n<p>An extremely wide frame is not automatically better either. Rod flex, weight and reach can become issues, particularly when the frame is handheld rather than supported by a stand.</p>\n<h2>Side tensioners add gentle lateral pull</h2>\n<p>Side tensioners attach to the fabric edge and pull outward using elastic, straps or small clips. Their job is to remove waves rather than stretch aggressively.</p>\n<p>Place them in roughly matching positions on the left and right and increase tension gradually.</p>\n<p>If fabric squares begin widening near the edge, the pull is too strong. The grid should become flatter without changing its geometry.</p>\n<h2>A scroll frame does not need to feel exactly like a drum</h2>\n<p>Some stitchers expect the surface to match a Q-snap. These are different support systems, and a scroll frame may retain a little more side flexibility.</p>\n<p>As long as the cloth remains stable under the needle and rows are not visibly bowing, slight variation in firmness can still work perfectly well.</p>\n<p>Increasing tension indefinitely can distort the fabric, bow rods or overload the attachment points.</p>\n<h2>Reset side tension every time you advance the fabric</h2>\n<p>When the rods are loosened and the project is scrolled, the previous balance disappears. Realign and tension again rather than assuming the sides will return to exactly the same pull.</p>\n<p>If you use side tensioners, release them before turning the rods and attach them again afterward. Do not let them fight the fabric while it is being rolled.</p>\n<p>Watch the first few rows after moving the frame. If lines start curving, correct the setup before stitching a large section under uneven tension.</p>\n<p>Good side tension begins with straight mounting and even rolls. Tensioners can help, but they should make small corrections rather than rescue fabric that started crooked. Aim for a stable, square grid rather than the maximum possible tightness.</p>",
+  "image": {
+    "concept": "Scroll frame holding Aida with light side tensioners attached evenly on both edges.",
+    "alt": "How to get even side tension on a cross stitch scroll frame"
+  }
+}
