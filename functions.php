@@ -19,6 +19,7 @@ function make_theme_setup(): void {
     add_theme_support( 'wc-product-gallery-lightbox' );
     add_theme_support( 'wc-product-gallery-slider' );
     add_image_size( 'make-card', 760, 950, true );
+    add_image_size( 'make-product-card', 700, 700, true );
     add_image_size( 'make-journal', 900, 560, true );
     register_nav_menus( array( 'primary' => __( 'Primary menu', 'make' ), 'footer' => __( 'Footer menu', 'make' ) ) );
 }
@@ -28,11 +29,7 @@ add_action( 'after_setup_theme', 'make_theme_setup' );
 // The storefront displays four products per row, so this avoids stretching
 // WooCommerce's default 300px thumbnail while keeping the visual cards compact.
 add_filter( 'single_product_archive_thumbnail_size', static function (): string {
-    return 'make-card';
-}, 20 );
-
-add_filter( 'loop_shop_columns', static function (): int {
-    return 4;
+    return 'make-product-card';
 }, 20 );
 
 
@@ -416,8 +413,8 @@ function make_single_product_reassurance(): void {
     echo '</div>';
 }
 
-add_filter( 'loop_shop_columns', static fn(): int => 3, 20 );
-add_filter( 'loop_shop_per_page', static fn(): int => 12, 20 );
+add_filter( 'loop_shop_columns', static fn(): int => 4, 20 );
+add_filter( 'loop_shop_per_page', static fn(): int => 16, 20 );
 
 function make_loop_product_classes( array $classes, $product ): array {
     if ( is_a( $product, 'WC_Product' ) ) { $classes[] = 'make-pattern-card'; }
