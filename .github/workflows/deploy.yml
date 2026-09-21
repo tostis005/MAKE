@@ -1,4 +1,4 @@
-name: Deploy MAKE theme to WordPress
+name: Deploy Drielo theme to WordPress
 
 on:
   push:
@@ -53,7 +53,7 @@ jobs:
           VPS_USER: ${{ secrets.VPS_USER }}
         run: scp -i ~/.ssh/make_deploy_key /tmp/make-theme.tar.gz "$VPS_USER@$VPS_HOST:/tmp/make-theme-${GITHUB_RUN_ID}.tar.gz"
 
-      - name: Deploy into make-wp container
+      - name: Deploy into Drielo WordPress container
         env:
           VPS_HOST: ${{ secrets.VPS_HOST }}
           VPS_USER: ${{ secrets.VPS_USER }}
@@ -87,6 +87,9 @@ jobs:
             if ((int) get_option("blog_public", 0) !== 1) {
                 update_option("blog_public", 1);
             }
+            if ((string) get_option("blogname", "") !== "Drielo") {
+                update_option("blogname", "Drielo");
+            }
             require_once ABSPATH . "wp-admin/includes/misc.php";
             flush_rewrite_rules(false);
             global $wp_rewrite;
@@ -96,7 +99,7 @@ jobs:
             echo "MAKE_BLOG_PUBLIC=" . (string) get_option("blog_public", "") . PHP_EOL;
             echo "MAKE_HTACCESS=" . (is_readable(ABSPATH . ".htaccess") ? "present" : "missing") . PHP_EOL;
             echo "MAKE_HTACCESS_RULES=" . ($written ? "written" : "failed") . PHP_EOL;
-            echo "MAKE theme deployed" . PHP_EOL;
+            echo "Drielo theme deployed" . PHP_EOL;
           '
           "${DOCKER[@]}" exec make-wp php -r '
             require "/var/www/html/wp-load.php";
@@ -147,7 +150,7 @@ jobs:
                 $label=getenv("MAKE_SMOKE_LABEL");
                 $context=stream_context_create(array("http"=>array(
                     "method"=>"GET",
-                    "header"=>"Host: ".$host."\r\nUser-Agent: MAKE-Smoke\r\n",
+                    "header"=>"Host: ".$host."\r\nUser-Agent: Drielo-Smoke\r\n",
                     "ignore_errors"=>true,
                     "follow_location"=>0,
                     "timeout"=>15,
