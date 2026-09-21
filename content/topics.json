@@ -4132,6 +4132,116 @@
       "title_es": "Aguja roma vs aguja afilada para punto de cruz: cuál usar y por qué",
       "title_en": "Blunt vs Sharp Needle for Cross Stitch: Which Should You Use?",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 375,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "framing",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "¿Hay que enmarcar el punto de cruz con cristal o sin cristal?",
+      "title_en": "Should You Frame Cross Stitch With Glass or Without Glass?",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 376,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "framing",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo usar separadores al enmarcar punto de cruz sin paspartú",
+      "title_en": "How to Use Frame Spacers for Cross Stitch Without a Mat",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 377,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "framing",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo elegir paspartú para punto de cruz: color, ancho y apertura",
+      "title_en": "How to Choose a Mat for Cross Stitch: Color, Width and Opening",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 378,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "project-organization",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo sujetar la tela sobrante en proyectos grandes de punto de cruz",
+      "title_en": "How to Manage Excess Fabric on Large Cross Stitch Projects",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 379,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "scroll-frames",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo conseguir tensión lateral uniforme en un scroll frame de punto de cruz",
+      "title_en": "How to Get Even Side Tension on a Cross Stitch Scroll Frame",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 380,
+      "priority": "P3",
+      "section": "buying-guides",
+      "topic": "frames",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Q-Snap vs scroll frame para proyectos grandes de punto de cruz",
+      "title_en": "Q-Snap vs Scroll Frame for Large Cross Stitch Projects",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 381,
+      "priority": "P3",
+      "section": "buying-guides",
+      "topic": "needles",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Agujas chapadas en oro para punto de cruz: ¿merecen la pena?",
+      "title_en": "Gold-Plated Cross Stitch Needles: Are They Worth It?",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 382,
+      "priority": "P3",
+      "section": "buying-guides",
+      "topic": "ergonomics",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Dedal y protectores de dedo para punto de cruz: cuándo ayudan de verdad",
+      "title_en": "Thimbles and Finger Protectors for Cross Stitch: When They Actually Help",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 383,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "pattern-reading",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Qué significa stitch count en punto de cruz y cómo calcular el total de puntadas",
+      "title_en": "What Does Stitch Count Mean in Cross Stitch and How Do You Calculate It?",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 384,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "project-organization",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Qué es un thread sorter y cómo usar una tarjeta de hilos para un proyecto",
+      "title_en": "What Is a Thread Sorter? How to Use a Floss Card for a Cross Stitch Project",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {
@@ -4162,7 +4272,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 374,
-    "bilingual_groups": 374
+    "last_indexed_article": 384,
+    "bilingual_groups": 384
   }
 }
