@@ -146,7 +146,10 @@ foreach ( (array) ( $catalog['categories'] ?? array() ) as $cat ) {
     $slug = sanitize_title( (string) $cat['slug'] );
     $parent_slug = isset( $cat['parent'] ) ? sanitize_title( (string) $cat['parent'] ) : '';
     $parent = $parent_slug && isset( $category_ids[ $parent_slug ] ) ? (int) $category_ids[ $parent_slug ] : 0;
-    $category_ids[ $slug ] = drielo_term( 'product_cat', (string) $cat['name'], $slug, $parent );
+    $term_id = drielo_term( 'product_cat', (string) $cat['name'], $slug, $parent );
+    $category_ids[ $slug ] = $term_id;
+    update_term_meta( $term_id, 'drielo_name_es', sanitize_text_field( (string) ( $cat['name_es'] ?? $cat['name'] ) ) );
+    update_term_meta( $term_id, 'drielo_name_en', sanitize_text_field( (string) ( $cat['name_en'] ?? $cat['name'] ) ) );
 }
 
 $collections = array();
@@ -215,7 +218,7 @@ foreach ( (array) ( $catalog['products'] ?? array() ) as $row ) {
         continue;
     }
 
-    $product->set_name( (string) $row['title'] );
+    $product->set_name( (string) ( $row['title_en'] ?? $row['title'] ) );
     $product->set_slug( sanitize_title( (string) $row['slug'] ) );
     $product->set_sku( $sku );
     $product->set_status( 'publish' );
@@ -225,9 +228,9 @@ foreach ( (array) ( $catalog['products'] ?? array() ) as $row ) {
     $product->set_downloadable( true );
     $product->set_sold_individually( true );
     $product->set_manage_stock( false );
-    $product->set_short_description( (string) $row['short_description'] );
-    $product->set_description( (string) $row['description'] );
-    $product->set_purchase_note( 'Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.' );
+    $product->set_short_description( (string) ( $row['short_description_en'] ?? $row['short_description'] ) );
+    $product->set_description( (string) ( $row['description_en'] ?? $row['description'] ) );
+    $product->set_purchase_note( (string) ( $row['purchase_note_en'] ?? 'Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.' ) );
 
     $attribute_specs = array(
         'Pattern size'  => (string) ( $row['grid'] ?? '' ),
@@ -299,12 +302,28 @@ foreach ( (array) ( $catalog['products'] ?? array() ) as $row ) {
 
     update_post_meta( $id, '_drielo_managed_product', '1' );
     update_post_meta( $id, '_drielo_product_code', sanitize_text_field( (string) $row['code'] ) );
+    update_post_meta( $id, '_drielo_title_es', sanitize_text_field( (string) ( $row['title_es'] ?? $row['title'] ) ) );
+    update_post_meta( $id, '_drielo_title_en', sanitize_text_field( (string) ( $row['title_en'] ?? $row['title'] ) ) );
+    update_post_meta( $id, '_drielo_short_description_es', wp_kses_post( (string) ( $row['short_description_es'] ?? $row['short_description'] ) ) );
+    update_post_meta( $id, '_drielo_short_description_en', wp_kses_post( (string) ( $row['short_description_en'] ?? $row['short_description'] ) ) );
+    update_post_meta( $id, '_drielo_description_es', wp_kses_post( (string) ( $row['description_es'] ?? $row['description'] ) ) );
+    update_post_meta( $id, '_drielo_description_en', wp_kses_post( (string) ( $row['description_en'] ?? $row['description'] ) ) );
+    update_post_meta( $id, '_drielo_purchase_note_es', sanitize_text_field( (string) ( $row['purchase_note_es'] ?? '' ) ) );
+    update_post_meta( $id, '_drielo_purchase_note_en', sanitize_text_field( (string) ( $row['purchase_note_en'] ?? '' ) ) );
+    update_post_meta( $id, '_drielo_skill_es', sanitize_text_field( (string) ( $row['skill_es'] ?? $row['skill'] ?? '' ) ) );
+    update_post_meta( $id, '_drielo_skill_en', sanitize_text_field( (string) ( $row['skill_en'] ?? $row['skill'] ?? '' ) ) );
+    update_post_meta( $id, '_drielo_stitch_type_es', sanitize_text_field( (string) ( $row['stitch_type_es'] ?? $row['stitch_type'] ?? '' ) ) );
+    update_post_meta( $id, '_drielo_stitch_type_en', sanitize_text_field( (string) ( $row['stitch_type_en'] ?? $row['stitch_type'] ?? '' ) ) );
+    update_post_meta( $id, '_drielo_seo_title_es', sanitize_text_field( (string) ( $row['seo_title_es'] ?? $row['seo_title'] ?? '' ) ) );
+    update_post_meta( $id, '_drielo_seo_title_en', sanitize_text_field( (string) ( $row['seo_title_en'] ?? $row['seo_title'] ?? '' ) ) );
+    update_post_meta( $id, '_drielo_meta_description_es', sanitize_text_field( (string) ( $row['meta_description_es'] ?? $row['meta_description'] ?? '' ) ) );
+    update_post_meta( $id, '_drielo_meta_description_en', sanitize_text_field( (string) ( $row['meta_description_en'] ?? $row['meta_description'] ?? '' ) ) );
     update_post_meta( $id, '_drielo_stitch_count', absint( $row['stitches'] ?? 0 ) );
     update_post_meta( $id, '_drielo_grid', sanitize_text_field( (string) ( $row['grid'] ?? '' ) ) );
     update_post_meta( $id, '_drielo_skill', sanitize_text_field( (string) ( $row['skill'] ?? '' ) ) );
     update_post_meta( $id, '_drielo_stitch_type', sanitize_text_field( (string) ( $row['stitch_type'] ?? '' ) ) );
-    update_post_meta( $id, '_make_seo_title', sanitize_text_field( (string) ( $row['seo_title'] ?? '' ) ) );
-    update_post_meta( $id, '_make_meta_description', sanitize_text_field( (string) ( $row['meta_description'] ?? '' ) ) );
+    update_post_meta( $id, '_make_seo_title', sanitize_text_field( (string) ( $row['seo_title_en'] ?? $row['seo_title'] ?? '' ) ) );
+    update_post_meta( $id, '_make_meta_description', sanitize_text_field( (string) ( $row['meta_description_en'] ?? $row['meta_description'] ?? '' ) ) );
 
     if ( ! empty( $prepared_downloads ) ) {
         $download_meta = array();
