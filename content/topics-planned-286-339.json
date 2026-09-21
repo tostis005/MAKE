@@ -14,7 +14,7 @@
       "es",
       "en"
     ],
-    "avoid_cannibalization_with_published_through": 285
+    "avoid_cannibalization_with_published_through": 295
   },
   "topics": [
     {
@@ -78,7 +78,7 @@
       "section": "ideas",
       "topic": "gothic",
       "intent": "commercial",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Patrones witchy de punto de cruz: brujas, pociones y botánica oscura",
       "title_en": "Witchy Cross Stitch Patterns: Witches, Potions and Dark Botanicals",
       "craft": "cross-stitch"
@@ -89,7 +89,7 @@
       "section": "ideas",
       "topic": "gothic",
       "intent": "commercial",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Patrones botánicos góticos en punto de cruz: flores oscuras, polillas y plantas",
       "title_en": "Gothic Botanical Cross Stitch Patterns: Dark Flowers, Moths and Plants",
       "craft": "cross-stitch"
@@ -100,7 +100,7 @@
       "section": "ideas",
       "topic": "animals",
       "intent": "commercial",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Patrones de animales del bosque en punto de cruz para habitaciones infantiles",
       "title_en": "Woodland Animal Cross Stitch Patterns for Nurseries and Kids' Rooms",
       "craft": "cross-stitch"
@@ -111,7 +111,7 @@
       "section": "ideas",
       "topic": "florals",
       "intent": "commercial",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Flores de nacimiento en punto de cruz: patrones para cada mes del año",
       "title_en": "Birth Flower Cross Stitch Patterns for Every Month of the Year",
       "craft": "cross-stitch"
@@ -122,7 +122,7 @@
       "section": "ideas",
       "topic": "custom",
       "intent": "commercial",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Ramos de flores de nacimiento personalizados en punto de cruz para familias",
       "title_en": "Personalized Birth Flower Bouquet Cross Stitch for Families",
       "craft": "cross-stitch"
