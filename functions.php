@@ -4,6 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 require_once get_template_directory() . '/inc/sitemap.php';
 require_once get_template_directory() . '/inc/category-art.php';
+require_once get_template_directory() . '/inc/store.php';
 
 function make_theme_setup(): void {
     load_theme_textdomain( 'make', get_template_directory() . '/languages' );
