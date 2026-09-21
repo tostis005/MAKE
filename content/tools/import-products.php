@@ -46,6 +46,7 @@ function drielo_term( string $taxonomy, string $name, string $slug, int $parent 
 function drielo_media_from_file( string $path, string $source_key, string $title ): int {
     if ( ! is_file( $path ) ) { return 0; }
 
+    $source_hash = md5_file( $path ) ?: '';
     $existing = get_posts(
         array(
             'post_type'      => 'attachment',
@@ -56,7 +57,34 @@ function drielo_media_from_file( string $path, string $source_key, string $title
             'meta_value'     => $source_key,
         )
     );
-    if ( $existing ) { return (int) $existing[0]; }
+
+    if ( $existing ) {
+        $attachment_id = (int) $existing[0];
+        $known_hash = (string) get_post_meta( $attachment_id, '_drielo_source_hash', true );
+        if ( $source_hash && hash_equals( $known_hash, $source_hash ) ) {
+            return $attachment_id;
+        }
+
+        $attached_file = get_attached_file( $attachment_id );
+        if ( $attached_file ) {
+            wp_mkdir_p( dirname( $attached_file ) );
+            if ( ! copy( $path, $attached_file ) ) {
+                throw new RuntimeException( 'Could not refresh existing product image: ' . $source_key );
+            }
+            $metadata = wp_generate_attachment_metadata( $attachment_id, $attached_file );
+            if ( is_array( $metadata ) ) {
+                wp_update_attachment_metadata( $attachment_id, $metadata );
+            }
+            wp_update_post(
+                array(
+                    'ID'         => $attachment_id,
+                    'post_title' => $title,
+                )
+            );
+            update_post_meta( $attachment_id, '_drielo_source_hash', $source_hash );
+            return $attachment_id;
+        }
+    }
 
     $filename = wp_basename( $path );
     $bits = wp_upload_bits( $filename, null, (string) file_get_contents( $path ) );
@@ -76,6 +104,7 @@ function drielo_media_from_file( string $path, string $source_key, string $title
     $metadata = wp_generate_attachment_metadata( $attachment_id, $bits['file'] );
     if ( is_array( $metadata ) ) { wp_update_attachment_metadata( $attachment_id, $metadata ); }
     update_post_meta( $attachment_id, '_drielo_source_asset', $source_key );
+    update_post_meta( $attachment_id, '_drielo_source_hash', $source_hash );
     return (int) $attachment_id;
 }
 
