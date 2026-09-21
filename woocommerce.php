@@ -15,7 +15,8 @@ if ( function_exists( 'is_product' ) && is_product() ) :
 <?php
 else :
     $title = make_archive_title();
-    $is_collection_view = function_exists( 'is_shop' ) && is_shop() && function_exists( 'make_store_view' ) && 'collections' === make_store_view();
+    $is_shop_archive = function_exists( 'is_shop' ) && is_shop();
+    $is_collection_view = $is_shop_archive && function_exists( 'make_store_view' ) && 'collections' === make_store_view();
 
     if ( $is_collection_view ) {
         $title = make_t( 'Colecciones de patrones', 'Pattern collections' );
@@ -46,9 +47,9 @@ else :
         }
     }
 ?>
-<section class="shop-hero <?php echo $is_collection_view ? 'shop-hero--collections' : ''; ?>">
+<section class="shop-hero <?php echo $is_collection_view ? 'shop-hero--collections' : ''; ?> <?php echo $is_shop_archive ? 'shop-hero--store' : ''; ?>">
   <div class="container">
-    <div class="shop-hero-inner <?php echo $is_collection_view ? 'shop-hero-inner--stacked' : ''; ?>">
+    <div class="shop-hero-inner <?php echo $is_shop_archive ? 'shop-hero-inner--stacked' : ''; ?>">
       <div>
         <span class="section-kicker"><?php echo esc_html( make_t( 'Patrones digitales', 'Digital patterns' ) ); ?></span>
         <h1><?php echo esc_html( $title ); ?></h1>
@@ -61,16 +62,6 @@ else :
 <section class="shop-main">
   <div class="container">
     <?php if ( function_exists( 'make_render_shop_view_switcher' ) ) { make_render_shop_view_switcher(); } ?>
-
-    <?php if ( ! is_tax( 'product_collection' ) && ! $is_collection_view ) : ?>
-      <div class="shop-intro-row">
-        <div class="shop-trust">
-          <span>✓ <?php echo esc_html( make_t( 'PDF descargable', 'Downloadable PDF' ) ); ?></span>
-          <span>✓ <?php echo esc_html( make_t( 'USD o EUR', 'USD or EUR' ) ); ?></span>
-          <span>✓ <?php echo esc_html( make_t( 'Acceso tras la compra', 'Access after purchase' ) ); ?></span>
-        </div>
-      </div>
-    <?php endif; ?>
 
     <?php if ( function_exists( 'make_collection_archive_note' ) ) { make_collection_archive_note(); } ?>
 
