@@ -776,22 +776,22 @@ body{background:var(--mk-cream);color:var(--mk-ink)}
 .journal-theme-media{display:block;aspect-ratio:16/9;overflow:hidden;background:#f8f1ec}
 .journal-theme-art,
 .make-editorial-art{
-  display:block;width:100%;height:100%;padding:0;
-  background-color:#f8f1ec;
-  background-image:url("assets/images/categories/category-art-sprite.webp?v=1");
-  background-repeat:no-repeat;
-  background-size:300% 300%;
-  filter:none
+  display:block;width:100%;height:100%;padding:7px;
+  background:linear-gradient(145deg,#f7ecee,#f3ede7)
 }
-.journal-theme-art--florals,.make-editorial-art--florals{background-position:0 0}
-.journal-theme-art--animals,.make-editorial-art--animals{background-position:50% 0}
-.journal-theme-art--pop-art,.make-editorial-art--pop-art{background-position:100% 0}
-.journal-theme-art--retro,.make-editorial-art--retro{background-position:0 50%}
-.journal-theme-art--geometric,.make-editorial-art--geometric{background-position:50% 50%}
-.journal-theme-art--celestial,.make-editorial-art--celestial{background-position:100% 50%}
-.journal-theme-art--food,.make-editorial-art--food{background-position:0 100%}
-.journal-theme-art--quotes,.make-editorial-art--quotes{background-position:50% 100%}
-.journal-theme-art--seasonal,.make-editorial-art--seasonal{background-position:100% 100%}
+.journal-theme-art svg,
+.make-editorial-art svg{
+  display:block;width:100%;height:100%;max-width:100%;max-height:100%;
+  filter:drop-shadow(0 6px 12px rgba(82,40,61,.045))
+}
+.journal-theme-art--animals,.make-editorial-art--animals{background:linear-gradient(145deg,#f3e9eb,#f7f0e9)}
+.journal-theme-art--pop-art,.make-editorial-art--pop-art{background:linear-gradient(145deg,#f1dce3,#f5e7e2)}
+.journal-theme-art--retro,.make-editorial-art--retro{background:linear-gradient(145deg,#f3e7df,#eee2e9)}
+.journal-theme-art--geometric,.make-editorial-art--geometric{background:linear-gradient(145deg,#f1ebf1,#f7efed)}
+.journal-theme-art--celestial,.make-editorial-art--celestial{background:linear-gradient(145deg,#eeebf0,#f5e9ec)}
+.journal-theme-art--food,.make-editorial-art--food{background:linear-gradient(145deg,#f4e8e3,#eeebe2)}
+.journal-theme-art--quotes,.make-editorial-art--quotes{background:linear-gradient(145deg,#f2e8ec,#f8f1ea)}
+.journal-theme-art--seasonal,.make-editorial-art--seasonal{background:linear-gradient(145deg,#ebefe8,#f4e9e8)}
 .journal-theme-copy{position:relative;display:block;min-height:135px;padding:20px 48px 20px 20px}
 .journal-theme-copy strong{display:block;font:500 25px/1.05 Georgia,serif;letter-spacing:-.035em}
 .journal-theme-copy small{display:block;margin-top:8px;color:var(--mk-muted);font-size:11.5px;line-height:1.5}
