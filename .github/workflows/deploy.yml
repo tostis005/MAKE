@@ -194,6 +194,10 @@ jobs:
               '
           }
 
+          check_html "/tienda/colecciones/" "Colecciones de patrones" "shop-collections-es" "PDF descargable"
+          check_html "/tienda/colecciones/" "Explora cada patrón por separado o descubre colecciones que comparten una misma paleta de color." "shop-collections-intro-es"
+          check_html "/tienda/collections/" "Pattern collections" "shop-collections-en" "Downloadable PDF"
+          check_html "/producto/bubble-gum-portrait-cross-stitch-pattern/" "drielo-shop-views" "single-product-shop-switch"
           check_html "/journal/" "Últimos artículos" "journal-es"
           check_html "/en/journal/" "Latest articles" "journal-en"
           check_html "/categoria/florals/" "Flores y botánica" "journal-category-es"
