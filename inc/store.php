@@ -38,6 +38,14 @@ function make_register_store_taxonomies(): void {
 }
 add_action( 'init', 'make_register_store_taxonomies', 6 );
 
+function make_store_maybe_flush_rewrites(): void {
+    $schema_version = '1';
+    if ( $schema_version === (string) get_option( 'drielo_store_schema_version', '' ) ) { return; }
+    flush_rewrite_rules( false );
+    update_option( 'drielo_store_schema_version', $schema_version, false );
+}
+add_action( 'init', 'make_store_maybe_flush_rewrites', 99 );
+
 function make_store_allowed_currencies(): array {
     return array( 'USD', 'EUR' );
 }
