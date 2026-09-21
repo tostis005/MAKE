@@ -1,0 +1,71 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 384,
+  "translation_group": "384-thread-sorter-floss-card",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "project-organization",
+      "terms": [
+        "project-organization"
+      ]
+    },
+    "style": {
+      "terms": [
+        "thread-sorter",
+        "floss-card",
+        "project-kit",
+        "symbols"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "es-384-thread-sorter",
+  "language": "es",
+  "locale": "es-ES",
+  "market_context": "Personas que quieren preparar los colores de un patrón en una tarjeta o thread sorter para encontrar símbolos y hebras rápidamente durante el bordado.",
+  "title": "Qué es un thread sorter y cómo usar una tarjeta de hilos para un proyecto",
+  "slug": "thread-sorter-tarjeta-hilos-punto-de-cruz",
+  "seo": {
+    "title": "Qué es un thread sorter y cómo usar una tarjeta de hilos para un proyecto",
+    "meta_description": "Qué es un thread sorter o floss card, cómo etiquetar número y símbolo, colocar hebras precortadas y usarlo sin mezclar colores durante un proyecto.",
+    "search_intent": "Personas que quieren preparar los colores de un patrón en una tarjeta o thread sorter para encontrar símbolos y hebras rápidamente durante el bordado."
+  },
+  "excerpt": "Un thread sorter reúne los colores activos de un patrón en agujeros etiquetados. Es una forma sencilla de convertir un PDF y varias madejas en un pequeño kit organizado.",
+  "content_html": "<p>Un <em>thread sorter</em>, floss card o tarjeta de hilos es un soporte con agujeros o ranuras donde colocas los colores de un proyecto. Cada posición se etiqueta con número DMC, símbolo del patrón o ambos. En lugar de buscar una madeja en la caja cada vez que cambias de color, tienes las hebras activas agrupadas junto al WIP.</p>\n<p>Es especialmente útil en patrones con muchos cambios de color, kits sin organizador o proyectos de viaje. No sustituye necesariamente tu sistema de almacenamiento general; funciona como una capa de trabajo temporal.</p>\n<h2>Etiqueta cada posición antes de añadir el hilo</h2>\n<p>Escribe el número del color y, si el patrón utiliza símbolos, añade también el símbolo correspondiente. Esto reduce el tiempo de volver a consultar la leyenda.</p>\n<p>En colores muy similares, no confíes solo en mirar el hilo. Dos grises vecinos pueden parecer idénticos fuera del contexto.</p>\n<p>Si un símbolo se parece mucho a otro, escribe también una palabra corta o resáltalo para evitar intercambios.</p>\n<h2>Puedes colocar madejas completas o longitudes precortadas</h2>\n<p>Algunas tarjetas soportan una madeja en bucle; otras funcionan mejor con tramos ya cortados a la longitud de trabajo.</p>\n<p>Las hebras precortadas permiten separar un cabo y empezar inmediatamente, pero necesitas decidir una longitud razonable para tu técnica.</p>\n<p>No cortes todo el hilo si no estás seguro de cuánto vas a utilizar o si el patrón podría cambiar de proyecto. Puedes preparar solo varias longitudes y mantener el resto en el stash.</p>\n<h2>No sobrecargues un agujero</h2>\n<p>Si colocas una madeja entera más múltiples restos en una ranura pequeña, los cabos se enganchan y el sorter deja de ahorrar tiempo.</p>\n<p>Guarda el stock principal aparte y utiliza la tarjeta para hilo activo. Reponla cuando queden pocas longitudes.</p>\n<p>En proyectos con 80 o 100 colores, considera dos tarjetas numeradas en lugar de una pieza enorme difícil de manejar.</p>\n<h2>Organiza el orden para que coincida con tu patrón</h2>\n<p>Puedes seguir la leyenda tal como aparece, ordenar por número DMC o agrupar por página. No existe una única secuencia correcta.</p>\n<p>Para full coverage, agrupar los colores de la zona actual puede ser más útil que cargar toda la paleta desde el principio.</p>\n<p>Si cambias de página, actualiza el sorter y retira tonos que ya no aparecerán durante varias sesiones.</p>\n<h2>Los restos parcialmente usados necesitan una zona clara</h2>\n<p>Una hebra que todavía sirve puede volver al mismo agujero, pero colócala de forma que no se confunda con una longitud nueva.</p>\n<p>Algunas personas crean una segunda ranura “used” o enrollan el resto alrededor de la propia tarjeta.</p>\n<p>Lo importante es mantener el número unido al hilo y evitar una pequeña nube de cabos sueltos al fondo de la project bag.</p>\n<h2>El thread sorter funciona mejor como kit de proyecto</h2>\n<p>Guárdalo junto al patrón y la labor dentro de la project bag. Cuando te sientes a bordar, los colores necesarios estarán ya seleccionados.</p>\n<p>Al terminar el proyecto, devuelve madejas y restos al stash general y limpia la tarjeta para reutilizarla.</p>\n<p>Si el sorter incluye agujas enhebradas, asegúralas en una zona diseñada para ello en lugar de dejarlas colgando entre hebras.</p>\n<p>Una tarjeta de hilos es una herramienta sencilla, pero puede eliminar muchos pequeños pasos. Etiqueta número y símbolo, prepara solo el hilo que necesitas, evita sobrecargar y mantén restos identificados. El objetivo es que cada cambio de color sea inmediato y que el proyecto se comporte como un kit organizado aunque haya empezado como un PDF y una caja de madejas sueltas.</p>",
+  "image": {
+    "concept": "Tarjeta de hilos con agujeros etiquetados por símbolo y DMC, cada uno con longitudes precortadas de floss.",
+    "alt": "Thread sorter o tarjeta de hilos para un proyecto de punto de cruz"
+  }
+}
