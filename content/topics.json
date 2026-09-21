@@ -3747,6 +3747,61 @@
       "title_es": "Cómo elegir un patrón de punto de cruz para regalar según el tiempo que tienes para bordarlo",
       "title_en": "How to Choose a Cross Stitch Gift Pattern Based on the Time You Have",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 340,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "gridding",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo hacer una cuadrícula 10x10 en tela Aida para no perder la cuenta",
+      "title_en": "How to Grid Aida for Cross Stitch Without Losing Count",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 341,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "needles",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Qué tamaño de aguja usar para punto de cruz en Aida 11, 14, 16 y 18",
+      "title_en": "What Needle Size to Use for 11, 14, 16 and 18 Count Aida",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 342,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "floss",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cuántos cabos de hilo usar en punto de cruz según la tela Aida",
+      "title_en": "How Many Strands of Floss to Use by Aida Count",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 343,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "floss",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo calcular cuánto hilo necesitas para un patrón de punto de cruz",
+      "title_en": "How Much Floss Do You Need for a Cross Stitch Pattern?",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 344,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "technique",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "¿Importa que la parte trasera del punto de cruz quede limpia?",
+      "title_en": "Does the Back of Cross Stitch Need to Be Neat?",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {
@@ -3777,7 +3832,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 339,
-    "bilingual_groups": 339
+    "last_indexed_article": 344,
+    "bilingual_groups": 344
   }
 }
