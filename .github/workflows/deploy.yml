@@ -237,6 +237,27 @@ jobs:
           fi
           echo "DRIELO_CURRENCY_COOKIE_OK status=$CURRENCY_STATUS clean_location=$CURRENCY_LOCATION"
 
+          "${DOCKER[@]}" exec make-wp php -r '
+            $_COOKIE["drielo_currency"]="USD";
+            require "/var/www/html/wp-load.php";
+            $usd_symbol=get_woocommerce_currency_symbol();
+            $_COOKIE["drielo_currency"]="EUR";
+            $eur_symbol=get_woocommerce_currency_symbol();
+            $id=wc_get_product_id_by_sku("DRIELO-P0001");
+            $image_id=get_post_thumbnail_id($id);
+            $preview=wp_get_attachment_image_src($image_id,"medium_large");
+            $html=apply_filters("woocommerce_single_product_image_thumbnail_html","placeholder",(int)$image_id);
+            if ($usd_symbol!=="$" || $eur_symbol!=="€") {
+                fwrite(STDERR,"Currency symbol verification failed USD=".$usd_symbol." EUR=".$eur_symbol.PHP_EOL);
+                exit(2);
+            }
+            if (!is_array($preview) || (int)$preview[1]>800 || strpos($html,"data-large_image")!==false || strpos($html,"<a ")!==false || strpos($html,"srcset=")!==false) {
+                fwrite(STDERR,"Protected image verification failed".PHP_EOL);
+                exit(2);
+            }
+            echo "DRIELO_PREVIEW_OK width=".$preview[1]." USD=".$usd_symbol." EUR=".$eur_symbol.PHP_EOL;
+          '
+
           check_html "/journal/" "Últimos artículos" "journal-es"
           check_html "/en/journal/" "Latest articles" "journal-en"
           check_html "/categoria/florals/" "Flores y botánica" "journal-category-es"
