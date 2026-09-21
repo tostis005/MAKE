@@ -228,7 +228,7 @@ function make_filter_store_currency( string $currency ): string {
     if ( is_admin() && ! wp_doing_ajax() ) { return $currency; }
     return make_store_currency();
 }
-add_filter( 'woocommerce_currency', 'make_filter_store_currency', 50 );
+add_filter( 'woocommerce_currency', 'make_filter_store_currency', PHP_INT_MAX );
 
 function make_store_currency_symbol( string $symbol, string $currency ): string {
     $currency = strtoupper( $currency );
