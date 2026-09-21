@@ -14,7 +14,7 @@
       "es",
       "en"
     ],
-    "avoid_cannibalization_with_published_through": 315
+    "avoid_cannibalization_with_published_through": 320
   },
   "topics": [
     {
@@ -408,7 +408,7 @@
       "section": "ideas",
       "topic": "winter",
       "intent": "commercial-seasonal",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Copos de nieve en punto de cruz: patrones pequeños para adornos de invierno",
       "title_en": "Snowflake Cross Stitch Patterns: Small Designs for Winter Ornaments",
       "craft": "cross-stitch"
@@ -419,7 +419,7 @@
       "section": "ideas",
       "topic": "autumn",
       "intent": "commercial-seasonal",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Patrones de calabazas en punto de cruz: Halloween, otoño y cottagecore",
       "title_en": "Pumpkin Cross Stitch Patterns: Halloween, Autumn and Cottagecore",
       "craft": "cross-stitch"
@@ -430,7 +430,7 @@
       "section": "ideas",
       "topic": "seasonal",
       "intent": "commercial-seasonal",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Día de Muertos en punto de cruz: calaveras, flores y patrones llenos de color",
       "title_en": "Day of the Dead Cross Stitch: Skulls, Flowers and Colorful Patterns",
       "craft": "cross-stitch"
@@ -441,7 +441,7 @@
       "section": "ideas",
       "topic": "christmas",
       "intent": "commercial-seasonal",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Pueblos y casas de Navidad en punto de cruz: cómo crear una colección para decorar",
       "title_en": "Christmas Village Cross Stitch: Houses and Sets for Seasonal Decor",
       "craft": "cross-stitch"
@@ -452,7 +452,7 @@
       "section": "learn",
       "topic": "technique",
       "intent": "informational",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "¿Todas las cruces deben ir en la misma dirección? Cómo conseguir un bordado uniforme",
       "title_en": "Should Every Cross Stitch Face the Same Direction? How to Keep Stitches Even",
       "craft": "cross-stitch"
