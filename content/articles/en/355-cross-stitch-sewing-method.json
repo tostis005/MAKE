@@ -1,0 +1,71 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 355,
+  "translation_group": "355-cross-stitch-sewing-method",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "technique",
+      "terms": [
+        "technique"
+      ]
+    },
+    "style": {
+      "terms": [
+        "sewing-method",
+        "in-hand",
+        "speed"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide",
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-355-sewing-method",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Stitchers who want to learn the sewing method, stitch in hand and understand when this motion can be faster than the stab method.",
+  "title": "Cross Stitch Sewing Method: How to Stitch in Hand",
+  "slug": "cross-stitch-sewing-method-stitch-in-hand",
+  "seo": {
+    "title": "Cross Stitch Sewing Method: How to Stitch in Hand",
+    "meta_description": "Learn the cross stitch sewing method: pass the needle through two holes in one movement, choose suitable fabric and know when the technique can save time.",
+    "search_intent": "Stitchers who want to learn the sewing method, stitch in hand and understand when this motion can be faster than the stab method."
+  },
+  "excerpt": "The sewing method keeps the needle mostly on the front and can speed up regular areas, but it works best with flexible fabric and controlled hand tension.",
+  "content_html": "<p>The cross stitch <em>sewing method</em> uses a motion similar to ordinary hand sewing: the needle enters and exits the fabric in one movement. Instead of pushing the needle fully to the back and then bringing it forward again—the common <em>stab method</em>—you flex the fabric slightly and pick up two holes at once.</p>\n<p>It can be faster in the right situation, but it is not automatically better. Fabric stiffness, thread tension, chart structure and personal comfort determine whether it genuinely saves time. It is particularly useful for stitchers who already enjoy working in hand and for regular blocks of color.</p>\n<h2>The key difference is the needle path</h2>\n<p>With the stab method, each half stitch sends the needle completely to the back before it returns through the next hole. One hand may move from front to back, or two hands can work efficiently when the project is held in a stand.</p>\n<p>With the sewing method, the fabric stays flexible and the needle passes down through one hole and back up through the next in the same motion. Most of the needle movement remains on the front.</p>\n<p>This can reduce hand travel during long rows, but it depends on being able to flex the cloth without losing your place in the grid.</p>\n<h2>Practice first on a simple row of half stitches</h2>\n<p>Use a scrap of Aida and a small one-color block. Bring the needle through, bend the fabric gently toward the needle and guide the blunt point back out through the next hole.</p>\n<p>You do not need to crease the cloth sharply. Only enough curvature is required to make both holes accessible within one smooth movement.</p>\n<p>Work several half stitches in one direction and complete the row on the return. Once the motion feels natural, try smaller blocks and simple changes of direction.</p>\n<h2>Flexible fabric usually makes the method easier</h2>\n<p>New Aida can be fairly stiff and may resist bending. Some stitchers find the sewing method easier on softened Aida, linen or evenweave because the cloth follows the hand more naturally.</p>\n<p>That does not mean fabric should be washed simply to force this technique. If the Aida is rigid and the motion requires pressure, the stab method may be more comfortable for that project.</p>\n<p>Fabric size matters too. A very large cut can be awkward to gather in one hand unless the excess is rolled or organized.</p>\n<h2>The sewing method can save time in regular blocks</h2>\n<p>Rows, geometric backgrounds, lettering and solid-color areas are good candidates because the needle follows a predictable sequence.</p>\n<p>In heavy confetti, isolated stitches or frequent direction changes, the advantage becomes smaller. More time is spent repositioning the fabric and locating the next hole.</p>\n<p>It can also become awkward in areas where the back is already crowded with many thread layers. The method feels smoothest when the holes remain clear.</p>\n<h2>Thread tension needs attention while you learn</h2>\n<p>Without a hoop holding the cloth, your fingers control some of the fabric tension. Pulling too hard can pucker the material, while leaving the floss too loose can make the crosses inconsistent.</p>\n<p>Let the fabric lie flat when released and allow each half stitch to rest on the square rather than sinking into it. After a few rows, flatten the work and check for waves.</p>\n<p>A very tight grip on the cloth can also create hand fatigue. Hold firmly enough to guide the fabric without squeezing it throughout the session.</p>\n<h2>You do not have to use one method for the entire chart</h2>\n<p>The sewing method can be used for large regular areas and the stab method for details, edges or awkward sections. Mixing them does not change the design as long as the top legs of your crosses remain consistent.</p>\n<p>If you use a hoop for some sections, remove it when returning to true in-hand sewing. Trying to sew through tightly tensioned fabric defeats the purpose of the motion.</p>\n<p>You can also switch based on comfort. Some stitchers enjoy in-hand work for short sessions and prefer a hoop or stand for longer projects.</p>\n<p>The sewing method can be faster when fabric is flexible, the chart contains continuous areas and the motion feels natural in your hands. Practice on a sample, watch tension and posture, and use it where it genuinely simplifies the needle path. The best method is the one that keeps your stitches even without adding strain.</p>",
+  "image": {
+    "concept": "Hands cross stitching without a hoop, showing the needle entering and exiting Aida in one horizontal sewing motion.",
+    "alt": "Cross stitch sewing method while stitching in hand"
+  }
+}
