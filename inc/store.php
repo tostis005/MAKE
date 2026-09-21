@@ -117,6 +117,73 @@ function make_store_currency(): string {
     return DRIELO_DEFAULT_CURRENCY;
 }
 
+/**
+ * USD is the catalogue base currency. EUR prices are calculated from the
+ * latest ECB reference rate and cached locally so checkout never depends on
+ * a live API response.
+ */
+function make_store_usd_eur_rate(): float {
+    $cached = (float) get_transient( 'drielo_usd_eur_rate' );
+    if ( $cached > 0.5 && $cached < 1.5 ) { return $cached; }
+
+    $fallback = (float) get_option( 'drielo_usd_eur_rate_fallback', 0.871743 );
+    if ( $fallback <= 0.5 || $fallback >= 1.5 ) { $fallback = 0.871743; }
+
+    if ( ! function_exists( 'wp_remote_get' ) ) { return $fallback; }
+
+    $response = wp_remote_get(
+        'https://api.frankfurter.dev/v2/providers/ecb/rate/usd/eur',
+        array(
+            'timeout'     => 5,
+            'redirection' => 2,
+            'headers'     => array( 'Accept' => 'application/json' ),
+        )
+    );
+
+    if ( is_wp_error( $response ) || 200 !== (int) wp_remote_retrieve_response_code( $response ) ) {
+        set_transient( 'drielo_usd_eur_rate', $fallback, HOUR_IN_SECONDS );
+        return $fallback;
+    }
+
+    $body = json_decode( (string) wp_remote_retrieve_body( $response ), true );
+    $rate = is_array( $body ) && isset( $body['rate'] ) ? (float) $body['rate'] : 0.0;
+
+    if ( $rate <= 0.5 || $rate >= 1.5 ) {
+        set_transient( 'drielo_usd_eur_rate', $fallback, HOUR_IN_SECONDS );
+        return $fallback;
+    }
+
+    update_option( 'drielo_usd_eur_rate_fallback', $rate, false );
+    update_option( 'drielo_usd_eur_rate_date', sanitize_text_field( (string) ( $body['date'] ?? '' ) ), false );
+    set_transient( 'drielo_usd_eur_rate', $rate, 12 * HOUR_IN_SECONDS );
+    return $rate;
+}
+
+function make_store_price_from_usd( $price ) {
+    if ( 'EUR' !== make_store_currency() || '' === $price || ! is_numeric( $price ) ) { return $price; }
+    return round( (float) $price * make_store_usd_eur_rate(), 6 );
+}
+
+function make_store_convert_product_price( $price, $product ) {
+    if ( is_admin() && ! wp_doing_ajax() ) { return $price; }
+    return make_store_price_from_usd( $price );
+}
+add_filter( 'woocommerce_product_get_price', 'make_store_convert_product_price', 30, 2 );
+add_filter( 'woocommerce_product_get_regular_price', 'make_store_convert_product_price', 30, 2 );
+add_filter( 'woocommerce_product_get_sale_price', 'make_store_convert_product_price', 30, 2 );
+add_filter( 'woocommerce_product_variation_get_price', 'make_store_convert_product_price', 30, 2 );
+add_filter( 'woocommerce_product_variation_get_regular_price', 'make_store_convert_product_price', 30, 2 );
+add_filter( 'woocommerce_product_variation_get_sale_price', 'make_store_convert_product_price', 30, 2 );
+
+function make_store_variation_price_hash( array $hash ): array {
+    $hash['drielo_currency'] = make_store_currency();
+    if ( 'EUR' === make_store_currency() ) {
+        $hash['drielo_usd_eur_rate'] = make_store_usd_eur_rate();
+    }
+    return $hash;
+}
+add_filter( 'woocommerce_get_variation_prices_hash', 'make_store_variation_price_hash', 20 );
+
 function make_store_persist_currency(): void {
     if ( ! isset( $_GET['currency'] ) ) { return; }
 
@@ -130,6 +197,25 @@ function make_store_persist_currency(): void {
     }
 
     $_COOKIE['drielo_currency'] = $currency;
+
+    // The selection lives in the cookie; remove the switching parameter from
+    // the visible URL immediately after setting it.
+    if ( ! wp_doing_ajax() && ! headers_sent() ) {
+        $request = isset( $_SERVER['REQUEST_URI'] ) ? (string) wp_unslash( $_SERVER['REQUEST_URI'] ) : '/';
+        $path    = (string) wp_parse_url( $request, PHP_URL_PATH );
+        $query   = (string) wp_parse_url( $request, PHP_URL_QUERY );
+        $url     = home_url( $path ?: '/' );
+        $args    = array();
+
+        if ( '' !== $query ) {
+            parse_str( $query, $args );
+            unset( $args['currency'] );
+        }
+        if ( ! empty( $args ) ) { $url = add_query_arg( $args, $url ); }
+
+        wp_safe_redirect( $url, 302 );
+        exit;
+    }
 }
 add_action( 'init', 'make_store_persist_currency', 20 );
 
@@ -145,6 +231,7 @@ function make_currency_switch_url( string $currency ): string {
     $path     = (string) wp_parse_url( $request, PHP_URL_PATH );
     $query    = (string) wp_parse_url( $request, PHP_URL_QUERY );
     $url      = home_url( $path ?: '/' );
+    $args     = array();
 
     if ( '' !== $query ) {
         parse_str( $query, $args );
@@ -401,7 +488,7 @@ function make_render_collection_grid(): void {
         } else {
             echo '<p>' . esc_html( make_t( 'Una paleta compartida, varios diseños que puedes combinar.', 'One shared palette, several designs you can combine.' ) ) . '</p>';
         }
-        echo '<div class="drielo-collection-footer"><span>' . wp_kses_post( sprintf( make_t( 'Desde %s por diseño', 'From %s per design' ), wc_price( DRIELO_DEFAULT_PRODUCT_PRICE ) ) ) . '</span><strong>' . esc_html( make_t( 'Ver colección →', 'View collection →' ) ) . '</strong></div>';
+        echo '<div class="drielo-collection-footer"><span>' . wp_kses_post( sprintf( make_t( 'Desde %s por diseño', 'From %s per design' ), wc_price( make_store_price_from_usd( DRIELO_DEFAULT_PRODUCT_PRICE ) ) ) ) . '</span><strong>' . esc_html( make_t( 'Ver colección →', 'View collection →' ) ) . '</strong></div>';
         echo '</div></article>';
     }
     echo '</div>';
@@ -473,7 +560,7 @@ function make_render_collection_addons(): void {
                 <span class="section-kicker"><?php echo esc_html( make_t( 'Completa la colección', 'Build your collection' ) ); ?></span>
                 <h3 id="drielo-addon-title"><?php echo esc_html( sprintf( make_t( 'Añade más diseños de %s', 'Add more designs from %s' ), make_collection_display_name( $term ) ) ); ?></h3>
             </div>
-            <span class="drielo-addon-price"><?php echo wp_kses_post( sprintf( make_t( '+%s cada uno', '+%s each' ), wc_price( DRIELO_COLLECTION_ADDON_PRICE ) ) ); ?></span>
+            <span class="drielo-addon-price"><?php echo wp_kses_post( sprintf( make_t( '+%s cada uno', '+%s each' ), wc_price( make_store_price_from_usd( DRIELO_COLLECTION_ADDON_PRICE ) ) ) ); ?></span>
         </div>
         <p><?php echo esc_html( make_t( 'Comparten la misma paleta de color. Marca todos los que quieras y se añadirán al carrito con precio especial.', 'They share the same colour palette. Select as many as you like and they will be added to the cart at the special price.' ) ); ?></p>
         <?php wp_nonce_field( 'drielo_collection_addons_' . $product->get_id(), 'drielo_collection_addons_nonce', false ); ?>
@@ -489,7 +576,7 @@ function make_render_collection_addons(): void {
                     <span class="drielo-addon-thumb">
                         <?php if ( $thumb ) : ?><img src="<?php echo esc_url( $thumb ); ?>" alt="" loading="lazy"><?php else : ?><span aria-hidden="true">×</span><?php endif; ?>
                     </span>
-                    <span class="drielo-addon-name"><strong><?php echo esc_html( $sibling->get_name() ); ?></strong><small><?php echo wp_kses_post( '+' . wc_price( DRIELO_COLLECTION_ADDON_PRICE ) ); ?></small></span>
+                    <span class="drielo-addon-name"><strong><?php echo esc_html( $sibling->get_name() ); ?></strong><small><?php echo wp_kses_post( '+' . wc_price( make_store_price_from_usd( DRIELO_COLLECTION_ADDON_PRICE ) ) ); ?></small></span>
                 </label>
             <?php endforeach; ?>
         </div>
@@ -562,7 +649,7 @@ function make_collection_addon_cart_data( array $item_data, array $cart_item ): 
     if ( empty( $cart_item['_drielo_collection_addon'] ) ) { return $item_data; }
     $item_data[] = array(
         'key'   => make_t( 'Precio de colección', 'Collection price' ),
-        'value' => wp_strip_all_tags( wc_price( DRIELO_COLLECTION_ADDON_PRICE ) ),
+        'value' => wp_strip_all_tags( wc_price( make_store_price_from_usd( DRIELO_COLLECTION_ADDON_PRICE ) ) ),
     );
     return $item_data;
 }
