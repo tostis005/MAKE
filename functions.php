@@ -175,6 +175,21 @@ function make_language_switch_url( string $language ): string {
             if ( ! empty( $matches ) ) { return get_permalink( (int) $matches[0] ); }
         }
     }
+    if ( function_exists( 'is_woocommerce' ) && ( is_woocommerce() || is_tax( 'product_collection' ) || is_cart() || is_checkout() || is_account_page() ) ) {
+        $request = isset( $_SERVER['REQUEST_URI'] ) ? (string) wp_unslash( $_SERVER['REQUEST_URI'] ) : '/';
+        $path    = (string) wp_parse_url( $request, PHP_URL_PATH );
+        $query   = (string) wp_parse_url( $request, PHP_URL_QUERY );
+        $url     = home_url( $path ?: '/' );
+        $args    = array();
+
+        if ( '' !== $query ) {
+            parse_str( $query, $args );
+        }
+        unset( $args['make_lang'] );
+        if ( ! empty( $args ) ) { $url = add_query_arg( $args, $url ); }
+
+        return add_query_arg( 'make_lang', $language, $url );
+    }
     if ( is_search() ) {
         return add_query_arg(
             array( 's' => get_search_query(), 'make_lang' => $language ),
@@ -307,15 +322,17 @@ function make_cart_count(): int {
 }
 
 function make_cart_url(): string {
-    return function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url( '/cart/' );
+    $url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url( '/cart/' );
+    return make_is_english() ? add_query_arg( 'make_lang', 'en', $url ) : $url;
 }
 
 function make_shop_url(): string {
     if ( function_exists( 'wc_get_page_permalink' ) ) {
         $url = wc_get_page_permalink( 'shop' );
-        if ( $url ) { return $url; }
+        if ( $url ) { return make_is_english() ? add_query_arg( 'make_lang', 'en', $url ) : $url; }
     }
-    return add_query_arg( 'post_type', 'product', make_home_url() );
+    $url = add_query_arg( 'post_type', 'product', make_home_url() );
+    return make_is_english() ? add_query_arg( 'make_lang', 'en', $url ) : $url;
 }
 
 function make_cross_stitch_url(): string {
