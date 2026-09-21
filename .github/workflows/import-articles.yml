@@ -6,7 +6,6 @@ on:
     paths:
       - 'content/articles/es/*.json'
       - 'content/articles/en/*.json'
-      - 'content/topics.json'
       - 'content/tools/import-articles.php'
       - '.github/workflows/import-articles.yml'
   workflow_dispatch:
@@ -39,7 +38,7 @@ on:
 
 concurrency:
   group: make-json-article-import
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   import:
