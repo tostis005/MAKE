@@ -3208,6 +3208,61 @@
       "title_es": "Patrones de tarot en punto de cruz: arcanos, estilos y dificultad",
       "title_en": "Tarot Cross Stitch Patterns: Arcana, Styles and Difficulty",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 291,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "gothic",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Patrones witchy de punto de cruz: brujas, pociones y botánica oscura",
+      "title_en": "Witchy Cross Stitch Patterns: Witches, Potions and Dark Botanicals",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 292,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "gothic",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Patrones botánicos góticos en punto de cruz: flores oscuras, polillas y plantas",
+      "title_en": "Gothic Botanical Cross Stitch Patterns: Dark Flowers, Moths and Plants",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 293,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "animals",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Patrones de animales del bosque en punto de cruz para habitaciones infantiles",
+      "title_en": "Woodland Animal Cross Stitch Patterns for Nurseries and Kids' Rooms",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 294,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "florals",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Flores de nacimiento en punto de cruz: patrones para cada mes del año",
+      "title_en": "Birth Flower Cross Stitch Patterns for Every Month of the Year",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 295,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "custom",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Ramos de flores de nacimiento personalizados en punto de cruz para familias",
+      "title_en": "Personalized Birth Flower Bouquet Cross Stitch for Families",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {
@@ -3238,7 +3293,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 290,
-    "bilingual_groups": 290
+    "last_indexed_article": 295,
+    "bilingual_groups": 295
   }
 }
