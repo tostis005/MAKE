@@ -1,0 +1,71 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 340,
+  "translation_group": "340-grid-aida-cross-stitch",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "gridding",
+      "terms": [
+        "gridding"
+      ]
+    },
+    "style": {
+      "terms": [
+        "gridding",
+        "aida",
+        "counting",
+        "large-projects"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-340-grid-aida",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Stitchers who want to create a 10x10 grid on Aida to count more reliably, navigate large charts and reduce placement errors.",
+  "title": "How to Grid Aida for Cross Stitch Without Losing Count",
+  "slug": "how-to-grid-aida-cross-stitch",
+  "seo": {
+    "title": "How to Grid Aida for Cross Stitch Without Losing Count",
+    "meta_description": "Learn how to make a 10x10 grid on Aida using removable fabric markers or guide thread, align it with the chart and avoid common counting errors.",
+    "search_intent": "Stitchers who want to create a 10x10 grid on Aida to count more reliably, navigate large charts and reduce placement errors."
+  },
+  "excerpt": "A 10x10 grid makes fabric behave more like the printed chart and reduces long counts. Here is how to build one without shifting the pattern.",
+  "content_html": "<p>Gridding Aida means marking a reference line every ten stitches so the fabric visually matches the heavier grid on a cross stitch chart. Instead of counting 37 squares from one reference point, you can think in three groups of ten plus seven stitches. Gridding does not make mistakes impossible, but it greatly reduces how far a counting error can travel before something stops lining up.</p>\n<p>The method is especially useful for large charts, full-coverage projects, designs with wide empty areas, and patterns where you jump between distant sections. A tiny 30-by-30 motif may not justify the preparation time.</p>\n<h2>Start by checking how the chart grid is organized</h2>\n<p>Do not draw a line every ten holes before looking carefully at the pattern. The fabric grid needs to correspond with the chart's major grid lines. If the chart center sits inside one block but you treat the center of your fabric as a different boundary, the two systems can become offset.</p>\n<p>Locate the bold ten-stitch lines and any center marks. Decide which fabric square represents that reference, then count outward to the left, right, top and bottom.</p>\n<p>On multi-page charts, check whether row and column numbering continues from page to page. Some patterns include overlap rows that should not create extra blocks on your fabric.</p>\n<h2>A removable fabric marker is the fastest method</h2>\n<p>One common approach is a water-soluble or removable marker specifically intended for fabric and embroidery. Draw thin lines every ten stitch squares without pressing harder than necessary.</p>\n<p>Test the pen first on a scrap of the same fabric. Remove the test mark according to the manufacturer's directions and make sure it disappears completely before committing to the whole project.</p>\n<p>Do not substitute a normal pen, permanent marker or ordinary pencil simply because the line looks light. Useful grid marks need to disappear without leaving shadows in areas that will remain unstitched.</p>\n<h2>Thread gridding avoids drawing directly on the cloth</h2>\n<p>Another method is to run a guide thread through the fabric every ten stitches. Purpose-made gridding thread, especially smooth thread that is difficult to pierce with the needle, is convenient because it can be pulled out after stitching.</p>\n<p>Use long running stitches along the intended grid lines and leave enough tail to remove them later. The guide is not decorative stitching and should not pull or distort the fabric.</p>\n<p>If you use ordinary thread, take extra care not to split it while making crosses. A guide strand trapped under many stitches can be frustrating to remove at the end.</p>\n<h2>Count stitch squares rather than only visible holes</h2>\n<p>On Aida, one full cross occupies a woven block between four corner holes. A 10-by-10 grid therefore represents ten complete stitch spaces. Simply counting ten visible holes without keeping track of the starting boundary can shift the line.</p>\n<p>The safest approach is to choose a known reference, count ten complete stitch squares and verify that first block before extending the entire line.</p>\n<p>Every few blocks, recount from a reference you trust. A one-square mistake on the first line can repeat across the whole piece if it is never checked.</p>\n<h2>You do not have to grid a huge project all at once</h2>\n<p>For very large pieces, you can grid only the area you expect to stitch during the next few sessions and extend the system later. This reduces setup time and avoids marking fabric that may remain untouched for months.</p>\n<p>If you stitch in a hoop or Q-snap, marking the visible area plus several safety rows around it may be enough. When you expand the grid, continue the exact same row and column sequence.</p>\n<p>Gridding is particularly helpful where motifs are separated by large blank spaces because you can relocate yourself by block instead of counting a long distance from the previous stitched area.</p>\n<h2>Verify the grid before stitching and remove it correctly later</h2>\n<p>Before beginning the design, compare several fabric positions with the chart: one near the center, one farther right and another above or below. A short verification can prevent an entire project from being shifted.</p>\n<p>If you used a removable marker, follow its removal instructions and avoid heat beforehand when the product warns against it. If you used thread, pull the guide out carefully once it is no longer needed.</p>\n<p>Gridding is optional. Some stitchers prefer starting at the center or a corner and counting directly. But if you frequently lose your place, work from large charts or make long jumps, a 10x10 grid gives your fabric the same visual structure as the pattern.</p>\n<p>The important part is not the number of lines you draw. It is making sure those lines correspond exactly with the chart. Count carefully at the beginning, verify several blocks, and the rest of the project becomes much easier to navigate.</p>",
+  "image": {
+    "concept": "Aida fabric marked into 10x10 squares beside a cross stitch chart with matching heavy grid lines.",
+    "alt": "10x10 grid on Aida for cross stitch"
+  }
+}
