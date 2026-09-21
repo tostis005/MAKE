@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "purpose": "Future-proof editorial taxonomy for MAKE. Only cross-stitch is surfaced today; future crafts can be enabled without changing the editorial model.",
+  "purpose": "Future-proof editorial taxonomy for Drielo. Only cross-stitch is surfaced today; future crafts can be enabled without changing the editorial model.",
   "dimensions": {
     "craft": {
       "active": [
