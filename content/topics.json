@@ -3538,6 +3538,61 @@
       "title_es": "Patrones de verano en punto de cruz: mar, frutas, flores y vacaciones",
       "title_en": "Summer Cross Stitch Patterns: Sea, Fruit, Flowers and Holidays",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 321,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "winter",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Copos de nieve en punto de cruz: patrones pequeños para adornos de invierno",
+      "title_en": "Snowflake Cross Stitch Patterns: Small Designs for Winter Ornaments",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 322,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "autumn",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Patrones de calabazas en punto de cruz: Halloween, otoño y cottagecore",
+      "title_en": "Pumpkin Cross Stitch Patterns: Halloween, Autumn and Cottagecore",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 323,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "seasonal",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Día de Muertos en punto de cruz: calaveras, flores y patrones llenos de color",
+      "title_en": "Day of the Dead Cross Stitch: Skulls, Flowers and Colorful Patterns",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 324,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "christmas",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Pueblos y casas de Navidad en punto de cruz: cómo crear una colección para decorar",
+      "title_en": "Christmas Village Cross Stitch: Houses and Sets for Seasonal Decor",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 325,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "technique",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "¿Todas las cruces deben ir en la misma dirección? Cómo conseguir un bordado uniforme",
+      "title_en": "Should Every Cross Stitch Face the Same Direction? How to Keep Stitches Even",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {
@@ -3568,7 +3623,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 320,
-    "bilingual_groups": 320
+    "last_indexed_article": 325,
+    "bilingual_groups": 325
   }
 }
