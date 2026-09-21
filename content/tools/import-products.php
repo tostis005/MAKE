@@ -207,16 +207,25 @@ foreach ( (array) ( $catalog['products'] ?? array() ) as $row ) {
 
     $download_rel = (string) ( $row['download'] ?? '' );
     $download_abs = $download_rel ? rtrim( $source, '/' ) . '/' . $download_rel : '';
+    $prepared_downloads = array();
     if ( $download_abs && is_file( $download_abs ) && filesize( $download_abs ) > 1000 ) {
-        $downloads = drielo_install_download( $download_abs, wp_basename( $download_abs ) );
-        $product->set_downloads( $downloads );
+        $prepared_downloads = drielo_install_download( $download_abs, wp_basename( $download_abs ) );
         $product->set_stock_status( 'instock' );
     } else {
-        $product->set_downloads( array() );
-        $product->set_stock_status( 'outofstock' );
-        $pending++;
+        $existing_downloads = $existing_id ? $product->get_downloads() : array();
+        if ( ! empty( $existing_downloads ) ) {
+            $prepared_downloads = $existing_downloads;
+            $product->set_stock_status( 'instock' );
+        } else {
+            $product->set_stock_status( 'outofstock' );
+            $pending++;
+        }
     }
 
+    // WooCommerce's approved-directory validation can reject a freshly-created
+    // protected upload URL before it has been registered. Save the product first
+    // and persist the already-copied download metadata directly afterwards.
+    $product->set_downloads( array() );
     $id = $product->save();
     if ( ! $id ) { fwrite( STDERR, "Failed to save $sku\n" ); continue; }
 
@@ -229,9 +238,21 @@ foreach ( (array) ( $catalog['products'] ?? array() ) as $row ) {
     update_post_meta( $id, '_make_seo_title', sanitize_text_field( (string) ( $row['seo_title'] ?? '' ) ) );
     update_post_meta( $id, '_make_meta_description', sanitize_text_field( (string) ( $row['meta_description'] ?? '' ) ) );
 
-    if ( $download_abs && is_file( $download_abs ) && filesize( $download_abs ) > 1000 ) {
+    if ( ! empty( $prepared_downloads ) ) {
+        $download_meta = array();
+        foreach ( $prepared_downloads as $download ) {
+            if ( $download instanceof WC_Product_Download ) {
+                $download_meta[ $download->get_id() ] = array(
+                    'name' => $download->get_name(),
+                    'file' => $download->get_file(),
+                );
+            }
+        }
+        update_post_meta( $id, '_downloadable_files', $download_meta );
+        update_post_meta( $id, '_downloadable', 'yes' );
         delete_post_meta( $id, '_drielo_download_pending' );
     } else {
+        update_post_meta( $id, '_downloadable_files', array() );
         update_post_meta( $id, '_drielo_download_pending', '1' );
     }
 
