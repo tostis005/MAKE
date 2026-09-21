@@ -1,0 +1,71 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 366,
+  "translation_group": "366-organize-dmc-by-number-or-color",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "floss-storage",
+      "terms": [
+        "floss-storage"
+      ]
+    },
+    "style": {
+      "terms": [
+        "dmc",
+        "organization",
+        "stash",
+        "color-order"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-366-organize-dmc",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Stitchers building a DMC stash who are deciding whether to sort floss by number, color family or a hybrid system.",
+  "title": "How to Organize a DMC Floss Collection: By Number or by Color?",
+  "slug": "organize-dmc-floss-by-number-or-color",
+  "seo": {
+    "title": "How to Organize a DMC Floss Collection: By Number or by Color?",
+    "meta_description": "How to organize a DMC floss stash by number, color family or a hybrid method, track duplicates and find shades quickly when kitting a pattern.",
+    "search_intent": "Stitchers building a DMC stash who are deciding whether to sort floss by number, color family or a hybrid system."
+  },
+  "excerpt": "Sorting by number is usually fastest for following patterns; sorting by color helps designing. A hybrid system can provide both advantages.",
+  "content_html": "<p>Once a DMC collection grows from twenty colors to a hundred or more, storing skeins in one bag stops being practical. The common question is whether to sort by number—310, 321, 666, 815—or by visual family such as reds, greens, blues and neutrals. Both systems are sensible, but they support different workflows.</p>\n<p>If you mainly stitch commercial patterns and PDFs that list DMC codes, numerical order is usually faster. If you design palettes, substitute colors or stitch more freely, seeing similar shades together can be more useful.</p>\n<h2>Numerical order makes pattern preparation fast</h2>\n<p>Most material lists identify floss by code. When a chart asks for DMC 310, 317, 3799 and 3865, you can move directly to those positions without visually comparing colors.</p>\n<p>The system also makes missing shades easy to identify. Work down the list and check whether each number is present.</p>\n<p>For a large stash, dividing storage into ranges such as 100–199, 200–299 and 300–399 can speed up retrieval even more.</p>\n<h2>Color-family order makes substitutions easier</h2>\n<p>When every green sits together, you can immediately compare which shade is warmer, darker or more muted. That helps when substituting floss or creating your own palette.</p>\n<p>The downside is locating a specific code. Blue-greens, reddish browns and unusual grays can be difficult to classify consistently.</p>\n<p>If you design patterns frequently, the visual comparison may be worth the additional searching time.</p>\n<h2>A simple inventory prevents duplicate purchases</h2>\n<p>Physical order matters less when you do not know what you own while shopping. A basic spreadsheet or list with number, approximate quantity and storage location can prevent accidental duplicates.</p>\n<p>You do not need to record every inch. For many stitchers, “full skein,” “partial” or “none” is enough information.</p>\n<p>Update the inventory when projects finish or new colors arrive. A detailed system that is never maintained quickly becomes unreliable.</p>\n<h2>Create a rule for duplicate skeins</h2>\n<p>If you own three skeins of one number, decide whether they stay together or whether backups live separately. Keeping them in one location makes total quantity easier to understand.</p>\n<p>With bobbins, duplicates can sit behind each other. In bags or on drops, several skeins can share one labeled location as long as different numbers remain separate.</p>\n<p>For hand-dyed threads or situations where dye lots matter, retain any additional information instead of assuming every unit will match exactly.</p>\n<h2>A hybrid system can give you search speed and visual comparison</h2>\n<p>You can store physically by number and use a real-thread color card when you need to compare families.</p>\n<p>Another option is numerical drawers combined with a visual inventory or photographs arranged by color family.</p>\n<p>This approach avoids reorganizing hundreds of skeins every time your workflow changes.</p>\n<h2>Make returning floss to storage as easy as finding it</h2>\n<p>Quick retrieval is only half of organization. If ten bobbins remain on the desk after every project because putting them away is tedious, the system eventually collapses.</p>\n<p>Leave some empty room in boxes and drawers so new colors can be inserted without shifting the entire collection. Large readable labels help too.</p>\n<p>When you break down a project kit, return shades immediately and update quantities when needed.</p>\n<p>For most stitchers following patterns, numerical DMC order is the most direct choice. Designers and frequent color-substituters may prefer visual families. If you do both, keep the physical stash numerical and use a color card or visual inventory for comparisons. The best organization is the one that lets you find, use and return each shade with almost no thought.</p><p>As the stash grows, consider separate categories for full skeins, active bobbins and unidentified thread. Mixing correctly labeled floss with uncertain leftovers can turn an organized collection into a source of future mistakes.</p><p>If you inherit older floss, do not reorganize everything immediately. Keep those colors in a temporary section until labels, condition and numbering are checked, especially when several brands or older dye lots are mixed together.</p><p>It also helps to create a visible reserve for whites, ecru, black and other shades you buy repeatedly. They can still sit in numerical order, but tracking backup quantities prevents discovering halfway through a project that the “extra” skein was already used.</p><p>When the collection becomes very large, leave expansion room in each number range. Packing every compartment completely full means one new shade can force a complete reorganization.</p><p>If more than one person uses the collection, numerical order also makes returning colors easier because everyone follows the same objective reference instead of a personal color-family judgment.</p><p>If more than one person uses the collection, numerical order also makes returning colors easier because everyone follows the same objective reference instead of a personal color-family judgment.</p>",
+  "image": {
+    "concept": "Two DMC floss boxes, one sorted numerically and one by color family, beside a simple inventory list.",
+    "alt": "How to organize DMC floss by number or color"
+  }
+}
