@@ -24,6 +24,18 @@ function make_theme_setup(): void {
 }
 add_action( 'after_setup_theme', 'make_theme_setup' );
 
+// Use the high-resolution theme card image in WooCommerce archives.
+// The storefront displays four products per row, so this avoids stretching
+// WooCommerce's default 300px thumbnail while keeping the visual cards compact.
+add_filter( 'single_product_archive_thumbnail_size', static function (): string {
+    return 'make-card';
+}, 20 );
+
+add_filter( 'loop_shop_columns', static function (): int {
+    return 4;
+}, 20 );
+
+
 
 /**
  * Editorial dimensions are deliberately independent from the current craft.
