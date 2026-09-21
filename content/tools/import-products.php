@@ -161,6 +161,29 @@ foreach ( (array) ( $catalog['products'] ?? array() ) as $row ) {
     $product->set_manage_stock( false );
     $product->set_short_description( (string) $row['short_description'] );
     $product->set_description( (string) $row['description'] );
+    $product->set_purchase_note( 'Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.' );
+
+    $attribute_specs = array(
+        'Pattern size'  => (string) ( $row['grid'] ?? '' ),
+        'DMC colours'   => (string) ( $row['colours'] ?? '' ),
+        'Skill level'   => (string) ( $row['skill'] ?? '' ),
+        'Stitch type'   => (string) ( $row['stitch_type'] ?? '' ),
+        'Total stitches'=> number_format_i18n( absint( $row['stitches'] ?? 0 ) ),
+    );
+    $attributes = array();
+    $position = 0;
+    foreach ( $attribute_specs as $name => $value ) {
+        if ( '' === trim( $value ) ) { continue; }
+        $attribute = new WC_Product_Attribute();
+        $attribute->set_id( 0 );
+        $attribute->set_name( $name );
+        $attribute->set_options( array( $value ) );
+        $attribute->set_position( $position++ );
+        $attribute->set_visible( true );
+        $attribute->set_variation( false );
+        $attributes[] = $attribute;
+    }
+    $product->set_attributes( $attributes );
 
     $cats = array();
     foreach ( (array) ( $row['categories'] ?? array() ) as $slug ) {
