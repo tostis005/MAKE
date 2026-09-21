@@ -44,6 +44,30 @@ jobs:
           chmod 600 ~/.ssh/make_deploy_key
           ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
 
+      - name: Build approved category artwork
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat \
+            assets/images/categories/.latest-sprite.part00 \
+            assets/images/categories/.latest-sprite.part01 \
+            assets/images/categories/.latest-sprite.part02 \
+            assets/images/categories/.latest-sprite.part03 \
+            assets/images/categories/.latest-sprite.part04 \
+            assets/images/categories/.latest-sprite.part05 \
+            assets/images/categories/.latest-sprite.part06 \
+            assets/images/categories/.latest-sprite.part07 \
+            assets/images/categories/.latest-sprite.part07a \
+            assets/images/categories/.latest-sprite.part08 \
+            assets/images/categories/.latest-sprite.part09 \
+            assets/images/categories/.latest-sprite.part10 \
+            assets/images/categories/.latest-sprite.part11 \
+            assets/images/categories/.latest-sprite.part12 \
+            | base64 --decode > assets/images/categories/category-art-generated.webp
+          test "$(wc -c < assets/images/categories/category-art-generated.webp)" -eq 108898
+          php -r '$d=file_get_contents("assets/images/categories/category-art-generated.webp"); if (substr($d,0,4)!=="RIFF" || substr($d,8,4)!=="WEBP") { fwrite(STDERR,"Invalid generated category sprite\n"); exit(1); }'
+          rm assets/images/categories/.latest-sprite.part*
+
       - name: Package theme
         run: tar --exclude='./.git' --exclude='./.github' --exclude='./README.md' -czf /tmp/make-theme.tar.gz .
 
@@ -167,7 +191,8 @@ jobs:
 
           check_html "/journal/" "Últimos artículos" "journal-es"
           check_html "/en/journal/" "Latest articles" "journal-en"
-          check_html "/category-art/florals.svg" "<svg" "category-art"
+          check_html "/wp-content/themes/make/assets/images/categories/category-art-generated.webp" "RIFF" "category-art-image"
+          check_html "/journal/" "category-art-generated.webp" "journal-category-art"
           check_html "/journal/page/2/" "Últimos artículos" "journal-page-2"
           check_html "/$SAMPLE_SLUG/" "article-related-grid" "single-article"
           check_html "/sitemap.xml" "<sitemapindex" "sitemap-index"
