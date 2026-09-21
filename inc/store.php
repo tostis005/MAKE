@@ -811,3 +811,135 @@ function make_render_product_reference(): void {
         '</span><strong>' . esc_html( $code ) . '</strong></div>';
 }
 add_action( 'woocommerce_single_product_summary', 'make_render_product_reference', 6 );
+
+
+/* Bilingual product presentation ----------------------------------------- */
+
+function make_store_should_localize_products(): bool {
+    if ( PHP_SAPI === 'cli' ) { return false; }
+    if ( is_admin() && ! wp_doing_ajax() ) { return false; }
+    return true;
+}
+
+function make_product_localized_meta( int $product_id, string $field, string $fallback = '' ): string {
+    if ( $product_id <= 0 ) { return $fallback; }
+
+    $language = function_exists( 'make_current_language' ) ? make_current_language() : 'es';
+    $language = 'en' === $language ? 'en' : 'es';
+    $value = (string) get_post_meta( $product_id, '_drielo_' . $field . '_' . $language, true );
+
+    if ( '' === trim( $value ) && 'en' !== $language ) {
+        $value = (string) get_post_meta( $product_id, '_drielo_' . $field . '_en', true );
+    }
+
+    return '' !== trim( $value ) ? $value : $fallback;
+}
+
+function make_localize_product_name( string $name, $product ): string {
+    if ( ! make_store_should_localize_products() || ! $product instanceof WC_Product ) { return $name; }
+    return make_product_localized_meta( $product->get_id(), 'title', $name );
+}
+add_filter( 'woocommerce_product_get_name', 'make_localize_product_name', 20, 2 );
+add_filter( 'woocommerce_product_variation_get_name', 'make_localize_product_name', 20, 2 );
+
+function make_localize_product_post_title( string $title, int $post_id = 0 ): string {
+    if ( ! make_store_should_localize_products() || $post_id <= 0 || 'product' !== get_post_type( $post_id ) ) { return $title; }
+    return make_product_localized_meta( $post_id, 'title', $title );
+}
+add_filter( 'the_title', 'make_localize_product_post_title', 20, 2 );
+
+function make_localize_product_description( string $description, $product ): string {
+    if ( ! make_store_should_localize_products() || ! $product instanceof WC_Product ) { return $description; }
+    return make_product_localized_meta( $product->get_id(), 'description', $description );
+}
+add_filter( 'woocommerce_product_get_description', 'make_localize_product_description', 20, 2 );
+
+function make_localize_product_short_description( string $description, $product ): string {
+    if ( ! make_store_should_localize_products() || ! $product instanceof WC_Product ) { return $description; }
+    return make_product_localized_meta( $product->get_id(), 'short_description', $description );
+}
+add_filter( 'woocommerce_product_get_short_description', 'make_localize_product_short_description', 20, 2 );
+
+function make_localize_product_content( string $content ): string {
+    if ( ! make_store_should_localize_products() || ! is_singular( 'product' ) ) { return $content; }
+    $product_id = get_queried_object_id();
+    return make_product_localized_meta( $product_id, 'description', $content );
+}
+add_filter( 'the_content', 'make_localize_product_content', 20 );
+
+function make_localize_product_excerpt( string $excerpt, $post = null ): string {
+    if ( ! make_store_should_localize_products() ) { return $excerpt; }
+    $post_id = $post instanceof WP_Post ? $post->ID : ( is_numeric( $post ) ? (int) $post : get_the_ID() );
+    if ( $post_id <= 0 || 'product' !== get_post_type( $post_id ) ) { return $excerpt; }
+    return wp_strip_all_tags( make_product_localized_meta( $post_id, 'short_description', $excerpt ) );
+}
+add_filter( 'get_the_excerpt', 'make_localize_product_excerpt', 20, 2 );
+
+function make_localize_woocommerce_short_description( string $description ): string {
+    if ( ! make_store_should_localize_products() ) { return $description; }
+    global $product;
+    if ( ! $product instanceof WC_Product ) { return $description; }
+    return make_product_localized_meta( $product->get_id(), 'short_description', $description );
+}
+add_filter( 'woocommerce_short_description', 'make_localize_woocommerce_short_description', 20 );
+
+function make_localize_product_purchase_note( string $note, $product ): string {
+    if ( ! make_store_should_localize_products() || ! $product instanceof WC_Product ) { return $note; }
+    return make_product_localized_meta( $product->get_id(), 'purchase_note', $note );
+}
+add_filter( 'woocommerce_product_get_purchase_note', 'make_localize_product_purchase_note', 20, 2 );
+
+function make_localize_product_attribute_label( string $label, string $name, $product = null ): string {
+    if ( ! make_store_should_localize_products() || ! function_exists( 'make_is_english' ) || make_is_english() ) { return $label; }
+
+    $labels = array(
+        'Pattern size'   => 'Tamaño del patrón',
+        'DMC colours'    => 'Colores DMC',
+        'Skill level'    => 'Nivel',
+        'Stitch type'    => 'Tipo de puntada',
+        'Total stitches' => 'Puntadas totales',
+    );
+
+    return $labels[ $label ] ?? $labels[ $name ] ?? $label;
+}
+add_filter( 'woocommerce_attribute_label', 'make_localize_product_attribute_label', 20, 3 );
+
+function make_localize_product_attribute_value( string $value, $attribute, array $values ): string {
+    if ( ! make_store_should_localize_products() || ! function_exists( 'make_is_english' ) || make_is_english() ) { return $value; }
+
+    return str_replace(
+        array( 'Beginner friendly', 'Full cross stitch' ),
+        array( 'Apto para principiantes', 'Punto de cruz completo' ),
+        $value
+    );
+}
+add_filter( 'woocommerce_attribute', 'make_localize_product_attribute_value', 20, 3 );
+
+function make_localize_product_term( $term, string $taxonomy ) {
+    if ( ! make_store_should_localize_products() || ! $term instanceof WP_Term || ! function_exists( 'make_is_english' ) || make_is_english() ) {
+        return $term;
+    }
+
+    $name = '';
+    if ( 'product_cat' === $taxonomy ) {
+        $name = trim( (string) get_term_meta( $term->term_id, 'drielo_name_es', true ) );
+    } elseif ( 'product_tag' === $taxonomy ) {
+        $tags = array(
+            'beginner-friendly' => 'Apto para principiantes',
+            'full-cross-stitch' => 'Punto de cruz completo',
+            '19-dmc-colours'    => '19 colores DMC',
+            'portrait'          => 'Retrato',
+            'bubble-gum'        => 'Chicle',
+            'sunglasses'        => 'Gafas de sol',
+            'wink'              => 'Guiño',
+        );
+        $name = $tags[ $term->slug ] ?? '';
+    }
+
+    if ( '' === $name ) { return $term; }
+
+    $localized = clone $term;
+    $localized->name = $name;
+    return $localized;
+}
+add_filter( 'get_term', 'make_localize_product_term', 20, 2 );
