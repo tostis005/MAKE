@@ -1,10 +1,6 @@
 name: Audit MAKE production editorial
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/audit-production.yml'
   workflow_dispatch:
 
 jobs:
