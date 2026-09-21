@@ -64,6 +64,25 @@ function make_store_maybe_flush_rewrites(): void {
 }
 add_action( 'init', 'make_store_maybe_flush_rewrites', 99 );
 
+
+function make_localize_store_post_link( string $url, $post ): string {
+    if ( ! function_exists( 'make_is_english' ) || ! make_is_english() ) { return $url; }
+    if ( $post instanceof WP_Post && 'product' === $post->post_type ) {
+        return add_query_arg( 'make_lang', 'en', $url );
+    }
+    return $url;
+}
+add_filter( 'post_type_link', 'make_localize_store_post_link', 20, 2 );
+
+function make_localize_store_term_link( string $url, WP_Term $term, string $taxonomy ): string {
+    if ( ! function_exists( 'make_is_english' ) || ! make_is_english() ) { return $url; }
+    if ( in_array( $taxonomy, array( 'product_collection', 'product_cat' ), true ) ) {
+        return add_query_arg( 'make_lang', 'en', $url );
+    }
+    return $url;
+}
+add_filter( 'term_link', 'make_localize_store_term_link', 20, 3 );
+
 function make_store_allowed_currencies(): array {
     return array( 'USD', 'EUR' );
 }
