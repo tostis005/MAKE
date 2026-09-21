@@ -1,6 +1,6 @@
 <?php
 /**
- * Idempotent JSON -> WordPress importer for MAKE editorial articles.
+ * Idempotent JSON -> WordPress importer for Drielo editorial articles.
  *
  * Usage:
  * php import-articles.php <wp-root> <articles-root>
