@@ -316,6 +316,21 @@ function make_product_collection_label(): void {
 }
 add_action( 'woocommerce_after_shop_loop_item_title', 'make_product_collection_label', 7 );
 
+function make_single_product_collection_context(): void {
+    global $product;
+    if ( ! $product instanceof WC_Product ) { return; }
+    $term = make_primary_product_collection( $product->get_id() );
+    if ( ! $term ) { return; }
+    $url = get_term_link( $term );
+    if ( is_wp_error( $url ) ) { return; }
+
+    echo '<div class="drielo-single-collection">';
+    echo '<a href="' . esc_url( $url ) . '"><span>' . esc_html( make_t( 'Colección', 'Collection' ) ) . '</span><strong>' . esc_html( $term->name ) . '</strong></a>';
+    make_render_palette_swatches( $term );
+    echo '</div>';
+}
+add_action( 'woocommerce_single_product_summary', 'make_single_product_collection_context', 4 );
+
 function make_collection_sibling_ids( int $product_id, WP_Term $term ): array {
     $ids = get_posts(
         array(
