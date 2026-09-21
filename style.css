@@ -1007,3 +1007,77 @@ body{background:var(--mk-cream);color:var(--mk-ink)}
 }
 .drielo-product-reference span{font-weight:650;opacity:.72}
 .drielo-product-reference strong{font-weight:850;letter-spacing:.08em;color:#491a33}
+
+
+/* Store + single-product layout refinements */
+.shop-hero--store .shop-hero-inner--stacked{display:block}
+.shop-hero--store .shop-hero-inner--stacked h1{max-width:none;white-space:nowrap}
+.shop-hero--store .shop-hero-inner--stacked p{max-width:780px;margin-top:18px;line-height:1.55}
+
+.primary-nav a[href*="/tienda"]{
+  padding:9px 14px;border-radius:999px;background:rgba(111,75,101,.09);
+  color:var(--mk-plum);font-size:13px;font-weight:900
+}
+.primary-nav a[href*="/tienda"]::after{display:none}
+.primary-nav a[href*="/tienda"]:hover{background:rgba(185,101,125,.14);color:var(--mk-red-deep)}
+.mobile-menu-nav a[href*="/tienda"]{font-weight:800;color:var(--mk-red-deep)}
+
+.make-product-page>.container>.drielo-shop-views{margin:0 0 30px}
+.woocommerce-shell--single{min-width:0}
+.woocommerce-shell--single div.product{
+  display:grid!important;
+  grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr)!important;
+  column-gap:56px!important;row-gap:44px!important;align-items:start!important
+}
+.woocommerce-shell--single div.product>*{min-width:0}
+.woocommerce-shell--single div.product .woocommerce-product-gallery{
+  min-width:0!important;max-width:100%!important;overflow:hidden
+}
+.woocommerce-shell--single div.product .summary{
+  position:static!important;top:auto!important;min-width:0!important;width:100%!important;
+  max-width:100%!important;padding:10px 0 0!important;box-sizing:border-box;overflow-wrap:anywhere
+}
+.woocommerce-shell--single div.product .product_title{
+  max-width:100%;font-size:clamp(38px,4vw,54px)!important;line-height:.98!important
+}
+.woocommerce-shell--single .woocommerce-product-details__short-description,
+.woocommerce-shell--single .product_meta,
+.woocommerce-shell--single .drielo-addon-picker,
+.woocommerce-shell--single .drielo-single-collection{max-width:100%;box-sizing:border-box}
+.woocommerce-shell--single .drielo-single-collection{align-items:flex-start;flex-wrap:wrap}
+.woocommerce-shell--single .drielo-single-collection a{max-width:100%}
+.woocommerce-shell--single .drielo-single-collection a strong{white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere}
+.woocommerce-shell--single .drielo-addon-option{min-width:0}
+.woocommerce-shell--single .drielo-addon-name strong{white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere}
+
+.woocommerce-shell--single div.product .woocommerce-tabs,
+.woocommerce-shell--single div.product .related,
+.woocommerce-shell--single div.product .upsells{
+  grid-column:1/-1!important;clear:both!important;width:100%!important;min-width:0
+}
+.woocommerce-shell--single div.product .woocommerce-tabs{margin-top:4px}
+.woocommerce-shell--single div.product .woocommerce-tabs .panel{max-width:860px}
+.woocommerce-shell--single div.product .related.products ul.products,
+.woocommerce-shell--single div.product .upsells.products ul.products{
+  display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:24px!important;width:100%!important
+}
+.woocommerce-shell--single div.product .related.products ul.products li.product,
+.woocommerce-shell--single div.product .upsells.products ul.products li.product{min-width:0!important;width:auto!important}
+
+@media(max-width:1180px){
+  .woocommerce-shell--single div.product{
+    grid-template-columns:minmax(0,1fr) minmax(0,.9fr)!important;
+    column-gap:36px!important
+  }
+}
+@media(max-width:1040px){
+  .woocommerce-shell--single div.product{grid-template-columns:1fr!important;row-gap:28px!important}
+  .woocommerce-shell--single div.product .summary{padding-top:0!important}
+  .woocommerce-shell--single div.product .related.products ul.products,
+  .woocommerce-shell--single div.product .upsells.products ul.products{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:640px){
+  .shop-hero--store .shop-hero-inner--stacked h1{white-space:normal}
+  .woocommerce-shell--single div.product .related.products ul.products,
+  .woocommerce-shell--single div.product .upsells.products ul.products{grid-template-columns:1fr!important}
+}
