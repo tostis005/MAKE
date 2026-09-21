@@ -15,8 +15,6 @@ function make_theme_setup(): void {
     add_theme_support( 'align-wide' );
     add_theme_support( 'html5', array( 'search-form','comment-form','comment-list','gallery','caption','style','script' ) );
     add_theme_support( 'woocommerce' );
-    add_theme_support( 'wc-product-gallery-zoom' );
-    add_theme_support( 'wc-product-gallery-lightbox' );
     add_theme_support( 'wc-product-gallery-slider' );
     add_image_size( 'make-card', 760, 950, true );
     add_image_size( 'make-product-card', 700, 700, true );
@@ -25,12 +23,73 @@ function make_theme_setup(): void {
 }
 add_action( 'after_setup_theme', 'make_theme_setup' );
 
-// Use the high-resolution theme card image in WooCommerce archives.
-// The storefront displays four products per row, so this avoids stretching
-// WooCommerce's default 300px thumbnail while keeping the visual cards compact.
+// Product previews deliberately use WordPress' bounded medium_large derivative.
+// We output no srcset and never expose the original full-resolution asset.
 add_filter( 'single_product_archive_thumbnail_size', static function (): string {
-    return 'make-product-card';
+    return 'medium_large';
 }, 20 );
+
+function make_static_attachment_image_html( int $attachment_id, string $size = 'medium_large', string $class = '' ): string {
+    if ( $attachment_id <= 0 ) { return ''; }
+
+    $image = wp_get_attachment_image_src( $attachment_id, $size );
+    if ( ! is_array( $image ) || empty( $image[0] ) ) { return ''; }
+
+    $alt = trim( (string) get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ) );
+    return sprintf(
+        '<img src="%1$s" width="%2$d" height="%3$d" class="%4$s" alt="%5$s" loading="lazy" decoding="async">',
+        esc_url( $image[0] ),
+        (int) $image[1],
+        (int) $image[2],
+        esc_attr( $class ),
+        esc_attr( $alt )
+    );
+}
+
+function make_loop_product_thumbnail(): void {
+    global $product;
+    if ( ! $product instanceof WC_Product ) { return; }
+
+    $image_id = $product->get_image_id();
+    if ( $image_id ) {
+        echo wp_kses_post( make_static_attachment_image_html( $image_id, 'medium_large', 'attachment-medium_large size-medium_large' ) );
+        return;
+    }
+
+    echo wc_placeholder_img( 'woocommerce_thumbnail' );
+}
+remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10 );
+add_action( 'woocommerce_before_shop_loop_item_title', 'make_loop_product_thumbnail', 10 );
+
+function make_protected_single_product_image_html( string $html, int $attachment_id ): string {
+    if ( $attachment_id <= 0 ) { return $html; }
+
+    $image = wp_get_attachment_image_src( $attachment_id, 'medium_large' );
+    if ( ! is_array( $image ) || empty( $image[0] ) ) { return $html; }
+
+    $thumb = wp_get_attachment_image_src( $attachment_id, 'thumbnail' );
+    $thumb_url = is_array( $thumb ) && ! empty( $thumb[0] ) ? $thumb[0] : $image[0];
+    $alt = trim( (string) get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ) );
+
+    global $product;
+    $classes = 'woocommerce-product-gallery__image';
+    $img_class = 'attachment-medium_large size-medium_large';
+    if ( $product instanceof WC_Product && (int) $product->get_image_id() === $attachment_id ) {
+        $img_class .= ' wp-post-image';
+    }
+
+    return sprintf(
+        '<div data-thumb="%1$s" data-thumb-alt="%2$s" class="%3$s"><img src="%4$s" width="%5$d" height="%6$d" class="%7$s" alt="%2$s" loading="lazy" decoding="async"></div>',
+        esc_url( $thumb_url ),
+        esc_attr( $alt ),
+        esc_attr( $classes ),
+        esc_url( $image[0] ),
+        (int) $image[1],
+        (int) $image[2],
+        esc_attr( $img_class )
+    );
+}
+add_filter( 'woocommerce_single_product_image_thumbnail_html', 'make_protected_single_product_image_html', 40, 2 );
 
 
 
