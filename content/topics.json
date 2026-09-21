@@ -3153,6 +3153,61 @@
       "title_es": "Qué hilo usar para colocar cuentas en punto de cruz",
       "title_en": "What Thread Should You Use for Beads in Cross Stitch?",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 286,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "digital-patterns",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Pattern Keeper vs Markup R-XP: qué app usar para seguir patrones de punto de cruz",
+      "title_en": "Pattern Keeper vs Markup R-XP: Which App Should You Use for Cross Stitch Charts?",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 287,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "patterns",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "¿Se puede usar un patrón de needlepoint para hacer punto de cruz?",
+      "title_en": "Can You Use a Needlepoint Pattern for Cross Stitch?",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 288,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "basics",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Blackwork vs punto de cruz: diferencias, materiales y qué técnica elegir",
+      "title_en": "Blackwork vs Cross Stitch: Differences, Materials and Which Technique to Choose",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 289,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "gothic",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Patrones dark academia en punto de cruz: libros, cuervos, velas y estética gótica",
+      "title_en": "Dark Academia Cross Stitch Patterns: Books, Ravens, Candles and Gothic Style",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 290,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "tarot",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Patrones de tarot en punto de cruz: arcanos, estilos y dificultad",
+      "title_en": "Tarot Cross Stitch Patterns: Arcana, Styles and Difficulty",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {
@@ -3183,7 +3238,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 285,
-    "bilingual_groups": 285
+    "last_indexed_article": 290,
+    "bilingual_groups": 290
   }
 }
