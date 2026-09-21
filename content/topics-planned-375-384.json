@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "file_type": "planned_topics",
+  "site": "Drielo",
+  "craft": "cross-stitch",
+  "range": "375-384",
+  "created_from": "SEO gap research 2026-09-21",
+  "note": "Long-tail topics selected from recent community questions and gaps in published articles 1-374.",
+  "editorial_principles": {
+    "minimum_words": 750,
+    "max_h2": 6,
+    "tone": "natural, practical, warm, non-robotic",
+    "languages": [
+      "es",
+      "en"
+    ],
+    "avoid_cannibalization_with_published_through": 374
+  },
+  "topics": [
+    {
+      "number": 375,
+      "priority": "P1",
+      "section": "learn",
+      "topic": "framing",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "¿Hay que enmarcar el punto de cruz con cristal o sin cristal?",
+      "title_en": "Should You Frame Cross Stitch With Glass or Without Glass?",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 376,
+      "priority": "P1",
+      "section": "learn",
+      "topic": "framing",
+      "intent": "informational-commercial",
+      "status": "drafted",
+      "title_es": "Cómo usar separadores al enmarcar punto de cruz sin paspartú",
+      "title_en": "How to Use Frame Spacers for Cross Stitch Without a Mat",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 377,
+      "priority": "P1",
+      "section": "learn",
+      "topic": "framing",
+      "intent": "informational-commercial",
+      "status": "drafted",
+      "title_es": "Cómo elegir paspartú para punto de cruz: color, ancho y apertura",
+      "title_en": "How to Choose a Mat for Cross Stitch: Color, Width and Opening",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 378,
+      "priority": "P1",
+      "section": "learn",
+      "topic": "project-organization",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo sujetar la tela sobrante en proyectos grandes de punto de cruz",
+      "title_en": "How to Manage Excess Fabric on Large Cross Stitch Projects",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 379,
+      "priority": "P1",
+      "section": "learn",
+      "topic": "scroll-frames",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo conseguir tensión lateral uniforme en un scroll frame de punto de cruz",
+      "title_en": "How to Get Even Side Tension on a Cross Stitch Scroll Frame",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 380,
+      "priority": "P1",
+      "section": "buying-guides",
+      "topic": "frames",
+      "intent": "commercial-informational",
+      "status": "drafted",
+      "title_es": "Q-Snap vs scroll frame para proyectos grandes de punto de cruz",
+      "title_en": "Q-Snap vs Scroll Frame for Large Cross Stitch Projects",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 381,
+      "priority": "P2",
+      "section": "buying-guides",
+      "topic": "needles",
+      "intent": "commercial-informational",
+      "status": "drafted",
+      "title_es": "Agujas chapadas en oro para punto de cruz: ¿merecen la pena?",
+      "title_en": "Gold-Plated Cross Stitch Needles: Are They Worth It?",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 382,
+      "priority": "P2",
+      "section": "buying-guides",
+      "topic": "ergonomics",
+      "intent": "commercial-informational",
+      "status": "drafted",
+      "title_es": "Dedal y protectores de dedo para punto de cruz: cuándo ayudan de verdad",
+      "title_en": "Thimbles and Finger Protectors for Cross Stitch: When They Actually Help",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 383,
+      "priority": "P1",
+      "section": "learn",
+      "topic": "pattern-reading",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Qué significa stitch count en punto de cruz y cómo calcular el total de puntadas",
+      "title_en": "What Does Stitch Count Mean in Cross Stitch and How Do You Calculate It?",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 384,
+      "priority": "P1",
+      "section": "learn",
+      "topic": "project-organization",
+      "intent": "informational-commercial",
+      "status": "drafted",
+      "title_es": "Qué es un thread sorter y cómo usar una tarjeta de hilos para un proyecto",
+      "title_en": "What Is a Thread Sorter? How to Use a Floss Card for a Cross Stitch Project",
+      "craft": "cross-stitch"
+    }
+  ]
+}

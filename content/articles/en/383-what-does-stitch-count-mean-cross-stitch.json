@@ -1,0 +1,70 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 383,
+  "translation_group": "383-cross-stitch-stitch-count",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "pattern-reading",
+      "terms": [
+        "pattern-reading"
+      ]
+    },
+    "style": {
+      "terms": [
+        "stitch-count",
+        "pattern-size",
+        "planning"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-383-stitch-count",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Stitchers who see stitch count on a pattern and want to know whether it means completed crosses, chart dimensions or total workload.",
+  "title": "What Does Stitch Count Mean in Cross Stitch and How Do You Calculate It?",
+  "slug": "what-does-stitch-count-mean-cross-stitch",
+  "seo": {
+    "title": "What Does Stitch Count Mean in Cross Stitch and How Do You Calculate It?",
+    "meta_description": "What stitch count means in cross stitch, the difference between chart dimensions and actual crosses, and how to estimate totals on full coverage or open designs.",
+    "search_intent": "Stitchers who see stitch count on a pattern and want to know whether it means completed crosses, chart dimensions or total workload."
+  },
+  "excerpt": "Stitch count may describe chart width and height or the actual number of crosses. Those are not always the same number.",
+  "content_html": "<p>In cross stitch, <em>stitch count</em> is used in two related ways. Sometimes it means the chart dimensions in stitches—for example, 120 x 80 stitches. In other cases it means the total number of crosses actually worked. The distinction matters because a 120 x 80 design does not automatically contain 9,600 crosses when much of the background is left empty.</p>\n<p>Understanding stitch count helps with finished-size calculations, time estimates, difficulty comparisons and rough floss planning.</p>\n<h2>120 x 80 stitches describes dimensions rather than total workload</h2>\n<p>When a pattern says 120 stitches wide by 80 high, it describes the full rectangular chart area.</p>\n<p>If every square were stitched, the theoretical maximum would be 120 multiplied by 80, or 9,600 full crosses.</p>\n<p>A sampler containing lettering and large blank spaces can occupy the same rectangle while requiring only a fraction of that number.</p>\n<h2>One completed X normally counts as one stitch</h2>\n<p>In most progress discussions, one finished cross is counted as one stitch even though it is made from two diagonal passes.</p>\n<p>A row of ten completed crosses therefore normally equals ten stitches rather than twenty.</p>\n<p>Apps, designers and statistics can handle half stitches or specialty stitches differently, so check the definition when an exact total matters.</p>\n<h2>Calculate the maximum on a full-coverage chart by multiplying dimensions</h2>\n<p>Multiply width in stitches by height in stitches. A 300 x 200 chart contains 60,000 grid squares.</p>\n<p>If every square uses one full cross, the total is approximately 60,000 stitches.</p>\n<p>A real full-coverage pattern may also contain half stitches, backstitch or specialty details, so total working time can extend beyond the square count.</p>\n<h2>Open designs require counting only occupied squares</h2>\n<p>Multiplying width by height overestimates a pattern with substantial negative space. For an exact total, you need the number of chart symbols or a statistic from the design software.</p>\n<p>Many digital patterns include a color key showing the number of stitches in each shade. Adding those values gives a much better estimate.</p>\n<p>If no statistics exist, estimate by blocks: judge roughly what percentage of the rectangular chart is actually filled and apply that percentage to the maximum.</p>\n<h2>Backstitch, French knots and beads do not translate directly into crosses</h2>\n<p>A backstitch line may cross several grid squares without representing the same number of full crosses. French knots and beads are separate units.</p>\n<p>That means two patterns with 20,000 full crosses can take different amounts of time when one also includes extensive line work or hundreds of beads.</p>\n<p>Use stitch count as a strong planning reference rather than a perfect measure of difficulty.</p>\n<h2>Stitch count also determines finished dimensions</h2>\n<p>To convert stitches into inches on Aida, divide the stitch dimension by the fabric count. A design 140 stitches wide on 14-count Aida finishes at about 10 inches wide.</p>\n<p>For centimeters, convert the inch result by multiplying by 2.54. Add finishing margin separately; stitch count describes only the stitched area.</p>\n<p>If you switch from 14-count to 18-count Aida, the stitch count stays the same. The physical size changes because more stitches fit into each inch.</p>\n<p>Whenever you see “stitch count,” read the surrounding context. A value such as 140 x 200 usually describes chart dimensions, while “23,450 stitches” usually refers to actual stitched symbols. Knowing which one you are looking at prevents incorrect fabric calculations, misleading time estimates and confusion about progress.</p><p>Stitch count is also useful when comparing two charts that look similar in physical size. A 200 x 200 design with extensive blank background can require far less work than a fully covered 150 x 150 chart.</p><p>For time planning, combine the actual cross total with your own measured stitching pace. Heavy confetti should not be estimated at the same rate as a large single-color block when your normal speed differs between them.</p><p>Color-by-color stitch counts can also guide supply planning. A shade used for 8,000 crosses will generally need much more floss than one used for 120, although exact consumption still depends on fabric count, strand count and thread paths.</p><p>If software includes half stitches in the reported total, check its definition. Two apps can show different stitch counts for the same design simply because they classify stitch types differently.</p><p>If a pattern provides only width and height, do not treat their product as the true stitch total unless the design is full coverage. It is more accurate to call it the maximum number of grid squares.</p><p>For progress tracking, use the same counting convention from start to finish. Switching between crosses, half stitches and symbol totals midway makes percentages misleading.</p>",
+  "image": {
+    "concept": "Cross stitch chart labeled 120 x 80 stitches with a separate counter showing actual stitched symbols.",
+    "alt": "What stitch count means in a cross stitch pattern"
+  }
+}
