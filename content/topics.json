@@ -3263,6 +3263,61 @@
       "title_es": "Ramos de flores de nacimiento personalizados en punto de cruz para familias",
       "title_en": "Personalized Birth Flower Bouquet Cross Stitch for Families",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 296,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "florals",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Coronas de flores en punto de cruz: patrones para nombres, bodas y decoración",
+      "title_en": "Floral Wreath Cross Stitch Patterns for Names, Weddings and Decor",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 297,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "florals",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Patrones de flores silvestres en punto de cruz: ideas botánicas modernas",
+      "title_en": "Wildflower Cross Stitch Patterns: Modern Botanical Ideas",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 298,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "christmas",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Adornos de Navidad en punto de cruz: patrones pequeños para colgar y regalar",
+      "title_en": "Christmas Cross Stitch Ornaments: Small Patterns to Hang and Gift",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 299,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "christmas",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Calendarios de Adviento en punto de cruz: ideas y patrones para 24 mini diseños",
+      "title_en": "Cross Stitch Advent Calendars: Ideas for 24 Mini Designs",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 300,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "wedding",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Samplers de boda en punto de cruz: nombres, fecha y diseños personalizados",
+      "title_en": "Wedding Cross Stitch Samplers: Names, Dates and Personalized Designs",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {
@@ -3293,7 +3348,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 295,
-    "bilingual_groups": 295
+    "last_indexed_article": 300,
+    "bilingual_groups": 300
   }
 }
