@@ -38,7 +38,8 @@ jobs:
           for filename, url in data.items():
               target = out / filename
               print(f'Downloading {filename}...')
-              with urllib.request.urlopen(url, timeout=120) as response, target.open('wb') as fh:
+              request = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+              with urllib.request.urlopen(request, timeout=120) as response, target.open('wb') as fh:
                   while True:
                       chunk = response.read(1024 * 1024)
                       if not chunk:
