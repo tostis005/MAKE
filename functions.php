@@ -1078,49 +1078,7 @@ function make_stitch_theme_pattern( string $theme ): array {
 function make_stitch_theme_art_html( string $theme, string $class = 'stitch-theme-art' ): string {
     if ( ! isset( make_stitch_theme_config()[ $theme ] ) ) { $theme = 'florals'; }
 
-    $pattern = make_stitch_theme_pattern( $theme );
-    $palette = array(
-        'p'=>'#5A2E46',
-        'r'=>'#C98FA0',
-        'h'=>'#F1C9CC',
-        'g'=>'#7D8B63',
-        't'=>'#C9A995',
-        'c'=>'#3D2D37',
-    );
-
-    $cell = 10;
-    $cols = strlen( (string) $pattern[0] );
-    $rows = count( $pattern );
-    $w = $cols * $cell;
-    $h = $rows * $cell;
-    $grid_id = 'grid-' . $theme . '-' . wp_rand( 1000, 999999 );
-
-    $svg = '<svg viewBox="0 0 ' . $w . ' ' . $h . '" aria-hidden="true" focusable="false">'
-        . '<defs><pattern id="' . esc_attr( $grid_id ) . '" width="' . $cell . '" height="' . $cell . '" patternUnits="userSpaceOnUse">'
-        . '<rect width="' . $cell . '" height="' . $cell . '" fill="#FDF7F1"></rect>'
-        . '<path d="M' . $cell . ' 0H0V' . $cell . '" fill="none" stroke="#E8DDE0" stroke-width=".55"></path>'
-        . '</pattern></defs>'
-        . '<rect width="100%" height="100%" rx="16" fill="url(#' . esc_attr( $grid_id ) . ')"></rect>';
-
-    foreach ( $pattern as $row_index=>$row ) {
-        foreach ( str_split( $row ) as $col_index=>$code ) {
-            if ( ! isset( $palette[ $code ] ) ) { continue; }
-            $cx = $col_index * $cell + ( $cell / 2 );
-            $cy = $row_index * $cell + ( $cell / 2 );
-            $d = 3;
-            $color = $palette[ $code ];
-
-            $svg .= '<path d="M' . ( $cx-$d ) . ' ' . ( $cy-$d ) . 'L' . ( $cx+$d ) . ' ' . ( $cy+$d )
-                . 'M' . ( $cx+$d ) . ' ' . ( $cy-$d ) . 'L' . ( $cx-$d ) . ' ' . ( $cy+$d )
-                . '" fill="none" stroke="#FFFFFF" stroke-opacity=".34" stroke-width="3.2" stroke-linecap="round"></path>'
-                . '<path d="M' . ( $cx-$d ) . ' ' . ( $cy-$d ) . 'L' . ( $cx+$d ) . ' ' . ( $cy+$d )
-                . 'M' . ( $cx+$d ) . ' ' . ( $cy-$d ) . 'L' . ( $cx-$d ) . ' ' . ( $cy+$d )
-                . '" fill="none" stroke="' . esc_attr( $color ) . '" stroke-width="2.35" stroke-linecap="round"></path>';
-        }
-    }
-
-    $svg .= '</svg>';
-    return '<span class="' . esc_attr( $class . ' ' . $class . '--' . $theme ) . '" aria-hidden="true">' . $svg . '</span>';
+    return '<span class="' . esc_attr( $class . ' ' . $class . '--' . $theme ) . '" aria-hidden="true"></span>';
 }
 
 function make_stitch_theme_tax_query( string $theme ): array {
