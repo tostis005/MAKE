@@ -42,6 +42,11 @@ function make_sitemap_urls( string $language ): array {
     $add( $urls, make_home_url( $language ) );
     $add( $urls, make_journal_url( $language ) );
 
+    if ( function_exists( 'make_shop_view_url' ) ) {
+        $add( $urls, make_shop_view_url( 'patterns', $language ) );
+        $add( $urls, make_shop_view_url( 'collections', $language ) );
+    }
+
     if ( function_exists( 'make_stitch_theme_config' ) && function_exists( 'make_stitch_theme_url' ) ) {
         foreach ( array_keys( make_stitch_theme_config() ) as $theme ) {
             $add( $urls, make_stitch_theme_url( (string) $theme, $language ) );
