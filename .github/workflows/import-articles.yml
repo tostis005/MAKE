@@ -172,7 +172,7 @@ jobs:
           "${DOCKER[@]}" cp "$STAGE/content/articles/." make-wp:/tmp/make-articles/
           "${DOCKER[@]}" cp "$STAGE/content/tools/import-articles.php" make-wp:/tmp/make-import-articles.php
 
-          "${DOCKER[@]}" exec make-wp php /tmp/make-import-articles.php \
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=512M /tmp/make-import-articles.php \
             /var/www/html /tmp/make-articles \
             "--language=$IMPORT_LANGUAGE" \
             "--from=$IMPORT_FROM" \
