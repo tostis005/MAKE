@@ -1,0 +1,13 @@
+{
+  "currency_default": "USD",
+  "currencies": ["USD", "EUR"],
+  "default_product_price": 4.99,
+  "collection_addon_price": 1.49,
+  "preview_policy": {
+    "primary_page": 1,
+    "secondary_page": 2,
+    "max_long_edge_px": 1200
+  },
+  "collections": [],
+  "products": []
+}
