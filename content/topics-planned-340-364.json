@@ -14,7 +14,7 @@
       "es",
       "en"
     ],
-    "avoid_cannibalization_with_published_through": 344
+    "avoid_cannibalization_with_published_through": 354
   },
   "topics": [
     {
@@ -188,7 +188,7 @@
       "section": "learn",
       "topic": "technique",
       "intent": "informational",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Sewing method en punto de cruz: cómo bordar en mano y cuándo es más rápido",
       "title_en": "Cross Stitch Sewing Method: How to Stitch in Hand",
       "craft": "cross-stitch"
@@ -199,7 +199,7 @@
       "section": "learn",
       "topic": "finishing",
       "intent": "informational",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Cómo terminar un adorno de punto de cruz sin coser",
       "title_en": "How to Finish a Cross Stitch Ornament Without Sewing",
       "craft": "cross-stitch"
@@ -210,7 +210,7 @@
       "section": "learn",
       "topic": "troubleshooting",
       "intent": "informational",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Cómo corregir un error de conteo sin deshacer medio bordado",
       "title_en": "How to Fix a Cross Stitch Counting Mistake Without Frogging Everything",
       "craft": "cross-stitch"
@@ -221,7 +221,7 @@
       "section": "learn",
       "topic": "troubleshooting",
       "intent": "informational",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Cómo añadir una cruz que olvidaste en una zona ya terminada",
       "title_en": "How to Add a Missed Cross Stitch to a Finished Section",
       "craft": "cross-stitch"
@@ -232,7 +232,7 @@
       "section": "learn",
       "topic": "troubleshooting",
       "intent": "informational",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Qué hacer si has bordado muchas cruces con el color equivocado",
       "title_en": "What to Do If You Used the Wrong Color in Cross Stitch",
       "craft": "cross-stitch"
@@ -243,7 +243,7 @@
       "section": "learn",
       "topic": "technique",
       "intent": "informational",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "¿Hay que bordar primero los colores claros o los oscuros?",
       "title_en": "Should You Cross Stitch Light or Dark Colors First?",
       "craft": "cross-stitch"
@@ -254,7 +254,7 @@
       "section": "learn",
       "topic": "technique",
       "intent": "informational",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Cómo decidir qué color o zona bordar primero en un patrón grande",
       "title_en": "Which Color or Section Should You Stitch First in a Large Pattern?",
       "craft": "cross-stitch"
@@ -265,7 +265,7 @@
       "section": "ideas",
       "topic": "stained-glass",
       "intent": "commercial",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Patrones de vidriera en punto de cruz: flores, animales y diseños góticos",
       "title_en": "Stained Glass Cross Stitch Patterns: Flowers, Animals and Gothic Designs",
       "craft": "cross-stitch"
@@ -276,7 +276,7 @@
       "section": "ideas",
       "topic": "art-nouveau",
       "intent": "commercial",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Patrones Art Nouveau en punto de cruz: flores, arquitectura y naturaleza",
       "title_en": "Art Nouveau Cross Stitch Patterns: Flowers, Architecture and Nature",
       "craft": "cross-stitch"
@@ -287,7 +287,7 @@
       "section": "ideas",
       "topic": "folk-art",
       "intent": "commercial",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Folk art en punto de cruz: flores, pájaros y patrones de inspiración escandinava",
       "title_en": "Folk Art Cross Stitch Patterns: Flowers, Birds and Scandinavian Style",
       "craft": "cross-stitch"
