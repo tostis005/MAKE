@@ -6,6 +6,7 @@ if ( function_exists( 'is_product' ) && is_product() ) :
 <section class="make-product-page">
   <div class="container">
     <a class="commerce-back" href="<?php echo esc_url( make_shop_url() ); ?>">← <?php echo esc_html( make_t( 'Volver a la tienda', 'Back to shop' ) ); ?></a>
+    <?php if ( function_exists( 'make_render_shop_view_switcher' ) ) { make_render_shop_view_switcher(); } ?>
     <div class="woocommerce-shell woocommerce-shell--single">
       <?php woocommerce_content(); ?>
     </div>
@@ -45,9 +46,9 @@ else :
         }
     }
 ?>
-<section class="shop-hero">
+<section class="shop-hero <?php echo $is_collection_view ? 'shop-hero--collections' : ''; ?>">
   <div class="container">
-    <div class="shop-hero-inner">
+    <div class="shop-hero-inner <?php echo $is_collection_view ? 'shop-hero-inner--stacked' : ''; ?>">
       <div>
         <span class="section-kicker"><?php echo esc_html( make_t( 'Patrones digitales', 'Digital patterns' ) ); ?></span>
         <h1><?php echo esc_html( $title ); ?></h1>
@@ -61,7 +62,7 @@ else :
   <div class="container">
     <?php if ( function_exists( 'make_render_shop_view_switcher' ) ) { make_render_shop_view_switcher(); } ?>
 
-    <?php if ( ! is_tax( 'product_collection' ) ) : ?>
+    <?php if ( ! is_tax( 'product_collection' ) && ! $is_collection_view ) : ?>
       <div class="shop-intro-row">
         <div class="shop-trust">
           <span>✓ <?php echo esc_html( make_t( 'PDF descargable', 'Downloadable PDF' ) ); ?></span>
