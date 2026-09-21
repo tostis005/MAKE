@@ -157,8 +157,7 @@ jobs:
                 )));
                 $html=@file_get_contents("http://127.0.0.1".$route,false,$context);
                 $status=$http_response_header[0] ?? "no-status";
-                $redirect_ok = $label==="sitemap" && (strpos($status,"301")!==false || strpos($status,"302")!==false);
-                if ($html===false || (strpos($status,"200")===false && !$redirect_ok) || (!$redirect_ok && $needle!=="" && strpos($html,$needle)===false)) {
+                if ($html===false || strpos($status,"200")===false || ($needle!=="" && strpos($html,$needle)===false)) {
                     fwrite(STDERR,$label." smoke test failed route=".$route." status=".$status.PHP_EOL);
                     exit(2);
                 }
@@ -170,5 +169,7 @@ jobs:
           check_html "/en/journal/" "Latest articles" "journal-en"
           check_html "/journal/page/2/" "Últimos artículos" "journal-page-2"
           check_html "/$SAMPLE_SLUG/" "article-related-grid" "single-article"
-          check_html "/wp-sitemap.xml" "wp-sitemap-posts-post" "sitemap"
+          check_html "/sitemap.xml" "<sitemapindex" "sitemap-index"
+          check_html "/sitemap-es.xml" "<urlset" "sitemap-es"
+          check_html "/sitemap-en.xml" "<urlset" "sitemap-en"
           REMOTE
