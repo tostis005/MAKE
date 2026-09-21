@@ -3428,6 +3428,61 @@
       "title_es": "Patrones de dragones en punto de cruz: de diseños sencillos a full coverage",
       "title_en": "Dragon Cross Stitch Patterns: From Simple Designs to Full Coverage",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 311,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "animals",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Patrones de ranas en punto de cruz: kawaii, cottagecore y botánicos",
+      "title_en": "Frog Cross Stitch Patterns: Kawaii, Cottagecore and Botanical Styles",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 312,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "animals",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Patrones de zorros en punto de cruz: bosque, otoño y decoración infantil",
+      "title_en": "Fox Cross Stitch Patterns: Woodland, Autumn and Nursery Ideas",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 313,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "animals",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Patrones de búhos en punto de cruz: góticos, botánicos e infantiles",
+      "title_en": "Owl Cross Stitch Patterns: Gothic, Botanical and Nursery Styles",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 314,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "animals",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Patrones de conejos y liebres en punto de cruz: bosque, Pascua y nursery",
+      "title_en": "Rabbit and Hare Cross Stitch Patterns: Woodland, Easter and Nursery Ideas",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 315,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "animals",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Patrones de dinosaurios en punto de cruz para niños y adultos",
+      "title_en": "Dinosaur Cross Stitch Patterns for Kids and Adults",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {
@@ -3458,7 +3513,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 310,
-    "bilingual_groups": 310
+    "last_indexed_article": 315,
+    "bilingual_groups": 315
   }
 }
