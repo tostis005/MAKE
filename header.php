@@ -81,10 +81,10 @@ $nav              = array(
       <form class="overlay-search-form" role="search" method="get" action="<?php echo esc_url( $home_url ); ?>">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M15.5 15.5 21 21"></path></svg>
         <input type="hidden" name="make_lang" value="<?php echo esc_attr( $current_language ); ?>">
-        <input data-overlay-autofocus type="search" name="s" value="<?php echo esc_attr( get_search_query() ); ?>" placeholder="<?php echo esc_attr( make_t( 'Patrones, flores, retratos…', 'Patterns, flowers, portraits…' ) ); ?>">
+        <input data-overlay-autofocus type="search" name="s" value="<?php echo esc_attr( get_search_query() ); ?>" placeholder="<?php echo esc_attr( make_t( 'Patrones, códigos P0004, flores…', 'Patterns, codes like P0004, flowers…' ) ); ?>">
         <button type="submit"><?php echo esc_html( make_t( 'Buscar', 'Search' ) ); ?></button>
       </form>
-      <p class="overlay-search-note"><?php echo esc_html( make_t( 'Busca tanto patrones de la tienda como artículos y guías.', 'Search both shop patterns and articles.' ) ); ?></p>
+      <p class="overlay-search-note"><?php echo esc_html( make_t( 'Busca patrones por nombre o código (por ejemplo P0004), además de artículos y guías.', 'Search patterns by name or code (for example P0004), plus articles and guides.' ) ); ?></p>
     </div>
   </div>
 </div>
