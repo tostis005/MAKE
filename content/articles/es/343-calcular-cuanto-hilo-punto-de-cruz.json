@@ -1,0 +1,71 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 343,
+  "translation_group": "343-estimate-cross-stitch-floss",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "floss",
+      "terms": [
+        "floss"
+      ]
+    },
+    "style": {
+      "terms": [
+        "floss-estimate",
+        "skeins",
+        "materials",
+        "planning"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "es-343-calcular-hilo",
+  "language": "es",
+  "locale": "es-ES",
+  "market_context": "Personas que quieren calcular cuántas madejas de hilo necesitan para un patrón de punto de cruz antes de comprar materiales o empezar un proyecto.",
+  "title": "Cómo calcular cuánto hilo necesitas para un patrón de punto de cruz",
+  "slug": "calcular-cuanto-hilo-necesitas-punto-de-cruz",
+  "seo": {
+    "title": "Cómo calcular cuánto hilo necesitas para un patrón de punto de cruz",
+    "meta_description": "Aprende a estimar cuántas madejas necesitas según número de puntadas, count de Aida, cabos, cobertura y margen para errores, inicios y finales.",
+    "search_intent": "Personas que quieren calcular cuántas madejas de hilo necesitan para un patrón de punto de cruz antes de comprar materiales o empezar un proyecto."
+  },
+  "excerpt": "El consumo de hilo puede estimarse antes de empezar si conoces puntadas por color, tela y número de cabos, pero siempre conviene añadir margen.",
+  "content_html": "<p>Calcular el hilo antes de empezar evita uno de los problemas más molestos de un proyecto: descubrir a mitad del bordado que falta una madeja de un color importante. No existe una cifra exacta que sirva para todo el mundo porque la tensión, la longitud de las hebras, la cantidad de cabos y la forma de empezar y terminar cambian el consumo, pero sí puedes hacer una estimación suficientemente buena para comprar materiales con seguridad.</p>\n<p>El dato más útil es el número de puntadas de cada color. Muchos patrones digitales incluyen ese recuento. Si no aparece, puedes utilizar el total aproximado del diseño para calcular el consumo general, aunque será menos preciso al repartir madejas por color.</p>\n<h2>Empieza por el número de cruces de cada color</h2>\n<p>Si el patrón indica que un tono tiene 2.400 cruces y otro solo 180, está claro que no necesitarás la misma cantidad de ambos. El recuento por color permite identificar cuáles merecen una madeja extra y cuáles consumirán solo una pequeña parte.</p>\n<p>En diseños full coverage, ancho por alto ofrece el máximo de puntadas del área, pero todavía necesitas saber cómo se distribuyen entre colores. En patrones con mucho fondo sin bordar, multiplicar ancho por alto sobreestima bastante el consumo.</p>\n<p>Backstitch, nudos y puntos especiales también usan hilo, aunque normalmente mucho menos que miles de cruces completas. Si un patrón tiene grandes áreas de backstitch, añade un pequeño margen adicional al color correspondiente.</p>\n<h2>Como referencia, una madeja cubre miles de cruces, no cientos</h2>\n<p>En Aida 14 con dos cabos, una madeja estándar de mouliné suele rendir aproximadamente del orden de 1.500 a 1.800 cruces completas, dependiendo de cómo trabajes. Es una referencia de planificación, no una garantía matemática.</p>\n<p>Por ejemplo, 5.000 cruces totales a dos cabos sobre Aida 14 podrían consumir alrededor de tres o cuatro madejas repartidas entre todos los colores. Esto no significa que debas comprar cuatro madejas de cada tono: la distribución por color es lo que importa.</p>\n<p>Si un color concreto supera claramente las 1.500 cruces, empieza a considerar que puede necesitar una segunda madeja. Si se acerca a 3.000, probablemente deberías planificar más de una desde el principio.</p>\n<h2>El count de la tela cambia el consumo</h2>\n<p>En counts altos, cada cruz es físicamente más pequeña y utiliza menos longitud de hilo. El mismo patrón suele gastar menos en Aida 18 que en Aida 14 cuando se utilizan los mismos cabos.</p>\n<p>En Aida 11, las diagonales son más largas y además es frecuente utilizar tres cabos, por lo que el consumo aumenta bastante. No traslades directamente una estimación hecha para Aida 14.</p>\n<p>Si cambias de tela para modificar el tamaño final del patrón, recalcula también el hilo. El número de cruces no cambia, pero sí la longitud física de cada puntada.</p>\n<h2>El número de cabos influye casi de forma directa</h2>\n<p>Un proyecto a tres cabos consume aproximadamente un 50% más de hilo que el mismo proyecto a dos cabos, antes de considerar desperdicios. Un proyecto a un cabo reduce mucho el consumo.</p>\n<p>El loop start también afecta cómo utilizas los cabos. Con dos cabos puedes cortar una hebra larga, doblarla y obtener dos extremos de trabajo; en otros métodos cortarás y asegurarás de forma distinta.</p>\n<p>No hace falta convertir cada decisión en una fórmula compleja. Lo importante es que la estimación utilice el mismo número de cabos que realmente vas a bordar.</p>\n<h2>Añade margen para inicios, finales, errores y nudos</h2>\n<p>Nunca utilizas el cien por cien de una hebra. Quedan colas al empezar y terminar, algunas puntadas se deshacen, aparecen nudos y ciertos tramos del hilo se deterioran.</p>\n<p>Añadir aproximadamente un 10–20% de margen a la estimación suele ser prudente. En proyectos muy grandes, ese margen evita quedarte sin un tono dominante cuando ya has avanzado mucho.</p>\n<p>Para colores difíciles de reponer, teñidos a mano o con posibles diferencias entre lotes, merece la pena ser todavía más conservador y comprar la cantidad necesaria de una sola vez.</p>\n<h2>Compra por color dominante, no solo por el total del proyecto</h2>\n<p>Un patrón puede utilizar treinta colores y consumir solo seis madejas equivalentes en total, pero quizá uno de esos tonos necesite dos madejas completas mientras veinte colores utilicen menos de una décima parte cada uno.</p>\n<p>Revisa la tabla de símbolos y marca los colores con más puntadas. Son los que merece la pena comprar por duplicado si la estimación queda cerca del límite.</p>\n<p>Los colores minoritarios normalmente no requieren una madeja extra si ya compras una completa. Los sobrantes pueden guardarse para futuros proyectos.</p>\n<p>Una forma práctica de planificar es: consigue el recuento de puntadas por color, ajusta por count y cabos, utiliza una referencia aproximada de rendimiento y añade margen. La cifra final no será milimétrica, pero será mucho más fiable que comprar una sola madeja de cada color y esperar que alcance.</p>",
+  "image": {
+    "concept": "Madejas de mouliné junto a un patrón con conteos por color y una pequeña calculadora de consumo de hilo.",
+    "alt": "Cómo calcular cuánto hilo necesitas para punto de cruz"
+  }
+}

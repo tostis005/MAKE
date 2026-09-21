@@ -1,0 +1,296 @@
+{
+  "schema_version": 1,
+  "file_type": "planned_topics",
+  "site": "Drielo",
+  "craft": "cross-stitch",
+  "range": "340-364",
+  "created_from": "SEO gap research 2026-09-21",
+  "note": "Long-tail informational and commercial topics selected to avoid cannibalization with published articles 1-339.",
+  "editorial_principles": {
+    "minimum_words": 750,
+    "max_h2": 6,
+    "tone": "natural, practical, warm, non-robotic",
+    "languages": [
+      "es",
+      "en"
+    ],
+    "avoid_cannibalization_with_published_through": 339
+  },
+  "topics": [
+    {
+      "number": 340,
+      "priority": "P1",
+      "section": "learn",
+      "topic": "gridding",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cómo hacer una cuadrícula 10x10 en tela Aida para no perder la cuenta",
+      "title_en": "How to Grid Aida for Cross Stitch Without Losing Count",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 341,
+      "priority": "P1",
+      "section": "learn",
+      "topic": "needles",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Qué tamaño de aguja usar para punto de cruz en Aida 11, 14, 16 y 18",
+      "title_en": "What Needle Size to Use for 11, 14, 16 and 18 Count Aida",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 342,
+      "priority": "P1",
+      "section": "learn",
+      "topic": "floss",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "Cuántos cabos de hilo usar en punto de cruz según la tela Aida",
+      "title_en": "How Many Strands of Floss to Use by Aida Count",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 343,
+      "priority": "P1",
+      "section": "learn",
+      "topic": "floss",
+      "intent": "informational-commercial",
+      "status": "drafted",
+      "title_es": "Cómo calcular cuánto hilo necesitas para un patrón de punto de cruz",
+      "title_en": "How Much Floss Do You Need for a Cross Stitch Pattern?",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 344,
+      "priority": "P1",
+      "section": "learn",
+      "topic": "technique",
+      "intent": "informational",
+      "status": "drafted",
+      "title_es": "¿Importa que la parte trasera del punto de cruz quede limpia?",
+      "title_en": "Does the Back of Cross Stitch Need to Be Neat?",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 345,
+      "priority": "P1",
+      "section": "learn",
+      "topic": "hoops",
+      "intent": "informational",
+      "status": "planned",
+      "title_es": "Qué tensión debe tener la tela en el bastidor de punto de cruz",
+      "title_en": "How Tight Should Cross Stitch Fabric Be in a Hoop?",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 346,
+      "priority": "P1",
+      "section": "learn",
+      "topic": "fabrics",
+      "intent": "informational-commercial",
+      "status": "planned",
+      "title_es": "Cómo elegir el color de la tela Aida para un patrón de punto de cruz",
+      "title_en": "How to Choose Aida Fabric Color for a Cross Stitch Pattern",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 347,
+      "priority": "P1",
+      "section": "learn",
+      "topic": "project-planning",
+      "intent": "informational",
+      "status": "planned",
+      "title_es": "Cuánto se tarda en hacer un patrón de punto de cruz: cómo estimar las horas",
+      "title_en": "How Long Does Cross Stitch Take? Estimating Project Time",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 348,
+      "priority": "P1",
+      "section": "learn",
+      "topic": "finishing",
+      "intent": "informational",
+      "status": "planned",
+      "title_es": "Cómo firmar un bordado de punto de cruz con iniciales, nombre y fecha",
+      "title_en": "How to Sign Your Cross Stitch with Initials, Name and Date",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 349,
+      "priority": "P1",
+      "section": "ideas",
+      "topic": "fabric-scraps",
+      "intent": "informational-commercial",
+      "status": "planned",
+      "title_es": "Qué hacer con los retales de tela Aida que sobran",
+      "title_en": "What to Do with Leftover Aida Fabric Scraps",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 350,
+      "priority": "P1",
+      "section": "learn",
+      "topic": "hoops",
+      "intent": "informational-commercial",
+      "status": "planned",
+      "title_es": "Qué tamaño de bastidor elegir para un patrón de punto de cruz",
+      "title_en": "What Size Hoop Do You Need for Cross Stitch?",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 351,
+      "priority": "P2",
+      "section": "buying-guides",
+      "topic": "materials",
+      "intent": "commercial-informational",
+      "status": "planned",
+      "title_es": "Cuánto cuesta empezar en punto de cruz: presupuesto real para principiantes",
+      "title_en": "How Much Does It Cost to Start Cross Stitch?",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 352,
+      "priority": "P2",
+      "section": "learn",
+      "topic": "floss",
+      "intent": "informational",
+      "status": "planned",
+      "title_es": "Cómo evitar que el hilo se enrede y haga nudos mientras bordas",
+      "title_en": "How to Stop Cross Stitch Floss from Tangling and Knotting",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 353,
+      "priority": "P2",
+      "section": "learn",
+      "topic": "fabrics",
+      "intent": "informational",
+      "status": "planned",
+      "title_es": "Cómo guardar tela Aida y evenweave sin que se arrugue ni se ensucie",
+      "title_en": "How to Store Aida and Evenweave Fabric",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 354,
+      "priority": "P2",
+      "section": "learn",
+      "topic": "hoops",
+      "intent": "informational",
+      "status": "planned",
+      "title_es": "Cómo evitar que la tela se afloje dentro del bastidor mientras bordas",
+      "title_en": "How to Keep Cross Stitch Fabric Tight in a Hoop",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 355,
+      "priority": "P2",
+      "section": "learn",
+      "topic": "technique",
+      "intent": "informational",
+      "status": "planned",
+      "title_es": "Sewing method en punto de cruz: cómo bordar en mano y cuándo es más rápido",
+      "title_en": "Cross Stitch Sewing Method: How to Stitch in Hand",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 356,
+      "priority": "P2",
+      "section": "learn",
+      "topic": "finishing",
+      "intent": "informational",
+      "status": "planned",
+      "title_es": "Cómo terminar un adorno de punto de cruz sin coser",
+      "title_en": "How to Finish a Cross Stitch Ornament Without Sewing",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 357,
+      "priority": "P2",
+      "section": "learn",
+      "topic": "troubleshooting",
+      "intent": "informational",
+      "status": "planned",
+      "title_es": "Cómo corregir un error de conteo sin deshacer medio bordado",
+      "title_en": "How to Fix a Cross Stitch Counting Mistake Without Frogging Everything",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 358,
+      "priority": "P2",
+      "section": "learn",
+      "topic": "troubleshooting",
+      "intent": "informational",
+      "status": "planned",
+      "title_es": "Cómo añadir una cruz que olvidaste en una zona ya terminada",
+      "title_en": "How to Add a Missed Cross Stitch to a Finished Section",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 359,
+      "priority": "P2",
+      "section": "learn",
+      "topic": "troubleshooting",
+      "intent": "informational",
+      "status": "planned",
+      "title_es": "Qué hacer si has bordado muchas cruces con el color equivocado",
+      "title_en": "What to Do If You Used the Wrong Color in Cross Stitch",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 360,
+      "priority": "P2",
+      "section": "learn",
+      "topic": "technique",
+      "intent": "informational",
+      "status": "planned",
+      "title_es": "¿Hay que bordar primero los colores claros o los oscuros?",
+      "title_en": "Should You Cross Stitch Light or Dark Colors First?",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 361,
+      "priority": "P2",
+      "section": "learn",
+      "topic": "technique",
+      "intent": "informational",
+      "status": "planned",
+      "title_es": "Cómo decidir qué color o zona bordar primero en un patrón grande",
+      "title_en": "Which Color or Section Should You Stitch First in a Large Pattern?",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 362,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "stained-glass",
+      "intent": "commercial",
+      "status": "planned",
+      "title_es": "Patrones de vidriera en punto de cruz: flores, animales y diseños góticos",
+      "title_en": "Stained Glass Cross Stitch Patterns: Flowers, Animals and Gothic Designs",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 363,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "art-nouveau",
+      "intent": "commercial",
+      "status": "planned",
+      "title_es": "Patrones Art Nouveau en punto de cruz: flores, arquitectura y naturaleza",
+      "title_en": "Art Nouveau Cross Stitch Patterns: Flowers, Architecture and Nature",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 364,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "folk-art",
+      "intent": "commercial",
+      "status": "planned",
+      "title_es": "Folk art en punto de cruz: flores, pájaros y patrones de inspiración escandinava",
+      "title_en": "Folk Art Cross Stitch Patterns: Flowers, Birds and Scandinavian Style",
+      "craft": "cross-stitch"
+    }
+  ]
+}
