@@ -1,0 +1,71 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 326,
+  "translation_group": "326-resize-cross-stitch-by-aida-count",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "patterns",
+      "terms": [
+        "patterns"
+      ]
+    },
+    "style": {
+      "terms": [
+        "aida",
+        "resizing",
+        "fabric-count"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide",
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "es-326-cambiar-tamano-aida",
+  "language": "es",
+  "locale": "es-ES",
+  "market_context": "Personas que quieren cambiar el tamaño final de un patrón de punto de cruz usando otra tela Aida sin modificar la cuadrícula ni rediseñar el patrón.",
+  "title": "Cómo cambiar el tamaño de un patrón de punto de cruz usando otra tela Aida",
+  "slug": "cambiar-tamano-patron-punto-cruz-otra-aida",
+  "seo": {
+    "title": "Cómo cambiar el tamaño de un patrón de punto de cruz usando otra tela Aida",
+    "meta_description": "Aprende a cambiar el tamaño final de un patrón usando otra tela Aida: fórmula, ejemplos, margen de tela, efectos sobre cobertura y cuándo no conviene hacerlo.",
+    "search_intent": "Personas que quieren cambiar el tamaño final de un patrón de punto de cruz usando otra tela Aida sin modificar la cuadrícula ni rediseñar el patrón."
+  },
+  "excerpt": "Cambiar de Aida modifica el tamaño físico del bordado sin cambiar el número de cruces: esta guía explica cómo calcularlo y qué más debes tener en cuenta.",
+  "content_html": "<p>Una de las formas más sencillas de cambiar el tamaño final de un patrón de punto de cruz es bordarlo sobre una tela Aida de distinto count. La cuadrícula del patrón no cambia: si el diseño mide 140 por 196 cruces, seguirá teniendo exactamente esas 140 por 196 cruces. Lo que cambia es cuánto espacio físico ocupa cada puntada.</p>\n<p>En Aida estándar, el count indica cuántos bloques hay aproximadamente en una pulgada. Por eso, un mismo patrón bordado en Aida 18 queda más pequeño que en Aida 14, y en Aida 11 queda más grande. Esta técnica permite adaptar un diseño a un marco, a una pared o a una preferencia personal sin redibujar el gráfico.</p>\n<h2>La fórmula para calcular el nuevo tamaño es muy sencilla</h2>\n<p>Para conocer el tamaño aproximado en pulgadas, divide el número de puntadas entre el count de la tela. Si un patrón mide 140 cruces de ancho y utilizas Aida 14, el ancho será de unas 10 pulgadas. Si utilizas Aida 18, esas mismas 140 cruces ocuparán unas 7,8 pulgadas.</p>\n<p>Haz el cálculo por separado para ancho y alto. Un patrón de 140 por 196 puntadas en Aida 14 mide aproximadamente 10 por 14 pulgadas; en Aida 16, unas 8,75 por 12,25; en Aida 18, alrededor de 7,8 por 10,9.</p>\n<p>Estas medidas corresponden solo al área bordada. Todavía debes añadir margen de tela alrededor para montar, tensar o enmarcar la pieza.</p>\n<h2>Cambiar el count no cambia el dibujo ni el número de puntadas</h2>\n<p>El patrón sigue exactamente igual. No tienes que ampliar símbolos, mover cruces ni recalcular colores. Cada cuadrado del gráfico sigue correspondiendo a una cruz sobre un bloque de Aida.</p>\n<p>Esto es distinto de ampliar un patrón digital aumentando el número de puntos. Cambiar de Aida modifica la escala física; redimensionar la cuadrícula modifica el propio diseño.</p>\n<p>Por eso es una opción muy segura cuando te gusta el patrón tal como está pero quieres que el resultado sea más pequeño o más grande.</p>\n<h2>El margen de tela también debe recalcularse</h2>\n<p>Después de calcular el área bordada, añade margen suficiente en los cuatro lados. Para un cuadro, muchas personas prefieren dejar varios centímetros adicionales para poder tensar y montar con comodidad. El margen exacto depende del tipo de acabado.</p>\n<p>Si vas a utilizar un bastidor como marco final, comprueba el diámetro real antes de cortar la tela. Para costura, cojines o paneles textiles, necesitarás además margen de costura.</p>\n<p>No cortes la tela tomando solo la medida del bordado. Un patrón que encaja perfectamente dentro de 20 centímetros sigue necesitando tela adicional alrededor para trabajar y terminar la pieza.</p>\n<h2>La cobertura del hilo puede cambiar al usar otra Aida</h2>\n<p>Una cruz ocupa menos superficie física en counts altos, por lo que dos cabos de mouliné suelen verse más densos en Aida 18 que en Aida 14. En counts bajos, la misma cantidad de hilo puede dejar más tela visible entre puntadas.</p>\n<p>Esto no significa que debas cambiar automáticamente el número de cabos. Haz una pequeña prueba con el color más oscuro y el más claro sobre la tela elegida. Mira el resultado a distancia normal y decide si la cobertura te gusta.</p>\n<p>Si el patrón incluye backstitch, nudos franceses o muchos puntos fraccionados, comprueba también cómo se sienten sobre la nueva tela. Una Aida más pequeña puede hacer que ciertos detalles queden visualmente más compactos.</p>\n<h2>También cambia la experiencia de bordado</h2>\n<p>Aida 18 permite conseguir un resultado más pequeño y fino, pero los agujeros están más juntos. Si te cuesta verlos o trabajas durante muchas horas, quizá necesites mejor iluminación o aumento.</p>\n<p>Aida 11 o 14 resulta más cómoda para muchas personas y produce puntadas físicamente mayores. Esto puede ser útil para principiantes, proyectos infantiles o diseños que quieras mostrar a mayor escala.</p>\n<p>No elijas solo por el tamaño final. Un patrón reducido al count más alto disponible no es una mejora si después resulta incómodo de bordar.</p>\n<h2>Cuándo no conviene cambiar la tela sin revisar el diseño</h2>\n<p>La mayoría de patrones de cruces completas se adaptan fácilmente. Sin embargo, si el diseño contiene muchos puntos especiales, cuentas, charms, botones u otros elementos con tamaño físico fijo, cambiar el count puede alterar las proporciones entre esos adornos y el bordado.</p>\n<p>También debes revisar patrones pensados para encajar dentro de un objeto concreto, como una tapa, un inserto, una tarjeta precortada o un marco con ventana fija. En estos casos, calcula primero la nueva medida antes de comprar materiales.</p>\n<p>Si el patrón tiene texto muy pequeño, reducir mucho el tamaño no cambia su legibilidad en la cuadrícula, pero sí hace que las letras sean físicamente menores. Piensa en la distancia desde la que se verá la pieza.</p>\n<p>La regla práctica es sencilla: conserva el número de cruces, divide ancho y alto entre el nuevo count y añade el margen necesario. Después comprueba cobertura, comodidad y acabado. Con esos pasos puedes cambiar de tamaño un patrón sin rediseñarlo y saber de antemano cuánto medirá realmente.</p>",
+  "image": {
+    "concept": "Esquema comparativo del mismo patrón de punto de cruz bordado sobre Aida 14, 16 y 18, mostrando distintos tamaños finales.",
+    "alt": "Cómo cambiar el tamaño de un patrón usando otra tela Aida"
+  }
+}
