@@ -57,6 +57,36 @@ jobs:
                   print(f'WARNING: {filename} was not staged: {exc}')
           PY
 
+      - name: Fetch refreshed product galleries
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, pathlib, urllib.request
+          source = pathlib.Path('content/products/gallery-sources.json')
+          if not source.is_file():
+              print('No staged gallery refresh.')
+              raise SystemExit(0)
+          data = json.loads(source.read_text(encoding='utf-8'))
+          out = pathlib.Path('content/products/assets')
+          out.mkdir(parents=True, exist_ok=True)
+          for filename, url in data.items():
+              if not url:
+                  continue
+              target = out / filename
+              print(f'Downloading {filename}...')
+              request = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+              with urllib.request.urlopen(request, timeout=120) as response, target.open('wb') as fh:
+                  while True:
+                      chunk = response.read(1024 * 1024)
+                      if not chunk:
+                          break
+                      fh.write(chunk)
+              if target.stat().st_size < 100000:
+                  raise SystemExit(f'{filename}: gallery download too small')
+              print(f'{filename}: {target.stat().st_size} bytes')
+          PY
+
       - name: Validate product catalogue
         shell: bash
         run: |
