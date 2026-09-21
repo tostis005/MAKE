@@ -2,6 +2,8 @@
 /** Drielo theme functions. */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
+require_once get_template_directory() . '/inc/sitemap.php';
+
 function make_theme_setup(): void {
     load_theme_textdomain( 'make', get_template_directory() . '/languages' );
     add_theme_support( 'title-tag' );
