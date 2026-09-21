@@ -151,6 +151,16 @@ jobs:
             }
             $terms=get_terms(array("taxonomy"=>"product_collection","hide_empty"=>false));
             if (!is_wp_error($terms)) foreach($terms as $t) echo "COLLECTION=" . $t->slug . " count=" . $t->count . " url=" . get_term_link($t) . PHP_EOL;
+            $shop_id=function_exists("wc_get_page_id") ? wc_get_page_id("shop") : 0;
+            echo "SHOP_ID=" . $shop_id . PHP_EOL;
+            if ($shop_id>0) echo "SHOP_TITLE=" . get_the_title($shop_id) . " SHOP_STATUS=" . get_post_status($shop_id) . " SHOP_URL=" . get_permalink($shop_id) . PHP_EOL;
+            $page=get_page_by_path("tienda");
+            if ($page) echo "TIENDA_PAGE_ID=" . $page->ID . " STATUS=" . get_post_status($page->ID) . " URL=" . get_permalink($page->ID) . PHP_EOL;
+            $page2=get_page_by_path("shop");
+            if ($page2) echo "SHOP_PAGE_SLUG_ID=" . $page2->ID . " STATUS=" . get_post_status($page2->ID) . " URL=" . get_permalink($page2->ID) . PHP_EOL;
+            echo "PRODUCT_PUBLISHED=" . wp_count_posts("product")->publish . PHP_EOL;
+            $locations=get_nav_menu_locations();
+            foreach($locations as $loc=>$menu_id){ echo "MENU_LOCATION=" . $loc . " ID=" . $menu_id . PHP_EOL; $items=wp_get_nav_menu_items($menu_id); if(is_array($items)) foreach($items as $mi) echo "MENU_ITEM=" . $mi->title . " URL=" . $mi->url . PHP_EOL; }
           '
 
           "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
