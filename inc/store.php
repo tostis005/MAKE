@@ -528,3 +528,108 @@ function make_pending_download_notice(): void {
     '</div>';
 }
 add_action( 'woocommerce_single_product_summary', 'make_pending_download_notice', 24 );
+
+
+/**
+ * Make product reference codes searchable from the site-wide search.
+ *
+ * Product codes are stored twice on managed products:
+ * - WooCommerce SKU: DRIELO-P0004
+ * - Drielo code meta: P0004
+ *
+ * Visitors can therefore search P0004, P-0004 or DRIELO-P0004.
+ */
+function make_product_code_search_sql( string $search, WP_Query $query ): string {
+    if ( is_admin() || ! $query->is_search() || ! $query->is_main_query() ) {
+        return $search;
+    }
+
+    $raw = trim( (string) $query->get( 's' ) );
+    if ( '' === $raw ) {
+        return $search;
+    }
+
+    $normalized = strtoupper( preg_replace( '/[^A-Z0-9]/i', '', $raw ) );
+    $code = '';
+
+    if ( preg_match( '/^DRIELOP(\d{1,8})$/', $normalized, $matches ) ) {
+        $code = 'P' . str_pad( $matches[1], 4, '0', STR_PAD_LEFT );
+    } elseif ( preg_match( '/^P(\d{1,8})$/', $normalized, $matches ) ) {
+        $code = 'P' . str_pad( $matches[1], 4, '0', STR_PAD_LEFT );
+    } elseif ( preg_match( '/^(\d{1,8})$/', $normalized, $matches ) ) {
+        $code = 'P' . str_pad( $matches[1], 4, '0', STR_PAD_LEFT );
+    }
+
+    if ( '' === $code ) {
+        return $search;
+    }
+
+    global $wpdb;
+
+    $sku       = 'DRIELO-' . $code;
+    $pdf_code  = 'P-' . substr( $code, 1 );
+    $needle_a  = '%' . $wpdb->esc_like( $code ) . '%';
+    $needle_b  = '%' . $wpdb->esc_like( $sku ) . '%';
+    $needle_c  = '%' . $wpdb->esc_like( $pdf_code ) . '%';
+
+    $meta_sql = $wpdb->prepare(
+        "EXISTS (
+            SELECT 1
+            FROM {$wpdb->postmeta} drielo_code_meta
+            WHERE drielo_code_meta.post_id = {$wpdb->posts}.ID
+              AND drielo_code_meta.meta_key IN ('_sku', '_drielo_product_code')
+              AND (
+                    drielo_code_meta.meta_value LIKE %s
+                 OR drielo_code_meta.meta_value LIKE %s
+                 OR drielo_code_meta.meta_value LIKE %s
+              )
+        )",
+        $needle_a,
+        $needle_b,
+        $needle_c
+    );
+
+    $base = trim( $search );
+    if ( '' !== $base ) {
+        $base = preg_replace( '/^AND\s+/i', '', $base );
+        return " AND ( ({$base}) OR {$meta_sql} )";
+    }
+
+    return " AND ({$meta_sql})";
+}
+add_filter( 'posts_search', 'make_product_code_search_sql', 20, 2 );
+
+function make_product_reference_code( int $product_id ): string {
+    $code = (string) get_post_meta( $product_id, '_drielo_product_code', true );
+    if ( '' !== $code ) {
+        return strtoupper( $code );
+    }
+
+    $sku = (string) get_post_meta( $product_id, '_sku', true );
+    if ( preg_match( '/P-?(\d+)$/i', $sku, $matches ) ) {
+        return 'P' . str_pad( $matches[1], 4, '0', STR_PAD_LEFT );
+    }
+
+    return '';
+}
+
+function make_render_product_reference(): void {
+    if ( ! is_product() ) {
+        return;
+    }
+
+    global $product;
+    if ( ! $product instanceof WC_Product ) {
+        return;
+    }
+
+    $code = make_product_reference_code( $product->get_id() );
+    if ( '' === $code ) {
+        return;
+    }
+
+    echo '<div class="drielo-product-reference"><span>' .
+        esc_html( make_t( 'Código', 'Code' ) ) .
+        '</span><strong>' . esc_html( $code ) . '</strong></div>';
+}
+add_action( 'woocommerce_single_product_summary', 'make_render_product_reference', 6 );
