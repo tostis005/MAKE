@@ -150,6 +150,7 @@ foreach ( (array) ( $catalog['categories'] ?? array() ) as $cat ) {
 }
 
 $collections = array();
+$legacy_collection_terms = array();
 foreach ( (array) ( $catalog['collections'] ?? array() ) as $collection ) {
     $slug = sanitize_title( (string) $collection['slug'] );
     $name = (string) $collection['name'];
@@ -180,6 +181,13 @@ foreach ( (array) ( $catalog['collections'] ?? array() ) as $collection ) {
     update_term_meta( $term_id, 'drielo_description_en', sanitize_text_field( (string) ( $collection['description_en'] ?? ( $collection['description'] ?? '' ) ) ) );
     update_term_meta( $term_id, 'drielo_palette_hex', implode( ', ', (array) ( $collection['palette_hex'] ?? array() ) ) );
     update_term_meta( $term_id, 'drielo_thread_codes', 'DMC ' . implode( ', ', (array) ( $collection['thread_codes'] ?? array() ) ) );
+
+    foreach ( (array) ( $collection['previous_slugs'] ?? array() ) as $previous_slug ) {
+        $legacy = get_term_by( 'slug', sanitize_title( (string) $previous_slug ), 'product_collection' );
+        if ( $legacy instanceof WP_Term && (int) $legacy->term_id !== $term_id ) {
+            $legacy_collection_terms[] = (int) $legacy->term_id;
+        }
+    }
 
     $cover = (string) ( $collection['cover_asset'] ?? '' );
     if ( $cover ) {
@@ -329,6 +337,16 @@ foreach ( (array) ( $catalog['products'] ?? array() ) as $row ) {
 
     if ( $existing_id ) { $updated++; } else { $created++; }
     echo ( $existing_id ? 'UPDATED ' : 'CREATED ' ) . $sku . ' product_id=' . $id . PHP_EOL;
+}
+
+foreach ( array_values( array_unique( $legacy_collection_terms ) ) as $legacy_term_id ) {
+    $legacy_term = get_term( $legacy_term_id, 'product_collection' );
+    if ( $legacy_term instanceof WP_Term && 0 === (int) $legacy_term->count ) {
+        $deleted = wp_delete_term( $legacy_term_id, 'product_collection' );
+        if ( ! is_wp_error( $deleted ) ) {
+            echo 'DELETED LEGACY COLLECTION term_id=' . $legacy_term_id . PHP_EOL;
+        }
+    }
 }
 
 echo "RESULT created=$created updated=$updated download_pending=$pending" . PHP_EOL;
