@@ -281,9 +281,13 @@ function make_render_collection_grid(): void {
         $product_id = make_collection_cover_product_id( $term );
         if ( is_wp_error( $url ) ) { continue; }
 
+        $cover_id = (int) get_term_meta( $term->term_id, 'drielo_collection_cover_id', true );
+
         echo '<article class="drielo-collection-card">';
         echo '<a class="drielo-collection-media" href="' . esc_url( $url ) . '">';
-        if ( $product_id && has_post_thumbnail( $product_id ) ) {
+        if ( $cover_id ) {
+            echo wp_get_attachment_image( $cover_id, 'make-card', false, array( 'loading' => 'lazy' ) );
+        } elseif ( $product_id && has_post_thumbnail( $product_id ) ) {
             echo get_the_post_thumbnail( $product_id, 'make-card', array( 'loading' => 'lazy' ) );
         } else {
             echo '<span class="drielo-collection-placeholder" aria-hidden="true"><b>×</b><b>×</b><b>×</b><b>×</b><b>×</b></span>';
@@ -502,3 +506,25 @@ function make_collection_archive_note(): void {
     }
     echo '</div>';
 }
+
+
+function make_pending_download_availability( string $text, $product ): string {
+    if ( $product instanceof WC_Product && '1' === (string) get_post_meta( $product->get_id(), '_drielo_download_pending', true ) ) {
+        return make_t( 'Vista previa publicada · descarga aún no activada', 'Preview published · download not active yet' );
+    }
+    return $text;
+}
+add_filter( 'woocommerce_get_availability_text', 'make_pending_download_availability', 20, 2 );
+
+function make_pending_download_notice(): void {
+    global $product;
+    if ( ! $product instanceof WC_Product ) { return; }
+    if ( '1' !== (string) get_post_meta( $product->get_id(), '_drielo_download_pending', true ) ) { return; }
+    echo '<div class="drielo-download-pending">' .
+        esc_html( make_t(
+            'La ficha está lista para revisión. La compra se activará cuando el PDF descargable quede conectado.',
+            'This product page is ready for review. Purchasing will activate when the downloadable PDF is connected.'
+        ) ) .
+    '</div>';
+}
+add_action( 'woocommerce_single_product_summary', 'make_pending_download_notice', 24 );
