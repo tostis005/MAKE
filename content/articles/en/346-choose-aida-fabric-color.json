@@ -1,0 +1,71 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 346,
+  "translation_group": "346-choose-aida-color",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "fabrics",
+      "terms": [
+        "fabrics"
+      ]
+    },
+    "style": {
+      "terms": [
+        "aida-color",
+        "contrast",
+        "fabric-choice"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide",
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-346-aida-color",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Stitchers choosing an Aida fabric color based on pattern contrast, palette, visible background and desired finished style.",
+  "title": "How to Choose Aida Fabric Color for a Cross Stitch Pattern",
+  "slug": "choose-aida-fabric-color-cross-stitch",
+  "seo": {
+    "title": "How to Choose Aida Fabric Color for a Cross Stitch Pattern",
+    "meta_description": "How to choose white, cream, black, gray, blue or colored Aida based on pattern palette, contrast, unstitched background and finished style.",
+    "search_intent": "Stitchers choosing an Aida fabric color based on pattern contrast, palette, visible background and desired finished style."
+  },
+  "excerpt": "Fabric is not only a support; it is also a background color. Learn how to choose one that helps the chart instead of competing with it.",
+  "content_html": "<p>Aida color can change the finished appearance of a pattern because the fabric becomes visible background between stitches and around the design. The same motif can feel crisp and modern on white, warm on cream, dramatic on black, or softer on gray and blue.</p>\n<p>The choice should not be based only on which fabric looks attractive by itself. Look at the chart palette, how much background remains unstitched and the mood you want. A beautiful fabric color can still make important thread shades disappear.</p>\n<h2>Start by checking contrast with the palest and darkest threads</h2>\n<p>Identify white, cream, pale yellow, light gray and very dark shades in the floss list. These are the colors most likely to lose definition against a similar background.</p>\n<p>A chart containing many white flowers may need more contrast than white Aida provides. Pale gray, blue, natural cloth or even black can make those flowers clearer.</p>\n<p>Likewise, a design with large black areas can lose detail on black Aida when there are not enough neighboring values to separate the shapes.</p>\n<h2>The amount of visible fabric determines how important color becomes</h2>\n<p>In a full-coverage design, most of the background is stitched over, so fabric color has less influence on the final image. It can still affect small gaps and the stitching experience, but it does not dominate the composition.</p>\n<p>In charts with large negative-space areas, the fabric becomes part of the artwork. A small floral motif can feel completely different on white versus sage green.</p>\n<p>Before buying cloth, look at the preview and imagine every unstitched area as the fabric color. If much of the surface remains open, treat the Aida as another color in the palette.</p>\n<h2>White and cream are versatile, but they are not identical neutrals</h2>\n<p>White creates a crisp background and makes most mid-value and dark shades stand out strongly. It works well for graphic designs, bright palettes and charts where maximum clarity is useful.</p>\n<p>Cream, oatmeal and ivory soften the contrast and often suit vintage, cottagecore, autumn and botanical palettes. Very pale browns and beige need checking so they do not disappear.</p>\n<p>If you are choosing between white and cream, lay the main floss shades on both. A warm palette may feel more integrated on cream while a cool palette can lose some of its crispness.</p>\n<h2>Dark fabric creates impact but requires checking every value</h2>\n<p>Black, midnight blue, deep green and burgundy can transform a simple chart into something more dramatic. Pale colors, metallics and pastels often stand out strongly.</p>\n<p>However, charcoal, brown, deep green and dark purple can vanish against similar backgrounds. Do not rely only on a digital color key; test the real threads.</p>\n<p>Dark fabric can also be more tiring to stitch because the holes are harder to see. Light placed behind or beneath the work can improve visibility.</p>\n<h2>Gray, blue and other mid-tone fabrics create balanced backgrounds</h2>\n<p>Pale gray is useful when white feels too harsh and cream feels too warm. It can support both dark colors and many lighter shades.</p>\n<p>Soft blues suit winter, ocean, moon, snow and cool palettes particularly well. Sage greens can complement botanicals, cottagecore and woodland animals.</p>\n<p>These mid-tone fabrics add personality without the extreme contrast of black. They are useful when you want the cloth to participate in the design without becoming the main attraction.</p>\n<h2>Test the palette before committing to a large piece</h2>\n<p>Place the palest, darkest and most dominant skeins directly on the fabric. Look at them in daylight and under the lighting where you usually stitch.</p>\n<p>If an important color seems to disappear, either change the fabric or substitute that shade when the chart allows adjustments. It is much easier to make that decision before stitching begins.</p>\n<p>Also think about finishing. Frame, mat and wall color can change how the fabric background feels, especially when the design leaves a large amount of cloth visible.</p>\n<p>There is no single correct Aida color for every chart. The best choice keeps important shades readable, supports the intended style and uses the background as part of the composition. Check contrast, visible fabric area and stitching comfort before deciding.</p><p>If you are replacing the designer's suggested fabric color, keep the original preview available for comparison. Sometimes the recommended background quietly separates shadows and outlines even when it does not appear important. A substitute can work beautifully, but check every shade that sits close to the new background value.</p><p>When several fabric colors seem suitable, prioritize the one that preserves the widest range of contrast. It is usually easier to adjust one secondary floss shade than to rescue multiple colors that vanish into an attractive but poorly matched background.</p>",
+  "image": {
+    "concept": "The same small cross stitch motif shown on white, cream, gray, blue and black Aida for contrast comparison.",
+    "alt": "How to choose Aida fabric color for a cross stitch pattern"
+  }
+}

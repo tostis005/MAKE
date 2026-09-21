@@ -14,7 +14,7 @@
       "es",
       "en"
     ],
-    "avoid_cannibalization_with_published_through": 339
+    "avoid_cannibalization_with_published_through": 344
   },
   "topics": [
     {
@@ -78,7 +78,7 @@
       "section": "learn",
       "topic": "hoops",
       "intent": "informational",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Qué tensión debe tener la tela en el bastidor de punto de cruz",
       "title_en": "How Tight Should Cross Stitch Fabric Be in a Hoop?",
       "craft": "cross-stitch"
@@ -89,7 +89,7 @@
       "section": "learn",
       "topic": "fabrics",
       "intent": "informational-commercial",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Cómo elegir el color de la tela Aida para un patrón de punto de cruz",
       "title_en": "How to Choose Aida Fabric Color for a Cross Stitch Pattern",
       "craft": "cross-stitch"
@@ -100,7 +100,7 @@
       "section": "learn",
       "topic": "project-planning",
       "intent": "informational",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Cuánto se tarda en hacer un patrón de punto de cruz: cómo estimar las horas",
       "title_en": "How Long Does Cross Stitch Take? Estimating Project Time",
       "craft": "cross-stitch"
@@ -111,7 +111,7 @@
       "section": "learn",
       "topic": "finishing",
       "intent": "informational",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Cómo firmar un bordado de punto de cruz con iniciales, nombre y fecha",
       "title_en": "How to Sign Your Cross Stitch with Initials, Name and Date",
       "craft": "cross-stitch"
@@ -122,7 +122,7 @@
       "section": "ideas",
       "topic": "fabric-scraps",
       "intent": "informational-commercial",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Qué hacer con los retales de tela Aida que sobran",
       "title_en": "What to Do with Leftover Aida Fabric Scraps",
       "craft": "cross-stitch"
@@ -133,7 +133,7 @@
       "section": "learn",
       "topic": "hoops",
       "intent": "informational-commercial",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Qué tamaño de bastidor elegir para un patrón de punto de cruz",
       "title_en": "What Size Hoop Do You Need for Cross Stitch?",
       "craft": "cross-stitch"
@@ -144,7 +144,7 @@
       "section": "buying-guides",
       "topic": "materials",
       "intent": "commercial-informational",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Cuánto cuesta empezar en punto de cruz: presupuesto real para principiantes",
       "title_en": "How Much Does It Cost to Start Cross Stitch?",
       "craft": "cross-stitch"
@@ -155,7 +155,7 @@
       "section": "learn",
       "topic": "floss",
       "intent": "informational",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Cómo evitar que el hilo se enrede y haga nudos mientras bordas",
       "title_en": "How to Stop Cross Stitch Floss from Tangling and Knotting",
       "craft": "cross-stitch"
@@ -166,7 +166,7 @@
       "section": "learn",
       "topic": "fabrics",
       "intent": "informational",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Cómo guardar tela Aida y evenweave sin que se arrugue ni se ensucie",
       "title_en": "How to Store Aida and Evenweave Fabric",
       "craft": "cross-stitch"
@@ -177,7 +177,7 @@
       "section": "learn",
       "topic": "hoops",
       "intent": "informational",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Cómo evitar que la tela se afloje dentro del bastidor mientras bordas",
       "title_en": "How to Keep Cross Stitch Fabric Tight in a Hoop",
       "craft": "cross-stitch"
