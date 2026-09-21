@@ -43,7 +43,7 @@ function drielo_term( string $taxonomy, string $name, string $slug, int $parent 
     return (int) $created['term_id'];
 }
 
-function drielo_media_from_file( string $path, string $source_key, string $title ): int {
+function drielo_media_from_file( string $path, string $source_key, string $title, string $source_revision = '' ): int {
     if ( ! is_file( $path ) ) { return 0; }
 
     $source_hash = md5_file( $path ) ?: '';
@@ -60,8 +60,12 @@ function drielo_media_from_file( string $path, string $source_key, string $title
 
     if ( $existing ) {
         $attachment_id = (int) $existing[0];
+        $known_revision = (string) get_post_meta( $attachment_id, '_drielo_source_revision', true );
+        if ( '' !== $source_revision && hash_equals( $known_revision, $source_revision ) ) {
+            return $attachment_id;
+        }
         $known_hash = (string) get_post_meta( $attachment_id, '_drielo_source_hash', true );
-        if ( $source_hash && hash_equals( $known_hash, $source_hash ) ) {
+        if ( '' === $source_revision && $source_hash && hash_equals( $known_hash, $source_hash ) ) {
             return $attachment_id;
         }
 
@@ -82,6 +86,7 @@ function drielo_media_from_file( string $path, string $source_key, string $title
                 )
             );
             update_post_meta( $attachment_id, '_drielo_source_hash', $source_hash );
+            if ( '' !== $source_revision ) { update_post_meta( $attachment_id, '_drielo_source_revision', $source_revision ); }
             return $attachment_id;
         }
     }
@@ -105,6 +110,7 @@ function drielo_media_from_file( string $path, string $source_key, string $title
     if ( is_array( $metadata ) ) { wp_update_attachment_metadata( $attachment_id, $metadata ); }
     update_post_meta( $attachment_id, '_drielo_source_asset', $source_key );
     update_post_meta( $attachment_id, '_drielo_source_hash', $source_hash );
+    if ( '' !== $source_revision ) { update_post_meta( $attachment_id, '_drielo_source_revision', $source_revision ); }
     return (int) $attachment_id;
 }
 
@@ -146,9 +152,32 @@ foreach ( (array) ( $catalog['categories'] ?? array() ) as $cat ) {
 $collections = array();
 foreach ( (array) ( $catalog['collections'] ?? array() ) as $collection ) {
     $slug = sanitize_title( (string) $collection['slug'] );
-    $term_id = drielo_term( 'product_collection', (string) $collection['name'], $slug );
-    wp_update_term( $term_id, 'product_collection', array( 'description' => (string) ( $collection['description'] ?? '' ) ) );
+    $name = (string) $collection['name'];
 
+    $term = get_term_by( 'slug', $slug, 'product_collection' );
+    if ( ! $term instanceof WP_Term ) {
+        foreach ( (array) ( $collection['previous_slugs'] ?? array() ) as $previous_slug ) {
+            $previous = get_term_by( 'slug', sanitize_title( (string) $previous_slug ), 'product_collection' );
+            if ( $previous instanceof WP_Term ) {
+                $updated_term = wp_update_term(
+                    $previous->term_id,
+                    'product_collection',
+                    array( 'name' => $name, 'slug' => $slug )
+                );
+                if ( is_wp_error( $updated_term ) ) { throw new RuntimeException( $updated_term->get_error_message() ); }
+                $term = get_term( $previous->term_id, 'product_collection' );
+                break;
+            }
+        }
+    }
+
+    $term_id = $term instanceof WP_Term ? (int) $term->term_id : drielo_term( 'product_collection', $name, $slug );
+    wp_update_term( $term_id, 'product_collection', array( 'name' => $name, 'slug' => $slug, 'description' => (string) ( $collection['description'] ?? '' ) ) );
+
+    update_term_meta( $term_id, 'drielo_name_es', sanitize_text_field( (string) ( $collection['name_es'] ?? '' ) ) );
+    update_term_meta( $term_id, 'drielo_name_en', sanitize_text_field( (string) ( $collection['name_en'] ?? $name ) ) );
+    update_term_meta( $term_id, 'drielo_description_es', sanitize_text_field( (string) ( $collection['description_es'] ?? '' ) ) );
+    update_term_meta( $term_id, 'drielo_description_en', sanitize_text_field( (string) ( $collection['description_en'] ?? ( $collection['description'] ?? '' ) ) ) );
     update_term_meta( $term_id, 'drielo_palette_hex', implode( ', ', (array) ( $collection['palette_hex'] ?? array() ) ) );
     update_term_meta( $term_id, 'drielo_thread_codes', 'DMC ' . implode( ', ', (array) ( $collection['thread_codes'] ?? array() ) ) );
 
@@ -222,11 +251,13 @@ foreach ( (array) ( $catalog['products'] ?? array() ) as $row ) {
     $product->set_category_ids( array_values( array_unique( $cats ) ) );
 
     $gallery_ids = array();
+    $gallery_revision = sanitize_text_field( (string) ( $row['gallery_revision'] ?? '' ) );
     foreach ( (array) ( $row['gallery'] ?? array() ) as $index => $asset ) {
         $id = drielo_media_from_file(
             rtrim( $source, '/' ) . '/' . $asset,
             (string) $asset,
-            (string) $row['title'] . ' - preview ' . ( $index + 1 )
+            (string) $row['title'] . ' - preview ' . ( $index + 1 ),
+            $gallery_revision
         );
         if ( ! $id ) { continue; }
         if ( 0 === $index ) { $product->set_image_id( $id ); }
