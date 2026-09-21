@@ -182,4 +182,11 @@ jobs:
           print('SHOP_PRODUCT_LINKS=' + str(len(re.findall(r'/producto/', html))))
           print('SHOP_HAS_P0001=' + str('bubble-gum-portrait-cross-stitch-pattern' in html).lower())
           print('SHOP_HAS_NO_PRODUCTS=' + str(('No se encontraron productos' in html) or ('No products were found' in html)).lower())
+          print('SHOP_HAS_HERO=' + str('shop-hero' in html).lower())
+          print('SHOP_HAS_VIEWS=' + str('drielo-shop-views' in html).lower())
+          print('SHOP_HAS_PAGE_WRAP=' + str('page-wrap' in html).lower())
+          m = re.search(r'<main[^>]*>(.*?)</main>', html, re.S|re.I)
+          if m:
+              snippet = re.sub(r'\s+', ' ', m.group(1))[:1800]
+              print('SHOP_MAIN_SNIPPET=' + snippet)
           PY
