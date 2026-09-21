@@ -177,12 +177,27 @@ function make_language_switch_url( string $language ): string {
 
 function make_rewrite_rules(): void {
     add_rewrite_rule( '^en/?$', 'index.php?make_lang=en', 'top' );
+
     add_rewrite_rule( '^journal/?$', 'index.php?make_journal=1&make_lang=es', 'top' );
     add_rewrite_rule( '^journal/page/([0-9]+)/?$', 'index.php?make_journal=1&make_lang=es&paged=$matches[1]', 'top' );
+    add_rewrite_rule( '^categoria/([a-z0-9-]+)/?$', 'index.php?make_journal=1&make_lang=es&make_theme=$matches[1]', 'top' );
+    add_rewrite_rule( '^categoria/([a-z0-9-]+)/page/([0-9]+)/?$', 'index.php?make_journal=1&make_lang=es&make_theme=$matches[1]&paged=$matches[2]', 'top' );
+
     add_rewrite_rule( '^en/journal/?$', 'index.php?make_journal=1&make_lang=en', 'top' );
     add_rewrite_rule( '^en/journal/page/([0-9]+)/?$', 'index.php?make_journal=1&make_lang=en&paged=$matches[1]', 'top' );
+    add_rewrite_rule( '^en/category/([a-z0-9-]+)/?$', 'index.php?make_journal=1&make_lang=en&make_theme=$matches[1]', 'top' );
+    add_rewrite_rule( '^en/category/([a-z0-9-]+)/page/([0-9]+)/?$', 'index.php?make_journal=1&make_lang=en&make_theme=$matches[1]&paged=$matches[2]', 'top' );
 }
 add_action( 'init', 'make_rewrite_rules' );
+
+function make_maybe_flush_editorial_rewrites(): void {
+    $schema_version = '2';
+    if ( $schema_version === (string) get_option( 'drielo_editorial_rewrite_schema', '' ) ) { return; }
+
+    flush_rewrite_rules( false );
+    update_option( 'drielo_editorial_rewrite_schema', $schema_version, false );
+}
+add_action( 'init', 'make_maybe_flush_editorial_rewrites', 100 );
 
 function make_query_vars( array $vars ): array {
     $vars[] = 'make_lang';
@@ -850,10 +865,48 @@ function make_current_stitch_theme(): string {
 
 function make_stitch_theme_url( string $theme, string $language = '', int $page = 1 ): string {
     $theme = sanitize_key( $theme );
+    $language = in_array( $language, array( 'es', 'en' ), true ) ? $language : make_current_language();
+    $page = max( 1, $page );
+
     if ( ! isset( make_stitch_theme_config()[ $theme ] ) ) { return make_journal_url( $language ); }
-    $url = make_journal_page_url( max( 1, $page ), $language );
-    return add_query_arg( 'make_theme', $theme, $url );
+
+    if ( '' !== (string) get_option( 'permalink_structure', '' ) ) {
+        $base = 'en' === $language
+            ? home_url( '/en/category/' . rawurlencode( $theme ) . '/' )
+            : home_url( '/categoria/' . rawurlencode( $theme ) . '/' );
+
+        return 1 === $page ? $base : trailingslashit( $base ) . 'page/' . $page . '/';
+    }
+
+    $args = array(
+        'make_journal' => '1',
+        'make_lang'    => $language,
+        'make_theme'   => $theme,
+    );
+    if ( $page > 1 ) { $args['paged'] = $page; }
+
+    return add_query_arg( $args, home_url( '/' ) );
 }
+
+function make_redirect_legacy_stitch_theme_url(): void {
+    if ( is_admin() || '' === (string) get_option( 'permalink_structure', '' ) || ! isset( $_GET['make_theme'] ) ) {
+        return;
+    }
+
+    $theme = sanitize_key( (string) wp_unslash( $_GET['make_theme'] ) );
+    if ( ! isset( make_stitch_theme_config()[ $theme ] ) ) { return; }
+
+    $language = isset( $_GET['make_lang'] )
+        ? sanitize_key( (string) wp_unslash( $_GET['make_lang'] ) )
+        : make_current_language();
+    $language = in_array( $language, array( 'es', 'en' ), true ) ? $language : make_current_language();
+
+    $page = isset( $_GET['paged'] ) ? max( 1, absint( $_GET['paged'] ) ) : max( 1, (int) get_query_var( 'paged' ) );
+
+    wp_safe_redirect( make_stitch_theme_url( $theme, $language, $page ), 301 );
+    exit;
+}
+add_action( 'template_redirect', 'make_redirect_legacy_stitch_theme_url', -90 );
 
 function make_stitch_theme_cards( string $language = '' ): array {
     $language = in_array( $language, array('es','en'), true ) ? $language : make_current_language();
