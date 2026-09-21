@@ -124,6 +124,11 @@ jobs:
             echo "MAKE_BLOG_PUBLIC=" . (string) get_option("blog_public", "") . PHP_EOL;
             echo "MAKE_HTACCESS=" . (is_readable(ABSPATH . ".htaccess") ? "present" : "missing") . PHP_EOL;
             echo "MAKE_HTACCESS_RULES=" . ($written ? "written" : "failed") . PHP_EOL;
+            if ( function_exists( "wp_cache_flush" ) ) { wp_cache_flush(); }
+            if ( function_exists( "rocket_clean_domain" ) ) { rocket_clean_domain(); }
+            if ( function_exists( "wp_cache_clear_cache" ) ) { wp_cache_clear_cache(); }
+            if ( function_exists( "w3tc_flush_all" ) ) { w3tc_flush_all(); }
+            do_action( "litespeed_purge_all" );
             echo "Drielo theme deployed" . PHP_EOL;
           '
           "${DOCKER[@]}" exec make-wp php -r '
@@ -231,11 +236,20 @@ jobs:
             exit 2
           fi
           CURRENCY_HTML="$(curl -fsS -b "$CURRENCY_COOKIE" "https://$SITE_HOST/producto/bubble-gum-portrait-cross-stitch-pattern/")"
-          if ! printf '%s' "$CURRENCY_HTML" | grep -Eq 'woocommerce-Price-currencySymbol[^>]*>(€|&euro;)'; then
+          if ! printf '%s' "$CURRENCY_HTML" | grep -Eqi 'woocommerce-Price-currencySymbol[^>]*>(€|&euro;|&#8364;|&#x20ac;)'; then
             echo "EUR cookie did not persist on clean product URL"
             exit 2
           fi
           echo "DRIELO_CURRENCY_COOKIE_OK status=$CURRENCY_STATUS clean_location=$CURRENCY_LOCATION"
+
+          rm -f "$CURRENCY_COOKIE" "$CURRENCY_HEADERS"
+          curl -fsS -o /dev/null -D "$CURRENCY_HEADERS" -c "$CURRENCY_COOKIE" "https://$SITE_HOST/producto/bubble-gum-portrait-cross-stitch-pattern/?currency=USD"
+          CURRENCY_HTML="$(curl -fsS -b "$CURRENCY_COOKIE" "https://$SITE_HOST/producto/bubble-gum-portrait-cross-stitch-pattern/")"
+          if ! printf '%s' "$CURRENCY_HTML" | grep -Eqi 'woocommerce-Price-currencySymbol[^>]*>(\$|&#36;|&dollar;)'; then
+            echo "USD symbol did not persist on clean product URL"
+            exit 2
+          fi
+          echo "DRIELO_USD_SYMBOL_OK"
 
           "${DOCKER[@]}" exec make-wp php -r '
             $_COOKIE["drielo_currency"]="USD";
