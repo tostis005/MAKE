@@ -1,0 +1,71 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 360,
+  "translation_group": "360-light-or-dark-colors-first",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "technique",
+      "terms": [
+        "technique"
+      ]
+    },
+    "style": {
+      "terms": [
+        "color-order",
+        "light-colors",
+        "dark-colors",
+        "workflow"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "es-360-claros-oscuros",
+  "language": "es",
+  "locale": "es-ES",
+  "market_context": "Personas que quieren saber si existe una regla para bordar primero colores claros u oscuros en punto de cruz y cómo decidir según patrón y tela.",
+  "title": "¿Hay que bordar primero los colores claros o los oscuros?",
+  "slug": "bordar-colores-claros-oscuros-primero-punto-de-cruz",
+  "seo": {
+    "title": "¿Hay que bordar primero los colores claros o los oscuros?",
+    "meta_description": "¿Claros u oscuros primero en punto de cruz? Ventajas de cada orden, riesgo de arrastres oscuros, suciedad en hilos claros y cómo elegir según el patrón.",
+    "search_intent": "Personas que quieren saber si existe una regla para bordar primero colores claros u oscuros en punto de cruz y cómo decidir según patrón y tela."
+  },
+  "excerpt": "No existe una regla universal: el mejor orden depende del fondo, la estructura del gráfico y de qué colores sirven como referencias para contar.",
+  "content_html": "<p>No existe una regla universal que obligue a bordar primero los colores claros o los oscuros. Ambas estrategias tienen ventajas y problemas, y en muchos proyectos el orden más eficiente depende más de la geometría del patrón que del valor del hilo.</p>\n<p>Algunas personas prefieren empezar por tonos oscuros porque crean referencias fáciles de ver. Otras dejan el negro para el final para evitar que fibras oscuras se mezclen con zonas claras. Lo importante es comprender qué riesgo intentas evitar.</p>\n<h2>Empezar por colores oscuros puede crear referencias claras</h2>\n<p>Contornos, sombras profundas y bloques negros suelen ser fáciles de localizar en el gráfico. Una vez bordados, pueden servir como puntos desde los que contar colores vecinos.</p>\n<p>En diseños gráficos, el tono oscuro puede definir la silueta completa y hacer que el resto del patrón sea más sencillo de rellenar.</p>\n<p>Sin embargo, no conviene arrastrar hilo oscuro detrás de grandes zonas claras sin bordar, especialmente sobre tela blanca, porque puede transparentarse.</p>\n<h2>Empezar por colores claros mantiene los hilos pálidos más separados</h2>\n<p>Blancos, cremas y pasteles muestran suciedad y fibras oscuras con facilidad. Bordarlos antes puede reducir el riesgo de que recojan pequeños restos de hilo negro ya presentes en una zona muy trabajada.</p>\n<p>También puede ser útil cuando el fondo de la tela es oscuro y los tonos claros forman las referencias más visibles.</p>\n<p>Trabaja con manos limpias y protege la labor, porque una zona blanca terminada desde el principio estará expuesta durante más tiempo al manejo.</p>\n<h2>El riesgo de “contaminación” de color suele ser pequeño pero real</h2>\n<p>Al pasar repetidamente hilo oscuro cerca de cruces blancas, pequeñas fibras pueden quedar atrapadas en el frontal. Normalmente se pueden retirar, pero en piezas muy limpias pueden resultar molestas.</p>\n<p>Esto no significa que negro deba bordarse siempre al final. Evita atravesar puntadas claras con la aguja y mantén el reverso razonablemente ordenado.</p>\n<p>Una aguja limpia y un área de trabajo sin pelusas hacen más diferencia que seguir una regla rígida de orden.</p>\n<h2>La estructura del patrón suele importar más que claro u oscuro</h2>\n<p>Si un color forma un bloque grande junto al punto donde has empezado, puede ser lógico bordarlo primero aunque sea claro. Si un tono oscuro aparece en veinte puntos aislados, quizá sea mejor dejarlo para otra fase.</p>\n<p>Piensa en rutas de conteo, zonas continuas y referencias. El orden debería reducir saltos largos y cambios constantes de hilo.</p>\n<p>En full coverage, muchas personas trabajan por área o página y utilizan varios colores a la vez; allí la pregunta de “claros o oscuros primero” pierde importancia.</p>\n<h2>La tela cambia qué orden resulta cómodo</h2>\n<p>Sobre Aida negra, los colores claros son fáciles de ver y pueden crear una red de referencias. Los tonos muy oscuros pueden ser difíciles de distinguir hasta que existe más contexto.</p>\n<p>Sobre blanco, negro y colores intensos destacan inmediatamente y ayudan a localizar formas. Pero sus arrastres traseros también son más visibles a través de zonas abiertas.</p>\n<p>En telas teñidas o de tono medio, prueba cómo se comportan ambos extremos de la paleta antes de decidir una estrategia general.</p>\n<h2>Puedes cambiar de criterio dentro del mismo proyecto</h2>\n<p>No necesitas bordar todos los claros del patrón antes de tocar un oscuro. Puedes completar una zona con los colores que tenga sentido y utilizar otro orden en la siguiente.</p>\n<p>Si estás trabajando un rostro, quizá quieras construir primero valores medios y sombras. En flores, puedes empezar por el color dominante de cada pétalo independientemente de su claridad.</p>\n<p>Cuando un color concreto te sirve como referencia para contar, su utilidad práctica puede justificar que vaya primero.</p>\n<p>La respuesta corta es que no hay que bordar siempre claros ni siempre oscuros primero. Elige el orden que reduzca errores, mantenga limpios los tonos sensibles y cree referencias útiles. En la mayoría de proyectos, una estrategia por zonas y bloques es más eficiente que seguir toda la paleta de más claro a más oscuro o al revés.</p>",
+  "image": {
+    "concept": "Mismo patrón dividido en dos secuencias de trabajo, una empezando por hilos claros y otra por oscuros.",
+    "alt": "Bordar primero colores claros u oscuros en punto de cruz"
+  }
+}
