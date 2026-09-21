@@ -3318,6 +3318,61 @@
       "title_es": "Samplers de boda en punto de cruz: nombres, fecha y diseños personalizados",
       "title_en": "Wedding Cross Stitch Samplers: Names, Dates and Personalized Designs",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 301,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "anniversary",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Samplers de aniversario en punto de cruz: ideas personalizadas para parejas",
+      "title_en": "Anniversary Cross Stitch Samplers: Personalized Ideas for Couples",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 302,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "memorial",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Punto de cruz memorial personalizado: nombres, fechas y recuerdos para conservar",
+      "title_en": "Personalized Memorial Cross Stitch: Names, Dates and Keepsake Ideas",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 303,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "winter",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Patrones de invierno en punto de cruz: nieve, bosques y escenas acogedoras",
+      "title_en": "Winter Cross Stitch Patterns: Snow, Forests and Cozy Scenes",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 304,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "thanksgiving",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Patrones de punto de cruz para Acción de Gracias: pavos, cosecha y motivos de otoño",
+      "title_en": "Thanksgiving Cross Stitch Patterns: Turkeys, Harvest and Autumn Motifs",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 305,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "christmas",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Baby’s First Christmas en punto de cruz: patrones personalizados con nombre y fecha",
+      "title_en": "Baby's First Christmas Cross Stitch: Personalized Name and Date Patterns",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {
@@ -3348,7 +3403,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 300,
-    "bilingual_groups": 300
+    "last_indexed_article": 305,
+    "bilingual_groups": 305
   }
 }
