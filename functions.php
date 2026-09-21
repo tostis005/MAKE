@@ -438,11 +438,16 @@ add_filter( 'loop_shop_columns', static fn(): int => 4, 20 );
 add_filter( 'loop_shop_per_page', static fn(): int => 16, 20 );
 
 function make_related_product_layout( array $args ): array {
-    $args['posts_per_page'] = 3;
-    $args['columns'] = 3;
+    $args['posts_per_page'] = 4;
+    $args['columns'] = 4;
     return $args;
 }
 add_filter( 'woocommerce_output_related_products_args', 'make_related_product_layout', 20 );
+
+function make_related_products_heading(): string {
+    return make_t( 'Productos relacionados', 'Related products' );
+}
+add_filter( 'woocommerce_product_related_products_heading', 'make_related_products_heading', 20 );
 
 function make_loop_product_classes( array $classes, $product ): array {
     if ( is_a( $product, 'WC_Product' ) ) { $classes[] = 'make-pattern-card'; }
