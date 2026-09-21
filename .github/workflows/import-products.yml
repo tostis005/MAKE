@@ -23,6 +23,32 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Fetch private product PDFs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, pathlib, urllib.request
+          source = pathlib.Path('content/products/pdf-sources.json')
+          if not source.is_file():
+              raise SystemExit('Missing content/products/pdf-sources.json')
+          data = json.loads(source.read_text(encoding='utf-8'))
+          out = pathlib.Path('content/products/files')
+          out.mkdir(parents=True, exist_ok=True)
+          for filename, url in data.items():
+              target = out / filename
+              print(f'Downloading {filename}...')
+              with urllib.request.urlopen(url, timeout=120) as response, target.open('wb') as fh:
+                  while True:
+                      chunk = response.read(1024 * 1024)
+                      if not chunk:
+                          break
+                      fh.write(chunk)
+              if target.stat().st_size < 100000:
+                  raise SystemExit(f'{filename}: download too small')
+              print(f'{filename}: {target.stat().st_size} bytes')
+          PY
+
       - name: Validate product catalogue
         shell: bash
         run: |
