@@ -14,7 +14,7 @@
       "es",
       "en"
     ],
-    "avoid_cannibalization_with_published_through": 325
+    "avoid_cannibalization_with_published_through": 330
   },
   "topics": [
     {
@@ -518,7 +518,7 @@
       "section": "ideas",
       "topic": "animals",
       "intent": "commercial",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Patrones de mapaches en punto de cruz: ideas woodland y kawaii",
       "title_en": "Raccoon Cross Stitch Patterns: Woodland and Kawaii Ideas",
       "craft": "cross-stitch"
@@ -529,7 +529,7 @@
       "section": "ideas",
       "topic": "animals",
       "intent": "commercial",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Patrones de erizos en punto de cruz: bosque, otoño y cottagecore",
       "title_en": "Hedgehog Cross Stitch Patterns: Woodland, Autumn and Cottagecore",
       "craft": "cross-stitch"
@@ -540,7 +540,7 @@
       "section": "ideas",
       "topic": "gothic",
       "intent": "commercial",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Patrones de murciélagos en punto de cruz: Halloween, gótico y diseños adorables",
       "title_en": "Bat Cross Stitch Patterns: Halloween, Gothic and Cute Designs",
       "craft": "cross-stitch"
@@ -551,7 +551,7 @@
       "section": "ideas",
       "topic": "halloween",
       "intent": "commercial-seasonal",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Patrones de fantasmas en punto de cruz: de cute spooky a gótico",
       "title_en": "Ghost Cross Stitch Patterns: From Cute Spooky to Gothic",
       "craft": "cross-stitch"
@@ -562,7 +562,7 @@
       "section": "ideas",
       "topic": "gothic",
       "intent": "commercial",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Patrones de lunas góticas en punto de cruz: fases lunares, flores y símbolos",
       "title_en": "Gothic Moon Cross Stitch Patterns: Moon Phases, Flowers and Symbols",
       "craft": "cross-stitch"
