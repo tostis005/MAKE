@@ -921,6 +921,14 @@ body{background:var(--mk-cream);color:var(--mk-ink)}
   letter-spacing:.09em;text-transform:uppercase
 }
 .drielo-product-collection a:hover{color:var(--mk-plum)}
+.drielo-single-collection{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 0 13px;padding:10px 12px;
+  border:1px solid var(--mk-line);border-radius:14px;background:#fffaf9
+}
+.drielo-single-collection a{min-width:0;display:flex;align-items:baseline;gap:7px}
+.drielo-single-collection a span{color:var(--mk-red-deep);font-size:8px;font-weight:900;letter-spacing:.1em;text-transform:uppercase}
+.drielo-single-collection a strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10.5px}
+.drielo-single-collection .drielo-palette{flex:0 0 auto}
 
 .woocommerce-shell--single form.cart{display:block!important}
 .woocommerce-shell--single form.cart .single_add_to_cart_button{min-width:190px}
