@@ -159,6 +159,8 @@ jobs:
             $page2=get_page_by_path("shop");
             if ($page2) echo "SHOP_PAGE_SLUG_ID=" . $page2->ID . " STATUS=" . get_post_status($page2->ID) . " URL=" . get_permalink($page2->ID) . PHP_EOL;
             echo "PRODUCT_PUBLISHED=" . wp_count_posts("product")->publish . PHP_EOL;
+            echo "POLYLANG=" . (function_exists("pll_get_post_language") ? "yes" : "no") . PHP_EOL;
+            foreach($ids as $id){ $lang=function_exists("pll_get_post_language") ? pll_get_post_language($id,"slug") : ""; $vis=wp_get_post_terms($id,"product_visibility",array("fields"=>"slugs")); echo "PRODUCT_LANG=" . get_post_meta($id,"_sku",true) . ":" . ($lang ?: "NONE") . " VIS=" . implode(",",is_wp_error($vis)?array():$vis) . PHP_EOL; }
             $locations=get_nav_menu_locations();
             foreach($locations as $loc=>$menu_id){ echo "MENU_LOCATION=" . $loc . " ID=" . $menu_id . PHP_EOL; $items=wp_get_nav_menu_items($menu_id); if(is_array($items)) foreach($items as $mi) echo "MENU_ITEM=" . $mi->title . " URL=" . $mi->url . PHP_EOL; }
           '
