@@ -430,9 +430,14 @@ add_filter( 'woocommerce_add_to_cart_fragments', 'make_cart_count_fragment' );
 
 
 /**
- * Reuse the stitch-flower mark as a favicon until a custom Site Icon is set
- * in WordPress. A WordPress Site Icon always takes precedence.
+ * Keep the Drielo stitched-D mark as the canonical site icon.
+ * This also replaces any older WordPress Site Icon URL without touching content.
  */
+function make_drielo_site_icon_url( string $url, int $size = 512, int $blog_id = 0 ): string {
+    return get_template_directory_uri() . '/assets/images/brand-mark.svg';
+}
+add_filter( 'get_site_icon_url', 'make_drielo_site_icon_url', 20, 3 );
+
 function make_fallback_favicon(): void {
     if ( function_exists( 'has_site_icon' ) && has_site_icon() ) { return; }
     $icon = get_template_directory_uri() . '/assets/images/brand-mark.svg';
