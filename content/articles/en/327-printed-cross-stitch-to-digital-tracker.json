@@ -1,0 +1,71 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 327,
+  "translation_group": "327-printed-cross-stitch-to-digital-tracker",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "digital-patterns",
+      "terms": [
+        "digital-patterns"
+      ]
+    },
+    "style": {
+      "terms": [
+        "digital",
+        "printed-chart",
+        "progress-tracking"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide",
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-327-printed-to-digital",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Stitchers who have a paper cross stitch chart and want to create a digital working copy for marking progress on a tablet, phone or computer.",
+  "title": "How to Turn a Printed Cross Stitch Chart into a Digital Progress Tracker",
+  "slug": "printed-cross-stitch-chart-digital-progress-tracker",
+  "seo": {
+    "title": "How to Turn a Printed Cross Stitch Chart into a Digital Progress Tracker",
+    "meta_description": "How to turn a printed cross stitch chart into a digital working copy for progress tracking using scans, photos, PDFs, page organization and annotation.",
+    "search_intent": "Stitchers who have a paper cross stitch chart and want to create a digital working copy for marking progress on a tablet, phone or computer."
+  },
+  "excerpt": "A digital working copy can make a paper chart easier to track. Learn how to scan, organize and mark it without redrawing the pattern.",
+  "content_html": "<p>If you own a cross stitch pattern only on paper, you can create a digital working copy for marking progress without redrawing every symbol. The simplest goal is not automatic chart conversion. It is a clear image or PDF that you can zoom, annotate and highlight as stitches are completed.</p>\n<p>You can create that working copy with a flatbed scanner or good photographs. The important points are keeping the grid straight, preserving symbol clarity and organizing the pages correctly. If the chart is copyrighted, keep the digital copy within the uses permitted for your copy and do not redistribute it.</p>\n<h2>Scanning usually gives the easiest pages to align</h2>\n<p>A flatbed scanner keeps the paper parallel and avoids most perspective distortion. Choose enough resolution that symbols remain crisp when enlarged. There is no need to create enormous files once the grid is already easy to read.</p>\n<p>Scan every page in the same orientation. Keep page numbers, row coordinates and other navigation marks whenever possible because they are useful during stitching.</p>\n<p>Before processing the whole pattern, zoom into several areas containing similar symbols. If you cannot distinguish them comfortably, rescan with higher resolution or stronger contrast.</p>\n<h2>A photograph can work if perspective is controlled</h2>\n<p>Place the page on a flat surface and photograph it from directly above with the camera as parallel to the paper as possible. Use even light so shadows do not cross the grid.</p>\n<p>Avoid moving the camera extremely close if that bends the edges. A slightly wider photograph that is cropped afterward often produces a more regular chart.</p>\n<p>Document-correction tools on phones can straighten the page, but inspect the result carefully. Automatic perspective correction should not stretch small squares or distort similar-looking symbols.</p>\n<h2>PDFs and images are enough for manual digital progress marking</h2>\n<p>Once the pages are digitized, save them as images or combine them into a PDF. Any annotation app that lets you draw, highlight or write over the page can then be used to mark completed areas.</p>\n<p>This method does not understand which chart symbol belongs to which floss color. It simply turns the paper chart into a digital surface, much like using a highlighter on a printed page.</p>\n<p>The advantage is compatibility with almost any readable chart. The limitation is that progress is manual: you decide which squares to highlight or cross out.</p>\n<h2>Multi-page charts should be organized before stitching begins</h2>\n<p>Name image files in sequence, such as page 01, 02 and 03, or build one PDF that follows the original page order. If the chart contains overlap between pages, keep those overlap areas because they help with navigation.</p>\n<p>Do not crop away useful references such as row numbers, continuation arrows or page markers. A visually cleaner image is not always a more useful stitching document.</p>\n<p>For large projects, adding a simple first page with fabric, strand count and start date can turn the digital file into a small project folder rather than just a set of chart images.</p>\n<h2>Converting it into an app-recognized pattern is a different task</h2>\n<p>Some tools can interpret certain native digital PDFs and recognize grids or symbols, but a photograph or scanned paper page will not always convert automatically into an interactive chart. Image quality, font, shading and grid lines all affect recognition.</p>\n<p>If an application cannot interpret the file, using it as an image and marking progress manually remains the most reliable option. Recreating the whole pattern in design software only makes sense when you genuinely need an editable chart.</p>\n<p>A “digital PDF” and a “structured digital pattern” are not the same thing. A PDF can simply contain an image of the page and still work perfectly well for visual progress tracking.</p>\n<h2>Make the digital tracker comfortable to use while stitching</h2>\n<p>Use layers, transparent highlights or erasable marks if your annotation app supports them. A translucent color over completed squares lets the original symbols remain visible underneath.</p>\n<p>Zoom far enough to distinguish symbols, but keep row, column or grid references visible when possible. Working at extreme zoom with no location markers can make it easy to lose your place.</p>\n<p>Keep an untouched copy of the original scan before you begin marking. If an annotation is deleted accidentally or you want to restart the tracker, you will still have a clean source file.</p>\n<p>The goal is not to magically transform paper into a sophisticated interactive chart. A straight capture, readable symbols, correctly ordered pages and a basic annotation tool are enough to create a useful digital progress tracker for almost any printed pattern while leaving the original design unchanged.</p>",
+  "image": {
+    "concept": "Printed cross stitch chart beside a tablet showing the same scanned chart with completed areas highlighted.",
+    "alt": "Turn a printed cross stitch chart into a digital progress tracker"
+  }
+}
