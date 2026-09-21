@@ -190,13 +190,18 @@ function make_store_persist_currency(): void {
     $currency = strtoupper( sanitize_text_field( wp_unslash( $_GET['currency'] ) ) );
     if ( ! in_array( $currency, make_store_allowed_currencies(), true ) ) { return; }
 
+    $rate_cookie = number_format( make_store_usd_eur_rate(), 6, '.', '' );
+
     if ( function_exists( 'wc_setcookie' ) ) {
         wc_setcookie( 'drielo_currency', $currency, time() + YEAR_IN_SECONDS );
+        wc_setcookie( 'drielo_usd_eur_rate', $rate_cookie, time() + DAY_IN_SECONDS );
     } elseif ( ! headers_sent() ) {
         setcookie( 'drielo_currency', $currency, time() + YEAR_IN_SECONDS, COOKIEPATH ?: '/', COOKIE_DOMAIN, is_ssl(), true );
+        setcookie( 'drielo_usd_eur_rate', $rate_cookie, time() + DAY_IN_SECONDS, COOKIEPATH ?: '/', COOKIE_DOMAIN, is_ssl(), true );
     }
 
     $_COOKIE['drielo_currency'] = $currency;
+    $_COOKIE['drielo_usd_eur_rate'] = $rate_cookie;
 
     // The selection lives in the cookie; remove the switching parameter from
     // the visible URL immediately after setting it.
