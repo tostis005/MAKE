@@ -57,7 +57,19 @@ function make_redirect_legacy_collection_url(): void {
 add_action( 'template_redirect', 'make_redirect_legacy_collection_url', 3 );
 
 function make_store_routes(): void {
-    add_rewrite_rule( '^tienda/colecciones/?
+    add_rewrite_rule( '^tienda/colecciones/?$', 'index.php?post_type=product&make_store_view=collections&make_lang=es', 'top' );
+    add_rewrite_rule( '^tienda/collections/?$', 'index.php?post_type=product&make_store_view=collections&make_lang=en', 'top' );
+}
+add_action( 'init', 'make_store_routes', 7 );
+
+function make_store_query_vars( array $vars ): array {
+    $vars[] = 'make_store_view';
+    return $vars;
+}
+add_filter( 'query_vars', 'make_store_query_vars' );
+
+function make_store_maybe_flush_rewrites(): void {
+    $schema_version = '2';
     if ( $schema_version === (string) get_option( 'drielo_store_schema_version', '' ) ) { return; }
     flush_rewrite_rules( false );
     update_option( 'drielo_store_schema_version', $schema_version, false );
