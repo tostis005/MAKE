@@ -28,11 +28,7 @@ $nav              = array(
 <header class="site-header">
   <div class="container header-main">
     <a class="site-brand" href="<?php echo esc_url( $home_url ); ?>" aria-label="<?php echo esc_attr( $site_name ); ?>">
-      <span class="brand-mark" aria-hidden="true"><img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/brand-mark.svg' ); ?>" alt="" width="44" height="44"></span>
-      <span class="brand-copy">
-        <strong class="brand-word"><?php echo esc_html( $site_name ); ?></strong>
-        <small class="brand-tagline"><?php echo esc_html( $site_tagline ); ?></small>
-      </span>
+      <img class="brand-logo" src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/brand-logo.svg' ); ?>" alt="<?php echo esc_attr( $site_name ); ?>" width="320" height="67">
     </a>
 
     <nav class="primary-nav" aria-label="<?php echo esc_attr( make_t( 'Navegación principal', 'Primary navigation' ) ); ?>">
