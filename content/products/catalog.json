@@ -78,17 +78,23 @@
     {
       "name": "Cross Stitch Patterns",
       "slug": "cross-stitch-patterns",
-      "parent": null
+      "parent": null,
+      "name_en": "Cross Stitch Patterns",
+      "name_es": "Patrones de punto de cruz"
     },
     {
       "name": "Portraits",
       "slug": "portraits",
-      "parent": "cross-stitch-patterns"
+      "parent": "cross-stitch-patterns",
+      "name_en": "Portraits",
+      "name_es": "Retratos"
     },
     {
       "name": "Pop Art",
       "slug": "pop-art",
-      "parent": "cross-stitch-patterns"
+      "parent": "cross-stitch-patterns",
+      "name_en": "Pop Art",
+      "name_es": "Pop art"
     }
   ],
   "products": [
@@ -126,7 +132,23 @@
       "download": "files/Drielo_P0001.pdf",
       "seo_title": "Bubble Gum Portrait Cross Stitch Pattern PDF | Drielo",
       "meta_description": "Bubble Gum Portrait digital cross stitch pattern: 100 × 120 stitches, 19 DMC colours, beginner friendly, with colour and symbol charts.",
-      "gallery_revision": 3
+      "gallery_revision": 3,
+      "title_en": "Bubble Gum Portrait",
+      "title_es": "Retrato con chicle",
+      "short_description_en": "A playful pop portrait with a bold pink bubble-gum focal point. Beginner-friendly full cross stitch, 100 × 120 stitches and 19 DMC colours.",
+      "short_description_es": "Un retrato pop divertido con un llamativo chicle rosa como punto focal. Apto para principiantes, punto de cruz completo, 100 × 120 puntos y 19 colores DMC.",
+      "description_en": "<p><strong>Bubble Gum Portrait</strong> is a modern digital cross-stitch pattern built around warm neutral portrait tones and a vivid pink bubble-gum accent.</p><p>The 17-page PDF includes a finished-design preview, pattern facts, a 19-colour DMC key with stitch counts, full-colour and black-and-white chart overviews, four enlarged colour chart sections, four enlarged symbol chart sections, and a print-and-stitch guide.</p><p><strong>Pattern details:</strong> 100 × 120 stitches; 7,927 total stitches; 19 DMC colours; full cross stitches only; beginner friendly. Finished area: 18.1 × 21.8 cm on 14 ct, 15.9 × 19.1 cm on 16 ct, or 14.1 × 16.9 cm on 18 ct Aida.</p><p>This is a digital PDF pattern. No physical item is shipped. Personal use only.</p>",
+      "description_es": "<p><strong>Retrato con chicle</strong> es un patrón digital moderno de punto de cruz basado en tonos cálidos y neutros para el retrato, con un intenso acento rosa en el chicle.</p><p>El PDF de 17 páginas incluye una vista previa del diseño terminado, datos del patrón, una clave DMC de 19 colores con recuento de puntadas, vistas generales del gráfico a color y en blanco y negro, cuatro secciones ampliadas del gráfico a color, cuatro secciones ampliadas del gráfico de símbolos y una guía para imprimir y bordar.</p><p><strong>Detalles del patrón:</strong> 100 × 120 puntos; 7.927 puntadas totales; 19 colores DMC; solo punto de cruz completo; apto para principiantes. Tamaño terminado: 18,1 × 21,8 cm en Aida de 14 ct, 15,9 × 19,1 cm en 16 ct o 14,1 × 16,9 cm en 18 ct.</p><p>Este es un patrón digital en PDF. No se envía ningún artículo físico. Solo para uso personal.</p>",
+      "seo_title_en": "Bubble Gum Portrait Cross Stitch Pattern PDF | Drielo",
+      "seo_title_es": "Retrato con chicle – patrón de punto de cruz PDF | Drielo",
+      "meta_description_en": "Bubble Gum Portrait digital cross stitch pattern: 100 × 120 stitches, 19 DMC colours, beginner friendly, with colour and symbol charts.",
+      "meta_description_es": "Patrón digital de punto de cruz Retrato con chicle: 100 × 120 puntos, 19 colores DMC, apto para principiantes y con gráficos a color y de símbolos.",
+      "purchase_note_en": "Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.",
+      "purchase_note_es": "Tu PDF digital estará disponible desde la confirmación del pedido y en Mi cuenta > Descargas una vez completado el pago.",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type_en": "Full cross stitch",
+      "stitch_type_es": "Punto de cruz completo"
     },
     {
       "code": "P0002",
@@ -162,7 +184,23 @@
       "download": "files/Drielo_P0002.pdf",
       "seo_title": "Marilyn Monroe Surprise Cross Stitch Pattern PDF | Drielo",
       "meta_description": "Marilyn Monroe Surprise digital cross stitch pattern: 100 × 120 stitches, 19 DMC colours, beginner friendly, with colour and symbol charts.",
-      "gallery_revision": 3
+      "gallery_revision": 3,
+      "title_en": "Marilyn Monroe Surprise",
+      "title_es": "Marilyn Monroe sorprendida",
+      "short_description_en": "A surprised Marilyn Monroe portrait with pink lips and cheek accents. Beginner-friendly full cross stitch, 100 × 120 stitches and 19 DMC colours.",
+      "short_description_es": "Un retrato de Marilyn Monroe sorprendida, con labios y mejillas en rosa. Apto para principiantes, punto de cruz completo, 100 × 120 puntos y 19 colores DMC.",
+      "description_en": "<p><strong>Marilyn Monroe Surprise</strong> is a modern digital cross-stitch portrait featuring the surprised hands-to-cheeks pose, warm blonde and neutral tones, and bright pink accents.</p><p>The 17-page PDF includes a finished-design preview, pattern facts, a 19-colour DMC key with stitch counts, full-colour and black-and-white chart overviews, four enlarged colour chart sections, four enlarged symbol chart sections, and a print-and-stitch guide.</p><p><strong>Pattern details:</strong> 100 × 120 stitches; 6,604 total stitches; 19 DMC colours; full cross stitches only; beginner friendly. Finished area: 18.1 × 21.8 cm on 14 ct, 15.9 × 19.1 cm on 16 ct, or 14.1 × 16.9 cm on 18 ct Aida.</p><p>This is a digital PDF pattern. No physical item is shipped. Personal use only.</p>",
+      "description_es": "<p><strong>Marilyn Monroe sorprendida</strong> es un retrato digital moderno de punto de cruz con la pose de manos en las mejillas, tonos rubios y neutros cálidos y vivos acentos rosas.</p><p>El PDF de 17 páginas incluye una vista previa del diseño terminado, datos del patrón, una clave DMC de 19 colores con recuento de puntadas, vistas generales del gráfico a color y en blanco y negro, cuatro secciones ampliadas del gráfico a color, cuatro secciones ampliadas del gráfico de símbolos y una guía para imprimir y bordar.</p><p><strong>Detalles del patrón:</strong> 100 × 120 puntos; 6.604 puntadas totales; 19 colores DMC; solo punto de cruz completo; apto para principiantes. Tamaño terminado: 18,1 × 21,8 cm en Aida de 14 ct, 15,9 × 19,1 cm en 16 ct o 14,1 × 16,9 cm en 18 ct.</p><p>Este es un patrón digital en PDF. No se envía ningún artículo físico. Solo para uso personal.</p>",
+      "seo_title_en": "Marilyn Monroe Surprise Cross Stitch Pattern PDF | Drielo",
+      "seo_title_es": "Marilyn Monroe sorprendida – patrón de punto de cruz PDF | Drielo",
+      "meta_description_en": "Marilyn Monroe Surprise digital cross stitch pattern: 100 × 120 stitches, 19 DMC colours, beginner friendly, with colour and symbol charts.",
+      "meta_description_es": "Patrón digital de Marilyn Monroe sorprendida: 100 × 120 puntos, 19 colores DMC, apto para principiantes y con gráficos a color y de símbolos.",
+      "purchase_note_en": "Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.",
+      "purchase_note_es": "Tu PDF digital estará disponible desde la confirmación del pedido y en Mi cuenta > Descargas una vez completado el pago.",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type_en": "Full cross stitch",
+      "stitch_type_es": "Punto de cruz completo"
     },
     {
       "code": "P0003",
@@ -198,7 +236,23 @@
       "download": "files/Drielo_P0003.pdf",
       "seo_title": "Marilyn Monroe Blowing Kiss Cross Stitch Pattern PDF | Drielo",
       "meta_description": "Marilyn Monroe Blowing Kiss digital cross stitch pattern: 100 × 120 stitches, 19 DMC colours, beginner friendly, with colour and symbol charts.",
-      "gallery_revision": 3
+      "gallery_revision": 3,
+      "title_en": "Marilyn Monroe Blowing Kiss",
+      "title_es": "Marilyn Monroe lanzando un beso",
+      "short_description_en": "A Marilyn Monroe blowing-kiss portrait in warm neutrals with vivid pink accents. Beginner-friendly, 100 × 120 stitches and 19 DMC colours.",
+      "short_description_es": "Un retrato de Marilyn Monroe lanzando un beso, en tonos neutros cálidos con vivos acentos rosas. Apto para principiantes, 100 × 120 puntos y 19 colores DMC.",
+      "description_en": "<p><strong>Marilyn Monroe Blowing Kiss</strong> is a modern digital cross-stitch portrait centred on the hand-to-mouth blowing-kiss pose, with soft blonde tones and pink lips and cheeks.</p><p>The 17-page PDF includes a finished-design preview, pattern facts, a 19-colour DMC key with stitch counts, full-colour and black-and-white chart overviews, four enlarged colour chart sections, four enlarged symbol chart sections, and a print-and-stitch guide.</p><p><strong>Pattern details:</strong> 100 × 120 stitches; 6,477 total stitches; 19 DMC colours; full cross stitches only; beginner friendly. Finished area: 18.1 × 21.8 cm on 14 ct, 15.9 × 19.1 cm on 16 ct, or 14.1 × 16.9 cm on 18 ct Aida.</p><p>This is a digital PDF pattern. No physical item is shipped. Personal use only.</p>",
+      "description_es": "<p><strong>Marilyn Monroe lanzando un beso</strong> es un retrato digital moderno de punto de cruz centrado en la pose con la mano junto a la boca, con suaves tonos rubios y labios y mejillas rosas.</p><p>El PDF de 17 páginas incluye una vista previa del diseño terminado, datos del patrón, una clave DMC de 19 colores con recuento de puntadas, vistas generales del gráfico a color y en blanco y negro, cuatro secciones ampliadas del gráfico a color, cuatro secciones ampliadas del gráfico de símbolos y una guía para imprimir y bordar.</p><p><strong>Detalles del patrón:</strong> 100 × 120 puntos; 6.477 puntadas totales; 19 colores DMC; solo punto de cruz completo; apto para principiantes. Tamaño terminado: 18,1 × 21,8 cm en Aida de 14 ct, 15,9 × 19,1 cm en 16 ct o 14,1 × 16,9 cm en 18 ct.</p><p>Este es un patrón digital en PDF. No se envía ningún artículo físico. Solo para uso personal.</p>",
+      "seo_title_en": "Marilyn Monroe Blowing Kiss Cross Stitch Pattern PDF | Drielo",
+      "seo_title_es": "Marilyn Monroe lanzando un beso – patrón de punto de cruz PDF | Drielo",
+      "meta_description_en": "Marilyn Monroe Blowing Kiss digital cross stitch pattern: 100 × 120 stitches, 19 DMC colours, beginner friendly, with colour and symbol charts.",
+      "meta_description_es": "Patrón digital de Marilyn Monroe lanzando un beso: 100 × 120 puntos, 19 colores DMC, apto para principiantes y con gráficos a color y de símbolos.",
+      "purchase_note_en": "Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.",
+      "purchase_note_es": "Tu PDF digital estará disponible desde la confirmación del pedido y en Mi cuenta > Descargas una vez completado el pago.",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type_en": "Full cross stitch",
+      "stitch_type_es": "Punto de cruz completo"
     },
     {
       "code": "P0004",
@@ -235,7 +289,23 @@
       "download": "files/Drielo_P0004.pdf",
       "seo_title": "Marilyn Monroe Sunglasses Cross Stitch Pattern PDF | Drielo",
       "meta_description": "Marilyn Monroe Sunglasses digital cross stitch pattern: 100 × 120 stitches, 19 DMC colours, beginner friendly, with colour and symbol charts.",
-      "gallery_revision": 3
+      "gallery_revision": 3,
+      "title_en": "Marilyn Monroe Sunglasses",
+      "title_es": "Marilyn Monroe con gafas de sol",
+      "short_description_en": "A Marilyn Monroe portrait with dark sunglasses and bright pink lips. Beginner-friendly full cross stitch, 100 × 120 stitches and 19 DMC colours.",
+      "short_description_es": "Un retrato de Marilyn Monroe con gafas oscuras y labios rosa intenso. Apto para principiantes, punto de cruz completo, 100 × 120 puntos y 19 colores DMC.",
+      "description_en": "<p><strong>Marilyn Monroe Sunglasses</strong> is a modern digital cross-stitch portrait pairing warm blonde and skin tones with dark sunglasses and vivid pink lip and cheek accents.</p><p>The 17-page PDF includes a finished-design preview, pattern facts, a 19-colour DMC key with stitch counts, full-colour and black-and-white chart overviews, four enlarged colour chart sections, four enlarged symbol chart sections, and a print-and-stitch guide.</p><p><strong>Pattern details:</strong> 100 × 120 stitches; 6,557 total stitches; 19 DMC colours; full cross stitches only; beginner friendly. Finished area: 18.1 × 21.8 cm on 14 ct, 15.9 × 19.1 cm on 16 ct, or 14.1 × 16.9 cm on 18 ct Aida.</p><p>This is a digital PDF pattern. No physical item is shipped. Personal use only.</p>",
+      "description_es": "<p><strong>Marilyn Monroe con gafas de sol</strong> es un retrato digital moderno de punto de cruz que combina tonos rubios y de piel cálidos con gafas oscuras y vivos acentos rosas en labios y mejillas.</p><p>El PDF de 17 páginas incluye una vista previa del diseño terminado, datos del patrón, una clave DMC de 19 colores con recuento de puntadas, vistas generales del gráfico a color y en blanco y negro, cuatro secciones ampliadas del gráfico a color, cuatro secciones ampliadas del gráfico de símbolos y una guía para imprimir y bordar.</p><p><strong>Detalles del patrón:</strong> 100 × 120 puntos; 6.557 puntadas totales; 19 colores DMC; solo punto de cruz completo; apto para principiantes. Tamaño terminado: 18,1 × 21,8 cm en Aida de 14 ct, 15,9 × 19,1 cm en 16 ct o 14,1 × 16,9 cm en 18 ct.</p><p>Este es un patrón digital en PDF. No se envía ningún artículo físico. Solo para uso personal.</p>",
+      "seo_title_en": "Marilyn Monroe Sunglasses Cross Stitch Pattern PDF | Drielo",
+      "seo_title_es": "Marilyn Monroe con gafas de sol – patrón de punto de cruz PDF | Drielo",
+      "meta_description_en": "Marilyn Monroe Sunglasses digital cross stitch pattern: 100 × 120 stitches, 19 DMC colours, beginner friendly, with colour and symbol charts.",
+      "meta_description_es": "Patrón digital de Marilyn Monroe con gafas de sol: 100 × 120 puntos, 19 colores DMC, apto para principiantes y con gráficos a color y de símbolos.",
+      "purchase_note_en": "Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.",
+      "purchase_note_es": "Tu PDF digital estará disponible desde la confirmación del pedido y en Mi cuenta > Descargas una vez completado el pago.",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type_en": "Full cross stitch",
+      "stitch_type_es": "Punto de cruz completo"
     },
     {
       "code": "P0005",
@@ -272,7 +342,23 @@
       "download": "files/Drielo_P0005.pdf",
       "seo_title": "Marilyn Monroe Wink Cross Stitch Pattern PDF | Drielo",
       "meta_description": "Marilyn Monroe Wink digital cross stitch pattern: 100 × 120 stitches, 19 DMC colours, beginner friendly, with colour and symbol charts.",
-      "gallery_revision": 3
+      "gallery_revision": 3,
+      "title_en": "Marilyn Monroe Wink",
+      "title_es": "Marilyn Monroe guiñando un ojo",
+      "short_description_en": "A winking Marilyn Monroe portrait with soft blonde tones and pink accents. Beginner-friendly full cross stitch, 100 × 120 stitches and 19 DMC colours.",
+      "short_description_es": "Un retrato de Marilyn Monroe guiñando un ojo, con suaves tonos rubios y acentos rosas. Apto para principiantes, punto de cruz completo, 100 × 120 puntos y 19 colores DMC.",
+      "description_en": "<p><strong>Marilyn Monroe Wink</strong> is a modern digital cross-stitch portrait with a playful wink, warm blonde and neutral tones, and bright pink lips and cheek accents.</p><p>The 17-page PDF includes a finished-design preview, pattern facts, a 19-colour DMC key with stitch counts, full-colour and black-and-white chart overviews, four enlarged colour chart sections, four enlarged symbol chart sections, and a print-and-stitch guide.</p><p><strong>Pattern details:</strong> 100 × 120 stitches; 6,558 total stitches; 19 DMC colours; full cross stitches only; beginner friendly. Finished area: 18.1 × 21.8 cm on 14 ct, 15.9 × 19.1 cm on 16 ct, or 14.1 × 16.9 cm on 18 ct Aida.</p><p>This is a digital PDF pattern. No physical item is shipped. Personal use only.</p>",
+      "description_es": "<p><strong>Marilyn Monroe guiñando un ojo</strong> es un retrato digital moderno de punto de cruz con un guiño juguetón, tonos rubios y neutros cálidos y vivos acentos rosas en labios y mejillas.</p><p>El PDF de 17 páginas incluye una vista previa del diseño terminado, datos del patrón, una clave DMC de 19 colores con recuento de puntadas, vistas generales del gráfico a color y en blanco y negro, cuatro secciones ampliadas del gráfico a color, cuatro secciones ampliadas del gráfico de símbolos y una guía para imprimir y bordar.</p><p><strong>Detalles del patrón:</strong> 100 × 120 puntos; 6.558 puntadas totales; 19 colores DMC; solo punto de cruz completo; apto para principiantes. Tamaño terminado: 18,1 × 21,8 cm en Aida de 14 ct, 15,9 × 19,1 cm en 16 ct o 14,1 × 16,9 cm en 18 ct.</p><p>Este es un patrón digital en PDF. No se envía ningún artículo físico. Solo para uso personal.</p>",
+      "seo_title_en": "Marilyn Monroe Wink Cross Stitch Pattern PDF | Drielo",
+      "seo_title_es": "Marilyn Monroe guiñando un ojo – patrón de punto de cruz PDF | Drielo",
+      "meta_description_en": "Marilyn Monroe Wink digital cross stitch pattern: 100 × 120 stitches, 19 DMC colours, beginner friendly, with colour and symbol charts.",
+      "meta_description_es": "Patrón digital de Marilyn Monroe guiñando un ojo: 100 × 120 puntos, 19 colores DMC, apto para principiantes y con gráficos a color y de símbolos.",
+      "purchase_note_en": "Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.",
+      "purchase_note_es": "Tu PDF digital estará disponible desde la confirmación del pedido y en Mi cuenta > Descargas una vez completado el pago.",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type_en": "Full cross stitch",
+      "stitch_type_es": "Punto de cruz completo"
     }
   ]
 }
