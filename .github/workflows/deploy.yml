@@ -194,6 +194,8 @@ jobs:
               '
           }
 
+          check_html "/tienda/" "Tienda de patrones" "shop-patterns-es" "PDF descargable"
+          check_html "/wp-content/themes/make/style.css" "Store + single-product layout refinements" "store-layout-css"
           check_html "/tienda/colecciones/" "Colecciones de patrones" "shop-collections-es" "PDF descargable"
           check_html "/tienda/colecciones/" "Explora cada patrón por separado o descubre colecciones que comparten una misma paleta de color." "shop-collections-intro-es"
           check_html "/tienda/collections/" "Pattern collections" "shop-collections-en" "Downloadable PDF"
