@@ -1,4 +1,4 @@
-name: Import MAKE JSON articles
+name: Import Drielo JSON articles
 
 on:
   push:
@@ -143,7 +143,7 @@ jobs:
         run: |
           scp -i ~/.ssh/make_import_key /tmp/make-content.tgz "$VPS_USER@$VPS_HOST:/tmp/make-content-${GITHUB_RUN_ID}.tgz"
 
-      - name: Import into MAKE WordPress
+      - name: Import into Drielo WordPress
         env:
           VPS_HOST: ${{ secrets.VPS_HOST }}
           VPS_USER: ${{ secrets.VPS_USER }}
