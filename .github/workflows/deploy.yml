@@ -200,6 +200,26 @@ jobs:
           check_html "/tienda/colecciones/" "Explora cada patrón por separado o descubre colecciones que comparten una misma paleta de color." "shop-collections-intro-es"
           check_html "/tienda/collections/" "Pattern collections" "shop-collections-en" "Downloadable PDF"
           check_html "/producto/bubble-gum-portrait-cross-stitch-pattern/" "drielo-shop-views" "single-product-shop-switch"
+          check_html "/producto/bubble-gum-portrait-cross-stitch-pattern/" "Retrato con chicle" "product-copy-es"
+          check_html "/producto/bubble-gum-portrait-cross-stitch-pattern/?make_lang=en" "Bubble Gum Portrait" "product-copy-en"
+
+          "${DOCKER[@]}" exec make-wp php -r '
+            $_COOKIE["drielo_currency"]="USD";
+            require "/var/www/html/wp-load.php";
+            $id=wc_get_product_id_by_sku("DRIELO-P0001");
+            $product=wc_get_product($id);
+            $usd=(float)$product->get_price();
+            $_COOKIE["drielo_currency"]="EUR";
+            $eur=(float)$product->get_price();
+            $rate=(float)make_store_usd_eur_rate();
+            $expected=round($usd*$rate,6);
+            if (abs($usd-4.99)>0.001 || abs($eur-$expected)>0.001 || $rate<=0) {
+                fwrite(STDERR,"Currency conversion failed USD=".$usd." EUR=".$eur." RATE=".$rate.PHP_EOL);
+                exit(2);
+            }
+            echo "DRIELO_CURRENCY_OK USD=".$usd." EUR=".$eur." RATE=".$rate.PHP_EOL;
+          '
+
           check_html "/journal/" "Últimos artículos" "journal-es"
           check_html "/en/journal/" "Latest articles" "journal-en"
           check_html "/categoria/florals/" "Flores y botánica" "journal-category-es"
