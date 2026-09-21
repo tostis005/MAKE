@@ -952,8 +952,8 @@ body{background:var(--mk-cream);color:var(--mk-ink)}
 .drielo-addon-picker>p{margin:9px 0 14px;color:var(--mk-muted);font-size:10.5px;line-height:1.5}
 .drielo-addon-list{max-height:308px;overflow:auto;display:grid;gap:7px;padding-right:3px}
 .drielo-addon-option{
-  position:relative;display:grid;grid-template-columns:22px 48px minmax(0,1fr);gap:10px;align-items:center;
-  padding:8px;border:1px solid var(--mk-line);border-radius:13px;background:#fff;cursor:pointer;
+  position:relative;display:grid;grid-template-columns:22px 82px minmax(0,1fr);gap:12px;align-items:center;
+  padding:10px;border:1px solid var(--mk-line);border-radius:13px;background:#fff;cursor:pointer;
   transition:border-color .15s ease,background .15s ease
 }
 .drielo-addon-option:hover{border-color:#d6b7c0;background:#fffdfc}
@@ -964,10 +964,10 @@ body{background:var(--mk-cream);color:var(--mk-ink)}
 }
 .drielo-addon-option input:checked + .drielo-addon-check{border-color:var(--mk-plum);background:var(--mk-plum);color:#fff}
 .drielo-addon-option:has(input:checked){border-color:#b98d9c;background:#fbf0f3}
-.drielo-addon-thumb{width:48px;height:48px;display:grid;place-items:center;overflow:hidden;border-radius:9px;background:#f0e2e4;color:var(--mk-red-deep);font:700 20px/1 monospace}
+.drielo-addon-thumb{width:82px;height:82px;display:grid;place-items:center;overflow:hidden;border-radius:11px;background:#f0e2e4;color:var(--mk-red-deep);font:700 20px/1 monospace}
 .drielo-addon-thumb img{width:100%;height:100%;object-fit:cover}
 .drielo-addon-name{min-width:0}
-.drielo-addon-name strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10.5px}
+.drielo-addon-name strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px}
 .drielo-addon-name small{display:block;margin-top:2px;color:var(--mk-red-deep);font-size:9px;font-weight:850}
 .drielo-addon-collection-link{display:inline-block;margin-top:12px;color:var(--mk-red-deep);font-size:10px;font-weight:850}
 
@@ -1104,3 +1104,12 @@ body{background:var(--mk-cream);color:var(--mk-ink)}
   .woocommerce-shell--single div.product .related.products ul.products,
   .woocommerce-shell--single div.product .upsells.products ul.products{grid-template-columns:1fr!important}
 }
+
+
+/* Protected storefront previews: fixed-resolution derivatives only, no zoom affordance. */
+.product-card:hover .product-media img,
+.drielo-collection-card:hover .drielo-collection-media img{transform:none!important}
+.woocommerce-product-gallery__image{cursor:default!important}
+.woocommerce-product-gallery__image a{pointer-events:none!important;cursor:default!important}
+.woocommerce-product-gallery__trigger{display:none!important}
+.woocommerce-shell--single .woocommerce-product-gallery img{cursor:default!important}
