@@ -1,0 +1,71 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 361,
+  "translation_group": "361-which-section-first-large-chart",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "technique",
+      "terms": [
+        "technique"
+      ]
+    },
+    "style": {
+      "terms": [
+        "large-pattern",
+        "workflow",
+        "color-order",
+        "navigation"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cross-stitch-project"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "es-361-zona-primero",
+  "language": "es",
+  "locale": "es-ES",
+  "market_context": "Personas que ya han elegido un punto de inicio en un patrón grande y necesitan decidir qué color o zona abordar primero para avanzar sin perder la posición.",
+  "title": "Cómo decidir qué color o zona bordar primero en un patrón grande",
+  "slug": "que-color-zona-bordar-primero-patron-grande",
+  "seo": {
+    "title": "Cómo decidir qué color o zona bordar primero en un patrón grande",
+    "meta_description": "Cómo decidir qué zona o color bordar primero en un patrón grande según bloques, referencias, confetti, páginas, parking y riesgo de errores.",
+    "search_intent": "Personas que ya han elegido un punto de inicio en un patrón grande y necesitan decidir qué color o zona abordar primero para avanzar sin perder la posición."
+  },
+  "excerpt": "Una vez elegido el punto de inicio, conviene trabajar desde referencias fuertes y zonas conectadas en lugar de perseguir un color por todo el gráfico.",
+  "content_html": "<p>En un patrón grande, elegir dónde empezar es solo la primera decisión. Después aparece otra duda: ¿sigues el color dominante por toda la página, completas una zona, trabajas fila por fila o cambias entre varios tonos? No hay un orden único, pero algunas estrategias reducen mucho los saltos de conteo y la sensación de estar perdido.</p>\n<p>Este problema es distinto de empezar desde el centro o desde una esquina. Una vez has fijado ese punto inicial, necesitas construir referencias y avanzar de forma que cada nueva zona pueda comprobarse contra algo ya bordado.</p>\n<h2>Empieza por un bloque que forme una referencia reconocible</h2>\n<p>Una silueta, borde, marco, grupo grande de un color o elemento fácil de identificar puede convertirse en tu ancla.</p>\n<p>Es mejor que empezar por tres puntos aislados separados por veinte casillas, porque un bloque conectado permite comprobar posición con más facilidad.</p>\n<p>Cuando termines esa zona, úsala para contar hacia elementos vecinos en lugar de volver siempre al borde de la tela.</p>\n<h2>En patrones con bloques grandes, sigue primero las zonas continuas</h2>\n<p>Completar un área de un color reduce cambios de hilo y crea superficie visible rápidamente. Funciona bien en patrones gráficos, paisajes simplificados y fondos con grandes masas.</p>\n<p>No necesitas perseguir ese tono por todo el gráfico. Termina el bloque local y cambia cuando el siguiente grupo quede demasiado lejos.</p>\n<p>Los saltos largos aumentan el riesgo de contar mal y pueden crear arrastres innecesarios en el reverso.</p>\n<h2>En confetti, trabaja por área en lugar de por un solo color global</h2>\n<p>Cuando una página contiene muchos colores aislados, completar uno por toda la pieza puede implicar decenas de saltos. Es más práctico limitar la zona activa.</p>\n<p>Puedes trabajar un cuadrado de 10x10, una franja o una página con parking o cross-country local. Así cada hilo permanece cerca de su siguiente uso.</p>\n<p>La elección entre parking y cross-country depende de tu preferencia, pero ambos pueden organizarse dentro de una zona limitada.</p>\n<h2>Utiliza las líneas de página como organización, no como fronteras rígidas</h2>\n<p>En patrones grandes de varias páginas, completar página por página es fácil de entender, pero puede producir líneas visibles si la tensión cambia exactamente en el borde.</p>\n<p>Cuando sea posible, deja que algunos colores crucen ligeramente la frontera o trabaja con bordes irregulares para evitar una separación demasiado mecánica.</p>\n<p>Comprueba siempre zonas de solapamiento antes de repetir filas que ya aparecían en la página anterior.</p>\n<h2>Elige primero colores que ayuden a contar</h2>\n<p>Un color oscuro o contrastado puede formar una referencia clara; un tono muy parecido a la tela puede ser más difícil de utilizar como ancla.</p>\n<p>Eso no significa que siempre debas empezar por oscuro. Si el color más claro forma una gran figura conectada, puede ser la referencia más útil.</p>\n<p>Piensa en visibilidad y geometría: ¿qué grupo te permitirá localizar con facilidad el siguiente símbolo?</p>\n<h2>Adapta el orden a tu energía y a la dificultad de la zona</h2>\n<p>Las áreas de confetti intenso requieren más atención. Puedes reservarlas para sesiones con buena luz y concentración y avanzar bloques sencillos cuando estás cansado.</p>\n<p>Alternar una zona difícil con otra repetitiva también puede mantener el proyecto más agradable sin perder organización.</p>\n<p>Marca el progreso al terminar cada sesión para que el siguiente inicio sea claro, especialmente si alternas zonas.</p>\n<p>En un patrón grande, el mejor orden no consiste en seguir un color hasta agotarlo ni en obedecer cada página de forma rígida. Construye una referencia fuerte, avanza hacia zonas conectadas, limita los saltos y adapta el método al tipo de densidad. Si cada nueva sección se apoya en algo que ya has comprobado, el gráfico se vuelve mucho más manejable.</p>",
+  "image": {
+    "concept": "Patrón grande dividido en áreas con flechas de trabajo desde un bloque de referencia hacia zonas vecinas.",
+    "alt": "Qué zona bordar primero en un patrón grande de punto de cruz"
+  }
+}
