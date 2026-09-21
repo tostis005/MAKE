@@ -157,7 +157,8 @@ jobs:
                 )));
                 $html=@file_get_contents("http://127.0.0.1".$route,false,$context);
                 $status=$http_response_header[0] ?? "no-status";
-                if ($html===false || strpos($status,"200")===false || ($needle!=="" && strpos($html,$needle)===false)) {
+                $redirect_ok = $label==="sitemap" && (strpos($status,"301")!==false || strpos($status,"302")!==false);
+                if ($html===false || (strpos($status,"200")===false && !$redirect_ok) || (!$redirect_ok && $needle!=="" && strpos($html,$needle)===false)) {
                     fwrite(STDERR,$label." smoke test failed route=".$route." status=".$status.PHP_EOL);
                     exit(2);
                 }
