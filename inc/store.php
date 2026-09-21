@@ -236,7 +236,7 @@ function make_store_currency_symbol( string $symbol, string $currency ): string 
     if ( 'EUR' === $currency ) { return '€'; }
     return $symbol;
 }
-add_filter( 'woocommerce_currency_symbol', 'make_store_currency_symbol', 100, 2 );
+add_filter( 'woocommerce_currency_symbol', 'make_store_currency_symbol', PHP_INT_MAX, 2 );
 
 function make_currency_switch_url( string $currency ): string {
     $currency = in_array( $currency, make_store_allowed_currencies(), true ) ? $currency : DRIELO_DEFAULT_CURRENCY;
