@@ -3483,6 +3483,61 @@
       "title_es": "Patrones de dinosaurios en punto de cruz para niños y adultos",
       "title_en": "Dinosaur Cross Stitch Patterns for Kids and Adults",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 316,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "florals",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Patrones de girasoles en punto de cruz: modernos, rústicos y personalizados",
+      "title_en": "Sunflower Cross Stitch Patterns: Modern, Rustic and Personalized",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 317,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "florals",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Patrones de rosas en punto de cruz: del estilo clásico al gótico",
+      "title_en": "Rose Cross Stitch Patterns: From Classic to Gothic",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 318,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "florals",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Patrones de lavanda en punto de cruz: ramos, cenefas y mini diseños",
+      "title_en": "Lavender Cross Stitch Patterns: Bouquets, Borders and Mini Designs",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 319,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "custom",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Monogramas florales en punto de cruz: cómo combinar iniciales, nombres y flores",
+      "title_en": "Floral Monogram Cross Stitch: Combining Initials, Names and Flowers",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 320,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "summer",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Patrones de verano en punto de cruz: mar, frutas, flores y vacaciones",
+      "title_en": "Summer Cross Stitch Patterns: Sea, Fruit, Flowers and Holidays",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {
@@ -3513,7 +3568,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 315,
-    "bilingual_groups": 315
+    "last_indexed_article": 320,
+    "bilingual_groups": 320
   }
 }
