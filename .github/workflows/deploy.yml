@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - '*.php'
+      - 'inc/**'
       - 'style.css'
       - 'assets/**'
       - '.github/workflows/deploy.yml'
