@@ -1,13 +1,278 @@
 {
+  "schema_version": 1,
   "currency_default": "USD",
-  "currencies": ["USD", "EUR"],
+  "currencies": [
+    "USD",
+    "EUR"
+  ],
   "default_product_price": 4.99,
   "collection_addon_price": 1.49,
   "preview_policy": {
     "primary_page": 1,
     "secondary_page": 2,
-    "max_long_edge_px": 1200
+    "max_long_edge_px": 900,
+    "public_pages": [
+      1,
+      2,
+      3,
+      4
+    ]
   },
-  "collections": [],
-  "products": []
+  "collections": [
+    {
+      "id": "marilyn-pop-portraits",
+      "name": "Marilyn Pop Portraits",
+      "slug": "marilyn-pop-portraits",
+      "description": "Five playful portrait cross-stitch patterns built around the same 19-colour DMC palette, so the same thread set can be reused across the collection.",
+      "palette_hex": [
+        "#FEE7DA",
+        "#F7CBBF",
+        "#F5E4C2",
+        "#EEAA9B",
+        "#E4BB8E",
+        "#EEC18B",
+        "#CB9051",
+        "#B87748",
+        "#985B3B",
+        "#7A451F",
+        "#653919",
+        "#4E2E21",
+        "#1E1916",
+        "#000000",
+        "#FFD7E2",
+        "#E996B8",
+        "#E4719A",
+        "#C94670",
+        "#A83259"
+      ],
+      "thread_codes": [
+        "948",
+        "754",
+        "739",
+        "758",
+        "437",
+        "738",
+        "436",
+        "435",
+        "434",
+        "433",
+        "801",
+        "898",
+        "3371",
+        "310",
+        "963",
+        "604",
+        "603",
+        "602",
+        "601"
+      ],
+      "cover_asset": "assets/marilyn-pop-portraits-collection.webp"
+    }
+  ],
+  "categories": [
+    {
+      "name": "Cross Stitch Patterns",
+      "slug": "cross-stitch-patterns",
+      "parent": null
+    },
+    {
+      "name": "Portraits",
+      "slug": "portraits",
+      "parent": "cross-stitch-patterns"
+    },
+    {
+      "name": "Pop Art",
+      "slug": "pop-art",
+      "parent": "cross-stitch-patterns"
+    }
+  ],
+  "products": [
+    {
+      "code": "P0001",
+      "sku": "DRIELO-P0001",
+      "title": "Bubble Gum Portrait",
+      "slug": "bubble-gum-portrait-cross-stitch-pattern",
+      "price": 4.99,
+      "collection": "marilyn-pop-portraits",
+      "stitches": 7927,
+      "grid": "100 × 120 stitches",
+      "colours": 19,
+      "skill": "Beginner friendly",
+      "stitch_type": "Full cross stitch",
+      "short_description": "A playful pop portrait with a bold pink bubble-gum focal point. Beginner-friendly full cross stitch, 100 × 120 stitches and 19 DMC colours.",
+      "description": "<p><strong>Bubble Gum Portrait</strong> is a modern digital cross-stitch pattern built around warm neutral portrait tones and a vivid pink bubble-gum accent.</p><p>The 17-page PDF includes a finished-design preview, pattern facts, a 19-colour DMC key with stitch counts, full-colour and black-and-white chart overviews, four enlarged colour chart sections, four enlarged symbol chart sections, and a print-and-stitch guide.</p><p><strong>Pattern details:</strong> 100 × 120 stitches; 7,927 total stitches; 19 DMC colours; full cross stitches only; beginner friendly. Finished area: 18.1 × 21.8 cm on 14 ct, 15.9 × 19.1 cm on 16 ct, or 14.1 × 16.9 cm on 18 ct Aida.</p><p>This is a digital PDF pattern. No physical item is shipped. Personal use only.</p>",
+      "categories": [
+        "cross-stitch-patterns",
+        "portraits",
+        "pop-art"
+      ],
+      "tags": [
+        "beginner-friendly",
+        "full-cross-stitch",
+        "19-dmc-colours",
+        "100x120",
+        "portrait",
+        "bubble-gum"
+      ],
+      "gallery": [
+        "assets/P0001-gallery-1.webp",
+        "assets/P0001-gallery-2.webp",
+        "assets/P0001-gallery-3.webp",
+        "assets/P0001-gallery-4.webp"
+      ],
+      "download": "files/Drielo_P0001.pdf",
+      "seo_title": "Bubble Gum Portrait Cross Stitch Pattern PDF | Drielo",
+      "meta_description": "Bubble Gum Portrait digital cross stitch pattern: 100 × 120 stitches, 19 DMC colours, beginner friendly, with colour and symbol charts."
+    },
+    {
+      "code": "P0002",
+      "sku": "DRIELO-P0002",
+      "title": "Marilyn Monroe Surprise",
+      "slug": "marilyn-monroe-surprise-cross-stitch-pattern",
+      "price": 4.99,
+      "collection": "marilyn-pop-portraits",
+      "stitches": 6604,
+      "grid": "100 × 120 stitches",
+      "colours": 19,
+      "skill": "Beginner friendly",
+      "stitch_type": "Full cross stitch",
+      "short_description": "A surprised Marilyn Monroe portrait with pink lips and cheek accents. Beginner-friendly full cross stitch, 100 × 120 stitches and 19 DMC colours.",
+      "description": "<p><strong>Marilyn Monroe Surprise</strong> is a modern digital cross-stitch portrait featuring the surprised hands-to-cheeks pose, warm blonde and neutral tones, and bright pink accents.</p><p>The 17-page PDF includes a finished-design preview, pattern facts, a 19-colour DMC key with stitch counts, full-colour and black-and-white chart overviews, four enlarged colour chart sections, four enlarged symbol chart sections, and a print-and-stitch guide.</p><p><strong>Pattern details:</strong> 100 × 120 stitches; 6,604 total stitches; 19 DMC colours; full cross stitches only; beginner friendly. Finished area: 18.1 × 21.8 cm on 14 ct, 15.9 × 19.1 cm on 16 ct, or 14.1 × 16.9 cm on 18 ct Aida.</p><p>This is a digital PDF pattern. No physical item is shipped. Personal use only.</p>",
+      "categories": [
+        "cross-stitch-patterns",
+        "portraits",
+        "pop-art"
+      ],
+      "tags": [
+        "beginner-friendly",
+        "full-cross-stitch",
+        "19-dmc-colours",
+        "100x120",
+        "portrait",
+        "marilyn-monroe"
+      ],
+      "gallery": [
+        "assets/P0002-gallery-1.webp",
+        "assets/P0002-gallery-2.webp",
+        "assets/P0002-gallery-3.webp",
+        "assets/P0002-gallery-4.webp"
+      ],
+      "download": "files/Drielo_P0002.pdf",
+      "seo_title": "Marilyn Monroe Surprise Cross Stitch Pattern PDF | Drielo",
+      "meta_description": "Marilyn Monroe Surprise digital cross stitch pattern: 100 × 120 stitches, 19 DMC colours, beginner friendly, with colour and symbol charts."
+    },
+    {
+      "code": "P0003",
+      "sku": "DRIELO-P0003",
+      "title": "Marilyn Monroe Blowing Kiss",
+      "slug": "marilyn-monroe-blowing-kiss-cross-stitch-pattern",
+      "price": 4.99,
+      "collection": "marilyn-pop-portraits",
+      "stitches": 6477,
+      "grid": "100 × 120 stitches",
+      "colours": 19,
+      "skill": "Beginner friendly",
+      "stitch_type": "Full cross stitch",
+      "short_description": "A Marilyn Monroe blowing-kiss portrait in warm neutrals with vivid pink accents. Beginner-friendly, 100 × 120 stitches and 19 DMC colours.",
+      "description": "<p><strong>Marilyn Monroe Blowing Kiss</strong> is a modern digital cross-stitch portrait centred on the hand-to-mouth blowing-kiss pose, with soft blonde tones and pink lips and cheeks.</p><p>The 17-page PDF includes a finished-design preview, pattern facts, a 19-colour DMC key with stitch counts, full-colour and black-and-white chart overviews, four enlarged colour chart sections, four enlarged symbol chart sections, and a print-and-stitch guide.</p><p><strong>Pattern details:</strong> 100 × 120 stitches; 6,477 total stitches; 19 DMC colours; full cross stitches only; beginner friendly. Finished area: 18.1 × 21.8 cm on 14 ct, 15.9 × 19.1 cm on 16 ct, or 14.1 × 16.9 cm on 18 ct Aida.</p><p>This is a digital PDF pattern. No physical item is shipped. Personal use only.</p>",
+      "categories": [
+        "cross-stitch-patterns",
+        "portraits",
+        "pop-art"
+      ],
+      "tags": [
+        "beginner-friendly",
+        "full-cross-stitch",
+        "19-dmc-colours",
+        "100x120",
+        "portrait",
+        "marilyn-monroe"
+      ],
+      "gallery": [
+        "assets/P0003-gallery-1.webp",
+        "assets/P0003-gallery-2.webp",
+        "assets/P0003-gallery-3.webp",
+        "assets/P0003-gallery-4.webp"
+      ],
+      "download": "files/Drielo_P0003.pdf",
+      "seo_title": "Marilyn Monroe Blowing Kiss Cross Stitch Pattern PDF | Drielo",
+      "meta_description": "Marilyn Monroe Blowing Kiss digital cross stitch pattern: 100 × 120 stitches, 19 DMC colours, beginner friendly, with colour and symbol charts."
+    },
+    {
+      "code": "P0004",
+      "sku": "DRIELO-P0004",
+      "title": "Marilyn Monroe Sunglasses",
+      "slug": "marilyn-monroe-sunglasses-cross-stitch-pattern",
+      "price": 4.99,
+      "collection": "marilyn-pop-portraits",
+      "stitches": 6557,
+      "grid": "100 × 120 stitches",
+      "colours": 19,
+      "skill": "Beginner friendly",
+      "stitch_type": "Full cross stitch",
+      "short_description": "A Marilyn Monroe portrait with dark sunglasses and bright pink lips. Beginner-friendly full cross stitch, 100 × 120 stitches and 19 DMC colours.",
+      "description": "<p><strong>Marilyn Monroe Sunglasses</strong> is a modern digital cross-stitch portrait pairing warm blonde and skin tones with dark sunglasses and vivid pink lip and cheek accents.</p><p>The 17-page PDF includes a finished-design preview, pattern facts, a 19-colour DMC key with stitch counts, full-colour and black-and-white chart overviews, four enlarged colour chart sections, four enlarged symbol chart sections, and a print-and-stitch guide.</p><p><strong>Pattern details:</strong> 100 × 120 stitches; 6,557 total stitches; 19 DMC colours; full cross stitches only; beginner friendly. Finished area: 18.1 × 21.8 cm on 14 ct, 15.9 × 19.1 cm on 16 ct, or 14.1 × 16.9 cm on 18 ct Aida.</p><p>This is a digital PDF pattern. No physical item is shipped. Personal use only.</p>",
+      "categories": [
+        "cross-stitch-patterns",
+        "portraits",
+        "pop-art"
+      ],
+      "tags": [
+        "beginner-friendly",
+        "full-cross-stitch",
+        "19-dmc-colours",
+        "100x120",
+        "portrait",
+        "marilyn-monroe",
+        "sunglasses"
+      ],
+      "gallery": [
+        "assets/P0004-gallery-1.webp",
+        "assets/P0004-gallery-2.webp",
+        "assets/P0004-gallery-3.webp",
+        "assets/P0004-gallery-4.webp"
+      ],
+      "download": "files/Drielo_P0004.pdf",
+      "seo_title": "Marilyn Monroe Sunglasses Cross Stitch Pattern PDF | Drielo",
+      "meta_description": "Marilyn Monroe Sunglasses digital cross stitch pattern: 100 × 120 stitches, 19 DMC colours, beginner friendly, with colour and symbol charts."
+    },
+    {
+      "code": "P0005",
+      "sku": "DRIELO-P0005",
+      "title": "Marilyn Monroe Wink",
+      "slug": "marilyn-monroe-wink-cross-stitch-pattern",
+      "price": 4.99,
+      "collection": "marilyn-pop-portraits",
+      "stitches": 6558,
+      "grid": "100 × 120 stitches",
+      "colours": 19,
+      "skill": "Beginner friendly",
+      "stitch_type": "Full cross stitch",
+      "short_description": "A winking Marilyn Monroe portrait with soft blonde tones and pink accents. Beginner-friendly full cross stitch, 100 × 120 stitches and 19 DMC colours.",
+      "description": "<p><strong>Marilyn Monroe Wink</strong> is a modern digital cross-stitch portrait with a playful wink, warm blonde and neutral tones, and bright pink lips and cheek accents.</p><p>The 17-page PDF includes a finished-design preview, pattern facts, a 19-colour DMC key with stitch counts, full-colour and black-and-white chart overviews, four enlarged colour chart sections, four enlarged symbol chart sections, and a print-and-stitch guide.</p><p><strong>Pattern details:</strong> 100 × 120 stitches; 6,558 total stitches; 19 DMC colours; full cross stitches only; beginner friendly. Finished area: 18.1 × 21.8 cm on 14 ct, 15.9 × 19.1 cm on 16 ct, or 14.1 × 16.9 cm on 18 ct Aida.</p><p>This is a digital PDF pattern. No physical item is shipped. Personal use only.</p>",
+      "categories": [
+        "cross-stitch-patterns",
+        "portraits",
+        "pop-art"
+      ],
+      "tags": [
+        "beginner-friendly",
+        "full-cross-stitch",
+        "19-dmc-colours",
+        "100x120",
+        "portrait",
+        "marilyn-monroe",
+        "wink"
+      ],
+      "gallery": [
+        "assets/P0005-gallery-1.webp",
+        "assets/P0005-gallery-2.webp",
+        "assets/P0005-gallery-3.webp",
+        "assets/P0005-gallery-4.webp"
+      ],
+      "download": "files/Drielo_P0005.pdf",
+      "seo_title": "Marilyn Monroe Wink Cross Stitch Pattern PDF | Drielo",
+      "meta_description": "Marilyn Monroe Wink digital cross stitch pattern: 100 × 120 stitches, 19 DMC colours, beginner friendly, with colour and symbol charts."
+    }
+  ]
 }
