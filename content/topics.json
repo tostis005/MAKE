@@ -3703,6 +3703,50 @@
       "title_es": "Patrones de lunas góticas en punto de cruz: fases lunares, flores y símbolos",
       "title_en": "Gothic Moon Cross Stitch Patterns: Moon Phases, Flowers and Symbols",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 336,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "gothic",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Patrones de apotecario en punto de cruz: pociones, frascos y plantas mágicas",
+      "title_en": "Apothecary Cross Stitch Patterns: Potions, Bottles and Magical Plants",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 337,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "florals",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Patrones de flores por mes en punto de cruz para cumpleaños personalizados",
+      "title_en": "Monthly Flower Cross Stitch Patterns for Personalized Birthdays",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 338,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "christmas",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Patrones de Navidad personalizados para familias: nombres, fechas y adornos",
+      "title_en": "Personalized Family Christmas Cross Stitch: Names, Dates and Ornaments",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 339,
+      "priority": "P3",
+      "section": "buying-guides",
+      "topic": "gifts",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Cómo elegir un patrón de punto de cruz para regalar según el tiempo que tienes para bordarlo",
+      "title_en": "How to Choose a Cross Stitch Gift Pattern Based on the Time You Have",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {
@@ -3733,7 +3777,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 335,
-    "bilingual_groups": 335
+    "last_indexed_article": 339,
+    "bilingual_groups": 339
   }
 }
