@@ -1,5 +1,5 @@
 <?php
-/** MAKE theme functions. */
+/** Drielo theme functions. */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 function make_theme_setup(): void {
@@ -238,8 +238,7 @@ function make_body_classes( array $classes ): array { $classes[] = 'make-lang-' 
 add_filter( 'body_class', 'make_body_classes' );
 
 function make_brand_name(): string {
-    $name = trim( (string) get_bloginfo( 'name' ) );
-    return $name !== '' ? $name : make_t( 'Taller creativo', 'Creative studio' );
+    return 'Drielo';
 }
 
 function make_brand_tagline(): string {
