@@ -176,6 +176,10 @@ function make_language_switch_url( string $language ): string {
         }
     }
     if ( function_exists( 'is_woocommerce' ) && ( is_woocommerce() || is_tax( 'product_collection' ) || is_cart() || is_checkout() || is_account_page() ) ) {
+        if ( function_exists( 'make_store_view' ) && function_exists( 'make_shop_view_url' ) && 'collections' === make_store_view() ) {
+            return make_shop_view_url( 'collections', $language );
+        }
+
         $request = isset( $_SERVER['REQUEST_URI'] ) ? (string) wp_unslash( $_SERVER['REQUEST_URI'] ) : '/';
         $path    = (string) wp_parse_url( $request, PHP_URL_PATH );
         $query   = (string) wp_parse_url( $request, PHP_URL_QUERY );
