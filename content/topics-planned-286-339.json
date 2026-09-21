@@ -14,7 +14,7 @@
       "es",
       "en"
     ],
-    "avoid_cannibalization_with_published_through": 305
+    "avoid_cannibalization_with_published_through": 310
   },
   "topics": [
     {
@@ -298,7 +298,7 @@
       "section": "ideas",
       "topic": "animals",
       "intent": "commercial",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Patrones de ranas en punto de cruz: kawaii, cottagecore y botánicos",
       "title_en": "Frog Cross Stitch Patterns: Kawaii, Cottagecore and Botanical Styles",
       "craft": "cross-stitch"
@@ -309,7 +309,7 @@
       "section": "ideas",
       "topic": "animals",
       "intent": "commercial",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Patrones de zorros en punto de cruz: bosque, otoño y decoración infantil",
       "title_en": "Fox Cross Stitch Patterns: Woodland, Autumn and Nursery Ideas",
       "craft": "cross-stitch"
@@ -320,7 +320,7 @@
       "section": "ideas",
       "topic": "animals",
       "intent": "commercial",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Patrones de búhos en punto de cruz: góticos, botánicos e infantiles",
       "title_en": "Owl Cross Stitch Patterns: Gothic, Botanical and Nursery Styles",
       "craft": "cross-stitch"
@@ -331,7 +331,7 @@
       "section": "ideas",
       "topic": "animals",
       "intent": "commercial",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Patrones de conejos y liebres en punto de cruz: bosque, Pascua y nursery",
       "title_en": "Rabbit and Hare Cross Stitch Patterns: Woodland, Easter and Nursery Ideas",
       "craft": "cross-stitch"
@@ -342,7 +342,7 @@
       "section": "ideas",
       "topic": "animals",
       "intent": "commercial",
-      "status": "planned",
+      "status": "drafted",
       "title_es": "Patrones de dinosaurios en punto de cruz para niños y adultos",
       "title_en": "Dinosaur Cross Stitch Patterns for Kids and Adults",
       "craft": "cross-stitch"
