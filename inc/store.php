@@ -198,6 +198,20 @@ function make_collection_palette( WP_Term $term ): array {
     return array_values( array_filter( array_map( 'sanitize_hex_color', array_map( 'trim', explode( ',', $raw ) ) ) ) );
 }
 
+function make_collection_display_name( WP_Term $term ): string {
+    $lang = function_exists( 'make_current_language' ) ? make_current_language() : 'en';
+    $key  = 'es' === $lang ? 'drielo_name_es' : 'drielo_name_en';
+    $name = trim( (string) get_term_meta( $term->term_id, $key, true ) );
+    return '' !== $name ? $name : (string) $term->name;
+}
+
+function make_collection_display_description( WP_Term $term ): string {
+    $lang = function_exists( 'make_current_language' ) ? make_current_language() : 'en';
+    $key  = 'es' === $lang ? 'drielo_description_es' : 'drielo_description_en';
+    $copy = trim( (string) get_term_meta( $term->term_id, $key, true ) );
+    return '' !== $copy ? $copy : trim( wp_strip_all_tags( (string) $term->description ) );
+}
+
 function make_primary_product_collection( int $product_id ): ?WP_Term {
     $terms = get_the_terms( $product_id, 'product_collection' );
     if ( ! is_array( $terms ) || empty( $terms ) ) { return null; }
@@ -297,11 +311,13 @@ function make_render_collection_grid(): void {
         echo '<div class="drielo-collection-topline"><span>' . esc_html( sprintf( make_t( '%d diseños', '%d designs' ), (int) $term->count ) ) . '</span>';
         make_render_palette_swatches( $term );
         echo '</div>';
-        echo '<h2><a href="' . esc_url( $url ) . '">' . esc_html( $term->name ) . '</a></h2>';
-        if ( '' !== trim( (string) $term->description ) ) {
-            echo '<p>' . esc_html( wp_trim_words( wp_strip_all_tags( $term->description ), 18 ) ) . '</p>';
+        $display_name = make_collection_display_name( $term );
+        $display_description = make_collection_display_description( $term );
+        echo '<h2><a href="' . esc_url( $url ) . '">' . esc_html( $display_name ) . '</a></h2>';
+        if ( '' !== $display_description ) {
+            echo '<p>' . esc_html( wp_trim_words( $display_description, 18 ) ) . '</p>';
         } else {
-            echo '<p>' . esc_html( make_t( 'Una misma paleta de hilos, varios diseños que puedes intercambiar.', 'One shared thread palette, several interchangeable designs.' ) ) . '</p>';
+            echo '<p>' . esc_html( make_t( 'Una paleta compartida, varios diseños que puedes combinar.', 'One shared palette, several designs you can combine.' ) ) . '</p>';
         }
         echo '<div class="drielo-collection-footer"><span>' . wp_kses_post( sprintf( make_t( 'Desde %s por diseño', 'From %s per design' ), wc_price( DRIELO_DEFAULT_PRODUCT_PRICE ) ) ) . '</span><strong>' . esc_html( make_t( 'Ver colección →', 'View collection →' ) ) . '</strong></div>';
         echo '</div></article>';
@@ -316,7 +332,7 @@ function make_product_collection_label(): void {
     if ( ! $term ) { return; }
     $url = get_term_link( $term );
     if ( is_wp_error( $url ) ) { return; }
-    echo '<div class="drielo-product-collection"><a href="' . esc_url( $url ) . '">' . esc_html( make_t( 'Colección', 'Collection' ) ) . ' · ' . esc_html( $term->name ) . '</a></div>';
+    echo '<div class="drielo-product-collection"><a href="' . esc_url( $url ) . '">' . esc_html( make_t( 'Colección', 'Collection' ) ) . ' · ' . esc_html( make_collection_display_name( $term ) ) . '</a></div>';
 }
 add_action( 'woocommerce_after_shop_loop_item_title', 'make_product_collection_label', 7 );
 
@@ -329,7 +345,7 @@ function make_single_product_collection_context(): void {
     if ( is_wp_error( $url ) ) { return; }
 
     echo '<div class="drielo-single-collection">';
-    echo '<a href="' . esc_url( $url ) . '"><span>' . esc_html( make_t( 'Colección', 'Collection' ) ) . '</span><strong>' . esc_html( $term->name ) . '</strong></a>';
+    echo '<a href="' . esc_url( $url ) . '"><span>' . esc_html( make_t( 'Colección', 'Collection' ) ) . '</span><strong>' . esc_html( make_collection_display_name( $term ) ) . '</strong></a>';
     make_render_palette_swatches( $term );
     echo '</div>';
 }
@@ -373,11 +389,11 @@ function make_render_collection_addons(): void {
         <div class="drielo-addon-head">
             <div>
                 <span class="section-kicker"><?php echo esc_html( make_t( 'Completa la colección', 'Build your collection' ) ); ?></span>
-                <h3 id="drielo-addon-title"><?php echo esc_html( sprintf( make_t( 'Añade más diseños de %s', 'Add more designs from %s' ), $term->name ) ); ?></h3>
+                <h3 id="drielo-addon-title"><?php echo esc_html( sprintf( make_t( 'Añade más diseños de %s', 'Add more designs from %s' ), make_collection_display_name( $term ) ) ); ?></h3>
             </div>
             <span class="drielo-addon-price"><?php echo wp_kses_post( sprintf( make_t( '+%s cada uno', '+%s each' ), wc_price( DRIELO_COLLECTION_ADDON_PRICE ) ) ); ?></span>
         </div>
-        <p><?php echo esc_html( make_t( 'Comparten la misma paleta de color e hilos. Marca todos los que quieras y se añadirán al carrito con precio especial.', 'They share the same colour and thread palette. Select as many as you like and they will be added to the cart at the special price.' ) ); ?></p>
+        <p><?php echo esc_html( make_t( 'Comparten la misma paleta de color. Marca todos los que quieras y se añadirán al carrito con precio especial.', 'They share the same colour palette. Select as many as you like and they will be added to the cart at the special price.' ) ); ?></p>
         <?php wp_nonce_field( 'drielo_collection_addons_' . $product->get_id(), 'drielo_collection_addons_nonce', false ); ?>
         <div class="drielo-addon-list">
             <?php foreach ( $siblings as $sibling_id ) :
@@ -495,16 +511,9 @@ function make_collection_archive_note(): void {
     if ( ! is_tax( 'product_collection' ) ) { return; }
     $term = get_queried_object();
     if ( ! $term instanceof WP_Term ) { return; }
-    $threads = trim( (string) get_term_meta( $term->term_id, 'drielo_thread_codes', true ) );
     echo '<div class="drielo-collection-note"><div><span class="section-kicker">' . esc_html( make_t( 'Paleta compartida', 'Shared palette' ) ) . '</span>';
     make_render_palette_swatches( $term );
-    echo '</div>';
-    if ( '' !== $threads ) {
-        echo '<p><strong>' . esc_html( make_t( 'Hilos:', 'Threads:' ) ) . '</strong> ' . esc_html( $threads ) . '</p>';
-    } else {
-        echo '<p>' . esc_html( make_t( 'Todos estos diseños están pensados para reutilizar la misma selección de colores.', 'All these designs are built to reuse the same colour selection.' ) ) . '</p>';
-    }
-    echo '</div>';
+    echo '</div></div>';
 }
 
 
