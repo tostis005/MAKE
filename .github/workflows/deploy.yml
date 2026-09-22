@@ -8,6 +8,7 @@ on:
       - 'inc/**'
       - 'style.css'
       - 'assets/**'
+      - 'plugins/**'
       - '.github/workflows/deploy.yml'
   workflow_dispatch:
 
@@ -69,14 +70,32 @@ jobs:
           php -r '$d=file_get_contents("assets/images/categories/category-art-generated.webp"); if (substr($d,0,4)!=="RIFF" || substr($d,8,4)!=="WEBP") { fwrite(STDERR,"Invalid generated category sprite\n"); exit(1); }'
           rm assets/images/categories/.latest-sprite.part*
 
+      - name: Build Drielo Etsy Sync plugin
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/drielo-etsy-plugin /tmp/drielo-etsy-sync.zip /tmp/drielo-etsy-sync.tar.gz
+          mkdir -p /tmp/drielo-etsy-plugin
+          base64 --decode plugins/drielo-etsy-sync-1.0.0.zip.b64 > /tmp/drielo-etsy-sync.zip
+          unzip -q /tmp/drielo-etsy-sync.zip -d /tmp/drielo-etsy-plugin
+          test -s /tmp/drielo-etsy-plugin/drielo-etsy-sync/drielo-etsy-sync.php
+          php -l /tmp/drielo-etsy-plugin/drielo-etsy-sync/drielo-etsy-sync.php
+          tar -C /tmp/drielo-etsy-plugin -czf /tmp/drielo-etsy-sync.tar.gz drielo-etsy-sync
+
       - name: Package theme
-        run: tar --exclude='./.git' --exclude='./.github' --exclude='./README.md' -czf /tmp/make-theme.tar.gz .
+        run: tar --exclude='./.git' --exclude='./.github' --exclude='./README.md' --exclude='./plugins' -czf /tmp/make-theme.tar.gz .
 
       - name: Upload theme
         env:
           VPS_HOST: ${{ secrets.VPS_HOST }}
           VPS_USER: ${{ secrets.VPS_USER }}
         run: scp -i ~/.ssh/make_deploy_key /tmp/make-theme.tar.gz "$VPS_USER@$VPS_HOST:/tmp/make-theme-${GITHUB_RUN_ID}.tar.gz"
+
+      - name: Upload Drielo Etsy Sync plugin
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: scp -i ~/.ssh/make_deploy_key /tmp/drielo-etsy-sync.tar.gz "$VPS_USER@$VPS_HOST:/tmp/drielo-etsy-sync-${GITHUB_RUN_ID}.tar.gz"
 
       - name: Deploy into Drielo WordPress container
         env:
@@ -89,7 +108,10 @@ jobs:
           ARCHIVE="/tmp/make-theme-${GITHUB_RUN_ID}.tar.gz"
           STAGE="/tmp/make-theme-${GITHUB_RUN_ID}"
           TARGET="/var/www/html/wp-content/themes/make"
-          cleanup(){ rm -rf "$ARCHIVE" "$STAGE"; }
+          PLUGIN_ARCHIVE="/tmp/drielo-etsy-sync-${GITHUB_RUN_ID}.tar.gz"
+          PLUGIN_STAGE="/tmp/drielo-etsy-sync-${GITHUB_RUN_ID}"
+          PLUGIN_TARGET="/var/www/html/wp-content/plugins/drielo-etsy-sync"
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE" "$PLUGIN_ARCHIVE" "$PLUGIN_STAGE"; }
           trap cleanup EXIT
           if docker inspect make-wp >/dev/null 2>&1; then
             DOCKER=(docker)
@@ -99,10 +121,41 @@ jobs:
             echo "ERROR: make-wp container not found"
             exit 1
           fi
-          rm -rf "$STAGE" && mkdir -p "$STAGE" && tar -xzf "$ARCHIVE" -C "$STAGE"
+          rm -rf "$STAGE" "$PLUGIN_STAGE"
+          mkdir -p "$STAGE" "$PLUGIN_STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+          tar -xzf "$PLUGIN_ARCHIVE" -C "$PLUGIN_STAGE"
           "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '$TARGET' && mkdir -p '$TARGET'"
           "${DOCKER[@]}" cp "$STAGE/." "make-wp:$TARGET/"
           "${DOCKER[@]}" exec make-wp sh -lc "chown -R www-data:www-data '$TARGET' && find '$TARGET' -type d -exec chmod 755 {} + && find '$TARGET' -type f -exec chmod 644 {} + && test -s '$TARGET/style.css' && test -s '$TARGET/functions.php'"
+
+          "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '$PLUGIN_TARGET' && mkdir -p '$PLUGIN_TARGET'"
+          "${DOCKER[@]}" cp "$PLUGIN_STAGE/drielo-etsy-sync/." "make-wp:$PLUGIN_TARGET/"
+          "${DOCKER[@]}" exec make-wp sh -lc "chown -R www-data:www-data '$PLUGIN_TARGET' && find '$PLUGIN_TARGET' -type d -exec chmod 755 {} + && find '$PLUGIN_TARGET' -type f -exec chmod 644 {} + && test -s '$PLUGIN_TARGET/drielo-etsy-sync.php'"
+          "${DOCKER[@]}" exec make-wp php -r '
+            require "/var/www/html/wp-load.php";
+            require_once ABSPATH . "wp-admin/includes/plugin.php";
+            $plugin = "drielo-etsy-sync/drielo-etsy-sync.php";
+            if (!is_plugin_active($plugin)) {
+                $result = activate_plugin($plugin);
+                if (is_wp_error($result)) {
+                    fwrite(STDERR, "Drielo Etsy Sync activation failed: " . $result->get_error_message() . PHP_EOL);
+                    exit(2);
+                }
+            }
+            echo "DRIELO_ETSY_PLUGIN_ACTIVE=" . (is_plugin_active($plugin) ? "yes" : "no") . PHP_EOL;
+          '
+          "${DOCKER[@]}" exec make-wp php -r '
+            require "/var/www/html/wp-load.php";
+            require_once ABSPATH . "wp-admin/includes/plugin.php";
+            $plugin = "drielo-etsy-sync/drielo-etsy-sync.php";
+            if (!is_plugin_active($plugin) || !class_exists("Drielo_Etsy_Sync")) {
+                fwrite(STDERR, "Drielo Etsy Sync verification failed" . PHP_EOL);
+                exit(2);
+            }
+            echo "DRIELO_ETSY_PLUGIN_VERIFIED=yes" . PHP_EOL;
+          '
+
           "${DOCKER[@]}" exec make-wp php -r '
             require "/var/www/html/wp-load.php";
             $desired = "/%postname%/";
