@@ -1,0 +1,54 @@
+name: Recover Drielo product PDF
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/recover-product-pdf.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_recover_key
+          chmod 600 ~/.ssh/drielo_recover_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Recover P0001 from WooCommerce storage
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          mkdir -p recovered
+          ssh -i ~/.ssh/drielo_recover_key "$VPS_USER@$VPS_HOST" 'bash -s' > recovered/Drielo_P0001.pdf <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "make-wp container not found" >&2
+            exit 1
+          fi
+          "${DOCKER[@]}" exec make-wp cat /var/www/html/wp-content/uploads/woocommerce_uploads/drielo/Drielo_P0001.pdf
+          REMOTE
+          test "$(stat -c%s recovered/Drielo_P0001.pdf)" -gt 100000
+
+      - name: Upload recovered PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: Drielo_P0001
+          path: recovered/Drielo_P0001.pdf
+          if-no-files-found: error
+          retention-days: 1
