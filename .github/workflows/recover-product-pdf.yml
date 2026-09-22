@@ -1,4 +1,4 @@
-name: Recover Drielo product PDF
+name: Recover Drielo product PDFs
 
 on:
   push:
@@ -24,15 +24,20 @@ jobs:
           chmod 600 ~/.ssh/drielo_recover_key
           ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
 
-      - name: Recover P0001 from WooCommerce storage
+      - name: Recover P0002-P0011 from WooCommerce storage
         env:
           VPS_HOST: ${{ secrets.VPS_HOST }}
           VPS_USER: ${{ secrets.VPS_USER }}
         run: |
           set -euo pipefail
           mkdir -p recovered
-          ssh -i ~/.ssh/drielo_recover_key "$VPS_USER@$VPS_HOST" 'bash -s' > recovered/Drielo_P0001.pdf <<'REMOTE'
+          for n in $(seq -w 2 11); do
+            code="P00${n}"
+            file="Drielo_${code}.pdf"
+            echo "Recovering ${file}"
+            ssh -i ~/.ssh/drielo_recover_key "$VPS_USER@$VPS_HOST" "bash -s -- '${file}'" > "recovered/${file}" <<'REMOTE'
           set -euo pipefail
+          file="$1"
           if docker inspect make-wp >/dev/null 2>&1; then
             DOCKER=(docker)
           elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
@@ -41,14 +46,15 @@ jobs:
             echo "make-wp container not found" >&2
             exit 1
           fi
-          "${DOCKER[@]}" exec make-wp cat /var/www/html/wp-content/uploads/woocommerce_uploads/drielo/Drielo_P0001.pdf
+          "${DOCKER[@]}" exec make-wp cat "/var/www/html/wp-content/uploads/woocommerce_uploads/drielo/${file}"
           REMOTE
-          test "$(stat -c%s recovered/Drielo_P0001.pdf)" -gt 100000
+            test "$(stat -c%s "recovered/${file}")" -gt 100000
+          done
 
-      - name: Upload recovered PDF
+      - name: Upload recovered PDFs
         uses: actions/upload-artifact@v4
         with:
-          name: Drielo_P0001
-          path: recovered/Drielo_P0001.pdf
+          name: Drielo_P0002-P0011
+          path: recovered/*.pdf
           if-no-files-found: error
           retention-days: 1
