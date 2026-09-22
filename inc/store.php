@@ -56,7 +56,53 @@ function make_redirect_legacy_collection_url(): void {
 add_action( 'template_redirect', 'make_redirect_legacy_collection_url', 1 );
 
 function make_store_routes(): void {
-    add_rewrite_rule( '^en/shop/?
+    add_rewrite_rule( '^en/shop/?$', 'index.php?post_type=product&make_lang=en', 'top' );
+
+    add_rewrite_rule( '^tienda/colecciones/?$', 'index.php?post_type=product&make_store_view=collections&make_lang=es', 'top' );
+    add_rewrite_rule( '^en/shop/collections/?$', 'index.php?post_type=product&make_store_view=collections&make_lang=en', 'top' );
+
+    add_rewrite_rule( '^tienda/coleccion/([a-z0-9-]+)/?$', 'index.php?make_collection_local=$matches[1]&make_lang=es', 'top' );
+    add_rewrite_rule( '^en/shop/collection/([a-z0-9-]+)/?$', 'index.php?make_collection_local=$matches[1]&make_lang=en', 'top' );
+    add_rewrite_rule( '^tienda/categoria/([a-z0-9-]+)/?$', 'index.php?make_product_cat_local=$matches[1]&make_lang=es', 'top' );
+    add_rewrite_rule( '^en/shop/category/([a-z0-9-]+)/?$', 'index.php?make_product_cat_local=$matches[1]&make_lang=en', 'top' );
+
+    add_rewrite_rule( '^tienda/(?!colecciones/?$|coleccion/|categoria/)([a-z0-9-]+)/?$', 'index.php?post_type=product&make_product_slug=$matches[1]&make_lang=es', 'top' );
+    add_rewrite_rule( '^en/shop/(?!collections/?$|collection/|category/)([a-z0-9-]+)/?$', 'index.php?post_type=product&make_product_slug=$matches[1]&make_lang=en', 'top' );
+
+    add_rewrite_rule( '^tienda/collections/?$', 'index.php?post_type=product&make_store_view=collections&make_lang=en', 'top' );
+
+    $cart_id     = function_exists( 'wc_get_page_id' ) ? (int) wc_get_page_id( 'cart' ) : 0;
+    $checkout_id = function_exists( 'wc_get_page_id' ) ? (int) wc_get_page_id( 'checkout' ) : 0;
+    $account_id  = function_exists( 'wc_get_page_id' ) ? (int) wc_get_page_id( 'myaccount' ) : 0;
+
+    if ( $cart_id > 0 ) {
+        add_rewrite_rule( '^carrito/?$', 'index.php?page_id=' . $cart_id . '&make_lang=es', 'top' );
+        add_rewrite_rule( '^en/cart/?$', 'index.php?page_id=' . $cart_id . '&make_lang=en', 'top' );
+    }
+    if ( $checkout_id > 0 ) {
+        add_rewrite_rule( '^finalizar-compra/?$', 'index.php?page_id=' . $checkout_id . '&make_lang=es', 'top' );
+        add_rewrite_rule( '^en/checkout/?$', 'index.php?page_id=' . $checkout_id . '&make_lang=en', 'top' );
+        foreach ( array( 'order-pay', 'order-received' ) as $endpoint ) {
+            $es_slug = make_store_endpoint_slug( $endpoint, 'es' );
+            $en_slug = make_store_endpoint_slug( $endpoint, 'en' );
+            add_rewrite_rule( '^finalizar-compra/' . preg_quote( $es_slug, '#' ) . '/([^/]+)/?$', 'index.php?page_id=' . $checkout_id . '&' . $endpoint . '=$matches[1]&make_lang=es', 'top' );
+            add_rewrite_rule( '^en/checkout/' . preg_quote( $en_slug, '#' ) . '/([^/]+)/?$', 'index.php?page_id=' . $checkout_id . '&' . $endpoint . '=$matches[1]&make_lang=en', 'top' );
+        }
+    }
+    if ( $account_id > 0 ) {
+        add_rewrite_rule( '^mi-cuenta/?$', 'index.php?page_id=' . $account_id . '&make_lang=es', 'top' );
+        add_rewrite_rule( '^en/my-account/?$', 'index.php?page_id=' . $account_id . '&make_lang=en', 'top' );
+        foreach ( array( 'orders','downloads','edit-account','edit-address','payment-methods','add-payment-method','lost-password','customer-logout' ) as $endpoint ) {
+            $es_slug = make_store_endpoint_slug( $endpoint, 'es' );
+            $en_slug = make_store_endpoint_slug( $endpoint, 'en' );
+            add_rewrite_rule( '^mi-cuenta/' . preg_quote( $es_slug, '#' ) . '/?$', 'index.php?page_id=' . $account_id . '&' . $endpoint . '=1&make_lang=es', 'top' );
+            add_rewrite_rule( '^mi-cuenta/' . preg_quote( $es_slug, '#' ) . '/([^/]+)/?$', 'index.php?page_id=' . $account_id . '&' . $endpoint . '=$matches[1]&make_lang=es', 'top' );
+            add_rewrite_rule( '^en/my-account/' . preg_quote( $en_slug, '#' ) . '/?$', 'index.php?page_id=' . $account_id . '&' . $endpoint . '=1&make_lang=en', 'top' );
+            add_rewrite_rule( '^en/my-account/' . preg_quote( $en_slug, '#' ) . '/([^/]+)/?$', 'index.php?page_id=' . $account_id . '&' . $endpoint . '=$matches[1]&make_lang=en', 'top' );
+        }
+    }
+}
+add_action( 'init', 'make_store_routes', 20 );
 
 function make_store_query_vars( array $vars ): array {
     $vars[] = 'make_store_view';
