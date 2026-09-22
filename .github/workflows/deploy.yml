@@ -205,7 +205,7 @@ jobs:
           check_html "/tienda/colecciones/" "Explora cada patrón por separado o descubre colecciones que comparten una misma paleta de color." "shop-collections-intro-es"
           check_html "/tienda/collections/" "Pattern collections" "shop-collections-en" "Downloadable PDF"
           check_html "/producto/bubble-gum-portrait-cross-stitch-pattern/" "drielo-shop-views" "single-product-shop-switch"
-          check_html "/producto/bubble-gum-portrait-cross-stitch-pattern/" "Retrato con chicle" "product-copy-es"
+          check_html "/producto/bubble-gum-portrait-cross-stitch-pattern/" "Marilyn Monroe con chicle" "product-copy-es"
           check_html "/producto/bubble-gum-portrait-cross-stitch-pattern/?make_lang=en" "Bubble Gum Portrait" "product-copy-en"
 
           "${DOCKER[@]}" exec make-wp php -r '
