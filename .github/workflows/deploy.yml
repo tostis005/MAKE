@@ -206,7 +206,7 @@ jobs:
           check_html "/tienda/collections/" "Pattern collections" "shop-collections-en" "Downloadable PDF"
           check_html "/producto/bubble-gum-portrait-cross-stitch-pattern/" "drielo-shop-views" "single-product-shop-switch"
           check_html "/producto/bubble-gum-portrait-cross-stitch-pattern/" "Marilyn Monroe con chicle" "product-copy-es"
-          check_html "/producto/bubble-gum-portrait-cross-stitch-pattern/?make_lang=en" "Bubble Gum Portrait" "product-copy-en"
+          check_html "/producto/bubble-gum-portrait-cross-stitch-pattern/?make_lang=en" "Marilyn Monroe Bubble Gum" "product-copy-en"
 
           "${DOCKER[@]}" exec make-wp php -r '
             $_COOKIE["drielo_currency"]="USD";
