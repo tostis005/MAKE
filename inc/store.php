@@ -464,6 +464,27 @@ function make_collection_cover_product_id( WP_Term $term ): int {
     return empty( $ids ) ? 0 : (int) $ids[0];
 }
 
+function make_collection_product_ids( WP_Term $term ): array {
+    $ids = get_posts(
+        array(
+            'post_type'      => 'product',
+            'post_status'    => 'publish',
+            'posts_per_page' => -1,
+            'fields'         => 'ids',
+            'orderby'        => 'menu_order date title',
+            'order'          => 'ASC',
+            'tax_query'      => array(
+                array(
+                    'taxonomy' => 'product_collection',
+                    'field'    => 'term_id',
+                    'terms'    => array( $term->term_id ),
+                ),
+            ),
+        )
+    );
+    return array_map( 'intval', $ids );
+}
+
 function make_render_palette_swatches( WP_Term $term ): void {
     $palette = make_collection_palette( $term );
     if ( empty( $palette ) ) { return; }
@@ -493,16 +514,23 @@ function make_render_collection_grid(): void {
     echo '<div class="drielo-collection-grid">';
     foreach ( $terms as $term ) {
         if ( ! $term instanceof WP_Term ) { continue; }
-        $url        = get_term_link( $term );
-        $product_id = make_collection_cover_product_id( $term );
+        $url         = get_term_link( $term );
+        $preview_ids = make_collection_product_ids( $term );
+        $product_id  = empty( $preview_ids ) ? make_collection_cover_product_id( $term ) : (int) $preview_ids[0];
         if ( is_wp_error( $url ) ) { continue; }
-
-        $cover_id = (int) get_term_meta( $term->term_id, 'drielo_collection_cover_id', true );
 
         echo '<article class="drielo-collection-card">';
         echo '<a class="drielo-collection-media" href="' . esc_url( $url ) . '">';
-        if ( $cover_id && function_exists( 'make_static_attachment_image_html' ) ) {
-            echo wp_kses_post( make_static_attachment_image_html( $cover_id, 'medium_large', 'drielo-collection-preview' ) );
+        if ( ! empty( $preview_ids ) && function_exists( 'make_static_attachment_image_html' ) ) {
+            $preview_count = count( $preview_ids );
+            $columns = $preview_count > 9 ? 4 : ( $preview_count > 4 ? 3 : 2 );
+            echo '<span class="drielo-collection-thumbs" style="--drielo-collection-columns:' . esc_attr( (string) $columns ) . '">';
+            foreach ( $preview_ids as $preview_id ) {
+                $thumb_id = (int) get_post_thumbnail_id( $preview_id );
+                if ( $thumb_id <= 0 ) { continue; }
+                echo wp_kses_post( make_static_attachment_image_html( $thumb_id, 'woocommerce_thumbnail', 'drielo-collection-preview' ) );
+            }
+            echo '</span>';
         } elseif ( $product_id && has_post_thumbnail( $product_id ) && function_exists( 'make_static_attachment_image_html' ) ) {
             echo wp_kses_post( make_static_attachment_image_html( (int) get_post_thumbnail_id( $product_id ), 'medium_large', 'drielo-collection-preview' ) );
         } else {
