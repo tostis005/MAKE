@@ -53,26 +53,40 @@ function make_sitemap_urls( string $language ): array {
         }
     }
 
-    foreach ( array( 'page', 'post', 'product' ) as $post_type ) {
+    if ( function_exists( 'make_editorial_section_config' ) ) {
+        foreach ( make_editorial_section_config() as $localized ) {
+            if ( empty( $localized[ $language ]['slug'] ) ) { continue; }
+            $term = get_category_by_slug( (string) $localized[ $language ]['slug'] );
+            if ( $term instanceof WP_Term && (int) $term->count > 0 ) {
+                $url = get_category_link( $term );
+                if ( ! is_wp_error( $url ) ) { $add( $urls, $url ); }
+            }
+        }
+    }
+
+    foreach ( array( 'post', 'product' ) as $post_type ) {
         if ( ! post_type_exists( $post_type ) ) { continue; }
 
-        $items = get_posts(
-            array(
-                'post_type'      => $post_type,
-                'post_status'    => 'publish',
-                'posts_per_page' => -1,
-                'orderby'        => 'modified',
-                'order'          => 'DESC',
-                'no_found_rows'  => true,
-                'has_password'   => false,
-                'meta_query'     => make_sitemap_language_meta_query( $language ),
-            )
+        $args = array(
+            'post_type'      => $post_type,
+            'post_status'    => 'publish',
+            'posts_per_page' => -1,
+            'orderby'        => 'modified',
+            'order'          => 'DESC',
+            'no_found_rows'  => true,
+            'has_password'   => false,
         );
+        if ( 'post' === $post_type ) {
+            $args['meta_query'] = make_sitemap_language_meta_query( $language );
+        }
 
+        $items = get_posts( $args );
         foreach ( $items as $item ) {
             if ( ! $item instanceof WP_Post ) { continue; }
 
-            $loc = get_permalink( $item );
+            $loc = 'product' === $post_type && function_exists( 'make_product_url' )
+                ? make_product_url( $item, $language )
+                : get_permalink( $item );
             if ( ! is_string( $loc ) || '' === $loc ) { continue; }
 
             $modified = '0000-00-00 00:00:00' !== $item->post_modified_gmt
@@ -81,6 +95,17 @@ function make_sitemap_urls( string $language ): array {
             $lastmod = $modified ? mysql2date( 'c', $modified, false ) : '';
 
             $add( $urls, $loc, is_string( $lastmod ) ? $lastmod : '' );
+        }
+    }
+
+    if ( function_exists( 'make_store_term_url' ) ) {
+        foreach ( array( 'product_collection', 'product_cat' ) as $taxonomy ) {
+            if ( ! taxonomy_exists( $taxonomy ) ) { continue; }
+            $terms = get_terms( array( 'taxonomy' => $taxonomy, 'hide_empty' => true ) );
+            if ( is_wp_error( $terms ) ) { continue; }
+            foreach ( $terms as $term ) {
+                if ( $term instanceof WP_Term ) { $add( $urls, make_store_term_url( $term, $language ) ); }
+            }
         }
     }
 
