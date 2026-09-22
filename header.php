@@ -41,7 +41,7 @@ $nav              = array(
 
     <div class="header-actions">
       <?php if ( class_exists( 'WooCommerce' ) ) : ?>
-        <div class="currency-switcher" aria-label="<?php echo esc_attr( make_t( 'Moneda', 'Currency' ) ); ?>">
+        <div class="currency-switcher currency-switcher--header" aria-label="<?php echo esc_attr( make_t( 'Moneda', 'Currency' ) ); ?>">
           <a class="<?php echo 'USD' === make_store_currency() ? 'is-active' : ''; ?>" href="<?php echo esc_url( make_currency_switch_url( 'USD' ) ); ?>" aria-label="USD">$</a>
           <a class="<?php echo 'EUR' === make_store_currency() ? 'is-active' : ''; ?>" href="<?php echo esc_url( make_currency_switch_url( 'EUR' ) ); ?>" aria-label="EUR">€</a>
         </div>
@@ -121,6 +121,15 @@ $nav              = array(
         <?php endif; ?>
       </nav>
       <div class="mobile-menu-bottom">
+        <?php if ( class_exists( 'WooCommerce' ) ) : ?>
+          <div class="mobile-menu-currency">
+            <span><?php echo esc_html( make_t( 'Moneda', 'Currency' ) ); ?></span>
+            <div class="currency-switcher currency-switcher--mobile" aria-label="<?php echo esc_attr( make_t( 'Moneda', 'Currency' ) ); ?>">
+              <a class="<?php echo 'USD' === make_store_currency() ? 'is-active' : ''; ?>" href="<?php echo esc_url( make_currency_switch_url( 'USD' ) ); ?>" aria-label="USD">$</a>
+              <a class="<?php echo 'EUR' === make_store_currency() ? 'is-active' : ''; ?>" href="<?php echo esc_url( make_currency_switch_url( 'EUR' ) ); ?>" aria-label="EUR">€</a>
+            </div>
+          </div>
+        <?php endif; ?>
         <button class="mobile-menu-language" type="button" data-open-overlay="make-language-overlay"><span class="language-flag" aria-hidden="true"><?php echo esc_html( $current_flag ); ?></span><?php echo esc_html( make_t( 'Cambiar idioma', 'Change language' ) ); ?></button>
         <?php if ( class_exists( 'WooCommerce' ) ) : ?><a class="mobile-shop-link" href="<?php echo esc_url( make_shop_url() ); ?>"><?php echo esc_html( make_t( 'Ir a la tienda', 'Go to shop' ) ); ?> →</a><?php endif; ?>
       </div>
