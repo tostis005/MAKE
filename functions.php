@@ -284,7 +284,36 @@ function make_language_switch_url( string $language ): string {
 }
 
 function make_rewrite_rules(): void {
-    add_rewrite_rule( '^en/?
+    add_rewrite_rule( '^en/?$', 'index.php?make_lang=en', 'top' );
+
+    add_rewrite_rule( '^buscar/?$', 'index.php?make_lang=es', 'top' );
+    add_rewrite_rule( '^en/search/?$', 'index.php?make_lang=en', 'top' );
+
+    add_rewrite_rule( '^articulos/?$', 'index.php?make_journal=1&make_lang=es', 'top' );
+    add_rewrite_rule( '^articulos/page/([0-9]+)/?$', 'index.php?make_journal=1&make_lang=es&paged=$matches[1]', 'top' );
+    add_rewrite_rule( '^articulos/tema/([a-z0-9-]+)/?$', 'index.php?make_journal=1&make_lang=es&make_theme_slug=$matches[1]', 'top' );
+    add_rewrite_rule( '^articulos/tema/([a-z0-9-]+)/page/([0-9]+)/?$', 'index.php?make_journal=1&make_lang=es&make_theme_slug=$matches[1]&paged=$matches[2]', 'top' );
+    add_rewrite_rule( '^articulos/seccion/([a-z0-9-]+)/?$', 'index.php?category_name=$matches[1]&make_lang=es', 'top' );
+    add_rewrite_rule( '^articulos/([a-z0-9-]+)/?$', 'index.php?name=$matches[1]&make_lang=es', 'top' );
+
+    add_rewrite_rule( '^en/articles/?$', 'index.php?make_journal=1&make_lang=en', 'top' );
+    add_rewrite_rule( '^en/articles/page/([0-9]+)/?$', 'index.php?make_journal=1&make_lang=en&paged=$matches[1]', 'top' );
+    add_rewrite_rule( '^en/articles/topic/([a-z0-9-]+)/?$', 'index.php?make_journal=1&make_lang=en&make_theme_slug=$matches[1]', 'top' );
+    add_rewrite_rule( '^en/articles/topic/([a-z0-9-]+)/page/([0-9]+)/?$', 'index.php?make_journal=1&make_lang=en&make_theme_slug=$matches[1]&paged=$matches[2]', 'top' );
+    add_rewrite_rule( '^en/articles/section/([a-z0-9-]+)/?$', 'index.php?category_name=$matches[1]&make_lang=en', 'top' );
+    add_rewrite_rule( '^en/articles/([a-z0-9-]+)/?$', 'index.php?name=$matches[1]&make_lang=en', 'top' );
+
+    // Legacy editorial paths stay resolvable so template_redirect can 301 them.
+    add_rewrite_rule( '^journal/?$', 'index.php?make_journal=1&make_lang=es', 'top' );
+    add_rewrite_rule( '^journal/page/([0-9]+)/?$', 'index.php?make_journal=1&make_lang=es&paged=$matches[1]', 'top' );
+    add_rewrite_rule( '^categoria/([a-z0-9-]+)/?$', 'index.php?make_journal=1&make_lang=es&make_theme=$matches[1]', 'top' );
+    add_rewrite_rule( '^categoria/([a-z0-9-]+)/page/([0-9]+)/?$', 'index.php?make_journal=1&make_lang=es&make_theme=$matches[1]&paged=$matches[2]', 'top' );
+    add_rewrite_rule( '^en/journal/?$', 'index.php?make_journal=1&make_lang=en', 'top' );
+    add_rewrite_rule( '^en/journal/page/([0-9]+)/?$', 'index.php?make_journal=1&make_lang=en&paged=$matches[1]', 'top' );
+    add_rewrite_rule( '^en/category/([a-z0-9-]+)/?$', 'index.php?make_journal=1&make_lang=en&make_theme=$matches[1]', 'top' );
+    add_rewrite_rule( '^en/category/([a-z0-9-]+)/page/([0-9]+)/?$', 'index.php?make_journal=1&make_lang=en&make_theme=$matches[1]&paged=$matches[2]', 'top' );
+}
+add_action( 'init', 'make_rewrite_rules', 20 );
 
 function make_maybe_flush_editorial_rewrites(): void {
     $schema_version = '3';
