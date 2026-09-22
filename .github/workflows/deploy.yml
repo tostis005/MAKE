@@ -215,7 +215,7 @@ jobs:
             }
           '
           SITE_HOST="$( "${DOCKER[@]}" exec make-wp php -r 'require "/var/www/html/wp-load.php"; $u=parse_url(home_url("/")); echo $u["host"] . (isset($u["port"]) ? ":" . $u["port"] : "");' )"
-          SAMPLE_SLUG="$( "${DOCKER[@]}" exec make-wp php -r 'require "/var/www/html/wp-load.php"; $p=get_posts(array("post_type"=>"post","post_status"=>"publish","posts_per_page"=>1,"meta_key"=>"_make_managed_article","meta_value"=>1)); echo $p ? $p[0]->post_name : "";' )"
+          SAMPLE_SLUG="$( "${DOCKER[@]}" exec make-wp php -r 'require "/var/www/html/wp-load.php"; $p=get_posts(array("post_type"=>"post","post_status"=>"publish","posts_per_page"=>1,"meta_query"=>array(array("key"=>"_make_managed_article","value"=>1),array("key"=>"_make_language","value"=>"es"))); echo $p ? $p[0]->post_name : "";' )"
 
           check_html(){
             local route="$1"
@@ -256,10 +256,13 @@ jobs:
           check_html "/wp-content/themes/make/style.css" "Store + single-product layout refinements" "store-layout-css"
           check_html "/tienda/colecciones/" "Colecciones de patrones" "shop-collections-es" "PDF descargable"
           check_html "/tienda/colecciones/" "Explora cada patrón por separado o descubre colecciones que comparten una misma paleta de color." "shop-collections-intro-es"
-          check_html "/tienda/collections/" "Pattern collections" "shop-collections-en" "Downloadable PDF"
-          check_html "/producto/bubble-gum-portrait-cross-stitch-pattern/" "drielo-shop-views" "single-product-shop-switch"
-          check_html "/producto/bubble-gum-portrait-cross-stitch-pattern/" "Marilyn Monroe con chicle" "product-copy-es"
-          check_html "/producto/bubble-gum-portrait-cross-stitch-pattern/?make_lang=en" "Marilyn Monroe Bubble Gum" "product-copy-en"
+          check_html "/en/shop/collections/" "Pattern collections" "shop-collections-en" "Downloadable PDF"
+          check_html "/tienda/marilyn-monroe-con-chicle-patron-punto-de-cruz/" "drielo-shop-views" "single-product-shop-switch"
+          check_html "/tienda/marilyn-monroe-con-chicle-patron-punto-de-cruz/" "Marilyn Monroe con chicle" "product-copy-es"
+          check_html "/en/shop/bubble-gum-portrait-cross-stitch-pattern/" "Marilyn Monroe Bubble Gum" "product-copy-en"
+          check_html "/en/shop/" "Pattern shop" "shop-patterns-en" "make_lang="
+          check_html "/buscar/?s=P0001" "P0001" "search-es" "make_lang="
+          check_html "/en/search/?s=P0001" "P0001" "search-en" "make_lang="
 
           "${DOCKER[@]}" exec make-wp php -r '
             $_COOKIE["drielo_currency"]="USD";
@@ -281,7 +284,7 @@ jobs:
           CURRENCY_COOKIE="/tmp/drielo-currency-cookie.txt"
           CURRENCY_HEADERS="/tmp/drielo-currency-headers.txt"
           rm -f "$CURRENCY_COOKIE" "$CURRENCY_HEADERS"
-          curl -fsS -o /dev/null -D "$CURRENCY_HEADERS" -c "$CURRENCY_COOKIE" "https://$SITE_HOST/producto/bubble-gum-portrait-cross-stitch-pattern/?currency=EUR"
+          curl -fsS -o /dev/null -D "$CURRENCY_HEADERS" -c "$CURRENCY_COOKIE" "https://$SITE_HOST/tienda/marilyn-monroe-con-chicle-patron-punto-de-cruz/?currency=EUR"
           CURRENCY_STATUS="$(awk '/^HTTP\//{code=$2} END{print code}' "$CURRENCY_HEADERS")"
           CURRENCY_LOCATION="$(awk 'BEGIN{IGNORECASE=1} /^Location:/{sub(/\r$/,""); print substr($0,11)}' "$CURRENCY_HEADERS" | tail -1)"
           if [ "$CURRENCY_STATUS" != "302" ] || ! grep -q "drielo_currency.*EUR" "$CURRENCY_COOKIE" || ! grep -q "drielo_usd_eur_rate" "$CURRENCY_COOKIE" || printf '%s' "$CURRENCY_LOCATION" | grep -q "currency="; then
@@ -291,7 +294,7 @@ jobs:
           echo "DRIELO_CURRENCY_COOKIE_OK status=$CURRENCY_STATUS clean_location=$CURRENCY_LOCATION"
 
           rm -f "$CURRENCY_COOKIE" "$CURRENCY_HEADERS"
-          curl -fsS -o /dev/null -D "$CURRENCY_HEADERS" -c "$CURRENCY_COOKIE" "https://$SITE_HOST/producto/bubble-gum-portrait-cross-stitch-pattern/?currency=USD"
+          curl -fsS -o /dev/null -D "$CURRENCY_HEADERS" -c "$CURRENCY_COOKIE" "https://$SITE_HOST/tienda/marilyn-monroe-con-chicle-patron-punto-de-cruz/?currency=USD"
           if ! grep -q "drielo_currency.*USD" "$CURRENCY_COOKIE" || ! grep -q "drielo_usd_eur_rate" "$CURRENCY_COOKIE"; then
             echo "USD currency cookie verification failed"
             exit 2
@@ -321,15 +324,15 @@ jobs:
             echo "DRIELO_PREVIEW_OK width=".$preview[1]." USD=".$usd_symbol." EUR=".$eur_symbol.PHP_EOL;
           '
 
-          check_html "/journal/" "Últimos artículos" "journal-es"
-          check_html "/en/journal/" "Latest articles" "journal-en"
-          check_html "/categoria/florals/" "Flores y botánica" "journal-category-es"
-          check_html "/en/category/florals/" "Florals & botanical" "journal-category-en"
+          check_html "/articulos/" "Últimos artículos" "journal-es"
+          check_html "/en/articles/" "Latest articles" "journal-en"
+          check_html "/articulos/tema/flores-y-botanica/" "Flores y botánica" "journal-category-es"
+          check_html "/en/articles/topic/florals/" "Florals & botanical" "journal-category-en"
           check_html "/wp-content/themes/make/assets/images/categories/category-art-generated.webp" "RIFF" "category-art-image"
-          check_html "/journal/" "category-art-generated.webp" "journal-category-art"
-          check_html "/journal/page/2/" "Últimos artículos" "journal-page-2"
-          check_html "/$SAMPLE_SLUG/" "article-related-grid" "single-article"
+          check_html "/articulos/" "category-art-generated.webp" "journal-category-art"
+          check_html "/articulos/page/2/" "Últimos artículos" "journal-page-2"
+          check_html "/articulos/$SAMPLE_SLUG/" "article-related-grid" "single-article"
           check_html "/sitemap.xml" "<sitemapindex" "sitemap-index"
-          check_html "/sitemap-es.xml" "<urlset" "sitemap-es" "make_theme="
-          check_html "/sitemap-en.xml" "<urlset" "sitemap-en" "make_theme="
+          check_html "/sitemap-es.xml" "<urlset" "sitemap-es" "make_lang="
+          check_html "/sitemap-en.xml" "<urlset" "sitemap-en" "make_lang="
           REMOTE
