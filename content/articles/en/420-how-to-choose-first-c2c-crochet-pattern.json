@@ -1,0 +1,75 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 420,
+  "translation_group": "420-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "buying-guides",
+      "terms": [
+        "buying-guides"
+      ]
+    },
+    "topic": {
+      "primary": "patterns",
+      "terms": [
+        "patterns"
+      ]
+    },
+    "style": {
+      "terms": [
+        "first-pattern",
+        "pattern-selection",
+        "beginner"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "buying-guide",
+      "terms": [
+        "buying-guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-420-c2c",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Beginners choosing or buying a first C2C pattern and needing to judge difficulty, size, colors and pattern format before starting.",
+  "title": "How to Choose Your First C2C Crochet Pattern",
+  "slug": "how-to-choose-first-c2c-crochet-pattern",
+  "seo": {
+    "title": "How to Choose Your First C2C Crochet Pattern",
+    "meta_description": "Choose your first C2C crochet pattern by checking graph size, color changes, instructions, gauge, materials and real project complexity.",
+    "search_intent": "People comparing C2C patterns who want a first project that teaches the technique without hidden complexity."
+  },
+  "excerpt": "Your first C2C pattern should teach the construction without excessive yarn management. Learn what to check in the graph, colors, size and materials.",
+  "content_html": "<p>Choosing your first C2C crochet pattern matters more than it may seem. The basic technique can be learned quickly, but a poorly chosen pattern can introduce a huge graph, constant color changes, complicated shaping and hard-to-replace materials all at once.</p>\n<p>A useful first project lets you practice blocks, increases, decreases and chart reading without making yarn organization the main challenge. The word “beginner” on a cover is not enough; you need to inspect the actual structure of the pattern.</p>\n<h2>Check shape and block count first</h2>\n<p>A standard square or rectangle is the clearest construction for learning. You can predict when the piece grows, when one dimension is maintained and when the final decreases begin.</p>\n<p>Look at graph dimensions in cells. A 30-by-30 chart contains 900 blocks; an 80-by-100 chart contains 8,000. They may use the same stitches, but the workload and number of opportunities for mistakes are very different.</p>\n<p>A small or medium project lets you experience the complete C2C cycle before motivation fades. A cushion, panel or smaller blanket can teach more than a giant throw that takes weeks to reach its first decrease.</p>\n<p>Check whether the design is square or rectangular too. A rectangle adds the section where one edge decreases while the other continues increasing—still simple, but one more shaping idea to track.</p>\n<h2>Judge color distribution, not only palette size</h2>\n<p>A six-color pattern can be easy when every shade occupies broad areas. A three-color design can be demanding when colors change every one or two blocks.</p>\n<p>Find the busiest diagonal and estimate the number of changes. That figure often predicts real difficulty better than the number of colors listed in the key.</p>\n<p>Also notice how many separate islands use the same shade. Numerous small regions mean more bobbins, more ends or more decisions about carrying yarn.</p>\n<p>If a preview shows the graph, look for repeated one-block changes. That kind of color “confetti” is often what slows a graphgan most.</p>\n<h2>Prefer documentation you can verify two ways</h2>\n<p>A strong beginner pattern should include a readable graph with a clear starting direction and color legend. Written diagonal instructions provide a second way to check counts.</p>\n<p>Zoomed or multi-page charts are especially helpful on medium and large designs. A full chart that only becomes readable at extreme phone zoom is inconvenient during hours of crochet.</p>\n<p>Look for clear guidance on increases, decreases and, for rectangles, both turning points. A beginner pattern should not assume you already understand every shaping transition.</p>\n<p>A useful preview should show enough of the interior pages to reveal the format. If you only see the cover, you cannot judge chart readability or instruction quality.</p>\n<h2>Calculate size from your own gauge</h2>\n<p>Published dimensions reflect the designer's yarn, hook and tension. Substitute materials and your blocks may become larger or smaller.</p>\n<p>Make a swatch and measure several blocks horizontally and vertically. Multiply those figures by the graph dimensions before buying all the yarn.</p>\n<p>This prevents a planned throw from unexpectedly becoming bed-size. It can also tell you whether classic or mini C2C better suits the graph.</p>\n<p>If the pattern provides gauge, use it as a comparison point. You do not need an exact match when size is flexible, but you should understand how far your version will differ.</p>\n<h2>Review materials, yarn use and substitution options</h2>\n<p>Check the recommended yarn weight, palette and whether the main shades are easy to source. For a first project, a stable, washable yarn line often makes the experience easier.</p>\n<p>If the pattern lists yarn use by color, treat it as a starting estimate and add a margin. A dominant background may need several skeins while one detail only needs a small bobbin.</p>\n<p>Do not buy the entire palette before checking contrast. A grayscale photo of the yarns can reveal two important shades that will visually merge.</p>\n<p>Also consider whether the yarn can be substituted without losing essential colors. A first project is needlessly complicated when it depends on a discontinued or difficult-to-find shade.</p>\n<h2>Choose difficulty that teaches one thing at a time</h2>\n<p>Your first pattern does not need to be monochrome. Two or three colors and a clear silhouette let you practice color changes without losing the construction rhythm.</p>\n<p>Avoid combining a portrait, twenty bobbins, tiny lettering and a huge graph in the same first attempt. Each skill can be added after the previous one feels routine.</p>\n<p>Before choosing, imagine the busiest diagonal: how many bobbins will be active, how many changes must be counted and how physically large the work will be. That mental preview reveals more than a marketing difficulty label.</p>\n<p>Finally, choose a motif you genuinely want to finish. C2C is repetitive by nature, so motivation matters. A well-documented pattern with manageable scale and moderate colorwork gives you a stronger foundation than a spectacular design with unnecessary complexity.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Several C2C pattern covers with one beginner-friendly option highlighted and labels for size, color count and chart format.",
+    "alt": "How to choose your first C2C crochet pattern"
+  }
+}
