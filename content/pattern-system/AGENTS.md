@@ -13,7 +13,10 @@ This repository is the source of truth for Drielo cross-stitch PDF generation.
 7. Pages 1-3 use the same canonical vector stitch model. Page 1 places the transparent vector stitch layer inside the collection's frame area over an Aida-style fabric background. Pages 2-3 render the same stitch geometry with the template's fabric preview.
 8. Colour charts, symbol charts, rulers and enlarged chart sections must be generated from the same matrix and thread definitions used for the preview.
 9. Keep the customer PDF vector wherever the template generates SVG. Do not rasterize vector chart/stitch artwork before PDF export.
-10. Product code must be technique-qualified and unique: `P0021-CS`, `P0021-C2C`, `P0021-TC` or `P0021-LH`. Keep the shared design family separately as the base design ID (`P0021`).\n11. Every sellable product has exactly ONE public product image. It must contain only the ambient/lifestyle scene with the finished craft visible. Never use the full PDF page as a store image and never include the right-side facts rail, title, subtitle, skill level, finished size, colour/thread count, type, footer, floral ornaments, URL or page number.\n12. The public product image must be derived from the same page-1 composition and the same final vector pattern used in the PDF, so the store image and PDF cover always match. Export it as a 4:5 WebP using the template element marked `[data-product-image]`.\n13. For mass production, generate product JSON + pattern JSON, render PDF + product image in GitHub Actions, then let the product-import workflow publish/update WooCommerce. Do not manually patch PDFs or manually rebuild store screenshots.
+10. Product code must be technique-qualified and unique: `P0021-CS`, `P0021-C2C`, `P0021-TC` or `P0021-LH`. Keep the shared design family separately as the base design ID (`P0021`).
+11. Every sellable product has exactly ONE public product image. It must contain only the ambient/lifestyle scene with the finished craft visible. Never use the full PDF page as a store image and never include the right-side facts rail, title, subtitle, skill level, finished size, colour/thread count, type, footer, floral ornaments, URL or page number.
+12. The public product image must be derived from the same page-1 composition and the same final vector pattern used in the PDF, so the store image and PDF cover always match. Export it as a 4:5 WebP using the template element marked `[data-product-image]`.
+13. For mass production, generate product JSON + pattern JSON, render PDF + product image in GitHub Actions, then let the product-import workflow publish/update WooCommerce. Do not manually patch PDFs or manually rebuild store screenshots.
 
 ## Collection palette
 
@@ -62,3 +65,29 @@ Required output:
 - templates/renderers must expose the exact capture region as `[data-product-image]`.
 
 This image is the only item in the product gallery unless a future project rule explicitly adds additional commercial imagery.
+
+
+## Colour-preservation rule
+
+When adapting a base design to lower-resolution techniques (C2C Crochet, Tapestry Crochet, Latch Hook/Rug), never use an unweighted majority-colour reduction. Neutral fabric/skin/background colours can overwhelm accent colours and make the result look monochrome.
+
+Required behaviour:
+- all output colours must still come from the collection palette;
+- block reduction must use a chroma-aware vote that preserves saturated accent colours and important dark contour lines;
+- compare the weighted average saturation of each reduced technique with the Cross Stitch source; a substantial collapse is a build error;
+- the page-1 vector overlay uses normal blending, not multiply blending;
+- overlay opacity must remain high enough to represent the actual yarn/thread colour (normally >= 0.90);
+- do not globally invent colours that are not present in the collection palette.
+
+## Exact ecommerce crop rule
+
+The public WooCommerce/Etsy image must contain only the ambient scene and final craft. The capture target is the inner page-1 scene/stage itself, not the surrounding PDF card.
+
+Forbidden in the exported product image:
+- white/sepia PDF border;
+- page background;
+- facts rail;
+- title/header/footer/page number;
+- padding added around the scene.
+
+The renderer must create an edge-to-edge 4:5 WebP by cropping the scene with `cover` semantics. It must never pad the scene to reach 4:5.
