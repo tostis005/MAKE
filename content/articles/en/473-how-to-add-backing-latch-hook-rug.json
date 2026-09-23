@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 473,
+  "translation_group": "473-latch-hook",
+  "taxonomy": {
+    "craft": {
+      "primary": "latch-hook",
+      "terms": [
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "finishing",
+      "terms": [
+        "finishing"
+      ]
+    },
+    "style": {
+      "terms": [
+        "backing",
+        "rugs",
+        "finishing"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "rugs"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-473-latch-hook",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Makers who finished a latch hook rug and want to cover the reverse to protect the mesh and improve the finish.",
+  "title": "How to Add Backing to a Latch Hook Rug",
+  "slug": "how-to-add-backing-latch-hook-rug",
+  "seo": {
+    "title": "How to Add Backing to a Latch Hook Rug",
+    "meta_description": "Add backing to a latch hook rug by choosing compatible material, preparing edges, cutting with allowance, aligning layers and sewing without distortion.",
+    "search_intent": "People who want to cover and protect the reverse of a finished latch hook rug."
+  },
+  "excerpt": "Backing protects the reverse and creates a cleaner rug finish. Learn how to choose material, measure, cut and attach it without stretching the canvas.",
+  "content_html": "<p>Adding backing to a latch hook rug protects the reverse of the canvas, hides knots and creates a cleaner finish. Backing does not replace properly finished edges or repair a distorted rug, but it does create another layer between the mesh and the floor.</p>\n<p>The exact method depends on the backing material, rug size and intended cleaning routine. Before permanently attaching anything, finish the canvas edges and make sure the piece lies as flat as possible.</p>\n<h2>Choose backing that suits how the rug will be used</h2>\n<p>A firm fabric, durable felt or another backing material can cover the canvas and protect it from direct abrasion.</p>\n<p>For a floor rug, consider slip behavior separately. Decorative backing and an anti-slip solution are not necessarily the same material.</p>\n<p>If extra grip is needed, use a product intended for that purpose and make sure it is suitable for the floor surface where the rug will sit.</p>\n<p>The backing should be stable enough that it does not stretch far more than the latch hook panel.</p>\n<p>Check its cleaning instructions so they do not conflict with the care needs of the yarn and canvas.</p>\n<p>Make a small sewing test when the material is thick or stiff to ensure it can be attached without damaging the mesh.</p>\n<h2>Finish and stabilize the edges before covering the reverse</h2>\n<p>Confirm that all knot rows are complete and that the extra canvas has been folded or prepared according to your chosen edge finish.</p>\n<p>Repair loose knots, gaps and bulky corners before they are hidden.</p>\n<p>Lay out the rug and measure width and height in several places. The backing should fit the actual finished shape rather than an assumed pattern size.</p>\n<p>If the canvas waves, do not try to force it flat by stretching the backing tightly because that can create bubbles or puckers.</p>\n<p>Block or stabilize the rug when appropriate for the materials and let it reach its finished shape before measuring.</p>\n<p>A clean, regular foundation makes the backing much easier to attach without distortion.</p>\n<h2>Cut the backing with enough allowance for adjustment</h2>\n<p>Place the rug over the backing material and mark the outline without stretching either layer.</p>\n<p>Add the allowance needed for your seam or hem rather than cutting exactly flush on the first pass.</p>\n<p>Cut a slightly larger piece first and test the placement.</p>\n<p>At the corners, plan how extra material will fold or be hidden so thick lumps do not form.</p>\n<p>If the backing has a directional texture or a specific non-slip face, verify the orientation before cutting.</p>\n<p>Once the fit is correct, finish any backing edges that would otherwise fray.</p>\n<h2>Hold the two layers together without stretching one against the other</h2>\n<p>Lay the rug with the reverse facing upward and center the backing over it.</p>\n<p>Use clips, suitable pins or temporary basting to keep the layers aligned while you work.</p>\n<p>Secure centers and corners first, then add intermediate points so excess does not collect along one side.</p>\n<p>Do not stretch the backing in an attempt to visually shrink a wavy rug. Both layers should rest in their natural shape.</p>\n<p>Check the front several times during assembly to make sure the outline is not curling.</p>\n<p>On large rugs, work in short sections and lay the piece flat again after completing each side.</p>\n<h2>Sew the backing to the perimeter with distributed tension</h2>\n<p>Hand stitching around the edge gives good control over how much material is caught and helps keep visible pile out of the seam.</p>\n<p>Take regular stitches through the canvas margin or edge finish rather than through the cut yarn ends.</p>\n<p>Use firm but moderate tension so the seam brings the layers together without gathering them.</p>\n<p>At corners, several small distributed stitches are better than one very tight stitch.</p>\n<p>If the construction uses additional interior anchoring points, add them only when appropriate and avoid creating distracting marks on the visible face.</p>\n<p>After each side is attached, lay the rug flat and confirm that the backing is not forming folds.</p>\n<h2>Inspect the finish for safety and maintenance</h2>\n<p>Place the rug in its intended location and check whether the backing stays flat and the perimeter remains down.</p>\n<p>On a smooth floor, separately assess whether a suitable anti-slip underlay or treatment is needed; backing alone does not guarantee enough grip.</p>\n<p>Make sure no stitches, fabric corners or canvas edges are exposed to direct abrasion.</p>\n<p>Keep the care instructions for every material used because cleaning needs to respect the yarn, canvas and backing together.</p>\n<p>After the first period of use, inspect the perimeter for loose stitching before small problems spread.</p>\n<p>Adding backing to a latch hook rug means protecting the reverse without stretching or reshaping the piece. Compatible material, a cut with working allowance and evenly distributed stitching create a cleaner, more durable finish, while slip control should be evaluated separately for the specific floor and use.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Latch hook rug face down with a backing piece aligned over it, clips around the perimeter and one corner partially sewn.",
+    "alt": "How to add backing to a latch hook rug"
+  }
+}
