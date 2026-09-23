@@ -151,8 +151,58 @@
       }
     }
 
-    var descriptions=hub.querySelectorAll('p,[class*="description"]');
+    var descriptions=hub.querySelectorAll('p,small,[class*="description"]');
     for(var d=0;d<descriptions.length;d++)descriptions[d].remove();
+
+    var language=(document.documentElement.lang||'es').toLowerCase().indexOf('en')===0?'en':'es';
+    var techniques=[
+      {
+        key:'cross-stitch',
+        match:['punto de cruz','cross stitch'],
+        es:'Punto de cruz',en:'Cross Stitch',
+        icon:'<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="15"></circle><path d="M14 9h20"></path><path d="M18 17l12 14M30 17L18 31"></path></svg>'
+      },
+      {
+        key:'c2c-crochet',
+        match:['c2c crochet','corner to corner'],
+        es:'C2C Crochet',en:'C2C Crochet',
+        icon:'<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M11 33c7-1 11-5 14-11l7-13"></path><path d="M30 9h6c2 0 3 2 2 4l-2 3"></path><rect x="10" y="29" width="7" height="7" rx="1"></rect><rect x="18" y="21" width="7" height="7" rx="1"></rect><rect x="26" y="29" width="7" height="7" rx="1"></rect></svg>'
+      },
+      {
+        key:'tapestry-crochet',
+        match:['tapestry crochet','crochet tapestry'],
+        es:'Tapestry Crochet',en:'Tapestry Crochet',
+        icon:'<svg viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="10" width="21" height="28" rx="2"></rect><path d="M14 16h13M14 22h13M14 28h13M14 34h13"></path><path d="M34 10c4 5 4 10 0 15l-5 6"></path><path d="M31 32l5-6"></path></svg>'
+      },
+      {
+        key:'latch-hook',
+        match:['latch hook','rug'],
+        es:'Latch Hook',en:'Latch Hook',
+        icon:'<svg viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="12" width="24" height="25" rx="2"></rect><path d="M14 17h16M14 23h16M14 29h16M18 12v25M26 12v25"></path><path d="M36 9l-8 13"></path><path d="M27 22l5 1 2-5"></path></svg>'
+      }
+    ];
+
+    var techniqueLinks=Array.prototype.slice.call(hub.querySelectorAll('a'));
+    for(var t=0;t<techniqueLinks.length;t++){
+      var raw=(techniqueLinks[t].textContent||'').replace(/\s+/g,' ').trim().toLowerCase();
+      var spec=null;
+      for(var x=0;x<techniques.length&&!spec;x++){
+        for(var y=0;y<techniques[x].match.length;y++){
+          if(raw.indexOf(techniques[x].match[y])!==-1){spec=techniques[x];break;}
+        }
+      }
+      if(!spec)continue;
+
+      var top=techniqueLinks[t];
+      while(top.parentElement&&top.parentElement!==hub)top=top.parentElement;
+      if(top&&top!==hub){
+        top.classList.add('drielo-technique-card--compact','drielo-technique-card--'+spec.key);
+      }
+
+      techniqueLinks[t].classList.add('drielo-technique-link--compact');
+      techniqueLinks[t].setAttribute('data-drielo-technique',spec.key);
+      techniqueLinks[t].innerHTML='<span class="drielo-technique-compact-icon">'+spec.icon+'</span><strong class="drielo-technique-compact-title">'+(language==='en'?spec.en:spec.es)+'</strong>';
+    }
   }
 
   function initDrieloStorePresentation(){
