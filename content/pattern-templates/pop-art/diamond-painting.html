@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Drielo Pop Art — Diamond Painting Template</title>
+<link rel="stylesheet" href="../shared/drielo-pattern-template.css">
+</head>
+<body>
+<!-- Technique placeholders:
+{{DRILLS_W}}, {{DRILLS_H}}, {{CANVAS_WIDTH_CM}}, {{CANVAS_HEIGHT_CM}}, {{DRILL_SHAPE}},
+{{TOTAL_DRILLS}}, {{EXTRA_PERCENT}}, {{PATTERN_CODE}}, {{PRODUCT_URL}}
+Slots: PATTERN_PREVIEW_SVG, DRILL_KEY_ROWS, COLOR_CHART_SVG, SYMBOL_CHART_SVG
+-->
+<section class="page cover"><div class="page-inner">
+  <div class="cover-art">
+    <svg viewBox="0 0 700 760" role="img" aria-label="Diamond painting framed canvas mockup">
+      <rect width="700" height="760" fill="#e2ddd4"/>
+      <rect x="78" y="70" width="544" height="570" rx="6" fill="#9e744c"/>
+      <rect x="98" y="90" width="504" height="530" fill="#f8f4ec"/>
+      <defs><clipPath id="diamondClip"><rect x="120" y="112" width="460" height="486"/></clipPath></defs>
+      <rect x="120" y="112" width="460" height="486" fill="#fff" stroke="#111" stroke-width="2"/>
+      <g clip-path="url(#diamondClip)">
+        <g class="pop-sample" opacity=".28">
+          <rect class="p1" x="120" y="112" width="153" height="162"/><rect class="p2" x="273" y="112" width="154" height="162"/><rect class="p3" x="427" y="112" width="153" height="162"/>
+          <circle class="p4" cx="270" cy="435" r="92"/><circle class="p5" cx="455" cy="435" r="92"/>
+        </g>
+        <!-- SLOT:PATTERN_PREVIEW_SVG -->
+        <g opacity=".16" fill="#fff">
+          <circle cx="160" cy="150" r="4"/><circle cx="220" cy="220" r="4"/><circle cx="330" cy="180" r="4"/><circle cx="510" cy="250" r="4"/><circle cx="420" cy="360" r="4"/><circle cx="235" cy="500" r="4"/><circle cx="520" cy="520" r="4"/>
+        </g>
+      </g>
+      <rect x="30" y="675" width="180" height="42" rx="8" fill="#f7f2e8"/><text x="120" y="701" text-anchor="middle" class="mock-label">ROUND / SQUARE DRILLS</text>
+      <text x="350" y="742" text-anchor="middle" class="mock-label">DIAMOND PAINTING · FRAMED CANVAS MOCKUP</text>
+    </svg>
+  </div>
+  <div class="cover-meta"><div><div class="brand">DRIELO</div><div class="code">{{PATTERN_CODE}}</div><div class="technique">Diamond Painting Chart</div><div class="collection">Pop Art Collection</div></div><div class="cover-badge">Digital Chart Only</div></div>
+</div></section>
+
+<section class="page"><div class="page-inner">
+  <div class="header"><div><span class="kicker">Project overview</span><h1>{{PATTERN_CODE}}</h1></div><div class="header-technique">Diamond Painting · Pop Art</div></div>
+  <div class="grid-3"><div class="stat"><b>{{DRILLS_W}} × {{DRILLS_H}}</b><span>Drill grid</span></div><div class="stat"><b>{{CANVAS_WIDTH_CM}} × {{CANVAS_HEIGHT_CM}} cm</b><span>Design area</span></div><div class="stat"><b>{{TOTAL_DRILLS}}</b><span>Total drills</span></div></div>
+  <div style="height:8mm"></div>
+  <div class="grid-2"><div class="card"><h3>Recommended setup</h3><p style="margin-top:4mm"><b>Drill shape:</b> {{DRILL_SHAPE}}<br><b>Extra drills:</b> {{EXTRA_PERCENT}}% recommended<br><b>Canvas:</b> blank adhesive diamond-painting canvas sized to the chart.</p></div><div class="card"><h3>Chart logic</h3><p style="margin-top:4mm">One chart cell equals one resin drill. Match each symbol to the drill key and work in small exposed sections of adhesive canvas.</p></div></div>
+  <div class="note"><p>This is a digital chart, not a physical kit. The design matrix may reuse the Pop Art source directly when its grid matches the chosen canvas/drill size.</p></div>
+  <div class="url"><a href="{{PRODUCT_URL}}">{{PRODUCT_URL}}</a></div>
+  <div class="footer"><span>© {{COPYRIGHT_YEAR}} Drielo</span><span class="page-number">Page </span></div>
+</div></section>
+
+<section class="page"><div class="page-inner"><div class="header"><div><span class="kicker">Drill inventory</span><h2>Colors, symbols & quantities</h2></div><div class="header-code">{{PATTERN_CODE}}</div></div><table class="table"><thead><tr><th>Symbol</th><th>Color</th><th>Reference</th><th>Required</th><th>With extra</th></tr></thead><tbody><!-- SLOT:DRILL_KEY_ROWS --></tbody></table><div class="footer"><span>Order the quantity shown in “With extra”</span><span class="page-number">Page </span></div></div></section>
+
+<section class="page"><div class="page-inner"><div class="header"><div><span class="kicker">Full chart</span><h2>Color chart</h2></div><div class="header-code">{{PATTERN_CODE}}</div></div><div class="chart-shell"><!-- SLOT:COLOR_CHART_SVG --></div><div class="footer"><span>1 cell = 1 drill</span><span class="page-number">Page </span></div></div></section>
+
+<section class="page"><div class="page-inner"><div class="header"><div><span class="kicker">Working chart</span><h2>Symbol chart</h2></div><div class="header-code">{{PATTERN_CODE}}</div></div><div class="chart-shell"><!-- SLOT:SYMBOL_CHART_SVG --></div><div class="footer"><span>Designed for zoom and tiled printing</span><span class="page-number">Page </span></div></div></section>
+
+<section class="page"><div class="page-inner"><div class="header"><div><span class="kicker">Workflow</span><h2>Clean placement & finishing</h2></div><div class="header-code">{{PATTERN_CODE}}</div></div><div class="steps"><div class="step"><div class="step-n">1</div><p>Label drill containers with the symbols from the key before starting.</p></div><div class="step"><div class="step-n">2</div><p>Expose only a small section of adhesive canvas at a time.</p></div><div class="step"><div class="step-n">3</div><p>Use a straight edge periodically to keep rows aligned.</p></div><div class="step"><div class="step-n">4</div><p>Press the completed surface gently with a roller and frame only after all drills are secure.</p></div></div><div class="footer"><span>DRIELO · DIAMOND PAINTING</span><span class="page-number">Page </span></div></div></section>
+</body></html>
