@@ -31,82 +31,100 @@ def write_json(path: Path, data):
 
 
 def teddy_labels() -> Image.Image:
-    """Canonical I0001 motif at the Pop Art master CS grid: 100 x 120."""
-    im = Image.new("L", (100, 120), 0)
-    d = ImageDraw.Draw(im)
+    """I0001 rebuilt from the approved collection reference sheet.
 
-    outline = 1
-    fur = 2
-    light = 3
-    face = 4
-    blush = 5
-    bow = 6
-    bow_dark = 7
-    white = 8
+    The source rows are a stitch-level reconstruction of the first tile in the
+    supplied Baby & Nursery design board: seated teddy, blue bow, pink cheeks.
+    It is deliberately not a freehand reinterpretation.  We preserve the
+    reference silhouette, face, paw patches and bow, then fit it into the same
+    100 x 120 master grid used by the Pop Art multitech system.
+    """
+    source_rows = [
+        "...............................................................",
+        "...............................................................",
+        "...............................................................",
+        "...............................................................",
+        "...............................................................",
+        ".................999999.....................949449.............",
+        ".................421111.....................111221.............",
+        "...............4112111114...41111111119...4111112111...........",
+        "..............411122211114441211111111144.41121111114..........",
+        ".............41111333222211121111111211224221233211119.........",
+        "............912122333322221111111111111222222333221121.........",
+        "............2221233333322211111111111111111233333312229........",
+        "............2222333332211111111111111111111123333322229........",
+        "............2222333321111111111111111111111112333322229........",
+        "............222223331111111111111111111111111223322222.........",
+        "............412223311111111111111111111111111223211219.........",
+        ".............1122221111111111111111111111111111222214..........",
+        "..............42222211111111111111111111111111122229...........",
+        "...............94221111111111111111111111111111219.............",
+        "................421111111111111111111111111111121..............",
+        "...............41211111135311111111111353111111224.............",
+        "...............42211111255521111111112555211111221.............",
+        "...............42211111255521441444412555211111221.............",
+        "...............42211161135344425551444353166111221.............",
+        "...............42211166611499955553994411666111221.............",
+        "...............42211666611499915554999411666611221.............",
+        "...............42221166114999994599999411166112221.............",
+        "...............94222111114999141594199611144122219.............",
+        "................422222111499955555559941111112224..............",
+        ".................22222211149945243346641111122219..............",
+        "..................122222221494999444441222222224...............",
+        "..................9432222221444444441122222222.................",
+        "..................11222778888111111128887723321................",
+        "................942222877777832222228877777822249..............",
+        "................122228777787888877888878777822221..............",
+        ".............91111112877788888877788888877782222111............",
+        "............41212211287778888887778888877778221121144..........",
+        "..........991222222227777777888878887777777822211112149........",
+        "..........111121122221777778888888888877777222111112214........",
+        "........911111111222332778888882228888887833322121111111.......",
+        "........9222222222233332288878821288788882222322222222224......",
+        ".......412221111123322222777782111287778822223322211122224.....",
+        ".......422221144113322217777781111227777782223311444422229.....",
+        ".......422111111111122177777711111117777772221114444411229.....",
+        ".......421141111111112212778111111122777122211111111441129.....",
+        ".......421442333311142222278111111111772222211113333144124.....",
+        ".......421423333331442222221111111111122231144233333314129.....",
+        ".......94113333333244423322111111111112233144433333331119......",
+        ".........11333333321441232221111111122233214413333333211.......",
+        "........9113333333334411322221111112222231111333333332119......",
+        ".........111333333334411222221121112223331141333333321119......",
+        "........9114333333334411223222222222223331144333333311119......",
+        "..............................................................."
+]
+    src = Image.new("L", (len(source_rows[0]), len(source_rows)), 0)
+    px = src.load()
+    for y, row in enumerate(source_rows):
+        for x, ch in enumerate(row):
+            if ch != ".":
+                px[x, y] = int(ch)
 
-    # Dark silhouette.
-    d.ellipse((14, 9, 39, 34), fill=outline)
-    d.ellipse((61, 9, 86, 34), fill=outline)
-    d.ellipse((21, 8, 79, 62), fill=outline)
-    d.ellipse((27, 53, 73, 104), fill=outline)
-    d.ellipse((12, 58, 39, 95), fill=outline)
-    d.ellipse((61, 58, 88, 95), fill=outline)
-    d.ellipse((19, 88, 45, 117), fill=outline)
-    d.ellipse((55, 88, 81, 117), fill=outline)
+    # Crop the reference tile to the actual motif before fitting it to the
+    # canonical 100x120 Pop Art master grid.  The mild vertical fit keeps the
+    # chubby nursery proportions while making the motif read strongly on page 1.
+    bbox = src.getbbox()
+    motif = src.crop(bbox)
+    motif = motif.resize((92, 96), Image.Resampling.NEAREST)
 
-    # Main fur.
-    d.ellipse((17, 12, 36, 31), fill=fur)
-    d.ellipse((64, 12, 83, 31), fill=fur)
-    d.ellipse((24, 11, 76, 59), fill=fur)
-    d.ellipse((30, 55, 70, 101), fill=fur)
-    d.ellipse((15, 61, 37, 92), fill=fur)
-    d.ellipse((63, 61, 85, 92), fill=fur)
-    d.ellipse((22, 91, 43, 115), fill=fur)
-    d.ellipse((57, 91, 78, 115), fill=fur)
-
-    # Inner ears, muzzle, belly and paws.
-    d.ellipse((20, 15, 33, 28), fill=light)
-    d.ellipse((67, 15, 80, 28), fill=light)
-    d.ellipse((35, 34, 65, 54), fill=light)
-    d.ellipse((38, 64, 62, 94), fill=light)
-    d.ellipse((22, 82, 34, 91), fill=light)
-    d.ellipse((66, 82, 78, 91), fill=light)
-    d.ellipse((26, 104, 40, 114), fill=light)
-    d.ellipse((60, 104, 74, 114), fill=light)
-
-    # Face.
-    d.ellipse((36, 29, 41, 35), fill=face)
-    d.ellipse((59, 29, 64, 35), fill=face)
-    d.point((38, 31), fill=white)
-    d.point((61, 31), fill=white)
-    d.ellipse((46, 40, 54, 46), fill=face)
-    d.arc((40, 42, 50, 53), start=10, end=92, fill=outline, width=2)
-    d.arc((50, 42, 60, 53), start=88, end=170, fill=outline, width=2)
-    d.ellipse((31, 39, 36, 44), fill=blush)
-    d.ellipse((64, 39, 69, 44), fill=blush)
-
-    # Bow tie.
-    d.polygon([(37, 54), (47, 59), (47, 68), (36, 72), (33, 63)], fill=bow)
-    d.polygon([(63, 54), (53, 59), (53, 68), (64, 72), (67, 63)], fill=bow)
-    d.ellipse((46, 59, 54, 68), fill=bow_dark)
-
-    # Tiny decorative stitches inside belly to give the nursery motif a handmade feel.
-    d.arc((43, 72, 57, 86), start=200, end=340, fill=light, width=1)
-    return im
-
+    out = Image.new("L", (100, 120), 0)
+    out.paste(motif, (4, 12))
+    return out
 
 def pattern_from_labels(labels: Image.Image, collection):
     label_to_dmc = {
-        1: "801",   # Dark Coffee Brown
-        2: "437",   # Light Tan
-        3: "842",   # Very Light Beige Brown
-        4: "3799",  # Very Dark Pewter Gray
-        5: "3713",  # Very Light Salmon
-        6: "3325",  # Light Baby Blue
-        7: "3760",  # Medium Wedgewood
-        8: "3865",  # Winter White
+        1: "437",   # Light Tan - main fur
+        2: "434",   # Light Brown - fur shadow / outline
+        3: "801",   # Dark Coffee Brown - ear and paw depth
+        4: "842",   # Very Light Beige Brown - muzzle/paw highlights
+        5: "3799",  # Very Dark Pewter Gray - eyes, nose and mouth
+        6: "3713",  # Very Light Salmon - cheeks
+        7: "3325",  # Light Baby Blue - bow
+        8: "3760",  # Medium Wedgewood - bow shading
+        9: "3865",  # Winter White - face highlights
     }
-    symbols = {1:"A", 2:"B", 3:"C", 4:"D", 5:"E", 6:"F", 7:"G", 8:"H"}
+    symbols = {1:"A", 2:"B", 3:"C", 4:"D", 5:"E", 6:"F", 7:"G", 8:"H", 9:"J"}
     palette = {str(p["dmc"]): p for p in collection["palette"]}
     px = labels.load()
     matrix = []
@@ -123,7 +141,7 @@ def pattern_from_labels(labels: Image.Image, collection):
                 counts[sym] += 1
         matrix.append(row)
     threads = []
-    for lab in range(1, 9):
+    for lab in range(1, 10):
         sym = symbols[lab]
         if not counts[sym]:
             continue
@@ -161,7 +179,7 @@ def product_source(code, suffix):
         "website": "www.drielo.com",
         "status": "active",
         "render_ready": True,
-        "source_artwork": "generated-in-repo:baby-nursery/I0001-teddy-bear-v1",
+        "source_artwork": "reference-sheet:baby-nursery/I0001-teddy-bear-v2",
         "page_1_asset": page_assets[suffix],
     }
 
@@ -307,7 +325,7 @@ def product_row(suffix, pattern):
         "download": f"files/Drielo_{code}.pdf",
         "seo_title": f"{title_en} | Drielo",
         "meta_description": short_en[:155],
-        "gallery_revision": 2026092301,
+        "gallery_revision": 2026092302,
         "title_en": title_en,
         "title_es": title_es,
         "short_description_en": short_en,
@@ -378,7 +396,7 @@ def main():
             "collection": "baby-nursery",
             "palette_collection": "baby-nursery",
             "status": "ready",
-            "source_asset": "generated-in-repo:baby-nursery/I0001-teddy-bear-v1",
+            "source_asset": "reference-sheet:baby-nursery/I0001-teddy-bear-v2",
             "stitch_width": cfg["w"],
             "stitch_height": cfg["h"],
             "total_stitches": total,
@@ -426,7 +444,7 @@ def main():
     for item in designs.get("designs", []):
         if item.get("base_design_id") == "I0001":
             item["artwork_status"] = "canonical-pattern-ready"
-            item["source_asset"] = "generated-in-repo:baby-nursery/I0001-teddy-bear-v1"
+            item["source_asset"] = "reference-sheet:baby-nursery/I0001-teddy-bear-v2"
     write_json(designs_path, designs)
 
     catalog = read_json(CATALOG_PATH)
