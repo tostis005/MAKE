@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 476,
+  "translation_group": "476-latch-hook",
+  "taxonomy": {
+    "craft": {
+      "primary": "latch-hook",
+      "terms": [
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "ideas",
+      "terms": [
+        "ideas"
+      ]
+    },
+    "topic": {
+      "primary": "rugs",
+      "terms": [
+        "rugs"
+      ]
+    },
+    "style": {
+      "terms": [
+        "rug",
+        "project-conversion",
+        "finishing"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "rugs"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-476-latch-hook",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Makers with a finished latch hook panel who want to turn it into a functional rug with floor-ready edges and backing.",
+  "title": "How to Turn a Latch Hook Project into a Rug",
+  "slug": "how-to-turn-latch-hook-project-into-rug",
+  "seo": {
+    "title": "How to Turn a Latch Hook Project into a Rug",
+    "meta_description": "Turn a latch hook project into a rug by checking pile density, finishing edges, adding backing, evaluating slip control and testing stability.",
+    "search_intent": "People who want to transform a finished latch hook panel into a functional floor rug."
+  },
+  "excerpt": "A knotted panel needs protected edges, backing and stability before it becomes a rug. Learn how to prepare each layer for floor use.",
+  "content_html": "<p>Turning a latch hook project into a rug requires more than completing all of the knots. A floor piece needs a durable perimeter, protected reverse and stable shape that can handle movement, cleaning and pressure without exposing the canvas.</p>\n<p>Before choosing the finish, decide whether the original panel has suitable density, size and materials for rug use. A design intended only for hanging may need a different approach.</p>\n<h2>Check whether the panel is suitable for floor use</h2>\n<p>Look at pile density and press the surface with your hand. Large areas of canvas should not open easily between tufts.</p>\n<p>Inspect every knot from the reverse and repair loose or incomplete ones.</p>\n<p>Consider the yarn fiber and its care instructions. A rug experiences more abrasion and dirt than a decorative wall piece.</p>\n<p>Check total weight as well; a very light panel may move easily and require a specific stability solution.</p>\n<p>If the yarn is extremely delicate or the canvas very light, the project may perform better as wall decor than as a high-traffic rug.</p>\n<p>Decide where it will be used, such as a traffic area, bedside space or mainly decorative location.</p>\n<p>Also consider whether pets, furniture or frequent vacuuming will place additional stress on the pile and outer edges.</p>\n<h2>Complete the design and level only necessary irregularities</h2>\n<p>Before covering the reverse, confirm from the front that no positions are missing and all colors match the chart.</p>\n<p>Repair off-center tufts and malformed one-ended knots before the canvas becomes hidden.</p>\n<p>If several strands clearly stand high, trim them lightly instead of cutting a deep layer from the entire surface.</p>\n<p>View the piece from different directions to confirm that the image remains readable and coverage looks even.</p>\n<p>Remove loose fibers and separate the pile with your fingers so it settles naturally.</p>\n<p>Once backing is attached, reaching individual knots becomes much harder, so this is the final convenient structural inspection.</p>\n<h2>Prepare and protect the canvas edges</h2>\n<p>Leave adequate margin around the outer row of knots and fold it toward the reverse according to the finishing method.</p>\n<p>Do not cut the canvas flush with the pile because that leaves the outer knots poorly protected.</p>\n<p>Organize corners so multiple mesh layers do not create hard lumps.</p>\n<p>Secure the margin evenly with stitching or the chosen edge method before covering it.</p>\n<p>If binding will be used, test its width around one corner and make sure all exposed mesh is covered.</p>\n<p>Lay the rug flat after preparing each side to confirm the perimeter is not curling inward.</p>\n<h2>Add backing that suits the rug and its care needs</h2>\n<p>Backing protects knots and canvas from direct contact with the floor.</p>\n<p>Choose a stable material whose care requirements are compatible with the yarn and your planned cleaning method.</p>\n<p>Cut with working allowance, align the backing without stretching and secure centers and corners first.</p>\n<p>Sew around the perimeter with distributed tension so folds and distortion do not develop.</p>\n<p>Do not use backing to force a wavy panel flat; correct the underlying shape before assembly.</p>\n<p>When extra reinforcement is needed for heavier use, add it without creating an unnecessarily rigid or bulky base.</p>\n<h2>Treat slip control as a separate finishing decision</h2>\n<p>Textile backing improves the reverse but does not automatically provide enough grip on a smooth floor.</p>\n<p>Evaluate the actual surface where the rug will be used and, when necessary, add an appropriate anti-slip solution that is compatible with both floor and rug.</p>\n<p>Test a small area first to make sure the added material does not stain, mark or distort the backing.</p>\n<p>Avoid placing a rug that moves easily in an area where sliding would create a problem.</p>\n<p>Recheck the base periodically because grip can change with dust, cleaning and wear.</p>\n<p>Rug stability is a functional part of finishing rather than only an appearance detail.</p>\n<h2>Test the complete rug before considering it finished</h2>\n<p>Place it in the intended location and check that the edges stay down and the center does not form waves.</p>\n<p>Step or press on different areas and make sure the backing, binding and knots remain stable.</p>\n<p>Inspect the corners after several hours of use to see whether any stitching needs reinforcement.</p>\n<p>Keep notes about yarn fiber, backing material and care so future cleaning is easier to plan.</p>\n<p>If the rug starts changing shape during use, correct the issue early before the canvas receives concentrated abrasion.</p>\n<p>Turning latch hook into a rug means converting a knotted panel into an object prepared for the floor. Adequate density, protected edges, stable backing and appropriate slip control make the design functional as well as decorative.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Sequence showing a latch hook panel becoming a rug with folded edges, attached backing and the finished piece on the floor.",
+    "alt": "How to turn a latch hook project into a rug"
+  }
+}

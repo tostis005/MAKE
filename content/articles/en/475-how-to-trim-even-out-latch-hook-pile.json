@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 475,
+  "translation_group": "475-latch-hook",
+  "taxonomy": {
+    "craft": {
+      "primary": "latch-hook",
+      "terms": [
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "finishing",
+      "terms": [
+        "finishing"
+      ]
+    },
+    "style": {
+      "terms": [
+        "trimming",
+        "pile",
+        "finishing"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "rugs",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-475-latch-hook",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Makers who finished knotting a latch hook piece and want to level high tufts without removing too much volume or distorting the design.",
+  "title": "How to Trim and Even Out Latch Hook Pile",
+  "slug": "how-to-trim-even-out-latch-hook-pile",
+  "seo": {
+    "title": "How to Trim and Even Out Latch Hook Pile",
+    "meta_description": "Trim and even latch hook pile by preparing the surface, using sharp scissors, targeting high tufts and preserving density and color definition.",
+    "search_intent": "People who want to level finished latch hook pile without cutting away too much yarn."
+  },
+  "excerpt": "Final trimming should be light. Learn how to identify high tufts, make small cuts and preserve pile density, texture and color boundaries.",
+  "content_html": "<p>Trimming latch hook pile can improve the finish when a few ends stand noticeably high, but it should not become a deep haircut across the entire surface. Most consistency should come from evenly cut, centered and correctly knotted yarn.</p>\n<p>The purpose of final leveling is to remove obvious irregularities without thinning the project, opening gaps between knots or blurring the color boundaries that create the design.</p>\n<h2>Decide whether the piece actually needs trimming</h2>\n<p>Lay the project on a flat surface and let the pile recover its natural position after handling.</p>\n<p>Run your fingers gently through the tufts and inspect the surface from above and from the side.</p>\n<p>Small differences of a few millimeters can be part of the normal texture and may not need correction.</p>\n<p>Look for clearly long tips, lines caused by uneven cutting batches or badly centered tufts that stand out visually.</p>\n<p>Take a photograph in side lighting; shadows reveal high areas without requiring you to disturb the pile.</p>\n<p>If one entire area sits lower, do not immediately cut everything else down to that height before identifying the reason.</p>\n<h2>Prepare the pile before bringing scissors to the surface</h2>\n<p>Separate strands that were flattened or tangled during the knotting process.</p>\n<p>Remove loose fibers and make sure all knots feel secure.</p>\n<p>If the project will receive a fiber-appropriate cleaning or settling treatment, decide whether it should happen before or after trimming based on how the yarn changes.</p>\n<p>Make sure the strands are dry and relaxed; cutting stretched yarn can leave it too short once it returns to normal.</p>\n<p>Identify color boundaries and small details that you do not want to soften accidentally.</p>\n<p>Work in strong light and position the project so the pile profile can be seen without folding the canvas.</p>\n<h2>Use sharp scissors and test an inconspicuous area first</h2>\n<p>The scissors should cut yarn cleanly without tugging on knots or shredding the ends excessively.</p>\n<p>Make two or three test cuts near an edge or discreet area and observe how the fiber responds.</p>\n<p>Hold the blades roughly parallel to the surface when leveling a high tip, but do not rest them directly against the knots.</p>\n<p>Do not try to remove a thick layer of pile in one pass. Small adjustments are easier to control and less likely to go too far.</p>\n<p>If the yarn opens dramatically after cutting, see whether the new end changes texture or volume before continuing.</p>\n<p>Keep fingers away from the cutting line and isolate only the tuft that needs adjustment.</p>\n<h2>Trim the clearly high tufts first</h2>\n<p>Find one strand that stands above the surface and compare it with neighboring pile in the same region.</p>\n<p>Cut only the visible excess, leaving the tuft slightly high when you are uncertain.</p>\n<p>After each small group, move the pile with your fingers and inspect it again. A strand may only appear tall because it was lying over another tuft.</p>\n<p>Do not force one global height across the entire project when different yarns have different volume or texture.</p>\n<p>On lettering and outlines, preserve enough pile that neighboring colors do not visually blend together.</p>\n<p>Progress through small areas rather than trying to cut the entire front in one pass.</p>\n<h2>Avoid creating steps between trimmed and untrimmed areas</h2>\n<p>As you move through sections, overlap your visual checking slightly so distinct height bands do not develop.</p>\n<p>Look from several directions because a surface that appears level from one side can show steps from another.</p>\n<p>If one region requires dramatically more cutting, stop and check whether the original pieces were longer or the knots sit differently.</p>\n<p>Do not chase mathematical perfection. Every additional pass increases the chance of lowering one area too far.</p>\n<p>Keep clippings away from the working surface so loose fibers are not confused with ends still attached to the canvas.</p>\n<p>On large pieces, keep track of reviewed areas without placing heavy markers that flatten the pile.</p>\n<h2>Finish with gentle grooming and a distance check</h2>\n<p>After trimming, gently shake the piece or move the pile with your fingers to remove loose fibers.</p>\n<p>Inspect it from the front, side and normal viewing distance.</p>\n<p>Make sure more canvas is not visible than before; increased gaps can mean the pile was cut too deeply.</p>\n<p>Check color boundaries as well so details remain readable and long strands are not crossing over neighboring shades.</p>\n<p>Put the scissors away after one final review instead of continuing to cut differences that are visible only from a few inches away.</p>\n<p>Trimming and leveling latch hook pile should be a light finishing step. By targeting clearly high tufts, making small cuts and checking the surface continuously, you improve consistency without sacrificing density or definition.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Side view of a latch hook piece while scissors trim only a few tufts that stand above the surrounding pile.",
+    "alt": "How to trim and even out latch hook pile"
+  }
+}
