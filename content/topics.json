@@ -5342,6 +5342,61 @@
       "title_es": "Cómo elegir el tamaño de canvas para un patrón de Latch Hook",
       "title_en": "How to Choose Canvas Size for a Latch Hook Pattern",
       "craft": "latch-hook"
+    },
+    {
+      "number": 485,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "pixel-art",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo convertir pixel art en un patrón de Latch Hook",
+      "title_en": "How to Turn Pixel Art into a Latch Hook Pattern",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 486,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "photo-conversion",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo convertir una foto en un patrón de Latch Hook",
+      "title_en": "How to Turn a Photo into a Latch Hook Pattern",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 487,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "colorwork",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo reducir colores para que un patrón de Latch Hook quede mejor",
+      "title_en": "How to Reduce Colors for a Better Latch Hook Pattern",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 488,
+      "priority": "P3",
+      "section": "buying-guides",
+      "topic": "patterns",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Kit de Latch Hook vs patrón digital: qué elegir",
+      "title_en": "Latch Hook Kit vs Digital Pattern: Which Should You Choose?",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 489,
+      "priority": "P3",
+      "section": "buying-guides",
+      "topic": "patterns",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Cómo elegir tu primer patrón de Latch Hook",
+      "title_en": "How to Choose Your First Latch Hook Pattern",
+      "craft": "latch-hook"
     }
   ],
   "taxonomy_strategy": {
@@ -5372,7 +5427,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 484,
-    "bilingual_groups": 484
+    "last_indexed_article": 489,
+    "bilingual_groups": 489
   }
 }
