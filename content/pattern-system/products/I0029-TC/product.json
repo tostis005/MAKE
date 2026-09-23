@@ -1,0 +1,18 @@
+{
+  "code": "I0029-TC",
+  "base_design_id": "I0029",
+  "technique_code": "TC",
+  "collection": "baby-nursery",
+  "title": "Kite",
+  "title_en": "Kite",
+  "title_es": "Cometa",
+  "design_slug": "kite",
+  "technique": "tapestry-crochet",
+  "pattern_file": "patterns/I0029-TC/pattern.json",
+  "template": "crochet.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "source_artwork": null,
+  "page_1_asset": null
+}

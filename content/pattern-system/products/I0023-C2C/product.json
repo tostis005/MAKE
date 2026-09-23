@@ -1,0 +1,18 @@
+{
+  "code": "I0023-C2C",
+  "base_design_id": "I0023",
+  "technique_code": "C2C",
+  "collection": "baby-nursery",
+  "title": "Plush Lamb",
+  "title_en": "Plush Lamb",
+  "title_es": "Corderito de peluche",
+  "design_slug": "plush-lamb",
+  "technique": "c2c-crochet",
+  "pattern_file": "patterns/I0023-C2C/pattern.json",
+  "template": "c2c-crochet.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "source_artwork": null,
+  "page_1_asset": null
+}

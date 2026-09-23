@@ -1,0 +1,18 @@
+{
+  "code": "I0028-C2C",
+  "base_design_id": "I0028",
+  "technique_code": "C2C",
+  "collection": "baby-nursery",
+  "title": "Rocket",
+  "title_en": "Rocket",
+  "title_es": "Cohete",
+  "design_slug": "rocket",
+  "technique": "c2c-crochet",
+  "pattern_file": "patterns/I0028-C2C/pattern.json",
+  "template": "c2c-crochet.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "source_artwork": null,
+  "page_1_asset": null
+}

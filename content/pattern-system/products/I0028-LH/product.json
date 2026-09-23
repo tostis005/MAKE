@@ -1,0 +1,18 @@
+{
+  "code": "I0028-LH",
+  "base_design_id": "I0028",
+  "technique_code": "LH",
+  "collection": "baby-nursery",
+  "title": "Rocket",
+  "title_en": "Rocket",
+  "title_es": "Cohete",
+  "design_slug": "rocket",
+  "technique": "latch-hook",
+  "pattern_file": "patterns/I0028-LH/pattern.json",
+  "template": "rug.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "source_artwork": null,
+  "page_1_asset": null
+}

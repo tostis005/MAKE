@@ -1,0 +1,18 @@
+{
+  "code": "I0024-LH",
+  "base_design_id": "I0024",
+  "technique_code": "LH",
+  "collection": "baby-nursery",
+  "title": "Toy Train",
+  "title_en": "Toy Train",
+  "title_es": "Tren de juguete",
+  "design_slug": "toy-train",
+  "technique": "latch-hook",
+  "pattern_file": "patterns/I0024-LH/pattern.json",
+  "template": "rug.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "source_artwork": null,
+  "page_1_asset": null
+}
