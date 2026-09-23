@@ -318,6 +318,26 @@ foreach ( (array) ( $catalog['products'] ?? array() ) as $row ) {
     update_post_meta( $id, '_drielo_seo_title_en', sanitize_text_field( (string) ( $row['seo_title_en'] ?? $row['seo_title'] ?? '' ) ) );
     update_post_meta( $id, '_drielo_meta_description_es', sanitize_text_field( (string) ( $row['meta_description_es'] ?? $row['meta_description'] ?? '' ) ) );
     update_post_meta( $id, '_drielo_meta_description_en', sanitize_text_field( (string) ( $row['meta_description_en'] ?? $row['meta_description'] ?? '' ) ) );
+
+    // Etsy-ready listing copy is stored separately so the sync plugin can use
+    // buyer-facing marketplace text without sacrificing the WooCommerce fields.
+    $etsy_title_en = sanitize_text_field( (string) ( $row['etsy_title_en'] ?? $row['title_en'] ?? $row['title'] ?? '' ) );
+    $etsy_title_es = sanitize_text_field( (string) ( $row['etsy_title_es'] ?? $row['title_es'] ?? $row['title'] ?? '' ) );
+    $etsy_description_en = sanitize_textarea_field( (string) ( $row['etsy_description_en'] ?? wp_strip_all_tags( $row['description_en'] ?? $row['description'] ?? '' ) ) );
+    $etsy_description_es = sanitize_textarea_field( (string) ( $row['etsy_description_es'] ?? wp_strip_all_tags( $row['description_es'] ?? $row['description'] ?? '' ) ) );
+    $etsy_tags_en = array_values( array_filter( array_map( 'sanitize_text_field', (array) ( $row['etsy_tags_en'] ?? $row['tags'] ?? array() ) ) ) );
+    $etsy_tags_es = array_values( array_filter( array_map( 'sanitize_text_field', (array) ( $row['etsy_tags_es'] ?? array() ) ) ) );
+
+    update_post_meta( $id, '_drielo_etsy_title', $etsy_title_en );
+    update_post_meta( $id, '_drielo_etsy_title_en', $etsy_title_en );
+    update_post_meta( $id, '_drielo_etsy_title_es', $etsy_title_es );
+    update_post_meta( $id, '_drielo_etsy_description', $etsy_description_en );
+    update_post_meta( $id, '_drielo_etsy_description_en', $etsy_description_en );
+    update_post_meta( $id, '_drielo_etsy_description_es', $etsy_description_es );
+    update_post_meta( $id, '_drielo_etsy_tags', $etsy_tags_en );
+    update_post_meta( $id, '_drielo_etsy_tags_en', $etsy_tags_en );
+    update_post_meta( $id, '_drielo_etsy_tags_es', $etsy_tags_es );
+
     update_post_meta( $id, '_drielo_stitch_count', absint( $row['stitches'] ?? 0 ) );
     update_post_meta( $id, '_drielo_grid', sanitize_text_field( (string) ( $row['grid'] ?? '' ) ) );
     update_post_meta( $id, '_drielo_skill', sanitize_text_field( (string) ( $row['skill'] ?? '' ) ) );
@@ -348,9 +368,14 @@ foreach ( (array) ( $catalog['products'] ?? array() ) as $row ) {
         wp_set_object_terms( $id, array( (int) $collections[ $collection_slug ] ), 'product_collection', false );
     }
 
-    $tag_names = array_map(
-        static fn( $tag ) => ucwords( str_replace( '-', ' ', sanitize_title( (string) $tag ) ) ),
-        (array) ( $row['tags'] ?? array() )
+    $tag_source = (array) ( $row['etsy_tags_en'] ?? $row['tags'] ?? array() );
+    $tag_names = array_values(
+        array_filter(
+            array_map(
+                static fn( $tag ) => sanitize_text_field( (string) $tag ),
+                $tag_source
+            )
+        )
     );
     if ( $tag_names ) { wp_set_object_terms( $id, $tag_names, 'product_tag', false ); }
 
