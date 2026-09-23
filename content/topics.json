@@ -4957,6 +4957,61 @@
       "title_es": "Posavasos de Tapestry Crochet para practicar colorwork",
       "title_en": "Tapestry Crochet Coasters for Practicing Colorwork",
       "craft": "tapestry-crochet"
+    },
+    {
+      "number": 450,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "wall-hangings",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Tapices de pared en Tapestry Crochet: cómo planificarlos",
+      "title_en": "Tapestry Crochet Wall Hangings: How to Plan Them",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 451,
+      "priority": "P3",
+      "section": "buying-guides",
+      "topic": "patterns",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Cómo elegir un patrón de Tapestry Crochet para principiantes",
+      "title_en": "How to Choose a Beginner Tapestry Crochet Pattern",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 452,
+      "priority": "P3",
+      "section": "buying-guides",
+      "topic": "patterns",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Patrones de Tapestry Crochet de pocos colores: ventajas",
+      "title_en": "Low-Color Tapestry Crochet Patterns: Why They Are Easier",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 453,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "troubleshooting",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Errores comunes en Tapestry Crochet y cómo solucionarlos",
+      "title_en": "Common Tapestry Crochet Mistakes and How to Fix Them",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 454,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "pattern-reading",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo leer símbolos, cuadrículas y leyendas de color en crochet gráfico",
+      "title_en": "How to Read Symbols, Grids and Color Keys in Crochet Charts",
+      "craft": "tapestry-crochet"
     }
   ],
   "taxonomy_strategy": {
@@ -4987,7 +5042,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 449,
-    "bilingual_groups": 449
+    "last_indexed_article": 454,
+    "bilingual_groups": 454
   }
 }
