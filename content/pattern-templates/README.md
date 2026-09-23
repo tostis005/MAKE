@@ -5,7 +5,7 @@ These files are the technique-specific companions to the existing cross-stitch P
 ## Shared rules
 
 - A4 print layout, one `.page` per PDF page.
-- Product identity is the pattern code only (for example `P0001`).
+- Product identity is the technique-qualified pattern code only (for example `P0001-CS`, `P0001-C2C`, `P0001-TC` or `P0001-LH`).
 - Collection is `Pop Art`; the technique is displayed separately.
 - The product URL is centered and clickable.
 - Pattern artwork is inserted as vector SVG, never as a raster screenshot.
@@ -23,6 +23,17 @@ These files are the technique-specific companions to the existing cross-stitch P
 - `pop-art/bead-loom.html`
 
 All templates use `../shared/drielo-pattern-template.css`.
+
+## Product-code convention
+
+The base design number groups the same artwork across techniques, but the sellable code is always unique:
+
+| Technique | Suffix | Example |
+| --- | --- | --- |
+| Cross Stitch | `CS` | `P0001-CS` |
+| C2C Crochet | `C2C` | `P0001-C2C` |
+| Tapestry Crochet | `TC` | `P0001-TC` |
+| Latch Hook / Rug | `LH` | `P0001-LH` |
 
 ## Placeholder convention
 

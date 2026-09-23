@@ -6,7 +6,14 @@
     "identity": "PATTERN_CODE_ONLY",
     "artwork": "VECTOR_SVG",
     "product_url": "CENTERED_CLICKABLE",
-    "cover": "TECHNIQUE_SPECIFIC_MOCKUP_WITH_VECTOR_SLOT"
+    "cover": "TECHNIQUE_SPECIFIC_MOCKUP_WITH_VECTOR_SLOT",
+    "code_format": "P####-<TECHNIQUE_SUFFIX>",
+    "technique_suffixes": {
+      "cross-stitch": "CS",
+      "c2c-crochet": "C2C",
+      "tapestry-crochet": "TC",
+      "latch-hook": "LH"
+    }
   },
   "techniques": [
     {
@@ -15,7 +22,8 @@
       "source": "derived-grid",
       "fit": "direct-after-palette-reduction",
       "unit": "c2c_block",
-      "cover_object": "blanket"
+      "cover_object": "blanket",
+      "code_suffix": "C2C"
     },
     {
       "id": "tapestry-crochet",
@@ -23,7 +31,8 @@
       "source": "derived-grid",
       "fit": "direct-after-confetti-cleanup",
       "unit": "stitch",
-      "cover_object": "wall_hanging"
+      "cover_object": "wall_hanging",
+      "code_suffix": "TC"
     },
     {
       "id": "latch-hook",
@@ -31,7 +40,8 @@
       "source": "derived-grid",
       "fit": "direct",
       "unit": "latch_knot",
-      "cover_object": "rug"
+      "cover_object": "rug",
+      "code_suffix": "LH"
     },
     {
       "id": "diamond-painting",
