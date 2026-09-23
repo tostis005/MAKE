@@ -9,15 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Inspect product form and handlers
+      - name: Inspect admin JavaScript
         shell: bash
         run: |
           set -euo pipefail
           base64 --decode plugins/drielo-etsy-sync-1.0.0.zip.b64 > /tmp/plugin.zip
           unzip -q /tmp/plugin.zip -d /tmp/plugin
-          FILE=/tmp/plugin/drielo-etsy-sync/drielo-etsy-sync.php
-          grep -n "function handle_save_products\|function handle_sync_products\|META_ENABLED\|META_TARGET_STATE\|name=\"enabled\|name=\"target_state" "$FILE" || true
-          echo '--- FORM 200-310 ---'
-          sed -n '200,310p' "$FILE"
-          echo '--- HANDLERS 410-475 ---'
-          sed -n '410,475p' "$FILE"
+          cat /tmp/plugin/drielo-etsy-sync/assets/admin.js
