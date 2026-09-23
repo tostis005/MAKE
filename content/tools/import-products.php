@@ -205,6 +205,17 @@ foreach ( (array) ( $catalog['collections'] ?? array() ) as $collection ) {
     $collections[ $slug ] = $term_id;
 }
 
+$drielo_filter_term_names = array(
+    'technique' => array('cross-stitch'=>'Cross Stitch','c2c-crochet'=>'C2C Crochet','tapestry-crochet'=>'Tapestry Crochet'),
+    'theme' => array('people-portraits'=>'People & Portraits','animals'=>'Animals','flowers-botanicals'=>'Flowers & Botanicals','nature-landscapes'=>'Nature & Landscapes','architecture-places'=>'Architecture & Places','fantasy-surreal'=>'Fantasy & Surreal','kids'=>'Kids','food-drink'=>'Food & Drink','abstract-geometric'=>'Abstract & Geometric','holidays-seasons'=>'Holidays & Seasons'),
+    'style' => array('pop-art'=>'Pop Art','classic-art'=>'Classic Art','modern'=>'Modern','vintage'=>'Vintage','playful'=>'Playful','elegant'=>'Elegant','surreal'=>'Surreal','colorful'=>'Colorful','minimalist'=>'Minimalist','cute'=>'Cute','dark-gothic'=>'Dark & Gothic','fantasy'=>'Fantasy'),
+    'project' => array('wall-art'=>'Wall Art','blanket'=>'Blanket','rug'=>'Rug','tapestry'=>'Tapestry','cushion'=>'Cushion'),
+    'orientation' => array('square'=>'Square','portrait'=>'Portrait','landscape'=>'Landscape'),
+    'season' => array('christmas'=>'Christmas','halloween'=>'Halloween','valentines-day'=>"Valentine's Day",'spring'=>'Spring','summer'=>'Summer','autumn'=>'Autumn','winter'=>'Winter'),
+    'difficulty' => array('beginner'=>'Beginner','intermediate'=>'Intermediate','advanced'=>'Advanced'),
+    'color-family' => array('neutral'=>'Neutral','warm'=>'Warm','cool'=>'Cool','green'=>'Green','blue'=>'Blue','pink'=>'Pink','multicolor'=>'Multicolor','dark'=>'Dark'),
+);
+
 $created = 0;
 $updated = 0;
 $pending = 0;
@@ -252,6 +263,38 @@ foreach ( (array) ( $catalog['products'] ?? array() ) as $row ) {
         $attribute->set_variation( false );
         $attributes[] = $attribute;
     }
+    foreach ( (array) ( $row['filters'] ?? array() ) as $filter_slug => $filter_terms ) {
+        $filter_slug = wc_sanitize_taxonomy_name( (string) $filter_slug );
+        $taxonomy = 'pa_' . $filter_slug;
+        if ( ! taxonomy_exists( $taxonomy ) ) {
+            fwrite( STDERR, "WARNING $sku: missing catalog taxonomy $taxonomy\n" );
+            continue;
+        }
+
+        $term_ids = array();
+        foreach ( array_values( array_unique( array_filter( array_map( 'sanitize_title', (array) $filter_terms ) ) ) ) as $term_slug ) {
+            $term = get_term_by( 'slug', $term_slug, $taxonomy );
+            if ( ! $term instanceof WP_Term ) {
+                $term_name = (string) ( $drielo_filter_term_names[ $filter_slug ][ $term_slug ] ?? ucwords( str_replace( '-', ' ', $term_slug ) ) );
+                $inserted = wp_insert_term( $term_name, $taxonomy, array( 'slug' => $term_slug ) );
+                if ( is_wp_error( $inserted ) ) { throw new RuntimeException( $inserted->get_error_message() ); }
+                $term = get_term( (int) $inserted['term_id'], $taxonomy );
+            }
+            if ( $term instanceof WP_Term ) { $term_ids[] = (int) $term->term_id; }
+        }
+
+        if ( $term_ids ) {
+            $attribute = new WC_Product_Attribute();
+            $attribute->set_id( wc_attribute_taxonomy_id_by_name( $taxonomy ) );
+            $attribute->set_name( $taxonomy );
+            $attribute->set_options( $term_ids );
+            $attribute->set_position( $position++ );
+            $attribute->set_visible( false );
+            $attribute->set_variation( false );
+            $attributes[] = $attribute;
+        }
+    }
+
     $product->set_attributes( $attributes );
 
     $cats = array();
@@ -338,6 +381,11 @@ foreach ( (array) ( $catalog['products'] ?? array() ) as $row ) {
     update_post_meta( $id, '_drielo_etsy_tags_en', $etsy_tags_en );
     update_post_meta( $id, '_drielo_etsy_tags_es', $etsy_tags_es );
 
+    update_post_meta( $id, '_drielo_design_id', sanitize_text_field( (string) ( $row['design_id'] ?? $row['code'] ?? '' ) ) );
+    update_post_meta( $id, '_drielo_grid_width', absint( $row['grid_width'] ?? 0 ) );
+    update_post_meta( $id, '_drielo_grid_height', absint( $row['grid_height'] ?? 0 ) );
+    update_post_meta( $id, '_drielo_color_count', absint( $row['color_count'] ?? $row['colours'] ?? 0 ) );
+    update_post_meta( $id, '_drielo_catalog_filters', wp_json_encode( (array) ( $row['filters'] ?? array() ) ) );
     update_post_meta( $id, '_drielo_stitch_count', absint( $row['stitches'] ?? 0 ) );
     update_post_meta( $id, '_drielo_grid', sanitize_text_field( (string) ( $row['grid'] ?? '' ) ) );
     update_post_meta( $id, '_drielo_skill', sanitize_text_field( (string) ( $row['skill'] ?? '' ) ) );
@@ -361,6 +409,14 @@ foreach ( (array) ( $catalog['products'] ?? array() ) as $row ) {
     } else {
         update_post_meta( $id, '_downloadable_files', array() );
         update_post_meta( $id, '_drielo_download_pending', '1' );
+    }
+
+    foreach ( (array) ( $row['filters'] ?? array() ) as $filter_slug => $filter_terms ) {
+        $taxonomy = 'pa_' . wc_sanitize_taxonomy_name( (string) $filter_slug );
+        if ( taxonomy_exists( $taxonomy ) ) {
+            $term_slugs = array_values( array_unique( array_filter( array_map( 'sanitize_title', (array) $filter_terms ) ) ) );
+            wp_set_object_terms( $id, $term_slugs, $taxonomy, false );
+        }
     }
 
     $collection_slug = sanitize_title( (string) ( $row['collection'] ?? '' ) );
