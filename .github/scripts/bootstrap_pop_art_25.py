@@ -125,7 +125,7 @@ def product_json(base,title_en,title_es,slug,suffix,ready):
   'pattern_file':f'patterns/{base}-{suffix}/pattern.json','template':template,'website':'www.drielo.com',
   'status':'published-test' if ready else 'draft','render_ready':False,'renderer':'multitech',
   'source_artwork':f'collections/{CID}/sources/{base}.png' if ready else None,
-  'page_1_asset':f'multitech/assets/cover-{ {"CS":"cross-stitch","C2C":"crochet","TC":"c2c-crochet","LH":"rug"}[suffix] }.webp'
+  'page_1_asset':f'multitech/assets/cover-{ {"CS":"cross-stitch","C2C":"c2c-crochet","TC":"crochet","LH":"rug"}[suffix] }.webp'
  }
 
 def pattern_json(base,suffix,matrix=None,threads=None):
@@ -171,7 +171,7 @@ def row_for(base,suffix,data):
       'short_description':short,'short_description_en':short,'short_description_es':short_es,
       'description':desc,'description_en':desc,'description_es':desc_es,'categories':cats,'tags':tags,
       'etsy_tags_en':tags,'etsy_tags_es':tags,'gallery':[],'featured_image':f'assets/{code}-product.webp',
-      'download':f'files/Drielo_{code}.pdf','gallery_revision':2026092307,
+      'download':f'files/Drielo_{code}.pdf','gallery_revision':2026092403,
       'seo_title':f'{title_en} {display_en} Pattern PDF | Drielo','seo_title_en':f'{title_en} {display_en} Pattern PDF | Drielo',
       'seo_title_es':f'{title_es} - patrón {display_es} PDF | Drielo',
       'meta_description':f'{title_en} {display_en} PDF {code}: {w} × {h}, {colors} colours from a fixed 25-colour palette.',
@@ -196,8 +196,8 @@ def main():
   'description_es':'Nueva colección Pop Art de 26 diseños construida con una única paleta estricta de 25 colores y cuatro técnicas artesanales basadas en cuadrícula.',
   'palette':PALETTE,'design_count':26,'techniques':['cross-stitch','c2c-crochet','tapestry-crochet','latch-hook'],
   'mockup_spec':{'asset':'../../multitech/assets/cover-cross-stitch.webp','technique_assets':{
-    'CS':'../../multitech/assets/cover-cross-stitch.webp','C2C':'../../multitech/assets/cover-crochet.webp',
-    'TC':'../../multitech/assets/cover-c2c-crochet.webp','LH':'../../multitech/assets/cover-rug.webp'},'frame':{'enabled':False}},
+    'CS':'../../multitech/assets/cover-cross-stitch.webp','C2C':'../../multitech/assets/cover-c2c-crochet.webp',
+    'TC':'../../multitech/assets/cover-crochet.webp','LH':'../../multitech/assets/cover-rug.webp'},'frame':{'enabled':False}},
   'preview_rules':{'palette_mode':'strict','allowed_palette_size':25,'gradients':False,'extra_colours':False}}
  write_json(CDIR/'collection.json',collection)
  write_json(CDIR/'designs.json',{'collection':CID,'designs':[{'code':c,'title_en':en,'title_es':es,'slug':s,'status':'ready' if c in TEST else 'draft','variants':[f'{c}-{x}' for x in TECHS]} for c,en,es,s in DESIGNS]})
@@ -206,15 +206,13 @@ def main():
  for base,en,es,slug in DESIGNS:
   variants={}
   if base in TEST:
-   existing_path=PATTERNS_DIR/f'{base}-CS'/'pattern.json'
-   if existing_path.is_file():
-    existing=json.loads(existing_path.read_text(encoding='utf-8'))
-    m=existing.get('matrix') or []
-    t=existing.get('threads') or []
-   else:
-    m,t=[],[]
-   if not m or not t:
-    m,t=load_source(base)
+   # Always rebuild the two production test portraits from the canonical clean
+   # transparent source matrices. Do not inherit stale pattern backgrounds.
+   m,t=load_source(base)
+   expected={'P0001':8568,'P0012':8735}[base]
+   actual=sum(tt.get('stitches',0) for tt in t)
+   if actual != expected:
+    raise RuntimeError(f'{base}: canonical clean matrix expected {expected} stitches, got {actual}')
    save_preview(base,m,t); variants['CS']=(m,t)
    for suf in ('C2C','TC','LH'):
     _,_,w,h,_,_,_=TECHS[suf]
