@@ -274,10 +274,16 @@ def make_catalog_variant(base, suffix, data):
 def prepare(start,end):
     catalog=read_json(CATALOG_PATH); collection=read_json(COLLECTION_PATH); palette=collection['palette']
     originals={p['code']:p for p in catalog['products'] if re.fullmatch(r'P\d{4}',p.get('code',''))}
+    cs_variants={p.get('base_design_id'):p for p in catalog['products'] if p.get('technique_code')=='CS' and p.get('base_design_id')}
     generated=[]; render_tasks=[]
     for n in range(start,end+1):
         base_code=f'P{n:04d}'; base=originals.get(base_code)
-        if not base: raise RuntimeError(f'Missing legacy base product {base_code}')
+        if not base and base_code in cs_variants:
+            base=dict(cs_variants[base_code])
+            base['code']=base_code
+            base['sku']=(base.get('previous_skus') or [f'DRIELO-{base_code}'])[0]
+            base.pop('base_design_id',None); base.pop('design_id',None); base.pop('technique_code',None)
+        if not base: raise RuntimeError(f'Missing source product {base_code}')
         src=ASSETS_DIR/f'{base_code}-gallery-2.webp'
         if not src.is_file(): raise RuntimeError(f'Missing design source {src}')
         matrix_cs,threads_cs=reconstruct_cross_matrix(src,base['stitches'],palette)
