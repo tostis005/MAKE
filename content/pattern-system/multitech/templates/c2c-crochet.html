@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>DRIELO Cross-Stitch PDF Master Template v6</title>
+<style>
+@page{size:A4;margin:0}*{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}:root{--paper:#faeef0;--plum:#3a0328;--muted:#72596a;--rose:#b54570;--card:rgba(255,255,255,.68)}html,body{margin:0;padding:0;background:#e8dadd;color:var(--plum);font-family:Arial,"Helvetica Neue",sans-serif}.page{width:210mm;height:297mm;position:relative;overflow:hidden;background:#faeef0;page-break-after:always}.page:last-child{page-break-after:auto}.page-content{position:absolute;left:9mm;right:9mm;top:17mm;bottom:14mm;z-index:3}h1,h2,h3{font-family:"GFS Didot",Didot,"Bodoni MT",Georgia,serif;font-weight:400;color:var(--plum)}h1{font-size:35pt;line-height:.95;letter-spacing:-.7px;margin:0;max-width:188mm}.subtitle{font-size:7.6pt;letter-spacing:2.65px;font-weight:600;color:#5b3a4e;margin-top:3.5mm;text-transform:uppercase}.topbar{position:absolute;left:9mm;right:52mm;top:7mm;height:6mm;z-index:6;display:flex;align-items:center;gap:4mm;font-size:6.7pt;letter-spacing:1.8px;color:#4f3043}.topbar .rule,.footer .rule{height:0;background:transparent;flex:1;border-top:.35px solid #8e7481}.topbar .short{flex:.35}.code{font-weight:700;white-space:nowrap}.collection{white-space:nowrap}.footer{position:absolute;left:52mm;right:9mm;bottom:5mm;height:5mm;z-index:6;display:flex;align-items:center;gap:4mm;font-size:6.6pt;letter-spacing:1.8px;color:#513347}.footer .url{font-weight:700;white-space:nowrap}a.url{text-decoration:none;color:inherit}.footer .page-no{font-family:"GFS Didot",Georgia,serif;font-size:8.5pt;font-weight:700;min-width:8mm;text-align:right}.floral{position:absolute;z-index:1;pointer-events:none;opacity:.58;filter:saturate(1.22) contrast(1.03)}.floral.tr{right:4mm;top:4mm;width:44mm;height:31mm;transform:rotate(180deg)}.floral.bl{left:4mm;bottom:4mm;width:44mm;height:31mm;transform:none}.floral img{width:100%;height:100%;display:block}.icon-disc{width:15mm;height:15mm;border-radius:50%;background:rgba(229,164,184,.18);display:flex;align-items:center;justify-content:center;color:var(--rose);flex:none;font-family:Georgia,serif;font-size:14pt}.cover h1{font-size:35pt}.cover-layout{position:absolute;top:32mm;left:0;right:0;bottom:9mm;display:grid;grid-template-columns:151mm 1fr;gap:5mm}.hero-photo{background:#f3e9e5;border:1.1mm solid rgba(255,255,255,.95);overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative}.cover-stage{position:relative;flex:none;aspect-ratio:1/1;width:125%;max-width:none}.cover-stage .cover-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}.cover-stage .cover-overlay{position:absolute;object-fit:contain;object-position:center center;display:block;mix-blend-mode:multiply;filter:saturate(.96) contrast(1.02);pointer-events:none;box-sizing:border-box;overflow:hidden}.facts-rail{border-left:.35px solid #bda2ad;padding-left:5mm;display:grid;grid-template-rows:repeat(4,1fr)}.rail-item{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border-bottom:.35px solid rgba(141,102,120,.42)}.rail-item:last-child{border-bottom:0}.rail-item b{font-family:"GFS Didot",Georgia,serif;font-size:12pt;margin-top:2.5mm}.rail-item span{font-size:7.7pt;color:#65495a;margin-top:1mm;line-height:1.25}.finished-wrap{position:absolute;left:10mm;right:10mm;top:32mm;bottom:21mm;background:rgba(255,255,255,.54);border:1mm solid rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;padding:3mm}.finished-wrap img{width:100%;height:100%;object-fit:contain;display:block}.finished-caption{position:absolute;left:34mm;right:34mm;bottom:7.8mm;text-align:center;font-family:"EB Garamond",Georgia,serif;font-style:italic;font-size:9.2pt;color:#6a4e5e}.facts-layout{position:absolute;top:30mm;left:0;right:0;bottom:7mm;display:grid;grid-template-columns:76mm 1fr;gap:5mm}.facts-preview{background:rgba(255,255,255,.62);border:1mm solid #fff;padding:5mm;display:flex;flex-direction:column;align-items:center;justify-content:center}.facts-preview img{width:100%;height:150mm;object-fit:contain}.facts-preview small{font-size:6.2pt;letter-spacing:1.3px;color:#72576a;margin-top:3mm;text-transform:uppercase}.facts-cards{display:flex;flex-direction:column;gap:3mm}.fact-row{display:flex;gap:3mm;height:24mm}.fact-row.single{height:auto}.fact-row .fact-card{flex:1}.fact-row.single .fact-card{flex:1;width:100%}.fact-card{background:var(--card);border-radius:3mm;padding:4mm;display:flex;gap:4mm;align-items:center;min-width:0}.fact-card.wide{width:100%}.fact-card.skill{height:auto;flex:none}.fact-card.size{height:auto;min-height:30mm;flex:none}.fact-card b,.materials h2{display:block;font-family:"GFS Didot",Georgia,serif;font-size:12pt;line-height:1.05;font-weight:400;margin:0}.fact-card span{display:block;font-size:8pt;color:#5f4254;margin-top:1.2mm;line-height:1.25}.fact-card small{display:block;font-size:6.5pt;color:#745d69;margin-top:.7mm;line-height:1.3}.materials{background:var(--card);border-radius:3mm;padding:4.5mm 5mm;display:grid;flex:1;min-height:44mm;grid-template-columns:15mm 1fr;gap:4mm;align-content:start}.materials ul{list-style:none;margin:3mm 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:2mm 6mm}.materials li{font-size:7.4pt;color:#5e4554;display:flex;gap:2mm;align-items:center}.check{width:5mm;height:5mm;border-radius:50%;background:#efd0da;display:inline-flex;align-items:center;justify-content:center;color:#9b3f64;font-size:6pt;font-weight:bold;flex:none}.thread-area{position:absolute;top:30mm;left:0;right:0;bottom:8mm}.thread-table{width:100%;border-collapse:separate;border-spacing:0;background:rgba(255,255,255,.64);font-size:7pt;overflow:hidden;border-radius:2.5mm}.thread-table th{background:#ecd1d9;font-family:"GFS Didot",Georgia,serif;font-size:9pt;text-align:left;padding:2.2mm 2.5mm}.thread-table td{height:8.35mm;padding:1.15mm 2.5mm;border-bottom:.3px solid #e3c9d2;color:#4c3141}.thread-table tbody tr:last-child td{border-bottom:0}.sym-chip{display:inline-flex;width:6mm;height:6mm;align-items:center;justify-content:center;border:1px solid #bfa7b1;background:#fff;border-radius:1mm;font-size:7pt;font-weight:700}.thread-swatch{width:25mm;height:5.2mm;border:.3px solid rgba(55,35,45,.18);display:block}.thread-foot{margin-top:4mm;display:grid;grid-template-columns:1fr 1fr;gap:3mm}.note-card{background:rgba(239,215,222,.65);border-radius:2.5mm;padding:3.5mm 4mm}.note-card b{font-family:"GFS Didot",Georgia,serif;font-size:10.5pt}.note-card span{display:block;font-size:6.9pt;line-height:1.4;color:#654b59;margin-top:1mm}.chart-panel{position:absolute;top:29mm;left:7mm;right:7mm;height:207mm;background:rgba(255,255,255,.72);border:1mm solid #fff;padding:2.5mm}.chart-panel img{width:100%;height:100%;object-fit:contain;display:block}.palette{position:absolute;top:249mm;left:26mm;right:26mm;display:flex;justify-content:center;gap:1.6mm}.palette i{width:6mm;height:6mm;border-radius:50%;border:.3px solid rgba(50,30,40,.18)}.chart-help{position:absolute;top:259mm;left:30mm;right:30mm;text-align:center;font-size:6.8pt;color:#6b5260;line-height:1.35}.layout-card{position:absolute;top:31mm;left:0;right:0;height:148mm;background:rgba(255,255,255,.62);border:1mm solid #fff;padding:4mm;display:grid;grid-template-columns:117mm 1fr;gap:6mm}.layout-visual{position:relative;background:#fff;padding:2mm}.layout-visual img{width:100%;height:100%;object-fit:contain}.cut-v,.cut-h{position:absolute;background:#fff;box-shadow:0 0 0 .35px #bca3ae;z-index:3}.cut-v{top:2mm;bottom:2mm;left:50%;width:1.1mm;transform:translateX(-50%)}.cut-h{left:2mm;right:2mm;top:50%;height:1.1mm;transform:translateY(-50%)}.lab{position:absolute;width:10mm;height:10mm;border-radius:50%;background:#eec6d2;display:flex;align-items:center;justify-content:center;font-family:"GFS Didot",Georgia,serif;font-size:9pt;font-weight:700;z-index:4}.lab.tl{left:5mm;top:5mm}.lab.tr{right:5mm;top:5mm}.lab.bl{left:5mm;bottom:5mm}.lab.br{right:5mm;bottom:5mm}.layout-info{padding:3mm 2mm}.layout-info h2{font-size:20pt;margin:0 0 4mm}.layout-info p{font-family:"EB Garamond",Georgia,serif;font-size:9.5pt;color:#5f4253;line-height:1.42;margin:0}.order{border-top:.4px solid #ccb3bd;margin-top:7mm;padding-top:4mm}.order b{font-family:"GFS Didot",Georgia,serif;font-size:11pt}.order div{font-size:7.2pt;color:#654b59;line-height:1.55;margin-top:1.5mm}.steps{position:absolute;top:194mm;left:0;right:0;display:grid;grid-template-columns:1fr 1fr;gap:3mm}.step{height:31mm;background:var(--card);border-radius:2.7mm;padding:4mm;display:grid;grid-template-columns:9mm 1fr;gap:3mm;align-items:start}.step .n{width:8mm;height:8mm;border-radius:50%;background:#edc8d3;display:flex;align-items:center;justify-content:center;font-family:"GFS Didot",Georgia,serif;font-weight:700}.step strong{font-family:"GFS Didot",Georgia,serif;font-size:10.5pt}.step span{display:block;font-size:6.6pt;line-height:1.4;color:#6a5160;margin-top:1mm}.detail-meta{position:absolute;top:26mm;left:0;right:0;display:flex;justify-content:space-between;font-size:6.3pt;letter-spacing:1.2px;text-transform:uppercase;color:#684c5c}.detail-box{position:absolute;top:27mm;left:0;right:0;height:225mm;background:rgba(255,255,255,.80);border:.8mm solid #fff;padding:1.1mm}.detail-box img{width:100%;height:100%;object-fit:contain;display:block}.detail-note{position:absolute;top:258mm;left:12mm;right:12mm;display:flex;align-items:center;justify-content:space-between;gap:4mm;font-size:6.5pt;color:#694f5e}.pill{padding:1.2mm 3mm;border:1px solid #ad4a70;border-radius:999px;color:#9f3f65;font-weight:700;letter-spacing:1.1px;white-space:nowrap}.guide-list{position:absolute;top:33mm;left:6mm;right:6mm;display:grid;grid-template-columns:1fr 1fr;gap:4mm}.guide-card{height:49mm;background:var(--card);border-radius:3mm;padding:6mm;display:grid;grid-template-columns:12mm 1fr;gap:4mm}.guide-card .num{font-family:"GFS Didot",Georgia,serif;font-size:16pt;color:#a24468}.guide-card h2{font-size:14pt;margin:0 0 2mm}.guide-card p{font-size:7.6pt;color:#654b59;line-height:1.5;margin:0}.size-reference{position:absolute;left:18mm;right:18mm;top:143mm;height:40mm;background:rgba(255,255,255,.68);border-radius:3mm;padding:5mm 7mm}.size-reference h2{font-size:13pt;margin:0 0 3mm}.size-reference table{width:100%;border-collapse:collapse;font-size:7.2pt;color:#604856}.size-reference th{text-align:left;font-family:"GFS Didot",Georgia,serif;font-size:9pt;border-bottom:.35px solid #cdb4be;padding:1.5mm}.size-reference td{padding:1.6mm;border-bottom:.25px solid #ead5dc}.guide-banner{position:absolute;left:18mm;right:18mm;top:192mm;background:#edd3da;border-radius:3mm;padding:6mm 8mm;display:grid;grid-template-columns:1fr 1fr;gap:8mm}.guide-banner b{font-family:"GFS Didot",Georgia,serif;font-size:12pt}.guide-banner span{display:block;font-size:7pt;color:#634a58;line-height:1.45;margin-top:1mm}.closing{position:absolute;top:37mm;left:14mm;right:14mm;background:rgba(255,255,255,.68);border:.45px solid #dec3cc;border-radius:4mm;padding:12mm 14mm}.closing h2{font-size:23pt;margin:0 0 7mm}.closing p{font-family:"EB Garamond",Georgia,serif;font-size:10pt;line-height:1.55;color:#59404f;margin:0 0 5mm}.closing hr{border:0;border-top:.4px solid #d2b5c0;margin:8mm 0}.closing-meta{display:grid;grid-template-columns:1fr 1fr;gap:5mm 10mm}.closing-meta b{font-family:"GFS Didot",Georgia,serif;font-size:11pt}.closing-meta span{display:block;font-size:7pt;color:#6b5361;margin-top:1mm}@media screen{body{padding:12px}.page{margin:0 auto 14px;box-shadow:0 4px 24px rgba(70,30,50,.13)}}
+.detail-meta,.detail-note{display:none!important}
+
+
+.fact-card small{white-space:pre-line}
+
+/* Footer URL: exact horizontal centering on the A4 page */
+.footer{
+  left:9mm!important;
+  right:9mm!important;
+  position:absolute;
+}
+.footer .url{
+  position:absolute!important;
+  left:50%!important;
+  transform:translateX(-50%)!important;
+  z-index:2;
+  background:var(--paper);
+  padding:0 3mm;
+  text-align:center;
+  text-decoration:none;
+  color:inherit;
+  cursor:pointer;
+}
+.footer .page-no{
+  margin-left:auto;
+  position:relative;
+  z-index:3;
+}
+
+/* ============================================================
+   DRIELO MASTER TEMPLATE - PDF PARITY FIXES
+   These rules intentionally override only small rendering details.
+   ============================================================ */
+@media print{
+  html,body{background:#faeef0!important}
+  .page{margin:0!important;box-shadow:none!important}
+}
+.page{isolation:isolate}
+.topbar,.footer{font-variant-numeric:tabular-nums}
+.sym-chip{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  line-height:1!important;
+  padding:0!important;
+  vertical-align:middle!important;
+}
+.palette{align-items:center}
+.palette::before,.palette::after,.palette i::before,.palette i::after{content:none!important;display:none!important}
+.palette i{display:block;flex:0 0 6mm;margin:0!important}
+.thread-table{table-layout:fixed}
+.thread-table th:nth-child(1),.thread-table td:nth-child(1){width:17mm;text-align:center}
+.thread-table th:nth-child(2),.thread-table td:nth-child(2){width:19mm}
+.thread-table th:nth-child(4),.thread-table td:nth-child(4){width:20mm;text-align:right}
+.thread-table th:nth-child(5),.thread-table td:nth-child(5){width:31mm}
+.thread-table td{vertical-align:middle}
+.thread-table .sym-chip{margin:auto}
+.thread-table .thread-swatch{margin-left:auto;margin-right:auto}
+.chart-panel img,.detail-box img,.finished-wrap img,.facts-preview img,.layout-visual img{
+  image-rendering:auto;
+}
+.detail-box{overflow:visible}
+.chart-panel{overflow:visible}
+.floral img{object-fit:contain}
+@supports (font-variant-numeric: tabular-nums){
+  .thread-table,.detail-box,.detail-meta{font-variant-numeric:tabular-nums}
+}
+
+</style>
+</head>
+<body>
+<!--
+=================================================================
+DRIELO REUSABLE PDF MASTER TEMPLATE - v6
+=================================================================
+PURPOSE
+- This HTML is the master source for the 17-page product PDF.
+- The visual geometry mirrors the existing DRIELO product booklet.
+- Pattern artwork, charts, rulers and symbols are generated as SVG vectors.
+
+FOR A NEW PRODUCT, EDIT ONLY:
+1) #template-pattern-data
+   - product_code
+   - collection
+   - title / subtitle
+   - stitch_width / stitch_height
+   - total_stitches
+   - threads[]
+   - matrix[][]
+   - skill_level / stitch_type / materials / fabric_counts
+2) #template-assets
+   - cover_image (lifestyle/mockup image)
+   - floral only if brand decoration ever changes
+
+IMPORTANT
+- Do not hand-edit chart images: they are generated from matrix[].
+- Detail chart rulers are generated once on TOP and LEFT only.
+- Symbols are mathematically centered inside every stitch cell.
+- The finished-design previews use real X-shaped stitches, not pixel blocks.
+- Colour overview uses filled squares by design; enlarged charts add symbols.
+=================================================================
+-->
+
+<script id="template-pattern-data" type="application/json">{"product_code":"P0000","collection":"Pop Art Portraits","collection_id":"pop-art-portraits","title":"Pattern Title","technique":"c2c-crochet","subtitle":"A modern corner-to-corner crochet graph","stitch_width":1,"stitch_height":1,"total_stitches":0,"threads":[],"matrix":[[null]],"skill_level":"Beginner friendly","stitch_type":"Corner-to-corner blocks","website":"https://www.drielo.com","materials":["Yarn in the listed collection colours","Crochet hook matched to yarn weight","Scissors","Yarn needle for weaving ends"],"fabric_counts":[],"size_options":[{"label":"Fine yarn - 1.5 cm/block","cmW":90.0,"cmH":108.0,"inW":35.4,"inH":42.5},{"label":"Medium yarn - 2.0 cm/block","cmW":120.0,"cmH":144.0,"inW":47.2,"inH":56.7},{"label":"Chunky yarn - 2.5 cm/block","cmW":150.0,"cmH":180.0,"inW":59.1,"inH":70.9}],"unit_label":"blocks","measure_label":"Blocks","cover_colour_label":"Yarn colours","cover_colour_value":"19 collection colours","facts_colour_label":"Yarn colours","colour_unit":"collection colours","finished_title":"Finished design","finished_subtitle":"A preview of the completed C2C crochet design","finished_caption":"Use this page as a visual reference while you crochet.","facts_title":"Pattern facts","facts_subtitle":"Everything you need before you start crocheting","preview_label":"Finished C2C preview","cover_overlay":{"left":19.8,"top":7.2,"width":64.5,"height":78.0,"opacity":0.82,"safe_inset_pct":6.0},"cover_stage_scale":123}</script>
+<script id="template-assets" type="application/json">{"floral":"__FLORAL__","cover_image":"__COVER__"}</script>
+<div id="book"></div>
+
+<script>
+(function(){
+"use strict";
+
+const data = JSON.parse(document.getElementById("template-pattern-data").textContent);
+const assets = JSON.parse(document.getElementById("template-assets").textContent);
+
+const threadsBySymbol = Object.fromEntries(data.threads.map(t => [t.symbol, t]));
+const W = Number(data.stitch_width);
+const H = Number(data.stitch_height);
+const MATRIX = data.matrix;
+const WEBSITE = data.website || "www.drielo.com";
+const CODE = data.product_code || "P-0000";
+const PAGE_TOTAL = 17;
+
+function esc(s) {
+  return String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"})[c]);
+}
+function fmt(n) {
+  return Number(n).toLocaleString("en-US");
+}
+function sizeFor(count) {
+  return {
+    inW: W / count, inH: H / count,
+    cmW: W / count * 2.54, cmH: H / count * 2.54
+  };
+}
+function pageNo(n) { return String(n).padStart(2,"0"); }
+function svgData(svg) { return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg); }
+
+function common(page, content, extraClass="") {
+  return `<section class="page ${extraClass}">
+    <div class="topbar"><span class="code">${esc(CODE)}</span><span class="rule"></span></div>
+    <div class="floral tr"><img data-floral/></div>
+    <div class="floral bl"><img data-floral/></div>
+    ${content}
+    <div class="footer"><span class="rule"></span><a class="url" href="https://www.drielo.com" target="_blank" rel="noopener">${esc(WEBSITE)}</a><span class="rule"></span><span class="page-no">${pageNo(page)}</span></div>
+  </section>`;
+}
+
+function threadColor(symbol) {
+  const t = threadsBySymbol[symbol];
+  return t ? t.color : "#ffffff";
+}
+function luminance(hex) {
+  let h = String(hex || "#ffffff").replace("#","");
+  if (h.length === 3) h = h.split("").map(x=>x+x).join("");
+  const rgb = [0,2,4].map(i => parseInt(h.slice(i,i+2),16)/255).map(v => v <= .03928 ? v/12.92 : Math.pow((v+.055)/1.055,2.4));
+  return .2126*rgb[0]+.7152*rgb[1]+.0722*rgb[2];
+}
+function symbolInk(hex) { return luminance(hex) < .38 ? "#ffffff" : "#2e1d27"; }
+
+function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, includeBackground=true) {
+  const vw=x1-x0, vh=y1-y0; let paths=[];
+  for(let y=y0;y<y1;y++) for(let x=x0;x<x1;x++) {
+    const s=matrix[y]?.[x]; if(!s) continue; const c=threadColor(s); const lx=x-x0, ly=y-y0;
+    const p=.045; paths.push(`<rect x="${(lx+p).toFixed(3)}" y="${(ly+p).toFixed(3)}" width="${(1-2*p).toFixed(3)}" height="${(1-2*p).toFixed(3)}" rx=".035" fill="${c}"/>`);
+  }
+  const background = includeBackground ? `<rect width="${vw}" height="${vh}" fill="#ffffff"/>` : ``;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${vw} ${vh}" preserveAspectRatio="xMidYMid meet">${background}${paths.join("")}</svg>`;
+}
+
+function coverStitchedSvg(matrix=MATRIX) {
+  let minX=W, minY=H, maxX=-1, maxY=-1;
+  for(let y=0;y<H;y++) for(let x=0;x<W;x++) {
+    if(matrix[y]?.[x]) { minX=Math.min(minX,x); minY=Math.min(minY,y); maxX=Math.max(maxX,x); maxY=Math.max(maxY,y); }
+  }
+  if(maxX < minX || maxY < minY) return stitchedSvg(matrix,0,0,W,H,false);
+  const padX=Math.max(1,Math.round((maxX-minX+1)*0.025));
+  const padY=Math.max(1,Math.round((maxY-minY+1)*0.025));
+  minX=Math.max(0,minX-padX); minY=Math.max(0,minY-padY);
+  maxX=Math.min(W-1,maxX+padX); maxY=Math.min(H-1,maxY+padY);
+  return stitchedSvg(matrix,minX,minY,maxX+1,maxY+1,false);
+}
+
+function colourOverviewSvg() {
+  let out=[`<svg xmlns="http://www.w3.org/2000/svg" viewBox="-5 -5 ${W+10} ${H+10}" preserveAspectRatio="xMidYMid meet"><rect x="0" y="0" width="${W}" height="${H}" fill="#fff"/>`];
+  for(let y=0;y<H;y++) for(let x=0;x<W;x++) {
+    const s=MATRIX[y]?.[x];
+    if(s) out.push(`<rect x="${x}" y="${y}" width="1" height="1" fill="${threadColor(s)}"/>`);
+  }
+  let fine=[];
+  for(let x=0;x<=W;x++) fine.push(`M${x} 0V${H}`);
+  for(let y=0;y<=H;y++) fine.push(`M0 ${y}H${W}`);
+  out.push(`<path d="${fine.join(" ")}" fill="none" stroke="#aaa4a7" stroke-width="0.035"/>`);
+  let major=[];
+  for(let x=0;x<=W;x+=10) major.push(`M${x} 0V${H}`);
+  for(let y=0;y<=H;y+=10) major.push(`M0 ${y}H${W}`);
+  out.push(`<path d="${major.join(" ")}" fill="none" stroke="#665b61" stroke-width="0.11"/>`);
+  out.push(`<g font-family="Arial, sans-serif" font-size="1.2" fill="#594951" text-anchor="middle">`);
+  for(let n=10;n<=W;n+=10) out.push(`<text x="${(n-.5).toFixed(2)}" y="-2">${n}</text>`);
+  for(let n=10;n<=H;n+=10) out.push(`<text x="-2.2" y="${(n-.42).toFixed(2)}" text-anchor="end">${n}</text>`);
+  out.push(`</g></svg>`);
+  return out.join("");
+}
+
+function symbolOverviewSvg() {
+  let out=[`<svg xmlns="http://www.w3.org/2000/svg" viewBox="-5 -5 ${W+10} ${H+10}" preserveAspectRatio="xMidYMid meet"><rect x="0" y="0" width="${W}" height="${H}" fill="#fff"/>`];
+  let fine=[];
+  for(let x=0;x<=W;x++) fine.push(`M${x} 0V${H}`);
+  for(let y=0;y<=H;y++) fine.push(`M0 ${y}H${W}`);
+  out.push(`<path d="${fine.join(" ")}" fill="none" stroke="#aaa4a7" stroke-width="0.035"/>`);
+  let major=[];
+  for(let x=0;x<=W;x+=10) major.push(`M${x} 0V${H}`);
+  for(let y=0;y<=H;y+=10) major.push(`M0 ${y}H${W}`);
+  out.push(`<path d="${major.join(" ")}" fill="none" stroke="#665b61" stroke-width="0.11"/>`);
+  out.push(`<g font-family="Arial, sans-serif" font-size="0.5" font-weight="700" text-anchor="middle" dominant-baseline="central">`);
+  for(let y=0;y<H;y++) for(let x=0;x<W;x++) {
+    const s=MATRIX[y]?.[x];
+    if(s) out.push(`<text x="${(x+.5).toFixed(2)}" y="${(y+.51).toFixed(2)}" fill="#30242b">${esc(s)}</text>`);
+  }
+  out.push(`</g><g font-family="Arial, sans-serif" font-size="1.2" fill="#594951" text-anchor="middle">`);
+  for(let n=10;n<=W;n+=10) out.push(`<text x="${(n-.5).toFixed(2)}" y="-2">${n}</text>`);
+  for(let n=10;n<=H;n+=10) out.push(`<text x="-2.2" y="${(n-.42).toFixed(2)}" text-anchor="end">${n}</text>`);
+  out.push(`</g></svg>`);
+  return out.join("");
+}
+
+function detailSvg(x0,y0,w,h,mode) {
+  let out=[`<svg xmlns="http://www.w3.org/2000/svg" viewBox="-3.6 -3.6 ${w+7.2} ${h+7.2}" preserveAspectRatio="xMidYMid meet"><rect x="0" y="0" width="${w}" height="${h}" fill="#fff"/>`];
+
+  if(mode==="colour") {
+    for(let yy=0;yy<h;yy++) for(let xx=0;xx<w;xx++) {
+      const s=MATRIX[y0+yy]?.[x0+xx];
+      if(s) out.push(`<rect x="${xx}" y="${yy}" width="1" height="1" fill="${threadColor(s)}"/>`);
+    }
+  }
+
+  let fine=[];
+  for(let xx=0;xx<=w;xx++) fine.push(`M${xx} 0V${h}`);
+  for(let yy=0;yy<=h;yy++) fine.push(`M0 ${yy}H${w}`);
+  out.push(`<path d="${fine.join(" ")}" fill="none" stroke="#aaa4a7" stroke-width="0.035"/>`);
+  let major=[];
+  for(let xx=0;xx<=w;xx+=10) major.push(`M${xx} 0V${h}`);
+  for(let yy=0;yy<=h;yy+=10) major.push(`M0 ${yy}H${w}`);
+  out.push(`<path d="${major.join(" ")}" fill="none" stroke="#665b61" stroke-width="0.11"/>`);
+
+  const symbolSize = mode==="colour" ? "0.61" : "0.7";
+  const defaultInk = mode==="colour" ? "#2d2228" : "#30242b";
+  out.push(`<g font-family="Arial, sans-serif" font-size="${symbolSize}" font-weight="700" text-anchor="middle" dominant-baseline="central">`);
+  for(let yy=0;yy<h;yy++) for(let xx=0;xx<w;xx++) {
+    const s=MATRIX[y0+yy]?.[x0+xx];
+    if(!s) continue;
+    const ink=mode==="colour" ? (luminance(threadColor(s)) < .38 ? "#fff" : defaultInk) : defaultInk;
+    out.push(`<text x="${(xx+.5).toFixed(2)}" y="${(yy+.51).toFixed(2)}" fill="${ink}">${esc(s)}</text>`);
+  }
+  out.push(`</g><g font-family="Arial, sans-serif" font-size="1.35" fill="#594951" text-anchor="middle">`);
+  for(let local=10;local<=w;local+=10) out.push(`<text x="${(local-.5).toFixed(2)}" y="-1.35">${x0+local}</text>`);
+  for(let local=10;local<=h;local+=10) out.push(`<text x="-1.45" y="${(local-.42).toFixed(2)}" text-anchor="end">${y0+local}</text>`);
+  out.push(`</g></svg>`);
+  return out.join("");
+}
+
+function floralHTML(){
+  return `<div class="floral tr"><img data-floral/></div><div class="floral bl"><img data-floral/></div>`;
+}
+
+function titleBlock(title, subtitle) {
+  return `<h1>${esc(title)}</h1><div class="subtitle">${esc(subtitle)}</div>`;
+}
+
+function iconFact(icon,title,value,small="") {
+  return `<div class="fact-card"><div class="icon-disc">${icon}</div><div><b>${esc(title)}</b><span>${esc(value)}</span>${small?`<small>${esc(small)}</small>`:""}</div></div>`;
+}
+
+function renderPages() {
+  const sizeOptions = (data.size_options || []).length ? data.size_options : (data.fabric_counts || [14,16,18]).map(c=>{ const s=sizeFor(c); return {label:`${c} ct Aida`,cmW:s.cmW,cmH:s.cmH,inW:s.inW,inH:s.inH}; });
+  const mainSize = sizeOptions[0];
+  const threadCount=data.threads.length;
+
+  const pages=[];
+
+  // 01 Cover
+  pages.push(common(1, `<div class="page-content">${titleBlock(data.title, data.subtitle || "Technique subtitle")}
+    <div class="cover-layout">
+      <div class="hero-photo" data-product-image><div class="cover-stage" id="cover-stage"><img id="cover-image" class="cover-bg" alt="Technique display background"/><img id="cover-overlay" class="cover-overlay" alt="Vector pattern overlay"/></div></div>
+      <div class="facts-rail">
+        <div class="rail-item"><div class="icon-disc">✦</div><b>Skill level</b><span>${esc(data.skill_level || "Beginner friendly")}</span></div>
+        <div class="rail-item"><div class="icon-disc">↔</div><b>Finished size</b><span>${W} × ${H} ${data.unit_label || "stitches"}</span></div>
+        <div class="rail-item"><div class="icon-disc">◎</div><b>${esc(data.cover_colour_label || "Colours")}</b><span>${esc(data.cover_colour_value || `${threadCount} colours`)}</span></div>
+        <div class="rail-item"><div class="icon-disc">×</div><b>Type</b><span>${esc(data.stitch_type || "Full cross stitch")}</span></div>
+      </div>
+    </div>
+  </div>`, "cover"));
+
+  // 02 Finished
+  pages.push(common(2, `<div class="page-content">${titleBlock(data.finished_title || "Finished design",data.finished_subtitle || "A preview of the completed design")}
+    <div class="finished-wrap"><img id="finished-design" alt="Exact stitched design"/></div>
+    <div class="finished-caption">${esc(data.finished_caption || "Use this page as a visual reference.")}</div>
+  </div>`));
+
+  // 03 Facts
+  const ctText=sizeOptions.map(s=>`${s.label}: ${Number(s.cmW).toFixed(1)} × ${Number(s.cmH).toFixed(1)} cm`).join("\n");
+  const mats=(data.materials||[]).map(m=>`<li><span class="check">✓</span><span>${esc(m)}</span></li>`).join("");
+  pages.push(common(3, `<div class="page-content">${titleBlock(data.facts_title || "Pattern facts",data.facts_subtitle || "Everything you need before you start")}
+    <div class="facts-layout">
+      <div class="facts-preview"><img id="facts-preview" alt="Exact stitched preview"/><small>${esc(data.preview_label || "Finished design preview")}</small></div>
+      <div class="facts-cards">
+        <div class="fact-row">
+          ${iconFact("✦","Skill level",data.skill_level || "Beginner friendly","Corner-to-corner blocks worked diagonally.")}
+          ${iconFact("▦", data.measure_label || "Stitches", fmt(data.total_stitches))}
+        </div>
+        <div class="fact-row single">
+          ${iconFact("↔","Finished size",`${W} × ${H} ${data.unit_label || 'stitches'}`,ctText)}
+        </div>
+        <div class="fact-row">
+          ${iconFact("◎", data.facts_colour_label || "Colours",`${threadCount} ${data.colour_unit || 'colours'}`)}
+          ${iconFact("×","Type",data.stitch_type || "Full cross stitch")}
+        </div>
+        <div class="materials"><div class="icon-disc">＋</div><div><h2>Materials</h2><ul>${mats}</ul></div></div>
+      </div>
+    </div>
+  </div>`));
+
+  // 04 Yarn colours
+  const threadRows=data.threads.map(t=>`<tr>
+    <td><span class="sym-chip">${esc(t.symbol)}</span></td>
+    <td>${esc(t.dmc)}</td>
+    <td>${esc(t.name)}</td>
+    <td>${fmt(t.stitches)}</td>
+    <td><span class="thread-swatch" style="background:${esc(t.color)}"></span></td>
+  </tr>`).join("");
+  pages.push(common(4, `<div class="page-content">${titleBlock(data.colour_page_title || "Yarn colours",data.colour_page_subtitle || "Colour key and stitch counts")}
+    <div class="thread-area">
+      <table class="thread-table"><thead><tr><th>Symbol</th><th>Colour ID</th><th>Colour name</th><th>Blocks</th><th>Colour</th></tr></thead><tbody>${threadRows}</tbody></table>
+      <div class="thread-foot">
+        <div class="note-card"><b>${threadCount} collection colours</b><span>Keep this key nearby while crocheting. Each chart symbol corresponds to one collection colour.</span></div>
+        <div class="note-card"><b>${fmt(data.total_stitches)} total blocks</b><span>Use the stitch counts as a simple reference for planning and tracking your progress.</span></div>
+      </div>
+    </div>
+  </div>`));
+
+  // 05 visual guide
+  pages.push(common(5, `<div class="page-content">${titleBlock("Visual guide","Colour overview of the full design")}
+    <div class="chart-panel"><img id="colour-overview" alt="Full solid-colour chart"/></div>
+    <div class="palette" id="palette"></div>
+    <div class="chart-help">Each filled square represents one C2C block. Empty squares show background blocks.</div>
+  </div>`));
+
+  // 06 symbol overview
+  pages.push(common(6, `<div class="page-content">${titleBlock("Symbol chart","Black & white overview for easy reference")}
+    <div class="chart-panel"><img id="symbol-overview" alt="Full symbol chart"/></div>
+    <div class="chart-help">Use this overview together with the enlarged symbol sections and the DMC colour key.</div>
+  </div>`));
+
+  // 07 layout
+  pages.push(common(7, `<div class="page-content">${titleBlock("Pattern layout",`The ${W} × ${H} design is divided into four enlarged chart sections`)}
+    <div class="layout-card">
+      <div class="layout-visual"><img id="layout-preview" alt="Pattern section layout"/><span class="cut-v"></span><span class="cut-h"></span><span class="lab tl">A1</span><span class="lab tr">A2</span><span class="lab bl">B1</span><span class="lab br">B2</span></div>
+      <div class="layout-info"><h2>4 chart sections</h2><p>Each section covers ${Math.ceil(W/2)} columns × ${Math.ceil(H/2)} rows. The split follows the centre lines of the full design.</p>
+        <div class="order"><b>Section order</b><div>A1 → A2<br/>B1 → B2</div></div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><div><strong>Find the centre</strong><span>Fold your fabric in half both ways and locate row ${Math.ceil(H/2)} / column ${Math.ceil(W/2)}.</span></div></div>
+      <div class="step"><div class="n">2</div><div><strong>Choose a chart</strong><span>Use colour + symbols or the black-and-white symbol version.</span></div></div>
+      <div class="step"><div class="n">3</div><div><strong>Track progress</strong><span>Mark completed blocks or rows as you work through each section.</span></div></div>
+      <div class="step"><div class="n">4</div><div><strong>Match grid lines</strong><span>Heavy grid lines mark every 10 stitches for reliable alignment.</span></div></div>
+    </div>
+  </div>`));
+
+  const splitX=Math.ceil(W/2), splitY=Math.ceil(H/2);
+  const sections=[
+    {key:"A1",label:"Top left",x:0,y:0,w:splitX,h:splitY},
+    {key:"A2",label:"Top right",x:splitX,y:0,w:W-splitX,h:splitY},
+    {key:"B1",label:"Bottom left",x:0,y:splitY,w:splitX,h:H-splitY},
+    {key:"B2",label:"Bottom right",x:splitX,y:splitY,w:W-splitX,h:H-splitY}
+  ];
+  sections.forEach((s,idx)=>{
+    const sub=`${s.label} · columns ${s.x+1}–${s.x+s.w} · rows ${s.y+1}–${s.y+s.h}`;
+    pages.push(common(8+idx, `<div class="page-content">${titleBlock(`Colour chart - ${s.key}`,sub)}<div class="detail-box"><img id="detail-colour-${s.key}" alt="color chart ${s.key}"/></div></div>`));
+  });
+  sections.forEach((s,idx)=>{
+    const sub=`${s.label} · columns ${s.x+1}–${s.x+s.w} · rows ${s.y+1}–${s.y+s.h}`;
+    pages.push(common(12+idx, `<div class="page-content">${titleBlock(`Symbol chart - ${s.key}`,sub)}<div class="detail-box"><img id="detail-symbol-${s.key}" alt="symbol chart ${s.key}"/></div></div>`));
+  });
+
+  // 16 guide
+  const sizeRows=sizeOptions.map(s=>`<tr><td>${esc(s.label)}</td><td>${Number(s.cmW).toFixed(1)} × ${Number(s.cmH).toFixed(1)} cm</td><td>${Number(s.inW).toFixed(1)} × ${Number(s.inH).toFixed(1)} in</td></tr>`).join("");
+  pages.push(common(16, `<div class="page-content">${titleBlock(data.guide_title || "Print & crochet guide",data.guide_subtitle || "A simple setup for an accurate C2C project")}
+    <div class="guide-list">
+      <div class="guide-card"><div class="num">01</div><div><h2>Choose your yarn & hook</h2><p>${data.guide_choice_text || `At the first listed size option, the finished area is approximately ${Number(mainSize.cmW).toFixed(1)} × ${Number(mainSize.cmH).toFixed(1)} cm (${Number(mainSize.inW).toFixed(1)} × ${Number(mainSize.inH).toFixed(1)} in).`}</p></div></div>
+      <div class="guide-card"><div class="num">02</div><div><h2>Find the centre</h2><p>Fold your fabric gently in half both ways. Match the centre to row ${Math.ceil(H/2)} and column ${Math.ceil(W/2)}.</p></div></div>
+      <div class="guide-card"><div class="num">03</div><div><h2>Use the enlarged charts</h2><p>Pages 8–11 show colour + symbols. Pages 12–15 repeat the same sections in black and white.</p></div></div>
+      <div class="guide-card"><div class="num">04</div><div><h2>Keep the DMC key nearby</h2><p>Every symbol maps to the same DMC number shown on the thread-colour page.</p></div></div>
+    </div>
+    <div class="size-reference"><h2>Finished-size reference</h2><table><thead><tr><th>Size option</th><th>Finished area</th><th>Approx. inches</th></tr></thead><tbody>${sizeRows}</tbody></table></div>
+    <div class="guide-banner"><div><b>Print at 100%</b><span>For consistent chart scale, avoid printer options that resize the page unexpectedly.</span></div><div><b>View at a comfortable size</b><span>When viewing digitally, zoom in as needed so the chart symbols are easy to follow.</span></div></div>
+  </div>`));
+
+  // 17 closing
+  pages.push(common(17, `<div class="page-content">${titleBlock("Thank you","Pattern information & personal-use note")}
+    <div class="closing"><h2>Thank you for stitching with Drielo</h2>
+      <p>This digital pattern is designed for personal use. Please do not redistribute, resell or share the file or its charts.</p>
+      <p>Use the collection colour key on page 4 together with the colour and symbol charts throughout this booklet.</p>
+      <hr/>
+      <div class="closing-meta">
+        <div><b>Pattern</b><span>${esc(CODE)}</span></div>
+        <div><b>Format</b><span>Digital PDF pattern</span></div>
+        <div><b>Threads</b><span>${threadCount} collection colours</span></div>
+        <div><b>Website</b><span>${esc(WEBSITE)}</span></div>
+      </div>
+    </div>
+  </div>`));
+
+  document.getElementById("book").innerHTML=pages.join("");
+
+  // Assign shared brand assets once after the DOM exists.
+  document.querySelectorAll("[data-floral]").forEach(img=>img.src=assets.floral);
+  document.getElementById("cover-image").src=assets.cover_image;
+
+  // Vector graphics.
+  const stitched=svgData(stitchedSvg(MATRIX,0,0,W,H,true));
+  const coverVector=svgData(coverStitchedSvg(MATRIX));
+  document.getElementById("finished-design").src=stitched;
+  document.getElementById("facts-preview").src=stitched;
+  document.getElementById("layout-preview").src=stitched;
+  const ov=document.getElementById("cover-overlay");
+  if(ov){
+    const o=data.cover_overlay||{left:20,top:10,width:60,height:70,opacity:.85,safe_inset_pct:0};
+    const inset=Math.max(0,Math.min(20,Number(o.safe_inset_pct||0)))/100;
+    const left=Number(o.left)+Number(o.width)*inset;
+    const top=Number(o.top)+Number(o.height)*inset;
+    const width=Number(o.width)*(1-2*inset);
+    const height=Number(o.height)*(1-2*inset);
+    ov.src=coverVector;
+    ov.style.left=left+"%"; ov.style.top=top+"%";
+    ov.style.width=width+"%"; ov.style.height=height+"%";
+    ov.style.opacity=(o.opacity ?? .85);
+    ov.style.objectFit="contain"; ov.style.objectPosition="center center";
+    ov.style.maxWidth="100%"; ov.style.maxHeight="100%";
+  }
+  const stage=document.getElementById("cover-stage"); if(stage && data.cover_stage_scale) stage.style.width=data.cover_stage_scale+"%";
+  document.getElementById("colour-overview").src=svgData(colourOverviewSvg());
+  document.getElementById("symbol-overview").src=svgData(symbolOverviewSvg());
+
+  const palette=document.getElementById("palette");
+  data.threads.forEach(t=>{
+    const i=document.createElement("i");
+    i.style.background=t.color;
+    i.title=`Colour ${t.dmc} - ${t.name}`;
+    palette.appendChild(i);
+  });
+
+  sections.forEach(s=>{
+    document.getElementById(`detail-colour-${s.key}`).src=svgData(detailSvg(s.x,s.y,s.w,s.h,"colour"));
+    document.getElementById(`detail-symbol-${s.key}`).src=svgData(detailSvg(s.x,s.y,s.w,s.h,"symbol"));
+  });
+
+  document.documentElement.setAttribute("data-drielo-ready","1");
+}
+renderPages();
+})();
+</script>
+</body>
+</html>
