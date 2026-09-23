@@ -788,23 +788,17 @@ function make_render_collection_grid(): void {
         echo '<a class="drielo-collection-media" href="' . esc_url( $url ) . '">';
         if ( ! empty( $preview_ids ) && function_exists( 'make_static_attachment_image_html' ) ) {
             $preview_count = count( $preview_ids );
-            $desktop_more  = max( 0, $preview_count - 5 );
-            $mobile_more   = max( 0, $preview_count - 3 );
-            $classes       = array( 'drielo-collection-thumbs' );
-            if ( $preview_count > 6 ) { $classes[] = 'has-desktop-overflow'; }
-            if ( $preview_count > 4 ) { $classes[] = 'has-mobile-overflow'; }
+            $show_more     = $preview_count > 20;
+            $visible_ids   = array_slice( $preview_ids, 0, $show_more ? 19 : 20 );
 
-            echo '<span class="' . esc_attr( implode( ' ', $classes ) ) . '">';
-            foreach ( array_slice( $preview_ids, 0, 6 ) as $preview_id ) {
+            echo '<span class="drielo-collection-thumbs">';
+            foreach ( $visible_ids as $preview_id ) {
                 $thumb_id = (int) get_post_thumbnail_id( $preview_id );
                 if ( $thumb_id <= 0 ) { continue; }
-                echo wp_kses_post( make_static_attachment_image_html( $thumb_id, 'woocommerce_thumbnail', 'drielo-collection-preview' ) );
+                echo wp_kses_post( make_static_attachment_image_html( $thumb_id, 'make-collection-preview', 'drielo-collection-preview' ) );
             }
-            if ( $preview_count > 6 ) {
-                echo '<span class="drielo-collection-more drielo-collection-more--desktop" aria-hidden="true"><b>+' . esc_html( (string) $desktop_more ) . '</b><small>' . esc_html( make_t( 'más', 'more' ) ) . '</small></span>';
-            }
-            if ( $preview_count > 4 ) {
-                echo '<span class="drielo-collection-more drielo-collection-more--mobile" aria-hidden="true"><b>+' . esc_html( (string) $mobile_more ) . '</b><small>' . esc_html( make_t( 'más', 'more' ) ) . '</small></span>';
+            if ( $show_more ) {
+                echo '<span class="drielo-collection-more" aria-hidden="true"><b>+' . esc_html( (string) ( $preview_count - 19 ) ) . '</b><small>' . esc_html( make_t( 'más', 'more' ) ) . '</small></span>';
             }
             echo '</span>';
         } elseif ( $product_id && has_post_thumbnail( $product_id ) && function_exists( 'make_static_attachment_image_html' ) ) {
