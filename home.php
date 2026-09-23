@@ -126,7 +126,7 @@ $section_data  = $craft_section && isset( $section_cfg[ $craft_section ][ $langu
 </section>
 <?php endif; ?>
 
-<?php if ( ! $theme_id && ! $craft_section && ! empty( $sections ) ) : ?>
+<?php if ( $craft_id && ! $theme_id && ! $craft_section && ! empty( $sections ) ) : ?>
 <section class="journal-paths" aria-label="<?php echo esc_attr( make_t( 'Explorar artículos', 'Explore articles' ) ); ?>">
   <div class="container">
     <div class="journal-paths-grid">
