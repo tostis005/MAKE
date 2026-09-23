@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 390,
+  "translation_group": "390-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "technique",
+      "terms": [
+        "technique"
+      ]
+    },
+    "style": {
+      "terms": [
+        "rectangle",
+        "shape-control",
+        "corner-to-corner"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "wall-hangings",
+        "cushions"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "es-390-c2c",
+  "language": "es",
+  "locale": "es-ES",
+  "market_context": "Crocheters que quieren transformar la lógica básica de C2C en mantas, paneles y piezas rectangulares con medidas controladas.",
+  "title": "Cómo hacer un rectángulo en C2C Crochet",
+  "slug": "como-hacer-rectangulo-c2c-crochet",
+  "seo": {
+    "title": "Cómo hacer un rectángulo en C2C Crochet",
+    "meta_description": "Cómo hacer un rectángulo en C2C Crochet: cuándo dejar de aumentar un lado, cómo mantener el ancho y cómo cerrar la segunda dimensión sin errores.",
+    "search_intent": "Personas que ya saben hacer un cuadrado C2C y necesitan entender cómo mantener una dimensión mientras la otra sigue creciendo."
+  },
+  "excerpt": "Un rectángulo C2C se forma dejando de aumentar una dimensión antes que la otra. Aprende cuándo girar cada borde y cómo mantener el conteo.",
+  "content_html": "<p>Hacer un rectángulo en C2C Crochet utiliza los mismos bloques que un cuadrado, pero las dos dimensiones dejan de crecer en momentos distintos. Esa es toda la diferencia estructural. El reto está en reconocer qué borde debe seguir aumentando y cuál debe empezar a disminuir.</p>\n<p>Si entiendes esa transición, puedes adaptar C2C a mantas de sofá, bufandas anchas, paneles, caminos de mesa y graphgans que no tengan formato cuadrado.</p>\n<h2>Empieza igual que un cuadrado</h2>\n<p>Las primeras vueltas no cambian. Comienzas con un bloque, después dos, tres y así sucesivamente. Mientras ambos lados del proyecto necesitan seguir creciendo, aumentas en los dos extremos de cada vuelta.</p>\n<p>Antes de empezar, anota las dimensiones objetivo en bloques. Por ejemplo, un rectángulo de 30 bloques de ancho por 50 de alto. Esas dos cifras son más útiles que las medidas físicas durante el tejido, porque el crochet se estira y se mueve.</p>\n<p>Si trabajas desde un gráfico, el ancho y el alto de la cuadrícula ya te dan esas dimensiones. Si diseñas por medida, calcula cuántos centímetros mide un bloque a partir de una muestra.</p>\n<h2>La primera esquina aparece cuando una dimensión deja de crecer</h2>\n<p>En el ejemplo de 30 por 50 bloques, llegas primero al lado corto. Cuando una diagonal contiene 30 bloques y el borde correspondiente ya ha alcanzado su tamaño final, ese lado debe dejar de aumentar.</p>\n<p>En la siguiente vuelta haces una disminución en ese borde, pero continúas aumentando en el borde opuesto. El resultado es que el número total de bloques de la diagonal puede mantenerse alrededor de 30 mientras la labor sigue avanzando en longitud.</p>\n<p>Este tramo central es lo que transforma el rombo inicial en un rectángulo. Una esquina ya está definida, pero la dimensión larga todavía no ha terminado.</p>\n<h2>Durante la sección central combinas aumento y disminución</h2>\n<p>Cada vuelta tiene dos decisiones independientes. En un extremo, haces puntos deslizados hasta el siguiente espacio y no creas bloque nuevo. En el otro, sigues construyendo el bloque de aumento.</p>\n<p>Es fácil perderse porque el número de bloques puede parecer estable. Utiliza un marcador en el borde que ya está “cerrado” para recordar que allí debes disminuir siempre.</p>\n<p>Si sigues un graphgan, el propio límite de la cuadrícula te ayuda: una diagonal ya toca uno de los lados del dibujo, mientras el otro extremo todavía avanza hacia el borde opuesto.</p>\n<h2>La segunda dimensión marca el siguiente cambio</h2>\n<p>Cuando la longitud también alcanza su número objetivo —50 bloques en nuestro ejemplo— ya no necesitas aumentar en ninguno de los extremos.</p>\n<p>A partir de ese punto disminuyes en los dos lados. Cada vuelta tendrá progresivamente menos bloques hasta cerrar la última esquina.</p>\n<p>Marca esta segunda transición antes de llegar a ella. En proyectos largos, puedes pasar muchas vueltas combinando un aumento y una disminución, y es fácil continuar ese patrón una vuelta de más por costumbre.</p>\n<h2>Cómo comprobar que el rectángulo mantiene las proporciones</h2>\n<p>Extiende la pieza periódicamente y observa las cuatro líneas generales del contorno. Los bordes son escalonados, pero deben formar dos pares de lados paralelos.</p>\n<p>Comprueba también las diagonales de transición. La primera esquina debe aparecer cuando alcanzas la dimensión corta y la segunda cuando alcanzas la larga. Si ambas transiciones ocurrieron con el mismo número de bloques, has creado un cuadrado, no un rectángulo.</p>\n<p>En un proyecto sin gráfico, mide una muestra y utiliza el número de bloques para estimar el resultado. No cambies de estrategia sólo porque la labor parece más larga o más corta mientras está colgada de la aguja.</p>\n<h2>Errores frecuentes al hacer rectángulos C2C</h2>\n<p>El error más común es disminuir en ambos extremos al llegar a la primera dimensión. Eso cierra inmediatamente la pieza y genera un cuadrado o un rombo truncado.</p>\n<p>El segundo es seguir aumentando en ambos lados demasiado tiempo. La anchura crece por encima de lo previsto y todas las medidas posteriores dejan de coincidir.</p>\n<p>También ocurre que se confunde qué borde está en modo aumento y cuál en disminución después de girar. Un marcador de color distinto en cada esquina puede evitarlo.</p>\n<p>Si encuentras un problema, vuelve a la última esquina correcta y cuenta los bloques. En C2C, la geometría es acumulativa: corregir el punto donde cambió la lógica es más fiable que intentar compensar añadiendo o quitando bloques varias vueltas después.</p>\n<p>Piensa en un rectángulo como cuatro etapas: aumentar ambos lados, disminuir uno y aumentar el otro, disminuir ambos y cerrar. Con esa secuencia clara, la forma deja de depender de la intuición y puedes reproducir cualquier proporción que marque el patrón.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Diagrama rectangular C2C con las cuatro esquinas señaladas y flechas que muestran cuándo cada borde deja de aumentar.",
+    "alt": "Cómo hacer un rectángulo en C2C Crochet"
+  }
+}
