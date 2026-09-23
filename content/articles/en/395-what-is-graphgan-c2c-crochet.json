@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 395,
+  "translation_group": "395-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "graphs",
+      "terms": [
+        "graphs"
+      ]
+    },
+    "style": {
+      "terms": [
+        "graphgan",
+        "charts",
+        "grid-crochet"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "wall-hangings",
+        "cushions"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-395-c2c",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "C2C beginners interested in turning charts, pixel art or images into blankets and crochet panels.",
+  "title": "What Is a Graphgan and How Does It Work in C2C Crochet?",
+  "slug": "what-is-graphgan-c2c-crochet",
+  "seo": {
+    "title": "What Is a Graphgan and How Does It Work in C2C Crochet?",
+    "meta_description": "Learn what a graphgan is, how a grid maps to C2C blocks, how graphgan patterns are read and what to check before starting one.",
+    "search_intent": "People who encounter the term graphgan and want to understand how a grid becomes a C2C crochet image."
+  },
+  "excerpt": "A graphgan turns a color grid into crochet. In C2C, each cell usually represents one block and diagonal rows determine the working order.",
+  "content_html": "<p>A <em>graphgan</em> is a crochet project built from a grid-based graph. The word combines “graph” and “afghan” because many early examples were blankets decorated with pictures, lettering or pixel-style motifs. The same idea is now used for cushions, wall hangings and decorative panels.</p>\n<p>In C2C crochet, the connection between graph and fabric is especially direct: each grid square usually represents one C2C block. The square's color tells you which yarn to use, while the diagonal construction of C2C determines the order in which those cells are worked.</p>\n<h2>A graphgan is an image broken into countable cells</h2>\n<p>Think of pixel art. Every pixel has a defined color and an exact position. A crochet graph works in a similar way by reducing the design to a matrix of colored cells that can be counted.</p>\n<p>A 50-by-60 grid contains 3,000 possible positions. Those cells do not need 3,000 colors; a relatively small palette normally repeats to build the image.</p>\n<p>With C2C, the cells become crochet blocks. The finished project keeps the graphic logic of the original grid, but every “pixel” gains the texture and depth of yarn.</p>\n<h2>C2C travels through the grid diagonally</h2>\n<p>Although the graph is printed in horizontal rows, C2C grows from a corner. The first crochet row crosses one cell, the second two, the third three and so on.</p>\n<p>That is why many graphgan patterns also provide written instructions that convert each diagonal into a color sequence, such as five cream blocks, two black blocks and three cream blocks.</p>\n<p>The visual chart remains useful for understanding the image as a whole, while written sequences can make counting easier when the design contains many changes.</p>\n<h2>Not every graphgan uses the same crochet method</h2>\n<p>The word graphgan describes working from a graph rather than one specific stitch. Graphgans can also be made with single crochet, tapestry crochet, bobble stitches and other constructions.</p>\n<p>A graph created for one method may need adjustment before being used for another because the physical proportions of the units are different. One C2C block usually occupies much more space than one single crochet stitch.</p>\n<p>Before buying or downloading a graphgan pattern, check which technique the designer expects and whether the instructions are specifically written for C2C.</p>\n<h2>Finished size depends on the size of your blocks</h2>\n<p>An 80-by-100-cell graph has no universal physical size. With thick yarn and large blocks it may become an enormous blanket; with mini C2C and finer yarn, the same number of cells can be much smaller.</p>\n<p>Make a swatch and measure several blocks together. If ten blocks measure 6 inches, you can estimate roughly 0.6 inch per block and multiply by the graph dimensions.</p>\n<p>Measuring ten blocks is more reliable than measuring one because small tension variations have less influence on the calculation.</p>\n<h2>Color distribution often matters more than dimensions</h2>\n<p>Two graphs with identical dimensions can have very different difficulty levels. A design with large areas of one color lets you work quickly, while another with changes every one or two blocks demands more bobbins, attention and finishing.</p>\n<p>Look at how the colors are distributed rather than only counting how many shades appear in the key. Ten colors used in large regions can be easier than four colors that alternate constantly.</p>\n<p>For a first graphgan, choose clear shapes, few tiny isolated color islands and a short palette. You can learn graph tracking without turning every diagonal into a yarn-management exercise.</p>\n<h2>What a useful graphgan pattern should include</h2>\n<p>At minimum, you need a readable grid, a color key and dimensions in cells. It is also helpful to know the starting corner, reading direction and exact block method.</p>\n<p>Written diagonal instructions are valuable on complicated designs. A zoomed or multi-page chart also helps when the grid is too large to read comfortably on one page.</p>\n<p>If you expect to print in grayscale, check that colors are distinguished by more than similar shades. Symbols, letters or codes make mistakes less likely.</p>\n<p>Before beginning, locate four facts on the first page: width, height, exact technique and palette. Then identify where the shaping changes occur—the central diagonal of a square or the two turning points of a rectangle. This quick preview prevents you from discovering halfway through that you were interpreting the chart as horizontal rows.</p>\n<p>While crocheting, count at the end of every diagonal and mark the graph only when the total matches. If one row contains 23 cells, all the color-block counts together must also equal 23. That simple check catches both color-sequence errors and missing or extra blocks.</p>\n<p>A graphgan works best when you treat the graph as a map rather than a picture to copy by eye. Count each diagonal, mark your progress and step back periodically to inspect the image. With that routine, C2C can turn a simple grid into a surprisingly detailed textile design.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "C2C blanket beside its pixel chart, with several grid cells visually connected to matching crochet blocks.",
+    "alt": "What a C2C graphgan is and how it works"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 397,
+  "translation_group": "397-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "photo-conversion",
+      "terms": [
+        "photo-conversion"
+      ]
+    },
+    "style": {
+      "terms": [
+        "photo-conversion",
+        "pattern-design",
+        "graphgan"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "es-397-c2c",
+  "language": "es",
+  "locale": "es-ES",
+  "market_context": "Crocheters y diseñadores interesados en retratos o imágenes personalizadas convertidas a una cuadrícula C2C legible.",
+  "title": "Cómo convertir una foto en un gráfico para C2C Crochet",
+  "slug": "convertir-foto-grafico-c2c-crochet",
+  "seo": {
+    "title": "Cómo convertir una foto en un gráfico para C2C Crochet",
+    "meta_description": "Convierte una foto en un gráfico C2C: recorta, simplifica el fondo, reduce resolución y colores y comprueba el tamaño antes de tejer.",
+    "search_intent": "Personas que quieren transformar una fotografía en un graphgan C2C y necesitan saber cómo reducir resolución, colores y detalles."
+  },
+  "excerpt": "Una foto necesita simplificarse antes de convertirse en C2C. Aprende a elegir encuadre, resolución, paleta y contraste para obtener un gráfico legible.",
+  "content_html": "<p>Convertir una foto en C2C Crochet no consiste en pixelarla y empezar a tejer. Una fotografía contiene muchísima más información de la que una cuadrícula textil puede reproducir: sombras suaves, texturas, fondos, reflejos y cambios de color casi continuos.</p>\n<p>El objetivo es conservar lo que hace reconocible la imagen y eliminar información que sólo añadiría cambios de hilo sin mejorar el resultado.</p>\n<h2>Elige una foto con un sujeto claro</h2>\n<p>Las mejores conversiones parten de una imagen con buena iluminación, contraste suficiente y un sujeto que se separa del fondo. Un retrato frontal con fondo sencillo suele funcionar mejor que una escena llena de objetos pequeños.</p>\n<p>Recorta antes de reducir. Si la persona ocupa sólo una pequeña parte de la fotografía, estarás desperdiciando gran parte de la cuadrícula en fondo.</p>\n<p>Decide también qué es lo importante: el rostro, una mascota, una silueta o una composición completa. Esa prioridad guiará las simplificaciones posteriores.</p>\n<h2>Reduce la resolución pensando en bloques, no en píxeles de pantalla</h2>\n<p>Define primero cuántos bloques puedes permitirte en el proyecto final. Una foto de 2.000 píxeles de ancho no puede convertirse literalmente en 2.000 bloques C2C.</p>\n<p>Si tu manta admite aproximadamente 80 bloques de ancho, reduce la imagen a una cuadrícula cercana a esa cifra y observa qué detalles sobreviven.</p>\n<p>Haz una muestra para estimar el tamaño físico por bloque. Esa medida evita diseñar un gráfico perfecto en pantalla que luego resulte demasiado grande para el uso previsto.</p>\n<p>Comprueba anchura y altura del bloque por separado. Si el bloque no es físicamente cuadrado, una conversión uno a uno puede estirar la foto. Puedes compensarlo ajustando la resolución del gráfico antes de tejer.</p>\n<h2>Simplifica el fondo de forma agresiva</h2>\n<p>Un fondo fotográfico suele contener docenas de tonos que no aportan al sujeto. Sustituirlo por uno o dos colores puede reducir muchísimo los cambios de hilo.</p>\n<p>También puedes recortar la silueta y dejar zonas limpias alrededor. En un retrato, preservar el contraste del rostro suele ser más importante que reproducir cada objeto de la habitación.</p>\n<p>Cuando el fondo forma parte de la historia de la imagen, simplifícalo por masas grandes en lugar de intentar copiar textura fina.</p>\n<p>Revisa los bordes del sujeto después de eliminar el fondo. Un recorte automático puede dejar pequeñas celdas aisladas que, en crochet, se convierten en cambios de color innecesarios.</p>\n<h2>Reduce colores por valor y función</h2>\n<p>Empieza agrupando tonos similares. Varias sombras de piel pueden convertirse en tres o cuatro niveles; un cielo con degradado puede resumirse en dos azules.</p>\n<p>No mires sólo el tono. El valor —qué tan claro u oscuro es un color— determina gran parte de la legibilidad. Si dos colores distintos tienen el mismo valor, quizá se fusionen visualmente desde lejos.</p>\n<p>Comprueba la imagen en escala de grises. Si el rostro o la silueta se pierden, necesitas más contraste entre las zonas principales.</p>\n<p>Asigna cada color digital a un hilo real antes de dar el gráfico por terminado. Si no encuentras dos tonos suficientemente distintos dentro de la gama elegida, es mejor corregir la paleta ahora que descubrirlo al comprar.</p>\n<h2>Corrige manualmente después de la conversión automática</h2>\n<p>Las herramientas de pixelado y reducción de color son un punto de partida, no un patrón terminado. Pueden crear píxeles aislados, bordes dentados o pequeños grupos de color que no aportan nada.</p>\n<p>Limpia manchas de una sola celda cuando no representan un detalle esencial. Refuerza líneas importantes como ojos, boca, contorno de una mascota o borde de una prenda.</p>\n<p>Observa el gráfico como miniatura con frecuencia. Si la imagen sólo funciona al hacer mucho zoom, probablemente tiene demasiada información para la resolución elegida.</p>\n<p>Haz dos versiones si dudas: una más detallada y otra simplificada. Compararlas a tamaño pequeño suele mostrar cuál conserva mejor el sujeto sin añadir confetti de color.</p>\n<h2>Prueba el gráfico con hilo antes de producirlo completo</h2>\n<p>Teje una zona crítica: un ojo, una transición de piel, un borde de pelo o cualquier área que determine si el sujeto se reconoce.</p>\n<p>Los bloques C2C tienen textura y pequeños huecos, por lo que la transición puede verse diferente a la pantalla. La muestra te permite corregir la paleta o la resolución.</p>\n<p>Comprueba también la gestión práctica de colores. Un resultado visualmente excelente puede ser innecesariamente difícil si cada diagonal exige veinte bobinas activas.</p>\n<p>Mira la muestra desde la distancia a la que se verá el proyecto final. Un tapiz colgado se interpreta desde varios metros; un cojín se observa más cerca y puede justificar algo más de detalle.</p>\n<p>Una buena conversión fotográfica sacrifica detalle para ganar claridad. Empieza por un sujeto fuerte, limita el tamaño físico, simplifica el fondo y reduce colores con intención. Después corrige el gráfico a mano y prueba una zona con hilo. El resultado final no será una fotografía impresa, sino una interpretación textil reconocible y agradable de tejer.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Fotografía de un retrato transformándose por etapas en imagen reducida, cuadrícula de colores y panel C2C.",
+    "alt": "Cómo convertir una foto en un gráfico para C2C Crochet"
+  }
+}

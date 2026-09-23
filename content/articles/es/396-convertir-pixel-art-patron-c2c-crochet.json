@@ -1,0 +1,75 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 396,
+  "translation_group": "396-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "pixel-art",
+      "terms": [
+        "pixel-art"
+      ]
+    },
+    "style": {
+      "terms": [
+        "pixel-art",
+        "pattern-design",
+        "graphgan"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "wall-hangings",
+        "cushions"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "es-396-c2c",
+  "language": "es",
+  "locale": "es-ES",
+  "market_context": "Crocheters y diseñadores que quieren reutilizar arte por cuadrícula como graphgan C2C sin perder proporción ni crear una pieza gigantesca.",
+  "title": "Cómo convertir pixel art en un patrón de C2C Crochet",
+  "slug": "convertir-pixel-art-patron-c2c-crochet",
+  "seo": {
+    "title": "Cómo convertir pixel art en un patrón de C2C Crochet",
+    "meta_description": "Convierte pixel art en C2C Crochet: ajusta la cuadrícula, calcula el tamaño final, limita colores y prepara un gráfico legible antes de empezar.",
+    "search_intent": "Personas con un diseño de pixel art que quieren transformarlo en un gráfico C2C con tamaño y colores manejables."
+  },
+  "excerpt": "El pixel art ya tiene la lógica de cuadrícula que necesita C2C, pero debes comprobar escala, proporción de bloques, colores y tamaño físico antes de tejer.",
+  "content_html": "<p>Pixel art y C2C Crochet encajan de forma natural porque ambos construyen imágenes a partir de unidades discretas. En un patrón sencillo, un píxel puede convertirse directamente en un bloque C2C. Sin embargo, trasladar la cuadrícula sin comprobar escala puede producir una manta enorme o una imagen deformada.</p>\n<p>Antes de tejer, decide qué partes del diseño deben conservarse y qué puede simplificarse. Un buen gráfico textil no siempre es una copia exacta del archivo digital.</p>\n<h2>Empieza con una imagen realmente pixelada</h2>\n<p>El mejor punto de partida es un diseño con bordes definidos y colores planos. Si el archivo contiene suavizados, sombras semitransparentes o cientos de tonos intermedios, conviértelo primero en una paleta limitada.</p>\n<p>Cuenta la cuadrícula original. Un sprite de 32 por 32 píxeles se convierte, en una relación uno a uno, en 32 por 32 bloques.</p>\n<p>Comprueba que ningún detalle importante dependa de una línea de medio píxel o de degradados. C2C necesita decisiones claras: cada bloque será de un color.</p>\n<h2>Calcula el tamaño físico antes de aceptar la escala</h2>\n<p>Teje una muestra con el hilo y la aguja que quieres usar. Mide diez bloques en horizontal y diez en vertical, porque ambas medidas pueden diferir ligeramente.</p>\n<p>Si cada bloque ocupa aproximadamente 1,5 centímetros, un gráfico de 100 celdas de ancho mediría alrededor de 150 centímetros. Esa cifra puede ser perfecta para una manta y excesiva para un cojín.</p>\n<p>Si el resultado es demasiado grande, no reduzcas simplemente el hilo sin probar. También puedes simplificar la cuadrícula, usar mini C2C o elegir una versión del diseño con menos píxeles.</p>\n<h2>Simplifica sin perder la silueta</h2>\n<p>Cuando reduces un diseño, protege primero los rasgos que hacen reconocible la imagen: contorno, ojos, letras, bordes característicos o formas principales.</p>\n<p>Los detalles de un solo píxel pueden desaparecer o convertirse en pequeñas islas de color incómodas de tejer. Pregúntate si aportan realmente algo cuando el proyecto se observa a distancia.</p>\n<p>Trabaja por etapas. Reduce la resolución, observa la miniatura y corrige manualmente los píxeles que rompen una curva o una letra.</p>\n<p>Si una línea diagonal se vuelve irregular al reducir, no intentes preservar todos los escalones originales. Redibuja la línea con un ritmo de píxeles más limpio para que el borde se lea mejor una vez convertido en bloques de hilo.</p>\n<h2>Limita la paleta a colores que puedas conseguir en hilo</h2>\n<p>Una pantalla puede mostrar millones de tonos, pero la paleta útil de un proyecto C2C es mucho más pequeña. Agrupa colores casi idénticos cuando su diferencia no sea necesaria para leer la imagen.</p>\n<p>Los cambios frecuentes también aumentan el número de bobinas y cabos. Un diseño de seis colores bien elegidos puede resultar visualmente más claro que uno de quince tonos apenas distintos.</p>\n<p>Si estás adaptando un diseño para vender como patrón, define colores por nombres o códigos de una gama concreta y añade una alternativa descriptiva cuando sea posible.</p>\n<p>Comprueba también el contraste en escala de grises. Dos colores muy distintos en pantalla pueden tener un valor parecido y fusionarse visualmente cuando se ven desde lejos.</p>\n<h2>Convierte la cuadrícula en un gráfico fácil de seguir</h2>\n<p>Añade líneas de cuadrícula visibles, numeración periódica y una leyenda de colores. En gráficos grandes, marca cada diez celdas para que sea más fácil localizar una posición.</p>\n<p>Si el diseño utiliza tonos cercanos, incorpora símbolos o letras dentro de las celdas. El color por sí solo puede ser insuficiente en impresiones, pantallas oscuras o para personas con dificultades de percepción cromática.</p>\n<p>Prepara también una versión ampliada o dividida en páginas. El patrón debe ser utilizable mientras se teje, no sólo verse bonito como imagen completa.</p>\n<p>Indica claramente la orientación y la esquina de inicio. Un diseño asimétrico puede quedar reflejado si la persona empieza desde la esquina opuesta y no adapta la dirección de lectura.</p>\n<h2>Haz una prueba antes de convertirlo en proyecto grande</h2>\n<p>Teje una zona representativa: una esquina con contorno, un pequeño detalle de color y una parte de fondo. Esa muestra muestra si los bloques conservan el aspecto que imaginabas.</p>\n<p>Mírala desde lejos y haz una foto. El motivo debe seguir siendo reconocible sin necesidad de interpretar cada punto.</p>\n<p>Si los detalles se pierden, modifica el gráfico, no intentes compensar improvisando durante el tejido. Un patrón limpio es mucho más fácil de repetir y compartir.</p>\n<p>Calcula también cuántas bobinas pueden estar activas en la diagonal más compleja. Si el número resulta poco práctico, quizá convenga unir pequeñas islas de color o simplificar otra vez la paleta.</p>\n<p>Pixel art ofrece una base excelente para C2C porque ya piensa en cuadrículas, pero el paso decisivo es traducir píxeles digitales a unidades físicas. Calcula la escala, reduce colores y detalles con intención y prueba la proporción antes de comprometer cientos de bloques. Así el diseño conserva su identidad sin convertir el proyecto en algo inmanejable.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Pixel art simple a la izquierda, cuadrícula C2C numerada en el centro y una muestra tejida del mismo motivo a la derecha.",
+    "alt": "Cómo convertir pixel art en un patrón de C2C Crochet"
+  }
+}

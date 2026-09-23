@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 399,
+  "translation_group": "399-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "materials",
+      "terms": [
+        "materials"
+      ]
+    },
+    "style": {
+      "terms": [
+        "hook-size",
+        "materials",
+        "gauge"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "wall-hangings",
+        "cushions"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-399-c2c",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "C2C crocheters preparing a swatch and selecting a hook based on yarn and the final use of the project.",
+  "title": "What Crochet Hook Size Should You Use for C2C?",
+  "slug": "what-crochet-hook-size-for-c2c",
+  "seo": {
+    "title": "What Crochet Hook Size Should You Use for C2C?",
+    "meta_description": "Choose a crochet hook size for C2C by testing yarn, tension, gaps, drape and finished graph dimensions instead of relying on one universal number.",
+    "search_intent": "People choosing a hook for C2C who want to understand how hook size changes block dimensions, gaps, stiffness and graph definition."
+  },
+  "excerpt": "The yarn label is only a starting point. In C2C, hook size changes block dimensions, gaps and drape, so the best choice comes from a measured swatch.",
+  "content_html": "<p>There is no single crochet hook size for C2C. The right choice depends on the yarn, your personal tension and the fabric you want. Two people can use the same yarn and need different hook sizes to create similarly proportioned blocks.</p>\n<p>The recommendation on the yarn label is a useful starting point, but C2C also requires you to consider physical block size, the openings between stitches, fabric flexibility and the overall scale of the graph.</p>\n<h2>Start within the yarn's recommended hook range</h2>\n<p>Check the label and choose a hook within the suggested range. Make a small swatch using the exact C2C variation you intend to use in the project.</p>\n<p>Do not change the stitch recipe or chain length yet. First see what the standard combination produces. If you plan to use mini C2C or half double crochet, swatch with that exact construction.</p>\n<p>If the yarn splits constantly or entering chain spaces feels difficult, consider hook-tip shape and material as well as diameter. A very blunt tip or high-friction surface can make a technically suitable size feel awkward.</p>\n<h2>A larger hook makes bigger, more open blocks</h2>\n<p>As hook size increases, the loops normally become larger. Each block occupies more space and the fabric develops more drape.</p>\n<p>That can feel pleasant in a blanket, but it also increases the final graphgan dimensions and may allow carried yarn to show more clearly through the openings.</p>\n<p>If the design relies on sharp lines or small pixel details, an overly open texture can visually soften those boundaries. The fabric may still be attractive, but the image loses some definition.</p>\n<p>A larger hook can also use slightly more yarn per block because the loops are larger. Across a very large project, that difference can affect total yarn requirements.</p>\n<h2>A smaller hook creates a denser structure</h2>\n<p>Moving down a hook size can reduce gaps and make individual blocks feel more compact. It can also reduce the physical scale slightly.</p>\n<p>A hook that is too small, however, creates stiff fabric, makes chain spaces difficult to enter and may increase hand fatigue. If you have to force the hook into every space, the fabric is probably too tight.</p>\n<p>Do not aim to eliminate every opening. C2C naturally has some space within its block structure; forcing it completely closed can harm both texture and comfort.</p>\n<p>A very compact swatch may also lose drape and make a large blanket feel dense and heavy even if the individual blocks look crisp.</p>\n<h2>Measure a swatch made from several blocks</h2>\n<p>Crochet at least a ten-block square or another sample large enough for your tension to settle. Measure an interior area without stretching.</p>\n<p>Record both width and height. If ten blocks measure 5.5 inches in one direction and 6.25 in the other, that difference affects the proportions of the finished graph.</p>\n<p>Then estimate the full project size. A change of only a fraction of an inch per block can become many inches when the chart contains one hundred cells.</p>\n<p>If you are undecided, make the same swatch with the next hook size up or down. Comparing two real pieces tells you far more than trying to imagine the difference from the number stamped on the hook.</p>\n<h2>Let the final use determine how much drape you need</h2>\n<p>A blanket generally benefits from flexibility and drape. A wall hanging may work better with slightly firmer fabric that keeps the image stable.</p>\n<p>For a cushion, look for a balance: enough density that the insert does not dominate through the openings, but not so tight that the cover becomes board-like.</p>\n<p>If you plan to add a lining, backing or substantial border, account for it. Those finishing elements can provide structure and allow the C2C fabric itself to remain more flexible.</p>\n<p>Consider working weight too. A very large hook paired with bulky yarn can quickly create a blanket that becomes uncomfortable to hold during the final rows.</p>\n<h2>Avoid changing hooks halfway through without checking</h2>\n<p>Even two hooks labeled with the same diameter can feel different because of material, throat shape or handle design. A replacement can subtly change your tension.</p>\n<p>If a hook is lost and you must substitute another, compare several new blocks with the previous section before continuing for many rows. Measure rather than relying only on appearance.</p>\n<p>Keep a note of the brand and size with the project, especially if you rotate between several works in progress. A quick photo of the hook beside the yarn can work too.</p>\n<p>If your washed swatch changes size, use the washed measurements for an item that will be laundered regularly. The hook determines the initial structure, but the fiber may relax later.</p>\n<p>The correct hook is the one that creates a consistent, comfortable block at the scale your design needs. Start with the yarn recommendation, test one size above or below if necessary and make the decision from the swatch rather than from an abstract chart. In C2C, that small test controls both the feel and the final dimensions of the project.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Three C2C swatches made with the same yarn and different hook sizes, with a ruler showing the change in block size.",
+    "alt": "What crochet hook size to use for C2C"
+  }
+}
