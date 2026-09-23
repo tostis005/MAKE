@@ -11,12 +11,9 @@
   "pattern_file": "patterns/P0016-LH/pattern.json",
   "template": "rug.html",
   "website": "www.drielo.com",
-  "status": "awaiting-source-artwork",
+  "status": "draft",
   "render_ready": false,
   "renderer": "multitech",
-  "source_artwork": "collections/pop-art-25/sources/P0016.png",
-  "page_1_asset": "multitech/assets/cover-rug.webp",
-  "palette_mode": "strict",
-  "palette_size": 25,
-  "transparent_source": true
+  "source_artwork": null,
+  "page_1_asset": "multitech/assets/cover-rug.webp"
 }
