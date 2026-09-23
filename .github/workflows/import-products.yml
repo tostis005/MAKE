@@ -134,20 +134,6 @@ jobs:
           python3 -m pip install --disable-pip-version-check --quiet Pillow
           python3 content/tools/generate-featured-images.py
 
-      - name: Persist generated featured images
-        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add content/products/assets/*-featured.webp 2>/dev/null || true
-          if git diff --cached --quiet; then
-            echo "No featured image changes to persist."
-          else
-            git commit -m "Refresh clean product featured images [skip ci]"
-            git push origin HEAD:main
-          fi
-
       - name: Persist refreshed gallery assets
         if: ${{ hashFiles('content/products/gallery-sources.json') != '' || hashFiles('content/products/gallery-bundle-source.json') != '' }}
         shell: bash
