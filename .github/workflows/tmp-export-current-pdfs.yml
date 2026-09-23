@@ -1,0 +1,109 @@
+name: Temporary export P0001 technique PDFs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tmp-export-current-pdfs.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_export_key
+          chmod 600 ~/.ssh/drielo_export_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Export P0001 WooCommerce PDF downloads
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          REMOTE_TAR="/tmp/drielo-p0001-pdfs-${GITHUB_RUN_ID}.tgz"
+          ssh -i ~/.ssh/drielo_export_key "$VPS_USER@$VPS_HOST" "REMOTE_TAR='$REMOTE_TAR' bash -s" <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          CONTAINER_DIR="/tmp/drielo-p0001-pdfs"
+          "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '$CONTAINER_DIR' && mkdir -p '$CONTAINER_DIR'"
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $out = "/tmp/drielo-p0001-pdfs";
+            $wanted = array(
+              "DRIELO-P0001-CS"=>"P0001-CS",
+              "DRIELO-P0001-C2C"=>"P0001-C2C",
+              "DRIELO-P0001-TC"=>"P0001-TC",
+              "DRIELO-P0001-LH"=>"P0001-LH"
+            );
+            $copied = 0;
+            foreach ($wanted as $sku=>$code) {
+              $id = wc_get_product_id_by_sku($sku);
+              if (!$id) { echo "NOT_FOUND ".$sku.PHP_EOL; continue; }
+              $p = wc_get_product($id);
+              $downloads = $p->get_downloads();
+              if (!$downloads) { echo "NO_DOWNLOAD ".$sku.PHP_EOL; continue; }
+              $d = reset($downloads);
+              $file = $d->get_file();
+              $uploads = wp_upload_dir();
+              $path = $file;
+              if (preg_match("#^https?://#", $file)) {
+                if (strpos($file, $uploads["baseurl"]) === 0) {
+                  $path = $uploads["basedir"] . substr($file, strlen($uploads["baseurl"]));
+                } else {
+                  $site = site_url("/");
+                  if (strpos($file, $site) === 0) {
+                    $rel = ltrim(substr($file, strlen($site)), "/");
+                    $path = ABSPATH . $rel;
+                  }
+                }
+              }
+              if (!is_file($path)) { echo "MISSING ".$sku." ".$path.PHP_EOL; continue; }
+              $target = $out . "/Drielo_" . $code . ".pdf";
+              if (!copy($path, $target)) { echo "COPY_FAILED ".$sku.PHP_EOL; continue; }
+              echo "COPIED ".$sku." ".filesize($target)." bytes".PHP_EOL;
+              $copied++;
+            }
+            echo "TOTAL=".$copied.PHP_EOL;
+            if ($copied !== 4) exit(3);
+          '
+
+          "${DOCKER[@]}" exec make-wp tar -czf /tmp/drielo-p0001-pdfs.tgz -C "$CONTAINER_DIR" .
+          "${DOCKER[@]}" cp make-wp:/tmp/drielo-p0001-pdfs.tgz "$REMOTE_TAR"
+          "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '$CONTAINER_DIR' /tmp/drielo-p0001-pdfs.tgz"
+          REMOTE
+
+          ssh -i ~/.ssh/drielo_export_key "$VPS_USER@$VPS_HOST" "cat '$REMOTE_TAR' && rm -f '$REMOTE_TAR'" > /tmp/drielo-p0001-pdfs.tgz
+          mkdir -p exported-pdfs
+          tar -xzf /tmp/drielo-p0001-pdfs.tgz -C exported-pdfs
+          ls -lh exported-pdfs
+          test "$(find exported-pdfs -maxdepth 1 -type f -name '*.pdf' | wc -l)" -eq 4
+
+      - name: Upload P0001 PDFs
+        uses: actions/upload-artifact@v4
+        with:
+          name: drielo-p0001-current-pdfs
+          path: exported-pdfs/*.pdf
+          if-no-files-found: error
+          retention-days: 1
