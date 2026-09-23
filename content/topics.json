@@ -4407,6 +4407,61 @@
       "title_es": "Qué tamaño de aguja usar para C2C Crochet",
       "title_en": "What Crochet Hook Size Should You Use for C2C?",
       "craft": "c2c-crochet"
+    },
+    {
+      "number": 400,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "gauge",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Gauge en C2C Crochet: cuándo importa y cómo medirlo",
+      "title_en": "C2C Crochet Gauge: When It Matters and How to Measure It",
+      "craft": "c2c-crochet"
+    },
+    {
+      "number": 401,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "sizing",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo calcular cuánto hilo necesitas para un proyecto C2C",
+      "title_en": "How to Estimate Yarn for a C2C Crochet Project",
+      "craft": "c2c-crochet"
+    },
+    {
+      "number": 402,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "sizing",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo calcular el tamaño final de un gráfico C2C",
+      "title_en": "How to Calculate the Finished Size of a C2C Graph",
+      "craft": "c2c-crochet"
+    },
+    {
+      "number": 403,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "technique",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Mini C2C Crochet: qué es y cuándo usarlo",
+      "title_en": "Mini C2C Crochet: What It Is and When to Use It",
+      "craft": "c2c-crochet"
+    },
+    {
+      "number": 404,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "technique",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "C2C con punto alto vs medio punto alto: diferencias reales",
+      "title_en": "Double Crochet vs Half Double Crochet C2C: What Changes?",
+      "craft": "c2c-crochet"
     }
   ],
   "taxonomy_strategy": {
@@ -4437,7 +4492,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 399,
-    "bilingual_groups": 399
+    "last_indexed_article": 404,
+    "bilingual_groups": 404
   }
 }
