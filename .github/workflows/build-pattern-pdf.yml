@@ -38,7 +38,7 @@ jobs:
         run: |
           set -euo pipefail
           python -m pip install --upgrade pip
-          python -m pip install playwright
+          python -m pip install playwright pillow
           python -m playwright install --with-deps chromium
 
       - name: Expose Chromium binary
@@ -100,6 +100,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: drielo-pattern-pdfs-${{ github.run_number }}
-          path: content/pattern-system/output/*/*.pdf
+          path: |
+            content/pattern-system/output/*/*.pdf
+            content/pattern-system/output/*/*-product.webp
           if-no-files-found: ignore
           retention-days: 30
