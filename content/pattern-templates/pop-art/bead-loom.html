@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Drielo Pop Art — Bead Loom Template</title>
+<link rel="stylesheet" href="../shared/drielo-pattern-template.css">
+</head>
+<body>
+<!-- Technique placeholders:
+{{BEADS_W}}, {{ROWS_H}}, {{BEAD_SIZE}}, {{FINISHED_WIDTH_CM}}, {{FINISHED_LENGTH_CM}},
+{{THREAD_TYPE}}, {{CLASP_ALLOWANCE}}, {{PATTERN_CODE}}, {{PRODUCT_URL}}
+Slots: PATTERN_PREVIEW_SVG, BEAD_KEY_ROWS, STRIP_CHART_SVG, WORD_CHART_ROWS
+Important: this template uses a purpose-built bracelet/cuff derivative, not the original portrait matrix.
+-->
+<section class="page cover"><div class="page-inner">
+  <div class="cover-art">
+    <svg viewBox="0 0 700 760" role="img" aria-label="Bead loom cuff bracelet mockup">
+      <rect width="700" height="760" fill="#e8e1d7"/>
+      <ellipse cx="350" cy="400" rx="265" ry="185" fill="none" stroke="#b89b78" stroke-width="92"/>
+      <ellipse cx="350" cy="400" rx="265" ry="185" fill="none" stroke="#f6f0e7" stroke-width="72"/>
+      <defs><clipPath id="bandClip"><path d="M104 325 C175 205 525 205 596 325 L565 360 C500 265 200 265 135 360 Z"/></clipPath></defs>
+      <path d="M104 325 C175 205 525 205 596 325 L565 360 C500 265 200 265 135 360 Z" fill="#fff" stroke="#111" stroke-width="2"/>
+      <g clip-path="url(#bandClip)">
+        <g class="pop-sample" opacity=".35"><rect class="p1" x="100" y="250" width="120" height="140"/><rect class="p2" x="220" y="250" width="120" height="140"/><rect class="p3" x="340" y="250" width="120" height="140"/><rect class="p4" x="460" y="250" width="140" height="140"/></g>
+        <!-- SLOT:PATTERN_PREVIEW_SVG -->
+      </g>
+      <rect x="83" y="315" width="28" height="58" rx="5" fill="#b38b54"/><rect x="589" y="315" width="28" height="58" rx="5" fill="#b38b54"/>
+      <circle cx="631" cy="344" r="18" fill="none" stroke="#b38b54" stroke-width="6"/>
+      <text x="350" y="690" text-anchor="middle" class="mock-label">BEAD LOOM · POP ART CUFF / BRACELET MOCKUP</text>
+    </svg>
+  </div>
+  <div class="cover-meta"><div><div class="brand">DRIELO</div><div class="code">{{PATTERN_CODE}}</div><div class="technique">Bead Loom Pattern</div><div class="collection">Pop Art Collection</div></div><div class="cover-badge">Derived Cuff Design</div></div>
+</div></section>
+
+<section class="page"><div class="page-inner">
+  <div class="header"><div><span class="kicker">Project overview</span><h1>{{PATTERN_CODE}}</h1></div><div class="header-technique">Bead Loom · Pop Art</div></div>
+  <div class="warning"><b>Design rule:</b> this pattern must be generated from a dedicated narrow Pop Art derivative. The original 7,000–8,000-cell portrait grid is not used directly.</div>
+  <div style="height:7mm"></div>
+  <div class="grid-3"><div class="stat"><b>{{BEADS_W}} × {{ROWS_H}}</b><span>Beads × rows</span></div><div class="stat"><b>{{FINISHED_WIDTH_CM}} cm</b><span>Band width</span></div><div class="stat"><b>{{FINISHED_LENGTH_CM}} cm</b><span>Beaded length</span></div></div>
+  <div style="height:8mm"></div>
+  <div class="grid-2"><div class="card"><h3>Materials</h3><p style="margin-top:4mm"><b>Beads:</b> {{BEAD_SIZE}} seed beads<br><b>Thread:</b> {{THREAD_TYPE}}<br><b>Clasp allowance:</b> {{CLASP_ALLOWANCE}}</p></div><div class="card"><h3>Chart logic</h3><p style="margin-top:4mm">Each chart cell equals one bead. Work one row at a time on the loom and confirm row count before tightening.</p></div></div>
+  <div class="url"><a href="{{PRODUCT_URL}}">{{PRODUCT_URL}}</a></div>
+  <div class="footer"><span>© {{COPYRIGHT_YEAR}} Drielo</span><span class="page-number">Page </span></div>
+</div></section>
+
+<section class="page"><div class="page-inner"><div class="header"><div><span class="kicker">Bead key</span><h2>Colors & quantities</h2></div><div class="header-code">{{PATTERN_CODE}}</div></div><table class="table"><thead><tr><th>Symbol</th><th>Color</th><th>Bead reference</th><th>Required</th><th>Recommended qty.</th></tr></thead><tbody><!-- SLOT:BEAD_KEY_ROWS --></tbody></table><div class="footer"><span>Uniform cylindrical beads recommended</span><span class="page-number">Page </span></div></div></section>
+
+<section class="page"><div class="page-inner"><div class="header"><div><span class="kicker">Loom chart</span><h2>Full strip pattern</h2></div><div class="header-code">{{PATTERN_CODE}}</div></div><div class="chart-shell short"><!-- SLOT:STRIP_CHART_SVG --></div><div class="note"><p>The PDF generator should repeat row numbers at both edges so orientation remains clear when zoomed or printed.</p></div><div class="footer"><span>1 cell = 1 bead</span><span class="page-number">Page </span></div></div></section>
+
+<section class="page"><div class="page-inner"><div class="header"><div><span class="kicker">Word chart</span><h2>Row-by-row bead sequence</h2></div><div class="header-code">{{PATTERN_CODE}}</div></div><div class="instructions"><!-- SLOT:WORD_CHART_ROWS --></div><div class="footer"><span>Rows follow the loom chart from the marked start edge</span><span class="page-number">Page </span></div></div></section>
+
+<section class="page"><div class="page-inner"><div class="header"><div><span class="kicker">Finishing</span><h2>Remove, finish & clasp</h2></div><div class="header-code">{{PATTERN_CODE}}</div></div><div class="steps"><div class="step"><div class="step-n">1</div><p>Check the final row count and band length before removing the beadwork from the loom.</p></div><div class="step"><div class="step-n">2</div><p>Secure warp threads using the finishing method appropriate to the clasp hardware.</p></div><div class="step"><div class="step-n">3</div><p>Attach end bars or clasp components without compressing the first and last bead rows.</p></div><div class="step"><div class="step-n">4</div><p>Test the finished circumference before final thread trimming.</p></div></div><div class="footer"><span>DRIELO · BEAD LOOM</span><span class="page-number">Page </span></div></div></section>
+</body></html>
