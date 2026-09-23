@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Drielo Pop Art — C2C Crochet Template</title>
+<link rel="stylesheet" href="../shared/drielo-pattern-template.css">
+</head>
+<body>
+<!-- Technique placeholders:
+{{BLOCKS_W}}, {{BLOCKS_H}}, {{FINISHED_WIDTH_CM}}, {{FINISHED_HEIGHT_CM}},
+{{GAUGE_BLOCKS_10CM}}, {{YARN_WEIGHT}}, {{HOOK_SIZE}}, {{TOTAL_BLOCKS}},
+{{ESTIMATED_YARN}}, {{PATTERN_CODE}}, {{PRODUCT_URL}}
+Slots: PATTERN_PREVIEW_SVG, YARN_KEY_ROWS, COLOR_CHART_SVG, SYMBOL_CHART_SVG, WRITTEN_ROWS
+-->
+<section class="page cover"><div class="page-inner">
+  <div class="cover-art">
+    <svg viewBox="0 0 700 760" role="img" aria-label="C2C crochet blanket mockup">
+      <rect width="700" height="760" fill="#e6ddd1"/>
+      <rect y="470" width="700" height="290" fill="#c6a780"/>
+      <rect x="70" y="230" width="560" height="300" rx="24" fill="#b9aaa0"/>
+      <rect x="95" y="255" width="510" height="245" rx="18" fill="#d4c6bb"/>
+      <rect x="130" y="185" width="165" height="115" rx="18" fill="#d4c6bb"/>
+      <rect x="405" y="185" width="165" height="115" rx="18" fill="#d4c6bb"/>
+      <defs><clipPath id="blanketClip"><path d="M145 265 Q350 242 555 270 L575 575 Q350 600 125 570 Z"/></clipPath></defs>
+      <path d="M145 265 Q350 242 555 270 L575 575 Q350 600 125 570 Z" fill="#f6f0e7" stroke="#111" stroke-width="2"/>
+      <g clip-path="url(#blanketClip)">
+        <rect x="125" y="245" width="450" height="350" fill="#f6f0e7"/>
+        <g class="pop-sample" opacity=".28">
+          <rect class="p1" x="160" y="305" width="110" height="95"/><rect class="p3" x="270" y="305" width="100" height="95"/>
+          <rect class="p2" x="370" y="305" width="150" height="95"/><circle class="p4" cx="245" cy="470" r="58"/>
+          <circle class="p5" cx="410" cy="470" r="72"/>
+        </g>
+        <!-- SLOT:PATTERN_PREVIEW_SVG -->
+      </g>
+      <path d="M145 265 Q350 242 555 270" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="4"/>
+      <rect x="40" y="65" width="160" height="120" rx="6" fill="#f4efe6"/><rect x="54" y="78" width="132" height="94" fill="#fff" stroke="#111"/>
+      <circle cx="610" cy="110" r="46" fill="#78906e"/><circle cx="655" cy="135" r="36" fill="#6f8468"/>
+      <text x="350" y="700" text-anchor="middle" class="mock-label">C2C CROCHET · POP ART BLANKET MOCKUP</text>
+    </svg>
+  </div>
+  <div class="cover-meta">
+    <div><div class="brand">DRIELO</div><div class="code">{{PATTERN_CODE}}</div><div class="technique">C2C Crochet Pattern</div><div class="collection">Pop Art Collection</div></div>
+    <div class="cover-badge">Digital PDF Pattern</div>
+  </div>
+</div></section>
+
+<section class="page"><div class="page-inner">
+  <div class="header"><div><span class="kicker">Project overview</span><h1>{{PATTERN_CODE}}</h1></div><div class="header-technique">C2C Crochet · Pop Art</div></div>
+  <div class="grid-3">
+    <div class="stat"><b>{{BLOCKS_W}} × {{BLOCKS_H}}</b><span>C2C blocks</span></div>
+    <div class="stat"><b>{{FINISHED_WIDTH_CM}} × {{FINISHED_HEIGHT_CM}} cm</b><span>Finished size</span></div>
+    <div class="stat"><b>{{TOTAL_BLOCKS}}</b><span>Total blocks</span></div>
+  </div>
+  <div style="height:8mm"></div>
+  <div class="grid-2">
+    <div class="card"><h3>Recommended setup</h3><p style="margin-top:4mm"><b>Yarn:</b> {{YARN_WEIGHT}}<br><b>Hook:</b> {{HOOK_SIZE}}<br><b>Gauge:</b> {{GAUGE_BLOCKS_10CM}} C2C blocks / 10 cm<br><b>Estimated yarn:</b> {{ESTIMATED_YARN}}</p></div>
+    <div class="card"><h3>How this chart works</h3><p style="margin-top:4mm">One chart square equals one C2C block. Work diagonally using your preferred C2C method. Use the written row guide when you want a text-first workflow.</p></div>
+  </div>
+  <div class="note"><p><b>Pop Art adaptation:</b> this template assumes the source design has been simplified to a crochet-friendly palette and block count before PDF rendering.</p></div>
+  <div class="steps" style="margin-top:9mm">
+    <div class="step"><div class="step-n">1</div><p>Swatch first and confirm your block gauge.</p></div>
+    <div class="step"><div class="step-n">2</div><p>Choose the color or symbol chart and mark completed diagonals.</p></div>
+    <div class="step"><div class="step-n">3</div><p>Use bobbins for short color sections and separate balls for large areas.</p></div>
+  </div>
+  <div class="url"><a href="{{PRODUCT_URL}}">{{PRODUCT_URL}}</a></div>
+  <div class="footer"><span>© {{COPYRIGHT_YEAR}} Drielo</span><span class="page-number">Page </span></div>
+</div></section>
+
+<section class="page"><div class="page-inner">
+  <div class="header"><div><span class="kicker">Yarn key</span><h2>Colors & yarn requirements</h2></div><div class="header-code">{{PATTERN_CODE}}</div></div>
+  <table class="table"><thead><tr><th>Symbol</th><th>Color</th><th>Yarn</th><th>Blocks</th><th>Est. length</th></tr></thead><tbody><!-- SLOT:YARN_KEY_ROWS --></tbody></table>
+  <div class="note"><p>Yarn estimates should include a safety margin for tails, joins and gauge variation.</p></div>
+  <div class="footer"><span>DRIELO · C2C CROCHET</span><span class="page-number">Page </span></div>
+</div></section>
+
+<section class="page"><div class="page-inner">
+  <div class="header"><div><span class="kicker">Full chart</span><h2>Color chart</h2></div><div class="header-code">{{PATTERN_CODE}}</div></div>
+  <div class="chart-shell"><!-- SLOT:COLOR_CHART_SVG --></div>
+  <div class="footer"><span>1 square = 1 C2C block</span><span class="page-number">Page </span></div>
+</div></section>
+
+<section class="page"><div class="page-inner">
+  <div class="header"><div><span class="kicker">Accessible chart</span><h2>Symbol chart</h2></div><div class="header-code">{{PATTERN_CODE}}</div></div>
+  <div class="chart-shell"><!-- SLOT:SYMBOL_CHART_SVG --></div>
+  <div class="footer"><span>Symbols repeat the yarn key</span><span class="page-number">Page </span></div>
+</div></section>
+
+<section class="page"><div class="page-inner">
+  <div class="header"><div><span class="kicker">Written guide</span><h2>Diagonal-by-diagonal instructions</h2></div><div class="header-code">{{PATTERN_CODE}}</div></div>
+  <div class="instructions"><!-- SLOT:WRITTEN_ROWS --></div>
+  <div class="footer"><span>Read in the direction indicated by each diagonal</span><span class="page-number">Page </span></div>
+</div></section>
+</body></html>
