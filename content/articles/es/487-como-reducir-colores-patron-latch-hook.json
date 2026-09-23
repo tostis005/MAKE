@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 487,
+  "translation_group": "487-latch-hook",
+  "taxonomy": {
+    "craft": {
+      "primary": "latch-hook",
+      "terms": [
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "colorwork",
+      "terms": [
+        "colorwork"
+      ]
+    },
+    "style": {
+      "terms": [
+        "color-reduction",
+        "palette",
+        "pattern-design"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "rugs",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "es-487-latch-hook",
+  "language": "es",
+  "locale": "es-ES",
+  "market_context": "Personas que están diseñando o convirtiendo un patrón de Latch Hook y necesitan reducir una paleta grande sin perder volumen, silueta o legibilidad.",
+  "title": "Cómo reducir colores para que un patrón de Latch Hook quede mejor",
+  "slug": "como-reducir-colores-patron-latch-hook",
+  "seo": {
+    "title": "Cómo reducir colores para que un patrón de Latch Hook quede mejor",
+    "meta_description": "Reduce colores en un patrón de Latch Hook agrupando tonos similares, conservando contrastes clave, eliminando colores aislados y probando la paleta con hilo real.",
+    "search_intent": "Personas que quieren simplificar la paleta de un patrón de Latch Hook para que sea más claro y fácil de trabajar."
+  },
+  "excerpt": "Más colores no siempre significan más detalle. Aprende a simplificar la paleta de Latch Hook conservando las diferencias que realmente construyen la imagen.",
+  "content_html": "<p>Un patrón de Latch Hook con demasiados colores puede ser más difícil de leer y trabajar sin que el resultado sea necesariamente mejor. En hilo, dos tonos digitales muy cercanos pueden mezclarse visualmente, mientras que cada color adicional exige comprar, separar, etiquetar y contar más material.</p>\n<p>Reducir la paleta no significa “quitar detalle” de forma arbitraria. Significa conservar las diferencias de color que explican la silueta, el volumen y los rasgos importantes, y fusionar aquellas que sólo añaden ruido. Además, una paleta más corta facilita corregir errores, calcular cantidades y repetir el mismo diseño en otra escala.</p>\n<h2>Empieza identificando qué colores cumplen una función visual</h2>\n<p>Mira el diseño sin fijarte todavía en nombres de tonos y pregunta qué zonas necesitan separarse entre sí.</p>\n<p>Un color puede definir el fondo, otro la silueta principal y varios tonos adicionales pueden crear luces y sombras.</p>\n<p>Conserva especialmente los colores que delimitan formas o hacen reconocible un detalle.</p>\n<p>Los tonos que aparecen sólo como variaciones mínimas dentro de una zona uniforme son los primeros candidatos a fusionarse.</p>\n<p>Haz una lista de colores esenciales antes de empezar a eliminar otros.</p>\n<p>Así evitas que una reducción automática borre justo el contraste que sostiene el dibujo.</p>\n<h2>Agrupa tonos cercanos por luminosidad y función, no sólo por nombre</h2>\n<p>Dos azules distintos pueden parecer separados en pantalla pero casi iguales cuando se convierten en hilo.</p>\n<p>Compara qué tan claros u oscuros son y en qué parte del diseño aparecen.</p>\n<p>Si ambos cumplen la misma función y están juntos, normalmente puedes sustituirlos por uno solo.</p>\n<p>En cambio, dos tonos parecidos pueden merecer mantenerse si uno forma el borde y otro el interior de una figura.</p>\n<p>Observa también la saturación: un tono apagado y uno brillante pueden diferenciar áreas aunque tengan una luminosidad similar.</p>\n<p>La reducción útil combina relación visual y contexto dentro del patrón.</p>\n<h2>Conserva los contrastes que construyen volumen y lectura</h2>\n<p>En una imagen con sombras, no necesitas todos los pasos intermedios, pero sí suficientes para que la forma no quede plana.</p>\n<p>Una estructura frecuente puede simplificarse a sombra profunda, tono medio y luz principal.</p>\n<p>En rostros o animales, conserva contrastes que definan ojos, hocico, contorno y grandes cambios de plano.</p>\n<p>En letras o gráficos, prioriza la separación entre figura y fondo por encima de degradados suaves.</p>\n<p>Si al fusionar dos colores desaparece un borde importante cuando ves la imagen en pequeño, esa fusión probablemente fue excesiva.</p>\n<p>Prueba cada reducción observando el diseño tanto ampliado como a distancia.</p>\n<h2>Elimina colores aislados que no aportan información suficiente</h2>\n<p>Las conversiones automáticas suelen crear celdas individuales de tonos intermedios alrededor de bordes y sombras.</p>\n<p>Un color que aparece en una o dos posiciones debe justificar claramente su presencia.</p>\n<p>Si no cambia la lectura de la forma, sustitúyelo por el tono vecino más lógico.</p>\n<p>Esto crea bloques más limpios, reduce cambios de hilo y disminuye el riesgo de colocar un color equivocado.</p>\n<p>Ten especial cuidado con pequeños destellos o puntos de luz que sí pueden ser importantes en ojos o elementos brillantes.</p>\n<p>No elimines por cantidad solamente; elimina cuando la celda no aporta una función visual clara.</p>\n<h2>Comprueba la paleta con hilo real, no sólo con una pantalla</h2>\n<p>Los colores de pantalla emiten luz y no se comportan igual que fibras físicas bajo iluminación ambiente.</p>\n<p>Coloca una hebra real de cada tono junto a las demás y observa el conjunto con luz natural cuando sea posible.</p>\n<p>Si dos colores se vuelven prácticamente indistinguibles, considera fusionarlos antes de comprar gran cantidad.</p>\n<p>Si dos tonos que parecían cercanos se separan claramente en hilo, quizá convenga conservar ambos.</p>\n<p>Fotografía la paleta real y compárala en escala de grises para revisar diferencias de luminosidad.</p>\n<p>Una paleta físicamente coherente reduce sorpresas cuando empiezas a anudar.</p>\n<h2>Haz una prueba del área con más colores antes de cerrar el patrón</h2>\n<p>Selecciona la sección con mayor variedad de tonos o el detalle más importante del diseño.</p>\n<p>Anuda una muestra utilizando la paleta reducida y mírala desde la distancia prevista.</p>\n<p>Comprueba si las sombras siguen dando volumen, si el fondo se separa de la figura y si los rasgos importantes permanecen visibles.</p>\n<p>Si el resultado parece demasiado plano, reincorpora un tono donde realmente haga falta en vez de restaurar toda la paleta original.</p>\n<p>Si se ve igual de bien con menos colores, mantén la versión simple: será más fácil de comprar, organizar y seguir.</p>\n<p>También resultará más sencillo estimar consumo por color y detectar sustituciones si una referencia de hilo deja de estar disponible.</p>\n<p>Reducir colores para Latch Hook funciona cuando cada tono restante tiene un propósito. Agrupar variaciones redundantes, conservar contrastes estructurales y validar con hilo real produce patrones más claros y manejables sin sacrificar la identidad visual del diseño.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Mismo patrón de Latch Hook mostrado con 24 colores y luego con 10, destacando que la versión simplificada conserva silueta, luces y sombras principales.",
+    "alt": "Cómo reducir colores para un patrón de Latch Hook"
+  }
+}
