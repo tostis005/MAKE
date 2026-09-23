@@ -1,0 +1,77 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 495,
+  "translation_group": "495-multi-technique",
+  "taxonomy": {
+    "craft": {
+      "primary": "tapestry-crochet",
+      "terms": [
+        "tapestry-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "colorwork",
+      "terms": [
+        "colorwork"
+      ]
+    },
+    "style": {
+      "terms": [
+        "comparison",
+        "intarsia",
+        "carried-yarn"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "bags",
+        "cushions",
+        "blankets",
+        "wall-art"
+      ]
+    },
+    "article_type": {
+      "primary": "comparison",
+      "terms": [
+        "comparison"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-495-multi-technique",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Crocheters working from graphs who want to understand when carried-yarn tapestry crochet or separate-bobbin intarsia is more suitable.",
+  "title": "Tapestry Crochet vs Intarsia Crochet: Key Differences",
+  "slug": "tapestry-crochet-vs-intarsia-crochet-key-differences",
+  "seo": {
+    "title": "Tapestry Crochet vs Intarsia Crochet: Key Differences",
+    "meta_description": "Compare tapestry crochet and intarsia crochet by color management, reverse appearance, tension, fabric thickness, large blocks and frequent graph changes.",
+    "search_intent": "People comparing tapestry crochet and intarsia for colorwork graphs."
+  },
+  "excerpt": "Tapestry crochet carries colors through the fabric; intarsia uses separate yarn sources for color areas. That changes tension, reverse appearance and graph management.",
+  "content_html": "<p>Tapestry crochet and intarsia crochet can both create color-block graphics, but they organize yarn very differently. In tapestry crochet, one or more inactive colors are carried within or behind the stitches. In intarsia, each major color area normally works from its own bobbin or yarn source, with the yarns joined where regions meet.</p>\n<p>That difference changes fabric thickness, reverse appearance, bobbin count and how comfortable different graph structures are to manage. It also changes how easily a large color area can be edited, unraveled or restarted if you discover a mistake several rows later.</p>\n<h2>Tapestry crochet carries the inactive color</h2>\n<p>In tapestry crochet, yarn that is not currently active can be enclosed inside the stitches while another color is worked.</p>\n<p>This keeps colors available across the row and avoids creating a separate bobbin for every small region.</p>\n<p>The method works especially well when two or three colors repeat frequently across nearby stitches.</p>\n<p>Carried yarn adds thickness and can show through when tension or color contrast is not controlled well.</p>\n<p>On projects worked in the round, this continuity is especially useful because there is no open reverse where long floats are convenient.</p>\n<p>Consistency depends on keeping carried yarn relaxed enough that it does not narrow the fabric.</p>\n<p>When the carried shade is much darker than the active one, making a small swatch first helps reveal whether it will show through the front.</p>\n<h2>Intarsia separates yarn by color block</h2>\n<p>In intarsia, every important color area normally has its own yarn source.</p>\n<p>At a color boundary, the new yarn joins the previous yarn and continues without carrying the old color across the entire row.</p>\n<p>This avoids extra thickness in areas where a shade will not be used again for many stitches.</p>\n<p>The method is useful for large shapes, flat panels and graphs with clearly separated color regions.</p>\n<p>The tradeoff is a growing number of bobbins when a design contains many independent blocks.</p>\n<p>Keeping those yarn sources ordered so they do not tangle becomes part of the workflow.</p>\n<h2>The reverse and fabric thickness are different</h2>\n<p>In tapestry crochet, carried yarn is incorporated into the structure and can make the fabric denser.</p>\n<p>That density can be useful for bags, baskets and objects that need body.</p>\n<p>Intarsia sections without carried yarn can feel lighter and more flexible.</p>\n<p>However, joins between color blocks need to stay secure so vertical holes do not appear.</p>\n<p>On a pillow or panel that will receive backing, a less uniform reverse may not matter.</p>\n<p>For a reversible or highly exposed piece, consider the back appearance before committing to the method.</p>\n<h2>Graphs with frequent changes favor different strategies</h2>\n<p>If a pattern alternates colors every few stitches through many rows, carrying one or two yarns can be easier than multiplying bobbins.</p>\n<p>If one red block appears near the beginning of a row and another far away, carrying red across the whole width may be unnecessary.</p>\n<p>In that situation, intarsia can create independent yarn sources.</p>\n<p>Many real projects can combine both strategies: carry colors inside one dense region and use separate bobbins for a distant block.</p>\n<p>The graph structure should guide the decision rather than a rigid rule that only one technique can be used.</p>\n<p>Before starting, scan several chart rows and note how often each color returns.</p>\n<h2>Tension problems appear in different places</h2>\n<p>In tapestry crochet, carried yarn must not be pulled so tightly that the row becomes narrower.</p>\n<p>It also needs to stay integrated enough that loose loops do not show.</p>\n<p>In intarsia, the main tension challenge is at the bobbin joins: too tight and the boundary pulls inward; too loose and a gap appears.</p>\n<p>Twisting or linking the yarns consistently at every change helps stabilize the vertical edge between colors.</p>\n<p>Make a sample containing several vertical changes before a large project.</p>\n<p>The useful method is the one you can maintain with even tension over many rows, not simply the one that feels faster in the first few minutes.</p>\n<h2>Choose according to color distribution and final object</h2>\n<p>Tapestry crochet often suits repeated motifs, geometry, bags and compact pieces where colors return frequently.</p>\n<p>Intarsia is comfortable for flat panels, blankets and images built from large separated areas.</p>\n<p>On mixed graphs, combining the two approaches can reduce both fabric bulk and bobbin count.</p>\n<p>Swatch a representative section and compare thickness, reverse appearance, tension and yarn management.</p>\n<p>Also consider whether the back will remain visible or be covered by lining or backing.</p>\n<p>Tapestry crochet and intarsia are not two names for the same system. One carries colors through the fabric while the other divides the graph among separate yarn sources. Understanding the distribution of color blocks lets you choose or combine the method that keeps the project clean and manageable.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Two samples of the same graph: tapestry crochet with yarn carried inside stitches and intarsia with separate bobbins joining color blocks.",
+    "alt": "Tapestry Crochet vs intarsia crochet"
+  }
+}
