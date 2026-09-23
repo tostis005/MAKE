@@ -171,7 +171,7 @@ $section_data  = $craft_section && isset( $section_cfg[ $craft_section ][ $langu
         <?php endwhile; ?>
       </div>
 
-      <?php $pagination = make_journal_pagination_html( $GLOBALS['wp_query'], $language, $theme_id, $craft_id ); ?>
+      <?php $pagination = make_journal_pagination_html( $GLOBALS['wp_query'], $language, $theme_id, $craft_id, $craft_section ); ?>
       <?php if ( $pagination ) : ?>
         <nav class="pagination journal-pagination" aria-label="<?php echo esc_attr( make_t( 'Paginación de artículos', 'Article pagination' ) ); ?>">
           <?php echo wp_kses_post( $pagination ); ?>
