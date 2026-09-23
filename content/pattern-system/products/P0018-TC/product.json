@@ -11,9 +11,12 @@
   "pattern_file": "patterns/P0018-TC/pattern.json",
   "template": "crochet.html",
   "website": "www.drielo.com",
-  "status": "draft",
+  "status": "awaiting-source-artwork",
   "render_ready": false,
   "renderer": "multitech",
-  "source_artwork": null,
-  "page_1_asset": "multitech/assets/cover-crochet.webp"
+  "source_artwork": "collections/pop-art-25/sources/P0018.png",
+  "page_1_asset": "multitech/assets/cover-c2c-crochet.webp",
+  "palette_mode": "strict",
+  "palette_size": 25,
+  "transparent_source": true
 }
