@@ -24,10 +24,21 @@ The room/mockup must never contain a baked-in pattern. The pattern layer is gene
 ## Build locally
 
 ```bash
-python3 renderer/render.py --product P0001 --fix-palette
+python3 renderer/render.py --product P0001-CS --fix-palette
 ```
 
 Chromium/Chrome is required. The resulting PDF is written to `output/<CODE>/Drielo_<CODE>.pdf`.
+
+## Product-code convention
+
+Every sellable pattern code is technique-qualified and unique:
+
+- Cross Stitch: `P0001-CS`
+- C2C Crochet: `P0001-C2C`
+- Tapestry Crochet: `P0001-TC`
+- Latch Hook / Rug: `P0001-LH`
+
+The shared artwork/design family keeps the base ID separately (for example `P0001`). Never publish a technique product using only the base ID.
 
 ## GitHub Actions
 
