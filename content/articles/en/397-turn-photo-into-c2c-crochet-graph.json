@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 397,
+  "translation_group": "397-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "photo-conversion",
+      "terms": [
+        "photo-conversion"
+      ]
+    },
+    "style": {
+      "terms": [
+        "photo-conversion",
+        "pattern-design",
+        "graphgan"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-397-c2c",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Crocheters and designers creating portraits or custom images as readable C2C grids.",
+  "title": "How to Turn a Photo into a C2C Crochet Graph",
+  "slug": "turn-photo-into-c2c-crochet-graph",
+  "seo": {
+    "title": "How to Turn a Photo into a C2C Crochet Graph",
+    "meta_description": "Turn a photo into a C2C crochet graph by cropping, simplifying the background, reducing resolution and colors, and testing final size before crocheting.",
+    "search_intent": "People who want to turn a photograph into a C2C graphgan and need to reduce resolution, colors and unnecessary detail."
+  },
+  "excerpt": "A photograph needs deliberate simplification before it becomes C2C. Learn how to choose crop, resolution, palette and contrast for a readable graph.",
+  "content_html": "<p>Turning a photograph into C2C crochet is not as simple as pixelating the image and starting to stitch. A photo contains far more information than a textile grid can reproduce: soft shadows, textures, backgrounds, reflections and nearly continuous color changes.</p>\n<p>The goal is to preserve what makes the image recognizable while removing information that would only add yarn changes without improving the final result.</p>\n<h2>Choose a photo with a clear subject</h2>\n<p>The strongest conversions begin with good lighting, useful contrast and a subject that separates clearly from the background. A front-facing portrait on a simple background is usually easier than a busy scene full of small objects.</p>\n<p>Crop before reducing resolution. If the person or pet occupies only a small area of the original photo, most of your valuable graph cells will otherwise be spent on background.</p>\n<p>Decide what matters most: the face, a pet's silhouette, a recognizable pose or the entire composition. That priority should guide every later simplification.</p>\n<h2>Reduce resolution in crochet blocks, not screen pixels</h2>\n<p>First decide how many blocks the finished project can realistically contain. A photo that is 2,000 pixels wide cannot become 2,000 C2C blocks at a practical blanket scale.</p>\n<p>If your planned blanket can handle about 80 blocks across, reduce the image toward that grid size and inspect which features survive.</p>\n<p>Make a swatch to estimate the physical size of each block. That measurement prevents you from designing a beautiful digital chart that becomes far too large when translated into yarn.</p>\n<p>Measure block width and height separately. If your blocks are not physically square, a one-to-one conversion can stretch the photograph. You can compensate by adjusting graph resolution before crocheting.</p>\n<h2>Simplify the background aggressively</h2>\n<p>A photographic background often contains dozens of shades that contribute very little to the main subject. Replacing it with one or two colors can remove a huge number of yarn changes.</p>\n<p>You can also isolate the silhouette and leave clean surrounding space. In a portrait, preserving the contrast of the face is usually more valuable than reproducing every object in the room.</p>\n<p>If the setting is an important part of the image, reduce it to large color masses instead of trying to imitate fine texture.</p>\n<p>Inspect the subject edge after background removal. Automatic selections can leave tiny isolated cells that become unnecessary yarn changes in crochet.</p>\n<h2>Reduce colors by value as well as hue</h2>\n<p>Begin by grouping similar shades. Several subtle skin tones may become three or four levels; a graded sky may be simplified into two blues.</p>\n<p>Do not consider hue alone. Value—how light or dark a color is—controls much of the readability. Two different hues with nearly identical values can merge when viewed from a distance.</p>\n<p>Preview the reduced image in grayscale. If the face or silhouette disappears, the main areas need stronger value separation.</p>\n<p>Map every digital shade to a real yarn before finalizing the graph. If your chosen yarn range does not contain two colors with enough separation, change the digital palette now rather than discovering the problem while shopping.</p>\n<h2>Manually clean the automatic conversion</h2>\n<p>Pixelation and palette-reduction tools are starting points rather than finished patterns. They can create isolated cells, jagged edges and tiny color clusters that add work without adding meaning.</p>\n<p>Remove one-cell specks when they do not represent an essential detail. Strengthen important features such as eyes, a mouth, a pet outline or the edge of a garment.</p>\n<p>View the chart as a small thumbnail frequently. If the picture only works when heavily zoomed in, it probably contains more information than the selected resolution can support.</p>\n<p>If you are unsure, make two versions: one more detailed and one more simplified. Comparing them at thumbnail size often reveals which one preserves the subject more effectively without adding color confetti.</p>\n<h2>Test a critical area in yarn before making the full piece</h2>\n<p>Crochet a section that determines recognition: an eye, a skin-tone transition, a hair edge or another critical feature.</p>\n<p>C2C blocks have texture and small openings, so a transition can look different in yarn than it does on a screen. A swatch gives you a chance to correct the palette or grid.</p>\n<p>Also test the practical color management. A visually impressive conversion may be unnecessarily difficult if every diagonal requires twenty active bobbins.</p>\n<p>View the test from the distance at which the finished object will normally be seen. A wall hanging may be read from several yards away, while a cushion is viewed more closely and can justify slightly more detail.</p>\n<p>A successful photo graph sacrifices detail in exchange for clarity. Start with a strong subject, limit physical size, simplify the background and reduce colors deliberately. Then clean the grid by hand and test an important area in yarn. The finished result will not be a printed photograph; it will be a recognizable textile interpretation that is enjoyable enough to crochet.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Portrait photo transforming through stages into a reduced image, colored grid and C2C crochet panel.",
+    "alt": "How to turn a photo into a C2C crochet graph"
+  }
+}
