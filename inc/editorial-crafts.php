@@ -259,7 +259,15 @@ function make_editorial_craft_art_html( string $craft, string $class = '' ): str
 }
 
 function make_editorial_craft_routes(): void {
-    add_rewrite_rule( '^articulos/tecnica/([a-z0-9-]+)/([a-z0-9-]+)/?
+    add_rewrite_rule( '^articulos/tecnica/([a-z0-9-]+)/([a-z0-9-]+)/?$', 'index.php?make_journal=1&make_lang=es&make_craft_slug=$matches[1]&make_craft_section=$matches[2]', 'top' );
+    add_rewrite_rule( '^articulos/tecnica/([a-z0-9-]+)/([a-z0-9-]+)/page/([0-9]+)/?$', 'index.php?make_journal=1&make_lang=es&make_craft_slug=$matches[1]&make_craft_section=$matches[2]&paged=$matches[3]', 'top' );
+    add_rewrite_rule( '^articulos/tecnica/([a-z0-9-]+)/?$', 'index.php?make_journal=1&make_lang=es&make_craft_slug=$matches[1]', 'top' );
+    add_rewrite_rule( '^articulos/tecnica/([a-z0-9-]+)/page/([0-9]+)/?$', 'index.php?make_journal=1&make_lang=es&make_craft_slug=$matches[1]&paged=$matches[2]', 'top' );
+    add_rewrite_rule( '^en/articles/craft/([a-z0-9-]+)/([a-z0-9-]+)/?$', 'index.php?make_journal=1&make_lang=en&make_craft_slug=$matches[1]&make_craft_section=$matches[2]', 'top' );
+    add_rewrite_rule( '^en/articles/craft/([a-z0-9-]+)/([a-z0-9-]+)/page/([0-9]+)/?$', 'index.php?make_journal=1&make_lang=en&make_craft_slug=$matches[1]&make_craft_section=$matches[2]&paged=$matches[3]', 'top' );
+    add_rewrite_rule( '^en/articles/craft/([a-z0-9-]+)/?$', 'index.php?make_journal=1&make_lang=en&make_craft_slug=$matches[1]', 'top' );
+    add_rewrite_rule( '^en/articles/craft/([a-z0-9-]+)/page/([0-9]+)/?$', 'index.php?make_journal=1&make_lang=en&make_craft_slug=$matches[1]&paged=$matches[2]', 'top' );
+}
 add_action( 'init', 'make_editorial_craft_routes', 19 );
 
 function make_editorial_craft_query_vars( array $vars ): array {
