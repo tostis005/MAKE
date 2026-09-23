@@ -1,0 +1,95 @@
+name: Build Drielo pattern PDFs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/pattern-system/**'
+      - 'content/products/catalog.json'
+  workflow_dispatch:
+    inputs:
+      product_code:
+        description: 'Product code to build (for example P0021). Leave empty to build all real products.'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-pattern-pdf-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Playwright Chromium
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Validate pattern system
+        run: python3 content/pattern-system/renderer/validate_all.py
+
+      - name: Sync WooCommerce collection palettes
+        run: python3 content/pattern-system/renderer/sync_catalog_palette.py
+
+      - name: Build PDFs
+        shell: bash
+        env:
+          REQUESTED_CODE: ${{ inputs.product_code }}
+        run: |
+          set -euo pipefail
+          if [ -n "${REQUESTED_CODE:-}" ]; then
+            codes=("$REQUESTED_CODE")
+          else
+            mapfile -t codes < <(
+              find content/pattern-system/products -mindepth 2 -maxdepth 2 -name product.json -printf '%h\n' |
+              xargs -r -n1 basename |
+              grep -v '^_' |
+              sort
+            )
+          fi
+
+          if [ "${#codes[@]}" -eq 0 ]; then
+            echo 'No real pattern products to build yet. Structure validation succeeded.'
+            exit 0
+          fi
+
+          for code in "${codes[@]}"; do
+            python3 content/pattern-system/renderer/render.py --product "$code" --fix-palette
+          done
+
+      - name: Persist canonical palette corrections
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add content/pattern-system/patterns content/products/catalog.json
+          if git diff --cached --quiet; then
+            echo 'No palette corrections to persist.'
+          else
+            git commit -m 'Canonicalize Drielo pattern palettes [skip ci]'
+            git push origin HEAD:main
+          fi
+
+      - name: Upload generated PDFs
+        uses: actions/upload-artifact@v4
+        with:
+          name: drielo-pattern-pdfs-${{ github.run_number }}
+          path: content/pattern-system/output/*/*.pdf
+          if-no-files-found: ignore
+          retention-days: 30
