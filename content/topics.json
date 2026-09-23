@@ -5397,6 +5397,61 @@
       "title_es": "Cómo elegir tu primer patrón de Latch Hook",
       "title_en": "How to Choose Your First Latch Hook Pattern",
       "craft": "latch-hook"
+    },
+    {
+      "number": 490,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "modern",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Patrones modernos de Latch Hook que no parecen infantiles",
+      "title_en": "Modern Latch Hook Patterns That Do Not Feel Childish",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 491,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "decor",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Ideas de Latch Hook para decoración de pared",
+      "title_en": "Latch Hook Wall Decor Ideas",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 492,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "troubleshooting",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Errores comunes de Latch Hook y cómo evitarlos",
+      "title_en": "Common Latch Hook Mistakes and How to Avoid Them",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 493,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "charts",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "C2C Crochet vs Tapestry Crochet: qué técnica elegir para gráficos",
+      "title_en": "C2C Crochet vs Tapestry Crochet: Which Technique Should You Use for Graphs?",
+      "craft": "c2c-crochet"
+    },
+    {
+      "number": 494,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "pixel-art",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "C2C Crochet vs punto bajo gráfico: diferencias para pixel art",
+      "title_en": "C2C Crochet vs Single Crochet Graphs for Pixel Art",
+      "craft": "c2c-crochet"
     }
   ],
   "taxonomy_strategy": {
@@ -5427,7 +5482,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 489,
-    "bilingual_groups": 489
+    "last_indexed_article": 494,
+    "bilingual_groups": 494
   }
 }
