@@ -1,0 +1,75 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 396,
+  "translation_group": "396-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "pixel-art",
+      "terms": [
+        "pixel-art"
+      ]
+    },
+    "style": {
+      "terms": [
+        "pixel-art",
+        "pattern-design",
+        "graphgan"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "wall-hangings",
+        "cushions"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-396-c2c",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Crocheters and designers reusing grid-based art as C2C graphgans without losing proportions or creating an impractically large project.",
+  "title": "How to Turn Pixel Art into a C2C Crochet Pattern",
+  "slug": "turn-pixel-art-into-c2c-crochet-pattern",
+  "seo": {
+    "title": "How to Turn Pixel Art into a C2C Crochet Pattern",
+    "meta_description": "Turn pixel art into a C2C crochet pattern by checking grid size, finished dimensions, color count and chart readability before crocheting.",
+    "search_intent": "People with pixel art who want to convert it into a C2C graph with manageable size and yarn colors."
+  },
+  "excerpt": "Pixel art already uses the grid logic C2C needs, but scale, block proportions, color count and physical size must be checked before you crochet.",
+  "content_html": "<p>Pixel art and C2C crochet fit together naturally because both build images from discrete units. In a simple conversion, one digital pixel can become one C2C block. The danger is accepting the grid without checking scale, which can produce an enormous blanket or an image whose proportions feel wrong in yarn.</p>\n<p>Before crocheting, decide which parts of the artwork must be preserved and which can be simplified. A good textile graph is not always a literal copy of the digital file.</p>\n<h2>Start with genuinely grid-based artwork</h2>\n<p>The easiest source is a design with hard edges and flat colors. If the file contains anti-aliasing, transparent shadows or hundreds of blended shades, reduce it to a deliberate limited palette first.</p>\n<p>Count the original grid. A 32-by-32 sprite becomes 32 by 32 C2C blocks when converted one to one.</p>\n<p>Check that no essential detail depends on half-pixel lines or subtle gradients. C2C requires clear decisions because every block will use a defined yarn color.</p>\n<h2>Calculate physical size before accepting the scale</h2>\n<p>Make a swatch with the yarn and hook you plan to use. Measure ten blocks horizontally and vertically because the two dimensions may differ slightly.</p>\n<p>If each block averages about 0.6 inch, a chart 100 cells wide would finish around 60 inches across. That might be ideal for a blanket and completely unsuitable for a cushion.</p>\n<p>If the result is too large, do not simply switch to much thinner yarn without testing. You can also reduce the grid, use mini C2C or redesign the motif at a lower pixel resolution.</p>\n<h2>Simplify while protecting the recognizable silhouette</h2>\n<p>When reducing resolution, preserve the features that make the image readable: the outline, eyes, lettering, signature corners or other major shapes.</p>\n<p>Single-pixel details may disappear visually or become isolated color islands that are annoying to manage. Ask whether each tiny feature still contributes when the finished piece is viewed from across a room.</p>\n<p>Work in stages. Reduce the resolution, view the result as a small thumbnail and manually correct pixels that break a curve, face or letter.</p>\n<p>If a diagonal line becomes jagged in an awkward way after reduction, do not preserve every original step. Redraw the pixel rhythm so the edge reads more cleanly once it becomes crochet blocks.</p>\n<h2>Limit the palette to colors you can actually use in yarn</h2>\n<p>A screen can display millions of colors, but a practical C2C palette is much smaller. Merge almost-identical shades when their difference is not essential to the image.</p>\n<p>Frequent color changes also increase bobbins and yarn ends. A six-color design with strong value separation may read better than a fifteen-color version full of barely different shades.</p>\n<p>If you are preparing a pattern for others, identify colors with names or codes from a specific yarn line and provide a descriptive alternative when possible.</p>\n<p>Check the design in grayscale too. Two hues can look very different on screen while having almost the same value, causing them to merge when viewed from a distance.</p>\n<h2>Turn the artwork into a chart that is easy to follow</h2>\n<p>Add visible grid lines, periodic numbering and a color key. On a large chart, emphasizing every tenth cell makes it much easier to locate a position.</p>\n<p>If several colors are similar, add symbols or letters inside cells. Color alone may be hard to distinguish on printed pages, dim screens or for makers with color-vision differences.</p>\n<p>Prepare a zoomed or multi-page version as well. A graph should be practical while crocheting, not merely attractive when viewed as one complete image.</p>\n<p>State the orientation and starting corner clearly. An asymmetric motif can become mirrored when someone begins from the opposite corner without adjusting the chart direction.</p>\n<h2>Test a representative section before making the full project</h2>\n<p>Crochet a small section containing an outline, a detail color and some background. That swatch shows whether the C2C blocks preserve the effect you expected.</p>\n<p>Step back and take a photo. The motif should remain recognizable without needing to interpret every individual stitch.</p>\n<p>If important details disappear, revise the graph rather than improvising while crocheting. A clean chart is easier to repeat, troubleshoot and share.</p>\n<p>Also count the maximum number of active bobbins on a difficult diagonal. If the result feels unrealistic, merge small color islands or simplify the palette one more time.</p>\n<p>Pixel art is an excellent starting point for C2C because it already thinks in grids. The key step is translating digital pixels into physical units. Calculate scale, simplify colors and details deliberately, and test the proportions before committing to hundreds of blocks. That preserves the design's identity without making the project unnecessarily difficult.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Simple pixel art on the left, a numbered C2C grid in the center and a crocheted version of the same motif on the right.",
+    "alt": "How to turn pixel art into a C2C crochet pattern"
+  }
+}
