@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 450,
+  "translation_group": "450-tapestry-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "tapestry-crochet",
+      "terms": [
+        "tapestry-crochet"
+      ]
+    },
+    "section": {
+      "primary": "ideas",
+      "terms": [
+        "ideas"
+      ]
+    },
+    "topic": {
+      "primary": "wall-hangings",
+      "terms": [
+        "wall-hangings"
+      ]
+    },
+    "style": {
+      "terms": [
+        "wall-hangings",
+        "planning",
+        "chart-design"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-450-tapestry",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Makers creating multi-color wall decor and translating images or charts into flat panels that hang straight.",
+  "title": "Tapestry Crochet Wall Hangings: How to Plan Them",
+  "slug": "tapestry-crochet-wall-hangings-how-to-plan",
+  "seo": {
+    "title": "Tapestry Crochet Wall Hangings: How to Plan Them",
+    "meta_description": "Plan a tapestry crochet wall hanging by calculating size, gauge, resolution, palette, edges, support and hanging method before you begin.",
+    "search_intent": "Crocheters planning a tapestry wall hanging who need to coordinate size, chart resolution, yarn, support and finishing."
+  },
+  "excerpt": "A tapestry wall hanging needs scale, proportion and support planning so the chart reads clearly and the panel hangs straight. Learn how to organize it.",
+  "content_html": "<p>A tapestry crochet wall hanging may look like a purely graphic project, but structure matters just as much as the image. A strong design can still look distorted when the panel changes width, the support does not distribute weight or gauge stretches the chart vertically.</p>\n<p>Planning before crocheting lets you choose resolution, finished size, number of colors and hanging method without discovering halfway through that the motif is too large or the fabric is too heavy.</p>\n<h2>Define the finished panel dimensions first</h2>\n<p>Choose the intended width and height on the wall, including any border or finishing band.</p>\n<p>Measure the display space and leave enough surrounding room so the design does not feel visually crowded.</p>\n<p>Make a swatch with the yarn, hook and typical number of carried strands. Measure stitch width and row height.</p>\n<p>Those figures tell you how many chart columns and rows fit inside the target dimensions.</p>\n<p>If the panel must fit a specific dowel or hanging bar, measure that support before finalizing the grid.</p>\n<p>Remember that fabric can change after blocking, so finished-gauge measurements are more useful than raw measurements.</p>\n<h2>Choose resolution for the actual viewing distance</h2>\n<p>A wall hanging is normally seen from farther away than a coaster or bag, so it does not need to reproduce every tiny detail.</p>\n<p>Excessive resolution adds stitches, color changes and weight without necessarily improving the image from across the room.</p>\n<p>Compare several grid sizes and step away from the screen. If a simpler version still reads clearly, it may be the better crochet design.</p>\n<p>For portraits or illustrations, preserve silhouette, eyes, outlines and major contrast before subtle gradients.</p>\n<p>For geometric motifs, make sure repeats divide cleanly into the available width.</p>\n<p>A paper printout or rough full-size mockup can help evaluate composition before yarn is committed.</p>\n<h2>Plan the palette and yarn behavior</h2>\n<p>Wall panels can support more colors than a tiny practice piece, but each extra shade adds bobbins, tails and yarn-management decisions.</p>\n<p>Choose yarns with similar behavior so some areas do not stretch or shrink differently from others.</p>\n<p>Check the palette in grayscale to ensure major shapes do not depend only on subtle hue differences.</p>\n<p>If a dark shade would travel through large pale regions, avoid excessively long carries that could show through the front.</p>\n<p>Use regional bobbins for large color islands and short carrying for frequent nearby changes.</p>\n<p>Estimate yarn use by shade, especially the background, which often consumes more than expected.</p>\n<h2>Keep the side edges straight while crocheting</h2>\n<p>The panel edges will be obvious once the piece is hanging. Mark the first and last stitch and verify counts regularly.</p>\n<p>If the panel narrows, determine whether stitches are being lost or carried yarn is pulling the width inward.</p>\n<p>Measure the width every ten or twenty rows against the original swatch.</p>\n<p>On a wide hanging, intermediate markers make counting easier and reveal shape changes sooner.</p>\n<p>Avoid concentrating too many woven ends or bobbins at one side because uneven bulk can make one edge hang differently.</p>\n<p>A solid-color frame around the chart can help stabilize the panel and visually absorb small edge irregularities.</p>\n<h2>Choose a support that distributes weight</h2>\n<p>A wooden dowel, bar or loop system can keep the top edge straight when the weight is spread evenly.</p>\n<p>The support may extend slightly beyond the panel or align exactly with it depending on the intended style.</p>\n<p>Do not hang a heavy panel from only two extreme corner points; the center may sag and distort the motif.</p>\n<p>Distribute loops, attachment stitches or a top sleeve at regular intervals.</p>\n<p>If a bottom rod or weight is added, make sure it does not stretch the fabric beyond its designed proportions.</p>\n<p>Test the hanging system before permanently trimming all tails.</p>\n<h2>Block and finish for vertical display</h2>\n<p>Block the panel to measured dimensions without stretching the chart into new proportions.</p>\n<p>After drying, hang it for several hours and see whether gravity increases the height.</p>\n<p>If the fabric grows vertically, measure again and adjust support rather than pulling the panel farther.</p>\n<p>Weave ends through matching colors and distribute them so side lighting does not reveal raised areas.</p>\n<p>If the reverse remains visible, keep it tidy; if it will sit against the wall, backing can be added as long as it does not pull on the crochet.</p>\n<p>Before final installation, photograph the hanging straight on and check that vertical lines remain vertical and the top edge does not bow. A small support adjustment is easier before the piece is permanently displayed.</p>\n<p>A well-planned tapestry wall hanging combines appropriate resolution, stable gauge and evenly distributed support. When size, palette and hanging method are decided first, the crochet can focus on the image without structural problems competing with the design.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Geometric tapestry wall hanging on a wooden dowel beside a diagram showing dimensions, chart and support points.",
+    "alt": "How to plan tapestry crochet wall hangings"
+  }
+}
