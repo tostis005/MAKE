@@ -621,7 +621,7 @@ function make_single_product_reassurance(): void {
 }
 
 add_filter( 'loop_shop_columns', static fn(): int => 4, 20 );
-add_filter( 'loop_shop_per_page', static fn(): int => 16, 20 );
+add_filter( 'loop_shop_per_page', static fn(): int => 20, 20 );
 
 function make_related_product_layout( array $args ): array {
     $args['posts_per_page'] = 4;
