@@ -413,6 +413,11 @@ jobs:
 
           check_html "/tienda/" "Tienda de patrones" "shop-patterns-es" "PDF descargable"
           check_html "/tienda/" "drielo-technique-hub" "shop-technique-hub"
+          check_html "/tienda/" "Punto de cruz" "shop-technique-cross-stitch-card"
+          check_html "/tienda/" "C2C Crochet" "shop-technique-c2c-card"
+          check_html "/tienda/" "Tapestry Crochet" "shop-technique-tapestry-card"
+          check_html "/tienda/" "Latch Hook" "shop-technique-latch-hook-card"
+          check_html "/tienda/" "Punto de cruz" "shop-technique-no-all-card" "Todos los patrones"
           check_html "/tienda/" "drielo-filter-shell" "shop-filter-shell"
           check_html "/tienda/" "Filtrar patrones" "shop-filter-heading"
           check_html "/tienda/" "drielo-filter-select" "shop-native-filter-control"
