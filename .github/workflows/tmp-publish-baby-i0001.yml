@@ -175,10 +175,13 @@ jobs:
             echo "No source/image changes to persist."
           else
             git commit -m "Publish Baby Nursery I0001 four techniques [skip ci]"
+            git fetch origin main
+            git rebase origin/main
             git push origin HEAD:main
           fi
 
       - name: Upload I0001 PDFs artifact
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: baby-nursery-I0001-pdfs
