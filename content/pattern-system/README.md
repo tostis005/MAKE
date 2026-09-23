@@ -60,3 +60,14 @@ For bulk production, keep the source of truth in GitHub:
 4. the WooCommerce importer consumes the catalogue plus those generated assets.
 
 This removes the slow manual loop of rendering files locally, sending them through chat, and re-uploading them one by one.
+
+
+## Colour-preserving technique conversion
+
+The multitech batch renderer uses the collection palette as the only colour source. When reducing a 100×120 cross-stitch matrix to C2C, Tapestry Crochet or Latch Hook resolution, it uses chroma-aware voting instead of plain majority voting. This prevents neutral cells from washing out pink, blue, gold and other collection accents.
+
+Page-1 overlays are rendered with normal blending at high opacity so the ecommerce preview is representative of the actual chart colours.
+
+## Exact clean product crop
+
+Bulk renders export the clean page-1 scene from the internal cover stage. The renderer clones that stage into an isolated capture layer, screenshots it without any PDF border/background, then crops it edge-to-edge to 4:5 WebP. No padding is introduced.
