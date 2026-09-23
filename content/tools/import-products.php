@@ -317,18 +317,38 @@ foreach ( (array) ( $catalog['products'] ?? array() ) as $row ) {
 
     $gallery_ids = array();
     $gallery_revision = sanitize_text_field( (string) ( $row['gallery_revision'] ?? '' ) );
+    $featured_asset = trim( (string) ( $row['featured_image'] ?? '' ) );
+    $featured_id = 0;
+
+    if ( '' !== $featured_asset ) {
+        $featured_id = drielo_media_from_file(
+            rtrim( $source, '/' ) . '/' . $featured_asset,
+            $featured_asset,
+            (string) $row['title'] . ' - featured',
+            $gallery_revision
+        );
+        if ( $featured_id ) { $product->set_image_id( $featured_id ); }
+    }
+
     foreach ( (array) ( $row['gallery'] ?? array() ) as $index => $asset ) {
+        $asset = (string) $asset;
+        if ( '' !== $featured_asset && $asset === $featured_asset ) { continue; }
+
         $id = drielo_media_from_file(
             rtrim( $source, '/' ) . '/' . $asset,
-            (string) $asset,
+            $asset,
             (string) $row['title'] . ' - preview ' . ( $index + 1 ),
             $gallery_revision
         );
         if ( ! $id ) { continue; }
-        if ( 0 === $index ) { $product->set_image_id( $id ); }
-        else { $gallery_ids[] = $id; }
+
+        if ( '' === $featured_asset && 0 === $index ) {
+            $product->set_image_id( $id );
+        } else {
+            $gallery_ids[] = $id;
+        }
     }
-    $product->set_gallery_image_ids( $gallery_ids );
+    $product->set_gallery_image_ids( array_values( array_unique( $gallery_ids ) ) );
 
     $download_rel = (string) ( $row['download'] ?? '' );
     $download_abs = $download_rel ? rtrim( $source, '/' ) . '/' . $download_rel : '';
@@ -356,6 +376,7 @@ foreach ( (array) ( $catalog['products'] ?? array() ) as $row ) {
 
     update_post_meta( $id, '_drielo_managed_product', '1' );
     update_post_meta( $id, '_drielo_product_code', sanitize_text_field( (string) $row['code'] ) );
+    update_post_meta( $id, '_drielo_featured_source', sanitize_text_field( $featured_asset ) );
     update_post_meta( $id, '_drielo_title_es', sanitize_text_field( (string) ( $row['title_es'] ?? $row['title'] ) ) );
     update_post_meta( $id, '_drielo_title_en', sanitize_text_field( (string) ( $row['title_en'] ?? $row['title'] ) ) );
     update_post_meta( $id, '_drielo_short_description_es', wp_kses_post( (string) ( $row['short_description_es'] ?? $row['short_description'] ) ) );
