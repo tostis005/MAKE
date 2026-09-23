@@ -1,0 +1,118 @@
+name: TEMP generate Baby Nursery all JSONs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tmp-generate-baby-all-jsons.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-baby-all-jsons
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install generator dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow numpy
+
+      - name: Generate 30 designs and 240 JSON files
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/baby_nursery/generate_all_jsons.py
+
+      - name: Validate generated Baby Nursery source and JSONs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+
+          root=Path('.')
+          system=root/'content'/'pattern-system'
+          suffixes=('CS','C2C','TC','LH')
+          grids={'CS':(100,120),'C2C':(60,72),'TC':(80,96),'LH':(60,72)}
+          patterns=products=images=0
+
+          for n in range(1,31):
+              base=f'I{n:04d}'
+              srcs=list((system/'collections'/'baby-nursery'/'source-designs').glob(f'{base}-*.png'))
+              if len(srcs)!=1:
+                  raise SystemExit(f'{base}: expected one source PNG, got {len(srcs)}')
+              im=Image.open(srcs[0]).convert('RGBA')
+              if im.size!=(800,960):
+                  raise SystemExit(f'{base}: source PNG size {im.size}')
+              alpha=im.getchannel('A')
+              if alpha.getextrema()!=(0,255):
+                  raise SystemExit(f'{base}: source does not contain real transparency')
+              images += 1
+
+              for suffix in suffixes:
+                  code=f'{base}-{suffix}'
+                  pp=system/'patterns'/code/'pattern.json'
+                  qp=system/'products'/code/'product.json'
+                  if not pp.is_file() or not qp.is_file():
+                      raise SystemExit(f'{code}: missing JSON')
+                  p=json.loads(pp.read_text(encoding='utf-8'))
+                  q=json.loads(qp.read_text(encoding='utf-8'))
+                  w,h=grids[suffix]
+                  if (p.get('stitch_width'),p.get('stitch_height'))!=(w,h):
+                      raise SystemExit(f'{code}: wrong grid')
+                  if len(p.get('matrix',[]))!=h or any(len(row)!=w for row in p['matrix']):
+                      raise SystemExit(f'{code}: malformed matrix')
+                  if not p.get('threads') or p.get('total_stitches',0)<=0:
+                      raise SystemExit(f'{code}: empty pattern')
+                  if q.get('render_ready') is not True or q.get('pattern_file')!=f'patterns/{code}/pattern.json':
+                      raise SystemExit(f'{code}: bad product JSON')
+                  patterns += 1
+                  products += 1
+
+          collection=json.loads((system/'collections'/'baby-nursery'/'collection.json').read_text(encoding='utf-8'))
+          assets=collection['mockup_spec']['technique_assets']
+          if assets['C2C']!='collections/baby-nursery/assets/cover-crochet.jpg':
+              raise SystemExit('C2C cover mapping not corrected')
+          if assets['TC']!='collections/baby-nursery/assets/cover-c2c-crochet.jpg':
+              raise SystemExit('TC cover mapping not corrected')
+
+          designs=json.loads((system/'collections'/'baby-nursery'/'designs.json').read_text(encoding='utf-8'))
+          if any(x.get('artwork_status')!='canonical-pattern-ready' for x in designs['designs']):
+              raise SystemExit('Not all designs marked canonical-pattern-ready')
+
+          print('VALIDATED_SOURCE_PNGS',images)
+          print('VALIDATED_PATTERN_JSONS',patterns)
+          print('VALIDATED_PRODUCT_JSONS',products)
+          PY
+
+      - name: Persist generated source images and JSONs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A             content/pattern-system/collections/baby-nursery             content/pattern-system/patterns/I0*             content/pattern-system/products/I0*             content/pattern-system/baby_nursery/source_chunks
+          if git diff --cached --quiet; then
+            echo "No generated changes."
+          else
+            git commit -m "Generate all Baby Nursery canonical JSONs and sources [skip ci]"
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
+          fi
