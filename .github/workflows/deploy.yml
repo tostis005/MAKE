@@ -88,7 +88,7 @@ jobs:
           set -euo pipefail
           rm -rf /tmp/drielo-catalog-plugin /tmp/drielo-catalog-architecture.zip /tmp/drielo-catalog-architecture.tar.gz
           mkdir -p /tmp/drielo-catalog-plugin
-          base64 --decode plugins/drielo-catalog-architecture-1.2.0.zip.b64 > /tmp/drielo-catalog-architecture.zip
+          base64 --decode plugins/drielo-catalog-architecture-1.3.0.zip.b64 > /tmp/drielo-catalog-architecture.zip
           unzip -q /tmp/drielo-catalog-architecture.zip -d /tmp/drielo-catalog-plugin
           test -s /tmp/drielo-catalog-plugin/drielo-catalog-architecture/drielo-catalog-architecture.php
           php -l /tmp/drielo-catalog-plugin/drielo-catalog-architecture/drielo-catalog-architecture.php
@@ -415,6 +415,10 @@ jobs:
           check_html "/tienda/" "drielo-technique-hub" "shop-technique-hub"
           check_html "/tienda/" "drielo-filter-shell" "shop-filter-shell"
           check_html "/tienda/" "Filtrar patrones" "shop-filter-heading"
+          check_html "/tienda/" "drielo-filter-select" "shop-native-filter-control"
+          check_html "/wp-content/plugins/drielo-catalog-architecture/assets/catalog.js" "requestSubmit" "catalog-filter-js"
+          check_html "/tienda/?drielo_theme=flowers-botanicals" "Frida Kahlo con corona de flores" "shop-filter-theme-flowers" "Marilyn Monroe con chicle"
+          check_html "/tienda/?drielo_style=surreal" "Salvador Dalí" "shop-filter-style-surreal" "Marilyn Monroe con chicle"
           check_html "/tienda/" "Punto de cruz" "shop-cross-stitch-technique"
           check_html "/wp-content/plugins/drielo-catalog-architecture/assets/catalog.css" ".drielo-technique-hub" "catalog-css"
           check_html "/tienda/" "attachment-make-store-card" "shop-card-derivative"
