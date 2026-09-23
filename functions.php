@@ -5,6 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 require_once get_template_directory() . '/inc/sitemap.php';
 require_once get_template_directory() . '/inc/category-art.php';
 require_once get_template_directory() . '/inc/store.php';
+require_once get_template_directory() . '/inc/editorial-crafts.php';
 
 function make_theme_setup(): void {
     load_theme_textdomain( 'make', get_template_directory() . '/languages' );
@@ -213,6 +214,10 @@ function make_language_switch_url( string $language ): string {
 
     if ( (int) get_query_var( 'make_journal' ) === 1 ) {
         $page  = max( 1, (int) get_query_var( 'paged' ) );
+        $craft = function_exists( 'make_current_editorial_craft' ) ? make_current_editorial_craft() : '';
+        if ( '' !== $craft && function_exists( 'make_editorial_craft_url' ) ) {
+            return make_editorial_craft_url( $craft, $language, $page );
+        }
         $theme = function_exists( 'make_current_stitch_theme' ) ? make_current_stitch_theme() : '';
         return '' !== $theme ? make_stitch_theme_url( $theme, $language, $page ) : make_journal_page_url( $page, $language );
     }
@@ -320,7 +325,7 @@ function make_rewrite_rules(): void {
 add_action( 'init', 'make_rewrite_rules', 20 );
 
 function make_maybe_flush_editorial_rewrites(): void {
-    $schema_version = '3';
+    $schema_version = '4';
     if ( $schema_version === (string) get_option( 'drielo_editorial_rewrite_schema', '' ) ) { return; }
 
     flush_rewrite_rules( false );
@@ -684,24 +689,24 @@ function make_editorial_section_config(): array {
             'es' => array(
                 'slug' => 'aprender',
                 'label' => 'Aprender',
-                'description' => 'Técnicas, materiales y respuestas claras para bordar con más seguridad.',
+                'description' => 'Técnicas, materiales y respuestas claras para crear con más seguridad.',
             ),
             'en' => array(
                 'slug' => 'learn',
                 'label' => 'Learn',
-                'description' => 'Techniques, materials and clear answers for stitching with more confidence.',
+                'description' => 'Techniques, materials and clear answers for making with more confidence.',
             ),
         ),
         'ideas' => array(
             'es' => array(
                 'slug' => 'ideas',
                 'label' => 'Ideas e inspiración',
-                'description' => 'Temas, estilos y proyectos para encontrar algo que de verdad apetezca bordar.',
+                'description' => 'Temas, estilos y proyectos para encontrar algo que de verdad apetezca crear.',
             ),
             'en' => array(
                 'slug' => 'inspiration',
                 'label' => 'Ideas & inspiration',
-                'description' => 'Themes, styles and projects for finding something you genuinely want to stitch.',
+                'description' => 'Themes, styles and projects for finding something you genuinely want to make.',
             ),
         ),
         'buying-guides' => array(
@@ -760,6 +765,12 @@ function make_editorial_archive_description(): string {
 
 function make_editorial_placeholder_html( int $post_id = 0 ): string {
     $post_id = $post_id ?: get_the_ID();
+    if ( function_exists( 'make_article_craft' ) && function_exists( 'make_editorial_craft_art_html' ) ) {
+        $craft = make_article_craft( $post_id );
+        if ( 'cross-stitch' !== $craft ) {
+            return make_editorial_craft_art_html( $craft, 'make-editorial-art' );
+        }
+    }
     return make_stitch_theme_art_html( make_article_stitch_theme( $post_id ), 'make-editorial-art' );
 }
 
@@ -767,6 +778,7 @@ function make_related_articles( int $post_id, int $limit = 3 ): array {
     $language = (string) get_post_meta( $post_id, '_make_language', true );
     $language = in_array( $language, array( 'es', 'en' ), true ) ? $language : make_current_language();
     $weighted_taxonomies = array(
+        'make_craft'        => 20,
         'make_topic'        => 5,
         'make_style'        => 3,
         'make_project_type' => 2,
@@ -895,12 +907,18 @@ function make_editorial_document_title( string $title ): string {
     }
 
     if ( (int) get_query_var( 'make_journal' ) === 1 ) {
+        $craft = function_exists( 'make_current_editorial_craft' ) ? make_current_editorial_craft() : '';
+        $crafts = function_exists( 'make_editorial_craft_config' ) ? make_editorial_craft_config() : array();
+        if ( '' !== $craft && isset( $crafts[ $craft ][ make_current_language() ]['label'] ) ) {
+            return $crafts[ $craft ][ make_current_language() ]['label'] . ' · ' . make_t( 'Guías y tutoriales', 'Guides & tutorials' ) . ' | ' . make_brand_name();
+        }
+
         $theme = function_exists( 'make_current_stitch_theme' ) ? make_current_stitch_theme() : '';
         $config = function_exists( 'make_stitch_theme_config' ) ? make_stitch_theme_config() : array();
         if ( '' !== $theme && isset( $config[ $theme ][ make_current_language() ]['label'] ) ) {
             return $config[ $theme ][ make_current_language() ]['label'] . ' · ' . make_t( 'Punto de cruz', 'Cross stitch' ) . ' | ' . make_brand_name();
         }
-        return make_t( 'Guías e ideas de punto de cruz', 'Cross stitch guides and ideas' ) . ' | ' . make_brand_name();
+        return make_t( 'Guías de punto de cruz, crochet y latch hook', 'Cross stitch, crochet and latch hook guides' ) . ' | ' . make_brand_name();
     }
 
     return $title;
@@ -979,16 +997,28 @@ function make_editorial_head_meta(): void {
             echo '<link rel="alternate" hreflang="x-default" href="' . esc_url( $es_url ) . '">' . "\n";
         }
     } elseif ( (int) get_query_var( 'make_journal' ) === 1 ) {
-        $description = make_t(
-            'Guías claras, ideas y proyectos de punto de cruz para aprender técnicas, elegir materiales y encontrar tu siguiente patrón.',
-            'Clear cross stitch guides, ideas and projects for learning techniques, choosing materials and finding your next pattern.'
-        );
         $page = max( 1, (int) get_query_var( 'paged' ) );
+        $craft = function_exists( 'make_current_editorial_craft' ) ? make_current_editorial_craft() : '';
+        $crafts = function_exists( 'make_editorial_craft_config' ) ? make_editorial_craft_config() : array();
         $theme = function_exists( 'make_current_stitch_theme' ) ? make_current_stitch_theme() : '';
-        $canonical = '' !== $theme ? make_stitch_theme_url( $theme, make_current_language(), $page ) : make_journal_page_url( $page );
+
+        if ( '' !== $craft && isset( $crafts[ $craft ][ make_current_language() ] ) ) {
+            $description = (string) $crafts[ $craft ][ make_current_language() ]['meta_description'];
+            $canonical = make_editorial_craft_url( $craft, make_current_language(), $page );
+        } else {
+            $description = make_t(
+                'Guías prácticas de punto de cruz, C2C crochet, tapestry crochet y latch hook para aprender, resolver dudas y encontrar tu siguiente proyecto.',
+                'Practical cross stitch, C2C crochet, tapestry crochet and latch hook guides for learning, solving problems and finding your next project.'
+            );
+            $canonical = '' !== $theme ? make_stitch_theme_url( $theme, make_current_language(), $page ) : make_journal_page_url( $page );
+        }
 
         foreach ( array( 'es' => 'es-ES', 'en' => 'en-US' ) as $lang => $hreflang ) {
-            $url = '' !== $theme ? make_stitch_theme_url( $theme, $lang, $page ) : make_journal_page_url( $page, $lang );
+            if ( '' !== $craft && function_exists( 'make_editorial_craft_url' ) ) {
+                $url = make_editorial_craft_url( $craft, $lang, $page );
+            } else {
+                $url = '' !== $theme ? make_stitch_theme_url( $theme, $lang, $page ) : make_journal_page_url( $page, $lang );
+            }
             echo '<link rel="alternate" hreflang="' . esc_attr( $hreflang ) . '" href="' . esc_url( $url ) . '">' . "\n";
         }
     }
@@ -1181,22 +1211,32 @@ function make_stitch_theme_tax_query( string $theme ): array {
     $config = make_stitch_theme_config();
     if ( ! isset( $config[ $theme ] ) ) { return array(); }
 
-    $tax_query = array( 'relation'=>'OR' );
+    $theme_query = array( 'relation'=>'OR' );
     if ( ! empty( $config[ $theme ]['topic'] ) ) {
-        $tax_query[] = array(
+        $theme_query[] = array(
             'taxonomy'=>'make_topic',
             'field'=>'slug',
             'terms'=>$config[ $theme ]['topic'],
         );
     }
     if ( ! empty( $config[ $theme ]['style'] ) ) {
-        $tax_query[] = array(
+        $theme_query[] = array(
             'taxonomy'=>'make_style',
             'field'=>'slug',
             'terms'=>$config[ $theme ]['style'],
         );
     }
-    return count( $tax_query ) > 1 ? $tax_query : array();
+    if ( count( $theme_query ) < 2 ) { return array(); }
+
+    return array(
+        'relation'=>'AND',
+        array(
+            'taxonomy'=>'make_craft',
+            'field'=>'slug',
+            'terms'=>array('cross-stitch'),
+        ),
+        $theme_query,
+    );
 }
 
 function make_stitch_theme_query_var( array $vars ): array {
@@ -1215,7 +1255,7 @@ function make_stitch_theme_main_query( WP_Query $query ): void {
 }
 add_action( 'pre_get_posts', 'make_stitch_theme_main_query', 22 );
 
-function make_journal_pagination_html( WP_Query $query, string $language = '', string $theme = '' ): string {
+function make_journal_pagination_html( WP_Query $query, string $language = '', string $theme = '', string $craft = '' ): string {
     $total = max( 1, (int) $query->max_num_pages );
     if ( $total < 2 ) { return ''; }
 
@@ -1223,8 +1263,12 @@ function make_journal_pagination_html( WP_Query $query, string $language = '', s
     $language = in_array( $language, array('es','en'), true ) ? $language : make_current_language();
     $pages = array();
 
-    $link = static function( int $page, string $label, string $class = '' ) use ( $language, $theme ): string {
-        $url = '' !== $theme ? make_stitch_theme_url( $theme, $language, $page ) : make_journal_page_url( $page, $language );
+    $link = static function( int $page, string $label, string $class = '' ) use ( $language, $theme, $craft ): string {
+        if ( '' !== $craft && function_exists( 'make_editorial_craft_url' ) ) {
+            $url = make_editorial_craft_url( $craft, $language, $page );
+        } else {
+            $url = '' !== $theme ? make_stitch_theme_url( $theme, $language, $page ) : make_journal_page_url( $page, $language );
+        }
         return '<a class="page-number ' . esc_attr( $class ) . '" href="' . esc_url( $url ) . '">' . esc_html( $label ) . '</a>';
     };
 
