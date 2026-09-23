@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Drielo Pop Art — Latch Hook Template</title>
+<link rel="stylesheet" href="../shared/drielo-pattern-template.css">
+</head>
+<body>
+<!-- Technique placeholders:
+{{CANVAS_W}}, {{CANVAS_H}}, {{MESH}}, {{FINISHED_WIDTH_CM}}, {{FINISHED_HEIGHT_CM}},
+{{YARN_CUT_LENGTH}}, {{TOTAL_LATCHES}}, {{PATTERN_CODE}}, {{PRODUCT_URL}}
+Slots: PATTERN_PREVIEW_SVG, YARN_KEY_ROWS, COLOR_CHART_SVG, SYMBOL_CHART_SVG
+-->
+<section class="page cover"><div class="page-inner">
+  <div class="cover-art">
+    <svg viewBox="0 0 700 760" role="img" aria-label="Latch hook rug mockup">
+      <rect width="700" height="760" fill="#b78354"/>
+      <g opacity=".25" stroke="#805733" stroke-width="3"><line x1="0" y1="120" x2="700" y2="120"/><line x1="0" y1="260" x2="700" y2="260"/><line x1="0" y1="400" x2="700" y2="400"/><line x1="0" y1="540" x2="700" y2="540"/><line x1="0" y1="680" x2="700" y2="680"/></g>
+      <defs><clipPath id="rugClip"><rect x="110" y="120" width="480" height="500" rx="48"/></clipPath></defs>
+      <rect x="110" y="120" width="480" height="500" rx="48" fill="#f6efe4" stroke="#111" stroke-width="3"/>
+      <g clip-path="url(#rugClip)">
+        <g class="pop-sample" opacity=".3"><rect class="p1" x="110" y="120" width="160" height="170"/><rect class="p2" x="270" y="120" width="160" height="170"/><rect class="p3" x="430" y="120" width="160" height="170"/><circle class="p4" cx="265" cy="430" r="95"/><circle class="p5" cx="455" cy="430" r="95"/></g>
+        <!-- SLOT:PATTERN_PREVIEW_SVG -->
+      </g>
+      <g opacity=".35" stroke="#5a493d" stroke-width="1"><path d="M110 150h480M110 180h480M110 210h480M110 240h480M110 270h480M110 300h480M110 330h480M110 360h480M110 390h480M110 420h480M110 450h480M110 480h480M110 510h480M110 540h480M110 570h480"/></g>
+      <text x="350" y="700" text-anchor="middle" class="mock-label">LATCH HOOK · POP ART RUG MOCKUP</text>
+    </svg>
+  </div>
+  <div class="cover-meta"><div><div class="brand">DRIELO</div><div class="code">{{PATTERN_CODE}}</div><div class="technique">Latch Hook Pattern</div><div class="collection">Pop Art Collection</div></div><div class="cover-badge">Digital PDF Pattern</div></div>
+</div></section>
+
+<section class="page"><div class="page-inner">
+  <div class="header"><div><span class="kicker">Project overview</span><h1>{{PATTERN_CODE}}</h1></div><div class="header-technique">Latch Hook · Pop Art</div></div>
+  <div class="grid-3"><div class="stat"><b>{{CANVAS_W}} × {{CANVAS_H}}</b><span>Canvas holes</span></div><div class="stat"><b>{{FINISHED_WIDTH_CM}} × {{FINISHED_HEIGHT_CM}} cm</b><span>Finished rug</span></div><div class="stat"><b>{{TOTAL_LATCHES}}</b><span>Total knots</span></div></div>
+  <div style="height:8mm"></div>
+  <div class="grid-2"><div class="card"><h3>Materials</h3><p style="margin-top:4mm"><b>Canvas:</b> {{MESH}} mesh latch-hook canvas<br><b>Yarn cut length:</b> {{YARN_CUT_LENGTH}}<br><b>Tool:</b> standard latch hook.</p></div><div class="card"><h3>Chart logic</h3><p style="margin-top:4mm">One chart square equals one canvas hole / one latch-hook knot. Work in horizontal rows and keep the chart orientation fixed.</p></div></div>
+  <div class="note"><p><b>Pop Art adaptation:</b> the current portrait matrix is suitable when rendered as a wall rug or medium/large floor rug; dimensions scale directly with canvas mesh.</p></div>
+  <div class="url"><a href="{{PRODUCT_URL}}">{{PRODUCT_URL}}</a></div>
+  <div class="footer"><span>© {{COPYRIGHT_YEAR}} Drielo</span><span class="page-number">Page </span></div>
+</div></section>
+
+<section class="page"><div class="page-inner"><div class="header"><div><span class="kicker">Yarn key</span><h2>Yarn cuts by color</h2></div><div class="header-code">{{PATTERN_CODE}}</div></div><table class="table"><thead><tr><th>Symbol</th><th>Color</th><th>Yarn reference</th><th>Knots</th><th>Cut pieces</th></tr></thead><tbody><!-- SLOT:YARN_KEY_ROWS --></tbody></table><div class="note"><p>Cut-piece quantity should include a small reserve for loss and trimming.</p></div><div class="footer"><span>DRIELO · LATCH HOOK</span><span class="page-number">Page </span></div></div></section>
+
+<section class="page"><div class="page-inner"><div class="header"><div><span class="kicker">Full pattern</span><h2>Color chart</h2></div><div class="header-code">{{PATTERN_CODE}}</div></div><div class="chart-shell"><!-- SLOT:COLOR_CHART_SVG --></div><div class="footer"><span>1 square = 1 latch-hook knot</span><span class="page-number">Page </span></div></div></section>
+
+<section class="page"><div class="page-inner"><div class="header"><div><span class="kicker">Accessible pattern</span><h2>Symbol chart</h2></div><div class="header-code">{{PATTERN_CODE}}</div></div><div class="chart-shell"><!-- SLOT:SYMBOL_CHART_SVG --></div><div class="footer"><span>Symbols match the yarn key</span><span class="page-number">Page </span></div></div></section>
+
+<section class="page"><div class="page-inner">
+  <div class="header"><div><span class="kicker">Finishing</span><h2>From canvas to finished rug</h2></div><div class="header-code">{{PATTERN_CODE}}</div></div>
+  <div class="steps"><div class="step"><div class="step-n">1</div><p>Work from one corner in consistent rows, checking every 10-grid interval.</p></div><div class="step"><div class="step-n">2</div><p>Trim uneven yarn only after the full design is complete.</p></div><div class="step"><div class="step-n">3</div><p>Fold or bind canvas edges and add non-slip backing if the piece will be used on the floor.</p></div><div class="step"><div class="step-n">4</div><p>For wall display, add a textile backing and a discreet hanging system.</p></div></div>
+  <div class="footer"><span>DRIELO · LATCH HOOK</span><span class="page-number">Page </span></div>
+</div></section>
+</body></html>
