@@ -139,12 +139,12 @@
   "mockup_spec": {
     "asset": null,
     "technique_assets": {
-      "CS": null,
-      "C2C": null,
-      "TC": null,
-      "LH": null
+      "CS": "collections/baby-nursery/assets/cover-cross-stitch.jpg",
+      "C2C": "collections/baby-nursery/assets/cover-c2c-crochet.jpg",
+      "TC": "collections/baby-nursery/assets/cover-crochet.jpg",
+      "LH": "collections/baby-nursery/assets/cover-rug.jpg"
     },
-    "status": "awaiting-approved-page-1-images",
+    "status": "approved-page-1-images",
     "generation": {
       "purpose": "Reusable page-1 lifestyle/ambient images for the Baby & Nursery collection.",
       "frame_requirement": "Leave the craft display area empty so the final vector pattern can be inserted by the renderer.",
