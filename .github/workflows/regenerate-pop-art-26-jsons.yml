@@ -1,0 +1,90 @@
+name: Regenerate Pop Art 26 product JSONs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/regenerate-pop-art-26-jsons.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-pop-art-26-jsons
+  cancel-in-progress: false
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Regenerate 26 x 4 JSON structure
+        shell: bash
+        run: |
+          set -euo pipefail
+          python .github/scripts/regenerate_pop_art_product_jsons.py
+
+      - name: Validate pattern system
+        shell: bash
+        run: |
+          set -euo pipefail
+          python content/pattern-system/renderer/validate_all.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root=Path('content/pattern-system')
+          collection=json.loads((root/'collections/pop-art-25/collection.json').read_text(encoding='utf-8'))
+          if len(collection.get('palette',[])) != 25:
+              raise SystemExit('Pop Art collection must contain exactly 25 master colours')
+          if collection['mockup_spec']['technique_assets']['C2C'] != '../../multitech/assets/cover-crochet.webp':
+              raise SystemExit('C2C cover mapping is wrong')
+          if collection['mockup_spec']['technique_assets']['TC'] != '../../multitech/assets/cover-c2c-crochet.webp':
+              raise SystemExit('Tapestry cover mapping is wrong')
+
+          products=list(root.glob('products/P0*/product.json'))
+          patterns=list(root.glob('patterns/P0*/pattern.json'))
+          expected={f'P{i:04d}-{tech}' for i in range(1,27) for tech in ('CS','C2C','TC','LH')}
+          product_codes={json.loads(p.read_text(encoding='utf-8'))['code'] for p in products}
+          pattern_codes={json.loads(p.read_text(encoding='utf-8'))['code'] for p in patterns}
+          missing_products=expected-product_codes
+          missing_patterns=expected-pattern_codes
+          if missing_products or missing_patterns:
+              raise SystemExit(f'Missing products={sorted(missing_products)} patterns={sorted(missing_patterns)}')
+
+          for code in expected:
+              p=json.loads((root/'products'/code/'product.json').read_text(encoding='utf-8'))
+              if p.get('collection') != 'pop-art-25':
+                  raise SystemExit(f'Wrong collection: {code}')
+              if p.get('palette_size') != 25 or not p.get('transparent_source'):
+                  raise SystemExit(f'Palette/transparency metadata missing: {code}')
+          print('Validated 26 designs, 104 product JSONs and 104 pattern JSONs.')
+          PY
+
+      - name: Commit regenerated JSONs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add             content/pattern-system/collections/pop-art-25/collection.json             content/pattern-system/collections/pop-art-25/designs.json             content/pattern-system/products/P0*/product.json             content/pattern-system/patterns/P0*/pattern.json
+          if git diff --cached --quiet; then
+            echo "No JSON changes to commit."
+            exit 0
+          fi
+          git commit -m "Regenerate Pop Art 26 product JSONs [skip ci]"
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            if [ "$attempt" = "3" ]; then
+              echo "Could not push regenerated Pop Art JSONs"
+              exit 1
+            fi
+            sleep 5
+          done
