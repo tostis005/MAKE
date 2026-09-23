@@ -1,0 +1,10 @@
+{
+  "code": "P0007-TC",
+  "base_design_id": "P0007",
+  "technique_code": "TC",
+  "collection": "pop-art-portraits",
+  "title": "Audrey Hepburn Sunglasses",
+  "technique": "tapestry-crochet",
+  "pattern_file": "patterns/P0007-TC/pattern.json",
+  "template": "crochet.html"
+}

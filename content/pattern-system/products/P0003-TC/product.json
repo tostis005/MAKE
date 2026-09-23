@@ -1,0 +1,10 @@
+{
+  "code": "P0003-TC",
+  "base_design_id": "P0003",
+  "technique_code": "TC",
+  "collection": "pop-art-portraits",
+  "title": "Marilyn Monroe Blowing Kiss",
+  "technique": "tapestry-crochet",
+  "pattern_file": "patterns/P0003-TC/pattern.json",
+  "template": "crochet.html"
+}

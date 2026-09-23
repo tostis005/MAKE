@@ -1,0 +1,10 @@
+{
+  "code": "P0008-TC",
+  "base_design_id": "P0008",
+  "technique_code": "TC",
+  "collection": "pop-art-portraits",
+  "title": "Audrey Hepburn Elegant Profile",
+  "technique": "tapestry-crochet",
+  "pattern_file": "patterns/P0008-TC/pattern.json",
+  "template": "crochet.html"
+}

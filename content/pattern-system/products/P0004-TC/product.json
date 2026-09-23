@@ -1,0 +1,10 @@
+{
+  "code": "P0004-TC",
+  "base_design_id": "P0004",
+  "technique_code": "TC",
+  "collection": "pop-art-portraits",
+  "title": "Marilyn Monroe Sunglasses",
+  "technique": "tapestry-crochet",
+  "pattern_file": "patterns/P0004-TC/pattern.json",
+  "template": "crochet.html"
+}

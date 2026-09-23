@@ -1,0 +1,10 @@
+{
+  "code": "P0001-TC",
+  "base_design_id": "P0001",
+  "technique_code": "TC",
+  "collection": "pop-art-portraits",
+  "title": "Marilyn Monroe Bubble Gum",
+  "technique": "tapestry-crochet",
+  "pattern_file": "patterns/P0001-TC/pattern.json",
+  "template": "crochet.html"
+}

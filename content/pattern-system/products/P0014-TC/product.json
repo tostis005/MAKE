@@ -1,0 +1,10 @@
+{
+  "code": "P0014-TC",
+  "base_design_id": "P0014",
+  "technique_code": "TC",
+  "collection": "pop-art-portraits",
+  "title": "Salvador Dalí Portrait",
+  "technique": "tapestry-crochet",
+  "pattern_file": "patterns/P0014-TC/pattern.json",
+  "template": "crochet.html"
+}

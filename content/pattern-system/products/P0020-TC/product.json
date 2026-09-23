@@ -1,0 +1,10 @@
+{
+  "code": "P0020-TC",
+  "base_design_id": "P0020",
+  "technique_code": "TC",
+  "collection": "pop-art-portraits",
+  "title": "Royal Tiara Portrait",
+  "technique": "tapestry-crochet",
+  "pattern_file": "patterns/P0020-TC/pattern.json",
+  "template": "crochet.html"
+}
