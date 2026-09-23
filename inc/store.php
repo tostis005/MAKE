@@ -913,7 +913,7 @@ function make_render_collection_grid(): void {
                 $technique = sanitize_title( (string) ( $record['technique'] ?? '' ) );
                 $design_id = sanitize_text_field( (string) ( $record['design_id'] ?? '' ) );
                 echo '<span class="drielo-collection-thumb" data-collection-thumb data-technique="' . esc_attr( $technique ) . '" data-design="' . esc_attr( $design_id ) . '">';
-                echo wp_kses_post( make_static_attachment_image_html( (int) $record['image_id'], 'make-collection-preview', 'drielo-collection-preview' ) );
+                echo wp_kses_post( make_static_attachment_image_html( (int) $record['image_id'], 'make-collection-preview-context', 'drielo-collection-preview drielo-collection-preview--context' ) );
                 echo '</span>';
             }
 
