@@ -424,7 +424,9 @@ jobs:
           check_html "/tienda/?drielo_style=surreal" "Salvador Dalí" "shop-filter-style-surreal" "Marilyn Monroe con chicle"
           check_html "/tienda/" "Punto de cruz" "shop-cross-stitch-technique"
           check_html "/wp-content/plugins/drielo-catalog-architecture/assets/catalog.css" ".drielo-technique-hub" "catalog-css"
-          check_html "/tienda/" "attachment-make-store-card" "shop-card-derivative"
+          check_html "/tienda/" "attachment-make-store-card-context" "shop-context-card-derivative"
+          check_html "/wp-content/themes/make/assets/js/site.js" "drielo-technique-compact-icon" "shop-technique-compact-js"
+          check_html "/wp-content/themes/make/style.css" "Compact craft technique cards + contextual thumbnails" "shop-context-preview-css"
           check_html "/wp-content/themes/make/style.css" "Store + single-product layout refinements" "store-layout-css"
           check_html "/wp-content/themes/make/style.css" "grid-template-columns:repeat(5,minmax(0,1fr))" "collection-card-layout"
           check_html "/wp-content/themes/make/style.css" "background:transparent!important;box-shadow:none!important" "pagination-transparent"
@@ -497,9 +499,9 @@ jobs:
             $id=wc_get_product_id_by_sku("DRIELO-P0001-CS");
             $image_id=get_post_thumbnail_id($id);
             $preview=wp_get_attachment_image_src($image_id,"medium_large");
-            $shop_card=wp_get_attachment_image_src($image_id,"make-store-card");
+            $shop_card=wp_get_attachment_image_src($image_id,"make-store-card-context");
             $home_card=wp_get_attachment_image_src($image_id,"make-home-product-card");
-            $collection_card=wp_get_attachment_image_src($image_id,"make-collection-preview");
+            $collection_card=wp_get_attachment_image_src($image_id,"make-collection-preview-context");
             $html=apply_filters("woocommerce_single_product_image_thumbnail_html","placeholder",(int)$image_id);
             if ($usd_symbol!=="$" || $eur_symbol!=="€") {
                 fwrite(STDERR,"Currency symbol verification failed USD=".$usd_symbol." EUR=".$eur_symbol.PHP_EOL);
@@ -509,7 +511,7 @@ jobs:
                 fwrite(STDERR,"Protected image verification failed".PHP_EOL);
                 exit(2);
             }
-            if (!is_array($shop_card) || (int)$shop_card[1]>560 || (int)$shop_card[2]>560 || !is_array($home_card) || (int)$home_card[1]>560 || (int)$home_card[2]>700 || !is_array($collection_card) || (int)$collection_card[1]>240 || (int)$collection_card[2]>240) {
+            if (!is_array($shop_card) || (int)$shop_card[1]>560 || (int)$shop_card[2]>700 || !is_array($home_card) || (int)$home_card[1]>560 || (int)$home_card[2]>700 || !is_array($collection_card) || (int)$collection_card[1]>300 || (int)$collection_card[2]>300) {
                 fwrite(STDERR,"Store card derivative verification failed".PHP_EOL);
                 exit(2);
             }
