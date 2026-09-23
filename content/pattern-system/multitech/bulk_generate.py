@@ -294,7 +294,7 @@ def make_catalog_variant(base, suffix, data):
     p['code']=code; p['sku']=f'DRIELO-{code}'; p['base_design_id']=base['code']; p['design_id']=code; p['technique_code']=suffix; p['technique']=cfg['technique']
     if suffix=='CS':
         p['previous_skus']=[base['sku']]
-        p['download']=f'files/Drielo_{code}.pdf'; p['gallery']=[f'assets/{code}-product.webp']; p['gallery_revision']=(int(base.get('gallery_revision') or 0)+200)
+        p['download']=f'files/Drielo_{code}.pdf'; p['gallery']=[f'assets/{code}-product.webp']; p['gallery_revision']=20260923
         p['filters']=dict(base['filters']); p['filters']['technique']=['cross-stitch']; p['filters']['project']=['wall-art']
         p['short_description']=p['short_description_en']=compact_desc(title,code,cfg,total,colors)
         p['short_description_es']=f"Patrón PDF descargable de {title}. {cfg['w']} x {cfg['h']} puntos; {total:,} puntadas; {colors} colores DMC; apto para principiantes. Código: {code}.".replace(',', '.')
@@ -305,7 +305,7 @@ def make_catalog_variant(base, suffix, data):
         p['title']=f"{title} {cfg['display']} Pattern PDF"; p['title_en']=p['title']; p['title_es']=f"Patrón PDF {cfg['display']}: {title}"
         p['slug']=f"{slugify(title)}-{slugify(cfg['display'])}-pattern"
         p['stitches']=total; p['grid']=f"{cfg['w']} x {cfg['h']} {cfg['unit_label']}"; p['colours']=colors; p['color_count']=colors; p['grid_width']=cfg['w']; p['grid_height']=cfg['h']; p['stitch_type']=cfg['stitch_type']; p['stitch_type_en']=cfg['stitch_type']; p['stitch_type_es']=cfg['stitch_type']
-        p['categories']=cfg['category']; p['download']=f'files/Drielo_{code}.pdf'; p['gallery']=[f'assets/{code}-product.webp']; p['gallery_revision']=1
+        p['categories']=cfg['category']; p['download']=f'files/Drielo_{code}.pdf'; p['gallery']=[f'assets/{code}-product.webp']; p['gallery_revision']=20260923
         p['filters']=json.loads(json.dumps(base['filters'])); p['filters']['technique']=[cfg['technique']]; p['filters']['project']=[cfg['project']]
         desc=compact_desc(title,code,cfg,total,colors); p['short_description']=p['short_description_en']=desc; p['short_description_es']=f"Patrón PDF descargable de {title} para {cfg['display']}. {cfg['w']} x {cfg['h']} {cfg['unit_label']}; {total:,} posiciones; {colors} colores coordinados. Código: {code}.".replace(',', '.')
         p['description']=p['description_en']=(f"<p><strong>{title} {cfg['display']} Pattern PDF</strong> is a downloadable digital pattern from the Pop Art Portraits collection.</p><p><strong>Pattern code:</strong> {code}</p><p><strong>Digital product only:</strong> no finished item or physical materials are included.</p><h3>Pattern details</h3><ul><li>Chart: {cfg['w']} x {cfg['h']} {cfg['unit_label']}</li><li>{cfg['count_label']}: {total:,}</li><li>Colours: {colors} coordinated collection colours</li><li>Technique: {cfg['stitch_type']}</li><li>Beginner friendly</li></ul><h3>What you receive</h3><p>17-page PDF with finished-design preview, pattern facts, colour key, full chart, symbols, enlarged sections and technique guide.</p><p>Personal use only.</p>")
