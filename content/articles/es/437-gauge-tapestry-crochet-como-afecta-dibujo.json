@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 437,
+  "translation_group": "437-tapestry-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "tapestry-crochet",
+      "terms": [
+        "tapestry-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "gauge",
+      "terms": [
+        "gauge"
+      ]
+    },
+    "style": {
+      "terms": [
+        "gauge",
+        "pixel-shape",
+        "tapestry-crochet"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "bags",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "es-437-tapestry",
+  "language": "es",
+  "locale": "es-ES",
+  "market_context": "Crocheters que adaptan patrones, cambian hilo o aguja y necesitan mantener la imagen proporcional.",
+  "title": "Gauge en Tapestry Crochet: cómo afecta al dibujo",
+  "slug": "gauge-tapestry-crochet-como-afecta-dibujo",
+  "seo": {
+    "title": "Gauge en Tapestry Crochet: cómo afecta al dibujo",
+    "meta_description": "Cómo afecta el gauge al dibujo en Tapestry Crochet: mide ancho y alto del punto, calcula tamaño final y evita imágenes estiradas o comprimidas.",
+    "search_intent": "Personas que quieren entender cómo el ancho y alto reales de los puntos cambian proporciones, tamaño y legibilidad de un gráfico tapestry."
+  },
+  "excerpt": "En Tapestry Crochet el gauge no sólo cambia el tamaño: también puede estirar o comprimir el dibujo. Aprende a medir horizontal y verticalmente.",
+  "content_html": "<p>En Tapestry Crochet, el gauge no es sólo una cifra para calcular si una pieza tendrá 40 o 45 centímetros. También controla la forma del dibujo. Si tus puntos son físicamente más altos que anchos, una cuadrícula de píxeles cuadrados puede convertirse en una imagen estirada verticalmente.</p>\n<p>Por eso conviene medir ancho y alto por separado, especialmente cuando adaptas pixel art, fotografías o patrones diseñados con otro hilo. Una muestra correcta te permite prever no sólo el tamaño final, sino también si círculos, letras y rostros conservarán sus proporciones.</p>\n<h2>Mide varios puntos y varias filas, no una sola unidad</h2>\n<p>Teje una muestra suficientemente grande, idealmente de al menos 15 o 20 puntos y varias filas. Una muestra diminuta exagera las irregularidades del borde.</p>\n<p>Mide diez o veinte puntos en horizontal y diez o veinte filas en vertical, evitando cadenas de subida y puntos extremos.</p>\n<p>Divide cada medida entre el número de unidades para obtener el tamaño medio de un punto y de una fila.</p>\n<p>Cuantos más puntos midas, menos afectarán las pequeñas variaciones individuales de tensión.</p>\n<p>Marca los límites de la zona medida con alfileres o marcadores para repetir exactamente la misma medición después del lavado.</p>\n<h2>Comprueba si tus píxeles tejidos son realmente cuadrados</h2>\n<p>Un gráfico digital suele asumir celdas cuadradas, pero tu punto bajo puede no tener la misma anchura y altura.</p>\n<p>Si diez puntos miden 8 cm y diez filas miden 10 cm, cada celda tejida es físicamente más alta que ancha. Un cuadrado de 20 por 20 celdas terminará aproximadamente en 16 por 20 cm.</p>\n<p>Una cara o círculo puede parecer alargado aunque hayas seguido el gráfico perfectamente.</p>\n<p>Esta diferencia se corrige cambiando construcción, punto, gauge o el propio gráfico, no simplemente contando mejor.</p>\n<p>Teje una forma de prueba reconocible —un cuadrado, círculo o letra O— y compárala con el gráfico. Es una forma rápida de ver la distorsión antes de empezar una imagen detallada.</p>\n<h2>El hilo transportado puede cambiar el gauge</h2>\n<p>Una muestra de un solo color no siempre representa un proyecto tapestry real. Encerrar otra hebra añade volumen y puede cambiar anchura, altura y firmeza.</p>\n<p>Haz la muestra con al menos un hilo transportado y varios cambios de color.</p>\n<p>Si el proyecto tendrá zonas con tres colores activos, prueba también una pequeña sección de ese tipo. Una zona con más material interno puede comportarse de manera distinta.</p>\n<p>La densidad debe medirse en condiciones similares a las del motivo final.</p>\n<p>Compara una franja de un color con otra de colorwork dentro de la misma muestra. Si tienen medidas diferentes con idéntico número de puntos, tendrás que decidir qué gauge representa mejor la mayor parte del proyecto.</p>\n<h2>Calcula el tamaño final antes de empezar</h2>\n<p>Si cada punto mide 0,5 cm de ancho y el gráfico tiene 80 columnas, la parte gráfica ocupará aproximadamente 40 cm.</p>\n<p>Haz el mismo cálculo en vertical con el número de filas y la altura media. Si cada fila mide 0,6 cm y tienes 100 filas, el motivo tendrá unos 60 cm de alto.</p>\n<p>Añade después bordes, costuras, asas o márgenes por separado en lugar de mezclarlos con la cuadrícula central.</p>\n<p>Este cálculo evita que una imagen pensada para un cojín termine teniendo tamaño de manta.</p>\n<p>También te permite estimar si el nivel de detalle es compatible con el objeto: un gráfico de 120 columnas puede ser excelente para un tapiz grande y absurdo para un pequeño bolso.</p>\n<h2>Adapta el gráfico cuando la proporción no funciona</h2>\n<p>Si los puntos son claramente rectangulares, puedes redibujar el motivo compensando filas o columnas.</p>\n<p>Por ejemplo, una forma circular puede necesitar menos filas que columnas si cada fila es físicamente más alta. Otra opción es utilizar un punto cuya relación ancho-alto se acerque más a la cuadrícula original.</p>\n<p>Haz primero una prueba pequeña con una figura geométrica conocida y mide cuánto necesitas compensar.</p>\n<p>En patrones comprados, no cambies automáticamente el gráfico: el diseñador puede haberlo adaptado ya para un punto concreto.</p>\n<p>Si el patrón trae una fotografía de muestra, compara proporciones visibles con el gráfico antes de asumir que las celdas deben quedar físicamente cuadradas.</p>\n<h2>Vuelve a medir después de lavar o bloquear</h2>\n<p>Las fibras pueden relajarse y cambiar proporciones después del acabado. Algunas crecen más en vertical, otras ensanchan y otras apenas cambian.</p>\n<p>Mide la misma muestra antes y después de lavarla para saber cuánto varía tanto horizontal como verticalmente.</p>\n<p>Si el proyecto debe tener una medida final precisa, utiliza el gauge después del tratamiento previsto para los cálculos.</p>\n<p>Guarda las cifras junto con el hilo, aguja y punto utilizados. Esa información convierte la muestra en una referencia reutilizable.</p>\n<p>Si el gráfico contiene letras o elementos que dependen de proporciones muy concretas, evalúa la muestra ya bloqueada desde la distancia real de uso antes de dar por buena la escala.</p>\n<p>El gauge en Tapestry Crochet conecta técnica y diseño. Medir ancho y alto reales te permite prever tamaño, conservar proporciones y adaptar imágenes sin descubrir demasiado tarde que la cuadrícula tejida no se comporta como la cuadrícula de la pantalla.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Mismo gráfico cuadrado convertido en tres muestras: proporcional, estirada verticalmente y comprimida, con medidas de gauge.",
+    "alt": "Cómo afecta el gauge al dibujo en Tapestry Crochet"
+  }
+}

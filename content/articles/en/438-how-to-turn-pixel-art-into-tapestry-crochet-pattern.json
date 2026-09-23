@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 438,
+  "translation_group": "438-tapestry-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "tapestry-crochet",
+      "terms": [
+        "tapestry-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "pixel-art",
+      "terms": [
+        "pixel-art"
+      ]
+    },
+    "style": {
+      "terms": [
+        "pixel-art",
+        "chart-design",
+        "tapestry-crochet"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "bags",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-438-tapestry",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Crocheters starting from existing pixel art who want to map pixels to tapestry stitches without losing proportion, readability or scale.",
+  "title": "How to Turn Pixel Art into a Tapestry Crochet Pattern",
+  "slug": "how-to-turn-pixel-art-into-tapestry-crochet-pattern",
+  "seo": {
+    "title": "How to Turn Pixel Art into a Tapestry Crochet Pattern",
+    "meta_description": "Turn pixel art into a tapestry crochet pattern by choosing scale, simplifying colors, checking gauge and mapping pixels to stitches.",
+    "search_intent": "People who already have pixel art or a gridded image and want to convert it into a usable tapestry crochet pattern."
+  },
+  "excerpt": "Pixel art already has the grid structure tapestry crochet needs. Learn how to adapt scale, colors and proportions before mapping each pixel to a stitch.",
+  "content_html": "<p>Pixel art is one of the easiest starting points for a tapestry crochet design because it is already built on a grid. Each pixel can become one stitch, or another defined tapestry unit, so you do not need to pixelate a continuous image first.</p>\n<p>However, copying the grid without checking scale can create a project that is far too large, visually distorted or difficult to manage because of too many colors. A useful conversion begins by deciding how large each crocheted pixel will be and which digital details deserve to survive in yarn.</p>\n<h2>Check the pixel-art resolution before converting it</h2>\n<p>Write down the width and height in pixels. A 32-by-32 image contains 1,024 units, while a 100-by-100 image contains 10,000.</p>\n<p>In tapestry crochet, each unit commonly becomes one stitch and one row, so resolution directly affects workload.</p>\n<p>More resolution is not automatically better. An 80-pixel icon may contain details that disappear at viewing distance while multiplying color changes and crochet time.</p>\n<p>For a small finished object, reduce the grid while protecting the shapes that make the motif recognizable.</p>\n<p>Keep a copy of the original pixel art before simplifying so you can compare which details are genuinely being lost.</p>\n<p>Preview several reduced versions side by side. If a 48-pixel version reads as clearly as a 72-pixel one, the smaller chart may save substantial yarn and time without sacrificing the design.</p>\n<h2>Turn gauge into a physical finished size</h2>\n<p>Make a swatch using the yarn, hook and stitch planned for the project. Measure average stitch width and row height.</p>\n<p>If one stitch is 0.18 inch wide and the design contains 60 columns, the graphic will be about 10.8 inches wide before borders.</p>\n<p>Calculate vertical size separately. When rows are taller than stitches are wide, square pixel art can become elongated.</p>\n<p>A 50-by-50 chart therefore does not necessarily produce a physically square swatch.</p>\n<p>Mark the estimated dimensions on the intended object or workspace before beginning so you can see whether the resolution suits a pillow, bag or wall panel.</p>\n<p>Repeat the calculation after washing the gauge swatch if the finished item will be washed. Fiber relaxation can change the final scale enough to matter on a large grid.</p>\n<h2>Simplify the palette until it is practical to crochet</h2>\n<p>Digital pixel art may use several nearby shades for subtle shading. In crochet, every additional shade means another yarn source, more changes and potentially more bobbins.</p>\n<p>Merge similar colors when the distinction is not essential to recognizing the image.</p>\n<p>Preserve strong contrast around outlines, eyes, lettering and other defining features.</p>\n<p>A grayscale preview helps reveal whether two different hues are actually similar in lightness.</p>\n<p>For a first conversion, two to five colors are much easier to manage than ten or fifteen shades.</p>\n<p>After reducing the palette, inspect isolated one-pixel color specks. Many are artifacts of digital shading and can be merged into a neighboring shade to make the crochet chart cleaner.</p>\n<h2>Compensate for the real proportions of your stitches</h2>\n<p>If your stitches are taller than they are wide, a digital circle can become a vertical oval.</p>\n<p>You can compensate by reducing rows, adding columns or redrawing the image on a grid whose cells represent the real width-to-height ratio of your stitch.</p>\n<p>Test the correction with a simple shape before altering a complex motif.</p>\n<p>The goal is not to make the digital grid look mathematically perfect; it is to make the crocheted image retain the intended visual shape.</p>\n<p>Save a separate crochet-adjusted version so it is clear which edits were made specifically for gauge compensation.</p>\n<p>When lettering is involved, check individual letter widths after compensation. A one-column shift that barely matters in a flower can make a narrow letter difficult to read.</p>\n<h2>Turn the grid into working instructions</h2>\n<p>You can follow the graph directly, but on wide designs it is useful to convert rows into countable sequences such as 12 cream, 5 black, 8 cream.</p>\n<p>Add the groups and confirm that every row equals the total chart width.</p>\n<p>Mark reading direction, especially on flat work that turns after every row.</p>\n<p>Include a clear color key and short codes for similar shades.</p>\n<p>If the motif repeats, identify the exact repeat module and separate any edge stitches that are outside the repeat.</p>\n<p>Before finalizing, scan the chart row by row for accidental one-cell gaps, disconnected outlines and color islands that would require a separate bobbin for almost no visual benefit.</p>\n<h2>Swatch the hardest detail before making the full project</h2>\n<p>You do not need to test the entire image. Choose a section containing curves, fine details and several color changes.</p>\n<p>Check whether the motif remains recognizable, whether colors have enough contrast and whether carried yarn stays acceptably hidden.</p>\n<p>Photograph the swatch from the distance at which the final object will be viewed. A one-stitch imperfection may disappear—or it may completely change an important letter.</p>\n<p>If the difficult section works, the full chart is much safer to begin. If not, simplify before investing hundreds of rows.</p>\n<p>Record the final grid dimensions, palette and gauge beside the pattern file. That makes it much easier to reproduce the design later or resize it intentionally for another project.</p>\n<p>Turning pixel art into tapestry crochet is mainly an exercise in scale and color translation. The grid already exists; your job is to make each crocheted pixel use a proportion, size and palette that work in the physical object.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Simple pixel art beside a tapestry chart and crocheted swatch showing the one-pixel-to-one-stitch mapping.",
+    "alt": "How to turn pixel art into a tapestry crochet pattern"
+  }
+}

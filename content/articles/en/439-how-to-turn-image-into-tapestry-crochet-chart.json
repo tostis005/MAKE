@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 439,
+  "translation_group": "439-tapestry-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "tapestry-crochet",
+      "terms": [
+        "tapestry-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "photo-conversion",
+      "terms": [
+        "photo-conversion"
+      ]
+    },
+    "style": {
+      "terms": [
+        "image-conversion",
+        "chart-design",
+        "tapestry-crochet"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "bags",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-439-tapestry",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Crocheters starting from a photograph, illustration or continuous image who want to simplify it into a readable tapestry crochet grid.",
+  "title": "How to Turn an Image into a Tapestry Crochet Chart",
+  "slug": "how-to-turn-image-into-tapestry-crochet-chart",
+  "seo": {
+    "title": "How to Turn an Image into a Tapestry Crochet Chart",
+    "meta_description": "Turn an image into a tapestry crochet chart by cropping, simplifying colors, choosing resolution, cleaning the pixel grid and testing the design.",
+    "search_intent": "People who want to transform a non-pixelated photo or illustration into a usable tapestry crochet chart."
+  },
+  "excerpt": "Turning an image into tapestry takes more than adding a grid: simplify shapes, colors and resolution until the motif remains recognizable in stitches.",
+  "content_html": "<p>Turning a normal photograph or illustration into a tapestry crochet chart takes more work than converting pixel art. A continuous image contains curves, gradients, shadows and thousands of colors that cannot be transferred directly into stitches without simplification.</p>\n<p>The goal is not to reproduce every photographic detail. You need to identify the shapes that make the image recognizable and translate them into a grid with a resolution and palette that are practical to crochet.</p>\n<h2>Crop the image before thinking about pixels</h2>\n<p>Begin by removing background and empty space that do not add useful information. The more of the frame the subject occupies, the more chart cells are available for important details.</p>\n<p>Choose the final proportions too: square for a cushion, vertical for a wall panel, horizontal for another object or whatever shape the project needs.</p>\n<p>Do not wait until after pixelation to fix composition. Cropping first produces a cleaner and more efficient chart.</p>\n<p>For portraits, make sure eyes, mouth and the outer silhouette receive enough space. For objects, prioritize the outline and the features that make them identifiable.</p>\n<p>Try several crops before moving on. A small change in zoom can prevent dozens of chart cells from being wasted on background.</p>\n<h2>Simplify values and colors before reducing resolution</h2>\n<p>A photograph can contain hundreds of shades created by light and shadow. Tapestry crochet works more clearly with distinct color groups.</p>\n<p>Reduce the palette gradually. First view the image in grayscale to identify highlights, midtones and shadows, then decide which yarn colors will represent those groups.</p>\n<p>You do not need a separate yarn for every transition. Three to five well-chosen shades can describe a form better than twelve nearly identical colors.</p>\n<p>Protect contrast at important edges. If the subject and background have similar lightness, adjust one so the silhouette does not disappear.</p>\n<p>Before building the final grid, confirm that the simplified image is still recognizable as a small thumbnail.</p>\n<h2>Choose resolution from gauge and finished size</h2>\n<p>Higher resolution preserves more detail, but it also creates more stitches, more color changes and more work.</p>\n<p>Make a gauge swatch so you know the physical width of one stitch and the height of one row. Then calculate how many columns fit into the available project width.</p>\n<p>If the panel should be 12 inches wide and each stitch averages 0.2 inch, about 60 columns is a reasonable starting point.</p>\n<p>Calculate height separately because your stitches may not be square. A 60-by-60-cell image may not finish at 12 by 12 inches.</p>\n<p>Generate two or three resolutions and compare them. Choose the smallest grid that still preserves the essential features; that reduces complexity without sacrificing recognition.</p>\n<h2>Convert to a grid and clean the result manually</h2>\n<p>Automatic pixelation and color-reduction tools are useful for a first draft, but they often create noise: isolated pixels, jagged boundaries and tiny color islands.</p>\n<p>Review the chart manually and remove cells that do not contribute to the form. Merge small areas that represent the same shadow or highlight.</p>\n<p>Make diagonal edges step in a deliberate rhythm and inspect important curves.</p>\n<p>On letters, eyes and tiny details, one cell can change the meaning. Those areas deserve manual editing even when the rest of the chart came from an automatic conversion.</p>\n<p>Count how many separate bobbins or color changes the remaining islands would create. A one-pixel shade may add significant yarn management while contributing almost nothing visually.</p>\n<h2>Compensate for the real proportions of the stitches</h2>\n<p>The screen grid uses squares, but your tapestry stitch may be rectangular. Ignoring that difference can make the crocheted picture tall and narrow or short and wide.</p>\n<p>Measure the ratio between stitch width and row height and test a simple shape.</p>\n<p>You can compensate by adding or removing rows, changing vertical resolution or selecting a stitch whose proportions are closer to the intended image.</p>\n<p>Do not distort the chart by eye without a swatch. A measured correction is easier to repeat and document.</p>\n<p>Keep both a normal visual version and a crochet-compensated version. The adjusted chart may look distorted on screen while producing the correct shape in yarn.</p>\n<h2>Test critical details before finishing the full pattern</h2>\n<p>Crochet a small sample containing the most demanding area: an eye, curve, letter or boundary between subject and background.</p>\n<p>Check recognition, contrast, carried-yarn visibility and the number of changes required.</p>\n<p>View the swatch from the distance at which the final object will be seen. A converted photo does not need to look photographic from six inches away if the wall panel will normally be viewed from several feet.</p>\n<p>If the test area fails, simplify again before creating complete row instructions.</p>\n<p>Once the design is approved, make a color key, number rows and columns and mark reading direction. Keep the source image too so future edits can be traced back to the original.</p>\n<p>Turning an image into a tapestry chart is an editing process rather than a one-click conversion. Cropping, reducing colors, choosing resolution and manually cleaning the grid are the steps that turn a complex picture into a pattern that can actually be crocheted.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Visual sequence from original photo to simplified image, limited-color grid and finished tapestry crochet swatch.",
+    "alt": "How to turn an image into a tapestry crochet chart"
+  }
+}
