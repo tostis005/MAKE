@@ -76,11 +76,11 @@ TECHS = {
     },
     "C2C": {
         "technique":"c2c-crochet","template":"c2c-crochet.html","w":60,"h":72,
-        "page_1_asset":"multitech/assets/cover-crochet.webp",
+        "page_1_asset":"multitech/assets/cover-c2c-crochet.webp",
     },
     "TC": {
         "technique":"tapestry-crochet","template":"crochet.html","w":80,"h":96,
-        "page_1_asset":"multitech/assets/cover-c2c-crochet.webp",
+        "page_1_asset":"multitech/assets/cover-crochet.webp",
     },
     "LH": {
         "technique":"latch-hook","template":"rug.html","w":60,"h":72,
@@ -170,8 +170,8 @@ def main() -> None:
             "asset": "../../multitech/assets/cover-cross-stitch.webp",
             "technique_assets": {
                 "CS": "../../multitech/assets/cover-cross-stitch.webp",
-                "C2C": "../../multitech/assets/cover-crochet.webp",
-                "TC": "../../multitech/assets/cover-c2c-crochet.webp",
+                "C2C": "../../multitech/assets/cover-c2c-crochet.webp",
+                "TC": "../../multitech/assets/cover-crochet.webp",
                 "LH": "../../multitech/assets/cover-rug.webp",
             },
             "frame": {"enabled": False},
