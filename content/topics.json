@@ -5122,6 +5122,116 @@
       "title_es": "Cómo cortar hilo para Latch Hook de forma uniforme",
       "title_en": "How to Cut Yarn Evenly for Latch Hook",
       "craft": "latch-hook"
+    },
+    {
+      "number": 465,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "beginners",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo empezar un proyecto de Latch Hook",
+      "title_en": "How to Start a Latch Hook Project",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 466,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "pattern-reading",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Por dónde empezar un patrón de Latch Hook: centro, esquina o fila",
+      "title_en": "Where Should You Start a Latch Hook Pattern? Center, Corner or Row",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 467,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "technique",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo hacer el nudo de Latch Hook paso a paso",
+      "title_en": "How to Make a Latch Hook Knot Step by Step",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 468,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "tension",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo mantener una altura de pelo uniforme en Latch Hook",
+      "title_en": "How to Keep Latch Hook Pile Height Even",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 469,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "troubleshooting",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo corregir un color equivocado en Latch Hook",
+      "title_en": "How to Fix the Wrong Color in a Latch Hook Project",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 470,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "troubleshooting",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Qué hacer si te saltas un cuadrado en Latch Hook",
+      "title_en": "What to Do If You Miss a Square in Latch Hook",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 471,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "troubleshooting",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo evitar huecos en un proyecto de Latch Hook",
+      "title_en": "How to Avoid Gaps in a Latch Hook Project",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 472,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "finishing",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo terminar los bordes de un proyecto de Latch Hook",
+      "title_en": "How to Finish the Edges of a Latch Hook Project",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 473,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "finishing",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo poner backing a una alfombra de Latch Hook",
+      "title_en": "How to Add Backing to a Latch Hook Rug",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 474,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "finishing",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo ribetear una alfombra de Latch Hook",
+      "title_en": "How to Bind the Edges of a Latch Hook Rug",
+      "craft": "latch-hook"
     }
   ],
   "taxonomy_strategy": {
@@ -5152,7 +5262,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 464,
-    "bilingual_groups": 464
+    "last_indexed_article": 474,
+    "bilingual_groups": 474
   }
 }
