@@ -761,18 +761,16 @@ function make_collection_product_ids( WP_Term $term ): array {
     return array_map( 'intval', $ids );
 }
 
-function make_render_palette_swatches( WP_Term $term ): void {
-    $palette = make_collection_palette( $term );
-    if ( empty( $palette ) ) { return; }
-
-    echo '<span class="drielo-palette" aria-label="' . esc_attr( make_t( 'Paleta compartida', 'Shared palette' ) ) . '">';
-    foreach ( $palette as $colour ) {
-        echo '<i style="--swatch:' . esc_attr( $colour ) . '"></i>';
-    }
-    echo '</span>';
+function make_store_technique_config(): array {
+    return array(
+        'cross-stitch' => array( 'es' => 'Punto de cruz', 'en' => 'Cross Stitch' ),
+        'c2c-crochet' => array( 'es' => 'C2C Crochet', 'en' => 'C2C Crochet' ),
+        'tapestry-crochet' => array( 'es' => 'Tapestry Crochet', 'en' => 'Tapestry Crochet' ),
+        'latch-hook' => array( 'es' => 'Latch Hook', 'en' => 'Latch Hook' ),
+    );
 }
 
-function make_render_collection_grid(): void {
+ffunction make_render_collection_grid(): void {
     $terms = get_terms(
         array(
             'taxonomy'   => 'product_collection',
@@ -784,6 +782,84 @@ function make_render_collection_grid(): void {
 
     if ( is_wp_error( $terms ) || empty( $terms ) ) {
         echo '<div class="drielo-store-empty"><strong>' . esc_html( make_t( 'Las colecciones aparecerán aquí en cuanto carguemos los primeros patrones.', 'Collections will appear here as soon as the first patterns are loaded.' ) ) . '</strong></div>';
+        return;
+    }
+
+    $technique_config = make_store_technique_config();
+    $language = function_exists( 'make_current_language' ) ? make_current_language() : 'es';
+
+    echo '<div class="drielo-collection-grid">';
+    foreach ( $terms as $term ) {
+        if ( ! $term instanceof WP_Term ) { continue; }
+
+        $url = get_term_link( $term );
+        if ( is_wp_error( $url ) ) { continue; }
+
+        $records = make_collection_product_records( $term );
+        $product_id = ! empty( $records ) ? (int) $records[0]['product_id'] : make_collection_cover_product_id( $term );
+        $design_count = make_collection_design_count( $records );
+        $technique_counts = array_fill_keys( array_keys( $technique_config ), 0 );
+
+        foreach ( $records as $record ) {
+            $technique = (string) ( $record['technique'] ?? '' );
+            if ( isset( $technique_counts[ $technique ] ) ) { $technique_counts[ $technique ]++; }
+        }
+
+        echo '<article class="drielo-collection-card" data-collection-card>';
+        echo '<a class="drielo-collection-media" data-collection-gallery href="' . esc_url( $url ) . '" aria-label="' . esc_attr( sprintf( make_t( 'Ver colección %s', 'View %s collection' ), make_collection_display_name( $term ) ) ) . '">';
+
+        if ( ! empty( $records ) && function_exists( 'make_static_attachment_image_html' ) ) {
+            $columns = make_collection_mosaic_columns( count( $records ) );
+            echo '<span class="drielo-collection-thumbs drielo-collection-thumbs--interactive" style="--collection-cols:' . esc_attr( (string) $columns ) . '">';
+
+            foreach ( $records as $record ) {
+                $technique = sanitize_title( (string) ( $record['technique'] ?? '' ) );
+                $design_id = sanitize_text_field( (string) ( $record['design_id'] ?? '' ) );
+                echo '<span class="drielo-collection-thumb" data-collection-thumb data-technique="' . esc_attr( $technique ) . '" data-design="' . esc_attr( $design_id ) . '">';
+                echo wp_kses_post( make_static_attachment_image_html( (int) $record['image_id'], 'make-collection-preview', 'drielo-collection-preview' ) );
+                echo '</span>';
+            }
+
+            echo '</span>';
+        } elseif ( $product_id && has_post_thumbnail( $product_id ) && function_exists( 'make_static_attachment_image_html' ) ) {
+            echo wp_kses_post( make_static_attachment_image_html( (int) get_post_thumbnail_id( $product_id ), 'medium_large', 'drielo-collection-preview' ) );
+        } else {
+            echo '<span class="drielo-collection-placeholder" aria-hidden="true"><b>×</b><b>×</b><b>×</b><b>×</b><b>×</b></span>';
+        }
+        echo '</a>';
+
+        echo '<div class="drielo-collection-techniques" data-collection-techniques role="group" aria-label="' . esc_attr( make_t( 'Filtrar vista previa por técnica', 'Filter preview by technique' ) ) . '">';
+        foreach ( $technique_config as $technique_slug => $labels ) {
+            $label = (string) ( $labels[ $language ] ?? $labels['en'] );
+            $count = (int) ( $technique_counts[ $technique_slug ] ?? 0 );
+            echo '<button type="button" class="drielo-collection-technique" data-collection-technique="' . esc_attr( $technique_slug ) . '" aria-pressed="false"' . ( $count < 1 ? ' disabled' : '' ) . '>';
+            echo esc_html( $label );
+            echo '</button>';
+        }
+        echo '</div>';
+
+        echo '<div class="drielo-collection-copy">';
+        echo '<div class="drielo-collection-topline"><span>' . esc_html( sprintf( make_t( '%d diseños', '%d designs' ), $design_count > 0 ? $design_count : (int) $term->count ) ) . '</span>';
+        make_render_palette_swatches( $term );
+        echo '</div>';
+
+        $display_name = make_collection_display_name( $term );
+        $display_description = make_collection_display_description( $term );
+        echo '<h2><a href="' . esc_url( $url ) . '">' . esc_html( $display_name ) . '</a></h2>';
+
+        if ( '' !== $display_description ) {
+            echo '<p>' . esc_html( wp_trim_words( $display_description, 18 ) ) . '</p>';
+        } else {
+            echo '<p>' . esc_html( make_t( 'Una paleta compartida, varios diseños que puedes combinar.', 'One shared palette, several designs you can combine.' ) ) . '</p>';
+        }
+
+        echo '<div class="drielo-collection-footer"><span>' . wp_kses_post( sprintf( make_t( 'Desde %s por diseño', 'From %s per design' ), wc_price( make_store_price_from_usd( DRIELO_DEFAULT_PRODUCT_PRICE ) ) ) ) . '</span><strong>' . esc_html( make_t( 'Ver colección →', 'View collection →' ) ) . '</strong></div>';
+        echo '</div></article>';
+    }
+    echo '</div>';
+}
+
+( make_t( 'Las colecciones aparecerán aquí en cuanto carguemos los primeros patrones.', 'Collections will appear here as soon as the first patterns are loaded.' ) ) . '</strong></div>';
         return;
     }
 
