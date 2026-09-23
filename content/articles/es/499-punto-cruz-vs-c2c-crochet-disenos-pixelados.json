@@ -1,0 +1,78 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 499,
+  "translation_group": "499-multi-technique",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch",
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "pixel-art",
+      "terms": [
+        "pixel-art"
+      ]
+    },
+    "style": {
+      "terms": [
+        "comparison",
+        "pixel-art",
+        "grid"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "wall-art",
+        "blankets",
+        "cushions",
+        "home-decor"
+      ]
+    },
+    "article_type": {
+      "primary": "comparison",
+      "terms": [
+        "comparison"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "es-499-multi-technique",
+  "language": "es",
+  "locale": "es-ES",
+  "market_context": "Personas que tienen pixel art y quieren decidir si convertirlo en bordado de punto de cruz o en C2C Crochet según escala, textura y uso final.",
+  "title": "Punto de cruz vs C2C Crochet para diseños pixelados",
+  "slug": "punto-cruz-vs-c2c-crochet-disenos-pixelados",
+  "seo": {
+    "title": "Punto de cruz vs C2C Crochet para diseños pixelados",
+    "meta_description": "Punto de cruz vs C2C Crochet para pixel art: compara escala de celda, detalle, tamaño final, cambios de color, textura y proyectos adecuados.",
+    "search_intent": "Personas que comparan punto de cruz y C2C Crochet para trabajar un diseño pixelado."
+  },
+  "excerpt": "Ambas técnicas convierten píxeles en celdas textiles, pero a escalas opuestas. El punto de cruz compacta el gráfico; C2C lo amplía en bloques.",
+  "content_html": "<p>Punto de cruz y C2C Crochet son dos técnicas especialmente compatibles con pixel art porque ambas pueden asignar una unidad textil a cada celda de una cuadrícula. La diferencia principal es la escala: una X de bordado puede ser muy pequeña, mientras que un bloque C2C ocupa varios puntos y se convierte en una unidad visual mucho mayor.</p>\n<p>El mismo sprite o gráfico puede terminar como una miniatura enmarcada o como una manta grande sin cambiar su estructura básica.</p>\n<h2>La escala de cada píxel determina el tamaño del proyecto</h2>\n<p>En punto de cruz, el tamaño de una celda depende del count de la tela.</p>\n<p>Una tela más densa permite colocar muchas X en pocos centímetros.</p>\n<p>En C2C, cada celda suele convertirse en un bloque formado por cadenas y varios puntos altos o equivalentes.</p>\n<p>Eso hace que un gráfico de 40 por 40 celdas pueda convertirse en una pieza de tamaño considerable.</p>\n<p>Antes de elegir, calcula cuánto mide una unidad real en tu muestra y multiplícala por filas y columnas.</p>\n<p>La escala puede ser el criterio decisivo si el objeto final tiene medidas limitadas.</p>\n<h2>El punto de cruz admite más detalle dentro de un formato pequeño</h2>\n<p>Al poder concentrar muchas celdas, el bordado mantiene pequeños contornos, sombreado y letras dentro de un espacio reducido.</p>\n<p>Un personaje pixelado con 100 celdas de alto puede seguir siendo manejable como pieza de pared.</p>\n<p>Los cambios de un solo píxel permanecen muy visibles porque cada X conserva bordes definidos.</p>\n<p>Esto permite utilizar versiones del pixel art con mayor resolución.</p>\n<p>La contrapartida es que el trabajo incluye muchas más puntadas dentro de la misma superficie física.</p>\n<p>Si el diseño sólo necesita formas grandes, esa resolución adicional puede no aportar una mejora relevante.</p>\n<h2>C2C amplía el pixel art y convierte la textura en parte del diseño</h2>\n<p>C2C hace que cada celda sea un bloque claramente visible, por lo que la estética pixelada se vuelve física y gráfica.</p>\n<p>Los diseños retro, iconos y siluetas simples suelen adaptarse especialmente bien.</p>\n<p>La construcción diagonal añade una textura que no existe en el gráfico digital.</p>\n<p>Los bordes pueden verse algo más suaves que en punto de cruz debido a la orientación de los puntos.</p>\n<p>Los detalles de una sola celda ocupan más espacio y pueden convertirse en elementos dominantes.</p>\n<p>Por eso conviene simplificar un gráfico muy grande antes de trasladarlo directamente a C2C.</p>\n<h2>Los cambios de color tienen costes de trabajo diferentes</h2>\n<p>En punto de cruz, muchos colores pueden convivir dentro de una zona pequeña y cada cambio utiliza una nueva hebra o tramo de hilo.</p>\n<p>Es posible trabajar con una paleta amplia sin aumentar demasiado el grosor de la pieza.</p>\n<p>En C2C, cada color activo puede necesitar bobinas o madejas separadas y los bloques de una fila diagonal cambian de posición constantemente.</p>\n<p>Un gráfico con muchos píxeles aislados crea una gestión de hilo mucho más compleja.</p>\n<p>Reducir tonos cercanos y agrupar celdas aisladas puede hacer que el patrón sea más práctico.</p>\n<p>Compara no sólo cuántos colores tiene el gráfico, sino cómo están distribuidos.</p>\n<h2>El uso final suele orientar la decisión</h2>\n<p>El punto de cruz es natural para cuadros, pequeños objetos textiles, regalos y piezas donde se aprecia detalle a corta distancia.</p>\n<p>C2C encaja bien con mantas, paneles grandes y decoración donde el gráfico debe leerse desde lejos.</p>\n<p>Un cojín puede realizarse con ambas técnicas, pero la densidad y textura serán muy diferentes.</p>\n<p>Si quieres conservar exactamente la apariencia de pixel art pequeño, el bordado permite mantener una escala compacta.</p>\n<p>Si quieres convertir el mismo diseño en una presencia grande dentro de una habitación, C2C amplifica la cuadrícula de forma natural.</p>\n<p>Piensa primero en el objeto y después decide cuánta resolución necesitas realmente.</p>\n<h2>El mismo diseño puede formar una colección en varias escalas</h2>\n<p>Una ventaja de los patrones de cuadrícula es que la identidad visual puede mantenerse al pasar de una técnica a otra.</p>\n<p>Puedes utilizar una versión de alta resolución para punto de cruz y otra simplificada para C2C.</p>\n<p>Mantener una paleta relacionada hace que ambas piezas se reconozcan como parte de la misma colección.</p>\n<p>Antes de producir las dos, prueba un fragmento con borde y cambio de color en cada técnica.</p>\n<p>Comprueba proporción, legibilidad y tamaño real en vez de asumir que cada celda funciona igual.</p>\n<p>Punto de cruz y C2C Crochet transforman pixel art con la misma lógica de cuadrícula pero con escalas opuestas. El bordado concentra detalle en poco espacio; C2C amplía cada píxel y convierte la textura del bloque en parte del diseño. Elegir depende del tamaño y uso final que quieras conseguir.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Mismo sprite pixelado mostrado como pequeño bordado de punto de cruz y como panel C2C mucho mayor formado por bloques diagonales.",
+    "alt": "Punto de cruz vs C2C Crochet para pixel art"
+  }
+}
