@@ -9,6 +9,8 @@ This system turns a collection definition + product JSON + stitch matrix into th
 - Stitch data: `patterns/<code>/pattern.json`
 - Layout: `template/DRIELO_Pattern_Template_MASTER.html`
 
+The installed master template is derived from the approved `DRIELO_Pattern_Template_MASTER_v8.html` supplied for Drielo and remains the single visual/layout source of truth.
+
 ## Palette rule
 
 The collection palette is authoritative. Pattern generation must choose only those DMC entries. The renderer performs a second check immediately before PDF export. Unknown/out-of-collection thread colours are automatically remapped to the nearest permitted collection colour when `--fix-palette` is enabled (the GitHub workflow enables it).
@@ -16,6 +18,8 @@ The collection palette is authoritative. Pattern generation must choose only tho
 ## First page / collection mockup
 
 The room/interior image belongs to the collection. It should contain an empty frame with Aida-like fabric. The collection JSON stores the source image dimensions and the inner frame rectangle in pixels. The renderer inserts the pattern as transparent vector X stitches directly in the HTML over that fabric area, centered and aspect-fit.
+
+The room/mockup must never contain a baked-in pattern. The pattern layer is generated from the stitch matrix at build time so the PDF keeps the design vectorial and reusable across every product in the collection.
 
 ## Build locally
 
@@ -27,4 +31,4 @@ Chromium/Chrome is required. The resulting PDF is written to `output/<CODE>/Drie
 
 ## GitHub Actions
 
-`build-pattern-pdf.yml` runs on changes to this pattern system. It validates/fixes palette data, builds the selected/all product PDFs, and uploads them as private workflow artifacts. Generated PDFs are not committed to the public repository.
+`build-pattern-pdf.yml` runs on changes to this pattern system. It validates/fixes palette data, synchronizes the collection palette back to the WooCommerce catalogue source, builds the selected/all product PDFs, and uploads them as private workflow artifacts. Generated PDFs are not committed to the public repository.
