@@ -85,3 +85,76 @@
     window.jQuery(document.body).on('updated_cart_totals updated_checkout wc_fragments_refreshed added_to_cart',syncCurrencyPrices);
   }
 })();
+
+
+(function(){
+  'use strict';
+
+  function collectionColumns(count){
+    if(count<=0)return 5;
+    return Math.max(4,Math.min(12,Math.ceil(Math.sqrt(count*1.25))));
+  }
+
+  function initDrieloCollectionTechniqueCards(){
+    var cards=document.querySelectorAll('[data-collection-card]');
+    for(var i=0;i<cards.length;i++){
+      (function(card){
+        var buttons=Array.prototype.slice.call(card.querySelectorAll('[data-collection-technique]'));
+        var thumbs=Array.prototype.slice.call(card.querySelectorAll('[data-collection-thumb]'));
+        var grid=card.querySelector('.drielo-collection-thumbs--interactive');
+        if(!buttons.length||!thumbs.length||!grid)return;
+
+        function applyTechnique(slug){
+          var visible=0;
+          for(var j=0;j<thumbs.length;j++){
+            var show=!slug||thumbs[j].getAttribute('data-technique')===slug;
+            thumbs[j].hidden=!show;
+            if(show)visible++;
+          }
+          grid.style.setProperty('--collection-cols',String(collectionColumns(visible)));
+
+          for(var k=0;k<buttons.length;k++){
+            var active=!!slug&&buttons[k].getAttribute('data-collection-technique')===slug;
+            buttons[k].classList.toggle('is-active',active);
+            buttons[k].setAttribute('aria-pressed',active?'true':'false');
+          }
+        }
+
+        for(var b=0;b<buttons.length;b++){
+          buttons[b].addEventListener('click',function(){
+            if(this.disabled)return;
+            var slug=this.getAttribute('data-collection-technique')||'';
+            var isActive=this.getAttribute('aria-pressed')==='true';
+            applyTechnique(isActive?'':slug);
+          });
+        }
+      })(cards[i]);
+    }
+  }
+
+  function simplifyDrieloTechniqueHub(){
+    var hub=document.querySelector('.drielo-technique-hub');
+    if(!hub)return;
+
+    var links=Array.prototype.slice.call(hub.querySelectorAll('a'));
+    for(var i=0;i<links.length;i++){
+      var text=(links[i].textContent||'').replace(/\s+/g,' ').trim().toLowerCase();
+      if(text.indexOf('todos los patrones')!==-1||text.indexOf('todos los productos')!==-1||text.indexOf('all patterns')!==-1||text.indexOf('all products')!==-1){
+        var card=links[i].closest('.drielo-technique-card,[data-technique-card],article,li');
+        if(card&&card!==hub)card.remove();
+        else links[i].remove();
+      }
+    }
+
+    var descriptions=hub.querySelectorAll('p,[class*="description"]');
+    for(var d=0;d<descriptions.length;d++)descriptions[d].remove();
+  }
+
+  function initDrieloStorePresentation(){
+    simplifyDrieloTechniqueHub();
+    initDrieloCollectionTechniqueCards();
+  }
+
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initDrieloStorePresentation);
+  else initDrieloStorePresentation();
+})();
