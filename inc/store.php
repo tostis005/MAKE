@@ -697,26 +697,105 @@ function make_redirect_legacy_collection_view(): void {
 }
 add_action( 'template_redirect', 'make_redirect_legacy_collection_view', 4 );
 
+function make_store_technique_icon_svg( string $slug ): string {
+    $icons = array(
+        'cross-stitch' => '<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="15"></circle><path d="M14 9h20"></path><path d="M18 17l12 14M30 17L18 31"></path></svg>',
+        'c2c-crochet' => '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M11 33c7-1 11-5 14-11l7-13"></path><path d="M30 9h6c2 0 3 2 2 4l-2 3"></path><rect x="10" y="29" width="7" height="7" rx="1"></rect><rect x="18" y="21" width="7" height="7" rx="1"></rect><rect x="26" y="29" width="7" height="7" rx="1"></rect></svg>',
+        'tapestry-crochet' => '<svg viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="10" width="21" height="28" rx="2"></rect><path d="M14 16h13M14 22h13M14 28h13M14 34h13"></path><path d="M34 10c4 5 4 10 0 15l-5 6"></path><path d="M31 32l5-6"></path></svg>',
+        'latch-hook' => '<svg viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="12" width="24" height="25" rx="2"></rect><path d="M14 17h16M14 23h16M14 29h16M18 12v25M26 12v25"></path><path d="M36 9l-8 13"></path><path d="M27 22l5 1 2-5"></path></svg>',
+    );
+    return $icons[ $slug ] ?? '';
+}
+
+function make_store_active_technique_slug(): string {
+    if ( is_tax( 'pa_technique' ) ) {
+        $term = get_queried_object();
+        if ( $term instanceof WP_Term ) { return sanitize_title( (string) $term->slug ); }
+    }
+
+    if ( function_exists( 'is_product' ) && is_product() && function_exists( 'make_store_product_technique' ) ) {
+        return sanitize_title( make_store_product_technique( get_queried_object_id() ) );
+    }
+
+    if ( isset( $_GET['drielo_technique'] ) ) {
+        $value = wp_unslash( $_GET['drielo_technique'] );
+        if ( is_array( $value ) ) { $value = reset( $value ); }
+        return sanitize_title( (string) $value );
+    }
+
+    return '';
+}
+
+function make_render_store_technique_nav(): void {
+    if ( ! function_exists( 'make_store_technique_config' ) ) { return; }
+
+    $config = make_store_technique_config();
+    $language = function_exists( 'make_current_language' ) ? make_current_language() : 'es';
+    $active = make_store_active_technique_slug();
+
+    echo '<nav class="drielo-store-techniques" aria-label="' . esc_attr( make_t( 'Filtrar por técnica', 'Filter by technique' ) ) . '">';
+
+    foreach ( $config as $slug => $labels ) {
+        $slug = sanitize_title( (string) $slug );
+        $label = (string) ( $labels[ $language ] ?? $labels['en'] ?? $slug );
+        $term = taxonomy_exists( 'pa_technique' ) ? get_term_by( 'slug', $slug, 'pa_technique' ) : false;
+        $url = '';
+
+        if ( $term instanceof WP_Term ) {
+            $term_url = get_term_link( $term );
+            if ( ! is_wp_error( $term_url ) ) { $url = (string) $term_url; }
+        }
+
+        if ( '' === $url ) {
+            $url = add_query_arg( 'drielo_technique', rawurlencode( $slug ), make_shop_view_url( 'patterns', $language ) );
+        }
+
+        $inner = '<span class="drielo-technique-compact-icon">' . make_store_technique_icon_svg( $slug ) . '</span>' .
+            '<strong class="drielo-technique-compact-title">' . esc_html( $label ) . '</strong>';
+
+        if ( $active === $slug ) {
+            echo '<span class="drielo-store-technique is-active" aria-current="page" data-technique="' . esc_attr( $slug ) . '">' . $inner . '</span>';
+        } else {
+            echo '<a class="drielo-store-technique" data-technique="' . esc_attr( $slug ) . '" href="' . esc_url( $url ) . '">' . $inner . '</a>';
+        }
+    }
+
+    echo '</nav>';
+}
+
 function make_render_shop_view_switcher(): void {
     $is_shop_page       = function_exists( 'is_shop' ) && is_shop();
     $is_product_page    = function_exists( 'is_product' ) && is_product();
     $is_collection_term = is_tax( 'product_collection' );
+    $is_technique_term  = is_tax( 'pa_technique' );
 
-    if ( ! $is_shop_page && ! $is_product_page && ! $is_collection_term ) { return; }
+    if ( ! $is_shop_page && ! $is_product_page && ! $is_collection_term && ! $is_technique_term ) { return; }
 
     if ( $is_collection_term ) {
         $view = 'collections';
-    } elseif ( $is_product_page ) {
-        $view = 'patterns';
     } else {
-        $view = make_store_view();
+        $view = 'patterns';
+        if ( $is_shop_page ) { $view = make_store_view(); }
     }
-    ?>
-    <nav class="drielo-shop-views" aria-label="<?php echo esc_attr( make_t( 'Cómo ver la tienda', 'Shop view' ) ); ?>">
-        <a class="<?php echo 'patterns' === $view ? 'is-active' : ''; ?>" href="<?php echo esc_url( make_shop_view_url( 'patterns' ) ); ?>"><?php echo esc_html( make_t( 'Diseños individuales', 'Individual designs' ) ); ?></a>
-        <a class="<?php echo 'collections' === $view ? 'is-active' : ''; ?>" href="<?php echo esc_url( make_shop_view_url( 'collections' ) ); ?>"><?php echo esc_html( make_t( 'Ver por colección', 'Browse collections' ) ); ?></a>
-    </nav>
-    <?php
+
+    echo '<div class="drielo-store-navigation">';
+
+    echo '<nav class="drielo-shop-views" aria-label="' . esc_attr( make_t( 'Cómo ver la tienda', 'Shop view' ) ) . '">';
+    if ( 'patterns' === $view ) {
+        echo '<span class="is-active" aria-current="page">' . esc_html( make_t( 'Diseños individuales', 'Individual designs' ) ) . '</span>';
+    } else {
+        echo '<a href="' . esc_url( make_shop_view_url( 'patterns' ) ) . '">' . esc_html( make_t( 'Diseños individuales', 'Individual designs' ) ) . '</a>';
+    }
+    if ( 'collections' === $view ) {
+        echo '<span class="is-active" aria-current="page">' . esc_html( make_t( 'Ver por colección', 'Browse collections' ) ) . '</span>';
+    } else {
+        echo '<a href="' . esc_url( make_shop_view_url( 'collections' ) ) . '">' . esc_html( make_t( 'Ver por colección', 'Browse collections' ) ) . '</a>';
+    }
+    echo '</nav>';
+
+    make_render_store_technique_nav();
+
+    echo '</div>';
 }
 
 function make_collection_cover_product_id( WP_Term $term ): int {
@@ -906,16 +985,26 @@ function make_render_collection_grid(): void {
         echo '<a class="drielo-collection-media" data-collection-gallery href="' . esc_url( $url ) . '" aria-label="' . esc_attr( sprintf( make_t( 'Ver colección %s', 'View %s collection' ), make_collection_display_name( $term ) ) ) . '">';
 
         if ( ! empty( $records ) && function_exists( 'make_static_attachment_image_html' ) ) {
-            $columns = make_collection_mosaic_columns( count( $records ) );
-            echo '<span class="drielo-collection-thumbs drielo-collection-thumbs--interactive" style="--collection-cols:' . esc_attr( (string) $columns ) . '">';
+            $preview_slots = 24;
+            $record_count = count( $records );
+            $initial_thumb_limit = $record_count > $preview_slots ? $preview_slots - 1 : $preview_slots;
+            $initial_more = max( 0, $record_count - $initial_thumb_limit );
 
-            foreach ( $records as $record ) {
+            echo '<span class="drielo-collection-thumbs drielo-collection-thumbs--interactive" style="--collection-cols:6">';
+
+            foreach ( $records as $index => $record ) {
                 $technique = sanitize_title( (string) ( $record['technique'] ?? '' ) );
                 $design_id = sanitize_text_field( (string) ( $record['design_id'] ?? '' ) );
-                echo '<span class="drielo-collection-thumb" data-collection-thumb data-technique="' . esc_attr( $technique ) . '" data-design="' . esc_attr( $design_id ) . '">';
+                $hidden = $index >= $initial_thumb_limit ? ' hidden' : '';
+                echo '<span class="drielo-collection-thumb" data-collection-thumb data-technique="' . esc_attr( $technique ) . '" data-design="' . esc_attr( $design_id ) . '"' . $hidden . '>';
                 echo wp_kses_post( make_static_attachment_image_html( (int) $record['image_id'], 'make-collection-preview-context', 'drielo-collection-preview drielo-collection-preview--context' ) );
                 echo '</span>';
             }
+
+            echo '<span class="drielo-collection-more" data-collection-more' . ( $initial_more > 0 ? '' : ' hidden' ) . '>';
+            echo '<b data-collection-more-count>+' . esc_html( (string) $initial_more ) . '</b>';
+            echo '<small>' . esc_html( make_t( 'Ver diseños', 'View designs' ) ) . '</small>';
+            echo '</span>';
 
             echo '</span>';
         } elseif ( $product_id && has_post_thumbnail( $product_id ) && function_exists( 'make_static_attachment_image_html' ) ) {
