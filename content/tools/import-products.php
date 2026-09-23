@@ -398,6 +398,7 @@ foreach ( (array) ( $catalog['products'] ?? array() ) as $row ) {
     update_post_meta( $id, '_drielo_grid_height', absint( $row['grid_height'] ?? 0 ) );
     update_post_meta( $id, '_drielo_color_count', absint( $row['color_count'] ?? $row['colours'] ?? 0 ) );
     update_post_meta( $id, '_drielo_technique', sanitize_text_field( (string) ( $row['technique'] ?? ( $row['filters']['technique'][0] ?? '' ) ) ) );
+    update_post_meta( $id, '_drielo_technique_code', sanitize_text_field( (string) ( $row['technique_code'] ?? '' ) ) );
     update_post_meta( $id, '_drielo_size_attribute_label', sanitize_text_field( (string) ( $row['size_attribute_label'] ?? 'Pattern size' ) ) );
     update_post_meta( $id, '_drielo_colour_attribute_label', sanitize_text_field( (string) ( $row['colour_attribute_label'] ?? 'DMC colours' ) ) );
     update_post_meta( $id, '_drielo_count_attribute_label', sanitize_text_field( (string) ( $row['count_attribute_label'] ?? 'Total stitches' ) ) );
