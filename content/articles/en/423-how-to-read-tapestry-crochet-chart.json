@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 423,
+  "translation_group": "423-tapestry-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "tapestry-crochet",
+      "terms": [
+        "tapestry-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "pattern-reading",
+      "terms": [
+        "pattern-reading"
+      ]
+    },
+    "style": {
+      "terms": [
+        "chart-reading",
+        "tapestry-crochet",
+        "graphs"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "bags",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-423-tapestry",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Beginners using tapestry charts who want to read direction, repeats, color groups and stitch counts without shifting the design.",
+  "title": "How to Read a Tapestry Crochet Chart",
+  "slug": "how-to-read-tapestry-crochet-chart",
+  "seo": {
+    "title": "How to Read a Tapestry Crochet Chart",
+    "meta_description": "Learn how to read a tapestry crochet chart by interpreting cells, row direction, colors, repeats and stitch counts without shifting the motif.",
+    "search_intent": "Crocheters who know basic stitches but need to understand how to turn a tapestry crochet grid into rows, stitches and color changes."
+  },
+  "excerpt": "A tapestry crochet chart is a grid of stitches and colors. Learn where to begin, how to read each row and how to check your counts.",
+  "content_html": "<p>A tapestry crochet chart turns an image into a grid. Each cell usually represents one stitch, and the cell color tells you which yarn should be visible. The challenge is not understanding the entire picture at once, but knowing exactly which direction to read each row and how to convert cells into stitch sequences.</p>\n<p>Before crocheting, identify orientation, cell count and construction method. The same chart may be read differently when the project is flat, tubular or worked with every row from the right side.</p>\n<h2>Start with the legend and orientation</h2>\n<p>Find the color key and any additional symbols first. Some patterns use letters or numbers for shades when printed colors are difficult to distinguish.</p>\n<p>Locate the starting point as well. In conventional flat crochet, the first row may be read right to left or left to right depending on the pattern and your working setup, while the next row reverses because the fabric is turned.</p>\n<p>On a project worked in the round, you generally continue around in one direction. Do not automatically apply the alternating flat-row reading system.</p>\n<p>If the pattern specifies that every row is worked from the right side, it may ask you to cut or reposition the yarn and return to the same edge. Follow that construction note before interpreting the graph.</p>\n<h2>Turn each row into a countable sequence</h2>\n<p>Instead of reading one cell at a time while crocheting, group consecutive colors. A row might become “8 cream, 4 black, 8 cream.”</p>\n<p>Add the groups and confirm they match the total number of chart cells. On a 20-stitch row, 8 + 4 + 8 should equal 20.</p>\n<p>For rows with many changes, write the sequence down or place a ruler beneath the active row. This prevents your eye from jumping to the line above or below.</p>\n<p>When the motif includes one-stitch color islands, mark them before beginning. Those isolated cells are easy to miss.</p>\n<h2>Understand what changes when the fabric turns</h2>\n<p>In flat crochet, you normally turn after completing a row. The reverse side faces you, and the next graph row is read in the opposite direction.</p>\n<p>The picture is not being mirrored merely because you physically turned the piece; you are simply traveling through the same grid from the other end.</p>\n<p>Draw alternating arrows beside the rows if necessary. This is especially helpful for lettering and other asymmetric motifs.</p>\n<p>If you are left-handed or prefer to begin from the opposite edge, define your system before row one. Consistency between the physical fabric and the chart matters more than copying one universal direction.</p>\n<h2>Use vertical landmarks to catch shifts</h2>\n<p>Vertical lines in the motif make excellent checkpoints. If a black column should remain in the same position for six rows and begins moving sideways, you may have added or lost a stitch before reaching it.</p>\n<p>Mark important chart columns such as the side of a letter, center of a diamond or edge of a background section. Check their positions every few rows.</p>\n<p>Count the total stitches at the end of each row too. A stitch-count error may not be obvious in the image immediately, but it will shift every later color change.</p>\n<p>Markers every ten or twenty stitches help on wide charts because you can compare color transitions with fixed reference points.</p>\n<h2>Read repeats and symmetry carefully</h2>\n<p>Some charts show a motif repeat that must be worked several times. Identify which columns belong to the repeat and which stitches are separate edge sections.</p>\n<p>Do not confuse visual symmetry with an instruction to repeat. A motif that looks mirrored is not necessarily safe to improvise without checking the second half.</p>\n<p>For multiple repeats, place markers at each module boundary. If one repeat should contain 12 stitches, you can verify each group of 12 independently.</p>\n<p>If you alter width by adding or removing repeats, confirm the final count still suits any round construction, seam or project measurement.</p>\n<h2>Track progress without hiding useful information</h2>\n<p>On paper, a magnetic ruler, removable tape or light pencil line can identify the active row. Digitally, use an app or working copy where completed rows can be highlighted.</p>\n<p>Do not completely obscure the previous row. Seeing one or two earlier lines helps you confirm how the motif is developing.</p>\n<p>When stopping, record the row number, the edge where the next row starts and the active color. That short note prevents resuming in the wrong direction.</p>\n<p>Reading a tapestry chart is the process of turning an image into small, verifiable instructions: direction, color groups and stitch count. Once those three references are controlled, even a large design becomes a sequence of rows you can check one at a time.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Two-color tapestry chart with alternating row arrows, stitch numbers and the corresponding crocheted swatch.",
+    "alt": "How to read a tapestry crochet chart"
+  }
+}
