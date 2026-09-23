@@ -11,8 +11,8 @@
   "pattern_file": "patterns/I0001-CS/pattern.json",
   "template": "cross-stitch.html",
   "website": "www.drielo.com",
-  "status": "draft",
-  "render_ready": false,
-  "source_artwork": null,
-  "page_1_asset": null
+  "status": "active",
+  "render_ready": true,
+  "source_artwork": "generated-in-repo:baby-nursery/I0001-teddy-bear-v1",
+  "page_1_asset": "collections/baby-nursery/assets/cover-cross-stitch.jpg"
 }

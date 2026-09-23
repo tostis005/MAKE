@@ -15,7 +15,8 @@
         "I0001-TC",
         "I0001-LH"
       ],
-      "artwork_status": "approved-concept-awaiting-canonical-source-extraction"
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "generated-in-repo:baby-nursery/I0001-teddy-bear-v1"
     },
     {
       "order": 2,
