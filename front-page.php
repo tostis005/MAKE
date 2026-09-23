@@ -107,7 +107,7 @@ $site_name = make_brand_name();
               <a href="<?php the_permalink(); ?>">
                 <div class="product-media">
                   <?php if ( has_post_thumbnail() ) : ?>
-                    <?php the_post_thumbnail( 'make-card', array( 'loading' => 'lazy', 'decoding' => 'async' ) ); ?>
+                    <?php the_post_thumbnail( 'make-home-product-card', array( 'loading' => 'lazy', 'decoding' => 'async' ) ); ?>
                   <?php else : ?>
                     <div class="product-placeholder"><span class="mini-grid"><?php for ( $i = 0; $i < 64; $i++ ) : ?><i></i><?php endfor; ?></span></div>
                   <?php endif; ?>
