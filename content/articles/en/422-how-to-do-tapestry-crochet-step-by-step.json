@@ -1,0 +1,75 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 422,
+  "translation_group": "422-tapestry-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "tapestry-crochet",
+      "terms": [
+        "tapestry-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "beginners",
+      "terms": [
+        "beginners"
+      ]
+    },
+    "style": {
+      "terms": [
+        "tapestry-crochet",
+        "step-by-step",
+        "colorwork"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "coasters",
+        "bags",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-422-tapestry",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Crocheters looking for a practical tutorial from foundation chain through a flat two-color sample with clean changes.",
+  "title": "How to Do Tapestry Crochet Step by Step",
+  "slug": "how-to-do-tapestry-crochet-step-by-step",
+  "seo": {
+    "title": "How to Do Tapestry Crochet Step by Step",
+    "meta_description": "Step-by-step tapestry crochet tutorial: prepare two colors, carry unused yarn, switch on the final pull-through and practice a simple two-color motif.",
+    "search_intent": "Beginners who know single crochet and want to learn how to hold two colors, carry yarn and make a first tapestry crochet swatch."
+  },
+  "excerpt": "Learn tapestry crochet from scratch with two colors: how to hold yarns, hide the inactive strand, switch shades and keep the swatch flat.",
+  "content_html": "<p>The easiest way to learn tapestry crochet is to make a flat two-color swatch in single crochet. You do not need a complicated picture yet. First learn how the inactive strand travels inside the stitches and how to switch colors without changing the fabric tension.</p>\n<p>For this practice, prepare two yarns of the same weight, a suitable hook, scissors and an optional stitch marker. Contrasting colors make the mechanics easier to see.</p>\n<h2>Make a simple foundation in the main color</h2>\n<p>Chain a comfortable width, such as about twenty chains, and make a first row of single crochet with the main color using your normal preferred foundation method.</p>\n<p>This first row stabilizes the sample. Keep natural tension rather than deliberately making it tight because another strand will be added later.</p>\n<p>When turning for the next row, introduce the second color with a tail long enough to weave in. Position it parallel to the top edge of the stitches you are about to work.</p>\n<p>Before crocheting, make sure both yarn sources can feed independently without already twisting around one another.</p>\n<h2>Enclose the inactive yarn inside the stitches</h2>\n<p>Insert the hook into the next stitch while laying the yarn you want to carry across the working area. Make the single crochet with the active color so the second strand becomes enclosed within the stitch.</p>\n<p>Continue for several stitches. The inactive yarn should be hidden or only minimally visible rather than floating freely across the back.</p>\n<p>Do not tug it after every stitch. Let it travel with enough length to match the fabric so the row cannot contract.</p>\n<p>Every few stitches, lay the sample flat. If the edge begins curling inward, the carried yarn is probably too tight.</p>\n<h2>Switch color during the final pull-through</h2>\n<p>When the next stitch needs the second color, work the final stitch in the current shade until the last loops remain on the hook.</p>\n<p>Drop the active yarn, pick up the new color and complete the final pull-through with it. The loop on the hook is now already the correct shade for the next stitch.</p>\n<p>The previous color becomes inactive and is carried inside the following stitches.</p>\n<p>This timing creates a cleaner boundary. If you finish the entire stitch in the old color and switch afterward, a small bar of the previous shade appears along the top.</p>\n<h2>Practice a repeated color sequence</h2>\n<p>Try five stitches in color A, five in B, five in A and five in B. On the next row, repeat or shift the groups to make a simple checker effect.</p>\n<p>Keep counting every stitch even while focusing on color changes. The total number in the row should stay constant.</p>\n<p>Hold the two yarns in a consistent position. Some crocheters keep the inactive strand behind the work while others hold it slightly above; the goal is even enclosure rather than one mandatory hand position.</p>\n<p>If the yarn balls begin braiding together, separate them before continuing. Do not wait for ten rows of twist to accumulate.</p>\n<h2>Control the tension of both colors</h2>\n<p>The visible yarn sets stitch tension, but the hidden strand also affects the fabric. If the carried yarn is shorter than the row, it puckers the work.</p>\n<p>If it is excessively loose, it may peek between stitches, particularly when a dark shade travels under a pale one.</p>\n<p>After each group of changes, stretch the swatch gently sideways and check that it keeps its width. Adjust only obvious slack rather than pulling the carried strand tight.</p>\n<p>A tapestry sample often feels somewhat firmer because it contains more than one yarn, but it should remain flexible and lie flat.</p>\n<h2>Inspect the swatch before starting a chart</h2>\n<p>Look at both front and back. Color boundaries should be defined and the hidden yarn should not create long loops.</p>\n<p>Measure width near the beginning and end. If the tapestry section is much narrower, the carried yarn needs more length.</p>\n<p>Next, test a small two-color chart with large color areas. Follow cells stitch by stitch and mark every completed row.</p>\n<p>Make a second swatch with the lightest and darkest shades from the real project. Extreme contrast quickly reveals whether the carried yarn shows through too much.</p>\n<p>Wash or block the successful sample the way you plan to treat the finished piece. Some fibers relax and expose the internal strand more after washing, while others settle and conceal it better.</p>\n<p>When you can switch colors without stopping to think through every motion and the sample remains flat, you have the foundation for bags, cushions and more complicated panels. The rest of the technique is the same movement applied to increasingly detailed color sequences.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Four-step sequence showing single crochet over carried yarn, the color switch and a finished two-color swatch.",
+    "alt": "How to do tapestry crochet step by step"
+  }
+}
