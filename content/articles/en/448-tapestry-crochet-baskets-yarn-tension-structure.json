@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 448,
+  "translation_group": "448-tapestry-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "tapestry-crochet",
+      "terms": [
+        "tapestry-crochet"
+      ]
+    },
+    "section": {
+      "primary": "ideas",
+      "terms": [
+        "ideas"
+      ]
+    },
+    "topic": {
+      "primary": "baskets",
+      "terms": [
+        "baskets"
+      ]
+    },
+    "style": {
+      "terms": [
+        "baskets",
+        "structure",
+        "tension"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "baskets"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-448-tapestry",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Makers planning decorative or functional multi-color baskets and comparing materials, construction and finishing.",
+  "title": "Tapestry Crochet Baskets: Yarn, Tension and Structure",
+  "slug": "tapestry-crochet-baskets-yarn-tension-structure",
+  "seo": {
+    "title": "Tapestry Crochet Baskets: Yarn, Tension and Structure",
+    "meta_description": "Plan tapestry crochet baskets by choosing yarn, tension, gauge, base, wall height, colorwork and reinforcement for reliable structure.",
+    "search_intent": "Crocheters planning a tapestry basket who need to balance yarn, gauge, tension, base construction and firmness so the piece holds its shape."
+  },
+  "excerpt": "A tapestry basket needs more structure than a flat panel. Learn how yarn, gauge and construction work together so the colorwork stays clean and the basket holds its shape.",
+  "content_html": "<p>Baskets are a natural use for tapestry crochet because dense colorwork creates decorative, relatively firm walls. However, a basket needs more than a good chart: the base must lie flat, the sides need to rise without narrowing and the upper edge should not flare or collapse.</p>\n<p>The result comes from balancing yarn, hook, tension and construction. Fabric that is too soft will lose shape, while fabric that is excessively rigid can be difficult to crochet and may distort the motif. Intended use matters too: a key basket needs less support than one meant to hold blankets or toys.</p>\n<h2>Choose yarn with structure as the first priority</h2>\n<p>Yarns with clear stitch definition and limited stretch often make a stable basket easier to achieve. Cotton and firm blends are common choices because they show the graph well and create body.</p>\n<p>Highly elastic yarn can allow the walls to sag under the weight of the contents.</p>\n<p>Very bulky yarn produces firmness quickly, but it also enlarges every chart pixel and can make detailed motifs impractical.</p>\n<p>Make a swatch carrying at least one inactive strand because real tapestry density differs from plain single crochet.</p>\n<p>For a larger basket, press or hang the sample lightly to see how much it deforms under load.</p>\n<p>Check recovery too: bend the swatch gently and see whether it returns to shape or remains creased. That behavior matters in a basket that will be handled frequently.</p>\n<h2>Make sure the base lies flat before adding complex colorwork</h2>\n<p>A circular or oval base needs evenly distributed increases so it does not cup or ripple.</p>\n<p>On a rectangular base, corners should be clear and opposite sides should contain matching stitch counts.</p>\n<p>Do not introduce a complicated motif until the base shape is stable.</p>\n<p>Mark the beginning of the round and verify the count after each increase round.</p>\n<p>When the base is complete, the pattern should make clear where increases stop and the vertical walls begin. That transition determines the final circumference.</p>\n<p>Measure the base in several directions. A piece that looks flat may still be slightly oval because of uneven tension, and that difference becomes more visible once the walls rise.</p>\n<h2>Aim for firm but sustainable tension</h2>\n<p>A basket usually benefits from denser fabric than a cushion, but every stitch should not require force.</p>\n<p>If the hook is difficult to insert, the setup may be too tight to maintain comfortably for many rounds.</p>\n<p>Compare one slightly smaller hook and one larger hook while judging both stability and flexibility.</p>\n<p>Carried yarn still needs enough length; if it is too short, the circumference contracts and the basket narrows as it rises.</p>\n<p>Measure diameter or circumference every several rounds so shape changes are caught before the basket becomes conical.</p>\n<p>If the walls begin flaring outward, check active tension and also verify that extra stitches are not being added near the round beginning.</p>\n<h2>Plan the chart around the real circumference</h2>\n<p>On a basket worked in the round, wall stitch count determines how many repeats fit around the piece.</p>\n<p>If one motif repeat is 12 stitches and the wall contains 96 stitches, eight repeats fit exactly. When the numbers do not divide cleanly, background spacing or the repeat may need adjustment.</p>\n<p>Place the seam or round beginning in a less important area whenever possible.</p>\n<p>Vertical motifs make round shifts very obvious, while repeated geometry often tolerates small transitions more gracefully.</p>\n<p>Test one complete repeat before committing to the full basket.</p>\n<p>Calculate motif height as well. A 20-row band may occupy more vertical space than expected and leave too little room for the upper finishing edge.</p>\n<h2>Stabilize the upper edge</h2>\n<p>The opening receives repeated handling and may stretch more than the walls.</p>\n<p>A firmer final round, several one-color rounds or a structured edge can help keep the opening in shape.</p>\n<p>If handles are included, reinforce the stitches where they are integrated or sewn.</p>\n<p>Avoid concentrating many woven ends directly in the top edge because added bulk can create hard or uneven sections.</p>\n<p>Check that the upper circumference still matches the wall before fastening off.</p>\n<p>If the basket must fit a shelf or cubby, measure again after finishing the top because the final edge can alter the width slightly.</p>\n<h2>Decide whether additional reinforcement is necessary</h2>\n<p>A small basket may stand on its own with dense tapestry fabric. A large basket or one intended for heavier contents may benefit from lining, a rigid base or internal support.</p>\n<p>Reinforcement should support good crochet rather than trying to rescue walls that are already distorted.</p>\n<p>If a lining is added, measure after blocking so it fits without pulling the colorwork.</p>\n<p>A rigid base should match the actual basket outline and be covered or protected so it does not abrade the yarn.</p>\n<p>Test the basket with objects similar in weight to its intended contents and observe whether the shape remains stable.</p>\n<p>Leave it loaded for several hours and measure again. Slow deformation may not appear in a quick test.</p>\n<p>A successful tapestry basket balances structure with workability. Defined yarn, a flat base, firm but comfortable tension and a chart that fits the circumference create a decorative object that also functions well.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Geometric tapestry basket beside yarn swatches of different firmness and a diagram showing base, walls and upper edge.",
+    "alt": "How to plan tapestry crochet baskets"
+  }
+}
