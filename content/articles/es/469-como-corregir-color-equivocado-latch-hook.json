@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 469,
+  "translation_group": "469-latch-hook",
+  "taxonomy": {
+    "craft": {
+      "primary": "latch-hook",
+      "terms": [
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "troubleshooting",
+      "terms": [
+        "troubleshooting"
+      ]
+    },
+    "style": {
+      "terms": [
+        "wrong-color",
+        "correction",
+        "troubleshooting"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "rugs",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "es-469-latch-hook",
+  "language": "es",
+  "locale": "es-ES",
+  "market_context": "Personas que han colocado uno o varios nudos del color equivocado en Latch Hook y quieren corregirlos sin dañar la malla ni desplazar el patrón.",
+  "title": "Cómo corregir un color equivocado en Latch Hook",
+  "slug": "como-corregir-color-equivocado-latch-hook",
+  "seo": {
+    "title": "Cómo corregir un color equivocado en Latch Hook",
+    "meta_description": "Cómo corregir un color equivocado en Latch Hook: localiza la celda, retira el nudo sin dañar el canvas y coloca una hebra correcta de la misma longitud.",
+    "search_intent": "Personas que han colocado un color incorrecto en uno o varios nudos de un proyecto de Latch Hook."
+  },
+  "excerpt": "Un color equivocado no obliga a deshacer toda la fila. Aprende a localizar el nudo, aflojarlo, retirarlo y sustituirlo sin alterar los vecinos.",
+  "content_html": "<p>Colocar un color equivocado en Latch Hook es un error fácil de corregir si lo detectas pronto. El nudo no está pegado al canvas: queda sujeto mecánicamente alrededor de una barra, por lo que normalmente puede aflojarse y retirarse sin deshacer toda la fila.</p>\n<p>La prioridad es confirmar primero que el color está realmente mal y localizar la celda exacta del patrón. Después puedes retirar sólo ese nudo, conservar los vecinos y sustituirlo por la hebra correcta.</p>\n<h2>Confirma el error antes de tocar la malla</h2>\n<p>Compara la posición con el gráfico y la leyenda. A veces dos tonos parecidos hacen pensar que hay un error cuando el color es correcto.</p>\n<p>Cuenta desde una referencia cercana, como el borde, una marca de diez posiciones o un cambio de color grande.</p>\n<p>Si el patrón utiliza letras o números para los tonos, revisa el código de la bolsa de hilo además de la apariencia visual.</p>\n<p>Observa el proyecto con buena luz, especialmente si los colores sólo se diferencian ligeramente en luminosidad.</p>\n<p>Marca la celda equivocada en la copia de trabajo para no perderla mientras manipulas el pelo.</p>\n<p>Si hay varias posiciones dudosas, identifica todas antes de retirar nada para entender si fue un único error o si intercambiaste dos colores durante varias celdas.</p>\n<h2>Si acabas de hacer el nudo, retíralo inmediatamente</h2>\n<p>Un nudo recién hecho suele estar completamente accesible porque todavía no está rodeado por mucho pelo.</p>\n<p>Separa sus dos puntas de los nudos vecinos y localiza el bucle que rodea la barra del canvas.</p>\n<p>Afloja el nudo tirando suavemente del bucle en sentido contrario al que se asentó.</p>\n<p>Cuando haya espacio suficiente, pasa las dos puntas de nuevo a través del bucle y retira la hebra.</p>\n<p>No cortes el canvas ni tires bruscamente de la barra para liberar el hilo.</p>\n<p>Comprueba que la posición queda vacía y que las barras vecinas no se han deformado antes de colocar el color correcto.</p>\n<h2>Si el nudo está rodeado, aparta el pelo sin dañar los vecinos</h2>\n<p>En una zona terminada, utiliza los dedos para abrir un pequeño espacio alrededor del mechón equivocado.</p>\n<p>Trabaja desde el reverso si allí puedes ver mejor qué barra rodea el nudo.</p>\n<p>Un gancho pequeño, la propia herramienta de Latch Hook o unas pinzas pueden ayudar a levantar el bucle, pero deben utilizarse con movimientos suaves para no enganchar fibras del canvas.</p>\n<p>No tires de nudos correctos simplemente para ganar espacio. Sujeta los mechones vecinos hacia los lados mientras manipulas el erróneo.</p>\n<p>Si el hilo es muy peludo, avanza despacio porque sus fibras pueden entrelazarse con las hebras de alrededor aunque los nudos sean independientes.</p>\n<p>Después de retirarlo, vuelve a peinar con los dedos la zona y confirma que no has aflojado los nudos adyacentes.</p>\n<h2>Sustituye el color manteniendo la misma longitud y orientación</h2>\n<p>Utiliza una hebra del color correcto cortada a la misma longitud que las demás de esa zona.</p>\n<p>Forma el nuevo nudo sobre exactamente la misma barra que quedó vacía.</p>\n<p>Centra la hebra para que sus dos puntas alcancen una altura similar a las vecinas.</p>\n<p>Asienta el nudo con la misma tensión del resto; no lo aprietes más sólo porque sea una reparación.</p>\n<p>Observa frontal y reverso para confirmar que la posición se ha rellenado sin desplazar la fila.</p>\n<p>Si la reparación se hizo en una zona ya recortada, iguala sólo la punta nueva cuando sea necesario y evita bajar por debajo de la altura existente.</p>\n<h2>Cuando hay una secuencia larga equivocada, corrige por bloques pequeños</h2>\n<p>Si utilizaste el tono incorrecto durante diez o veinte posiciones, no retires todo el bloque de golpe sin referencias.</p>\n<p>Marca el inicio y final de la zona incorrecta en el patrón y en el canvas.</p>\n<p>Retira unos pocos nudos, reemplázalos y vuelve a comprobar el conteo antes de continuar.</p>\n<p>Este método mantiene visibles los límites del error y reduce la posibilidad de desplazar la reparación una celda.</p>\n<p>Si dos colores se intercambiaron entre sí, trabaja una fila cada vez para no mezclar las hebras retiradas con las nuevas.</p>\n<p>Reserva el hilo eliminado aparte; sólo reutilízalo si mantiene la longitud y el estado adecuados.</p>\n<h2>Evita repetir el error con un sistema de color más claro</h2>\n<p>Etiqueta recipientes con los mismos códigos de la leyenda y evita confiar sólo en nombres como azul claro o azul medio.</p>\n<p>Coloca una hebra real junto a cada código cuando varios tonos sean muy parecidos.</p>\n<p>Mantén sobre la mesa únicamente los colores activos de la fila o bloque que estás trabajando.</p>\n<p>Marca la línea actual del patrón y tacha las celdas completadas para no volver a leer una secuencia anterior.</p>\n<p>Ante un cambio de luz o al retomar después de varios días, vuelve a comparar los hilos con la tarjeta de referencia.</p>\n<p>Corregir un color equivocado en Latch Hook suele requerir sólo retirar y rehacer el nudo afectado. Si confirmas la posición, aflojas el bucle con cuidado y reemplazas la hebra sin alterar los vecinos, el error desaparece sin necesidad de deshacer grandes zonas del proyecto.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Primer plano de una zona de Latch Hook con un mechón de color incorrecto siendo retirado y reemplazado por el tono correcto.",
+    "alt": "Cómo corregir un color equivocado en Latch Hook"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 468,
+  "translation_group": "468-latch-hook",
+  "taxonomy": {
+    "craft": {
+      "primary": "latch-hook",
+      "terms": [
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "tension",
+      "terms": [
+        "tension"
+      ]
+    },
+    "style": {
+      "terms": [
+        "pile-height",
+        "consistency",
+        "tension"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "rugs",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-468-latch-hook",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Makers whose latch hook pile has uneven tuft height and who want a more consistent surface without relying on heavy trimming at the end.",
+  "title": "How to Keep Latch Hook Pile Height Even",
+  "slug": "how-to-keep-latch-hook-pile-height-even",
+  "seo": {
+    "title": "How to Keep Latch Hook Pile Height Even",
+    "meta_description": "Keep latch hook pile height even by controlling cut length, strand centering, knot tension, yarn thickness and light final trimming.",
+    "search_intent": "Makers whose latch hook surface has tufts at different heights and who want more even pile."
+  },
+  "excerpt": "Even latch hook pile comes from preparation more than scissors. Learn to control cut length, centering and tension so the surface stays consistent.",
+  "content_html": "<p>An even latch hook surface starts long before final trimming. Pile height depends on yarn cut length, how accurately each strand is centered on the tool, how the knot is seated and how consistent the yarn itself is.</p>\n<p>Small variations are normal and give the surface texture, but when individual tufts stand far above the rest or whole areas look sunken, the process should be corrected. That avoids removing large amounts of yarn at the end.</p>\n<h2>Cut all yarn with one stable reference</h2>\n<p>The most common reason for uneven pile is using pieces that are not the same length.</p>\n<p>Use a rigid template, gauge or cutting system that repeats one measurement from batch to batch.</p>\n<p>Do not measure every strand separately or switch cutting guides halfway through a color without comparing them.</p>\n<p>After cutting a batch, line up ten or twenty pieces on a table and check whether the ends match reasonably well.</p>\n<p>With elastic yarn, avoid stretching it while wrapping because the pieces shorten after the fiber relaxes.</p>\n<p>Keep different cut lengths in separate containers if the design intentionally uses more than one pile height.</p>\n<h2>Center every strand before closing the knot</h2>\n<p>Even perfectly equal pieces create uneven pile when the strand is badly centered.</p>\n<p>Place the approximate midpoint on the tool shaft and visually compare the two loose ends before pulling.</p>\n<p>Millimeter precision is unnecessary, but a large difference should be corrected before the knot is formed.</p>\n<p>With practice, your fingers begin recognizing a balanced strand almost automatically.</p>\n<p>If one tuft finishes dramatically uneven, removing and remaking the knot is better than trying to hide the problem by cutting one end very short.</p>\n<p>Inspect several rows from the side because centering differences are easier to see than from directly above.</p>\n<h2>Use similar force when seating every knot</h2>\n<p>A knot pulled extremely tight can sit deeper against the canvas and make its pile look slightly shorter.</p>\n<p>A loose knot can sit higher and appear taller while also moving more during use.</p>\n<p>Pull both ends together with moderate, repeatable force.</p>\n<p>If you notice yourself tightening more near the end of a long session, pause and compare the newest rows with earlier work.</p>\n<p>Do not use knot tension to compensate for a badly cut yarn piece. Seating force should remain consistent regardless of strand length.</p>\n<p>The reverse of the canvas can reveal areas where knots are much more compressed than their neighbors.</p>\n<h2>Use yarns with compatible thickness and texture</h2>\n<p>Two yarns cut to the same length can look different in height when one is fluffy and the other is smooth or heavy.</p>\n<p>When the design allows it, use shades from the same yarn line or materials with similar construction.</p>\n<p>If textures are mixed, make a combined sample before starting the main piece.</p>\n<p>A bulky yarn may need a slightly adjusted cut length to look level beside a finer one, but that difference should be tested and recorded.</p>\n<p>Changes in twist within one skein can also affect how much volume the cut ends develop.</p>\n<p>Do not confuse volume with physical height: a fuller area can look taller even when every strand measures the same.</p>\n<h2>Check the surface while you work, not only at the end</h2>\n<p>Every ten or twenty rows, run a hand lightly over the pile and look at the project from the side.</p>\n<p>Determine whether unevenness comes from isolated tufts or from entire blocks.</p>\n<p>An isolated tuft usually points to cutting or centering, while a whole region can indicate a yarn change, different knot tension or a bad cutting batch.</p>\n<p>Take a photo in side lighting to reveal high tips and sunken areas more clearly.</p>\n<p>Correct obviously malformed knots while they are still accessible. Dense surrounding pile makes later removal more difficult.</p>\n<p>Avoid impulsive trimming during construction because one over-trimmed patch cannot be restored.</p>\n<h2>Trim only lightly after the project is complete</h2>\n<p>A small final leveling can improve the finish, especially with fibers that have natural variation.</p>\n<p>Lay the piece flat, separate the pile with your fingers and cut only the ends that clearly stand above their neighbors.</p>\n<p>Do not try to make the surface mathematically flat. Heavy trimming removes volume and can change the image.</p>\n<p>On colorwork, avoid cutting so deeply that the canvas begins showing between knots.</p>\n<p>After trimming, shake or gently groom the surface as appropriate for the fiber and inspect it again from the side.</p>\n<p>Keeping latch hook pile height even depends mainly on equal yarn pieces, accurate centering and repeatable knot tension. Final trimming should be a small finishing step rather than the main correction for inconsistent preparation.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Side view of an even latch hook sample beside another with high and low tufts marked for comparison.",
+    "alt": "How to keep latch hook pile height even"
+  }
+}

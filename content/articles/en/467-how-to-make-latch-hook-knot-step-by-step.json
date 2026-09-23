@@ -1,0 +1,75 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 467,
+  "translation_group": "467-latch-hook",
+  "taxonomy": {
+    "craft": {
+      "primary": "latch-hook",
+      "terms": [
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "technique",
+      "terms": [
+        "technique"
+      ]
+    },
+    "style": {
+      "terms": [
+        "knot",
+        "latch-hook",
+        "technique"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "rugs",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-467-latch-hook",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Beginners who want to master the mechanics of one latch hook knot before following a full pattern.",
+  "title": "How to Make a Latch Hook Knot Step by Step",
+  "slug": "how-to-make-latch-hook-knot-step-by-step",
+  "seo": {
+    "title": "How to Make a Latch Hook Knot Step by Step",
+    "meta_description": "Make a latch hook knot step by step by using the correct canvas bar, centering the strand, closing the latch and pulling both ends through the loop.",
+    "search_intent": "Beginners who want to learn the exact mechanics of one correctly formed latch hook knot."
+  },
+  "excerpt": "A latch hook knot depends on sequence: wrap the correct bar, center the strand, catch both ends and pull them through the loop. Learn the motion clearly.",
+  "content_html": "<p>A latch hook knot is made from one short folded yarn piece and one canvas bar. The motion is simple, but the order matters: the tool first surrounds the bar, the yarn sits on the shaft, the cut ends enter the hook and finally those ends pass through the folded loop.</p>\n<p>Mastering one isolated knot before following a full chart lets you correct orientation, tension and centering without also worrying about color changes or counting.</p>\n<h2>Identify the canvas bar that will receive the knot</h2>\n<p>The knot is not made in the visual center of a hole. It wraps around a specific structural bar of the mesh.</p>\n<p>Insert the tool through one opening, pass beneath the chosen bar and bring it out through the neighboring opening.</p>\n<p>The bar should rest across the shaft while the hook remains free to catch the yarn.</p>\n<p>If you pierce the canvas material or accidentally catch two bars, remove the tool and reposition it.</p>\n<p>Use the same bar orientation across a section so knots and pile all face in a consistent direction.</p>\n<p>On a learning sample, inspect the reverse after each knot so the canvas structure becomes familiar.</p>\n<h2>Fold and center the yarn before catching the ends</h2>\n<p>Take one pre-cut piece and find approximately the center. Millimeter precision is unnecessary, but the two halves should be similar.</p>\n<p>Place the folded center around the shaft near the canvas, leaving both cut ends free toward the hook.</p>\n<p>If one end is clearly longer, slide the yarn until the two sides are more balanced before continuing.</p>\n<p>The folded center creates the loop through which both loose ends will eventually pass.</p>\n<p>Do not bury the ends deeply in the hook while positioning the loop because the latch may close before the setup is ready.</p>\n<p>Practice this placement several times until the yarn can be centered without constantly watching your fingers.</p>\n<h2>Let the latch catch both ends as the tool moves back</h2>\n<p>Once the strand is centered, place both cut ends together in front of the hook.</p>\n<p>Begin drawing the tool toward you. The hook catches the ends and the moving latch closes as it meets the folded loop.</p>\n<p>The closed latch keeps the yarn ends inside the hook while they travel through the loop.</p>\n<p>You should not need to push the latch manually during every knot; during normal use the mechanism closes automatically.</p>\n<p>Keep the two ends together. If only one enters the hook, the knot will be incomplete and should be remade.</p>\n<p>A smooth pull works better than a sharp jerk because it gives the mechanism time to close and reduces snagging on the canvas.</p>\n<h2>Pull until both ends pass completely through the loop</h2>\n<p>Continue withdrawing the tool in a reasonably straight path. The two cut ends pass through the folded loop and the yarn closes around the canvas bar.</p>\n<p>Once the hook is completely free, release the tool and pull both ends together to seat the knot.</p>\n<p>The knot should be secure against the mesh without being tightened hard enough to bend the canvas bar.</p>\n<p>Check that both ends emerge together and finish at similar height.</p>\n<p>If the folded center was badly offset, undo the knot and remake it before neighboring pile makes access difficult.</p>\n<p>Consistency comes from repeating the same movement and force, not from tightening every knot as hard as possible.</p>\n<h2>Learn to recognize a correct knot and a malformed one</h2>\n<p>A correct knot wraps one bar, holds both cut ends inside the loop and leaves the canvas shape unchanged.</p>\n<p>A loose knot often means the ends did not travel completely through the folded loop.</p>\n<p>A one-ended knot usually means one strand escaped from the hook during withdrawal.</p>\n<p>If one tuft points differently from its neighbors, check whether the bar was approached from the opposite direction.</p>\n<p>From the reverse, the knot structure should repeat in a very similar way at every position.</p>\n<p>Fix malformed knots immediately because they become harder to find and manipulate once surrounded by finished pile.</p>\n<h2>Practice short series before adding a color chart</h2>\n<p>Make a row of ten knots in one color and compare pile height, direction and tension.</p>\n<p>Repeat another row while trying to use exactly the same motion.</p>\n<p>When both rows look consistent, introduce a second color without changing the knot technique.</p>\n<p>In latch hook, a color change simply means picking a different yarn piece for the next position; the knot mechanics remain the same.</p>\n<p>If speed increases but knot quality begins falling, slow down until the latch is closing cleanly again.</p>\n<p>A latch hook knot becomes automatic when the sequence stays consistent: correct bar, centered strand, both ends in the hook, automatic latch closure and moderate seating tension. That consistency is the foundation of the entire project.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Close-up sequence of one latch hook knot in six stages from empty canvas bar to the two seated pile ends.",
+    "alt": "How to make a latch hook knot step by step"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 469,
+  "translation_group": "469-latch-hook",
+  "taxonomy": {
+    "craft": {
+      "primary": "latch-hook",
+      "terms": [
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "troubleshooting",
+      "terms": [
+        "troubleshooting"
+      ]
+    },
+    "style": {
+      "terms": [
+        "wrong-color",
+        "correction",
+        "troubleshooting"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "rugs",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-469-latch-hook",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Makers who placed one or more wrong-color knots in latch hook and want to correct them without damaging the canvas or shifting the pattern.",
+  "title": "How to Fix the Wrong Color in a Latch Hook Project",
+  "slug": "how-to-fix-wrong-color-latch-hook-project",
+  "seo": {
+    "title": "How to Fix the Wrong Color in a Latch Hook Project",
+    "meta_description": "Fix a wrong color in latch hook by locating the chart cell, removing the knot without damaging canvas and replacing it with an equal-length strand.",
+    "search_intent": "People who placed the wrong color in one or more knots of a latch hook project."
+  },
+  "excerpt": "A wrong color does not require undoing the whole row. Learn how to locate, loosen, remove and replace one latch hook knot without disturbing its neighbors.",
+  "content_html": "<p>Placing the wrong color in a latch hook project is usually easy to correct when it is found early. The yarn is not glued to the canvas; the knot is mechanically wrapped around one bar, so a single tuft can normally be loosened and removed without undoing an entire row.</p>\n<p>The first priority is confirming that the color is truly wrong and locating the exact chart cell. Then only that knot can be removed, neighboring knots can stay in place and the correct strand can replace it.</p>\n<h2>Confirm the mistake before touching the canvas</h2>\n<p>Compare the position with the chart and color key. Similar shades can look wrong even when the code is correct.</p>\n<p>Count from a nearby reference such as the edge, a ten-position mark or a major color boundary.</p>\n<p>If the pattern uses letters or numbers for shades, check the yarn container code as well as the visual color.</p>\n<p>Inspect the project in good light, especially when the difference between colors is mainly lightness rather than hue.</p>\n<p>Mark the incorrect chart cell on your working copy so the position is not lost while the pile is moved aside.</p>\n<p>If several spots look suspicious, identify all of them before removing anything to determine whether one knot is wrong or two colors were swapped across a larger section.</p>\n<h2>If the knot is new, remove it immediately</h2>\n<p>A newly made knot is usually fully accessible because little surrounding pile has been added yet.</p>\n<p>Separate its two cut ends from neighboring tufts and locate the loop wrapped around the canvas bar.</p>\n<p>Loosen the knot by gently lifting or pulling the loop in the opposite direction from how it was seated.</p>\n<p>Once enough space opens, pass the two yarn ends back through the loop and remove the strand.</p>\n<p>Do not cut the canvas or pull sharply on the structural bar to free the yarn.</p>\n<p>Check that the position is empty and neighboring bars remain undistorted before adding the correct color.</p>\n<h2>If the knot is surrounded, move pile aside without disturbing neighbors</h2>\n<p>In a completed area, use your fingers to open a small working space around the incorrect tuft.</p>\n<p>Work from the reverse when that side makes the wrapped canvas bar easier to identify.</p>\n<p>A small hook, the latch hook tool itself or tweezers can help lift the loop, but use gentle movements so canvas fibers are not caught or damaged.</p>\n<p>Do not pull correct knots out simply to make more room. Hold neighboring pile aside while working on the wrong knot.</p>\n<p>With fuzzy yarn, move slowly because loose fibers can tangle with nearby strands even though the knots themselves are separate.</p>\n<p>After removal, smooth the surrounding pile with your fingers and confirm that adjacent knots still feel secure.</p>\n<h2>Replace the color using the same length and orientation</h2>\n<p>Use a correct-color piece cut to the same length as the yarn already used in that area.</p>\n<p>Make the replacement knot around exactly the same canvas bar that was left empty.</p>\n<p>Center the strand so both pile ends finish at a similar height to neighboring tufts.</p>\n<p>Seat it with the same tension as the rest of the project rather than pulling harder simply because it is a repair.</p>\n<p>Inspect front and reverse to confirm that the position is filled without shifting the row.</p>\n<p>If the surrounding area was already trimmed, level only the replacement ends when necessary and avoid cutting below the established pile height.</p>\n<h2>For a long wrong-color sequence, repair small blocks at a time</h2>\n<p>If the wrong shade was used for ten or twenty positions, do not remove the whole section at once without references.</p>\n<p>Mark the beginning and end of the incorrect area on both chart and canvas.</p>\n<p>Remove a few knots, replace them and verify the count before continuing.</p>\n<p>This keeps the boundaries visible and reduces the chance of moving the repair one cell sideways.</p>\n<p>If two shades were swapped, work one row at a time so removed pieces do not become mixed with the replacement yarn.</p>\n<p>Keep removed yarn separate and reuse it only when its length and condition remain suitable.</p>\n<h2>Prevent the same mistake with a clearer color system</h2>\n<p>Label containers with the same codes as the legend instead of relying only on names such as light blue or medium blue.</p>\n<p>Attach one real yarn piece beside each code when several shades are close.</p>\n<p>Keep only the colors needed for the active row or block immediately in front of you.</p>\n<p>Mark the current chart line and cross off completed cells so an earlier sequence is not accidentally reread.</p>\n<p>After a lighting change or a break of several days, compare the yarn with the reference card again before restarting.</p>\n<p>Fixing the wrong color in latch hook usually requires removing and remaking only the affected knot. When the position is verified, the loop is loosened carefully and the strand is replaced without disturbing its neighbors, the mistake disappears without undoing a large part of the project.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Close-up of a latch hook area with one wrong-color tuft being removed and replaced with the correct shade.",
+    "alt": "How to fix the wrong color in a latch hook project"
+  }
+}
