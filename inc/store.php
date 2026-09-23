@@ -499,6 +499,17 @@ function make_filter_store_currency( string $currency ): string {
 }
 add_filter( 'woocommerce_currency', 'make_filter_store_currency', PHP_INT_MAX );
 
+/**
+ * Drielo owns the shopper-facing EUR/USD selection. Stripe Adaptive Pricing
+ * must stay off so the amount and currency shown by WooCommerce are exactly
+ * the amount and currency submitted to Stripe at checkout.
+ */
+function make_disable_stripe_adaptive_pricing( bool $supported ): bool {
+    return false;
+}
+add_filter( 'wc_stripe_is_adaptive_pricing_supported', 'make_disable_stripe_adaptive_pricing', PHP_INT_MAX );
+
+
 function make_store_currency_symbol( string $symbol, string $currency ): string {
     $currency = strtoupper( $currency );
     if ( 'USD' === $currency ) { return chr( 36 ); }
