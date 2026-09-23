@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 387,
+  "translation_group": "387-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "pattern-reading",
+      "terms": [
+        "pattern-reading"
+      ]
+    },
+    "style": {
+      "terms": [
+        "graphs",
+        "graphgan",
+        "colorwork"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "wall-hangings",
+        "cushions"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-387-c2c",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "C2C makers who want a reliable system for direction, diagonal rows, color sequences and progress tracking on graphgans.",
+  "title": "How to Read a C2C Crochet Graph Without Getting Lost",
+  "slug": "how-to-read-c2c-crochet-graph",
+  "seo": {
+    "title": "How to Read a C2C Crochet Graph Without Getting Lost",
+    "meta_description": "Learn how to read a C2C crochet graph, follow diagonal rows, track direction and turn colored grid cells into accurate crochet block sequences.",
+    "search_intent": "Crocheters who can make C2C blocks but get confused when translating a color grid into diagonal rows."
+  },
+  "excerpt": "Learn how to read a C2C graph: what each square means, how diagonal rows travel across the chart and how to track direction and color changes.",
+  "content_html": "<p>A C2C graph looks like a normal grid, but the crochet is not worked across it in horizontal rows. Your actual rows travel diagonally. That difference is why someone can understand the crochet blocks perfectly and still feel lost when beginning a graphgan.</p>\n<p>The key is to separate two jobs. The graph tells you <strong>which color belongs in each cell</strong>; the C2C construction tells you <strong>the order in which you visit those cells</strong>. Once those two layers make sense, the chart becomes much easier to follow.</p>\n<h2>Each graph square usually represents one C2C block</h2>\n<p>In most C2C graphgans, one grid cell equals one crochet block. A red square means one red block. Five blue squares in sequence along the current diagonal mean five consecutive blue blocks.</p>\n<p>Always check the pattern notes. Mini C2C and other variants can use different stitch recipes, but the core idea is still a grid cell mapped to one repeatable crochet unit.</p>\n<p>The chart dimensions are block dimensions rather than physical measurements. A 60-by-80 graph does not automatically finish at 60 by 80 inches or centimeters. The real size depends on the measured width and height of your blocks.</p>\n<h2>C2C rows travel diagonally across the chart</h2>\n<p>Imagine starting in the lower-left corner of a grid. The first row touches one cell. The second crosses two cells, and the third crosses three. Each new diagonal reaches farther across the chart until it meets one of the outer edges.</p>\n<p>Once the fabric reaches its maximum width, the number of cells in each diagonal either stays level for a period or begins to shrink, depending on whether the design is a rectangle or square.</p>\n<p>This is why a written C2C “row” does not usually correspond to one visible horizontal row in the picture. It represents one diagonal path through the grid.</p>\n<h2>Your reading direction changes as the work turns</h2>\n<p>When you turn the crochet, the direction in which you travel across the next graph diagonal changes too. One row may be read upward and the next downward, depending on the pattern orientation and whether you crochet right- or left-handed.</p>\n<p>Do not rely on a rule such as “always read left to right.” Identify the starting corner and follow the pattern's arrows or row numbering. If the chart has no directional marks, draw arrows over the first several diagonals before you begin.</p>\n<p>It also helps to keep the printed or digital graph in one fixed orientation. Rotating the chart every time you turn the fabric can feel natural at first, but it makes it easier to mirror a section accidentally.</p>\n<h2>Turn each diagonal into a short color sequence</h2>\n<p>Before crocheting a complicated row, read it as a sentence: three cream blocks, two green, one cream, four black. A short sequence is easier to execute accurately than repeatedly scanning the whole picture.</p>\n<p>Patterns with written line-by-line instructions are essentially doing this conversion for you. You can use the graph for visual context and the written sequence as a counting check.</p>\n<p>If you only have a graph, write down difficult diagonals in a notebook or use an app that lets you mark cells. You do not need to transcribe the entire pattern. Focus on rows containing many color changes or isolated single-color blocks.</p>\n<h2>Mark progress so you do not repeat or skip a diagonal</h2>\n<p>On a large design, losing your position is often more damaging than making one uneven stitch. Use a ruler, removable tape, a digital highlighter or another tracking method to identify the active diagonal.</p>\n<p>Mark a row complete only after counting its blocks. If the diagonal should contain 27 cells, your crochet blocks and the sum of the written color sequence should both equal 27.</p>\n<p>When you stop for the day, note not only the row number but also the direction in which the next row will be worked. That small note prevents you from resuming at the wrong edge.</p>\n<h2>Catch chart-reading errors before they spread</h2>\n<p>Compare the boundaries between colors with the graph every few rows. Diagonal shapes are useful checkpoints. If a section that should extend to the right begins moving left, a sequence may have been reversed or a block may be missing.</p>\n<p>Do not rely only on whether the picture “looks right,” especially in portraits or abstract areas. Some sections do not resemble the finished motif until many more rows are added. Counting is more reliable than intuition in those areas.</p>\n<p>If you find a mistake, first decide whether it is a color error or a structural error. One wrong-color block can sometimes be repaired locally. An extra or missing block changes the geometry of every following diagonal and normally requires going back to the point where the count changed.</p>\n<p>Good C2C graph reading happens at two scales. You look at the full image to understand the motif, but you crochet one diagonal as a countable sequence. Keep the graph marked, verify the block total and let the picture emerge gradually. That system is far safer than trying to follow the image by eye alone.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Pixel grid with one diagonal highlighted and arrows showing how the cells become one C2C crochet row.",
+    "alt": "How to read a C2C crochet graph"
+  }
+}
