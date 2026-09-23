@@ -1,0 +1,62 @@
+name: Inspect live Etsy config
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/inspect-etsy-live.yml'
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/make_deploy_key
+          chmod 600 ~/.ssh/make_deploy_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+      - name: Inspect non-secret Etsy state
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/make_deploy_key "$VPS_USER@$VPS_HOST" bash -s <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          else
+            DOCKER=(sudo -n docker)
+          fi
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            require_once ABSPATH . "wp-admin/includes/plugin.php";
+            $plugin="drielo-etsy-sync/drielo-etsy-sync.php";
+            $s=get_option("drielo_etsy_settings",array());
+            $t=get_option("drielo_etsy_tokens",array());
+            echo "PLUGIN_ACTIVE=".(is_plugin_active($plugin)?"yes":"no").PHP_EOL;
+            echo "PLUGIN_VERSION=".(defined("Drielo_Etsy_Sync::VERSION")?Drielo_Etsy_Sync::VERSION:"unknown").PHP_EOL;
+            echo "API_KEY_SET=".(!empty($s["api_key"])?"yes":"no").PHP_EOL;
+            echo "SHARED_SECRET_SET=".(!empty($s["shared_secret"])?"yes":"no").PHP_EOL;
+            echo "SHOP_ID_SET=".(!empty($s["shop_id"])?"yes":"no").PHP_EOL;
+            echo "SHOP_NAME=".(string)($s["shop_name"]??"").PHP_EOL;
+            echo "TAXONOMY_ID=".(string)($s["taxonomy_id"]??"").PHP_EOL;
+            echo "REFRESH_TOKEN_SET=".(!empty($t["refresh_token"])?"yes":"no").PHP_EOL;
+            echo "ACCESS_TOKEN_SET=".(!empty($t["access_token"])?"yes":"no").PHP_EOL;
+            $ids=get_posts(array(
+              "post_type"=>"product","post_status"=>array("publish","draft","private","pending"),
+              "posts_per_page"=>-1,"fields"=>"ids",
+              "meta_key"=>"_drielo_etsy_enabled","meta_value"=>"yes"
+            ));
+            echo "ENABLED_COUNT=".count($ids).PHP_EOL;
+            foreach($ids as $id){
+              $p=wc_get_product($id);
+              echo "PRODUCT=".$id." SKU=".($p?$p->get_sku():"")." TARGET=".get_post_meta($id,"_drielo_etsy_target_state",true)." LISTING=".get_post_meta($id,"_drielo_etsy_listing_id",true)." REMOTE=".get_post_meta($id,"_drielo_etsy_remote_state",true)." ERROR=".str_replace(array("\n","\r")," ",get_post_meta($id,"_drielo_etsy_last_error",true)).PHP_EOL;
+            }
+          '
+          REMOTE
