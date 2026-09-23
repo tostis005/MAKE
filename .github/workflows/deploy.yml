@@ -497,15 +497,21 @@ jobs:
             echo "DRIELO_PREVIEW_OK width=".$preview[1]." SHOP=".$shop_card[1]."x".$shop_card[2]." HOME=".$home_card[1]."x".$home_card[2]." COLLECTION=".$collection_card[1]."x".$collection_card[2]." USD=".$usd_symbol." EUR=".$eur_symbol.PHP_EOL;
           '
 
-          check_html "/articulos/" "Últimos artículos" "journal-es"
-          check_html "/en/articles/" "Latest articles" "journal-en"
+          check_html "/articulos/" "Elige una técnica" "journal-es"
+          check_html "/en/articles/" "Choose a technique" "journal-en"
+          check_html "/articulos/tecnica/punto-de-cruz/" "Punto de cruz" "journal-cross-stitch-es"
+          check_html "/en/articles/craft/cross-stitch/" "Cross Stitch" "journal-cross-stitch-en"
+          check_html "/articulos/tecnica/punto-de-cruz/" "journal-craft-tabs" "journal-technique-tabs"
+          check_html "/articulos/tecnica/punto-de-cruz/" "category-art-generated.webp" "journal-cross-stitch-theme-art"
           check_html "/articulos/tema/flores-y-botanica/" "Flores y botánica" "journal-category-es"
           check_html "/en/articles/topic/florals/" "Florals & botanical" "journal-category-en"
           check_html "/wp-content/themes/make/assets/images/categories/category-art-generated.webp" "RIFF" "category-art-image"
-          check_html "/articulos/" "category-art-generated.webp" "journal-category-art"
-          check_html "/articulos/page/2/" "Últimos artículos" "journal-page-2"
+          check_html "/articulos/page/2/" "Elige una técnica" "journal-page-2"
+          check_html "/articulos/$SAMPLE_SLUG/" "editorial-breadcrumbs" "single-article-breadcrumbs"
           check_html "/articulos/$SAMPLE_SLUG/" "article-related-grid" "single-article"
           check_html "/sitemap.xml" "<sitemapindex" "sitemap-index"
           check_html "/sitemap-es.xml" "<urlset" "sitemap-es" "make_lang="
+          check_html "/sitemap-es.xml" "/articulos/tecnica/punto-de-cruz/" "sitemap-technique-es"
           check_html "/sitemap-en.xml" "<urlset" "sitemap-en" "make_lang="
+          check_html "/sitemap-en.xml" "/en/articles/craft/cross-stitch/" "sitemap-technique-en"
           REMOTE
