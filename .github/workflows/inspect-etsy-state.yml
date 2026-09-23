@@ -1,0 +1,26 @@
+name: Inspect Etsy product state
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/inspect-etsy-state.yml'
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect product save and sync code
+        shell: bash
+        run: |
+          set -euo pipefail
+          base64 --decode plugins/drielo-etsy-sync-1.0.0.zip.b64 > /tmp/plugin.zip
+          unzip -q /tmp/plugin.zip -d /tmp/plugin
+          FILE=/tmp/plugin/drielo-etsy-sync/drielo-etsy-sync.php
+          echo '--- CONSTANTS ---'
+          sed -n '1,40p' "$FILE"
+          echo '--- PRODUCT PAGE ---'
+          sed -n '80,330p' "$FILE"
+          echo '--- SAVE/SYNC ---'
+          sed -n '400,490p' "$FILE"
+          echo '--- ETSY LISTING SYNC ---'
+          sed -n '680,940p' "$FILE"
