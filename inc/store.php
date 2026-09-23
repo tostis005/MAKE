@@ -56,7 +56,9 @@ function make_redirect_legacy_collection_url(): void {
 add_action( 'template_redirect', 'make_redirect_legacy_collection_url', 1 );
 
 function make_store_routes(): void {
-    add_rewrite_rule( '^tienda/page/([0-9]+)/?
+    add_rewrite_rule( '^tienda/page/([0-9]+)/?$', 'index.php?post_type=product&make_lang=es&paged=$matches[1]', 'top' );
+    add_rewrite_rule( '^en/shop/page/([0-9]+)/?$', 'index.php?post_type=product&make_lang=en&paged=$matches[1]', 'top' );
+    add_rewrite_rule( '^en/shop/?$', 'index.php?post_type=product&make_lang=en', 'top' );
 
     add_rewrite_rule( '^tienda/colecciones/?$', 'index.php?post_type=product&make_store_view=collections&make_lang=es', 'top' );
     add_rewrite_rule( '^en/shop/collections/?$', 'index.php?post_type=product&make_store_view=collections&make_lang=en', 'top' );
