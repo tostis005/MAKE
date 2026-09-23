@@ -4572,6 +4572,61 @@
       "title_es": "Cómo corregir errores en C2C Crochet sin deshacer medio proyecto",
       "title_en": "How to Fix C2C Crochet Mistakes Without Frogging Half the Project",
       "craft": "c2c-crochet"
+    },
+    {
+      "number": 415,
+      "priority": "P3",
+      "section": "buying-guides",
+      "topic": "blankets",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Mantas C2C fáciles para principiantes: qué buscar en un patrón",
+      "title_en": "Easy C2C Blankets for Beginners: What to Look for in a Pattern",
+      "craft": "c2c-crochet"
+    },
+    {
+      "number": 416,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "cushions",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Cómo hacer un cojín con un gráfico C2C Crochet",
+      "title_en": "How to Make a Pillow from a C2C Crochet Graph",
+      "craft": "c2c-crochet"
+    },
+    {
+      "number": 417,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "wall-hangings",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Cómo hacer un tapiz de pared con C2C Crochet",
+      "title_en": "How to Make a C2C Crochet Wall Hanging",
+      "craft": "c2c-crochet"
+    },
+    {
+      "number": 418,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "sizing",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Tamaños de manta C2C: bebé, sofá y cama",
+      "title_en": "C2C Blanket Sizes: Baby, Throw and Bed",
+      "craft": "c2c-crochet"
+    },
+    {
+      "number": 419,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "technique",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "C2C Crochet vs crochet tradicional: qué cambia de verdad",
+      "title_en": "C2C Crochet vs Traditional Crochet: What Really Changes?",
+      "craft": "c2c-crochet"
     }
   ],
   "taxonomy_strategy": {
@@ -4602,7 +4657,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 414,
-    "bilingual_groups": 414
+    "last_indexed_article": 419,
+    "bilingual_groups": 419
   }
 }
