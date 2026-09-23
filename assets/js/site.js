@@ -141,7 +141,12 @@
       var text=(links[i].textContent||'').replace(/\s+/g,' ').trim().toLowerCase();
       if(text.indexOf('todos los patrones')!==-1||text.indexOf('todos los productos')!==-1||text.indexOf('all patterns')!==-1||text.indexOf('all products')!==-1){
         var card=links[i];
-        while(card.parentElement&&card.parentElement!==hub)card=card.parentElement;
+        var parent=card.parentElement;
+        while(parent&&parent!==hub){
+          if(parent.parentElement===hub)break;
+          card=parent;
+          parent=parent.parentElement;
+        }
         if(card&&card!==hub)card.remove();
       }
     }
