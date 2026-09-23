@@ -1,0 +1,21 @@
+name: Inspect Etsy listing payload
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/inspect-etsy-payload.yml'
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect sync payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          base64 --decode plugins/drielo-etsy-sync-1.0.0.zip.b64 > /tmp/plugin.zip
+          unzip -q /tmp/plugin.zip -d /tmp/plugin
+          FILE=/tmp/plugin/drielo-etsy-sync/drielo-etsy-sync.php
+          START=$(grep -n "private function sync_product" "$FILE" | head -1 | cut -d: -f1)
+          END=$((START+260))
+          sed -n "${START},${END}p" "$FILE"
