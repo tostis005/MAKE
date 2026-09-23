@@ -1,0 +1,10 @@
+{
+  "code": "P0016-CS",
+  "base_design_id": "P0016",
+  "technique_code": "CS",
+  "collection": "pop-art-portraits",
+  "title": "Charlie Chaplin Portrait",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/P0016-CS/pattern.json",
+  "template": "cross-stitch.html"
+}

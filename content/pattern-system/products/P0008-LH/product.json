@@ -1,0 +1,10 @@
+{
+  "code": "P0008-LH",
+  "base_design_id": "P0008",
+  "technique_code": "LH",
+  "collection": "pop-art-portraits",
+  "title": "Audrey Hepburn Elegant Profile",
+  "technique": "latch-hook",
+  "pattern_file": "patterns/P0008-LH/pattern.json",
+  "template": "rug.html"
+}

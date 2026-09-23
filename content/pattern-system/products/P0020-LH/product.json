@@ -1,0 +1,10 @@
+{
+  "code": "P0020-LH",
+  "base_design_id": "P0020",
+  "technique_code": "LH",
+  "collection": "pop-art-portraits",
+  "title": "Royal Tiara Portrait",
+  "technique": "latch-hook",
+  "pattern_file": "patterns/P0020-LH/pattern.json",
+  "template": "rug.html"
+}

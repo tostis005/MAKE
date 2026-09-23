@@ -1,0 +1,10 @@
+{
+  "code": "P0016-TC",
+  "base_design_id": "P0016",
+  "technique_code": "TC",
+  "collection": "pop-art-portraits",
+  "title": "Charlie Chaplin Portrait",
+  "technique": "tapestry-crochet",
+  "pattern_file": "patterns/P0016-TC/pattern.json",
+  "template": "crochet.html"
+}

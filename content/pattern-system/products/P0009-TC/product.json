@@ -1,0 +1,10 @@
+{
+  "code": "P0009-TC",
+  "base_design_id": "P0009",
+  "technique_code": "TC",
+  "collection": "pop-art-portraits",
+  "title": "Girl with a Pearl Earring",
+  "technique": "tapestry-crochet",
+  "pattern_file": "patterns/P0009-TC/pattern.json",
+  "template": "crochet.html"
+}

@@ -1,0 +1,10 @@
+{
+  "code": "P0006-TC",
+  "base_design_id": "P0006",
+  "technique_code": "TC",
+  "collection": "pop-art-portraits",
+  "title": "Audrey Hepburn Classic Portrait",
+  "technique": "tapestry-crochet",
+  "pattern_file": "patterns/P0006-TC/pattern.json",
+  "template": "crochet.html"
+}

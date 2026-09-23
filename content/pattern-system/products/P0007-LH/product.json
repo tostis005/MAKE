@@ -1,0 +1,10 @@
+{
+  "code": "P0007-LH",
+  "base_design_id": "P0007",
+  "technique_code": "LH",
+  "collection": "pop-art-portraits",
+  "title": "Audrey Hepburn Sunglasses",
+  "technique": "latch-hook",
+  "pattern_file": "patterns/P0007-LH/pattern.json",
+  "template": "rug.html"
+}
