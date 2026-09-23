@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 416,
+  "translation_group": "416-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "ideas",
+      "terms": [
+        "ideas"
+      ]
+    },
+    "topic": {
+      "primary": "cushions",
+      "terms": [
+        "cushions"
+      ]
+    },
+    "style": {
+      "terms": [
+        "cushion",
+        "graphgan",
+        "project-conversion"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cushions"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-416-c2c",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Crocheters reusing C2C graphs for smaller decorative projects instead of full blankets.",
+  "title": "How to Make a Pillow from a C2C Crochet Graph",
+  "slug": "make-pillow-from-c2c-crochet-graph",
+  "seo": {
+    "title": "How to Make a Pillow from a C2C Crochet Graph",
+    "meta_description": "Make a pillow from a C2C graph by calculating panel size, choosing a backing, joining the pieces and fitting the closure to the insert.",
+    "search_intent": "People turning a C2C graph into a pillow panel who need to control size, backing, joining and insert fit."
+  },
+  "excerpt": "A C2C graph can become a pillow when block scale and backing are planned first. Learn how to adapt size, seams and closure.",
+  "content_html": "<p>A pillow is a practical way to use a C2C graph without making a full blanket. The front panel can feature lettering, an animal, flower or geometric motif, while the back can be plain crochet, fabric or a second panel.</p>\n<p>The most important decision is scale. A graph that works beautifully as a blanket may be far too large for a cushion when every cell becomes a classic C2C block. Start with the insert and work backward to the grid.</p>\n<h2>Start with the actual pillow insert size</h2>\n<p>Measure the insert or decide the final dimensions first. Common pillow sizes vary, so work from the form you will actually use instead of assuming one universal measurement.</p>\n<p>Make a C2C swatch and measure several blocks. If each block is about 0.55 inch and you want a front near 16.5 inches, you need roughly 30 blocks across.</p>\n<p>That calculation tells you what graph resolution will fit. If the original design is 60 cells wide, you may need mini C2C, finer yarn or a simplified motif.</p>\n<p>Leave a little allowance for joining. A cover that is excessively tight can distort the graph once the insert is inside.</p>\n<p>If you prefer a firm pillow, the front may be slightly smaller than the insert; for a relaxed cover, avoid a large difference. Test the amount of ease before committing.</p>\n<h2>Adapt the graph to the pillow shape</h2>\n<p>Pillows are usually square or rectangular, so a graph with matching proportions is the easiest starting point.</p>\n<p>If the motif is smaller, add background around it rather than scaling it aggressively. Negative space can improve the design.</p>\n<p>Avoid too many one-cell details when using thick yarn. On an object viewed at close range, a clear silhouette often works better than excessive pixel detail.</p>\n<p>Preview the design as a thumbnail before crocheting. If the motif is hard to recognize when reduced, simplify it.</p>\n<p>Check where important details fall relative to the seam as well. A feature placed right against the edge may disappear visually after assembly.</p>\n<h2>Crochet the front panel and verify measurements</h2>\n<p>Follow the graph like any C2C piece, counting blocks and checking color changes. Lay the panel flat periodically to make sure it remains close to the predicted size.</p>\n<p>Do not try to correct size by suddenly tightening the final rows. If the swatch was accurate, maintain the same natural tension.</p>\n<p>When finished, block gently if appropriate for the fiber. Measure after blocking before cutting fabric or crocheting the back.</p>\n<p>If the panel is slightly smaller than the insert, a border can add a controlled amount and create a more regular seam edge.</p>\n<p>Complete that foundation border before the final measurement because it can add both size and firmness.</p>\n<h2>Choose the backing before assembly</h2>\n<p>A second crochet panel creates an entirely handmade cover. It can be one-color C2C, single crochet or another fabric with compatible dimensions.</p>\n<p>A fabric back reduces bulk and yarn use. Stabilize the C2C edge and sew carefully so the crochet blocks are not stretched out of shape.</p>\n<p>An envelope back made from two overlapping sections allows the insert to be removed without installing a zipper.</p>\n<p>Choose the closure before assembling the sides, especially if you want buttons, a zipper or a specific opening.</p>\n<p>For a washable pillow, a removable cover is usually more practical than permanently closing the entire perimeter.</p>\n<h2>Join the pieces without distorting the graph</h2>\n<p>Align the corners and place markers at the midpoint and quarter points of each side. This distributes any small difference in length.</p>\n<p>You can sew with a yarn needle, use slip stitch or work a single-crochet seam around the edge. Each method creates a different amount of thickness.</p>\n<p>Insert the pillow form while one side remains open and check whether the front stretches too much. An oversized insert can visibly distort the motif.</p>\n<p>If you want decorative edging, distribute it evenly so the corners remain square.</p>\n<p>Pay particular attention to the corners. An overly tight seam can round them and make the central graph look skewed.</p>\n<h2>Finish for the way the pillow will actually be used</h2>\n<p>A cushion receives friction, pressure and washing that a wall hanging does not. Secure yarn ends carefully and choose a fiber appropriate for that use.</p>\n<p>If the graph leaves many carried strands on the reverse, an inner lining can protect them from the insert and prevent snagging.</p>\n<p>Make sure color-change joins are not placed under extreme tension at the seam. A foundation round around the panel can stabilize the edge.</p>\n<p>Wash or treat a swatch if the finished pillow will be washable. Some fibers relax and can turn a snug cover into a looser one.</p>\n<p>Turning a C2C graph into a pillow is mainly an exercise in scale and structure. Once the front panel matches the insert, the remaining choices are backing, joining and finishing.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Finished C2C pillow beside its square graph, front panel and two backing options.",
+    "alt": "How to make a pillow from a C2C crochet graph"
+  }
+}
