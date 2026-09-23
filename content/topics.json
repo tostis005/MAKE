@@ -4682,6 +4682,61 @@
       "title_es": "Cómo cambiar de color en Tapestry Crochet sin cortes visibles",
       "title_en": "How to Change Colors in Tapestry Crochet Cleanly",
       "craft": "tapestry-crochet"
+    },
+    {
+      "number": 425,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "colorwork",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo llevar el hilo por dentro en Tapestry Crochet",
+      "title_en": "How to Carry Yarn Inside Tapestry Crochet",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 426,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "colorwork",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo ocultar el color que llevas en Tapestry Crochet",
+      "title_en": "How to Hide the Carried Color in Tapestry Crochet",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 427,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "tension",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo mantener una tensión uniforme en Tapestry Crochet",
+      "title_en": "How to Keep Even Tension in Tapestry Crochet",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 428,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "troubleshooting",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Por qué se inclina el dibujo en Tapestry Crochet y cómo corregirlo",
+      "title_en": "Why Tapestry Crochet Designs Slant and How to Fix It",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 429,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "troubleshooting",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo evitar que el hilo llevado se vea entre los puntos",
+      "title_en": "How to Stop Carried Yarn Showing Through Tapestry Crochet",
+      "craft": "tapestry-crochet"
     }
   ],
   "taxonomy_strategy": {
@@ -4712,7 +4767,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 424,
-    "bilingual_groups": 424
+    "last_indexed_article": 429,
+    "bilingual_groups": 429
   }
 }
