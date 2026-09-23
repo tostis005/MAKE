@@ -132,7 +132,7 @@ jobs:
           "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '$PLUGIN_TARGET' && mkdir -p '$PLUGIN_TARGET'"
           "${DOCKER[@]}" cp "$PLUGIN_STAGE/drielo-etsy-sync/." "make-wp:$PLUGIN_TARGET/"
           "${DOCKER[@]}" exec make-wp sh -lc "chown -R www-data:www-data '$PLUGIN_TARGET' && find '$PLUGIN_TARGET' -type d -exec chmod 755 {} + && find '$PLUGIN_TARGET' -type f -exec chmod 644 {} + && test -s '$PLUGIN_TARGET/drielo-etsy-sync.php'"
-          "${DOCKER[@]}" exec make-wp php -r '
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
             require "/var/www/html/wp-load.php";
             require_once ABSPATH . "wp-admin/includes/plugin.php";
             $plugin = "drielo-etsy-sync/drielo-etsy-sync.php";
@@ -145,7 +145,7 @@ jobs:
             }
             echo "DRIELO_ETSY_PLUGIN_ACTIVE=" . (is_plugin_active($plugin) ? "yes" : "no") . PHP_EOL;
           '
-          "${DOCKER[@]}" exec make-wp php -r '
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
             require "/var/www/html/wp-load.php";
             require_once ABSPATH . "wp-admin/includes/plugin.php";
             $plugin = "drielo-etsy-sync/drielo-etsy-sync.php";
@@ -156,7 +156,7 @@ jobs:
             echo "DRIELO_ETSY_PLUGIN_VERIFIED=yes" . PHP_EOL;
           '
 
-          "${DOCKER[@]}" exec make-wp php -r '
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
             require "/var/www/html/wp-load.php";
             $desired = "/%postname%/";
             if ((string) get_option("permalink_structure", "") !== $desired) {
@@ -209,7 +209,7 @@ jobs:
             }
             echo "DRIELO_CARD_DERIVATIVES=" . count($attachments) . PHP_EOL;
           '
-          "${DOCKER[@]}" exec make-wp php -r '
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
             require "/var/www/html/wp-load.php";
             echo "MAKE_SITE_URL=" . home_url("/") . PHP_EOL;
             foreach (array("es","en") as $lang) {
@@ -239,8 +239,8 @@ jobs:
                 }
             }
           '
-          SITE_HOST="$( "${DOCKER[@]}" exec make-wp php -r 'require "/var/www/html/wp-load.php"; $u=parse_url(home_url("/")); echo $u["host"] . (isset($u["port"]) ? ":" . $u["port"] : "");' )"
-          SAMPLE_SLUG="$( "${DOCKER[@]}" exec make-wp php -r 'require "/var/www/html/wp-load.php"; $p=get_posts(array("post_type"=>"post","post_status"=>"publish","posts_per_page"=>1,"meta_query"=>array(array("key"=>"_make_managed_article","value"=>1),array("key"=>"_make_language","value"=>"es")))); echo $p ? $p[0]->post_name : "";' )"
+          SITE_HOST="$( "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; $u=parse_url(home_url("/")); echo $u["host"] . (isset($u["port"]) ? ":" . $u["port"] : "");' )"
+          SAMPLE_SLUG="$( "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; $p=get_posts(array("post_type"=>"post","post_status"=>"publish","posts_per_page"=>1,"meta_query"=>array(array("key"=>"_make_managed_article","value"=>1),array("key"=>"_make_language","value"=>"es")))); echo $p ? $p[0]->post_name : "";' )"
 
           check_html(){
             local route="$1"
@@ -292,7 +292,7 @@ jobs:
           check_html "/buscar/?s=P0001" "P0001" "search-es" "make_lang="
           check_html "/en/search/?s=P0001" "P0001" "search-en" "make_lang="
 
-          "${DOCKER[@]}" exec make-wp php -r '
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
             $_COOKIE["drielo_currency"]="USD";
             require "/var/www/html/wp-load.php";
             $id=wc_get_product_id_by_sku("DRIELO-P0001");
@@ -331,7 +331,7 @@ jobs:
 
           check_html "/wp-content/themes/make/assets/js/site.js" "syncCurrencyPrices" "currency-client-sync"
 
-          "${DOCKER[@]}" exec make-wp php -r '
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
             $_COOKIE["drielo_currency"]="USD";
             require "/var/www/html/wp-load.php";
             $usd_symbol=get_woocommerce_currency_symbol();
