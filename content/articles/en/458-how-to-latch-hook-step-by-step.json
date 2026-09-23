@@ -1,0 +1,75 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 458,
+  "translation_group": "458-latch-hook",
+  "taxonomy": {
+    "craft": {
+      "primary": "latch-hook",
+      "terms": [
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "beginners",
+      "terms": [
+        "beginners"
+      ]
+    },
+    "style": {
+      "terms": [
+        "step-by-step",
+        "latch-hook",
+        "knotting"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "rugs",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-458-latch-hook",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Beginners who want to learn the basic latch hook motion from preparing the canvas through making a first area of even knots.",
+  "title": "How to Latch Hook Step by Step",
+  "slug": "how-to-latch-hook-step-by-step",
+  "seo": {
+    "title": "How to Latch Hook Step by Step",
+    "meta_description": "Step-by-step latch hook tutorial: prepare canvas and yarn, position the tool, form the knot, follow the grid and check knot direction and consistency.",
+    "search_intent": "People who know what latch hook is and want a practical guide to making their first knots correctly."
+  },
+  "excerpt": "Learn latch hook from scratch: prepare the mesh, place yarn on the tool, form the knot and move through the pattern without losing your place.",
+  "content_html": "<p>The easiest way to learn latch hook is to practice a small section of canvas with one color first. That lets you concentrate on the tool motion, knot orientation and yarn consistency before adding a complicated chart.</p>\n<p>Prepare canvas that suits the yarn thickness, a latch hook tool, several equally cut yarn pieces and scissors. If you are using a kit, separate the colors and make sure the chart key is clear before starting.</p>\n<h2>Prepare the canvas and choose a working direction</h2>\n<p>Place the mesh in good light so the horizontal and vertical bars are easy to distinguish. If the canvas includes an unused margin, identify where the actual knotted area begins.</p>\n<p>For practice, choose a short row near one corner but inside the working area. Moving systematically left to right or right to left helps prevent skipped positions.</p>\n<p>Mark the first location with a removable marker when the grid is large. On a full pattern, connect that physical spot to the first chart cell you plan to work.</p>\n<p>Do not stretch or distort the canvas while knotting. A warped mesh makes it harder to identify which bar belongs to each chart position.</p>\n<p>Before the first row, count the available positions and compare them with the width of the practice area or pattern.</p>\n<h2>Insert the tool under the correct canvas bar</h2>\n<p>Hold the tool comfortably with the hook and moving latch positioned so the latch can open and close freely.</p>\n<p>Pass the hook through one canvas opening and under the bar that will receive the knot, then bring it out through the neighboring opening. The canvas bar should sit over the shaft of the tool.</p>\n<p>Do not pierce the canvas fibers or catch two bars at once. The tool should travel through the natural spaces in the mesh.</p>\n<p>At first, work slowly and inspect the reverse so you understand exactly which part of the grid is being wrapped.</p>\n<p>As you continue, use the same bar orientation for every knot so the pile faces consistently.</p>\n<h2>Place the folded yarn on the tool</h2>\n<p>Take one short yarn piece and fold it approximately at the center around the shaft of the tool. The two cut ends should sit together at nearly equal length.</p>\n<p>Slide the folded loop toward the canvas while keeping the loose ends accessible to the hook.</p>\n<p>Hand position can vary, but the structure is always the same: the folded center creates a loop, and both cut ends will eventually pass through that loop.</p>\n<p>If one end is much longer before the knot closes, recenter the yarn. Fixing the placement now is easier than trimming a badly uneven pile later.</p>\n<p>Use equal-length pieces during practice so you can tell whether irregularity comes from the knot or the yarn cutting.</p>\n<h2>Catch the yarn ends and pull the knot through</h2>\n<p>Place both cut ends in the hook area. As you begin pulling the tool back, the moving latch closes over the hook and helps trap the yarn ends.</p>\n<p>Continue drawing the tool toward you. The captured ends pass through the loop created by the folded center of the strand.</p>\n<p>When the tool comes free, the yarn is knotted around the canvas bar and the two cut ends form the visible pile.</p>\n<p>Pull the ends only enough to seat the knot. There is no need to tighten so aggressively that the mesh bar bends.</p>\n<p>Check that both ends traveled completely through the loop. If one is only partly caught, undo that knot and remake it before continuing.</p>\n<h2>Repeat in a consistent row or block order</h2>\n<p>Move to the next mesh position and repeat the same sequence: insert, position the yarn, catch the ends and pull through.</p>\n<p>After five or ten knots, inspect the surface. The pile should face in a similar direction and the knots should follow a clear line of the mesh.</p>\n<p>When following a chart, change color only when the next cell requires it. Keep shades separated in labeled containers or bags.</p>\n<p>At the end of a row, count the knots and compare with the expected chart width. Catching a one-position shift now prevents the rest of the motif from becoming misaligned.</p>\n<p>On a large project, you can work full rows or smaller blocks, but keep the method consistent and always mark completed chart areas.</p>\n<h2>Check consistency before adding many more rows</h2>\n<p>Inspect both the front and reverse. The front should show reasonably even pile density, while the back should show knots wrapped around equivalent canvas bars without gaps.</p>\n<p>If knots are loose, confirm that both ends passed fully through the loop. If the canvas begins curling, you may be pulling too hard.</p>\n<p>Compare visible pile length as well. Minor variation is normal, but large differences usually come from uneven cutting or off-center yarn placement.</p>\n<p>Do not heavily trim the entire surface during the first practice piece. Learn to make consistent knots first; final leveling, if needed, should be light.</p>\n<p>Once several rows can be completed without skipped positions and with similar knots, add a second color and begin following a simple grid.</p>\n<p>Latch hook is a simple motion repeated with precision. Preparing the mesh, catching the correct bar every time and centering each yarn piece before pulling produces an even surface and makes larger charted projects much easier to control.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Six-step sequence showing canvas, tool insertion, folded yarn, latch closing, finished knot and completed first row.",
+    "alt": "How to latch hook step by step"
+  }
+}
