@@ -1,0 +1,71 @@
+name: Install Drielo pattern system
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/install-pattern-system.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: install-drielo-pattern-system
+  cancel-in-progress: false
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download bootstrap fragments
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/drielo-bootstrap
+          curl -fL --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-4918-820e-b71d-20aac2fc270d/raw?se=2026-09-23T09%3A58%3A13Z&sp=r&sv=2026-02-06&sr=b&scid=e7526375-73c1-577a-b360-c02e89597ec8&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-23T09%3A02%3A01Z&ske=2026-09-24T09%3A02%3A01Z&sks=b&skv=2026-02-06&sig=dTZNmms8ECZsZ/gJ0qxSV2bUSPcj5IM/jtAeAhdQK9o%3D' -o /tmp/drielo-bootstrap/part00
+          curl -fL --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-8a2c-820e-915a-9799571bd0fa/raw?se=2026-09-23T09%3A58%3A17Z&sp=r&sv=2026-02-06&sr=b&scid=ead46c6e-3b04-5d2b-8d87-8cfa3767d388&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-23T08%3A58%3A08Z&ske=2026-09-24T08%3A58%3A08Z&sks=b&skv=2026-02-06&sig=uHaslJaK1Ief4NwC%2BJm7C3H7B70NMejHMZlwTAv%2B1MQ%3D' -o /tmp/drielo-bootstrap/part01
+          curl -fL --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-97a4-820e-9250-ce8737fb7be2/raw?se=2026-09-23T09%3A58%3A20Z&sp=r&sv=2026-02-06&sr=b&scid=2b47b6d8-2fca-575c-a15f-651904d5b66d&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-23T08%3A42%3A36Z&ske=2026-09-24T08%3A42%3A36Z&sks=b&skv=2026-02-06&sig=ipL0Rhqi51xA1rdAoGJdhIvXkI9ZKdu9eKi9EPabj4A%3D' -o /tmp/drielo-bootstrap/part02
+          curl -fL --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-f700-820e-b147-917180b5fde3/raw?se=2026-09-23T09%3A58%3A26Z&sp=r&sv=2026-02-06&sr=b&scid=aa798f5e-356b-5cb0-b780-72ab585ede97&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-23T06%3A37%3A11Z&ske=2026-09-24T06%3A37%3A11Z&sks=b&skv=2026-02-06&sig=XSDM6KBBxSTkktXXIPmO5VY3v13RuhihqHtcFQ%2B35lE%3D' -o /tmp/drielo-bootstrap/part03
+          curl -fL --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-e554-820e-9dfe-df1549911bc6/raw?se=2026-09-23T09%3A58%3A32Z&sp=r&sv=2026-02-06&sr=b&scid=d10012dc-f9b1-5bc7-95b4-9fe42ce7aed7&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-23T08%3A26%3A48Z&ske=2026-09-24T08%3A26%3A48Z&sks=b&skv=2026-02-06&sig=qc7xpNagU0uZNfrGUJpVKPGcZ%2Bb9WDAjRf8JFaVqERU%3D' -o /tmp/drielo-bootstrap/part04
+
+      - name: Reconstruct and verify bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat /tmp/drielo-bootstrap/part0{0,1,2,3,4} > /tmp/drielo-bootstrap/bundle.b64
+          base64 -d /tmp/drielo-bootstrap/bundle.b64 > /tmp/drielo-bootstrap/bundle.tar.gz
+          echo '5727d01b1c7d2850b69d058f14d1ddbf6f3b96b608a83d98c3cf8c1c05c7e191  /tmp/drielo-bootstrap/bundle.tar.gz' | sha256sum -c -
+          mkdir -p /tmp/drielo-bootstrap/unpack
+          tar -xzf /tmp/drielo-bootstrap/bundle.tar.gz -C /tmp/drielo-bootstrap/unpack
+
+      - name: Install pattern system
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf content/pattern-system
+          mkdir -p content
+          cp -a /tmp/drielo-bootstrap/unpack/pattern-system content/pattern-system
+          cp content/pattern-system/workflow.yml .github/workflows/build-pattern-pdf.yml
+          rm content/pattern-system/workflow.yml
+          cp content/pattern-system/AGENTS.md AGENTS.md
+
+          # Remove remnants of previous transfer attempts and this installer.
+          rm -rf .bootstrap-pattern-generator
+          rm -f .github/workflows/install-pattern-system.yml
+
+          python3 content/pattern-system/renderer/validate_all.py
+          python3 content/pattern-system/renderer/sync_catalog_palette.py
+
+      - name: Commit installed system
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Add collection-aware Drielo PDF pattern generator'
+          git push origin HEAD:main
