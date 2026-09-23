@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 428,
+  "translation_group": "428-tapestry-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "tapestry-crochet",
+      "terms": [
+        "tapestry-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "troubleshooting",
+      "terms": [
+        "troubleshooting"
+      ]
+    },
+    "style": {
+      "terms": [
+        "slanting",
+        "tapestry-crochet",
+        "troubleshooting"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "bags",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-428-tapestry",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Makers working flat or in-the-round tapestry charts who want to reduce visual slant without distorting the project.",
+  "title": "Why Tapestry Crochet Designs Slant and How to Fix It",
+  "slug": "why-tapestry-crochet-designs-slant-how-to-fix",
+  "seo": {
+    "title": "Why Tapestry Crochet Designs Slant and How to Fix It",
+    "meta_description": "Learn why tapestry crochet designs slant by separating natural stitch lean, counting errors, spiral seams and tension, then fixing the actual cause.",
+    "search_intent": "Crocheters whose tapestry motif shifts diagonally even though the chart contains vertical lines and who need to identify whether counting, stitch geometry or construction is responsible."
+  },
+  "excerpt": "A tapestry motif can slant because of stitch geometry, spiral construction, counting or tension. Learn how to identify the cause before changing the chart.",
+  "content_html": "<p>One of the more confusing tapestry crochet problems appears when the chart shows a vertical line but the crocheted motif gradually moves sideways. Sometimes there is a genuine mistake; in other cases you are seeing the natural lean created by the stitch structure.</p>\n<p>Before frogging, identify what kind of movement is happening. A smooth, regular slant needs a different diagnosis from a line that suddenly jumps two stitches to one side.</p>\n<h2>Separate natural stitch lean from counting errors</h2>\n<p>Crochet stitches do not always stack like perfectly centered square pixels. Depending on the stitch and hook insertion, the top of one stitch can sit slightly offset from its base.</p>\n<p>That geometry can create a gentle, repeating lean even when every color change is placed in the correct chart cell.</p>\n<p>A counting error more often creates an abrupt change: a vertical line shifts one stitch and then continues from the new position.</p>\n<p>Compare total stitch counts across several rows. If the counts remain correct and the movement develops uniformly, structural slant is more likely than a lost stitch.</p>\n<h2>Check exactly where the hook is inserted</h2>\n<p>Working through both loops, one loop only or using waistcoat stitch changes the way stitches stack.</p>\n<p>Some methods create visually straighter columns than conventional single crochet. If a pattern was designed for a specific insertion point, changing it can alter both proportions and slant.</p>\n<p>Make a swatch containing one contrasting vertical line for ten or fifteen rows. That gives a much clearer diagnostic than a complicated picture.</p>\n<p>Do not switch stitch style halfway through a large piece because texture and gauge will change as well.</p>\n<h2>In the round, determine whether the work spirals</h2>\n<p>When you crochet continuously in a spiral, the beginning of the round travels around the piece rather than stacking exactly above one point. A motif can therefore appear to rotate.</p>\n<p>A chart designed for joined rounds may depend on a particular join and beginning stitch to preserve alignment.</p>\n<p>Mark the first stitch of every round and watch the seam. If the edge of the motif shifts at the same rate as the seam, round construction is part of the problem.</p>\n<p>Do not try to correct rotation by randomly adding or removing stitches because that creates a second distortion in the project shape.</p>\n<h2>Rule out uneven tension before editing the chart</h2>\n<p>An area containing several carried strands can become firmer and narrower than a one-color section. That difference pulls on the motif and can exaggerate slant.</p>\n<p>Measure width in a simple area and again in dense colorwork. If the second section compresses, address carried-yarn tension first.</p>\n<p>Also notice whether your tension differs depending on row direction. In flat crochet, consistently tighter wrong-side rows can bias the whole fabric.</p>\n<p>Blocking may relax small differences, but it should not be used to stretch a line several stitches sideways into position.</p>\n<h2>Use the chart as a guide but understand visual compensation</h2>\n<p>If your chosen stitch has a predictable natural lean, a custom chart can compensate by shifting certain lines so the finished crochet looks vertical.</p>\n<p>That means the most useful chart is not always geometrically perfect on screen. The goal is the appearance of the finished textile.</p>\n<p>Swatch before redrawing a large design. Measure how far one vertical column appears to move after ten or twenty rows with the actual yarn and stitch.</p>\n<p>With a purchased pattern, do not automatically “correct” the graph because the designer may already have built compensation into it.</p>\n<h2>Match the fix to the cause</h2>\n<p>If stitches are missing, return to the first counting error. If the seam rotates because of spiral construction, change the round method only if the pattern allows it. If a section is being pulled by carried yarn, correct tension.</p>\n<p>When the slant is purely structural and consistent, no repair may be necessary. View the motif from a normal distance and compare it with the designer's sample.</p>\n<p>For future projects, keep a small reference swatch in your usual stitch and hook combination. It shows how vertical and diagonal chart lines behave in your hands.</p>\n<p>Make a ten-row diagnostic sample containing a vertical column, a diagonal and a small square. If only the vertical column leans while the square keeps its proportions, stitch geometry is more likely than a counting problem.</p>\n<p>If the amount of shift changes with row direction, photograph the right and wrong sides separately. That comparison can reveal that your hook insertion or tension changes when the work is turned.</p>\n<p>Tapestry slant does not have one universal cause. Counting stitches, identifying the construction method and observing stitch geometry prevents unnecessary frogging. Once you know whether the shift comes from an error, the round structure or natural stitch lean, you can correct the right thing without distorting the rest of the project.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "A chart with a vertical line compared with two tapestry swatches, one slanted and one corrected, with arrows showing the shift.",
+    "alt": "Why tapestry crochet designs slant"
+  }
+}
