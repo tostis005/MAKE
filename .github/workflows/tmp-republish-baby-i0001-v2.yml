@@ -1,0 +1,189 @@
+name: TEMP republish Baby Nursery I0001 v2
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tmp-republish-baby-i0001-v2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-baby-i0001-v2
+  cancel-in-progress: false
+
+jobs:
+  regenerate-and-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install renderer dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow playwright
+          python3 -m playwright install --with-deps chromium
+
+      - name: Generate reference-faithful I0001
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/baby_nursery/generate_i0001.py
+
+      - name: Validate I0001 v2
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('.')
+          codes=('I0001-CS','I0001-C2C','I0001-TC','I0001-LH')
+          for code in codes:
+              pat=root/'content/pattern-system/patterns'/code/'pattern.json'
+              prod=root/'content/pattern-system/products'/code/'product.json'
+              pdf=root/'content/products/files'/f'Drielo_{code}.pdf'
+              img=root/'content/products/assets'/f'{code}-product.webp'
+              p=json.loads(pat.read_text(encoding='utf-8'))
+              q=json.loads(prod.read_text(encoding='utf-8'))
+              if p.get('source_asset')!='reference-sheet:baby-nursery/I0001-teddy-bear-v2':
+                  raise SystemExit(f'{code}: wrong pattern source')
+              if q.get('source_artwork')!='reference-sheet:baby-nursery/I0001-teddy-bear-v2':
+                  raise SystemExit(f'{code}: wrong product source')
+              if not p.get('matrix') or len(p.get('threads',[])) < 7:
+                  raise SystemExit(f'{code}: incomplete pattern')
+              if not pdf.is_file() or pdf.stat().st_size < 100000 or pdf.read_bytes()[:4] != b'%PDF':
+                  raise SystemExit(f'{code}: invalid PDF')
+              if not img.is_file() or img.stat().st_size < 50000:
+                  raise SystemExit(f'{code}: invalid image')
+              print(code,'stitches',p['total_stitches'],'colours',len(p['threads']),'pdf',pdf.stat().st_size,'image',img.stat().st_size)
+          cat=json.loads((root/'content/products/catalog.json').read_text(encoding='utf-8'))
+          rows={x.get('code'):x for x in cat.get('products',[])}
+          for code in codes:
+              if str(rows[code].get('gallery_revision'))!='2026092302':
+                  raise SystemExit(f'{code}: gallery revision not bumped')
+          print('I0001_V2_VALID')
+          PY
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_products_key
+          chmod 600 ~/.ssh/drielo_products_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Package products
+        shell: bash
+        run: |
+          set -euo pipefail
+          tar -czf /tmp/drielo-products-v2.tgz content/products content/tools/import-products.php
+
+      - name: Upload package
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          scp -i ~/.ssh/drielo_products_key /tmp/drielo-products-v2.tgz "$VPS_USER@$VPS_HOST:/tmp/drielo-products-v2-${GITHUB_RUN_ID}.tgz"
+
+      - name: Import and verify WooCommerce
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_products_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-products-v2-${GITHUB_RUN_ID}.tgz"
+          STAGE="/tmp/drielo-products-v2-${GITHUB_RUN_ID}"
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE"; }
+          trap cleanup EXIT
+
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $codes=array("DRIELO-I0001-CS","DRIELO-I0001-C2C","DRIELO-I0001-TC","DRIELO-I0001-LH");
+            foreach ($codes as $sku) {
+              $id=wc_get_product_id_by_sku($sku);
+              $p=$id ? wc_get_product($id) : false;
+              if (!$p) { fwrite(STDERR,"Missing ".$sku.PHP_EOL); exit(2); }
+              $cols=wp_get_object_terms($id,"product_collection",array("fields"=>"slugs"));
+              echo $sku." id=".$id." image=".$p->get_image_id()." downloads=".count($p->get_downloads())." collection=".implode(",",is_wp_error($cols)?array():$cols)." url=".get_permalink($id).PHP_EOL;
+              if (!$p->get_image_id() || count($p->get_downloads())<1 || !in_array("baby-nursery",is_wp_error($cols)?array():$cols,true)) {
+                fwrite(STDERR,"Incomplete ".$sku.PHP_EOL); exit(3);
+              }
+            }
+          '
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
+          REMOTE
+
+      - name: Persist JSONs and product images
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            content/pattern-system/patterns/I0001-CS/pattern.json \
+            content/pattern-system/patterns/I0001-C2C/pattern.json \
+            content/pattern-system/patterns/I0001-TC/pattern.json \
+            content/pattern-system/patterns/I0001-LH/pattern.json \
+            content/pattern-system/products/I0001-CS/product.json \
+            content/pattern-system/products/I0001-C2C/product.json \
+            content/pattern-system/products/I0001-TC/product.json \
+            content/pattern-system/products/I0001-LH/product.json \
+            content/pattern-system/collections/baby-nursery/designs.json \
+            content/products/catalog.json \
+            content/products/assets/I0001-CS-product.webp \
+            content/products/assets/I0001-C2C-product.webp \
+            content/products/assets/I0001-TC-product.webp \
+            content/products/assets/I0001-LH-product.webp
+          if git diff --cached --quiet; then
+            echo "No generated changes to persist."
+          else
+            git commit -m "Regenerate I0001 from nursery reference sheet [skip ci]"
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
+          fi
+
+      - name: Archive regenerated PDFs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: baby-nursery-I0001-v2-pdfs
+          path: |
+            content/products/files/Drielo_I0001-CS.pdf
+            content/products/files/Drielo_I0001-C2C.pdf
+            content/products/files/Drielo_I0001-TC.pdf
+            content/products/files/Drielo_I0001-LH.pdf
+          retention-days: 30
