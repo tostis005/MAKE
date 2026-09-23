@@ -216,7 +216,8 @@ def product_source(code,base_code,title,suffix):
             'technique':cfg['technique'],'pattern_file':f'patterns/{code}/pattern.json','template':cfg['template']}
 
 def data_uri(path):
-    p=Path(path); mime='image/png' if p.suffix.lower()=='.png' else 'image/jpeg'
+    p=Path(path)
+    mime={'.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.webp':'image/webp'}.get(p.suffix.lower(),'application/octet-stream')
     return 'data:'+mime+';base64,'+base64.b64encode(p.read_bytes()).decode('ascii')
 
 def render_one(task):
@@ -227,7 +228,7 @@ def render_one(task):
     # replace pattern-data block
     template=re.sub(r'(<script id="template-pattern-data" type="application/json">)(.*?)(</script>)',
                     lambda m:m.group(1)+json.dumps(data,ensure_ascii=False,separators=(',',':'))+m.group(3),template,count=1,flags=re.S)
-    cover=ENGINE_ASSETS/f"cover-{ {'CS':'cross-stitch','C2C':'c2c-crochet','TC':'crochet','LH':'rug'}[suffix] }.png"
+    cover=ENGINE_ASSETS/f"cover-{ {'CS':'cross-stitch','C2C':'c2c-crochet','TC':'crochet','LH':'rug'}[suffix] }.webp"
     floral=ENGINE_ASSETS/'floral.png'
     assets={'floral':data_uri(floral),'cover_image':data_uri(cover)}
     template=re.sub(r'(<script id="template-assets" type="application/json">)(.*?)(</script>)',
