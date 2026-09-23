@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 485,
+  "translation_group": "485-latch-hook",
+  "taxonomy": {
+    "craft": {
+      "primary": "latch-hook",
+      "terms": [
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "pixel-art",
+      "terms": [
+        "pixel-art"
+      ]
+    },
+    "style": {
+      "terms": [
+        "pixel-art",
+        "pattern-design",
+        "colorwork"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "rugs",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-485-latch-hook",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "People with pixel art or grid designs who want to adapt them to latch hook while preserving proportions, readability and a manageable palette.",
+  "title": "How to Turn Pixel Art into a Latch Hook Pattern",
+  "slug": "how-to-turn-pixel-art-into-latch-hook-pattern",
+  "seo": {
+    "title": "How to Turn Pixel Art into a Latch Hook Pattern",
+    "meta_description": "Turn pixel art into a latch hook pattern by adjusting grid size, finished dimensions, palette, edges and readability before finalizing the chart.",
+    "search_intent": "People who want to transform pixel art or grid art into a latch hook pattern."
+  },
+  "excerpt": "Pixel art maps naturally to latch hook because each cell can become one knot. Learn how to adapt size, color and detail before creating the final pattern.",
+  "content_html": "<p>Pixel art is one of the strongest starting points for a latch hook pattern because both formats use a grid. Each pixel can map directly to one knot position, but that does not mean every pixel image should be transferred without editing. Finished size, palette and detail level need to suit the canvas and the distance from which the piece will be viewed.</p>\n<p>The goal is not to preserve every pixel at all costs. It is to preserve the visual reading of the design after pixels become yarn pile on physical mesh.</p>\n<h2>Start with a clean grid and clear proportions</h2>\n<p>Use a version of the pixel art where each pixel is a defined cell rather than an enlarged image with blurred edges.</p>\n<p>Check the pixel width and height and record those dimensions before editing.</p>\n<p>If the design includes transparency, decide whether those cells become a background color or remain outside the project outline.</p>\n<p>Remove isolated pixels that add no meaningful information and would only create stray single knots.</p>\n<p>Inspect diagonals and curves especially closely because one cell can change the silhouette noticeably in a small design.</p>\n<p>Keep a copy of the original so every simplification can be compared with the intended image.</p>\n<h2>Calculate how large the grid will become on your canvas</h2>\n<p>A 50-by-70-pixel design initially becomes 50 by 70 knot positions.</p>\n<p>To find its physical dimensions, divide those counts by the measured mesh density.</p>\n<p>If the result is too small, simply using thicker yarn may not solve the problem; the grid itself may need to be enlarged proportionally.</p>\n<p>If the result is too large, reduce cell count or consider a finer mesh as long as yarn and tool remain compatible.</p>\n<p>Think about the final use before deciding. Rugs, pillows and wall hangings are viewed from different distances.</p>\n<p>A design that looks very blocky close up can read clearly from several feet away.</p>\n<h2>Reduce the palette before assigning yarn</h2>\n<p>Digital pixel art can contain many nearby shades that do not create a useful distinction once translated into yarn.</p>\n<p>Group similar colors and keep the shades that define shapes, highlights, shadows or important elements.</p>\n<p>Two almost identical colors can add work and counting risk without visibly improving the finished piece.</p>\n<p>Favor a palette where every color has a clear visual purpose.</p>\n<p>Check that the selected colors exist in the yarn line you plan to use or can be matched with acceptable substitutes.</p>\n<p>Make a physical yarn reference card and compare it with the digital palette before finalizing the chart.</p>\n<h2>Strengthen edges and details that pile may soften</h2>\n<p>Latch hook pile visually softens boundaries between cells, especially with fluffy or longer yarn.</p>\n<p>A one-pixel line can disappear between neighboring colors when contrast is low.</p>\n<p>When an outline matters, consider making it two cells wide or increasing contrast against the background.</p>\n<p>Avoid tiny details surrounded by many similar shades because the pile tends to blend them visually.</p>\n<p>For small eyes, letters or symbols, make a test section before committing to the full project.</p>\n<p>The goal is for the form to survive the texture rather than for the chart to preserve every digital micro-detail.</p>\n<h2>Map each pixel to a cell and build a clear color key</h2>\n<p>Once size and palette are fixed, assign one code to each color and use it consistently throughout the chart.</p>\n<p>The final grid should represent exactly one knot position per cell.</p>\n<p>On large patterns, add reference numbering every ten rows and columns to make counting easier.</p>\n<p>Include a legend connecting code, color name and yarn reference when possible.</p>\n<p>For charts that may be printed in black and white, use symbols as well as color so similar shades remain distinguishable.</p>\n<p>Check that every chart color has a code and that each cell belongs to one category only.</p>\n<h2>Make a small sample before committing to the entire project</h2>\n<p>Choose a representative section containing an edge, a color change and an important detail.</p>\n<p>Knot it using the actual canvas and yarn and view the sample from the intended distance.</p>\n<p>Check whether diagonals keep their shape, colors remain distinct and pile hides any lines that are too thin.</p>\n<p>If the sample loses readability, return to the chart and simplify or strengthen that area before cutting all of the yarn.</p>\n<p>A small test can prevent hundreds of poorly planned knots.</p>\n<p>Turning pixel art into latch hook works best when the digital grid is treated as a structural draft. Adjusting size, reducing the palette and strengthening details before the final chart lets each pixel become a knot while preserving the visual identity of the original design.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Simple pixel art beside its latch hook grid conversion and a small knotted sample preserving the same silhouette.",
+    "alt": "How to turn pixel art into a latch hook pattern"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 485,
+  "translation_group": "485-latch-hook",
+  "taxonomy": {
+    "craft": {
+      "primary": "latch-hook",
+      "terms": [
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "pixel-art",
+      "terms": [
+        "pixel-art"
+      ]
+    },
+    "style": {
+      "terms": [
+        "pixel-art",
+        "pattern-design",
+        "colorwork"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "rugs",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "es-485-latch-hook",
+  "language": "es",
+  "locale": "es-ES",
+  "market_context": "Personas que tienen pixel art o diseños en cuadrícula y quieren adaptarlos a Latch Hook conservando proporciones, legibilidad y una paleta manejable.",
+  "title": "Cómo convertir pixel art en un patrón de Latch Hook",
+  "slug": "como-convertir-pixel-art-patron-latch-hook",
+  "seo": {
+    "title": "Cómo convertir pixel art en un patrón de Latch Hook",
+    "meta_description": "Convierte pixel art en un patrón de Latch Hook ajustando cuadrícula, tamaño final, paleta, bordes y legibilidad antes de preparar el chart definitivo.",
+    "search_intent": "Personas que quieren transformar una imagen pixelada o grid art en un patrón de Latch Hook."
+  },
+  "excerpt": "El pixel art encaja de forma natural con Latch Hook porque cada celda puede convertirse en un nudo. Aprende a adaptar tamaño, color y detalle antes de generar el patrón.",
+  "content_html": "<p>El pixel art es uno de los mejores puntos de partida para crear un patrón de Latch Hook porque ambas técnicas trabajan con una lógica de cuadrícula. Cada píxel puede convertirse directamente en una posición de nudo, pero eso no significa que cualquier imagen pixelada vaya a funcionar sin ajustes. El tamaño final, la paleta y el nivel de detalle deben adaptarse al canvas y a la distancia desde la que se verá la pieza.</p>\n<p>El objetivo no es copiar cada píxel por obligación, sino conservar la lectura visual del diseño cuando se transforma en pelo de hilo sobre una malla física.</p>\n<h2>Empieza por una cuadrícula limpia y con proporciones claras</h2>\n<p>Utiliza una versión del pixel art donde cada píxel represente una celda definida y no una imagen ampliada con bordes borrosos.</p>\n<p>Comprueba el ancho y alto en píxeles y anota esas medidas antes de cambiar nada.</p>\n<p>Si el diseño contiene zonas transparentes, decide si se convertirán en color de fondo o quedarán fuera del contorno del proyecto.</p>\n<p>Elimina píxeles sueltos que no aporten información visual y que sólo crearían nudos aislados difíciles de justificar.</p>\n<p>Revisa especialmente diagonales y curvas, porque una sola celda puede cambiar mucho la silueta en diseños pequeños.</p>\n<p>Guarda una copia del original para comparar cada simplificación con la intención inicial.</p>\n<h2>Calcula qué tamaño tendrá esa cuadrícula sobre tu canvas</h2>\n<p>Un diseño de 50 por 70 píxeles se convierte, en principio, en 50 por 70 posiciones de nudo.</p>\n<p>Para saber cuánto medirá físicamente, divide esos conteos por la densidad real de la malla.</p>\n<p>Si el resultado es demasiado pequeño, no basta con usar un hilo más grueso; puede ser necesario ampliar la cuadrícula manteniendo las proporciones.</p>\n<p>Si resulta demasiado grande, puedes reducir el número de celdas o elegir una malla más fina siempre que hilo y herramienta sean compatibles.</p>\n<p>Antes de decidir, piensa en el uso final: alfombra, cojín y tapiz se observan desde distancias diferentes.</p>\n<p>Una pieza que parece muy pixelada de cerca puede leerse perfectamente a dos metros de distancia.</p>\n<h2>Reduce la paleta antes de asignar hilos</h2>\n<p>El pixel art digital puede contener muchos tonos cercanos que no aportan una diferencia visible cuando se convierten en hilo.</p>\n<p>Agrupa colores similares y conserva sólo aquellos que separan formas, luces, sombras o elementos importantes.</p>\n<p>Dos tonos casi idénticos pueden generar más trabajo y más riesgo de error sin mejorar realmente la imagen final.</p>\n<p>Prioriza una paleta donde cada color tenga una función clara dentro del dibujo.</p>\n<p>Comprueba que los colores elegidos existan en el hilo que vas a utilizar o que puedas sustituirlos por tonos próximos.</p>\n<p>Haz una tarjeta con muestras reales de hilo y compara la paleta física con la imagen digital antes de cerrar el patrón.</p>\n<h2>Refuerza bordes y detalles que puedan perderse en el pelo</h2>\n<p>El pelo de Latch Hook suaviza visualmente los límites entre celdas, especialmente con hilo esponjoso o largo.</p>\n<p>Una línea de un solo píxel puede desaparecer entre colores vecinos si el contraste es bajo.</p>\n<p>Cuando un contorno sea importante, valora hacerlo de dos celdas o aumentar el contraste respecto al fondo.</p>\n<p>Evita detalles diminutos rodeados por muchos tonos parecidos, porque el pelo tenderá a mezclarlos visualmente.</p>\n<p>Para ojos, letras o símbolos pequeños, crea una prueba de varias filas antes de comprometer todo el proyecto.</p>\n<p>El objetivo es que la forma sobreviva a la textura, no que el gráfico conserve cada microdetalle digital.</p>\n<h2>Convierte cada píxel en una celda y crea una leyenda clara</h2>\n<p>Una vez cerrados tamaño y paleta, asigna un código a cada color y mantenlo constante en todo el chart.</p>\n<p>La cuadrícula final debe mostrar exactamente una posición por nudo.</p>\n<p>En patrones grandes, añade numeración cada diez filas y columnas para facilitar el conteo.</p>\n<p>Incluye una leyenda que relacione código, nombre de color y referencia de hilo cuando sea posible.</p>\n<p>Si el gráfico se imprime en blanco y negro, utiliza símbolos además de color para que tonos cercanos sigan siendo distinguibles.</p>\n<p>Revisa que ningún color haya quedado sin código y que cada celda pertenezca a una sola categoría.</p>\n<h2>Haz una prueba pequeña antes de generar el proyecto completo</h2>\n<p>Elige una zona representativa que contenga borde, cambio de color y algún detalle importante.</p>\n<p>Anúdala con el canvas y el hilo reales y observa la muestra desde la distancia prevista.</p>\n<p>Comprueba si las diagonales conservan su forma, si los colores se diferencian y si el pelo oculta líneas demasiado finas.</p>\n<p>Si la muestra pierde legibilidad, vuelve al gráfico y simplifica o refuerza esa parte antes de cortar todo el hilo.</p>\n<p>Una pequeña prueba puede ahorrar cientos de nudos mal planteados.</p>\n<p>Convertir pixel art en Latch Hook funciona mejor cuando la cuadrícula digital se trata como un borrador estructural. Ajustar tamaño, reducir paleta y reforzar detalles antes del chart definitivo permite que cada píxel convertido en nudo conserve la lectura del diseño original.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Pixel art de un motivo simple junto a su versión en cuadrícula de Latch Hook y una pequeña muestra anudada que conserva la misma silueta.",
+    "alt": "Cómo convertir pixel art en un patrón de Latch Hook"
+  }
+}
