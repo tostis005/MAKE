@@ -5,9 +5,9 @@ $home_url         = make_home_url();
 $site_name        = make_brand_name();
 $site_tagline     = make_brand_tagline();
 $nav              = array(
-    array( 'label' => make_t( 'Punto de cruz', 'Cross stitch' ), 'url' => make_cross_stitch_url() ),
+    array( 'label' => make_t( 'Aprender', 'Learn' ), 'url' => make_journal_url() ),
     array( 'label' => make_t( 'Tienda', 'Shop' ), 'url' => make_shop_url() ),
-    array( 'label' => make_t( 'Últimos artículos', 'Latest articles' ), 'url' => make_journal_url() ),
+    array( 'label' => make_t( 'Artículos', 'Articles' ), 'url' => make_journal_url() ),
 );
 ?><!doctype html>
 <html <?php language_attributes(); ?>>
