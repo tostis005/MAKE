@@ -251,9 +251,9 @@ def main() -> None:
     if missing:
         raise RuntimeError("Missing generated files: " + ", ".join(missing))
 
-    if TECHS["C2C"]["page_1_asset"] != "multitech/assets/cover-crochet.webp":
+    if TECHS["C2C"]["page_1_asset"] != "multitech/assets/cover-c2c-crochet.webp":
         raise RuntimeError("C2C cover mapping is not corrected")
-    if TECHS["TC"]["page_1_asset"] != "multitech/assets/cover-c2c-crochet.webp":
+    if TECHS["TC"]["page_1_asset"] != "multitech/assets/cover-crochet.webp":
         raise RuntimeError("Tapestry cover mapping is not corrected")
 
     print(json.dumps({
