@@ -13,7 +13,7 @@ This repository is the source of truth for Drielo cross-stitch PDF generation.
 7. Pages 1-3 use the same canonical vector stitch model. Page 1 places the transparent vector stitch layer inside the collection's frame area over an Aida-style fabric background. Pages 2-3 render the same stitch geometry with the template's fabric preview.
 8. Colour charts, symbol charts, rulers and enlarged chart sections must be generated from the same matrix and thread definitions used for the preview.
 9. Keep the customer PDF vector wherever the template generates SVG. Do not rasterize vector chart/stitch artwork before PDF export.
-10. Product code must be technique-qualified and unique: `P0021-CS`, `P0021-C2C`, `P0021-TC` or `P0021-LH`. Keep the shared design family separately as the base design ID (`P0021`).\n11. Every sellable product has exactly ONE public product image. It must contain only the ambient/lifestyle scene with the finished craft visible. Never use the full PDF page as a store image and never include the right-side facts rail, title, subtitle, skill level, finished size, colour/thread count, type, footer, floral ornaments, URL or page number.\n12. The public product image must be derived from the same page-1 composition and the same final vector pattern used in the PDF, so the store image and PDF cover always match. Export it as a 4:5 WebP using the template element marked `[data-product-image]`.\n13. For mass production, generate product JSON + pattern JSON, render PDF + product image in GitHub Actions, then let the product-import workflow publish/update WooCommerce. Do not manually patch PDFs or manually rebuild store screenshots.
+10. Product code must be technique-qualified and unique. Legacy/Pop Art design families use `P####`; the Baby & Nursery collection uses `I####`. Examples: `P0021-CS` or `I0001-CS`, with the same `-CS`, `-C2C`, `-TC`, `-LH` technique suffixes. Keep the shared design family separately as the base design ID.\n11. Every sellable product has exactly ONE public product image. It must contain only the ambient/lifestyle scene with the finished craft visible. Never use the full PDF page as a store image and never include the right-side facts rail, title, subtitle, skill level, finished size, colour/thread count, type, footer, floral ornaments, URL or page number.\n12. The public product image must be derived from the same page-1 composition and the same final vector pattern used in the PDF, so the store image and PDF cover always match. Export it as a 4:5 WebP using the template element marked `[data-product-image]`.\n13. For mass production, generate product JSON + pattern JSON, render PDF + product image in GitHub Actions, then let the product-import workflow publish/update WooCommerce. Do not manually patch PDFs or manually rebuild store screenshots.
 
 ## Collection palette
 
@@ -62,3 +62,7 @@ Required output:
 - templates/renderers must expose the exact capture region as `[data-product-image]`.
 
 This image is the only item in the product gallery unless a future project rule explicitly adds additional commercial imagery.
+
+## Staged products
+
+Products that are structurally created but do not yet have approved canonical artwork/page-1 assets must set `render_ready: false`. GitHub Actions must skip those products until their real stitch matrix and approved collection mockup are ready.

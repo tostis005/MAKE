@@ -31,12 +31,12 @@ Chromium/Chrome is required. The resulting PDF is written to `output/<CODE>/Drie
 
 ## Product-code convention
 
-Every sellable pattern code is technique-qualified and unique:
+Every sellable pattern code is technique-qualified and unique. The legacy/Pop Art families use `P####`; Baby & Nursery uses `I####`:
 
-- Cross Stitch: `P0001-CS`
-- C2C Crochet: `P0001-C2C`
-- Tapestry Crochet: `P0001-TC`
-- Latch Hook / Rug: `P0001-LH`
+- Cross Stitch: `P0001-CS` or `I0001-CS`
+- C2C Crochet: `P0001-C2C` or `I0001-C2C`
+- Tapestry Crochet: `P0001-TC` or `I0001-TC`
+- Latch Hook / Rug: `P0001-LH` or `I0001-LH`
 
 The shared artwork/design family keeps the base ID separately (for example `P0001`). Never publish a technique product using only the base ID.
 
@@ -60,3 +60,7 @@ For bulk production, keep the source of truth in GitHub:
 4. the WooCommerce importer consumes the catalogue plus those generated assets.
 
 This removes the slow manual loop of rendering files locally, sending them through chat, and re-uploading them one by one.
+
+## Draft / staged products
+
+A product may be committed before its final artwork and cover imagery exist by setting `render_ready: false`. The build workflow ignores those entries until they are complete, while preserving the folder structure and metadata in GitHub.

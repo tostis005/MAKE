@@ -47,3 +47,7 @@ Use proportional rules, never a fixed millimetre stitch size:
 `python3 content/pattern-system/renderer/render.py --product <CODE>`
 
 The build writes the finished PDF into the configured output directory and verifies that Chromium produced a readable PDF.
+
+## Product-code prefixes
+
+Technique-qualified codes are the canonical sellable IDs. Existing Pop Art/legacy families use `P####`; the Baby & Nursery collection uses `I####`. Both use `-CS`, `-C2C`, `-TC`, and `-LH` suffixes. Products waiting for final artwork or cover imagery must use `render_ready: false` so automation does not build placeholders.
