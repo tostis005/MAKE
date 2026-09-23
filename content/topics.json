@@ -5012,6 +5012,61 @@
       "title_es": "Cómo leer símbolos, cuadrículas y leyendas de color en crochet gráfico",
       "title_en": "How to Read Symbols, Grids and Color Keys in Crochet Charts",
       "craft": "tapestry-crochet"
+    },
+    {
+      "number": 455,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "beginners",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Tapestry Crochet para zurdos: gráficos y dirección de trabajo",
+      "title_en": "Left-Handed Tapestry Crochet: Charts and Working Direction",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 456,
+      "priority": "P3",
+      "section": "buying-guides",
+      "topic": "patterns",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Cómo elegir tu primer proyecto de Tapestry Crochet",
+      "title_en": "How to Choose Your First Tapestry Crochet Project",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 457,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "beginners",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Qué es Latch Hook: guía completa para principiantes",
+      "title_en": "What Is Latch Hook? A Complete Beginner's Guide",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 458,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "beginners",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo hacer Latch Hook paso a paso",
+      "title_en": "How to Latch Hook Step by Step",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 459,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "pattern-reading",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo leer un patrón de Latch Hook",
+      "title_en": "How to Read a Latch Hook Pattern",
+      "craft": "latch-hook"
     }
   ],
   "taxonomy_strategy": {
@@ -5042,7 +5097,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 454,
-    "bilingual_groups": 454
+    "last_indexed_article": 459,
+    "bilingual_groups": 459
   }
 }
