@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 424,
+  "translation_group": "424-tapestry-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "tapestry-crochet",
+      "terms": [
+        "tapestry-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "color-changes",
+      "terms": [
+        "color-changes"
+      ]
+    },
+    "style": {
+      "terms": [
+        "color-changes",
+        "clean-edges",
+        "tapestry-crochet"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "bags",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-424-tapestry",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Makers who know basic crochet and want cleaner color boundaries in tapestry charts.",
+  "title": "How to Change Colors in Tapestry Crochet Cleanly",
+  "slug": "how-to-change-colors-tapestry-crochet-cleanly",
+  "seo": {
+    "title": "How to Change Colors in Tapestry Crochet Cleanly",
+    "meta_description": "Change colors cleanly in tapestry crochet by switching on the final pull-through, positioning inactive yarn and controlling tension and contrast.",
+    "search_intent": "Crocheters who want crisp tapestry color changes without bars of the previous shade, bulky joins or weak transitions."
+  },
+  "excerpt": "A clean color change begins before the new stitch: complete the final pull-through of the previous stitch with the next color and manage the carried yarn.",
+  "content_html": "<p>In tapestry crochet, a clean color change does not begin in the stitch that should display the new shade. It begins one step earlier. The final pull-through of the previous stitch is completed with the next color so the loop on the hook is already prepared for the new stitch.</p>\n<p>That timing removes many unwanted color bars, but clean transitions also depend on where the inactive yarn sits, how tightly it is carried and how you manage the ends of a color section.</p>\n<h2>Switch during the final pull-through</h2>\n<p>Work the current stitch with color A until only the final step remains. In single crochet, you will normally have two loops on the hook.</p>\n<p>Instead of completing the stitch with A, pick up color B and pull it through the remaining loops. The loop now on the hook is B, ready for the next stitch.</p>\n<p>This prevents the top “V” of the preceding stitch from appearing as a bar inside the new color area.</p>\n<p>Use the same method when switching back from B to A. The principle stays identical even when a row contains many changes.</p>\n<h2>Position the yarn that becomes inactive</h2>\n<p>After switching, lay color A across the working area and enclose it within the B stitches if the pattern uses standard tapestry carrying.</p>\n<p>Keep the inactive strand in a consistent position relative to the fabric. Moving it randomly from front to back can make it peek through unevenly.</p>\n<p>Do not tug the newly parked yarn. Leave enough length for it to match the true width of the stitches.</p>\n<p>Over a long distance, reconsider whether it should continue being carried. A dark yarn hidden through many pale stitches can add bulk and become visible.</p>\n<h2>Control tension immediately after the change</h2>\n<p>The first one or two stitches after a switch are where the previous yarn is most likely to become too tight. Spread the section gently and make sure its width stays consistent.</p>\n<p>If the color boundary curves inward, loosen the carried strand. If a loop appears on the reverse, remove only the obvious slack without pulling hard enough to pucker the row.</p>\n<p>The active yarn should also keep normal tension. Do not compensate for a loose carried strand by tightening the visible stitches.</p>\n<p>On a swatch, compare a plain-color section with an area containing many changes. Large width differences show that the transitions are altering your gauge.</p>\n<h2>Take extra care with dark-to-light changes</h2>\n<p>Black yarn carried inside white stitches may show through even when the technique is correct. Strong contrast exposes tiny amounts of the internal strand.</p>\n<p>Try positioning the carried shade slightly toward the reverse rather than centered within the stitch. With some yarns, that reduces how much appears on the front.</p>\n<p>A different hook size can also change how tightly the fabric encloses the strand, but test any adjustment because it changes gauge.</p>\n<p>Across a very long pale section, cutting the dark yarn and rejoining later may look cleaner than carrying it through the entire area.</p>\n<h2>Avoid bulk during frequent alternation</h2>\n<p>When colors alternate A-B-A-B every one or two stitches, both yarns remain active through much of the row. Keep the strands parallel and avoid wrapping them around one another at every switch.</p>\n<p>Do not knot the colors together. The stitch structure and later weaving should secure the yarn without adding a hard lump.</p>\n<p>Every several changes, lay the work flat and separate the yarn sources if they have twisted. Continuous braiding can affect both feed and tension.</p>\n<p>On charts with constant alternation, working deliberately through the first few rows creates a repeatable movement that later becomes automatic.</p>\n<h2>Inspect transitions at row edges as well as in the middle</h2>\n<p>A color change near the first or last stitch of a row can look different because the turning chain and edge tension are involved. Make sure the new shade is introduced before the edge stitch is completely closed, just as it would be in the middle.</p>\n<p>If the next row begins in the same color, keep that yarn positioned so the turn does not create an exposed strand across the side. When the old color will not be used for several rows, cutting it may produce a cleaner edge than carrying it vertically.</p>\n<p>On the front, look for a crisp boundary without a bar of the previous shade. On the reverse, check for large loops or loose strands that could snag.</p>\n<p>Stretch the fabric gently. The color boundary should not open more than neighboring stitches. If one transition is loose, redistribute tension through one or two adjacent stitches rather than yanking the tail.</p>\n<p>A clean tapestry color change is the result of three small decisions: introduce the new shade on the final pull-through, carry the old yarn with the correct length and keep both strands orderly. When those actions are consistent, chart boundaries stay sharp without visible knots or awkward joins.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Close-up of a red-to-cream single crochet change showing the final pull-through in the new shade and a crisp color boundary.",
+    "alt": "How to change colors cleanly in tapestry crochet"
+  }
+}
