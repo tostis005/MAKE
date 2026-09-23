@@ -5232,6 +5232,61 @@
       "title_es": "Cómo ribetear una alfombra de Latch Hook",
       "title_en": "How to Bind the Edges of a Latch Hook Rug",
       "craft": "latch-hook"
+    },
+    {
+      "number": 475,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "finishing",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo recortar y nivelar el pelo de Latch Hook",
+      "title_en": "How to Trim and Even Out Latch Hook Pile",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 476,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "rugs",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Cómo convertir un proyecto de Latch Hook en alfombra",
+      "title_en": "How to Turn a Latch Hook Project into a Rug",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 477,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "cushions",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Cómo convertir Latch Hook en un cojín",
+      "title_en": "How to Turn Latch Hook into a Pillow",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 478,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "wall-hangings",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Cómo hacer un tapiz de pared con Latch Hook",
+      "title_en": "How to Make a Latch Hook Wall Hanging",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 479,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "finishing",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo colgar un proyecto de Latch Hook sin deformarlo",
+      "title_en": "How to Hang a Latch Hook Project Without Distorting It",
+      "craft": "latch-hook"
     }
   ],
   "taxonomy_strategy": {
@@ -5262,7 +5317,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 474,
-    "bilingual_groups": 474
+    "last_indexed_article": 479,
+    "bilingual_groups": 479
   }
 }
