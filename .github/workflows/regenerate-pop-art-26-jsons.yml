@@ -42,9 +42,9 @@ jobs:
           collection=json.loads((root/'collections/pop-art-25/collection.json').read_text(encoding='utf-8'))
           if len(collection.get('palette',[])) != 25:
               raise SystemExit('Pop Art collection must contain exactly 25 master colours')
-          if collection['mockup_spec']['technique_assets']['C2C'] != '../../multitech/assets/cover-crochet.webp':
+          if collection['mockup_spec']['technique_assets']['C2C'] != '../../multitech/assets/cover-c2c-crochet.webp':
               raise SystemExit('C2C cover mapping is wrong')
-          if collection['mockup_spec']['technique_assets']['TC'] != '../../multitech/assets/cover-c2c-crochet.webp':
+          if collection['mockup_spec']['technique_assets']['TC'] != '../../multitech/assets/cover-crochet.webp':
               raise SystemExit('Tapestry cover mapping is wrong')
 
           products=list(root.glob('products/P0*/product.json'))
