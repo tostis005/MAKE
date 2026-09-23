@@ -1,0 +1,191 @@
+name: Bootstrap Pop Art 25 collection
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/bootstrap-pop-art-25.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-pop-art-25-bootstrap
+  cancel-in-progress: false
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install rendering dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --quiet Pillow playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Build collection structure and first eight products
+        shell: bash
+        run: |
+          set -euo pipefail
+          python .github/scripts/bootstrap_pop_art_25.py
+
+      - name: Validate generated structure and catalogue
+        shell: bash
+        run: |
+          set -euo pipefail
+          python content/pattern-system/renderer/validate_all.py
+          php -l content/tools/import-products.php
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          cat=json.loads(Path('content/products/catalog.json').read_text(encoding='utf-8'))
+          wanted=[f'{base}-{tech}' for base in ('P0001','P0012') for tech in ('CS','C2C','TC','LH')]
+          rows={p['code']:p for p in cat['products']}
+          for code in wanted:
+              row=rows.get(code)
+              if not row:
+                  raise SystemExit(f'Missing catalogue product {code}')
+              image=Path('content/products')/row['featured_image']
+              pdf=Path('content/products')/row['download']
+              if not image.is_file() or image.stat().st_size < 10000:
+                  raise SystemExit(f'Bad product image {image}')
+              if not pdf.is_file() or pdf.stat().st_size < 100000 or pdf.read_bytes()[:4] != b'%PDF':
+                  raise SystemExit(f'Bad PDF {pdf}')
+              if row.get('collection')!='pop-art-25':
+                  raise SystemExit(f'Wrong collection for {code}')
+          collection=next((c for c in cat['collections'] if c.get('slug')=='pop-art-25'),None)
+          if not collection or len(collection.get('palette_hex',[]))!=25 or len(collection.get('thread_codes',[]))!=25:
+              raise SystemExit('Pop Art 25 catalogue collection is invalid')
+          for n in range(1,27):
+              base=f'P{n:04d}'
+              for tech in ('CS','C2C','TC','LH'):
+                  if not Path(f'content/pattern-system/products/{base}-{tech}/product.json').is_file():
+                      raise SystemExit(f'Missing product JSON {base}-{tech}')
+                  if not Path(f'content/pattern-system/patterns/{base}-{tech}/pattern.json').is_file():
+                      raise SystemExit(f'Missing pattern JSON {base}-{tech}')
+          print('Validated 26 designs / 104 variants and 8 publishable test products.')
+          PY
+
+      - name: Persist generated collection
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add             content/pattern-system/collections/pop-art-25             content/pattern-system/products/P0*-CS             content/pattern-system/products/P0*-C2C             content/pattern-system/products/P0*-TC             content/pattern-system/products/P0*-LH             content/pattern-system/patterns/P0*-CS             content/pattern-system/patterns/P0*-C2C             content/pattern-system/patterns/P0*-TC             content/pattern-system/patterns/P0*-LH             content/products/catalog.json             content/products/assets/P0001-*-product.webp             content/products/assets/P0012-*-product.webp             content/products/files/Drielo_P0001-*.pdf             content/products/files/Drielo_P0012-*.pdf
+          if git diff --cached --quiet; then
+            echo "No generated changes to commit."
+          else
+            git commit -m "Build new Pop Art 25 collection and test products [skip ci]"
+            for attempt in 1 2 3; do
+              if git pull --rebase origin main && git push origin HEAD:main; then
+                break
+              fi
+              if [ "$attempt" = "3" ]; then
+                echo "Could not push generated collection after retries"
+                exit 1
+              fi
+              sleep 5
+            done
+          fi
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_pop_art_25_key
+          chmod 600 ~/.ssh/drielo_pop_art_25_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Package products for WooCommerce
+        shell: bash
+        run: |
+          set -euo pipefail
+          tar -czf /tmp/drielo-pop-art-25.tgz content/products content/tools/import-products.php
+
+      - name: Upload package
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: scp -i ~/.ssh/drielo_pop_art_25_key /tmp/drielo-pop-art-25.tgz "$VPS_USER@$VPS_HOST:/tmp/drielo-pop-art-25-${GITHUB_RUN_ID}.tgz"
+
+      - name: Import into WooCommerce and verify
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_pop_art_25_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-pop-art-25-${GITHUB_RUN_ID}.tgz"
+          STAGE="/tmp/drielo-pop-art-25-${GITHUB_RUN_ID}"
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE"; }
+          trap cleanup EXIT
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"; exit 1
+          fi
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $wanted=array("DRIELO-P0001-CS","DRIELO-P0001-C2C","DRIELO-P0001-TC","DRIELO-P0001-LH","DRIELO-P0012-CS","DRIELO-P0012-C2C","DRIELO-P0012-TC","DRIELO-P0012-LH");
+            foreach($wanted as $sku){
+              $id=wc_get_product_id_by_sku($sku);
+              if(!$id){fwrite(STDERR,"MISSING ".$sku.PHP_EOL);exit(2);}
+              $p=wc_get_product($id);
+              $terms=wp_get_object_terms($id,"product_collection",array("fields"=>"slugs"));
+              echo $sku." id=".$id." status=".$p->get_status()." stock=".$p->get_stock_status()." downloads=".count($p->get_downloads())." collection=".implode(",",is_wp_error($terms)?array():$terms)." url=".get_permalink($id).PHP_EOL;
+              if($p->get_status()!=="publish" || count($p->get_downloads())<1 || is_wp_error($terms) || !in_array("pop-art-25",$terms,true)){exit(3);}
+            }
+            $term=get_term_by("slug","pop-art-25","product_collection");
+            if(!$term){fwrite(STDERR,"MISSING COLLECTION".PHP_EOL);exit(4);}
+            echo "COLLECTION=pop-art-25 count=".$term->count." url=".get_term_link($term).PHP_EOL;
+          '
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
+          REMOTE
+
+      - name: Verify public pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import urllib.request
+          urls=[
+            'https://drielo.com/en/shop/collection/pop-art-25/',
+            'https://drielo.com/es/tienda/coleccion/pop-art-25/',
+          ]
+          for url in urls:
+              req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0'})
+              try:
+                  with urllib.request.urlopen(req,timeout=60) as r:
+                      html=r.read().decode('utf-8','replace')
+                  print(url, r.status, len(html))
+                  if len(html)<5000:
+                      raise SystemExit('Collection page too small: '+url)
+              except Exception as exc:
+                  print('PUBLIC_VERIFY_WARNING',url,exc)
+          PY
