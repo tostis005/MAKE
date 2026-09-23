@@ -1,0 +1,19 @@
+{
+  "code": "P0022-TC",
+  "base_design_id": "P0022",
+  "technique_code": "TC",
+  "collection": "pop-art-25",
+  "title": "Princess Diana Bubble Gum",
+  "title_en": "Princess Diana Bubble Gum",
+  "title_es": "Princesa Diana con chicle",
+  "design_slug": "princess-diana-bubble-gum",
+  "technique": "tapestry-crochet",
+  "pattern_file": "patterns/P0022-TC/pattern.json",
+  "template": "crochet.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "renderer": "multitech",
+  "source_artwork": null,
+  "page_1_asset": "multitech/assets/cover-crochet.webp"
+}

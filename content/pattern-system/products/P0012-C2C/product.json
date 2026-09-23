@@ -1,0 +1,19 @@
+{
+  "code": "P0012-C2C",
+  "base_design_id": "P0012",
+  "technique_code": "C2C",
+  "collection": "pop-art-25",
+  "title": "Marilyn Monroe Bubble Gum",
+  "title_en": "Marilyn Monroe Bubble Gum",
+  "title_es": "Marilyn Monroe con chicle",
+  "design_slug": "marilyn-monroe-bubble-gum",
+  "technique": "c2c-crochet",
+  "pattern_file": "patterns/P0012-C2C/pattern.json",
+  "template": "c2c-crochet.html",
+  "website": "www.drielo.com",
+  "status": "published-test",
+  "render_ready": false,
+  "renderer": "multitech",
+  "source_artwork": "collections/pop-art-25/sources/P0012.png",
+  "page_1_asset": "multitech/assets/cover-c2c-crochet.webp"
+}

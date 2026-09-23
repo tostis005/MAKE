@@ -1,0 +1,19 @@
+{
+  "code": "P0006-C2C",
+  "base_design_id": "P0006",
+  "technique_code": "C2C",
+  "collection": "pop-art-25",
+  "title": "Charlie Chaplin Portrait",
+  "title_en": "Charlie Chaplin Portrait",
+  "title_es": "Retrato de Charlie Chaplin",
+  "design_slug": "charlie-chaplin-portrait",
+  "technique": "c2c-crochet",
+  "pattern_file": "patterns/P0006-C2C/pattern.json",
+  "template": "c2c-crochet.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "renderer": "multitech",
+  "source_artwork": null,
+  "page_1_asset": "multitech/assets/cover-c2c-crochet.webp"
+}

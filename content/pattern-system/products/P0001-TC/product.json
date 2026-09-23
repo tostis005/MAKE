@@ -2,9 +2,18 @@
   "code": "P0001-TC",
   "base_design_id": "P0001",
   "technique_code": "TC",
-  "collection": "pop-art-portraits",
-  "title": "Marilyn Monroe Bubble Gum",
+  "collection": "pop-art-25",
+  "title": "Albert Einstein Tongue Out",
+  "title_en": "Albert Einstein Tongue Out",
+  "title_es": "Albert Einstein sacando la lengua",
+  "design_slug": "albert-einstein-tongue-out",
   "technique": "tapestry-crochet",
   "pattern_file": "patterns/P0001-TC/pattern.json",
-  "template": "crochet.html"
+  "template": "crochet.html",
+  "website": "www.drielo.com",
+  "status": "published-test",
+  "render_ready": false,
+  "renderer": "multitech",
+  "source_artwork": "collections/pop-art-25/sources/P0001.png",
+  "page_1_asset": "multitech/assets/cover-crochet.webp"
 }

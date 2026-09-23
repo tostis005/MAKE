@@ -1,0 +1,163 @@
+{
+  "id": "pop-art-25",
+  "name": "Pop Art",
+  "name_en": "Pop Art",
+  "name_es": "Pop Art",
+  "slug": "pop-art-25",
+  "code_prefix": "P",
+  "description": "A new 26-design Pop Art portrait collection built on one strict shared palette of 25 colours and four grid-based craft techniques.",
+  "description_en": "A new 26-design Pop Art portrait collection built on one strict shared palette of 25 colours and four grid-based craft techniques.",
+  "description_es": "Nueva colección Pop Art de 26 diseños construida con una única paleta estricta de 25 colores y cuatro técnicas artesanales basadas en cuadrícula.",
+  "palette": [
+    {
+      "dmc": "310",
+      "hex": "#000000",
+      "name": "Black"
+    },
+    {
+      "dmc": "3799",
+      "hex": "#404040",
+      "name": "Very Dark Pewter Gray"
+    },
+    {
+      "dmc": "414",
+      "hex": "#8C8C8C",
+      "name": "Dark Steel Gray"
+    },
+    {
+      "dmc": "B5200",
+      "hex": "#FFFFFF",
+      "name": "Snow White"
+    },
+    {
+      "dmc": "3865",
+      "hex": "#F5ECDF",
+      "name": "Winter White"
+    },
+    {
+      "dmc": "948",
+      "hex": "#FEE7DA",
+      "name": "Very Light Peach"
+    },
+    {
+      "dmc": "754",
+      "hex": "#F7CBBF",
+      "name": "Light Peach"
+    },
+    {
+      "dmc": "437",
+      "hex": "#E4BB8E",
+      "name": "Light Tan"
+    },
+    {
+      "dmc": "761",
+      "hex": "#FC9F8B",
+      "name": "Light Salmon"
+    },
+    {
+      "dmc": "604",
+      "hex": "#E996B8",
+      "name": "Light Cranberry"
+    },
+    {
+      "dmc": "351",
+      "hex": "#E96A67",
+      "name": "Coral"
+    },
+    {
+      "dmc": "321",
+      "hex": "#C72B3B",
+      "name": "Red"
+    },
+    {
+      "dmc": "970",
+      "hex": "#F78B2D",
+      "name": "Light Pumpkin"
+    },
+    {
+      "dmc": "3820",
+      "hex": "#DFB65B",
+      "name": "Dark Straw"
+    },
+    {
+      "dmc": "444",
+      "hex": "#FFD600",
+      "name": "Dark Lemon"
+    },
+    {
+      "dmc": "434",
+      "hex": "#985B3B",
+      "name": "Light Brown"
+    },
+    {
+      "dmc": "801",
+      "hex": "#653919",
+      "name": "Dark Coffee Brown"
+    },
+    {
+      "dmc": "905",
+      "hex": "#627650",
+      "name": "Dark Parrot Green"
+    },
+    {
+      "dmc": "890",
+      "hex": "#17492F",
+      "name": "Ultra Dark Pistachio Green"
+    },
+    {
+      "dmc": "598",
+      "hex": "#8EB8BC",
+      "name": "Light Turquoise"
+    },
+    {
+      "dmc": "3325",
+      "hex": "#86B1D0",
+      "name": "Light Baby Blue"
+    },
+    {
+      "dmc": "797",
+      "hex": "#3157A4",
+      "name": "Royal Blue"
+    },
+    {
+      "dmc": "820",
+      "hex": "#0E365C",
+      "name": "Very Dark Royal Blue"
+    },
+    {
+      "dmc": "550",
+      "hex": "#5C295F",
+      "name": "Very Dark Violet"
+    },
+    {
+      "dmc": "729",
+      "hex": "#D0A53E",
+      "name": "Medium Old Gold"
+    }
+  ],
+  "design_count": 26,
+  "techniques": [
+    "cross-stitch",
+    "c2c-crochet",
+    "tapestry-crochet",
+    "latch-hook"
+  ],
+  "mockup_spec": {
+    "asset": "../../multitech/assets/cover-cross-stitch.webp",
+    "technique_assets": {
+      "CS": "../../multitech/assets/cover-cross-stitch.webp",
+      "C2C": "../../multitech/assets/cover-c2c-crochet.webp",
+      "TC": "../../multitech/assets/cover-crochet.webp",
+      "LH": "../../multitech/assets/cover-rug.webp"
+    },
+    "frame": {
+      "enabled": false
+    }
+  },
+  "preview_rules": {
+    "palette_mode": "strict",
+    "allowed_palette_size": 25,
+    "gradients": false,
+    "extra_colours": false
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "code": "P0009-LH",
+  "base_design_id": "P0009",
+  "technique_code": "LH",
+  "collection": "pop-art-25",
+  "title": "Girl with a Pearl Earring",
+  "title_en": "Girl with a Pearl Earring",
+  "title_es": "La joven de la perla",
+  "design_slug": "girl-with-a-pearl-earring",
+  "technique": "latch-hook",
+  "pattern_file": "patterns/P0009-LH/pattern.json",
+  "template": "rug.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "renderer": "multitech",
+  "source_artwork": null,
+  "page_1_asset": "multitech/assets/cover-rug.webp"
+}
