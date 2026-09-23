@@ -1390,3 +1390,143 @@ a.journal-craft-card:hover{transform:translateY(-4px);box-shadow:var(--mk-shadow
   .drielo-technique-compact-icon svg{width:27px;height:27px}
   .drielo-technique-compact-title{font-size:13px!important}
 }
+
+
+/* ========================================================================
+   Persistent store navigation + 24-slot collection mosaic — v1.0
+   ======================================================================== */
+
+.drielo-store-navigation{
+  display:grid;
+  gap:12px;
+  margin:0 0 22px
+}
+
+/* The theme now owns the persistent technique navigation. Hide the older
+   catalogue-plugin hub inside WooCommerce archives to avoid duplicate rows. */
+.woocommerce-shell--archive .drielo-technique-hub{
+  display:none!important
+}
+
+.drielo-shop-views{
+  margin:0!important
+}
+.drielo-shop-views a,
+.drielo-shop-views span{
+  min-height:40px;
+  display:inline-flex;
+  align-items:center;
+  padding:0 17px;
+  border-radius:999px;
+  color:var(--mk-muted);
+  font-size:11px;
+  font-weight:850
+}
+.drielo-shop-views span.is-active{
+  background:var(--mk-plum);
+  color:#fff;
+  cursor:default
+}
+
+.drielo-store-techniques{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px
+}
+.drielo-store-technique{
+  min-width:0;
+  min-height:66px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:10px 14px;
+  border:1px solid var(--mk-line);
+  border-radius:18px;
+  background:#fffaf9;
+  color:var(--mk-ink);
+  box-sizing:border-box;
+  transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease
+}
+a.drielo-store-technique:hover{
+  border-color:#d7b7c0;
+  box-shadow:0 8px 22px rgba(92,63,76,.06);
+  transform:translateY(-1px)
+}
+.drielo-store-technique.is-active{
+  border-color:var(--mk-plum);
+  background:#f1e3e8;
+  box-shadow:inset 0 0 0 1px rgba(76,53,68,.08);
+  cursor:default
+}
+.drielo-store-technique.is-active .drielo-technique-compact-icon{
+  background:var(--mk-plum);
+  border-color:var(--mk-plum);
+  color:#fff
+}
+.drielo-store-technique .drielo-technique-compact-title{
+  min-width:0
+}
+
+/* Exactly 24 visual slots on desktop: 6 columns × 4 rows.
+   When a collection has more items, slot 24 becomes the +N tile. */
+.drielo-collection-thumbs--interactive{
+  grid-template-columns:repeat(6,minmax(0,1fr))!important;
+  grid-template-rows:repeat(4,minmax(0,1fr))!important;
+  grid-auto-rows:0!important;
+  overflow:hidden!important
+}
+.drielo-collection-more[hidden]{
+  display:none!important
+}
+.drielo-collection-more{
+  border-radius:3px;
+  text-decoration:none
+}
+.drielo-collection-more b{
+  font-size:20px
+}
+
+@media(max-width:820px){
+  .drielo-store-techniques{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:9px
+  }
+}
+@media(max-width:640px){
+  .drielo-store-navigation{
+    gap:10px
+  }
+  .drielo-shop-views{
+    display:flex!important;
+    width:100%
+  }
+  .drielo-shop-views a,
+  .drielo-shop-views span{
+    flex:1;
+    justify-content:center;
+    padding:0 10px;
+    text-align:center
+  }
+  .drielo-store-technique{
+    min-height:58px;
+    padding:8px 10px;
+    gap:9px;
+    border-radius:15px
+  }
+  .drielo-store-technique .drielo-technique-compact-icon{
+    width:36px;
+    height:36px;
+    flex-basis:36px
+  }
+  .drielo-store-technique .drielo-technique-compact-icon svg{
+    width:25px;
+    height:25px
+  }
+  .drielo-store-technique .drielo-technique-compact-title{
+    font-size:12px!important
+  }
+  .drielo-collection-thumbs--interactive{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    grid-template-rows:repeat(6,minmax(0,1fr))!important
+  }
+}
