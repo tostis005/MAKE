@@ -850,22 +850,30 @@ function make_related_articles( int $post_id, int $limit = 3 ): array {
     $related = array_slice( array_keys( $scores ), 0, $limit );
 
     if ( count( $related ) < $limit ) {
-        $fallback = get_posts(
-            array(
-                'post_type'           => 'post',
-                'post_status'         => 'publish',
-                'posts_per_page'      => $limit - count( $related ),
-                'fields'              => 'ids',
-                'post__not_in'        => array_merge( array( $post_id ), $related ),
-                'ignore_sticky_posts' => true,
-                'meta_query'          => array(
-                    array(
-                        'key'   => '_make_language',
-                        'value' => $language,
-                    ),
+        $fallback_args = array(
+            'post_type'           => 'post',
+            'post_status'         => 'publish',
+            'posts_per_page'      => $limit - count( $related ),
+            'fields'              => 'ids',
+            'post__not_in'        => array_merge( array( $post_id ), $related ),
+            'ignore_sticky_posts' => true,
+            'meta_query'          => array(
+                array(
+                    'key'   => '_make_language',
+                    'value' => $language,
                 ),
-            )
+            ),
         );
+        if ( ! empty( $source_terms['make_craft'] ) ) {
+            $fallback_args['tax_query'] = array(
+                array(
+                    'taxonomy' => 'make_craft',
+                    'field'    => 'term_id',
+                    'terms'    => $source_terms['make_craft'],
+                ),
+            );
+        }
+        $fallback = get_posts( $fallback_args );
         $related = array_merge( $related, array_map( 'intval', $fallback ) );
     }
 
