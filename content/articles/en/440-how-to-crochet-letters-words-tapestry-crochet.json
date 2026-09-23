@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 440,
+  "translation_group": "440-tapestry-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "tapestry-crochet",
+      "terms": [
+        "tapestry-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "charts",
+      "terms": [
+        "charts"
+      ]
+    },
+    "style": {
+      "terms": [
+        "letters",
+        "words",
+        "chart-design"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "bags",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-440-tapestry",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Makers designing names, initials, short phrases and words for tapestry bags, cushions and panels.",
+  "title": "How to Crochet Letters and Words with Tapestry Crochet",
+  "slug": "how-to-crochet-letters-words-tapestry-crochet",
+  "seo": {
+    "title": "How to Crochet Letters and Words with Tapestry Crochet",
+    "meta_description": "Crochet letters and words with tapestry crochet by choosing grid-friendly lettering, scale, spacing, contrast and reading direction.",
+    "search_intent": "Crocheters who want to turn text into a readable tapestry grid and keep letters clear in flat or round construction."
+  },
+  "excerpt": "Tapestry crochet letters need more space and contrast than screen text. Learn how to design a readable grid and keep the orientation correct.",
+  "content_html": "<p>Crocheting letters with tapestry colorwork looks simple because text can be drawn on a grid, but readability depends on several decisions: stroke thickness, character height, spacing, the real proportions of your stitches and the direction in which the chart is read.</p>\n<p>A word that looks perfectly clear on a screen can become ambiguous in yarn. The best approach is to design for the fabric from the beginning rather than adapting a conventional font without changes.</p>\n<h2>Start with simple block-style letterforms</h2>\n<p>Block, pixel and simple sans-serif forms translate more reliably than letters with thin serifs, delicate curves or dramatic variation in stroke width.</p>\n<p>Characters need enough height for their distinguishing features. A five-row E may remain readable, while S or R usually needs more space for curves and diagonals.</p>\n<p>For a long name or phrase, first test a short group containing the difficult letter types: curves, diagonals and enclosed spaces.</p>\n<p>Do not design every letter in isolation. Place them beside one another early because spacing changes how each character is perceived.</p>\n<p>For letters with enclosed counters such as A, O, P or R, leave enough background cells that the inner space does not close visually after crocheting.</p>\n<h2>Choose letter height and stroke width from finished scale</h2>\n<p>A one-stitch stroke can work in a large word but may look too thin when gauge compresses the grid or carried yarn shows through.</p>\n<p>For pieces viewed from a distance, two-stitch strokes can produce stronger, more readable lettering.</p>\n<p>Calculate physical size before completing an entire alphabet. If a character is ten stitches wide and each stitch measures 0.2 inch, it already occupies about 2 inches before spacing.</p>\n<p>Total word height depends on the actual row height as well as the number of chart cells.</p>\n<p>Test both a wide character and a narrow one to make sure the chosen scale looks balanced across the alphabet.</p>\n<h2>Control spacing between letters and words</h2>\n<p>On a grid, one blank column may be enough between some letters and too little between others.</p>\n<p>Two characters with facing vertical strokes can need more air than an A beside V, where the diagonals naturally create visual space.</p>\n<p>Words should be separated with several background columns so the phrase does not become one continuous band of shapes.</p>\n<p>Preview the chart at a small size. If the words are hard to distinguish quickly on screen, the fabric is unlikely to solve the spacing problem.</p>\n<p>When centering a phrase, calculate the full width including blank spaces rather than only counting colored letter stitches.</p>\n<h2>Use strong contrast and limit color complexity inside text</h2>\n<p>Dark lettering on a light background, or the reverse, is usually easier to read than two colors with similar lightness.</p>\n<p>A grayscale preview helps reveal whether the actual value contrast is strong enough.</p>\n<p>If every letter changes color or contains shading, readability decreases while yarn changes, bobbins and show-through problems increase.</p>\n<p>For a first text design, use one text color and one background color, then add decoration only if it remains necessary.</p>\n<p>When very dark lettering yarn travels beneath a pale background, avoid long carries so the text color does not speckle through surrounding stitches.</p>\n<h2>Mark reading direction so letters do not become mirrored</h2>\n<p>In flat crochet, row direction usually alternates because the work is turned. Every chart row needs to be read from the correct edge.</p>\n<p>Draw arrows or mark the starting side of every row. Asymmetric letters make orientation errors immediately visible.</p>\n<p>When working in the round, check the round join and avoid placing it through an important letter if the construction lets you choose another location.</p>\n<p>If all rows are worked from the right side, follow the pattern method for returning to the starting edge without reversing the text.</p>\n<p>After only a few rows, view the project from the intended right side and confirm that the word reads in the correct direction.</p>\n<h2>Swatch the most difficult letters before making the phrase</h2>\n<p>You do not need to test the whole text. Choose characters with curves, diagonals and enclosed spaces and combine them in one small sample.</p>\n<p>Check whether diagonals form regular steps, counters remain open and spacing still reads clearly in actual stitches.</p>\n<p>Wash or block the swatch if the final object will receive the same treatment because fibers can change proportions.</p>\n<p>If one letter is unclear, simplify its grid before increasing resolution. A thicker, more geometric form often works better than trying to preserve a complicated font.</p>\n<p>Crocheting words in tapestry is a design problem built on a physical grid. Once height, stroke width, contrast, spacing and reading direction are controlled, lettering can stay clear without requiring an enormous chart.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "A short word on a tapestry grid beside the crocheted sample with notes for letter width, spacing and reading direction.",
+    "alt": "How to crochet letters and words with tapestry crochet"
+  }
+}

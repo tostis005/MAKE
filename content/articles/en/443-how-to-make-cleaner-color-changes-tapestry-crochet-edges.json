@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 443,
+  "translation_group": "443-tapestry-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "tapestry-crochet",
+      "terms": [
+        "tapestry-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "color-changes",
+      "terms": [
+        "color-changes"
+      ]
+    },
+    "style": {
+      "terms": [
+        "edges",
+        "corners",
+        "clean-color-changes"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "bags",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-443-tapestry",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Makers of tapestry bags, panels, baskets and other pieces where color changes reach an edge or turn a corner.",
+  "title": "How to Make Cleaner Color Changes at Tapestry Crochet Edges",
+  "slug": "how-to-make-cleaner-color-changes-tapestry-crochet-edges",
+  "seo": {
+    "title": "How to Make Cleaner Color Changes at Tapestry Crochet Edges",
+    "meta_description": "Make cleaner tapestry crochet color changes at edges and corners by controlling the final pull-through, turn, row beginning and yarn tension.",
+    "search_intent": "Crocheters who can change color in the middle of a row but see bars, pulling or uneven steps at edges, corners and round beginnings."
+  },
+  "excerpt": "Edge and corner color changes are more visible because they coincide with turns or round joins. Learn how to prepare the next color before the final pull-through.",
+  "content_html": "<p>Color changes in the middle of a row are usually straightforward: introduce the next shade on the final pull-through of the previous stitch and continue. At an edge or corner, the transition also coincides with a turn, turning chain, round join or edge stitch, so any tension difference becomes much more visible.</p>\n<p>The answer is not to tighten the join. A clean edge depends on preparing the new color before the turn and deciding where the yarn that becomes inactive will go.</p>\n<h2>Change color before completing the final edge stitch</h2>\n<p>When the next section should begin in another shade, work the last stitch of the current color until only the final pull-through remains.</p>\n<p>Complete that step with the new yarn so the loop on the hook already has the correct color before turning or starting the next round.</p>\n<p>If the previous stitch is fully completed in the old color and the switch happens afterward, the top of the edge can show a bar in the wrong shade.</p>\n<p>This is the same principle used in the middle of a row, but an isolated edge bar is much easier to notice.</p>\n<p>Keep normal tension during the change. Pulling the new yarn hard to “close” the corner can shrink the edge stitch.</p>\n<h2>Decide what happens to the yarn that becomes inactive</h2>\n<p>After the switch, do not leave the old yarn hanging without a plan. If it returns soon, it can be positioned for carrying inside the first stitches of the new color.</p>\n<p>If it will not be used for several rows, carrying it vertically along the edge can create a thick, visible column.</p>\n<p>In that situation, cutting and weaving it in, or using a separate bobbin when the shade returns, may be cleaner.</p>\n<p>Lined or backed projects allow more flexibility because some reverse-side transitions will eventually be covered.</p>\n<p>On reversible pieces, avoid long edge crossings because both faces remain visible.</p>\n<h2>Control the turning chain and first stitch of the new row</h2>\n<p>A turning chain can create a space that differs from the regular stitches. When it also contains a color change, the edge may look more open.</p>\n<p>Follow the pattern exactly on whether the turning chain counts as a stitch or only provides height.</p>\n<p>Insert the hook into the correct first stitch. Skipping or duplicating that stitch can look like a color problem when it is really a counting error.</p>\n<p>After the first two stitches, spread the edge and confirm that the corner remains the same height as previous rows.</p>\n<p>If the new yarn is loose, redistribute tension between the first and second stitches instead of pulling only on the tail.</p>\n<h2>On rounds, keep joins away from important details</h2>\n<p>On a basket or bag worked in joined rounds, the round join can concentrate repeated color transitions in one vertical column.</p>\n<p>If the design allows it, place the round beginning inside a plain background area or toward the back of the object.</p>\n<p>When the color changes exactly at the join, introduce the new shade during the final pull-through before the round is fully completed.</p>\n<p>Mark the first stitch so the join is not accidentally counted as an extra chart cell.</p>\n<p>With spiral construction, remember that the round beginning shifts. A graphic edge that must stay perfectly vertical may need a different construction method.</p>\n<h2>Avoid knots and bulky joins at corners</h2>\n<p>Knotting two colors together may seem like an easy way to secure the transition, but it adds bulk exactly where the edge already concentrates structure.</p>\n<p>Leave adequate tails and weave them through stitches of the same color later.</p>\n<p>If a yarn needs temporary security, let the first few stitches hold it rather than creating a permanent lump.</p>\n<p>On corners that will later be seamed, keep woven ends away from the exact seam line so the join does not become excessively thick.</p>\n<p>Inspect both faces before trimming tails. A transition can look clean from the front while leaving a long loop on the reverse.</p>\n<h2>Make a dedicated corner swatch before a large project</h2>\n<p>Crochet a small square where the color reaches the final stitch, turns and continues into the next row.</p>\n<p>Test the opposite setup too: one row begins in one color and finishes in another.</p>\n<p>Compare width, height and color definition at both corners and notice whether one direction is naturally cleaner in your hands.</p>\n<p>Wash or block the sample if the final project will receive the same treatment because edge stitches can relax and expose transitions.</p>\n<p>If the pattern repeats the same corner change many times, write down the exact successful sequence so every transition is worked consistently.</p>\n<p>Cleaner edge and corner changes come from introducing the new yarn before the final stitch is closed, controlling the turn and avoiding unnecessary tension or bulk. When the edge keeps its shape, the color boundary becomes visually quiet and the chart appears to continue naturally.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Close-up of a tapestry corner changing from cream to red, comparing a visible color bar with a clean transition.",
+    "alt": "How to make cleaner color changes at tapestry crochet edges"
+  }
+}
