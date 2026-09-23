@@ -1362,13 +1362,14 @@ a.journal-craft-card:hover{transform:translateY(-4px);box-shadow:var(--mk-shadow
   display:none!important
 }
 
-/* Product cards keep their current footprint, but show the full ambient image. */
+/* Product cards: edge-to-edge artwork, no inner gutter. */
 .woocommerce ul.products li.product a img.attachment-make-store-card-context,
 .woocommerce ul.products li.product a img.size-make-store-card-context{
+  display:block!important;
   width:100%!important;height:auto!important;aspect-ratio:4/5!important;
-  object-fit:contain!important;object-position:center center!important;
-  padding:6px!important;box-sizing:border-box!important;
-  background:#f3e9e8!important
+  object-fit:cover!important;object-position:center center!important;
+  padding:0!important;margin:0 0 14px!important;box-sizing:border-box!important;
+  background:transparent!important
 }
 
 /* Collection mosaics use uncropped derivatives and retain the complete scene. */
