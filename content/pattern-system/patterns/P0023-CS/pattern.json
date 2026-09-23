@@ -5,10 +5,13 @@
   "collection": "pop-art-25",
   "palette_collection": "pop-art-25",
   "status": "awaiting-source-artwork",
-  "source_asset": null,
+  "source_asset": "content/pattern-system/collections/pop-art-25/sources/P0023.png",
   "stitch_width": 100,
   "stitch_height": 120,
   "total_stitches": 0,
+  "color_count": 0,
+  "palette_size": 25,
+  "transparent_background": true,
   "threads": [],
   "matrix": []
 }

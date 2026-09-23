@@ -5,9 +5,9 @@
   "name_es": "Pop Art",
   "slug": "pop-art-25",
   "code_prefix": "P",
-  "description": "A new 26-design Pop Art portrait collection built on one strict shared palette of 25 colours and four grid-based craft techniques.",
-  "description_en": "A new 26-design Pop Art portrait collection built on one strict shared palette of 25 colours and four grid-based craft techniques.",
-  "description_es": "Nueva colección Pop Art de 26 diseños construida con una única paleta estricta de 25 colores y cuatro técnicas artesanales basadas en cuadrícula.",
+  "description": "26 colourful Pop Art designs sharing one strict 25-colour palette across four grid-based craft techniques.",
+  "description_en": "26 colourful Pop Art designs sharing one strict 25-colour palette across four grid-based craft techniques.",
+  "description_es": "26 diseños Pop Art coloridos que comparten una única paleta estricta de 25 colores en cuatro técnicas basadas en cuadrícula.",
   "palette": [
     {
       "dmc": "310",
@@ -158,6 +158,7 @@
     "palette_mode": "strict",
     "allowed_palette_size": 25,
     "gradients": false,
-    "extra_colours": false
+    "extra_colours": false,
+    "transparent_background": true
   }
 }
