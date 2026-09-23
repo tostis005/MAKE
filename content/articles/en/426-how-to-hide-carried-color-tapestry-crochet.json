@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 426,
+  "translation_group": "426-tapestry-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "tapestry-crochet",
+      "terms": [
+        "tapestry-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "colorwork",
+      "terms": [
+        "colorwork"
+      ]
+    },
+    "style": {
+      "terms": [
+        "hide-carried-yarn",
+        "tapestry-crochet",
+        "colorwork"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "bags",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-426-tapestry",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Makers seeking a cleaner front when enclosing contrasting colors inside tapestry fabric.",
+  "title": "How to Hide the Carried Color in Tapestry Crochet",
+  "slug": "how-to-hide-carried-color-tapestry-crochet",
+  "seo": {
+    "title": "How to Hide the Carried Color in Tapestry Crochet",
+    "meta_description": "Hide carried yarn more effectively in tapestry crochet by adjusting placement, hook size, tension, contrast and carrying distance.",
+    "search_intent": "Crocheters who already carry yarn in tapestry crochet but can see small lines or dots of the inactive color and want better concealment."
+  },
+  "excerpt": "Carried yarn does not always disappear automatically. Learn how to place it toward the reverse, adjust tension and know when to stop carrying it.",
+  "content_html": "<p>Carrying a color inside the stitches does not guarantee complete invisibility. With strong contrast, thick yarn or open tension, small portions of the inactive strand may appear between the stitches of the visible color.</p>\n<p>Hiding it better is not simply a matter of crocheting tighter. Strand placement, hook size, carrying distance and the relationship between the colors all matter as much as tension.</p>\n<h2>Position the carried yarn slightly toward the reverse</h2>\n<p>While making the active stitch, keep the inactive strand a little closer to the back face of the fabric rather than centered in the stitch.</p>\n<p>The stitch still encloses it, but the yarn now sits farther from the visible surface.</p>\n<p>Apply the position consistently. If the hidden yarn drifts forward and backward from stitch to stitch, small spots appear unpredictably.</p>\n<p>Exact placement depends on hook insertion and stitch style, so test the adjustment on a swatch before using it across a large project.</p>\n<h2>Avoid long carries with extreme contrast</h2>\n<p>Black yarn inside a long white section is one of the hardest combinations to conceal. Even dense stitches can reveal the dark strand through tiny openings.</p>\n<p>If the dark shade will not be needed soon, cutting it and rejoining later may produce a cleaner result.</p>\n<p>A separate bobbin for another color area can also avoid dragging one strand across the entire row.</p>\n<p>Reducing carrying distance often improves appearance more effectively than forcing the visible stitches to become extremely tight.</p>\n<h2>Check whether the hook creates fabric that is too open</h2>\n<p>A large hook paired with relatively fine yarn leaves more space between loops. Those openings make the internal color easier to see.</p>\n<p>Try one slightly smaller hook and compare two swatches with the same stitch count. Aim for a somewhat denser surface without making it board-stiff.</p>\n<p>If you change hook size, measure gauge again because finished dimensions may shift considerably.</p>\n<p>On bags and baskets, extra firmness can be useful. On soft cushions or garments, excessive density may be undesirable.</p>\n<h2>Keep the visible stitches evenly covering the strand</h2>\n<p>If the active stitches vary greatly in size, some will cover the internal yarn better than others. Consistent stitch tension improves concealment.</p>\n<p>Avoid tightening only the stitches immediately after a color change. Uneven tension can simply create openings elsewhere.</p>\n<p>Work several stitches, then spread the row gently so tension redistributes. The fabric should look regular rather than compressed.</p>\n<p>When several colors are carried together, internal bulk increases and can physically push the visible stitches apart. Complete concealment may no longer be possible.</p>\n<h2>Choose colors and fibers that help rather than fight</h2>\n<p>Two shades with similar lightness hide small glimpses of carried yarn more easily than a black-and-white combination.</p>\n<p>Smooth yarns reveal every opening clearly, while slightly fuller fibers can fill space and conceal the internal strand more effectively.</p>\n<p>Do not choose fuzziness only for concealment, because strong texture can soften the graphic edges of the motif.</p>\n<p>Always swatch the actual palette. The same technique can look very different with a new color combination.</p>\n<h2>Recognize when another yarn-management method is cleaner</h2>\n<p>In some designs, completely hiding a highly contrasting strand across a long distance is unrealistic. The correct solution may be to stop carrying it rather than endlessly tightening the fabric.</p>\n<p>Cutting, using regional bobbins or switching to an intarsia-style approach in one area can produce a cleaner front.</p>\n<p>Consider the final object too. A lined bag can tolerate a different reverse-side strategy than a coaster visible from both faces.</p>\n<p>Before deciding, crochet the exact troublesome sequence from the chart as a small test. Twenty pale stitches enclosing a dark strand gives much more useful information than a generic two-color swatch.</p>\n<p>Photograph that sample in front light, side light and backlight. If the hidden color appears only under extreme lighting, the result may still be completely acceptable in normal use.</p>\n<p>Wash or block the sample and inspect it again because spacing between stitches may change after finishing.</p>\n<p>Make a second version of the same section with the dark yarn cut instead of carried. Comparing the two shows whether the cleaner surface is worth the additional yarn ends.</p>\n<p>If the chart contains several similar areas, use the same strategy across them. Randomly alternating long carries and cuts can make thickness and appearance inconsistent from one section to another.</p>\n<p>Hiding carried yarn is a balance of placement, density and distance. Keep the strand toward the reverse, maintain even stitches and avoid excessive carries, and most of the inactive color will disappear into the structure without forcing the fabric to become rigid.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Two tapestry swatches comparing dark carried yarn showing through pale stitches versus yarn positioned cleanly toward the reverse.",
+    "alt": "How to hide the carried color in tapestry crochet"
+  }
+}

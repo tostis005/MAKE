@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 429,
+  "translation_group": "429-tapestry-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "tapestry-crochet",
+      "terms": [
+        "tapestry-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "troubleshooting",
+      "terms": [
+        "troubleshooting"
+      ]
+    },
+    "style": {
+      "terms": [
+        "carried-yarn-showing",
+        "contrast",
+        "troubleshooting"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "bags",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-429-tapestry",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Tapestry makers troubleshooting specks of inactive yarn on the front, especially in strong light-dark color combinations.",
+  "title": "How to Stop Carried Yarn Showing Through Tapestry Crochet",
+  "slug": "how-to-stop-carried-yarn-showing-through-tapestry-crochet",
+  "seo": {
+    "title": "How to Stop Carried Yarn Showing Through Tapestry Crochet",
+    "meta_description": "Stop carried yarn showing through tapestry crochet by diagnosing contrast, stitch openness, strand placement, tension and excess internal yarn.",
+    "search_intent": "Crocheters whose carried color shows between tapestry stitches and who need to diagnose whether contrast, hook size, placement, tension or excess internal strands are responsible."
+  },
+  "excerpt": "If carried yarn shows between stitches, loose tension is not always the cause. Diagnose contrast, openness, placement and internal bulk before changing the fabric.",
+  "content_html": "<p>Small flashes of carried yarn between visible stitches are one of the most common tapestry crochet complaints. The instinctive response is to crochet tighter, but that does not always solve the problem and can turn the project into a stiff or puckered fabric.</p>\n<p>The hidden color can appear for several different reasons: extreme contrast, open stitches, forward placement, too many internal strands or a combination of them. Diagnosing the cause first prevents random adjustments.</p>\n<h2>Check whether contrast is the main reason</h2>\n<p>Make the same small sample with two similar shades and then with one very light and one very dark color. If the issue almost disappears with closer values, your technique may be sound and the contrast is simply exposing the strand.</p>\n<p>Black yarn needs to show only a tiny amount to be visible inside white or cream. The same percentage of exposure between two medium blues may go unnoticed.</p>\n<p>Judge the swatch in the lighting where the object will actually be used. Side light and backlight reveal details that may never be noticeable in ordinary room light.</p>\n<p>Set a realistic finishing standard before rebuilding the whole project.</p>\n<h2>Inspect the size of the openings between stitches</h2>\n<p>If the hook is large for the yarn, the loops create wider windows through which the internal color can appear.</p>\n<p>Test one slightly smaller hook and compare density, flexibility and gauge. Do not drop several sizes at once.</p>\n<p>Also look for individual stitches that are larger than their neighbors. Uneven tension creates isolated openings that resemble random flecks of carried color.</p>\n<p>If the object needs soft drape, accepting a small amount of visibility may be better than closing every opening.</p>\n<h2>Check where the carried yarn sits inside the stitch</h2>\n<p>A strand sitting directly behind the front face has a greater chance of showing. Try keeping it slightly toward the reverse as you crochet around it.</p>\n<p>Maintain that placement consistently. If the yarn changes position every few stitches, the visible specks will appear irregularly.</p>\n<p>On a swatch, open one stitch gently with your fingers and look at the physical position of the hidden strand. That inspection often explains more than viewing the front alone.</p>\n<p>The correct placement should improve concealment without leaving the strand completely outside the stitch as a float.</p>\n<h2>Count how many strands you are trying to hide</h2>\n<p>One additional yarn can usually be enclosed without major difficulty. Three or four carried shades add enough internal bulk to spread the visible stitches apart.</p>\n<p>With multi-color charts, do not automatically carry every shade through the entire row. Use bobbins, cut yarn or park colors that will not return soon.</p>\n<p>Compare the thickness of an area carrying one strand with another carrying three. If the latter becomes much firmer, the fabric is already telling you there is too much material inside.</p>\n<p>Reducing internal strands can improve visibility, drape and tension at the same time.</p>\n<h2>Do not confuse showing-through with a poorly timed color change</h2>\n<p>A small bar of the old color exactly at a boundary may come from switching too late rather than from yarn showing through the stitch body.</p>\n<p>Introduce the new shade on the final pull-through of the previous stitch so the top of the next visible stitch is already the correct color.</p>\n<p>If the problem occurs only at boundaries and not across long solid sections, diagnose the color-change technique first.</p>\n<p>If it appears randomly across the entire area, investigate placement, density and internal bulk.</p>\n<h2>Build a small test matrix before reworking the project</h2>\n<p>Make four small samples: your current hook and one smaller hook, each with the carried yarn centered and positioned toward the reverse. Use the highest-contrast colors from the design.</p>\n<p>Compare not only concealment but also gauge, stiffness and motif appearance.</p>\n<p>Wash or block the best option because the fiber may change stitch openness after finishing.</p>\n<p>If no sample hides a dark yarn satisfactorily across a long pale section, stop carrying it there. Cutting or using another bobbin is a valid technical solution, not a failure.</p>\n<p>Repeat the test with a section containing several color changes rather than only one long carry. Sometimes the strand becomes most visible at transitions because both yarns change position at once.</p>\n<p>Write down the hook, strand position and maximum carry distance that works best. On a large project, that small recipe saves repeated experimentation in every pale section.</p>\n<p>When carried yarn shows through, the fix needs to target the actual cause. Contrast, openings, position and excess internal material can create similar symptoms. A small set of controlled swatches lets you improve the front without sacrificing the shape and flexibility of the fabric.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Macro of pale stitches with dark carried yarn visible between them, beside a corrected swatch and labels for possible causes.",
+    "alt": "How to stop carried yarn showing through tapestry crochet"
+  }
+}

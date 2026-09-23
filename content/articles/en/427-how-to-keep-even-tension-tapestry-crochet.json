@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 427,
+  "translation_group": "427-tapestry-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "tapestry-crochet",
+      "terms": [
+        "tapestry-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "tension",
+      "terms": [
+        "tension"
+      ]
+    },
+    "style": {
+      "terms": [
+        "tension",
+        "tapestry-crochet",
+        "gauge"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "bags",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-427-tapestry",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Makers seeking flat, consistent tapestry fabric with stable gauge across plain and multi-color sections.",
+  "title": "How to Keep Even Tension in Tapestry Crochet",
+  "slug": "how-to-keep-even-tension-tapestry-crochet",
+  "seo": {
+    "title": "How to Keep Even Tension in Tapestry Crochet",
+    "meta_description": "Keep even tension in tapestry crochet by balancing active and carried yarn, checking gauge and preventing puckering, waves and width changes.",
+    "search_intent": "Crocheters whose tapestry fabric narrows, waves or changes width because active and carried yarn tensions do not match."
+  },
+  "excerpt": "Tapestry tension depends on both the visible and carried yarn. Learn how to keep width consistent, prevent puckering and stabilize color changes.",
+  "content_html": "<p>In tapestry crochet, tension is not controlled only by the yarn making the visible stitch. The carried color also travels through the row and can behave like an internal cord: if it is too short, the fabric puckers; if it is too loose, it forms loops or peeks through.</p>\n<p>Even tension means the fabric keeps similar dimensions before, during and after the colorwork sections. The key is controlling both yarns without tightening one to compensate for the other.</p>\n<h2>Swatch with the actual colorwork structure</h2>\n<p>Do not measure gauge only in one-color single crochet if the final project will contain a carried strand. Density and width can change as soon as another yarn is enclosed.</p>\n<p>Make a sample containing both a plain section and an area with several color changes. Measure both after the swatch has rested.</p>\n<p>If the tapestry area is noticeably narrower, the carried yarn is probably restricting width. If it becomes much bulkier or more open, review how the strand is being enclosed.</p>\n<p>Use the actual project colors whenever possible, especially if the yarns differ slightly in thickness or fiber.</p>\n<h2>Give the carried strand the full length of the row</h2>\n<p>Before crocheting across several stitches, let the inactive yarn lie gently along the distance it needs to travel.</p>\n<p>Do not hold it stretched tightly between your fingers. It should rest inside the stitches with a small amount of freedom.</p>\n<p>Every five or ten stitches, spread the fabric sideways. This distributes the internal strand and prevents gradual puckering.</p>\n<p>If you wait until the end of a long row, it may be difficult to recover enough length without disturbing the color changes.</p>\n<h2>Keep the active yarn as relaxed as normal crochet</h2>\n<p>A common reaction to the extra strand is to tighten the visible stitch because the fabric feels thicker. That produces a rigid textile and inconsistent stitch size.</p>\n<p>Use the same basic movement you would use in ordinary crochet and let the hook diameter determine loop size.</p>\n<p>If inserting the hook requires significant force, your active tension is probably too tight. Relax your grip or test a slightly larger hook before continuing.</p>\n<p>Comfort is useful feedback: tension that requires constant effort is difficult to reproduce over hundreds of stitches.</p>\n<h2>Watch the first stitches after every color change</h2>\n<p>Immediately after switching colors, many crocheters pull both yarns to “tidy” the join. That can create a narrow pinch at every boundary.</p>\n<p>Complete the change, make one or two stitches, then check for excess slack. Adjust only if an actual loop is visible.</p>\n<p>Do not pull the inactive yarn or tail until the edge becomes rigid.</p>\n<p>On motifs with changes every few stitches, small tension errors repeat many times and can substantially reduce the total width.</p>\n<h2>Use markers and measurements as objective checks</h2>\n<p>On a wide row, place markers every 20 or 30 stitches. Occasionally measure the distance between them to detect compression.</p>\n<p>You can also mark the expected width on a table and compare the project every several rows.</p>\n<p>Photographs help reveal gradual changes that are hard to notice while working. A piece that begins rectangular and slowly becomes trapezoidal often points to changing tension.</p>\n<p>Do not rely only on how the fabric feels. A simple measurement shows whether gauge is drifting.</p>\n<h2>Correct the underlying habit rather than one row</h2>\n<p>If the fabric is narrowing, do not make the next row extremely loose in an attempt to widen it again. That simply creates another inconsistency.</p>\n<p>Identify the cause first: short carried yarn, tight active stitches, tense color changes or too many internal strands.</p>\n<p>Make another small test while changing only one variable. Once you find a stable combination, keep the same hook, posture and yarn-holding method.</p>\n<p>On long projects, check width near the beginning of each session. A new sitting position, tired hands or even a different hook can alter tension without being obvious.</p>\n<p>If the design alternates one-yarn and two-yarn areas, measure both periodically. They do not need to feel identical, but their width should remain compatible and the transition should look smooth.</p>\n<p>Measure again after washing the swatch. Some fibers relax unevenly and can reveal a tension difference that was not obvious while dry.</p>\n<p>If an entire section is becoming narrower, verify the stitch count before assuming tension is responsible. Accidentally dropping edge stitches can look exactly like gradual compression.</p>\n<p>Even tapestry tension comes from allowing the hidden yarn to move with the fabric while keeping the visible stitch repeatable. When both systems work together, the project stays flat and the chart keeps its proportions without needing shape correction at the end.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Tapestry swatch comparing a puckered section with a flat one, with arrows indicating active and carried yarn tension.",
+    "alt": "How to keep even tension in tapestry crochet"
+  }
+}
