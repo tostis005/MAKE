@@ -1,0 +1,83 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 500,
+  "translation_group": "500-multi-technique",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch",
+        "c2c-crochet",
+        "tapestry-crochet",
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "buying-guides",
+      "terms": [
+        "buying-guides"
+      ]
+    },
+    "topic": {
+      "primary": "pixel-art",
+      "terms": [
+        "pixel-art"
+      ]
+    },
+    "style": {
+      "terms": [
+        "comparison",
+        "pixel-art",
+        "craft-selection"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "wall-art",
+        "blankets",
+        "bags",
+        "rugs",
+        "cushions",
+        "home-decor"
+      ]
+    },
+    "article_type": {
+      "primary": "buying-guide",
+      "terms": [
+        "buying-guide",
+        "comparison"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "es-500-multi-technique",
+  "language": "es",
+  "locale": "es-ES",
+  "market_context": "Personas con un diseño de pixel art que quieren decidir entre punto de cruz, C2C Crochet, Tapestry Crochet y Latch Hook según tamaño, textura y objeto final.",
+  "title": "Qué técnica elegir para convertir pixel art en arte textil",
+  "slug": "que-tecnica-elegir-convertir-pixel-art-arte-textil",
+  "seo": {
+    "title": "Qué técnica elegir para convertir pixel art en arte textil",
+    "meta_description": "Compara punto de cruz, C2C Crochet, Tapestry Crochet y Latch Hook para pixel art según escala, detalle, textura, color y tipo de proyecto.",
+    "search_intent": "Personas que quieren elegir una técnica textil para convertir pixel art en un proyecto físico."
+  },
+  "excerpt": "El mismo pixel art puede convertirse en bordado, manta, bolso o alfombra. La técnica adecuada depende de cuánta resolución, escala y textura quieras conservar.",
+  "content_html": "<p>El pixel art encaja de forma natural con varias técnicas textiles porque ya está construido sobre una cuadrícula. Sin embargo, una celda puede convertirse en una X de pocos milímetros, un bloque grande de C2C, un punto bajo compacto o un nudo de Latch Hook con pelo. Por eso, la misma imagen puede terminar como objetos completamente distintos.</p>\n<p>Para elegir técnica, conviene empezar por el tamaño y uso final que quieres conseguir, y después comprobar cuánta resolución y textura admite ese formato.</p>\n<h2>Punto de cruz concentra mucha resolución en poco espacio</h2>\n<p>En punto de cruz, cada píxel puede corresponder a una X sobre una tela de count definido.</p>\n<p>Una densidad alta permite mantener cientos de celdas dentro de un cuadro relativamente pequeño.</p>\n<p>Esto funciona bien para sprites detallados, retratos pixelados, iconos con sombreado y diseños que se observarán de cerca.</p>\n<p>La superficie es plana y los límites entre celdas permanecen nítidos.</p>\n<p>También puedes utilizar muchas referencias de color sin aumentar mucho el grosor físico del proyecto.</p>\n<p>Si el objetivo es una pieza enmarcada o un pequeño objeto textil con bastante detalle, esta escala compacta resulta especialmente útil.</p>\n<h2>C2C Crochet amplía cada píxel en un bloque texturado</h2>\n<p>En C2C, cada celda se convierte normalmente en un bloque de varios puntos trabajado en diagonal.</p>\n<p>El gráfico crece mucho físicamente, por lo que diseños relativamente pequeños pueden convertirse en mantas o paneles grandes.</p>\n<p>La textura de bloques forma parte de la imagen y refuerza una estética retro o claramente pixelada.</p>\n<p>Los motivos simples, siluetas e iconos suelen adaptarse bien.</p>\n<p>Un gráfico con demasiadas celdas puede producir una pieza enorme, así que a menudo conviene simplificar antes de empezar.</p>\n<p>Si quieres que el pixel art tenga presencia a gran escala, C2C convierte esa ampliación en parte natural de la técnica.</p>\n<h2>Tapestry Crochet mantiene la cuadrícula compacta dentro de tejido estructurado</h2>\n<p>En Tapestry Crochet, una celda puede representarse con un punto bajo o unidad pequeña trabajada en filas.</p>\n<p>Esto permite más detalle que C2C dentro de bolsos, cestas, cojines y otros objetos de tamaño controlado.</p>\n<p>Los colores pueden transportarse dentro de los puntos, creando una tela densa y gráfica.</p>\n<p>Los diseños con cambios de color muy frecuentes requieren atención a la tensión para evitar que el hilo transportado se vea o estreche la pieza.</p>\n<p>La proporción de cada punto no siempre es perfectamente cuadrada, por lo que una muestra debe confirmar si el gráfico necesita ajuste.</p>\n<p>Para pixel art destinado a un objeto estructurado de crochet, este equilibrio entre detalle y densidad puede ser útil.</p>\n<h2>Latch Hook convierte los píxeles en una superficie de pelo</h2>\n<p>En Latch Hook, una celda del gráfico puede convertirse en un nudo de hilo cortado sobre una malla.</p>\n<p>El proyecto suele ser físicamente grande y la textura suaviza los bordes entre píxeles.</p>\n<p>Los gráficos simples con masas de color y contornos fuertes sobreviven mejor que los detalles diminutos.</p>\n<p>La técnica resulta natural para alfombras, cojines gruesos y tapices de textura marcada.</p>\n<p>La paleta suele beneficiarse de una reducción respecto a una imagen digital con muchos tonos cercanos.</p>\n<p>Si quieres transformar pixel art en una pieza táctil y volumétrica, la textura del pelo se convierte en parte del resultado.</p>\n<h2>Compara el tamaño físico antes de decidir</h2>\n<p>Cuenta columnas y filas del gráfico y haz una muestra de la técnica que estés considerando.</p>\n<p>Mide cuántas celdas reales caben por centímetro o pulgada.</p>\n<p>Multiplica o divide según corresponda para estimar las dimensiones completas.</p>\n<p>Un mismo gráfico puede ser un cuadro pequeño en punto de cruz, un cojín en Tapestry Crochet, una manta en C2C o una alfombra en Latch Hook.</p>\n<p>Si el tamaño no encaja con tu objetivo, reduce o aumenta la cuadrícula antes de comprar materiales.</p>\n<p>El cálculo físico es más útil que elegir por el aspecto de una foto de referencia.</p>\n<h2>Elige la técnica en función del objeto y de la textura que quieres</h2>\n<p>Piensa primero si quieres una pieza plana, una tela de crochet, una manta de bloques o una superficie de pelo.</p>\n<p>Después valora cuánta resolución necesita realmente el diseño para seguir siendo reconocible.</p>\n<p>Haz una pequeña prueba con la zona más difícil del pixel art en la técnica elegida.</p>\n<p>Comprueba color, proporción, borde y tamaño antes de comprometer todo el material.</p>\n<p>El mismo archivo no necesita utilizar exactamente la misma resolución en todas las técnicas; adaptar la cuadrícula forma parte del diseño.</p>\n<p>Elegir una técnica para pixel art no consiste en encontrar una única opción universal. Punto de cruz prioriza detalle compacto, C2C amplía la cuadrícula, Tapestry Crochet integra el gráfico en tejido estructurado y Latch Hook lo convierte en pelo. El uso final te indica qué transformación tiene más sentido.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Mismo sprite pixelado representado en cuatro muestras: punto de cruz, C2C Crochet, Tapestry Crochet y Latch Hook, mostrando distintas escalas y texturas.",
+    "alt": "Técnicas textiles para pixel art"
+  }
+}
