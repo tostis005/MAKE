@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 479,
+  "translation_group": "479-latch-hook",
+  "taxonomy": {
+    "craft": {
+      "primary": "latch-hook",
+      "terms": [
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "finishing",
+      "terms": [
+        "finishing"
+      ]
+    },
+    "style": {
+      "terms": [
+        "hanging",
+        "distortion",
+        "support"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-479-latch-hook",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Makers with a finished latch hook piece who want to hang it without stretching the canvas, curling edges or concentrating weight on a few points.",
+  "title": "How to Hang a Latch Hook Project Without Distorting It",
+  "slug": "how-to-hang-latch-hook-project-without-distorting",
+  "seo": {
+    "title": "How to Hang a Latch Hook Project Without Distorting It",
+    "meta_description": "Hang latch hook without distortion by measuring first, distributing weight, using lightweight supports, testing for hours and rechecking shape over time.",
+    "search_intent": "People who want to hang a latch hook piece without gravity stretching the canvas or curving the edges."
+  },
+  "excerpt": "Gravity can distort latch hook panels. Learn how to spread the load, test the system and recheck measurements after installation.",
+  "content_html": "<p>Hanging a latch hook piece completely changes how its weight behaves. When flat, the canvas rests on a surface; when vertical, the mass of the yarn pulls downward and can lengthen the center, curve the sides or distort the top edge when support is concentrated at only a few points.</p>\n<p>Preventing that distortion depends on distributing the load, stabilizing the perimeter and checking how the piece behaves after several hours of hanging rather than only during the first few minutes.</p>\n<h2>Measure the piece flat before hanging it</h2>\n<p>Lay out the project without stretching and record its width, height and main diagonals when it is rectangular.</p>\n<p>Check that the upper edge is straight and the corners do not contain bulky canvas folds.</p>\n<p>Notice whether one area is already longer or heavier because of yarn-density differences.</p>\n<p>These measurements become the reference for detecting later changes caused by gravity.</p>\n<p>If the panel is still wavy, correct the finish before installing a hanging system.</p>\n<p>Do not use hanging as a way to stretch a piece until it looks straight; the result is difficult to control and may become permanent.</p>\n<p>Take a straight-on photograph with a ruler or other straight reference near the edge so later visual comparison is easier.</p>\n<h2>Distribute weight across the upper edge</h2>\n<p>Two loops placed only at the corners concentrate almost the entire load on two small areas of canvas.</p>\n<p>For medium or large panels, use multiple loops, a continuous sleeve or a broad attachment to a rod.</p>\n<p>The more points share the weight, the less stress each canvas bar carries.</p>\n<p>Reinforce loops through the prepared margin, backing or a support strip rather than through pile tufts.</p>\n<p>Make sure all hanging points sit at the same height so one side does not carry more load than the other.</p>\n<p>A rigid rod helps keep the top line straight on wide panels.</p>\n<p>On very wide pieces, add intermediate supports even when two or three attachment points appear visually sufficient.</p>\n<h2>Avoid support hardware that is unnecessarily heavy</h2>\n<p>A thick rod may feel strong, but it also adds weight that the canvas must support.</p>\n<p>Choose the lightest support that keeps the piece straight and suits its dimensions.</p>\n<p>If a bottom rod is used, confirm that it actually improves the drape rather than stretching the panel.</p>\n<p>Heavy decorative elements attached at corners can also create diagonal distortion.</p>\n<p>Test each component separately before sewing it permanently into the construction.</p>\n<p>The hanging system should stabilize the textile rather than become an unnecessary additional load.</p>\n<p>If you replace one rod with another, repeat the hanging test because even modest additional weight can matter on a lightweight panel.</p>\n<h2>Run a temporary hanging test before final installation</h2>\n<p>Support the piece safely and leave it hanging for several hours using the planned system.</p>\n<p>Measure the height again at the center and both side edges.</p>\n<p>Look for a bowed top line, dropped corners or a motif that appears longer vertically.</p>\n<p>If distortion appears, add more support points or redistribute the existing ones.</p>\n<p>Do not repair a sagging center by pulling the sides extremely tight because that can distort the image horizontally.</p>\n<p>Repeat the test until the panel holds reasonably stable measurements.</p>\n<p>For a heavy panel, extend the test to a full day before treating the hanging arrangement as permanent.</p>\n<h2>Protect the canvas from pulling and abrasion while displayed</h2>\n<p>Place the wall hanging where the pile does not constantly rub a door, furniture edge or another surface that can catch yarn ends.</p>\n<p>Avoid letting the lower edge become trapped behind objects that pull on the panel when they move.</p>\n<p>If backing touches the wall, make sure no rough hardware repeatedly abrades the mesh through vibration or movement.</p>\n<p>On a long piece, keeping a small clearance above the floor prevents the lower edge from accidentally carrying weight.</p>\n<p>Check the wall fixing itself and make sure it is appropriate for the total load.</p>\n<p>Protecting the canvas is part of the hanging system rather than only a textile-finishing detail.</p>\n<p>Avoid intense direct sunlight or damp locations when those conditions could affect the specific yarn or backing materials used.</p>\n<h2>Recheck the shape periodically after installation</h2>\n<p>During the first week, compare the panel with a photograph taken immediately after hanging.</p>\n<p>Measure again if the center appears to grow or one side begins dropping.</p>\n<p>Inspect loop seams and reinforce any attachment that starts opening.</p>\n<p>If the piece is moved to another location, reassess the support because a new fixing or angle can distribute weight differently.</p>\n<p>Small early corrections prevent gradual distortion from becoming permanent.</p>\n<p>Keep the original measurements with the pattern so you can check months later whether the panel has changed significantly.</p>\n<p>Hanging a latch hook project without distortion means treating gravity as part of the finishing process. Baseline measurements, many support points, lightweight hardware and checks after installation keep the canvas stable and the design close to its original proportions.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Latch hook panel suspended from a rod with many support points and vertical measurement guides showing a stable center.",
+    "alt": "How to hang a latch hook project without distorting it"
+  }
+}
