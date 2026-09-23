@@ -305,7 +305,9 @@
       "previous_skus": [
         "DRIELO-P0001"
       ],
-      "technique_code": "CS"
+      "technique_code": "CS",
+      "featured_source": "assets/P0001-cross-stitch-gallery-1.webp",
+      "featured_image": "assets/P0001-CS-featured.webp"
     },
     {
       "code": "P0002",
@@ -414,7 +416,8 @@
       "design_id": "P0002",
       "grid_width": 100,
       "grid_height": 120,
-      "color_count": 19
+      "color_count": 19,
+      "featured_image": "assets/P0002-gallery-1.webp"
     },
     {
       "code": "P0003",
@@ -523,7 +526,8 @@
       "design_id": "P0003",
       "grid_width": 100,
       "grid_height": 120,
-      "color_count": 19
+      "color_count": 19,
+      "featured_image": "assets/P0003-gallery-1.webp"
     },
     {
       "code": "P0004",
@@ -632,7 +636,8 @@
       "design_id": "P0004",
       "grid_width": 100,
       "grid_height": 120,
-      "color_count": 19
+      "color_count": 19,
+      "featured_image": "assets/P0004-gallery-1.webp"
     },
     {
       "code": "P0005",
@@ -741,7 +746,8 @@
       "design_id": "P0005",
       "grid_width": 100,
       "grid_height": 120,
-      "color_count": 19
+      "color_count": 19,
+      "featured_image": "assets/P0005-gallery-1.webp"
     },
     {
       "code": "P0006",
@@ -849,7 +855,8 @@
       "design_id": "P0006",
       "grid_width": 100,
       "grid_height": 120,
-      "color_count": 19
+      "color_count": 19,
+      "featured_image": "assets/P0006-gallery-1.webp"
     },
     {
       "code": "P0007",
@@ -958,7 +965,8 @@
       "design_id": "P0007",
       "grid_width": 100,
       "grid_height": 120,
-      "color_count": 19
+      "color_count": 19,
+      "featured_image": "assets/P0007-gallery-1.webp"
     },
     {
       "code": "P0008",
@@ -1067,7 +1075,8 @@
       "design_id": "P0008",
       "grid_width": 100,
       "grid_height": 120,
-      "color_count": 19
+      "color_count": 19,
+      "featured_image": "assets/P0008-gallery-1.webp"
     },
     {
       "code": "P0009",
@@ -1176,7 +1185,8 @@
       "design_id": "P0009",
       "grid_width": 100,
       "grid_height": 120,
-      "color_count": 17
+      "color_count": 17,
+      "featured_image": "assets/P0009-gallery-1.webp"
     },
     {
       "code": "P0010",
@@ -1286,7 +1296,8 @@
       "design_id": "P0010",
       "grid_width": 100,
       "grid_height": 120,
-      "color_count": 18
+      "color_count": 18,
+      "featured_image": "assets/P0010-gallery-1.webp"
     },
     {
       "code": "P0011",
@@ -1395,7 +1406,8 @@
       "design_id": "P0011",
       "grid_width": 100,
       "grid_height": 120,
-      "color_count": 16
+      "color_count": 16,
+      "featured_image": "assets/P0011-gallery-1.webp"
     },
     {
       "code": "P0012",
@@ -1505,7 +1517,8 @@
       "design_id": "P0012",
       "grid_width": 100,
       "grid_height": 120,
-      "color_count": 19
+      "color_count": 19,
+      "featured_image": "assets/P0012-gallery-1.webp"
     },
     {
       "code": "P0013",
@@ -1613,7 +1626,8 @@
       "design_id": "P0013",
       "grid_width": 100,
       "grid_height": 120,
-      "color_count": 19
+      "color_count": 19,
+      "featured_image": "assets/P0013-gallery-1.webp"
     },
     {
       "code": "P0014",
@@ -1722,7 +1736,8 @@
       "design_id": "P0014",
       "grid_width": 100,
       "grid_height": 120,
-      "color_count": 19
+      "color_count": 19,
+      "featured_image": "assets/P0014-gallery-1.webp"
     },
     {
       "code": "P0015",
@@ -1830,7 +1845,8 @@
       "design_id": "P0015",
       "grid_width": 100,
       "grid_height": 120,
-      "color_count": 19
+      "color_count": 19,
+      "featured_image": "assets/P0015-gallery-1.webp"
     },
     {
       "code": "P0016",
@@ -1938,7 +1954,8 @@
       "design_id": "P0016",
       "grid_width": 100,
       "grid_height": 120,
-      "color_count": 19
+      "color_count": 19,
+      "featured_image": "assets/P0016-gallery-1.webp"
     },
     {
       "code": "P0017",
@@ -2046,7 +2063,8 @@
       "design_id": "P0017",
       "grid_width": 100,
       "grid_height": 120,
-      "color_count": 19
+      "color_count": 19,
+      "featured_image": "assets/P0017-gallery-1.webp"
     },
     {
       "code": "P0018",
@@ -2156,7 +2174,8 @@
       "design_id": "P0018",
       "grid_width": 100,
       "grid_height": 120,
-      "color_count": 19
+      "color_count": 19,
+      "featured_image": "assets/P0018-gallery-1.webp"
     },
     {
       "code": "P0019",
@@ -2267,7 +2286,8 @@
       "design_id": "P0019",
       "grid_width": 100,
       "grid_height": 120,
-      "color_count": 19
+      "color_count": 19,
+      "featured_image": "assets/P0019-gallery-1.webp"
     },
     {
       "code": "P0020",
@@ -2391,7 +2411,8 @@
       "design_id": "P0020",
       "grid_width": 100,
       "grid_height": 120,
-      "color_count": 19
+      "color_count": 19,
+      "featured_image": "assets/P0020-gallery-1.webp"
     },
     {
       "price": 4.99,
@@ -2522,7 +2543,9 @@
       "etsy_description_en": "Marilyn Monroe Bubble Gum C2C Crochet Pattern PDF\n\nPATTERN CODE\nP0001-C2C\n\nDownloadable corner-to-corner crochet graph from the Pop Art Portraits collection.\n\nDIGITAL PRODUCT ONLY\nNo finished blanket, yarn, hook or physical materials are included.\n\nPATTERN DETAILS\n• 60 × 72 blocks\n• 2,905 filled blocks\n• 18 coordinated colours\n• Corner-to-corner crochet\n• Beginner friendly\n\nFINISHED SIZE EXAMPLES\n• Fine yarn - 1.5 cm/block: 90 × 108 cm\n• Medium yarn - 2.0 cm/block: 120 × 144 cm\n• Chunky yarn - 2.5 cm/block: 150 × 180 cm\n\nWHAT YOU RECEIVE\n• 17-page PDF\n• Finished-design preview and pattern facts\n• Colour key with block counts\n• Full-colour graph overview\n• Symbol overview and enlarged chart sections\n• Print-and-crochet guide\n\nPersonal use only. The pattern and PDF may not be redistributed or resold.",
       "etsy_description_es": "Patrón PDF de crochet C2C: Marilyn Monroe con chicle\n\nCÓDIGO DEL PATRÓN\nP0001-C2C\n\nGráfico descargable de crochet corner-to-corner de la colección Retratos Pop Art.\n\nSOLO PRODUCTO DIGITAL\nNo se incluyen manta terminada, lana, ganchillo ni materiales físicos.\n\nDETALLES\n• 60 × 72 bloques\n• 2905 bloques ocupados\n• 18 colores coordinados\n• Crochet C2C\n• Apto para principiantes\n\nIncluye un PDF de 17 páginas con vista previa, clave de colores, gráfico completo, símbolos, secciones ampliadas y guía de impresión. Solo para uso personal.",
       "base_design_id": "P0001",
-      "technique_code": "C2C"
+      "technique_code": "C2C",
+      "featured_source": "assets/P0001-c2c-crochet-gallery-1.webp",
+      "featured_image": "assets/P0001-C2C-featured.webp"
     },
     {
       "price": 4.99,
@@ -2653,7 +2676,9 @@
       "etsy_description_en": "Marilyn Monroe Bubble Gum Tapestry Crochet Pattern PDF\n\nPATTERN CODE\nP0001-TC\n\nDownloadable tapestry crochet colourwork chart from the Pop Art Portraits collection.\n\nDIGITAL PRODUCT ONLY\nNo finished wall hanging, yarn, hook or physical materials are included.\n\nPATTERN DETAILS\n• 80 × 96 crochet stitches\n• 5,136 filled colourwork stitches\n• 19 coordinated colours\n• Tapestry crochet colourwork\n• Beginner friendly\n\nIncludes a 17-page PDF with finished-design preview, colour key, full chart, symbol overview, enlarged sections and print-and-crochet guide.\n\nPersonal use only. The pattern and PDF may not be redistributed or resold.",
       "etsy_description_es": "Patrón PDF de tapestry crochet: Marilyn Monroe con chicle\n\nCÓDIGO DEL PATRÓN\nP0001-TC\n\nGráfico descargable de tapestry crochet a color de la colección Retratos Pop Art.\n\nSOLO PRODUCTO DIGITAL\nNo se incluyen tapiz terminado, lana, ganchillo ni materiales físicos.\n\nDETALLES\n• 80 × 96 puntos\n• 5136 puntos ocupados\n• 19 colores coordinados\n• Apto para principiantes\n\nIncluye PDF de 17 páginas con vista previa, clave de colores, gráfico completo, símbolos, secciones ampliadas y guía. Solo para uso personal.",
       "base_design_id": "P0001",
-      "technique_code": "TC"
+      "technique_code": "TC",
+      "featured_source": "assets/P0001-crochet-gallery-1.webp",
+      "featured_image": "assets/P0001-TC-featured.webp"
     },
     {
       "price": 4.99,
@@ -2787,7 +2812,9 @@
       "previous_skus": [
         "DRIELO-P0001-RUG"
       ],
-      "technique_code": "LH"
+      "technique_code": "LH",
+      "featured_source": "assets/P0001-rug-gallery-1.webp",
+      "featured_image": "assets/P0001-LH-featured.webp"
     }
   ],
   "product_image_policy": {
