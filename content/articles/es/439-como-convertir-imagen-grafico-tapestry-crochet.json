@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 439,
+  "translation_group": "439-tapestry-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "tapestry-crochet",
+      "terms": [
+        "tapestry-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "photo-conversion",
+      "terms": [
+        "photo-conversion"
+      ]
+    },
+    "style": {
+      "terms": [
+        "image-conversion",
+        "chart-design",
+        "tapestry-crochet"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "bags",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "es-439-tapestry",
+  "language": "es",
+  "locale": "es-ES",
+  "market_context": "Crocheters que parten de una fotografía, ilustración o imagen continua y quieren simplificarla hasta obtener una cuadrícula tapestry legible.",
+  "title": "Cómo convertir una imagen en un gráfico de Tapestry Crochet",
+  "slug": "como-convertir-imagen-grafico-tapestry-crochet",
+  "seo": {
+    "title": "Cómo convertir una imagen en un gráfico de Tapestry Crochet",
+    "meta_description": "Cómo convertir una imagen en un gráfico de Tapestry Crochet: recorta, simplifica colores, elige resolución, corrige píxeles y prueba el diseño.",
+    "search_intent": "Personas que quieren transformar una foto o ilustración no pixelada en un gráfico tapestry crochet utilizable."
+  },
+  "excerpt": "Convertir una imagen a tapestry exige más que aplicar una cuadrícula: hay que simplificar formas, colores y resolución hasta que el motivo siga siendo reconocible en puntos.",
+  "content_html": "<p>Convertir una fotografía o ilustración normal en un gráfico de Tapestry Crochet requiere más trabajo que convertir pixel art. Una imagen continua contiene curvas, degradados, sombras y miles de colores que no pueden trasladarse directamente a puntos sin simplificación.</p>\n<p>El objetivo no es reproducir cada detalle fotográfico. Debes identificar qué formas hacen reconocible la imagen y convertirlas en una cuadrícula con una resolución y una paleta que puedas tejer de forma práctica.</p>\n<h2>Recorta la imagen antes de pensar en píxeles</h2>\n<p>Empieza eliminando fondo y espacio que no aportan información. Cuanto más ocupa el sujeto dentro del encuadre, más celdas disponibles tendrás para sus detalles importantes.</p>\n<p>Decide también la proporción final: cuadrada para un cojín, vertical para un tapiz, horizontal para un panel o la forma que necesite el objeto.</p>\n<p>No intentes corregir la composición después de generar la cuadrícula. Recortar primero produce un diseño mucho más limpio.</p>\n<p>En retratos, comprueba que ojos, boca y silueta tengan suficiente tamaño dentro del encuadre. En objetos, prioriza contorno y elementos que permiten reconocerlos.</p>\n<p>Haz varias versiones de recorte antes de continuar. Una pequeña diferencia de zoom puede ahorrar decenas de píxeles desperdiciados en fondo.</p>\n<h2>Simplifica valores y colores antes de reducir resolución</h2>\n<p>Una foto puede contener cientos de tonos creados por luz y sombra. Tapestry Crochet funciona mejor con grupos de color claros y distinguibles.</p>\n<p>Reduce la paleta gradualmente: primero observa la imagen en escala de grises para identificar luces, medios tonos y sombras; después decide qué colores de hilo representarán esos grupos.</p>\n<p>No necesitas un hilo diferente para cada transición. Tres o cinco tonos bien elegidos pueden describir mejor una forma que doce colores casi iguales.</p>\n<p>Protege el contraste en bordes importantes. Si fondo y sujeto tienen luminosidad parecida, quizá debas modificar uno para que la silueta no desaparezca.</p>\n<p>Antes de crear el gráfico final, comprueba que la imagen simplificada todavía se reconoce en miniatura.</p>\n<h2>Elige resolución según gauge y tamaño final</h2>\n<p>Una resolución mayor conserva más detalle, pero también crea más puntos, cambios de color y tiempo de trabajo.</p>\n<p>Teje una muestra para saber cuánto mide un punto y una fila. Después calcula cuántas columnas caben en el ancho físico disponible.</p>\n<p>Si quieres un panel de 30 cm y cada punto mide 0,5 cm, unas 60 columnas son un punto de partida razonable.</p>\n<p>Calcula también la altura porque tus puntos pueden no ser cuadrados. Una imagen de 60 por 60 celdas puede no medir 30 por 30 cm.</p>\n<p>Genera dos o tres resoluciones y compáralas. Elige la menor que conserve los rasgos esenciales; así reduces complejidad sin perder reconocimiento.</p>\n<h2>Convierte a cuadrícula y limpia el resultado manualmente</h2>\n<p>Las herramientas automáticas de pixelado o reducción de color son útiles como primera versión, pero suelen crear ruido: píxeles aislados, bordes dentados y pequeñas islas de color.</p>\n<p>Recorre el gráfico manualmente y elimina celdas que no aportan a la forma. Une pequeñas zonas cuando pertenecen al mismo sombreado.</p>\n<p>Suaviza líneas diagonales con escalones regulares y revisa curvas importantes.</p>\n<p>En letras, ojos y detalles pequeños, una sola celda puede cambiar el significado. Esas áreas merecen ajuste manual aunque el resto del gráfico provenga de una conversión automática.</p>\n<p>Cuenta cuántas bobinas o cambios producirían las islas restantes. Un píxel de un color nuevo puede ser visualmente irrelevante pero añadir mucha gestión.</p>\n<h2>Compensa la proporción real de los puntos</h2>\n<p>La cuadrícula de la pantalla utiliza cuadrados; tu punto tapestry puede ser rectangular. Si ignoras esa diferencia, la imagen tejida puede quedar alta y estrecha o baja y ancha.</p>\n<p>Mide la relación entre ancho de punto y alto de fila y prueba una figura simple.</p>\n<p>Puedes corregir el gráfico añadiendo o eliminando filas, cambiando la resolución vertical o utilizando un punto cuya proporción se acerque más al diseño.</p>\n<p>No deformes la imagen “a ojo” sin una muestra. Una compensación calculada es más fácil de repetir.</p>\n<p>Guarda tanto la versión visual normal como la versión compensada para crochet; la segunda puede parecer deformada en pantalla pero correcta una vez tejida.</p>\n<h2>Prueba las zonas críticas antes de completar el patrón</h2>\n<p>Teje una pequeña muestra con el área de mayor detalle: un ojo, una curva, una letra o la frontera entre sujeto y fondo.</p>\n<p>Comprueba legibilidad, contraste, visibilidad del hilo transportado y cantidad de cambios.</p>\n<p>Observa la muestra desde la distancia real de uso. Una foto convertida no necesita parecer fotográfica a diez centímetros si el tapiz se verá a dos metros.</p>\n<p>Si la sección no funciona, vuelve a simplificar antes de generar instrucciones completas para todas las filas.</p>\n<p>Cuando el diseño ya esté aprobado, crea una leyenda de colores, numera filas y columnas y marca la dirección de lectura. Conserva también la imagen fuente para futuras revisiones.</p>\n<p>Convertir una imagen en un gráfico tapestry es un proceso de edición, no una transformación automática de un clic. Recortar, reducir colores, elegir resolución y limpiar manualmente la cuadrícula son los pasos que convierten una foto compleja en un patrón que realmente se puede tejer.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Secuencia visual foto original, imagen simplificada, cuadrícula de pocos colores y muestra tapestry terminada.",
+    "alt": "Cómo convertir una imagen en un gráfico de Tapestry Crochet"
+  }
+}
