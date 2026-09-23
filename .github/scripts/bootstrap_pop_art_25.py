@@ -206,7 +206,16 @@ def main():
  for base,en,es,slug in DESIGNS:
   variants={}
   if base in TEST:
-   m,t=load_source(base); save_preview(base,m,t); variants['CS']=(m,t)
+   existing_path=PATTERNS_DIR/f'{base}-CS'/'pattern.json'
+   if existing_path.is_file():
+    existing=json.loads(existing_path.read_text(encoding='utf-8'))
+    m=existing.get('matrix') or []
+    t=existing.get('threads') or []
+   else:
+    m,t=[],[]
+   if not m or not t:
+    m,t=load_source(base)
+   save_preview(base,m,t); variants['CS']=(m,t)
    for suf in ('C2C','TC','LH'):
     _,_,w,h,_,_,_=TECHS[suf]
     variants[suf]=bulk.downsample(m,t,w,h)
