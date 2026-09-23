@@ -415,7 +415,7 @@ function make_article_commerce_config( int $post_id ): array {
     return is_array( $value ) ? $value : array();
 }
 
-function make_article_product_tax_query( string $craft ): array {
+function make_article_product_technique_terms( string $craft ): array {
     $craft = sanitize_key( $craft );
     $map = array(
         'cross-stitch' => array( 'cross-stitch', 'cross-stitch-patterns', 'punto-de-cruz' ),
@@ -424,28 +424,35 @@ function make_article_product_tax_query( string $craft ): array {
         'latch-hook' => array( 'latch-hook', 'latch-hook-patterns' ),
     );
     $candidate_slugs = $map[ $craft ] ?? array( $craft );
-    $tax_query = array( 'relation' => 'OR' );
+    $terms = array();
 
-    if ( taxonomy_exists( 'product_cat' ) ) {
-        $existing = array();
+    if ( ! post_type_exists( 'product' ) ) { return $terms; }
+
+    foreach ( get_object_taxonomies( 'product', 'names' ) as $taxonomy ) {
+        if ( 'product_collection' === $taxonomy || ! taxonomy_exists( $taxonomy ) ) { continue; }
         foreach ( $candidate_slugs as $slug ) {
-            $term = get_term_by( 'slug', $slug, 'product_cat' );
-            if ( $term instanceof WP_Term ) { $existing[] = $term->slug; }
-        }
-        if ( ! empty( $existing ) ) {
-            $tax_query[] = array( 'taxonomy' => 'product_cat', 'field' => 'slug', 'terms' => array_values( array_unique( $existing ) ) );
+            $term = get_term_by( 'slug', $slug, $taxonomy );
+            if ( $term instanceof WP_Term ) {
+                $terms[ $taxonomy . ':' . $term->term_id ] = $term;
+            }
         }
     }
 
-    if ( taxonomy_exists( 'pa_technique' ) ) {
-        $existing = array();
-        foreach ( $candidate_slugs as $slug ) {
-            $term = get_term_by( 'slug', $slug, 'pa_technique' );
-            if ( $term instanceof WP_Term ) { $existing[] = $term->slug; }
-        }
-        if ( ! empty( $existing ) ) {
-            $tax_query[] = array( 'taxonomy' => 'pa_technique', 'field' => 'slug', 'terms' => array_values( array_unique( $existing ) ) );
-        }
+    return array_values( $terms );
+}
+
+function make_article_product_tax_query( string $craft ): array {
+    $terms = make_article_product_technique_terms( $craft );
+    if ( empty( $terms ) ) { return array(); }
+
+    $tax_query = array( 'relation' => 'OR' );
+    foreach ( $terms as $term ) {
+        if ( ! $term instanceof WP_Term ) { continue; }
+        $tax_query[] = array(
+            'taxonomy' => $term->taxonomy,
+            'field' => 'term_id',
+            'terms' => array( (int) $term->term_id ),
+        );
     }
 
     return count( $tax_query ) > 1 ? $tax_query : array();
@@ -512,20 +519,26 @@ function make_article_collection_terms( int $post_id, int $limit = 4 ): array {
 
 function make_article_shop_url( int $post_id ): string {
     $language = make_current_language();
-    $craft = make_article_craft( $post_id );
-    $map = array(
-        'cross-stitch' => array( 'cross-stitch', 'cross-stitch-patterns', 'punto-de-cruz' ),
-        'c2c-crochet' => array( 'c2c-crochet', 'c2c-crochet-patterns', 'corner-to-corner-crochet' ),
-        'tapestry-crochet' => array( 'tapestry-crochet', 'tapestry-crochet-patterns' ),
-        'latch-hook' => array( 'latch-hook', 'latch-hook-patterns' ),
-    );
+    $commerce = make_article_commerce_config( $post_id );
 
-    if ( taxonomy_exists( 'product_cat' ) ) {
-        foreach ( $map[ $craft ] ?? array( $craft ) as $slug ) {
-            $term = get_term_by( 'slug', $slug, 'product_cat' );
-            if ( $term instanceof WP_Term && function_exists( 'make_store_term_url' ) ) {
+    if ( taxonomy_exists( 'product_collection' ) && function_exists( 'make_store_term_url' ) ) {
+        foreach ( (array) ( $commerce['collection_slugs'] ?? array() ) as $slug ) {
+            $term = get_term_by( 'slug', sanitize_title( (string) $slug ), 'product_collection' );
+            if ( $term instanceof WP_Term && (int) $term->count > 0 ) {
                 return make_store_term_url( $term, $language );
             }
+        }
+    }
+
+    foreach ( make_article_product_technique_terms( make_article_craft( $post_id ) ) as $term ) {
+        if ( ! $term instanceof WP_Term ) { continue; }
+        if ( 'product_cat' === $term->taxonomy && function_exists( 'make_store_term_url' ) ) {
+            return make_store_term_url( $term, $language );
+        }
+        $taxonomy = get_taxonomy( $term->taxonomy );
+        if ( $taxonomy && ! empty( $taxonomy->public ) ) {
+            $url = get_term_link( $term );
+            if ( ! is_wp_error( $url ) ) { return $url; }
         }
     }
 
