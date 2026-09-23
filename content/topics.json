@@ -4242,6 +4242,61 @@
       "title_es": "Qué es un thread sorter y cómo usar una tarjeta de hilos para un proyecto",
       "title_en": "What Is a Thread Sorter? How to Use a Floss Card for a Cross Stitch Project",
       "craft": "cross-stitch"
+    },
+    {
+      "number": 385,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "beginners",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Qué es C2C Crochet: guía completa para principiantes",
+      "title_en": "What Is C2C Crochet? A Complete Beginner's Guide",
+      "craft": "c2c-crochet"
+    },
+    {
+      "number": 386,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "beginners",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo hacer C2C Crochet paso a paso desde cero",
+      "title_en": "How to C2C Crochet Step by Step from Scratch",
+      "craft": "c2c-crochet"
+    },
+    {
+      "number": 387,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "pattern-reading",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo leer un gráfico de C2C Crochet sin perderte",
+      "title_en": "How to Read a C2C Crochet Graph Without Getting Lost",
+      "craft": "c2c-crochet"
+    },
+    {
+      "number": 388,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "technique",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo hacer aumentos y disminuciones en C2C Crochet",
+      "title_en": "How to Increase and Decrease in C2C Crochet",
+      "craft": "c2c-crochet"
+    },
+    {
+      "number": 389,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "technique",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo tejer un cuadrado perfecto en C2C Crochet",
+      "title_en": "How to Crochet a Perfect C2C Square",
+      "craft": "c2c-crochet"
     }
   ],
   "taxonomy_strategy": {
@@ -4272,7 +4327,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 384,
-    "bilingual_groups": 384
+    "last_indexed_article": 389,
+    "bilingual_groups": 389
   }
 }
