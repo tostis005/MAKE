@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Drielo Pop Art — Intarsia Knitting Template</title>
+<link rel="stylesheet" href="../shared/drielo-pattern-template.css">
+</head>
+<body>
+<!-- Technique placeholders:
+{{STITCHES_W}}, {{ROWS_H}}, {{GAUGE_STS}}, {{GAUGE_ROWS}}, {{FINISHED_WIDTH_CM}},
+{{FINISHED_HEIGHT_CM}}, {{YARN_WEIGHT}}, {{NEEDLE_SIZE}}, {{PATTERN_CODE}}, {{PRODUCT_URL}}
+Slots: PATTERN_PREVIEW_SVG, YARN_KEY_ROWS, COLOR_CHART_SVG, SYMBOL_CHART_SVG
+-->
+<section class="page cover"><div class="page-inner">
+  <div class="cover-art">
+    <svg viewBox="0 0 700 760" role="img" aria-label="Intarsia knitted cushion mockup">
+      <rect width="700" height="760" fill="#ded8cd"/>
+      <rect y="450" width="700" height="310" fill="#b9aaa0"/>
+      <rect x="98" y="110" width="504" height="500" rx="44" fill="#f4efe6" stroke="#111" stroke-width="2"/>
+      <defs><clipPath id="cushionClip"><rect x="122" y="134" width="456" height="452" rx="30"/></clipPath></defs>
+      <g clip-path="url(#cushionClip)">
+        <rect x="122" y="134" width="456" height="452" fill="#f7f2e8"/>
+        <g class="pop-sample" opacity=".27"><rect class="p2" x="122" y="134" width="152" height="150"/><rect class="p1" x="274" y="134" width="152" height="150"/><rect class="p3" x="426" y="134" width="152" height="150"/><circle class="p4" cx="270" cy="440" r="92"/><circle class="p5" cx="455" cy="440" r="92"/></g>
+        <!-- SLOT:PATTERN_PREVIEW_SVG -->
+        <g opacity=".12" stroke="#111" stroke-width="1"><path d="M122 150h456M122 168h456M122 186h456M122 204h456M122 222h456M122 240h456M122 258h456M122 276h456M122 294h456M122 312h456M122 330h456M122 348h456M122 366h456M122 384h456M122 402h456M122 420h456M122 438h456M122 456h456M122 474h456M122 492h456M122 510h456M122 528h456M122 546h456M122 564h456"/></g>
+      </g>
+      <rect x="50" y="62" width="130" height="80" rx="8" fill="#718a6a"/><circle cx="620" cy="90" r="52" fill="#667c61"/>
+      <text x="350" y="700" text-anchor="middle" class="mock-label">INTARSIA KNITTING · CUSHION PANEL MOCKUP</text>
+    </svg>
+  </div>
+  <div class="cover-meta"><div><div class="brand">DRIELO</div><div class="code">{{PATTERN_CODE}}</div><div class="technique">Intarsia Knitting Pattern</div><div class="collection">Pop Art Collection</div></div><div class="cover-badge">Digital PDF Pattern</div></div>
+</div></section>
+
+<section class="page"><div class="page-inner">
+  <div class="header"><div><span class="kicker">Project overview</span><h1>{{PATTERN_CODE}}</h1></div><div class="header-technique">Intarsia Knitting · Pop Art</div></div>
+  <div class="grid-3"><div class="stat"><b>{{STITCHES_W}} × {{ROWS_H}}</b><span>Stitches × rows</span></div><div class="stat"><b>{{FINISHED_WIDTH_CM}} × {{FINISHED_HEIGHT_CM}} cm</b><span>Motif size</span></div><div class="stat"><b>{{GAUGE_STS}} / {{GAUGE_ROWS}}</b><span>Sts / rows per 10 cm</span></div></div>
+  <div style="height:8mm"></div>
+  <div class="grid-2"><div class="card"><h3>Recommended setup</h3><p style="margin-top:4mm"><b>Yarn:</b> {{YARN_WEIGHT}}<br><b>Needles:</b> {{NEEDLE_SIZE}}<br><b>Base fabric:</b> stockinette unless the project specifies otherwise.</p></div><div class="card"><h3>Chart logic</h3><p style="margin-top:4mm">One chart square equals one knitted stitch. Read right-side rows right-to-left and wrong-side rows left-to-right unless working in the round.</p></div></div>
+  <div class="note"><p><b>Pop Art adaptation:</b> do not feed the full cross-stitch matrix directly into intarsia. The generator should reduce colors, remove one-stitch islands and correct the artwork for knit stitch aspect ratio.</p></div>
+  <div class="url"><a href="{{PRODUCT_URL}}">{{PRODUCT_URL}}</a></div>
+  <div class="footer"><span>© {{COPYRIGHT_YEAR}} Drielo</span><span class="page-number">Page </span></div>
+</div></section>
+
+<section class="page"><div class="page-inner"><div class="header"><div><span class="kicker">Yarn key</span><h2>Colors & yarn requirements</h2></div><div class="header-code">{{PATTERN_CODE}}</div></div><table class="table"><thead><tr><th>Symbol</th><th>Color</th><th>Yarn reference</th><th>Stitches</th><th>Est. yarn</th></tr></thead><tbody><!-- SLOT:YARN_KEY_ROWS --></tbody></table><div class="footer"><span>Wind separate bobbins for major color blocks</span><span class="page-number">Page </span></div></div></section>
+
+<section class="page"><div class="page-inner"><div class="header"><div><span class="kicker">Primary chart</span><h2>Knitting color chart</h2></div><div class="header-code">{{PATTERN_CODE}}</div></div><div class="chart-shell"><!-- SLOT:COLOR_CHART_SVG --></div><div class="footer"><span>1 square = 1 stitch</span><span class="page-number">Page </span></div></div></section>
+
+<section class="page"><div class="page-inner"><div class="header"><div><span class="kicker">Accessible chart</span><h2>Symbol chart</h2></div><div class="header-code">{{PATTERN_CODE}}</div></div><div class="chart-shell"><!-- SLOT:SYMBOL_CHART_SVG --></div><div class="footer"><span>Row direction must be preserved</span><span class="page-number">Page </span></div></div></section>
+
+<section class="page"><div class="page-inner"><div class="header"><div><span class="kicker">Technique notes</span><h2>Intarsia joins & finishing</h2></div><div class="header-code">{{PATTERN_CODE}}</div></div><div class="steps"><div class="step"><div class="step-n">1</div><p>Use a separate yarn source for each disconnected block of color.</p></div><div class="step"><div class="step-n">2</div><p>Twist old and new yarns at every color boundary to avoid holes.</p></div><div class="step"><div class="step-n">3</div><p>Keep floats out of true intarsia sections; duplicate stitch may be used only for tiny optional details.</p></div><div class="step"><div class="step-n">4</div><p>Wet-block the finished panel to the dimensions shown before sewing or mounting.</p></div></div><div class="footer"><span>DRIELO · INTARSIA KNITTING</span><span class="page-number">Page </span></div></div></section>
+</body></html>
