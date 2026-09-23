@@ -349,7 +349,7 @@ function renderPages() {
   // 01 Cover
   pages.push(common(1, `<div class="page-content">${titleBlock(data.title, data.subtitle || "A modern cross-stitch pattern")}
     <div class="cover-layout">
-      <div class="hero-photo"><img id="cover-image" alt="Framed exact cross-stitch preview"/></div>
+      <div class="hero-photo" data-product-image><img id="cover-image" alt="Framed exact cross-stitch preview"/></div>
       <div class="facts-rail">
         <div class="rail-item"><div class="icon-disc">✦</div><b>Skill level</b><span>${esc(data.skill_level || "Beginner friendly")}</span></div>
         <div class="rail-item"><div class="icon-disc">↔</div><b>Finished size</b><span>${W} × ${H} stitches</span></div>
