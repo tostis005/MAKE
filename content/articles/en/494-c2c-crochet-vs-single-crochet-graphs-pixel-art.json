@@ -1,0 +1,78 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 494,
+  "translation_group": "494-multi-technique",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet",
+        "tapestry-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "pixel-art",
+      "terms": [
+        "pixel-art"
+      ]
+    },
+    "style": {
+      "terms": [
+        "comparison",
+        "pixel-art",
+        "graphs"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "cushions",
+        "wall-art",
+        "bags"
+      ]
+    },
+    "article_type": {
+      "primary": "comparison",
+      "terms": [
+        "comparison"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-494-multi-technique",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "People who want to crochet pixel art and are comparing C2C blocks with row-by-row single crochet graphs.",
+  "title": "C2C Crochet vs Single Crochet Graphs for Pixel Art",
+  "slug": "c2c-crochet-vs-single-crochet-graphs-pixel-art",
+  "seo": {
+    "title": "C2C Crochet vs Single Crochet Graphs for Pixel Art",
+    "meta_description": "Compare C2C crochet and single crochet graphs for pixel art, including pixel scale, proportions, edges, detail, color changes and finished size.",
+    "search_intent": "People comparing C2C crochet and single crochet for turning pixel art into crochet."
+  },
+  "excerpt": "C2C turns each pixel into a larger block, while single crochet creates a more compact grid. Those differences change scale, proportions and pixel-art clarity.",
+  "content_html": "<p>Pixel art looks naturally suited to crochet because it is already built from a grid, but the result changes dramatically depending on what counts as one “pixel” in the fabric. In C2C crochet, each graph cell usually becomes a block made from several stitches. In a row-by-row single crochet graph, one cell usually maps to one stitch.</p>\n<p>That difference changes scale, image proportions, edge definition and how much detail can fit inside a particular finished object.</p>\n<h2>A C2C pixel occupies much more space than one single crochet stitch</h2>\n<p>A C2C block contains chains and several double crochet stitches or their equivalent in the chosen variation.</p>\n<p>As a result, a 60-by-60-cell graph can quickly become a large blanket or panel.</p>\n<p>In single crochet, the same 60-by-60 grid produces a much more compact surface.</p>\n<p>This allows higher-resolution graphs without creating an enormous project.</p>\n<p>The exact difference needs to be measured with a swatch because yarn, hook and tension change real dimensions.</p>\n<p>Before choosing a technique, relate the total chart count to the cell scale measured in your sample.</p>\n<h2>Cell proportions affect the shape of the image</h2>\n<p>A C2C block tends to read as approximately square within the diagonal structure, which works naturally with pixel art designed from square cells.</p>\n<p>One single crochet stitch is not always exactly as tall as it is wide.</p>\n<p>If every stitch is treated as a perfectly square graph cell, the image can become slightly stretched or compressed depending on gauge.</p>\n<p>A ten-stitch by ten-row sample lets you measure that relationship before beginning.</p>\n<p>When the ratio is not close to one-to-one, the graph or stitch approach can be adjusted.</p>\n<p>This matters especially for circles, faces, lettering and logos where even a small proportion change is noticeable.</p>\n<h2>C2C preserves simple high-impact pixel art very well</h2>\n<p>Large silhouettes, icons and retro-style pixel graphics often suit C2C because every cell becomes a clearly visible block.</p>\n<p>The diagonal fabric construction adds texture that reinforces the graphic appearance.</p>\n<p>Individual cell edges can look slightly softened by stitch direction, but the overall image reads strongly from a distance.</p>\n<p>Tiny details become physically large, so using a graph with hundreds of pixels only for precision is often impractical.</p>\n<p>Thoughtful simplification usually works better than transferring an extremely large digital image cell by cell.</p>\n<p>C2C is especially natural for blankets and wall panels where large scale is already part of the goal.</p>\n<h2>Single crochet supports more resolution in smaller projects</h2>\n<p>When one stitch represents one cell, much more graphic information can fit into a limited width.</p>\n<p>This is useful for smaller lettering, outlines, detailed icons and designs intended for bags or cushions.</p>\n<p>The fabric is compact and the stitch texture interferes less with the visual grid.</p>\n<p>A graph with many one-cell color changes, however, can demand careful yarn management.</p>\n<p>When colors are carried, tension needs to stay even so the fabric does not narrow or become excessively thick.</p>\n<p>When separate bobbins are used, a row containing many small color blocks can become organizationally complex.</p>\n<h2>Diagonal edges behave differently in the two fabrics</h2>\n<p>In pixel art, a diagonal is created from a staircase of cells.</p>\n<p>In C2C, the diagonal direction of the fabric can make some sloping lines feel especially fluid.</p>\n<p>In single crochet, the staircase is rendered more literally row by row.</p>\n<p>Vertical and horizontal edges also depend on gauge and the way color changes are made between stitches.</p>\n<p>Make a sample containing a multi-step diagonal and a vertical boundary to compare which appearance you prefer.</p>\n<p>Do not judge only from close range; inspect the graphic from the distance at which the finished project will normally be seen.</p>\n<h2>Choose according to scale, final object and required detail</h2>\n<p>If you want a large blanket with bold simple pixel art, the natural scale of C2C can suit the project well.</p>\n<p>If you want a more detailed graph inside a pillow or bag, single crochet allows more cells in less physical space.</p>\n<p>With either method, simplify isolated colors and test a critical section before committing all of the materials.</p>\n<p>Calculate finished dimensions and approximate yarn use because the same grid can require very different quantities in the two constructions.</p>\n<p>Also consider which color-change system you prefer managing over long sessions.</p>\n<p>C2C crochet and single crochet can represent the same pixel art while using very different pixel scales. C2C turns each cell into a large textured block; single crochet compresses it into a small unit and supports more resolution. The practical choice depends on how much detail you need inside the finished size you want.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Simple pixel art converted into two crochet samples: C2C with large diagonal blocks and row-by-row single crochet with small compact cells.",
+    "alt": "C2C Crochet vs single crochet for pixel art"
+  }
+}
