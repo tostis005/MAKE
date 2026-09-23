@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import argparse,base64,json,os,re,shutil,subprocess
+import argparse,base64,json,re
 from pathlib import Path
 HERE=Path(__file__).resolve().parent; ROOT=HERE.parent; TEMPLATE=ROOT/'template'/'DRIELO_Pattern_Template_MASTER.html'; COLLECTIONS=ROOT/'collections'; PRODUCTS=ROOT/'products'; OUTPUT=ROOT/'output'
 def read_json(p): return json.loads(p.read_text(encoding='utf-8'))
@@ -49,10 +49,15 @@ def data_uri(p):
  mime={'.jpg':'image/jpeg','.jpeg':'image/jpeg','.png':'image/png','.webp':'image/webp'}.get(p.suffix.lower())
  if not mime: raise ValueError(f'Unsupported image {p}')
  return f'data:{mime};base64,'+base64.b64encode(p.read_bytes()).decode('ascii')
-def chrome():
- for c in [os.getenv('CHROME_BIN'),'chromium','chromium-browser','google-chrome','google-chrome-stable']:
-  if c and shutil.which(c): return shutil.which(c)
- raise RuntimeError('Chromium/Chrome not found')
+def export_pdf(html_path, pdf_path):
+ from playwright.sync_api import sync_playwright
+ with sync_playwright() as pw:
+  browser=pw.chromium.launch()
+  page=browser.new_page()
+  page.goto(html_path.resolve().as_uri(),wait_until='load',timeout=120000)
+  page.wait_for_function("document.documentElement.getAttribute('data-drielo-ready') === '1'",timeout=120000)
+  page.pdf(path=str(pdf_path),format='A4',print_background=True,prefer_css_page_size=True)
+  browser.close()
 def render(code,fix=False):
  pp=PRODUCTS/code/'product.json'
  if not pp.is_file(): raise FileNotFoundError(pp)
@@ -69,9 +74,8 @@ def render(code,fix=False):
  if not m: raise ValueError('Template assets block missing')
  a=json.loads(m.group(1)); a.update({'cover_image':data_uri(hero),'frame':mock.get('frame',{})}); html=html[:m.start(1)]+json.dumps(a,ensure_ascii=False,separators=(',',':'))+html[m.end(1):]
  out=OUTPUT/code; out.mkdir(parents=True,exist_ok=True); hp=out/f'{code}.html'; pdf=out/f'Drielo_{code}.pdf'; hp.write_text(html,encoding='utf-8')
- cmd=[chrome(),'--headless','--disable-gpu','--no-sandbox','--allow-file-access-from-files','--print-to-pdf-no-header',f'--print-to-pdf={pdf}',hp.resolve().as_uri()]
- p=subprocess.run(cmd,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True,timeout=180)
- if p.returncode or not pdf.is_file() or pdf.stat().st_size<10000: raise RuntimeError('PDF export failed\n'+p.stderr)
+ export_pdf(hp,pdf)
+ if not pdf.is_file() or pdf.stat().st_size<10000: raise RuntimeError('PDF export failed')
  print(json.dumps({'product':code,'collection':coll['id'],'stitches':total,'palette_fixes':len(changes),'pdf':str(pdf),'pdf_bytes':pdf.stat().st_size},indent=2)); return pdf
 def main():
  ap=argparse.ArgumentParser(); ap.add_argument('--product',required=True); ap.add_argument('--fix-palette',action='store_true'); a=ap.parse_args(); render(a.product,a.fix_palette)
