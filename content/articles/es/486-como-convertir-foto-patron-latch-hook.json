@@ -1,0 +1,75 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 486,
+  "translation_group": "486-latch-hook",
+  "taxonomy": {
+    "craft": {
+      "primary": "latch-hook",
+      "terms": [
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "photo-conversion",
+      "terms": [
+        "photo-conversion"
+      ]
+    },
+    "style": {
+      "terms": [
+        "photo-conversion",
+        "pattern-design",
+        "image-simplification"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "rugs",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "es-486-latch-hook",
+  "language": "es",
+  "locale": "es-ES",
+  "market_context": "Personas que quieren transformar una fotografía propia en un patrón de Latch Hook legible, con tamaño y paleta adecuados.",
+  "title": "Cómo convertir una foto en un patrón de Latch Hook",
+  "slug": "como-convertir-foto-patron-latch-hook",
+  "seo": {
+    "title": "Cómo convertir una foto en un patrón de Latch Hook",
+    "meta_description": "Convierte una foto en patrón de Latch Hook eligiendo una imagen adecuada, recortando, simplificando detalle, reduciendo colores y verificando el resultado en cuadrícula.",
+    "search_intent": "Personas que quieren crear un patrón de Latch Hook a partir de una fotografía."
+  },
+  "excerpt": "Una foto necesita más simplificación que el pixel art. Aprende a elegir la imagen, recortar, reducir detalle y convertirla en una cuadrícula que siga siendo reconocible.",
+  "content_html": "<p>Convertir una foto en Latch Hook exige más decisiones que convertir pixel art. Una fotografía contiene sombras suaves, texturas, fondos complejos y cientos o miles de colores, mientras que un patrón necesita una cuadrícula finita y una paleta manejable de hilo. El objetivo no es copiar cada detalle, sino conservar los rasgos que hacen reconocible la imagen.</p>\n<p>Las mejores conversiones empiezan con una foto adecuada, un recorte claro y una simplificación consciente antes de generar la cuadrícula definitiva. También conviene pensar desde el principio en la distancia de visualización, porque un detalle útil en pantalla puede desaparecer cuando se convierte en pelo.</p>\n<h2>Elige una foto con sujeto claro y contraste suficiente</h2>\n<p>Las imágenes con un sujeto principal bien separado del fondo suelen funcionar mejor que escenas con muchos objetos pequeños.</p>\n<p>Busca buena iluminación y evita zonas importantes completamente perdidas en sombra o sobreexpuestas.</p>\n<p>Un rostro, mascota u objeto con silueta clara puede simplificarse mejor que una escena llena de hojas, pelo fino o texturas diminutas.</p>\n<p>Comprueba que los elementos importantes ocupen una parte suficiente de la fotografía.</p>\n<p>Si el sujeto es muy pequeño dentro del encuadre, recorta primero en lugar de intentar conservar todo el fondo.</p>\n<p>Empieza con la imagen de mayor resolución disponible para que la simplificación se base en información limpia.</p>\n<h2>Recorta según el formato físico que quieres terminar</h2>\n<p>Antes de pixelar o reducir colores, decide si el proyecto será cuadrado, vertical, horizontal o tendrá otra proporción.</p>\n<p>Recorta la fotografía con esa relación de aspecto para que el patrón no deforme al sujeto más adelante.</p>\n<p>Deja espacio alrededor de los elementos que no deben quedar pegados al borde.</p>\n<p>En retratos, evita cortar accidentalmente rasgos importantes por intentar encajar una proporción demasiado estrecha.</p>\n<p>En una alfombra o cojín, considera desde ahora dónde quedarán los bordes y qué parte de la imagen debe leerse a distancia.</p>\n<p>Guarda una copia del recorte final antes de aplicar cualquier reducción.</p>\n<h2>Reduce detalle antes de reducir resolución</h2>\n<p>Una fotografía puede contener textura que nunca será visible cuando cada celda se convierta en un nudo.</p>\n<p>Simplifica fondos ruidosos, pequeñas sombras, reflejos y elementos secundarios que compitan con el sujeto principal.</p>\n<p>En pelo o pelaje, piensa en masas de color y dirección general en lugar de intentar reproducir cada hebra.</p>\n<p>En rostros, conserva especialmente ojos, cejas, nariz, boca y contorno porque son rasgos muy sensibles a pequeños cambios.</p>\n<p>Cuando dos detalles ocupen menos de una o dos celdas en el tamaño final, decide cuál tiene más valor visual.</p>\n<p>Una imagen ligeramente más simple suele producir un patrón mucho más legible que una conversión automática llena de ruido.</p>\n<h2>Convierte la imagen a la resolución de tu patrón</h2>\n<p>Calcula primero cuántas columnas y filas quieres que tenga el diseño según el canvas y el tamaño físico objetivo.</p>\n<p>Reduce la fotografía a esa cuadrícula manteniendo la proporción definida en el recorte.</p>\n<p>Evita escalar de forma independiente ancho y alto porque eso estira caras, círculos y otros elementos reconocibles.</p>\n<p>Observa la imagen ya reducida al tamaño real de celdas, no sólo ampliada en pantalla.</p>\n<p>Si el sujeto deja de reconocerse, aumenta el número de posiciones o simplifica aún más el contenido.</p>\n<p>Si sigue siendo legible con menos celdas, puedes reducir el proyecto y ahorrar nudos sin perder identidad.</p>\n<h2>Reduce la paleta y corrige manualmente los bloques de color</h2>\n<p>Una foto digital puede contener miles de variaciones que no corresponden a miles de hilos distintos.</p>\n<p>Agrupa tonos similares y conserva diferencias importantes para volumen, silueta y rasgos del sujeto.</p>\n<p>Revisa especialmente las zonas donde la reducción automática crea píxeles aislados de un color.</p>\n<p>Un solo nudo de un tono casi idéntico rara vez aporta tanto como un bloque limpio y coherente.</p>\n<p>Después de reducir colores, edita manualmente bordes, ojos, letras o detalles pequeños que hayan quedado deformados.</p>\n<p>Comprueba la paleta con muestras reales de hilo antes de dar por cerrado el chart.</p>\n<h2>Prueba una sección crítica antes de producir el patrón completo</h2>\n<p>Elige una zona donde coincidan varios tonos y algún detalle reconocible, como un ojo, borde de cara o cambio de luz.</p>\n<p>Anúdala con el canvas y el hilo reales.</p>\n<p>Obsérvala desde cerca y desde la distancia prevista para el proyecto final.</p>\n<p>Si los colores se mezclan demasiado o un rasgo desaparece, vuelve a la cuadrícula y refuerza contraste o tamaño.</p>\n<p>No esperes a completar miles de nudos para descubrir que una sombra digital no se traduce bien a hilo.</p>\n<p>Convertir una foto en Latch Hook es un proceso de interpretación. Una buena selección de imagen, recorte intencional, simplificación de detalles y corrección manual de la cuadrícula producen un patrón mucho más reconocible que una conversión automática sin revisión.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Fotografía de un gato junto a una versión simplificada en bloques de color y el gráfico final de Latch Hook con cuadrícula y leyenda.",
+    "alt": "Cómo convertir una foto en un patrón de Latch Hook"
+  }
+}
