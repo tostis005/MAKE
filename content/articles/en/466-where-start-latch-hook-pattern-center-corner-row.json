@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 466,
+  "translation_group": "466-latch-hook",
+  "taxonomy": {
+    "craft": {
+      "primary": "latch-hook",
+      "terms": [
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "pattern-reading",
+      "terms": [
+        "pattern-reading"
+      ]
+    },
+    "style": {
+      "terms": [
+        "starting-point",
+        "pattern-reading",
+        "workflow"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "rugs",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-466-latch-hook",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Makers deciding whether to begin a latch hook pattern from a corner, a full row or the center and wanting a method that is easy to track.",
+  "title": "Where Should You Start a Latch Hook Pattern? Center, Corner or Row",
+  "slug": "where-start-latch-hook-pattern-center-corner-row",
+  "seo": {
+    "title": "Where Should You Start a Latch Hook Pattern? Center, Corner or Row",
+    "meta_description": "Compare corner, full-row and center starts for latch hook patterns based on counting, visibility, symmetry and project type.",
+    "search_intent": "People deciding whether to start a latch hook chart from a corner, a complete row or the center."
+  },
+  "excerpt": "Corner, row and center starts can all work, but they offer different levels of control. Learn which method makes counting and orientation easiest.",
+  "content_html": "<p>A latch hook chart can be filled in several ways: from a corner, in complete rows, in blocks or even from the center. The knot itself does not change, but the starting point affects how easily you can count, maintain orientation and keep finished pile from covering the canvas you still need to see.</p>\n<p>For many beginners, starting near a corner and progressing in orderly rows is the easiest system to verify. Some designs or mounting methods, however, can benefit from a different approach.</p>\n<h2>Your starting point should make counting and visibility easier</h2>\n<p>The goal is not finding one universally correct corner. It is choosing a route that keeps the chart and mesh synchronized.</p>\n<p>Notice how you hold the canvas and which direction the tool moves comfortably. Finished pile should not constantly sit under your hand or hide the bars you need next.</p>\n<p>Check whether the chart numbers rows from the top, bottom or one side and adapt your progress marks to that reference.</p>\n<p>If the kit gives a specific starting instruction, follow it unless there is a clear reason to change the workflow.</p>\n<p>With any method, mark both the physical first position and the corresponding first chart cell or row.</p>\n<p>A good starting choice makes every completed section easy to verify with a simple count.</p>\n<h2>Starting in a corner gives strong reference edges</h2>\n<p>A corner of the design area provides two known boundaries: one horizontal and one vertical. That makes a one-position shift easier to detect.</p>\n<p>It is especially useful on rectangular charts with a clearly defined finishing margin around the canvas.</p>\n<p>You can complete a row from the corner and move to the next while keeping one edge as a reference.</p>\n<p>The main risk is confusing the physical corner of the canvas with the corner of the knotted area when extra finishing mesh is present.</p>\n<p>Mark the working area first and count from that reference instead of an arbitrary cut edge.</p>\n<p>On large projects, add reference marks every ten positions along the margin so you do not need to recount from zero repeatedly.</p>\n<h2>Complete rows are usually easiest for beginners</h2>\n<p>A full row lets you compare the final knot count directly with the number of chart cells.</p>\n<p>It is also simple to keep a ruler or strip beneath the active line and cross off the row once it is complete.</p>\n<p>Color changes appear as a clear sequence, which makes it easier to see when one block begins a position too early or late.</p>\n<p>On very wide pieces, divide the row into groups of ten or twenty knots and verify each group before continuing.</p>\n<p>Do not complete many rows without checking. A one-cell error can spread when the previous row is used as a visual guide.</p>\n<p>If finished pile begins getting in the way, rotate the canvas or adjust working direction while preserving the same relationship to the chart.</p>\n<h2>Starting in the center can help symmetry but requires more control</h2>\n<p>A center start can make sense for a custom design, a large focal motif or a project where exact central placement is important.</p>\n<p>However, locating the true center of a large mesh requires reliable horizontal and vertical counting.</p>\n<p>A center position that is off by one or two cells shifts the whole motif relative to the margins and may not be noticed quickly.</p>\n<p>Mark temporary center lines on both canvas and chart before making the first knot.</p>\n<p>Then work outward in clearly defined blocks so isolated holes are not left behind.</p>\n<p>For a first rectangular kit, a center start usually offers less practical advantage than a corner or row system.</p>\n<h2>Project type can influence the best workflow</h2>\n<p>On a large rug, regular sections prevent you from repeatedly handling all of the finished pile.</p>\n<p>On a small cushion front, one corner and complete rows are often sufficient and easy to measure.</p>\n<p>On a wall hanging with a large central motif, establishing several motif landmarks before filling the background can be useful.</p>\n<p>Pre-printed canvas gives more flexibility because color positions are already marked physically, although counting remains valuable.</p>\n<p>If the project is mounted in a frame or support, consider which sections are easiest to reach without moving the setup constantly.</p>\n<p>Avoid repeatedly changing strategies mid-project because every workflow change increases the risk of repeated or skipped positions.</p>\n<h2>Whatever the starting point, leave a clear record of progress</h2>\n<p>Cross off cells or rows on a working copy, use a digital marking app or move a ruler with the active section.</p>\n<p>When stopping, record the exact row, column and direction for the next session.</p>\n<p>If working in blocks, draw their boundaries on the chart and close any missing positions before moving into another block.</p>\n<p>Take occasional photographs from farther away to confirm that the motif remains centered and contains no visible jumps.</p>\n<p>When an error appears, return to the last verified checkpoint instead of shifting later colors to compensate.</p>\n<p>Where you should start a latch hook pattern depends on which reference is easiest to maintain. For beginners, a corner combined with complete rows usually gives the strongest control; center starts can work well for symmetry but require more precise marking and counting.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Three diagrams of the same latch hook canvas showing progress paths starting from a corner, full row and center.",
+    "alt": "Where to start a latch hook pattern"
+  }
+}
