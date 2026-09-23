@@ -207,13 +207,11 @@
         "bubble gum art",
         "pop art portrait"
       ],
-      "gallery": [
-        "assets/P0001-CS-product.webp"
-      ],
+      "gallery": [],
       "download": "files/Drielo_P0001-CS.pdf",
       "seo_title": "Marilyn Monroe Bubble Gum Cross Stitch Pattern PDF | Drielo",
       "meta_description": "Marilyn Monroe Bubble Gum cross stitch PDF, P0001-CS: 100 × 120 stitches, 19 DMC colours, beginner friendly, with colour and symbol charts.",
-      "gallery_revision": 106,
+      "gallery_revision": 2026092302,
       "title_en": "Marilyn Monroe Bubble Gum Cross Stitch Pattern PDF",
       "title_es": "Patrón PDF de punto de cruz: Marilyn Monroe con chicle",
       "short_description_en": "Downloadable Marilyn Monroe Bubble Gum cross stitch pattern PDF. A playful Marilyn Monroe portrait with a bold pink bubble-gum focal point. 100 × 120 stitches; 7,927 total stitches; 19 DMC colours; full cross stitch only; beginner friendly. Pattern code: P0001-CS.",
@@ -306,8 +304,7 @@
         "DRIELO-P0001"
       ],
       "technique_code": "CS",
-      "featured_source": "assets/P0001-cross-stitch-gallery-1.webp",
-      "featured_image": "assets/P0001-CS-featured.webp"
+      "featured_image": "assets/P0001-CS-product.webp"
     },
     {
       "code": "P0002",
@@ -2517,11 +2514,9 @@
         "crochet fácil",
         "crochet colorwork"
       ],
-      "gallery": [
-        "assets/P0001-C2C-product.webp"
-      ],
+      "gallery": [],
       "download": "files/Drielo_P0001-C2C.pdf",
-      "gallery_revision": 101,
+      "gallery_revision": 2026092302,
       "seo_title": "Marilyn Monroe C2C Crochet Pattern PDF | Drielo",
       "seo_title_en": "Marilyn Monroe C2C Crochet Pattern PDF | Drielo",
       "seo_title_es": "Patrón C2C de Marilyn Monroe en PDF | Drielo",
@@ -2544,8 +2539,7 @@
       "etsy_description_es": "Patrón PDF de crochet C2C: Marilyn Monroe con chicle\n\nCÓDIGO DEL PATRÓN\nP0001-C2C\n\nGráfico descargable de crochet corner-to-corner de la colección Retratos Pop Art.\n\nSOLO PRODUCTO DIGITAL\nNo se incluyen manta terminada, lana, ganchillo ni materiales físicos.\n\nDETALLES\n• 60 × 72 bloques\n• 2905 bloques ocupados\n• 18 colores coordinados\n• Crochet C2C\n• Apto para principiantes\n\nIncluye un PDF de 17 páginas con vista previa, clave de colores, gráfico completo, símbolos, secciones ampliadas y guía de impresión. Solo para uso personal.",
       "base_design_id": "P0001",
       "technique_code": "C2C",
-      "featured_source": "assets/P0001-c2c-crochet-gallery-1.webp",
-      "featured_image": "assets/P0001-C2C-featured.webp"
+      "featured_image": "assets/P0001-C2C-product.webp"
     },
     {
       "price": 4.99,
@@ -2650,11 +2644,9 @@
         "crochet fácil",
         "pdf crochet"
       ],
-      "gallery": [
-        "assets/P0001-TC-product.webp"
-      ],
+      "gallery": [],
       "download": "files/Drielo_P0001-TC.pdf",
-      "gallery_revision": 101,
+      "gallery_revision": 2026092302,
       "seo_title": "Marilyn Monroe Tapestry Crochet Pattern PDF | Drielo",
       "seo_title_en": "Marilyn Monroe Tapestry Crochet Pattern PDF | Drielo",
       "seo_title_es": "Patrón tapestry crochet Marilyn Monroe PDF | Drielo",
@@ -2677,8 +2669,7 @@
       "etsy_description_es": "Patrón PDF de tapestry crochet: Marilyn Monroe con chicle\n\nCÓDIGO DEL PATRÓN\nP0001-TC\n\nGráfico descargable de tapestry crochet a color de la colección Retratos Pop Art.\n\nSOLO PRODUCTO DIGITAL\nNo se incluyen tapiz terminado, lana, ganchillo ni materiales físicos.\n\nDETALLES\n• 80 × 96 puntos\n• 5136 puntos ocupados\n• 19 colores coordinados\n• Apto para principiantes\n\nIncluye PDF de 17 páginas con vista previa, clave de colores, gráfico completo, símbolos, secciones ampliadas y guía. Solo para uso personal.",
       "base_design_id": "P0001",
       "technique_code": "TC",
-      "featured_source": "assets/P0001-crochet-gallery-1.webp",
-      "featured_image": "assets/P0001-TC-featured.webp"
+      "featured_image": "assets/P0001-TC-product.webp"
     },
     {
       "price": 4.99,
@@ -2783,11 +2774,9 @@
         "alfombra fácil",
         "alfombra color"
       ],
-      "gallery": [
-        "assets/P0001-LH-product.webp"
-      ],
+      "gallery": [],
       "download": "files/Drielo_P0001-LH.pdf",
-      "gallery_revision": 101,
+      "gallery_revision": 2026092302,
       "seo_title": "Marilyn Monroe Latch Hook Rug Pattern PDF | Drielo",
       "seo_title_en": "Marilyn Monroe Latch Hook Rug Pattern PDF | Drielo",
       "seo_title_es": "Patrón alfombra latch hook Marilyn Monroe PDF | Drielo",
@@ -2813,8 +2802,7 @@
         "DRIELO-P0001-RUG"
       ],
       "technique_code": "LH",
-      "featured_source": "assets/P0001-rug-gallery-1.webp",
-      "featured_image": "assets/P0001-LH-featured.webp"
+      "featured_image": "assets/P0001-LH-product.webp"
     }
   ],
   "product_image_policy": {
