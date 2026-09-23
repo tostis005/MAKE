@@ -6,6 +6,7 @@ on:
     paths:
       - 'content/pattern-system/**'
       - 'content/products/catalog.json'
+      - '.github/workflows/build-pattern-pdf.yml'
   workflow_dispatch:
     inputs:
       product_code:
@@ -39,6 +40,20 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install playwright
           python -m playwright install --with-deps chromium
+
+      - name: Expose Chromium binary
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(python - <<'PY'
+from playwright.sync_api import sync_playwright
+with sync_playwright() as p:
+    print(p.chromium.executable_path)
+PY
+          )"
+          test -x "$CHROME_BIN"
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+          echo "Using Chromium: $CHROME_BIN"
 
       - name: Validate pattern system
         run: python3 content/pattern-system/renderer/validate_all.py
