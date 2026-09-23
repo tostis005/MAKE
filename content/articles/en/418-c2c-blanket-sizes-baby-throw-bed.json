@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 418,
+  "translation_group": "418-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "sizing",
+      "terms": [
+        "sizing"
+      ]
+    },
+    "style": {
+      "terms": [
+        "blanket-sizes",
+        "planning",
+        "gauge"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-418-c2c",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "C2C crocheters planning blanket dimensions before buying yarn or choosing graph resolution.",
+  "title": "C2C Blanket Sizes: Baby, Throw and Bed",
+  "slug": "c2c-blanket-sizes-baby-throw-bed",
+  "seo": {
+    "title": "C2C Blanket Sizes: Baby, Throw and Bed",
+    "meta_description": "Plan C2C blanket sizes for baby, throw and bed use by combining target dimensions, block gauge, drape and border width.",
+    "search_intent": "People adapting a C2C graph to a baby, throw or bed blanket and needing to convert physical measurements into blocks."
+  },
+  "excerpt": "There is no single correct blanket size. Start with the intended use, measure your blocks and calculate a C2C grid for baby, throw or bed dimensions.",
+  "content_html": "<p>Blanket sizes are not universal rules. A baby blanket may be a small stroller piece or a larger supervised-use blanket; a throw may cover only a lap or most of a sofa; a bed blanket may sit on top of the mattress or hang well down the sides.</p>\n<p>With C2C, you also need to translate those physical dimensions into blocks. That makes intended use and your actual gauge more useful than copying a generic chart without checking it. The same grid can finish at very different sizes with different yarn, hooks or C2C methods.</p>\n<h2>Define where and how the blanket will be used</h2>\n<p>For a baby blanket, decide whether you want a light stroller-size piece, something for supervised use at home or a larger blanket that can remain useful as the child grows.</p>\n<p>For a throw, measure the sofa or the area of the body you want to cover. A decorative throw does not need the width of a bed.</p>\n<p>For a bed, measure the mattress and decide how much overhang you want at the sides and foot. A top-only blanket needs less width than a cover with generous drop.</p>\n<p>Write down target width and height before choosing the graph. This lets you reject designs whose grid would produce an impractical scale.</p>\n<p>If the blanket is for someone else, ask how they like to use throws. Some prefer light lap blankets while others want shoulder-to-feet coverage.</p>\n<h2>Use common ranges as references rather than rules</h2>\n<p>A small baby blanket might be roughly 30–36 inches wide, while many throws fall somewhere around 40–50 inches. Bed blankets vary much more depending on mattress size and desired drop.</p>\n<p>These are planning references, not mandatory standards. Measuring the real space is always more reliable.</p>\n<p>If the recipient already has a favorite blanket, measuring it can provide an excellent target for both width and length.</p>\n<p>Graph proportions matter too. Do not force a square motif into a very long rectangle without deciding how the image will be adapted.</p>\n<p>For a bed blanket, measure over any bedding you expect it to cover. A thick comforter and pillow arrangement can add practical width and length requirements.</p>\n<h2>Convert inches to blocks with a swatch</h2>\n<p>Make a swatch at least ten blocks across with the planned yarn and hook. Measure width and height separately.</p>\n<p>If ten blocks measure 6 inches across, each block averages about 0.6 inch. A target width of 42 inches would need roughly 70 cells.</p>\n<p>Repeat the calculation vertically. Your blocks may not be physically square, and using one measurement for both directions can distort the prediction.</p>\n<p>Round in a way that respects the graph. You may not be able to add three columns without changing the motif, so extra background or a different resolution may be better.</p>\n<p>For example, if a design must remain exactly 64 cells wide and your block measures 0.63 inch, the central graph will finish around 40 inches. You can then decide whether that already suits a throw or whether mini C2C is needed.</p>\n<h2>Include border width, drape and fiber behavior</h2>\n<p>A border 1.5 inches wide adds about 3 inches to the total width and height. Do not accidentally count that allowance twice when planning the central graph.</p>\n<p>If the blanket will be washed, measure a washed swatch. Some yarns relax noticeably while others remain stable.</p>\n<p>For a bed blanket, decide whether the border is part of the side drop or whether the central motif itself should cover the whole mattress top.</p>\n<p>Consider weight too. An enormous blanket in dense yarn can become uncomfortable both to use and to hold while crocheting.</p>\n<p>Area grows quickly: increasing both width and length by 20 percent increases the total crocheted area by much more than 20 percent, which also affects yarn and project time.</p>\n<h2>Adapt the graph without destroying the motif</h2>\n<p>If the design is smaller than the target blanket, adding background around it is often safer than enlarging each cell. The motif stays intact while the overall surface grows.</p>\n<p>If the design is too large, mini C2C or finer yarn may reduce scale without changing the grid.</p>\n<p>For your own pattern, you can redraw the resolution. Protect silhouettes, lettering and essential features first, then remove secondary detail.</p>\n<p>With a purchased pattern that includes written instructions, changing the grid may invalidate the sequences. Adjusting materials is usually simpler.</p>\n<p>You can also center a smaller motif within a rectangular blanket by adding background bands above, below or beside it. That preserves the original graph while changing the overall proportions.</p>\n<h2>Verify size while the blanket is growing</h2>\n<p>Once the piece is large enough to measure accurately, compare real dimensions with your estimate. Working tension may have relaxed from the original swatch.</p>\n<p>Do not wait until halfway through to discover a large difference. An early check gives you more options.</p>\n<p>A small deviation may be handled with a slightly wider or narrower border. For a large difference, avoid trying to compensate by radically changing tension.</p>\n<p>Record measurements at several stages. If the deviation grows gradually, you know gauge is changing rather than the original swatch simply being inaccurate.</p>\n<p>The right C2C blanket size is the one that fits the actual use and your real block gauge. Baby, throw and bed labels help frame the scale, but the measured space and swatch are what turn those labels into a well-planned project.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Three C2C blanket silhouettes labeled baby, throw and bed with measurement arrows and block grids.",
+    "alt": "C2C blanket sizes for baby throw and bed"
+  }
+}
