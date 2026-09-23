@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "collection": "pop-art-portraits",
+  "base_style": "content/pattern-templates/shared/drielo-pattern-template.css",
+  "source_design_policy": {
+    "identity": "PATTERN_CODE_ONLY",
+    "artwork": "VECTOR_SVG",
+    "product_url": "CENTERED_CLICKABLE",
+    "cover": "TECHNIQUE_SPECIFIC_MOCKUP_WITH_VECTOR_SLOT"
+  },
+  "techniques": [
+    {
+      "id": "c2c-crochet",
+      "template": "pop-art/c2c-crochet.html",
+      "source": "derived-grid",
+      "fit": "direct-after-palette-reduction",
+      "unit": "c2c_block",
+      "cover_object": "blanket"
+    },
+    {
+      "id": "tapestry-crochet",
+      "template": "pop-art/tapestry-crochet.html",
+      "source": "derived-grid",
+      "fit": "direct-after-confetti-cleanup",
+      "unit": "stitch",
+      "cover_object": "wall_hanging"
+    },
+    {
+      "id": "latch-hook",
+      "template": "pop-art/latch-hook.html",
+      "source": "derived-grid",
+      "fit": "direct",
+      "unit": "latch_knot",
+      "cover_object": "rug"
+    },
+    {
+      "id": "diamond-painting",
+      "template": "pop-art/diamond-painting.html",
+      "source": "derived-grid",
+      "fit": "direct",
+      "unit": "drill",
+      "cover_object": "framed_canvas"
+    },
+    {
+      "id": "fuse-beads",
+      "template": "pop-art/fuse-beads.html",
+      "source": "reduced-grid",
+      "fit": "downsample-required",
+      "unit": "bead",
+      "cover_object": "modular_pegboard_art"
+    },
+    {
+      "id": "intarsia-knitting",
+      "template": "pop-art/intarsia-knitting.html",
+      "source": "knit-adapted-grid",
+      "fit": "palette-and-aspect-ratio-adaptation-required",
+      "unit": "knit_stitch",
+      "cover_object": "cushion_panel"
+    },
+    {
+      "id": "bead-loom",
+      "template": "pop-art/bead-loom.html",
+      "source": "purpose-built-strip",
+      "fit": "reinterpretation-required",
+      "unit": "seed_bead",
+      "cover_object": "cuff_bracelet"
+    }
+  ]
+}
