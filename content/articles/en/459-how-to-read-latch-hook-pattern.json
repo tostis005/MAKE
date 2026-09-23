@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 459,
+  "translation_group": "459-latch-hook",
+  "taxonomy": {
+    "craft": {
+      "primary": "latch-hook",
+      "terms": [
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "pattern-reading",
+      "terms": [
+        "pattern-reading"
+      ]
+    },
+    "style": {
+      "terms": [
+        "pattern-reading",
+        "grid",
+        "color-key"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "rugs",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-459-latch-hook",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "People using latch hook kits or charts who need to map each cell, color and symbol to a specific canvas position.",
+  "title": "How to Read a Latch Hook Pattern",
+  "slug": "how-to-read-latch-hook-pattern",
+  "seo": {
+    "title": "How to Read a Latch Hook Pattern",
+    "meta_description": "Learn how to read a latch hook pattern by interpreting the grid, color key, direction, rows, blocks, borders and canvas positions without shifting the design.",
+    "search_intent": "People who have a latch hook chart or kit and want to transfer the grid accurately to the canvas."
+  },
+  "excerpt": "A latch hook pattern turns an image into knot positions on the mesh. Learn how to use the color key, count rows and keep the motif aligned.",
+  "content_html": "<p>A latch hook pattern works as a map of the mesh. Each cell normally tells you where one knot belongs and which color to use, allowing the picture to appear as rows or blocks are completed. The main challenge is not understanding the whole image at once, but maintaining an exact relationship between the chart and the canvas.</p>\n<p>Before making the first knot, identify the color key, working area of the canvas, starting point and the progress-marking system you will use. A one-position shift near the beginning can move a large part of the motif if it goes unnoticed.</p>\n<h2>Confirm what one pattern cell represents</h2>\n<p>In most latch hook charts, one cell corresponds to one knot position on the mesh, but check the kit or pattern instructions rather than assuming.</p>\n<p>Canvas often includes an unworked outer margin for finishing. That border should not be mistaken for additional chart columns.</p>\n<p>Count the design width and height and compare them with the grid. If the chart has 60 columns, identify the exact 60 mesh positions that belong to each row.</p>\n<p>The knot usually wraps a specific canvas bar rather than sitting in the visual center of a square. Practice a few knots to understand which mesh element corresponds to each cell.</p>\n<p>For a large project, lightly mark corners or reference lines on the canvas when the material and instructions allow it.</p>\n<p>With pre-printed canvas, confirm whether the printed design, a separate paper chart or both are intended as the primary guide.</p>\n<h2>Read the color key before separating the yarn</h2>\n<p>The legend connects every chart color with a code, name or yarn bundle.</p>\n<p>Do not rely only on printed appearance because nearby shades can look almost identical on paper or a screen.</p>\n<p>Label containers or bags with exactly the same codes used in the pattern.</p>\n<p>If you cut your own yarn, keep each shade separated from the beginning because mixed short pieces are difficult to sort later.</p>\n<p>On black-and-white charts, colors may be represented by symbols, letters or patterned fills; learn those codes before starting a complicated row.</p>\n<p>Make a small reference card with one real yarn piece beside each code. This is useful when printed colors do not perfectly match the actual yarn.</p>\n<h2>Choose a starting point and consistent working direction</h2>\n<p>Many projects can be worked bottom to top, side to side or in small blocks, but constantly changing systems creates unnecessary counting risk.</p>\n<p>If the pattern specifies a starting corner, follow it so written directions and chart counts remain aligned.</p>\n<p>When direction is flexible, choose the orientation that lets you see the canvas bars clearly and keeps completed pile from obstructing the tool.</p>\n<p>Mark the active row or column on the chart and cross off only positions that are genuinely completed.</p>\n<p>At the end of a session, record the last row, travel direction and exact place to resume.</p>\n<p>A stable system greatly reduces the chance of repeating a row or beginning the next one from the wrong column.</p>\n<h2>Work in rows or blocks that can be verified</h2>\n<p>A complete row offers a straightforward check: the number of finished knots can be compared with the number of chart cells.</p>\n<p>Small blocks, such as ten by ten positions, can be easier on large canvas as long as their boundaries are clearly marked.</p>\n<p>Avoid creating irregular block edges that make it difficult to see which positions remain empty.</p>\n<p>Use a ruler, removable tape or row marker on the chart so your eyes stay on the correct line.</p>\n<p>Every several rows, compare a recognizable feature with the pattern. A diagonal or major color boundary makes a useful checkpoint.</p>\n<p>If a shift appears, return to the last confirmed reference point instead of trying to compensate by moving later colors.</p>\n<h2>Separate the design area from finishing margins</h2>\n<p>Many canvases are cut with extra mesh around the knotted area so the edges can later be folded, sewn, bound or backed.</p>\n<p>Do not automatically fill every canvas square to the physical edge when the pattern reserves mesh for finishing.</p>\n<p>Count from the reference corner of the working area rather than from the outer edge when a margin is present.</p>\n<p>On rugs, sufficient unknotted canvas makes durable edge finishing much easier.</p>\n<p>On cushions or wall panels, the margin can become a sewing or mounting allowance.</p>\n<p>Do not trim excess canvas until knotting is complete and the finishing instructions have been reviewed.</p>\n<h2>Correct reading errors before they spread</h2>\n<p>If a shape looks displaced, first recount the row and the canvas positions rather than assuming the chart is wrong.</p>\n<p>Check the color code as well; the wrong shade can make a correctly positioned area look like a placement error.</p>\n<p>A knot made on the neighboring bar creates a local shift and is easiest to correct as soon as it is found.</p>\n<p>Take occasional photographs from farther away. Shape errors are often easier to notice in the whole image than while working close to the pile.</p>\n<p>On large patterns, mark every ten rows and columns on the working copy and, when safe, along the canvas margin. Those landmarks limit how far an error can travel unnoticed.</p>\n<p>Reading a latch hook pattern means keeping three things synchronized: the grid, the color key and the physical mesh. When one cell is consistently mapped to one knot, progress follows a stable direction and sections are checked regularly, the image develops predictably without losing position.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Latch hook chart with numbered cells beside canvas, a color key and guide lines connecting chart rows to mesh positions.",
+    "alt": "How to read a latch hook pattern"
+  }
+}
