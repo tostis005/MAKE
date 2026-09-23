@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 419,
+  "translation_group": "419-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "technique",
+      "terms": [
+        "technique"
+      ]
+    },
+    "style": {
+      "terms": [
+        "c2c-vs-traditional",
+        "construction",
+        "comparison"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "comparison",
+      "terms": [
+        "comparison"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-419-c2c",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Makers comparing C2C with traditional crochet methods to choose the right construction for a graphic project.",
+  "title": "C2C Crochet vs Traditional Crochet: What Really Changes?",
+  "slug": "c2c-crochet-vs-traditional-crochet",
+  "seo": {
+    "title": "C2C Crochet vs Traditional Crochet: What Really Changes?",
+    "meta_description": "C2C crochet vs traditional crochet: compare working direction, construction, graphs, color changes, scale and the projects each approach suits.",
+    "search_intent": "Crocheters familiar with standard rows who want to understand what changes in corner-to-corner construction, chart reading and colorwork."
+  },
+  "excerpt": "C2C does not use completely different crochet stitches. It changes the construction direction and turns blocks into a grid, affecting shape, charts and colorwork.",
+  "content_html": "<p>C2C crochet does not replace the basic stitches used in traditional crochet. Many versions rely on chains, double crochet and slip stitches that any experienced crocheter recognizes. What really changes is the construction: instead of working horizontal rows from one edge to the other, the fabric grows in diagonal blocks from a corner.</p>\n<p>That difference affects pattern reading, size calculations, images and the way increases and decreases shape the piece. C2C is not a completely separate craft, but it does reorganize the logic of the project.</p>\n<h2>Construction direction is the main difference</h2>\n<p>In traditional row-based crochet, you often begin with a foundation chain that already defines much of the width and then build upward row by row.</p>\n<p>In C2C, you start with one block, add increasingly long diagonals and later reduce again. Width develops gradually instead of being present in the first row.</p>\n<p>For a rectangle, one dimension stops increasing before the other. Understanding those corner transitions is central to the technique.</p>\n<p>The diagonal growth also means the project changes shape as you work, which can feel unusual if you are used to rectangles from the beginning.</p>\n<p>Traditional rows can make some flat shapes easier because the full working width exists from the start.</p>\n<h2>Graphs relate to the fabric differently</h2>\n<p>In C2C, each chart cell normally represents a complete block. The grid behaves like pixel art and the image appears as diagonal rows accumulate.</p>\n<p>In traditional colorwork, a chart cell may represent a single crochet stitch or another unit depending on the method.</p>\n<p>That changes scale. An 80-cell-wide graph may be enormous in classic C2C and much smaller when each cell equals one single crochet stitch.</p>\n<p>For that reason, a graph cannot always move between techniques without recalculating proportions and dimensions.</p>\n<p>The reading direction changes too: C2C follows alternating diagonals, while many traditional chart methods move through horizontal rows.</p>\n<h2>C2C is intuitive for pixel-style images</h2>\n<p>The blocks create a large, consistent visual unit that works well for lettering, silhouettes and pixel-art motifs.</p>\n<p>The one-cell-to-one-block relationship makes color placement easy to understand, especially when the pattern also provides written diagonal instructions.</p>\n<p>The tradeoff is that fine details require many cells and therefore either a large project or a smaller method such as mini C2C.</p>\n<p>Traditional techniques with smaller stitches can produce greater physical resolution, although the stitch counting may be more dense.</p>\n<p>A small portrait may be easier with a tiny stitch unit, while a blanket with one bold icon can benefit from the intentionally large C2C pixel.</p>\n<h2>Color management changes with diagonal rows</h2>\n<p>In C2C, color changes occur along a diagonal that reverses direction every row. Bobbins assigned to graph regions are therefore especially useful.</p>\n<p>In horizontal crochet, colors are managed through conventional rows, and carrying a shade across certain sections may be simpler depending on the method.</p>\n<p>Neither approach is automatically cleaner. Complexity depends on the graph and how many separate color areas are active at once.</p>\n<p>With C2C, previewing each diagonal before crocheting is an important habit for preventing tangles and reversed sequences.</p>\n<p>In methods such as tapestry crochet, unused yarn may be carried inside the fabric in a different way, producing a denser surface and different reverse side.</p>\n<h2>Block texture and scale change the finished fabric</h2>\n<p>Classic C2C creates a textured surface with small openings between stitch groups. Blankets often have comfortable drape and an obviously modular appearance.</p>\n<p>Traditional single crochet creates a denser surface with smaller units. Other crochet methods may be more open or thicker.</p>\n<p>Yarn use, weight and size cannot be compared simply by cell count. You need swatches in the actual methods.</p>\n<p>Finishing differs too: C2C edges are naturally stepped and often benefit from a foundation round before decorative edging.</p>\n<p>When the object requires a closed surface, such as an unlined bag, a dense traditional method may have a functional advantage.</p>\n<h2>Choose by project rather than by ranking the techniques</h2>\n<p>C2C is especially useful when you want graphic construction, enjoy the rhythm of blocks and the finished scale suits the grid.</p>\n<p>Traditional crochet may be more practical for garment shaping, very dense surfaces, fine detail or conventional row-based construction.</p>\n<p>Many crocheters combine both. A C2C panel can receive a traditional border; a cushion can have a C2C front and a single-crochet back.</p>\n<p>Before choosing, make swatches with the same yarn. Comparing size, density, weight and motif clarity is more useful than deciding from theory alone.</p>\n<p>The real difference is not that one method is more advanced. C2C rearranges familiar stitches into diagonal construction. Once blocks, orientation and gauge make sense, the transition from standard rows is much smaller than it first appears.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Two panels of the same motif, one built diagonally in C2C and one in traditional horizontal rows, with directional arrows.",
+    "alt": "C2C crochet compared with traditional crochet"
+  }
+}
