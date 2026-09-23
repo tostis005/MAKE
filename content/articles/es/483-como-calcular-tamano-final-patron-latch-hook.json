@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 483,
+  "translation_group": "483-latch-hook",
+  "taxonomy": {
+    "craft": {
+      "primary": "latch-hook",
+      "terms": [
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "sizing",
+      "terms": [
+        "sizing"
+      ]
+    },
+    "style": {
+      "terms": [
+        "sizing",
+        "mesh",
+        "calculation"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "rugs",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "es-483-latch-hook",
+  "language": "es",
+  "locale": "es-ES",
+  "market_context": "Personas que tienen una cuadrícula de Latch Hook y quieren saber cuánto medirá físicamente antes de comprar canvas e hilo.",
+  "title": "Cómo calcular el tamaño final de un patrón de Latch Hook",
+  "slug": "como-calcular-tamano-final-patron-latch-hook",
+  "seo": {
+    "title": "Cómo calcular el tamaño final de un patrón de Latch Hook",
+    "meta_description": "Cómo calcular el tamaño final de un patrón de Latch Hook usando columnas, filas y densidad real de malla, con muestra y margen para acabado.",
+    "search_intent": "Personas que quieren convertir las dimensiones en celdas de un patrón de Latch Hook a centímetros o pulgadas reales."
+  },
+  "excerpt": "El número de celdas no indica por sí solo los centímetros finales. Aprende a combinar columnas, filas y densidad del canvas para calcular el tamaño real antes de empezar.",
+  "content_html": "<p>El tamaño de un patrón de Latch Hook depende de dos datos distintos: cuántas posiciones de nudo tiene la cuadrícula y cuántas posiciones reales caben en una medida del canvas que vas a utilizar. Un gráfico de 100 por 100 celdas no tiene un tamaño físico único; con una malla más densa será más pequeño y con una más abierta será mayor.</p>\n<p>Calcular el tamaño antes de empezar permite saber si el diseño cabe en una pared, cojín o espacio de suelo, y evita comprar un canvas que resulte demasiado pequeño.</p>\n<h2>Cuenta primero columnas y filas reales del diseño</h2>\n<p>Identifica la zona exacta que llevará nudos y separa esa medida del margen exterior destinado al acabado.</p>\n<p>El ancho del patrón se expresa en columnas y el alto en filas. Por ejemplo, una cuadrícula de 80 columnas por 120 filas necesita 80 posiciones de nudo en horizontal y 120 en vertical.</p>\n<p>No cuentes números impresos, leyendas ni bordes del documento como parte del diseño.</p>\n<p>Si el gráfico está dividido en varias páginas, verifica las zonas solapadas para no contar dos veces las mismas columnas o filas.</p>\n<p>En patrones modulares, suma todas las repeticiones y añade únicamente los bordes que realmente se anudan.</p>\n<p>Anota el conteo final porque será la base de todos los cálculos posteriores.</p>\n<h2>Mide la densidad real del canvas en vez de confiar sólo en una etiqueta</h2>\n<p>La densidad útil es el número de posiciones de nudo que caben en una distancia conocida del canvas.</p>\n<p>Coloca una regla sobre una zona recta, cuenta varias posiciones —por ejemplo diez o veinte— y mide la distancia entre la primera y la última referencia de forma coherente.</p>\n<p>Cuantas más posiciones utilices para medir, menor será el efecto de un pequeño error de colocación de la regla.</p>\n<p>Haz la medición en horizontal y vertical si sospechas que el canvas está deformado o si quieres confirmar que la malla es regular.</p>\n<p>No estires la malla mientras mides. Debe descansar con su forma natural.</p>\n<p>Si el patrón o fabricante proporciona una densidad, compárala con tu medición real antes de utilizarla en un cálculo importante.</p>\n<h2>Convierte posiciones en medida física con una proporción simple</h2>\n<p>Si diez posiciones ocupan 6,5 cm, cada posición ocupa de media 0,65 cm. Multiplica esa media por el número de columnas para estimar el ancho.</p>\n<p>En ese ejemplo, un patrón de 80 columnas mediría aproximadamente 52 cm de ancho en la zona anudada.</p>\n<p>Haz el mismo cálculo con las filas para obtener la altura.</p>\n<p>También puedes evitar calcular una sola celda utilizando proporciones: ancho = columnas del patrón × distancia medida ÷ número de posiciones medidas.</p>\n<p>Trabaja siempre en la misma unidad durante la fórmula y convierte a pulgadas o centímetros sólo al final si lo necesitas.</p>\n<p>Redondea con prudencia: el resultado es una estimación práctica, no una promesa de precisión milimétrica.</p>\n<h2>Distingue tamaño anudado de tamaño total del canvas</h2>\n<p>El cálculo anterior describe la zona cubierta de nudos, no necesariamente el trozo de canvas que debes comprar o cortar.</p>\n<p>Para ribetear, doblar bordes, coser backing o montar un cojín necesitas malla adicional alrededor.</p>\n<p>Añade el margen previsto a ambos lados del ancho y tanto arriba como abajo del alto.</p>\n<p>Por ejemplo, un área anudada de 52 por 78 cm con 5 cm de margen por cada lado necesita al menos unos 62 por 88 cm de canvas antes de cualquier margen extra de seguridad.</p>\n<p>No reduzcas el margen sólo para hacer que un recorte de canvas demasiado pequeño parezca suficiente.</p>\n<p>Conserva algo más de material cuando todavía no has decidido el acabado exacto; siempre podrás recortar después.</p>\n<h2>Haz una muestra para comprobar densidad, hilo y tamaño visual</h2>\n<p>Una muestra de varias filas confirma que el hilo elegido funciona con esa malla y que la densidad que mediste corresponde al sistema real de nudos.</p>\n<p>Mide el bloque anudado y compáralo con el número de posiciones que contiene.</p>\n<p>El pelo no suele cambiar el ancho estructural tanto como el canvas, pero sí modifica el volumen y la percepción del borde.</p>\n<p>La muestra también te permite ver si el diseño tendrá suficiente detalle al tamaño calculado.</p>\n<p>Una imagen que parecía clara en una cuadrícula digital puede verse demasiado grande o demasiado simplificada cuando cada celda ocupa varios milímetros.</p>\n<p>Si cambias de canvas después de la muestra, repite el cálculo: el mismo gráfico producirá otro tamaño.</p>\n<h2>Comprueba el cálculo contra el uso final antes de empezar</h2>\n<p>Marca con cinta o papel en la pared o suelo las medidas estimadas para visualizar la escala real.</p>\n<p>En un cojín, compáralas con el relleno y recuerda que necesitas margen de montaje además de la zona anudada.</p>\n<p>En una alfombra, comprueba que el tamaño funciona en el espacio y que no invade puertas o muebles.</p>\n<p>En un tapiz, deja suficiente espacio alrededor para que la composición no quede apretada.</p>\n<p>Guarda el conteo, la densidad medida y la fórmula junto al patrón para poder repetir el proyecto con el mismo canvas.</p>\n<p>Calcular el tamaño final de Latch Hook consiste en traducir celdas a distancia mediante la densidad real de la malla. Cuando separas zona anudada y margen de acabado, puedes prever el resultado y comprar canvas con mucha más seguridad.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Cuadrícula de Latch Hook de 80 por 120 celdas junto a una regla sobre canvas, con una fórmula visual que convierte posiciones en tamaño final.",
+    "alt": "Cómo calcular el tamaño final de un patrón de Latch Hook"
+  }
+}
