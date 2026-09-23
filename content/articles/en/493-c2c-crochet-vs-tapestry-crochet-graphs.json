@@ -1,0 +1,78 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 493,
+  "translation_group": "493-multi-technique",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet",
+        "tapestry-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "charts",
+      "terms": [
+        "charts"
+      ]
+    },
+    "style": {
+      "terms": [
+        "comparison",
+        "graphs",
+        "colorwork"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "bags",
+        "wall-art",
+        "home-decor"
+      ]
+    },
+    "article_type": {
+      "primary": "comparison",
+      "terms": [
+        "comparison"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-493-multi-technique",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "People with a graph or pixel-art design who want to choose between C2C crochet and tapestry crochet based on scale, texture, detail and project type.",
+  "title": "C2C Crochet vs Tapestry Crochet: Which Technique Should You Use for Graphs?",
+  "slug": "c2c-crochet-vs-tapestry-crochet-graphs",
+  "seo": {
+    "title": "C2C Crochet vs Tapestry Crochet: Which Technique Should You Use for Graphs?",
+    "meta_description": "Compare C2C crochet and tapestry crochet for graph patterns, including cell mapping, finished size, definition, color changes, texture and project types.",
+    "search_intent": "People comparing C2C crochet and tapestry crochet for a graph or pixel-art project."
+  },
+  "excerpt": "Both techniques can follow graphs, but a cell behaves differently in C2C and tapestry crochet. Compare scale, detail, texture and construction before choosing.",
+  "content_html": "<p>C2C crochet and tapestry crochet can both turn a color grid into fabric, but they do not interpret that grid in the same way. In C2C, each chart cell usually becomes a block made from several stitches and chains; in tapestry crochet, a chart cell often maps to one stitch or a much smaller unit worked in rows.</p>\n<p>As a result, the same pixel-art design can finish at very different scale, texture and detail depending on the technique. The number of active yarn sources and the way a color mistake is corrected also change.</p>\n<h2>The graph unit has a different physical scale in each technique</h2>\n<p>In C2C, one graph square normally represents a relatively large crochet block.</p>\n<p>That block occupies more physical space than one single crochet stitch, so a 50-by-50-cell image can quickly become a large project.</p>\n<p>In tapestry crochet, one cell can map to one stitch, allowing many more positions to fit into the same width.</p>\n<p>This can preserve more detail in a smaller object.</p>\n<p>Exact size still depends on yarn, hook and individual tension.</p>\n<p>Before choosing, turn the chart count into an approximate physical measurement using a real swatch.</p>\n<p>When the graph already contains hundreds of cells, this scale difference alone can determine which finished format is practical.</p>\n<h2>C2C creates a more visible block texture</h2>\n<p>The diagonal construction of C2C produces small blocks that form an obvious surface texture even when the graph uses only a few colors.</p>\n<p>That texture suits pixel art, blankets, panels and designs where a large graphic appearance is part of the appeal.</p>\n<p>The diagonal blocks can soften perfectly horizontal and vertical chart edges slightly.</p>\n<p>A one-cell detail becomes physically quite large and noticeable.</p>\n<p>For that reason, C2C graphs often benefit from simple shapes and clear silhouettes.</p>\n<p>When the design should read from across a room, that larger scale can be useful.</p>\n<h2>Tapestry crochet creates a more compact and detailed surface</h2>\n<p>Tapestry crochet is normally worked in rows while carrying one or more unused colors within or behind the stitches.</p>\n<p>The smaller unit makes letters, icons and outlines possible at higher resolution inside a compact project.</p>\n<p>The surface usually feels denser and less visibly block-based than C2C.</p>\n<p>Frequent color changes, however, require more control over tension and carried yarn.</p>\n<p>On designs with constant one-cell alternation, keeping colors clean can take extra attention.</p>\n<p>For bags, baskets, smaller cushions and graphic accessories, that compact structure can be especially useful.</p>\n<h2>Color changes are managed differently</h2>\n<p>In C2C, multiple bobbins or small yarn balls can be used and colors change between blocks.</p>\n<p>Large areas of one shade are usually easy to see within the diagonal chart progression.</p>\n<p>In tapestry crochet, inactive yarn can be carried within stitches, reducing loose ends while affecting thickness and tension.</p>\n<p>With many simultaneous colors, both techniques require organization, but the problems differ.</p>\n<p>C2C tends to create more separate bobbins, while tapestry crochet requires control over how carried yarn sits and stays hidden.</p>\n<p>Choose the system that matches the kind of color distribution in your graph.</p>\n<h2>The final object also influences the technique</h2>\n<p>A large blanket or decorative panel naturally suits the scale of C2C.</p>\n<p>A bag or basket often benefits from a compact structured fabric, which is common in tapestry crochet.</p>\n<p>For pillows, either technique can work, but the resulting surface and dimensions will differ substantially.</p>\n<p>For garments, drape, thickness and stretch need to be considered in addition to the graphic.</p>\n<p>Think about the finished object before deciding how the chart should be translated.</p>\n<p>A pattern designed for one technique should not automatically be transferred to the other without recalculating size and reviewing detail.</p>\n<h2>Swatch the same fragment in both techniques when the choice is unclear</h2>\n<p>Choose a ten- or fifteen-cell section containing an edge, a color change and an important detail.</p>\n<p>Make one C2C sample and one tapestry crochet sample using reasonably comparable materials.</p>\n<p>Measure the size, inspect graphic clarity and compare how much color management each requires.</p>\n<p>Also consider which texture you prefer to see and touch in the final object.</p>\n<p>Record the number of chart cells produced per inch or centimeter in each sample so the full graph can be estimated before committing.</p>\n<p>This small test turns an abstract choice into a direct physical comparison.</p>\n<p>C2C crochet and tapestry crochet can use the same grid language while producing very different fabric. C2C expands each cell into a textured block and works naturally at larger scale; tapestry crochet compresses the grid into smaller stitches and supports more detail. The useful choice depends on both the graph and the object you want to make.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Same pixel-art graph worked in two side-by-side samples: C2C crochet with diagonal blocks and tapestry crochet with compact single crochet stitches.",
+    "alt": "C2C Crochet vs Tapestry Crochet for graphs"
+  }
+}

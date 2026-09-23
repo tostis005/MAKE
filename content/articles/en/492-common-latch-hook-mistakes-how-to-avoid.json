@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 492,
+  "translation_group": "492-latch-hook",
+  "taxonomy": {
+    "craft": {
+      "primary": "latch-hook",
+      "terms": [
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "troubleshooting",
+      "terms": [
+        "troubleshooting"
+      ]
+    },
+    "style": {
+      "terms": [
+        "mistakes",
+        "troubleshooting",
+        "beginner"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "rugs",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-492-latch-hook",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Beginner and intermediate latch hook makers who want to recognize common problems with counting, coverage, tension, color and finishing.",
+  "title": "Common Latch Hook Mistakes and How to Avoid Them",
+  "slug": "common-latch-hook-mistakes-how-to-avoid",
+  "seo": {
+    "title": "Common Latch Hook Mistakes and How to Avoid Them",
+    "meta_description": "Common latch hook mistakes and how to avoid them, including malformed knots, shifted rows, gaps, wrong colors, uneven pile and poor edge finishing.",
+    "search_intent": "People searching for common latch hook problems and practical ways to prevent them."
+  },
+  "excerpt": "Most latch hook problems begin with counting, preparation or inconsistent technique. Learn to spot warning signs early and correct the real cause.",
+  "content_html": "<p>Latch hook mistakes often look small when they happen: one miscounted cell, an off-center yarn piece or a similar shade placed in the wrong container. The problem appears when that small deviation repeats across many rows and begins affecting shape, coverage or finishing.</p>\n<p>The most useful strategy is not learning how to hide mistakes but catching them early. Short regular checks save far more time than one large repair at the end. They also help distinguish one isolated error from a systematic problem with materials or technique.</p>\n<h2>Knotting around the wrong canvas bar or changing orientation</h2>\n<p>A latch hook knot should wrap a specific canvas bar using the same logic as neighboring knots.</p>\n<p>If some positions use different bars, pile can point in inconsistent directions and create visible lines in the surface.</p>\n<p>Inspect the reverse of the first few rows and use a correct section as your reference.</p>\n<p>Do not change knot orientation simply because the canvas has been physically rotated.</p>\n<p>When one tuft looks wrong, repair it immediately before more pile surrounds it.</p>\n<p>A short practice row before the actual chart helps make the correct movement automatic.</p>\n<p>If the problem appears only after rotating the piece, place a small reference mark in the margin to remind you which bar receives each knot.</p>\n<h2>Skipping one chart cell and shifting the rest of the row</h2>\n<p>Missing one chart position can move every later color change even when no physical hole remains in the canvas.</p>\n<p>Break long rows into groups of ten or twenty cells and verify each group.</p>\n<p>Use reference marks on the canvas margin and matching landmarks on the chart.</p>\n<p>At the end of a row, do more than count the total; confirm that one or two important color boundaries are in the correct columns.</p>\n<p>If a shift appears, return to the last point where chart and canvas definitely matched.</p>\n<p>Do not compensate by moving future colors one cell because that creates a second logic that becomes difficult to follow.</p>\n<p>A ruler or marker beneath the active chart row greatly reduces the chance of accidentally jumping to the next line.</p>\n<h2>Using yarn and canvas with incompatible density</h2>\n<p>Yarn that is too fine leaves visible gaps even when every intended position contains a knot.</p>\n<p>Yarn that is too thick can distort the mesh, make the surface stiff and slow the tool.</p>\n<p>Before a large project, knot several rows using the actual material combination.</p>\n<p>Check coverage, tool movement and canvas-bar shape from the reverse.</p>\n<p>Do not automatically replace kit yarn with another yarn of a similar commercial weight without testing it.</p>\n<p>Fiber texture and compressibility also affect how completely the yarn fills the mesh.</p>\n<p>A ten-by-ten-position sample usually reveals quickly whether the problem is material compatibility rather than knotting technique.</p>\n<h2>Cutting or centering yarn inconsistently</h2>\n<p>A mixture of cut lengths produces high and low pile even when every knot is correctly formed.</p>\n<p>Use a rigid template for repeatable cutting and compare random pieces occasionally.</p>\n<p>When placing yarn on the tool, find approximately the center before closing the knot.</p>\n<p>One very long end and one very short end cannot always be fixed cleanly by trimming later.</p>\n<p>Also avoid changing how hard you seat the knots because inconsistent tension changes visual pile height.</p>\n<p>Final trimming should be a light refinement rather than the main solution for inconsistent preparation.</p>\n<p>If one whole area has different pile height, inspect the cutting batch used there before trying to level everything with scissors.</p>\n<h2>Confusing similar colors or working without a clear key</h2>\n<p>Short yarn pieces are harder to identify than full skeins.</p>\n<p>Label every container with exactly the same code used in the chart.</p>\n<p>For similar shades, attach a real yarn sample to a reference card beside the code.</p>\n<p>Keep only the colors needed for the active block or row directly in front of you.</p>\n<p>When returning after several days, check the legend again instead of relying on visual memory.</p>\n<p>If the wrong shade is placed, remove and replace the knot as soon as it is found.</p>\n<p>Good neutral lighting makes close shades easier to distinguish than a very warm or strongly colored light source.</p>\n<h2>Leaving finishing decisions until after too much canvas is cut away</h2>\n<p>The last knot does not mean the project is structurally finished.</p>\n<p>You need canvas margin for folding, sewing, binding, backing or mounting.</p>\n<p>Cutting flush with the outer row weakens the perimeter and limits finishing options.</p>\n<p>Decide early whether the piece will become a rug, pillow or wall hanging and reserve enough material.</p>\n<p>Before trimming canvas, inspect knots, corners and final dimensions.</p>\n<p>Test the fold or temporarily position the backing before removing any excess that may later be needed for construction.</p>\n<p>Common latch hook mistakes are prevented mainly through preparation and frequent checks. Consistent knot technique, intermediate counting, compatible materials, equal yarn pieces and a finishing plan turn potential large problems into small corrections before they spread.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Six small latch hook examples showing a malformed knot, shifted row, gap, wrong color, uneven pile and unfinished edge.",
+    "alt": "Common latch hook mistakes"
+  }
+}
