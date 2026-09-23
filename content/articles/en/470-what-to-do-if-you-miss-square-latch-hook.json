@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 470,
+  "translation_group": "470-latch-hook",
+  "taxonomy": {
+    "craft": {
+      "primary": "latch-hook",
+      "terms": [
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "troubleshooting",
+      "terms": [
+        "troubleshooting"
+      ]
+    },
+    "style": {
+      "terms": [
+        "missed-square",
+        "correction",
+        "troubleshooting"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "rugs",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-470-latch-hook",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Makers who left one mesh position empty or skipped a chart cell in latch hook and want to correct it without shifting the rest of the design.",
+  "title": "What to Do If You Miss a Square in Latch Hook",
+  "slug": "what-to-do-if-you-miss-square-latch-hook",
+  "seo": {
+    "title": "What to Do If You Miss a Square in Latch Hook",
+    "meta_description": "Fix a missed latch hook square by distinguishing a real empty mesh position from a shifted chart sequence and correcting the appropriate problem.",
+    "search_intent": "People who left a mesh position empty or skipped one chart cell while making a latch hook project."
+  },
+  "excerpt": "A missed square can be a physical gap or a reading error that shifts later colors. Learn how to identify and repair each problem correctly.",
+  "content_html": "<p>Missing a square in latch hook can mean two different things: leaving one physical canvas position empty, or skipping a chart cell while reading and then placing later colors one position out of alignment. The repair depends on which mistake happened.</p>\n<p>Before fixing anything, determine whether there is a real empty mesh position or a counting shift in the row. One isolated gap is usually simple to fill; a shifted pattern requires returning to the last point where chart and canvas still matched.</p>\n<h2>Check whether a knot is missing or the whole sequence shifted</h2>\n<p>Separate the pile with your fingers and inspect the canvas from both front and reverse.</p>\n<p>If one bar or position is clearly empty while neighboring colors still match the chart, a single knot was probably missed.</p>\n<p>If there is no physical gap but color boundaries appear one position too early or late, you may have skipped a chart cell while reading.</p>\n<p>Count from a known reference such as an edge, a ten-position mark or a major color change.</p>\n<p>Compare the number of knots in the row with the number of cells that should have been completed.</p>\n<p>Do not begin the repair until the problem is identified; filling an empty position does not correct a shifted color sequence.</p>\n<h2>If one position is empty, fill it as soon as you notice</h2>\n<p>When the empty position is still near the active work area, move neighboring pile aside and locate the correct canvas bar.</p>\n<p>Check the chart to confirm exactly which color belongs in that cell.</p>\n<p>Use a strand cut to the same length as the surrounding yarn and make a normal knot on the empty bar.</p>\n<p>Center the yarn and seat it with the same tension as neighboring knots so the replacement does not stand high or low.</p>\n<p>Then recount the row and confirm that the total now matches.</p>\n<p>A correctly filled isolated gap does not require removing the surrounding knots.</p>\n<h2>If the gap is buried under pile, approach it from the reverse</h2>\n<p>In a more advanced area, finished pile can completely hide the mesh from the front.</p>\n<p>Turn the piece over and locate the unknotted bar from behind. Repeating knot structures often make an empty position easier to see on the reverse.</p>\n<p>Separate neighboring yarn with your fingers and guide the tool through the canvas openings without catching completed knots.</p>\n<p>If the space is tight, work slowly and do not pull correct knots loose simply to make room.</p>\n<p>After adding the missing strand, return to the front and redistribute the pile with your fingers.</p>\n<p>Check that the repair covers the gap without lifting or loosening the surrounding tufts.</p>\n<h2>If a chart cell was skipped, return to the last correct checkpoint</h2>\n<p>When later colors are shifted, adding one extra knot at the end of the row does not repair the image.</p>\n<p>Locate the last position where chart and canvas definitely agree.</p>\n<p>From there, identify how many later knots were placed using the shifted sequence.</p>\n<p>Remove and remake only the affected section when the mistake is recent. Correcting ten knots is better than carrying the offset through another hundred.</p>\n<p>Do not simply move every future color one cell as an improvised compensation because that creates a second pattern logic that is hard to track.</p>\n<p>Mark the corrected row clearly on the working copy before continuing.</p>\n<h2>Use intermediate references to catch skipped positions earlier</h2>\n<p>On long rows, divide the width into groups of ten or twenty positions and verify each group.</p>\n<p>When safe, place matching reference marks on the canvas margin and the chart.</p>\n<p>Major color changes, diagonals and shape edges make useful visual checkpoints.</p>\n<p>At the end of a row, do more than count the total; confirm that one or two important color boundaries sit in the correct columns.</p>\n<p>A ruler or strip placed beneath the active chart row greatly reduces the chance of jumping to the next line.</p>\n<p>Small checks during the work are much faster than repairing a large shifted section later.</p>\n<h2>Do not confuse a missed square with a coverage gap</h2>\n<p>Sometimes canvas appears between tufts even though every position actually contains a knot.</p>\n<p>Separate the pile and inspect the reverse before adding an extra strand.</p>\n<p>Yarn that is too thin, badly centered pieces or inconsistent knot direction can create a visual opening in the surface.</p>\n<p>Adding another knot where one already exists crowds the canvas and can distort the mesh.</p>\n<p>When all positions are occupied, improve coverage by grooming, repositioning or replacing the problematic knot instead of doubling it.</p>\n<p>If you miss a square in latch hook, the key is distinguishing a genuinely empty position from a shifted chart reading. Fill an isolated gap, but repair a shifted sequence by returning to the last checkpoint where chart and canvas still matched.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Latch hook canvas showing one empty position beside a row whose colors are shifted by one cell for comparison.",
+    "alt": "What to do if you miss a square in latch hook"
+  }
+}

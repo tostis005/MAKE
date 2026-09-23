@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 470,
+  "translation_group": "470-latch-hook",
+  "taxonomy": {
+    "craft": {
+      "primary": "latch-hook",
+      "terms": [
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "troubleshooting",
+      "terms": [
+        "troubleshooting"
+      ]
+    },
+    "style": {
+      "terms": [
+        "missed-square",
+        "correction",
+        "troubleshooting"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "rugs",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "es-470-latch-hook",
+  "language": "es",
+  "locale": "es-ES",
+  "market_context": "Personas que han dejado una posición vacía o se han saltado una celda del patrón de Latch Hook y quieren corregirla sin desplazar el resto del diseño.",
+  "title": "Qué hacer si te saltas un cuadrado en Latch Hook",
+  "slug": "que-hacer-si-te-saltas-cuadrado-latch-hook",
+  "seo": {
+    "title": "Qué hacer si te saltas un cuadrado en Latch Hook",
+    "meta_description": "Qué hacer si te saltas un cuadrado en Latch Hook: distingue un hueco real de una secuencia desplazada, rellena la posición o corrige desde el último punto válido.",
+    "search_intent": "Personas que han dejado una posición sin nudo o han saltado una celda del patrón de Latch Hook."
+  },
+  "excerpt": "Un cuadrado omitido puede ser un hueco físico o un error de lectura que desplaza colores. Aprende a identificar cuál tienes y corregirlo sin empeorar el patrón.",
+  "content_html": "<p>Saltarse un cuadrado en Latch Hook puede significar dos cosas distintas: dejar una posición física del canvas sin nudo o avanzar una celda del patrón sin darte cuenta y empezar a colocar los colores siguientes desplazados. La solución cambia según cuál de esos errores haya ocurrido.</p>\n<p>Antes de corregir, identifica si existe un hueco real en la malla o si el problema está en el conteo de la fila. Un hueco aislado suele ser fácil de rellenar; un desplazamiento del patrón exige volver al último punto donde gráfico y canvas coincidían.</p>\n<h2>Comprueba si falta un nudo o si se desplazó toda la secuencia</h2>\n<p>Separa el pelo con los dedos y observa el canvas desde el frontal y el reverso.</p>\n<p>Si ves una barra o posición claramente vacía mientras los colores vecinos coinciden con el gráfico, probablemente sólo falta un nudo.</p>\n<p>Si no hay hueco físico pero los cambios de color aparecen una posición demasiado pronto o demasiado tarde, quizá saltaste una celda al leer el patrón.</p>\n<p>Cuenta desde una referencia conocida: borde, marca de diez posiciones o cambio de color grande.</p>\n<p>Compara el número de nudos de la fila con el número de celdas que deberías haber completado.</p>\n<p>No intentes corregir hasta saber cuál de los dos problemas tienes; rellenar un hueco no arregla una secuencia desplazada.</p>\n<h2>Si hay un hueco aislado, rellénalo en cuanto lo detectes</h2>\n<p>Cuando la posición vacía todavía está cerca de la zona de trabajo, aparta los mechones vecinos y localiza la barra correspondiente.</p>\n<p>Comprueba en el gráfico qué color pertenece exactamente a esa celda.</p>\n<p>Utiliza una hebra de la misma longitud que el resto y forma el nudo normalmente sobre la barra vacía.</p>\n<p>Centra la hebra y asienta el nudo con la misma tensión de los vecinos para que no sobresalga ni quede hundido.</p>\n<p>Después, vuelve a contar la fila y confirma que el total ya coincide.</p>\n<p>Un hueco rellenado correctamente no necesita que deshagas los nudos de alrededor.</p>\n<h2>Si el hueco está rodeado por mucho pelo, trabaja desde el reverso</h2>\n<p>En una zona avanzada, el pelo puede ocultar por completo la malla desde delante.</p>\n<p>Gira la pieza y localiza desde atrás la barra sin nudo. Las estructuras repetidas del reverso hacen que una posición vacía sea más visible.</p>\n<p>Separa las hebras vecinas con los dedos y entra con la herramienta por los huecos del canvas sin enganchar nudos ya terminados.</p>\n<p>Si el espacio es estrecho, trabaja despacio y evita tirar de los nudos correctos para abrir sitio.</p>\n<p>Después de añadir la hebra, vuelve al frontal y distribuye el pelo con los dedos.</p>\n<p>Comprueba que la reparación cubre el hueco sin levantar o aflojar los mechones de alrededor.</p>\n<h2>Si te saltaste una celda del gráfico, vuelve al último punto de control correcto</h2>\n<p>Cuando los colores siguientes están desplazados, añadir un nudo extra al final de la fila no resuelve el dibujo.</p>\n<p>Localiza la última posición donde el patrón y el canvas coinciden con seguridad.</p>\n<p>Desde ahí, identifica cuántos nudos posteriores se colocaron siguiendo una secuencia corrida.</p>\n<p>Retira y rehace sólo la parte afectada si el error es reciente. Es mejor corregir diez nudos que arrastrar el desplazamiento durante cien más.</p>\n<p>No muevas cada color una celda de forma improvisada a partir de ahora; eso crea una segunda lógica difícil de seguir.</p>\n<p>Marca claramente la fila corregida en la copia de trabajo antes de continuar.</p>\n<h2>Utiliza referencias intermedias para detectar omisiones antes</h2>\n<p>En filas largas, divide el ancho en grupos de diez o veinte posiciones y verifica cada grupo.</p>\n<p>Marca el canvas en el margen y el gráfico con las mismas referencias cuando sea seguro hacerlo.</p>\n<p>Los cambios de color grandes, diagonales y bordes de formas sirven como puntos visuales de control.</p>\n<p>Al terminar una fila, no te limites a contar el total: comprueba también que uno o dos cambios importantes están en la columna correcta.</p>\n<p>Una regla o tira colocada bajo la fila activa reduce mucho el riesgo de saltar a la línea siguiente del patrón.</p>\n<p>Las comprobaciones pequeñas durante el trabajo son más rápidas que reparar una zona extensa al final.</p>\n<h2>No confundas un cuadrado omitido con un hueco de cobertura</h2>\n<p>A veces parece que falta un nudo porque se ve un punto de canvas entre mechones, pero todas las posiciones están realmente ocupadas.</p>\n<p>Separa el pelo y revisa el reverso antes de añadir una hebra extra.</p>\n<p>Un hilo demasiado fino, hebras mal centradas o nudos orientados de forma irregular pueden abrir visualmente la superficie.</p>\n<p>Añadir un nudo donde ya existe uno puede amontonar material y deformar la malla.</p>\n<p>Si todas las posiciones están ocupadas, corrige la cobertura peinando, recolocando o sustituyendo el nudo problemático en lugar de duplicarlo.</p>\n<p>Si te saltas un cuadrado en Latch Hook, la clave es distinguir entre una posición realmente vacía y una lectura desplazada del gráfico. El hueco aislado se rellena; la secuencia corrida se corrige volviendo al último punto de control donde patrón y canvas todavía coincidían.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Canvas de Latch Hook con un hueco señalado y, al lado, una fila con colores desplazados una celda para comparar ambos errores.",
+    "alt": "Qué hacer si te saltas un cuadrado en Latch Hook"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 472,
+  "translation_group": "472-latch-hook",
+  "taxonomy": {
+    "craft": {
+      "primary": "latch-hook",
+      "terms": [
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "finishing",
+      "terms": [
+        "finishing"
+      ]
+    },
+    "style": {
+      "terms": [
+        "edges",
+        "finishing",
+        "canvas"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "rugs",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-472-latch-hook",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Makers who have finished knotting a latch hook project and need to protect, fold or prepare the extra canvas around the edges.",
+  "title": "How to Finish the Edges of a Latch Hook Project",
+  "slug": "how-to-finish-edges-latch-hook-project",
+  "seo": {
+    "title": "How to Finish the Edges of a Latch Hook Project",
+    "meta_description": "Finish latch hook edges by leaving canvas margin, folding without distortion, managing corner bulk and preparing the piece for backing or binding.",
+    "search_intent": "Makers who finished knotting and need to know how to handle the extra canvas around a latch hook project."
+  },
+  "excerpt": "Extra canvas protects the outer knots and creates finishing allowance. Learn how much to leave, how to fold it and how to prepare corners and edges.",
+  "content_html": "<p>When the knotting stage of a latch hook project is complete, the canvas edge still needs finishing. Extra mesh protects the outer knots, creates a sewing allowance and prepares the piece for backing, binding, cushion assembly or wall mounting.</p>\n<p>The exact finish depends on the final use, but one rule is especially important: do not cut the canvas directly beside the last row of knots. You need enough margin to fold, secure or cover the structure without weakening the perimeter.</p>\n<h2>Inspect the entire perimeter before cutting canvas</h2>\n<p>Lay the piece flat and confirm that the final row of knots is complete along every side.</p>\n<p>Look for empty positions, distorted bars or loose knots near the perimeter and repair them while access is still easy.</p>\n<p>Check that the knotted area has the intended shape, whether rectangular, square or another defined outline.</p>\n<p>If opposite sides have inconsistent counts, solve that issue before using the edge as a cutting reference.</p>\n<p>Mark a planned margin around the piece rather than cutting by eye.</p>\n<p>Do not clip corners diagonally until you know exactly how the finishing method will fold or sew them.</p>\n<h2>Leave enough margin for the intended finishing method</h2>\n<p>A rug that will receive backing or binding often needs more extra canvas than a panel that will be mounted to another fabric.</p>\n<p>A cushion front needs enough mesh to join the latch hook panel to the back fabric without sewing directly beside the knots.</p>\n<p>On a wall hanging, the margin may be folded to the reverse and secured to hide exposed mesh bars.</p>\n<p>Choose the finishing method before deciding how much to trim because each system needs comfortable working space.</p>\n<p>If unsure, keep more canvas and reduce it later. Extra mesh can be removed, but a margin cut too short cannot be restored.</p>\n<p>Keep the remaining allowance as even as possible around the full perimeter.</p>\n<h2>Fold the canvas to the reverse without crushing outer knots</h2>\n<p>After the margin is defined, test folding it backward along a line parallel to the final row of knots.</p>\n<p>Do not pull so hard that the knotted area bends inward or changes shape.</p>\n<p>At square corners, extra mesh may need an organized fold so several layers do not create a hard lump.</p>\n<p>Test the fold without permanently securing it and check the front for a clean edge.</p>\n<p>If the canvas is very stiff, shape the fold gradually rather than forcing it sharply in one movement.</p>\n<p>The purpose is to hide and protect the structure without changing the position of the perimeter knots.</p>\n<h2>Secure the edge with stitching or the project's final assembly method</h2>\n<p>In many finishes, the folded margin is sewn to the reverse, to backing material or directly to a mounting fabric.</p>\n<p>Distribute stitches evenly so tension is not concentrated on only a few canvas bars.</p>\n<p>Avoid accidentally catching visible pile in the seam when working from the back.</p>\n<p>On a cushion, edge finishing can become part of the seam joining the latch hook front to the fabric back.</p>\n<p>On a rug, the prepared margin may later be covered with binding that protects the mesh from wear.</p>\n<p>Check the front regularly to make sure the stitching is not pulling the perimeter backward.</p>\n<h2>Treat corners as areas with extra bulk</h2>\n<p>Corners collect multiple canvas layers when margins from two sides fold toward the reverse.</p>\n<p>Plan the order of the folds before sewing so the angle does not become an excessively stiff lump.</p>\n<p>If the method allows some trimming, remove only the material that is clearly unnecessary after confirming what the corner needs for strength.</p>\n<p>On projects sewn to fabric, spread the bulk along both sides of the seam rather than stacking everything in one point.</p>\n<p>From the front, the corner should keep the intended outline without opening the last row of knots.</p>\n<p>Use the same corner sequence at all four corners so the finish remains symmetrical.</p>\n<h2>Check the perimeter before adding final backing or binding</h2>\n<p>Once the margin is secured, lay the piece flat and confirm that the sides remain straight and no canvas is visible from the front.</p>\n<p>Run your fingers around the perimeter to find hard bars, sharp mesh ends or areas where the seam is too tight.</p>\n<p>Correct uncomfortable folds now because access becomes much harder after backing or binding is attached.</p>\n<p>For a rug, place the edge on the floor and check that it does not lift or ripple.</p>\n<p>For a cushion or wall piece, verify that the outline matches the fabric or support it will join.</p>\n<p>Finishing latch hook edges means protecting the canvas without invading the knotted area. An even margin, controlled folds and distributed stitching prepare the project for its final finish and help the perimeter withstand use.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Front-and-back view of a latch hook panel edge showing canvas margin, folded mesh and securing stitches.",
+    "alt": "How to finish the edges of a latch hook project"
+  }
+}

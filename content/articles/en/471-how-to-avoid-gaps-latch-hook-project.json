@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 471,
+  "translation_group": "471-latch-hook",
+  "taxonomy": {
+    "craft": {
+      "primary": "latch-hook",
+      "terms": [
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "troubleshooting",
+      "terms": [
+        "troubleshooting"
+      ]
+    },
+    "style": {
+      "terms": [
+        "gaps",
+        "coverage",
+        "troubleshooting"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "rugs",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-471-latch-hook",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Makers whose latch hook project shows canvas between tufts and who want better coverage, density and consistency.",
+  "title": "How to Avoid Gaps in a Latch Hook Project",
+  "slug": "how-to-avoid-gaps-latch-hook-project",
+  "seo": {
+    "title": "How to Avoid Gaps in a Latch Hook Project",
+    "meta_description": "Avoid gaps in latch hook by checking missing positions, yarn-to-mesh compatibility, strand centering, knot direction and final grooming.",
+    "search_intent": "Makers whose latch hook surface shows canvas between tufts and who want better coverage without crowding knots."
+  },
+  "excerpt": "Gaps do not always mean a knot is missing. Learn how to diagnose coverage, mesh, centering and knot-direction problems and fix the real cause.",
+  "content_html": "<p>Visible gaps in latch hook can appear even when the chart count is correct. Sometimes a knot is genuinely missing, but in other cases every position is occupied and the opening comes from yarn that is too thin, off-center strands, inconsistent knot direction or canvas that is too open for the material.</p>\n<p>Identify the cause before adding more yarn. Doubling knots in a position that is already occupied can crowd and distort the canvas without creating even coverage.</p>\n<h2>First confirm that every canvas position has a knot</h2>\n<p>Separate the pile with your fingers and inspect the mesh from both front and reverse.</p>\n<p>A genuinely empty position shows a canvas bar without the loop and knot structure visible at neighboring points.</p>\n<p>Count the row and compare it with the chart to rule out a skipped cell.</p>\n<p>On large projects, use references every ten positions so empty spots are found before many more rows cover them.</p>\n<p>If one knot is missing, fill it with the correct color and cut length instead of trying to cover the opening by moving nearby pile.</p>\n<p>When every position is occupied, investigate another reason for the visual gap.</p>\n<h2>Make sure yarn and canvas have compatible density</h2>\n<p>Yarn that is too fine for an open mesh leaves visible spaces even when every knot is formed correctly.</p>\n<p>Make a several-row sample before a large project and press the pile lightly to see how much canvas appears between tufts.</p>\n<p>Using extremely thick yarn is not an automatic solution because it can force the mesh, slow the tool and make the surface rigid.</p>\n<p>Good coverage comes from balancing yarn thickness, mesh size and pile length.</p>\n<p>If replacing yarn in a kit, compare a test sample with the intended result before cutting all of the material.</p>\n<p>When the mismatch is large, changing yarn or canvas works better than adding extra knots.</p>\n<h2>Center every strand so both ends cover the area evenly</h2>\n<p>An off-center yarn piece creates one long end and one short end, producing small areas where the pile opens.</p>\n<p>Find approximately the center of each piece before the knot closes.</p>\n<p>With practice, centering becomes fast and does not require exact measuring.</p>\n<p>If several neighboring knots are offset in the same direction, the surface can develop a visible low-coverage line.</p>\n<p>Correct extreme tufts while they are still accessible rather than relying on final trimming.</p>\n<p>Consistent cut length also makes every strand easier to center in the same way.</p>\n<h2>Keep knot orientation consistent</h2>\n<p>Tufts cover the surface better when knots wrap equivalent canvas bars and the pile ends emerge in similar directions.</p>\n<p>If some knots are placed around different bars or approached from the opposite side, the pile can separate and reveal lines of canvas.</p>\n<p>Inspect the reverse of a correct section and use it as the reference for later rows.</p>\n<p>Do not randomly change tool orientation when your working direction changes.</p>\n<p>If the canvas is physically rotated, preserve the same knot logic relative to the design bars.</p>\n<p>Repeated orientation improves both coverage and the overall appearance of the pile.</p>\n<h2>Check for gaps during construction instead of only at the end</h2>\n<p>Every several rows, view the project from above, from the side and in angled light.</p>\n<p>Isolated holes usually suggest a missing or malformed knot, while repeated openings across a large area point toward material or technique.</p>\n<p>Run your fingers lightly through the pile so strands separate and you can see whether canvas is exposed consistently.</p>\n<p>Do not trim high areas just to visually push pile toward a gap; that can make the imbalance worse.</p>\n<p>Correct the cause as soon as it appears and compare the next row with the previous one.</p>\n<p>A photo from farther away can distinguish real openings from shadows created by pile direction.</p>\n<h2>Use finishing to refine coverage, not hide a structural problem</h2>\n<p>After the project is complete, gently grooming or separating the pile can distribute the yarn more evenly.</p>\n<p>Light trimming can level unusually long tufts and improve the overall surface.</p>\n<p>Heavy trimming, however, removes coverage and can expose more canvas.</p>\n<p>Backing protects the reverse but does not fill visible holes on the front.</p>\n<p>If one area still shows mesh because the yarn is too thin, replacing selected knots with appropriate material is usually better than adding improvised extra layers.</p>\n<p>Compare the repaired area under both direct and side lighting before considering the problem solved, because shadows can exaggerate or hide small openings.</p>\n<p>Avoiding gaps in latch hook means filling every intended position and making yarn, mesh, centering and knot orientation work together. Dense coverage is built during knotting; finishing should refine it rather than hide an inconsistent foundation.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Two latch hook samples: one showing canvas between tufts and another with even coverage, with labels pointing to the causes.",
+    "alt": "How to avoid gaps in a latch hook project"
+  }
+}
