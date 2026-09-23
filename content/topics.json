@@ -4792,6 +4792,116 @@
       "title_es": "Bobinas vs llevar el hilo en Tapestry Crochet",
       "title_en": "Yarn Bobbins vs Carrying Yarn in Tapestry Crochet",
       "craft": "tapestry-crochet"
+    },
+    {
+      "number": 435,
+      "priority": "P3",
+      "section": "buying-guides",
+      "topic": "yarn",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Mejor hilo para Tapestry Crochet",
+      "title_en": "Best Yarn for Tapestry Crochet",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 436,
+      "priority": "P3",
+      "section": "buying-guides",
+      "topic": "materials",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Qué aguja usar para Tapestry Crochet",
+      "title_en": "What Crochet Hook Should You Use for Tapestry Crochet?",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 437,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "gauge",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Gauge en Tapestry Crochet: cómo afecta al dibujo",
+      "title_en": "Tapestry Crochet Gauge: How It Changes the Design",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 438,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "pixel-art",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo convertir pixel art en un patrón de Tapestry Crochet",
+      "title_en": "How to Turn Pixel Art into a Tapestry Crochet Pattern",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 439,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "photo-conversion",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo convertir una imagen en un gráfico de Tapestry Crochet",
+      "title_en": "How to Turn an Image into a Tapestry Crochet Chart",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 440,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "charts",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo tejer letras y palabras con Tapestry Crochet",
+      "title_en": "How to Crochet Letters and Words with Tapestry Crochet",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 441,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "pixel-art",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo mantener los píxeles cuadrados en Tapestry Crochet",
+      "title_en": "How to Keep Crochet Pixels Square in Tapestry Crochet",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 442,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "troubleshooting",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo evitar que el tejido se encoja al llevar varios colores",
+      "title_en": "How to Stop Tapestry Crochet from Puckering with Multiple Colors",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 443,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "color-changes",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo hacer cambios de color invisibles en esquinas y bordes",
+      "title_en": "How to Make Cleaner Color Changes at Tapestry Crochet Edges",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 444,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "project-organization",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo ordenar los ovillos en proyectos de Tapestry Crochet",
+      "title_en": "How to Organize Yarn for Tapestry Crochet Projects",
+      "craft": "tapestry-crochet"
     }
   ],
   "taxonomy_strategy": {
@@ -4822,7 +4932,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 434,
-    "bilingual_groups": 434
+    "last_indexed_article": 444,
+    "bilingual_groups": 444
   }
 }
