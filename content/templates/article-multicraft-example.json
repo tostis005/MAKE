@@ -1,0 +1,72 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 385,
+  "translation_group": "385-example-multicraft-article",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "pattern-reading",
+      "terms": [
+        "pattern-reading",
+        "graphs"
+      ]
+    },
+    "style": {
+      "terms": [
+        "pixel-art"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "draft",
+  "id": "en-385-example",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Describe the searcher, their problem and the point at which a Drielo pattern can naturally help.",
+  "title": "Example multicraft article title",
+  "slug": "example-multicraft-article",
+  "seo": {
+    "title": "Example multicraft article title | Drielo",
+    "meta_description": "Write a useful, specific meta description that matches the search intent.",
+    "search_intent": "Informational-commercial"
+  },
+  "excerpt": "Short reader-first summary.",
+  "content_html": "<p>Article introduction.</p>\\n<h2>First useful section</h2>\\n<p>Body copy.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Editorial image concept aligned with the technique and article intent.",
+    "alt": "Descriptive alt text"
+  }
+}

@@ -3,7 +3,7 @@ Theme Name: Drielo
 Theme URI: https://drielo.com
 Author: Drielo
 Description: Drielo editorial-commerce WordPress theme for digital craft patterns. Cross stitch first, ready for crochet and future crafts.
-Version: 1.4.0
+Version: 1.5.0
 Requires at least: 6.4
 Requires PHP: 8.1
 Text Domain: make
@@ -1160,4 +1160,89 @@ body{background:var(--mk-cream);color:var(--mk-ink)}
   .menu-trigger{width:38px;height:38px}
   .mobile-menu-bottom{display:grid;grid-template-columns:1fr;align-items:stretch}
   .mobile-menu-language,.mobile-shop-link{width:100%;justify-content:center;box-sizing:border-box}
+}
+
+
+/* ========================================================================
+   Multicraft editorial architecture — v1.5.0
+   ======================================================================== */
+.editorial-breadcrumbs{margin:0 0 20px;color:#8b7880;font-size:10px;font-weight:750}
+.editorial-breadcrumbs ol{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin:0;padding:0;list-style:none}
+.editorial-breadcrumbs li{display:flex;align-items:center;gap:7px}
+.editorial-breadcrumbs li+li::before{content:"/";color:#c0aeb4}
+.editorial-breadcrumbs a:hover{color:var(--mk-red-deep)}
+.editorial-breadcrumbs [aria-current="page"]{color:#66535b}
+
+.journal-crafts{padding:8px 0 36px}
+.journal-crafts-head{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);gap:36px;align-items:end;margin-bottom:22px}
+.journal-crafts-head h2{margin:7px 0 0;font:500 clamp(34px,4vw,50px)/1.02 Georgia,serif;letter-spacing:-.045em}
+.journal-crafts-head p{max-width:520px;margin:0;color:var(--mk-muted);font-size:13px;line-height:1.65}
+.journal-craft-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
+.journal-craft-card{overflow:hidden;display:flex;min-width:0;flex-direction:column;border:1px solid var(--mk-line);border-radius:25px;background:var(--mk-paper);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+a.journal-craft-card:hover{transform:translateY(-4px);box-shadow:var(--mk-shadow);border-color:#d9bcc5;color:var(--mk-ink)}
+.journal-craft-card.is-coming-soon{opacity:.72}
+.journal-craft-art{display:block;aspect-ratio:4/3;overflow:hidden;background:#f5ebe9}
+.make-craft-art{position:relative;display:block;width:100%;height:100%;min-height:100%;overflow:hidden}
+.make-craft-art-grid{position:absolute;inset:0;opacity:.42;background-image:linear-gradient(rgba(94,63,75,.11) 1px,transparent 1px),linear-gradient(90deg,rgba(94,63,75,.11) 1px,transparent 1px);background-size:20px 20px}
+.make-craft-art-symbol{position:absolute;inset:0;display:grid;place-items:center;color:var(--mk-red-deep);font:700 clamp(58px,7vw,92px)/1 Georgia,serif;text-shadow:0 8px 24px rgba(92,63,76,.10)}
+.make-craft-art--cross-stitch{background:linear-gradient(145deg,#f2e0e5,#f6eee8)}
+.make-craft-art--c2c-crochet{background:linear-gradient(145deg,#e7ece4,#f0e2df)}
+.make-craft-art--tapestry-crochet{background:linear-gradient(145deg,#e5e8ef,#f0e0e6)}
+.make-craft-art--latch-hook{background:linear-gradient(145deg,#eee4d7,#e6dce6)}
+.journal-craft-copy{position:relative;display:block;flex:1;min-height:160px;padding:21px 42px 22px 21px}
+.journal-craft-copy strong{display:block;font:500 25px/1.05 Georgia,serif;letter-spacing:-.035em}
+.journal-craft-copy small{display:block;margin-top:9px;color:var(--mk-muted);font-size:11.5px;line-height:1.55}
+.journal-craft-copy i{position:absolute;right:20px;top:21px;color:var(--mk-red-deep);font-style:normal;font-size:20px}
+.journal-craft-copy em{display:block;margin-top:14px;color:#9b858d;font-size:9px;font-style:normal;font-weight:850;letter-spacing:.08em;text-transform:uppercase}
+
+.journal-craft-tabs{padding:0 0 28px}
+.journal-craft-tabs-inner{display:flex;flex-wrap:wrap;gap:8px}
+.journal-craft-tabs-inner a,.journal-craft-tabs-inner span{display:inline-flex;align-items:center;min-height:38px;padding:0 15px;border:1px solid var(--mk-line);border-radius:999px;background:var(--mk-paper);font-size:10.5px;font-weight:850}
+.journal-craft-tabs-inner a:hover{border-color:var(--mk-red);color:var(--mk-red-deep)}
+.journal-craft-tabs-inner a.is-active{background:var(--mk-plum);border-color:var(--mk-plum);color:#fff}
+.journal-craft-tabs-inner .is-disabled{opacity:.48}
+
+.article-header .editorial-breadcrumbs{display:flex;justify-content:center;margin-bottom:18px;text-align:left}
+.article-commerce-inline{margin:38px 0;padding:28px;border:1px solid var(--mk-line);border-radius:25px;background:#fff8f7;font-family:Inter,ui-sans-serif,system-ui,sans-serif}
+.article-commerce-inline-head h3{margin:6px 0 19px;font:500 29px/1.08 Georgia,serif;letter-spacing:-.035em}
+.article-commerce-products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}
+.article-commerce-product{overflow:hidden;border:1px solid var(--mk-line);border-radius:17px;background:var(--mk-paper);text-decoration:none!important}
+.article-commerce-product:hover{color:var(--mk-ink)!important;box-shadow:0 10px 28px rgba(92,63,76,.08)}
+.article-commerce-product-media{display:block;aspect-ratio:1/1;overflow:hidden;background:#efe2e3}
+.article-commerce-product-media img{width:100%;height:100%;border-radius:0!important;object-fit:cover}
+.article-commerce-product-copy{display:block;padding:12px}
+.article-commerce-product-copy strong{display:block;font:500 15px/1.15 Georgia,serif}
+.article-commerce-product-copy small{display:block;margin-top:6px;color:var(--mk-red-deep);font-size:10px;font-weight:850}
+.article-commerce-link{display:inline-flex;margin-top:18px;color:var(--mk-red-deep)!important;font-size:10.5px;font-weight:850;text-decoration:none!important}
+
+.article-commerce-collections{padding:0 0 58px}
+.article-commerce-collections header{margin-bottom:17px}
+.article-commerce-collections h2{margin:7px 0 8px;font:500 36px/1.05 Georgia,serif;letter-spacing:-.04em}
+.article-commerce-collections header p{margin:0;color:var(--mk-muted);font-size:13px}
+.article-collection-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.article-collection-card{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:94px;padding:18px 20px;border:1px solid var(--mk-line);border-radius:18px;background:var(--mk-paper)}
+.article-collection-card:hover{border-color:#d9bcc5;color:var(--mk-ink);box-shadow:0 10px 28px rgba(92,63,76,.07)}
+.article-collection-card strong,.article-collection-card small{display:block}
+.article-collection-card strong{font:500 20px/1.08 Georgia,serif}
+.article-collection-card small{margin-top:5px;color:var(--mk-muted);font-size:9px;font-weight:800}
+.article-collection-card i{color:var(--mk-red-deep);font-style:normal;font-size:19px}
+
+@media(max-width:1050px){
+  .journal-craft-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .article-commerce-products{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:700px){
+  .journal-crafts-head{grid-template-columns:1fr;gap:13px}
+  .journal-craft-grid{grid-template-columns:1fr}
+  .journal-craft-art{aspect-ratio:16/7}
+  .journal-craft-copy{min-height:130px}
+  .article-header .editorial-breadcrumbs{justify-content:flex-start}
+  .article-commerce-inline{margin:30px 0;padding:21px}
+  .article-commerce-products{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .article-collection-grid{grid-template-columns:1fr}
+}
+@media(max-width:430px){
+  .article-commerce-products{grid-template-columns:1fr}
+  .article-commerce-product{display:grid;grid-template-columns:96px 1fr}
+  .article-commerce-product-media{aspect-ratio:1/1}
 }

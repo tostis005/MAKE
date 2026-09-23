@@ -4,15 +4,15 @@
   <div class="container footer-main">
     <div class="footer-intro">
       <div class="footer-brand"><?php echo esc_html( $site_name ); ?></div>
-      <p class="footer-copy"><?php echo esc_html( make_t( 'Patrones digitales pensados para disfrutar del proceso y hacer cosas que merecen quedarse. Empezamos con punto de cruz y la estructura está preparada para crecer hacia nuevas técnicas.', 'Digital patterns made for enjoying the process and creating things worth keeping. We are starting with cross stitch and the structure is ready to grow into more crafts.' ) ); ?></p>
+      <p class="footer-copy"><?php echo esc_html( make_t( 'Patrones digitales pensados para disfrutar del proceso y hacer cosas que merecen quedarse. Punto de cruz, C2C crochet, tapestry crochet y latch hook conviven en un mismo lenguaje de cuadrícula.', 'Digital patterns made for enjoying the process and creating things worth keeping. Cross stitch, C2C crochet, tapestry crochet and latch hook share one grid-based creative language.' ) ); ?></p>
     </div>
 
     <div>
       <h3 class="footer-title"><?php echo esc_html( make_t( 'Explora', 'Explore' ) ); ?></h3>
       <ul class="footer-links">
-        <li><a href="<?php echo esc_url( make_cross_stitch_url() ); ?>"><?php echo esc_html( make_t( 'Punto de cruz', 'Cross stitch' ) ); ?></a></li>
+        <li><a href="<?php echo esc_url( make_journal_url() ); ?>"><?php echo esc_html( make_t( 'Aprender por técnica', 'Learn by technique' ) ); ?></a></li>
         <li><a href="<?php echo esc_url( make_shop_url() ); ?>"><?php echo esc_html( make_t( 'Tienda de patrones', 'Pattern shop' ) ); ?></a></li>
-        <li><a href="<?php echo esc_url( make_journal_url() ); ?>"><?php echo esc_html( make_t( 'Últimos artículos', 'Latest articles' ) ); ?></a></li>
+        <li><a href="<?php echo esc_url( make_editorial_craft_url( 'cross-stitch' ) ); ?>"><?php echo esc_html( make_t( 'Punto de cruz', 'Cross Stitch' ) ); ?></a></li>
       </ul>
     </div>
 

@@ -226,6 +226,7 @@ foreach ( $files as $file ) {
         $faq = ! empty( $data['faq'] ) && is_array( $data['faq'] ) ? $data['faq'] : array();
         $sources = ! empty( $data['sources'] ) && is_array( $data['sources'] ) ? $data['sources'] : array();
         $image = ! empty( $data['image'] ) && is_array( $data['image'] ) ? $data['image'] : array();
+        $commerce = ! empty( $data['commerce'] ) && is_array( $data['commerce'] ) ? $data['commerce'] : array();
         $json_status = isset( $data['status'] ) ? (string) $data['status'] : 'draft';
 
         $hash = hash( 'sha256', $raw );
@@ -271,6 +272,7 @@ foreach ( $files as $file ) {
         update_post_meta( $post_id, '_make_sources', $sources );
         update_post_meta( $post_id, '_make_image_concept', isset($image['concept'])?(string)$image['concept']:'' );
         update_post_meta( $post_id, '_make_image_alt', isset($image['alt'])?(string)$image['alt']:'' );
+        update_post_meta( $post_id, '_make_commerce', $commerce );
         update_post_meta( $post_id, '_make_managed_article', 1 );
 
         make_import_apply_language( $post_id, $language, $group );
