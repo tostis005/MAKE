@@ -1,13 +1,14 @@
 name: Temporary export current Drielo PDFs
 
 on:
-  pull_request:
-    branches: [main]
+  push:
+    branches:
+      - 'tmp/export-current-drielo-pdfs'
     paths:
       - '.github/workflows/tmp-export-current-pdfs.yml'
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   export:
@@ -124,3 +125,24 @@ jobs:
           path: exported-pdfs/*.pdf
           if-no-files-found: error
           retention-days: 1
+
+      - name: Persist artifact metadata
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          sleep 3
+          mkdir -p tmp
+          JSON="$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts")"
+          ARTIFACT_ID="$(printf '%s' "$JSON" | jq -r '.artifacts[] | select(.name=="drielo-current-pdfs") | .id' | head -n1)"
+          if [ -z "$ARTIFACT_ID" ] || [ "$ARTIFACT_ID" = "null" ]; then
+            echo "Artifact metadata not found"
+            printf '%s\n' "$JSON"
+            exit 1
+          fi
+          jq -n --argjson run_id "$GITHUB_RUN_ID" --argjson artifact_id "$ARTIFACT_ID"             '{run_id:$run_id, artifact_id:$artifact_id, artifact_name:"drielo-current-pdfs"}'             > tmp/export-artifact.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tmp/export-artifact.json
+          git commit -m "Store temporary PDF export artifact metadata [skip ci]"
+          git push origin HEAD:"${GITHUB_REF_NAME}"
