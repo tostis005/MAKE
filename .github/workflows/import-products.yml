@@ -120,9 +120,15 @@ jobs:
           seen_sku = set()
           seen_code = set()
           for row in products:
-              for key in ('code','sku','title','slug','price','collection','gallery','download'):
+              for key in ('code','sku','title','slug','price','collection','gallery','download','filters','design_id','grid_width','grid_height','color_count'):
                   if key not in row:
                       raise SystemExit(f"Missing {key} in {row}")
+              required_filters = ('technique','theme','style','project','orientation','difficulty','color-family','season')
+              for filter_key in required_filters:
+                  if filter_key not in row['filters']:
+                      raise SystemExit(f"Missing filter {filter_key} in {row['sku']}")
+              if not row['filters']['technique'] or not row['filters']['theme'] or not row['filters']['style']:
+                  raise SystemExit(f"Core filters cannot be empty in {row['sku']}")
               if row['sku'] in seen_sku or row['code'] in seen_code:
                   raise SystemExit('Duplicate SKU or code')
               seen_sku.add(row['sku']); seen_code.add(row['code'])
@@ -192,7 +198,11 @@ jobs:
             echo "DRIELO_PRODUCTS=" . count($ids) . PHP_EOL;
             foreach ($ids as $id) {
               $p=wc_get_product($id);
-              echo $p->get_sku() . " id=" . $id . " status=" . $p->get_status() . " stock=" . $p->get_stock_status() . " images=" . (1+count($p->get_gallery_image_ids())) . " downloads=" . count($p->get_downloads()) . " url=" . get_permalink($id) . PHP_EOL;
+              $theme=wp_get_object_terms($id,"pa_theme",array("fields"=>"slugs"));
+              $style=wp_get_object_terms($id,"pa_style",array("fields"=>"slugs"));
+              $color=wp_get_object_terms($id,"pa_color-family",array("fields"=>"slugs"));
+              echo $p->get_sku() . " id=" . $id . " status=" . $p->get_status() . " stock=" . $p->get_stock_status() . " images=" . (1+count($p->get_gallery_image_ids())) . " downloads=" . count($p->get_downloads()) . " theme=" . implode(",",is_wp_error($theme)?array():$theme) . " style=" . implode(",",is_wp_error($style)?array():$style) . " color=" . implode(",",is_wp_error($color)?array():$color) . " url=" . get_permalink($id) . PHP_EOL;
+              if (is_wp_error($theme) || empty($theme) || is_wp_error($style) || empty($style) || is_wp_error($color) || empty($color)) { fwrite(STDERR,"Missing Drielo filter taxonomy for product " . $id . PHP_EOL); exit(2); }
             }
             $terms=get_terms(array("taxonomy"=>"product_collection","hide_empty"=>false));
             if (!is_wp_error($terms)) foreach($terms as $t) echo "COLLECTION=" . $t->slug . " count=" . $t->count . " url=" . get_term_link($t) . PHP_EOL;
