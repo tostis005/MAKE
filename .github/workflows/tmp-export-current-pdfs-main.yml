@@ -17,6 +17,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Persist run marker
+        run: |
+          set -euo pipefail
+          mkdir -p tmp
+          printf '{"run_id":%s,"sha":"%s"}\n' "$GITHUB_RUN_ID" "$GITHUB_SHA" > tmp/export-workflow-started.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tmp/export-workflow-started.json
+          git commit -m "Store temporary export run marker [skip ci]"
+          git push origin HEAD:main
+
       - name: Configure SSH
         env:
           VPS_HOST: ${{ secrets.VPS_HOST }}
