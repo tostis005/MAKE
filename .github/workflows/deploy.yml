@@ -412,6 +412,21 @@ jobs:
           PRODUCT_EN_ROUTE="$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; $id=wc_get_product_id_by_sku("DRIELO-P0001-CS"); $u=make_product_url($id,"en"); echo parse_url($u,PHP_URL_PATH);')"
 
           check_html "/tienda/" "Tienda de patrones" "shop-patterns-es" "PDF descargable"
+          check_html "/tienda/page/2/" "page-numbers current" "shop-page-2-content"
+          PAGED_HEADERS="/tmp/drielo-shop-page-2-headers.txt"
+          PAGED_BODY="/tmp/drielo-shop-page-2.html"
+          rm -f "$PAGED_HEADERS" "$PAGED_BODY"
+          curl -fsS -D "$PAGED_HEADERS" -o "$PAGED_BODY" "https://$SITE_HOST/tienda/page/2/"
+          PAGED_STATUS="$(awk '/^HTTP\//{code=$2} END{print code}' "$PAGED_HEADERS")"
+          if [ "$PAGED_STATUS" != "200" ]; then
+            echo "shop-page-2-direct failed status=$PAGED_STATUS"
+            exit 2
+          fi
+          if ! grep -q 'page-numbers current' "$PAGED_BODY"; then
+            echo "shop-page-2-direct missing current pagination marker"
+            exit 2
+          fi
+          echo "MAKE_SMOKE_OK=shop-page-2-direct route=/tienda/page/2/ status=$PAGED_STATUS"
           check_html "/tienda/" "drielo-technique-hub" "shop-technique-hub"
           check_html "/tienda/" "drielo-technique-hub" "shop-technique-row-present"
           check_html "/wp-content/themes/make/assets/js/site.js" "simplifyDrieloTechniqueHub" "shop-technique-row-js"
