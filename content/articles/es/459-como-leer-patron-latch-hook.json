@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 459,
+  "translation_group": "459-latch-hook",
+  "taxonomy": {
+    "craft": {
+      "primary": "latch-hook",
+      "terms": [
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "pattern-reading",
+      "terms": [
+        "pattern-reading"
+      ]
+    },
+    "style": {
+      "terms": [
+        "pattern-reading",
+        "grid",
+        "color-key"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "rugs",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "es-459-latch-hook",
+  "language": "es",
+  "locale": "es-ES",
+  "market_context": "Personas que trabajan con kits o gráficos de Latch Hook y necesitan relacionar cada celda, color y símbolo con una posición concreta del canvas.",
+  "title": "Cómo leer un patrón de Latch Hook",
+  "slug": "como-leer-patron-latch-hook",
+  "seo": {
+    "title": "Cómo leer un patrón de Latch Hook",
+    "meta_description": "Cómo leer un patrón de Latch Hook: interpreta cuadrícula, leyenda de colores, dirección, filas, bloques, bordes y posiciones del canvas sin desplazar el diseño.",
+    "search_intent": "Personas que tienen un patrón o kit de Latch Hook y quieren saber cómo trasladar correctamente la cuadrícula a la malla."
+  },
+  "excerpt": "Un patrón de Latch Hook convierte la imagen en posiciones de nudo sobre la malla. Aprende a usar la leyenda, contar filas y mantener el motivo alineado.",
+  "content_html": "<p>Un patrón de Latch Hook funciona como un mapa de la malla. Cada celda indica normalmente dónde colocar un nudo y qué color utilizar, de modo que el diseño aparece a medida que completas filas o bloques. El reto no está en interpretar la imagen completa, sino en mantener una correspondencia exacta entre cuadrícula y canvas.</p>\n<p>Antes de hacer el primer nudo, identifica la leyenda, el área útil del canvas, el punto de inicio y el sistema de marcado que utilizarás. Una posición desplazada al principio puede mover todo el motivo si no se detecta pronto.</p>\n<h2>Confirma qué representa una celda del patrón</h2>\n<p>En la mayoría de patrones de Latch Hook, una celda corresponde a una posición de nudo sobre la malla, pero conviene comprobarlo en las instrucciones del kit o diseño.</p>\n<p>Algunos canvas incluyen un margen exterior sin nudos para acabado. Ese borde no debe confundirse con columnas adicionales del patrón.</p>\n<p>Cuenta el ancho y alto de la zona de diseño y compáralos con la cuadrícula. Si el patrón tiene 60 columnas, necesitas identificar exactamente las 60 posiciones que formarán cada fila.</p>\n<p>El nudo suele rodear una barra concreta del canvas, no el centro visual de un cuadrado. Practica unas posiciones para entender qué elemento de la malla corresponde a cada celda.</p>\n<p>Marca suavemente esquinas o líneas de referencia en el canvas si el material lo permite y el patrón es grande.</p>\n<p>Cuando trabajes con un kit preimpreso, confirma si debes seguir la impresión del canvas, el gráfico separado o ambos; las instrucciones del fabricante deben indicar cuál es la referencia principal.</p>\n<h2>Lee la leyenda de colores antes de separar el hilo</h2>\n<p>La leyenda relaciona cada color del gráfico con un código, nombre o bolsa de hilo.</p>\n<p>No confíes sólo en la apariencia impresa. Dos tonos cercanos pueden verse casi iguales sobre papel o pantalla.</p>\n<p>Etiqueta recipientes o bolsas con los mismos códigos que aparecen en el patrón.</p>\n<p>Si cortas tu propio hilo, guarda cada tono separado desde el principio para evitar mezclas difíciles de corregir.</p>\n<p>En gráficos en blanco y negro, los colores pueden estar representados por símbolos, letras o tramas; aprende esos códigos antes de empezar una fila compleja.</p>\n<p>Haz una pequeña tarjeta de referencia colocando una hebra real junto a cada código. Es especialmente útil cuando la impresión y el hilo no coinciden exactamente de tono.</p>\n<h2>Elige un punto de inicio y una dirección consistente</h2>\n<p>Muchos proyectos pueden trabajarse de abajo hacia arriba, de un lado al otro o por pequeños bloques, pero no conviene cambiar de sistema constantemente.</p>\n<p>Si el patrón especifica una esquina de inicio, sigue esa indicación para que el conteo y las instrucciones coincidan.</p>\n<p>Cuando no exista una dirección obligatoria, elige la que te permita ver claramente las barras del canvas y mantener los nudos ya hechos fuera del camino de la herramienta.</p>\n<p>Marca en el gráfico la fila o columna activa y tacha sólo las posiciones realmente terminadas.</p>\n<p>Al terminar una sesión, anota la última fila, la dirección y el punto donde retomarás.</p>\n<p>Un sistema estable reduce mucho el riesgo de repetir una fila o empezar la siguiente desde la columna equivocada.</p>\n<h2>Trabaja por filas o bloques que puedas verificar</h2>\n<p>Una fila completa ofrece un conteo sencillo: al terminar, puedes comparar el número de nudos con el número de celdas.</p>\n<p>Los bloques pequeños, por ejemplo de diez por diez, pueden ser más cómodos en un canvas grande, siempre que marques claramente sus límites.</p>\n<p>No dejes bordes irregulares entre bloques que dificulten saber qué posiciones faltan.</p>\n<p>Utiliza una regla, cinta removible o marcador de fila sobre el gráfico para mantener la vista en la línea correcta.</p>\n<p>Cada cierto número de filas, compara un detalle reconocible del motivo con el patrón. Una diagonal o cambio grande de color funciona como punto de control.</p>\n<p>Si encuentras un desplazamiento, vuelve al último punto de referencia correcto en vez de intentar compensar moviendo los colores en filas posteriores.</p>\n<h2>Distingue el área de diseño de los márgenes de acabado</h2>\n<p>Muchos canvas se cortan con margen adicional alrededor de la zona anudada para poder doblar, coser, encuadernar o añadir backing.</p>\n<p>No llenes automáticamente todo el canvas hasta el borde si el patrón reserva esa malla para acabado.</p>\n<p>Cuenta desde una esquina de referencia del área útil, no desde el borde físico de la pieza, cuando exista margen.</p>\n<p>En alfombras, dejar suficiente canvas sin nudos facilita terminar los bordes de forma resistente.</p>\n<p>En cojines o tapices, el margen puede utilizarse para costura o montaje sobre otra tela.</p>\n<p>Antes de recortar cualquier exceso, termina el patrón y revisa las instrucciones de acabado. Cortar demasiado pronto puede dejarte sin material para proteger el borde.</p>\n<h2>Corrige errores de lectura antes de que se propaguen</h2>\n<p>Si una figura aparece desplazada, primero cuenta los nudos de la fila y las posiciones del canvas. No asumas que el gráfico está mal.</p>\n<p>Comprueba también si utilizaste el color correcto; un tono equivocado puede parecer un error de posición cuando la forma realmente está bien.</p>\n<p>Un nudo colocado en la barra vecina desplaza localmente el dibujo y conviene corregirlo en cuanto lo detectes.</p>\n<p>Haz fotografías periódicas desde cierta distancia. Los cambios de forma se perciben mejor al ver el conjunto que mientras trabajas muy cerca.</p>\n<p>En patrones grandes, marca cada diez columnas y filas tanto en la copia de trabajo como, si es seguro, en el margen del canvas. Esas referencias limitan cuánto puede extenderse un error sin ser detectado.</p>\n<p>Leer un patrón de Latch Hook consiste en mantener sincronizados tres elementos: la cuadrícula, la leyenda y la malla física. Cuando confirmas una celda por nudo, trabajas con una dirección estable y verificas conteos por secciones, el diseño se construye de forma predecible sin perder posiciones.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Gráfico de Latch Hook con celdas numeradas junto a un canvas, una leyenda de colores y líneas que conectan filas del patrón con posiciones de malla.",
+    "alt": "Cómo leer un patrón de Latch Hook"
+  }
+}
