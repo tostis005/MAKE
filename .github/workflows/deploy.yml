@@ -82,6 +82,21 @@ jobs:
           php -l /tmp/drielo-etsy-plugin/drielo-etsy-sync/drielo-etsy-sync.php
           tar -C /tmp/drielo-etsy-plugin -czf /tmp/drielo-etsy-sync.tar.gz drielo-etsy-sync
 
+      - name: Build official WooCommerce Stripe Gateway plugin
+        shell: bash
+        run: |
+          set -euo pipefail
+          STRIPE_VERSION="11.0.0"
+          rm -rf /tmp/stripe-plugin /tmp/woocommerce-gateway-stripe.zip /tmp/woocommerce-gateway-stripe.tar.gz
+          mkdir -p /tmp/stripe-plugin
+          curl -fL --retry 3 --retry-delay 2 \
+            "https://downloads.wordpress.org/plugin/woocommerce-gateway-stripe.${STRIPE_VERSION}.zip" \
+            -o /tmp/woocommerce-gateway-stripe.zip
+          unzip -q /tmp/woocommerce-gateway-stripe.zip -d /tmp/stripe-plugin
+          test -s /tmp/stripe-plugin/woocommerce-gateway-stripe/woocommerce-gateway-stripe.php
+          php -l /tmp/stripe-plugin/woocommerce-gateway-stripe/woocommerce-gateway-stripe.php
+          tar -C /tmp/stripe-plugin -czf /tmp/woocommerce-gateway-stripe.tar.gz woocommerce-gateway-stripe
+
       - name: Package theme
         run: tar --exclude='./.git' --exclude='./.github' --exclude='./README.md' --exclude='./plugins' -czf /tmp/make-theme.tar.gz .
 
@@ -97,6 +112,12 @@ jobs:
           VPS_USER: ${{ secrets.VPS_USER }}
         run: scp -i ~/.ssh/make_deploy_key /tmp/drielo-etsy-sync.tar.gz "$VPS_USER@$VPS_HOST:/tmp/drielo-etsy-sync-${GITHUB_RUN_ID}.tar.gz"
 
+      - name: Upload official WooCommerce Stripe Gateway plugin
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: scp -i ~/.ssh/make_deploy_key /tmp/woocommerce-gateway-stripe.tar.gz "$VPS_USER@$VPS_HOST:/tmp/woocommerce-gateway-stripe-${GITHUB_RUN_ID}.tar.gz"
+
       - name: Deploy into Drielo WordPress container
         env:
           VPS_HOST: ${{ secrets.VPS_HOST }}
@@ -111,7 +132,10 @@ jobs:
           PLUGIN_ARCHIVE="/tmp/drielo-etsy-sync-${GITHUB_RUN_ID}.tar.gz"
           PLUGIN_STAGE="/tmp/drielo-etsy-sync-${GITHUB_RUN_ID}"
           PLUGIN_TARGET="/var/www/html/wp-content/plugins/drielo-etsy-sync"
-          cleanup(){ rm -rf "$ARCHIVE" "$STAGE" "$PLUGIN_ARCHIVE" "$PLUGIN_STAGE"; }
+          STRIPE_PLUGIN_ARCHIVE="/tmp/woocommerce-gateway-stripe-${GITHUB_RUN_ID}.tar.gz"
+          STRIPE_PLUGIN_STAGE="/tmp/woocommerce-gateway-stripe-${GITHUB_RUN_ID}"
+          STRIPE_PLUGIN_TARGET="/var/www/html/wp-content/plugins/woocommerce-gateway-stripe"
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE" "$PLUGIN_ARCHIVE" "$PLUGIN_STAGE" "$STRIPE_PLUGIN_ARCHIVE" "$STRIPE_PLUGIN_STAGE"; }
           trap cleanup EXIT
           if docker inspect make-wp >/dev/null 2>&1; then
             DOCKER=(docker)
@@ -121,10 +145,11 @@ jobs:
             echo "ERROR: make-wp container not found"
             exit 1
           fi
-          rm -rf "$STAGE" "$PLUGIN_STAGE"
-          mkdir -p "$STAGE" "$PLUGIN_STAGE"
+          rm -rf "$STAGE" "$PLUGIN_STAGE" "$STRIPE_PLUGIN_STAGE"
+          mkdir -p "$STAGE" "$PLUGIN_STAGE" "$STRIPE_PLUGIN_STAGE"
           tar -xzf "$ARCHIVE" -C "$STAGE"
           tar -xzf "$PLUGIN_ARCHIVE" -C "$PLUGIN_STAGE"
+          tar -xzf "$STRIPE_PLUGIN_ARCHIVE" -C "$STRIPE_PLUGIN_STAGE"
           "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '$TARGET' && mkdir -p '$TARGET'"
           "${DOCKER[@]}" cp "$STAGE/." "make-wp:$TARGET/"
           "${DOCKER[@]}" exec make-wp sh -lc "chown -R www-data:www-data '$TARGET' && find '$TARGET' -type d -exec chmod 755 {} + && find '$TARGET' -type f -exec chmod 644 {} + && test -s '$TARGET/style.css' && test -s '$TARGET/functions.php'"
@@ -154,6 +179,39 @@ jobs:
                 exit(2);
             }
             echo "DRIELO_ETSY_PLUGIN_VERIFIED=yes" . PHP_EOL;
+          '
+
+          if ! "${DOCKER[@]}" exec make-wp sh -lc "test -s '$STRIPE_PLUGIN_TARGET/woocommerce-gateway-stripe.php'"; then
+            "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '$STRIPE_PLUGIN_TARGET' && mkdir -p '$STRIPE_PLUGIN_TARGET'"
+            "${DOCKER[@]}" cp "$STRIPE_PLUGIN_STAGE/woocommerce-gateway-stripe/." "make-wp:$STRIPE_PLUGIN_TARGET/"
+            "${DOCKER[@]}" exec make-wp sh -lc "chown -R www-data:www-data '$STRIPE_PLUGIN_TARGET' && find '$STRIPE_PLUGIN_TARGET' -type d -exec chmod 755 {} + && find '$STRIPE_PLUGIN_TARGET' -type f -exec chmod 644 {} +"
+            echo "DRIELO_STRIPE_PLUGIN_INSTALLED=yes"
+          else
+            echo "DRIELO_STRIPE_PLUGIN_INSTALLED=existing"
+          fi
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            require_once ABSPATH . "wp-admin/includes/plugin.php";
+            $plugin = "woocommerce-gateway-stripe/woocommerce-gateway-stripe.php";
+            if (!is_plugin_active($plugin)) {
+                $result = activate_plugin($plugin);
+                if (is_wp_error($result)) {
+                    fwrite(STDERR, "WooCommerce Stripe Gateway activation failed: " . $result->get_error_message() . PHP_EOL);
+                    exit(2);
+                }
+            }
+            $data = get_plugin_data(WP_PLUGIN_DIR . "/" . $plugin, false, false);
+            $adaptive = apply_filters("wc_stripe_is_adaptive_pricing_supported", true);
+            if ($adaptive !== false) {
+                fwrite(STDERR, "Stripe Adaptive Pricing guard is not active" . PHP_EOL);
+                exit(2);
+            }
+            echo "DRIELO_STRIPE_PLUGIN_ACTIVE=" . (is_plugin_active($plugin) ? "yes" : "no") . PHP_EOL;
+            echo "DRIELO_STRIPE_PLUGIN_VERSION=" . ($data["Version"] ?? "unknown") . PHP_EOL;
+            echo "DRIELO_STRIPE_ADAPTIVE_PRICING=disabled" . PHP_EOL;
+            echo "DRIELO_WP_VERSION=" . get_bloginfo("version") . PHP_EOL;
+            echo "DRIELO_WC_VERSION=" . (defined("WC_VERSION") ? WC_VERSION : "unknown") . PHP_EOL;
           '
 
           "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
