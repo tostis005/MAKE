@@ -15,5 +15,7 @@ jobs:
           set -euo pipefail
           base64 --decode plugins/drielo-etsy-sync-1.0.0.zip.b64 > /tmp/plugin.zip
           unzip -q /tmp/plugin.zip -d /tmp/plugin
-          echo '--- MATCHES ---'
-          grep -nEi 'callback|redirect_uri|admin-post|oauth|etsy/connect' /tmp/plugin/drielo-etsy-sync/drielo-etsy-sync.php || true
+          echo '--- INIT ---'
+          sed -n '25,65p' /tmp/plugin/drielo-etsy-sync/drielo-etsy-sync.php
+          echo '--- OAUTH ---'
+          sed -n '475,590p' /tmp/plugin/drielo-etsy-sync/drielo-etsy-sync.php
