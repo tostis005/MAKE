@@ -206,7 +206,7 @@ foreach ( (array) ( $catalog['collections'] ?? array() ) as $collection ) {
 }
 
 $drielo_filter_term_names = array(
-    'technique' => array('cross-stitch'=>'Cross Stitch','c2c-crochet'=>'C2C Crochet','tapestry-crochet'=>'Tapestry Crochet'),
+    'technique' => array('cross-stitch'=>'Cross Stitch','c2c-crochet'=>'C2C Crochet','tapestry-crochet'=>'Tapestry Crochet','latch-hook'=>'Latch Hook'),
     'theme' => array('people-portraits'=>'People & Portraits','animals'=>'Animals','flowers-botanicals'=>'Flowers & Botanicals','nature-landscapes'=>'Nature & Landscapes','architecture-places'=>'Architecture & Places','fantasy-surreal'=>'Fantasy & Surreal','kids'=>'Kids','food-drink'=>'Food & Drink','abstract-geometric'=>'Abstract & Geometric','holidays-seasons'=>'Holidays & Seasons'),
     'style' => array('pop-art'=>'Pop Art','classic-art'=>'Classic Art','modern'=>'Modern','vintage'=>'Vintage','playful'=>'Playful','elegant'=>'Elegant','surreal'=>'Surreal','colorful'=>'Colorful','minimalist'=>'Minimalist','cute'=>'Cute','dark-gothic'=>'Dark & Gothic','fantasy'=>'Fantasy'),
     'project' => array('wall-art'=>'Wall Art','blanket'=>'Blanket','rug'=>'Rug','tapestry'=>'Tapestry','cushion'=>'Cushion'),
@@ -244,11 +244,11 @@ foreach ( (array) ( $catalog['products'] ?? array() ) as $row ) {
     $product->set_purchase_note( (string) ( $row['purchase_note_en'] ?? 'Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.' ) );
 
     $attribute_specs = array(
-        'Pattern size'  => (string) ( $row['grid'] ?? '' ),
-        'DMC colours'   => (string) ( $row['colours'] ?? '' ),
-        'Skill level'   => (string) ( $row['skill'] ?? '' ),
-        'Stitch type'   => (string) ( $row['stitch_type'] ?? '' ),
-        'Total stitches'=> number_format_i18n( absint( $row['stitches'] ?? 0 ) ),
+        (string) ( $row['size_attribute_label'] ?? 'Pattern size' ) => (string) ( $row['grid'] ?? '' ),
+        (string) ( $row['colour_attribute_label'] ?? 'DMC colours' ) => (string) ( $row['colours'] ?? '' ),
+        'Skill level' => (string) ( $row['skill'] ?? '' ),
+        (string) ( $row['type_attribute_label'] ?? 'Stitch type' ) => (string) ( $row['stitch_type'] ?? '' ),
+        (string) ( $row['count_attribute_label'] ?? 'Total stitches' ) => number_format_i18n( absint( $row['stitches'] ?? 0 ) ),
     );
     $attributes = array();
     $position = 0;
@@ -385,6 +385,10 @@ foreach ( (array) ( $catalog['products'] ?? array() ) as $row ) {
     update_post_meta( $id, '_drielo_grid_width', absint( $row['grid_width'] ?? 0 ) );
     update_post_meta( $id, '_drielo_grid_height', absint( $row['grid_height'] ?? 0 ) );
     update_post_meta( $id, '_drielo_color_count', absint( $row['color_count'] ?? $row['colours'] ?? 0 ) );
+    update_post_meta( $id, '_drielo_technique', sanitize_text_field( (string) ( $row['technique'] ?? ( $row['filters']['technique'][0] ?? '' ) ) ) );
+    update_post_meta( $id, '_drielo_size_attribute_label', sanitize_text_field( (string) ( $row['size_attribute_label'] ?? 'Pattern size' ) ) );
+    update_post_meta( $id, '_drielo_colour_attribute_label', sanitize_text_field( (string) ( $row['colour_attribute_label'] ?? 'DMC colours' ) ) );
+    update_post_meta( $id, '_drielo_count_attribute_label', sanitize_text_field( (string) ( $row['count_attribute_label'] ?? 'Total stitches' ) ) );
     update_post_meta( $id, '_drielo_catalog_filters', wp_json_encode( (array) ( $row['filters'] ?? array() ) ) );
     update_post_meta( $id, '_drielo_stitch_count', absint( $row['stitches'] ?? 0 ) );
     update_post_meta( $id, '_drielo_grid', sanitize_text_field( (string) ( $row['grid'] ?? '' ) ) );
