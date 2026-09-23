@@ -20,7 +20,7 @@ import bulk_generate as bg  # noqa: E402
 
 CODES = ("I0001-CS","I0001-C2C","I0001-TC","I0001-LH")
 SUFFIXES = ("CS","C2C","TC","LH")
-REVISION = 2026092402
+REVISION = 2026092403
 
 def read_json(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
