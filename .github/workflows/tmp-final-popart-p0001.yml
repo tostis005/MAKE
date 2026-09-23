@@ -1,0 +1,225 @@
+name: TEMP final Pop Art P0001 refresh
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tmp-final-popart-p0001.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-final-popart-p0001
+  cancel-in-progress: false
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      COVER_CS_URL: 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-80b8-820e-adaf-17e752a92c67/raw?se=2026-09-23T20%3A44%3A54Z&sp=r&sv=2026-02-06&sr=b&scid=41119b47-62e6-54bb-91ce-4e677534369a&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-23T19%3A45%3A00Z&ske=2026-09-24T19%3A45%3A00Z&sks=b&skv=2026-02-06&sig=Oe%2BuPjVR/WR1A/BYnW6sE%2BrPwdZqAKKuK8Uvpb8FnyE%3D'
+      COVER_C2C_URL: 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-2e7c-820e-8f25-5d8870a9b439/raw?se=2026-09-23T20%3A44%3A55Z&sp=r&sv=2026-02-06&sr=b&scid=757ec6ec-1efc-5ff8-840e-b37f7bfc0741&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-23T20%3A02%3A33Z&ske=2026-09-24T20%3A02%3A33Z&sks=b&skv=2026-02-06&sig=dPt56j6Ury7VxsGC3UUG8wohJB%2BBUCYf40YzxWulIh4%3D'
+      COVER_TC_URL: 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-da9c-820e-b529-1f1b0544aef2/raw?se=2026-09-23T20%3A44%3A56Z&sp=r&sv=2026-02-06&sr=b&scid=706f39dc-baef-556d-88d5-8c72b71067ce&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-23T20%3A14%3A59Z&ske=2026-09-24T20%3A14%3A59Z&sks=b&skv=2026-02-06&sig=PuJcTaRdL%2B7eTEFC7EpxEIfXql38DabT9wP0ZJ2L%2B/c%3D'
+      COVER_LH_URL: 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-b0c4-820e-a133-d1ef66ac3b00/raw?se=2026-09-23T20%3A44%3A57Z&sp=r&sv=2026-02-06&sr=b&scid=fc70e8e4-3f34-55a6-b48d-54a83d3d4e58&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-23T20%3A39%3A09Z&ske=2026-09-24T20%3A39%3A09Z&sks=b&skv=2026-02-06&sig=rvmcynV08xRGibuo9ALBajEwO4bVO%2BX3J0vCRzL9NpM%3D'
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install final Pop Art covers
+        shell: bash
+        run: |
+          set -euo pipefail
+          A=content/pattern-system/multitech/assets
+          mkdir -p "$A"
+          curl -fL --retry 3 "$COVER_CS_URL"  -o "$A/cover-cross-stitch.webp"
+          curl -fL --retry 3 "$COVER_C2C_URL" -o "$A/cover-c2c-crochet.webp"
+          curl -fL --retry 3 "$COVER_TC_URL"  -o "$A/cover-crochet.webp"
+          curl -fL --retry 3 "$COVER_LH_URL"  -o "$A/cover-rug.webp"
+          python3 -m pip install --disable-pip-version-check --quiet Pillow
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          root=Path('content/pattern-system/multitech/assets')
+          for name in ('cover-cross-stitch','cover-c2c-crochet','cover-crochet','cover-rug'):
+              p=root/(name+'.webp')
+              im=Image.open(p)
+              if im.format != 'WEBP':
+                  raise SystemExit(f'{name}: not WEBP ({im.format})')
+              if im.width != im.height or im.width < 1200:
+                  raise SystemExit(f'{name}: unexpected size {im.size}')
+              print(name, im.size, p.stat().st_size)
+          PY
+          rm -f "$A/cover-cross-stitch.png" "$A/cover-c2c-crochet.png" "$A/cover-crochet.png" "$A/cover-rug.png"
+
+      - name: Switch multitech renderer to WebP covers
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('content/pattern-system/multitech/bulk_generate.py')
+          s=p.read_text(encoding='utf-8')
+          old="def data_uri(path):\n    p=Path(path); mime='image/png' if p.suffix.lower()=='.png' else 'image/jpeg'\n    return 'data:'+mime+';base64,'+base64.b64encode(p.read_bytes()).decode('ascii')"
+          new="def data_uri(path):\n    p=Path(path)\n    mime={'.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.webp':'image/webp'}.get(p.suffix.lower(),'application/octet-stream')\n    return 'data:'+mime+';base64,'+base64.b64encode(p.read_bytes()).decode('ascii')"
+          if old not in s:
+              raise SystemExit('data_uri block not found')
+          s=s.replace(old,new,1)
+          old2='    cover=ENGINE_ASSETS/f"cover-{ {\'CS\':\'cross-stitch\',\'C2C\':\'c2c-crochet\',\'TC\':\'crochet\',\'LH\':\'rug\'}[suffix] }.png"'
+          new2='    cover=ENGINE_ASSETS/f"cover-{ {\'CS\':\'cross-stitch\',\'C2C\':\'c2c-crochet\',\'TC\':\'crochet\',\'LH\':\'rug\'}[suffix] }.webp"'
+          if old2 not in s:
+              raise SystemExit('cover extension line not found')
+          s=s.replace(old2,new2,1)
+          p.write_text(s,encoding='utf-8')
+          PY
+
+      - name: Install renderer
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow playwright
+          python3 -m playwright install --with-deps chromium
+
+      - name: Re-render P0001 four techniques
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, shutil, sys
+          from pathlib import Path
+          sys.path.insert(0, str(Path('content/pattern-system/multitech').resolve()))
+          import bulk_generate as bg
+
+          bg.OUTPUT.mkdir(parents=True,exist_ok=True)
+          bg.FILES_DIR.mkdir(parents=True,exist_ok=True)
+          bg.ASSETS_DIR.mkdir(parents=True,exist_ok=True)
+
+          for suffix in ('CS','C2C','TC','LH'):
+              code=f'P0001-{suffix}'
+              pat=bg.read_json(bg.SRC_PATTERNS/code/'pattern.json')
+              src=bg.read_json(bg.SRC_PRODUCTS/code/'product.json')
+              data=bg.pattern_data(code,src['title'],suffix,pat['matrix'],pat['threads'])
+              r=bg.render_one((code,suffix,data))
+              shutil.copy2(r['pdf'],bg.FILES_DIR/Path(r['pdf']).name)
+              shutil.copy2(r['image'],bg.ASSETS_DIR/Path(r['image']).name)
+              print('BUILT',code,r['pdf_bytes'],r['image_bytes'])
+          PY
+          for f in             content/products/files/Drielo_P0001-CS.pdf             content/products/files/Drielo_P0001-C2C.pdf             content/products/files/Drielo_P0001-TC.pdf             content/products/files/Drielo_P0001-LH.pdf             content/products/assets/P0001-CS-product.webp             content/products/assets/P0001-C2C-product.webp             content/products/assets/P0001-TC-product.webp             content/products/assets/P0001-LH-product.webp; do
+              test -s "$f" || { echo "Missing $f"; exit 1; }
+              stat -c '%n %s bytes' "$f"
+          done
+
+      - name: Refresh product image revision
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('content/products/catalog.json')
+          data=json.loads(p.read_text(encoding='utf-8'))
+          codes={'P0001-CS','P0001-C2C','P0001-TC','P0001-LH'}
+          seen=set()
+          for row in data['products']:
+              code=row.get('code')
+              if code in codes:
+                  seen.add(code)
+                  row['featured_image']=f'assets/{code}-product.webp'
+                  row['gallery']=[]
+                  row['gallery_revision']=2026092303
+                  row.pop('featured_source',None)
+          if seen != codes:
+              raise SystemExit(f'Missing catalog products: {sorted(codes-seen)}')
+          p.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+
+      - name: Validate generated PDFs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          for code in ('P0001-CS','P0001-C2C','P0001-TC','P0001-LH'):
+              p=Path('content/products/files')/f'Drielo_{code}.pdf'
+              b=p.read_bytes()
+              if len(b)<100000 or not b.startswith(b'%PDF'):
+                  raise SystemExit(f'{code}: invalid PDF')
+              print(code, len(b))
+          PY
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_products_key
+          chmod 600 ~/.ssh/drielo_products_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Package and upload P0001 update
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          tar -czf /tmp/drielo-products.tgz content/products content/tools/import-products.php
+          scp -i ~/.ssh/drielo_products_key /tmp/drielo-products.tgz "$VPS_USER@$VPS_HOST:/tmp/drielo-products-${GITHUB_RUN_ID}.tgz"
+
+      - name: Import into WooCommerce
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_products_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-products-${GITHUB_RUN_ID}.tgz"
+          STAGE="/tmp/drielo-products-${GITHUB_RUN_ID}"
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE"; }
+          trap cleanup EXIT
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            foreach (array("DRIELO-P0001-CS","DRIELO-P0001-C2C","DRIELO-P0001-TC","DRIELO-P0001-LH") as $sku) {
+              $id=wc_get_product_id_by_sku($sku); $p=wc_get_product($id);
+              if (!$p) { fwrite(STDERR,"Missing ".$sku.PHP_EOL); exit(2); }
+              echo $sku." id=".$id." image=".$p->get_image_id()." gallery=".count($p->get_gallery_image_ids())." downloads=".count($p->get_downloads())." stock=".$p->get_stock_status().PHP_EOL;
+              if (!$p->get_image_id() || count($p->get_downloads())<1) { fwrite(STDERR,"Incomplete ".$sku.PHP_EOL); exit(3); }
+            }
+          '
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
+          REMOTE
+
+      - name: Persist final covers and regenerated product images
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add             content/pattern-system/multitech/bulk_generate.py             content/pattern-system/multitech/assets/cover-cross-stitch.webp             content/pattern-system/multitech/assets/cover-c2c-crochet.webp             content/pattern-system/multitech/assets/cover-crochet.webp             content/pattern-system/multitech/assets/cover-rug.webp             content/products/catalog.json             content/products/assets/P0001-CS-product.webp             content/products/assets/P0001-C2C-product.webp             content/products/assets/P0001-TC-product.webp             content/products/assets/P0001-LH-product.webp
+          git add -u content/pattern-system/multitech/assets
+          git commit -m "Use final Pop Art covers and regenerate P0001 [skip ci]"
+          git push origin HEAD:main
+
+      - name: Upload generated PDFs artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: P0001-popart-final-pdfs
+          path: |
+            content/products/files/Drielo_P0001-CS.pdf
+            content/products/files/Drielo_P0001-C2C.pdf
+            content/products/files/Drielo_P0001-TC.pdf
+            content/products/files/Drielo_P0001-LH.pdf
+          retention-days: 7
