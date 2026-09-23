@@ -21,7 +21,7 @@
       "id": "pop-art-portraits",
       "name": "Pop Art Portraits",
       "slug": "pop-art-portraits",
-      "description": "Pop-inspired portrait cross-stitch designs in a coordinated collection of warm neutrals, vivid pink accents and selected blue tones.",
+      "description": "Pop-inspired portrait designs in a coordinated collection of warm neutrals, vivid pink accents and selected blue tones, available across multiple craft techniques.",
       "palette_hex": [
         "#FEE7DA",
         "#F7CBBF",
@@ -76,8 +76,14 @@
       "previous_slugs": [
         "marilyn-pop-portraits"
       ],
-      "description_es": "Retratos de inspiración pop reunidos en una colección coordinada de tonos neutros cálidos, acentos rosas intensos y algunos tonos azules.",
-      "description_en": "Pop-inspired portrait cross-stitch designs in a coordinated collection of warm neutrals, vivid pink accents and selected blue tones."
+      "description_es": "Retratos de inspiración pop reunidos en una colección coordinada de tonos neutros cálidos, acentos rosas intensos y algunos tonos azules, disponibles en varias técnicas artesanales.",
+      "description_en": "Pop-inspired portrait designs in a coordinated collection of warm neutrals, vivid pink accents and selected blue tones, available across multiple craft techniques.",
+      "techniques": [
+        "cross-stitch",
+        "c2c-crochet",
+        "tapestry-crochet",
+        "latch-hook"
+      ]
     }
   ],
   "categories": [
@@ -99,6 +105,69 @@
       "name": "Pop Art",
       "slug": "pop-art",
       "parent": "cross-stitch-patterns",
+      "name_en": "Pop Art",
+      "name_es": "Pop art"
+    },
+    {
+      "name": "C2C Crochet Patterns",
+      "slug": "c2c-crochet-patterns",
+      "parent": null,
+      "name_en": "C2C Crochet Patterns",
+      "name_es": "Patrones de crochet C2C"
+    },
+    {
+      "name": "Portraits",
+      "slug": "c2c-crochet-portraits",
+      "parent": "c2c-crochet-patterns",
+      "name_en": "Portraits",
+      "name_es": "Retratos"
+    },
+    {
+      "name": "Pop Art",
+      "slug": "c2c-crochet-pop-art",
+      "parent": "c2c-crochet-patterns",
+      "name_en": "Pop Art",
+      "name_es": "Pop art"
+    },
+    {
+      "name": "Tapestry Crochet Patterns",
+      "slug": "tapestry-crochet-patterns",
+      "parent": null,
+      "name_en": "Tapestry Crochet Patterns",
+      "name_es": "Patrones de tapestry crochet"
+    },
+    {
+      "name": "Portraits",
+      "slug": "tapestry-crochet-portraits",
+      "parent": "tapestry-crochet-patterns",
+      "name_en": "Portraits",
+      "name_es": "Retratos"
+    },
+    {
+      "name": "Pop Art",
+      "slug": "tapestry-crochet-pop-art",
+      "parent": "tapestry-crochet-patterns",
+      "name_en": "Pop Art",
+      "name_es": "Pop art"
+    },
+    {
+      "name": "Latch Hook & Rug Patterns",
+      "slug": "latch-hook-rug-patterns",
+      "parent": null,
+      "name_en": "Latch Hook & Rug Patterns",
+      "name_es": "Patrones de alfombra y latch hook"
+    },
+    {
+      "name": "Portraits",
+      "slug": "latch-hook-rug-portraits",
+      "parent": "latch-hook-rug-patterns",
+      "name_en": "Portraits",
+      "name_es": "Retratos"
+    },
+    {
+      "name": "Pop Art",
+      "slug": "latch-hook-rug-pop-art",
+      "parent": "latch-hook-rug-patterns",
       "name_en": "Pop Art",
       "name_es": "Pop art"
     }
@@ -139,13 +208,13 @@
         "pop art portrait"
       ],
       "gallery": [
-        "assets/P0001-gallery-1.webp",
-        "assets/P0001-gallery-2.webp"
+        "assets/P0001-cross-stitch-gallery-1.webp",
+        "assets/P0001-cross-stitch-gallery-2.webp"
       ],
-      "download": "files/Drielo_P0001.pdf",
+      "download": "files/Drielo_P0001_cross-stitch.pdf",
       "seo_title": "Marilyn Monroe Bubble Gum Cross Stitch Pattern PDF | Drielo",
       "meta_description": "Downloadable Marilyn Monroe Bubble Gum cross stitch pattern PDF: 100 × 120 stitches, 19 DMC colours, beginner friendly, with colour and symbol charts.",
-      "gallery_revision": 5,
+      "gallery_revision": 6,
       "title_en": "Marilyn Monroe Bubble Gum Cross Stitch Pattern PDF",
       "title_es": "Patrón PDF de punto de cruz: Marilyn Monroe con chicle",
       "short_description_en": "Downloadable Marilyn Monroe Bubble Gum cross stitch pattern PDF. A playful Marilyn Monroe portrait with a bold pink bubble-gum focal point. 100 × 120 stitches; 7,927 total stitches; 19 DMC colours; full cross stitch only; beginner friendly.",
@@ -155,7 +224,7 @@
       "seo_title_en": "Marilyn Monroe Bubble Gum Cross Stitch Pattern PDF | Drielo",
       "seo_title_es": "Patrón PDF de punto de cruz: Marilyn Monroe con chicle | Drielo",
       "meta_description_en": "Downloadable Marilyn Monroe Bubble Gum cross stitch pattern PDF: 100 × 120 stitches, 19 DMC colours, beginner friendly, with colour and symbol charts.",
-      "meta_description_es": "Patrón descargable de punto de cruz en PDF de Marilyn Monroe con chicle: 100 × 120 puntos, 19 colores DMC, apto para principiantes y con gráficos a color y.",
+      "meta_description_es": "Patrón descargable de punto de cruz en PDF de Marilyn Monroe con chicle: 100 × 120 puntos, 19 colores DMC, apto para principiantes y con gráficos a color y con símbolos.",
       "purchase_note_en": "Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.",
       "purchase_note_es": "Tu PDF digital estará disponible desde la confirmación del pedido y en Mi cuenta > Descargas una vez completado el pago.",
       "skill_en": "Beginner friendly",
@@ -212,7 +281,27 @@
       "design_id": "P0001",
       "grid_width": 100,
       "grid_height": 120,
-      "color_count": 19
+      "color_count": 19,
+      "technique": "cross-stitch",
+      "size_attribute_label": "Pattern size",
+      "colour_attribute_label": "DMC colours",
+      "type_attribute_label": "Stitch type",
+      "count_attribute_label": "Total stitches",
+      "etsy_tags_es": [
+        "punto de cruz pdf",
+        "patrón descargable",
+        "gráfico de bordado",
+        "punto de cruz",
+        "retrato pop art",
+        "marilyn monroe",
+        "chicle rosa",
+        "patrón moderno",
+        "principiantes",
+        "patrón DMC",
+        "descarga digital",
+        "retrato bordado",
+        "arte pop"
+      ]
     },
     {
       "code": "P0002",
@@ -2299,6 +2388,396 @@
       "grid_width": 100,
       "grid_height": 120,
       "color_count": 19
+    },
+    {
+      "price": 4.99,
+      "collection": "pop-art-portraits",
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "purchase_note_en": "Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.",
+      "purchase_note_es": "Tu PDF digital estará disponible desde la confirmación del pedido y en Mi cuenta > Descargas una vez completado el pago.",
+      "design_id": "P0001",
+      "filters": {
+        "technique": [
+          "c2c-crochet"
+        ],
+        "theme": [
+          "people-portraits"
+        ],
+        "style": [
+          "pop-art",
+          "playful",
+          "colorful"
+        ],
+        "project": [
+          "blanket"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "pink",
+          "warm",
+          "multicolor"
+        ],
+        "season": []
+      },
+      "code": "P0001-C2C",
+      "sku": "DRIELO-P0001-C2C",
+      "title": "Marilyn Monroe Bubble Gum C2C Crochet Pattern PDF",
+      "title_en": "Marilyn Monroe Bubble Gum C2C Crochet Pattern PDF",
+      "title_es": "Patrón PDF de crochet C2C: Marilyn Monroe con chicle",
+      "slug": "bubble-gum-portrait-c2c-crochet-pattern",
+      "technique": "c2c-crochet",
+      "stitches": 2905,
+      "grid": "60 × 72 blocks",
+      "colours": 18,
+      "stitch_type": "Corner-to-corner blocks",
+      "stitch_type_en": "Corner-to-corner blocks",
+      "stitch_type_es": "Bloques de crochet C2C",
+      "short_description": "Downloadable Marilyn Monroe Bubble Gum C2C crochet pattern PDF. Pop-art portrait graph with 60 × 72 blocks, 2,905 filled blocks, 18 collection colours and three finished-size examples.",
+      "short_description_en": "Downloadable Marilyn Monroe Bubble Gum C2C crochet pattern PDF. Pop-art portrait graph with 60 × 72 blocks, 2,905 filled blocks, 18 collection colours and three finished-size examples.",
+      "short_description_es": "Patrón digital descargable de crochet C2C en PDF de Marilyn Monroe con chicle. Gráfico pop art de 60 × 72 bloques, 2905 bloques ocupados, 18 colores de la colección y tres ejemplos de tamaño final.",
+      "categories": [
+        "c2c-crochet-patterns",
+        "c2c-crochet-portraits",
+        "c2c-crochet-pop-art"
+      ],
+      "tags": [
+        "c2c crochet pattern",
+        "crochet graph",
+        "digital crochet",
+        "corner to corner",
+        "portrait crochet",
+        "pop art crochet",
+        "crochet blanket",
+        "crochet chart",
+        "instant download",
+        "bubble gum art",
+        "marilyn monroe",
+        "beginner crochet",
+        "colorwork crochet"
+      ],
+      "etsy_tags_en": [
+        "c2c crochet pattern",
+        "crochet graph",
+        "digital crochet",
+        "corner to corner",
+        "portrait crochet",
+        "pop art crochet",
+        "crochet blanket",
+        "crochet chart",
+        "instant download",
+        "bubble gum art",
+        "marilyn monroe",
+        "beginner crochet",
+        "colorwork crochet"
+      ],
+      "etsy_tags_es": [
+        "patrón crochet c2c",
+        "gráfico crochet",
+        "crochet digital",
+        "corner to corner",
+        "retrato crochet",
+        "crochet pop art",
+        "manta crochet",
+        "gráfico c2c",
+        "descarga digital",
+        "chicle rosa",
+        "marilyn monroe",
+        "crochet fácil",
+        "crochet colorwork"
+      ],
+      "gallery": [
+        "assets/P0001-c2c-crochet-gallery-1.webp",
+        "assets/P0001-c2c-crochet-gallery-2.webp"
+      ],
+      "download": "files/Drielo_P0001_c2c-crochet.pdf",
+      "gallery_revision": 1,
+      "seo_title": "Marilyn Monroe C2C Crochet Pattern PDF | Drielo",
+      "seo_title_en": "Marilyn Monroe C2C Crochet Pattern PDF | Drielo",
+      "seo_title_es": "Patrón C2C de Marilyn Monroe en PDF | Drielo",
+      "meta_description": "Download a Marilyn Monroe C2C crochet graph PDF with 60 × 72 blocks, 18 coordinated colours, printable charts and finished-size guidance.",
+      "meta_description_en": "Download a Marilyn Monroe C2C crochet graph PDF with 60 × 72 blocks, 18 coordinated colours, printable charts and finished-size guidance.",
+      "meta_description_es": "Descarga un patrón de crochet C2C de Marilyn Monroe en PDF: 60 × 72 bloques, 18 colores coordinados, gráficos imprimibles y guía de tamaños.",
+      "etsy_title_en": "Marilyn Monroe Bubble Gum C2C Crochet Pattern PDF",
+      "etsy_title_es": "Patrón PDF de crochet C2C: Marilyn Monroe con chicle",
+      "grid_width": 60,
+      "grid_height": 72,
+      "color_count": 18,
+      "size_attribute_label": "Graph size",
+      "colour_attribute_label": "Yarn colours",
+      "type_attribute_label": "Technique",
+      "count_attribute_label": "Filled blocks",
+      "description": "<p><strong>Marilyn Monroe Bubble Gum C2C Crochet Pattern PDF</strong> is a downloadable corner-to-corner crochet graph based on the Pop Art Portraits collection.</p>\n<p><strong>Digital product only:</strong> no finished blanket, yarn, hook or physical materials are included.</p>\n<h3>Pattern details</h3><ul><li>Graph: 60 × 72 blocks</li><li>Filled blocks: 2,905</li><li>Colours: 18 coordinated collection colours</li><li>Technique: Corner-to-corner crochet</li><li>Skill level: Beginner friendly</li></ul>\n<h3>Finished size examples</h3><ul><li>Fine yarn - 1.5 cm/block: 90 × 108 cm (35.4 × 42.5 in)</li><li>Medium yarn - 2.0 cm/block: 120 × 144 cm (47.2 × 56.7 in)</li><li>Chunky yarn - 2.5 cm/block: 150 × 180 cm (59.1 × 70.9 in)</li></ul>\n<h3>What you receive</h3><ul><li>17-page PDF pattern</li><li>Finished-design preview and pattern facts</li><li>Colour key with block counts</li><li>Full-colour graph overview</li><li>Black-and-white symbol overview</li><li>Enlarged chart sections</li><li>Print-and-crochet guide</li></ul><h3>Digital download</h3>\n<p>Your PDF is available after payment and can be printed or followed from a screen. Personal use only. The pattern and PDF may not be redistributed or resold.</p>",
+      "description_en": "<p><strong>Marilyn Monroe Bubble Gum C2C Crochet Pattern PDF</strong> is a downloadable corner-to-corner crochet graph based on the Pop Art Portraits collection.</p>\n<p><strong>Digital product only:</strong> no finished blanket, yarn, hook or physical materials are included.</p>\n<h3>Pattern details</h3><ul><li>Graph: 60 × 72 blocks</li><li>Filled blocks: 2,905</li><li>Colours: 18 coordinated collection colours</li><li>Technique: Corner-to-corner crochet</li><li>Skill level: Beginner friendly</li></ul>\n<h3>Finished size examples</h3><ul><li>Fine yarn - 1.5 cm/block: 90 × 108 cm (35.4 × 42.5 in)</li><li>Medium yarn - 2.0 cm/block: 120 × 144 cm (47.2 × 56.7 in)</li><li>Chunky yarn - 2.5 cm/block: 150 × 180 cm (59.1 × 70.9 in)</li></ul>\n<h3>What you receive</h3><ul><li>17-page PDF pattern</li><li>Finished-design preview and pattern facts</li><li>Colour key with block counts</li><li>Full-colour graph overview</li><li>Black-and-white symbol overview</li><li>Enlarged chart sections</li><li>Print-and-crochet guide</li></ul><h3>Digital download</h3>\n<p>Your PDF is available after payment and can be printed or followed from a screen. Personal use only. The pattern and PDF may not be redistributed or resold.</p>",
+      "description_es": "<p><strong>Patrón PDF de crochet C2C: Marilyn Monroe con chicle</strong> es un gráfico digital descargable de crochet corner-to-corner de la colección Retratos Pop Art.</p>\n<p><strong>Solo producto digital:</strong> no se incluyen manta terminada, lana, ganchillo ni materiales físicos.</p>\n<h3>Detalles del patrón</h3><ul><li>Gráfico: 60 × 72 bloques</li><li>Bloques ocupados: 2905</li><li>Colores: 18 colores coordinados de la colección</li><li>Técnica: crochet C2C</li><li>Nivel: apto para principiantes</li></ul>\n<h3>Ejemplos de tamaño final</h3><ul><li>Hilo fino - 1,5 cm/bloque: 90 × 108 cm (35.4 × 42.5 in)</li><li>Hilo medio - 2,0 cm/bloque: 120 × 144 cm (47.2 × 56.7 in)</li><li>Hilo grueso - 2,5 cm/bloque: 150 × 180 cm (59.1 × 70.9 in)</li></ul>\n<h3>Qué recibirás</h3><ul><li>Patrón PDF de 17 páginas</li><li>Vista previa y datos del patrón</li><li>Clave de colores con recuento de bloques</li><li>Vista general del gráfico a color</li><li>Vista general con símbolos</li><li>Secciones ampliadas del gráfico</li><li>Guía para imprimir y tejer</li></ul><h3>Descarga digital</h3>\n<p>Tu PDF estará disponible después del pago y podrás imprimirlo o seguirlo desde una pantalla. Solo para uso personal. El patrón y el PDF no pueden redistribuirse ni revenderse.</p>",
+      "etsy_description_en": "Marilyn Monroe Bubble Gum C2C Crochet Pattern PDF\n\nDownloadable corner-to-corner crochet graph from the Pop Art Portraits collection.\n\nDIGITAL PRODUCT ONLY\nNo finished blanket, yarn, hook or physical materials are included.\n\nPATTERN DETAILS\n• 60 × 72 blocks\n• 2,905 filled blocks\n• 18 coordinated colours\n• Corner-to-corner crochet\n• Beginner friendly\n\nFINISHED SIZE EXAMPLES\n• Fine yarn - 1.5 cm/block: 90 × 108 cm\n• Medium yarn - 2.0 cm/block: 120 × 144 cm\n• Chunky yarn - 2.5 cm/block: 150 × 180 cm\n\nWHAT YOU RECEIVE\n• 17-page PDF\n• Finished-design preview and pattern facts\n• Colour key with block counts\n• Full-colour graph overview\n• Symbol overview and enlarged chart sections\n• Print-and-crochet guide\n\nPersonal use only. The pattern and PDF may not be redistributed or resold.",
+      "etsy_description_es": "Patrón PDF de crochet C2C: Marilyn Monroe con chicle\n\nGráfico descargable de crochet corner-to-corner de la colección Retratos Pop Art.\n\nSOLO PRODUCTO DIGITAL\nNo se incluyen manta terminada, lana, ganchillo ni materiales físicos.\n\nDETALLES\n• 60 × 72 bloques\n• 2905 bloques ocupados\n• 18 colores coordinados\n• Crochet C2C\n• Apto para principiantes\n\nIncluye un PDF de 17 páginas con vista previa, clave de colores, gráfico completo, símbolos, secciones ampliadas y guía de impresión. Solo para uso personal."
+    },
+    {
+      "price": 4.99,
+      "collection": "pop-art-portraits",
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "purchase_note_en": "Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.",
+      "purchase_note_es": "Tu PDF digital estará disponible desde la confirmación del pedido y en Mi cuenta > Descargas una vez completado el pago.",
+      "design_id": "P0001",
+      "filters": {
+        "technique": [
+          "tapestry-crochet"
+        ],
+        "theme": [
+          "people-portraits"
+        ],
+        "style": [
+          "pop-art",
+          "playful",
+          "colorful"
+        ],
+        "project": [
+          "tapestry"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "pink",
+          "warm",
+          "multicolor"
+        ],
+        "season": []
+      },
+      "code": "P0001-TC",
+      "sku": "DRIELO-P0001-TC",
+      "title": "Marilyn Monroe Bubble Gum Tapestry Crochet Pattern PDF",
+      "title_en": "Marilyn Monroe Bubble Gum Tapestry Crochet Pattern PDF",
+      "title_es": "Patrón PDF de tapestry crochet: Marilyn Monroe con chicle",
+      "slug": "bubble-gum-portrait-tapestry-crochet-pattern",
+      "technique": "tapestry-crochet",
+      "stitches": 5136,
+      "grid": "80 × 96 crochet stitches",
+      "colours": 19,
+      "stitch_type": "Tapestry crochet colourwork",
+      "stitch_type_en": "Tapestry crochet colourwork",
+      "stitch_type_es": "Tapestry crochet a color",
+      "short_description": "Downloadable Marilyn Monroe Bubble Gum tapestry crochet pattern PDF. Pop-art colourwork chart with 80 × 96 stitches, 5,136 filled stitches and 19 collection colours.",
+      "short_description_en": "Downloadable Marilyn Monroe Bubble Gum tapestry crochet pattern PDF. Pop-art colourwork chart with 80 × 96 stitches, 5,136 filled stitches and 19 collection colours.",
+      "short_description_es": "Patrón digital descargable de tapestry crochet en PDF de Marilyn Monroe con chicle. Gráfico pop art de 80 × 96 puntos, 5136 puntos ocupados y 19 colores de la colección.",
+      "categories": [
+        "tapestry-crochet-patterns",
+        "tapestry-crochet-portraits",
+        "tapestry-crochet-pop-art"
+      ],
+      "tags": [
+        "tapestry crochet",
+        "crochet pattern",
+        "crochet chart",
+        "colorwork crochet",
+        "portrait crochet",
+        "pop art crochet",
+        "wall hanging",
+        "digital crochet",
+        "instant download",
+        "bubble gum art",
+        "marilyn monroe",
+        "beginner crochet",
+        "crochet pdf"
+      ],
+      "etsy_tags_en": [
+        "tapestry crochet",
+        "crochet pattern",
+        "crochet chart",
+        "colorwork crochet",
+        "portrait crochet",
+        "pop art crochet",
+        "wall hanging",
+        "digital crochet",
+        "instant download",
+        "bubble gum art",
+        "marilyn monroe",
+        "beginner crochet",
+        "crochet pdf"
+      ],
+      "etsy_tags_es": [
+        "tapestry crochet",
+        "patrón crochet",
+        "gráfico crochet",
+        "crochet colorwork",
+        "retrato crochet",
+        "crochet pop art",
+        "tapiz crochet",
+        "crochet digital",
+        "descarga digital",
+        "chicle rosa",
+        "marilyn monroe",
+        "crochet fácil",
+        "pdf crochet"
+      ],
+      "gallery": [
+        "assets/P0001-crochet-gallery-1.webp",
+        "assets/P0001-crochet-gallery-2.webp"
+      ],
+      "download": "files/Drielo_P0001_crochet.pdf",
+      "gallery_revision": 1,
+      "seo_title": "Marilyn Monroe Tapestry Crochet Pattern PDF | Drielo",
+      "seo_title_en": "Marilyn Monroe Tapestry Crochet Pattern PDF | Drielo",
+      "seo_title_es": "Patrón tapestry crochet Marilyn Monroe PDF | Drielo",
+      "meta_description": "Download a Marilyn Monroe tapestry crochet colourwork PDF with an 80 × 96 chart, 19 coordinated colours, printable sections and size guidance.",
+      "meta_description_en": "Download a Marilyn Monroe tapestry crochet colourwork PDF with an 80 × 96 chart, 19 coordinated colours, printable sections and size guidance.",
+      "meta_description_es": "Descarga un patrón tapestry crochet de Marilyn Monroe en PDF: gráfico de 80 × 96 puntos, 19 colores coordinados, secciones imprimibles y guía de tamaños.",
+      "etsy_title_en": "Marilyn Monroe Bubble Gum Tapestry Crochet Pattern PDF",
+      "etsy_title_es": "Patrón PDF tapestry crochet: Marilyn Monroe con chicle",
+      "grid_width": 80,
+      "grid_height": 96,
+      "color_count": 19,
+      "size_attribute_label": "Chart size",
+      "colour_attribute_label": "Yarn colours",
+      "type_attribute_label": "Technique",
+      "count_attribute_label": "Colourwork stitches",
+      "description": "<p><strong>Marilyn Monroe Bubble Gum Tapestry Crochet Pattern PDF</strong> is a downloadable colourwork chart from the Pop Art Portraits collection.</p>\n<p><strong>Digital product only:</strong> no finished wall hanging, yarn, hook or physical materials are included.</p>\n<h3>Pattern details</h3><ul><li>Chart: 80 × 96 crochet stitches</li><li>Filled colourwork stitches: 5,136</li><li>Colours: 19 coordinated collection colours</li><li>Technique: Tapestry crochet colourwork</li><li>Skill level: Beginner friendly</li></ul>\n<h3>Finished size examples</h3><ul><li>Fine gauge - 0.45 cm/stitch: 36 × 43.2 cm (14.2 × 17.0 in)</li><li>Medium gauge - 0.55 cm/stitch: 44 × 52.8 cm (17.3 × 20.8 in)</li><li>Relaxed gauge - 0.65 cm/stitch: 52 × 62.4 cm (20.5 × 24.6 in)</li></ul>\n<h3>What you receive</h3><ul><li>17-page PDF pattern</li><li>Finished-design preview and pattern facts</li><li>Colour key with stitch counts</li><li>Full-colour chart overview</li><li>Symbol overview</li><li>Enlarged chart sections</li><li>Print-and-crochet guide</li></ul><h3>Digital download</h3>\n<p>Your PDF is available after payment and can be printed or followed from a screen. Personal use only. The pattern and PDF may not be redistributed or resold.</p>",
+      "description_en": "<p><strong>Marilyn Monroe Bubble Gum Tapestry Crochet Pattern PDF</strong> is a downloadable colourwork chart from the Pop Art Portraits collection.</p>\n<p><strong>Digital product only:</strong> no finished wall hanging, yarn, hook or physical materials are included.</p>\n<h3>Pattern details</h3><ul><li>Chart: 80 × 96 crochet stitches</li><li>Filled colourwork stitches: 5,136</li><li>Colours: 19 coordinated collection colours</li><li>Technique: Tapestry crochet colourwork</li><li>Skill level: Beginner friendly</li></ul>\n<h3>Finished size examples</h3><ul><li>Fine gauge - 0.45 cm/stitch: 36 × 43.2 cm (14.2 × 17.0 in)</li><li>Medium gauge - 0.55 cm/stitch: 44 × 52.8 cm (17.3 × 20.8 in)</li><li>Relaxed gauge - 0.65 cm/stitch: 52 × 62.4 cm (20.5 × 24.6 in)</li></ul>\n<h3>What you receive</h3><ul><li>17-page PDF pattern</li><li>Finished-design preview and pattern facts</li><li>Colour key with stitch counts</li><li>Full-colour chart overview</li><li>Symbol overview</li><li>Enlarged chart sections</li><li>Print-and-crochet guide</li></ul><h3>Digital download</h3>\n<p>Your PDF is available after payment and can be printed or followed from a screen. Personal use only. The pattern and PDF may not be redistributed or resold.</p>",
+      "description_es": "<p><strong>Patrón PDF de tapestry crochet: Marilyn Monroe con chicle</strong> es un gráfico de color descargable de la colección Retratos Pop Art.</p>\n<p><strong>Solo producto digital:</strong> no se incluyen tapiz terminado, lana, ganchillo ni materiales físicos.</p>\n<h3>Detalles del patrón</h3><ul><li>Gráfico: 80 × 96 puntos de crochet</li><li>Puntos de color ocupados: 5136</li><li>Colores: 19 colores coordinados de la colección</li><li>Técnica: tapestry crochet a color</li><li>Nivel: apto para principiantes</li></ul>\n<h3>Ejemplos de tamaño final</h3><ul><li>Tensión fina - 0,45 cm/punto: 36 × 43,2 cm</li><li>Tensión media - 0,55 cm/punto: 44 × 52,8 cm</li><li>Tensión relajada - 0,65 cm/punto: 52 × 62,4 cm</li></ul>\n<h3>Qué recibirás</h3><ul><li>Patrón PDF de 17 páginas</li><li>Vista previa y datos del patrón</li><li>Clave de colores con recuento de puntos</li><li>Vista general a color</li><li>Vista general con símbolos</li><li>Secciones ampliadas</li><li>Guía para imprimir y tejer</li></ul><h3>Descarga digital</h3>\n<p>Tu PDF estará disponible después del pago y podrás imprimirlo o seguirlo desde una pantalla. Solo para uso personal. El patrón y el PDF no pueden redistribuirse ni revenderse.</p>",
+      "etsy_description_en": "Marilyn Monroe Bubble Gum Tapestry Crochet Pattern PDF\n\nDownloadable tapestry crochet colourwork chart from the Pop Art Portraits collection.\n\nDIGITAL PRODUCT ONLY\nNo finished wall hanging, yarn, hook or physical materials are included.\n\nPATTERN DETAILS\n• 80 × 96 crochet stitches\n• 5,136 filled colourwork stitches\n• 19 coordinated colours\n• Tapestry crochet colourwork\n• Beginner friendly\n\nIncludes a 17-page PDF with finished-design preview, colour key, full chart, symbol overview, enlarged sections and print-and-crochet guide.\n\nPersonal use only. The pattern and PDF may not be redistributed or resold.",
+      "etsy_description_es": "Patrón PDF de tapestry crochet: Marilyn Monroe con chicle\n\nGráfico descargable de tapestry crochet a color de la colección Retratos Pop Art.\n\nSOLO PRODUCTO DIGITAL\nNo se incluyen tapiz terminado, lana, ganchillo ni materiales físicos.\n\nDETALLES\n• 80 × 96 puntos\n• 5136 puntos ocupados\n• 19 colores coordinados\n• Apto para principiantes\n\nIncluye PDF de 17 páginas con vista previa, clave de colores, gráfico completo, símbolos, secciones ampliadas y guía. Solo para uso personal."
+    },
+    {
+      "price": 4.99,
+      "collection": "pop-art-portraits",
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "purchase_note_en": "Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.",
+      "purchase_note_es": "Tu PDF digital estará disponible desde la confirmación del pedido y en Mi cuenta > Descargas una vez completado el pago.",
+      "design_id": "P0001",
+      "filters": {
+        "technique": [
+          "latch-hook"
+        ],
+        "theme": [
+          "people-portraits"
+        ],
+        "style": [
+          "pop-art",
+          "playful",
+          "colorful"
+        ],
+        "project": [
+          "rug"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "pink",
+          "warm",
+          "multicolor"
+        ],
+        "season": []
+      },
+      "code": "P0001-RUG",
+      "sku": "DRIELO-P0001-RUG",
+      "title": "Marilyn Monroe Bubble Gum Latch Hook Rug Pattern PDF",
+      "title_en": "Marilyn Monroe Bubble Gum Latch Hook Rug Pattern PDF",
+      "title_es": "Patrón PDF para alfombra latch hook: Marilyn Monroe con chicle",
+      "slug": "bubble-gum-portrait-latch-hook-rug-pattern",
+      "technique": "latch-hook",
+      "stitches": 2905,
+      "grid": "60 × 72 knots",
+      "colours": 18,
+      "stitch_type": "Latch hook / rug knots",
+      "stitch_type_en": "Latch hook / rug knots",
+      "stitch_type_es": "Nudos latch hook / alfombra",
+      "short_description": "Downloadable Marilyn Monroe Bubble Gum latch hook rug pattern PDF. Pop-art rug chart with 60 × 72 knots, 2,905 filled knots, 18 collection colours and three size examples.",
+      "short_description_en": "Downloadable Marilyn Monroe Bubble Gum latch hook rug pattern PDF. Pop-art rug chart with 60 × 72 knots, 2,905 filled knots, 18 collection colours and three size examples.",
+      "short_description_es": "Patrón digital descargable para alfombra latch hook en PDF de Marilyn Monroe con chicle. Gráfico de 60 × 72 nudos, 2905 nudos ocupados, 18 colores y tres ejemplos de tamaño.",
+      "categories": [
+        "latch-hook-rug-patterns",
+        "latch-hook-rug-portraits",
+        "latch-hook-rug-pop-art"
+      ],
+      "tags": [
+        "latch hook pattern",
+        "rug pattern pdf",
+        "latch hook rug",
+        "rug making chart",
+        "portrait rug",
+        "pop art rug",
+        "rug wall art",
+        "digital pattern",
+        "instant download",
+        "bubble gum art",
+        "marilyn monroe",
+        "beginner rug",
+        "colorwork rug"
+      ],
+      "etsy_tags_en": [
+        "latch hook pattern",
+        "rug pattern pdf",
+        "latch hook rug",
+        "rug making chart",
+        "portrait rug",
+        "pop art rug",
+        "rug wall art",
+        "digital pattern",
+        "instant download",
+        "bubble gum art",
+        "marilyn monroe",
+        "beginner rug",
+        "colorwork rug"
+      ],
+      "etsy_tags_es": [
+        "patrón latch hook",
+        "patrón alfombra",
+        "alfombra latch hook",
+        "gráfico alfombra",
+        "retrato alfombra",
+        "alfombra pop art",
+        "arte de pared",
+        "patrón digital",
+        "descarga digital",
+        "chicle rosa",
+        "marilyn monroe",
+        "alfombra fácil",
+        "alfombra color"
+      ],
+      "gallery": [
+        "assets/P0001-rug-gallery-1.webp",
+        "assets/P0001-rug-gallery-2.webp"
+      ],
+      "download": "files/Drielo_P0001_rug.pdf",
+      "gallery_revision": 1,
+      "seo_title": "Marilyn Monroe Latch Hook Rug Pattern PDF | Drielo",
+      "seo_title_en": "Marilyn Monroe Latch Hook Rug Pattern PDF | Drielo",
+      "seo_title_es": "Patrón alfombra latch hook Marilyn Monroe PDF | Drielo",
+      "meta_description": "Download a Marilyn Monroe latch hook rug pattern PDF with a 60 × 72 knot chart, 18 coordinated colours, printable sections and size guidance.",
+      "meta_description_en": "Download a Marilyn Monroe latch hook rug pattern PDF with a 60 × 72 knot chart, 18 coordinated colours, printable sections and size guidance.",
+      "meta_description_es": "Descarga un patrón de alfombra latch hook de Marilyn Monroe en PDF: 60 × 72 nudos, 18 colores coordinados, secciones imprimibles y guía de tamaños.",
+      "etsy_title_en": "Marilyn Monroe Bubble Gum Latch Hook Rug Pattern PDF",
+      "etsy_title_es": "Patrón PDF alfombra latch hook: Marilyn Monroe con chicle",
+      "grid_width": 60,
+      "grid_height": 72,
+      "color_count": 18,
+      "size_attribute_label": "Chart size",
+      "colour_attribute_label": "Wool colours",
+      "type_attribute_label": "Technique",
+      "count_attribute_label": "Filled knots",
+      "description": "<p><strong>Marilyn Monroe Bubble Gum Latch Hook Rug Pattern PDF</strong> is a downloadable rug-making chart from the Pop Art Portraits collection.</p>\n<p><strong>Digital product only:</strong> no finished rug, canvas, wool, tool or physical materials are included.</p>\n<h3>Pattern details</h3><ul><li>Chart: 60 × 72 knots</li><li>Filled knots: 2,905</li><li>Colours: 18 coordinated collection colours</li><li>Technique: Latch hook / rug knots</li><li>Skill level: Beginner friendly</li></ul>\n<h3>Finished size examples</h3><ul><li>Fine canvas - 0.6 cm/knot: 36 × 43.2 cm (14.2 × 17.0 in)</li><li>Medium canvas - 0.8 cm/knot: 48 × 57.6 cm (18.9 × 22.7 in)</li><li>Large canvas - 1.0 cm/knot: 60 × 72 cm (23.6 × 28.3 in)</li></ul>\n<h3>What you receive</h3><ul><li>17-page PDF pattern</li><li>Finished-design preview and pattern facts</li><li>Colour key with knot counts</li><li>Full-colour chart overview</li><li>Symbol overview</li><li>Enlarged chart sections</li><li>Print-and-rug-making guide</li></ul><h3>Digital download</h3>\n<p>Your PDF is available after payment and can be printed or followed from a screen. Personal use only. The pattern and PDF may not be redistributed or resold.</p>",
+      "description_en": "<p><strong>Marilyn Monroe Bubble Gum Latch Hook Rug Pattern PDF</strong> is a downloadable rug-making chart from the Pop Art Portraits collection.</p>\n<p><strong>Digital product only:</strong> no finished rug, canvas, wool, tool or physical materials are included.</p>\n<h3>Pattern details</h3><ul><li>Chart: 60 × 72 knots</li><li>Filled knots: 2,905</li><li>Colours: 18 coordinated collection colours</li><li>Technique: Latch hook / rug knots</li><li>Skill level: Beginner friendly</li></ul>\n<h3>Finished size examples</h3><ul><li>Fine canvas - 0.6 cm/knot: 36 × 43.2 cm (14.2 × 17.0 in)</li><li>Medium canvas - 0.8 cm/knot: 48 × 57.6 cm (18.9 × 22.7 in)</li><li>Large canvas - 1.0 cm/knot: 60 × 72 cm (23.6 × 28.3 in)</li></ul>\n<h3>What you receive</h3><ul><li>17-page PDF pattern</li><li>Finished-design preview and pattern facts</li><li>Colour key with knot counts</li><li>Full-colour chart overview</li><li>Symbol overview</li><li>Enlarged chart sections</li><li>Print-and-rug-making guide</li></ul><h3>Digital download</h3>\n<p>Your PDF is available after payment and can be printed or followed from a screen. Personal use only. The pattern and PDF may not be redistributed or resold.</p>",
+      "description_es": "<p><strong>Patrón PDF para alfombra latch hook: Marilyn Monroe con chicle</strong> es un gráfico descargable para crear una alfombra de la colección Retratos Pop Art.</p>\n<p><strong>Solo producto digital:</strong> no se incluyen alfombra terminada, canvas, lana, herramienta ni materiales físicos.</p>\n<h3>Detalles del patrón</h3><ul><li>Gráfico: 60 × 72 nudos</li><li>Nudos ocupados: 2905</li><li>Colores: 18 colores coordinados de la colección</li><li>Técnica: latch hook / nudos de alfombra</li><li>Nivel: apto para principiantes</li></ul>\n<h3>Ejemplos de tamaño final</h3><ul><li>Canvas fino - 0,6 cm/nudo: 36 × 43,2 cm</li><li>Canvas medio - 0,8 cm/nudo: 48 × 57,6 cm</li><li>Canvas grande - 1,0 cm/nudo: 60 × 72 cm</li></ul>\n<h3>Qué recibirás</h3><ul><li>Patrón PDF de 17 páginas</li><li>Vista previa y datos del patrón</li><li>Clave de colores con recuento de nudos</li><li>Vista general a color</li><li>Vista general con símbolos</li><li>Secciones ampliadas</li><li>Guía para imprimir y crear la alfombra</li></ul><h3>Descarga digital</h3>\n<p>Tu PDF estará disponible después del pago y podrás imprimirlo o seguirlo desde una pantalla. Solo para uso personal. El patrón y el PDF no pueden redistribuirse ni revenderse.</p>",
+      "etsy_description_en": "Marilyn Monroe Bubble Gum Latch Hook Rug Pattern PDF\n\nDownloadable rug-making chart from the Pop Art Portraits collection.\n\nDIGITAL PRODUCT ONLY\nNo finished rug, canvas, wool, tool or physical materials are included.\n\nPATTERN DETAILS\n• 60 × 72 knots\n• 2,905 filled knots\n• 18 coordinated colours\n• Latch hook / rug making\n• Beginner friendly\n\nIncludes a 17-page PDF with finished-design preview, colour key, full chart, symbol overview, enlarged sections and rug-making guide.\n\nPersonal use only. The pattern and PDF may not be redistributed or resold.",
+      "etsy_description_es": "Patrón PDF para alfombra latch hook: Marilyn Monroe con chicle\n\nGráfico descargable para crear una alfombra de la colección Retratos Pop Art.\n\nSOLO PRODUCTO DIGITAL\nNo se incluyen alfombra terminada, canvas, lana, herramienta ni materiales físicos.\n\nDETALLES\n• 60 × 72 nudos\n• 2905 nudos ocupados\n• 18 colores coordinados\n• Latch hook / alfombra\n• Apto para principiantes\n\nIncluye PDF de 17 páginas con vista previa, clave de colores, gráfico completo, símbolos, secciones ampliadas y guía. Solo para uso personal."
     }
   ]
 }
