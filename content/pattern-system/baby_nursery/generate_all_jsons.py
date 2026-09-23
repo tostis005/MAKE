@@ -174,6 +174,23 @@ def save_source_png(mat, path, scale=8):
     path.parent.mkdir(parents=True, exist_ok=True)
     im.save(path, optimize=True)
 
+def load_existing_source_master(path):
+    im = Image.open(path).convert("RGBA").resize((100,120), Image.Resampling.NEAREST)
+    arr = np.array(im)
+    lut = {rgb(p["hex"]): i for i,p in enumerate(PALETTE)}
+    out = np.full((120,100),255,dtype=np.uint8)
+    for y in range(120):
+        for x in range(100):
+            r,g,b,a = [int(v) for v in arr[y,x]]
+            if a < 128:
+                continue
+            key=(r,g,b)
+            if key not in lut:
+                raise RuntimeError(f"Existing source uses colour outside Baby Nursery palette: {key}")
+            out[y,x]=lut[key]
+    return out
+
+
 def main():
     raw = load_master_bytes()
     masters = []
@@ -184,7 +201,13 @@ def main():
 
     for (base,en,es,slug), master in zip(DESIGNS, masters):
         src_rel = f"collections/baby-nursery/source-designs/{base}-{slug}.png"
-        save_source_png(master, SYSTEM / src_rel)
+        src_path = SYSTEM / src_rel
+        # I0001 has an approved full-feet correction. Preserve that canonical
+        # source on collection-wide rebuilds instead of restoring the older
+        # cropped source matrix.
+        if base == "I0001" and src_path.is_file():
+            master = load_existing_source_master(src_path)
+        save_source_png(master, src_path)
         for suffix in ("CS","C2C","TC","LH"):
             cfg = TECH[suffix]
             mat = master if suffix == "CS" else downsample(master, cfg["w"], cfg["h"])
