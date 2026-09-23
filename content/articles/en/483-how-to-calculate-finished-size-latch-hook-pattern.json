@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 483,
+  "translation_group": "483-latch-hook",
+  "taxonomy": {
+    "craft": {
+      "primary": "latch-hook",
+      "terms": [
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "sizing",
+      "terms": [
+        "sizing"
+      ]
+    },
+    "style": {
+      "terms": [
+        "sizing",
+        "mesh",
+        "calculation"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "rugs",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-483-latch-hook",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Makers with a latch hook chart who want to know its physical finished size before buying canvas and yarn.",
+  "title": "How to Calculate the Finished Size of a Latch Hook Pattern",
+  "slug": "how-to-calculate-finished-size-latch-hook-pattern",
+  "seo": {
+    "title": "How to Calculate the Finished Size of a Latch Hook Pattern",
+    "meta_description": "Calculate latch hook finished size from chart columns, rows and real canvas density, then verify with a sample and allow for finishing margins.",
+    "search_intent": "People who want to convert latch hook chart dimensions in cells into real inches or centimeters."
+  },
+  "excerpt": "Cell count alone does not tell you the finished inches. Learn how chart columns, rows and canvas density combine to determine real size before you start.",
+  "content_html": "<p>The finished size of a latch hook pattern depends on two separate pieces of information: how many knot positions are in the chart and how many real positions fit into a measured length of the canvas you will use. A 100-by-100-cell chart does not have one fixed physical size; finer mesh makes it smaller and more open mesh makes it larger.</p>\n<p>Calculating size before you begin tells you whether the design will fit a wall, pillow or floor space and prevents buying canvas that is too small.</p>\n<h2>Count the actual chart columns and rows first</h2>\n<p>Identify the exact area that will receive knots and separate that from any outer canvas reserved for finishing.</p>\n<p>Chart width is expressed in columns and height in rows. For example, an 80-column by 120-row design needs 80 knot positions horizontally and 120 vertically.</p>\n<p>Do not count printed row numbers, legends or document borders as part of the design.</p>\n<p>If the graph is split across several pages, check overlapping areas so repeated columns or rows are not counted twice.</p>\n<p>For modular patterns, add the repeats and include only the borders that actually receive knots.</p>\n<p>Record the final count because it becomes the basis for every later calculation.</p>\n<h2>Measure the real canvas density instead of relying only on a label</h2>\n<p>Useful density is the number of knot positions that fit into a known physical distance on the canvas.</p>\n<p>Place a ruler on a straight section, count several positions—such as ten or twenty—and measure that span consistently.</p>\n<p>Measuring more than one or two positions reduces the effect of small ruler-placement errors.</p>\n<p>Check both horizontal and vertical density if the canvas looks distorted or you want to confirm that the mesh is regular.</p>\n<p>Do not stretch the canvas during measurement. Let it rest in its natural shape.</p>\n<p>If the pattern or manufacturer gives a density, compare it with your own measurement before relying on it for a large project.</p>\n<h2>Convert knot positions to physical size with a simple proportion</h2>\n<p>If ten positions measure 2.56 inches, one position averages 0.256 inch. Multiply that average by the chart width to estimate the finished knotted width.</p>\n<p>In that example, an 80-column pattern would be about 20.5 inches wide in the knotted area.</p>\n<p>Repeat the same calculation with the rows for the height.</p>\n<p>You can also avoid calculating one cell directly: width = chart columns × measured distance ÷ number of positions measured.</p>\n<p>Keep one unit system throughout the calculation and convert between inches and centimeters only after the main result if necessary.</p>\n<p>Round sensibly because the result is a practical estimate rather than millimeter-level manufacturing tolerance.</p>\n<h2>Separate knotted size from total canvas size</h2>\n<p>The calculation above describes the area covered by knots, not necessarily the piece of canvas you need to buy or cut.</p>\n<p>Binding, folded edges, backing seams and pillow assembly all require extra mesh around the design.</p>\n<p>Add the planned finishing allowance to both sides of the width and to the top and bottom of the height.</p>\n<p>For example, a 20.5-by-30.7-inch knotted area with a 2-inch margin on every side needs at least about 24.5 by 34.7 inches of canvas before any extra safety allowance.</p>\n<p>Do not shrink the finishing margin simply to make a too-small canvas cut appear usable.</p>\n<p>Keep additional material when the exact finishing method has not yet been chosen because excess can be trimmed later.</p>\n<h2>Make a sample to verify density, yarn and visual scale</h2>\n<p>A several-row sample confirms that the chosen yarn works with the mesh and that the density measurement reflects the real knotting system.</p>\n<p>Measure the completed sample and compare its physical dimensions with its number of knot positions.</p>\n<p>The pile usually changes volume more than structural width, but it still affects how large the edge and image feel visually.</p>\n<p>The sample also shows whether the chart has enough detail at the calculated scale.</p>\n<p>An image that looks clear as a digital grid may feel oversized or simplified when every cell becomes several millimeters wide.</p>\n<p>If you change canvas after testing, repeat the calculation because the same chart will produce a different final size.</p>\n<h2>Check the calculation against the intended use before beginning</h2>\n<p>Mark the estimated measurements with tape or paper on the wall or floor to visualize the real scale.</p>\n<p>For a pillow, compare the dimensions with the insert and remember that assembly margin is separate from the knotted area.</p>\n<p>For a rug, check that the footprint works in the room and does not interfere with doors or furniture.</p>\n<p>For a wall hanging, leave enough surrounding space so the composition does not feel crowded.</p>\n<p>Keep the chart count, measured density and formula with the pattern so the project can be repeated using the same canvas.</p>\n<p>Calculating latch hook finished size means translating chart cells into distance using the real mesh density. Once knotted area and finishing allowance are kept separate, you can predict the result and buy canvas with much greater confidence.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "An 80-by-120 latch hook grid beside a ruler on canvas with a visual formula converting knot positions into finished dimensions.",
+    "alt": "How to calculate the finished size of a latch hook pattern"
+  }
+}
