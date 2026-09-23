@@ -1,21 +1,88 @@
-name: Inspect Etsy callback
+name: Patch Etsy clean callback
 on:
   push:
     branches: [main]
     paths:
       - '.github/workflows/inspect-etsy-plugin.yml'
+
+permissions:
+  contents: write
+
 jobs:
-  inspect:
+  patch:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Inspect callback code
+
+      - name: Patch plugin callback
         shell: bash
         run: |
           set -euo pipefail
-          base64 --decode plugins/drielo-etsy-sync-1.0.0.zip.b64 > /tmp/plugin.zip
-          unzip -q /tmp/plugin.zip -d /tmp/plugin
-          echo '--- INIT ---'
-          sed -n '25,65p' /tmp/plugin/drielo-etsy-sync/drielo-etsy-sync.php
-          echo '--- OAUTH ---'
-          sed -n '475,590p' /tmp/plugin/drielo-etsy-sync/drielo-etsy-sync.php
+          rm -rf /tmp/drielo-etsy-patch /tmp/drielo-etsy-old.zip /tmp/drielo-etsy-new.zip
+          base64 --decode plugins/drielo-etsy-sync-1.0.0.zip.b64 > /tmp/drielo-etsy-old.zip
+          unzip -q /tmp/drielo-etsy-old.zip -d /tmp/drielo-etsy-patch
+          FILE=/tmp/drielo-etsy-patch/drielo-etsy-sync/drielo-etsy-sync.php
+
+          python3 - "$FILE" <<'PY'
+          from pathlib import Path
+          import sys
+
+          path = Path(sys.argv[1])
+          text = path.read_text()
+
+          old_url = "admin_url( 'admin.php?page=drielo-etsy-settings&drielo_etsy_oauth=1' )"
+          new_url = "home_url( '/etsy/callback/' )"
+          count = text.count(old_url)
+          if count != 3:
+              raise SystemExit(f"Expected 3 old callback URL occurrences, found {count}")
+          text = text.replace(old_url, new_url)
+
+          old_hook = "        add_action( 'admin_init', [ $this, 'maybe_handle_oauth_callback' ] );"
+          new_hook = old_hook + "\n        add_action( 'template_redirect', [ $this, 'maybe_handle_oauth_callback' ] );"
+          if old_hook not in text:
+              raise SystemExit("OAuth callback hook not found")
+          text = text.replace(old_hook, new_hook, 1)
+
+          old_handler = """    public function maybe_handle_oauth_callback() {
+                  if ( empty( $_GET['drielo_etsy_oauth'] ) || '1' !== (string) $_GET['drielo_etsy_oauth'] ) {
+                      return;
+                  }
+                  $this->require_capability();
+          """
+          new_handler = """    public function maybe_handle_oauth_callback() {
+                  $request_path  = isset( $_SERVER['REQUEST_URI'] ) ? (string) wp_parse_url( wp_unslash( $_SERVER['REQUEST_URI'] ), PHP_URL_PATH ) : '';
+                  $callback_path = (string) wp_parse_url( home_url( '/etsy/callback/' ), PHP_URL_PATH );
+                  $is_clean_callback = trailingslashit( $request_path ) === trailingslashit( $callback_path );
+
+                  if ( ! $is_clean_callback && ( empty( $_GET['drielo_etsy_oauth'] ) || '1' !== (string) $_GET['drielo_etsy_oauth'] ) ) {
+                      return;
+                  }
+                  $this->require_capability();
+          """
+          if old_handler not in text:
+              raise SystemExit("OAuth callback handler preamble not found")
+          text = text.replace(old_handler, new_handler, 1)
+
+          path.write_text(text)
+          PY
+
+          php -l "$FILE"
+          grep -nEi "template_redirect|etsy/callback|redirect_uri|maybe_handle_oauth_callback" "$FILE"
+
+          (
+            cd /tmp/drielo-etsy-patch
+            zip -qr /tmp/drielo-etsy-new.zip drielo-etsy-sync
+          )
+          base64 -w 0 /tmp/drielo-etsy-new.zip > plugins/drielo-etsy-sync-1.0.0.zip.b64
+          printf '\n' >> plugins/drielo-etsy-sync-1.0.0.zip.b64
+
+      - name: Commit clean callback
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/inspect-etsy-plugin.yml
+          git config user.name "Drielo Automation"
+          git config user.email "actions@users.noreply.github.com"
+          git add plugins/drielo-etsy-sync-1.0.0.zip.b64 .github/workflows/inspect-etsy-plugin.yml
+          git commit -m "Use clean Etsy OAuth callback URL"
+          git push
