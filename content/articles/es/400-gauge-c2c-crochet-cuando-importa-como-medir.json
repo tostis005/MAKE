@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 400,
+  "translation_group": "400-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "gauge",
+      "terms": [
+        "gauge"
+      ]
+    },
+    "style": {
+      "terms": [
+        "gauge",
+        "swatch",
+        "sizing"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "es-400-c2c",
+  "language": "es",
+  "locale": "es-ES",
+  "market_context": "Crocheters que preparan mantas, cojines o graphgans C2C y necesitan controlar dimensiones antes de empezar.",
+  "title": "Gauge en C2C Crochet: cuándo importa y cómo medirlo",
+  "slug": "gauge-c2c-crochet-cuando-importa-como-medir",
+  "seo": {
+    "title": "Gauge en C2C Crochet: cuándo importa y cómo medirlo",
+    "meta_description": "Gauge en C2C Crochet: aprende cuándo importa, cómo medir bloques y cómo usar una muestra para calcular tamaño, proporción y consumo de hilo.",
+    "search_intent": "Personas que quieren saber si la tensión importa en C2C y cómo medir una muestra para predecir tamaño y consumo."
+  },
+  "excerpt": "En C2C el gauge no siempre tiene que coincidir con una cifra exacta, pero sí controla el tamaño del bloque, la proporción del gráfico y el consumo.",
+  "content_html": "<p>En C2C Crochet, el <em>gauge</em> es la relación entre el número de bloques y una medida física. Aunque una manta decorativa no tenga que ajustarse al cuerpo como un jersey, la muestra sigue siendo importante porque cada bloque del gráfico ocupa espacio. Una pequeña diferencia repetida cien veces puede cambiar mucho el tamaño final.</p>\n<p>El gauge también ayuda a detectar si tus bloques son más altos que anchos, a estimar hilo y a comparar qué ocurre al cambiar de aguja, fibra o variante de C2C.</p>\n<h2>Cuándo importa realmente el gauge en C2C</h2>\n<p>Importa mucho cuando el proyecto debe encajar en una medida: una funda de cojín, una manta para una cama concreta, un panel que irá dentro de un marco o un tapiz que no puede superar cierto ancho.</p>\n<p>También importa cuando compras hilo basándote en una estimación. Si tus bloques son un 15 % mayores que los de la muestra de referencia, el área tejida aumenta y normalmente también el consumo.</p>\n<p>En una manta libre donde no te importa terminar unos centímetros más grande o pequeña, el gauge es menos crítico. Aun así, conocerlo evita sorpresas como descubrir a mitad del gráfico que la pieza será demasiado grande para el sofá.</p>\n<h2>Haz una muestra suficientemente grande</h2>\n<p>No midas un solo bloque. Las esquinas y bordes se comportan de forma distinta y un bloque aislado amplifica cualquier variación de tensión. Teje una muestra de al menos diez bloques en la parte más ancha, con el mismo hilo, aguja y método que usarás después.</p>\n<p>Si el proyecto tendrá muchos cambios de color, incluye al menos uno en la muestra. La manipulación adicional puede modificar ligeramente la tensión.</p>\n<p>Deja descansar la muestra antes de medir. Si la pieza final se lavará o bloqueará, trata la muestra de la misma manera y utiliza las medidas posteriores al acabado.</p>\n<h2>Mide bloques en horizontal y vertical por separado</h2>\n<p>Coloca la muestra sobre una superficie plana sin estirar. Mide una zona interior que abarque varios bloques en horizontal y divide la medida entre el número de bloques. Repite en vertical.</p>\n<p>Por ejemplo, si diez bloques miden 15 cm de ancho, tu gauge horizontal es aproximadamente 1,5 cm por bloque. Si los mismos diez bloques miden 16 cm de alto, la unidad física no es perfectamente cuadrada.</p>\n<p>Esa diferencia puede estirar un gráfico. Un diseño de 60 por 60 celdas terminaría alrededor de 90 por 96 cm antes de añadir borde. En motivos geométricos o retratos, esa proporción merece atención.</p>\n<h2>Qué hacer si los bloques no son cuadrados</h2>\n<p>Primero comprueba que la tensión sea uniforme y que todas las cadenas tengan la misma altura. Después prueba otra aguja o una variante con puntos más bajos, como mini C2C, si necesitas reducir la altura.</p>\n<p>No es obligatorio que cada bloque sea matemáticamente cuadrado. Lo importante es saber qué proporción tienes y si el diseño la tolera.</p>\n<p>Para un patrón propio puedes compensar digitalmente el gráfico, usando una cuadrícula cuya proporción contrarreste tu gauge. Para un patrón comprado, suele ser mejor respetar la técnica indicada por el diseñador y ajustar hilo o aguja antes de modificar la imagen.</p>\n<h2>Usa el gauge para calcular el tamaño final</h2>\n<p>Multiplica el número de bloques de ancho por tu medida media horizontal y el número de bloques de alto por la vertical. Si el gráfico mide 80 por 100 y obtienes 1,4 x 1,5 cm por bloque, el área C2C rondará 112 x 150 cm.</p>\n<p>Añade después el ancho de cualquier borde. Un borde de varias vueltas puede sumar bastantes centímetros, especialmente alrededor de una manta grande.</p>\n<p>Si el resultado no encaja, cambia una variable y vuelve a hacer muestra. Reducir la aguja, usar hilo más fino o pasar a mini C2C puede disminuir la escala sin rediseñar todo el gráfico.</p>\n<h2>Registra el gauge para mantener consistencia</h2>\n<p>Anota hilo, color, aguja, variante de C2C y medida de la muestra. Esa información resulta útil si el proyecto se pausa durante semanas o si quieres repetir otro patrón con la misma escala.</p>\n<p>Comprueba de nuevo después de varias decenas de vueltas. La tensión puede relajarse cuando te acostumbras al punto. Si el cambio es pequeño, normalmente no hace falta corregir; si es grande y acumulativo, es mejor detectarlo pronto.</p>\n<p>No intentes igualar una cifra de gauge a costa de tejer incómodo. La muestra sirve para conocer tu tejido y adaptar el proyecto, no para obligar las manos a mantener una tensión artificial.</p>\n<p>Guarda también una fotografía de la muestra junto a la regla y anota si la mediste antes o después del lavado. Cuando vuelvas al proyecto meses después, esa referencia evita confundir medidas tomadas en estados distintos.</p>\n<p>En C2C, medir diez minutos antes de empezar puede ahorrar horas de correcciones. Un gauge conocido convierte el gráfico de una cuadrícula abstracta en una previsión bastante fiable de tamaño, proporción y consumo.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Muestra C2C de diez bloques medida con regla en horizontal y vertical, con anotaciones de gauge por bloque.",
+    "alt": "Cómo medir el gauge en C2C Crochet"
+  }
+}
