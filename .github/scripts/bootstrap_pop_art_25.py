@@ -7,6 +7,8 @@ from PIL import Image, ImageDraw
 
 ROOT=Path.cwd()
 SYSTEM=ROOT/'content'/'pattern-system'
+PRODUCTS_DIR=SYSTEM/'products'
+PATTERNS_DIR=SYSTEM/'patterns'
 CID='pop-art-25'
 CDIR=SYSTEM/'collections'/CID
 CATALOG=ROOT/'content'/'products'/'catalog.json'
