@@ -1,0 +1,48 @@
+name: Validate ambient-only product images
+on:
+  push:
+    branches: [product-image-ambient-only]
+    paths: ['.github/workflows/tmp-validate-product-images.yml']
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m py_compile content/pattern-system/renderer/render.py
+          python3 - <<'PY'
+          import base64,json,pathlib,tarfile,tempfile,urllib.request
+          root=pathlib.Path('content/products')
+          cat=json.loads((root/'catalog.json').read_text())
+          want={
+            'P0001-CS':'assets/P0001-CS-product.webp',
+            'P0001-C2C':'assets/P0001-C2C-product.webp',
+            'P0001-TC':'assets/P0001-TC-product.webp',
+            'P0001-LH':'assets/P0001-LH-product.webp',
+          }
+          by={p['code']:p for p in cat['products']}
+          for code,asset in want.items():
+              assert by[code]['gallery']==[asset],(code,by[code]['gallery'])
+          policy=cat['product_image_policy']
+          assert policy['count']==1 and policy['source']=='page-1-ambient'
+          spec=json.loads((root/'gallery-bundle-source.json').read_text())
+          req=urllib.request.Request(spec['url'],headers={'User-Agent':'Mozilla/5.0'})
+          with urllib.request.urlopen(req,timeout=180) as r: raw=r.read()
+          data=base64.b64decode(raw) if spec.get('base64',True) else raw
+          with tempfile.NamedTemporaryFile(suffix='.tar.gz') as fh:
+              fh.write(data); fh.flush()
+              with tarfile.open(fh.name,'r:gz') as tar:
+                  names={m.name for m in tar.getmembers() if m.isfile()}
+          expected={pathlib.Path(v).name for v in want.values()}
+          assert expected <= names,(expected,names)
+          for p in [
+              pathlib.Path('content/pattern-system/template/DRIELO_Pattern_Template_MASTER.html'),
+          ]:
+              assert 'data-product-image' in p.read_text()
+          assert '[data-product-image]' in pathlib.Path('content/pattern-system/renderer/render.py').read_text()
+          print('validated ambient-only store images',sorted(expected))
+          PY
