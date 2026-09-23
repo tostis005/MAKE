@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import argparse, base64, json, math, os, re, shutil, sys
+import argparse, base64, colorsys, json, math, os, re, shutil, sys
 from collections import Counter
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
@@ -35,7 +35,7 @@ TECHS = {
         'cover_colour_label':'Threads','facts_colour_label':'Threads used','colour_unit':'DMC colours',
         'finished_subtitle':'A preview of the completed cross-stitch design','finished_caption':'Use this page as a visual reference while you stitch.',
         'facts_subtitle':'Everything you need before you start stitching','preview_label':'Finished cross-stitch preview',
-        'cover_overlay':{'left':29.0,'top':12.0,'width':48.0,'height':58.0,'opacity':0.92,'safe_inset_pct':0.0},'cover_stage_scale':125,
+        'cover_overlay':{'left':29.0,'top':12.0,'width':48.0,'height':58.0,'opacity':0.96,'safe_inset_pct':0.0},'cover_stage_scale':125,
         'project':'wall-art','category':['cross-stitch-patterns','portraits','pop-art'],
         'display':'Cross Stitch','count_label':'Total stitches','colour_label':'DMC colours','size_label':'Pattern size',
     },
@@ -47,7 +47,7 @@ TECHS = {
         'cover_colour_label':'Yarn colours','facts_colour_label':'Yarn colours','colour_unit':'collection colours',
         'finished_subtitle':'A preview of the completed C2C crochet design','finished_caption':'Use this page as a visual reference while you crochet.',
         'facts_subtitle':'Everything you need before you start crocheting','preview_label':'Finished C2C preview',
-        'cover_overlay':{'left':19.8,'top':7.2,'width':64.5,'height':78.0,'opacity':0.82,'safe_inset_pct':6.0},'cover_stage_scale':123,
+        'cover_overlay':{'left':19.8,'top':7.2,'width':64.5,'height':78.0,'opacity':0.94,'safe_inset_pct':6.0},'cover_stage_scale':123,
         'project':'blanket','category':['c2c-crochet-patterns','c2c-crochet-portraits','c2c-crochet-pop-art'],
         'display':'C2C Crochet','count_label':'Filled blocks','colour_label':'Yarn colours','size_label':'Graph size',
     },
@@ -59,7 +59,7 @@ TECHS = {
         'cover_colour_label':'Yarn colours','facts_colour_label':'Yarn colours','colour_unit':'collection colours',
         'finished_subtitle':'A preview of the completed tapestry crochet design','finished_caption':'Use this page as a visual reference while you crochet.',
         'facts_subtitle':'Everything you need before you start crocheting','preview_label':'Finished crochet preview',
-        'cover_overlay':{'left':27.7,'top':10.8,'width':43.5,'height':63.5,'opacity':0.82,'safe_inset_pct':4.5},'cover_stage_scale':123,
+        'cover_overlay':{'left':27.7,'top':10.8,'width':43.5,'height':63.5,'opacity':0.94,'safe_inset_pct':4.5},'cover_stage_scale':123,
         'project':'tapestry','category':['tapestry-crochet-patterns','tapestry-crochet-portraits','tapestry-crochet-pop-art'],
         'display':'Tapestry Crochet','count_label':'Colourwork stitches','colour_label':'Yarn colours','size_label':'Chart size',
     },
@@ -71,7 +71,7 @@ TECHS = {
         'cover_colour_label':'Wool colours','facts_colour_label':'Wool colours','colour_unit':'collection colours',
         'finished_subtitle':'A preview of the completed rug design','finished_caption':'Use this page as a visual reference while you build the rug.',
         'facts_subtitle':'Everything you need before you start your rug','preview_label':'Finished rug preview',
-        'cover_overlay':{'left':21.7,'top':7.5,'width':59.0,'height':71.0,'opacity':0.82,'safe_inset_pct':4.5},'cover_stage_scale':125,
+        'cover_overlay':{'left':21.7,'top':7.5,'width':59.0,'height':71.0,'opacity':0.94,'safe_inset_pct':4.5},'cover_stage_scale':125,
         'project':'rug','category':['latch-hook-rug-patterns','latch-hook-rug-portraits','latch-hook-rug-pop-art'],
         'display':'Latch Hook Rug','count_label':'Filled knots','colour_label':'Wool colours','size_label':'Chart size',
     },
@@ -139,8 +139,28 @@ def reconstruct_cross_matrix(image_path,target_stitches,palette):
         if used[s]: threads.append({'symbol':s,'dmc':str(p['dmc']),'color':p['hex'],'name':p.get('name',f"DMC {p['dmc']}"),'stitches':used[s]})
     return matrix,threads
 
+def _thread_visual_props(thread):
+    r,g,b=(v/255.0 for v in rgb(thread['color']))
+    _h,s,v=colorsys.rgb_to_hsv(r,g,b)
+    return s,v
+
+def colorfulness_score(matrix,threads):
+    props={t['symbol']:_thread_visual_props(t) for t in threads}
+    vals=[v for row in matrix for v in row if v]
+    if not vals: return 0.0
+    # Average saturation of actually-used cells. This is a QA metric, not a colour transform.
+    return sum(props.get(v,(0.0,0.0))[0] for v in vals)/len(vals)
+
 def downsample(matrix,threads,new_w,new_h):
-    h=len(matrix); w=len(matrix[0]); sym_to_thread={t['symbol']:t for t in threads}
+    """Downsample while preserving chromatic accents.
+
+    A simple majority vote caused cream/beige cells to erase pink/blue/gold accents
+    in C2C, tapestry crochet and rug versions. We still respect the collection
+    palette, but weight each candidate by chroma and a small dark-line bonus so
+    visually important colours survive block reduction.
+    """
+    h=len(matrix); w=len(matrix[0])
+    props={t['symbol']:_thread_visual_props(t) for t in threads}
     out=[]
     for yy in range(new_h):
         ya=int(yy*h/new_h); yb=max(ya+1,int((yy+1)*h/new_h))
@@ -148,7 +168,15 @@ def downsample(matrix,threads,new_w,new_h):
         for xx in range(new_w):
             xa=int(xx*w/new_w); xb=max(xa+1,int((xx+1)*w/new_w))
             vals=[matrix[y][x] for y in range(ya,min(h,yb)) for x in range(xa,min(w,xb)) if matrix[y][x]]
-            row.append(Counter(vals).most_common(1)[0][0] if vals else None)
+            if not vals:
+                row.append(None); continue
+            counts=Counter(vals); area=len(vals)
+            def visual_vote(sym):
+                sat,val=props.get(sym,(0.0,0.5))
+                # Count remains the base signal; chroma gets a strong area-level
+                # bonus, while dark contours receive a smaller preservation bonus.
+                return counts[sym] + area*(1.65*sat + 0.42*(1.0-val))
+            row.append(max(counts,key=visual_vote))
         out.append(row)
     counts=Counter(v for row in out for v in row if v)
     used_threads=[]
@@ -209,16 +237,35 @@ def render_one(task):
     html.write_text(template,encoding='utf-8')
     with sync_playwright() as pw:
         browser=pw.chromium.launch()
-        page=browser.new_page(viewport={'width':1400,'height':2000},device_scale_factor=1.5)
+        page=browser.new_page(viewport={'width':1600,'height':2000},device_scale_factor=1.5)
         page.goto(html.resolve().as_uri(),wait_until='load',timeout=120000)
         page.wait_for_function("document.documentElement.getAttribute('data-drielo-ready') === '1'",timeout=120000)
         page.pdf(path=str(pdf),format='A4',print_background=True,prefer_css_page_size=True)
-        loc=page.locator('[data-product-image]')
-        if loc.count()!=1: raise RuntimeError(f'{code}: product-image region count={loc.count()}')
+
+        # Store image = exact ambient scene + final pattern, with none of the PDF
+        # card/border/background. Clone only the cover stage into a clean capture
+        # layer so ancestor borders, sepia filler and facts-rail can never leak in.
+        page.evaluate("""() => {
+          const src=document.querySelector('#cover-stage');
+          if(!src) throw new Error('Missing #cover-stage');
+          const clone=src.cloneNode(true);
+          clone.id='drielo-product-capture';
+          clone.removeAttribute('data-product-image');
+          Object.assign(clone.style,{
+            position:'fixed',left:'0',top:'0',width:'1200px',height:'1200px',
+            aspectRatio:'1 / 1',maxWidth:'none',margin:'0',padding:'0',
+            border:'0',boxShadow:'none',background:'transparent',overflow:'hidden',
+            zIndex:'2147483647',transform:'none'
+          });
+          document.body.appendChild(clone);
+        }""")
+        loc=page.locator('#drielo-product-capture')
+        if loc.count()!=1: raise RuntimeError(f'{code}: clean product capture missing')
         loc.screenshot(path=str(png),type='png')
         browser.close()
     im=Image.open(png).convert('RGB')
-    ImageOps.fit(im,(1200,1500),method=Image.Resampling.LANCZOS,centering=(.5,.5)).save(img,'WEBP',quality=90,method=6)
+    # Clean edge-to-edge 4:5 ecommerce crop; no added canvas/padding/border.
+    ImageOps.fit(im,(1200,1500),method=Image.Resampling.LANCZOS,centering=(.5,.5)).save(img,'WEBP',quality=92,method=6)
     png.unlink(missing_ok=True)
     if pdf.stat().st_size<100000: raise RuntimeError(f'{code}: PDF too small')
     return {'code':code,'pdf':str(pdf),'image':str(img),'pdf_bytes':pdf.stat().st_size,'image_bytes':img.stat().st_size}
@@ -288,8 +335,17 @@ def prepare(start,end):
         if not src.is_file(): raise RuntimeError(f'Missing design source {src}')
         matrix_cs,threads_cs=reconstruct_cross_matrix(src,base['stitches'],palette)
         technique_mats={'CS':(matrix_cs,threads_cs)}
+        base_colorfulness=colorfulness_score(matrix_cs,threads_cs)
         for suffix in ('C2C','TC','LH'):
-            cfg=TECHS[suffix]; technique_mats[suffix]=downsample(matrix_cs,threads_cs,cfg['w'],cfg['h'])
+            cfg=TECHS[suffix]
+            dm,dt=downsample(matrix_cs,threads_cs,cfg['w'],cfg['h'])
+            score=colorfulness_score(dm,dt)
+            # QA guard: reduction must not wash the design out relative to CS.
+            # A low score indicates neutral-majority collapse rather than a valid
+            # technique conversion.
+            if base_colorfulness>0.08 and score < base_colorfulness*0.82:
+                raise RuntimeError(f'{base_code}-{suffix}: colourfulness collapsed {score:.3f} vs CS {base_colorfulness:.3f}')
+            technique_mats[suffix]=(dm,dt)
         for suffix in ('CS','C2C','TC','LH'):
             code=f'{base_code}-{suffix}'; matrix,threads=technique_mats[suffix]; data=pattern_data(code,base['title'],suffix,matrix,threads)
             pattern={'code':code,'base_design_id':base_code,'technique_code':suffix,'stitch_width':data['stitch_width'],'stitch_height':data['stitch_height'],'total_stitches':data['total_stitches'],'threads':threads,'matrix':matrix,'source_asset':f'content/products/assets/{base_code}-gallery-2.webp','palette_collection':'pop-art-portraits'}
