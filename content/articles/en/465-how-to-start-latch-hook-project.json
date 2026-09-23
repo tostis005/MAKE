@@ -1,0 +1,75 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 465,
+  "translation_group": "465-latch-hook",
+  "taxonomy": {
+    "craft": {
+      "primary": "latch-hook",
+      "terms": [
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "beginners",
+      "terms": [
+        "beginners"
+      ]
+    },
+    "style": {
+      "terms": [
+        "project-start",
+        "setup",
+        "workflow"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "rugs",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-465-latch-hook",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Beginners with a latch hook kit or materials who want to set up the project correctly before making the first knot.",
+  "title": "How to Start a Latch Hook Project",
+  "slug": "how-to-start-latch-hook-project",
+  "seo": {
+    "title": "How to Start a Latch Hook Project",
+    "meta_description": "Start a latch hook project by checking canvas, organizing colors, mapping chart to mesh, testing knots and setting up a reliable progress system.",
+    "search_intent": "Beginners who want to know what to prepare and verify before making the first knot of a latch hook project."
+  },
+  "excerpt": "A good setup prevents shifted motifs and color confusion. Learn how to prepare canvas, yarn, chart references and your first row.",
+  "content_html": "<p>Starting a latch hook project with a clear setup prevents many later mistakes. Before the first knot, check the canvas, sort the colors, understand the chart and decide how you will move through it. The knotting motion is repetitive, but an early reference error can shift many rows.</p>\n<p>The purpose of preparation is to turn a kit or loose materials into an easy system: every color identified, every part of the canvas located and one clear method for marking progress.</p>\n<h2>Check all materials before you begin</h2>\n<p>Lay out the canvas and inspect it for cuts, broken bars or warped areas inside the intended knotting zone.</p>\n<p>Count or measure the usable area and compare it with the pattern dimensions. If extra canvas is reserved for finishing, identify that margin now.</p>\n<p>Make sure the tool latch opens and closes freely and that the hook has no rough burrs that could snag yarn.</p>\n<p>Separate yarn by color and verify that every shade appears in the chart key.</p>\n<p>With a kit, check whether the yarn is pre-cut or whether you still need to prepare lengths before knotting.</p>\n<p>Keep scissors, color containers, a removable marker and a ruler or row guide within reach.</p>\n<h2>Map the chart to the usable canvas area</h2>\n<p>Before the first knot, identify which chart corner or row corresponds to your physical starting point.</p>\n<p>Mark the four corners of the design area or at least two reference points that let you verify counting.</p>\n<p>On large projects, count positions every ten rows and columns and place small reference marks in the margin when the material allows it.</p>\n<p>Confirm which canvas bar represents one chart cell by making a few practice knots outside the main design or on a separate sample.</p>\n<p>If the canvas is printed, check whether the printed colors are the primary guide or only a visual aid used with a separate chart.</p>\n<p>Do not trim excess canvas yet. The margin will be useful for holding, sewing, backing or binding the finished piece.</p>\n<h2>Organize colors so they are difficult to confuse</h2>\n<p>Place each shade in a separate bag, box or tray and use exactly the same codes printed in the legend.</p>\n<p>For similar shades, attach one real yarn piece to a reference card with its letter or number.</p>\n<p>Do not mix leftovers from another project without confirming color, thickness and cut length.</p>\n<p>If the yarn is not pre-cut, prepare only an initial batch until the chosen strand length has been tested for the desired pile height.</p>\n<p>Keep containers in a stable order, such as the sequence in the legend or groups of colors that appear together in the design.</p>\n<p>A consistent setup reduces searching and makes accidental shade substitutions less likely during long rows.</p>\n<h2>Make a small test before entering the main design</h2>\n<p>Create several knots with the actual yarn and canvas to confirm that the tool moves easily and the yarn fills the mesh appropriately.</p>\n<p>Inspect both front and back. Knots should stay secure without bending the canvas bars.</p>\n<p>Compare the two pile ends and adjust how the strand is centered if one side is repeatedly longer.</p>\n<p>If the yarn looks too thin or too bulky for the mesh, solve that mismatch before hundreds of positions are filled.</p>\n<p>The sample also helps establish how firmly to seat each knot. It should be secure without pulling the canvas into a curve.</p>\n<p>Once the test works, record the cut length and any technique detail that needs to remain consistent.</p>\n<h2>Begin with a row or block you can verify</h2>\n<p>For beginners, a complete row or small rectangular block is usually easier to control than jumping between isolated areas of the chart.</p>\n<p>Mark the active line with a ruler, removable tape or digital guide and cross off only cells that are truly complete.</p>\n<p>After the first row, count the knots and compare them with the expected number of chart cells.</p>\n<p>Check one or two distinctive color changes and confirm that they appear in the correct positions.</p>\n<p>If something is wrong, fix it immediately. Removing a few knots is easier than compensating for a shifted motif twenty rows later.</p>\n<p>Continue only when the first section matches both the chart count and the color sequence.</p>\n<h2>Create a routine for stopping and restarting</h2>\n<p>At the end of a session, mark the last completed row or block and write down exactly where you will resume.</p>\n<p>Keep each color separated so pre-cut yarn pieces do not become mixed in one storage bag.</p>\n<p>Roll or store the canvas so completed pile is not crushed for long periods.</p>\n<p>On a large project, take a progress photo; it helps reveal drift and also provides a useful restart reference.</p>\n<p>Before the next session, verify the last finished section instead of immediately beginning new knots.</p>\n<p>Starting a latch hook project correctly means creating reliable references before the first knot. Once materials, colors, usable canvas and progress tracking are organized, the work becomes repetitive and predictable instead of depending on corrections later.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Workspace with marked canvas, latch hook tool, labeled color containers and a pattern with the first row highlighted.",
+    "alt": "How to start a latch hook project"
+  }
+}
