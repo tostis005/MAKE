@@ -5067,6 +5067,61 @@
       "title_es": "Cómo leer un patrón de Latch Hook",
       "title_en": "How to Read a Latch Hook Pattern",
       "craft": "latch-hook"
+    },
+    {
+      "number": 460,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "tools",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo usar la herramienta de Latch Hook correctamente",
+      "title_en": "How to Use a Latch Hook Tool Correctly",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 461,
+      "priority": "P3",
+      "section": "buying-guides",
+      "topic": "materials",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Qué canvas usar para Latch Hook: guía de malla",
+      "title_en": "What Canvas Should You Use for Latch Hook? A Mesh Guide",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 462,
+      "priority": "P3",
+      "section": "buying-guides",
+      "topic": "yarn",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Mejor hilo para Latch Hook según el proyecto",
+      "title_en": "Best Yarn for Latch Hook by Project Type",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 463,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "materials",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Qué longitud debe tener el hilo para Latch Hook",
+      "title_en": "How Long Should Latch Hook Yarn Be?",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 464,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "technique",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo cortar hilo para Latch Hook de forma uniforme",
+      "title_en": "How to Cut Yarn Evenly for Latch Hook",
+      "craft": "latch-hook"
     }
   ],
   "taxonomy_strategy": {
@@ -5097,7 +5152,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 459,
-    "bilingual_groups": 459
+    "last_indexed_article": 464,
+    "bilingual_groups": 464
   }
 }
