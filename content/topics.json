@@ -4517,6 +4517,61 @@
       "title_es": "Cómo añadir un borde a una manta C2C Crochet",
       "title_en": "How to Add a Border to a C2C Crochet Blanket",
       "craft": "c2c-crochet"
+    },
+    {
+      "number": 410,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "finishing",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo unir paneles de C2C Crochet",
+      "title_en": "How to Join C2C Crochet Panels",
+      "craft": "c2c-crochet"
+    },
+    {
+      "number": 411,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "colorwork",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Llevar el hilo o cortarlo en C2C Crochet: qué conviene",
+      "title_en": "Carry Yarn or Cut It in C2C Crochet: Which Is Better?",
+      "craft": "c2c-crochet"
+    },
+    {
+      "number": 412,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "colorwork",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo trabajar con muchos colores en C2C sin hacer un lío",
+      "title_en": "How to Work with Many Colors in C2C Without the Tangle",
+      "craft": "c2c-crochet"
+    },
+    {
+      "number": 413,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "project-organization",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo reducir la cantidad de cabos en un graphgan C2C",
+      "title_en": "How to Reduce Yarn Ends in a C2C Graphgan",
+      "craft": "c2c-crochet"
+    },
+    {
+      "number": 414,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "troubleshooting",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo corregir errores en C2C Crochet sin deshacer medio proyecto",
+      "title_en": "How to Fix C2C Crochet Mistakes Without Frogging Half the Project",
+      "craft": "c2c-crochet"
     }
   ],
   "taxonomy_strategy": {
@@ -4547,7 +4602,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 409,
-    "bilingual_groups": 409
+    "last_indexed_article": 414,
+    "bilingual_groups": 414
   }
 }
