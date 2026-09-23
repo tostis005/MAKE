@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 400,
+  "translation_group": "400-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "gauge",
+      "terms": [
+        "gauge"
+      ]
+    },
+    "style": {
+      "terms": [
+        "gauge",
+        "swatch",
+        "sizing"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-400-c2c",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Makers planning C2C blankets, cushions or graphgans that need predictable dimensions before they begin.",
+  "title": "C2C Crochet Gauge: When It Matters and How to Measure It",
+  "slug": "c2c-crochet-gauge-how-to-measure",
+  "seo": {
+    "title": "C2C Crochet Gauge: When It Matters and How to Measure It",
+    "meta_description": "C2C crochet gauge explained: when it matters, how to measure blocks and how to use a swatch to predict size, proportions and yarn use.",
+    "search_intent": "C2C crocheters who want to know whether gauge matters and how to measure a swatch to predict size and yarn use."
+  },
+  "excerpt": "C2C gauge does not always need to match an exact target, but it controls block size, graph proportions and yarn use across a large project.",
+  "content_html": "<p>In C2C crochet, <em>gauge</em> describes how a number of blocks translates into physical measurements. A decorative blanket does not need to fit a body the way a sweater does, but gauge still matters because every graph cell occupies space. A small difference repeated one hundred times can dramatically change the finished size.</p>\n<p>Gauge also tells you whether your blocks are taller than they are wide, helps with yarn estimates and lets you compare the effect of different hooks, fibers or C2C variations.</p>\n<h2>When gauge really matters in C2C crochet</h2>\n<p>Gauge matters most when the project must fit a target: a cushion cover, a blanket for a specific bed, a panel going into a frame or a wall hanging that cannot exceed a certain width.</p>\n<p>It also matters when you buy yarn from an estimate. If your blocks are 15 percent larger than the reference swatch, the crocheted area increases and yarn use will generally increase too.</p>\n<p>For a casual throw where a few extra inches do not matter, exact gauge is less critical. Even then, knowing it prevents surprises such as discovering halfway through the graph that the blanket will be too large for the intended space.</p>\n<h2>Make a swatch large enough to measure reliably</h2>\n<p>Do not measure one block. Corners and edges behave differently, and a single unit magnifies normal tension variation. Make a sample at least ten blocks across at its widest point using the same yarn, hook and C2C method planned for the project.</p>\n<p>If the project includes frequent color changes, include at least one in the swatch. Extra yarn handling can subtly change tension.</p>\n<p>Let the swatch rest before measuring. If the final item will be washed or blocked, treat the sample the same way and use the finished measurements.</p>\n<h2>Measure horizontal and vertical block gauge separately</h2>\n<p>Lay the swatch flat without stretching it. Measure an interior span covering several blocks horizontally and divide by the number of blocks. Repeat vertically.</p>\n<p>For example, if ten blocks measure 6 inches across, your horizontal gauge is about 0.6 inch per block. If the same ten-block span measures 6.4 inches vertically, the physical unit is not perfectly square.</p>\n<p>That difference can stretch the image. A 60-by-60-cell graph would finish around 36 by 38.4 inches before any border. On geometric motifs or portraits, that proportion may be noticeable.</p>\n<h2>What to do when C2C blocks are not square</h2>\n<p>First check that tension is consistent and turning chains are worked to a similar height. Then test another hook or a lower-stitch variation such as mini C2C if you need to reduce vertical height.</p>\n<p>The block does not have to be mathematically square. What matters is knowing your proportion and deciding whether the image can tolerate it.</p>\n<p>For a graph you design yourself, you can compensate digitally by adjusting the grid proportions. For a purchased pattern, it is usually safer to follow the designer's intended method and adjust yarn or hook before altering the image.</p>\n<h2>Use gauge to calculate finished size</h2>\n<p>Multiply graph width in blocks by your average horizontal block measurement and graph height by the vertical measurement. If an 80-by-100 graph produces blocks averaging 0.55 by 0.6 inch, the C2C area will be about 44 by 60 inches.</p>\n<p>Add any planned border afterward. Several border rounds can add significant size around a large blanket.</p>\n<p>If the result does not fit your goal, change one variable and swatch again. A smaller hook, finer yarn or mini C2C can reduce scale without redesigning the entire graph.</p>\n<h2>Record gauge so the project stays consistent</h2>\n<p>Write down the yarn, color, hook, C2C variation and swatch measurements. That record is useful if the project is paused for weeks or if you want to use the same scale for another design.</p>\n<p>Check again after several dozen rows. Tension can relax once the stitch becomes familiar. A small change is usually harmless; a large cumulative shift is better caught early.</p>\n<p>Do not force yourself to match a number by crocheting uncomfortably. Gauge is a tool for understanding your natural fabric and adapting the project, not a reason to hold artificial tension for thousands of blocks.</p>\n<p>Photograph the swatch beside a ruler and note whether the measurement was taken before or after washing. If you return to the project months later, that reference prevents you from comparing measurements taken in different states.</p>\n<p>If a pattern gives a designer gauge, use it as a comparison rather than an order. A close match means your finished dimensions will probably be similar; a different gauge simply means you should recalculate size before committing.</p>\n<p>In C2C, ten minutes of measuring before you begin can save hours of correction. A known gauge turns an abstract grid into a reasonably reliable prediction of finished size, proportion and yarn requirements.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Ten-block C2C swatch measured horizontally and vertically with a ruler and notes showing gauge per block.",
+    "alt": "How to measure C2C crochet gauge"
+  }
+}
