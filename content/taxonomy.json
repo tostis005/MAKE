@@ -1,36 +1,47 @@
 {
-  "schema_version": 1,
-  "purpose": "Future-proof editorial taxonomy for Drielo. Only cross-stitch is surfaced today; future crafts can be enabled without changing the editorial model.",
+  "schema_version": 2,
+  "purpose": "Technique-first editorial taxonomy for Drielo. Cross stitch, C2C crochet, tapestry crochet and latch hook share one bilingual content model while keeping technique hubs, SEO clusters and commerce targeting distinct.",
   "dimensions": {
     "craft": {
       "active": [
-        "cross-stitch"
+        "cross-stitch",
+        "c2c-crochet",
+        "tapestry-crochet",
+        "latch-hook"
       ],
       "future": [
-        "crochet",
-        "embroidery",
-        "woodworking"
+        "mosaic-crochet",
+        "punch-needle",
+        "embroidery"
       ],
       "examples": {
         "cross-stitch": [
           "patterns",
           "materials",
           "technique",
-          "finishing"
+          "finishing",
+          "framing"
         ],
-        "crochet": [
-          "patterns",
+        "c2c-crochet": [
+          "graphs",
+          "colorwork",
+          "increases-decreases",
           "yarn",
-          "stitches",
-          "garments",
           "blankets"
         ],
-        "woodworking": [
-          "plans",
-          "materials",
-          "joinery",
-          "tools",
-          "furniture"
+        "tapestry-crochet": [
+          "charts",
+          "colorwork",
+          "carried-yarn",
+          "tension",
+          "bags"
+        ],
+        "latch-hook": [
+          "patterns",
+          "canvas",
+          "yarn",
+          "finishing",
+          "rugs"
         ]
       }
     },
@@ -42,8 +53,23 @@
     "topic": [
       "beginners",
       "patterns",
+      "pattern-reading",
+      "charts",
+      "graphs",
       "materials",
       "technique",
+      "colorwork",
+      "color-changes",
+      "tension",
+      "yarn",
+      "tools",
+      "finishing",
+      "framing",
+      "project-organization",
+      "sizing",
+      "gauge",
+      "pixel-art",
+      "photo-conversion",
       "animals",
       "florals",
       "nature",
@@ -56,9 +82,14 @@
       "quotes",
       "seasonal",
       "gifts",
-      "finishing",
       "custom",
-      "decor"
+      "decor",
+      "blankets",
+      "bags",
+      "rugs",
+      "wall-hangings",
+      "cushions",
+      "troubleshooting"
     ],
     "style": [
       "modern",
@@ -67,7 +98,8 @@
       "retro",
       "vintage",
       "geometric",
-      "botanical"
+      "botanical",
+      "pixel-art"
     ],
     "skill": [
       "beginner",
@@ -80,8 +112,13 @@
       "accessories",
       "garments",
       "blankets",
+      "bags",
+      "baskets",
+      "coasters",
+      "rugs",
+      "cushions",
+      "wall-hangings",
       "toys",
-      "furniture",
       "storage"
     ],
     "article_type": [
@@ -90,11 +127,25 @@
       "comparison",
       "inspiration",
       "buying-guide",
-      "troubleshooting"
+      "troubleshooting",
+      "calculator"
     ]
   },
+  "routing": {
+    "es": "/articulos/tecnica/{craft}/",
+    "en": "/en/articles/craft/{craft}/",
+    "sections": "Technique hubs can expose Learn, Ideas and Buying Guides as nested clean URLs.",
+    "indexing": "Only hubs and nested section pages with published content are added to Drielo sitemaps."
+  },
+  "commerce": {
+    "strategy": "Articles automatically surface products and collections from the same technique when matching WooCommerce taxonomy exists.",
+    "optional_article_fields": {
+      "product_skus": "Ordered list of specific WooCommerce SKUs to feature before automatic recommendations.",
+      "collection_slugs": "Ordered list of product_collection slugs to feature before automatically inferred collections."
+    }
+  },
   "visibility": {
-    "now": "Only cross-stitch should be linked in the frontend. Future craft terms exist as architecture, not empty navigation.",
-    "later": "When a new craft has enough products/content, add it to navigation and landing pages without moving existing articles."
+    "now": "All four techniques are part of the editorial architecture. Navigation can show empty techniques as coming soon without linking or indexing them.",
+    "later": "New techniques can be added by extending the craft config and taxonomy without changing the article JSON schema."
   }
 }
