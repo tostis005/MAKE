@@ -223,6 +223,17 @@ $pending = 0;
 foreach ( (array) ( $catalog['products'] ?? array() ) as $row ) {
     $sku = sanitize_text_field( (string) $row['sku'] );
     $existing_id = wc_get_product_id_by_sku( $sku );
+    if ( ! $existing_id ) {
+        foreach ( (array) ( $row['previous_skus'] ?? array() ) as $previous_sku ) {
+            $previous_sku = sanitize_text_field( (string) $previous_sku );
+            if ( '' === $previous_sku ) { continue; }
+            $existing_id = wc_get_product_id_by_sku( $previous_sku );
+            if ( $existing_id ) {
+                echo 'MIGRATING SKU ' . $previous_sku . ' -> ' . $sku . ' product_id=' . $existing_id . PHP_EOL;
+                break;
+            }
+        }
+    }
     $product = $existing_id ? wc_get_product( $existing_id ) : new WC_Product_Simple();
     if ( ! $product instanceof WC_Product_Simple ) {
         fwrite( STDERR, "Skipping $sku: product exists with unsupported type\n" );
@@ -382,6 +393,7 @@ foreach ( (array) ( $catalog['products'] ?? array() ) as $row ) {
     update_post_meta( $id, '_drielo_etsy_tags_es', $etsy_tags_es );
 
     update_post_meta( $id, '_drielo_design_id', sanitize_text_field( (string) ( $row['design_id'] ?? $row['code'] ?? '' ) ) );
+    update_post_meta( $id, '_drielo_base_design_id', sanitize_text_field( (string) ( $row['base_design_id'] ?? $row['design_id'] ?? $row['code'] ?? '' ) ) );
     update_post_meta( $id, '_drielo_grid_width', absint( $row['grid_width'] ?? 0 ) );
     update_post_meta( $id, '_drielo_grid_height', absint( $row['grid_height'] ?? 0 ) );
     update_post_meta( $id, '_drielo_color_count', absint( $row['color_count'] ?? $row['colours'] ?? 0 ) );
