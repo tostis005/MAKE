@@ -4462,6 +4462,61 @@
       "title_es": "C2C con punto alto vs medio punto alto: diferencias reales",
       "title_en": "Double Crochet vs Half Double Crochet C2C: What Changes?",
       "craft": "c2c-crochet"
+    },
+    {
+      "number": 405,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "beginners",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "C2C Crochet para zurdos: cómo leer y seguir el patrón",
+      "title_en": "Left-Handed C2C Crochet: How to Read and Follow a Pattern",
+      "craft": "c2c-crochet"
+    },
+    {
+      "number": 406,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "pattern-reading",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Instrucciones escritas vs gráfico C2C: qué formato elegir",
+      "title_en": "Written C2C Instructions vs Graphs: Which Format Should You Use?",
+      "craft": "c2c-crochet"
+    },
+    {
+      "number": 407,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "troubleshooting",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo evitar huecos grandes entre bloques de C2C Crochet",
+      "title_en": "How to Reduce Gaps Between C2C Crochet Blocks",
+      "craft": "c2c-crochet"
+    },
+    {
+      "number": 408,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "troubleshooting",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo conseguir bordes rectos en C2C Crochet",
+      "title_en": "How to Get Straight Edges in C2C Crochet",
+      "craft": "c2c-crochet"
+    },
+    {
+      "number": 409,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "finishing",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo añadir un borde a una manta C2C Crochet",
+      "title_en": "How to Add a Border to a C2C Crochet Blanket",
+      "craft": "c2c-crochet"
     }
   ],
   "taxonomy_strategy": {
@@ -4492,7 +4547,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 404,
-    "bilingual_groups": 404
+    "last_indexed_article": 409,
+    "bilingual_groups": 409
   }
 }
