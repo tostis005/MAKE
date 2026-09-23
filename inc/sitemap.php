@@ -62,19 +62,10 @@ function make_sitemap_urls( string $language ): array {
         $add( $urls, make_shop_view_url( 'collections', $language ) );
     }
 
-    if ( function_exists( 'make_stitch_theme_config' ) && function_exists( 'make_stitch_theme_url' ) ) {
-        foreach ( array_keys( make_stitch_theme_config() ) as $theme ) {
-            $add( $urls, make_stitch_theme_url( (string) $theme, $language ) );
-        }
-    }
-
-    if ( function_exists( 'make_editorial_section_config' ) ) {
-        foreach ( make_editorial_section_config() as $localized ) {
-            if ( empty( $localized[ $language ]['slug'] ) ) { continue; }
-            $term = get_category_by_slug( (string) $localized[ $language ]['slug'] );
-            if ( $term instanceof WP_Term && (int) $term->count > 0 ) {
-                $url = get_category_link( $term );
-                if ( ! is_wp_error( $url ) ) { $add( $urls, $url ); }
+    if ( function_exists( 'make_stitch_theme_cards' ) && function_exists( 'make_stitch_theme_url' ) ) {
+        foreach ( make_stitch_theme_cards( $language ) as $theme ) {
+            if ( ! empty( $theme['id'] ) ) {
+                $add( $urls, make_stitch_theme_url( (string) $theme['id'], $language ) );
             }
         }
     }
