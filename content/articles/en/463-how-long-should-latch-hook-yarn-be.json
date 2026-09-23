@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 463,
+  "translation_group": "463-latch-hook",
+  "taxonomy": {
+    "craft": {
+      "primary": "latch-hook",
+      "terms": [
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "materials",
+      "terms": [
+        "materials"
+      ]
+    },
+    "style": {
+      "terms": [
+        "yarn-length",
+        "pile-height",
+        "planning"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "rugs",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-463-latch-hook",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Makers cutting their own latch hook yarn who need a consistent strand length that creates the right pile for the project.",
+  "title": "How Long Should Latch Hook Yarn Be?",
+  "slug": "how-long-should-latch-hook-yarn-be",
+  "seo": {
+    "title": "How Long Should Latch Hook Yarn Be?",
+    "meta_description": "Choose latch hook yarn length by considering pile height, canvas, yarn thickness, project type and yarn consumption before cutting a full batch.",
+    "search_intent": "People who want to know what cut length will create consistent pile height in latch hook."
+  },
+  "excerpt": "Yarn length controls latch hook pile height and density. Learn how to choose it with a sample and keep it consistent across the project.",
+  "content_html": "<p>The length of each latch hook yarn piece strongly affects finished pile height, visual density and texture. Because the strand is folded and part of its length is taken up by the knot around the canvas, the visible pile is always substantially shorter than the piece you cut.</p>\n<p>There is no universal cut length that suits every project. Mesh size, yarn thickness, finished use and the look you want all change the best measurement. A small sample is therefore more reliable than cutting hundreds or thousands of pieces first.</p>\n<h2>Start with the pile height you want to see</h2>\n<p>Short pile creates a compact, graphic surface that is easier to keep even. It often works well when lettering, pixel art or geometric boundaries need to stay clear.</p>\n<p>Medium pile adds more volume and softness without hiding color boundaries as much.</p>\n<p>Long pile creates a plush, expressive surface, but the strands can bend, mix across neighboring colors and require more grooming or trimming.</p>\n<p>Do not judge height from one loose knot. Make several adjacent knots because neighboring pile supports the strands and changes how upright they appear.</p>\n<p>Photograph the sample from above and from the side to compare the actual height more objectively.</p>\n<p>If the project must fit under a door, inside a cushion construction or against another surface, consider the total finished thickness as well.</p>\n<h2>Remember that the strand folds when the knot is formed</h2>\n<p>A yarn piece is positioned approximately at its center on the tool, so each half becomes one of the two visible pile ends.</p>\n<p>A small amount of length is also absorbed by the knot itself and by the curve around the canvas bar.</p>\n<p>That means a given cut length will not produce exactly half that measurement as visible pile. Yarn thickness and mesh size change the result slightly.</p>\n<p>The reliable method is to make ten or twenty knots with the planned length and measure the pile after the knots are seated.</p>\n<p>Center every strand in the same way. If one end is routinely longer, the surface will look uneven even when every piece was cut identically.</p>\n<p>When testing two lengths, label the samples so you can compare which measurement produced each pile height.</p>\n<h2>Adjust length for the type of project</h2>\n<p>On a frequently used rug, moderate pile is usually easier to maintain and less likely to fold or catch than extremely long pile.</p>\n<p>On a cushion, you may want more softness as long as the pile does not hide the design or feel awkward when leaned against.</p>\n<p>On a wall hanging, resistance to crushing matters less, so more expressive lengths can be used when the total yarn weight remains manageable.</p>\n<p>For pixel art, lettering and small motifs, short or medium pile usually preserves cell boundaries more clearly.</p>\n<p>For abstract designs, gradients or intentionally shaggy surfaces, longer pile can become part of the visual effect.</p>\n<p>Evaluate the sample from the normal viewing distance rather than only from a few inches away.</p>\n<h2>Consider yarn thickness and texture</h2>\n<p>Thick yarn already creates substantial volume at a relatively short cut length. Making it much longer can create a heavy, less defined surface.</p>\n<p>Finer yarn may need a little more length or a denser canvas to achieve satisfying coverage.</p>\n<p>Very fluffy yarn expands after cutting and can appear visually longer than a smooth yarn with the same measurement.</p>\n<p>Slippery or loosely twisted yarn can also open at the cut ends and change the appearance of the pile.</p>\n<p>Test the actual yarn rather than a supposedly similar substitute because fiber behavior affects the result.</p>\n<p>If the project mixes textures, small length adjustments may be needed to make different regions reach a similar visual height.</p>\n<h2>Use one cutting reference for an entire section</h2>\n<p>Once the length is chosen, use a template, card, gauge or cutting tool that reproduces the same measurement every time.</p>\n<p>Do not measure every piece separately with a ruler. That is slow and introduces small inconsistencies.</p>\n<p>Cut manageable batches and store each color in a labeled container so shades or different lengths are not mixed.</p>\n<p>Occasionally compare ten random pieces. If the ends line up, the cutting system is still consistent.</p>\n<p>When changing skeins or dye lots, make another quick check in case thickness or stretch differs slightly.</p>\n<p>Consistent preparation greatly reduces how much leveling or trimming the finished surface needs.</p>\n<h2>Estimate yarn use and leave margin before cutting everything</h2>\n<p>A longer strand directly increases yarn used per knot, so even a small length change becomes significant across a large rug.</p>\n<p>Estimate how many knots use each color and multiply by the cut length to compare relative yarn requirements.</p>\n<p>Add margin for samples, badly cut pieces, replacement knots and any light final trimming.</p>\n<p>Do not cut every strand before testing enough of the project. Confirm the pile height and behavior after several rows first.</p>\n<p>If you plan to trim the pile at the end, include that loss in the yarn allowance and avoid starting with a cut length that is already too short.</p>\n<p>The right latch hook yarn length is the one that produces the pile height you want with your specific canvas and yarn. A small sample, a stable cutting reference and reasonable margin are more dependable than any universal measurement.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Side view of three latch hook samples with short, medium and long pile beside unknotted yarn pieces of different lengths.",
+    "alt": "How long latch hook yarn should be"
+  }
+}
