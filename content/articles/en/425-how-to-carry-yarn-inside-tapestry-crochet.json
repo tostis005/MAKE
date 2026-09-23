@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 425,
+  "translation_group": "425-tapestry-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "tapestry-crochet",
+      "terms": [
+        "tapestry-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "colorwork",
+      "terms": [
+        "colorwork"
+      ]
+    },
+    "style": {
+      "terms": [
+        "carry-yarn",
+        "tapestry-crochet",
+        "colorwork"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "bags",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-425-tapestry",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Beginners in tapestry colorwork who need to learn how to position, enclose and recover carried yarn.",
+  "title": "How to Carry Yarn Inside Tapestry Crochet",
+  "slug": "how-to-carry-yarn-inside-tapestry-crochet",
+  "seo": {
+    "title": "How to Carry Yarn Inside Tapestry Crochet",
+    "meta_description": "Learn how to carry yarn inside tapestry crochet by positioning it along the row, enclosing it in stitches and controlling length, placement and changes.",
+    "search_intent": "Crocheters learning how to transport inactive yarn inside tapestry crochet stitches without leaving long floats."
+  },
+  "excerpt": "Carrying yarn inside the stitches lets you reuse a color without cutting. Learn how to position, enclose and tension the inactive strand.",
+  "content_html": "<p>One of the defining features of tapestry crochet is that the color you are not using can travel inside the stitches while another shade is active. This avoids long floats across the reverse and lets you pick the color up again several stitches later without cutting and rejoining.</p>\n<p>The idea is simple: lay the inactive yarn along the working area and crochet the active stitches around it. For the method to work well, the hidden strand needs to be enclosed consistently and left long enough that it does not pucker the fabric.</p>\n<h2>Position the inactive yarn along the working line</h2>\n<p>After a color change, lay the yarn that is no longer active parallel to the top edge of the row or round. It should sit where the next stitches can enclose it rather than hanging several inches behind the work.</p>\n<p>When you insert the hook into the next stitch, make sure the inactive strand is positioned so the new stitch wraps around it. Completing the stitch with the active color traps the other yarn inside.</p>\n<p>Keep the strand in a consistent position. If it alternates unpredictably between the front and back of the stitch, it may show through unevenly.</p>\n<p>On a swatch, observe which placement hides it best with your hook insertion method. Small positional differences can noticeably change the appearance.</p>\n<h2>Leave enough length to match the fabric</h2>\n<p>The carried yarn should never be stretched tight. If it travels across ten stitches, it needs roughly the same horizontal length as those ten stitches occupy in the finished fabric.</p>\n<p>Spread the row occasionally and check that it keeps its width. If the piece arches or contracts when released, the internal strand is too short.</p>\n<p>Do not pull the carried yarn after every stitch. Let it move naturally and adjust only obvious excess slack.</p>\n<p>A useful check is to compare a plain section with one containing a carried strand. Their width and flexibility should remain reasonably similar.</p>\n<h2>Pick the color up on the final pull-through</h2>\n<p>When the carried yarn becomes active again, do not wait until the next stitch has begun. Complete the final pull-through of the previous stitch with the color you are about to use.</p>\n<p>The loop left on the hook is now already the new shade, which creates a cleaner visual transition.</p>\n<p>The color you stop using then takes the inactive position and travels inside the following stitches.</p>\n<p>This exchange can happen many times in one row. The structure remains the same: one yarn works while the other travels.</p>\n<h2>Know when carrying is not the best choice</h2>\n<p>Carrying works well over short and medium distances, but it is not always the cleanest option. Hiding a dark shade through thirty pale stitches can make it visible and add unnecessary bulk.</p>\n<p>When a color disappears for a long section, cut it, park a bobbin or introduce a separate yarn source later.</p>\n<p>Also consider how many strands are being carried simultaneously. Enclosing two or three extra yarns inside every stitch changes fabric density substantially.</p>\n<p>Tapestry crochet does not require every color to travel all the time. The goal is to balance a clean reverse, manageable thickness and a reasonable number of ends.</p>\n<h2>Manage yarn sources before they twist together</h2>\n<p>Every switch can change the positions of the yarn balls. If the strands always cross in the same direction, they eventually braid together.</p>\n<p>Separate the yarn sources periodically and give each color a stable place on the table or in a project basket.</p>\n<p>With only two shades, you can learn to move one consistently over or under the other so the twist does not build as quickly.</p>\n<p>On a larger piece, do not wait until the tangle becomes obvious. Untangling every few rows is much faster.</p>\n<h2>Check carrying from both front and back</h2>\n<p>On the front, the carried yarn should be hidden or only minimally visible. On the reverse, there should be no long floats or loose loops.</p>\n<p>Stretch the swatch gently. The section containing the internal strand should open and recover without puckering.</p>\n<p>If one color shows through too strongly, adjust its position first rather than immediately tightening the whole fabric. Extra tension may solve one problem while creating another.</p>\n<p>Make one test with the highest-contrast colors in the project and another with similar shades. This shows how much of the appearance comes from technique and how much comes from the palette itself.</p>\n<p>Wash or block the successful swatch and inspect it again. Some fibers relax enough to expose the internal yarn more clearly, so testing after finishing can prevent surprises later.</p>\n<p>Carrying yarn inside tapestry crochet works best when the strand travels parallel to the fabric, with enough length and consistent placement. Once that movement becomes automatic, frequent color changes can be made without filling the reverse with floats or the project with unnecessary tails.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Close-up of tapestry single crochet with one active yarn and one strand laid horizontally inside the stitches.",
+    "alt": "How to carry yarn inside tapestry crochet"
+  }
+}
