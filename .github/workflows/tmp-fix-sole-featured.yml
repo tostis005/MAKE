@@ -1,0 +1,82 @@
+name: Fix sole clean featured images
+on:
+  push:
+    branches: [regenerate-vivid-clean-p0001-p0020]
+    paths: ['.github/workflows/tmp-fix-sole-featured.yml']
+permissions:
+  contents: read
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate image policy
+        run: |
+          python - <<'PY'
+          import json,pathlib
+          root=pathlib.Path('content/products')
+          cat=json.loads((root/'catalog.json').read_text())
+          assert len(cat['products'])==80
+          for p in cat['products']:
+              assert p.get('featured_image')==f"assets/{p['code']}-product.webp",p['code']
+              assert p.get('gallery')==[],p['code']
+              assert (root/p['featured_image']).is_file(),p['code']
+          print('SOLE_FEATURED_VALIDATED=80')
+          PY
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_featured_key
+          chmod 600 ~/.ssh/drielo_featured_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+      - name: Package and upload image-only refresh
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          tar -czf /tmp/drielo-featured.tgz content/products/catalog.json content/products/assets/P*-product.webp content/tools/import-products.php
+          scp -q -i ~/.ssh/drielo_featured_key /tmp/drielo-featured.tgz "$VPS_USER@$VPS_HOST:/tmp/drielo-featured-${GITHUB_RUN_ID}.tgz"
+      - name: Refresh WooCommerce featured images
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_featured_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-featured-${GITHUB_RUN_ID}.tgz"
+          STAGE="/tmp/drielo-featured-${GITHUB_RUN_ID}"
+          trap 'rm -rf "$ARCHIVE" "$STAGE"' EXIT
+          mkdir -p "$STAGE"; tar -xzf "$ARCHIVE" -C "$STAGE"
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
+          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M -r '
+            require "/var/www/html/wp-load.php";
+            $ids=get_posts(array("post_type"=>"product","post_status"=>"publish","posts_per_page"=>-1,"fields"=>"ids","meta_key"=>"_drielo_managed_product","meta_value"=>"1"));
+            $bad=0; $codes=0;
+            foreach($ids as $id){
+              $p=wc_get_product($id); if(!$p) continue;
+              if(preg_match("/^DRIELO-P\d{4}-(CS|C2C|TC|LH)$/",$p->get_sku())){
+                $codes++;
+                $images=1+count($p->get_gallery_image_ids());
+                $downloads=count($p->get_downloads());
+                if($images!==1 || $downloads!==1 || !$p->get_image_id()){
+                  echo "BAD ".$p->get_sku()." images=".$images." downloads=".$downloads." featured=".$p->get_image_id().PHP_EOL;
+                  $bad++;
+                }
+              }
+            }
+            echo "DRIELO_PRODUCTS=".count($ids).PHP_EOL;
+            echo "TECH_PRODUCTS=".$codes.PHP_EOL;
+            echo "BAD_PRODUCTS=".$bad.PHP_EOL;
+            if(count($ids)!==80 || $codes!==80 || $bad) exit(2);
+          '
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
+          REMOTE
