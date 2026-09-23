@@ -1,0 +1,39 @@
+name: QA vivid colour and clean crop
+on:
+  push:
+    branches: [regenerate-vivid-clean-p0001-p0020]
+    paths: ['.github/workflows/tmp-qa-vivid-crop.yml']
+permissions:
+  contents: write
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install renderer
+        run: |
+          python -m pip install pillow playwright
+          python -m playwright install --with-deps chromium
+          sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+      - name: Build P0001-P0002
+        run: |
+          set -euo pipefail
+          python content/pattern-system/multitech/bulk_generate.py --start 1 --end 2 --workers 2
+      - name: Prepare QA images
+        run: |
+          set -euo pipefail
+          mkdir -p content/pattern-system/multitech/qa-vivid
+          cp content/products/assets/P0002-CS-product.webp content/pattern-system/multitech/qa-vivid/
+          cp content/products/assets/P0002-C2C-product.webp content/pattern-system/multitech/qa-vivid/
+          cp content/products/assets/P0002-TC-product.webp content/pattern-system/multitech/qa-vivid/
+          cp content/products/assets/P0002-LH-product.webp content/pattern-system/multitech/qa-vivid/
+          pdftoppm -f 2 -l 2 -singlefile -png -r 120 content/products/files/Drielo_P0002-C2C.pdf content/pattern-system/multitech/qa-vivid/P0002-C2C-page2
+      - name: Commit QA only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/pattern-system/multitech/qa-vivid
+          git commit -m "Add vivid colour and crop QA previews [skip ci]"
+          git push origin HEAD:regenerate-vivid-clean-p0001-p0020
