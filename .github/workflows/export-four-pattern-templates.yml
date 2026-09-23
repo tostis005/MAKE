@@ -1,0 +1,43 @@
+name: Export four Drielo pattern templates
+on:
+  push:
+    branches:
+      - chatgpt-export-four-pattern-templates
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare package
+        run: |
+          set -euo pipefail
+          mkdir -p export
+          cp content/pattern-system/template/DRIELO_Pattern_Template_MASTER.html export/DRIELO_Pattern_Template_CROSS_STITCH.html
+          cp content/pattern-templates/pop-art/c2c-crochet.html export/DRIELO_Pattern_Template_C2C_CROCHET.html
+          cp content/pattern-templates/pop-art/tapestry-crochet.html export/DRIELO_Pattern_Template_TAPESTRY_CROCHET.html
+          cp content/pattern-templates/pop-art/latch-hook.html export/DRIELO_Pattern_Template_LATCH_HOOK.html
+          cp content/pattern-templates/shared/drielo-pattern-template.css export/drielo-pattern-template.css
+          python3 - <<'PY'
+          from pathlib import Path
+          css=Path('export/drielo-pattern-template.css').read_text(encoding='utf-8')
+          for name in [
+              'DRIELO_Pattern_Template_C2C_CROCHET.html',
+              'DRIELO_Pattern_Template_TAPESTRY_CROCHET.html',
+              'DRIELO_Pattern_Template_LATCH_HOOK.html',
+          ]:
+              p=Path('export')/name
+              html=p.read_text(encoding='utf-8')
+              html=html.replace('<link rel="stylesheet" href="../shared/drielo-pattern-template.css">', '<style>\n'+css+'\n</style>')
+              p.write_text(html, encoding='utf-8')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: drielo-four-pattern-templates
+          path: export/*
+          if-no-files-found: error
+          retention-days: 1
