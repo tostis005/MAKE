@@ -140,8 +140,8 @@
     "asset": null,
     "technique_assets": {
       "CS": "collections/baby-nursery/assets/cover-cross-stitch.jpg",
-      "C2C": "collections/baby-nursery/assets/cover-c2c-crochet.jpg",
-      "TC": "collections/baby-nursery/assets/cover-crochet.jpg",
+      "C2C": "collections/baby-nursery/assets/cover-crochet.jpg",
+      "TC": "collections/baby-nursery/assets/cover-c2c-crochet.jpg",
       "LH": "collections/baby-nursery/assets/cover-rug.jpg"
     },
     "status": "approved-page-1-images",
@@ -215,7 +215,8 @@
         "cover_stage_scale": 125
       }
     },
-    "layout_source": "Exact copy of the approved Pop Art multitech cover placement values; do not recalculate per collection."
+    "layout_source": "Exact copy of the approved Pop Art multitech cover placement values; do not recalculate per collection.",
+    "crochet_asset_mapping_note": "C2C and tapestry cover assets corrected per approved collection reference."
   },
   "preview_rules": {
     "vector": true,

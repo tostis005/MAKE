@@ -16,7 +16,7 @@
         "I0001-LH"
       ],
       "artwork_status": "canonical-pattern-ready",
-      "source_asset": "reference-sheet:baby-nursery/I0001-teddy-bear-v2"
+      "source_asset": "collections/baby-nursery/source-designs/I0001-teddy-bear.png"
     },
     {
       "order": 2,
@@ -30,7 +30,8 @@
         "I0002-TC",
         "I0002-LH"
       ],
-      "artwork_status": "approved-concept-awaiting-canonical-source-extraction"
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0002-baby-elephant.png"
     },
     {
       "order": 3,
@@ -44,7 +45,8 @@
         "I0003-TC",
         "I0003-LH"
       ],
-      "artwork_status": "approved-concept-awaiting-canonical-source-extraction"
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0003-giraffe.png"
     },
     {
       "order": 4,
@@ -58,7 +60,8 @@
         "I0004-TC",
         "I0004-LH"
       ],
-      "artwork_status": "approved-concept-awaiting-canonical-source-extraction"
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0004-crescent-moon.png"
     },
     {
       "order": 5,
@@ -72,7 +75,8 @@
         "I0005-TC",
         "I0005-LH"
       ],
-      "artwork_status": "approved-concept-awaiting-canonical-source-extraction"
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0005-smiling-cloud.png"
     },
     {
       "order": 6,
@@ -86,7 +90,8 @@
         "I0006-TC",
         "I0006-LH"
       ],
-      "artwork_status": "approved-concept-awaiting-canonical-source-extraction"
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0006-bunny-heart.png"
     },
     {
       "order": 7,
@@ -100,7 +105,8 @@
         "I0007-TC",
         "I0007-LH"
       ],
-      "artwork_status": "approved-concept-awaiting-canonical-source-extraction"
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0007-rainbow-clouds.png"
     },
     {
       "order": 8,
@@ -114,7 +120,8 @@
         "I0008-TC",
         "I0008-LH"
       ],
-      "artwork_status": "approved-concept-awaiting-canonical-source-extraction"
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0008-cute-dinosaur.png"
     },
     {
       "order": 9,
@@ -128,7 +135,8 @@
         "I0009-TC",
         "I0009-LH"
       ],
-      "artwork_status": "approved-concept-awaiting-canonical-source-extraction"
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0009-hot-air-balloon.png"
     },
     {
       "order": 10,
@@ -142,7 +150,8 @@
         "I0010-TC",
         "I0010-LH"
       ],
-      "artwork_status": "approved-concept-awaiting-canonical-source-extraction"
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0010-toy-sailboat.png"
     },
     {
       "order": 11,
@@ -156,7 +165,8 @@
         "I0011-TC",
         "I0011-LH"
       ],
-      "artwork_status": "approved-concept-awaiting-canonical-source-extraction"
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0011-unicorn.png"
     },
     {
       "order": 12,
@@ -170,7 +180,8 @@
         "I0012-TC",
         "I0012-LH"
       ],
-      "artwork_status": "approved-concept-awaiting-canonical-source-extraction"
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0012-baby-bottle.png"
     },
     {
       "order": 13,
@@ -184,7 +195,8 @@
         "I0013-TC",
         "I0013-LH"
       ],
-      "artwork_status": "approved-concept-awaiting-canonical-source-extraction"
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0013-pacifier.png"
     },
     {
       "order": 14,
@@ -198,7 +210,8 @@
         "I0014-TC",
         "I0014-LH"
       ],
-      "artwork_status": "approved-concept-awaiting-canonical-source-extraction"
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0014-baby-stroller.png"
     },
     {
       "order": 15,
@@ -212,7 +225,8 @@
         "I0015-TC",
         "I0015-LH"
       ],
-      "artwork_status": "approved-concept-awaiting-canonical-source-extraction"
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0015-rocking-horse.png"
     },
     {
       "order": 16,
@@ -226,7 +240,8 @@
         "I0016-TC",
         "I0016-LH"
       ],
-      "artwork_status": "approved-concept-awaiting-canonical-source-extraction"
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0016-teddy-bear-onesie.png"
     },
     {
       "order": 17,
@@ -240,7 +255,8 @@
         "I0017-TC",
         "I0017-LH"
       ],
-      "artwork_status": "approved-concept-awaiting-canonical-source-extraction"
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0017-rubber-duck.png"
     },
     {
       "order": 18,
@@ -254,7 +270,8 @@
         "I0018-TC",
         "I0018-LH"
       ],
-      "artwork_status": "approved-concept-awaiting-canonical-source-extraction"
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0018-abc-blocks.png"
     },
     {
       "order": 19,
@@ -268,7 +285,8 @@
         "I0019-TC",
         "I0019-LH"
       ],
-      "artwork_status": "approved-concept-awaiting-canonical-source-extraction"
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0019-nursery-mobile.png"
     },
     {
       "order": 20,
@@ -282,7 +300,8 @@
         "I0020-TC",
         "I0020-LH"
       ],
-      "artwork_status": "approved-concept-awaiting-canonical-source-extraction"
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0020-smiling-star.png"
     },
     {
       "order": 21,
@@ -296,7 +315,8 @@
         "I0021-TC",
         "I0021-LH"
       ],
-      "artwork_status": "approved-concept-awaiting-canonical-source-extraction"
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0021-sleeping-owl.png"
     },
     {
       "order": 22,
@@ -310,7 +330,8 @@
         "I0022-TC",
         "I0022-LH"
       ],
-      "artwork_status": "approved-concept-awaiting-canonical-source-extraction"
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0022-floral-baby-bib.png"
     },
     {
       "order": 23,
@@ -324,7 +345,8 @@
         "I0023-TC",
         "I0023-LH"
       ],
-      "artwork_status": "approved-concept-awaiting-canonical-source-extraction"
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0023-plush-lamb.png"
     },
     {
       "order": 24,
@@ -338,7 +360,8 @@
         "I0024-TC",
         "I0024-LH"
       ],
-      "artwork_status": "approved-concept-awaiting-canonical-source-extraction"
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0024-toy-train.png"
     },
     {
       "order": 25,
@@ -352,7 +375,8 @@
         "I0025-TC",
         "I0025-LH"
       ],
-      "artwork_status": "approved-concept-awaiting-canonical-source-extraction"
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0025-stacking-rings.png"
     },
     {
       "order": 26,
@@ -366,7 +390,8 @@
         "I0026-TC",
         "I0026-LH"
       ],
-      "artwork_status": "approved-concept-awaiting-canonical-source-extraction"
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0026-baby-crib.png"
     },
     {
       "order": 27,
@@ -380,7 +405,8 @@
         "I0027-TC",
         "I0027-LH"
       ],
-      "artwork_status": "approved-concept-awaiting-canonical-source-extraction"
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0027-pink-floral-onesie.png"
     },
     {
       "order": 28,
@@ -394,7 +420,8 @@
         "I0028-TC",
         "I0028-LH"
       ],
-      "artwork_status": "approved-concept-awaiting-canonical-source-extraction"
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0028-rocket.png"
     },
     {
       "order": 29,
@@ -408,7 +435,8 @@
         "I0029-TC",
         "I0029-LH"
       ],
-      "artwork_status": "approved-concept-awaiting-canonical-source-extraction"
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0029-kite.png"
     },
     {
       "order": 30,
@@ -422,7 +450,8 @@
         "I0030-TC",
         "I0030-LH"
       ],
-      "artwork_status": "approved-concept-awaiting-canonical-source-extraction"
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0030-fairytale-castle.png"
     }
   ]
 }

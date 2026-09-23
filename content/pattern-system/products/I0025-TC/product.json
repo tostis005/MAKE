@@ -11,8 +11,8 @@
   "pattern_file": "patterns/I0025-TC/pattern.json",
   "template": "crochet.html",
   "website": "www.drielo.com",
-  "status": "draft",
-  "render_ready": false,
-  "source_artwork": null,
-  "page_1_asset": null
+  "status": "active",
+  "render_ready": true,
+  "source_artwork": "collections/baby-nursery/source-designs/I0025-stacking-rings.png",
+  "page_1_asset": "collections/baby-nursery/assets/cover-c2c-crochet.jpg"
 }

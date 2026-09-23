@@ -11,8 +11,8 @@
   "pattern_file": "patterns/I0006-C2C/pattern.json",
   "template": "c2c-crochet.html",
   "website": "www.drielo.com",
-  "status": "draft",
-  "render_ready": false,
-  "source_artwork": null,
-  "page_1_asset": null
+  "status": "active",
+  "render_ready": true,
+  "source_artwork": "collections/baby-nursery/source-designs/I0006-bunny-heart.png",
+  "page_1_asset": "collections/baby-nursery/assets/cover-crochet.jpg"
 }

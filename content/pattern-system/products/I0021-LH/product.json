@@ -11,8 +11,8 @@
   "pattern_file": "patterns/I0021-LH/pattern.json",
   "template": "rug.html",
   "website": "www.drielo.com",
-  "status": "draft",
-  "render_ready": false,
-  "source_artwork": null,
-  "page_1_asset": null
+  "status": "active",
+  "render_ready": true,
+  "source_artwork": "collections/baby-nursery/source-designs/I0021-sleeping-owl.png",
+  "page_1_asset": "collections/baby-nursery/assets/cover-rug.jpg"
 }
