@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 435,
+  "translation_group": "435-tapestry-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "tapestry-crochet",
+      "terms": [
+        "tapestry-crochet"
+      ]
+    },
+    "section": {
+      "primary": "buying-guides",
+      "terms": [
+        "buying-guides"
+      ]
+    },
+    "topic": {
+      "primary": "yarn",
+      "terms": [
+        "yarn"
+      ]
+    },
+    "style": {
+      "terms": [
+        "yarn-selection",
+        "tapestry-crochet",
+        "materials"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "bags",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "buying-guide",
+      "terms": [
+        "buying-guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-435-tapestry",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Crocheters buying materials for tapestry bags, cushions, wall panels and swatches who need to compare fibers and weights by behavior.",
+  "title": "Best Yarn for Tapestry Crochet",
+  "slug": "best-yarn-for-tapestry-crochet",
+  "seo": {
+    "title": "Best Yarn for Tapestry Crochet",
+    "meta_description": "Choose the best yarn for tapestry crochet by considering stitch definition, firmness, weight, contrast, care and the final project.",
+    "search_intent": "People choosing yarn for tapestry crochet based on stitch definition, firmness, contrast, final use and ease of carrying colors."
+  },
+  "excerpt": "The best yarn for tapestry crochet keeps stitches defined, handles colorwork well and suits the finished object. Learn which features matter most.",
+  "content_html": "<p>The best yarn for tapestry crochet is not one universal fiber or brand. The right choice depends on the object and the fabric you want. A bag needs more structure than a soft cushion, while a wall hanging may prioritize graphic definition over drape.</p>\n<p>As a starting point, look for yarn that forms regular stitches, does not split excessively under the hook and keeps boundaries between colors easy to see.</p>\n<h2>Prioritize stitch definition and stable twist</h2>\n<p>Tapestry crochet depends on each stitch acting like a small visual unit in the chart. Smooth yarn with reasonably stable twist makes stitch shape and color boundaries easier to control.</p>\n<p>Yarn that splits easily can catch partial plies during color changes and create a fuzzy, uneven surface.</p>\n<p>Very hairy yarn also softens chart edges. That may be attractive in some decorative work, but it makes small lettering and detailed pixel motifs harder to read.</p>\n<p>Make a swatch with one contrasting vertical line and see whether the edge remains clear.</p>\n<p>Notice how the strand behaves after repeated hook passes too. Yarn that begins fraying under light abrasion can become messy in areas with constant color changes.</p>\n<h2>Yarn weight controls scale and firmness</h2>\n<p>Thicker yarn creates larger stitches, so every chart cell occupies more physical space. The same graph can become enormous when yarn weight increases.</p>\n<p>Finer yarn allows more physical resolution and more detail within a smaller object, although it also requires more stitches and time.</p>\n<p>Carrying one or more colors inside the fabric adds volume. Yarn that is already bulky can make the result too rigid.</p>\n<p>Before buying large quantities, measure a swatch using the same number of internal strands the actual project will contain.</p>\n<p>Compare not only stitch size but also how much fabric thickness increases when one or two extra strands are enclosed.</p>\n<h2>Choose fiber according to the final use</h2>\n<p>Cotton often provides strong stitch definition and a structured fabric, making it useful for bags, baskets and graphic panels.</p>\n<p>Acrylics and blends may offer lighter weight, elasticity or softness and can be practical for cushions and washable household pieces.</p>\n<p>Highly elastic fibers can distort the graph slightly if tension varies. Very rigid fibers may become tiring to crochet when the fabric is dense.</p>\n<p>No fiber wins every category. The final project should determine the balance of structure, softness and care requirements.</p>\n<p>For objects that will carry weight, such as bags, hang the swatch and see how much it stretches. Excess elongation can distort the motif in use.</p>\n<h2>Check contrast and behavior between colors</h2>\n<p>Two yarns that work well separately can behave poorly together if one is thinner, stretchier or much shinier.</p>\n<p>In a multi-color palette, keep the main shades reasonably similar in behavior so gauge does not change every time the color changes.</p>\n<p>Take a grayscale photograph to evaluate contrast. If two important colors have nearly identical lightness, the motif may disappear even when their hues differ.</p>\n<p>Carry the darkest yarn under the lightest in a swatch to see how much it shows through.</p>\n<p>If you mix different fibers, test them within the same row. Some compatibility problems only appear when both yarns are worked under the same tension.</p>\n<h2>Think about washing, abrasion and replacement</h2>\n<p>A bag experiences repeated friction; a cushion may need regular washing; a wall panel may barely be handled. Match the fiber to that use.</p>\n<p>Follow the yarn care instructions on a swatch before trusting the final fabric. Some yarns relax, shrink or change surface texture after washing.</p>\n<p>For large projects, availability matters too. Running out of a main background shade halfway through a chart can force lot changes or design compromises.</p>\n<p>Buy a small extra margin in dominant colors, especially when the design contains broad solid areas.</p>\n<p>Rub the swatch against itself several times as a simple abrasion check. Fast fuzzing may make that yarn less suitable for an everyday bag.</p>\n<h2>Swatch the actual project conditions</h2>\n<p>Do not choose yarn only by touching the skein. Make a sample containing several color changes, carry one strand and test a small three-color section if the chart will require it.</p>\n<p>Evaluate definition, firmness, show-through, gauge and hand comfort.</p>\n<p>If several internal strands make the fabric too stiff, test a slightly finer yarn before trying to force the technique with a drastically different hook.</p>\n<p>Measure before and after washing, and hang the sample if the finished object will support weight. Those tests reveal more than a freshly crocheted flat swatch.</p>\n<p>The best tapestry yarn is the one that keeps the grid readable and produces the fabric your object needs. When definition, weight, contrast and final use are balanced, colorwork becomes much easier to control.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Four tapestry swatches made with different yarn textures and weights, labeled for definition, firmness and drape.",
+    "alt": "How to choose the best yarn for tapestry crochet"
+  }
+}
