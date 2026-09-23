@@ -47,3 +47,10 @@ Technique-specific placeholders are documented in comments inside each HTML file
 ## Pop Art suitability
 
 The C2C, tapestry crochet, latch hook and diamond-painting templates are designed to accept a derived version of the existing Pop Art matrix directly. Fuse beads and intarsia expect a reduced-color/reduced-resolution derivative. Bead loom expects a separate bracelet/cuff crop or reinterpretation rather than the original portrait matrix.
+
+
+## Ecommerce product-image contract
+
+Every technique template must expose exactly one element with the attribute `data-product-image`. That element must contain only the lifestyle/ambient mockup plus the finished technique-specific pattern. It must not contain title text, facts, size/skill information, badges, headers, footers, floral decorations or page numbering.
+
+The renderer exports that element as one 4:5 WebP named `<CODE>-product.webp`. WooCommerce should use only that image as the product gallery image unless a later project rule explicitly requests extra images.

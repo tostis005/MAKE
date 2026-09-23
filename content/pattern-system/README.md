@@ -43,3 +43,20 @@ The shared artwork/design family keeps the base ID separately (for example `P000
 ## GitHub Actions
 
 `build-pattern-pdf.yml` runs on changes to this pattern system. It validates/fixes palette data, synchronizes the collection palette back to the WooCommerce catalogue source, builds the selected/all product PDFs, and uploads them as private workflow artifacts. Generated PDFs are not committed to the public repository.
+
+
+## Store product image
+
+The customer-facing product image is generated from the page-1 lifestyle composition but excludes every PDF-layout element. The output contains only the ambient scene and the finished craft, uses a 4:5 portrait WebP, and is exported from the element marked `[data-product-image]`.
+
+The product image is generated alongside the PDF so WooCommerce never needs a manually-created screenshot. Its standard filename is `<CODE>-product.webp`.
+
+## Fast production path
+
+For bulk production, keep the source of truth in GitHub:
+1. generate/update collection, product and pattern JSON;
+2. GitHub Actions renders the HTML once;
+3. the same render produces both `Drielo_<CODE>.pdf` and `<CODE>-product.webp`;
+4. the WooCommerce importer consumes the catalogue plus those generated assets.
+
+This removes the slow manual loop of rendering files locally, sending them through chat, and re-uploading them one by one.
