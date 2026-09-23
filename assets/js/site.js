@@ -105,13 +105,31 @@
         if(!buttons.length||!thumbs.length||!grid)return;
 
         function applyTechnique(slug){
-          var visible=0;
+          var matching=[];
           for(var j=0;j<thumbs.length;j++){
-            var show=!slug||thumbs[j].getAttribute('data-technique')===slug;
-            thumbs[j].hidden=!show;
-            if(show)visible++;
+            if(!slug||thumbs[j].getAttribute('data-technique')===slug)matching.push(thumbs[j]);
           }
-          grid.style.setProperty('--collection-cols',String(collectionColumns(visible)));
+
+          var previewSlots=24;
+          var thumbLimit=matching.length>previewSlots?previewSlots-1:previewSlots;
+          var shown=0;
+
+          for(var x=0;x<thumbs.length;x++){
+            var match=matching.indexOf(thumbs[x])!==-1;
+            var show=match&&shown<thumbLimit;
+            thumbs[x].hidden=!show;
+            if(show)shown++;
+          }
+
+          var more=card.querySelector('[data-collection-more]');
+          var moreCount=card.querySelector('[data-collection-more-count]');
+          var remaining=Math.max(0,matching.length-shown);
+          if(more){
+            more.hidden=remaining<1;
+            if(moreCount)moreCount.textContent='+'+remaining;
+          }
+
+          grid.style.setProperty('--collection-cols','6');
 
           for(var k=0;k<buttons.length;k++){
             var active=!!slug&&buttons[k].getAttribute('data-collection-technique')===slug;
@@ -128,6 +146,7 @@
             applyTechnique(isActive?'':slug);
           });
         }
+        applyTechnique('');
       })(cards[i]);
     }
   }
