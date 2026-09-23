@@ -82,6 +82,18 @@ jobs:
           php -l /tmp/drielo-etsy-plugin/drielo-etsy-sync/drielo-etsy-sync.php
           tar -C /tmp/drielo-etsy-plugin -czf /tmp/drielo-etsy-sync.tar.gz drielo-etsy-sync
 
+      - name: Build Drielo Catalog Architecture plugin
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/drielo-catalog-plugin /tmp/drielo-catalog-architecture.zip /tmp/drielo-catalog-architecture.tar.gz
+          mkdir -p /tmp/drielo-catalog-plugin
+          base64 --decode plugins/drielo-catalog-architecture-1.1.0.zip.b64 > /tmp/drielo-catalog-architecture.zip
+          unzip -q /tmp/drielo-catalog-architecture.zip -d /tmp/drielo-catalog-plugin
+          test -s /tmp/drielo-catalog-plugin/drielo-catalog-architecture/drielo-catalog-architecture.php
+          php -l /tmp/drielo-catalog-plugin/drielo-catalog-architecture/drielo-catalog-architecture.php
+          tar -C /tmp/drielo-catalog-plugin -czf /tmp/drielo-catalog-architecture.tar.gz drielo-catalog-architecture
+
       - name: Build official WooCommerce Stripe Gateway plugin
         shell: bash
         run: |
@@ -112,6 +124,12 @@ jobs:
           VPS_USER: ${{ secrets.VPS_USER }}
         run: scp -i ~/.ssh/make_deploy_key /tmp/drielo-etsy-sync.tar.gz "$VPS_USER@$VPS_HOST:/tmp/drielo-etsy-sync-${GITHUB_RUN_ID}.tar.gz"
 
+      - name: Upload Drielo Catalog Architecture plugin
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: scp -i ~/.ssh/make_deploy_key /tmp/drielo-catalog-architecture.tar.gz "$VPS_USER@$VPS_HOST:/tmp/drielo-catalog-architecture-${GITHUB_RUN_ID}.tar.gz"
+
       - name: Upload official WooCommerce Stripe Gateway plugin
         env:
           VPS_HOST: ${{ secrets.VPS_HOST }}
@@ -132,10 +150,13 @@ jobs:
           PLUGIN_ARCHIVE="/tmp/drielo-etsy-sync-${GITHUB_RUN_ID}.tar.gz"
           PLUGIN_STAGE="/tmp/drielo-etsy-sync-${GITHUB_RUN_ID}"
           PLUGIN_TARGET="/var/www/html/wp-content/plugins/drielo-etsy-sync"
+          CATALOG_PLUGIN_ARCHIVE="/tmp/drielo-catalog-architecture-${GITHUB_RUN_ID}.tar.gz"
+          CATALOG_PLUGIN_STAGE="/tmp/drielo-catalog-architecture-${GITHUB_RUN_ID}"
+          CATALOG_PLUGIN_TARGET="/var/www/html/wp-content/plugins/drielo-catalog-architecture"
           STRIPE_PLUGIN_ARCHIVE="/tmp/woocommerce-gateway-stripe-${GITHUB_RUN_ID}.tar.gz"
           STRIPE_PLUGIN_STAGE="/tmp/woocommerce-gateway-stripe-${GITHUB_RUN_ID}"
           STRIPE_PLUGIN_TARGET="/var/www/html/wp-content/plugins/woocommerce-gateway-stripe"
-          cleanup(){ rm -rf "$ARCHIVE" "$STAGE" "$PLUGIN_ARCHIVE" "$PLUGIN_STAGE" "$STRIPE_PLUGIN_ARCHIVE" "$STRIPE_PLUGIN_STAGE"; }
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE" "$PLUGIN_ARCHIVE" "$PLUGIN_STAGE" "$CATALOG_PLUGIN_ARCHIVE" "$CATALOG_PLUGIN_STAGE" "$STRIPE_PLUGIN_ARCHIVE" "$STRIPE_PLUGIN_STAGE"; }
           trap cleanup EXIT
           if docker inspect make-wp >/dev/null 2>&1; then
             DOCKER=(docker)
@@ -145,10 +166,11 @@ jobs:
             echo "ERROR: make-wp container not found"
             exit 1
           fi
-          rm -rf "$STAGE" "$PLUGIN_STAGE" "$STRIPE_PLUGIN_STAGE"
-          mkdir -p "$STAGE" "$PLUGIN_STAGE" "$STRIPE_PLUGIN_STAGE"
+          rm -rf "$STAGE" "$PLUGIN_STAGE" "$CATALOG_PLUGIN_STAGE" "$STRIPE_PLUGIN_STAGE"
+          mkdir -p "$STAGE" "$PLUGIN_STAGE" "$CATALOG_PLUGIN_STAGE" "$STRIPE_PLUGIN_STAGE"
           tar -xzf "$ARCHIVE" -C "$STAGE"
           tar -xzf "$PLUGIN_ARCHIVE" -C "$PLUGIN_STAGE"
+          tar -xzf "$CATALOG_PLUGIN_ARCHIVE" -C "$CATALOG_PLUGIN_STAGE"
           tar -xzf "$STRIPE_PLUGIN_ARCHIVE" -C "$STRIPE_PLUGIN_STAGE"
           "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '$TARGET' && mkdir -p '$TARGET'"
           "${DOCKER[@]}" cp "$STAGE/." "make-wp:$TARGET/"
@@ -179,6 +201,57 @@ jobs:
                 exit(2);
             }
             echo "DRIELO_ETSY_PLUGIN_VERIFIED=yes" . PHP_EOL;
+          '
+
+          "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '$CATALOG_PLUGIN_TARGET' && mkdir -p '$CATALOG_PLUGIN_TARGET'"
+          "${DOCKER[@]}" cp "$CATALOG_PLUGIN_STAGE/drielo-catalog-architecture/." "make-wp:$CATALOG_PLUGIN_TARGET/"
+          "${DOCKER[@]}" exec make-wp sh -lc "chown -R www-data:www-data '$CATALOG_PLUGIN_TARGET' && find '$CATALOG_PLUGIN_TARGET' -type d -exec chmod 755 {} + && find '$CATALOG_PLUGIN_TARGET' -type f -exec chmod 644 {} + && test -s '$CATALOG_PLUGIN_TARGET/drielo-catalog-architecture.php'"
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            require_once ABSPATH . "wp-admin/includes/plugin.php";
+            $plugin = "drielo-catalog-architecture/drielo-catalog-architecture.php";
+            if (!is_plugin_active($plugin)) {
+                $result = activate_plugin($plugin);
+                if (is_wp_error($result)) {
+                    fwrite(STDERR, "Drielo Catalog Architecture activation failed: " . $result->get_error_message() . PHP_EOL);
+                    exit(2);
+                }
+            }
+            echo "DRIELO_CATALOG_PLUGIN_ACTIVE=" . (is_plugin_active($plugin) ? "yes" : "no") . PHP_EOL;
+          '
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            if (!class_exists("Drielo_Catalog_Architecture")) {
+                fwrite(STDERR, "Drielo Catalog Architecture bootstrap failed" . PHP_EOL);
+                exit(2);
+            }
+            Drielo_Catalog_Architecture::install();
+            echo "DRIELO_CATALOG_ATTRIBUTES_BOOTSTRAPPED=yes" . PHP_EOL;
+          '
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            if (!class_exists("Drielo_Catalog_Architecture")) {
+                fwrite(STDERR, "Drielo Catalog Architecture verification failed" . PHP_EOL);
+                exit(2);
+            }
+            foreach (array("pa_technique","pa_theme","pa_style","pa_project","pa_orientation","pa_season","pa_difficulty","pa_color-family") as $taxonomy) {
+                if (!taxonomy_exists($taxonomy)) {
+                    fwrite(STDERR, "Missing catalog taxonomy: " . $taxonomy . PHP_EOL);
+                    exit(2);
+                }
+            }
+            $result = Drielo_Catalog_Architecture::migrate_current_products();
+            $cross = get_term_by("slug","cross-stitch","pa_technique");
+            if (!$cross) {
+                fwrite(STDERR, "Missing Cross Stitch term" . PHP_EOL);
+                exit(2);
+            }
+            echo "DRIELO_CATALOG_PLUGIN_VERIFIED=yes" . PHP_EOL;
+            echo "DRIELO_CATALOG_CROSS_STITCH_COUNT=" . (int) $cross->count . PHP_EOL;
+            echo "DRIELO_CATALOG_MIGRATED=" . (int) ($result["updated"] ?? 0) . PHP_EOL;
           '
 
           if ! "${DOCKER[@]}" exec make-wp sh -lc "test -s '$STRIPE_PLUGIN_TARGET/woocommerce-gateway-stripe.php'"; then
@@ -339,6 +412,9 @@ jobs:
           PRODUCT_EN_ROUTE="$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; $id=wc_get_product_id_by_sku("DRIELO-P0001"); $u=make_product_url($id,"en"); echo parse_url($u,PHP_URL_PATH);')"
 
           check_html "/tienda/" "Tienda de patrones" "shop-patterns-es" "PDF descargable"
+          check_html "/tienda/" "drielo-technique-hub" "shop-technique-hub"
+          check_html "/tienda/" "Punto de cruz" "shop-cross-stitch-technique"
+          check_html "/wp-content/plugins/drielo-catalog-architecture/assets/catalog.css" ".drielo-technique-hub" "catalog-css"
           check_html "/tienda/" "attachment-make-store-card" "shop-card-derivative"
           check_html "/wp-content/themes/make/style.css" "Store + single-product layout refinements" "store-layout-css"
           check_html "/wp-content/themes/make/style.css" "grid-template-columns:repeat(5,minmax(0,1fr))" "collection-card-layout"
