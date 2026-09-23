@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 481,
+  "translation_group": "481-latch-hook",
+  "taxonomy": {
+    "craft": {
+      "primary": "latch-hook",
+      "terms": [
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "finishing",
+      "terms": [
+        "finishing"
+      ]
+    },
+    "style": {
+      "terms": [
+        "cleaning",
+        "care",
+        "maintenance"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "rugs",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-481-latch-hook",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Makers who want to clean and maintain latch hook rugs, pillows or wall hangings without distorting canvas, loosening knots or damaging pile.",
+  "title": "How to Clean and Care for Latch Hook",
+  "slug": "how-to-clean-care-for-latch-hook",
+  "seo": {
+    "title": "How to Clean and Care for Latch Hook",
+    "meta_description": "Clean and care for latch hook by removing dust, treating spots carefully, respecting fiber care, protecting backing and edges, and storing the piece correctly.",
+    "search_intent": "People looking for a safe way to clean and care for a finished latch hook piece."
+  },
+  "excerpt": "Latch hook care depends on the yarn, canvas and backing used. Learn how to remove dust, treat spots and preserve shape and pile without stressing the piece.",
+  "content_html": "<p>A finished latch hook piece combines several materials: cut yarn, canvas, edge stitching and, in many projects, backing or binding. That means there is no single cleaning method that is right for every piece. A durable-fiber rug may tolerate care that would be unsuitable for a delicate wall hanging or a pillow with fabric backing.</p>\n<p>The safest routine begins by identifying the materials and choosing the least aggressive method that solves the problem. Frequent gentle maintenance is usually easier on the piece than waiting until intensive cleaning is necessary.</p>\n<h2>Identify the materials before using water or cleaning products</h2>\n<p>Keep the care information for the yarn, canvas, backing and any non-slip material used in the project.</p>\n<p>Check whether the fiber can be washed, whether color may bleed and whether the backing tolerates moisture.</p>\n<p>A project made with several yarns should be treated according to the most delicate component rather than only the strongest one.</p>\n<p>If the fiber content of an older yarn is unknown, do not assume it can tolerate heat, strong friction or full immersion.</p>\n<p>Test any moisture or cleaning product on an inconspicuous area and let it dry before treating a larger section.</p>\n<p>Photographing and recording the materials when the project is finished makes later care decisions much easier.</p>\n<h2>Remove dust and loose fibers gently</h2>\n<p>For wall hangings and pillows, light shaking or a soft brush can remove surface dust without disturbing the pile.</p>\n<p>Work with the natural direction of the tufts and avoid sharp pulling that could loosen knots.</p>\n<p>On rugs, if vacuuming is appropriate for the materials, avoid settings or attachments that aggressively catch the cut yarn ends. Begin with the least forceful option available.</p>\n<p>Do not scrub the pile with a stiff brush in an attempt to make it fluffy; repeated friction can open the fibers and change their texture.</p>\n<p>While removing dust, look for loose knots, backing seams that are opening or edge binding that has begun wearing.</p>\n<p>Regular dust removal reduces the need for harsher cleaning and helps small maintenance problems become visible early.</p>\n<h2>Treat spots locally when that is enough</h2>\n<p>For a spill, blot excess liquid with a clean cloth instead of rubbing it back and forth through the pile.</p>\n<p>Work from the outer edge of the spot toward the center so the affected area does not spread across more tufts.</p>\n<p>Use only products compatible with the fiber and test them first in a discreet location.</p>\n<p>Avoid soaking the canvas when a localized treatment can solve the problem.</p>\n<p>After cleaning, remove excess moisture and let the piece dry in a position that preserves its shape.</p>\n<p>If a stain appears to require a strong product you have not used on the material before, seek a cleaning approach appropriate to that fiber rather than risking discoloration or structural damage.</p>\n<h2>Avoid heat and twisting that can distort the structure</h2>\n<p>Do not wring a wet latch hook piece to remove water. Twisting can distort the mesh, seams and finished edges.</p>\n<p>Direct heat can also affect some synthetic fibers and backing materials.</p>\n<p>When moisture needs to be removed, press with clean towels rather than squeezing or twisting.</p>\n<p>Dry the project while supporting its intended shape, flat when practical for panels and rugs or according to the specific material instructions.</p>\n<p>Do not hang a very wet, heavy piece from a few points because the additional water weight can stretch the canvas.</p>\n<p>Before using or storing the project again, make sure the backing and inner layers are fully dry as well as the visible pile.</p>\n<h2>Inspect backing, binding and knots as part of routine care</h2>\n<p>Cleaning is a useful time to inspect the reverse and perimeter.</p>\n<p>Look for loose stitches, exposed canvas, lifted corners or a non-slip layer that has shifted.</p>\n<p>Repair a small opening before normal use pulls it into a larger failure.</p>\n<p>If one knot begins loosening, reseat it or replace it while the mesh is still accessible.</p>\n<p>On rugs, inspect high-traffic areas more frequently than protected sections.</p>\n<p>On wall hangings, check the suspension system so cleaning does not leave one loop twisted or one attachment carrying more weight than the others.</p>\n<h2>Store the piece clean, dry and without long-term compression</h2>\n<p>Before storing a project for months, remove dust and make sure no moisture remains.</p>\n<p>Avoid repeatedly folding a thick rug at the same line when that creates a hard crease in the canvas. When practical, rolling it loosely can reduce sharp folds.</p>\n<p>Do not place heavy objects on the pile for long periods because some fibers retain compression.</p>\n<p>Protect the piece from dust and from environmental conditions that are unsuitable for its materials.</p>\n<p>After storage, let the pile recover and inspect seams and knots before returning the piece to use.</p>\n<p>Cleaning and caring for latch hook means respecting every material in the construction. Gentle maintenance, localized stain treatment, tension-free drying and regular inspections preserve the canvas, pile and finishing better than aggressive cleaning applied without checking compatibility.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Latch hook piece laid flat beside a soft brush, cloth and care labels with one corner of the backing visible.",
+    "alt": "How to clean and care for latch hook"
+  }
+}

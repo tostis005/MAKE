@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 482,
+  "translation_group": "482-latch-hook",
+  "taxonomy": {
+    "craft": {
+      "primary": "latch-hook",
+      "terms": [
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "project-organization",
+      "terms": [
+        "project-organization"
+      ]
+    },
+    "style": {
+      "terms": [
+        "storage",
+        "organization",
+        "unfinished-project"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "rugs",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-482-latch-hook",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Makers who need to pause a latch hook project for days or weeks without mixing colors, losing their place or crushing finished pile.",
+  "title": "How to Store an Unfinished Latch Hook Project",
+  "slug": "how-to-store-unfinished-latch-hook-project",
+  "seo": {
+    "title": "How to Store an Unfinished Latch Hook Project",
+    "meta_description": "Store an unfinished latch hook project by marking your place, separating colors, protecting the canvas and avoiding long-term pile compression.",
+    "search_intent": "People who want to store an unfinished latch hook project safely without losing organization or distorting it."
+  },
+  "excerpt": "Good storage protects both the project and your place in the chart. Learn how to preserve canvas, pile, yarn colors and notes so restarting is easy.",
+  "content_html": "<p>A latch hook project can span many sessions, especially when it is a rug or a chart containing thousands of knots. Good storage between sessions prevents three common problems: losing the exact chart position, mixing similar yarn colors and distorting either the canvas or the finished pile.</p>\n<p>A useful storage routine takes only a few minutes and preserves all of the information needed to restart. The goal is not only protecting materials but also preserving the working state of the project.</p>\n<h2>Mark exactly where you stopped before putting the project away</h2>\n<p>On the working chart, mark the last completed row, column or block.</p>\n<p>Record the direction you will continue from as well, especially when alternating rows or working in separate blocks.</p>\n<p>Do not rely on remembering that you were “somewhere around here”; after several days, similar areas can become difficult to distinguish.</p>\n<p>If using a digital chart or app, save the markings before closing and take a screenshot when the progress pattern is complicated.</p>\n<p>On the canvas, a removable marker can be placed in the margin beside the restart area without clipping into the pile.</p>\n<p>A short note with date, row and next color dramatically reduces the time needed to reconstruct context.</p>\n<h2>Separate and label all active yarn colors</h2>\n<p>Keep every shade in its own bag, box or compartment using exactly the same code as the chart key.</p>\n<p>Short pieces of similar colors mix very easily and can be difficult to sort later.</p>\n<p>If one color is being used at two different pile lengths, store those batches separately and label the measurement.</p>\n<p>Do not leave loose piles of cut yarn sitting on the canvas because movement can push them between knots or spill them.</p>\n<p>Keep remaining skeins with their codes too so more pieces can be cut without guessing which yarn was used.</p>\n<p>If one bag is almost empty and more pieces will be needed soon, note that before storage so the next batch can be prepared before restarting.</p>\n<h2>Protect the knotted area without crushing the pile</h2>\n<p>Avoid placing heavy objects on finished pile for days or weeks.</p>\n<p>For a small project, flat storage in a roomy box can keep the surface open as long as the lid does not press on the tufts.</p>\n<p>On larger pieces, loose rolling can be better than creating sharp folds in the canvas, provided the roll diameter is generous.</p>\n<p>Do not tighten the roll as if the project were thin fabric; the goal is support rather than compression.</p>\n<p>Place a clean soft layer between surfaces when rolling causes finished pile to touch another part of the piece.</p>\n<p>After unrolling, allow the yarn a little time to recover before judging pile height.</p>\n<h2>Avoid sharp creases in unworked canvas</h2>\n<p>Canvas without knots can also become distorted when it remains sharply folded under weight.</p>\n<p>A hard crease changes mesh geometry and can make later knotting less comfortable in that area.</p>\n<p>When the project must be made smaller for storage, use broad curves or a roll rather than a tight fold.</p>\n<p>If the project is mounted on a frame and can be stored safely while mounted, that may preserve shape well.</p>\n<p>Do not store canvas next to strong heat sources that could affect synthetic materials.</p>\n<p>Before restarting, lay out the unused section and check that rows and columns still align normally.</p>\n<h2>Store the tool, chart and project notes together</h2>\n<p>The latch hook tool, scissors, cutting gauge and chart should stay with the project instead of being scattered across different locations.</p>\n<p>A dedicated project bag or box prevents losing the correct tool or accidentally using a different cutting template.</p>\n<p>Include a card listing canvas type, yarn, cut length and any special finishing decision.</p>\n<p>If a color substitution was made, record both the original chart code and the replacement.</p>\n<p>For large projects, keep progress photographs with any digital notes.</p>\n<p>This record is particularly useful when a pause intended to last a few days becomes several months.</p>\n<h2>When restarting, verify the setup before making a new knot</h2>\n<p>Unroll or lay out the piece and check whether any knots loosened during storage.</p>\n<p>Compare the progress note with the chart and count from a nearby reference point.</p>\n<p>Confirm the next shade from the color key and labeled container rather than relying only on visual memory.</p>\n<p>Make sure knot orientation and working direction match the previous session.</p>\n<p>If pile was slightly compressed, separate it gently with your fingers before deciding that trimming is necessary.</p>\n<p>Storing an unfinished latch hook project means preserving structure, materials and information together. Canvas without hard creases, separated colors and an exact restart note make it possible to return weeks later and continue almost from the same working state.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Partially finished latch hook project loosely rolled with labeled yarn bags and a note showing the restart row and column.",
+    "alt": "How to store an unfinished latch hook project"
+  }
+}
