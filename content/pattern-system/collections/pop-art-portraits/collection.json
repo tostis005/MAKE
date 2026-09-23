@@ -1,0 +1,171 @@
+{
+  "id": "pop-art-portraits",
+  "name": "Pop Art Portraits",
+  "slug": "pop-art-portraits",
+  "palette": [
+    {
+      "dmc": "948",
+      "name": "Very Light Peach",
+      "hex": "#FEE7DA"
+    },
+    {
+      "dmc": "754",
+      "name": "Light Peach",
+      "hex": "#F7CBBF"
+    },
+    {
+      "dmc": "739",
+      "name": "Ultra Light Tan",
+      "hex": "#F5E4C2"
+    },
+    {
+      "dmc": "758",
+      "name": "Very Light Terra Cotta",
+      "hex": "#EEAA9B"
+    },
+    {
+      "dmc": "437",
+      "name": "Light Tan",
+      "hex": "#E4BB8E"
+    },
+    {
+      "dmc": "738",
+      "name": "Very Light Tan",
+      "hex": "#EEC18B"
+    },
+    {
+      "dmc": "436",
+      "name": "Tan",
+      "hex": "#CB9051"
+    },
+    {
+      "dmc": "435",
+      "name": "Very Light Brown",
+      "hex": "#B87748"
+    },
+    {
+      "dmc": "434",
+      "name": "Light Brown",
+      "hex": "#985B3B"
+    },
+    {
+      "dmc": "433",
+      "name": "Medium Brown",
+      "hex": "#7A451F"
+    },
+    {
+      "dmc": "801",
+      "name": "Dark Coffee Brown",
+      "hex": "#653919"
+    },
+    {
+      "dmc": "898",
+      "name": "Very Dark Coffee Brown",
+      "hex": "#4E2E21"
+    },
+    {
+      "dmc": "3371",
+      "name": "Black Brown",
+      "hex": "#1E1916"
+    },
+    {
+      "dmc": "310",
+      "name": "Black",
+      "hex": "#000000"
+    },
+    {
+      "dmc": "963",
+      "name": "Ultra Very Light Dusty Rose",
+      "hex": "#FFD7E2"
+    },
+    {
+      "dmc": "604",
+      "name": "Light Cranberry",
+      "hex": "#E996B8"
+    },
+    {
+      "dmc": "603",
+      "name": "Cranberry",
+      "hex": "#E4719A"
+    },
+    {
+      "dmc": "602",
+      "name": "Medium Cranberry",
+      "hex": "#C94670"
+    },
+    {
+      "dmc": "601",
+      "name": "Dark Cranberry",
+      "hex": "#A83259"
+    },
+    {
+      "dmc": "3756",
+      "name": "DMC 3756",
+      "hex": "#D9F2FF"
+    },
+    {
+      "dmc": "996",
+      "name": "DMC 996",
+      "hex": "#2FA8E0"
+    },
+    {
+      "dmc": "797",
+      "name": "DMC 797",
+      "hex": "#3157A4"
+    }
+  ],
+  "mockup_spec": {
+    "asset": null,
+    "generation": {
+      "purpose": "Reusable collection hero background for page 1 of every pattern in this collection",
+      "scene": "Editorial interior/lifestyle setting appropriate to the Pop Art Portraits collection, with one clearly visible front-facing framed artwork area as the focal point",
+      "frame_requirement": "The frame must contain EMPTY light Aida cross-stitch fabric only. Never bake a portrait, stitches, letters, pattern or artwork into the generated room image.",
+      "camera": "Keep the inner fabric plane as frontal/rectangular as possible; avoid strong perspective, glare, reflections or objects crossing the frame",
+      "lighting": "Soft realistic interior light; enough contrast to distinguish the physical frame from the Aida fabric",
+      "fabric": "Warm off-white Aida cloth, subtle woven/grid texture, realistic but not visually noisy",
+      "composition": "Leave sufficient clean fabric margin around the future stitched design; frame should be large enough to read clearly on an A4 cover",
+      "do_not": [
+        "no text",
+        "no watermark",
+        "no pre-rendered stitches",
+        "no printed artwork inside frame",
+        "no severe perspective"
+      ],
+      "post_generation_measurement": "After the final hero image is approved, record its exact pixel width/height and the INNER Aida rectangle x/y/width/height in frame.source_px and frame.area_px."
+    },
+    "frame": {
+      "enabled": false,
+      "source_px": {
+        "width": 0,
+        "height": 0
+      },
+      "area_px": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "padding_ratio": 0.055,
+      "fabric": {
+        "color": "#F7F3EA",
+        "kind": "aida",
+        "count_visual_reference": 14,
+        "texture_css": "radial-gradient(circle at 25% 25%,rgba(110,95,75,.12) 0 .45px,transparent .55px),radial-gradient(circle at 75% 75%,rgba(110,95,75,.10) 0 .4px,transparent .5px)"
+      }
+    }
+  },
+  "preview_rules": {
+    "vector": true,
+    "transparent_pattern_background_on_cover": true,
+    "cross_margin_ratio": 0.02,
+    "stroke_width_ratio": 0.34,
+    "linecap": "round",
+    "fit": "contain",
+    "center": true,
+    "fabric": {
+      "color": "#FBFAF6",
+      "dot": "#DDD8CF",
+      "dot_radius": 0.05
+    }
+  }
+}

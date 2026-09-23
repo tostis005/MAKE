@@ -1,0 +1,15 @@
+{
+  "stitch_width": 4,
+  "stitch_height": 4,
+  "total_stitches": 12,
+  "threads": [
+    {"symbol":"A","dmc":"310","name":"Black","color":"#000000","stitches":4},
+    {"symbol":"B","dmc":"602","name":"Medium Cranberry","color":"#C94670","stitches":8}
+  ],
+  "matrix": [
+    ["A","B","B","A"],
+    ["B","B","B","B"],
+    ["B","B","B","B"],
+    ["A",null,null,"A"]
+  ]
+}

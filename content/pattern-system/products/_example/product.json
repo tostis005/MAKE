@@ -1,0 +1,12 @@
+{
+  "code": "P9999",
+  "collection": "pop-art-portraits",
+  "title": "Example Pattern",
+  "subtitle": "A modern cross-stitch pattern",
+  "pattern_file": "patterns/_example/pattern.json",
+  "website": "www.drielo.com",
+  "skill_level": "Beginner friendly",
+  "stitch_type": "Full cross stitch",
+  "materials": ["DMC embroidery floss","14-count Aida or preferred fabric","Tapestry needle size 24/26","6-inch hoop (optional)"],
+  "fabric_counts": [14,16,18]
+}

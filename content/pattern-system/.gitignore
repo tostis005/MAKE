@@ -1,0 +1,4 @@
+output/
+*.pdf
+*.tmp.html
+__pycache__/
