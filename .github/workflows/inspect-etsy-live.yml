@@ -1,4 +1,4 @@
-name: Inspect live Etsy config
+name: Inspect live Etsy API
 on:
   push:
     branches: [main]
@@ -20,7 +20,7 @@ jobs:
           printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/make_deploy_key
           chmod 600 ~/.ssh/make_deploy_key
           ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
-      - name: Inspect non-secret Etsy state
+      - name: Query Etsy shop and taxonomy safely
         env:
           VPS_HOST: ${{ secrets.VPS_HOST }}
           VPS_USER: ${{ secrets.VPS_USER }}
@@ -28,35 +28,41 @@ jobs:
           set -euo pipefail
           ssh -i ~/.ssh/make_deploy_key "$VPS_USER@$VPS_HOST" bash -s <<'REMOTE'
           set -euo pipefail
-          if docker inspect make-wp >/dev/null 2>&1; then
-            DOCKER=(docker)
-          else
-            DOCKER=(sudo -n docker)
-          fi
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
           "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
             require "/var/www/html/wp-load.php";
-            require_once ABSPATH . "wp-admin/includes/plugin.php";
-            $plugin="drielo-etsy-sync/drielo-etsy-sync.php";
             $s=get_option("drielo_etsy_settings",array());
             $t=get_option("drielo_etsy_tokens",array());
-            echo "PLUGIN_ACTIVE=".(is_plugin_active($plugin)?"yes":"no").PHP_EOL;
-            echo "PLUGIN_VERSION=".(defined("Drielo_Etsy_Sync::VERSION")?Drielo_Etsy_Sync::VERSION:"unknown").PHP_EOL;
-            echo "API_KEY_SET=".(!empty($s["api_key"])?"yes":"no").PHP_EOL;
-            echo "SHARED_SECRET_SET=".(!empty($s["shared_secret"])?"yes":"no").PHP_EOL;
-            echo "SHOP_ID_SET=".(!empty($s["shop_id"])?"yes":"no").PHP_EOL;
-            echo "SHOP_NAME=".(string)($s["shop_name"]??"").PHP_EOL;
-            echo "TAXONOMY_ID=".(string)($s["taxonomy_id"]??"").PHP_EOL;
-            echo "REFRESH_TOKEN_SET=".(!empty($t["refresh_token"])?"yes":"no").PHP_EOL;
-            echo "ACCESS_TOKEN_SET=".(!empty($t["access_token"])?"yes":"no").PHP_EOL;
-            $ids=get_posts(array(
-              "post_type"=>"product","post_status"=>array("publish","draft","private","pending"),
-              "posts_per_page"=>-1,"fields"=>"ids",
-              "meta_key"=>"_drielo_etsy_enabled","meta_value"=>"yes"
-            ));
-            echo "ENABLED_COUNT=".count($ids).PHP_EOL;
-            foreach($ids as $id){
-              $p=wc_get_product($id);
-              echo "PRODUCT=".$id." SKU=".($p?$p->get_sku():"")." TARGET=".get_post_meta($id,"_drielo_etsy_target_state",true)." LISTING=".get_post_meta($id,"_drielo_etsy_listing_id",true)." REMOTE=".get_post_meta($id,"_drielo_etsy_remote_state",true)." ERROR=".str_replace(array("\n","\r")," ",get_post_meta($id,"_drielo_etsy_last_error",true)).PHP_EOL;
+            $uid=(string)($t["user_id"]??"");
+            if(!$uid && !empty($t["access_token"]) && strpos($t["access_token"],".")!==false){$uid=strtok($t["access_token"],".");}
+            $headers=array("x-api-key"=>(string)($s["api_key"]??"").":".(string)($s["shared_secret"]??""),"Accept"=>"application/json");
+            if(!empty($t["access_token"])){$headers["Authorization"]="Bearer ".$t["access_token"];}
+            $shop=wp_remote_get("https://api.etsy.com/v3/application/users/".rawurlencode($uid)."/shops",array("timeout"=>30,"headers"=>$headers));
+            if(is_wp_error($shop)){echo "SHOP_HTTP_ERROR=".$shop->get_error_message().PHP_EOL;}else{
+              $code=wp_remote_retrieve_response_code($shop); $d=json_decode(wp_remote_retrieve_body($shop),true);
+              echo "SHOP_HTTP_STATUS=".$code.PHP_EOL;
+              echo "SHOP_RESPONSE_SHAPE=".(isset($d["shop_id"])?"single":(isset($d["results"])?"results":"other")).PHP_EOL;
+              echo "SHOP_ID=".((string)($d["shop_id"]??($d["results"][0]["shop_id"]??""))).PHP_EOL;
+              echo "SHOP_NAME=".((string)($d["shop_name"]??($d["results"][0]["shop_name"]??""))).PHP_EOL;
+            }
+            $tax=wp_remote_get("https://api.etsy.com/v3/application/seller-taxonomy/nodes",array("timeout"=>30,"headers"=>array("x-api-key"=>(string)($s["api_key"]??"").":".(string)($s["shared_secret"]??""),"Accept"=>"application/json")));
+            if(is_wp_error($tax)){echo "TAX_HTTP_ERROR=".$tax->get_error_message().PHP_EOL;}else{
+              $code=wp_remote_retrieve_response_code($tax); $d=json_decode(wp_remote_retrieve_body($tax),true);
+              echo "TAX_HTTP_STATUS=".$code.PHP_EOL;
+              $roots=$d["results"]??array(); $hits=array();
+              $walk=function($nodes,$path="") use (&$walk,&$hits){
+                foreach((array)$nodes as $n){
+                  $name=(string)($n["name"]??""); $id=(string)($n["id"]??"");
+                  $p=$path?($path." > ".$name):$name;
+                  $low=strtolower($p);
+                  if(strpos($low,"cross stitch")!==false || strpos($low,"needlework")!==false || strpos($low,"pattern")!==false){
+                    $hits[]=array($id,$p);
+                  }
+                  if(!empty($n["children"])){$walk($n["children"],$p);}
+                }
+              };
+              $walk($roots);
+              foreach(array_slice($hits,0,80) as $h){echo "TAX_HIT=".$h[0]."|".$h[1].PHP_EOL;}
             }
           '
           REMOTE
