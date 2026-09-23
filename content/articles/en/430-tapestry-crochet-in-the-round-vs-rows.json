@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 430,
+  "translation_group": "430-tapestry-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "tapestry-crochet",
+      "terms": [
+        "tapestry-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "technique",
+      "terms": [
+        "technique"
+      ]
+    },
+    "style": {
+      "terms": [
+        "in-the-round",
+        "flat-rows",
+        "tapestry-crochet"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "bags",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "comparison",
+      "terms": [
+        "comparison"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-430-tapestry",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Makers choosing between flat panels, tubes, bags and baskets in tapestry crochet.",
+  "title": "Tapestry Crochet in the Round vs Rows: Key Differences",
+  "slug": "tapestry-crochet-in-the-round-vs-rows",
+  "seo": {
+    "title": "Tapestry Crochet in the Round vs Rows: Key Differences",
+    "meta_description": "Compare tapestry crochet in rounds vs rows: chart direction, right and wrong sides, seams, tension, color changes and suitable projects.",
+    "search_intent": "Crocheters who want to understand what changes between flat and round tapestry crochet and how construction affects chart direction, seams, fabric faces and color changes."
+  },
+  "excerpt": "Working tapestry in rows or rounds changes chart reading, seam placement and which face you see while crocheting. Learn the key construction differences.",
+  "content_html": "<p>Tapestry crochet can be worked in flat rows or around a tubular piece. The stitches and color-change mechanics may be nearly identical, but construction changes how the chart is read, which face of the fabric you see and where round transitions appear.</p>\n<p>The right choice depends on the object. Cushion fronts and wall panels naturally suit rows, while bags, baskets and tubular covers often benefit from working in the round. Construction also affects finishing and how much chart adaptation may be required.</p>\n<h2>Flat rows normally alternate reading direction</h2>\n<p>When you work a flat piece and turn at the end of every row, you travel across the fabric in one direction and then the other. The chart must be read consistently with that alternation.</p>\n<p>One row may be read right to left and the next left to right depending on the pattern, handedness and starting point.</p>\n<p>This matters especially for lettering and asymmetric motifs. A color sequence read in the wrong direction can mirror or shift the image.</p>\n<p>Drawing arrows beside chart rows is a simple way to keep orientation visible.</p>\n<p>If written instructions are included, check whether the sequences already account for alternating directions before reversing anything yourself.</p>\n<h2>Round construction usually keeps one reading direction</h2>\n<p>On a tube or basket, you typically continue around without turning the fabric. The chart is repeatedly traveled in the same direction.</p>\n<p>That can simplify orientation because right and wrong sides do not alternate every round.</p>\n<p>However, the beginning of the round becomes important. In a continuous spiral, that point moves gradually and can make the motif appear to rotate.</p>\n<p>With joined rounds, the join and beginning stitch become visible construction details.</p>\n<p>Always mark the first stitch when vertical chart alignment matters. Losing that reference can shift the entire motif around the tube.</p>\n<h2>Right and wrong sides behave differently</h2>\n<p>In conventional flat rows, you alternately see the front and reverse while crocheting. Some stitches look slightly different from the two faces.</p>\n<p>That can make even and odd rows appear different, particularly when hook insertion is not visually symmetrical.</p>\n<p>In the round, when the work is not turned, you normally crochet from the same face throughout. The stitch columns may therefore appear more uniform.</p>\n<p>Some flat patterns avoid wrong-side rows by instructing you to work every row from the same edge and cut or reposition yarn. Follow the pattern construction rather than assuming a standard method.</p>\n<h2>The seam is a specific issue in many round projects</h2>\n<p>In joined rounds, the point where you close and restart can form a visible vertical or diagonal line.</p>\n<p>A seam inside a plain background may be unobtrusive, while one crossing a graphic motif can interrupt the image.</p>\n<p>Place the round beginning in a less important area whenever the pattern construction allows it.</p>\n<p>A spiral has no conventional join, but the transition between rounds can shift the graph if the design was not planned for spiral construction.</p>\n<p>In a custom design, placing the seam inside a solid-color area or at the back of the object can make it much less noticeable.</p>\n<h2>Tension and yarn management change too</h2>\n<p>In flat rows, physically turning the work can twist active yarns if you always rotate the piece the same way.</p>\n<p>In the round, yarn sources may stay in a more consistent orientation, although strands can wrap around the project as you progress.</p>\n<p>Fabric thickness still increases when several colors are carried, regardless of construction.</p>\n<p>Swatch using the actual method. A flat sample does not perfectly reproduce how a spiral basket will behave.</p>\n<p>Check gauge around the circumference as well. A tubular project can become too rigid or tight even when a flat sample looked comfortable.</p>\n<h2>Choose construction for the finished object and adapt carefully</h2>\n<p>For a wall panel, cushion front or piece that will later be seamed, rows provide a flat surface that is easy to measure.</p>\n<p>For seamless bags, baskets and tubular covers, working in the round eliminates a side seam and can create a more continuous structure.</p>\n<p>Do not automatically convert a flat pattern to round construction or vice versa. Reading direction, stitch count and seam position may require graph changes.</p>\n<p>When turning a flat chart into a tube, check whether the first and last chart columns make sense when they meet. A motif designed with separate edges can create an awkward transition once those edges touch.</p>\n<p>Opening a circular repeat into a flat panel can likewise require extra edge stitches or a deliberate place to break the visual repeat.</p>\n<p>The main difference is not the stitch itself but the path you take through the grid. Understanding direction, visible face, round beginnings and final shape lets you choose the construction that fits the object without introducing orientation errors.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "The same tapestry grid shown as a flat panel with alternating arrows and as a tube with one continuous circular arrow.",
+    "alt": "Tapestry crochet in the round compared with rows"
+  }
+}
