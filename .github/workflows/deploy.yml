@@ -408,8 +408,8 @@ jobs:
               '
           }
 
-          PRODUCT_ES_ROUTE="$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; $id=wc_get_product_id_by_sku("DRIELO-P0001"); $u=make_product_url($id,"es"); echo parse_url($u,PHP_URL_PATH);')"
-          PRODUCT_EN_ROUTE="$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; $id=wc_get_product_id_by_sku("DRIELO-P0001"); $u=make_product_url($id,"en"); echo parse_url($u,PHP_URL_PATH);')"
+          PRODUCT_ES_ROUTE="$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; $id=wc_get_product_id_by_sku("DRIELO-P0001-CS"); $u=make_product_url($id,"es"); echo parse_url($u,PHP_URL_PATH);')"
+          PRODUCT_EN_ROUTE="$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; $id=wc_get_product_id_by_sku("DRIELO-P0001-CS"); $u=make_product_url($id,"en"); echo parse_url($u,PHP_URL_PATH);')"
 
           check_html "/tienda/" "Tienda de patrones" "shop-patterns-es" "PDF descargable"
           check_html "/tienda/" "drielo-technique-hub" "shop-technique-hub"
@@ -449,7 +449,7 @@ jobs:
           "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
             $_COOKIE["drielo_currency"]="USD";
             require "/var/www/html/wp-load.php";
-            $id=wc_get_product_id_by_sku("DRIELO-P0001");
+            $id=wc_get_product_id_by_sku("DRIELO-P0001-CS");
             $product=wc_get_product($id);
             $usd=(float)$product->get_price();
             $_COOKIE["drielo_currency"]="EUR";
@@ -491,7 +491,7 @@ jobs:
             $usd_symbol=get_woocommerce_currency_symbol();
             $_COOKIE["drielo_currency"]="EUR";
             $eur_symbol=get_woocommerce_currency_symbol();
-            $id=wc_get_product_id_by_sku("DRIELO-P0001");
+            $id=wc_get_product_id_by_sku("DRIELO-P0001-CS");
             $image_id=get_post_thumbnail_id($id);
             $preview=wp_get_attachment_image_src($image_id,"medium_large");
             $shop_card=wp_get_attachment_image_src($image_id,"make-store-card");
