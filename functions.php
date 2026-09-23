@@ -17,6 +17,9 @@ function make_theme_setup(): void {
     add_theme_support( 'woocommerce' );
     add_theme_support( 'wc-product-gallery-slider' );
     add_image_size( 'make-card', 760, 950, true );
+    // Lean storefront derivatives: large enough for retina cards without shipping medium_large assets.
+    add_image_size( 'make-store-card', 560, 560, true );
+    add_image_size( 'make-home-product-card', 560, 700, true );
     add_image_size( 'make-product-card', 700, 700, true );
     add_image_size( 'make-journal', 900, 560, true );
     register_nav_menus( array( 'primary' => __( 'Primary menu', 'make' ), 'footer' => __( 'Footer menu', 'make' ) ) );
@@ -26,7 +29,7 @@ add_action( 'after_setup_theme', 'make_theme_setup' );
 // Product previews deliberately use WordPress' bounded medium_large derivative.
 // We output no srcset and never expose the original full-resolution asset.
 add_filter( 'single_product_archive_thumbnail_size', static function (): string {
-    return 'medium_large';
+    return 'make-store-card';
 }, 20 );
 
 function make_static_attachment_image_html( int $attachment_id, string $size = 'medium_large', string $class = '' ): string {
@@ -52,7 +55,7 @@ function make_loop_product_thumbnail(): void {
 
     $image_id = $product->get_image_id();
     if ( $image_id ) {
-        echo wp_kses_post( make_static_attachment_image_html( $image_id, 'medium_large', 'attachment-medium_large size-medium_large' ) );
+        echo wp_kses_post( make_static_attachment_image_html( $image_id, 'make-store-card', 'attachment-make-store-card size-make-store-card' ) );
         return;
     }
 
