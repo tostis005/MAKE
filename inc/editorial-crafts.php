@@ -630,6 +630,9 @@ function make_editorial_craft_robots( array $robots ): array {
         if ( '' !== $craft && ! make_editorial_craft_has_content( $craft, make_current_language() ) ) {
             $robots['noindex'] = true;
             $robots['follow'] = true;
+        } elseif ( '' !== $craft ) {
+            unset( $robots['noindex'] );
+            $robots['follow'] = true;
         }
     }
     return $robots;
