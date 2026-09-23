@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 437,
+  "translation_group": "437-tapestry-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "tapestry-crochet",
+      "terms": [
+        "tapestry-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "gauge",
+      "terms": [
+        "gauge"
+      ]
+    },
+    "style": {
+      "terms": [
+        "gauge",
+        "pixel-shape",
+        "tapestry-crochet"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "bags",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-437-tapestry",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Makers adapting patterns or changing yarn and hook while trying to preserve image proportions.",
+  "title": "Tapestry Crochet Gauge: How It Changes the Design",
+  "slug": "tapestry-crochet-gauge-how-it-changes-design",
+  "seo": {
+    "title": "Tapestry Crochet Gauge: How It Changes the Design",
+    "meta_description": "Learn how gauge changes tapestry crochet designs by measuring stitch width and height, calculating final size and preventing stretched images.",
+    "search_intent": "Crocheters who want to understand how real stitch width and height change the proportions, size and readability of a tapestry chart."
+  },
+  "excerpt": "In tapestry crochet, gauge changes more than size: it can stretch or compress the image. Learn how to measure horizontal and vertical gauge separately.",
+  "content_html": "<p>In tapestry crochet, gauge is not only a number for deciding whether a piece will measure 16 or 18 inches. It also controls the shape of the image. If your stitches are physically taller than they are wide, a chart made of square pixels can become vertically stretched in the fabric.</p>\n<p>That is why horizontal and vertical gauge should be measured separately, especially when adapting pixel art, photographs or a chart designed with different materials. A useful swatch predicts not only final size but whether circles, lettering and faces will keep their proportions.</p>\n<h2>Measure several stitches and rows, not one unit</h2>\n<p>Make a reasonably large swatch, ideally at least 15 or 20 stitches across and several rows high. Tiny swatches exaggerate edge irregularities.</p>\n<p>Measure ten or twenty stitches horizontally and ten or twenty rows vertically, avoiding turning chains and distorted edge stitches.</p>\n<p>Divide each measurement by the number of units to estimate average stitch width and row height.</p>\n<p>The larger the measured area, the less individual tension variation affects the result.</p>\n<p>Mark the measured boundaries with pins or stitch markers so you can measure exactly the same area after washing.</p>\n<h2>Check whether your crochet pixels are actually square</h2>\n<p>A digital chart normally assumes square cells, but single crochet may not have equal width and height.</p>\n<p>If ten stitches measure 3.2 inches while ten rows measure 4 inches, every crocheted cell is physically taller than it is wide. A 20-by-20-cell square will finish around 6.4 by 8 inches.</p>\n<p>A face or circle can therefore look elongated even when the chart was followed perfectly.</p>\n<p>The solution involves changing construction, stitch style, gauge or the chart itself rather than simply counting more carefully.</p>\n<p>Make a recognizable test shape such as a square, circle or letter O and compare it with the chart before committing to a detailed image.</p>\n<h2>Carried yarn can change gauge</h2>\n<p>A one-color swatch may not represent a real tapestry project. Enclosing another strand adds bulk and can alter width, height and firmness.</p>\n<p>Make the gauge swatch with at least one carried yarn and several color changes.</p>\n<p>If the project includes areas with three active shades, test a small section with that structure too. Extra internal material can behave differently.</p>\n<p>Gauge should be measured under conditions that resemble the final motif.</p>\n<p>Compare a plain stripe with a colorwork stripe inside the same sample. If equal stitch counts produce different physical measurements, decide which construction represents most of the final piece.</p>\n<h2>Calculate finished size before beginning</h2>\n<p>If each stitch averages 0.2 inch wide and the chart contains 80 columns, the graphic portion will be about 16 inches wide.</p>\n<p>Repeat the calculation vertically using row count and average row height. If each row is 0.24 inch high and the chart has 100 rows, the motif will be about 24 inches tall.</p>\n<p>Add borders, seams, handles or margins separately afterward rather than mixing them into the chart dimensions.</p>\n<p>This prevents a chart intended for a cushion from unexpectedly becoming blanket-sized.</p>\n<p>It also tells you whether the chosen resolution suits the object: 120 chart columns may be excellent for a large wall panel and completely impractical for a small bag.</p>\n<h2>Adapt the chart when proportions do not work</h2>\n<p>If stitches are clearly rectangular, the motif can be redrawn with compensation in the number of rows or columns.</p>\n<p>For example, a circle may need fewer rows than columns when each row is physically taller. Another option is changing to a stitch whose width-to-height ratio better matches the original grid.</p>\n<p>Test the correction first with a familiar geometric shape and measure how much compensation is actually needed.</p>\n<p>With purchased patterns, do not automatically alter the chart because the designer may already have compensated for a specific stitch.</p>\n<p>If the pattern includes a finished sample photo, compare its visible proportions with the chart before assuming every cell must become physically square.</p>\n<h2>Measure again after washing or blocking</h2>\n<p>Fibers can relax and change proportions during finishing. Some grow more vertically, some widen and others remain nearly stable.</p>\n<p>Measure the same swatch before and after washing so you know how both dimensions change.</p>\n<p>If finished dimensions matter, use gauge from the treated swatch for calculations.</p>\n<p>Record the yarn, hook, stitch and final measurements so the swatch becomes a reusable reference.</p>\n<p>When lettering or detailed motifs depend on accurate proportions, view the finished swatch from the real-use distance before approving the scale.</p>\n<p>Tapestry gauge connects technique with design. Measuring real width and height lets you predict size, preserve proportions and adapt images without discovering too late that the crocheted grid behaves differently from the screen grid.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "The same square chart shown as three swatches: proportional, vertically stretched and compressed, with gauge measurements.",
+    "alt": "How gauge changes a tapestry crochet design"
+  }
+}
