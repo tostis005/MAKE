@@ -1,0 +1,18 @@
+{
+  "code": "I0001-CS",
+  "base_design_id": "I0001",
+  "technique_code": "CS",
+  "collection": "baby-nursery",
+  "title": "Teddy Bear",
+  "title_en": "Teddy Bear",
+  "title_es": "Osito de peluche",
+  "design_slug": "teddy-bear",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/I0001-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "source_artwork": null,
+  "page_1_asset": null
+}

@@ -1,0 +1,18 @@
+{
+  "code": "I0008-C2C",
+  "base_design_id": "I0008",
+  "technique_code": "C2C",
+  "collection": "baby-nursery",
+  "title": "Cute Dinosaur",
+  "title_en": "Cute Dinosaur",
+  "title_es": "Dinosaurio infantil",
+  "design_slug": "cute-dinosaur",
+  "technique": "c2c-crochet",
+  "pattern_file": "patterns/I0008-C2C/pattern.json",
+  "template": "c2c-crochet.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "source_artwork": null,
+  "page_1_asset": null
+}

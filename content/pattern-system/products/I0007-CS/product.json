@@ -1,0 +1,18 @@
+{
+  "code": "I0007-CS",
+  "base_design_id": "I0007",
+  "technique_code": "CS",
+  "collection": "baby-nursery",
+  "title": "Rainbow with Clouds",
+  "title_en": "Rainbow with Clouds",
+  "title_es": "Arcoíris con nubes",
+  "design_slug": "rainbow-clouds",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/I0007-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "source_artwork": null,
+  "page_1_asset": null
+}

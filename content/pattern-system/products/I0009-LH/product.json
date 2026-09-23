@@ -1,0 +1,18 @@
+{
+  "code": "I0009-LH",
+  "base_design_id": "I0009",
+  "technique_code": "LH",
+  "collection": "baby-nursery",
+  "title": "Hot Air Balloon",
+  "title_en": "Hot Air Balloon",
+  "title_es": "Globo aerostático",
+  "design_slug": "hot-air-balloon",
+  "technique": "latch-hook",
+  "pattern_file": "patterns/I0009-LH/pattern.json",
+  "template": "rug.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "source_artwork": null,
+  "page_1_asset": null
+}

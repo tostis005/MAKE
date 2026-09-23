@@ -1,0 +1,18 @@
+{
+  "code": "I0006-TC",
+  "base_design_id": "I0006",
+  "technique_code": "TC",
+  "collection": "baby-nursery",
+  "title": "Bunny with Heart",
+  "title_en": "Bunny with Heart",
+  "title_es": "Conejito con corazón",
+  "design_slug": "bunny-heart",
+  "technique": "tapestry-crochet",
+  "pattern_file": "patterns/I0006-TC/pattern.json",
+  "template": "crochet.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "source_artwork": null,
+  "page_1_asset": null
+}

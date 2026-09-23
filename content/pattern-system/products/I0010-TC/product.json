@@ -1,0 +1,18 @@
+{
+  "code": "I0010-TC",
+  "base_design_id": "I0010",
+  "technique_code": "TC",
+  "collection": "baby-nursery",
+  "title": "Toy Sailboat",
+  "title_en": "Toy Sailboat",
+  "title_es": "Velero infantil",
+  "design_slug": "toy-sailboat",
+  "technique": "tapestry-crochet",
+  "pattern_file": "patterns/I0010-TC/pattern.json",
+  "template": "crochet.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "source_artwork": null,
+  "page_1_asset": null
+}

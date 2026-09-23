@@ -1,0 +1,18 @@
+{
+  "code": "I0002-TC",
+  "base_design_id": "I0002",
+  "technique_code": "TC",
+  "collection": "baby-nursery",
+  "title": "Baby Elephant",
+  "title_en": "Baby Elephant",
+  "title_es": "Elefantito",
+  "design_slug": "baby-elephant",
+  "technique": "tapestry-crochet",
+  "pattern_file": "patterns/I0002-TC/pattern.json",
+  "template": "crochet.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "source_artwork": null,
+  "page_1_asset": null
+}

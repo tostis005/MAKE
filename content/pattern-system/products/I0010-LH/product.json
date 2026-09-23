@@ -1,0 +1,18 @@
+{
+  "code": "I0010-LH",
+  "base_design_id": "I0010",
+  "technique_code": "LH",
+  "collection": "baby-nursery",
+  "title": "Toy Sailboat",
+  "title_en": "Toy Sailboat",
+  "title_es": "Velero infantil",
+  "design_slug": "toy-sailboat",
+  "technique": "latch-hook",
+  "pattern_file": "patterns/I0010-LH/pattern.json",
+  "template": "rug.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "source_artwork": null,
+  "page_1_asset": null
+}

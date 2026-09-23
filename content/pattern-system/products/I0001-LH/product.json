@@ -1,0 +1,18 @@
+{
+  "code": "I0001-LH",
+  "base_design_id": "I0001",
+  "technique_code": "LH",
+  "collection": "baby-nursery",
+  "title": "Teddy Bear",
+  "title_en": "Teddy Bear",
+  "title_es": "Osito de peluche",
+  "design_slug": "teddy-bear",
+  "technique": "latch-hook",
+  "pattern_file": "patterns/I0001-LH/pattern.json",
+  "template": "rug.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "source_artwork": null,
+  "page_1_asset": null
+}
