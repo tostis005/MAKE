@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 464,
+  "translation_group": "464-latch-hook",
+  "taxonomy": {
+    "craft": {
+      "primary": "latch-hook",
+      "terms": [
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "technique",
+      "terms": [
+        "technique"
+      ]
+    },
+    "style": {
+      "terms": [
+        "cutting-yarn",
+        "uniform-length",
+        "preparation"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "rugs",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-464-latch-hook",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Makers preparing their own latch hook yarn who need to cut hundreds of equal pieces quickly with minimal waste.",
+  "title": "How to Cut Yarn Evenly for Latch Hook",
+  "slug": "how-to-cut-yarn-evenly-latch-hook",
+  "seo": {
+    "title": "How to Cut Yarn Evenly for Latch Hook",
+    "meta_description": "Cut latch hook yarn evenly by choosing a length, making a rigid template, controlling wrapping tension, cutting manageable batches and labeling colors.",
+    "search_intent": "People who want to prepare many identical latch hook yarn pieces without measuring each one individually."
+  },
+  "excerpt": "A stable cutting template lets you prepare hundreds of equal yarn pieces quickly. Learn how to control length, tension and batch consistency.",
+  "content_html": "<p>Cutting yarn evenly is one of the preparation steps that most affects the final appearance of latch hook. Even perfectly formed knots will create an uneven surface when short and long pieces are mixed, and heavy trimming later cannot always restore consistency.</p>\n<p>The efficient approach is not measuring every segment with a ruler. Instead, create a physical reference that reproduces the same length repeatedly. A simple cutting template lets you prepare large batches quickly while keeping pile height consistent.</p>\n<h2>Choose the cut length before preparing a large batch</h2>\n<p>Make a small sample using a few candidate lengths and choose the one that creates the pile height you want with the actual canvas and yarn.</p>\n<p>Once the decision is made, record the measurement and keep the template used to create it. Do not rely on remembering the visual length weeks later.</p>\n<p>If the project intentionally uses different pile heights, make a separate clearly labeled template for each measurement.</p>\n<p>Do not change length because one isolated area looks too tall before several neighboring rows are completed. Pile appearance changes once the surrounding knots support it.</p>\n<p>Check that the chosen piece is also long enough to center comfortably on the tool without leaving ends that are difficult to catch.</p>\n<p>The sample stage is the safest time to adjust because later changes can affect thousands of already prepared pieces.</p>\n<h2>Use a rigid template to repeat the same measurement</h2>\n<p>A strip of firm card, plastic or wood can serve as a wrapping gauge. Its dimensions should be designed so cutting at the marked points produces the intended yarn length.</p>\n<p>Mark the cutting edges clearly so they cannot be confused with the area used to hold the template.</p>\n<p>The guide needs to keep its shape. Thin card that bends while yarn is wrapped around it can produce pieces that gradually become shorter.</p>\n<p>For thousands of pieces, reinforce the guide or make a more durable version.</p>\n<p>Write the measurement, project name and yarn type on the template when necessary so it is not accidentally reused for a different setup.</p>\n<p>Before producing a large batch, cut ten pieces and line them up on a table. Their ends should match with only minor variation.</p>\n<h2>Wrap with consistent tension rather than tight tension</h2>\n<p>Wind yarn around the template using gentle, repeatable tension.</p>\n<p>If elastic yarn is stretched hard while wrapping, every piece becomes shorter once the fiber relaxes.</p>\n<p>If the wraps are very loose, some loops may sit farther from the template and finish longer than others.</p>\n<p>Do not stack so many layers that the thickness of the bundle noticeably increases the circumference of later wraps.</p>\n<p>With bulky yarn, work in smaller batches. Finer yarn can usually be wrapped more times as long as the template remains rigid.</p>\n<p>When changing skeins, compare a few pieces again in case stretch or thickness changes slightly.</p>\n<h2>Cut the layers with sharp scissors and one clean motion</h2>\n<p>Use scissors that slice the yarn cleanly instead of crushing or chewing the fibers. Dull blades require repeated sawing and create ragged ends.</p>\n<p>Hold the wrapped bundle so the loops cannot shift while the blade is inserted beneath the layers.</p>\n<p>Cut exactly along the planned template line and keep the scissors at a consistent angle.</p>\n<p>If the method requires cutting at two edges, finish one side and then the other without allowing the bundle to become disorganized.</p>\n<p>Do not force the scissors through an excessive number of layers. When the blades cannot cut the whole bundle cleanly, reduce the batch size.</p>\n<p>Remove the pieces and compare several random strands to confirm that the method still produces the target length.</p>\n<h2>Separate and label batches as soon as they are cut</h2>\n<p>Store every color in its own bag, tray or container immediately after cutting.</p>\n<p>Similar shades are much harder to identify as short pieces than they are in full skeins.</p>\n<p>Use the same color codes as the pattern so you do not need to translate between names and chart symbols while knotting.</p>\n<p>If the same color is prepared in two different lengths, keep those batches separate and label the cut measurement too.</p>\n<p>Do not mix newly prepared pieces with old practice leftovers until you have confirmed that the lengths match.</p>\n<p>Organized batches make knotting faster because each piece can be picked up without stopping to verify shade or size.</p>\n<h2>Perform quality checks and keep the setup until the project is finished</h2>\n<p>After several batches, line up ten or twenty pieces and check whether the ends still match.</p>\n<p>If variation is increasing, inspect whether the template has bent, wrapping tension has changed or the scissors are shifting the bundle during cutting.</p>\n<p>Set aside pieces that are clearly too short. Slightly long strands can be trimmed later, but a short piece cannot regain pile height.</p>\n<p>Keep the template until the entire project is complete in case another batch is needed when a color runs out.</p>\n<p>Record how many wraps form a comfortable batch and which scissors worked best so the method is easy to repeat.</p>\n<p>Cutting latch hook yarn evenly depends on a stable reference, consistent wrapping tension and manageable batches. Accurate preparation reduces final trimming, produces more uniform pile and lets you focus on the chart instead of correcting avoidable length differences.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Yarn wrapped around a rigid cutting template, scissors cutting one edge and finished strands lined up to check equal length.",
+    "alt": "How to cut yarn evenly for latch hook"
+  }
+}
