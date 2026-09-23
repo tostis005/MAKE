@@ -5287,6 +5287,61 @@
       "title_es": "Cómo colgar un proyecto de Latch Hook sin deformarlo",
       "title_en": "How to Hang a Latch Hook Project Without Distorting It",
       "craft": "latch-hook"
+    },
+    {
+      "number": 480,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "finishing",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo añadir una base antideslizante a una alfombra Latch Hook",
+      "title_en": "How to Add a Non-Slip Backing to a Latch Hook Rug",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 481,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "finishing",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo limpiar y cuidar una pieza de Latch Hook",
+      "title_en": "How to Clean and Care for Latch Hook",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 482,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "project-organization",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo guardar un proyecto de Latch Hook a medio hacer",
+      "title_en": "How to Store an Unfinished Latch Hook Project",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 483,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "sizing",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo calcular el tamaño final de un patrón de Latch Hook",
+      "title_en": "How to Calculate the Finished Size of a Latch Hook Pattern",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 484,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "sizing",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo elegir el tamaño de canvas para un patrón de Latch Hook",
+      "title_en": "How to Choose Canvas Size for a Latch Hook Pattern",
+      "craft": "latch-hook"
     }
   ],
   "taxonomy_strategy": {
@@ -5317,7 +5372,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 479,
-    "bilingual_groups": 479
+    "last_indexed_article": 484,
+    "bilingual_groups": 484
   }
 }
