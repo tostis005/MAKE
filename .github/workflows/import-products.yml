@@ -186,7 +186,7 @@ jobs:
           "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
           "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
 
-          "${DOCKER[@]}" exec make-wp php -r '
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
             require "/var/www/html/wp-load.php";
             $ids=get_posts(array("post_type"=>"product","post_status"=>"publish","posts_per_page"=>-1,"fields"=>"ids","meta_key"=>"_drielo_managed_product","meta_value"=>"1"));
             echo "DRIELO_PRODUCTS=" . count($ids) . PHP_EOL;
