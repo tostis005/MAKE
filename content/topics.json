@@ -4627,6 +4627,61 @@
       "title_es": "C2C Crochet vs crochet tradicional: qué cambia de verdad",
       "title_en": "C2C Crochet vs Traditional Crochet: What Really Changes?",
       "craft": "c2c-crochet"
+    },
+    {
+      "number": 420,
+      "priority": "P3",
+      "section": "buying-guides",
+      "topic": "patterns",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Cómo elegir tu primer patrón de C2C Crochet",
+      "title_en": "How to Choose Your First C2C Crochet Pattern",
+      "craft": "c2c-crochet"
+    },
+    {
+      "number": 421,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "beginners",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Qué es Tapestry Crochet: guía completa para principiantes",
+      "title_en": "What Is Tapestry Crochet? A Complete Beginner's Guide",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 422,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "beginners",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo hacer Tapestry Crochet paso a paso",
+      "title_en": "How to Do Tapestry Crochet Step by Step",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 423,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "pattern-reading",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo leer un gráfico de Tapestry Crochet",
+      "title_en": "How to Read a Tapestry Crochet Chart",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 424,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "color-changes",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo cambiar de color en Tapestry Crochet sin cortes visibles",
+      "title_en": "How to Change Colors in Tapestry Crochet Cleanly",
+      "craft": "tapestry-crochet"
     }
   ],
   "taxonomy_strategy": {
@@ -4657,7 +4712,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 419,
-    "bilingual_groups": 419
+    "last_indexed_article": 424,
+    "bilingual_groups": 424
   }
 }
