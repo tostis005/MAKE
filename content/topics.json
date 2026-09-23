@@ -4902,6 +4902,61 @@
       "title_es": "Cómo ordenar los ovillos en proyectos de Tapestry Crochet",
       "title_en": "How to Organize Yarn for Tapestry Crochet Projects",
       "craft": "tapestry-crochet"
+    },
+    {
+      "number": 445,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "finishing",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo rematar cabos en Tapestry Crochet",
+      "title_en": "How to Weave In Ends in Tapestry Crochet",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 446,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "finishing",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo bloquear Tapestry Crochet sin deformar el dibujo",
+      "title_en": "How to Block Tapestry Crochet Without Distorting the Design",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 447,
+      "priority": "P3",
+      "section": "buying-guides",
+      "topic": "bags",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Bolsos de Tapestry Crochet: qué debe tener un buen patrón",
+      "title_en": "Tapestry Crochet Bags: What to Look for in a Good Pattern",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 448,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "baskets",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Cestas de Tapestry Crochet: hilo, tensión y estructura",
+      "title_en": "Tapestry Crochet Baskets: Yarn, Tension and Structure",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 449,
+      "priority": "P3",
+      "section": "ideas",
+      "topic": "coasters",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Posavasos de Tapestry Crochet para practicar colorwork",
+      "title_en": "Tapestry Crochet Coasters for Practicing Colorwork",
+      "craft": "tapestry-crochet"
     }
   ],
   "taxonomy_strategy": {
@@ -4932,7 +4987,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 444,
-    "bilingual_groups": 444
+    "last_indexed_article": 449,
+    "bilingual_groups": 449
   }
 }
