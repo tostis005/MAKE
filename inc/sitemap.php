@@ -42,6 +42,21 @@ function make_sitemap_urls( string $language ): array {
     $add( $urls, make_home_url( $language ) );
     $add( $urls, make_journal_url( $language ) );
 
+    if ( function_exists( 'make_editorial_craft_config' ) && function_exists( 'make_editorial_craft_url' ) ) {
+        foreach ( array_keys( make_editorial_craft_config() ) as $craft ) {
+            if ( function_exists( 'make_editorial_craft_has_content' ) && ! make_editorial_craft_has_content( (string) $craft, $language ) ) { continue; }
+            $add( $urls, make_editorial_craft_url( (string) $craft, $language ) );
+
+            if ( function_exists( 'make_editorial_sections_for_craft' ) && function_exists( 'make_editorial_craft_section_url' ) ) {
+                foreach ( make_editorial_sections_for_craft( (string) $craft, $language ) as $section ) {
+                    if ( ! empty( $section['id'] ) ) {
+                        $add( $urls, make_editorial_craft_section_url( (string) $craft, (string) $section['id'], $language ) );
+                    }
+                }
+            }
+        }
+    }
+
     if ( function_exists( 'make_shop_view_url' ) ) {
         $add( $urls, make_shop_view_url( 'patterns', $language ) );
         $add( $urls, make_shop_view_url( 'collections', $language ) );
