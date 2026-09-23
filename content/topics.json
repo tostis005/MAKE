@@ -4737,6 +4737,61 @@
       "title_es": "Cómo evitar que el hilo llevado se vea entre los puntos",
       "title_en": "How to Stop Carried Yarn Showing Through Tapestry Crochet",
       "craft": "tapestry-crochet"
+    },
+    {
+      "number": 430,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "technique",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Tapestry Crochet en vueltas vs en filas: diferencias importantes",
+      "title_en": "Tapestry Crochet in the Round vs Rows: Key Differences",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 431,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "technique",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Derecho y revés en Tapestry Crochet: cómo reconocerlos",
+      "title_en": "Right Side vs Wrong Side in Tapestry Crochet",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 432,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "colorwork",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Dominancia del color en Tapestry Crochet: por qué importa",
+      "title_en": "Color Dominance in Tapestry Crochet: Why It Matters",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 433,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "colorwork",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo trabajar Tapestry Crochet con tres o más colores",
+      "title_en": "How to Work Tapestry Crochet with Three or More Colors",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 434,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "project-organization",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Bobinas vs llevar el hilo en Tapestry Crochet",
+      "title_en": "Yarn Bobbins vs Carrying Yarn in Tapestry Crochet",
+      "craft": "tapestry-crochet"
     }
   ],
   "taxonomy_strategy": {
@@ -4767,7 +4822,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 429,
-    "bilingual_groups": 429
+    "last_indexed_article": 434,
+    "bilingual_groups": 434
   }
 }
