@@ -1,0 +1,24 @@
+name: Bring multitech engine forward
+on:
+  push:
+    branches: [regenerate-vivid-clean-p0001-p0020]
+    paths: ['.github/workflows/tmp-bring-multitech-engine.yml']
+permissions:
+  contents: write
+jobs:
+  bring:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - name: Copy existing multitech engine from batch branch
+        run: |
+          set -euo pipefail
+          git fetch origin bulk-multitech-p0002-p0020
+          git checkout origin/bulk-multitech-p0002-p0020 -- content/pattern-system/multitech
+          rm -rf content/pattern-system/multitech/qa
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/pattern-system/multitech
+          git commit -m "Bring multitech generator onto current main [skip ci]"
+          git push origin HEAD:regenerate-vivid-clean-p0001-p0020
