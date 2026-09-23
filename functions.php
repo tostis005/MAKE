@@ -20,6 +20,7 @@ function make_theme_setup(): void {
     // Lean storefront derivatives: large enough for retina cards without shipping medium_large assets.
     add_image_size( 'make-store-card', 560, 560, true );
     add_image_size( 'make-home-product-card', 560, 700, true );
+    add_image_size( 'make-collection-preview', 240, 240, true );
     add_image_size( 'make-product-card', 700, 700, true );
     add_image_size( 'make-journal', 900, 560, true );
     register_nav_menus( array( 'primary' => __( 'Primary menu', 'make' ), 'footer' => __( 'Footer menu', 'make' ) ) );
