@@ -1,3 +1,4 @@
+# Production refresh: rebuild P0001 and P0012 eight-product set with transparent sources and corrected crochet covers.
 #!/usr/bin/env python3
 from __future__ import annotations
 import base64, importlib.util, json, re, shutil, zlib
