@@ -60,13 +60,13 @@ def export_outputs(html_path, pdf_path, product_image_path):
   page.wait_for_function("document.documentElement.getAttribute('data-drielo-ready') === '1'",timeout=120000)
   selector='[data-product-image]'
   if page.locator(selector).count()!=1: raise RuntimeError('Template must expose exactly one [data-product-image] element')
-  page.eval_on_selector(selector,"el=>{el.style.border='0';el.style.boxShadow='none';}")
+  page.eval_on_selector(selector,"el=>{el.style.border='0';el.style.boxShadow='none';el.style.background='transparent';el.style.padding='0';el.style.margin='0';}")
   page.locator(selector).screenshot(path=str(tmp),type='png')
   page.pdf(path=str(pdf_path),format='A4',print_background=True,prefer_css_page_size=True)
   browser.close()
  im=Image.open(tmp).convert('RGB')
  product=ImageOps.fit(im,(1200,1500),method=Image.Resampling.LANCZOS,centering=(0.5,0.5))
- product.save(product_image_path,'WEBP',quality=90,method=6)
+ product.save(product_image_path,'WEBP',quality=92,method=6)
  tmp.unlink(missing_ok=True)
 def render(code,fix=False):
  pp=PRODUCTS/code/'product.json'
