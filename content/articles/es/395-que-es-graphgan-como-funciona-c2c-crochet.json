@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 395,
+  "translation_group": "395-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "graphs",
+      "terms": [
+        "graphs"
+      ]
+    },
+    "style": {
+      "terms": [
+        "graphgan",
+        "charts",
+        "grid-crochet"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "wall-hangings",
+        "cushions"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "es-395-c2c",
+  "language": "es",
+  "locale": "es-ES",
+  "market_context": "Principiantes de C2C interesados en transformar gráficos, pixel art o imágenes en mantas y paneles de crochet.",
+  "title": "Qué es un graphgan y cómo funciona en C2C Crochet",
+  "slug": "que-es-graphgan-como-funciona-c2c-crochet",
+  "seo": {
+    "title": "Qué es un graphgan y cómo funciona en C2C Crochet",
+    "meta_description": "Qué es un graphgan, cómo convierte una cuadrícula en bloques de C2C, qué tipos de patrón existen y qué debes comprobar antes de empezar uno.",
+    "search_intent": "Personas que encuentran la palabra graphgan y quieren entender qué es, cómo se relaciona con una cuadrícula y cómo se teje en C2C."
+  },
+  "excerpt": "Un graphgan convierte una cuadrícula de colores en crochet. En C2C, cada celda suele representar un bloque y las diagonales determinan el orden de trabajo.",
+  "content_html": "<p>Un <em>graphgan</em> es un proyecto de crochet construido a partir de un gráfico de cuadrícula. El nombre combina “graph” y “afghan”, porque muchas de estas piezas empezaron como mantas decoradas con imágenes, letras o motivos pixelados. Hoy el mismo sistema se utiliza también en cojines, tapices de pared y paneles.</p>\n<p>En C2C Crochet, la relación entre gráfico y tejido es especialmente directa: cada casilla de la cuadrícula suele representar un bloque C2C. El color de la casilla indica el hilo y las diagonales del gráfico indican el orden en que los bloques se van trabajando.</p>\n<h2>Un graphgan es una imagen dividida en celdas</h2>\n<p>Piensa en una imagen pixelada. Cada píxel contiene un color definido y ocupa una posición exacta. Un gráfico para crochet funciona de forma parecida: reduce el diseño a una matriz de celdas que puedes contar.</p>\n<p>Una cuadrícula de 50 por 60 contiene 3.000 posiciones posibles. No todas tienen que ser de colores distintos; normalmente una paleta relativamente pequeña se repite para formar la imagen.</p>\n<p>En C2C, esas posiciones se transforman en bloques. El aspecto final conserva la lógica pixelada, pero cada “píxel” tiene la textura del crochet.</p>\n<h2>C2C recorre la cuadrícula en diagonal</h2>\n<p>Aunque el gráfico se vea como filas horizontales, el C2C se construye desde una esquina. La primera vuelta cruza una celda, la segunda dos, la tercera tres y así sucesivamente.</p>\n<p>Por eso muchos patrones incluyen instrucciones escritas que convierten cada diagonal en una secuencia de colores: por ejemplo, cinco bloques crema, dos negros y tres crema.</p>\n<p>El gráfico visual sigue siendo útil para comprobar la forma general, mientras que la secuencia escrita facilita el conteo cuando hay muchos cambios.</p>\n<h2>No todos los graphgans usan la misma técnica</h2>\n<p>La palabra graphgan describe el uso de un gráfico, no un único punto. También existen graphgans trabajados en punto bajo, tapestry crochet, bobble stitch y otras construcciones.</p>\n<p>Un gráfico creado para una técnica puede necesitar ajustes antes de usarlo en otra porque la proporción física de cada unidad cambia. Un bloque C2C suele ocupar más espacio que un punto bajo individual.</p>\n<p>Antes de comprar o descargar un patrón, comprueba qué técnica espera el diseñador y si incluye instrucciones específicas para C2C.</p>\n<h2>El tamaño final depende del tamaño de tus bloques</h2>\n<p>Un gráfico de 80 por 100 celdas no tiene una medida física universal. Con hilo grueso y bloques grandes puede convertirse en una manta enorme; con mini C2C e hilo más fino, el mismo número de celdas ocupa mucho menos.</p>\n<p>Haz una muestra y mide varios bloques juntos. Si diez bloques miden 15 centímetros, puedes estimar 1,5 centímetros por bloque y calcular la anchura aproximada multiplicando.</p>\n<p>Medir diez bloques es más fiable que medir uno porque reduce el efecto de pequeñas variaciones de tensión.</p>\n<h2>La complejidad depende más del color que del tamaño</h2>\n<p>Dos gráficos de las mismas dimensiones pueden tener dificultades muy distintas. Un diseño con grandes zonas de un solo color permite avanzar rápido; otro con cambios cada uno o dos bloques exige más bobinas, más atención y más remates.</p>\n<p>Mira la distribución de colores, no sólo cuántos aparecen en la leyenda. Diez colores usados en zonas grandes pueden resultar más sencillos que cuatro colores alternados constantemente.</p>\n<p>Para un primer graphgan, busca contornos claros, pocas islas pequeñas y una paleta corta. Aprenderás la lectura del gráfico sin convertir cada diagonal en una tarea de organización.</p>\n<h2>Qué debe incluir un buen patrón de graphgan</h2>\n<p>Como mínimo, necesitas una cuadrícula legible, una leyenda de colores y las dimensiones en celdas. Es útil que también indique esquina de inicio, dirección de lectura y técnica de bloque.</p>\n<p>Las instrucciones escritas por diagonales son una ventaja en diseños complejos. También ayuda disponer de una versión ampliada del gráfico o páginas divididas cuando la cuadrícula es grande.</p>\n<p>Revisa que los colores se distingan por algo más que tonos muy similares si vas a imprimir en blanco y negro. Símbolos, letras o códigos reducen errores.</p>\n<p>Antes de empezar, localiza cuatro datos en la primera página: ancho, alto, técnica exacta y paleta. Después identifica dónde comienzan los aumentos y dónde se producen las dos transiciones de un rectángulo o la diagonal central de un cuadrado. Hacer esta lectura previa evita descubrir a mitad de proyecto que estabas interpretando las filas como si fueran horizontales.</p>\n<p>Durante el trabajo, cuenta al final de cada diagonal y marca el gráfico sólo cuando el total coincida. Si una línea contiene 23 celdas, la suma de todos los bloques de color también debe ser 23. Esta comprobación sencilla detecta tanto errores de color como bloques añadidos o perdidos.</p>\n<p>Un graphgan funciona mejor cuando tratas el gráfico como un mapa y no como una fotografía que debes copiar a ojo. Cuenta cada diagonal, marca el progreso y comprueba la imagen de forma periódica. Con esa disciplina, C2C permite convertir una cuadrícula muy sencilla en una pieza textil sorprendentemente detallada.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Manta C2C junto a su gráfico pixelado, con varias celdas conectadas visualmente a los bloques correspondientes.",
+    "alt": "Qué es un graphgan C2C y cómo funciona"
+  }
+}
