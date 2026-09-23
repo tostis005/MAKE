@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/bootstrap-pop-art-25.yml'
+      - '.github/scripts/bootstrap_pop_art_25.py'
   workflow_dispatch:
 
 permissions:
