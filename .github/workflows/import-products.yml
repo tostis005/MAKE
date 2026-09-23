@@ -127,6 +127,27 @@ jobs:
               print(f'{filename}: {target.stat().st_size} bytes')
           PY
 
+      - name: Generate clean featured product images
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow
+          python3 content/tools/generate-featured-images.py
+
+      - name: Persist generated featured images
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/products/assets/*-featured.webp 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "No featured image changes to persist."
+          else
+            git commit -m "Refresh clean product featured images [skip ci]"
+            git push origin HEAD:main
+          fi
+
       - name: Persist refreshed gallery assets
         if: ${{ hashFiles('content/products/gallery-sources.json') != '' || hashFiles('content/products/gallery-bundle-source.json') != '' }}
         shell: bash
@@ -160,9 +181,12 @@ jobs:
           seen_sku = set()
           seen_code = set()
           for row in products:
-              for key in ('code','sku','title','slug','price','collection','gallery','download','filters','design_id','grid_width','grid_height','color_count'):
+              for key in ('code','sku','title','slug','price','collection','gallery','download','filters','design_id','grid_width','grid_height','color_count','featured_image'):
                   if key not in row:
                       raise SystemExit(f"Missing {key} in {row}")
+              featured = Path('content/products') / row['featured_image']
+              if not featured.is_file():
+                  raise SystemExit(f"Missing featured image: {row['featured_image']}")
               required_filters = ('technique','theme','style','project','orientation','difficulty','color-family','season')
               for filter_key in required_filters:
                   if filter_key not in row['filters']:
@@ -195,7 +219,7 @@ jobs:
       - name: Package products
         run: |
           set -euo pipefail
-          tar -czf /tmp/drielo-products.tgz content/products content/tools/import-products.php
+          tar -czf /tmp/drielo-products.tgz content/products content/tools/import-products.php content/tools/generate-featured-images.py
 
       - name: Upload product package
         env:
@@ -269,5 +293,7 @@ jobs:
               raise SystemExit('Drielo shop template is not being rendered')
           if product_links < 1:
               raise SystemExit('Public shop contains no product links')
+          if 'P0001-CS-featured' not in html:
+              raise SystemExit('Clean P0001 featured image is not rendered in the public shop')
           PY
 
