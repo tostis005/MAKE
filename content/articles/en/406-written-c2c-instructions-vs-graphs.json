@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 406,
+  "translation_group": "406-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "pattern-reading",
+      "terms": [
+        "pattern-reading"
+      ]
+    },
+    "style": {
+      "terms": [
+        "written-instructions",
+        "graphs",
+        "pattern-format"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "comparison",
+      "terms": [
+        "comparison"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-406-c2c",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "C2C pattern users who want the format that best reduces mistakes for their design and working style.",
+  "title": "Written C2C Instructions vs Graphs: Which Format Should You Use?",
+  "slug": "written-c2c-instructions-vs-graphs",
+  "seo": {
+    "title": "Written C2C Instructions vs Graphs: Which Format Should You Use?",
+    "meta_description": "Written C2C instructions vs graphs: compare the strengths of each format and learn when using both together makes a graphgan easier to follow.",
+    "search_intent": "Crocheters deciding whether to follow a visual graph or written diagonal instructions in a C2C pattern."
+  },
+  "excerpt": "Graphs show the whole image; written instructions turn each diagonal into a countable sequence. Using both together is often the safest workflow.",
+  "content_html": "<p>A C2C pattern may be presented as a grid graph, as written instructions for each diagonal row, or with both formats. Neither is universally better. Each solves a different part of the job: the graph shows the complete image, while written instructions turn the current diagonal into a sequence you can count.</p>\n<p>The best choice depends on the design, how often colors change and how you prefer to track progress. The device matters too; a large chart behaves very differently on a phone than on an enlarged printout.</p>\n<h2>A graph gives immediate visual context</h2>\n<p>On a grid, you can see where a silhouette begins, how large the background area is and what shape the motif will take several rows ahead.</p>\n<p>That overview helps catch large errors. If a line that should slope right begins moving left, the graph can reveal the problem well before the image is finished.</p>\n<p>It also helps you plan yarn management because you can inspect upcoming diagonals and decide which bobbins should stay active.</p>\n<p>For asymmetric motifs, the graph is also an orientation reference. Letters, numbers and faces are much easier to verify visually than from a long list of codes.</p>\n<h2>Written instructions reduce cell-by-cell counting</h2>\n<p>A line such as “5 cream, 2 black, 1 red, 4 cream” turns a visual row into an executable sequence. You do not need to locate every individual grid cell while holding the project.</p>\n<p>This is particularly useful on long diagonals. A row containing 70 cells can be awkward to follow visually on a small screen or printed page.</p>\n<p>Written sequences also make totals easy to verify: 5 + 2 + 1 + 4 equals 12. If the row should contain 12 blocks, you have an immediate structural check.</p>\n<p>When color codes are consistent, you can underline the active line and work with fewer eye movements between chart and fabric.</p>\n<h2>Graphs are stronger for shape and orientation</h2>\n<p>When the design includes lettering, faces or other asymmetric elements, seeing the picture helps keep orientation clear. A list of colors may not reveal that a letter is being mirrored until much later.</p>\n<p>A graph is also intuitive when diagnosing an error. You can point to the exact wrong cell and compare it with neighboring positions.</p>\n<p>For makers who think visually, a marked grid may feel faster and less abstract than reading many abbreviations.</p>\n<p>The graph also shows trends. If a black area should expand over five diagonals, you can see that progression at once instead of remembering five separate written lines.</p>\n<h2>Written instructions are stronger on complex sequences</h2>\n<p>On a diagonal with changes every one or two blocks, counting directly from the graph requires constant eye movement between crochet and chart. A written line concentrates the information.</p>\n<p>It also helps when printed colors are similar. If every yarn has a clear code, a sequence such as A4, C2, B1 can be less ambiguous than distinguishing several grays.</p>\n<p>The weakness is that a typo in the written line may be difficult to recognize without a graph for comparison. Both formats should therefore come from the same pattern version.</p>\n<p>If you edit the graph yourself, remember that the written instructions are now outdated. Changing one cell can affect different diagonal sequences depending on its position.</p>\n<h2>Using both creates a useful double-check</h2>\n<p>An efficient workflow is to preview the diagonal on the graph, crochet the written sequence, then verify the final block total.</p>\n<p>Mark the row complete on both formats or use one as the main progress record and the other as reference. The important thing is never to lose track of the last finished diagonal.</p>\n<p>If the written sequence and graph disagree, stop. Do not guess which one is correct; recheck the legend, orientation and any correction notes from the designer.</p>\n<p>On a large project, record the direction of the next row too. A row number alone may not be enough to resume confidently several days later.</p>\n<h2>Choose the format to match the project</h2>\n<p>For a simple motif with large color areas, the graph alone may be enough. For a portrait with constant changes, written instructions can save a large amount of counting.</p>\n<p>On a phone, a list may be easier to read than a huge grid. On a large tablet or enlarged printout, the graph becomes much more comfortable.</p>\n<p>If you are new to C2C, using both formats on the first few projects teaches you how diagonal rows, color sequences and the visual image relate. Later you can decide which system best fits your working style.</p>\n<p>You can also switch formats by section: use the list through a complicated motif and rely more heavily on the graph when you reach broad background areas. One project does not require one tracking method from beginning to end.</p>\n<p>A well-designed pattern should not force you to choose between visual context and counting precision. When both are available, the graph tells you where you are inside the image and the written instructions tell you exactly what to crochet on that row.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Split page showing a colored C2C graph on one side and written block sequences on the other, linked by arrows.",
+    "alt": "Written C2C instructions compared with graph charts"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 408,
+  "translation_group": "408-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "troubleshooting",
+      "terms": [
+        "troubleshooting"
+      ]
+    },
+    "style": {
+      "terms": [
+        "straight-edges",
+        "shaping",
+        "troubleshooting"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-408-c2c",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "C2C blanket and panel makers improving block counts, tension and edge finishing.",
+  "title": "How to Get Straight Edges in C2C Crochet",
+  "slug": "get-straight-edges-c2c-crochet",
+  "seo": {
+    "title": "How to Get Straight Edges in C2C Crochet",
+    "meta_description": "Get straighter C2C crochet edges by controlling increases, decreases, chain tension, corners and finishing without distorting the fabric.",
+    "search_intent": "Crocheters whose C2C edges look wavy, uneven or have inconsistent steps and want a cleaner overall outline."
+  },
+  "excerpt": "C2C edges are naturally stepped, but the overall line should be consistent. Learn how counting, tension and decreases create cleaner straight edges.",
+  "content_html": "<p>A C2C edge is not smooth like a row of single crochet. It is made of small steps. Even so, the overall line should progress consistently. When some blocks project outward, others pull inward or one corner changes angle, the cause is usually block count, tension or inconsistent decreasing.</p>\n<p>Before trying to hide the problem with a decorative border, check the structure. Edging can soften normal steps, but it cannot truly repair geometry that is already wrong.</p>\n<h2>Count blocks before blaming tension</h2>\n<p>The first check is numerical. During increases, each row should follow the planned progression; during decreases, it should lose exactly the blocks required by the shape.</p>\n<p>One accidental extra block creates a projection. One block removed too soon creates an indentation. From a distance, both can look like a tension problem.</p>\n<p>Count at the end of each diagonal around shaping transitions. On a rectangle, clearly mark which edge is increasing and which is decreasing.</p>\n<p>If the problem appears suddenly, compare the block count with two or three previous rows. An abrupt change usually has a specific structural cause.</p>\n<h2>Make edge chains with consistent length</h2>\n<p>Starting chains form part of the outside of the blocks. If some are loose and others tight, the steps along the edge will have different sizes.</p>\n<p>Aim for comfortable, repeatable tension. Do not tighten chains simply because they sit on the edge; an overly short chain can pull the corner inward.</p>\n<p>If your first chains after a break feel different, make one or two practice blocks on scrap yarn before returning to the large project.</p>\n<p>Using the same hook matters too. Two hooks labeled with the same size but made from different materials can subtly change edge tension.</p>\n<h2>Decrease from the same structural point every time</h2>\n<p>A C2C decrease normally begins by slip stitching across to the next chain space. If you travel farther on some rows than others, the edge loses consistency.</p>\n<p>Follow the same pattern recipe every time. Count the slip stitches during the first few decrease rows if that helps establish the motion.</p>\n<p>Avoid making those slip stitches much tighter than the rest of the fabric. An overly tight decrease edge can curve inward even when the block count is correct.</p>\n<p>Watch the first and last join of each row. Those are common places to add one accidental block out of habit or stop one block too early.</p>\n<h2>Check the work on a flat surface</h2>\n<p>Every several rows, lay the project down without stretching. Look at the overall side line instead of focusing on one block.</p>\n<p>A mild wave may relax after resting or blocking. A sudden change of direction more often indicates a structural mistake.</p>\n<p>Use a long ruler or the edge of a table as a visual reference. Every step does not need to touch a mathematically perfect line, but the progression should look regular.</p>\n<p>Measure opposite sides once the project has a defined shape. If one side is several inches longer with the same block count, sustained tension variation may be involved.</p>\n<h2>Blocking can improve an edge but cannot rebuild it</h2>\n<p>Appropriate blocking helps relax small tension differences and encourages the steps to sit more evenly.</p>\n<p>Do not aggressively stretch one side several inches to compensate for missing blocks. The distortion may return after washing.</p>\n<p>When the fiber can be blocked, work from the center toward the edges and compare opposite sides. With acrylic, use a method appropriate to the fiber and avoid heat that could damage it.</p>\n<p>Take a photo before and after. If the edge only looks straight while pinned and immediately returns to its old shape, finishing was not the only issue.</p>\n<h2>A final border can create a cleaner visual line</h2>\n<p>Once you know the structure is correct, a round of single crochet around the piece can soften the stepped outline.</p>\n<p>Distribute stitches evenly. Too many stitches cause ruffling; too few pull the edge inward and round the corners.</p>\n<p>Add enough space at corners to turn without tension. Begin with one simple foundation round before adding a wider decorative border.</p>\n<p>Divide long sides into quarters with markers and distribute stitches section by section. This makes consistent density easier on a large blanket.</p>\n<h2>Fix drift early instead of compensating later</h2>\n<p>If an edge starts moving away from the planned line, do not add or remove blocks several rows later simply to “get back” to shape. That creates another irregular step and can shift the graph.</p>\n<p>Return to the point where the count or tension clearly changed. Frogging a few rows is usually less work than trying to disguise a distorted outline at the end.</p>\n<p>Straight-looking C2C edges begin long before the final edging. Correct counting, consistent chains and repeatable decreases create the geometry; blocking and a border only refine what is already sound.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Uneven C2C edge beside a regular one, with a straight guide line showing how the steps should align.",
+    "alt": "How to get straight edges in C2C crochet"
+  }
+}
