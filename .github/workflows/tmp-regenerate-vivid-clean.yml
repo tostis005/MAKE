@@ -1,0 +1,144 @@
+name: Regenerate vivid clean P0001-P0020
+on:
+  push:
+    branches: [regenerate-vivid-clean-p0001-p0020]
+    paths: ['.github/workflows/tmp-regenerate-vivid-clean.yml']
+permissions:
+  contents: write
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install renderer
+        run: |
+          set -euo pipefail
+          python -m pip install pillow playwright
+          python -m playwright install --with-deps chromium
+      - name: Regenerate all 80 products
+        run: |
+          set -euo pipefail
+          python content/pattern-system/multitech/bulk_generate.py --start 1 --end 20 --workers 4
+      - name: Validate batch
+        run: |
+          set -euo pipefail
+          php -l content/tools/import-products.php
+          python - <<'PY'
+          import json,pathlib,re
+          root=pathlib.Path('content/products')
+          cat=json.loads((root/'catalog.json').read_text())
+          products=cat['products']
+          expected={f'P{i:04d}-{s}' for i in range(1,21) for s in ('CS','C2C','TC','LH')}
+          got={p['code'] for p in products}
+          assert got==expected,(len(got),sorted(expected-got),sorted(got-expected))
+          assert len({p['sku'] for p in products})==80
+          for p in products:
+              pdf=root/p['download']; img=root/p['gallery'][0]
+              assert pdf.is_file() and pdf.stat().st_size>100000,(p['code'],pdf)
+              assert img.is_file() and img.stat().st_size>10000,(p['code'],img)
+              assert p['gallery_revision']==20260923,(p['code'],p['gallery_revision'])
+              assert len(p['gallery'])==1,p['code']
+          print('VALIDATED_PRODUCTS=80')
+          print('PDF_BYTES=',sum((root/p['download']).stat().st_size for p in products))
+          print('IMAGE_BYTES=',sum((root/p['gallery'][0]).stat().st_size for p in products))
+          PY
+      - name: Persist source JSON, catalogue and product images
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/products/catalog.json content/products/assets/P*-product.webp content/pattern-system/products/P* content/pattern-system/patterns/P*
+          if git diff --cached --quiet; then
+            echo "No generated source changes."
+          else
+            git commit -m "Regenerate P0001-P0020 with vivid colour and clean crops [skip ci]"
+            git push origin HEAD:regenerate-vivid-clean-p0001-p0020
+          fi
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_regen_key
+          chmod 600 ~/.ssh/drielo_regen_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+      - name: Package only regenerated payload
+        run: |
+          set -euo pipefail
+          tar -czf /tmp/drielo-common.tgz content/products/catalog.json content/products/assets/P*-product.webp content/tools/import-products.php
+          tar -czf /tmp/drielo-CS.tgz content/products/files/Drielo_P*-CS.pdf
+          tar -czf /tmp/drielo-C2C.tgz content/products/files/Drielo_P*-C2C.pdf
+          tar -czf /tmp/drielo-TC.tgz content/products/files/Drielo_P*-TC.pdf
+          tar -czf /tmp/drielo-LH.tgz content/products/files/Drielo_P*-LH.pdf
+          ls -lh /tmp/drielo-*.tgz
+      - name: Upload payload in parallel
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          pids=""
+          for f in common CS C2C TC LH; do
+            scp -q -i ~/.ssh/drielo_regen_key "/tmp/drielo-$f.tgz" "$VPS_USER@$VPS_HOST:/tmp/drielo-$f-${GITHUB_RUN_ID}.tgz" &
+            pids="$pids $!"
+          done
+          for p in $pids; do wait "$p"; done
+      - name: Import PDFs, images and metadata into WooCommerce
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_regen_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          STAGE="/tmp/drielo-regen-${GITHUB_RUN_ID}"
+          cleanup(){
+            rm -rf "$STAGE"
+            rm -f /tmp/drielo-{common,CS,C2C,TC,LH}-"${GITHUB_RUN_ID}".tgz
+          }
+          trap cleanup EXIT
+          mkdir -p "$STAGE"
+          for f in common CS C2C TC LH; do
+            tar -xzf "/tmp/drielo-$f-${GITHUB_RUN_ID}.tgz" -C "$STAGE"
+          done
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
+          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M -r '
+            require "/var/www/html/wp-load.php";
+            $ids=get_posts(array("post_type"=>"product","post_status"=>"publish","posts_per_page"=>-1,"fields"=>"ids","meta_key"=>"_drielo_managed_product","meta_value"=>"1"));
+            $codes=array(); $bad=0;
+            foreach($ids as $id){
+              $p=wc_get_product($id); if(!$p) continue;
+              $sku=$p->get_sku();
+              if(preg_match("/^DRIELO-(P\d{4}-(CS|C2C|TC|LH))$/",$sku,$m)){
+                $codes[$m[1]]=1;
+                $images=1+count($p->get_gallery_image_ids());
+                $downloads=count($p->get_downloads());
+                if($p->get_status()!=="publish" || $images!==1 || $downloads!==1){
+                  echo "BAD ".$sku." status=".$p->get_status()." images=".$images." downloads=".$downloads.PHP_EOL;
+                  $bad++;
+                }
+              }
+            }
+            $missing=array();
+            for($i=1;$i<=20;$i++){
+              $base=sprintf("P%04d",$i);
+              foreach(array("CS","C2C","TC","LH") as $s){
+                $c=$base."-".$s; if(empty($codes[$c])) $missing[]=$c;
+              }
+            }
+            echo "DRIELO_PRODUCTS=".count($ids).PHP_EOL;
+            echo "TECH_PRODUCTS=".count($codes).PHP_EOL;
+            echo "BAD_PRODUCTS=".$bad.PHP_EOL;
+            echo "MISSING=".implode(",",$missing).PHP_EOL;
+            if(count($ids)!==80 || count($codes)!==80 || $bad || $missing) exit(2);
+          '
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
+          REMOTE
