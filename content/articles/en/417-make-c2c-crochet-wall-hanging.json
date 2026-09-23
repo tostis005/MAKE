@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 417,
+  "translation_group": "417-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "ideas",
+      "terms": [
+        "ideas"
+      ]
+    },
+    "topic": {
+      "primary": "wall-hangings",
+      "terms": [
+        "wall-hangings"
+      ]
+    },
+    "style": {
+      "terms": [
+        "wall-hanging",
+        "graphgan",
+        "decor"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-417-c2c",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Crocheters turning graphgans into lighter, more structured decorative panels instead of blankets.",
+  "title": "How to Make a C2C Crochet Wall Hanging",
+  "slug": "make-c2c-crochet-wall-hanging",
+  "seo": {
+    "title": "How to Make a C2C Crochet Wall Hanging",
+    "meta_description": "Make a C2C wall hanging by calculating scale, choosing yarn, stabilizing edges, adding a hanging system and finishing the reverse cleanly.",
+    "search_intent": "People using a C2C graph as wall decor who need to plan scale, stability, hanging hardware and reverse-side finishing."
+  },
+  "excerpt": "A C2C wall hanging needs different scale and finishing than a blanket. Learn how to create a stable, lightweight panel that hangs cleanly.",
+  "content_html": "<p>A C2C graph does not always need to become a blanket. As a wall hanging, an image can use less yarn, occupy less space and display the design without the wear of an everyday textile.</p>\n<p>The priorities change. Soft drape matters less, while visual scale, edge stability, weight and the hanging system become more important. Planning those factors from the beginning prevents a panel that stretches as soon as it hangs vertically.</p>\n<h2>Calculate size for the wall rather than the body</h2>\n<p>Measure the area where the piece will hang and leave visual space around it. A panel that fills every inch of the available wall can feel heavier than one with a deliberate margin.</p>\n<p>Make a C2C swatch and calculate physical block size. A graph that would create a large blanket can often be reduced with mini C2C or finer yarn.</p>\n<p>Consider viewing distance too. A motif seen from several feet away can use somewhat larger blocks without losing readability.</p>\n<p>Mark the predicted dimensions on the wall with removable tape before crocheting. This makes the scale much easier to judge in the actual room.</p>\n<p>If the hanging will sit above furniture, consider its relationship to that width as well. A panel can be technically the right size and still look visually undersized.</p>\n<h2>Choose yarn for weight and definition</h2>\n<p>A wall hanging does not usually need frequent washing, but it does need to stay reasonably flat. Yarn with good stitch definition helps the blocks read as a clear grid.</p>\n<p>Avoid excessive weight on a large panel. Heavy fabric can stretch the top edge over time.</p>\n<p>Cotton, acrylic and blends can all work; the best choice depends on texture and size. Make a swatch and hold it vertically to see how it behaves.</p>\n<p>A palette with enough contrast also helps the graph remain readable from normal room distance.</p>\n<p>With very elastic yarn, check whether the swatch lengthens when hanging. A fiber that works beautifully in a blanket may need more stabilization on a wall.</p>\n<h2>Crochet and block the panel for stability</h2>\n<p>Work the graph with consistent tension and monitor the corners. Crooked edges are particularly visible on an object hanging vertically.</p>\n<p>After finishing, secure the ends and block appropriately for the fiber. Aim for a flat, proportionate panel rather than forcing the image into shape.</p>\n<p>If the stepped sides feel too irregular, one foundation round of single crochet can soften the outline and create a useful edge for hanging.</p>\n<p>Measure again after blocking before cutting any dowel or support.</p>\n<p>Hang the blocked panel temporarily and measure once more. Gravity may change its proportions slightly compared with measurements taken flat.</p>\n<h2>Choose a hanging system that spreads the weight</h2>\n<p>A wooden dowel threaded through loops along the top is a simple option. You can also sew a narrow sleeve to the reverse and slide the rod through it.</p>\n<p>For small panels, several rings or loops may be enough. Avoid supporting a large piece from only two extreme points because the top edge may sag between them.</p>\n<p>The rod can extend slightly beyond the panel or sit visually inside the design, depending on the style you want.</p>\n<p>Make sure the system allows the hanging to be removed if it needs cleaning or storage.</p>\n<p>Space suspension points evenly. If one loop carries much more weight than the others, that section can gradually stretch.</p>\n<h2>Decide how finished the reverse side needs to be</h2>\n<p>If the panel sits against the wall, the back does not need to be as decorative as the front, but long strands should still be secure.</p>\n<p>A fabric backing can protect yarn ends, add stability and hide color changes. It also prevents a pale wall from showing strongly through open C2C spaces.</p>\n<p>Without backing, weave ends carefully and avoid long floats that could snag during installation.</p>\n<p>Keep access to the hanging sleeve or loops even when adding a lining.</p>\n<p>A lightweight backing can be secured mainly around the perimeter with a few interior anchor points so the crochet retains some flexibility.</p>\n<h2>Evaluate the piece in its installed position</h2>\n<p>Look at the wall hanging vertically rather than only flat on a table. Gravity can reveal waves that were not obvious in a horizontal position.</p>\n<p>If the bottom curls, a slightly firmer border may help. Avoid adding excessive weight simply to force it down, because that can stretch the entire panel.</p>\n<p>Check the image from the normal viewing distance of the room. Small details should merge into the overall motif.</p>\n<p>Consider lighting too. Strong side light can reveal dark carried strands behind pale blocks; a neutral backing can improve the appearance if that happens.</p>\n<p>A successful C2C wall hanging is designed as a vertical object from the beginning. Scale, yarn, border and hanging method should work together to keep the grid stable and let the graph remain the focal point.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "C2C wall hanging on a wooden dowel beside a swatch, stabilized border and several hanging options.",
+    "alt": "How to make a C2C crochet wall hanging"
+  }
+}
