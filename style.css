@@ -880,26 +880,33 @@ body{background:var(--mk-cream);color:var(--mk-ink)}
 .drielo-shop-views a.is-active{background:var(--mk-plum);color:#fff}
 
 .drielo-collection-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
-.drielo-collection-card:only-child{grid-column:1/-1;width:min(100%,900px)}
 .drielo-collection-card{
   overflow:hidden;border:1px solid var(--mk-line);border-radius:26px;background:#fffaf9;
   box-shadow:0 8px 30px rgba(92,63,76,.025);transition:transform .22s ease,box-shadow .22s ease
 }
 .drielo-collection-card:hover{transform:translateY(-4px);box-shadow:var(--mk-shadow)}
 .drielo-collection-media{
-  position:relative;display:block;aspect-ratio:16/10;overflow:hidden;
+  position:relative;display:block;aspect-ratio:3/2;overflow:hidden;
   background:linear-gradient(145deg,#f0dfe3,#e6d8d5)
 }
 .drielo-collection-media>img{width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
 .drielo-collection-thumbs{
   width:100%;height:100%;display:grid;
-  grid-template-columns:repeat(var(--drielo-collection-columns,3),minmax(0,1fr));
-  gap:2px;padding:2px;background:#eadfe0
+  grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));
+  gap:3px;padding:3px;background:#eadfe0
 }
 .drielo-collection-thumbs img{
   width:100%;height:100%;min-width:0;min-height:0;object-fit:cover;
-  border-radius:2px;transition:transform .25s ease,filter .25s ease
+  border-radius:3px;transition:transform .25s ease,filter .25s ease
 }
+.drielo-collection-thumbs.has-desktop-overflow img:nth-of-type(n+6){display:none}
+.drielo-collection-more{
+  min-width:0;min-height:0;display:grid;place-content:center;text-align:center;
+  background:linear-gradient(145deg,#f3e7e9,#e5d5d9);color:var(--mk-plum)
+}
+.drielo-collection-more b{display:block;font:700 30px/1 ui-monospace,SFMono-Regular,Menlo,monospace}
+.drielo-collection-more small{display:block;margin-top:5px;font-size:9px;font-weight:850;letter-spacing:.08em;text-transform:uppercase}
+.drielo-collection-more--mobile{display:none}
 .drielo-collection-card:hover .drielo-collection-media>img{transform:scale(1.025)}
 .drielo-collection-card:hover .drielo-collection-thumbs img{filter:saturate(1.03);transform:scale(1.012)}
 .drielo-collection-placeholder{
@@ -1000,8 +1007,11 @@ body{background:var(--mk-cream);color:var(--mk-ink)}
   .drielo-shop-views{display:flex;width:100%}
   .drielo-shop-views a{flex:1;justify-content:center;padding:0 11px;text-align:center}
   .drielo-collection-grid{grid-template-columns:1fr}
-  .drielo-collection-card:only-child{grid-column:auto;width:100%}
-  .drielo-collection-media{aspect-ratio:16/10}
+  .drielo-collection-media{aspect-ratio:4/3}
+  .drielo-collection-thumbs{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr))}
+  .drielo-collection-thumbs.has-mobile-overflow img:nth-of-type(n+4){display:none}
+  .drielo-collection-thumbs.has-mobile-overflow .drielo-collection-more--desktop{display:none}
+  .drielo-collection-thumbs.has-mobile-overflow .drielo-collection-more--mobile{display:grid}
   .drielo-collection-copy p{min-height:0}
   .drielo-addon-head{flex-direction:column}
   .drielo-addon-price{align-self:flex-start}
