@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 432,
+  "translation_group": "432-tapestry-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "tapestry-crochet",
+      "terms": [
+        "tapestry-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "colorwork",
+      "terms": [
+        "colorwork"
+      ]
+    },
+    "style": {
+      "terms": [
+        "color-dominance",
+        "tapestry-crochet",
+        "colorwork"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "bags",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-432-tapestry",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Intermediate tapestry makers seeking consistent color boundaries and balanced two- or multi-color motifs.",
+  "title": "Color Dominance in Tapestry Crochet: Why It Matters",
+  "slug": "color-dominance-tapestry-crochet-why-it-matters",
+  "seo": {
+    "title": "Color Dominance in Tapestry Crochet: Why It Matters",
+    "meta_description": "Understand color dominance in tapestry crochet, how yarn position and tension make one shade stand out and how to keep boundaries consistent.",
+    "search_intent": "Crocheters who notice one color looking wider or more prominent at tapestry boundaries and want to understand how yarn position and tension affect dominance."
+  },
+  "excerpt": "Two tapestry colors do not always occupy the same visual space. Learn how yarn position and tension can make one shade dominate the motif.",
+  "content_html": "<p>In tapestry crochet, two colors occupying the same number of chart stitches do not always carry exactly the same visual weight. One shade may spread slightly at boundaries, look more continuous or dominate a narrow line.</p>\n<p>This effect is generally described as color dominance and is influenced by how the yarns are held, positioned and tensioned during colorwork. It is not automatically a problem; sometimes it can be used to strengthen the main motif.</p>\n<h2>Dominance shows most clearly at color boundaries</h2>\n<p>When one yarn consistently sits in a more favorable position inside the stitch, a little more of it can appear on the surface.</p>\n<p>On thin lines or tiny details, that small difference may make one color look thicker even when the chart is symmetrical.</p>\n<p>The effect is easiest to see in regular repeats such as diamonds, one-stitch stripes or alternating motifs.</p>\n<p>Make a two-color swatch with narrow columns and observe which shade visually occupies more space.</p>\n<p>Then view the swatch from normal distance. Dominance that looks dramatic in a close-up can be subtle in the actual object.</p>\n<h2>The relative position of the yarns matters</h2>\n<p>If color A is always held above, in front of or in another consistent position relative to color B, the two yarns do not travel through exactly the same path inside the fabric.</p>\n<p>That repeated order can give one shade a visual advantage and change the apparent thickness of a line.</p>\n<p>There is no single universal hand position that creates the “correct” result for every stitch style and crocheter. The important point is that changing the order halfway through can change appearance.</p>\n<p>Once you find a yarn arrangement you like, repeat it deliberately.</p>\n<p>When using bobbins, keep them in a consistent order so yarn positions do not switch accidentally when the work is turned.</p>\n<h2>Tension can imitate color dominance</h2>\n<p>A color worked more loosely creates larger loops and may look wider. Another shade held more tightly can retract and lose presence.</p>\n<p>This often happens when one yarn feeds freely from a ball while another comes from a bobbin that creates resistance.</p>\n<p>Compare stitch size in solid-color areas. If one color is already larger before reaching a boundary, the issue is tension rather than only yarn position.</p>\n<p>Equalize yarn feed first, then evaluate visual dominance.</p>\n<p>Also check whether one yarn is physically a little thicker. Two yarns labeled the same weight can still occupy different volumes.</p>\n<h2>Decide which color should stand out</h2>\n<p>On some charts, allowing the main motif to have slightly more presence than the background can improve readability.</p>\n<p>On perfectly balanced geometric patterns, you may prefer both shades to have similar visual weight.</p>\n<p>Make two small swatches with the relative yarn positions reversed. Compare them from normal viewing distance and choose the result that supports the design.</p>\n<p>There is no need to chase microscopic symmetry when the motif already reads clearly.</p>\n<p>On thin lettering, slightly favoring the text color may improve legibility. On a checkerboard, the same dominance can make the pattern look unbalanced.</p>\n<h2>Keep the yarn strategy consistent through the project</h2>\n<p>The biggest problem is usually not choosing one dominance or another but changing it unintentionally.</p>\n<p>If the background yarn occupies one position for the first twenty rows and then the hand arrangement switches, color boundaries may suddenly look different.</p>\n<p>Keep yarn balls in stable positions or label them so the holding order is easy to remember.</p>\n<p>On long projects, a quick photo of your yarn arrangement can help when you return several days later.</p>\n<p>If you change hook size, insertion method or stitch technique midway, test dominance again because the relationship between the colors can change too.</p>\n<h2>Use a swatch to separate dominance from other problems</h2>\n<p>Make a small chart containing one-stitch vertical and horizontal lines. Crochet one version favoring A, then another with the relative yarn positions reversed.</p>\n<p>Measure gauge and check carried-yarn tension too. If one swatch narrows, you are not comparing dominance alone.</p>\n<p>Wash or block both samples and inspect them again because some differences relax while others remain.</p>\n<p>Photograph the swatches in color and grayscale. Removing hue helps separate structural dominance from a simple lightness or contrast difference.</p>\n<p>With three or more colors, evaluate the main color pairs first. Looking at every yarn relationship at once makes it harder to identify which placement is producing the effect.</p>\n<p>Color dominance is not automatically a defect. It is one consequence of how yarns interact inside the stitch. Once you understand the effect and keep yarn position consistent, you can either use dominance to strengthen a motif or minimize it for a more balanced result.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Two swatches of the same tapestry motif with opposite dominance: color A stands out in one and color B in the other.",
+    "alt": "Color dominance in tapestry crochet"
+  }
+}

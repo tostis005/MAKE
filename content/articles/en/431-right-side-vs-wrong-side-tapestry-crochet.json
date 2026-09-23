@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 431,
+  "translation_group": "431-tapestry-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "tapestry-crochet",
+      "terms": [
+        "tapestry-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "technique",
+      "terms": [
+        "technique"
+      ]
+    },
+    "style": {
+      "terms": [
+        "right-side",
+        "wrong-side",
+        "fabric-faces"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "bags",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-431-tapestry",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Flat and in-the-round tapestry makers who need to identify the presentation face and keep colorwork finishing consistent.",
+  "title": "Right Side vs Wrong Side in Tapestry Crochet",
+  "slug": "right-side-vs-wrong-side-tapestry-crochet",
+  "seo": {
+    "title": "Right Side vs Wrong Side in Tapestry Crochet",
+    "meta_description": "Recognize the right and wrong sides of tapestry crochet by examining stitches, color changes, carried yarn, seams and working direction.",
+    "search_intent": "Crocheters who are unsure which face to present in tapestry crochet or how stitches, carried yarn and color changes differ between front and back."
+  },
+  "excerpt": "Both faces of tapestry crochet can look similar, but color changes and carried yarn usually reveal a cleaner right side. Learn how to identify it.",
+  "content_html": "<p>In tapestry crochet, the right and wrong sides can look surprisingly similar, particularly when carried yarn is enclosed neatly. Even so, one face usually shows cleaner color boundaries while the other reveals small bars, tails or changes in strand placement.</p>\n<p>Knowing which face you consider the front helps maintain consistency, especially on flat pieces that are turned after every row. It also simplifies where yarn ends are hidden, how the piece is blocked and which face is oriented outward.</p>\n<h2>Compare the stitch structure on both faces</h2>\n<p>Single crochet looks different from the front and back. Small bars and the direction of the stitch columns change visually.</p>\n<p>Make a one-color swatch and place a marker on the first face. Turn it several times and learn to recognize that side without relying on the chart.</p>\n<p>When colorwork is added, those structural differences remain underneath the motif.</p>\n<p>If the pattern identifies a right side, use that reference even if you personally like the reverse texture too.</p>\n<p>A close-up photo of both faces can help you remember the structural differences on later projects.</p>\n<h2>Color changes often reveal the wrong side</h2>\n<p>On a well-timed transition, the front usually shows a relatively crisp boundary. The reverse may reveal small bars of the previous shade or places where the carried yarn changes position.</p>\n<p>That does not mean the back is badly made. It is simply a result of how the yarns are enclosed and exchanged.</p>\n<p>Compare several transitions rather than judging one imperfect change.</p>\n<p>The face with more consistent boundaries is usually the better presentation side.</p>\n<p>On strongly geometric motifs, vertical and diagonal lines are especially useful for judging which face preserves the chart definition better.</p>\n<h2>Yarn tails and parked strands offer another clue</h2>\n<p>If you park colors, cut yarn or change bobbins, it is common to keep tails and small transitions toward the side you consider the reverse.</p>\n<p>In tidy tapestry crochet, the carried yarn can remain enclosed on both faces, but its position often shows slightly more on the back.</p>\n<p>Decide early where finishing ends should live. Randomly switching sides leaves technical marks on both faces.</p>\n<p>A lined bag can tolerate a more functional reverse, while a reversible coaster may need greater cleanliness on both sides.</p>\n<p>If backing will be added, the reverse is also the logical place to concentrate joins and tails because they will be protected.</p>\n<h2>Mark the right side on flat projects</h2>\n<p>Because the work is turned constantly, it is easy to forget which face should be visible when the piece is finished.</p>\n<p>Place a locking marker or small contrasting thread on the intended front during the first few rows.</p>\n<p>This is especially useful on symmetrical charts where the image itself gives no orientation clue.</p>\n<p>When stopping, also note whether the next row begins with the right or wrong side facing you.</p>\n<p>With lettering, check early that the text reads correctly from the intended front. Discovering a mirrored setup twenty rows later is much more costly.</p>\n<h2>In the round, the right side normally remains outward</h2>\n<p>When crocheting a bag or basket without turning, the exterior usually stays facing you or outward throughout the project.</p>\n<p>Some makers prefer holding the tube inside out while working and flipping it at the end. In that case, the face you are looking at during crochet is not the eventual exterior.</p>\n<p>Define orientation before the colorwork begins and mark the outside if necessary.</p>\n<p>The round seam and joins can also help identify which side the pattern intended to display.</p>\n<p>Before fastening off, place the object in its finished orientation and confirm that the chosen face will actually end up outside after any turning or assembly.</p>\n<h2>Right side is not a universal aesthetic rule</h2>\n<p>Some tapestry fabrics are clean enough on both faces to be reversible. In others, the designer chooses a right side simply because the motif reads better there.</p>\n<p>For your own design, you can choose whichever face you prefer as long as color changes and finishing remain consistent.</p>\n<p>Photograph both sides from normal viewing distance. Technical details that look obvious inches away may disappear completely in actual use.</p>\n<p>Consider touch as well. One face can look equally clean but feel rougher because of tails or transitions, which matters for cushions and accessories.</p>\n<p>Before seaming panels, adding a zipper or attaching a lining, mark the right side of every piece again. Assembly is a common moment to flip one panel accidentally and discover the mismatch only after sewing.</p>\n<p>Recognizing the right and wrong sides comes from combining stitch structure, color-change cleanliness and tail placement. Marking the chosen face early prevents accidental reversal and keeps all finishing concentrated on the less visible side.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Both faces of the same tapestry swatch labeled right side and wrong side with details of color changes and internal yarn.",
+    "alt": "Right side versus wrong side in tapestry crochet"
+  }
+}
