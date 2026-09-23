@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 404,
+  "translation_group": "404-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "technique",
+      "terms": [
+        "technique"
+      ]
+    },
+    "style": {
+      "terms": [
+        "double-crochet",
+        "half-double-crochet",
+        "comparison"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "comparison",
+      "terms": [
+        "comparison"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-404-c2c",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "C2C makers choosing the most suitable block construction for a graphgan before beginning.",
+  "title": "Double Crochet vs Half Double Crochet C2C: What Changes?",
+  "slug": "double-crochet-vs-half-double-crochet-c2c",
+  "seo": {
+    "title": "Double Crochet vs Half Double Crochet C2C: What Changes?",
+    "meta_description": "Double crochet vs half double crochet C2C: compare block size, gaps, drape, speed, yarn use and visual detail before choosing a method.",
+    "search_intent": "Crocheters comparing classic double-crochet C2C with half-double-crochet variations and wanting to understand changes in size, texture and pace."
+  },
+  "excerpt": "Double and half double crochet use the same C2C grid logic but change block size, density, drape and detail. The right choice depends on the project.",
+  "content_html": "<p>Classic C2C is commonly associated with double-crochet blocks, while many mini C2C methods use half double crochet. Both constructions move diagonally through a graph, but they do not produce the same fabric. Block height, density, finished size and working feel all change.</p>\n<p>Choosing the method before you begin can prevent a graphgan from becoming too large, too firm or visually coarser than you intended. The most useful comparison comes from swatches made with the same yarn.</p>\n<h2>Double crochet creates larger blocks</h2>\n<p>Double crochet has more height and is usually paired with longer turning chains. The resulting block occupies more physical space when worked with the same yarn.</p>\n<p>That can make a blanket grow quickly because every block covers a larger area. A moderate graph can reach a generous finished size without requiring extremely bulky yarn.</p>\n<p>The tradeoff is that each graph cell becomes a larger textile pixel. Small details can appear chunkier.</p>\n<p>Taller blocks also tend to create more visible openings and movement. That can give a blanket pleasant drape, although carried yarn may show more easily through the structure.</p>\n<h2>Half double crochet compacts the grid</h2>\n<p>Half double crochet is shorter and creates smaller blocks when used in a mini C2C construction. The same graph therefore occupies fewer inches.</p>\n<p>The surface may also feel denser, with less obvious openings. That can suit panels, cushions and designs where a compact image is desirable.</p>\n<p>Do not assume the fabric will always be stiff. With an appropriate hook it can remain flexible, although it generally feels more compact than an open double-crochet C2C fabric.</p>\n<p>Because the stitch is shorter, half double crochet may also bring the physical block closer to square for some crocheters. Measure rather than assuming, because individual tension changes the result.</p>\n<h2>The difference changes perceived image detail</h2>\n<p>The digital resolution of the graph stays exactly the same: one cell is still one block. What changes is the physical size of that cell.</p>\n<p>With half double crochet, eyes, lettering and diagonal lines may appear finer because every block occupies less space. Double crochet creates a larger, more obvious pixel effect.</p>\n<p>For pop art or deliberately chunky graphics, the larger pixel can be part of the style. Portraits and detailed motifs often benefit from a smaller block scale.</p>\n<p>Look at both swatches as thumbnails or from several feet away. The texture that seems prettier close up is not always the one that makes the graph easiest to read at normal viewing distance.</p>\n<h2>Speed and working comfort differ too</h2>\n<p>Double crochet involves more movements per stitch, but its larger blocks cover physical area quickly. Half double crochet is shorter to execute, yet more work is needed to cover the same number of inches.</p>\n<p>Actual speed depends on the crocheter. Someone who is very comfortable with half double crochet may work faster even though the blocks are smaller.</p>\n<p>Spend ten or fifteen minutes making a sample in each method. Besides size, notice which one requires less hand tension and which makes the joining spaces easier for you to find.</p>\n<p>If one method makes you tighten every chain in an effort to control the image, that working rhythm may not be sustainable across thousands of blocks.</p>\n<h2>Compare gauge, weight and yarn use before deciding</h2>\n<p>Make the same number of blocks in each method with identical yarn and, where practical, similar hook sizes. Measure width, height and weight.</p>\n<p>Double crochet may use more yarn per block because the loops are taller, but the relationship is not always simple because hook size and fabric density change too.</p>\n<p>Estimate the full graph dimensions from each swatch. This turns an abstract preference into a measurable decision.</p>\n<p>For a large project, weigh one hundred blocks in each method. A tiny difference per block becomes meaningful when it is repeated several thousand times.</p>\n<h2>Which method fits which project</h2>\n<p>For a large blanket with a relatively simple graph, classic double crochet offers familiar construction, good drape and blocks that make visible progress quickly.</p>\n<p>For a cushion, wall hanging, high-cell-count graph or a design that needs to stay smaller, half-double-crochet mini C2C may be more practical.</p>\n<p>If you are following a published pattern, check which method was used to calculate its dimensions and instructions. Changing construction can preserve the color sequence when each cell remains one block, but it changes size, consumption and appearance.</p>\n<p>Think about finishing as well. A blanket may benefit from the flexibility of double crochet, while a panel designed to hang flat may suit a firmer, more compact surface.</p>\n<p>There is no universal winner. Double crochet favors larger blocks and a more open texture; half double crochet creates a more compact grid. Choose the method that gives the scale, definition and fabric feel your particular graphgan needs.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Two swatches of the same C2C motif, one in double crochet and one in half double crochet, measured side by side.",
+    "alt": "Double crochet versus half double crochet C2C"
+  }
+}

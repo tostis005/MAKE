@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 401,
+  "translation_group": "401-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "sizing",
+      "terms": [
+        "sizing"
+      ]
+    },
+    "style": {
+      "terms": [
+        "yarn-estimate",
+        "planning",
+        "calculator"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "wall-hangings",
+        "cushions"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "es-401-c2c",
+  "language": "es",
+  "locale": "es-ES",
+  "market_context": "Crocheters que planifican graphgans y necesitan una estimación de consumo total y por color sin quedarse cortos.",
+  "title": "Cómo calcular cuánto hilo necesitas para un proyecto C2C",
+  "slug": "calcular-cuanto-hilo-proyecto-c2c-crochet",
+  "seo": {
+    "title": "Cómo calcular cuánto hilo necesitas para un proyecto C2C",
+    "meta_description": "Calcula cuánto hilo necesitas para C2C usando una muestra pesada o medida, el número de bloques y un margen para cambios de color, colas y borde.",
+    "search_intent": "Personas que tienen un gráfico C2C y quieren estimar cuántos gramos o metros de hilo comprar antes de empezar."
+  },
+  "excerpt": "La forma más fiable de estimar hilo en C2C es medir una muestra real y extrapolar por bloques, añadiendo margen para colas, cambios de color y borde.",
+  "content_html": "<p>Calcular hilo para C2C es más fiable cuando partes de una muestra real que cuando utilizas una cifra genérica por manta. Dos graphgans con las mismas dimensiones pueden consumir cantidades distintas por grosor de hilo, tensión, tamaño de aguja, técnica de bloque y número de cambios de color.</p>\n<p>El método más útil consiste en averiguar cuánto hilo consume un número conocido de bloques y extrapolarlo al patrón completo. Después añades un margen para colas, muestras, borde y pequeñas diferencias de tensión.</p>\n<h2>Empieza por el número total de bloques</h2>\n<p>Si el gráfico es un rectángulo completamente cubierto y cada celda equivale a un bloque, multiplica ancho por alto. Un gráfico de 60 por 80 contiene 4.800 bloques.</p>\n<p>En C2C, aunque se teja en diagonales, el número total de celdas sigue siendo el área de la cuadrícula. Para una imagen con zonas que no se tejen, cuenta sólo las unidades realmente trabajadas si la construcción lo permite.</p>\n<p>Si el patrón incluye un recuento por color, guárdalo: será mucho más útil que el total para decidir cuántos ovillos de cada tono comprar.</p>\n<h2>Pesa una muestra hecha con el mismo hilo y aguja</h2>\n<p>Teje una muestra de tamaño suficiente, por ejemplo 10 por 10 bloques. Remata lo mínimo necesario y pésala en una báscula de cocina capaz de mostrar gramos.</p>\n<p>Si cien bloques pesan 28 g, el consumo medio es de 0,28 g por bloque. Un proyecto de 4.800 bloques necesitaría alrededor de 1.344 g antes de añadir margen.</p>\n<p>Una muestra mayor reduce el error. No utilices un único bloque, porque cadenas iniciales, bordes y colas alteran demasiado la proporción.</p>\n<p>Si el proyecto utiliza dos técnicas de bloque distintas o zonas con una densidad diferente, haz una muestra de cada una. No mezcles consumos que no sean comparables.</p>\n<h2>También puedes estimar por longitud de hilo</h2>\n<p>Si prefieres trabajar en metros o yardas, utiliza una cantidad conocida de hilo. Pesa un ovillo antes y después de la muestra y convierte el peso consumido usando la longitud total indicada en la etiqueta.</p>\n<p>Por ejemplo, si un ovillo de 100 g contiene 240 m y la muestra consume 25 g, has usado aproximadamente 60 m.</p>\n<p>Este método permite comparar con los metros disponibles en cada ovillo, algo útil cuando dos marcas tienen el mismo peso pero longitudes muy distintas.</p>\n<p>No desenrolles y midas manualmente cientos de metros. La relación peso-longitud de la etiqueta es suficiente para una estimación práctica si usas la misma referencia de hilo.</p>\n<h2>Calcula cada color cuando el graphgan sea multicolor</h2>\n<p>Un total de 1.300 g no te dice cómo repartir la compra entre diez tonos. Utiliza los recuentos por color del patrón si están disponibles.</p>\n<p>Multiplica los bloques de cada color por el consumo medio por bloque. Si un color ocupa 1.000 bloques y tu media es 0,28 g, su consumo base será de unos 280 g.</p>\n<p>Los colores con muchas islas pequeñas pueden necesitar algo más por las colas y reintroducciones. Los grandes fondos continuos suelen acercarse más al promedio de la muestra.</p>\n<p>Si no tienes conteo por color, puedes aproximar porcentajes a partir del gráfico, pero trata el resultado como menos preciso. Para un tono dominante, es mejor comprar con margen que depender de una estimación visual demasiado ajustada.</p>\n<h2>Añade un margen razonable</h2>\n<p>No compres exactamente el resultado matemático. Añade normalmente un margen para diferencias de tensión, muestras, empalmes, colas y cualquier borde previsto.</p>\n<p>Un margen del 10 al 15 % es un punto de partida útil para un proyecto estable. Si hay muchísimos cambios de color, una técnica que genera colas largas o quieres un borde ancho, puede ser prudente reservar más.</p>\n<p>Redondea hacia arriba al número de ovillos completos. Si necesitas 2,2 ovillos de un color principal, compra tres y conserva las etiquetas por si debes buscar el mismo lote.</p>\n<p>No es necesario aplicar el mismo margen a todos los tonos. Un color usado en sólo 20 bloques puede necesitar proporcionalmente más extra por las colas que un fondo de 2.000 bloques.</p>\n<h2>Recalcula pronto si la realidad se desvía</h2>\n<p>Después de una sección representativa, pesa el proyecto o los ovillos restantes. Si el consumo real es claramente superior a la estimación, actualiza la compra antes de que un color se agote.</p>\n<p>Evita pesar con bobinas, marcadores o herramientas enganchadas. Para comparar bien, utiliza siempre condiciones similares.</p>\n<p>Guarda una pequeña reserva del color principal para reparaciones o para rematar el borde. Agotar exactamente el último metro al cerrar la manta deja poco margen ante cualquier corrección.</p>\n<p>Si compras hilo por fases, adquiere primero los colores de mayor consumo y los tonos difíciles de sustituir. Los colores secundarios muy comunes suelen ser más fáciles de reponer que un tono específico de una gama concreta.</p>\n<p>Ninguna fórmula puede predecir al gramo un proyecto artesanal, pero una muestra pesada convierte la estimación en algo mucho más útil. Cuenta bloques, mide consumo real, reparte por color y añade margen. Ese proceso es más fiable que comprar “tantos ovillos como suele llevar una manta” sin tener en cuenta tu graphgan concreto.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Muestra C2C sobre una báscula pequeña junto a un gráfico con número de bloques y una fórmula sencilla de consumo.",
+    "alt": "Cómo calcular cuánto hilo necesita un proyecto C2C"
+  }
+}

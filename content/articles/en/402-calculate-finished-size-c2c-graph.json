@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 402,
+  "translation_group": "402-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "sizing",
+      "terms": [
+        "sizing"
+      ]
+    },
+    "style": {
+      "terms": [
+        "finished-size",
+        "gauge",
+        "planning"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "wall-hangings",
+        "cushions"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-402-c2c",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Crocheters deciding whether a graph will fit a blanket, cushion or wall hanging before beginning.",
+  "title": "How to Calculate the Finished Size of a C2C Graph",
+  "slug": "calculate-finished-size-c2c-graph",
+  "seo": {
+    "title": "How to Calculate the Finished Size of a C2C Graph",
+    "meta_description": "Calculate C2C finished size from a swatch by measuring block width and height, multiplying the grid and adding any planned border.",
+    "search_intent": "C2C makers with a graph measured in blocks who want to know its physical finished dimensions with their yarn and tension."
+  },
+  "excerpt": "Graph cells are not inches or centimeters. To predict C2C finished size, measure a swatch and apply your actual block dimensions to the chart.",
+  "content_html": "<p>A C2C graph may say 60 by 80, but those numbers are blocks rather than inches or centimeters. Physical size depends on yarn, hook, stitch variation and personal tension. Two people can crochet the same graph and finish with noticeably different blanket dimensions.</p>\n<p>The reliable way to predict size is to measure a multi-block swatch and apply that proportion to the graph width and height. Doing the calculation first is much easier than trying to make the project smaller or larger after hundreds of blocks are already finished.</p>\n<h2>Identify the actual grid dimensions</h2>\n<p>Find the number of cells across and down. In a 60-by-80 graph, the design contains 60 blocks in one dimension and 80 in the other.</p>\n<p>Do not confuse the longest working diagonal with finished width. C2C is crocheted diagonally, but the completed picture still corresponds to the rectangular dimensions of the grid.</p>\n<p>If the pattern includes extra margin, separate panels or a border inside the chart, determine whether the stated dimensions describe only the motif or the entire project.</p>\n<p>On a rectangle, also identify which number will become the visual horizontal dimension. Rotating a graph 90 degrees can change reading direction and the placement of color changes.</p>\n<h2>Measure a swatch made with the exact planned method</h2>\n<p>Crochet at least ten blocks across and several blocks high with the yarn, hook and C2C variation you intend to use. A tiny sample does not reflect settled tension very well.</p>\n<p>Measure an interior area without stretching. Divide the width by the number of blocks measured, then repeat vertically.</p>\n<p>For example, if ten blocks measure 5.5 inches wide and 6 inches high, the averages are about 0.55 inch per horizontal block and 0.6 inch per vertical block.</p>\n<p>If the project will be washed or blocked, treat the swatch first. Using an unwashed measurement for a fiber that relaxes significantly can make your prediction too small.</p>\n<h2>Multiply the graph width and height separately</h2>\n<p>Using that sample, a 60-by-80 graph would finish around 33 inches wide and 48 inches high: 60 × 0.55 and 80 × 0.6.</p>\n<p>Calculate the two dimensions separately. Using one generic “block size” when your blocks are slightly rectangular can give a misleading prediction.</p>\n<p>Treat the result as an estimate rather than an engineering tolerance. Hand tension changes slightly over a long project and finishing may shift the fabric.</p>\n<p>For a reality check, mark the predicted rectangle with tape on a bed, wall or sofa. Seeing the footprint at full scale can immediately reveal that a planned cushion is actually moving into blanket territory.</p>\n<h2>Add borders and finishing afterward</h2>\n<p>The first calculation describes the C2C area. If you plan to add a border, edging or crocheted frame, add its width to both sides.</p>\n<p>A border measuring 1.5 inches around the piece adds about 3 inches to both overall width and height. Several rounds of tall stitches can add more than expected.</p>\n<p>If the piece will be blocked, measure a swatch treated in the same way. Some fibers relax noticeably while others change very little.</p>\n<p>For a cushion, include the effect of seams or joining two panels. On a wall hanging, the hanging rod does not alter the graph but may impose a practical maximum width.</p>\n<h2>What to do when the graph will be too large</h2>\n<p>The first option is finer yarn or a hook that produces smaller blocks while keeping the fabric comfortable. Another option is mini C2C.</p>\n<p>For your own graph, you can reduce resolution while preserving essential details. With a purchased design, changing the grid may alter both the image and written instructions, so test material or technique changes first.</p>\n<p>Do not force an extremely small hook simply to shrink the project. A stiff, difficult fabric may be a worse outcome than adapting the intended object size.</p>\n<p>If your calculated size lands just below the target, remember that a border can add a controlled amount later. Adding a few inches is easier than recovering from a graph that has already grown far too large.</p>\n<h2>Verify the estimate as the project grows</h2>\n<p>Once the piece is large enough to measure reliably, check it again without stretching and compare with the prediction. Your actual working tension may differ from the original swatch.</p>\n<p>If the difference is small, keep going. If it grows consistently and the final size has a strict limit, decide early whether the project, hook or tension needs adjustment.</p>\n<p>Write the measured block dimensions beside the pattern. The same information becomes useful for estimating future graphs made with the same yarn and C2C method.</p>\n<p>Do not try to correct a major difference by deliberately tightening or loosening your hands for hundreds of blocks. That often creates uneven fabric. If the scale truly needs to change, use a material or method combination you can maintain naturally.</p>\n<p>A graph tells you how many blocks exist; a swatch turns those blocks into physical dimensions. By measuring width and height separately and adding borders afterward, you can know before starting whether a design will become a cushion, wall panel or full-size blanket.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "A 60-by-80 C2C graph beside a measured swatch with arrows showing the finished width and height calculation.",
+    "alt": "How to calculate the finished size of a C2C graph"
+  }
+}

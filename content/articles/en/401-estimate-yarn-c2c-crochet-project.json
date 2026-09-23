@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 401,
+  "translation_group": "401-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "sizing",
+      "terms": [
+        "sizing"
+      ]
+    },
+    "style": {
+      "terms": [
+        "yarn-estimate",
+        "planning",
+        "calculator"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "wall-hangings",
+        "cushions"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-401-c2c",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Graphgan crocheters planning total and per-color yarn purchases without relying on generic blanket estimates.",
+  "title": "How to Estimate Yarn for a C2C Crochet Project",
+  "slug": "estimate-yarn-c2c-crochet-project",
+  "seo": {
+    "title": "How to Estimate Yarn for a C2C Crochet Project",
+    "meta_description": "Estimate yarn for C2C using a weighed swatch, block counts and a practical allowance for color changes, tails and borders.",
+    "search_intent": "C2C makers with a graph who want to estimate grams, yards or skeins before beginning."
+  },
+  "excerpt": "The most reliable C2C yarn estimate comes from a real swatch extrapolated by block count, with extra allowance for tails, color changes and borders.",
+  "content_html": "<p>Estimating yarn for C2C is more reliable when you start with a real swatch than when you use a generic number of skeins for a blanket. Two graphgans with the same dimensions can consume different amounts because of yarn weight, tension, hook size, block method and color changes.</p>\n<p>The most useful approach is to measure how much yarn a known number of blocks consumes and extrapolate to the full graph. Then add an allowance for tails, swatching, borders and normal tension variation.</p>\n<h2>Start with the total number of blocks</h2>\n<p>If the graph is a completely filled rectangle and one cell equals one C2C block, multiply width by height. A 60-by-80 graph contains 4,800 blocks.</p>\n<p>Although C2C is worked diagonally, the total number of cells is still the area of the grid. For a design containing intentionally unworked areas, count only the units that will actually be crocheted when the construction permits that.</p>\n<p>If the pattern provides a block count by color, save it. That breakdown is far more useful than the grand total when deciding how many skeins of each shade to buy.</p>\n<h2>Weigh a swatch made with the same yarn and hook</h2>\n<p>Make a reasonably large sample, such as 10 by 10 blocks. Finish it only as much as necessary and weigh it on a kitchen scale that displays grams.</p>\n<p>If one hundred blocks weigh 28 grams, the average consumption is 0.28 gram per block. A 4,800-block project would use about 1,344 grams before adding an allowance.</p>\n<p>A larger swatch reduces error. Do not use one block because starting chains, edge structure and tails have too much influence on such a small sample.</p>\n<p>If the project uses two different block methods or sections with noticeably different density, make a swatch for each. Do not combine consumption rates that are not truly comparable.</p>\n<h2>You can also estimate by yarn length</h2>\n<p>If you prefer yards or meters, begin with a known quantity of yarn. Weigh a skein before and after making the swatch and convert the consumed weight using the total length printed on the label.</p>\n<p>For example, if a 100-gram skein contains 240 meters and the sample consumes 25 grams, you have used approximately 60 meters.</p>\n<p>This method lets you compare the estimate directly with the yardage in each skein, which is useful because two 100-gram yarns can contain very different lengths.</p>\n<p>There is no need to unwind and physically measure hundreds of yards. The label's weight-to-length relationship is accurate enough for practical planning when the same yarn line is used.</p>\n<h2>Estimate each color on a multi-color graphgan</h2>\n<p>A total requirement of 1,300 grams does not tell you how to divide the purchase across ten shades. Use the pattern's per-color block counts whenever possible.</p>\n<p>Multiply each color's blocks by your average consumption per block. If one shade covers 1,000 blocks and your average is 0.28 gram, its base estimate is about 280 grams.</p>\n<p>Colors appearing in many tiny islands may consume slightly more because of tails and reintroductions. Large continuous background areas tend to stay closer to the swatch average.</p>\n<p>If you do not have per-color counts, percentages estimated from the graph can provide a rough guide, but treat them as less precise. For a dominant shade, extra margin is safer than an overly tight visual estimate.</p>\n<h2>Add a practical safety allowance</h2>\n<p>Do not buy exactly the mathematical result. Add an allowance for tension changes, swatches, joins, tails and any planned border.</p>\n<p>Ten to fifteen percent is a useful starting range for a stable project. If the graph has constant color changes, your method leaves long tails or you plan a substantial border, reserving more may be sensible.</p>\n<p>Round up to full skeins. If the calculation says 2.2 skeins of the main color, buy three and keep the labels in case you need to locate the same dye lot later.</p>\n<p>The same percentage does not have to apply to every shade. A color used for only 20 blocks may need proportionally more extra for tails than a background covering 2,000 blocks.</p>\n<h2>Recalculate early if actual use differs</h2>\n<p>After completing a representative section, weigh the work or the remaining yarn. If real consumption is clearly higher than the estimate, update your shopping plan before an important color runs out.</p>\n<p>Remove attached bobbins, markers and tools when weighing, or at least compare under the same conditions each time.</p>\n<p>Keep a small reserve of the dominant color for repairs or finishing. Using the final yard on the last block leaves no flexibility if you later need to fix an edge.</p>\n<p>If you buy yarn in stages, prioritize the highest-consumption colors and shades that are difficult to substitute. Common secondary colors are often easier to replace than a specific tone from one line.</p>\n<p>No formula can predict a handmade project to the exact gram, but a weighed swatch makes the estimate genuinely useful. Count blocks, measure real consumption, divide it by color and add a margin. That is much more dependable than buying “the usual number of skeins for a blanket” without accounting for your specific graphgan.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "C2C swatch on a small scale beside a graph showing block count and a simple yarn-consumption formula.",
+    "alt": "How to estimate yarn for a C2C crochet project"
+  }
+}
