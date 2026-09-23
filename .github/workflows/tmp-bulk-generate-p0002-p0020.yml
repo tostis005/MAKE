@@ -1,0 +1,134 @@
+name: Bulk generate P0002-P0020 multitech
+on:
+  push:
+    branches: [bulk-multitech-p0002-p0020]
+    paths: ['.github/workflows/tmp-bulk-generate-p0002-p0020.yml']
+permissions:
+  contents: write
+concurrency:
+  group: drielo-bulk-p0002-p0020
+  cancel-in-progress: false
+jobs:
+  build-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install renderer
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install pillow playwright
+          python -m playwright install --with-deps chromium
+      - name: Generate 76 PDFs, 76 product images and source JSON
+        shell: bash
+        run: |
+          set -euo pipefail
+          python content/pattern-system/multitech/bulk_generate.py --start 2 --end 20 --workers 4
+      - name: Validate generated batch
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json,pathlib,re
+          cat=json.loads(pathlib.Path('content/products/catalog.json').read_text())
+          products=cat['products']
+          want={f'P{n:04d}-{s}' for n in range(2,21) for s in ('CS','C2C','TC','LH')}
+          got={p['code'] for p in products}
+          missing=want-got
+          assert not missing, sorted(missing)
+          pdfs=list(pathlib.Path('content/products/files').glob('Drielo_P00*.pdf'))
+          batch=[p for p in pdfs if re.fullmatch(r'Drielo_P(?:000[2-9]|001[0-9]|0020)-(?:CS|C2C|TC|LH)\.pdf',p.name)]
+          assert len(batch)==76, len(batch)
+          for code in want:
+              img=pathlib.Path('content/products/assets')/f'{code}-product.webp'
+              assert img.is_file() and img.stat().st_size>20000, img
+              p=next(x for x in products if x['code']==code)
+              assert p['gallery']==[f'assets/{code}-product.webp']
+              assert p['download']==f'files/Drielo_{code}.pdf'
+              tags=p.get('etsy_tags_en',[])
+              assert len(tags)<=13
+              assert all(len(t)<=20 for t in tags), (code,tags)
+              pat=pathlib.Path('content/pattern-system/patterns')/code/'pattern.json'
+              prod=pathlib.Path('content/pattern-system/products')/code/'product.json'
+              assert pat.is_file() and prod.is_file()
+          print('BATCH_PDFS=76')
+          print('BATCH_PRODUCTS=76')
+          print('CATALOG_PRODUCTS='+str(len(products)))
+          PY
+      - name: Persist JSON, catalogue and public product images
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/products/catalog.json content/products/assets content/pattern-system/products content/pattern-system/patterns
+          if git diff --cached --quiet; then
+            echo "No source changes to commit."
+          else
+            git commit -m "Generate P0002-P0020 multitech catalogue and assets [skip ci]"
+            git push origin HEAD:bulk-multitech-p0002-p0020
+          fi
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_bulk_key
+          chmod 600 ~/.ssh/drielo_bulk_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+      - name: Package generated products
+        run: |
+          set -euo pipefail
+          tar -czf /tmp/drielo-bulk-products.tgz content/products content/tools/import-products.php
+      - name: Upload product package
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: scp -i ~/.ssh/drielo_bulk_key /tmp/drielo-bulk-products.tgz "$VPS_USER@$VPS_HOST:/tmp/drielo-bulk-products-${GITHUB_RUN_ID}.tgz"
+      - name: Import generated products into WooCommerce
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_bulk_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-bulk-products-${GITHUB_RUN_ID}.tgz"
+          STAGE="/tmp/drielo-bulk-products-${GITHUB_RUN_ID}"
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE"; }
+          trap cleanup EXIT
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker);
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then DOCKER=(sudo -n docker);
+          else echo "ERROR: make-wp container not found"; exit 1; fi
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $ids=get_posts(array("post_type"=>"product","post_status"=>"publish","posts_per_page"=>-1,"fields"=>"ids","meta_key"=>"_drielo_managed_product","meta_value"=>"1"));
+            echo "DRIELO_PRODUCTS=".count($ids).PHP_EOL;
+            if(count($ids)<80){fwrite(STDERR,"Expected at least 80 managed products\n");exit(2);}
+            $bad=0;
+            foreach($ids as $id){
+              $p=wc_get_product($id);
+              $sku=$p->get_sku();
+              if(strpos($sku,"DRIELO-P00")===0 && (count($p->get_downloads())<1 || !$p->get_image_id())){$bad++;echo "BAD ".$sku.PHP_EOL;}
+            }
+            echo "BAD_PRODUCTS=".$bad.PHP_EOL;
+            if($bad){exit(3);}
+          '
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
+          REMOTE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Drielo-P0002-P0020-multitech-PDFs
+          path: content/products/files/Drielo_P00*.pdf
+          retention-days: 7
