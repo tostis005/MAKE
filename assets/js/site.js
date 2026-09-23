@@ -140,9 +140,9 @@
     for(var i=0;i<links.length;i++){
       var text=(links[i].textContent||'').replace(/\s+/g,' ').trim().toLowerCase();
       if(text.indexOf('todos los patrones')!==-1||text.indexOf('todos los productos')!==-1||text.indexOf('all patterns')!==-1||text.indexOf('all products')!==-1){
-        var card=links[i].closest('.drielo-technique-card,[data-technique-card],article,li');
+        var card=links[i];
+        while(card.parentElement&&card.parentElement!==hub)card=card.parentElement;
         if(card&&card!==hub)card.remove();
-        else links[i].remove();
       }
     }
 
