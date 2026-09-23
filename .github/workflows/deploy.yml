@@ -277,6 +277,9 @@ jobs:
               '
           }
 
+          PRODUCT_ES_ROUTE="$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; $id=wc_get_product_id_by_sku("DRIELO-P0001"); $u=make_product_url($id,"es"); echo parse_url($u,PHP_URL_PATH);')"
+          PRODUCT_EN_ROUTE="$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; $id=wc_get_product_id_by_sku("DRIELO-P0001"); $u=make_product_url($id,"en"); echo parse_url($u,PHP_URL_PATH);')"
+
           check_html "/tienda/" "Tienda de patrones" "shop-patterns-es" "PDF descargable"
           check_html "/tienda/" "attachment-make-store-card" "shop-card-derivative"
           check_html "/wp-content/themes/make/style.css" "Store + single-product layout refinements" "store-layout-css"
@@ -286,9 +289,9 @@ jobs:
           check_html "/tienda/colecciones/" "drielo-collection-preview" "collection-scalable-preview" "PDF descargable"
           check_html "/tienda/colecciones/" "Explora cada patrón por separado o descubre colecciones que comparten una misma paleta de color." "shop-collections-intro-es"
           check_html "/en/shop/collections/" "Pattern collections" "shop-collections-en" "Downloadable PDF"
-          check_html "/tienda/marilyn-monroe-con-chicle-patron-punto-de-cruz/" "drielo-shop-views" "single-product-shop-switch"
-          check_html "/tienda/marilyn-monroe-con-chicle-patron-punto-de-cruz/" "Marilyn Monroe con chicle" "product-copy-es"
-          check_html "/en/shop/bubble-gum-portrait-cross-stitch-pattern/" "Marilyn Monroe Bubble Gum" "product-copy-en"
+          check_html "$PRODUCT_ES_ROUTE" "drielo-shop-views" "single-product-shop-switch"
+          check_html "$PRODUCT_ES_ROUTE" "Marilyn Monroe con chicle" "product-copy-es"
+          check_html "$PRODUCT_EN_ROUTE" "Marilyn Monroe Bubble Gum" "product-copy-en"
           check_html "/en/shop/" "Pattern shop" "shop-patterns-en" "make_lang="
           check_html "/buscar/?s=P0001" "P0001" "search-es" "make_lang="
           check_html "/en/search/?s=P0001" "P0001" "search-en" "make_lang="
@@ -313,7 +316,7 @@ jobs:
           CURRENCY_COOKIE="/tmp/drielo-currency-cookie.txt"
           CURRENCY_HEADERS="/tmp/drielo-currency-headers.txt"
           rm -f "$CURRENCY_COOKIE" "$CURRENCY_HEADERS"
-          curl -fsS -o /dev/null -D "$CURRENCY_HEADERS" -c "$CURRENCY_COOKIE" "https://$SITE_HOST/tienda/marilyn-monroe-con-chicle-patron-punto-de-cruz/?currency=EUR"
+          curl -fsS -o /dev/null -D "$CURRENCY_HEADERS" -c "$CURRENCY_COOKIE" "https://$SITE_HOST$PRODUCT_ES_ROUTE?currency=EUR"
           CURRENCY_STATUS="$(awk '/^HTTP\//{code=$2} END{print code}' "$CURRENCY_HEADERS")"
           CURRENCY_LOCATION="$(awk 'BEGIN{IGNORECASE=1} /^Location:/{sub(/\r$/,""); print substr($0,11)}' "$CURRENCY_HEADERS" | tail -1)"
           if [ "$CURRENCY_STATUS" != "302" ] || ! grep -q "drielo_currency.*EUR" "$CURRENCY_COOKIE" || ! grep -q "drielo_usd_eur_rate" "$CURRENCY_COOKIE" || printf '%s' "$CURRENCY_LOCATION" | grep -q "currency="; then
@@ -323,7 +326,7 @@ jobs:
           echo "DRIELO_CURRENCY_COOKIE_OK status=$CURRENCY_STATUS clean_location=$CURRENCY_LOCATION"
 
           rm -f "$CURRENCY_COOKIE" "$CURRENCY_HEADERS"
-          curl -fsS -o /dev/null -D "$CURRENCY_HEADERS" -c "$CURRENCY_COOKIE" "https://$SITE_HOST/tienda/marilyn-monroe-con-chicle-patron-punto-de-cruz/?currency=USD"
+          curl -fsS -o /dev/null -D "$CURRENCY_HEADERS" -c "$CURRENCY_COOKIE" "https://$SITE_HOST$PRODUCT_ES_ROUTE?currency=USD"
           if ! grep -q "drielo_currency.*USD" "$CURRENCY_COOKIE" || ! grep -q "drielo_usd_eur_rate" "$CURRENCY_COOKIE"; then
             echo "USD currency cookie verification failed"
             exit 2
