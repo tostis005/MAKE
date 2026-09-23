@@ -1,0 +1,60 @@
+name: Verify 80 Drielo products
+on:
+  push:
+    branches: [bulk-multitech-p0002-p0020]
+    paths: ['.github/workflows/tmp-verify-80-products.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_verify_key
+          chmod 600 ~/.ssh/drielo_verify_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+      - name: Verify WooCommerce catalogue
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_verify_key "$VPS_USER@$VPS_HOST" bash -s <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M -r '
+            require "/var/www/html/wp-load.php";
+            $ids=get_posts(array("post_type"=>"product","post_status"=>"publish","posts_per_page"=>-1,"fields"=>"ids","meta_key"=>"_drielo_managed_product","meta_value"=>"1"));
+            echo "DRIELO_PRODUCTS=".count($ids).PHP_EOL;
+            $codes=array(); $bad=0;
+            foreach($ids as $id){
+              $p=wc_get_product($id); if(!$p) continue;
+              $sku=$p->get_sku();
+              if(preg_match("/^DRIELO-(P\d{4}-(CS|C2C|TC|LH))$/",$sku,$m)){
+                $codes[$m[1]]=1;
+                $imgCount=1+count($p->get_gallery_image_ids());
+                $dlCount=count($p->get_downloads());
+                if($p->get_status()!=="publish" || $imgCount<1 || $dlCount<1){
+                  echo "BAD ".$sku." status=".$p->get_status()." images=".$imgCount." downloads=".$dlCount.PHP_EOL;
+                  $bad++;
+                }
+              }
+            }
+            echo "TECH_PRODUCTS=".count($codes).PHP_EOL;
+            echo "BAD_PRODUCTS=".$bad.PHP_EOL;
+            $missing=array();
+            for($i=1;$i<=20;$i++){
+              $base=sprintf("P%04d",$i);
+              foreach(array("CS","C2C","TC","LH") as $s){ $c=$base."-".$s; if(empty($codes[$c])) $missing[]=$c; }
+            }
+            echo "MISSING=".implode(",",$missing).PHP_EOL;
+            if(count($ids)!==80 || count($codes)!==80 || $bad || $missing) exit(2);
+          '
+          REMOTE
