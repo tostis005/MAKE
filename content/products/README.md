@@ -48,3 +48,9 @@ When source PDFs are supplied:
 - `preview_page_primary` (default 1)
 - `preview_page_secondary` (default 2)
 - WooCommerce product ID after import
+
+## Catalogue filters and structured craft metadata
+
+Every product must define a stable `design_id`, `grid_width`, `grid_height`, `color_count`, and a `filters` object. The filter keys are `technique`, `theme`, `style`, `project`, `orientation`, `difficulty`, `color-family`, and `season`. Values are stable taxonomy slugs, not display labels.
+
+`collection` remains the dedicated `product_collection` taxonomy because collections are commercial/artistic groups, while the filter attributes describe the design and its craft use. The importer writes these fields to WooCommerce global attributes and to Drielo REST-visible product metadata so reimports preserve the storefront filters.
