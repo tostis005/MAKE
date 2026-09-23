@@ -1,0 +1,43 @@
+name: Install Drielo multitech engine
+on:
+  push:
+    branches: [bulk-multitech-p0002-p0020]
+    paths: ['.github/workflows/tmp-install-multitech-engine.yml']
+permissions:
+  contents: write
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and install engine bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import base64,json,pathlib,tarfile,tempfile,urllib.request
+          spec=json.loads(pathlib.Path('content/pattern-system/multitech-engine-source.json').read_text())
+          req=urllib.request.Request(spec['url'],headers={'User-Agent':'Mozilla/5.0'})
+          with urllib.request.urlopen(req,timeout=240) as r: raw=r.read()
+          data=base64.b64decode(raw) if spec.get('base64',True) else raw
+          target=pathlib.Path('content/pattern-system/multitech')
+          target.mkdir(parents=True,exist_ok=True)
+          with tempfile.NamedTemporaryFile(suffix='.tar.gz') as fh:
+              fh.write(data); fh.flush()
+              with tarfile.open(fh.name,'r:gz') as tar:
+                  tar.extractall(target,filter='data')
+          # Bundle contains assets/, templates/, bulk_generate.py at its root.
+          assert (target/'bulk_generate.py').is_file()
+          assert len(list((target/'templates').glob('*.html')))==4
+          assert len(list((target/'assets').glob('*.png')))>=5
+          print('engine installed')
+          PY
+      - name: Commit engine
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/pattern-system/multitech
+          git commit -m "Install Drielo multitech batch engine [skip ci]"
+          git push origin HEAD:bulk-multitech-p0002-p0020
