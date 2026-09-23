@@ -33,26 +33,42 @@ jobs:
           if not source.is_file():
               print('No staged product PDFs; preserving existing WooCommerce downloads.')
               raise SystemExit(0)
+          import base64
           data = json.loads(source.read_text(encoding='utf-8'))
           out = pathlib.Path('content/products/files')
           out.mkdir(parents=True, exist_ok=True)
-          for filename, url in data.items():
+          for filename, spec in data.items():
+              if not spec:
+                  continue
+              if isinstance(spec, str):
+                  url = spec
+                  encoded = False
+              else:
+                  url = spec.get('url', '')
+                  encoded = bool(spec.get('base64'))
               if not url:
                   continue
               target = out / filename
+              tmp = target.with_suffix(target.suffix + '.download')
               print(f'Downloading {filename}...')
               try:
                   request = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-                  with urllib.request.urlopen(request, timeout=120) as response, target.open('wb') as fh:
+                  with urllib.request.urlopen(request, timeout=180) as response, tmp.open('wb') as fh:
                       while True:
                           chunk = response.read(1024 * 1024)
                           if not chunk:
                               break
                           fh.write(chunk)
-                  if target.stat().st_size < 100000:
-                      raise RuntimeError(f'{filename}: download too small')
+                  if encoded:
+                      target.write_bytes(base64.b64decode(tmp.read_bytes(), validate=False))
+                      tmp.unlink(missing_ok=True)
+                  else:
+                      tmp.replace(target)
+                  if target.stat().st_size < 100000 or target.read_bytes()[:4] != b'%PDF':
+                      raise RuntimeError(f'{filename}: invalid PDF download')
                   print(f'{filename}: {target.stat().st_size} bytes')
               except Exception as exc:
+                  tmp.unlink(missing_ok=True)
                   target.unlink(missing_ok=True)
                   print(f'WARNING: {filename} was not staged: {exc}')
           PY
@@ -63,13 +79,37 @@ jobs:
           set -euo pipefail
           python3 - <<'PY'
           import json, pathlib, urllib.request
+          import base64, tarfile, tempfile
           source = pathlib.Path('content/products/gallery-sources.json')
+          bundle_source = pathlib.Path('content/products/gallery-bundle-source.json')
+          out = pathlib.Path('content/products/assets')
+          out.mkdir(parents=True, exist_ok=True)
+
+          if bundle_source.is_file():
+              spec = json.loads(bundle_source.read_text(encoding='utf-8'))
+              url = spec.get('url', '')
+              if not url:
+                  raise SystemExit('gallery-bundle-source.json has no url')
+              print('Downloading gallery bundle...')
+              request = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+              with urllib.request.urlopen(request, timeout=180) as response:
+                  encoded = response.read()
+              archive_bytes = base64.b64decode(encoded, validate=False) if spec.get('base64', True) else encoded
+              with tempfile.NamedTemporaryFile(suffix='.tar.gz') as fh:
+                  fh.write(archive_bytes); fh.flush()
+                  with tarfile.open(fh.name, 'r:gz') as tar:
+                      members = [m for m in tar.getmembers() if m.isfile() and '/' not in m.name and m.name.endswith('.webp')]
+                      if not members:
+                          raise SystemExit('Gallery bundle contains no WEBP assets')
+                      tar.extractall(out, members=members, filter='data')
+                      print(f'Extracted {len(members)} gallery assets')
+
           if not source.is_file():
+              if bundle_source.is_file():
+                  raise SystemExit(0)
               print('No staged gallery refresh.')
               raise SystemExit(0)
           data = json.loads(source.read_text(encoding='utf-8'))
-          out = pathlib.Path('content/products/assets')
-          out.mkdir(parents=True, exist_ok=True)
           for filename, url in data.items():
               if not url:
                   continue
@@ -88,7 +128,7 @@ jobs:
           PY
 
       - name: Persist refreshed gallery assets
-        if: ${{ hashFiles('content/products/gallery-sources.json') != '' }}
+        if: ${{ hashFiles('content/products/gallery-sources.json') != '' || hashFiles('content/products/gallery-bundle-source.json') != '' }}
         shell: bash
         run: |
           set -euo pipefail
