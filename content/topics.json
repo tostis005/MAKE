@@ -4297,6 +4297,61 @@
       "title_es": "Cómo tejer un cuadrado perfecto en C2C Crochet",
       "title_en": "How to Crochet a Perfect C2C Square",
       "craft": "c2c-crochet"
+    },
+    {
+      "number": 390,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "technique",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo hacer un rectángulo en C2C Crochet",
+      "title_en": "How to Make a Rectangle in C2C Crochet",
+      "craft": "c2c-crochet"
+    },
+    {
+      "number": 391,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "color-changes",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo cambiar de color en C2C Crochet",
+      "title_en": "How to Change Colors in C2C Crochet",
+      "craft": "c2c-crochet"
+    },
+    {
+      "number": 392,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "color-changes",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cambios de color limpios en C2C Crochet: trucos que sí se notan",
+      "title_en": "Clean C2C Crochet Color Changes: Techniques That Make a Difference",
+      "craft": "c2c-crochet"
+    },
+    {
+      "number": 393,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "project-organization",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo usar bobinas de hilo en proyectos C2C con muchos colores",
+      "title_en": "How to Use Yarn Bobbins for Multi-Color C2C Projects",
+      "craft": "c2c-crochet"
+    },
+    {
+      "number": 394,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "finishing",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo esconder y rematar cabos en C2C Crochet",
+      "title_en": "How to Weave In Ends in C2C Crochet",
+      "craft": "c2c-crochet"
     }
   ],
   "taxonomy_strategy": {
@@ -4327,7 +4382,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 389,
-    "bilingual_groups": 389
+    "last_indexed_article": 394,
+    "bilingual_groups": 394
   }
 }
