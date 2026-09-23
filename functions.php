@@ -5,6 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 require_once get_template_directory() . '/inc/sitemap.php';
 require_once get_template_directory() . '/inc/category-art.php';
 require_once get_template_directory() . '/inc/store.php';
+require_once get_template_directory() . '/inc/store-pagination.php';
 require_once get_template_directory() . '/inc/editorial-crafts.php';
 
 function make_theme_setup(): void {
