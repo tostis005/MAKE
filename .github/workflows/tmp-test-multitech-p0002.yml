@@ -1,0 +1,28 @@
+name: Test multitech P0002 preparation
+on:
+  push:
+    branches: [bulk-multitech-p0002-p0020]
+    paths: ['.github/workflows/tmp-test-multitech-p0002.yml']
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: python -m pip install pillow
+      - name: Reconstruct P0002 and prepare four JSON variants
+        run: |
+          set -euo pipefail
+          python content/pattern-system/multitech/bulk_generate.py --start 2 --end 2 --prepare-only
+          python - <<'PY'
+          import json,pathlib
+          for code in ['P0002-CS','P0002-C2C','P0002-TC','P0002-LH']:
+              p=pathlib.Path('content/pattern-system/patterns')/code/'pattern.json'
+              d=json.loads(p.read_text())
+              print(code,'grid',d['stitch_width'],d['stitch_height'],'filled',d['total_stitches'],'colours',len(d['threads']))
+          cat=json.loads(pathlib.Path('content/products/catalog.json').read_text())
+          print('catalog variants',[p['code'] for p in cat['products'] if p.get('base_design_id')=='P0002'])
+          PY
