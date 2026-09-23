@@ -1,0 +1,75 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 385,
+  "translation_group": "385-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "beginners",
+      "terms": [
+        "beginners"
+      ]
+    },
+    "style": {
+      "terms": [
+        "corner-to-corner",
+        "grid-crochet",
+        "graphgan"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "wall-hangings",
+        "cushions"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-385-c2c",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Crochet beginners who want to understand corner-to-corner construction, grids and the basic tools needed to begin.",
+  "title": "What Is C2C Crochet? A Complete Beginner's Guide",
+  "slug": "what-is-c2c-crochet-beginners-guide",
+  "seo": {
+    "title": "What Is C2C Crochet? A Complete Beginner's Guide",
+    "meta_description": "Learn what C2C crochet is, how corner-to-corner blocks build a project, what materials you need and how to choose a first graph-based project.",
+    "search_intent": "People who have seen C2C patterns or graphgans and want to understand how the technique works before starting."
+  },
+  "excerpt": "C2C crochet builds fabric diagonally with small blocks. Learn how corner-to-corner construction works, what you need and how to choose a first project.",
+  "content_html": "<p>C2C crochet means <em>corner-to-corner crochet</em>. Instead of beginning with a row that already spans the final width of the project, the fabric grows diagonally in small blocks. You increase until the piece reaches the required width or height, then decrease to close the shape.</p>\n<p>The method is especially popular for blankets and graphgans because each crochet block can act like one cell in a grid. That makes it possible to translate pixel-style designs, lettering, silhouettes and color motifs into crochet in a very visual way.</p>\n<h2>How a C2C piece is constructed</h2>\n<p>A classic C2C project usually starts with one block in a corner. The next row contains two blocks, then three, and so on. The fabric expands diagonally, with each new row adding another line of blocks.</p>\n<p>Once you reach the dimensions specified by the pattern, you stop increasing. For a square, you normally begin decreasing on both ends until only one block remains. For a rectangle, you can stop increasing on one side before the other, holding one dimension steady while the other continues to grow.</p>\n<p>Many tutorials use groups of three double crochet stitches separated by chains, although mini C2C often uses half double crochet and other variations exist. The important idea is not one universal stitch recipe. It is the structure: every block is a repeatable unit in a diagonal grid.</p>\n<h2>What you need to get started</h2>\n<p>You do not need specialized equipment. Yarn, a suitable crochet hook, scissors and a yarn needle are enough for a first practice piece. Smooth yarn in a light or medium color is helpful because the chain spaces and stitch groups are easier to see.</p>\n<p>A slightly larger hook can create a softer fabric, while a hook that is too small may make the blocks stiff and the chain spaces difficult to enter. The yarn label gives you a sensible starting point, but your personal tension matters as well.</p>\n<p>If you plan to follow a multi-color graph, yarn bobbins, clips or small separated balls become useful. They are not necessary for learning the basic construction, but they can prevent a great deal of tangling once a design contains several active colors.</p>\n<h2>Increasing and decreasing are the core skills</h2>\n<p>A C2C increase creates space for a new block at the beginning of a row. In the common double-crochet version, you make a starting chain, work a stitch group into that chain, then join the new block to the first block from the previous row.</p>\n<p>A decrease does not mean making a smaller block. Instead, you move across the edge to the next chain space without creating a new block there. From that point, you continue making normal blocks across the row.</p>\n<p>This distinction is important. Beginners sometimes try to reduce the number of stitches inside a block when decreasing. The block itself stays the same size; only the starting position of the row changes.</p>\n<h2>Why C2C works so well with graphs</h2>\n<p>A C2C graph resembles a pixel grid. Each square normally represents one crochet block, and the square's color tells you which yarn to use. A design that is 40 squares wide and 50 high can be thought of as a matrix of 40 by 50 blocks.</p>\n<p>That does not mean the finished project will measure 40 by 50 inches or centimeters. Physical size depends on the dimensions of each block with your yarn, hook and tension. Before committing to a large blanket, crochet a ten-block sample and measure it. That small swatch gives you a far better estimate of the finished dimensions.</p>\n<p>Graphs can also be read diagonally to match the actual direction of C2C rows. Some patterns provide written color instructions row by row, while others rely mainly on the visual chart. Learning both approaches is useful, especially when color changes become frequent.</p>\n<h2>Choosing a good first C2C project</h2>\n<p>A small one-color square is a better learning project than a portrait containing twenty shades. It lets you practice increases, turning and decreases without interrupting the rhythm to manage multiple yarns.</p>\n<p>Next, try a two-color motif such as an initial, heart or simple geometric shape. Once color changes no longer interrupt your concentration, a larger graphgan becomes much easier to manage.</p>\n<p>It also helps to choose a shape with obvious edges. A square or cushion panel quickly shows whether you have added or removed an extra block. A giant blanket can hide small shaping errors for many rows, turning an easy correction into a large amount of frogging.</p>\n<h2>Common beginner mistakes in C2C crochet</h2>\n<p>The most common mistake is missing the chain space where the next block should be joined. If the block count at the end of a row is wrong, stop and count before continuing. Fixing one row is much easier than discovering ten rows later that the diagonal has changed shape.</p>\n<p>Uneven tension is another frequent issue. Early blocks may be loose while later ones become tight as you gain speed. Keep your movement consistent and make sure the chain spaces remain easy to identify and enter.</p>\n<p>It is also easy to begin decreasing too soon. In a square, the turning point depends on the planned block count. In a rectangle, each edge changes direction at a different time. Mark those rows on the pattern before you begin.</p>\n<p>C2C crochet becomes straightforward when you separate it into three ideas: make consistent blocks, know when to increase or decrease, and follow the grid without losing your direction. Once those are comfortable, the same system can be used for blankets, cushions, wall panels and much more detailed graphic designs.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "A corner-to-corner crochet swatch growing diagonally beside a simple pixel grid showing one square per crochet block.",
+    "alt": "What C2C crochet is for beginners"
+  }
+}
