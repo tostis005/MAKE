@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 393,
+  "translation_group": "393-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "project-organization",
+      "terms": [
+        "project-organization"
+      ]
+    },
+    "style": {
+      "terms": [
+        "yarn-bobbins",
+        "project-organization",
+        "graphgan"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-393-c2c",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Intermediate C2C crocheters organizing multi-color graphgans with reusable bobbins or small dedicated yarn supplies.",
+  "title": "How to Use Yarn Bobbins for Multi-Color C2C Projects",
+  "slug": "how-to-use-yarn-bobbins-multicolor-c2c",
+  "seo": {
+    "title": "How to Use Yarn Bobbins for Multi-Color C2C Projects",
+    "meta_description": "How to use yarn bobbins in multi-color C2C: choose bobbins, load the right amount, position colors, turn the work and prevent tangles.",
+    "search_intent": "C2C makers working graphgans with many active colors who need to reduce tangles, long floats and difficult yarn changes."
+  },
+  "excerpt": "Yarn bobbins keep active colors close to the part of the graph where they are needed. Learn how to load, position and manage them without tangles.",
+  "content_html": "<p>On a multi-color C2C graphgan, the difficult part is often not the crochet stitch. It is controlling all the active yarns without turning every row into a tangle. Bobbins help by replacing full balls with smaller yarn supplies positioned close to the areas where each color is used.</p>\n<p>They do not remove the need for organization, but a consistent bobbin system can make a project with ten active colors far easier to handle.</p>\n<h2>Choose a bobbin style that suits your yarn</h2>\n<p>You can use commercial plastic or cardboard bobbins, clip-style yarn bobbins, small cards or handmade butterflies of yarn. The important features are that the yarn feeds easily and the stored amount does not unwind on its own.</p>\n<p>For tiny color areas, a yarn butterfly can take less space than a rigid bobbin. For larger repeated sections, a bobbin that holds more yarn prevents constant refilling.</p>\n<p>Test your system before preparing twenty units. A bobbin that works beautifully with fine yarn may become bulky and heavy with thick worsted or chunky yarn.</p>\n<h2>Load only the amount you expect to use soon</h2>\n<p>Do not wind an entire supply onto a bobbin if the active region only needs a small portion. A heavy bobbin pulls on the fabric, distorts the working edge and makes every turn more awkward.</p>\n<p>Look ahead at the graph and estimate how many blocks the area will use over the next several diagonals. Load enough for that section plus a comfortable margin, then refill when needed.</p>\n<p>A background color covering hundreds of blocks may still be easier to work directly from a main ball. Bobbins are particularly helpful for isolated shapes, letters, eyes, outlines and separated interior details.</p>\n<h2>Position each bobbin beside its graph area</h2>\n<p>At the end of a row, arrange the bobbins in the same order as the color areas along the working edge. If the sequence is cream, red, black and cream, place the yarn sources in that order.</p>\n<p>When the same color appears in two separate areas, two bobbins are often cleaner than carrying one strand across a long distance.</p>\n<p>Label similar shades with the yarn code or a short letter. In a palette containing several grays or beiges, relying only on visual judgment can cause mistakes as the lighting changes.</p>\n<h2>Turn the project without braiding every strand</h2>\n<p>Tangles build up when the fabric is rotated in the same direction on every row. Before turning, look at the bobbin positions and move the piece deliberately.</p>\n<p>One simple approach is to alternate the turning direction: clockwise on one row and counterclockwise on the next. Another is to keep the fabric movement small and reposition the bobbins around the edge instead.</p>\n<p>Do not wait until all the strands are fully twisted together before untangling. Separating them every few rows takes seconds; fixing a knot after twenty rows can interrupt an entire crochet session.</p>\n<p>If you work at a table, a shallow tray can keep bobbins from rolling. On a sofa, a compartmented basket can serve the same purpose.</p>\n<h2>Know when to park a bobbin and when to cut</h2>\n<p>Check the next few graph diagonals. If a color returns soon in a nearby section, leave that bobbin attached and park it out of the way.</p>\n<p>If the color disappears for many rows, cut a tail long enough to weave in securely. Keeping inactive bobbins hanging from the work only adds weight and more opportunities for snagging.</p>\n<p>For complicated colorwork, think in regions rather than only by shade. One red bobbin may belong to the left side of the motif while another red bobbin serves a separate area on the right.</p>\n<p>When one color splits into two isolated islands, creating a second bobbin is often cleaner than stretching a long strand between them.</p>\n<h2>Turn bobbin organization into a repeatable routine</h2>\n<p>Choose a workflow: finish the row, verify the count, arrange the bobbins, mark the graph, then turn. Repeating the same sequence makes mistakes less likely because you are not reinventing the process every row.</p>\n<p>When you pause the project, store the bobbins in a shallow tray or compartmented bag. Dropping them loose into one large project bag can undo all the organization you created while working.</p>\n<p>For a very complicated section, take a quick photo of the bobbin layout before packing it away. The image can help you rebuild the order when you return several days later.</p>\n<p>Check the remaining yarn on each bobbin before starting a long diagonal. Running out halfway across a color area forces you to make a join somewhere you might not have chosen.</p>\n<p>Bobbins work best when each one has a clear job and stays close to its color region. You do not need an elaborate system. Reduce loose yarn, keep the visual order understandable and remove inactive strands when they no longer help. That leaves more attention for the graph and for maintaining an accurate block count.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "C2C graphgan in progress with several labeled yarn bobbins arranged along the edge beside their color sections.",
+    "alt": "Using yarn bobbins for multi-color C2C crochet"
+  }
+}

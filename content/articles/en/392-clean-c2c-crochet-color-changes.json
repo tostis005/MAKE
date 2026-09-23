@@ -1,0 +1,75 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 392,
+  "translation_group": "392-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "color-changes",
+      "terms": [
+        "color-changes"
+      ]
+    },
+    "style": {
+      "terms": [
+        "clean-color-changes",
+        "graphgan",
+        "colorwork"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "wall-hangings",
+        "cushions"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-392-c2c",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Intermediate C2C makers who want more polished, defined color edges without changing the basic graph construction.",
+  "title": "Clean C2C Crochet Color Changes: Techniques That Make a Difference",
+  "slug": "clean-c2c-crochet-color-changes",
+  "seo": {
+    "title": "Clean C2C Crochet Color Changes: Techniques That Make a Difference",
+    "meta_description": "Make cleaner C2C color changes with better timing, balanced tension, yarn placement and smarter decisions about carrying, cutting or parking colors.",
+    "search_intent": "Crocheters who already know how to switch yarn but see specks, loose joins or fuzzy boundaries between colors in a graphgan."
+  },
+  "excerpt": "Small changes in timing, tension and yarn placement can make C2C graph boundaries look much cleaner and more deliberate.",
+  "content_html": "<p>Knowing how to change yarn and making that change look clean are two different skills. In C2C crochet, a color boundary runs through diagonal blocks, so a loose loop, crossed strand or late yarn change can leave small specks of the wrong shade along the edge.</p>\n<p>No method removes every irregularity because crochet has depth and the blocks overlap slightly. Still, a few habits make a noticeable difference in how crisp a graphgan looks.</p>\n<h2>Switch on the final pull-through rather than afterward</h2>\n<p>The single most useful adjustment is introducing the new color during the final pull-through of the previous stitch. The loop left on the hook then already matches the block you are about to make.</p>\n<p>If you complete the previous stitch entirely in the old color and only then pick up the new yarn, that last loop can show as a small line across the top of the new block.</p>\n<p>Practice the movement slowly: work the last stitch to its final stage, release the old color, pick up the new one, complete the stitch and continue without yanking either strand. Once the motion is consistent, speed returns naturally.</p>\n<h2>Balance the tension of both yarns</h2>\n<p>A new-color loop often becomes larger than normal because you are trying to control the hook, fabric and two strands at once. That extra slack can turn into a visible hole at the color boundary.</p>\n<p>After the switch, gently adjust both the new tail and the old working strand until the loop resembles the surrounding stitches. Do not pull it as tight as possible; simply remove the extra looseness.</p>\n<p>Check again after making one or two stitches. A join that looked neat initially can relax when the block turns into position. If every boundary requires a hard tug to look acceptable, the real issue is probably inconsistent tension rather than the change itself.</p>\n<h2>Keep the old yarn toward the wrong side</h2>\n<p>Before continuing with the new color, decide where the previous strand should sit. If it crosses the front, it can peek between stitches and create a stray spot.</p>\n<p>Guide the old yarn toward the side you have chosen as the back. For reversible pieces, you may need to cut more often instead of carrying because both faces need to remain presentable.</p>\n<p>High-contrast combinations such as black against cream reveal misplaced strands much more clearly. Inspect those boundaries more frequently and avoid stretching a dark yarn diagonally behind an open chain space.</p>\n<h2>Avoid carrying dark yarn through long pale sections</h2>\n<p>Carrying yarn can save a large number of ends, but it also adds bulk. A black strand carried through white blocks may show through the natural openings in the C2C texture.</p>\n<p>Short distances and similar colors are often good candidates for carrying. Long gaps or strong contrasts usually look cleaner when the yarn is cut and reintroduced later.</p>\n<p>Another option is to park a small bobbin in the area where the color will return. You manage more separate yarn sources, but you avoid dragging the shade through blocks that should appear clean.</p>\n<p>Look several diagonals ahead before deciding. A color that disappears in the current row may return immediately in the next one. Reading ahead prevents both unnecessary cutting and unnecessarily long carried strands.</p>\n<h2>Judge the boundary from a realistic viewing distance</h2>\n<p>A graphgan is not normally viewed from two inches away. Put the work down and step back several feet to see whether the overall edge of the motif reads correctly.</p>\n<p>Tiny irregularities between individual blocks can disappear when the whole image is visible. A wrong color occupying an entire block, however, changes the silhouette and is much more worth fixing.</p>\n<p>This perspective prevents unnecessary frogging over microscopic details and helps you focus on mistakes that actually affect the design.</p>\n<p>A quick phone photograph can help as well. The smaller image often makes a drifting outline, uneven letter width or single wrong-color pixel easier to notice than staring at the fabric close up.</p>\n<h2>Swatch the most difficult color combination first</h2>\n<p>Before a large project, identify the hardest boundary in the graph: strong contrast, thin diagonal lines or repeated one-block alternation.</p>\n<p>Make a small test with the same yarns. Check whether carried strands show through, whether the chosen hook creates large gaps and how much tension adjustment each change needs.</p>\n<p>The swatch also helps you choose between bobbins, carrying and cutting. Solving that strategy before the full blanket can save a great deal of frustration later.</p>\n<p>If the graph uses several very similar shades, label the bobbins with the color code. A beautifully executed yarn change is still a chart error if you picked the wrong gray.</p>\n<p>Clean C2C changes are not about pulling the yarn tighter. They come from controlling the timing of the switch, keeping the two strands at comparable tension and placing unused yarn where it cannot interfere with the visible face. Once those habits become automatic, graph edges look more deliberate without slowing every row to a crawl.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Side-by-side close-up of a messy C2C color boundary and a cleaner, sharper transition.",
+    "alt": "Techniques for clean C2C crochet color changes"
+  }
+}

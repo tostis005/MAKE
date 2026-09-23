@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 391,
+  "translation_group": "391-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "color-changes",
+      "terms": [
+        "color-changes"
+      ]
+    },
+    "style": {
+      "terms": [
+        "color-changes",
+        "graphgan",
+        "colorwork"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "wall-hangings",
+        "cushions"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-391-c2c",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "C2C makers moving from one-color practice to graphgans with two or more colors and needing a simple repeatable color-change method.",
+  "title": "How to Change Colors in C2C Crochet",
+  "slug": "how-to-change-colors-c2c-crochet",
+  "seo": {
+    "title": "How to Change Colors in C2C Crochet",
+    "meta_description": "How to change colors in C2C crochet: when to introduce the new yarn, how to manage tails and how to keep graph sequences and block counts accurate.",
+    "search_intent": "Crocheters beginning C2C graphs who want to know exactly when to introduce a new yarn color so each block matches the chart."
+  },
+  "excerpt": "C2C color changes are usually made during the final step of the previous stitch. Learn when to introduce the new yarn and keep chart boundaries clean.",
+  "content_html": "<p>Color changes are what turn basic C2C crochet into a graphgan. The mechanics are not difficult, but the timing matters. Bring the new yarn in too late and part of the next block may remain in the old color; switch too early and the new shade can creep into the previous cell.</p>\n<p>A practical rule is to complete the final step of the previous stitch with the new color so the working loop already belongs to the next block.</p>\n<h2>Prepare the next color before you reach it</h2>\n<p>Read the working diagonal and identify how many blocks belong to each shade. If the sequence is four cream, two red and three cream, have the red yarn ready before you finish the fourth cream block.</p>\n<p>For a small motif, working from full balls may be manageable. On a large graphgan, bobbins or small separated yarn amounts are usually easier to control.</p>\n<p>Leave a tail long enough to weave in securely when a color is introduced. A very short tail can loosen as the project is turned and handled.</p>\n<h2>Switch yarn during the final step of the previous stitch</h2>\n<p>On the final double crochet of the block before the color change, work the stitch until the last loops remain on the hook. Instead of completing the stitch with the old color, yarn over with the new shade and finish the stitch.</p>\n<p>The new yarn is now the active loop on the hook, ready to begin the next block. The visual boundary is usually cleaner because the body of the previous stitch remains in its original color while the working loop transitions to the next one.</p>\n<p>This principle appears in many forms of crochet colorwork. Think of the final pull-through as the bridge between two color areas.</p>\n<h2>Choose whether to cut, carry or park the old yarn</h2>\n<p>If a color appears again only a few blocks later, you may be able to leave it parked and pick it up when you return to that area. If the gap is large, carrying it across the back can create long visible floats.</p>\n<p>Cutting at every change produces more ends but can keep the back cleaner. Carrying reduces weaving in, but it adds bulk and a dark carried yarn may show through a pale block.</p>\n<p>There is no single correct rule. Base the choice on distance, color contrast, yarn thickness and whether the reverse side will be visible in the finished object.</p>\n<h2>Keep active yarns and tails organized</h2>\n<p>Before turning the work, place each bobbin in a consistent position relative to its section of the graph. Many crocheters line them up from left to right along the current edge.</p>\n<p>Avoid twisting the entire set of yarns every time you turn. If you always rotate the fabric in the same direction, the strands can eventually braid together. Alternate the direction when practical or pause periodically to untangle.</p>\n<p>Unwoven tails can also be mistaken for active yarn. Keep them clearly toward the back or clip them temporarily so they do not enter the working area.</p>\n<h2>Check color sequence and block count together</h2>\n<p>A graphgan requires both correct colors and correct geometry. After a row containing several changes, add the blocks in each color and compare the sum with the required total for that diagonal.</p>\n<p>For example, 4 cream + 2 red + 3 cream equals 9 blocks. If the row should contain 9 but you have crocheted 10, changing the color sequence will not solve the problem; there is a structural counting error.</p>\n<p>Mark the graph row complete only after checking both the sequence and the total. That habit catches mistakes before they spread into later diagonals.</p>\n<h2>Fixing a color change that does not look clean</h2>\n<p>If a small spot of the old color appears at the top of the new block, review the timing of the change. You probably completed the previous stitch fully before picking up the new yarn.</p>\n<p>If the boundary between colors looks unusually loose, tension may have relaxed while you handled two strands. Gently adjust the tails to settle the join without pulling hard enough to distort the stitches.</p>\n<p>When the imperfect change is several blocks behind, decide whether it is actually visible in the finished image. Graphgans are normally viewed from some distance and tiny variations can disappear. If the error breaks a letter, outline or strong graphic edge, correcting it is more worthwhile.</p>\n<p>Before entering a section with many changes, read one or two full diagonals and decide where the yarn sources will sit. Planning the sequence keeps you from pausing with a half-finished final loop while searching for the next color and helps the tension remain more consistent.</p>\n<p>Practice first with two colors and one simple boundary. Once the motion becomes automatic, using three, five or ten shades does not change the core technique. It simply increases the importance of yarn organization and disciplined graph tracking.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Two adjacent C2C blocks in contrasting colors with a close-up of the final loop where the new yarn is introduced.",
+    "alt": "How to change colors in C2C crochet"
+  }
+}

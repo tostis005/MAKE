@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 394,
+  "translation_group": "394-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "finishing",
+      "terms": [
+        "finishing"
+      ]
+    },
+    "style": {
+      "terms": [
+        "finishing",
+        "weaving-in-ends",
+        "graphgan"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "wall-hangings",
+        "cushions"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-394-c2c",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Graphgan and C2C crocheters needing a durable finishing method for projects with frequent color changes.",
+  "title": "How to Weave In Ends in C2C Crochet",
+  "slug": "how-to-weave-in-ends-c2c-crochet",
+  "seo": {
+    "title": "How to Weave In Ends in C2C Crochet",
+    "meta_description": "How to weave in ends in C2C crochet: when to do it, where to pass the yarn needle and how to secure tails without lumps or visible dark strands.",
+    "search_intent": "C2C makers with many yarn tails who want to secure them without creating bulky areas or letting ends work loose over time."
+  },
+  "excerpt": "C2C ends should be woven through the dense block structure in more than one direction. Learn when to weave them in and how to keep the fabric flexible.",
+  "content_html": "<p>C2C graphgans can produce a large number of yarn tails, especially when you cut rather than carry colors. Securing them well is not only about appearance. A short tail or one woven in a single straight direction can work loose with handling and eventually weaken a color change.</p>\n<p>The thick structure of C2C blocks provides many places to hide yarn, but the tail should be distributed without turning one area into a stiff lump.</p>\n<h2>Leave enough tail from the beginning</h2>\n<p>Whenever you cut a color, leave a length that is comfortable to thread through a yarn needle. Working with only an inch or two forces you to pull at the fabric and limits the paths you can use.</p>\n<p>A generous tail also lets you adjust the tension at the color change before securing it. If the final loop is slightly loose, you can settle it gently.</p>\n<p>Avoid using a large knot as a substitute for weaving in. Knots can create bumps, migrate toward the front and feel uncomfortable in blankets or cushions.</p>\n<h2>Wait a few rows before securing a recent change</h2>\n<p>You do not always need to weave in a tail immediately. Leaving a few rows of distance lets the area settle and gives you room to undo the section if you discover a graph mistake.</p>\n<p>A useful routine is to weave in ends every several rows. That prevents the project from ending with a hundred loose tails without locking down every color change the moment it is made.</p>\n<p>For a simple section that you are certain will not be frogged, earlier finishing is fine. The goal is to balance security with the ability to correct mistakes.</p>\n<h2>Run the needle through the dense structure of a block</h2>\n<p>Thread the tail onto a yarn needle and work along the back through several stitches, preferably in blocks of the same color. Aim for the dense stitch structure rather than crossing large chain spaces.</p>\n<p>The yarn should disappear into the crochet instead of stretching openly from one point to another. Avoid splitting and damaging the yarn fibers aggressively as you pass through.</p>\n<p>After traveling for a short distance, change direction. That turn helps prevent the end from sliding out when the fabric is stretched.</p>\n<h2>Use more than one direction for a secure finish</h2>\n<p>A durable end can travel in one direction, return partway in another and, when the yarn thickness allows, change direction once more. You do not need an extremely long route; you need friction.</p>\n<p>Stretch and relax the fabric gently after the first pass. Check that the woven tail is not so tight that it puckers the block.</p>\n<p>When the end feels secure, trim the excess close to the crochet without cutting any working stitches. Allow the small remaining tip to retreat naturally into the structure.</p>\n<h2>Keep dark tails out of pale color areas</h2>\n<p>Whenever possible, weave an end through blocks of its own color. A black tail hidden through cream crochet can remain visible through the natural openings.</p>\n<p>If the shade only appears in a tiny island, work around that same color region in several directions instead of traveling a long distance to find more space.</p>\n<p>For projects where the reverse side remains visible, plan each route more carefully. A lined cushion or backed wall hanging gives you more freedom because the finishing side will eventually be covered.</p>\n<h2>Inspect every tail before final finishing</h2>\n<p>Lay the piece flat and flex the areas containing color changes. If an end begins to emerge, thread it again and add another change of direction.</p>\n<p>Do not trim a loose strand until you know what it is. In a complicated graphgan it is surprisingly easy to mistake an active or parked yarn for a finished tail.</p>\n<p>Complete this inspection before blocking, adding a border or sewing on a backing. Those later steps can make some areas harder to access.</p>\n<p>Check the reverse again after the first wash or period of use. Fibers can settle and a very short tail may appear. If you left enough length and changed direction while weaving, the end can usually be tucked back securely.</p>\n<p>For items that will receive frequent handling, such as children's blankets or cushion covers, prioritize durability over an absolutely minimal-looking reverse. A slightly longer tail hidden securely is better than a tiny end that works free with friction.</p>\n<p>A good C2C finish should be secure but still flexible. Leave enough yarn, use the dense block structure, change direction and avoid dragging dark tails beneath pale areas. If you weave in ends periodically during the project, final finishing becomes a manageable review rather than a separate marathon.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Back of a C2C swatch with a yarn needle traveling in several directions through a dense block to hide a tail.",
+    "alt": "How to weave in ends in C2C crochet"
+  }
+}

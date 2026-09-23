@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 390,
+  "translation_group": "390-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "technique",
+      "terms": [
+        "technique"
+      ]
+    },
+    "style": {
+      "terms": [
+        "rectangle",
+        "shape-control",
+        "corner-to-corner"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "wall-hangings",
+        "cushions"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-390-c2c",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "C2C makers adapting the basic technique to blankets, panels and rectangular graphgans with controlled proportions.",
+  "title": "How to Make a Rectangle in C2C Crochet",
+  "slug": "how-to-make-rectangle-c2c-crochet",
+  "seo": {
+    "title": "How to Make a Rectangle in C2C Crochet",
+    "meta_description": "How to make a C2C crochet rectangle: learn when one edge stops increasing, how to hold the width and when to begin decreasing both sides.",
+    "search_intent": "Crocheters who can make a C2C square and need to understand how one dimension stops growing while the other continues."
+  },
+  "excerpt": "A C2C rectangle forms when one dimension stops increasing before the other. Learn the four shaping stages and how to keep the block count correct.",
+  "content_html": "<p>A C2C rectangle uses the same blocks as a square, but the two final dimensions stop growing at different times. That is the entire structural difference. The practical challenge is remembering which edge should continue increasing and which edge has already begun decreasing.</p>\n<p>Once that transition makes sense, you can use C2C for throw blankets, wide scarves, wall panels, runners and graphgans that are taller or wider than they are square.</p>\n<h2>Begin exactly as you would for a square</h2>\n<p>The first rows are unchanged. Start with one block, then two, three and so on. As long as both dimensions still need to grow, increase at both ends of every row.</p>\n<p>Before starting, write down the target dimensions in blocks. For example, a rectangle that is 30 blocks wide by 50 blocks high. Those numbers are more reliable than physical measurements while you are crocheting because the fabric stretches and moves.</p>\n<p>If you are following a graph, the width and height of the grid already provide the target. If you are working from measurements instead, make a swatch and calculate the approximate physical size of one block.</p>\n<h2>The first corner forms when one dimension is complete</h2>\n<p>In the 30-by-50 example, the short side reaches its target first. When the working diagonal has reached the boundary corresponding to 30 blocks, that edge no longer needs to grow.</p>\n<p>On the next row, decrease at that edge while continuing to increase at the opposite edge. The total number of blocks in a diagonal may stay around 30 while the fabric continues moving toward the longer dimension.</p>\n<p>This middle section is what turns the initial diamond-like growth into a rectangle. One corner has been established, but the long dimension is still expanding.</p>\n<h2>The middle section combines one increase and one decrease</h2>\n<p>Each row now contains two independent edge decisions. At one end, slip stitch across to the next chain space and do not create a new block. At the other end, continue making the normal increase block.</p>\n<p>This stage can be confusing because the total block count may appear almost unchanged. Place a stitch marker on the edge that has already reached its final size so you remember that it should keep decreasing.</p>\n<p>On a graphgan, the chart boundary provides another visual clue: one end of the working diagonal is already touching the edge of the image while the other is still traveling toward the opposite boundary.</p>\n<h2>The second dimension creates the next turning point</h2>\n<p>When the long dimension also reaches its target—50 blocks in this example—you no longer need to increase at either edge.</p>\n<p>From that point, decrease on both ends. Each new row contains progressively fewer blocks until the final corner closes.</p>\n<p>Mark this second turning point in advance. On a long rectangle you may spend many rows combining one increase with one decrease, and it is easy to repeat that pattern one extra time simply from habit.</p>\n<h2>Check that the rectangle keeps the correct proportions</h2>\n<p>Lay the work flat from time to time and look at the overall outline. C2C edges are stepped, but the shape should still show two pairs of parallel sides.</p>\n<p>Check the transition diagonals as well. The first corner should appear when the short dimension is reached and the second when the long dimension is reached. If both changes happened at the same block count, you have made a square rather than a rectangle.</p>\n<p>For a project without a chart, rely on the measured swatch and block totals. Do not change your shaping plan just because the fabric looks unusually long or short while hanging from your hands.</p>\n<h2>Common C2C rectangle mistakes</h2>\n<p>The most common error is decreasing at both ends as soon as the first dimension is reached. That immediately begins closing the piece and produces a square or shortened diamond rather than the planned rectangle.</p>\n<p>The second error is continuing to increase at both ends for too long. The width grows beyond the target and all later measurements shift with it.</p>\n<p>It is also easy to forget which edge is increasing and which is decreasing after turning the work. Using different colored markers at the important corners can remove that uncertainty.</p>\n<p>If the shape goes wrong, return to the last correct corner and count the blocks. C2C geometry is cumulative, so fixing the point where the shaping logic changed is more reliable than trying to compensate several rows later.</p>\n<p>Think of a rectangle in four stages: increase both edges, decrease one while increasing the other, decrease both edges, then close the last corner. With that sequence clear, you can reproduce almost any rectangular proportion a pattern requires.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "C2C rectangle diagram with four corners marked and arrows showing when each edge stops increasing.",
+    "alt": "How to make a rectangle in C2C crochet"
+  }
+}
