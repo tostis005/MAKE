@@ -66,21 +66,12 @@ jobs:
             codes=("$REQUESTED_CODE")
           else
             mapfile -t codes < <(
-              python3 - <<'PY'
-import json
-from pathlib import Path
-for product_file in sorted(Path('content/pattern-system/products').glob('*/product.json')):
-    if product_file.parent.name.startswith('_'):
-        continue
-    data = json.loads(product_file.read_text(encoding='utf-8'))
-    if data.get('render_ready', True):
-        print(data.get('code', product_file.parent.name))
-PY
+              python3 -c 'import json; from pathlib import Path; [print(d.get("code", p.parent.name)) for p in sorted(Path("content/pattern-system/products").glob("*/product.json")) if not p.parent.name.startswith("_") for d in [json.loads(p.read_text(encoding="utf-8"))] if d.get("render_ready", True)]'
             )
           fi
 
           if [ "${#codes[@]}" -eq 0 ]; then
-            echo 'No real pattern products to build yet. Structure validation succeeded.'
+            echo 'No render-ready pattern products to build yet. Structure validation succeeded.'
             exit 0
           fi
 
