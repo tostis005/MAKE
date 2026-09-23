@@ -1,0 +1,82 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 501,
+  "translation_group": "501-multi-technique",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch",
+        "c2c-crochet",
+        "tapestry-crochet",
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "charts",
+      "terms": [
+        "charts"
+      ]
+    },
+    "style": {
+      "terms": [
+        "grid-reuse",
+        "conversion",
+        "multi-craft"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "wall-art",
+        "blankets",
+        "bags",
+        "rugs",
+        "cushions",
+        "home-decor"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-501-multi-technique",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "People who want to use one grid design to create versions in cross stitch, C2C crochet, tapestry crochet or latch hook.",
+  "title": "How to Reuse One Grid Across Cross Stitch, Crochet and Latch Hook",
+  "slug": "how-to-reuse-one-grid-cross-stitch-crochet-latch-hook",
+  "seo": {
+    "title": "How to Reuse One Grid Across Cross Stitch, Crochet and Latch Hook",
+    "meta_description": "Reuse one grid across cross stitch, crochet and latch hook by adapting scale, cell proportions, colors, detail, materials and finishing.",
+    "search_intent": "People who want to convert one grid pattern across several textile crafts."
+  },
+  "excerpt": "A grid can be the common source for several crafts, but it should not be copied blindly. Learn what to preserve and what to recalculate when changing medium.",
+  "content_html": "<p>A color grid can act as a master artwork for several textile crafts. The same cell structure can become embroidered crosses, C2C blocks, tapestry crochet stitches or latch hook knots. What should not be assumed is that resolution, proportions and palette must remain identical in every version.</p>\n<p>Reusing a grid successfully means separating the identity of the design from the craft-specific construction decisions. It also means documenting those decisions so every version can be reproduced without rebuilding the conversion process from memory.</p>\n<h2>Preserve the silhouette and major relationships first</h2>\n<p>Identify what makes the design recognizable: outline, large color masses, eyes, lettering or key geometry.</p>\n<p>Those elements form the core that should survive across every version.</p>\n<p>Secondary detail can change size or disappear when a craft uses a much larger physical cell.</p>\n<p>Keep a high-resolution master version that contains all meaningful design information.</p>\n<p>Create craft-specific copies from that master instead of repeatedly editing the only source file.</p>\n<p>This makes it easy to compare simplifications without losing the original structure.</p>\n<p>If several versions form a collection, keep one shared thumbnail reference so you can quickly confirm that all of them still read as the same artwork.</p>\n<h2>Recalculate the physical size of a cell for every technique</h2>\n<p>A cross stitch X can measure only a few millimeters.</p>\n<p>A C2C block may span several centimeters, while tapestry crochet sits at a smaller stitch scale and latch hook depends on mesh density.</p>\n<p>Make a swatch for each system and measure how many chart units fit into an inch or centimeter.</p>\n<p>Use that scale with the graph width and height to estimate finished dimensions.</p>\n<p>If one version becomes too large, reduce the number of cells while preserving proportions.</p>\n<p>If it is too small for the intended object, enlarge the grid or choose another compatible foundation.</p>\n<p>Record the target dimensions beside every craft-specific copy so the blanket, framed piece, bag and rug versions cannot be confused later.</p>\n<h2>Correct proportions when the textile unit is not perfectly square</h2>\n<p>Digital cells are square, but textile units do not always have equal height and width.</p>\n<p>A single crochet stitch can be taller or wider depending on yarn, hook and tension.</p>\n<p>A C2C block often approaches a square, but it still needs to be measured.</p>\n<p>In cross stitch, proportions depend on an appropriate even fabric structure and how the stitches are worked.</p>\n<p>If a swatch turns a digital circle into an oval, adjust the graph before producing the full project.</p>\n<p>Do not try to fix proportion by stretching the finished object; fix the relationship between rows and columns.</p>\n<p>For faces and lettering, this check matters especially because small distortion is much more noticeable than it is in an abstract motif.</p>\n<h2>Expand or reduce the palette for the material</h2>\n<p>A cross stitch version can use many nearby shades because each one uses little material and remains visually separate.</p>\n<p>In latch hook, too many similar colors can blend in the pile and make preparation unnecessarily complex.</p>\n<p>In C2C, isolated one-cell colors create bobbin changes that may contribute little to the image.</p>\n<p>In tapestry crochet, carrying many colors at once can add bulk and make tension harder to control.</p>\n<p>Create one base palette and then a craft-specific palette for every version.</p>\n<p>Preserve the contrasts that define the image before preserving minor shading differences.</p>\n<p>Record substitutions so a later pattern update does not accidentally break color consistency across the collection.</p>\n<h2>Adapt details and edges to the finished texture</h2>\n<p>A one-cell line can stay crisp in cross stitch and become visually fragile in latch hook.</p>\n<p>In C2C, that same detail can become a physically large block.</p>\n<p>In row-based crochet, stitch proportions can change diagonals and curves.</p>\n<p>Review lettering, eyes, outlines and small negative spaces in every version.</p>\n<p>When an important element disappears, give it more thickness in the copy intended for that craft.</p>\n<p>The goal is to preserve the way the image reads, not to prove that every version uses the identical cell count.</p>\n<p>A reduced digital preview and a physical swatch are different checks: one reviews composition while the other reveals real texture and scale.</p>\n<h2>Keep a conversion sheet for every version</h2>\n<p>Alongside each craft-specific chart, record the technique, resolution, estimated size, materials, palette and swatch measurements.</p>\n<p>Note every merged color or redrawn detail compared with the master.</p>\n<p>If the artwork is sold or repeated, this sheet prevents the decisions from having to be reconstructed months later.</p>\n<p>It also supports a coordinated collection where one illustration appears as embroidery, a blanket, a bag or a rug.</p>\n<p>Before producing at scale, test a critical area in every technique and confirm that the adaptation works physically.</p>\n<p>Include the master-file version or date so you know exactly which source generated each adaptation when the original design changes later.</p>\n<p>Reusing one grid across cross stitch, crochet and latch hook works when the chart is treated as a source rather than a rigid recipe. Preserve visual identity and adapt scale, proportions, colors and detail to the real textile unit of each craft.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "One central grid connected by arrows to four results: cross stitch, C2C crochet, tapestry crochet and latch hook at different scales.",
+    "alt": "Reuse one grid across textile crafts"
+  }
+}
