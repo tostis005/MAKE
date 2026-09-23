@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 411,
+  "translation_group": "411-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "colorwork",
+      "terms": [
+        "colorwork"
+      ]
+    },
+    "style": {
+      "terms": [
+        "carry-yarn",
+        "cut-yarn",
+        "colorwork"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "wall-hangings",
+        "cushions"
+      ]
+    },
+    "article_type": {
+      "primary": "comparison",
+      "terms": [
+        "comparison"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-411-c2c",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Graphgan crocheters balancing visual cleanliness, speed, bulk and finishing work.",
+  "title": "Carry Yarn or Cut It in C2C Crochet: Which Is Better?",
+  "slug": "carry-yarn-or-cut-it-c2c-crochet",
+  "seo": {
+    "title": "Carry Yarn or Cut It in C2C Crochet: Which Is Better?",
+    "meta_description": "Carry yarn or cut it in C2C crochet: compare distance, contrast, bulk, yarn ends and reverse-side appearance for each color change.",
+    "search_intent": "C2C makers deciding when to carry a color and when to cut it in order to reduce ends without creating a messy reverse side."
+  },
+  "excerpt": "Carrying yarn reduces ends but can add bulk and show through pale colors. Cutting keeps sections cleaner at the cost of more finishing.",
+  "content_html": "<p>Every C2C graphgan color change creates a choice: keep the yarn attached and carry it until the shade returns, or cut it and reintroduce it later. Neither method is always better. Distance, contrast, yarn thickness and the appearance of the reverse side determine what makes sense.</p>\n<p>Making the choice deliberately prevents two extremes: hundreds of unnecessary ends or long floats that show and snag.</p>\n<h2>Carrying works best over short distances</h2>\n<p>If a color returns only one or two blocks later, keeping it active can save a cut and two tails.</p>\n<p>Keep the strand toward the wrong side and avoid crossing a large open chain space. Where the construction allows it, the yarn can sometimes be trapped discreetly without making the block bulky.</p>\n<p>The farther the distance, the greater the chance of a long float catching or becoming visible from the front.</p>\n<p>For a frequently used blanket, also think about fingers, jewelry and washing. A long strand that is harmless on a wall hanging can snag easily on a throw.</p>\n<h2>Color contrast changes the decision</h2>\n<p>A dark yarn carried behind pale blocks can show through the natural C2C openings. In that situation, even a short carry may look untidy.</p>\n<p>With similar shades, a carried strand is less obvious. Make a swatch if the back will remain visible.</p>\n<p>Do not judge only from the front under one light. Hold the fabric toward a light source and view it from different angles to see whether the hidden color appears.</p>\n<p>Yarn texture matters too. A fuzzy dark fiber can peek through more easily than a smooth yarn of the same color.</p>\n<h2>Cutting keeps areas cleaner but creates more ends</h2>\n<p>When a color disappears for many diagonals, cutting is usually neater than stretching a strand across the back.</p>\n<p>Leave enough tail for secure weaving. Cutting extremely short in an effort to save yarn creates a finishing problem later.</p>\n<p>The tradeoff is finishing time. On a graphgan with constant changes, cutting at every transition can produce a large number of ends.</p>\n<p>Weave them in periodically rather than necessarily after every change. This keeps enough flexibility to frog an error without leaving the whole finishing job until the end.</p>\n<h2>Parking a bobbin is a third option</h2>\n<p>You do not always have to choose between carrying and cutting. If a color returns soon in the same area, leave a bobbin attached and park it.</p>\n<p>The yarn does not need to cross a long distance and you avoid creating new tails. This is especially useful for lettering, eyes and small recurring regions.</p>\n<p>The disadvantage is managing more bobbins. Labeling them and keeping each beside its color area reduces mistakes.</p>\n<p>When a parked bobbin will not be used for many rows, remove it. Keeping inactive yarn attached simply because it might return later adds clutter.</p>\n<h2>Think in regions rather than only by color</h2>\n<p>If red appears in two areas separated by half the graph, two red bobbins may be cleaner than carrying one strand between them.</p>\n<p>Each yarn source can “belong” to a region. That reduces long travel and keeps the back easier to manage.</p>\n<p>This also simplifies turning because each bobbin remains close to where it will be needed again.</p>\n<p>In a portrait, for example, two background bobbins on either side of a head can be much cleaner than dragging one strand behind the entire face.</p>\n<h2>Create a practical rule for the project</h2>\n<p>Before beginning, choose an approximate maximum carry distance. It might be two or three blocks for similar colors and less for strong contrast.</p>\n<p>Do not make the number rigid. If a strand would cross a very visible opening, cut sooner; if it will be completely hidden inside a dense area, slightly farther may be fine.</p>\n<p>Look ahead at the next few diagonals before cutting. A color that disappears in the current row may return immediately on the next.</p>\n<p>Write your working rule on the pattern. Similar decisions in equivalent areas make the reverse side more consistent.</p>\n<h3>Balance crochet time against finishing time</h3>\n<p>Carrying saves weaving-in but requires managing active strands. Cutting simplifies the current row while moving the work to the finishing stage.</p>\n<p>If you strongly dislike weaving ends, you may prefer more bobbins and selective carrying. If loose strands on the reverse bother you, accepting more tails may produce a result you like better.</p>\n<p>The most effective strategy usually mixes methods. Carry short, discreet distances, park colors that return soon and cut when distance or contrast makes the strand impractical.</p>\n<p>Swatch the most difficult area of the design before choosing a global strategy. A few minutes of testing can prevent hundreds of changes handled in a way you later dislike.</p>\n<p>There is no single answer for the whole graphgan. Evaluate each region by visibility, distance and final use. A reversible blanket demands a cleaner back than a backed wall panel, and that difference can completely change the decision.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "The same C2C color transition shown with yarn carried behind and with yarn cut and reintroduced, comparing the reverse side.",
+    "alt": "Carry yarn or cut it in C2C crochet"
+  }
+}

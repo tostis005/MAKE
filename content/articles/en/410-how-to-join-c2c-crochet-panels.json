@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 410,
+  "translation_group": "410-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "finishing",
+      "terms": [
+        "finishing"
+      ]
+    },
+    "style": {
+      "terms": [
+        "joining-panels",
+        "seaming",
+        "modular-c2c"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "wall-hangings",
+        "cushions"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-410-c2c",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Makers of modular C2C blankets, cushions or wall hangings combining separate pieces without distorting the graph.",
+  "title": "How to Join C2C Crochet Panels",
+  "slug": "how-to-join-c2c-crochet-panels",
+  "seo": {
+    "title": "How to Join C2C Crochet Panels",
+    "meta_description": "Learn how to join C2C crochet panels by preparing edges, aligning blocks and comparing sewn, slip-stitch and single-crochet seams.",
+    "search_intent": "Crocheters making C2C in multiple panels who need a flat, strong and visually clean joining method."
+  },
+  "excerpt": "C2C panels join cleanly when edges and blocks are aligned first. Compare three seam methods and learn how to avoid bulky or mismatched joins.",
+  "content_html": "<p>Working a C2C project in panels can make a large blanket easier to handle, allow independent motifs or create a modular design. The final join, however, needs to respect the grid. If one panel shifts by half a block or the seam pulls more on one side, the image can lose continuity.</p>\n<p>Before choosing a joining method, prepare the edges and decide whether you want a nearly invisible seam, a decorative line or maximum structural strength.</p>\n<h2>Check that the panels have compatible dimensions</h2>\n<p>Lay the pieces flat and align the corners. Count the blocks along the edges that will be joined.</p>\n<p>If one panel has 40 blocks and the other has 41, do not simply distribute the difference without checking the pattern. The mismatch may come from an added or missing block.</p>\n<p>Measure physical length as well. Two edges with the same block count can differ when tension changed. Gentle blocking before seaming can correct small differences.</p>\n<p>If the panels form one continuous image, place the chart beside them and verify that color areas meet correctly at the intended seam line.</p>\n<h2>Add a foundation edge when the steps are difficult to join</h2>\n<p>Some projects can be joined directly through the block spaces. Others benefit from one round of single crochet around each panel to create a more regular seam line.</p>\n<p>If you add a foundation round, keep stitch density consistent on every piece. Count stitches and mark corners so corresponding seam edges have matching positions.</p>\n<p>Do not make the foundation edge too tight. If it curves before the panels are joined, the seam will not fix it.</p>\n<p>Finish the foundation round on every panel before assembly so you can compare dimensions and correct any piece that behaves differently.</p>\n<h2>A yarn-needle seam can stay discreet</h2>\n<p>Using a yarn needle and compatible yarn, you can sew the panels together through corresponding loops or with a mattress-style seam.</p>\n<p>Work in sections and pull only enough to bring the edges together. Tightening every stitch aggressively shortens the seam and puckers the project.</p>\n<p>This method is useful when you do not want extra crochet thickness or a visible line running through the image.</p>\n<p>Use a manageable length of seaming yarn. One extremely long strand can abrade as it repeatedly passes through stitches and is more likely to tangle.</p>\n<h2>Slip stitch creates a fast, controlled join</h2>\n<p>Align the two edges and work slip stitches through one loop from each panel.</p>\n<p>The result can remain fairly flat when tension is relaxed. With contrasting yarn, the join can also become an intentional decorative detail.</p>\n<p>Test it first. Tight slip stitches can create a rigid zipper-like ridge that behaves differently from the surrounding blanket.</p>\n<p>If the seam will sit on the back, test which loops to pick up so the visible front line remains as subtle as possible.</p>\n<h2>Single crochet makes a stronger, more visible seam</h2>\n<p>A single-crochet join creates a line with more body. It works well in modular blankets where the divisions between panels are part of the design.</p>\n<p>Work corresponding stitches from both sides and watch that the seam does not become an excessively thick ridge.</p>\n<p>On cushions or structured pieces, the added firmness may be useful. On a very soft blanket, a flatter method may feel better.</p>\n<p>Seam color also changes the effect: background yarn blends the join, while contrast turns it into a visible grid between modules.</p>\n<h2>Align the graph before closing the entire seam</h2>\n<p>Clip or mark the panels together every several blocks. Start at both corners, then mark the midpoint and quarter points.</p>\n<p>This prevents arriving at the final corner with several inches of mismatch. If a motif must continue directly across the seam, check that exact area before sewing.</p>\n<p>After joining the first eight or ten inches, lay the pieces flat and make sure the seam is not twisting. Fixing a short section is much easier than reopening the whole blanket.</p>\n<p>If physical lengths differ slightly but block counts are correct, distribute that difference gradually over many blocks rather than forcing all the adjustment into one spot.</p>\n<h3>Finish and stabilize the join</h3>\n<p>Weave yarn tails into the seam or matching-color blocks, changing direction so the ends remain secure.</p>\n<p>After all panels are connected, block the complete piece if appropriate for the fiber. Blocking helps seams settle and evens small tension differences.</p>\n<p>If you plan an outer border, add it after assembly. The border can visually integrate the modules and stabilize the full perimeter.</p>\n<p>Before calling the assembly finished, lift the piece and let it support its own weight. A seam that looks flat on a table may pull differently when a blanket hangs.</p>\n<p>The best seam is not the one that is theoretically most invisible; it is the one that suits the object. Align blocks, avoid excess tension and test the method on two swatches before committing every panel. A well-distributed seam lets separate C2C pieces behave like one continuous surface without interrupting the graph.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Three small C2C swatches joined with a sewn seam, slip stitch and single crochet, shown side by side.",
+    "alt": "How to join C2C crochet panels"
+  }
+}
