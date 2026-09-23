@@ -184,7 +184,7 @@ jobs:
             do_action( "litespeed_purge_all" );
             echo "Drielo theme deployed" . PHP_EOL;
           '
-          "${DOCKER[@]}" exec make-wp php -r '
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
             require "/var/www/html/wp-load.php";
             require_once ABSPATH . "wp-admin/includes/image.php";
             $ids=get_posts(array(
