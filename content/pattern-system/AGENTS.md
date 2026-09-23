@@ -13,7 +13,7 @@ This repository is the source of truth for Drielo cross-stitch PDF generation.
 7. Pages 1-3 use the same canonical vector stitch model. Page 1 places the transparent vector stitch layer inside the collection's frame area over an Aida-style fabric background. Pages 2-3 render the same stitch geometry with the template's fabric preview.
 8. Colour charts, symbol charts, rulers and enlarged chart sections must be generated from the same matrix and thread definitions used for the preview.
 9. Keep the customer PDF vector wherever the template generates SVG. Do not rasterize vector chart/stitch artwork before PDF export.
-10. Product code is the pattern identifier (for example `P0021`).
+10. Product code must be technique-qualified and unique: `P0021-CS`, `P0021-C2C`, `P0021-TC` or `P0021-LH`. Keep the shared design family separately as the base design ID (`P0021`).
 
 ## Collection palette
 
