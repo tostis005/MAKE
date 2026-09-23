@@ -168,7 +168,54 @@
         "kind": "aida",
         "count_visual_reference": 14
       }
-    }
+    },
+    "technique_layouts": {
+      "CS": {
+        "cover_overlay": {
+          "left": 29,
+          "top": 12,
+          "width": 48,
+          "height": 58,
+          "opacity": 0.96,
+          "safe_inset_pct": 0
+        },
+        "cover_stage_scale": 125
+      },
+      "C2C": {
+        "cover_overlay": {
+          "left": 19.8,
+          "top": 7.2,
+          "width": 64.5,
+          "height": 78,
+          "opacity": 0.94,
+          "safe_inset_pct": 6
+        },
+        "cover_stage_scale": 123
+      },
+      "TC": {
+        "cover_overlay": {
+          "left": 27.7,
+          "top": 10.8,
+          "width": 43.5,
+          "height": 63.5,
+          "opacity": 0.94,
+          "safe_inset_pct": 4.5
+        },
+        "cover_stage_scale": 123
+      },
+      "LH": {
+        "cover_overlay": {
+          "left": 21.7,
+          "top": 7.5,
+          "width": 59,
+          "height": 71,
+          "opacity": 0.94,
+          "safe_inset_pct": 4.5
+        },
+        "cover_stage_scale": 125
+      }
+    },
+    "layout_source": "Exact copy of the approved Pop Art multitech cover placement values; do not recalculate per collection."
   },
   "preview_rules": {
     "vector": true,
