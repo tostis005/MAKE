@@ -4352,6 +4352,61 @@
       "title_es": "Cómo esconder y rematar cabos en C2C Crochet",
       "title_en": "How to Weave In Ends in C2C Crochet",
       "craft": "c2c-crochet"
+    },
+    {
+      "number": 395,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "graphs",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Qué es un graphgan y cómo funciona en C2C Crochet",
+      "title_en": "What Is a Graphgan and How Does It Work in C2C Crochet?",
+      "craft": "c2c-crochet"
+    },
+    {
+      "number": 396,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "pixel-art",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo convertir pixel art en un patrón de C2C Crochet",
+      "title_en": "How to Turn Pixel Art into a C2C Crochet Pattern",
+      "craft": "c2c-crochet"
+    },
+    {
+      "number": 397,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "photo-conversion",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Cómo convertir una foto en un gráfico para C2C Crochet",
+      "title_en": "How to Turn a Photo into a C2C Crochet Graph",
+      "craft": "c2c-crochet"
+    },
+    {
+      "number": 398,
+      "priority": "P3",
+      "section": "buying-guides",
+      "topic": "yarn",
+      "intent": "commercial",
+      "status": "published",
+      "title_es": "Mejor hilo para C2C Crochet: qué elegir según el proyecto",
+      "title_en": "Best Yarn for C2C Crochet: What to Choose for Each Project",
+      "craft": "c2c-crochet"
+    },
+    {
+      "number": 399,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "materials",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Qué tamaño de aguja usar para C2C Crochet",
+      "title_en": "What Crochet Hook Size Should You Use for C2C?",
+      "craft": "c2c-crochet"
     }
   ],
   "taxonomy_strategy": {
@@ -4382,7 +4437,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 394,
-    "bilingual_groups": 394
+    "last_indexed_article": 399,
+    "bilingual_groups": 399
   }
 }
