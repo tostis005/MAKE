@@ -186,6 +186,31 @@ jobs:
           '
           "${DOCKER[@]}" exec make-wp php -r '
             require "/var/www/html/wp-load.php";
+            require_once ABSPATH . "wp-admin/includes/image.php";
+            $ids=get_posts(array(
+              "post_type"=>"product","post_status"=>"publish","posts_per_page"=>-1,"fields"=>"ids",
+              "meta_key"=>"_drielo_managed_product","meta_value"=>"1"
+            ));
+            $attachments=array();
+            foreach($ids as $id){
+              $image_id=(int)get_post_thumbnail_id($id);
+              if($image_id>0){$attachments[$image_id]=true;}
+            }
+            foreach(array_keys($attachments) as $attachment_id){
+              if(function_exists("wp_update_image_subsizes")){
+                wp_update_image_subsizes((int)$attachment_id);
+              } else {
+                $file=get_attached_file((int)$attachment_id);
+                if($file){
+                  $metadata=wp_generate_attachment_metadata((int)$attachment_id,$file);
+                  if(is_array($metadata)){wp_update_attachment_metadata((int)$attachment_id,$metadata);}
+                }
+              }
+            }
+            echo "DRIELO_CARD_DERIVATIVES=" . count($attachments) . PHP_EOL;
+          '
+          "${DOCKER[@]}" exec make-wp php -r '
+            require "/var/www/html/wp-load.php";
             echo "MAKE_SITE_URL=" . home_url("/") . PHP_EOL;
             foreach (array("es","en") as $lang) {
                 $q = new WP_Query(array(
@@ -253,7 +278,10 @@ jobs:
           }
 
           check_html "/tienda/" "Tienda de patrones" "shop-patterns-es" "PDF descargable"
+          check_html "/tienda/" "attachment-make-store-card" "shop-card-derivative"
           check_html "/wp-content/themes/make/style.css" "Store + single-product layout refinements" "store-layout-css"
+          check_html "/wp-content/themes/make/style.css" ".drielo-collection-card:only-child" "collection-card-layout"
+          check_html "/wp-content/themes/make/style.css" "background:transparent!important;box-shadow:none!important" "pagination-transparent"
           check_html "/tienda/colecciones/" "Colecciones de patrones" "shop-collections-es" "PDF descargable"
           check_html "/tienda/colecciones/" "Explora cada patrón por separado o descubre colecciones que comparten una misma paleta de color." "shop-collections-intro-es"
           check_html "/en/shop/collections/" "Pattern collections" "shop-collections-en" "Downloadable PDF"
@@ -312,6 +340,8 @@ jobs:
             $id=wc_get_product_id_by_sku("DRIELO-P0001");
             $image_id=get_post_thumbnail_id($id);
             $preview=wp_get_attachment_image_src($image_id,"medium_large");
+            $shop_card=wp_get_attachment_image_src($image_id,"make-store-card");
+            $home_card=wp_get_attachment_image_src($image_id,"make-home-product-card");
             $html=apply_filters("woocommerce_single_product_image_thumbnail_html","placeholder",(int)$image_id);
             if ($usd_symbol!=="$" || $eur_symbol!=="€") {
                 fwrite(STDERR,"Currency symbol verification failed USD=".$usd_symbol." EUR=".$eur_symbol.PHP_EOL);
@@ -321,7 +351,11 @@ jobs:
                 fwrite(STDERR,"Protected image verification failed".PHP_EOL);
                 exit(2);
             }
-            echo "DRIELO_PREVIEW_OK width=".$preview[1]." USD=".$usd_symbol." EUR=".$eur_symbol.PHP_EOL;
+            if (!is_array($shop_card) || (int)$shop_card[1]>560 || (int)$shop_card[2]>560 || !is_array($home_card) || (int)$home_card[1]>560 || (int)$home_card[2]>700) {
+                fwrite(STDERR,"Store card derivative verification failed".PHP_EOL);
+                exit(2);
+            }
+            echo "DRIELO_PREVIEW_OK width=".$preview[1]." SHOP=".$shop_card[1]."x".$shop_card[2]." HOME=".$home_card[1]."x".$home_card[2]." USD=".$usd_symbol." EUR=".$eur_symbol.PHP_EOL;
           '
 
           check_html "/articulos/" "Últimos artículos" "journal-es"
