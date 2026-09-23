@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": "2.0",
   "currency_default": "USD",
   "currencies": [
     "USD",
@@ -180,7 +180,39 @@
         "marilyn monroe",
         "bubble gum art",
         "pop art portrait"
-      ]
+      ],
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "people-portraits"
+        ],
+        "style": [
+          "pop-art",
+          "playful",
+          "colorful"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "pink",
+          "warm",
+          "multicolor"
+        ],
+        "season": []
+      },
+      "design_id": "P0001",
+      "grid_width": 100,
+      "grid_height": 120,
+      "color_count": 19
     },
     {
       "code": "P0002",
@@ -258,7 +290,38 @@
         "marilyn monroe",
         "surprised portrait",
         "pop art portrait"
-      ]
+      ],
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "people-portraits"
+        ],
+        "style": [
+          "pop-art",
+          "playful",
+          "colorful"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "pink",
+          "warm"
+        ],
+        "season": []
+      },
+      "design_id": "P0002",
+      "grid_width": 100,
+      "grid_height": 120,
+      "color_count": 19
     },
     {
       "code": "P0003",
@@ -336,7 +399,38 @@
         "marilyn monroe",
         "blowing kiss art",
         "pop art portrait"
-      ]
+      ],
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "people-portraits"
+        ],
+        "style": [
+          "pop-art",
+          "playful",
+          "colorful"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "pink",
+          "warm"
+        ],
+        "season": []
+      },
+      "design_id": "P0003",
+      "grid_width": 100,
+      "grid_height": 120,
+      "color_count": 19
     },
     {
       "code": "P0004",
@@ -414,7 +508,38 @@
         "marilyn monroe",
         "sunglasses art",
         "pop art portrait"
-      ]
+      ],
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "people-portraits"
+        ],
+        "style": [
+          "pop-art",
+          "modern",
+          "colorful"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "pink",
+          "dark"
+        ],
+        "season": []
+      },
+      "design_id": "P0004",
+      "grid_width": 100,
+      "grid_height": 120,
+      "color_count": 19
     },
     {
       "code": "P0005",
@@ -492,7 +617,38 @@
         "marilyn monroe",
         "wink portrait",
         "pop art portrait"
-      ]
+      ],
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "people-portraits"
+        ],
+        "style": [
+          "pop-art",
+          "playful",
+          "colorful"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "pink",
+          "warm"
+        ],
+        "season": []
+      },
+      "design_id": "P0005",
+      "grid_width": 100,
+      "grid_height": 120,
+      "color_count": 19
     },
     {
       "code": "P0006",
@@ -570,7 +726,37 @@
         "audrey hepburn",
         "classic movie art",
         "elegant portrait"
-      ]
+      ],
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "people-portraits"
+        ],
+        "style": [
+          "elegant",
+          "vintage"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "neutral",
+          "dark"
+        ],
+        "season": []
+      },
+      "design_id": "P0006",
+      "grid_width": 100,
+      "grid_height": 120,
+      "color_count": 19
     },
     {
       "code": "P0007",
@@ -648,7 +834,38 @@
         "audrey hepburn",
         "sunglasses art",
         "elegant portrait"
-      ]
+      ],
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "people-portraits"
+        ],
+        "style": [
+          "pop-art",
+          "modern",
+          "elegant"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "pink",
+          "dark"
+        ],
+        "season": []
+      },
+      "design_id": "P0007",
+      "grid_width": 100,
+      "grid_height": 120,
+      "color_count": 19
     },
     {
       "code": "P0008",
@@ -726,7 +943,38 @@
         "audrey hepburn",
         "elegant portrait",
         "classic movie art"
-      ]
+      ],
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "people-portraits"
+        ],
+        "style": [
+          "elegant",
+          "vintage"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "neutral",
+          "pink",
+          "dark"
+        ],
+        "season": []
+      },
+      "design_id": "P0008",
+      "grid_width": 100,
+      "grid_height": 120,
+      "color_count": 19
     },
     {
       "code": "P0009",
@@ -804,7 +1052,38 @@
         "pearl earring art",
         "vermeer portrait",
         "classic art pattern"
-      ]
+      ],
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "people-portraits"
+        ],
+        "style": [
+          "classic-art",
+          "modern"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "blue",
+          "warm",
+          "multicolor"
+        ],
+        "season": []
+      },
+      "design_id": "P0009",
+      "grid_width": 100,
+      "grid_height": 120,
+      "color_count": 17
     },
     {
       "code": "P0010",
@@ -882,7 +1161,39 @@
         "pearl earring art",
         "bubble gum art",
         "vermeer portrait"
-      ]
+      ],
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "people-portraits"
+        ],
+        "style": [
+          "pop-art",
+          "playful",
+          "classic-art"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "blue",
+          "pink",
+          "multicolor"
+        ],
+        "season": []
+      },
+      "design_id": "P0010",
+      "grid_width": 100,
+      "grid_height": 120,
+      "color_count": 18
     },
     {
       "code": "P0011",
@@ -960,7 +1271,38 @@
         "pearl earring art",
         "sunglasses art",
         "vermeer portrait"
-      ]
+      ],
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "people-portraits"
+        ],
+        "style": [
+          "pop-art",
+          "playful",
+          "classic-art"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "blue",
+          "dark"
+        ],
+        "season": []
+      },
+      "design_id": "P0011",
+      "grid_width": 100,
+      "grid_height": 120,
+      "color_count": 16
     },
     {
       "code": "P0012",
@@ -1038,7 +1380,39 @@
         "frida kahlo",
         "floral crown art",
         "artist portrait"
-      ]
+      ],
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "people-portraits",
+          "flowers-botanicals"
+        ],
+        "style": [
+          "pop-art",
+          "colorful"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "warm",
+          "pink",
+          "multicolor"
+        ],
+        "season": []
+      },
+      "design_id": "P0012",
+      "grid_width": 100,
+      "grid_height": 120,
+      "color_count": 19
     },
     {
       "code": "P0013",
@@ -1116,7 +1490,37 @@
         "mona lisa",
         "renaissance art",
         "classic art pattern"
-      ]
+      ],
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "people-portraits"
+        ],
+        "style": [
+          "classic-art",
+          "modern"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "warm",
+          "neutral"
+        ],
+        "season": []
+      },
+      "design_id": "P0013",
+      "grid_width": 100,
+      "grid_height": 120,
+      "color_count": 19
     },
     {
       "code": "P0014",
@@ -1194,7 +1598,38 @@
         "salvador dali",
         "surreal portrait",
         "moustache art"
-      ]
+      ],
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "people-portraits",
+          "fantasy-surreal"
+        ],
+        "style": [
+          "surreal",
+          "modern"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "neutral",
+          "warm"
+        ],
+        "season": []
+      },
+      "design_id": "P0014",
+      "grid_width": 100,
+      "grid_height": 120,
+      "color_count": 19
     },
     {
       "code": "P0015",
@@ -1272,7 +1707,37 @@
         "albert einstein",
         "science portrait",
         "funny portrait"
-      ]
+      ],
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "people-portraits"
+        ],
+        "style": [
+          "playful",
+          "modern"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "neutral",
+          "warm"
+        ],
+        "season": []
+      },
+      "design_id": "P0015",
+      "grid_width": 100,
+      "grid_height": 120,
+      "color_count": 19
     },
     {
       "code": "P0016",
@@ -1350,7 +1815,37 @@
         "charlie chaplin",
         "silent film art",
         "vintage portrait"
-      ]
+      ],
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "people-portraits"
+        ],
+        "style": [
+          "vintage",
+          "classic-art"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "neutral",
+          "dark"
+        ],
+        "season": []
+      },
+      "design_id": "P0016",
+      "grid_width": 100,
+      "grid_height": 120,
+      "color_count": 19
     },
     {
       "code": "P0017",
@@ -1428,7 +1923,37 @@
         "vincent van gogh",
         "artist portrait",
         "art lover pattern"
-      ]
+      ],
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "people-portraits"
+        ],
+        "style": [
+          "classic-art",
+          "modern"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "warm",
+          "multicolor"
+        ],
+        "season": []
+      },
+      "design_id": "P0017",
+      "grid_width": 100,
+      "grid_height": 120,
+      "color_count": 19
     },
     {
       "code": "P0018",
@@ -1506,7 +2031,39 @@
         "surreal portrait",
         "apple man art",
         "bowler hat art"
-      ]
+      ],
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "people-portraits",
+          "fantasy-surreal"
+        ],
+        "style": [
+          "surreal",
+          "modern"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "green",
+          "neutral",
+          "dark"
+        ],
+        "season": []
+      },
+      "design_id": "P0018",
+      "grid_width": 100,
+      "grid_height": 120,
+      "color_count": 19
     },
     {
       "code": "P0019",
@@ -1584,7 +2141,40 @@
         "vincent van gogh",
         "sunflower pattern",
         "artist portrait"
-      ]
+      ],
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "people-portraits",
+          "flowers-botanicals"
+        ],
+        "style": [
+          "playful",
+          "classic-art",
+          "modern"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "warm",
+          "green",
+          "multicolor"
+        ],
+        "season": []
+      },
+      "design_id": "P0019",
+      "grid_width": 100,
+      "grid_height": 120,
+      "color_count": 19
     },
     {
       "code": "P0020",
@@ -1677,7 +2267,38 @@
         "patrón tiara",
         "retrato elegante",
         "arte para bordar"
-      ]
+      ],
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "people-portraits"
+        ],
+        "style": [
+          "elegant",
+          "classic-art"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "neutral",
+          "pink",
+          "warm"
+        ],
+        "season": []
+      },
+      "design_id": "P0020",
+      "grid_width": 100,
+      "grid_height": 120,
+      "color_count": 19
     }
   ]
 }
