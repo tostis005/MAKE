@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 438,
+  "translation_group": "438-tapestry-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "tapestry-crochet",
+      "terms": [
+        "tapestry-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "pixel-art",
+      "terms": [
+        "pixel-art"
+      ]
+    },
+    "style": {
+      "terms": [
+        "pixel-art",
+        "chart-design",
+        "tapestry-crochet"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "bags",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "es-438-tapestry",
+  "language": "es",
+  "locale": "es-ES",
+  "market_context": "Crocheters que parten de pixel art existente y quieren convertir cada píxel en una unidad tapestry sin perder proporción, legibilidad ni escala.",
+  "title": "Cómo convertir pixel art en un patrón de Tapestry Crochet",
+  "slug": "como-convertir-pixel-art-patron-tapestry-crochet",
+  "seo": {
+    "title": "Cómo convertir pixel art en un patrón de Tapestry Crochet",
+    "meta_description": "Cómo convertir pixel art en un patrón de Tapestry Crochet: define escala, simplifica paleta, comprueba gauge y transforma píxeles en puntos.",
+    "search_intent": "Personas que ya tienen una imagen pixel art o cuadrícula y quieren convertirla en un patrón tapestry crochet utilizable."
+  },
+  "excerpt": "El pixel art ya tiene la estructura de cuadrícula que necesita Tapestry Crochet. Aprende a adaptar escala, colores y proporciones antes de convertir cada píxel en punto.",
+  "content_html": "<p>El pixel art es uno de los mejores puntos de partida para diseñar Tapestry Crochet porque ya está construido sobre una cuadrícula. Cada píxel puede convertirse en un punto o en otra unidad definida por tu técnica, de modo que no necesitas “pixelar” primero una imagen continua.</p>\n<p>Aun así, copiar la cuadrícula sin comprobar escala puede producir un proyecto demasiado grande, una imagen deformada o una paleta imposible de gestionar. La conversión útil empieza por decidir cuánto medirá cada píxel tejido.</p>\n<h2>Comprueba la resolución del pixel art antes de convertirlo</h2>\n<p>Anota cuántos píxeles tiene el diseño de ancho y alto. Una imagen de 32 por 32 contiene 1.024 unidades; una de 100 por 100 contiene 10.000.</p>\n<p>En tapestry, cada unidad suele significar un punto y una fila, por lo que la resolución determina directamente la cantidad de trabajo.</p>\n<p>No asumas que más resolución siempre es mejor. Un icono de 80 píxeles puede contener detalles que desaparecen a distancia pero multiplican cambios de color y tiempo de tejido.</p>\n<p>Si el objeto final será pequeño, considera reducir la cuadrícula preservando sólo las formas esenciales.</p>\n<p>Haz una copia del pixel art original antes de simplificar para poder comparar qué detalles realmente se pierden.</p>\n<h2>Convierte el gauge en tamaño físico</h2>\n<p>Teje una muestra con el hilo, aguja y punto que usarás. Mide el ancho medio de un punto y la altura media de una fila.</p>\n<p>Si un punto mide 0,45 cm y el diseño tiene 60 columnas, la imagen tendrá unos 27 cm de ancho antes de bordes.</p>\n<p>Haz también el cálculo vertical. Si tus filas son más altas que los puntos anchos, el pixel art cuadrado puede alargarse.</p>\n<p>Un gráfico de 50 por 50 no produce necesariamente una muestra cuadrada en centímetros.</p>\n<p>Antes de empezar, dibuja o marca el tamaño estimado sobre el objeto final. Así sabrás si la resolución encaja en un cojín, bolso o tapiz.</p>\n<h2>Simplifica la paleta para que sea tejible</h2>\n<p>Pixel art digital puede utilizar muchos tonos cercanos para sombreado. En crochet, cada tono adicional implica otro hilo, más cambios y potencialmente más bobinas.</p>\n<p>Agrupa colores similares cuando la diferencia no sea esencial para reconocer el motivo.</p>\n<p>Busca mantener contraste en contornos, ojos, letras y otras zonas que definen la imagen.</p>\n<p>Una fotografía en escala de grises ayuda a comprobar si dos tonos supuestamente distintos tienen suficiente diferencia de luminosidad.</p>\n<p>Para una primera conversión, una paleta de dos a cinco colores suele ser mucho más manejable que diez o quince tonos.</p>\n<h2>Adapta el pixel art a la proporción real de tus puntos</h2>\n<p>Si tus puntos son más altos que anchos, un círculo digital puede convertirse en un óvalo vertical.</p>\n<p>Puedes compensar reduciendo filas, añadiendo columnas o redibujando la imagen sobre una cuadrícula cuya celda represente la proporción física de tu punto.</p>\n<p>Haz una prueba con una forma simple antes de alterar un diseño complejo.</p>\n<p>El objetivo no es que la cuadrícula digital parezca perfecta, sino que la pieza tejida conserve la forma visual prevista.</p>\n<p>Guarda una versión “crochet” separada del pixel art original para que quede claro qué cambios responden a compensación de gauge.</p>\n<h2>Convierte la cuadrícula en instrucciones de trabajo</h2>\n<p>Puedes seguir directamente el gráfico, pero en diseños anchos resulta útil convertir cada fila en secuencias contables: 12 crema, 5 negro, 8 crema, por ejemplo.</p>\n<p>Suma los grupos de cada fila y confirma que el total coincide con el ancho de la cuadrícula.</p>\n<p>Marca la dirección de lectura, especialmente si trabajas plano y giras después de cada fila.</p>\n<p>Incluye una leyenda de colores clara y asigna códigos cortos a tonos parecidos.</p>\n<p>Si el diseño se repite, identifica el módulo exacto y separa los puntos de borde que no forman parte de la repetición.</p>\n<h2>Teje una muestra del detalle más difícil antes del proyecto completo</h2>\n<p>No necesitas probar toda la imagen. Escoge una sección con curvas, pequeños detalles y varios cambios de color.</p>\n<p>Comprueba si el motivo se reconoce, si los colores tienen contraste suficiente y si el hilo transportado se oculta correctamente.</p>\n<p>Fotografía la muestra desde la distancia a la que se verá el objeto. Los defectos de un solo punto pueden desaparecer o, por el contrario, alterar una letra importante.</p>\n<p>Si la sección funciona, ya puedes trasladar la cuadrícula completa con mucha más confianza. Si no, simplifica antes de invertir cientos de filas.</p>\n<p>Convertir pixel art a Tapestry Crochet es principalmente un trabajo de escala y traducción de color. La cuadrícula ya existe; tu tarea es hacer que cada píxel tejido tenga una proporción, tamaño y paleta compatibles con el objeto real.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Pixel art de un motivo sencillo junto a una cuadrícula tapestry y una muestra tejida, mostrando la equivalencia píxel-punto.",
+    "alt": "Cómo convertir pixel art en un patrón de Tapestry Crochet"
+  }
+}
