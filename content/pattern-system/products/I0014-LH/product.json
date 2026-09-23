@@ -1,0 +1,18 @@
+{
+  "code": "I0014-LH",
+  "base_design_id": "I0014",
+  "technique_code": "LH",
+  "collection": "baby-nursery",
+  "title": "Baby Stroller",
+  "title_en": "Baby Stroller",
+  "title_es": "Cochecito de bebé",
+  "design_slug": "baby-stroller",
+  "technique": "latch-hook",
+  "pattern_file": "patterns/I0014-LH/pattern.json",
+  "template": "rug.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "source_artwork": null,
+  "page_1_asset": null
+}

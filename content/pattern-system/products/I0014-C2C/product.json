@@ -1,0 +1,18 @@
+{
+  "code": "I0014-C2C",
+  "base_design_id": "I0014",
+  "technique_code": "C2C",
+  "collection": "baby-nursery",
+  "title": "Baby Stroller",
+  "title_en": "Baby Stroller",
+  "title_es": "Cochecito de bebé",
+  "design_slug": "baby-stroller",
+  "technique": "c2c-crochet",
+  "pattern_file": "patterns/I0014-C2C/pattern.json",
+  "template": "c2c-crochet.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "source_artwork": null,
+  "page_1_asset": null
+}

@@ -1,0 +1,18 @@
+{
+  "code": "I0012-LH",
+  "base_design_id": "I0012",
+  "technique_code": "LH",
+  "collection": "baby-nursery",
+  "title": "Baby Bottle",
+  "title_en": "Baby Bottle",
+  "title_es": "Biberón",
+  "design_slug": "baby-bottle",
+  "technique": "latch-hook",
+  "pattern_file": "patterns/I0012-LH/pattern.json",
+  "template": "rug.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "source_artwork": null,
+  "page_1_asset": null
+}

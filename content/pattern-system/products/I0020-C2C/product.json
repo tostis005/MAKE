@@ -1,0 +1,18 @@
+{
+  "code": "I0020-C2C",
+  "base_design_id": "I0020",
+  "technique_code": "C2C",
+  "collection": "baby-nursery",
+  "title": "Smiling Star",
+  "title_en": "Smiling Star",
+  "title_es": "Estrella sonriente",
+  "design_slug": "smiling-star",
+  "technique": "c2c-crochet",
+  "pattern_file": "patterns/I0020-C2C/pattern.json",
+  "template": "c2c-crochet.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "source_artwork": null,
+  "page_1_asset": null
+}

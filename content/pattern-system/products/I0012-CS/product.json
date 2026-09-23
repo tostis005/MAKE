@@ -1,0 +1,18 @@
+{
+  "code": "I0012-CS",
+  "base_design_id": "I0012",
+  "technique_code": "CS",
+  "collection": "baby-nursery",
+  "title": "Baby Bottle",
+  "title_en": "Baby Bottle",
+  "title_es": "Biberón",
+  "design_slug": "baby-bottle",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/I0012-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "source_artwork": null,
+  "page_1_asset": null
+}

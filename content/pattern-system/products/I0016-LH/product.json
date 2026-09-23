@@ -1,0 +1,18 @@
+{
+  "code": "I0016-LH",
+  "base_design_id": "I0016",
+  "technique_code": "LH",
+  "collection": "baby-nursery",
+  "title": "Teddy Bear Baby Onesie",
+  "title_en": "Teddy Bear Baby Onesie",
+  "title_es": "Body de bebé con osito",
+  "design_slug": "teddy-bear-onesie",
+  "technique": "latch-hook",
+  "pattern_file": "patterns/I0016-LH/pattern.json",
+  "template": "rug.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "source_artwork": null,
+  "page_1_asset": null
+}
