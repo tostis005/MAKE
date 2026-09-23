@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 386,
+  "translation_group": "386-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "beginners",
+      "terms": [
+        "beginners"
+      ]
+    },
+    "style": {
+      "terms": [
+        "corner-to-corner",
+        "step-by-step",
+        "crochet-blocks"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "cushions"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-386-c2c",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Crocheters who know basic chains and double crochet and want to turn those stitches into a first corner-to-corner square.",
+  "title": "How to C2C Crochet Step by Step from Scratch",
+  "slug": "how-to-c2c-crochet-step-by-step",
+  "seo": {
+    "title": "How to C2C Crochet Step by Step from Scratch",
+    "meta_description": "Step-by-step C2C crochet tutorial covering the first block, increases, joining blocks, decreases and checking a finished beginner square.",
+    "search_intent": "Beginners who want a practical tutorial for making a first C2C swatch from the starting chain through the final decrease."
+  },
+  "excerpt": "Learn C2C crochet from scratch: make the first block, increase, join blocks, turn, decrease and check a finished square swatch.",
+  "content_html": "<p>The clearest way to learn C2C crochet is to make a small one-color square. You can concentrate on the construction without adding graphs, bobbins or color management yet. For this practice, you should already be comfortable with chains, double crochet and slip stitches.</p>\n<p>Exact chain counts vary among C2C methods. This walkthrough uses the common double-crochet block construction. If a future pattern gives a different chain sequence, follow that designer's instructions while keeping the same underlying logic of increasing, joining blocks and decreasing.</p>\n<h2>Make the first corner block</h2>\n<p>Begin with a chain of six. Work a double crochet into the fourth chain from the hook, then one double crochet into each of the next two chains. You now have the small unit that will become the first corner block.</p>\n<p>Do not worry if it looks more like a little rectangle than a square at this point. The familiar diagonal texture develops when several blocks are connected.</p>\n<p>Before continuing, identify the chain space at the top of the block. That opening becomes the joining point for the next block and is the location you will repeatedly look for throughout the project.</p>\n<h2>Increase to create the second row</h2>\n<p>Turn the work and make another chain of six. Work into that chain exactly as you did for the first block. This creates a new block at the beginning of the row, which is the basic C2C increase.</p>\n<p>Bring the new block toward the original one and join it with a slip stitch into the appropriate chain space. Make the short turning chain used by your method—commonly chain three—and work three double crochet stitches into that same space.</p>\n<p>At the end of the row you have two connected blocks. The diagonal structure of C2C is already beginning to appear.</p>\n<h2>Keep increasing and count your blocks</h2>\n<p>For the third row, repeat the same principle. Create a new block at the beginning, turn it toward the work, join it to the first available chain space, then make a normal block in every chain space across the row.</p>\n<p>Your third row contains three blocks, the fourth contains four, and the pattern continues in that sequence. This simple progression is one of the best ways to catch a missed join while you are learning.</p>\n<p>Count at the end of every row. If you expected six blocks but have five, inspect that row before continuing. A C2C counting error changes the outline of the fabric and becomes harder to fix after many more rows.</p>\n<h2>Begin decreasing when the square reaches its widest point</h2>\n<p>To turn the growing triangle into a square, you eventually need to stop adding blocks along the edges. Turn the work, but instead of making the long starting chain for a new block, slip stitch across the top of the previous edge block until you reach the next chain space.</p>\n<p>That movement positions the hook for the new row without adding another block. From there, make a normal block and continue across the row.</p>\n<p>At the opposite edge, stop at the final existing space instead of adding a block beyond it. Each following row now contains one fewer block. If the widest row had ten blocks, the decrease rows will contain nine, eight, seven and so on until one remains.</p>\n<h2>Check whether the finished square is shaped correctly</h2>\n<p>Lay the swatch on a flat surface without stretching it. The diagonal edges should look reasonably straight and the four corners should form similar angles. A small amount of waviness may relax with gentle blocking, but a pronounced step or bulge usually means a block was added or omitted.</p>\n<p>Count the widest row. If you increased to ten blocks and decreased correctly, the opposite half should mirror the progression back down to one.</p>\n<p>Measure a few individual blocks as well. They do not need to match to the millimeter, but large size differences indicate changing tension. It is better to identify that habit in a small swatch than halfway through a graphgan.</p>\n<h2>What to practice before adding a graph</h2>\n<p>Make at least one more square without constantly checking the tutorial. The goal is to recognize an increase, a normal block and a decrease from the shape of the fabric rather than relying entirely on memorized steps.</p>\n<p>Then practice changing color for a few blocks. You do not need to create an image yet. Work two or three blocks in a second color, then return to the first. This teaches you how a yarn change fits into the joining process without adding the pressure of a complicated chart.</p>\n<p>Once you can make a square with the planned number of blocks, you have the construction needed for a graph. Large C2C projects use the same mechanics; they simply contain more rows and more color-management decisions.</p>\n<p>Keep your first swatch. In addition to showing your progress, it gives you a useful measurement for the approximate size of one block with that yarn, hook and tension. You can use that number later to estimate the finished dimensions of a blanket or wall panel before committing to the full project.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Four-stage sequence of a C2C swatch showing the first block, increasing, widest row and decreasing.",
+    "alt": "How to C2C crochet step by step"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 387,
+  "translation_group": "387-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "pattern-reading",
+      "terms": [
+        "pattern-reading"
+      ]
+    },
+    "style": {
+      "terms": [
+        "graphs",
+        "graphgan",
+        "colorwork"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "wall-hangings",
+        "cushions"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "es-387-c2c",
+  "language": "es",
+  "locale": "es-ES",
+  "market_context": "Crocheters que quieren entender dirección, filas diagonales, colores y conteo al trabajar un graphgan C2C.",
+  "title": "Cómo leer un gráfico de C2C Crochet sin perderte",
+  "slug": "como-leer-grafico-c2c-crochet",
+  "seo": {
+    "title": "Cómo leer un gráfico de C2C Crochet sin perderte",
+    "meta_description": "Cómo leer un gráfico C2C: qué representa cada casilla, cómo seguir diagonales, controlar la dirección y no perderte con los cambios de color.",
+    "search_intent": "Personas que saben hacer bloques C2C pero se pierden al trasladar una cuadrícula de colores a las vueltas diagonales."
+  },
+  "excerpt": "Aprende a leer un gráfico C2C: qué representa cada casilla, cómo seguir diagonales, controlar la dirección y evitar perderte en cambios de color.",
+  "content_html": "<p>Un gráfico C2C parece una cuadrícula normal, pero el tejido no se recorre de izquierda a derecha en filas horizontales. Las vueltas avanzan en diagonal. Esa diferencia explica por qué muchas personas pueden tejer los bloques sin problema y, aun así, se pierden al intentar seguir un graphgan.</p>\n<p>La clave es separar dos cosas: el gráfico describe <strong>qué color corresponde a cada celda</strong>; la técnica C2C determina <strong>en qué orden visitas esas celdas</strong>. Cuando entiendes esa relación, el patrón deja de parecer un puzle.</p>\n<h2>Cada casilla suele representar un bloque C2C</h2>\n<p>En la mayoría de graphgans C2C, una celda de la cuadrícula equivale a un bloque. Una casilla roja significa un bloque rojo; cinco casillas azules consecutivas dentro de una diagonal significan cinco bloques azules consecutivos.</p>\n<p>Comprueba siempre la leyenda del patrón. Algunos diseños utilizan mini C2C o una escala distinta, pero la correspondencia de una celda con una unidad repetible sigue siendo la idea central.</p>\n<p>Las dimensiones del gráfico son dimensiones en bloques, no medidas físicas. Un gráfico de 60 por 80 no mide automáticamente 60 por 80 centímetros. El tamaño real depende del ancho y alto de tus bloques.</p>\n<h2>Las vueltas cruzan el gráfico en diagonal</h2>\n<p>Imagina una cuadrícula con la esquina inferior izquierda como punto de inicio. La primera vuelta toca una sola celda. La segunda cruza dos; la tercera, tres. Cada diagonal nueva se extiende un poco más hasta alcanzar uno de los bordes del gráfico.</p>\n<p>Cuando la pieza llega a su anchura máxima, el número de celdas por diagonal deja de crecer o empieza a reducirse, según estés haciendo un cuadrado o un rectángulo.</p>\n<p>Por eso una “fila” escrita de un patrón C2C no suele coincidir con una fila horizontal visible en la imagen. Se refiere a una diagonal de trabajo.</p>\n<h2>La dirección cambia en cada vuelta</h2>\n<p>Al girar la labor, también cambia el sentido en que recorres la diagonal del gráfico. Una vuelta puede leerse desde abajo hacia arriba y la siguiente desde arriba hacia abajo, dependiendo de la orientación del patrón y de si eres diestro o zurdo.</p>\n<p>No intentes memorizar una regla de “siempre leo de izquierda a derecha”. Marca la esquina de inicio y sigue la dirección de las flechas o números del patrón. Si el gráfico no trae indicaciones, dibuja tú una flecha sobre las primeras cinco diagonales antes de empezar.</p>\n<p>También ayuda mantener el gráfico orientado siempre igual. Girar físicamente el papel o la pantalla junto con la labor puede parecer intuitivo, pero aumenta la posibilidad de invertir accidentalmente el diseño.</p>\n<h2>Convierte cada diagonal en una secuencia de colores</h2>\n<p>Antes de tejer una vuelta complicada, léela como una pequeña frase: tres bloques crema, dos verdes, uno crema, cuatro negros. Esa secuencia es mucho más fácil de ejecutar que mirar continuamente la imagen completa.</p>\n<p>Los patrones que incluyen instrucciones escritas hacen exactamente eso por ti. Puedes utilizar el gráfico como referencia visual y la secuencia escrita como control de conteo.</p>\n<p>Si sólo tienes gráfico, anota las diagonales difíciles en una libreta o utiliza una aplicación que permita marcar celdas. No necesitas transcribir todo el patrón; céntrate en las vueltas con muchos cambios de color.</p>\n<h2>Marca el progreso para no repetir ni saltar diagonales</h2>\n<p>En un diseño grande, perder la posición es más peligroso que un punto irregular. Utiliza una regla, cinta removible, resaltador digital o una capa transparente para señalar la diagonal actual.</p>\n<p>Marca una vuelta como terminada sólo después de contar sus bloques. Si la diagonal debía tener 27 celdas, tus bloques y la suma de la secuencia de colores deben dar 27.</p>\n<p>Cuando interrumpas la sesión, anota no sólo el número de vuelta, sino también la dirección en la que vas a comenzar la siguiente. Ese detalle evita retomar el proyecto desde el extremo equivocado.</p>\n<h2>Cómo detectar un error antes de que se propague</h2>\n<p>Compara el límite entre colores con el gráfico cada pocas vueltas. Las formas diagonales son fáciles de verificar: si una zona que debía crecer hacia la derecha empieza a desplazarse hacia la izquierda, probablemente has invertido una secuencia o te falta un bloque.</p>\n<p>No confíes únicamente en el aspecto visual cuando trabajas un retrato o una imagen abstracta. Algunas secciones no “parecen” nada hasta muchas vueltas después. En esos casos, el conteo es más fiable que la intuición.</p>\n<p>Si encuentras un error, determina primero si es de color o de estructura. Un bloque del color equivocado puede corregirse de forma localizada en algunas situaciones; un bloque añadido o perdido modifica la geometría de todas las diagonales siguientes y suele requerir deshacer hasta ese punto.</p>\n<p>Leer bien C2C consiste en trabajar a dos escalas: ves la imagen completa para entender el motivo, pero tejes una diagonal concreta como una secuencia contable. Mantén el gráfico marcado, confirma el número de bloques y deja que la imagen aparezca poco a poco. Ese sistema es mucho más seguro que intentar “seguir el dibujo” sólo a ojo.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Gráfico pixelado con una diagonal resaltada y flechas que muestran cómo esa línea se convierte en una vuelta de C2C crochet.",
+    "alt": "Cómo leer un gráfico de C2C Crochet"
+  }
+}

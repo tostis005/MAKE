@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 388,
+  "translation_group": "388-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "technique",
+      "terms": [
+        "technique"
+      ]
+    },
+    "style": {
+      "terms": [
+        "increases-decreases",
+        "shape-control",
+        "corner-to-corner"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "blankets",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-388-c2c",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Beginner and intermediate C2C makers struggling with corners, turning points and the shaping of squares and rectangles.",
+  "title": "How to Increase and Decrease in C2C Crochet",
+  "slug": "how-to-increase-decrease-c2c-crochet",
+  "seo": {
+    "title": "How to Increase and Decrease in C2C Crochet",
+    "meta_description": "Learn C2C crochet increases and decreases, when to stop growing, how edge shaping works and how the same logic creates squares and rectangles.",
+    "search_intent": "Crocheters who understand the basic C2C block but need to master when and how to increase or decrease to control the shape."
+  },
+  "excerpt": "Master C2C crochet increases and decreases: what changes at the edge, when to stop growing and how the same logic creates squares and rectangles.",
+  "content_html": "<p>Increases and decreases control the entire geometry of C2C crochet. The basic block barely changes; what changes is whether you create a new block at the edge of a row. Understanding that idea prevents one of the most common mistakes: trying to reduce stitches inside the block when the fabric needs to become smaller.</p>\n<p>Practice with one color and count the blocks in every row. Once the count and shape agree, adding a graph and color changes becomes much easier.</p>\n<h2>What an increase means in C2C crochet</h2>\n<p>Increasing means creating a new block at the beginning of a row before you work into the spaces that already exist. In the classic double-crochet version, this usually starts with a longer chain that provides the height and foundation for the new block.</p>\n<p>You then turn that block toward the main fabric, join it with a slip stitch into the edge chain space and continue with normal blocks across the row.</p>\n<p>If both edges are increasing, every row contains one more block than the previous row. That progression creates the first triangular half of a C2C square.</p>\n<h2>What a decrease means in C2C crochet</h2>\n<p>Decreasing does not mean crocheting two stitches together or making fewer double crochets inside a block. A C2C edge decrease means you do not create the extra block that would normally begin the row.</p>\n<p>After turning, slip stitch across the top of the edge block until you reach the next chain space. That space becomes the true starting point of the new row.</p>\n<p>Work normal blocks across the fabric and finish without adding another block beyond the final existing one. The completed row has one fewer block.</p>\n<h2>When to stop increasing for a square</h2>\n<p>In a square, both final dimensions reach their maximum at the same time. If the project should be 30 blocks by 30 blocks, keep increasing until the widest diagonal contains 30 blocks.</p>\n<p>From that point, decrease at both edges. The following rows contain 29, 28, 27 blocks and continue down until the final single block.</p>\n<p>Mark the 30-block turning row before you start the project. One accidental extra increase makes the square larger and forces you either to recalculate the second half or undo the extra row.</p>\n<h2>How rectangle corners work</h2>\n<p>A rectangle is slightly different because its two dimensions stop growing at different times. Imagine a project that needs to finish 30 blocks wide by 50 blocks high.</p>\n<p>When you reach the first dimension, begin decreasing on that edge while you continue increasing on the other edge. The total number of blocks in a row may stay constant for a central section while the diagonal travels across the rectangular grid.</p>\n<p>Once the second dimension is reached, decrease at both ends. That transition forms the remaining corners of the rectangle.</p>\n<h2>How to know which edge should increase or decrease</h2>\n<p>When following a graph, look at which outer boundary of the chart the working diagonal has reached. If the diagonal has touched the boundary representing the finished width, that edge should no longer continue growing.</p>\n<p>Written patterns often label rows as increase, decrease or maintain. If yours does not, write down the target block dimensions and track the edge counts yourself.</p>\n<p>A stitch marker at the corner where decreasing began can also help. In a multi-color project, yarn management can be distracting enough that you repeat the previous edge action automatically without checking the shape.</p>\n<h2>Shaping mistakes that distort the fabric</h2>\n<p>The first is confusing a C2C decrease with a stitch decrease. If you make a smaller block rather than omitting the edge block, the texture changes but the outline does not shrink correctly.</p>\n<p>The second is forgetting the opposite edge. You can begin a row correctly with slip stitches, then reach the far side and add a new block out of habit. The row fails to decrease and an extra step appears in the outline.</p>\n<p>The third is deciding when to decrease by physical measurements rather than block count. Crochet can stretch as you handle it, so the planned number of blocks is the more reliable guide.</p>\n<p>Every few rows, lay the work flat without pulling. A C2C edge is naturally stepped, but the overall diagonal line should progress consistently. If one step projects farther than expected, check the row count before moving on.</p>\n<p>Once you understand that an increase creates an edge block and a decrease omits it, C2C shaping stops feeling mysterious. The same principle produces squares, rectangles and the majority of conventional C2C graphgans.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "C2C diagram with one half labeled increases and the other decreases, highlighting the corner turning points.",
+    "alt": "How to increase and decrease in C2C crochet"
+  }
+}

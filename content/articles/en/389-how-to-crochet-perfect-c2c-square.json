@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 389,
+  "translation_group": "389-c2c-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "c2c-crochet",
+      "terms": [
+        "c2c-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "technique",
+      "terms": [
+        "technique"
+      ]
+    },
+    "style": {
+      "terms": [
+        "square",
+        "shape-control",
+        "gauge"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "cushions",
+        "blankets",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "how-to",
+      "terms": [
+        "how-to"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-389-c2c",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Beginner and intermediate C2C makers who want to control block count, tension and the turning row for more regular squares.",
+  "title": "How to Crochet a Perfect C2C Square",
+  "slug": "how-to-crochet-perfect-c2c-square",
+  "seo": {
+    "title": "How to Crochet a Perfect C2C Square",
+    "meta_description": "How to crochet a square C2C piece with even blocks, the right turning row, mirrored decreases and troubleshooting for uneven or skewed sides.",
+    "search_intent": "Crocheters whose C2C squares look diamond-shaped, skewed or uneven and want a clean symmetrical result."
+  },
+  "excerpt": "Make a clean, symmetrical C2C square by controlling block count, tension, the turning row and decreases, with checks for diagnosing uneven sides.",
+  "content_html": "<p>A well-constructed C2C square has the same number of blocks across both dimensions, a clear widest diagonal and two halves that mirror one another. A correct count alone, however, does not guarantee that the finished fabric will look square. Tension, block proportions and edge handling also affect the shape.</p>\n<p>The good news is that most skewed C2C squares can be diagnosed with a few simple checks. Before assuming the yarn or blocking is the problem, verify the structure first.</p>\n<h2>Define the square in blocks before you crochet</h2>\n<p>Decide how many blocks each side should contain. If the goal is a 25-by-25 square, the widest diagonal will contain 25 blocks. That number is your turning point.</p>\n<p>Do not use physical inches or centimeters alone to decide when to decrease. Crochet can stretch while you handle it and may look wider or narrower depending on how it is held. The block count is stable.</p>\n<p>If you are working from a square graph, the chart dimensions already provide the target. A 60-by-60-cell design increases until the widest diagonal reaches 60 units, then begins the second half.</p>\n<h2>Build the first half with consistent increases</h2>\n<p>Every growth row should contain exactly one more block than the previous row: 1, 2, 3, 4 and so on. Count frequently, particularly while you are still learning.</p>\n<p>Pay attention to the joins between blocks as well. If your slip stitches are extremely tight, the fabric can begin to pull inward. If the chain spaces are very loose, larger gaps appear and the diagonal edge may look irregular.</p>\n<p>Try to hold the hook at a similar angle and avoid yanking the working yarn after every join. Consistent tension matters more than tight tension.</p>\n<h2>Turn at the exact planned diagonal</h2>\n<p>The widest row is the axis of the square. From that point onward, you should not create new edge blocks at either end.</p>\n<p>Mark the row with a stitch marker or note it on the pattern. If the target is 25 blocks, confirm all 25 before beginning the following row.</p>\n<p>One extra increase changes the geometry. The error may not look dramatic immediately, but the finished square can end up with one longer side or an offset corner.</p>\n<h2>Make the decreases mirror the increases</h2>\n<p>The second half follows the reverse sequence. If the widest row contained 25 blocks, the next rows contain 24, 23, 22 and continue down to one.</p>\n<p>Begin each decrease row by slip stitching across to the next chain space rather than creating a new block. Finish at the final existing space without adding another block beyond the edge.</p>\n<p>If you keep a row record, compare the two halves. The 12-block row from the increase section should have an equivalent 12-block row during the decrease section.</p>\n<h2>Check the physical proportions of your blocks</h2>\n<p>Even with perfect counting, individual blocks can be taller than they are wide or vice versa. A mathematically square C2C piece can therefore look slightly rectangular.</p>\n<p>Make a swatch of at least ten blocks and measure an interior area rather than relying only on the outer edges. If ten blocks span 6 inches horizontally but 7 inches vertically, your C2C unit is not physically square.</p>\n<p>You can experiment with hook size, chain height or a variation such as mini C2C. Make those adjustments before the final project because changing the block recipe halfway through alters both texture and scale.</p>\n<h2>How to troubleshoot a square that looks skewed</h2>\n<p>First, count the blocks in the widest diagonal and in several rows on both sides. If the numbers are not symmetrical, the problem is structural and blocking cannot correct it.</p>\n<p>If the counts match, measure all four sides without stretching. A small difference may come from tension or from one edge relaxing more than another. Gentle blocking can often help the fabric settle.</p>\n<p>If a corner pulls inward, check whether the slip stitches at the start of decrease rows are much tighter than the rest of the work. If a corner sticks outward, confirm that you did not accidentally create one extra block before beginning the row.</p>\n<p>It also helps to let the piece rest for a few minutes before measuring. Crochet can be temporarily distorted after being held by one corner or pulled by the weight of the working yarn.</p>\n<p>For a reliable C2C square, think in blocks first and physical measurements second. Increase to an exact widest diagonal, mirror the count during the decrease half and use a tension that keeps the blocks proportionate. With those three checks, the shape normally falls into place without aggressive blocking at the end.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "A finished C2C square laid over a grid with four measured sides and the widest diagonal highlighted.",
+    "alt": "How to crochet a perfect C2C square"
+  }
+}
