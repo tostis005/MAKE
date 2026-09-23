@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 484,
+  "translation_group": "484-latch-hook",
+  "taxonomy": {
+    "craft": {
+      "primary": "latch-hook",
+      "terms": [
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "sizing",
+      "terms": [
+        "sizing"
+      ]
+    },
+    "style": {
+      "terms": [
+        "canvas-size",
+        "planning",
+        "buying-guide"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "rugs",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-484-latch-hook",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Makers who know the chart count or finished design size and need to buy a canvas piece large enough for the design, finishing margin and compatible mesh density.",
+  "title": "How to Choose Canvas Size for a Latch Hook Pattern",
+  "slug": "how-to-choose-canvas-size-latch-hook-pattern",
+  "seo": {
+    "title": "How to Choose Canvas Size for a Latch Hook Pattern",
+    "meta_description": "Choose latch hook canvas size by calculating the knotted area, adding finishing allowance, checking mesh density and avoiding a piece that is too tight.",
+    "search_intent": "People deciding what physical canvas size to buy for a specific latch hook pattern."
+  },
+  "excerpt": "Canvas needs to fit the design and leave extra mesh for edges, sewing, backing or binding. Learn how to calculate how much material to buy.",
+  "content_html": "<p>Choosing canvas size for a latch hook pattern does not mean buying a piece that exactly matches the visible dimensions of the design. You need room for every knot plus extra mesh around the outside for folding, sewing, backing, binding or mounting according to the final use.</p>\n<p>The correct choice combines three pieces of information: chart count, mesh density and finishing allowance. Ignoring any one of them can leave you with canvas that is too small even when the image seems to fit on paper.</p>\n<h2>Start with the true chart count</h2>\n<p>Record the number of columns and rows in the design area, excluding reference numbers and margins that do not represent knots.</p>\n<p>For example, an 80-by-120 chart needs exactly 80 usable knot positions across and 120 down.</p>\n<p>Do not buy canvas only from an approximate physical size without checking how many positions that piece actually contains.</p>\n<p>Two pieces with similar outside dimensions can contain different position counts when their mesh densities differ.</p>\n<p>If the pattern recommends a particular mesh, use that specification as the starting point.</p>\n<p>Whenever the design is moved to another mesh, recalculate both finished size and total canvas requirement.</p>\n<h2>Convert the chart count into knotted dimensions</h2>\n<p>Measure how many knot positions fit into one inch or centimeter on the canvas you are considering.</p>\n<p>Divide the number of chart columns by that density to estimate knotted width.</p>\n<p>Do the same with rows to estimate height.</p>\n<p>At 2 positions per centimeter, an 80-by-120 design needs about 40 by 60 centimeters of knotted area.</p>\n<p>That calculation describes only the finished image, not the total material you need to buy.</p>\n<p>If the design must fit a frame, pillow or exact space, verify density with a worked sample before deciding on the final canvas.</p>\n<h2>Add finishing allowance on all four sides</h2>\n<p>Outer margin gives you working mesh beyond the last row of knots.</p>\n<p>You need that space for folding canvas, securing it with stitches, adding binding or joining the panel to another fabric.</p>\n<p>The exact allowance depends on project type and finishing method, so decide those before buying when possible.</p>\n<p>A rug benefits from generous margin for strong edge treatment and backing.</p>\n<p>A pillow can use the extra mesh as part of its sewing allowance.</p>\n<p>A wall hanging may fold the margin to the reverse or hide it under backing.</p>\n<p>When choosing between two commercial sizes, extra canvas is usually easier to trim later than an undersized piece is to finish cleanly.</p>\n<h2>Check usable canvas dimensions, not only the outside cut size</h2>\n<p>Pre-cut canvas can contain irregular edges, damaged areas or an outer strip you may not want inside the design zone.</p>\n<p>Count the positions that are actually usable within the piece you plan to buy.</p>\n<p>If the canvas arrives folded, lay it flat before measuring so a crease does not temporarily distort the mesh.</p>\n<p>For roll goods, make sure the available width fits the design plus margins; extra length cannot compensate for insufficient width.</p>\n<p>When cutting from a roll, keep the cut edges parallel to the mesh rows so the finishing allowance stays even.</p>\n<p>Mark the intended design rectangle before making the final cut from the roll.</p>\n<h2>Match canvas size to the final project</h2>\n<p>A large rug needs enough material for durable edge treatment around the entire perimeter.</p>\n<p>A pillow may need the knotted area coordinated with an insert size or a fabric border when the design does not match a standard dimension.</p>\n<p>A wall hanging can need extra upper allowance for a sleeve, loops or another suspension system.</p>\n<p>If backing will be added, calculate that material from the finished piece rather than only from the original chart.</p>\n<p>For non-rectangular designs, leave canvas around the whole outline and do not trim curves or inward corners before knotting is complete.</p>\n<p>Planning final use prevents discovering later that the chosen margin cannot support the finish you wanted.</p>\n<h2>Buy a little extra for positioning and corrections</h2>\n<p>A calculation that uses every available position leaves little tolerance for a counting mistake, irregular cut edge or finishing change.</p>\n<p>A modest amount of extra canvas gives you freedom to square the design and choose the best section of mesh.</p>\n<p>Before knotting, mark the working area and recount both width and height.</p>\n<p>Position the chart area so finishing margins are balanced unless the construction specifically needs more canvas on one side.</p>\n<p>Do not cut away the excess until all knots are complete and the finishing method has been confirmed.</p>\n<p>Choosing latch hook canvas size means adding the needs of the design and the finish together. Calculate the knotted area from chart count and density, add real working margin on every side and buy with enough tolerance to finish the project confidently.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Diagram of a rectangular pattern centered inside a larger canvas piece, with the knotted area and finishing margins labeled on all four sides.",
+    "alt": "How to choose canvas size for a latch hook pattern"
+  }
+}
