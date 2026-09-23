@@ -5452,6 +5452,61 @@
       "title_es": "C2C Crochet vs punto bajo gráfico: diferencias para pixel art",
       "title_en": "C2C Crochet vs Single Crochet Graphs for Pixel Art",
       "craft": "c2c-crochet"
+    },
+    {
+      "number": 495,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "colorwork",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Tapestry Crochet vs intarsia crochet: diferencias clave",
+      "title_en": "Tapestry Crochet vs Intarsia Crochet: Key Differences",
+      "craft": "tapestry-crochet"
+    },
+    {
+      "number": 496,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "technique",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Latch Hook vs punch needle: qué cambia en materiales y acabado",
+      "title_en": "Latch Hook vs Punch Needle: Materials, Texture and Finish",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 497,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "technique",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Latch Hook vs rug hooking: diferencias entre las dos técnicas",
+      "title_en": "Latch Hook vs Rug Hooking: What Is the Difference?",
+      "craft": "latch-hook"
+    },
+    {
+      "number": 498,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "charts",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Punto de cruz vs Latch Hook: dos formas de trabajar una cuadrícula",
+      "title_en": "Cross Stitch vs Latch Hook: Two Ways to Work from a Grid",
+      "craft": "cross-stitch"
+    },
+    {
+      "number": 499,
+      "priority": "P3",
+      "section": "learn",
+      "topic": "pixel-art",
+      "intent": "informational",
+      "status": "published",
+      "title_es": "Punto de cruz vs C2C Crochet para diseños pixelados",
+      "title_en": "Cross Stitch vs C2C Crochet for Pixel Designs",
+      "craft": "cross-stitch"
     }
   ],
   "taxonomy_strategy": {
@@ -5482,7 +5537,7 @@
     "sync_script": "content/tools/sync-topics.py",
     "auto_sync_workflow": ".github/workflows/import-articles.yml",
     "policy": "The article JSON pairs are the source of truth. topics.json is a synchronized editorial index updated after successful imports.",
-    "last_indexed_article": 494,
-    "bilingual_groups": 494
+    "last_indexed_article": 499,
+    "bilingual_groups": 499
   }
 }
