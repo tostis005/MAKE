@@ -9,10 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Inspect admin JavaScript
+      - name: Inspect exact product form markup
         shell: bash
         run: |
           set -euo pipefail
           base64 --decode plugins/drielo-etsy-sync-1.0.0.zip.b64 > /tmp/plugin.zip
           unzip -q /tmp/plugin.zip -d /tmp/plugin
-          cat /tmp/plugin/drielo-etsy-sync/assets/admin.js
+          FILE=/tmp/plugin/drielo-etsy-sync/drielo-etsy-sync.php
+          grep -n -C 5 'drielo-products-form\|drielo-action' "$FILE"
