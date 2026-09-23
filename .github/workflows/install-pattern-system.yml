@@ -49,13 +49,14 @@ jobs:
           rm -rf content/pattern-system
           mkdir -p content
           cp -a /tmp/drielo-bootstrap/unpack/pattern-system content/pattern-system
-          cp content/pattern-system/workflow.yml .github/workflows/build-pattern-pdf.yml
+          # The permanent workflow is installed separately through the GitHub connector,
+          # because the Actions token may not modify workflow files.
           rm content/pattern-system/workflow.yml
           cp content/pattern-system/AGENTS.md AGENTS.md
 
           # Remove remnants of previous transfer attempts and this installer.
           rm -rf .bootstrap-pattern-generator
-          rm -f .github/workflows/install-pattern-system.yml
+          # This temporary installer is deleted after a successful run by the GitHub connector.
 
           python3 content/pattern-system/renderer/validate_all.py
           python3 content/pattern-system/renderer/sync_catalog_palette.py
