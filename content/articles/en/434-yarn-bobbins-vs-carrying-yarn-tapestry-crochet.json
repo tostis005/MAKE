@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 434,
+  "translation_group": "434-tapestry-crochet",
+  "taxonomy": {
+    "craft": {
+      "primary": "tapestry-crochet",
+      "terms": [
+        "tapestry-crochet"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "project-organization",
+      "terms": [
+        "project-organization"
+      ]
+    },
+    "style": {
+      "terms": [
+        "bobbins",
+        "carry-yarn",
+        "yarn-management"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "bags",
+        "cushions",
+        "wall-hangings"
+      ]
+    },
+    "article_type": {
+      "primary": "comparison",
+      "terms": [
+        "comparison"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "en-434-tapestry",
+  "language": "en",
+  "locale": "en-US",
+  "market_context": "Tapestry chart users optimizing yarn management across large regions, small color islands and repeated shades.",
+  "title": "Yarn Bobbins vs Carrying Yarn in Tapestry Crochet",
+  "slug": "yarn-bobbins-vs-carrying-yarn-tapestry-crochet",
+  "seo": {
+    "title": "Yarn Bobbins vs Carrying Yarn in Tapestry Crochet",
+    "meta_description": "Compare yarn bobbins vs carrying yarn in tapestry crochet by considering bulk, ends, tangles, reverse-side appearance and carrying distance.",
+    "search_intent": "Crocheters deciding between separate bobbins and carrying colors inside the fabric who want to compare yarn ends, bulk, cleanliness and workflow."
+  },
+  "excerpt": "Bobbins reduce long carries; carrying yarn reduces ends. Learn when each method works best and why a hybrid approach is usually cleaner.",
+  "content_html": "<p>In tapestry crochet, two common ways to manage color are carrying inactive yarn inside the stitches and keeping separate yarn sources on bobbins. Neither method is best in every situation. Distance between color areas, contrast, number of shades and final use all affect the choice.</p>\n<p>The most efficient strategy is often hybrid: carry yarn when a shade returns soon and use bobbins when a long carry would create too much bulk or visibility. Thinking by region usually works better than forcing one rule across the entire chart.</p>\n<h2>Carrying yarn reduces cutting and yarn ends</h2>\n<p>If a color returns only a few stitches later, keeping it inside the fabric avoids cutting and creating two new tails.</p>\n<p>It also makes changes fast because the yarn is already available when needed again.</p>\n<p>The downside is bulk. Every carried strand takes space inside the stitches and can affect gauge and flexibility.</p>\n<p>With strong contrast, a dark carried yarn can show through a pale section even when correctly enclosed.</p>\n<p>Carrying is especially useful in motifs with frequent short alternations, such as stripes, small diamonds or lettering with nearby color sections.</p>\n<h2>Bobbins keep color regions more independent</h2>\n<p>A small bobbin can remain attached to one color island without crossing the entire row.</p>\n<p>This reduces internal thickness and helps keep the front clean through large background sections.</p>\n<p>It also allows multiple sources of the same shade in separated regions instead of one long carry.</p>\n<p>The tradeoff is organization: more bobbins mean more items to arrange, turn and untangle.</p>\n<p>On a chart with two red regions separated by a wide cream area, two red bobbins are usually cleaner than dragging one red strand from side to side.</p>\n<h2>Distance between appearances is the most useful rule</h2>\n<p>When a shade returns after one, two or three stitches, carrying is often practical.</p>\n<p>When it disappears for twenty or thirty stitches, a bobbin or cut may produce a cleaner result.</p>\n<p>There is no universal number. Yarn thickness, color contrast and stitch style all change the reasonable distance.</p>\n<p>Develop an approximate rule from a swatch and apply it consistently through the project.</p>\n<p>Look ahead several rows too. A color that travels far within the current row may return immediately on the next, making a parked bobbin worthwhile.</p>\n<h2>Final use changes how much the reverse matters</h2>\n<p>On a lined bag, extra bobbins and tails will eventually be protected. You can prioritize a clean front even when the reverse is more technical.</p>\n<p>On a coaster or reversible piece, short carries may be preferable to many visible joins on the back.</p>\n<p>For a wall panel with backing, regional bobbins can be particularly convenient because finishing ends will be hidden later.</p>\n<p>Think about the object's use before optimizing only the number of tails.</p>\n<p>If the reverse will experience friction, avoid loose floats and unsecured tails even when they cannot be seen from the front.</p>\n<h2>Compare crochet time with finishing time</h2>\n<p>Carrying reduces weaving-in but requires tension control and may need reworking when hidden yarn shows through.</p>\n<p>Bobbins create more tails but can make each row easier to read and keep fabric density more consistent.</p>\n<p>If you dislike weaving ends, you may accept more short carries. If a pristine front matters most, extra finishing may be worthwhile.</p>\n<p>Weaving ends periodically prevents a bobbin-heavy strategy from creating an overwhelming final finishing session.</p>\n<p>Include untangling time in the comparison too. Twenty active bobbins may eliminate carries but slow the crochet more than a few strategic cuts would.</p>\n<h2>Combine both methods by region</h2>\n<p>Within one row, you can carry the background over a short distance and use a separate bobbin for a remote detail.</p>\n<p>You do not need one system for the entire chart. Each region can use a different solution based on how its colors return.</p>\n<p>Before a complex area, look several rows ahead and decide which bobbins are worth keeping active.</p>\n<p>A simple working rule helps: returns soon means carry, isolated region means bobbin, absent for many rows means cut.</p>\n<p>If the fabric becomes too thick, first count how many strands are being carried. If the project accumulates too many ends, check whether some short-distance colors could have stayed active.</p>\n<p>For a large chart, mark the first and last row where each regional bobbin is needed. That makes it easier to introduce and retire yarn sources deliberately instead of keeping them attached “just in case.”</p>\n<p>When two neighboring regions eventually merge, consolidate them onto one yarn source so the bobbin system becomes simpler as the project progresses.</p>\n<p>Bobbins and carrying are not competing techniques. They solve different distances. Choosing by region lets you reduce bulk, tangles and ends together instead of optimizing only one problem.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "The same tapestry row worked two ways: carried yarn versus small regional bobbins, with both reverse sides compared.",
+    "alt": "Yarn bobbins versus carrying yarn in tapestry crochet"
+  }
+}
