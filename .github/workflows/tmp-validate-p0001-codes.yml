@@ -1,0 +1,53 @@
+name: Validate P0001 technique code migration
+on:
+  push:
+    branches: [rename-p0001-technique-codes]
+    paths: ['.github/workflows/tmp-validate-p0001-codes.yml']
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate catalogue, importer and staged PDFs
+        shell: bash
+        run: |
+          set -euo pipefail
+          php -l content/tools/import-products.php
+          python3 - <<'PY'
+          import base64,json,pathlib,urllib.request
+          root=pathlib.Path('content/products')
+          cat=json.loads((root/'catalog.json').read_text())
+          products=cat['products']
+          assert len({p['sku'] for p in products})==len(products)
+          assert len({p['code'] for p in products})==len(products)
+          want={
+            'P0001-CS':('DRIELO-P0001-CS','CS'),
+            'P0001-C2C':('DRIELO-P0001-C2C','C2C'),
+            'P0001-TC':('DRIELO-P0001-TC','TC'),
+            'P0001-LH':('DRIELO-P0001-LH','LH'),
+          }
+          got={p['code']:(p['sku'],p.get('technique_code')) for p in products if p.get('base_design_id')=='P0001'}
+          assert got==want,(got,want)
+          assert not any(p['code'] in ('P0001','P0001-RUG') for p in products)
+          by={p['code']:p for p in products}
+          assert by['P0001-CS'].get('previous_skus')==['DRIELO-P0001']
+          assert by['P0001-LH'].get('previous_skus')==['DRIELO-P0001-RUG']
+          for code in want:
+              p=by[code]
+              for field in ('short_description_en','short_description_es','description_en','description_es','etsy_description_en','etsy_description_es'):
+                  assert code in p[field],(code,field)
+              assert code in p['meta_description_en'] and code in p['meta_description_es']
+              assert p['download'].endswith(code+'.pdf')
+          sources=json.loads((root/'pdf-sources.json').read_text())
+          assert set(sources)=={f'Drielo_{c}.pdf' for c in want}
+          for filename,spec in sources.items():
+              req=urllib.request.Request(spec['url'],headers={'User-Agent':'Mozilla/5.0'})
+              with urllib.request.urlopen(req,timeout=180) as r: raw=r.read()
+              data=base64.b64decode(raw) if spec.get('base64') else raw
+              assert data[:4]==b'%PDF',filename
+              assert len(data)>100000,filename
+              print(filename,len(data))
+          print('validated',sorted(want))
+          PY
