@@ -1,0 +1,220 @@
+name: TEMP publish Baby Nursery I0001 current
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tmp-publish-baby-i0001-current.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-baby-i0001-current
+  cancel-in-progress: false
+
+jobs:
+  build-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install renderer dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow playwright
+          python3 -m playwright install --with-deps chromium
+
+      - name: Render current I0001 in four techniques
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/baby_nursery/publish_i0001.py
+
+      - name: Validate rendered files and catalog
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          root=Path('.')
+          system=root/'content'/'pattern-system'
+          catalog=json.loads((root/'content'/'products'/'catalog.json').read_text(encoding='utf-8'))
+          rows={p.get('code'):p for p in catalog.get('products',[])}
+          expected={
+            'CS':'collections/baby-nursery/assets/cover-cross-stitch.jpg',
+            'C2C':'collections/baby-nursery/assets/cover-crochet.jpg',
+            'TC':'collections/baby-nursery/assets/cover-c2c-crochet.jpg',
+            'LH':'collections/baby-nursery/assets/cover-rug.jpg',
+          }
+          for suffix in ('CS','C2C','TC','LH'):
+              code=f'I0001-{suffix}'
+              pat=json.loads((system/'patterns'/code/'pattern.json').read_text(encoding='utf-8'))
+              prod=json.loads((system/'products'/code/'product.json').read_text(encoding='utf-8'))
+              pdf=root/'content'/'products'/'files'/f'Drielo_{code}.pdf'
+              img=root/'content'/'products'/'assets'/f'{code}-product.webp'
+              if prod.get('page_1_asset') != expected[suffix]:
+                  raise SystemExit(f'{code}: wrong page 1 asset {prod.get("page_1_asset")}')
+              if not pdf.is_file() or pdf.stat().st_size < 100000 or pdf.read_bytes()[:4] != b'%PDF':
+                  raise SystemExit(f'{code}: invalid PDF')
+              if not img.is_file() or img.stat().st_size < 50000:
+                  raise SystemExit(f'{code}: invalid product image')
+              row=rows.get(code)
+              if not row:
+                  raise SystemExit(f'{code}: missing catalog row')
+              if row.get('stitches') != pat.get('total_stitches'):
+                  raise SystemExit(f'{code}: catalog stitches stale')
+              if row.get('colours') != len(pat.get('threads',[])):
+                  raise SystemExit(f'{code}: catalog colours stale')
+              if str(row.get('gallery_revision')) != '2026092401':
+                  raise SystemExit(f'{code}: image revision not bumped')
+              print(code,'stitches',pat['total_stitches'],'colors',len(pat['threads']),'pdf',pdf.stat().st_size,'image',img.stat().st_size,'cover',expected[suffix])
+          print('I0001_VALID=4')
+          PY
+
+      - name: Build I0001-only WooCommerce package
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/drielo-i0001-package
+          mkdir -p /tmp/drielo-i0001-package/content/products/assets
+          mkdir -p /tmp/drielo-i0001-package/content/products/files
+          mkdir -p /tmp/drielo-i0001-package/content/tools
+
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          src=Path('content/products/catalog.json')
+          d=json.loads(src.read_text(encoding='utf-8'))
+          codes={'I0001-CS','I0001-C2C','I0001-TC','I0001-LH'}
+          cats={
+            'cross-stitch-patterns','cross-stitch-baby-nursery',
+            'c2c-crochet-patterns','c2c-crochet-baby-nursery',
+            'tapestry-crochet-patterns','tapestry-crochet-baby-nursery',
+            'latch-hook-rug-patterns','latch-hook-rug-baby-nursery',
+          }
+          out=dict(d)
+          out['products']=[p for p in d.get('products',[]) if p.get('code') in codes]
+          out['collections']=[c for c in d.get('collections',[]) if c.get('slug')=='baby-nursery']
+          out['categories']=[c for c in d.get('categories',[]) if c.get('slug') in cats]
+          Path('/tmp/drielo-i0001-package/content/products/catalog.json').write_text(
+              json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8'
+          )
+          PY
+
+          for code in I0001-CS I0001-C2C I0001-TC I0001-LH; do
+            cp "content/products/assets/${code}-product.webp" /tmp/drielo-i0001-package/content/products/assets/
+            cp "content/products/files/Drielo_${code}.pdf" /tmp/drielo-i0001-package/content/products/files/
+          done
+          cp content/tools/import-products.php /tmp/drielo-i0001-package/content/tools/
+          tar -czf /tmp/drielo-i0001-package.tgz -C /tmp/drielo-i0001-package content
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_products_key
+          chmod 600 ~/.ssh/drielo_products_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Upload I0001 package
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          scp -i ~/.ssh/drielo_products_key /tmp/drielo-i0001-package.tgz "$VPS_USER@$VPS_HOST:/tmp/drielo-i0001-${GITHUB_RUN_ID}.tgz"
+
+      - name: Import I0001 into WooCommerce and verify
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_products_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-i0001-${GITHUB_RUN_ID}.tgz"
+          STAGE="/tmp/drielo-i0001-${GITHUB_RUN_ID}"
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE"; }
+          trap cleanup EXIT
+
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $codes=array("DRIELO-I0001-CS","DRIELO-I0001-C2C","DRIELO-I0001-TC","DRIELO-I0001-LH");
+            foreach ($codes as $sku) {
+              $id=wc_get_product_id_by_sku($sku);
+              $p=$id ? wc_get_product($id) : false;
+              if (!$p) { fwrite(STDERR,"Missing ".$sku.PHP_EOL); exit(2); }
+              $cols=wp_get_object_terms($id,"product_collection",array("fields"=>"slugs"));
+              $downloads=count($p->get_downloads());
+              $image=$p->get_image_id();
+              echo $sku." id=".$id." status=".$p->get_status()." image=".$image." downloads=".$downloads." collection=".implode(",",is_wp_error($cols)?array():$cols)." url=".get_permalink($id).PHP_EOL;
+              if ($p->get_status()!=="publish" || !$image || $downloads<1 || !in_array("baby-nursery",is_wp_error($cols)?array():$cols,true)) {
+                fwrite(STDERR,"Incomplete ".$sku.PHP_EOL); exit(3);
+              }
+            }
+            $term=get_term_by("slug","baby-nursery","product_collection");
+            if (!$term) { fwrite(STDERR,"Missing baby-nursery collection".PHP_EOL); exit(4); }
+            echo "COLLECTION baby-nursery count=".$term->count." url=".get_term_link($term).PHP_EOL;
+          '
+
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
+          REMOTE
+
+      - name: Persist current I0001 images and catalog
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add             content/products/catalog.json             content/products/assets/I0001-CS-product.webp             content/products/assets/I0001-C2C-product.webp             content/products/assets/I0001-TC-product.webp             content/products/assets/I0001-LH-product.webp
+          if git diff --cached --quiet; then
+            echo "No generated repository changes."
+          else
+            git commit -m "Publish current Baby Nursery I0001 four techniques [skip ci]"
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
+          fi
+
+      - name: Archive I0001 PDFs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: baby-nursery-I0001-current-pdfs
+          path: |
+            content/products/files/Drielo_I0001-CS.pdf
+            content/products/files/Drielo_I0001-C2C.pdf
+            content/products/files/Drielo_I0001-TC.pdf
+            content/products/files/Drielo_I0001-LH.pdf
+          retention-days: 30
