@@ -1,0 +1,82 @@
+{
+  "schema_version": 2,
+  "content_type": "article",
+  "article_number": 501,
+  "translation_group": "501-multi-technique",
+  "taxonomy": {
+    "craft": {
+      "primary": "cross-stitch",
+      "terms": [
+        "cross-stitch",
+        "c2c-crochet",
+        "tapestry-crochet",
+        "latch-hook"
+      ]
+    },
+    "section": {
+      "primary": "learn",
+      "terms": [
+        "learn"
+      ]
+    },
+    "topic": {
+      "primary": "charts",
+      "terms": [
+        "charts"
+      ]
+    },
+    "style": {
+      "terms": [
+        "grid-reuse",
+        "conversion",
+        "multi-craft"
+      ]
+    },
+    "skill": {
+      "terms": [
+        "beginner",
+        "intermediate"
+      ]
+    },
+    "project_type": {
+      "terms": [
+        "wall-art",
+        "blankets",
+        "bags",
+        "rugs",
+        "cushions",
+        "home-decor"
+      ]
+    },
+    "article_type": {
+      "primary": "guide",
+      "terms": [
+        "guide"
+      ]
+    }
+  },
+  "faq": [],
+  "sources": [],
+  "status": "publish",
+  "id": "es-501-multi-technique",
+  "language": "es",
+  "locale": "es-ES",
+  "market_context": "Personas que quieren usar un mismo diseño cuadriculado para generar versiones en punto de cruz, C2C Crochet, Tapestry Crochet o Latch Hook.",
+  "title": "Cómo reutilizar una misma cuadrícula en punto de cruz, crochet y Latch Hook",
+  "slug": "como-reutilizar-cuadricula-punto-cruz-crochet-latch-hook",
+  "seo": {
+    "title": "Cómo reutilizar una misma cuadrícula en punto de cruz, crochet y Latch Hook",
+    "meta_description": "Reutiliza una cuadrícula entre punto de cruz, crochet y Latch Hook adaptando escala, proporción de celda, colores, detalle, materiales y acabado.",
+    "search_intent": "Personas que quieren convertir un mismo patrón de cuadrícula entre varias técnicas textiles."
+  },
+  "excerpt": "La cuadrícula puede ser la base común de varias técnicas, pero no debe copiarse sin ajustes. Aprende qué conservar y qué recalcular al cambiar de material.",
+  "content_html": "<p>Una cuadrícula de color puede funcionar como archivo maestro para varias técnicas textiles. La misma estructura de celdas puede convertirse en cruces bordadas, bloques C2C, puntos de Tapestry Crochet o nudos de Latch Hook. Lo que no conviene es asumir que el patrón debe mantenerse idéntico en resolución, proporción y paleta.</p>\n<p>Reutilizar bien una cuadrícula significa separar la identidad del diseño de las decisiones específicas de cada técnica. También implica documentar esas decisiones para que cada versión pueda reproducirse sin reconstruir el proceso desde cero.</p>\n<h2>Conserva primero la silueta y las relaciones principales</h2>\n<p>Identifica qué partes hacen reconocible el diseño: contorno, grandes masas de color, ojos, letras o geometría principal.</p>\n<p>Esos elementos forman el núcleo que debería sobrevivir en todas las versiones.</p>\n<p>Detalles secundarios pueden cambiar de tamaño o desaparecer cuando una técnica tiene una celda física mucho mayor.</p>\n<p>Guarda una versión maestra con la resolución más alta que tenga sentido para el diseño.</p>\n<p>A partir de ella, crea copias específicas para cada técnica en lugar de editar continuamente el único archivo.</p>\n<p>Así puedes comparar simplificaciones sin perder información del original.</p>\n<p>Si varias versiones forman una colección, conserva también una miniatura común que sirva como referencia visual para comprobar que todas siguen pareciendo el mismo diseño.</p>\n<h2>Recalcula el tamaño físico de una celda en cada técnica</h2>\n<p>Una X de punto de cruz puede medir pocos milímetros.</p>\n<p>Un bloque C2C puede ocupar varios centímetros, mientras un punto de Tapestry Crochet queda en un rango intermedio y un nudo de Latch Hook depende de la malla.</p>\n<p>Haz una muestra de cada sistema y mide cuántas celdas caben por centímetro o pulgada.</p>\n<p>Multiplica esa escala por el ancho y alto del gráfico para estimar dimensiones finales.</p>\n<p>Si una versión se vuelve demasiado grande, reduce el número de celdas conservando proporciones.</p>\n<p>Si queda demasiado pequeña para el uso previsto, puedes ampliar la cuadrícula o elegir otro soporte compatible.</p>\n<p>Anota las dimensiones previstas junto a cada copia para no confundir más adelante cuál corresponde a manta, cuadro, bolso o alfombra.</p>\n<h2>Ajusta la proporción cuando la unidad no sea perfectamente cuadrada</h2>\n<p>Las celdas digitales son cuadradas, pero no todas las unidades textiles tienen exactamente la misma altura y anchura.</p>\n<p>Un punto bajo puede ser más alto o más ancho según hilo, gancho y tensión.</p>\n<p>Un bloque C2C tiende a aproximarse más a un cuadrado, pero también debe medirse.</p>\n<p>En punto de cruz, la relación depende de que la tela tenga una trama adecuada y de cómo se trabaje.</p>\n<p>Si la muestra de una técnica deforma un círculo en óvalo, adapta el gráfico antes de producir el proyecto completo.</p>\n<p>No corrijas la proporción estirando el objeto terminado; corrígela en la relación entre filas y columnas.</p>\n<p>Para diseños con texto o caras, esta comprobación es especialmente importante porque una pequeña deformación puede ser mucho más visible que en un motivo abstracto.</p>\n<h2>Reduce o amplía la paleta según el material</h2>\n<p>Una versión de punto de cruz puede utilizar muchos tonos cercanos porque cada color consume poca cantidad y se mantiene visualmente separado.</p>\n<p>En Latch Hook, demasiados colores parecidos pueden mezclarse en el pelo y complicar la preparación.</p>\n<p>En C2C, colores aislados de una sola celda generan cambios de bobina que quizá no aporten suficiente valor.</p>\n<p>En Tapestry Crochet, transportar muchos tonos simultáneos puede aumentar grosor y dificultad de tensión.</p>\n<p>Crea una paleta base y después una versión específica para cada técnica.</p>\n<p>Conserva siempre los contrastes que definen la imagen antes que variaciones pequeñas de sombreado.</p>\n<p>Registra las sustituciones de color para que una futura actualización del patrón no rompa la coherencia entre versiones.</p>\n<h2>Adapta detalles y bordes a la textura del resultado</h2>\n<p>Una línea de una celda puede ser nítida en punto de cruz y demasiado frágil visualmente en Latch Hook.</p>\n<p>En C2C, ese mismo detalle puede convertirse en un bloque físicamente muy grande.</p>\n<p>En crochet por filas, la proporción del punto puede alterar diagonales y curvas.</p>\n<p>Revisa letras, ojos, contornos y pequeños espacios negativos en cada versión.</p>\n<p>Cuando un elemento importante se pierde, dale más grosor en la copia destinada a esa técnica.</p>\n<p>El objetivo es conservar la lectura del diseño, no demostrar que todas las copias usan exactamente el mismo número de celdas.</p>\n<p>Una vista previa reducida y una muestra física son dos controles distintos: la primera revisa composición y la segunda revela textura y escala reales.</p>\n<h2>Guarda una ficha de conversión para cada versión</h2>\n<p>Junto al gráfico específico, registra técnica, resolución, tamaño estimado, materiales, paleta y datos de la muestra.</p>\n<p>Anota cualquier color fusionado o detalle redibujado respecto al master.</p>\n<p>Si el diseño se vende o se repite, esta ficha evita reconstruir las decisiones meses después.</p>\n<p>También facilita mantener una colección coherente donde la misma ilustración aparece como bordado, manta, bolso o alfombra.</p>\n<p>Antes de producir en cantidad, prueba una zona crítica en cada técnica y confirma que la adaptación funciona físicamente.</p>\n<p>Incluye fecha o versión del master para saber de qué archivo nació cada adaptación cuando el diseño original cambie en el futuro.</p>\n<p>Reutilizar una cuadrícula entre punto de cruz, crochet y Latch Hook funciona cuando el gráfico se trata como una fuente, no como una receta rígida. Mantén la identidad visual y adapta escala, proporción, colores y detalle a la unidad textil real de cada técnica.</p>",
+  "commerce": {
+    "product_skus": [],
+    "collection_slugs": []
+  },
+  "image": {
+    "concept": "Una cuadrícula central conectada mediante flechas a cuatro resultados: punto de cruz, C2C Crochet, Tapestry Crochet y Latch Hook con escalas diferentes.",
+    "alt": "Reutilizar una cuadrícula entre técnicas textiles"
+  }
+}
