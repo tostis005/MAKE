@@ -1,0 +1,19 @@
+name: Inspect Drielo Etsy sync fields
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/tmp-inspect-etsy.yml']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/etsy && mkdir -p /tmp/etsy
+          base64 --decode plugins/drielo-etsy-sync-1.0.0.zip.b64 > /tmp/etsy.zip
+          unzip -q /tmp/etsy.zip -d /tmp/etsy
+          grep -RniE 'taxonomy|language|_drielo_etsy|tags|category' /tmp/etsy/drielo-etsy-sync | head -n 240
