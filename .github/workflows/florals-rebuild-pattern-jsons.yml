@@ -1,0 +1,118 @@
+name: Florals Rebuild Pattern JSONs
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feature/florals-pattern-generation
+    paths:
+      - 'content/pattern-system/collections/florals/source-designs/*.png'
+      - 'content/pattern-system/collections/florals/collection.json'
+      - 'content/pattern-system/collections/florals/designs.json'
+      - 'content/pattern-system/florals/build_collection.py'
+      - '.github/workflows/florals-rebuild-pattern-jsons.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-florals-pattern-jsons
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout Florals generation branch
+        uses: actions/checkout@v4
+        with:
+          ref: feature/florals-pattern-generation
+          fetch-depth: 0
+
+      - name: Install pattern dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow
+
+      - name: Build all 30 designs in four techniques
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/florals/build_collection.py
+
+      - name: Validate 120 Florals pattern/product JSON pairs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+
+          root=Path('.')
+          system=root/'content/pattern-system'
+          col=json.loads((system/'collections/florals/collection.json').read_text(encoding='utf-8'))
+          designs=json.loads((system/'collections/florals/designs.json').read_text(encoding='utf-8'))['designs']
+          allowed={str(x['dmc']) for x in col['palette']}
+          grids={'CS':(100,120),'C2C':(60,72),'TC':(80,96),'LH':(60,72)}
+
+          if len(designs)!=30:
+              raise SystemExit(f'Expected 30 designs, got {len(designs)}')
+
+          total=0
+          for d in designs:
+              base=d['base_design_id']
+              source=system/d['source_asset']
+              im=Image.open(source).convert('RGBA')
+              if im.size!=(100,120):
+                  raise SystemExit(f'{base}: source is {im.size}, expected 100x120')
+              if im.getchannel('A').getbbox() is None:
+                  raise SystemExit(f'{base}: source is empty')
+
+              for suffix,(w,h) in grids.items():
+                  code=f'{base}-{suffix}'
+                  ppath=system/'patterns'/code/'pattern.json'
+                  prodpath=system/'products'/code/'product.json'
+                  if not ppath.is_file() or not prodpath.is_file():
+                      raise SystemExit(f'{code}: missing JSON pair')
+                  p=json.loads(ppath.read_text(encoding='utf-8'))
+                  prod=json.loads(prodpath.read_text(encoding='utf-8'))
+
+                  if p['collection']!='florals' or prod['collection']!='florals':
+                      raise SystemExit(f'{code}: wrong collection')
+                  if (p['stitch_width'],p['stitch_height'])!=(w,h):
+                      raise SystemExit(f'{code}: wrong grid')
+                  if len(p['matrix'])!=h or any(len(row)!=w for row in p['matrix']):
+                      raise SystemExit(f'{code}: malformed matrix')
+                  if not p['threads'] or len(p['threads'])>14:
+                      raise SystemExit(f'{code}: invalid colour count {len(p["threads"])}')
+                  if any(str(t['dmc']) not in allowed for t in p['threads']):
+                      raise SystemExit(f'{code}: thread outside Florals palette')
+                  if p.get('source_policy')!='approved-100x120-one-pixel-one-cross':
+                      raise SystemExit(f'{code}: canonical source policy missing')
+                  total+=1
+
+          status=json.loads((system/'florals/generation_status.json').read_text(encoding='utf-8'))
+          if total!=120 or status.get('pattern_count')!=120:
+              raise SystemExit(f'Expected 120 patterns, got {total}')
+          print('FLORALS_PATTERN_SET_VALID', total)
+          PY
+
+      - name: Commit regenerated JSONs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add             content/pattern-system/collections/florals/designs.json             content/pattern-system/collections/florals/source-designs/manifest.json             content/pattern-system/florals/generation_status.json             content/pattern-system/patterns/F*             content/pattern-system/products/F*
+
+          if git diff --cached --quiet; then
+            echo "Florals JSONs already up to date."
+          else
+            git commit -m "Rebuild Florals 30x4 pattern JSON set [skip ci]"
+            git push origin HEAD:feature/florals-pattern-generation
+          fi
