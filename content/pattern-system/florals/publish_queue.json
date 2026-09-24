@@ -87,10 +87,11 @@
       "base_design_id": "F0009",
       "title_en": "Eucalyptus Ribbon Bundle",
       "slug": "eucalyptus-ribbon-bundle",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36046875748",
+      "last_error": null,
+      "published_at": "2026-09-24T19:18:54+00:00"
     },
     {
       "base_design_id": "F0010",
