@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Drielo Etsy Sync
  * Description: Centraliza la selección y sincronización de productos WooCommerce con Etsy, incluidos productos digitales, imágenes y PDFs.
- * Version: 1.4.5
+ * Version: 1.4.6
  * Author: Drielo
  * Requires Plugins: woocommerce
  * Requires PHP: 8.0
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 final class Drielo_Etsy_Sync {
-    const VERSION = '1.4.5';
+    const VERSION = '1.4.6';
     const OPTION_SETTINGS = 'drielo_etsy_settings';
     const OPTION_TOKENS   = 'drielo_etsy_tokens';
     const OPTION_SYNC_RUN = 'drielo_etsy_sync_run';
@@ -1879,6 +1879,7 @@ final class Drielo_Etsy_Sync {
                     $resolved = [
                         'property_id' => absint( $property['property_id'] ),
                         'value_id'    => absint( $value['value_id'] ),
+                        'value_name'  => (string) ( $value['name'] ?? 'Crochet' ),
                     ];
                     set_transient( $cache_key, $resolved, DAY_IN_SECONDS );
                     return $resolved;
@@ -1890,6 +1891,7 @@ final class Drielo_Etsy_Sync {
         return [
             'property_id' => 47626759760,
             'value_id'    => 543,
+            'value_name'  => 'Crochet',
         ];
     }
 
@@ -1923,7 +1925,10 @@ final class Drielo_Etsy_Sync {
         $property_result = $this->etsy_request(
             'PUT',
             '/v3/application/shops/' . rawurlencode( $shop_id ) . '/listings/' . rawurlencode( $listing_id ) . '/properties/' . rawurlencode( (int) $craft['property_id'] ),
-            [ 'value_ids' => [ (int) $craft['value_id'] ] ]
+            [
+                'value_ids' => [ (int) $craft['value_id'] ],
+                'values'    => [ (string) ( $craft['value_name'] ?? 'Crochet' ) ],
+            ]
         );
         if ( is_wp_error( $property_result ) ) {
             return $property_result;
