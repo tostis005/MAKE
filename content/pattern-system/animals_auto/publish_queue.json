@@ -1,7 +1,7 @@
 {
   "collection": "animals",
   "branch": "feature/animals-auto-publish",
-  "auto_continue": false,
+  "auto_continue": true,
   "max_attempts_per_design": 2,
   "recovery_attempts_per_design": 4,
   "created_from": "canonical Animals A0001-A0030 references",
@@ -341,6 +341,6 @@
   "restarted_at": "2026-09-24T11:57:30Z",
   "restart_reason": "Restart from A0001 using the exact four approved uploaded Animals PNG cover backgrounds.",
   "restart_from": "A0001",
-  "paused_reason": "Stopping duplicate A0014 retries after successful clean-gridless republish.",
+  "paused_reason": null,
   "a0014_replacement_reason": "Regenerate A0014 from clean palette-compliant source without preview-grid artifacts."
 }
