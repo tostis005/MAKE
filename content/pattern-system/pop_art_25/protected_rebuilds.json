@@ -6,12 +6,11 @@
       "title_en": "Albert Einstein Tongue Out",
       "title_es": "Albert Einstein sacando la lengua",
       "slug": "albert-einstein-tongue-out",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35985326693",
-      "last_error": "Automatic Pop Art publish run failed; see GitHub Actions logs.",
-      "allow_protected": true,
-      "failed_at": "2026-09-24T10:08:09+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null,
+      "allow_protected": true
     },
     {
       "base_design_id": "P0012",
