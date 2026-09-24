@@ -64,11 +64,35 @@ def load_archive():
 
 
 def load_design_reference(base_id: str, meta: dict):
+    manifest = read_json(MANIFEST_PATH)
     direct = LIBRARY_DIR / f"{base_id}-{meta['slug']}.json"
-    if not direct.is_file():
-        return None
+    source_kind = "direct-user-sheet-crop"
 
-    d = read_json(direct)
+    if direct.is_file():
+        d = read_json(direct)
+    else:
+        parts = manifest.get("direct_reference_bundle_parts") or []
+        if not parts:
+            return None
+        encoded = "".join((LIBRARY_DIR / name).read_text(encoding="ascii").strip() for name in parts)
+        try:
+            bundle_raw = zlib.decompress(base64.b64decode(encoded, validate=True))
+        except Exception as exc:
+            raise RuntimeError(f"Direct reference bundle cannot be decoded: {exc}") from exc
+        bundle_digest = hashlib.sha256(bundle_raw).hexdigest()
+        expected_bundle = manifest.get("direct_reference_bundle_decoded_sha256")
+        if not expected_bundle or bundle_digest != expected_bundle:
+            raise RuntimeError(
+                f"Direct reference bundle digest mismatch: {bundle_digest} != {expected_bundle}"
+            )
+        bundle = json.loads(bundle_raw.decode("utf-8"))
+        if bundle.get("version") != 1:
+            raise RuntimeError(f"Unsupported direct reference bundle version: {bundle.get('version')}")
+        d = (bundle.get("designs") or {}).get(base_id)
+        if d is None:
+            return None
+        source_kind = "direct-user-sheet-bundle"
+
     if d.get("version") != 1:
         raise RuntimeError(f"{base_id}: unsupported direct reference version")
     if d.get("base_design_id") != base_id or d.get("slug") != meta["slug"]:
@@ -87,7 +111,6 @@ def load_design_reference(base_id: str, meta: dict):
     if len(rows) != 120 or any(len(row) != 100 for row in rows):
         raise RuntimeError(f"{base_id}: direct reference matrix is not 100x120")
 
-    manifest = read_json(MANIFEST_PATH)
     manifest_row = next((x for x in manifest["designs"] if x["base_design_id"] == base_id), None)
     if not manifest_row:
         raise RuntimeError(f"{base_id}: missing from reference-library manifest")
@@ -102,7 +125,7 @@ def load_design_reference(base_id: str, meta: dict):
             "rows": rows,
         },
         "alphabet": STANDARD_ALPHABET,
-        "source_kind": "direct-user-sheet-crop",
+        "source_kind": source_kind,
         "source_sha256": digest,
         "direct_metadata": d,
     }
