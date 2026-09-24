@@ -371,6 +371,56 @@ def design_record(base_id: str):
     raise RuntimeError(f"Unknown Baby & Nursery design: {base_id}")
 
 
+def ensure_design_templates(base_id: str, design: dict):
+    """Create structural pattern/product templates for a new design ID.
+
+    The actual matrix, threads, artwork and catalogue metadata are overwritten
+    later in this run. We clone only the technique-specific structural fields
+    from the established I0001 templates.
+    """
+    for suffix in SUFFIXES:
+        code = f"{base_id}-{suffix}"
+        pattern_path = PATTERNS / code / "pattern.json"
+        product_path = PRODUCTS / code / "product.json"
+
+        if not pattern_path.is_file():
+            template_path = PATTERNS / f"I0001-{suffix}" / "pattern.json"
+            if not template_path.is_file():
+                raise RuntimeError(f"{code}: missing structural pattern template {template_path}")
+            pattern = deepcopy(read_json(template_path))
+            pattern.update({
+                "code": code,
+                "base_design_id": base_id,
+                "technique_code": suffix,
+                "collection": "baby-nursery",
+                "palette_collection": "baby-nursery",
+                "source_asset": design["source_asset"],
+                "status": "ready",
+            })
+            write_json(pattern_path, pattern)
+
+        if not product_path.is_file():
+            template_path = PRODUCTS / f"I0001-{suffix}" / "product.json"
+            if not template_path.is_file():
+                raise RuntimeError(f"{code}: missing structural product template {template_path}")
+            product = deepcopy(read_json(template_path))
+            product.update({
+                "code": code,
+                "base_design_id": base_id,
+                "technique_code": suffix,
+                "collection": "baby-nursery",
+                "title": design["title_en"],
+                "title_en": design["title_en"],
+                "title_es": design["title_es"],
+                "design_slug": design["slug"],
+                "pattern_file": f"patterns/{code}/pattern.json",
+                "source_artwork": design["source_asset"],
+                "status": "active",
+                "render_ready": True,
+            })
+            write_json(product_path, product)
+
+
 def validate_reference_master(base_id: str, image: Image.Image):
     if image.size != (800, 960):
         raise RuntimeError(f"{base_id}: reference master must be 800x960, got {image.size}")
@@ -885,6 +935,7 @@ def main():
     design = design_record(base_id)
     collection = read_json(COLLECTION_PATH)
 
+    ensure_design_templates(base_id, design)
     bbox = rebuild_from_master(base_id, design, collection)
     results = render_design(base_id, design, collection)
     revision = update_catalog(base_id, design)
