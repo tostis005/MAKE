@@ -197,24 +197,34 @@ def normalize_external_outline(matrix, outline_symbol, cleanup_depth=2, neighbor
         if cleaned[y][x] != outline_symbol:
             raise RuntimeError(f"External outline normalization failed at {x},{y}")
 
-    dark_boundary_after = {(y, x) for (y, x) in boundary if cleaned[y][x] == outline_symbol}
-    connected_after = set(dark_boundary_after)
-    frontier = set(dark_boundary_after)
-    for _ in range(max(0, cleanup_depth)):
-        nxt = set()
-        for y, x in frontier:
-            for dy, dx in dark_offsets:
-                yy, xx = y + dy, x + dx
-                if 0 <= yy < h and 0 <= xx < w and cleaned[yy][xx] == outline_symbol:
-                    if (yy, xx) not in connected_after:
-                        nxt.add((yy, xx))
-        connected_after.update(nxt)
-        frontier = nxt
-        if not frontier:
-            break
-    extras = len(connected_after - boundary)
-    if extras:
-        raise RuntimeError(f"External outline still has {extras} connected extra cells after normalization")
+    # Only the original exterior contour band is subject to thickness cleanup.
+    # After repainting the boundary, it may legitimately touch a black eye/detail
+    # near an edge; that must not be mistaken for a second contour layer.
+    remaining_original_extras = [
+        (y, x)
+        for (y, x) in (connected_outer_dark - boundary)
+        if cleaned[y][x] == outline_symbol
+        and _distance_to_transparency(cleaned, y, x, max_depth=max(3, cleanup_depth)) <= cleanup_depth
+    ]
+    if remaining_original_extras:
+        # One last, wider fill search handles narrow feet/tips where the nearest
+        # interior colour is several cells away.
+        for y, x in remaining_original_extras:
+            fill = _nearest_fill_symbol(cleaned, y, x, outline_symbol, max_radius=12)
+            if fill != outline_symbol:
+                cleaned[y][x] = fill
+                removed += 1
+                changed += 1
+
+    stubborn = [
+        (y, x)
+        for (y, x) in remaining_original_extras
+        if cleaned[y][x] == outline_symbol
+    ]
+    if stubborn:
+        raise RuntimeError(
+            f"External outline cleanup could not resolve {len(stubborn)} original extra cells: {stubborn[:8]}"
+        )
 
     return cleaned, {
         "changed": changed,
