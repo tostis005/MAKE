@@ -286,28 +286,32 @@ jobs:
           rm -rf "$STAGE" && mkdir -p "$STAGE"
           tar -xzf "$ARCHIVE" -C "$STAGE"
 
-          # Start from a clean staging directory in the WordPress container.
-          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php && mkdir -p /tmp/drielo-products'
-          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
-          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          # Use a run-scoped staging directory inside WordPress. Other Drielo
+          # collection workflows run concurrently, so shared /tmp paths can
+          # overwrite one another and publish the wrong catalogue/media.
+          REMOTE_DIR="/tmp/drielo-products-${DESIGN}-${GITHUB_RUN_ID}"
+          IMPORTER="/tmp/drielo-import-products-${DESIGN}-${GITHUB_RUN_ID}.php"
+          "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '${REMOTE_DIR}' '${IMPORTER}' && mkdir -p '${REMOTE_DIR}'"
+          "${DOCKER[@]}" cp "$STAGE/content/products/." "make-wp:${REMOTE_DIR}/"
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" "make-wp:${IMPORTER}"
 
           # Import one technique at a time. This prevents a late media/download
           # failure from leaving the last products half-created.
           for suffix in CS C2C TC LH; do
             code="${DESIGN}-${suffix}"
             "${DOCKER[@]}" exec make-wp sh -lc "
-              test -s /tmp/drielo-products/assets/${code}-product.webp &&
-              test -s /tmp/drielo-products/assets/${code}-gallery-2.webp &&
-              test -s /tmp/drielo-products/assets/${code}-gallery-3.webp &&
-              test -s /tmp/drielo-products/assets/${code}-gallery-4.webp &&
-              test -s /tmp/drielo-products/files/Drielo_${code}.pdf &&
-              cp /tmp/drielo-products/catalog-${suffix}.json /tmp/drielo-products/catalog.json
+              test -s ${REMOTE_DIR}/assets/${code}-product.webp &&
+              test -s ${REMOTE_DIR}/assets/${code}-gallery-2.webp &&
+              test -s ${REMOTE_DIR}/assets/${code}-gallery-3.webp &&
+              test -s ${REMOTE_DIR}/assets/${code}-gallery-4.webp &&
+              test -s ${REMOTE_DIR}/files/Drielo_${code}.pdf &&
+              cp ${REMOTE_DIR}/catalog-${suffix}.json ${REMOTE_DIR}/catalog.json
             "
 
             ok=0
             for attempt in 1 2 3; do
               echo "Importing ${code} attempt ${attempt}/3"
-              if "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M -d max_execution_time=0                    /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products; then
+              if "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M -d max_execution_time=0                    ${IMPORTER} /var/www/html ${REMOTE_DIR}; then
                 ok=1
                 break
               fi
@@ -340,7 +344,7 @@ jobs:
               }
             }
           '
-          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
+          "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '${REMOTE_DIR}' '${IMPORTER}'"
           REMOTE
 
       - name: Mark design published
