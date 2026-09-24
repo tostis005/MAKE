@@ -47,21 +47,21 @@ jobs:
           token=os.environ["GITHUB_TOKEN"]
           branch="feature/florals-pattern-generation"
           files=[
-    ("content/pattern-system/collections/florals/source-designs/F0006-cherry-blossom-branch.png", "/tmp/floral-src-0.png"),
-    ("content/pattern-system/collections/florals/source-designs/F0007-pink-floral-heart-wreath.png", "/tmp/floral-src-1.png"),
-    ("content/pattern-system/collections/florals/source-designs/F0008-daisy-mason-jar.png", "/tmp/floral-src-2.png"),
-    ("content/pattern-system/collections/florals/source-designs/F0009-eucalyptus-ribbon-bundle.png", "/tmp/floral-src-3.png"),
-    ("content/pattern-system/collections/florals/source-designs/F0010-potted-strawberry-plant.png", "/tmp/floral-src-4.png"),
-    ("content/pattern-system/collections/florals/source-designs/F0016-daffodil-bouquet.png", "/tmp/floral-src-5.png"),
-    ("content/pattern-system/collections/florals/source-designs/F0017-lilac-twine-bouquet.png", "/tmp/floral-src-6.png"),
-    ("content/pattern-system/collections/florals/source-designs/F0018-potted-lavender.png", "/tmp/floral-src-7.png"),
-    ("content/pattern-system/collections/florals/source-designs/F0019-chamomile-bundle.png", "/tmp/floral-src-8.png"),
-    ("content/pattern-system/collections/florals/source-designs/F0020-floral-watering-can.png", "/tmp/floral-src-9.png"),
-    ("content/pattern-system/collections/florals/source-designs/F0021-hanging-pink-flower-basket.png", "/tmp/floral-src-10.png"),
-    ("content/pattern-system/collections/florals/source-designs/F0022-bluebell-bouquet.png", "/tmp/floral-src-11.png"),
-    ("content/pattern-system/collections/florals/source-designs/F0023-magnolia-branch.png", "/tmp/floral-src-12.png"),
-    ("content/pattern-system/collections/florals/source-designs/F0024-enamel-herb-pot.png", "/tmp/floral-src-13.png"),
-    ("content/pattern-system/collections/florals/source-designs/F0025-daisy-wreath.png", "/tmp/floral-src-14.png"),
+          ("content/pattern-system/collections/florals/source-designs/F0006-cherry-blossom-branch.png", "/tmp/floral-src-0.png"),
+          ("content/pattern-system/collections/florals/source-designs/F0007-pink-floral-heart-wreath.png", "/tmp/floral-src-1.png"),
+          ("content/pattern-system/collections/florals/source-designs/F0008-daisy-mason-jar.png", "/tmp/floral-src-2.png"),
+          ("content/pattern-system/collections/florals/source-designs/F0009-eucalyptus-ribbon-bundle.png", "/tmp/floral-src-3.png"),
+          ("content/pattern-system/collections/florals/source-designs/F0010-potted-strawberry-plant.png", "/tmp/floral-src-4.png"),
+          ("content/pattern-system/collections/florals/source-designs/F0016-daffodil-bouquet.png", "/tmp/floral-src-5.png"),
+          ("content/pattern-system/collections/florals/source-designs/F0017-lilac-twine-bouquet.png", "/tmp/floral-src-6.png"),
+          ("content/pattern-system/collections/florals/source-designs/F0018-potted-lavender.png", "/tmp/floral-src-7.png"),
+          ("content/pattern-system/collections/florals/source-designs/F0019-chamomile-bundle.png", "/tmp/floral-src-8.png"),
+          ("content/pattern-system/collections/florals/source-designs/F0020-floral-watering-can.png", "/tmp/floral-src-9.png"),
+          ("content/pattern-system/collections/florals/source-designs/F0021-hanging-pink-flower-basket.png", "/tmp/floral-src-10.png"),
+          ("content/pattern-system/collections/florals/source-designs/F0022-bluebell-bouquet.png", "/tmp/floral-src-11.png"),
+          ("content/pattern-system/collections/florals/source-designs/F0023-magnolia-branch.png", "/tmp/floral-src-12.png"),
+          ("content/pattern-system/collections/florals/source-designs/F0024-enamel-herb-pot.png", "/tmp/floral-src-13.png"),
+          ("content/pattern-system/collections/florals/source-designs/F0025-daisy-wreath.png", "/tmp/floral-src-14.png"),
           ]
 
           def request(method, path, payload=None):
