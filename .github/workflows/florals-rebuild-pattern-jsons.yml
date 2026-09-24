@@ -6,10 +6,6 @@ on:
     branches:
       - feature/florals-pattern-generation
     paths:
-      - 'content/pattern-system/collections/florals/source-designs/*.png'
-      - 'content/pattern-system/collections/florals/collection.json'
-      - 'content/pattern-system/collections/florals/designs.json'
-      - 'content/pattern-system/florals/build_collection.py'
       - '.github/workflows/florals-rebuild-pattern-jsons.yml'
 
 permissions:
