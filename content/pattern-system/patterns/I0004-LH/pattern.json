@@ -22,28 +22,28 @@
       "dmc": "3325",
       "color": "#63BEFB",
       "name": "Light Baby Blue",
-      "stitches": 359
+      "stitches": 366
     },
     {
       "symbol": "D",
       "dmc": "3846",
       "color": "#169CFA",
       "name": "Light Bright Turquoise",
-      "stitches": 8
+      "stitches": 11
     },
     {
       "symbol": "G",
       "dmc": "905",
       "color": "#1B6F3F",
       "name": "Dark Parrot Green",
-      "stitches": 122
+      "stitches": 123
     },
     {
       "symbol": "J",
       "dmc": "522",
       "color": "#6CAB67",
       "name": "Fern Green",
-      "stitches": 160
+      "stitches": 156
     },
     {
       "symbol": "L",
@@ -57,7 +57,7 @@
       "dmc": "3713",
       "color": "#FBB1BE",
       "name": "Very Light Salmon",
-      "stitches": 256
+      "stitches": 255
     },
     {
       "symbol": "N",
@@ -71,7 +71,7 @@
       "dmc": "797",
       "color": "#0253D0",
       "name": "Royal Blue",
-      "stitches": 244
+      "stitches": 245
     },
     {
       "symbol": "R",
@@ -85,14 +85,14 @@
       "dmc": "3752",
       "color": "#96D8FB",
       "name": "Very Light Antique Blue",
-      "stitches": 590
+      "stitches": 581
     },
     {
       "symbol": "W",
       "dmc": "761",
       "color": "#FC8395",
       "name": "Light Salmon",
-      "stitches": 166
+      "stitches": 167
     },
     {
       "symbol": "X",
@@ -106,7 +106,7 @@
       "dmc": "550",
       "color": "#8B40C6",
       "name": "Very Dark Violet",
-      "stitches": 3
+      "stitches": 4
     }
   ],
   "matrix": [
@@ -929,11 +929,11 @@
       null,
       null,
       null,
-      "P",
-      "P",
       "J",
-      "V",
-      "V",
+      "D",
+      "J",
+      "C",
+      "C",
       "D",
       null,
       null,
@@ -951,7 +951,7 @@
       "J",
       "P",
       "P",
-      "V",
+      "C",
       null,
       null,
       null,
@@ -1026,8 +1026,8 @@
       "C",
       "C",
       "J",
-      "J",
-      "J",
+      "D",
+      "C",
       "J",
       null,
       null,
@@ -1369,8 +1369,8 @@
       "W",
       "W",
       "G",
-      "G",
-      "C",
+      "P",
+      "P",
       "C",
       "C",
       "C",
@@ -1540,7 +1540,7 @@
       null,
       null,
       null,
-      "P",
+      "J",
       "P",
       "C",
       "J",
@@ -1682,7 +1682,7 @@
       "C",
       "C",
       "V",
-      "V",
+      "G",
       "R",
       "L",
       "V",
@@ -2311,10 +2311,10 @@
       "V",
       "V",
       "V",
+      "C",
       "V",
       "V",
-      "V",
-      "V",
+      "C",
       "J",
       "N",
       "V",
@@ -2372,11 +2372,11 @@
       "C",
       "V",
       "V",
+      "J",
+      "C",
       "V",
       "V",
-      "V",
-      "V",
-      "V",
+      "C",
       "J",
       "A",
       "C",
@@ -2701,7 +2701,7 @@
       "G",
       "P",
       "P",
-      "P",
+      "G",
       null,
       null,
       null,
@@ -3012,7 +3012,7 @@
       "P",
       "D",
       "C",
-      "J",
+      "Z",
       "J",
       null,
       null,
@@ -3075,7 +3075,7 @@
       "C",
       "V",
       "V",
-      "J",
+      "D",
       "J",
       null,
       null,
@@ -3591,7 +3591,7 @@
       null,
       null,
       null,
-      "J",
+      "P",
       "J",
       "J",
       "A",
@@ -3654,7 +3654,7 @@
       null,
       null,
       null,
-      "J",
+      "P",
       "J",
       "A",
       "W",
@@ -3717,7 +3717,7 @@
       null,
       null,
       null,
-      "J",
+      "G",
       "J",
       "N",
       "W",
@@ -3751,7 +3751,7 @@
       "J",
       "J",
       "N",
-      "M",
+      "W",
       "M",
       "W",
       "W",
@@ -3790,7 +3790,7 @@
       "G",
       "P",
       "G",
-      "G",
+      "P",
       "G",
       "G",
       "G",
