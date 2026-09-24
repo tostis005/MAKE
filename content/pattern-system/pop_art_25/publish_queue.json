@@ -108,11 +108,11 @@
       "title_en": "Girl with a Pearl Earring",
       "title_es": "La joven de la perla",
       "slug": "girl-with-a-pearl-earring",
-      "status": "pending",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35974765939",
+      "status": "failed",
+      "attempts": 2,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35974957542",
       "last_error": "Automatic Pop Art publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T08:23:28+00:00"
+      "failed_at": "2026-09-24T08:28:09+00:00"
     },
     {
       "order": 9,
