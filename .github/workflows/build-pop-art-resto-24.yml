@@ -1,5 +1,5 @@
 name: Build remaining Pop Art 24 designs
-# retry after embedded matrix integrity fix v2
+# retry after renderer process-pool fix
 
 on:
   push:
