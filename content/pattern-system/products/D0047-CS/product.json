@@ -1,0 +1,20 @@
+{
+  "code": "D0047-CS",
+  "base_design_id": "D0047",
+  "technique_code": "CS",
+  "collection": "iconic-destinations",
+  "title": "Monument Valley",
+  "title_en": "Monument Valley",
+  "title_es": "Monument Valley",
+  "design_slug": "monument-valley",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/D0047-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "renderer": "multitech",
+  "source_artwork": null,
+  "page_1_asset": null,
+  "palette_mode": "per-design"
+}
