@@ -78,7 +78,7 @@ jobs:
           "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '$TARGET' && mkdir -p '$TARGET'"
           "${DOCKER[@]}" cp "$STAGE/drielo-etsy-sync/." "make-wp:$TARGET/"
           "${DOCKER[@]}" exec make-wp sh -lc "chown -R www-data:www-data '$TARGET' && php -l '$TARGET/drielo-etsy-sync.php' && grep -q 'OPTION_SYNC_RUN' '$TARGET/drielo-etsy-sync.php'"
-          "${DOCKER[@]}" exec make-wp php -r '
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
             require "/var/www/html/wp-load.php";
             require_once ABSPATH."wp-admin/includes/plugin.php";
             $plugin="drielo-etsy-sync/drielo-etsy-sync.php";
