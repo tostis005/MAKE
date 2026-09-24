@@ -21,10 +21,18 @@ SOURCE_DIR = COLLECTION_DIR / "source-designs"
 REFERENCE_DIR = COLLECTION_DIR / "reference-masters"
 
 EXPECTED_DECODED_SHA256 = "533a4d7ed0892fd142eed3406b4740a539f70cbfffeaf932813466800a97ad19"
+STANDARD_ALPHABET = list("ABCDEFGHJKLMNPQRSTUVWXYZ23456789")
 
 
 def read_json(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def design_meta(base_id: str):
+    for item in read_json(DESIGNS_PATH)["designs"]:
+        if item["base_design_id"] == base_id:
+            return item
+    raise RuntimeError(f"Unknown design id: {base_id}")
 
 
 def load_archive():
@@ -55,11 +63,49 @@ def load_archive():
     return manifest, data
 
 
-def design_meta(base_id: str):
-    for item in read_json(DESIGNS_PATH)["designs"]:
-        if item["base_design_id"] == base_id:
-            return item
-    raise RuntimeError(f"Unknown design id: {base_id}")
+def load_design_reference(base_id: str, meta: dict):
+    direct = LIBRARY_DIR / f"{base_id}-{meta['slug']}.json"
+    if not direct.is_file():
+        return None
+
+    d = read_json(direct)
+    if d.get("version") != 1:
+        raise RuntimeError(f"{base_id}: unsupported direct reference version")
+    if d.get("base_design_id") != base_id or d.get("slug") != meta["slug"]:
+        raise RuntimeError(f"{base_id}: direct reference identity mismatch")
+
+    try:
+        raw = zlib.decompress(base64.b64decode(d["matrix_zlib_base64"], validate=True))
+    except Exception as exc:
+        raise RuntimeError(f"{base_id}: direct reference matrix cannot be decoded: {exc}") from exc
+
+    digest = hashlib.sha256(raw).hexdigest()
+    if digest != d.get("matrix_sha256"):
+        raise RuntimeError(f"{base_id}: direct reference matrix digest mismatch: {digest}")
+
+    rows = raw.decode("ascii").splitlines()
+    if len(rows) != 120 or any(len(row) != 100 for row in rows):
+        raise RuntimeError(f"{base_id}: direct reference matrix is not 100x120")
+
+    manifest = read_json(MANIFEST_PATH)
+    manifest_row = next((x for x in manifest["designs"] if x["base_design_id"] == base_id), None)
+    if not manifest_row:
+        raise RuntimeError(f"{base_id}: missing from reference-library manifest")
+
+    return {
+        "manifest": manifest,
+        "canonical": {
+            "slug": meta["slug"],
+            "sheet": int(manifest_row["reference_sheet"]),
+            "row": int(manifest_row["row"]),
+            "column": int(manifest_row["column"]),
+            "rows": rows,
+        },
+        "alphabet": STANDARD_ALPHABET,
+        "source_kind": "direct-user-sheet-crop",
+        "source_sha256": digest,
+        "direct_metadata": d,
+    }
 
 
 def rgba_from_matrix(rows, palette, alphabet):
@@ -101,9 +147,6 @@ def validate_master(base_id: str, im: Image.Image):
         "right": im.width - x1,
         "bottom": im.height - y1,
     }
-    # Canonical extraction intentionally centers each motif in an 88x96-cell safe box.
-    # If any edge has less than four 8px cells of transparent space, something was
-    # corrupted and pattern generation must stop.
     if min(margins.values()) < 32:
         raise RuntimeError(f"{base_id}: canonical artwork lacks safe margin: bbox={bbox}, margins={margins}")
     return bbox, margins
@@ -111,12 +154,26 @@ def validate_master(base_id: str, im: Image.Image):
 
 def generate_reference_master(base_id: str):
     base_id = base_id.strip().upper()
-    manifest, archive = load_archive()
-    if base_id not in archive["designs"]:
-        raise RuntimeError(f"{base_id}: not found in canonical user-reference archive")
-
-    canonical = archive["designs"][base_id]
     meta = design_meta(base_id)
+
+    direct = load_design_reference(base_id, meta)
+    if direct:
+        manifest = direct["manifest"]
+        canonical = direct["canonical"]
+        alphabet = direct["alphabet"]
+        source_kind = direct["source_kind"]
+        source_digest = direct["source_sha256"]
+        direct_metadata = direct["direct_metadata"]
+    else:
+        manifest, archive = load_archive()
+        if base_id not in archive["designs"]:
+            raise RuntimeError(f"{base_id}: not found in canonical user-reference archive")
+        canonical = archive["designs"][base_id]
+        alphabet = archive["palette_indices"]
+        source_kind = "legacy-reference-archive"
+        source_digest = EXPECTED_DECODED_SHA256
+        direct_metadata = None
+
     if canonical.get("slug") != meta.get("slug"):
         raise RuntimeError(
             f"{base_id}: canonical slug {canonical.get('slug')} != designs.json slug {meta.get('slug')}"
@@ -131,11 +188,10 @@ def generate_reference_master(base_id: str):
         or int(manifest_row["row"]) != int(canonical["row"])
         or int(manifest_row["column"]) != int(canonical["column"])
     ):
-        raise RuntimeError(f"{base_id}: canonical manifest/archive mapping mismatch")
+        raise RuntimeError(f"{base_id}: canonical manifest/reference mapping mismatch")
 
     collection = read_json(COLLECTION_PATH)
     palette = collection["palette"]
-    alphabet = archive["palette_indices"]
     grid = rgba_from_matrix(canonical["rows"], palette, alphabet)
     master = grid.resize((800, 960), Image.Resampling.NEAREST)
     bbox, margins = validate_master(base_id, master)
@@ -155,7 +211,6 @@ def generate_reference_master(base_id: str):
     master.save(source_path, "PNG", optimize=True)
     master.save(ref_path, "PNG", optimize=True)
 
-    # Ensure source and persisted reference are byte-for-pixel identical after saving.
     source_check = Image.open(source_path).convert("RGBA")
     ref_check = Image.open(ref_path).convert("RGBA")
     if source_check.tobytes() != ref_check.tobytes():
@@ -174,8 +229,14 @@ def generate_reference_master(base_id: str):
         "reference_asset": ref_rel,
         "bbox": bbox,
         "margins": margins,
-        "archive_sha256": EXPECTED_DECODED_SHA256,
+        "reference_source": source_kind,
+        "reference_sha256": source_digest,
     }
+    if direct_metadata:
+        result["source_crop_bbox"] = direct_metadata.get("source_crop_bbox")
+        result["source_crop_size"] = direct_metadata.get("source_crop_size")
+        result["palette_policy"] = direct_metadata.get("palette_policy")
+
     print("CANONICAL_REFERENCE_MASTER_OK", json.dumps(result, ensure_ascii=False))
     return result
 
