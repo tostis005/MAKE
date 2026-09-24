@@ -73,7 +73,10 @@ jobs:
           designs=json.loads((system/'collections'/'baby-nursery'/'designs.json').read_text(encoding='utf-8'))['designs']
           meta=next(x for x in designs if x['base_design_id']==design)
           src=system/meta['source_asset']
-          im=Image.open(src).convert('RGBA')
+          ref=system/'collections'/'baby-nursery'/'reference-masters'/f"{design}-{meta['slug']}-reference.png"
+          if not ref.is_file():
+              raise SystemExit(f'{design}: validated reference master missing: {ref}')
+          im=Image.open(ref).convert('RGBA')
           amin,amax=im.getchannel('A').getextrema()
           bbox=im.getchannel('A').getbbox()
           if im.size!=(800,960) or amin!=0 or amax==0 or not bbox:
