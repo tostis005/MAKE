@@ -1,4 +1,5 @@
 name: Cancel Animals Publisher Only
+# Cancel stalled A0014 republish
 
 on:
   push:
