@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Drielo Etsy Sync
  * Description: Centraliza la selección y sincronización de productos WooCommerce con Etsy, incluidos productos digitales, imágenes y PDFs.
- * Version: 1.3.0
+ * Version: 1.4.0
  * Author: Drielo
  * Requires Plugins: woocommerce
  * Requires PHP: 8.0
@@ -14,9 +14,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 final class Drielo_Etsy_Sync {
-    const VERSION = '1.3.0';
+    const VERSION = '1.4.0';
     const OPTION_SETTINGS = 'drielo_etsy_settings';
     const OPTION_TOKENS   = 'drielo_etsy_tokens';
+    const OPTION_SYNC_RUN = 'drielo_etsy_sync_run';
 
     const META_ENABLED       = '_drielo_etsy_enabled';
     const META_TARGET_STATE  = '_drielo_etsy_target_state';
@@ -26,7 +27,11 @@ final class Drielo_Etsy_Sync {
     const META_LAST_ERROR    = '_drielo_etsy_last_error';
     const META_ASSET_HASH    = '_drielo_etsy_asset_hash';
     const META_CONTENT_HASH  = '_drielo_etsy_content_hash';
-    const META_QUEUE_STATE   = '_drielo_etsy_queue_state';
+    const META_QUEUE_STATE      = '_drielo_etsy_queue_state';
+    const META_BATCH_ID         = '_drielo_etsy_batch_id';
+    const META_BATCH_STATE      = '_drielo_etsy_batch_state';
+    const META_BATCH_MESSAGE    = '_drielo_etsy_batch_message';
+    const META_BATCH_UPDATED_AT = '_drielo_etsy_batch_updated_at';
 
     private static $instance = null;
 
@@ -49,7 +54,8 @@ final class Drielo_Etsy_Sync {
         add_action( 'admin_post_drielo_etsy_save_settings', [ $this, 'handle_save_settings' ] );
         add_action( 'admin_post_drielo_etsy_connect', [ $this, 'handle_connect' ] );
         add_action( 'admin_post_drielo_etsy_disconnect', [ $this, 'handle_disconnect' ] );
-        add_action( 'drielo_etsy_sync_product_async', [ $this, 'handle_async_sync_product' ], 10, 2 );
+        add_action( 'drielo_etsy_sync_product_async', [ $this, 'handle_async_sync_product' ], 10, 3 );
+        add_action( 'wp_ajax_drielo_etsy_sync_status', [ $this, 'ajax_sync_status' ] );
     }
 
     public function admin_menu() {
@@ -88,6 +94,11 @@ final class Drielo_Etsy_Sync {
         }
         wp_enqueue_style( 'drielo-etsy-admin', plugin_dir_url( __FILE__ ) . 'assets/admin.css', [], self::VERSION );
         wp_enqueue_script( 'drielo-etsy-admin', plugin_dir_url( __FILE__ ) . 'assets/admin.js', [ 'jquery' ], self::VERSION, true );
+        wp_localize_script( 'drielo-etsy-admin', 'DrieloEtsySync', [
+            'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+            'nonce'   => wp_create_nonce( 'drielo_etsy_sync_status' ),
+            'pollMs'  => 4000,
+        ] );
     }
 
     private function require_capability() {
@@ -256,6 +267,8 @@ final class Drielo_Etsy_Sync {
             <?php if ( $notice ) : ?>
                 <div class="notice notice-success is-dismissible"><p><?php echo esc_html( $notice ); ?></p></div>
             <?php endif; ?>
+
+            <?php echo $this->sync_run_panel_html( $this->sync_run_snapshot() ); ?>
 
             <?php if ( ! $this->is_connected() ) : ?>
                 <div class="notice notice-warning"><p>Configura las credenciales de Etsy y conecta la tienda antes de sincronizar. <a href="<?php echo esc_url( admin_url( 'admin.php?page=drielo-etsy-settings' ) ); ?>">Ir a Configuración</a>.</p></div>
@@ -598,6 +611,212 @@ final class Drielo_Etsy_Sync {
         exit;
     }
 
+
+    private function current_sync_run() {
+        $run = get_option( self::OPTION_SYNC_RUN, [] );
+        return is_array( $run ) ? $run : [];
+    }
+
+    private function set_batch_product_state( int $product_id, string $batch_id, string $state, string $message = '' ) {
+        if ( ! $product_id || '' === $batch_id ) {
+            return;
+        }
+        $current_batch = (string) get_post_meta( $product_id, self::META_BATCH_ID, true );
+        if ( $current_batch && ! hash_equals( $current_batch, $batch_id ) ) {
+            return;
+        }
+        update_post_meta( $product_id, self::META_BATCH_ID, $batch_id );
+        update_post_meta( $product_id, self::META_BATCH_STATE, $state );
+        update_post_meta( $product_id, self::META_BATCH_MESSAGE, sanitize_text_field( $message ) );
+        update_post_meta( $product_id, self::META_BATCH_UPDATED_AT, current_time( 'mysql' ) );
+    }
+
+    private function sync_run_snapshot( ?array $run = null ) {
+        if ( null === $run ) {
+            $run = $this->current_sync_run();
+        }
+        if ( empty( $run['id'] ) || empty( $run['product_ids'] ) || ! is_array( $run['product_ids'] ) ) {
+            return [];
+        }
+
+        $batch_id = (string) $run['id'];
+        $ids      = array_values( array_unique( array_filter( array_map( 'absint', $run['product_ids'] ) ) ) );
+        $counts   = [ 'queued' => 0, 'running' => 0, 'success' => 0, 'failed' => 0, 'skipped' => 0 ];
+        $entries  = [];
+        $latest_ts = ! empty( $run['started_at'] ) ? strtotime( (string) $run['started_at'] ) : 0;
+
+        foreach ( $ids as $product_id ) {
+            $state = (string) get_post_meta( $product_id, self::META_BATCH_STATE, true );
+            $product_batch = (string) get_post_meta( $product_id, self::META_BATCH_ID, true );
+            if ( ! $state || ! $product_batch || ! hash_equals( $product_batch, $batch_id ) ) {
+                $state = 'queued';
+            }
+            if ( ! array_key_exists( $state, $counts ) ) {
+                $state = 'queued';
+            }
+            $counts[ $state ]++;
+
+            $updated = (string) get_post_meta( $product_id, self::META_BATCH_UPDATED_AT, true );
+            $updated_ts = $updated ? strtotime( $updated ) : 0;
+            if ( $updated_ts > $latest_ts ) {
+                $latest_ts = $updated_ts;
+            }
+            $product = wc_get_product( $product_id );
+            $entries[] = [
+                'product_id' => $product_id,
+                'sku'        => $product ? (string) $product->get_sku() : '',
+                'name'       => $product ? (string) $product->get_name() : '#' . $product_id,
+                'state'      => $state,
+                'message'    => (string) get_post_meta( $product_id, self::META_BATCH_MESSAGE, true ),
+                'updated'    => $updated,
+                'updated_ts' => $updated_ts,
+                'listing_id' => (string) get_post_meta( $product_id, self::META_LISTING_ID, true ),
+            ];
+        }
+
+        usort( $entries, static function( $a, $b ) {
+            return (int) $b['updated_ts'] <=> (int) $a['updated_ts'];
+        } );
+
+        $total     = count( $ids );
+        $completed = $counts['success'] + $counts['failed'] + $counts['skipped'];
+        $pending   = $counts['queued'] + $counts['running'];
+
+        if ( 0 === $pending ) {
+            $status = $counts['failed'] > 0 ? 'completed_errors' : 'completed';
+        } elseif ( $counts['running'] > 0 || $completed > 0 ) {
+            $status = 'running';
+        } else {
+            $status = 'queued';
+        }
+
+        $now = current_time( 'timestamp' );
+        if ( $pending > 0 && $latest_ts > 0 && ( $now - $latest_ts ) > 15 * MINUTE_IN_SECONDS ) {
+            $status = 'stalled';
+        }
+
+        $labels = [
+            'queued'            => 'En cola',
+            'running'           => 'En curso',
+            'completed'         => 'Terminada',
+            'completed_errors'  => 'Terminada con errores',
+            'stalled'           => 'Sin actividad',
+        ];
+
+        return [
+            'id'           => $batch_id,
+            'mode'         => (string) ( $run['mode'] ?? 'safe' ),
+            'status'       => $status,
+            'status_label' => $labels[ $status ] ?? ucfirst( $status ),
+            'total'        => $total,
+            'completed'    => $completed,
+            'pending'      => $pending,
+            'counts'       => $counts,
+            'started_at'   => (string) ( $run['started_at'] ?? '' ),
+            'completed_at' => (string) ( $run['completed_at'] ?? '' ),
+            'latest_at'    => $latest_ts ? wp_date( 'Y-m-d H:i:s', $latest_ts ) : '',
+            'active'       => in_array( $status, [ 'queued', 'running' ], true ),
+            'stalled'      => 'stalled' === $status,
+            'entries'      => array_slice( $entries, 0, 50 ),
+        ];
+    }
+
+    private function refresh_sync_run( string $batch_id ) {
+        $run = $this->current_sync_run();
+        if ( empty( $run['id'] ) || ! hash_equals( (string) $run['id'], $batch_id ) ) {
+            return;
+        }
+        $snapshot = $this->sync_run_snapshot( $run );
+        if ( ! $snapshot ) {
+            return;
+        }
+        $run['status'] = $snapshot['status'];
+        $run['updated_at'] = current_time( 'mysql' );
+        if ( in_array( $snapshot['status'], [ 'completed', 'completed_errors' ], true ) && empty( $run['completed_at'] ) ) {
+            $run['completed_at'] = current_time( 'mysql' );
+        }
+        update_option( self::OPTION_SYNC_RUN, $run, false );
+    }
+
+    private function sync_run_panel_html( array $snapshot ) {
+        if ( empty( $snapshot ) ) {
+            return '<div id="drielo-sync-run" class="drielo-run-card is-empty" data-status="none" data-active="0"><strong>Actividad de sincronización</strong><p>No hay ninguna ejecución registrada todavía.</p></div>';
+        }
+
+        $status = (string) $snapshot['status'];
+        $counts = (array) $snapshot['counts'];
+        $percent = $snapshot['total'] > 0 ? (int) round( ( $snapshot['completed'] / $snapshot['total'] ) * 100 ) : 0;
+        $mode_label = 'overwrite' === $snapshot['mode'] ? 'Sobrescritura seleccionada' : 'Sincronización segura';
+        $state_labels = [
+            'queued'  => 'En cola',
+            'running' => 'Procesando',
+            'success' => 'Correcto',
+            'failed'  => 'Error',
+            'skipped' => 'Omitido',
+        ];
+
+        ob_start();
+        ?>
+        <section id="drielo-sync-run" class="drielo-run-card status-<?php echo esc_attr( $status ); ?>" data-status="<?php echo esc_attr( $status ); ?>" data-active="<?php echo $snapshot['active'] ? '1' : '0'; ?>">
+            <div class="drielo-run-head">
+                <div>
+                    <span class="drielo-run-kicker">Última ejecución de Etsy</span>
+                    <h2><?php echo esc_html( $snapshot['status_label'] ); ?></h2>
+                    <p><?php echo esc_html( $mode_label ); ?> · ID <?php echo esc_html( substr( $snapshot['id'], 0, 8 ) ); ?></p>
+                </div>
+                <span class="drielo-run-status"><?php echo esc_html( $snapshot['status_label'] ); ?></span>
+            </div>
+            <div class="drielo-run-progress"><span style="width:<?php echo esc_attr( $percent ); ?>%"></span></div>
+            <div class="drielo-run-stats">
+                <div><strong><?php echo esc_html( $snapshot['completed'] ); ?>/<?php echo esc_html( $snapshot['total'] ); ?></strong><span>procesados</span></div>
+                <div><strong><?php echo esc_html( $counts['queued'] ); ?></strong><span>en cola</span></div>
+                <div><strong><?php echo esc_html( $counts['running'] ); ?></strong><span>procesando</span></div>
+                <div><strong><?php echo esc_html( $counts['success'] ); ?></strong><span>correctos</span></div>
+                <div><strong><?php echo esc_html( $counts['failed'] ); ?></strong><span>errores</span></div>
+            </div>
+            <div class="drielo-run-meta">
+                <span><strong>Inicio:</strong> <?php echo $snapshot['started_at'] ? esc_html( wp_date( 'd/m/Y H:i:s', strtotime( $snapshot['started_at'] ) ) ) : '—'; ?></span>
+                <span><strong>Última actividad:</strong> <?php echo $snapshot['latest_at'] ? esc_html( wp_date( 'd/m/Y H:i:s', strtotime( $snapshot['latest_at'] ) ) ) : '—'; ?></span>
+                <?php if ( ! empty( $snapshot['completed_at'] ) ) : ?><span><strong>Fin:</strong> <?php echo esc_html( wp_date( 'd/m/Y H:i:s', strtotime( $snapshot['completed_at'] ) ) ); ?></span><?php endif; ?>
+            </div>
+            <?php if ( $snapshot['stalled'] ) : ?>
+                <div class="drielo-run-warning"><strong>Sin actividad reciente.</strong> Hay productos pendientes pero no se registra avance desde hace más de 15 minutos. Revisa el registro inferior antes de lanzar otra sincronización.</div>
+            <?php endif; ?>
+            <details class="drielo-run-log" <?php echo in_array( $status, [ 'completed_errors', 'stalled' ], true ) ? 'open' : ''; ?>>
+                <summary>Ver registro de esta ejecución</summary>
+                <div class="drielo-run-log-table-wrap">
+                    <table class="widefat striped">
+                        <thead><tr><th>Producto</th><th>Estado</th><th>Detalle</th><th>Actualizado</th><th>Listing</th></tr></thead>
+                        <tbody>
+                        <?php foreach ( $snapshot['entries'] as $entry ) : ?>
+                            <tr>
+                                <td><strong><?php echo esc_html( $entry['sku'] ?: $entry['name'] ); ?></strong><br><small><?php echo esc_html( $entry['name'] ); ?></small></td>
+                                <td><span class="drielo-run-item-state state-<?php echo esc_attr( $entry['state'] ); ?>"><?php echo esc_html( $state_labels[ $entry['state'] ] ?? $entry['state'] ); ?></span></td>
+                                <td><?php echo esc_html( $entry['message'] ?: '—' ); ?></td>
+                                <td><?php echo $entry['updated'] ? esc_html( wp_date( 'd/m/Y H:i:s', strtotime( $entry['updated'] ) ) ) : '—'; ?></td>
+                                <td><?php echo $entry['listing_id'] ? '<code>' . esc_html( $entry['listing_id'] ) . '</code>' : '—'; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+        </section>
+        <?php
+        return (string) ob_get_clean();
+    }
+
+    public function ajax_sync_status() {
+        $this->require_capability();
+        check_ajax_referer( 'drielo_etsy_sync_status', 'nonce' );
+        $snapshot = $this->sync_run_snapshot();
+        wp_send_json_success( [
+            'html'   => $this->sync_run_panel_html( $snapshot ),
+            'status' => $snapshot['status'] ?? 'none',
+            'active' => ! empty( $snapshot['active'] ),
+        ] );
+    }
+
     public function handle_sync_products() {
         $this->handle_sync_products_mode( false );
     }
@@ -661,12 +880,36 @@ final class Drielo_Etsy_Sync {
             exit;
         }
 
+        $current_snapshot = $this->sync_run_snapshot();
+        if ( ! empty( $current_snapshot['active'] ) ) {
+            wp_safe_redirect( add_query_arg(
+                'drielo_notice',
+                rawurlencode( sprintf( 'Ya hay una sincronización de Etsy en curso (%d/%d procesados). Espera a que termine antes de lanzar otra.', (int) $current_snapshot['completed'], (int) $current_snapshot['total'] ) ),
+                wp_get_referer() ?: admin_url( 'admin.php?page=drielo-etsy' )
+            ) );
+            exit;
+        }
+
+        $batch_id = wp_generate_uuid4();
+        $run = [
+            'id'          => $batch_id,
+            'mode'        => $overwrite ? 'overwrite' : 'safe',
+            'product_ids' => $selected,
+            'started_at'  => current_time( 'mysql' ),
+            'started_by'  => get_current_user_id(),
+            'status'      => 'queued',
+            'completed_at'=> '',
+            'updated_at'  => current_time( 'mysql' ),
+        ];
+        update_option( self::OPTION_SYNC_RUN, $run, false );
+
         $queued = 0;
         $queue_failed = 0;
         foreach ( $selected as $index => $product_id ) {
             $mode = $overwrite ? 1 : 0;
-            $args = [ (int) $product_id, $mode ];
+            $args = [ (int) $product_id, $mode, $batch_id ];
             $scheduled = false;
+            $this->set_batch_product_state( (int) $product_id, $batch_id, 'queued', 'Pendiente de procesamiento.' );
 
             if ( function_exists( 'as_enqueue_async_action' ) ) {
                 $action_id = as_enqueue_async_action(
@@ -693,9 +936,12 @@ final class Drielo_Etsy_Sync {
             } else {
                 update_post_meta( $product_id, self::META_QUEUE_STATE, 'failed' );
                 update_post_meta( $product_id, self::META_LAST_ERROR, 'No se pudo añadir el producto a la cola de sincronización.' );
+                $this->set_batch_product_state( (int) $product_id, $batch_id, 'failed', 'No se pudo añadir el producto a la cola de sincronización.' );
                 $queue_failed++;
             }
         }
+
+        $this->refresh_sync_run( $batch_id );
 
         $message = $overwrite
             ? sprintf( 'Sobrescritura en cola: %d producto(s). %d no pudieron encolarse. Se procesarán uno a uno en segundo plano.', $queued, $queue_failed )
@@ -705,30 +951,54 @@ final class Drielo_Etsy_Sync {
         exit;
     }
 
-    public function handle_async_sync_product( $product_id, $overwrite = 0 ) {
+    public function handle_async_sync_product( $product_id, $overwrite = 0, $batch_id = '' ) {
         $product_id = absint( $product_id );
         $overwrite  = ! empty( $overwrite );
+        $batch_id   = sanitize_text_field( (string) $batch_id );
 
         if ( ! $product_id || ! wc_get_product( $product_id ) || 'yes' !== get_post_meta( $product_id, self::META_ENABLED, true ) ) {
             if ( $product_id ) {
                 delete_post_meta( $product_id, self::META_QUEUE_STATE );
+                if ( $batch_id ) {
+                    $this->set_batch_product_state( $product_id, $batch_id, 'skipped', 'Producto no disponible o desactivado para Etsy.' );
+                    $this->refresh_sync_run( $batch_id );
+                }
             }
             return;
         }
 
         update_post_meta( $product_id, self::META_QUEUE_STATE, $overwrite ? 'running-overwrite' : 'running-safe' );
         delete_post_meta( $product_id, self::META_LAST_ERROR );
+        if ( $batch_id ) {
+            $this->set_batch_product_state( $product_id, $batch_id, 'running', 'Conectando con Etsy…' );
+            $this->refresh_sync_run( $batch_id );
+        }
 
         try {
             $result = $this->sync_product( $product_id, $overwrite );
             if ( is_wp_error( $result ) ) {
                 update_post_meta( $product_id, self::META_QUEUE_STATE, 'failed' );
+                if ( $batch_id ) {
+                    $message = get_post_meta( $product_id, self::META_LAST_ERROR, true ) ?: $result->get_error_message();
+                    $this->set_batch_product_state( $product_id, $batch_id, 'failed', (string) $message );
+                    $this->refresh_sync_run( $batch_id );
+                }
                 return;
             }
             delete_post_meta( $product_id, self::META_QUEUE_STATE );
+            if ( $batch_id ) {
+                $listing_id = (string) get_post_meta( $product_id, self::META_LISTING_ID, true );
+                $message = $listing_id ? 'Sincronización completada. Listing ' . $listing_id . '.' : 'Sincronización completada.';
+                $this->set_batch_product_state( $product_id, $batch_id, 'success', $message );
+                $this->refresh_sync_run( $batch_id );
+            }
         } catch ( Throwable $e ) {
             $this->record_error( $product_id, new WP_Error( 'etsy_async_exception', $e->getMessage() ) );
             update_post_meta( $product_id, self::META_QUEUE_STATE, 'failed' );
+            if ( $batch_id ) {
+                $this->set_batch_product_state( $product_id, $batch_id, 'failed', $e->getMessage() );
+                $this->refresh_sync_run( $batch_id );
+            }
         }
     }
 
