@@ -1,5 +1,5 @@
 name: Baby Nursery Auto Publish Queue
-# rollout-generation: paused-approved-pixel-master-install
+# rollout-generation: approved-preview-v2-verbatim
 # canonical user-reference rollout with exterior dark/white cleanup
 # Pop Art-style featured + 3 gallery previews
 
@@ -67,8 +67,11 @@ jobs:
           set -euo pipefail
           DESIGN="${{ steps.select.outputs.design_id }}"
           python3 - "$DESIGN" <<'PY'
+          import base64
+          import hashlib
           import json
           import sys
+          import zlib
           from pathlib import Path
           from PIL import Image
 
@@ -90,6 +93,32 @@ jobs:
               raise SystemExit(f'{design}: master touches canvas edge: {bbox}')
 
           collection=json.loads((system/'collections'/'baby-nursery'/'collection.json').read_text(encoding='utf-8'))
+          policy=collection.get('pattern_rules',{}).get('approved_master_policy',{})
+          if not policy.get('enabled') or not policy.get('reconstruct_verbatim') or policy.get('apply_morphology') or policy.get('apply_forced_outline'):
+              raise SystemExit(f'{design}: approved master policy is not verbatim')
+
+          direct_path=system/'collections'/'baby-nursery'/'reference-library'/f"{design}-{meta['slug']}.json"
+          if not direct_path.is_file():
+              raise SystemExit(f'{design}: approved direct reference JSON missing')
+          direct=json.loads(direct_path.read_text(encoding='utf-8'))
+          if not direct.get('approved_preview_v2') or direct.get('background')!='transparent':
+              raise SystemExit(f'{design}: direct reference is not approved preview v2')
+          raw=zlib.decompress(base64.b64decode(direct['matrix_zlib_base64'],validate=True))
+          digest=hashlib.sha256(raw).hexdigest()
+          if digest!=direct.get('matrix_sha256'):
+              raise SystemExit(f'{design}: approved matrix SHA mismatch')
+          direct_rows=raw.decode('ascii').splitlines()
+          if len(direct_rows)!=120 or any(len(r)!=100 for r in direct_rows):
+              raise SystemExit(f'{design}: approved matrix is not 100x120')
+
+          allowed_rgbs={
+              tuple(int(p['hex'].lstrip('#')[i:i+2],16) for i in (0,2,4))
+              for p in collection['palette']
+          }
+          for r,g,b,a in im.getdata():
+              if a and (r,g,b) not in allowed_rgbs:
+                  raise SystemExit(f'{design}: reference master contains colour outside approved palette: {(r,g,b)}')
+
           covers=collection['mockup_spec']['technique_assets']
           expected={
             'CS':'collections/baby-nursery/assets/cover-cross-stitch.jpg',
@@ -127,29 +156,13 @@ jobs:
               white_cleanup=pat.get('external_white_cleanup') or {}
               if outline.get('enabled'):
                   raise SystemExit(f'{code}: forced exterior outline must be disabled')
-              expected_dark_dmc=str(collection.get('pattern_rules',{}).get('external_dark_cleanup',{}).get('dmc','3799'))
-              if not dark_cleanup.get('enabled') or str(dark_cleanup.get('dmc'))!=expected_dark_dmc:
-                  raise SystemExit(f'{code}: exterior dark cleanup rule missing or wrong DMC')
-              if not white_cleanup.get('enabled'):
-                  raise SystemExit(f'{code}: isolated exterior white cleanup rule missing')
+              if dark_cleanup.get('enabled') or white_cleanup.get('enabled'):
+                  raise SystemExit(f'{code}: approved preview v2 must not be altered by cleanup morphology')
 
-              # Quality guard: the collection's dark detail colour is allowed
-              # inside the motif, but it must never form an exterior edge.
-              dark_symbols={t.get('symbol') for t in pat.get('threads',[]) if str(t.get('dmc'))==expected_dark_dmc}
-              if dark_symbols:
-                  dark_symbol=next(iter(dark_symbols))
-                  mat=pat['matrix']
-                  hh=len(mat); ww=len(mat[0])
-                  for yy,row2 in enumerate(mat):
-                      for xx,val in enumerate(row2):
-                          if val!=dark_symbol:
-                              continue
-                          for dy in (-1,0,1):
-                              for dx in (-1,0,1):
-                                  if dy==0 and dx==0: continue
-                                  y2,x2=yy+dy,xx+dx
-                                  if y2<0 or y2>=hh or x2<0 or x2>=ww or mat[y2][x2] is None:
-                                      raise SystemExit(f'{code}: exterior black cell remains at {xx},{yy}')
+              if suffix=='CS':
+                  canonical=[[None if c=='.' else c for c in row] for row in direct_rows]
+                  if pat.get('matrix')!=canonical:
+                      raise SystemExit(f'{code}: CS matrix differs from the approved preview v2 master')
               pdf=root/'content/products/files'/f'Drielo_{code}.pdf'
               image=root/'content/products/assets'/f'{code}-product.webp'
               gallery=[root/'content/products/assets'/f'{code}-gallery-{i}.webp' for i in (2,3,4)]
