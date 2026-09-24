@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Drielo Etsy Sync
  * Description: Centraliza la selección y sincronización de productos WooCommerce con Etsy, incluidos productos digitales, imágenes y PDFs.
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author: Drielo
  * Requires Plugins: woocommerce
  * Requires PHP: 8.0
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 final class Drielo_Etsy_Sync {
-    const VERSION = '1.1.0';
+    const VERSION = '1.2.0';
     const OPTION_SETTINGS = 'drielo_etsy_settings';
     const OPTION_TOKENS   = 'drielo_etsy_tokens';
 
@@ -25,6 +25,7 @@ final class Drielo_Etsy_Sync {
     const META_LAST_SYNC     = '_drielo_etsy_last_sync';
     const META_LAST_ERROR    = '_drielo_etsy_last_error';
     const META_ASSET_HASH    = '_drielo_etsy_asset_hash';
+    const META_CONTENT_HASH  = '_drielo_etsy_content_hash';
 
     private static $instance = null;
 
@@ -43,6 +44,7 @@ final class Drielo_Etsy_Sync {
 
         add_action( 'admin_post_drielo_etsy_save_products', [ $this, 'handle_save_products' ] );
         add_action( 'admin_post_drielo_etsy_sync_products', [ $this, 'handle_sync_products' ] );
+        add_action( 'admin_post_drielo_etsy_overwrite_products', [ $this, 'handle_overwrite_products' ] );
         add_action( 'admin_post_drielo_etsy_save_settings', [ $this, 'handle_save_settings' ] );
         add_action( 'admin_post_drielo_etsy_connect', [ $this, 'handle_connect' ] );
         add_action( 'admin_post_drielo_etsy_disconnect', [ $this, 'handle_disconnect' ] );
@@ -167,26 +169,74 @@ final class Drielo_Etsy_Sync {
             return;
         }
 
-        $paged  = max( 1, absint( $_GET['paged'] ?? 1 ) );
-        $search = sanitize_text_field( wp_unslash( $_GET['s'] ?? '' ) );
-        $limit  = 50;
+        $paged      = max( 1, absint( $_GET['paged'] ?? 1 ) );
+        $search     = sanitize_text_field( wp_unslash( $_GET['s'] ?? '' ) );
+        $collection = sanitize_title( wp_unslash( $_GET['collection'] ?? '' ) );
+        $technique  = sanitize_title( wp_unslash( $_GET['technique'] ?? '' ) );
+        $limit      = 50;
 
-        $args = [
-            'status'   => [ 'publish', 'draft', 'private', 'pending' ],
-            'limit'    => $limit,
-            'page'     => $paged,
-            'paginate' => true,
-            'orderby'  => 'date',
-            'order'    => 'DESC',
-            'return'   => 'objects',
+        $collection_terms = taxonomy_exists( 'product_collection' )
+            ? get_terms( [ 'taxonomy' => 'product_collection', 'hide_empty' => false, 'orderby' => 'name' ] )
+            : [];
+        $technique_terms = taxonomy_exists( 'pa_technique' )
+            ? get_terms( [ 'taxonomy' => 'pa_technique', 'hide_empty' => false, 'orderby' => 'name' ] )
+            : [];
+        if ( is_wp_error( $collection_terms ) ) { $collection_terms = []; }
+        if ( is_wp_error( $technique_terms ) ) { $technique_terms = []; }
+
+        $query_args = [
+            'post_type'      => 'product',
+            'post_status'    => [ 'publish', 'draft', 'private', 'pending' ],
+            'posts_per_page' => $limit,
+            'paged'          => $paged,
+            'orderby'        => 'date',
+            'order'          => 'DESC',
+            'fields'         => 'ids',
         ];
-        if ( $search ) {
-            $args['s'] = $search;
+
+        $tax_query = [];
+        if ( $collection && taxonomy_exists( 'product_collection' ) ) {
+            $tax_query[] = [ 'taxonomy' => 'product_collection', 'field' => 'slug', 'terms' => [ $collection ] ];
+        }
+        if ( $technique && taxonomy_exists( 'pa_technique' ) ) {
+            $tax_query[] = [ 'taxonomy' => 'pa_technique', 'field' => 'slug', 'terms' => [ $technique ] ];
+        }
+        if ( $tax_query ) {
+            if ( count( $tax_query ) > 1 ) {
+                array_unshift( $tax_query, [ 'relation' => 'AND' ] );
+            }
+            $query_args['tax_query'] = $tax_query;
         }
 
-        $result = wc_get_products( $args );
-        $products = is_object( $result ) && isset( $result->products ) ? $result->products : [];
-        $total_pages = is_object( $result ) && isset( $result->max_num_pages ) ? (int) $result->max_num_pages : 1;
+        if ( $search ) {
+            $title_query = new WP_Query( [
+                'post_type'      => 'product',
+                'post_status'    => [ 'publish', 'draft', 'private', 'pending' ],
+                'posts_per_page' => -1,
+                'fields'         => 'ids',
+                's'              => $search,
+                'no_found_rows'  => true,
+            ] );
+            $sku_ids = get_posts( [
+                'post_type'      => 'product',
+                'post_status'    => [ 'publish', 'draft', 'private', 'pending' ],
+                'posts_per_page' => -1,
+                'fields'         => 'ids',
+                'meta_query'     => [
+                    [ 'key' => '_sku', 'value' => $search, 'compare' => 'LIKE' ],
+                ],
+            ] );
+            $search_ids = array_values( array_unique( array_map( 'absint', array_merge( (array) $title_query->posts, (array) $sku_ids ) ) ) );
+            $query_args['post__in'] = $search_ids ?: [ 0 ];
+        }
+
+        $query = new WP_Query( $query_args );
+        $products = [];
+        foreach ( (array) $query->posts as $product_id ) {
+            $product = wc_get_product( $product_id );
+            if ( $product ) { $products[] = $product; }
+        }
+        $total_pages = max( 1, (int) $query->max_num_pages );
 
         $notice = sanitize_text_field( wp_unslash( $_GET['drielo_notice'] ?? '' ) );
         ?>
@@ -194,7 +244,7 @@ final class Drielo_Etsy_Sync {
             <div class="drielo-header">
                 <div>
                     <h1>Drielo · Etsy</h1>
-                    <p>Activa <strong>Publicar en Etsy</strong> en los productos que quieras gestionar. Elige <strong>Borrador</strong> o <strong>Publicado</strong>, guarda la selección y después pulsa <strong>Sincronizar con Etsy</strong>. La casilla de la primera columna se usa solo para acciones en bloque.</p>
+                    <p>Filtra el catálogo, activa los productos que quieras gestionar y usa la sincronización segura por defecto. La sobrescritura completa solo se ejecuta sobre filas marcadas explícitamente.</p>
                 </div>
                 <div class="drielo-connection <?php echo $this->is_connected() ? 'is-connected' : 'is-disconnected'; ?>">
                     <span class="drielo-dot"></span>
@@ -210,20 +260,38 @@ final class Drielo_Etsy_Sync {
                 <div class="notice notice-warning"><p>Configura las credenciales de Etsy y conecta la tienda antes de sincronizar. <a href="<?php echo esc_url( admin_url( 'admin.php?page=drielo-etsy-settings' ) ); ?>">Ir a Configuración</a>.</p></div>
             <?php endif; ?>
 
-            <form method="get" class="drielo-search-form">
+            <div class="drielo-sync-policy">
+                <strong>Sincronización segura:</strong> si el listing ya existe, no reemplaza título, descripción, precio, tags, categoría, imágenes ni PDF. Solo crea listings que falten y aplica el objetivo Borrador/Publicado.
+                <br /><strong>Sobrescribir seleccionados:</strong> vuelve a enviar toda la información de Drielo y los assets, por lo que puede reemplazar cambios manuales hechos directamente en Etsy.
+            </div>
+
+            <form method="get" class="drielo-search-form drielo-filter-form">
                 <input type="hidden" name="page" value="drielo-etsy" />
                 <input type="search" name="s" value="<?php echo esc_attr( $search ); ?>" placeholder="Buscar producto o SKU…" />
-                <button class="button">Buscar</button>
-                <?php if ( $search ) : ?><a class="button" href="<?php echo esc_url( admin_url( 'admin.php?page=drielo-etsy' ) ); ?>">Limpiar</a><?php endif; ?>
+                <select name="collection">
+                    <option value="">Todas las colecciones</option>
+                    <?php foreach ( $collection_terms as $term ) : ?>
+                        <option value="<?php echo esc_attr( $term->slug ); ?>" <?php selected( $collection, $term->slug ); ?>><?php echo esc_html( $term->name ); ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <select name="technique">
+                    <option value="">Todos los tipos de trabajo</option>
+                    <?php foreach ( $technique_terms as $term ) : ?>
+                        <option value="<?php echo esc_attr( $term->slug ); ?>" <?php selected( $technique, $term->slug ); ?>><?php echo esc_html( $term->name ); ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <button class="button button-primary">Filtrar</button>
+                <?php if ( $search || $collection || $technique ) : ?><a class="button" href="<?php echo esc_url( admin_url( 'admin.php?page=drielo-etsy' ) ); ?>">Limpiar</a><?php endif; ?>
             </form>
 
             <form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" id="drielo-products-form">
                 <?php wp_nonce_field( 'drielo_etsy_products', 'drielo_nonce' ); ?>
 
                 <div class="drielo-toolbar">
-                    <div>
+                    <div class="drielo-sync-actions">
                         <button type="submit" class="button button-primary" name="action" value="drielo_etsy_save_products">Guardar selección</button>
-                        <button type="submit" class="button button-secondary" name="action" value="drielo_etsy_sync_products" <?php disabled( ! $this->is_connected() ); ?>>Sincronizar con Etsy</button>
+                        <button type="submit" class="button button-secondary" name="action" value="drielo_etsy_sync_products" <?php disabled( ! $this->is_connected() ); ?>>Sincronizar seguro</button>
+                        <button type="submit" class="button drielo-overwrite-button" name="action" value="drielo_etsy_overwrite_products" data-confirm-overwrite <?php disabled( ! $this->is_connected() ); ?>>Sobrescribir seleccionados desde Drielo</button>
                     </div>
                     <div class="drielo-bulk-target">
                         <label for="bulk-target">Cambiar objetivo de seleccionados:</label>
@@ -241,11 +309,13 @@ final class Drielo_Etsy_Sync {
                         <thead>
                             <tr>
                                 <td class="check-column"><input type="checkbox" id="drielo-select-all" /></td>
+                                <th class="drielo-preview-column">Vista</th>
                                 <th>Producto</th>
                                 <th>SKU</th>
                                 <th>Publicar en Etsy</th>
                                 <th>Objetivo</th>
                                 <th>Estado Etsy</th>
+                                <th>Sync</th>
                                 <th>PDF</th>
                                 <th>Última sync</th>
                                 <th>Listing</th>
@@ -253,7 +323,7 @@ final class Drielo_Etsy_Sync {
                         </thead>
                         <tbody>
                         <?php if ( empty( $products ) ) : ?>
-                            <tr><td colspan="9">No se han encontrado productos.</td></tr>
+                            <tr><td colspan="11">No se han encontrado productos con estos filtros.</td></tr>
                         <?php else : ?>
                             <?php foreach ( $products as $product ) :
                                 $id = $product->get_id();
@@ -263,22 +333,52 @@ final class Drielo_Etsy_Sync {
                                 $listing_id = get_post_meta( $id, self::META_LISTING_ID, true );
                                 $last_sync = get_post_meta( $id, self::META_LAST_SYNC, true );
                                 $last_error = get_post_meta( $id, self::META_LAST_ERROR, true );
+                                $saved_content_hash = (string) get_post_meta( $id, self::META_CONTENT_HASH, true );
+                                $saved_asset_hash = (string) get_post_meta( $id, self::META_ASSET_HASH, true );
+                                $current_content_hash = $this->product_content_hash( $product );
+                                $current_asset_hash = $this->product_asset_hash( $product );
                                 $downloads = $product->get_downloads();
                                 $pdf_count = 0;
                                 foreach ( $downloads as $download ) {
-                                    $path = $download->get_file();
-                                    if ( preg_match( '/\.pdf(?:\?.*)?$/i', $path ) ) {
-                                        $pdf_count++;
-                                    }
+                                    if ( preg_match( '/\.pdf(?:\?.*)?$/i', (string) $download->get_file() ) ) { $pdf_count++; }
+                                }
+
+                                $collection_names = taxonomy_exists( 'product_collection' )
+                                    ? wp_get_post_terms( $id, 'product_collection', [ 'fields' => 'names' ] )
+                                    : [];
+                                $technique_names = taxonomy_exists( 'pa_technique' )
+                                    ? wp_get_post_terms( $id, 'pa_technique', [ 'fields' => 'names' ] )
+                                    : [];
+                                if ( is_wp_error( $collection_names ) ) { $collection_names = []; }
+                                if ( is_wp_error( $technique_names ) ) { $technique_names = []; }
+
+                                if ( ! $listing_id ) {
+                                    $sync_label = 'Nuevo';
+                                    $sync_class = 'sync-new';
+                                    $sync_help = 'Se creará completo al sincronizar.';
+                                } elseif ( ! $saved_content_hash ) {
+                                    $sync_label = 'Protegido';
+                                    $sync_class = 'sync-protected';
+                                    $sync_help = 'Listing existente sin referencia de sobrescritura. La sync segura no tocará su contenido.';
+                                } elseif ( ! hash_equals( $saved_content_hash, $current_content_hash ) || ! $saved_asset_hash || ! hash_equals( $saved_asset_hash, $current_asset_hash ) ) {
+                                    $sync_label = 'Cambios en Drielo';
+                                    $sync_class = 'sync-pending';
+                                    $sync_help = 'Hay cambios locales. Usa Sobrescribir seleccionados solo si quieres enviarlos a Etsy.';
+                                } else {
+                                    $sync_label = 'Al día';
+                                    $sync_class = 'sync-clean';
+                                    $sync_help = 'No se detectan cambios locales desde la última sobrescritura.';
                                 }
                                 ?>
                                 <tr class="<?php echo $last_error ? 'has-error' : ''; ?>">
                                     <th class="check-column"><input type="checkbox" class="drielo-row-select" name="selected_ids[]" value="<?php echo esc_attr( $id ); ?>" /></th>
+                                    <td class="drielo-preview-cell"><?php echo $product->get_image( [ 72, 90 ], [ 'loading' => 'lazy' ] ); ?></td>
                                     <td class="drielo-product-cell">
-                                        <?php echo $product->get_image( [ 48, 48 ] ); ?>
                                         <div>
                                             <strong><a href="<?php echo esc_url( get_edit_post_link( $id ) ); ?>"><?php echo esc_html( $product->get_name() ); ?></a></strong>
-                                            <small>#<?php echo esc_html( $id ); ?> · <?php echo esc_html( wc_get_product_category_list( $id, ', ', '', '' ) ); ?></small>
+                                            <small>#<?php echo esc_html( $id ); ?></small>
+                                            <?php if ( $collection_names ) : ?><small>Colección: <?php echo esc_html( implode( ', ', $collection_names ) ); ?></small><?php endif; ?>
+                                            <?php if ( $technique_names ) : ?><small>Tipo: <?php echo esc_html( implode( ', ', $technique_names ) ); ?></small><?php endif; ?>
                                             <?php if ( $last_error ) : ?><span class="drielo-error" title="<?php echo esc_attr( $last_error ); ?>">Error: <?php echo esc_html( wp_trim_words( $last_error, 14 ) ); ?></span><?php endif; ?>
                                         </div>
                                     </td>
@@ -296,14 +396,13 @@ final class Drielo_Etsy_Sync {
                                         </select>
                                     </td>
                                     <td><?php echo $this->status_badge( $remote_state, $listing_id, $last_error ); ?></td>
+                                    <td><span class="drielo-sync-state <?php echo esc_attr( $sync_class ); ?>" title="<?php echo esc_attr( $sync_help ); ?>"><?php echo esc_html( $sync_label ); ?></span></td>
                                     <td><?php echo $pdf_count ? '<span class="drielo-ok">' . esc_html( $pdf_count ) . ' PDF</span>' : '<span class="drielo-muted">Sin PDF</span>'; ?></td>
                                     <td><?php echo $last_sync ? esc_html( wp_date( 'd/m/Y H:i', strtotime( $last_sync ) ) ) : '—'; ?></td>
                                     <td>
                                         <?php if ( $listing_id ) : ?>
                                             <code><?php echo esc_html( $listing_id ); ?></code>
-                                            <?php if ( 'active' === $remote_state ) : ?>
-                                                <a class="drielo-external" href="<?php echo esc_url( 'https://www.etsy.com/listing/' . rawurlencode( $listing_id ) ); ?>" target="_blank" rel="noopener">Ver ↗</a>
-                                            <?php endif; ?>
+                                            <a class="drielo-external" href="<?php echo esc_url( 'https://www.etsy.com/listing/' . rawurlencode( $listing_id ) ); ?>" target="_blank" rel="noopener">Ver ↗</a>
                                         <?php else : ?>—<?php endif; ?>
                                     </td>
                                 </tr>
@@ -315,13 +414,20 @@ final class Drielo_Etsy_Sync {
 
                 <div class="drielo-toolbar drielo-toolbar-bottom">
                     <button type="submit" class="button button-primary" name="action" value="drielo_etsy_save_products">Guardar selección</button>
-                    <button type="submit" class="button button-secondary" name="action" value="drielo_etsy_sync_products" <?php disabled( ! $this->is_connected() ); ?>>Sincronizar con Etsy</button>
+                    <button type="submit" class="button button-secondary" name="action" value="drielo_etsy_sync_products" <?php disabled( ! $this->is_connected() ); ?>>Sincronizar seguro</button>
+                    <button type="submit" class="button drielo-overwrite-button" name="action" value="drielo_etsy_overwrite_products" data-confirm-overwrite <?php disabled( ! $this->is_connected() ); ?>>Sobrescribir seleccionados desde Drielo</button>
                 </div>
             </form>
 
             <?php
             if ( $total_pages > 1 ) {
-                $base = add_query_arg( [ 'page' => 'drielo-etsy', 's' => $search, 'paged' => '%#%' ], admin_url( 'admin.php' ) );
+                $base = add_query_arg( [
+                    'page'       => 'drielo-etsy',
+                    's'          => $search,
+                    'collection' => $collection,
+                    'technique'  => $technique,
+                    'paged'      => '%#%',
+                ], admin_url( 'admin.php' ) );
                 echo '<div class="tablenav"><div class="tablenav-pages">' . wp_kses_post( paginate_links( [
                     'base'      => $base,
                     'format'    => '',
