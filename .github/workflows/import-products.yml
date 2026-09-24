@@ -147,7 +147,13 @@ jobs:
             echo "No generated gallery asset changes to persist."
           else
             git commit -m "Refresh generated product gallery assets [skip ci]"
-            git push origin HEAD:main
+            git fetch origin main
+            if git rebase origin/main && git push origin HEAD:main; then
+              echo "Generated gallery assets persisted."
+            else
+              git rebase --abort >/dev/null 2>&1 || true
+              echo "WARNING: main advanced concurrently; continuing the current import with the generated assets without blocking WooCommerce."
+            fi
           fi
 
       - name: Validate product catalogue
