@@ -243,14 +243,7 @@ jobs:
           "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
           REMOTE
 
-      - name: Mark design published
-        if: steps.select.outputs.design_id != ''
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 content/pattern-system/baby_nursery/queue_state.py success "${{ steps.select.outputs.design_id }}"             --run-url "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
-
-      - name: Commit design to main
+      - name: Commit generated design to main
         if: steps.select.outputs.design_id != ''
         shell: bash
         run: |
@@ -259,12 +252,35 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add             content/pattern-system/baby_nursery/publish_queue.json             content/pattern-system/patterns/${DESIGN}-CS/pattern.json             content/pattern-system/patterns/${DESIGN}-C2C/pattern.json             content/pattern-system/patterns/${DESIGN}-TC/pattern.json             content/pattern-system/patterns/${DESIGN}-LH/pattern.json             content/pattern-system/products/${DESIGN}-CS/product.json             content/pattern-system/products/${DESIGN}-C2C/product.json             content/pattern-system/products/${DESIGN}-TC/product.json             content/pattern-system/products/${DESIGN}-LH/product.json             content/products/catalog.json             content/products/assets/${DESIGN}-CS-product.webp             content/products/assets/${DESIGN}-C2C-product.webp             content/products/assets/${DESIGN}-TC-product.webp             content/products/assets/${DESIGN}-LH-product.webp
+          git add content/pattern-system/patterns/${DESIGN}-CS/pattern.json content/pattern-system/patterns/${DESIGN}-C2C/pattern.json content/pattern-system/patterns/${DESIGN}-TC/pattern.json content/pattern-system/patterns/${DESIGN}-LH/pattern.json content/pattern-system/products/${DESIGN}-CS/product.json content/pattern-system/products/${DESIGN}-C2C/product.json content/pattern-system/products/${DESIGN}-TC/product.json content/pattern-system/products/${DESIGN}-LH/product.json content/products/catalog.json content/products/assets/${DESIGN}-CS-product.webp content/products/assets/${DESIGN}-C2C-product.webp content/products/assets/${DESIGN}-TC-product.webp content/products/assets/${DESIGN}-LH-product.webp
 
-          git commit -m "Publish Baby Nursery ${DESIGN} in four techniques [skip ci]"
+          if git diff --cached --quiet; then
+            echo "Generated design already matches main."
+          else
+            git commit -m "Publish Baby Nursery ${DESIGN} in four techniques [skip ci]"
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
+          fi
+
+      - name: Mark design published in queue
+        if: steps.select.outputs.design_id != ''
+        shell: bash
+        run: |
+          set -euo pipefail
+          DESIGN="${{ steps.select.outputs.design_id }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin main
-          git rebase origin/main
-          git push origin HEAD:main
+          git reset --hard origin/main
+          python3 content/pattern-system/baby_nursery/queue_state.py success "$DESIGN" --run-url "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          git add content/pattern-system/baby_nursery/publish_queue.json
+          if git diff --cached --quiet; then
+            echo "Queue already reflects published state."
+          else
+            git commit -m "Mark Baby Nursery ${DESIGN} published [skip ci]"
+            git push origin HEAD:main
+          fi
 
       - name: Archive PDFs for this design
         if: success() && steps.select.outputs.design_id != ''
