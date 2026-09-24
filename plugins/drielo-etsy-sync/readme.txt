@@ -3,7 +3,7 @@ Contributors: Drielo
 Requires at least: 6.4
 Requires PHP: 8.0
 Requires Plugins: woocommerce
-Stable tag: 1.3.0
+Stable tag: 1.4.0
 
 Panel central para seleccionar y sincronizar productos WooCommerce con Etsy mediante Etsy Open API v3.
 
@@ -21,6 +21,7 @@ Panel central para seleccionar y sincronizar productos WooCommerce con Etsy medi
 * Imagen destacada y galería de WooCommerce.
 * Subida de hasta 5 archivos descargables por listing.
 * Registro de errores por producto.
+* Estado global persistente de cada ejecución, progreso en tiempo real y registro por producto.
 
 == Instalación ==
 1. Instalar y activar WooCommerce.
@@ -36,6 +37,14 @@ Panel central para seleccionar y sincronizar productos WooCommerce con Etsy medi
 Etsy no permite devolver un listing ya publicado al estado draft. Si un listing activo se cambia al objetivo Borrador, el plugin lo deja inactive.
 
 == Changelog ==
+
+= 1.4.0 =
+* Añade un panel persistente para saber si una sincronización está en cola, en curso, terminada, terminada con errores o sin actividad.
+* Muestra progreso global y contadores de productos en cola, procesando, correctos y con error.
+* Añade un registro consultable por producto con hora, detalle del resultado y listing ID.
+* Actualiza el estado automáticamente mientras la ejecución está activa y conserva el resultado al volver al panel.
+* Evita lanzar una segunda sincronización mientras la anterior sigue activa.
+
 
 = 1.3.0 =
 * Procesa las sincronizaciones en segundo plano, un producto por tarea, para evitar timeouts y errores críticos al seleccionar varios artículos.
