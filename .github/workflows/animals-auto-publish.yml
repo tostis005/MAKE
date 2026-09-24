@@ -16,7 +16,7 @@ concurrency:
   # Keep exactly one publisher running. Do not cancel the current run when it
   # dispatches the next queued design; the next run waits for this one to finish.
   group: drielo-animals-branch-auto-publish
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   publish-next:
@@ -102,13 +102,31 @@ jobs:
 
           covers=collection['mockup_spec']['technique_assets']
           expected={
-              'CS':'assets/animals-cover-cross-stitch.webp',
-              'C2C':'assets/animals-cover-c2c-crochet.webp',
-              'TC':'assets/animals-cover-tapestry-crochet.webp',
-              'LH':'assets/animals-cover-latch-hook.webp',
+              'CS':'mockups/animals-cover-cross-stitch.png',
+              'C2C':'mockups/animals-cover-c2c-crochet.png',
+              'TC':'mockups/animals-cover-tapestry-crochet.png',
+              'LH':'mockups/animals-cover-latch-hook.png',
           }
           if {k:covers[k] for k in expected} != expected:
               raise SystemExit(f'Animals cover mapping changed unexpectedly: {covers}')
+
+          import hashlib
+          cover_hashes={
+              'CS':'3d0057ee0d3845b4baaddbe138f080c92c4bcd8f6a0447c9c60f444aa3d62f77',
+              'C2C':'734030ff2b8a1fbc77b9b00f59cbe27f9d01424819c683be15546caeed1dc254',
+              'TC':'631a7fe921d11ce128e8142fb9b6645e5b04a9ce5361f5bd6d40ae3f0b47d0b8',
+              'LH':'c32189d92f4ce27bd4c1cc78eef610c9960e1ef0e0267130728e43d5086125ef',
+          }
+          for suffix, rel in expected.items():
+              cover=(system/'collections'/'animals'/rel)
+              if not cover.is_file():
+                  raise SystemExit(f'{suffix}: approved Animals cover missing: {cover}')
+              cim=Image.open(cover)
+              if cim.size != (1536,1536):
+                  raise SystemExit(f'{suffix}: approved Animals cover must be 1536x1536, got {cim.size}')
+              actual=hashlib.sha256(cover.read_bytes()).hexdigest()
+              if actual != cover_hashes[suffix]:
+                  raise SystemExit(f'{suffix}: approved Animals cover hash mismatch: {actual}')
 
           catalog=json.loads((root/'content/products/catalog.json').read_text(encoding='utf-8'))
           rows={p.get('code'):p for p in catalog.get('products',[])}
