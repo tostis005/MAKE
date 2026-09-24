@@ -231,10 +231,11 @@
       "title_en": "James Dean Portrait",
       "title_es": "Retrato de James Dean",
       "slug": "james-dean-portrait",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35980012740",
+      "last_error": null,
+      "published_at": "2026-09-24T09:18:35+00:00"
     },
     {
       "order": 19,
