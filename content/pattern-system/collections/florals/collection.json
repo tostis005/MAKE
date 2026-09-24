@@ -170,36 +170,59 @@
   "mockup_spec": {
     "asset": null,
     "technique_assets": {
-      "CS": null,
-      "C2C": null,
-      "TC": null,
-      "LH": null
+      "CS": "../../multitech/assets/cover-cross-stitch.webp",
+      "C2C": "../../multitech/assets/cover-c2c-crochet.webp",
+      "TC": "../../multitech/assets/cover-crochet.webp",
+      "LH": "../../multitech/assets/cover-rug.webp"
     },
-    "status": "awaiting-approved-page-1-images",
-    "generation": {
-      "purpose": "Reusable page-1 lifestyle/ambient images for the Florals collection.",
-      "frame_requirement": "Leave the craft display area empty so the final vector pattern can be inserted by the renderer.",
-      "post_generation_measurement": "Record exact source dimensions and usable area geometry after approval."
-    },
-    "frame": {
-      "enabled": false,
-      "source_px": {
-        "width": 0,
-        "height": 0
+    "status": "reuse-approved-multitech-page-1-scenes",
+    "technique_layouts": {
+      "CS": {
+        "cover_overlay": {
+          "left": 29,
+          "top": 12,
+          "width": 48,
+          "height": 58,
+          "opacity": 0.96,
+          "safe_inset_pct": 0
+        },
+        "cover_stage_scale": 125
       },
-      "area_px": {
-        "x": 0,
-        "y": 0,
-        "width": 0,
-        "height": 0
+      "C2C": {
+        "cover_overlay": {
+          "left": 19.8,
+          "top": 7.2,
+          "width": 64.5,
+          "height": 78,
+          "opacity": 0.94,
+          "safe_inset_pct": 6
+        },
+        "cover_stage_scale": 123
       },
-      "padding_ratio": 0.055,
-      "fabric": {
-        "color": "#F7F3EA",
-        "kind": "aida",
-        "count_visual_reference": 14
+      "TC": {
+        "cover_overlay": {
+          "left": 27.7,
+          "top": 10.8,
+          "width": 43.5,
+          "height": 63.5,
+          "opacity": 0.94,
+          "safe_inset_pct": 4.5
+        },
+        "cover_stage_scale": 123
+      },
+      "LH": {
+        "cover_overlay": {
+          "left": 21.7,
+          "top": 7.5,
+          "width": 59,
+          "height": 71,
+          "opacity": 0.94,
+          "safe_inset_pct": 4.5
+        },
+        "cover_stage_scale": 125
       }
-    }
+    },
+    "mapping_note": "C2C uses the approved C2C scene; tapestry crochet uses the approved tapestry/crochet scene. publish_design.py remaps them to the legacy renderer filenames."
   },
   "preview_rules": {
     "vector": true,
@@ -214,6 +237,17 @@
       "color": "#FBFAF6",
       "dot": "#DDD8CF",
       "dot_radius": 0.05
+    }
+  },
+  "pattern_rules": {
+    "per_design_max_colors": 14,
+    "alpha_threshold": 96,
+    "min_opaque_samples_per_stitch": 6,
+    "external_outline": {
+      "enabled": false
+    },
+    "external_white_cleanup": {
+      "enabled": false
     }
   }
 }
