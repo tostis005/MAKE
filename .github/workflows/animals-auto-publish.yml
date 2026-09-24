@@ -7,6 +7,7 @@ on:
       - feature/animals-auto-publish
     paths:
       - '.github/workflows/animals-auto-publish.yml'
+      - 'content/pattern-system/animals_auto/publish_queue.json'
 
 permissions:
   contents: write
@@ -14,7 +15,7 @@ permissions:
 
 concurrency:
   group: drielo-animals-branch-auto-publish
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   publish-next:
@@ -23,7 +24,7 @@ jobs:
 
     steps:
       - name: Checkout Animals feature branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
           ref: feature/animals-auto-publish
@@ -361,7 +362,7 @@ jobs:
 
       - name: Archive four Animals PDFs
         if: success() && steps.select.outputs.design_id != ''
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: animals-${{ steps.select.outputs.design_id }}-pdfs
           path: |
