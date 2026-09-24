@@ -164,7 +164,7 @@ def row_for(base,suffix,data):
  desc_es=f'<p><strong>{title_es_full}</strong> es un patrón digital descargable de la nueva colección Pop Art de Drielo.</p><p><strong>Código:</strong> {code}</p><p>Este diseño utiliza únicamente colores de la paleta maestra fija de 25 colores de la colección. No se introduce ningún color fuera de esa paleta.</p><h3>Detalles</h3><ul><li>Gráfico: {w} × {h}</li><li>Posiciones: {total:,}</li><li>Colores usados: {colors} de la paleta fija de 25 colores</li><li>Técnica: {stitch_es}</li><li>Apto para principiantes</li></ul><h3>Qué recibirás</h3><p>PDF completo e imprimible con vista previa, datos del patrón, clave de colores, gráficos, símbolos, secciones ampliadas y guía de trabajo.</p><p>Producto digital. Solo para uso personal.</p>'
  tags=[tagtech,'digital pattern','pop art portrait','portrait pattern','instant download','beginner pattern','colorwork chart',slug[:20]]
  row={'code':code,'sku':f'DRIELO-{code}','base_design_id':base,'design_id':code,'technique_code':suffix,'technique':technique,
-      'title':title,'title_en':title,'title_es':title_es_full,'slug':f'{slug}-{technique}-pattern','price':4.99,'collection':CID,
+      'title':title,'title_en':title,'title_es':title_es_full,'slug':f'{slug}-{technique}-pattern','price':{'CS':5.99,'C2C':4.99,'TC':4.49,'LH':3.99}[suffix],'collection':CID,
       'stitches':total,'grid':grid,'colours':colors,'color_count':colors,'grid_width':w,'grid_height':h,
       'skill':'Beginner friendly','skill_en':'Beginner friendly','skill_es':'Apto para principiantes',
       'stitch_type':stitch,'stitch_type_en':stitch,'stitch_type_es':stitch_es,
