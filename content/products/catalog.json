@@ -74,7 +74,7 @@
         "310",
         "550"
       ],
-      "cover_asset": null,
+      "cover_asset": "assets/I0001-CS-product.webp",
       "name_es": "Bebé e Infantil",
       "name_en": "Baby & Nursery",
       "description_es": "Motivos de bebé e infantiles con una paleta viva y coordinada de 24 colores, bordes transparentes limpios y sin contorno negro exterior forzado.",
@@ -275,6 +275,594 @@
   ],
   "products": [
     {
+      "code": "I0001-C2C",
+      "sku": "DRIELO-I0001-C2C",
+      "price": 4.99,
+      "categories": [
+        "c2c-crochet-patterns",
+        "c2c-crochet-baby-nursery"
+      ],
+      "purchase_note_en": "Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.",
+      "purchase_note_es": "Tu PDF digital estará disponible desde la confirmación del pedido y en Mi cuenta > Descargas una vez completado el pago.",
+      "title": "Teddy Bear C2C Crochet Pattern PDF",
+      "title_en": "Teddy Bear C2C Crochet Pattern PDF",
+      "title_es": "Patrón PDF de crochet C2C: Osito de peluche",
+      "slug": "teddy-bear-c2c-crochet-pattern",
+      "collection": "baby-nursery",
+      "stitches": 2632,
+      "grid": "60 × 72 blocks",
+      "colours": 17,
+      "color_count": 17,
+      "grid_width": 60,
+      "grid_height": 72,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Corner-to-corner blocks",
+      "stitch_type_en": "Corner-to-corner blocks",
+      "stitch_type_es": "crochet C2C",
+      "short_description": "Downloadable Teddy Bear C2C Crochet pattern PDF from the Baby & Nursery collection. 60 × 72 blocks; 2,632 filled blocks; 17 coordinated colours; beginner friendly. Pattern code: I0001-C2C.",
+      "short_description_en": "Downloadable Teddy Bear C2C Crochet pattern PDF from the Baby & Nursery collection. 60 × 72 blocks; 2,632 filled blocks; 17 coordinated colours; beginner friendly. Pattern code: I0001-C2C.",
+      "short_description_es": "Patrón PDF descargable de osito de peluche para crochet C2C. 60 × 72; 2,632 celdas ocupadas; 17 colores coordinados; apto para principiantes. Código: I0001-C2C.",
+      "description": "<p><strong>Teddy Bear C2C Crochet Pattern PDF</strong> is a downloadable digital pattern from the Baby & Nursery collection.</p><p><strong>Digital product only:</strong> no finished item or physical materials are included.</p><h3>Pattern details</h3><ul><li>Pattern code: I0001-C2C</li><li>Grid: 60 × 72 blocks</li><li>Filled blocks: 2,632</li><li>Colours: 17 coordinated collection colours</li><li>Technique: Corner-to-corner blocks</li><li>Skill level: Beginner friendly</li></ul><h3>What you receive</h3><ul><li>17-page PDF pattern</li><li>Finished-design preview</li><li>Colour key with counts</li><li>Full-colour chart overview</li><li>Black-and-white symbol chart</li><li>Enlarged chart sections</li><li>Print-and-make guide</li></ul><p>Personal use only. The pattern and PDF may not be redistributed or resold.</p>",
+      "description_en": "<p><strong>Teddy Bear C2C Crochet Pattern PDF</strong> is a downloadable digital pattern from the Baby & Nursery collection.</p><p><strong>Digital product only:</strong> no finished item or physical materials are included.</p><h3>Pattern details</h3><ul><li>Pattern code: I0001-C2C</li><li>Grid: 60 × 72 blocks</li><li>Filled blocks: 2,632</li><li>Colours: 17 coordinated collection colours</li><li>Technique: Corner-to-corner blocks</li><li>Skill level: Beginner friendly</li></ul><h3>What you receive</h3><ul><li>17-page PDF pattern</li><li>Finished-design preview</li><li>Colour key with counts</li><li>Full-colour chart overview</li><li>Black-and-white symbol chart</li><li>Enlarged chart sections</li><li>Print-and-make guide</li></ul><p>Personal use only. The pattern and PDF may not be redistributed or resold.</p>",
+      "description_es": "<p><strong>Patrón PDF de crochet C2C: Osito de peluche</strong> es un patrón digital descargable de la colección Bebé e Infantil.</p><p><strong>Solo producto digital:</strong> no se incluye la pieza terminada ni materiales físicos.</p><h3>Detalles</h3><ul><li>Código: I0001-C2C</li><li>Cuadrícula: 60 × 72</li><li>Celdas ocupadas: 2,632</li><li>Colores: 17 colores coordinados</li><li>Técnica: crochet C2C</li><li>Nivel: apto para principiantes</li></ul><h3>Qué recibirás</h3><ul><li>PDF de 17 páginas</li><li>Vista previa del diseño</li><li>Clave de colores</li><li>Gráfico general a color</li><li>Gráfico con símbolos</li><li>Secciones ampliadas</li><li>Guía para realizar el proyecto</li></ul><p>Solo para uso personal.</p>",
+      "gallery": [
+        "assets/I0001-C2C-gallery-2.webp",
+        "assets/I0001-C2C-gallery-3.webp",
+        "assets/I0001-C2C-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_I0001-C2C.pdf",
+      "featured_image": "assets/I0001-C2C-product.webp",
+      "gallery_revision": 36029067734,
+      "seo_title": "Teddy Bear C2C Crochet Pattern PDF | Drielo",
+      "seo_title_en": "Teddy Bear C2C Crochet Pattern PDF | Drielo",
+      "seo_title_es": "Patrón PDF de crochet C2C: Osito de peluche | Drielo",
+      "meta_description": "Downloadable Teddy Bear C2C Crochet pattern PDF from the Baby & Nursery collection. 60 × 72 blocks; 2,632 filled blocks; 17 coordinated colours; beginner f",
+      "meta_description_en": "Downloadable Teddy Bear C2C Crochet pattern PDF from the Baby & Nursery collection. 60 × 72 blocks; 2,632 filled blocks; 17 coordinated colours; beginner f",
+      "meta_description_es": "Patrón PDF descargable de osito de peluche para crochet C2C. 60 × 72; 2,632 celdas ocupadas; 17 colores coordinados; apto para principiantes. Código: I0001",
+      "etsy_title_en": "Teddy Bear C2C Crochet Pattern PDF",
+      "etsy_title_es": "Patrón PDF de crochet C2C: Osito de peluche",
+      "etsy_description_en": "Downloadable Teddy Bear C2C Crochet pattern PDF from the Baby & Nursery collection. 60 × 72 blocks; 2,632 filled blocks; 17 coordinated colours; beginner friendly. Pattern code: I0001-C2C.",
+      "etsy_description_es": "Patrón PDF descargable de osito de peluche para crochet C2C. 60 × 72; 2,632 celdas ocupadas; 17 colores coordinados; apto para principiantes. Código: I0001-C2C.",
+      "tags": [
+        "teddy bear",
+        "baby nursery",
+        "nursery pattern",
+        "digital pattern",
+        "beginner pattern",
+        "c2c crochet",
+        "crochet graph",
+        "baby blanket"
+      ],
+      "etsy_tags_en": [
+        "teddy bear",
+        "baby nursery",
+        "nursery pattern",
+        "digital pattern",
+        "beginner pattern",
+        "c2c crochet",
+        "crochet graph",
+        "baby blanket"
+      ],
+      "etsy_tags_es": [
+        "osito de peluche",
+        "bebé",
+        "infantil",
+        "patrón digital",
+        "descarga pdf",
+        "crochet C2C",
+        "principiantes"
+      ],
+      "design_id": "I0001-C2C",
+      "base_design_id": "I0001",
+      "technique_code": "C2C",
+      "technique": "c2c-crochet",
+      "size_attribute_label": "Graph size",
+      "colour_attribute_label": "Yarn colours",
+      "type_attribute_label": "Technique",
+      "count_attribute_label": "Filled blocks",
+      "filters": {
+        "technique": [
+          "c2c-crochet"
+        ],
+        "theme": [
+          "baby-nursery"
+        ],
+        "style": [
+          "cute",
+          "soft",
+          "nursery"
+        ],
+        "project": [
+          "blanket"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "pastel"
+        ],
+        "season": []
+      }
+    },
+    {
+      "code": "I0001-CS",
+      "sku": "DRIELO-I0001-CS",
+      "price": 4.99,
+      "categories": [
+        "cross-stitch-patterns",
+        "cross-stitch-baby-nursery"
+      ],
+      "purchase_note_en": "Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.",
+      "purchase_note_es": "Tu PDF digital estará disponible desde la confirmación del pedido y en Mi cuenta > Descargas una vez completado el pago.",
+      "title": "Teddy Bear Cross Stitch Pattern PDF",
+      "title_en": "Teddy Bear Cross Stitch Pattern PDF",
+      "title_es": "Patrón PDF de punto de cruz: Osito de peluche",
+      "slug": "teddy-bear-cross-stitch-pattern",
+      "collection": "baby-nursery",
+      "stitches": 7133,
+      "grid": "100 × 120 stitches",
+      "colours": 18,
+      "color_count": 18,
+      "grid_width": 100,
+      "grid_height": 120,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Full cross stitch",
+      "stitch_type_en": "Full cross stitch",
+      "stitch_type_es": "punto de cruz",
+      "short_description": "Downloadable Teddy Bear Cross Stitch pattern PDF from the Baby & Nursery collection. 100 × 120 stitches; 7,133 total stitches; 18 coordinated colours; beginner friendly. Pattern code: I0001-CS.",
+      "short_description_en": "Downloadable Teddy Bear Cross Stitch pattern PDF from the Baby & Nursery collection. 100 × 120 stitches; 7,133 total stitches; 18 coordinated colours; beginner friendly. Pattern code: I0001-CS.",
+      "short_description_es": "Patrón PDF descargable de osito de peluche para punto de cruz. 100 × 120; 7,133 celdas ocupadas; 18 colores coordinados; apto para principiantes. Código: I0001-CS.",
+      "description": "<p><strong>Teddy Bear Cross Stitch Pattern PDF</strong> is a downloadable digital pattern from the Baby & Nursery collection.</p><p><strong>Digital product only:</strong> no finished item or physical materials are included.</p><h3>Pattern details</h3><ul><li>Pattern code: I0001-CS</li><li>Grid: 100 × 120 stitches</li><li>Total stitches: 7,133</li><li>Colours: 18 coordinated collection colours</li><li>Technique: Full cross stitch</li><li>Skill level: Beginner friendly</li></ul><h3>What you receive</h3><ul><li>17-page PDF pattern</li><li>Finished-design preview</li><li>Colour key with counts</li><li>Full-colour chart overview</li><li>Black-and-white symbol chart</li><li>Enlarged chart sections</li><li>Print-and-make guide</li></ul><p>Personal use only. The pattern and PDF may not be redistributed or resold.</p>",
+      "description_en": "<p><strong>Teddy Bear Cross Stitch Pattern PDF</strong> is a downloadable digital pattern from the Baby & Nursery collection.</p><p><strong>Digital product only:</strong> no finished item or physical materials are included.</p><h3>Pattern details</h3><ul><li>Pattern code: I0001-CS</li><li>Grid: 100 × 120 stitches</li><li>Total stitches: 7,133</li><li>Colours: 18 coordinated collection colours</li><li>Technique: Full cross stitch</li><li>Skill level: Beginner friendly</li></ul><h3>What you receive</h3><ul><li>17-page PDF pattern</li><li>Finished-design preview</li><li>Colour key with counts</li><li>Full-colour chart overview</li><li>Black-and-white symbol chart</li><li>Enlarged chart sections</li><li>Print-and-make guide</li></ul><p>Personal use only. The pattern and PDF may not be redistributed or resold.</p>",
+      "description_es": "<p><strong>Patrón PDF de punto de cruz: Osito de peluche</strong> es un patrón digital descargable de la colección Bebé e Infantil.</p><p><strong>Solo producto digital:</strong> no se incluye la pieza terminada ni materiales físicos.</p><h3>Detalles</h3><ul><li>Código: I0001-CS</li><li>Cuadrícula: 100 × 120</li><li>Celdas ocupadas: 7,133</li><li>Colores: 18 colores coordinados</li><li>Técnica: punto de cruz</li><li>Nivel: apto para principiantes</li></ul><h3>Qué recibirás</h3><ul><li>PDF de 17 páginas</li><li>Vista previa del diseño</li><li>Clave de colores</li><li>Gráfico general a color</li><li>Gráfico con símbolos</li><li>Secciones ampliadas</li><li>Guía para realizar el proyecto</li></ul><p>Solo para uso personal.</p>",
+      "gallery": [
+        "assets/I0001-CS-gallery-2.webp",
+        "assets/I0001-CS-gallery-3.webp",
+        "assets/I0001-CS-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_I0001-CS.pdf",
+      "featured_image": "assets/I0001-CS-product.webp",
+      "gallery_revision": 36029067734,
+      "seo_title": "Teddy Bear Cross Stitch Pattern PDF | Drielo",
+      "seo_title_en": "Teddy Bear Cross Stitch Pattern PDF | Drielo",
+      "seo_title_es": "Patrón PDF de punto de cruz: Osito de peluche | Drielo",
+      "meta_description": "Downloadable Teddy Bear Cross Stitch pattern PDF from the Baby & Nursery collection. 100 × 120 stitches; 7,133 total stitches; 18 coordinated colours; begi",
+      "meta_description_en": "Downloadable Teddy Bear Cross Stitch pattern PDF from the Baby & Nursery collection. 100 × 120 stitches; 7,133 total stitches; 18 coordinated colours; begi",
+      "meta_description_es": "Patrón PDF descargable de osito de peluche para punto de cruz. 100 × 120; 7,133 celdas ocupadas; 18 colores coordinados; apto para principiantes. Código: I",
+      "etsy_title_en": "Teddy Bear Cross Stitch Pattern PDF",
+      "etsy_title_es": "Patrón PDF de punto de cruz: Osito de peluche",
+      "etsy_description_en": "Downloadable Teddy Bear Cross Stitch pattern PDF from the Baby & Nursery collection. 100 × 120 stitches; 7,133 total stitches; 18 coordinated colours; beginner friendly. Pattern code: I0001-CS.",
+      "etsy_description_es": "Patrón PDF descargable de osito de peluche para punto de cruz. 100 × 120; 7,133 celdas ocupadas; 18 colores coordinados; apto para principiantes. Código: I0001-CS.",
+      "tags": [
+        "teddy bear",
+        "baby nursery",
+        "nursery pattern",
+        "digital pattern",
+        "beginner pattern",
+        "cross stitch pdf",
+        "counted cross stitch",
+        "dmc pattern"
+      ],
+      "etsy_tags_en": [
+        "teddy bear",
+        "baby nursery",
+        "nursery pattern",
+        "digital pattern",
+        "beginner pattern",
+        "cross stitch pdf",
+        "counted cross stitch",
+        "dmc pattern"
+      ],
+      "etsy_tags_es": [
+        "osito de peluche",
+        "bebé",
+        "infantil",
+        "patrón digital",
+        "descarga pdf",
+        "punto de cruz",
+        "principiantes"
+      ],
+      "design_id": "I0001-CS",
+      "base_design_id": "I0001",
+      "technique_code": "CS",
+      "technique": "cross-stitch",
+      "size_attribute_label": "Pattern size",
+      "colour_attribute_label": "DMC colours",
+      "type_attribute_label": "Technique",
+      "count_attribute_label": "Total stitches",
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "baby-nursery"
+        ],
+        "style": [
+          "cute",
+          "soft",
+          "nursery"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "pastel"
+        ],
+        "season": []
+      }
+    },
+    {
+      "code": "I0001-LH",
+      "sku": "DRIELO-I0001-LH",
+      "price": 4.99,
+      "categories": [
+        "latch-hook-rug-patterns",
+        "latch-hook-rug-baby-nursery"
+      ],
+      "purchase_note_en": "Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.",
+      "purchase_note_es": "Tu PDF digital estará disponible desde la confirmación del pedido y en Mi cuenta > Descargas una vez completado el pago.",
+      "title": "Teddy Bear Latch Hook Rug Pattern PDF",
+      "title_en": "Teddy Bear Latch Hook Rug Pattern PDF",
+      "title_es": "Patrón PDF de alfombra latch hook: Osito de peluche",
+      "slug": "teddy-bear-latch-hook-pattern",
+      "collection": "baby-nursery",
+      "stitches": 2632,
+      "grid": "60 × 72 knots",
+      "colours": 17,
+      "color_count": 17,
+      "grid_width": 60,
+      "grid_height": 72,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Latch hook / rug knots",
+      "stitch_type_en": "Latch hook / rug knots",
+      "stitch_type_es": "alfombra latch hook",
+      "short_description": "Downloadable Teddy Bear Latch Hook Rug pattern PDF from the Baby & Nursery collection. 60 × 72 knots; 2,632 filled knots; 17 coordinated colours; beginner friendly. Pattern code: I0001-LH.",
+      "short_description_en": "Downloadable Teddy Bear Latch Hook Rug pattern PDF from the Baby & Nursery collection. 60 × 72 knots; 2,632 filled knots; 17 coordinated colours; beginner friendly. Pattern code: I0001-LH.",
+      "short_description_es": "Patrón PDF descargable de osito de peluche para alfombra latch hook. 60 × 72; 2,632 celdas ocupadas; 17 colores coordinados; apto para principiantes. Código: I0001-LH.",
+      "description": "<p><strong>Teddy Bear Latch Hook Rug Pattern PDF</strong> is a downloadable digital pattern from the Baby & Nursery collection.</p><p><strong>Digital product only:</strong> no finished item or physical materials are included.</p><h3>Pattern details</h3><ul><li>Pattern code: I0001-LH</li><li>Grid: 60 × 72 knots</li><li>Filled knots: 2,632</li><li>Colours: 17 coordinated collection colours</li><li>Technique: Latch hook / rug knots</li><li>Skill level: Beginner friendly</li></ul><h3>What you receive</h3><ul><li>17-page PDF pattern</li><li>Finished-design preview</li><li>Colour key with counts</li><li>Full-colour chart overview</li><li>Black-and-white symbol chart</li><li>Enlarged chart sections</li><li>Print-and-make guide</li></ul><p>Personal use only. The pattern and PDF may not be redistributed or resold.</p>",
+      "description_en": "<p><strong>Teddy Bear Latch Hook Rug Pattern PDF</strong> is a downloadable digital pattern from the Baby & Nursery collection.</p><p><strong>Digital product only:</strong> no finished item or physical materials are included.</p><h3>Pattern details</h3><ul><li>Pattern code: I0001-LH</li><li>Grid: 60 × 72 knots</li><li>Filled knots: 2,632</li><li>Colours: 17 coordinated collection colours</li><li>Technique: Latch hook / rug knots</li><li>Skill level: Beginner friendly</li></ul><h3>What you receive</h3><ul><li>17-page PDF pattern</li><li>Finished-design preview</li><li>Colour key with counts</li><li>Full-colour chart overview</li><li>Black-and-white symbol chart</li><li>Enlarged chart sections</li><li>Print-and-make guide</li></ul><p>Personal use only. The pattern and PDF may not be redistributed or resold.</p>",
+      "description_es": "<p><strong>Patrón PDF de alfombra latch hook: Osito de peluche</strong> es un patrón digital descargable de la colección Bebé e Infantil.</p><p><strong>Solo producto digital:</strong> no se incluye la pieza terminada ni materiales físicos.</p><h3>Detalles</h3><ul><li>Código: I0001-LH</li><li>Cuadrícula: 60 × 72</li><li>Celdas ocupadas: 2,632</li><li>Colores: 17 colores coordinados</li><li>Técnica: alfombra latch hook</li><li>Nivel: apto para principiantes</li></ul><h3>Qué recibirás</h3><ul><li>PDF de 17 páginas</li><li>Vista previa del diseño</li><li>Clave de colores</li><li>Gráfico general a color</li><li>Gráfico con símbolos</li><li>Secciones ampliadas</li><li>Guía para realizar el proyecto</li></ul><p>Solo para uso personal.</p>",
+      "gallery": [
+        "assets/I0001-LH-gallery-2.webp",
+        "assets/I0001-LH-gallery-3.webp",
+        "assets/I0001-LH-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_I0001-LH.pdf",
+      "featured_image": "assets/I0001-LH-product.webp",
+      "gallery_revision": 36029067734,
+      "seo_title": "Teddy Bear Latch Hook Rug Pattern PDF | Drielo",
+      "seo_title_en": "Teddy Bear Latch Hook Rug Pattern PDF | Drielo",
+      "seo_title_es": "Patrón PDF de alfombra latch hook: Osito de peluche | Drielo",
+      "meta_description": "Downloadable Teddy Bear Latch Hook Rug pattern PDF from the Baby & Nursery collection. 60 × 72 knots; 2,632 filled knots; 17 coordinated colours; beginner ",
+      "meta_description_en": "Downloadable Teddy Bear Latch Hook Rug pattern PDF from the Baby & Nursery collection. 60 × 72 knots; 2,632 filled knots; 17 coordinated colours; beginner ",
+      "meta_description_es": "Patrón PDF descargable de osito de peluche para alfombra latch hook. 60 × 72; 2,632 celdas ocupadas; 17 colores coordinados; apto para principiantes. Códig",
+      "etsy_title_en": "Teddy Bear Latch Hook Rug Pattern PDF",
+      "etsy_title_es": "Patrón PDF de alfombra latch hook: Osito de peluche",
+      "etsy_description_en": "Downloadable Teddy Bear Latch Hook Rug pattern PDF from the Baby & Nursery collection. 60 × 72 knots; 2,632 filled knots; 17 coordinated colours; beginner friendly. Pattern code: I0001-LH.",
+      "etsy_description_es": "Patrón PDF descargable de osito de peluche para alfombra latch hook. 60 × 72; 2,632 celdas ocupadas; 17 colores coordinados; apto para principiantes. Código: I0001-LH.",
+      "tags": [
+        "teddy bear",
+        "baby nursery",
+        "nursery pattern",
+        "digital pattern",
+        "beginner pattern",
+        "latch hook",
+        "rug pattern pdf",
+        "rug making"
+      ],
+      "etsy_tags_en": [
+        "teddy bear",
+        "baby nursery",
+        "nursery pattern",
+        "digital pattern",
+        "beginner pattern",
+        "latch hook",
+        "rug pattern pdf",
+        "rug making"
+      ],
+      "etsy_tags_es": [
+        "osito de peluche",
+        "bebé",
+        "infantil",
+        "patrón digital",
+        "descarga pdf",
+        "alfombra latch hook",
+        "principiantes"
+      ],
+      "design_id": "I0001-LH",
+      "base_design_id": "I0001",
+      "technique_code": "LH",
+      "technique": "latch-hook",
+      "size_attribute_label": "Chart size",
+      "colour_attribute_label": "Wool colours",
+      "type_attribute_label": "Technique",
+      "count_attribute_label": "Filled knots",
+      "filters": {
+        "technique": [
+          "latch-hook"
+        ],
+        "theme": [
+          "baby-nursery"
+        ],
+        "style": [
+          "cute",
+          "soft",
+          "nursery"
+        ],
+        "project": [
+          "rug"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "pastel"
+        ],
+        "season": []
+      }
+    },
+    {
+      "code": "I0001-TC",
+      "sku": "DRIELO-I0001-TC",
+      "price": 4.99,
+      "categories": [
+        "tapestry-crochet-patterns",
+        "tapestry-crochet-baby-nursery"
+      ],
+      "purchase_note_en": "Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.",
+      "purchase_note_es": "Tu PDF digital estará disponible desde la confirmación del pedido y en Mi cuenta > Descargas una vez completado el pago.",
+      "title": "Teddy Bear Tapestry Crochet Pattern PDF",
+      "title_en": "Teddy Bear Tapestry Crochet Pattern PDF",
+      "title_es": "Patrón PDF de tapestry crochet: Osito de peluche",
+      "slug": "teddy-bear-tapestry-crochet-pattern",
+      "collection": "baby-nursery",
+      "stitches": 4618,
+      "grid": "80 × 96 crochet stitches",
+      "colours": 18,
+      "color_count": 18,
+      "grid_width": 80,
+      "grid_height": 96,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Tapestry crochet colourwork",
+      "stitch_type_en": "Tapestry crochet colourwork",
+      "stitch_type_es": "tapestry crochet",
+      "short_description": "Downloadable Teddy Bear Tapestry Crochet pattern PDF from the Baby & Nursery collection. 80 × 96 crochet stitches; 4,618 colourwork stitches; 18 coordinated colours; beginner friendly. Pattern code: I0001-TC.",
+      "short_description_en": "Downloadable Teddy Bear Tapestry Crochet pattern PDF from the Baby & Nursery collection. 80 × 96 crochet stitches; 4,618 colourwork stitches; 18 coordinated colours; beginner friendly. Pattern code: I0001-TC.",
+      "short_description_es": "Patrón PDF descargable de osito de peluche para tapestry crochet. 80 × 96; 4,618 celdas ocupadas; 18 colores coordinados; apto para principiantes. Código: I0001-TC.",
+      "description": "<p><strong>Teddy Bear Tapestry Crochet Pattern PDF</strong> is a downloadable digital pattern from the Baby & Nursery collection.</p><p><strong>Digital product only:</strong> no finished item or physical materials are included.</p><h3>Pattern details</h3><ul><li>Pattern code: I0001-TC</li><li>Grid: 80 × 96 crochet stitches</li><li>Colourwork stitches: 4,618</li><li>Colours: 18 coordinated collection colours</li><li>Technique: Tapestry crochet colourwork</li><li>Skill level: Beginner friendly</li></ul><h3>What you receive</h3><ul><li>17-page PDF pattern</li><li>Finished-design preview</li><li>Colour key with counts</li><li>Full-colour chart overview</li><li>Black-and-white symbol chart</li><li>Enlarged chart sections</li><li>Print-and-make guide</li></ul><p>Personal use only. The pattern and PDF may not be redistributed or resold.</p>",
+      "description_en": "<p><strong>Teddy Bear Tapestry Crochet Pattern PDF</strong> is a downloadable digital pattern from the Baby & Nursery collection.</p><p><strong>Digital product only:</strong> no finished item or physical materials are included.</p><h3>Pattern details</h3><ul><li>Pattern code: I0001-TC</li><li>Grid: 80 × 96 crochet stitches</li><li>Colourwork stitches: 4,618</li><li>Colours: 18 coordinated collection colours</li><li>Technique: Tapestry crochet colourwork</li><li>Skill level: Beginner friendly</li></ul><h3>What you receive</h3><ul><li>17-page PDF pattern</li><li>Finished-design preview</li><li>Colour key with counts</li><li>Full-colour chart overview</li><li>Black-and-white symbol chart</li><li>Enlarged chart sections</li><li>Print-and-make guide</li></ul><p>Personal use only. The pattern and PDF may not be redistributed or resold.</p>",
+      "description_es": "<p><strong>Patrón PDF de tapestry crochet: Osito de peluche</strong> es un patrón digital descargable de la colección Bebé e Infantil.</p><p><strong>Solo producto digital:</strong> no se incluye la pieza terminada ni materiales físicos.</p><h3>Detalles</h3><ul><li>Código: I0001-TC</li><li>Cuadrícula: 80 × 96</li><li>Celdas ocupadas: 4,618</li><li>Colores: 18 colores coordinados</li><li>Técnica: tapestry crochet</li><li>Nivel: apto para principiantes</li></ul><h3>Qué recibirás</h3><ul><li>PDF de 17 páginas</li><li>Vista previa del diseño</li><li>Clave de colores</li><li>Gráfico general a color</li><li>Gráfico con símbolos</li><li>Secciones ampliadas</li><li>Guía para realizar el proyecto</li></ul><p>Solo para uso personal.</p>",
+      "gallery": [
+        "assets/I0001-TC-gallery-2.webp",
+        "assets/I0001-TC-gallery-3.webp",
+        "assets/I0001-TC-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_I0001-TC.pdf",
+      "featured_image": "assets/I0001-TC-product.webp",
+      "gallery_revision": 36029067734,
+      "seo_title": "Teddy Bear Tapestry Crochet Pattern PDF | Drielo",
+      "seo_title_en": "Teddy Bear Tapestry Crochet Pattern PDF | Drielo",
+      "seo_title_es": "Patrón PDF de tapestry crochet: Osito de peluche | Drielo",
+      "meta_description": "Downloadable Teddy Bear Tapestry Crochet pattern PDF from the Baby & Nursery collection. 80 × 96 crochet stitches; 4,618 colourwork stitches; 18 coordinate",
+      "meta_description_en": "Downloadable Teddy Bear Tapestry Crochet pattern PDF from the Baby & Nursery collection. 80 × 96 crochet stitches; 4,618 colourwork stitches; 18 coordinate",
+      "meta_description_es": "Patrón PDF descargable de osito de peluche para tapestry crochet. 80 × 96; 4,618 celdas ocupadas; 18 colores coordinados; apto para principiantes. Código: ",
+      "etsy_title_en": "Teddy Bear Tapestry Crochet Pattern PDF",
+      "etsy_title_es": "Patrón PDF de tapestry crochet: Osito de peluche",
+      "etsy_description_en": "Downloadable Teddy Bear Tapestry Crochet pattern PDF from the Baby & Nursery collection. 80 × 96 crochet stitches; 4,618 colourwork stitches; 18 coordinated colours; beginner friendly. Pattern code: I0001-TC.",
+      "etsy_description_es": "Patrón PDF descargable de osito de peluche para tapestry crochet. 80 × 96; 4,618 celdas ocupadas; 18 colores coordinados; apto para principiantes. Código: I0001-TC.",
+      "tags": [
+        "teddy bear",
+        "baby nursery",
+        "nursery pattern",
+        "digital pattern",
+        "beginner pattern",
+        "tapestry crochet",
+        "crochet chart",
+        "colorwork crochet"
+      ],
+      "etsy_tags_en": [
+        "teddy bear",
+        "baby nursery",
+        "nursery pattern",
+        "digital pattern",
+        "beginner pattern",
+        "tapestry crochet",
+        "crochet chart",
+        "colorwork crochet"
+      ],
+      "etsy_tags_es": [
+        "osito de peluche",
+        "bebé",
+        "infantil",
+        "patrón digital",
+        "descarga pdf",
+        "tapestry crochet",
+        "principiantes"
+      ],
+      "design_id": "I0001-TC",
+      "base_design_id": "I0001",
+      "technique_code": "TC",
+      "technique": "tapestry-crochet",
+      "size_attribute_label": "Chart size",
+      "colour_attribute_label": "Yarn colours",
+      "type_attribute_label": "Technique",
+      "count_attribute_label": "Colourwork stitches",
+      "filters": {
+        "technique": [
+          "tapestry-crochet"
+        ],
+        "theme": [
+          "baby-nursery"
+        ],
+        "style": [
+          "cute",
+          "soft",
+          "nursery"
+        ],
+        "project": [
+          "tapestry"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "pastel"
+        ],
+        "season": []
+      }
+    },
+    {
+      "code": "P0001-C2C",
+      "sku": "DRIELO-P0001-C2C",
+      "base_design_id": "P0001",
+      "design_id": "P0001-C2C",
+      "technique_code": "C2C",
+      "technique": "c2c-crochet",
+      "title": "Albert Einstein Tongue Out C2C Crochet Pattern PDF",
+      "title_en": "Albert Einstein Tongue Out C2C Crochet Pattern PDF",
+      "title_es": "Patrón PDF de crochet C2C: Albert Einstein sacando la lengua",
+      "slug": "albert-einstein-tongue-out-c2c-crochet-pattern",
+      "price": 4.99,
+      "collection": "pop-art-25",
+      "stitches": 3141,
+      "grid": "60 × 72 blocks",
+      "colours": 17,
+      "color_count": 17,
+      "grid_width": 60,
+      "grid_height": 72,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Corner-to-corner blocks",
+      "stitch_type_en": "Corner-to-corner blocks",
+      "stitch_type_es": "Bloques de crochet C2C",
+      "short_description": "Downloadable Albert Einstein Tongue Out C2C Crochet pattern PDF. 60 × 72 blocks; 3,141 positions; 17 colours selected exclusively from the fixed 25-colour Pop Art palette; beginner friendly. Pattern code: P0001-C2C.",
+      "short_description_en": "Downloadable Albert Einstein Tongue Out C2C Crochet pattern PDF. 60 × 72 blocks; 3,141 positions; 17 colours selected exclusively from the fixed 25-colour Pop Art palette; beginner friendly. Pattern code: P0001-C2C.",
+      "short_description_es": "Patrón PDF descargable de Crochet C2C: Albert Einstein sacando la lengua. 60 × 72; 3,141 posiciones; 17 colores seleccionados exclusivamente de la paleta fija Pop Art de 25 colores; apto para principiantes. Código: P0001-C2C.",
+      "description": "<p><strong>Albert Einstein Tongue Out C2C Crochet Pattern PDF</strong> is a downloadable digital pattern from Drielo’s new Pop Art collection.</p><p><strong>Pattern code:</strong> P0001-C2C</p><p>This design uses only colours from the collection’s fixed 25-colour master palette. No colours outside that palette are introduced.</p><h3>Pattern details</h3><ul><li>Chart: 60 × 72 blocks</li><li>Filled blocks: 3,141</li><li>Colours used: 17 from the fixed 25-colour palette</li><li>Technique: Corner-to-corner blocks</li><li>Beginner friendly</li></ul><h3>What you receive</h3><p>A complete printable PDF with finished preview, pattern facts, colour key, charts, symbols, enlarged sections and working guide.</p><p>Digital product only. Personal use only.</p>",
+      "description_en": "<p><strong>Albert Einstein Tongue Out C2C Crochet Pattern PDF</strong> is a downloadable digital pattern from Drielo’s new Pop Art collection.</p><p><strong>Pattern code:</strong> P0001-C2C</p><p>This design uses only colours from the collection’s fixed 25-colour master palette. No colours outside that palette are introduced.</p><h3>Pattern details</h3><ul><li>Chart: 60 × 72 blocks</li><li>Filled blocks: 3,141</li><li>Colours used: 17 from the fixed 25-colour palette</li><li>Technique: Corner-to-corner blocks</li><li>Beginner friendly</li></ul><h3>What you receive</h3><p>A complete printable PDF with finished preview, pattern facts, colour key, charts, symbols, enlarged sections and working guide.</p><p>Digital product only. Personal use only.</p>",
+      "description_es": "<p><strong>Patrón PDF de crochet C2C: Albert Einstein sacando la lengua</strong> es un patrón digital descargable de la nueva colección Pop Art de Drielo.</p><p><strong>Código:</strong> P0001-C2C</p><p>Este diseño utiliza únicamente colores de la paleta maestra fija de 25 colores de la colección. No se introduce ningún color fuera de esa paleta.</p><h3>Detalles</h3><ul><li>Gráfico: 60 × 72</li><li>Posiciones: 3,141</li><li>Colores usados: 17 de la paleta fija de 25 colores</li><li>Técnica: Bloques de crochet C2C</li><li>Apto para principiantes</li></ul><h3>Qué recibirás</h3><p>PDF completo e imprimible con vista previa, datos del patrón, clave de colores, gráficos, símbolos, secciones ampliadas y guía de trabajo.</p><p>Producto digital. Solo para uso personal.</p>",
+      "categories": [
+        "c2c-crochet-patterns",
+        "c2c-crochet-portraits",
+        "c2c-crochet-pop-art"
+      ],
+      "tags": [
+        "c2c crochet",
+        "digital pattern",
+        "pop art portrait",
+        "portrait pattern",
+        "instant download",
+        "beginner pattern",
+        "colorwork chart",
+        "albert-einstein-tong"
+      ],
+      "etsy_tags_en": [
+        "c2c crochet",
+        "digital pattern",
+        "pop art portrait",
+        "portrait pattern",
+        "instant download",
+        "beginner pattern",
+        "colorwork chart",
+        "albert-einstein-tong"
+      ],
+      "etsy_tags_es": [
+        "c2c crochet",
+        "digital pattern",
+        "pop art portrait",
+        "portrait pattern",
+        "instant download",
+        "beginner pattern",
+        "colorwork chart",
+        "albert-einstein-tong"
+      ],
+      "gallery": [],
+      "featured_image": "assets/P0001-C2C-product.webp",
+      "download": "files/Drielo_P0001-C2C.pdf",
+      "gallery_revision": 2026092404,
+      "seo_title": "Albert Einstein Tongue Out C2C Crochet Pattern PDF | Drielo",
+      "seo_title_en": "Albert Einstein Tongue Out C2C Crochet Pattern PDF | Drielo",
+      "seo_title_es": "Albert Einstein sacando la lengua - patrón Crochet C2C PDF | Drielo",
+      "meta_description": "Albert Einstein Tongue Out C2C Crochet PDF P0001-C2C: 60 × 72, 17 colours from a fixed 25-colour palette.",
+      "meta_description_en": "Albert Einstein Tongue Out C2C Crochet PDF P0001-C2C: 60 × 72, 17 colours from a fixed 25-colour palette.",
+      "meta_description_es": "Albert Einstein sacando la lengua, patrón Crochet C2C PDF P0001-C2C: 60 × 72, 17 colores de una paleta fija de 25 colores.",
+      "purchase_note_en": "Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.",
+      "purchase_note_es": "Tu PDF digital estará disponible desde la confirmación del pedido y en Mi cuenta > Descargas una vez completado el pago.",
+      "size_attribute_label": "Pattern size",
+      "colour_attribute_label": "Yarn colours",
+      "type_attribute_label": "Technique",
+      "count_attribute_label": "Filled blocks",
+      "filters": {
+        "technique": [
+          "c2c-crochet"
+        ],
+        "theme": [
+          "people-portraits"
+        ],
+        "style": [
+          "pop-art",
+          "colorful"
+        ],
+        "project": [
+          "blanket"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "multicolor"
+        ],
+        "season": []
+      }
+    },
+    {
       "code": "P0001-CS",
       "sku": "DRIELO-P0001-CS",
       "base_design_id": "P0001",
@@ -383,20 +971,20 @@
       }
     },
     {
-      "code": "P0001-C2C",
-      "sku": "DRIELO-P0001-C2C",
+      "code": "P0001-LH",
+      "sku": "DRIELO-P0001-LH",
       "base_design_id": "P0001",
-      "design_id": "P0001-C2C",
-      "technique_code": "C2C",
-      "technique": "c2c-crochet",
-      "title": "Albert Einstein Tongue Out C2C Crochet Pattern PDF",
-      "title_en": "Albert Einstein Tongue Out C2C Crochet Pattern PDF",
-      "title_es": "Patrón PDF de crochet C2C: Albert Einstein sacando la lengua",
-      "slug": "albert-einstein-tongue-out-c2c-crochet-pattern",
-      "price": 4.99,
+      "design_id": "P0001-LH",
+      "technique_code": "LH",
+      "technique": "latch-hook",
+      "title": "Albert Einstein Tongue Out Latch Hook Rug Pattern PDF",
+      "title_en": "Albert Einstein Tongue Out Latch Hook Rug Pattern PDF",
+      "title_es": "Patrón PDF de alfombra latch hook: Albert Einstein sacando la lengua",
+      "slug": "albert-einstein-tongue-out-latch-hook-pattern",
+      "price": 3.99,
       "collection": "pop-art-25",
       "stitches": 3141,
-      "grid": "60 × 72 blocks",
+      "grid": "60 × 72 knots",
       "colours": 17,
       "color_count": 17,
       "grid_width": 60,
@@ -404,22 +992,22 @@
       "skill": "Beginner friendly",
       "skill_en": "Beginner friendly",
       "skill_es": "Apto para principiantes",
-      "stitch_type": "Corner-to-corner blocks",
-      "stitch_type_en": "Corner-to-corner blocks",
-      "stitch_type_es": "Bloques de crochet C2C",
-      "short_description": "Downloadable Albert Einstein Tongue Out C2C Crochet pattern PDF. 60 × 72 blocks; 3,141 positions; 17 colours selected exclusively from the fixed 25-colour Pop Art palette; beginner friendly. Pattern code: P0001-C2C.",
-      "short_description_en": "Downloadable Albert Einstein Tongue Out C2C Crochet pattern PDF. 60 × 72 blocks; 3,141 positions; 17 colours selected exclusively from the fixed 25-colour Pop Art palette; beginner friendly. Pattern code: P0001-C2C.",
-      "short_description_es": "Patrón PDF descargable de Crochet C2C: Albert Einstein sacando la lengua. 60 × 72; 3,141 posiciones; 17 colores seleccionados exclusivamente de la paleta fija Pop Art de 25 colores; apto para principiantes. Código: P0001-C2C.",
-      "description": "<p><strong>Albert Einstein Tongue Out C2C Crochet Pattern PDF</strong> is a downloadable digital pattern from Drielo’s new Pop Art collection.</p><p><strong>Pattern code:</strong> P0001-C2C</p><p>This design uses only colours from the collection’s fixed 25-colour master palette. No colours outside that palette are introduced.</p><h3>Pattern details</h3><ul><li>Chart: 60 × 72 blocks</li><li>Filled blocks: 3,141</li><li>Colours used: 17 from the fixed 25-colour palette</li><li>Technique: Corner-to-corner blocks</li><li>Beginner friendly</li></ul><h3>What you receive</h3><p>A complete printable PDF with finished preview, pattern facts, colour key, charts, symbols, enlarged sections and working guide.</p><p>Digital product only. Personal use only.</p>",
-      "description_en": "<p><strong>Albert Einstein Tongue Out C2C Crochet Pattern PDF</strong> is a downloadable digital pattern from Drielo’s new Pop Art collection.</p><p><strong>Pattern code:</strong> P0001-C2C</p><p>This design uses only colours from the collection’s fixed 25-colour master palette. No colours outside that palette are introduced.</p><h3>Pattern details</h3><ul><li>Chart: 60 × 72 blocks</li><li>Filled blocks: 3,141</li><li>Colours used: 17 from the fixed 25-colour palette</li><li>Technique: Corner-to-corner blocks</li><li>Beginner friendly</li></ul><h3>What you receive</h3><p>A complete printable PDF with finished preview, pattern facts, colour key, charts, symbols, enlarged sections and working guide.</p><p>Digital product only. Personal use only.</p>",
-      "description_es": "<p><strong>Patrón PDF de crochet C2C: Albert Einstein sacando la lengua</strong> es un patrón digital descargable de la nueva colección Pop Art de Drielo.</p><p><strong>Código:</strong> P0001-C2C</p><p>Este diseño utiliza únicamente colores de la paleta maestra fija de 25 colores de la colección. No se introduce ningún color fuera de esa paleta.</p><h3>Detalles</h3><ul><li>Gráfico: 60 × 72</li><li>Posiciones: 3,141</li><li>Colores usados: 17 de la paleta fija de 25 colores</li><li>Técnica: Bloques de crochet C2C</li><li>Apto para principiantes</li></ul><h3>Qué recibirás</h3><p>PDF completo e imprimible con vista previa, datos del patrón, clave de colores, gráficos, símbolos, secciones ampliadas y guía de trabajo.</p><p>Producto digital. Solo para uso personal.</p>",
+      "stitch_type": "Latch hook / rug knots",
+      "stitch_type_en": "Latch hook / rug knots",
+      "stitch_type_es": "Nudos latch hook / alfombra",
+      "short_description": "Downloadable Albert Einstein Tongue Out Latch Hook Rug pattern PDF. 60 × 72 knots; 3,141 positions; 17 colours selected exclusively from the fixed 25-colour Pop Art palette; beginner friendly. Pattern code: P0001-LH.",
+      "short_description_en": "Downloadable Albert Einstein Tongue Out Latch Hook Rug pattern PDF. 60 × 72 knots; 3,141 positions; 17 colours selected exclusively from the fixed 25-colour Pop Art palette; beginner friendly. Pattern code: P0001-LH.",
+      "short_description_es": "Patrón PDF descargable de Alfombra latch hook: Albert Einstein sacando la lengua. 60 × 72; 3,141 posiciones; 17 colores seleccionados exclusivamente de la paleta fija Pop Art de 25 colores; apto para principiantes. Código: P0001-LH.",
+      "description": "<p><strong>Albert Einstein Tongue Out Latch Hook Rug Pattern PDF</strong> is a downloadable digital pattern from Drielo’s new Pop Art collection.</p><p><strong>Pattern code:</strong> P0001-LH</p><p>This design uses only colours from the collection’s fixed 25-colour master palette. No colours outside that palette are introduced.</p><h3>Pattern details</h3><ul><li>Chart: 60 × 72 knots</li><li>Filled knots: 3,141</li><li>Colours used: 17 from the fixed 25-colour palette</li><li>Technique: Latch hook / rug knots</li><li>Beginner friendly</li></ul><h3>What you receive</h3><p>A complete printable PDF with finished preview, pattern facts, colour key, charts, symbols, enlarged sections and working guide.</p><p>Digital product only. Personal use only.</p>",
+      "description_en": "<p><strong>Albert Einstein Tongue Out Latch Hook Rug Pattern PDF</strong> is a downloadable digital pattern from Drielo’s new Pop Art collection.</p><p><strong>Pattern code:</strong> P0001-LH</p><p>This design uses only colours from the collection’s fixed 25-colour master palette. No colours outside that palette are introduced.</p><h3>Pattern details</h3><ul><li>Chart: 60 × 72 knots</li><li>Filled knots: 3,141</li><li>Colours used: 17 from the fixed 25-colour palette</li><li>Technique: Latch hook / rug knots</li><li>Beginner friendly</li></ul><h3>What you receive</h3><p>A complete printable PDF with finished preview, pattern facts, colour key, charts, symbols, enlarged sections and working guide.</p><p>Digital product only. Personal use only.</p>",
+      "description_es": "<p><strong>Patrón PDF de alfombra latch hook: Albert Einstein sacando la lengua</strong> es un patrón digital descargable de la nueva colección Pop Art de Drielo.</p><p><strong>Código:</strong> P0001-LH</p><p>Este diseño utiliza únicamente colores de la paleta maestra fija de 25 colores de la colección. No se introduce ningún color fuera de esa paleta.</p><h3>Detalles</h3><ul><li>Gráfico: 60 × 72</li><li>Posiciones: 3,141</li><li>Colores usados: 17 de la paleta fija de 25 colores</li><li>Técnica: Nudos latch hook / alfombra</li><li>Apto para principiantes</li></ul><h3>Qué recibirás</h3><p>PDF completo e imprimible con vista previa, datos del patrón, clave de colores, gráficos, símbolos, secciones ampliadas y guía de trabajo.</p><p>Producto digital. Solo para uso personal.</p>",
       "categories": [
-        "c2c-crochet-patterns",
-        "c2c-crochet-portraits",
-        "c2c-crochet-pop-art"
+        "latch-hook-rug-patterns",
+        "latch-hook-rug-portraits",
+        "latch-hook-rug-pop-art"
       ],
       "tags": [
-        "c2c crochet",
+        "latch hook",
         "digital pattern",
         "pop art portrait",
         "portrait pattern",
@@ -429,7 +1017,7 @@
         "albert-einstein-tong"
       ],
       "etsy_tags_en": [
-        "c2c crochet",
+        "latch hook",
         "digital pattern",
         "pop art portrait",
         "portrait pattern",
@@ -439,7 +1027,7 @@
         "albert-einstein-tong"
       ],
       "etsy_tags_es": [
-        "c2c crochet",
+        "latch hook",
         "digital pattern",
         "pop art portrait",
         "portrait pattern",
@@ -449,24 +1037,24 @@
         "albert-einstein-tong"
       ],
       "gallery": [],
-      "featured_image": "assets/P0001-C2C-product.webp",
-      "download": "files/Drielo_P0001-C2C.pdf",
+      "featured_image": "assets/P0001-LH-product.webp",
+      "download": "files/Drielo_P0001-LH.pdf",
       "gallery_revision": 2026092404,
-      "seo_title": "Albert Einstein Tongue Out C2C Crochet Pattern PDF | Drielo",
-      "seo_title_en": "Albert Einstein Tongue Out C2C Crochet Pattern PDF | Drielo",
-      "seo_title_es": "Albert Einstein sacando la lengua - patrón Crochet C2C PDF | Drielo",
-      "meta_description": "Albert Einstein Tongue Out C2C Crochet PDF P0001-C2C: 60 × 72, 17 colours from a fixed 25-colour palette.",
-      "meta_description_en": "Albert Einstein Tongue Out C2C Crochet PDF P0001-C2C: 60 × 72, 17 colours from a fixed 25-colour palette.",
-      "meta_description_es": "Albert Einstein sacando la lengua, patrón Crochet C2C PDF P0001-C2C: 60 × 72, 17 colores de una paleta fija de 25 colores.",
+      "seo_title": "Albert Einstein Tongue Out Latch Hook Rug Pattern PDF | Drielo",
+      "seo_title_en": "Albert Einstein Tongue Out Latch Hook Rug Pattern PDF | Drielo",
+      "seo_title_es": "Albert Einstein sacando la lengua - patrón Alfombra latch hook PDF | Drielo",
+      "meta_description": "Albert Einstein Tongue Out Latch Hook Rug PDF P0001-LH: 60 × 72, 17 colours from a fixed 25-colour palette.",
+      "meta_description_en": "Albert Einstein Tongue Out Latch Hook Rug PDF P0001-LH: 60 × 72, 17 colours from a fixed 25-colour palette.",
+      "meta_description_es": "Albert Einstein sacando la lengua, patrón Alfombra latch hook PDF P0001-LH: 60 × 72, 17 colores de una paleta fija de 25 colores.",
       "purchase_note_en": "Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.",
       "purchase_note_es": "Tu PDF digital estará disponible desde la confirmación del pedido y en Mi cuenta > Descargas una vez completado el pago.",
       "size_attribute_label": "Pattern size",
-      "colour_attribute_label": "Yarn colours",
+      "colour_attribute_label": "Wool colours",
       "type_attribute_label": "Technique",
-      "count_attribute_label": "Filled blocks",
+      "count_attribute_label": "Filled knots",
       "filters": {
         "technique": [
-          "c2c-crochet"
+          "latch-hook"
         ],
         "theme": [
           "people-portraits"
@@ -476,7 +1064,7 @@
           "colorful"
         ],
         "project": [
-          "blanket"
+          "rug"
         ],
         "orientation": [
           "portrait"
@@ -599,90 +1187,90 @@
       }
     },
     {
-      "code": "P0001-LH",
-      "sku": "DRIELO-P0001-LH",
-      "base_design_id": "P0001",
-      "design_id": "P0001-LH",
-      "technique_code": "LH",
-      "technique": "latch-hook",
-      "title": "Albert Einstein Tongue Out Latch Hook Rug Pattern PDF",
-      "title_en": "Albert Einstein Tongue Out Latch Hook Rug Pattern PDF",
-      "title_es": "Patrón PDF de alfombra latch hook: Albert Einstein sacando la lengua",
-      "slug": "albert-einstein-tongue-out-latch-hook-pattern",
-      "price": 3.99,
+      "code": "P0012-C2C",
+      "sku": "DRIELO-P0012-C2C",
+      "base_design_id": "P0012",
+      "design_id": "P0012-C2C",
+      "technique_code": "C2C",
+      "technique": "c2c-crochet",
+      "title": "Marilyn Monroe Bubble Gum C2C Crochet Pattern PDF",
+      "title_en": "Marilyn Monroe Bubble Gum C2C Crochet Pattern PDF",
+      "title_es": "Patrón PDF de crochet C2C: Marilyn Monroe con chicle",
+      "slug": "marilyn-monroe-bubble-gum-c2c-crochet-pattern",
+      "price": 4.99,
       "collection": "pop-art-25",
-      "stitches": 3141,
-      "grid": "60 × 72 knots",
-      "colours": 17,
-      "color_count": 17,
+      "stitches": 3209,
+      "grid": "60 × 72 blocks",
+      "colours": 19,
+      "color_count": 19,
       "grid_width": 60,
       "grid_height": 72,
       "skill": "Beginner friendly",
       "skill_en": "Beginner friendly",
       "skill_es": "Apto para principiantes",
-      "stitch_type": "Latch hook / rug knots",
-      "stitch_type_en": "Latch hook / rug knots",
-      "stitch_type_es": "Nudos latch hook / alfombra",
-      "short_description": "Downloadable Albert Einstein Tongue Out Latch Hook Rug pattern PDF. 60 × 72 knots; 3,141 positions; 17 colours selected exclusively from the fixed 25-colour Pop Art palette; beginner friendly. Pattern code: P0001-LH.",
-      "short_description_en": "Downloadable Albert Einstein Tongue Out Latch Hook Rug pattern PDF. 60 × 72 knots; 3,141 positions; 17 colours selected exclusively from the fixed 25-colour Pop Art palette; beginner friendly. Pattern code: P0001-LH.",
-      "short_description_es": "Patrón PDF descargable de Alfombra latch hook: Albert Einstein sacando la lengua. 60 × 72; 3,141 posiciones; 17 colores seleccionados exclusivamente de la paleta fija Pop Art de 25 colores; apto para principiantes. Código: P0001-LH.",
-      "description": "<p><strong>Albert Einstein Tongue Out Latch Hook Rug Pattern PDF</strong> is a downloadable digital pattern from Drielo’s new Pop Art collection.</p><p><strong>Pattern code:</strong> P0001-LH</p><p>This design uses only colours from the collection’s fixed 25-colour master palette. No colours outside that palette are introduced.</p><h3>Pattern details</h3><ul><li>Chart: 60 × 72 knots</li><li>Filled knots: 3,141</li><li>Colours used: 17 from the fixed 25-colour palette</li><li>Technique: Latch hook / rug knots</li><li>Beginner friendly</li></ul><h3>What you receive</h3><p>A complete printable PDF with finished preview, pattern facts, colour key, charts, symbols, enlarged sections and working guide.</p><p>Digital product only. Personal use only.</p>",
-      "description_en": "<p><strong>Albert Einstein Tongue Out Latch Hook Rug Pattern PDF</strong> is a downloadable digital pattern from Drielo’s new Pop Art collection.</p><p><strong>Pattern code:</strong> P0001-LH</p><p>This design uses only colours from the collection’s fixed 25-colour master palette. No colours outside that palette are introduced.</p><h3>Pattern details</h3><ul><li>Chart: 60 × 72 knots</li><li>Filled knots: 3,141</li><li>Colours used: 17 from the fixed 25-colour palette</li><li>Technique: Latch hook / rug knots</li><li>Beginner friendly</li></ul><h3>What you receive</h3><p>A complete printable PDF with finished preview, pattern facts, colour key, charts, symbols, enlarged sections and working guide.</p><p>Digital product only. Personal use only.</p>",
-      "description_es": "<p><strong>Patrón PDF de alfombra latch hook: Albert Einstein sacando la lengua</strong> es un patrón digital descargable de la nueva colección Pop Art de Drielo.</p><p><strong>Código:</strong> P0001-LH</p><p>Este diseño utiliza únicamente colores de la paleta maestra fija de 25 colores de la colección. No se introduce ningún color fuera de esa paleta.</p><h3>Detalles</h3><ul><li>Gráfico: 60 × 72</li><li>Posiciones: 3,141</li><li>Colores usados: 17 de la paleta fija de 25 colores</li><li>Técnica: Nudos latch hook / alfombra</li><li>Apto para principiantes</li></ul><h3>Qué recibirás</h3><p>PDF completo e imprimible con vista previa, datos del patrón, clave de colores, gráficos, símbolos, secciones ampliadas y guía de trabajo.</p><p>Producto digital. Solo para uso personal.</p>",
+      "stitch_type": "Corner-to-corner blocks",
+      "stitch_type_en": "Corner-to-corner blocks",
+      "stitch_type_es": "Bloques de crochet C2C",
+      "short_description": "Downloadable Marilyn Monroe Bubble Gum C2C Crochet pattern PDF. 60 × 72 blocks; 3,209 positions; 19 colours selected exclusively from the fixed 25-colour Pop Art palette; beginner friendly. Pattern code: P0012-C2C.",
+      "short_description_en": "Downloadable Marilyn Monroe Bubble Gum C2C Crochet pattern PDF. 60 × 72 blocks; 3,209 positions; 19 colours selected exclusively from the fixed 25-colour Pop Art palette; beginner friendly. Pattern code: P0012-C2C.",
+      "short_description_es": "Patrón PDF descargable de Crochet C2C: Marilyn Monroe con chicle. 60 × 72; 3,209 posiciones; 19 colores seleccionados exclusivamente de la paleta fija Pop Art de 25 colores; apto para principiantes. Código: P0012-C2C.",
+      "description": "<p><strong>Marilyn Monroe Bubble Gum C2C Crochet Pattern PDF</strong> is a downloadable digital pattern from Drielo’s new Pop Art collection.</p><p><strong>Pattern code:</strong> P0012-C2C</p><p>This design uses only colours from the collection’s fixed 25-colour master palette. No colours outside that palette are introduced.</p><h3>Pattern details</h3><ul><li>Chart: 60 × 72 blocks</li><li>Filled blocks: 3,209</li><li>Colours used: 19 from the fixed 25-colour palette</li><li>Technique: Corner-to-corner blocks</li><li>Beginner friendly</li></ul><h3>What you receive</h3><p>A complete printable PDF with finished preview, pattern facts, colour key, charts, symbols, enlarged sections and working guide.</p><p>Digital product only. Personal use only.</p>",
+      "description_en": "<p><strong>Marilyn Monroe Bubble Gum C2C Crochet Pattern PDF</strong> is a downloadable digital pattern from Drielo’s new Pop Art collection.</p><p><strong>Pattern code:</strong> P0012-C2C</p><p>This design uses only colours from the collection’s fixed 25-colour master palette. No colours outside that palette are introduced.</p><h3>Pattern details</h3><ul><li>Chart: 60 × 72 blocks</li><li>Filled blocks: 3,209</li><li>Colours used: 19 from the fixed 25-colour palette</li><li>Technique: Corner-to-corner blocks</li><li>Beginner friendly</li></ul><h3>What you receive</h3><p>A complete printable PDF with finished preview, pattern facts, colour key, charts, symbols, enlarged sections and working guide.</p><p>Digital product only. Personal use only.</p>",
+      "description_es": "<p><strong>Patrón PDF de crochet C2C: Marilyn Monroe con chicle</strong> es un patrón digital descargable de la nueva colección Pop Art de Drielo.</p><p><strong>Código:</strong> P0012-C2C</p><p>Este diseño utiliza únicamente colores de la paleta maestra fija de 25 colores de la colección. No se introduce ningún color fuera de esa paleta.</p><h3>Detalles</h3><ul><li>Gráfico: 60 × 72</li><li>Posiciones: 3,209</li><li>Colores usados: 19 de la paleta fija de 25 colores</li><li>Técnica: Bloques de crochet C2C</li><li>Apto para principiantes</li></ul><h3>Qué recibirás</h3><p>PDF completo e imprimible con vista previa, datos del patrón, clave de colores, gráficos, símbolos, secciones ampliadas y guía de trabajo.</p><p>Producto digital. Solo para uso personal.</p>",
       "categories": [
-        "latch-hook-rug-patterns",
-        "latch-hook-rug-portraits",
-        "latch-hook-rug-pop-art"
+        "c2c-crochet-patterns",
+        "c2c-crochet-portraits",
+        "c2c-crochet-pop-art"
       ],
       "tags": [
-        "latch hook",
+        "c2c crochet",
         "digital pattern",
         "pop art portrait",
         "portrait pattern",
         "instant download",
         "beginner pattern",
         "colorwork chart",
-        "albert-einstein-tong"
+        "marilyn-monroe-bubbl"
       ],
       "etsy_tags_en": [
-        "latch hook",
+        "c2c crochet",
         "digital pattern",
         "pop art portrait",
         "portrait pattern",
         "instant download",
         "beginner pattern",
         "colorwork chart",
-        "albert-einstein-tong"
+        "marilyn-monroe-bubbl"
       ],
       "etsy_tags_es": [
-        "latch hook",
+        "c2c crochet",
         "digital pattern",
         "pop art portrait",
         "portrait pattern",
         "instant download",
         "beginner pattern",
         "colorwork chart",
-        "albert-einstein-tong"
+        "marilyn-monroe-bubbl"
       ],
       "gallery": [],
-      "featured_image": "assets/P0001-LH-product.webp",
-      "download": "files/Drielo_P0001-LH.pdf",
+      "featured_image": "assets/P0012-C2C-product.webp",
+      "download": "files/Drielo_P0012-C2C.pdf",
       "gallery_revision": 2026092404,
-      "seo_title": "Albert Einstein Tongue Out Latch Hook Rug Pattern PDF | Drielo",
-      "seo_title_en": "Albert Einstein Tongue Out Latch Hook Rug Pattern PDF | Drielo",
-      "seo_title_es": "Albert Einstein sacando la lengua - patrón Alfombra latch hook PDF | Drielo",
-      "meta_description": "Albert Einstein Tongue Out Latch Hook Rug PDF P0001-LH: 60 × 72, 17 colours from a fixed 25-colour palette.",
-      "meta_description_en": "Albert Einstein Tongue Out Latch Hook Rug PDF P0001-LH: 60 × 72, 17 colours from a fixed 25-colour palette.",
-      "meta_description_es": "Albert Einstein sacando la lengua, patrón Alfombra latch hook PDF P0001-LH: 60 × 72, 17 colores de una paleta fija de 25 colores.",
+      "seo_title": "Marilyn Monroe Bubble Gum C2C Crochet Pattern PDF | Drielo",
+      "seo_title_en": "Marilyn Monroe Bubble Gum C2C Crochet Pattern PDF | Drielo",
+      "seo_title_es": "Marilyn Monroe con chicle - patrón Crochet C2C PDF | Drielo",
+      "meta_description": "Marilyn Monroe Bubble Gum C2C Crochet PDF P0012-C2C: 60 × 72, 19 colours from a fixed 25-colour palette.",
+      "meta_description_en": "Marilyn Monroe Bubble Gum C2C Crochet PDF P0012-C2C: 60 × 72, 19 colours from a fixed 25-colour palette.",
+      "meta_description_es": "Marilyn Monroe con chicle, patrón Crochet C2C PDF P0012-C2C: 60 × 72, 19 colores de una paleta fija de 25 colores.",
       "purchase_note_en": "Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.",
       "purchase_note_es": "Tu PDF digital estará disponible desde la confirmación del pedido y en Mi cuenta > Descargas una vez completado el pago.",
       "size_attribute_label": "Pattern size",
-      "colour_attribute_label": "Wool colours",
+      "colour_attribute_label": "Yarn colours",
       "type_attribute_label": "Technique",
-      "count_attribute_label": "Filled knots",
+      "count_attribute_label": "Filled blocks",
       "filters": {
         "technique": [
-          "latch-hook"
+          "c2c-crochet"
         ],
         "theme": [
           "people-portraits"
@@ -692,7 +1280,7 @@
           "colorful"
         ],
         "project": [
-          "rug"
+          "blanket"
         ],
         "orientation": [
           "portrait"
@@ -818,20 +1406,20 @@
       ]
     },
     {
-      "code": "P0012-C2C",
-      "sku": "DRIELO-P0012-C2C",
+      "code": "P0012-LH",
+      "sku": "DRIELO-P0012-LH",
       "base_design_id": "P0012",
-      "design_id": "P0012-C2C",
-      "technique_code": "C2C",
-      "technique": "c2c-crochet",
-      "title": "Marilyn Monroe Bubble Gum C2C Crochet Pattern PDF",
-      "title_en": "Marilyn Monroe Bubble Gum C2C Crochet Pattern PDF",
-      "title_es": "Patrón PDF de crochet C2C: Marilyn Monroe con chicle",
-      "slug": "marilyn-monroe-bubble-gum-c2c-crochet-pattern",
-      "price": 4.99,
+      "design_id": "P0012-LH",
+      "technique_code": "LH",
+      "technique": "latch-hook",
+      "title": "Marilyn Monroe Bubble Gum Latch Hook Rug Pattern PDF",
+      "title_en": "Marilyn Monroe Bubble Gum Latch Hook Rug Pattern PDF",
+      "title_es": "Patrón PDF de alfombra latch hook: Marilyn Monroe con chicle",
+      "slug": "marilyn-monroe-bubble-gum-latch-hook-pattern",
+      "price": 3.99,
       "collection": "pop-art-25",
       "stitches": 3209,
-      "grid": "60 × 72 blocks",
+      "grid": "60 × 72 knots",
       "colours": 19,
       "color_count": 19,
       "grid_width": 60,
@@ -839,22 +1427,22 @@
       "skill": "Beginner friendly",
       "skill_en": "Beginner friendly",
       "skill_es": "Apto para principiantes",
-      "stitch_type": "Corner-to-corner blocks",
-      "stitch_type_en": "Corner-to-corner blocks",
-      "stitch_type_es": "Bloques de crochet C2C",
-      "short_description": "Downloadable Marilyn Monroe Bubble Gum C2C Crochet pattern PDF. 60 × 72 blocks; 3,209 positions; 19 colours selected exclusively from the fixed 25-colour Pop Art palette; beginner friendly. Pattern code: P0012-C2C.",
-      "short_description_en": "Downloadable Marilyn Monroe Bubble Gum C2C Crochet pattern PDF. 60 × 72 blocks; 3,209 positions; 19 colours selected exclusively from the fixed 25-colour Pop Art palette; beginner friendly. Pattern code: P0012-C2C.",
-      "short_description_es": "Patrón PDF descargable de Crochet C2C: Marilyn Monroe con chicle. 60 × 72; 3,209 posiciones; 19 colores seleccionados exclusivamente de la paleta fija Pop Art de 25 colores; apto para principiantes. Código: P0012-C2C.",
-      "description": "<p><strong>Marilyn Monroe Bubble Gum C2C Crochet Pattern PDF</strong> is a downloadable digital pattern from Drielo’s new Pop Art collection.</p><p><strong>Pattern code:</strong> P0012-C2C</p><p>This design uses only colours from the collection’s fixed 25-colour master palette. No colours outside that palette are introduced.</p><h3>Pattern details</h3><ul><li>Chart: 60 × 72 blocks</li><li>Filled blocks: 3,209</li><li>Colours used: 19 from the fixed 25-colour palette</li><li>Technique: Corner-to-corner blocks</li><li>Beginner friendly</li></ul><h3>What you receive</h3><p>A complete printable PDF with finished preview, pattern facts, colour key, charts, symbols, enlarged sections and working guide.</p><p>Digital product only. Personal use only.</p>",
-      "description_en": "<p><strong>Marilyn Monroe Bubble Gum C2C Crochet Pattern PDF</strong> is a downloadable digital pattern from Drielo’s new Pop Art collection.</p><p><strong>Pattern code:</strong> P0012-C2C</p><p>This design uses only colours from the collection’s fixed 25-colour master palette. No colours outside that palette are introduced.</p><h3>Pattern details</h3><ul><li>Chart: 60 × 72 blocks</li><li>Filled blocks: 3,209</li><li>Colours used: 19 from the fixed 25-colour palette</li><li>Technique: Corner-to-corner blocks</li><li>Beginner friendly</li></ul><h3>What you receive</h3><p>A complete printable PDF with finished preview, pattern facts, colour key, charts, symbols, enlarged sections and working guide.</p><p>Digital product only. Personal use only.</p>",
-      "description_es": "<p><strong>Patrón PDF de crochet C2C: Marilyn Monroe con chicle</strong> es un patrón digital descargable de la nueva colección Pop Art de Drielo.</p><p><strong>Código:</strong> P0012-C2C</p><p>Este diseño utiliza únicamente colores de la paleta maestra fija de 25 colores de la colección. No se introduce ningún color fuera de esa paleta.</p><h3>Detalles</h3><ul><li>Gráfico: 60 × 72</li><li>Posiciones: 3,209</li><li>Colores usados: 19 de la paleta fija de 25 colores</li><li>Técnica: Bloques de crochet C2C</li><li>Apto para principiantes</li></ul><h3>Qué recibirás</h3><p>PDF completo e imprimible con vista previa, datos del patrón, clave de colores, gráficos, símbolos, secciones ampliadas y guía de trabajo.</p><p>Producto digital. Solo para uso personal.</p>",
+      "stitch_type": "Latch hook / rug knots",
+      "stitch_type_en": "Latch hook / rug knots",
+      "stitch_type_es": "Nudos latch hook / alfombra",
+      "short_description": "Downloadable Marilyn Monroe Bubble Gum Latch Hook Rug pattern PDF. 60 × 72 knots; 3,209 positions; 19 colours selected exclusively from the fixed 25-colour Pop Art palette; beginner friendly. Pattern code: P0012-LH.",
+      "short_description_en": "Downloadable Marilyn Monroe Bubble Gum Latch Hook Rug pattern PDF. 60 × 72 knots; 3,209 positions; 19 colours selected exclusively from the fixed 25-colour Pop Art palette; beginner friendly. Pattern code: P0012-LH.",
+      "short_description_es": "Patrón PDF descargable de Alfombra latch hook: Marilyn Monroe con chicle. 60 × 72; 3,209 posiciones; 19 colores seleccionados exclusivamente de la paleta fija Pop Art de 25 colores; apto para principiantes. Código: P0012-LH.",
+      "description": "<p><strong>Marilyn Monroe Bubble Gum Latch Hook Rug Pattern PDF</strong> is a downloadable digital pattern from Drielo’s new Pop Art collection.</p><p><strong>Pattern code:</strong> P0012-LH</p><p>This design uses only colours from the collection’s fixed 25-colour master palette. No colours outside that palette are introduced.</p><h3>Pattern details</h3><ul><li>Chart: 60 × 72 knots</li><li>Filled knots: 3,209</li><li>Colours used: 19 from the fixed 25-colour palette</li><li>Technique: Latch hook / rug knots</li><li>Beginner friendly</li></ul><h3>What you receive</h3><p>A complete printable PDF with finished preview, pattern facts, colour key, charts, symbols, enlarged sections and working guide.</p><p>Digital product only. Personal use only.</p>",
+      "description_en": "<p><strong>Marilyn Monroe Bubble Gum Latch Hook Rug Pattern PDF</strong> is a downloadable digital pattern from Drielo’s new Pop Art collection.</p><p><strong>Pattern code:</strong> P0012-LH</p><p>This design uses only colours from the collection’s fixed 25-colour master palette. No colours outside that palette are introduced.</p><h3>Pattern details</h3><ul><li>Chart: 60 × 72 knots</li><li>Filled knots: 3,209</li><li>Colours used: 19 from the fixed 25-colour palette</li><li>Technique: Latch hook / rug knots</li><li>Beginner friendly</li></ul><h3>What you receive</h3><p>A complete printable PDF with finished preview, pattern facts, colour key, charts, symbols, enlarged sections and working guide.</p><p>Digital product only. Personal use only.</p>",
+      "description_es": "<p><strong>Patrón PDF de alfombra latch hook: Marilyn Monroe con chicle</strong> es un patrón digital descargable de la nueva colección Pop Art de Drielo.</p><p><strong>Código:</strong> P0012-LH</p><p>Este diseño utiliza únicamente colores de la paleta maestra fija de 25 colores de la colección. No se introduce ningún color fuera de esa paleta.</p><h3>Detalles</h3><ul><li>Gráfico: 60 × 72</li><li>Posiciones: 3,209</li><li>Colores usados: 19 de la paleta fija de 25 colores</li><li>Técnica: Nudos latch hook / alfombra</li><li>Apto para principiantes</li></ul><h3>Qué recibirás</h3><p>PDF completo e imprimible con vista previa, datos del patrón, clave de colores, gráficos, símbolos, secciones ampliadas y guía de trabajo.</p><p>Producto digital. Solo para uso personal.</p>",
       "categories": [
-        "c2c-crochet-patterns",
-        "c2c-crochet-portraits",
-        "c2c-crochet-pop-art"
+        "latch-hook-rug-patterns",
+        "latch-hook-rug-portraits",
+        "latch-hook-rug-pop-art"
       ],
       "tags": [
-        "c2c crochet",
+        "latch hook",
         "digital pattern",
         "pop art portrait",
         "portrait pattern",
@@ -864,7 +1452,7 @@
         "marilyn-monroe-bubbl"
       ],
       "etsy_tags_en": [
-        "c2c crochet",
+        "latch hook",
         "digital pattern",
         "pop art portrait",
         "portrait pattern",
@@ -874,7 +1462,7 @@
         "marilyn-monroe-bubbl"
       ],
       "etsy_tags_es": [
-        "c2c crochet",
+        "latch hook",
         "digital pattern",
         "pop art portrait",
         "portrait pattern",
@@ -884,24 +1472,24 @@
         "marilyn-monroe-bubbl"
       ],
       "gallery": [],
-      "featured_image": "assets/P0012-C2C-product.webp",
-      "download": "files/Drielo_P0012-C2C.pdf",
+      "featured_image": "assets/P0012-LH-product.webp",
+      "download": "files/Drielo_P0012-LH.pdf",
       "gallery_revision": 2026092404,
-      "seo_title": "Marilyn Monroe Bubble Gum C2C Crochet Pattern PDF | Drielo",
-      "seo_title_en": "Marilyn Monroe Bubble Gum C2C Crochet Pattern PDF | Drielo",
-      "seo_title_es": "Marilyn Monroe con chicle - patrón Crochet C2C PDF | Drielo",
-      "meta_description": "Marilyn Monroe Bubble Gum C2C Crochet PDF P0012-C2C: 60 × 72, 19 colours from a fixed 25-colour palette.",
-      "meta_description_en": "Marilyn Monroe Bubble Gum C2C Crochet PDF P0012-C2C: 60 × 72, 19 colours from a fixed 25-colour palette.",
-      "meta_description_es": "Marilyn Monroe con chicle, patrón Crochet C2C PDF P0012-C2C: 60 × 72, 19 colores de una paleta fija de 25 colores.",
+      "seo_title": "Marilyn Monroe Bubble Gum Latch Hook Rug Pattern PDF | Drielo",
+      "seo_title_en": "Marilyn Monroe Bubble Gum Latch Hook Rug Pattern PDF | Drielo",
+      "seo_title_es": "Marilyn Monroe con chicle - patrón Alfombra latch hook PDF | Drielo",
+      "meta_description": "Marilyn Monroe Bubble Gum Latch Hook Rug PDF P0012-LH: 60 × 72, 19 colours from a fixed 25-colour palette.",
+      "meta_description_en": "Marilyn Monroe Bubble Gum Latch Hook Rug PDF P0012-LH: 60 × 72, 19 colours from a fixed 25-colour palette.",
+      "meta_description_es": "Marilyn Monroe con chicle, patrón Alfombra latch hook PDF P0012-LH: 60 × 72, 19 colores de una paleta fija de 25 colores.",
       "purchase_note_en": "Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.",
       "purchase_note_es": "Tu PDF digital estará disponible desde la confirmación del pedido y en Mi cuenta > Descargas una vez completado el pago.",
       "size_attribute_label": "Pattern size",
-      "colour_attribute_label": "Yarn colours",
+      "colour_attribute_label": "Wool colours",
       "type_attribute_label": "Technique",
-      "count_attribute_label": "Filled blocks",
+      "count_attribute_label": "Filled knots",
       "filters": {
         "technique": [
-          "c2c-crochet"
+          "latch-hook"
         ],
         "theme": [
           "people-portraits"
@@ -911,7 +1499,7 @@
           "colorful"
         ],
         "project": [
-          "blanket"
+          "rug"
         ],
         "orientation": [
           "portrait"
@@ -1020,114 +1608,6 @@
         ],
         "project": [
           "tapestry"
-        ],
-        "orientation": [
-          "portrait"
-        ],
-        "difficulty": [
-          "beginner"
-        ],
-        "color-family": [
-          "multicolor"
-        ],
-        "season": []
-      }
-    },
-    {
-      "code": "P0012-LH",
-      "sku": "DRIELO-P0012-LH",
-      "base_design_id": "P0012",
-      "design_id": "P0012-LH",
-      "technique_code": "LH",
-      "technique": "latch-hook",
-      "title": "Marilyn Monroe Bubble Gum Latch Hook Rug Pattern PDF",
-      "title_en": "Marilyn Monroe Bubble Gum Latch Hook Rug Pattern PDF",
-      "title_es": "Patrón PDF de alfombra latch hook: Marilyn Monroe con chicle",
-      "slug": "marilyn-monroe-bubble-gum-latch-hook-pattern",
-      "price": 3.99,
-      "collection": "pop-art-25",
-      "stitches": 3209,
-      "grid": "60 × 72 knots",
-      "colours": 19,
-      "color_count": 19,
-      "grid_width": 60,
-      "grid_height": 72,
-      "skill": "Beginner friendly",
-      "skill_en": "Beginner friendly",
-      "skill_es": "Apto para principiantes",
-      "stitch_type": "Latch hook / rug knots",
-      "stitch_type_en": "Latch hook / rug knots",
-      "stitch_type_es": "Nudos latch hook / alfombra",
-      "short_description": "Downloadable Marilyn Monroe Bubble Gum Latch Hook Rug pattern PDF. 60 × 72 knots; 3,209 positions; 19 colours selected exclusively from the fixed 25-colour Pop Art palette; beginner friendly. Pattern code: P0012-LH.",
-      "short_description_en": "Downloadable Marilyn Monroe Bubble Gum Latch Hook Rug pattern PDF. 60 × 72 knots; 3,209 positions; 19 colours selected exclusively from the fixed 25-colour Pop Art palette; beginner friendly. Pattern code: P0012-LH.",
-      "short_description_es": "Patrón PDF descargable de Alfombra latch hook: Marilyn Monroe con chicle. 60 × 72; 3,209 posiciones; 19 colores seleccionados exclusivamente de la paleta fija Pop Art de 25 colores; apto para principiantes. Código: P0012-LH.",
-      "description": "<p><strong>Marilyn Monroe Bubble Gum Latch Hook Rug Pattern PDF</strong> is a downloadable digital pattern from Drielo’s new Pop Art collection.</p><p><strong>Pattern code:</strong> P0012-LH</p><p>This design uses only colours from the collection’s fixed 25-colour master palette. No colours outside that palette are introduced.</p><h3>Pattern details</h3><ul><li>Chart: 60 × 72 knots</li><li>Filled knots: 3,209</li><li>Colours used: 19 from the fixed 25-colour palette</li><li>Technique: Latch hook / rug knots</li><li>Beginner friendly</li></ul><h3>What you receive</h3><p>A complete printable PDF with finished preview, pattern facts, colour key, charts, symbols, enlarged sections and working guide.</p><p>Digital product only. Personal use only.</p>",
-      "description_en": "<p><strong>Marilyn Monroe Bubble Gum Latch Hook Rug Pattern PDF</strong> is a downloadable digital pattern from Drielo’s new Pop Art collection.</p><p><strong>Pattern code:</strong> P0012-LH</p><p>This design uses only colours from the collection’s fixed 25-colour master palette. No colours outside that palette are introduced.</p><h3>Pattern details</h3><ul><li>Chart: 60 × 72 knots</li><li>Filled knots: 3,209</li><li>Colours used: 19 from the fixed 25-colour palette</li><li>Technique: Latch hook / rug knots</li><li>Beginner friendly</li></ul><h3>What you receive</h3><p>A complete printable PDF with finished preview, pattern facts, colour key, charts, symbols, enlarged sections and working guide.</p><p>Digital product only. Personal use only.</p>",
-      "description_es": "<p><strong>Patrón PDF de alfombra latch hook: Marilyn Monroe con chicle</strong> es un patrón digital descargable de la nueva colección Pop Art de Drielo.</p><p><strong>Código:</strong> P0012-LH</p><p>Este diseño utiliza únicamente colores de la paleta maestra fija de 25 colores de la colección. No se introduce ningún color fuera de esa paleta.</p><h3>Detalles</h3><ul><li>Gráfico: 60 × 72</li><li>Posiciones: 3,209</li><li>Colores usados: 19 de la paleta fija de 25 colores</li><li>Técnica: Nudos latch hook / alfombra</li><li>Apto para principiantes</li></ul><h3>Qué recibirás</h3><p>PDF completo e imprimible con vista previa, datos del patrón, clave de colores, gráficos, símbolos, secciones ampliadas y guía de trabajo.</p><p>Producto digital. Solo para uso personal.</p>",
-      "categories": [
-        "latch-hook-rug-patterns",
-        "latch-hook-rug-portraits",
-        "latch-hook-rug-pop-art"
-      ],
-      "tags": [
-        "latch hook",
-        "digital pattern",
-        "pop art portrait",
-        "portrait pattern",
-        "instant download",
-        "beginner pattern",
-        "colorwork chart",
-        "marilyn-monroe-bubbl"
-      ],
-      "etsy_tags_en": [
-        "latch hook",
-        "digital pattern",
-        "pop art portrait",
-        "portrait pattern",
-        "instant download",
-        "beginner pattern",
-        "colorwork chart",
-        "marilyn-monroe-bubbl"
-      ],
-      "etsy_tags_es": [
-        "latch hook",
-        "digital pattern",
-        "pop art portrait",
-        "portrait pattern",
-        "instant download",
-        "beginner pattern",
-        "colorwork chart",
-        "marilyn-monroe-bubbl"
-      ],
-      "gallery": [],
-      "featured_image": "assets/P0012-LH-product.webp",
-      "download": "files/Drielo_P0012-LH.pdf",
-      "gallery_revision": 2026092404,
-      "seo_title": "Marilyn Monroe Bubble Gum Latch Hook Rug Pattern PDF | Drielo",
-      "seo_title_en": "Marilyn Monroe Bubble Gum Latch Hook Rug Pattern PDF | Drielo",
-      "seo_title_es": "Marilyn Monroe con chicle - patrón Alfombra latch hook PDF | Drielo",
-      "meta_description": "Marilyn Monroe Bubble Gum Latch Hook Rug PDF P0012-LH: 60 × 72, 19 colours from a fixed 25-colour palette.",
-      "meta_description_en": "Marilyn Monroe Bubble Gum Latch Hook Rug PDF P0012-LH: 60 × 72, 19 colours from a fixed 25-colour palette.",
-      "meta_description_es": "Marilyn Monroe con chicle, patrón Alfombra latch hook PDF P0012-LH: 60 × 72, 19 colores de una paleta fija de 25 colores.",
-      "purchase_note_en": "Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.",
-      "purchase_note_es": "Tu PDF digital estará disponible desde la confirmación del pedido y en Mi cuenta > Descargas una vez completado el pago.",
-      "size_attribute_label": "Pattern size",
-      "colour_attribute_label": "Wool colours",
-      "type_attribute_label": "Technique",
-      "count_attribute_label": "Filled knots",
-      "filters": {
-        "technique": [
-          "latch-hook"
-        ],
-        "theme": [
-          "people-portraits"
-        ],
-        "style": [
-          "pop-art",
-          "colorful"
-        ],
-        "project": [
-          "rug"
         ],
         "orientation": [
           "portrait"
