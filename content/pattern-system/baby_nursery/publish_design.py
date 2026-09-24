@@ -95,6 +95,52 @@ def threads_from_matrix(matrix, palette):
     return threads
 
 
+def remove_external_dark_matrix(matrix, dark_symbol, neighborhood=8):
+    if not matrix or not matrix[0] or not dark_symbol:
+        return matrix, {"removed_cells":0,"components":0}
+
+    out=[row[:] for row in matrix]
+    h,w=len(out),len(out[0])
+    if neighborhood == 4:
+        offsets=[(-1,0),(1,0),(0,-1),(0,1)]
+    else:
+        offsets=[(dy,dx) for dy in (-1,0,1) for dx in (-1,0,1) if not (dy==0 and dx==0)]
+
+    seeds=[]
+    for y in range(h):
+        for x in range(w):
+            if out[y][x] != dark_symbol:
+                continue
+            if any(
+                yy<0 or yy>=h or xx<0 or xx>=w or out[yy][xx] is None
+                for dy,dx in offsets
+                for yy,xx in [(y+dy,x+dx)]
+            ):
+                seeds.append((y,x))
+
+    seen=set()
+    removed=set()
+    components=0
+    for seed in seeds:
+        if seed in seen:
+            continue
+        components+=1
+        stack=[seed]
+        seen.add(seed)
+        while stack:
+            y,x=stack.pop()
+            removed.add((y,x))
+            for dy,dx in offsets:
+                yy,xx=y+dy,x+dx
+                if 0<=yy<h and 0<=xx<w and out[yy][xx]==dark_symbol and (yy,xx) not in seen:
+                    seen.add((yy,xx))
+                    stack.append((yy,xx))
+
+    for y,x in removed:
+        out[y][x]=None
+    return out, {"removed_cells":len(removed),"components":components,"neighborhood":neighborhood}
+
+
 def cleanup_isolated_external_white(matrix, white_symbol, max_component_cells=12, neighborhood=8):
     if not matrix or not matrix[0] or not white_symbol:
         return matrix, {"removed_components": 0, "removed_cells": 0}
@@ -134,10 +180,36 @@ def cleanup_isolated_external_white(matrix, white_symbol, max_component_cells=12
                     elif value is not None and value != white_symbol:
                         touches_nonwhite = True
 
-            # Exterior antialias/fleck pixels are small white islands floating in
-            # transparent canvas. Intentional motif whites touch another motif
-            # colour/outline or form a larger region, so they are preserved.
-            if len(component) <= max_component_cells and not touches_nonwhite:
+            boundary_cells = 0
+            neighbour_cells = set()
+            enclosed = 0
+            for cy, cx in component:
+                exterior = False
+                for dy, dx in offsets:
+                    yy, xx = cy + dy, cx + dx
+                    if yy < 0 or yy >= h or xx < 0 or xx >= w or out[yy][xx] is None:
+                        exterior = True
+                    elif out[yy][xx] != white_symbol:
+                        neighbour_cells.add((yy, xx))
+                if exterior:
+                    boundary_cells += 1
+
+                left = any(out[cy][xx] is not None and out[cy][xx] != white_symbol for xx in range(max(0,cx-4),cx))
+                right = any(out[cy][xx] is not None and out[cy][xx] != white_symbol for xx in range(cx+1,min(w,cx+5)))
+                up = any(out[yy][cx] is not None and out[yy][cx] != white_symbol for yy in range(max(0,cy-4),cy))
+                down = any(out[yy][cx] is not None and out[yy][cx] != white_symbol for yy in range(cy+1,min(h,cy+5)))
+                if (left and right) or (up and down):
+                    enclosed += 1
+
+            n = len(component)
+            intentional = n >= 20 or enclosed >= max(1,n//3) or len(neighbour_cells) >= 3
+            weakly_attached = len(neighbour_cells) <= 1
+            fully_exterior = boundary_cells == n
+            remove = (
+                (n <= max_component_cells and weakly_attached and not intentional)
+                or (n <= 4 and fully_exterior and not intentional)
+            )
+            if remove:
                 for cy, cx in component:
                     out[cy][cx] = None
                 removed_components += 1
@@ -387,10 +459,27 @@ def rebuild_from_master(base_id: str, design: dict, collection: dict):
     if not counts:
         raise RuntimeError(f"{base_id}: source master produced an empty pattern")
 
+    dark_rule = collection.get("pattern_rules", {}).get("external_dark_cleanup", {})
+    dark_symbol = None
+    if dark_rule.get("enabled", False):
+        dark_dmc = str(dark_rule.get("dmc", "310"))
+        try:
+            dark_index = next(i for i,p in enumerate(palette) if str(p["dmc"]).upper() == dark_dmc.upper())
+        except StopIteration:
+            raise RuntimeError(f"{base_id}: dark cleanup DMC {dark_dmc} not found in collection palette")
+        dark_symbol = SYMBOLS[dark_index]
+        matrix, dark_stats_cs = remove_external_dark_matrix(
+            matrix,
+            dark_symbol,
+            neighborhood=int(dark_rule.get("neighborhood", 8)),
+        )
+    else:
+        dark_stats_cs = {"removed_cells":0,"components":0}
+
     white_rule = collection.get("pattern_rules", {}).get("external_white_cleanup", {})
     white_symbol = None
     if white_rule.get("enabled", False):
-        white_dmc = str(white_rule.get("dmc", "3865"))
+        white_dmc = str(white_rule.get("dmc", "B5200"))
         try:
             white_index = next(i for i, p in enumerate(palette) if str(p["dmc"]) == white_dmc)
         except StopIteration:
@@ -424,11 +513,19 @@ def rebuild_from_master(base_id: str, design: dict, collection: dict):
         outline_stats_cs = {"changed": 0, "boundary_cells": 0, "extra_outline_removed": 0}
 
     threads = threads_from_matrix(matrix, palette)
-    matrices = {"CS": (matrix, threads, outline_stats_cs, white_stats_cs)}
+    matrices = {"CS": (matrix, threads, outline_stats_cs, white_stats_cs, dark_stats_cs)}
 
     for suffix in ("C2C", "TC", "LH"):
         cfg = bg.TECHS[suffix]
         m, _ = bg.downsample(matrix, threads, cfg["w"], cfg["h"])
+        if dark_symbol:
+            m, dark_stats = remove_external_dark_matrix(
+                m,
+                dark_symbol,
+                neighborhood=int(dark_rule.get("neighborhood", 8)),
+            )
+        else:
+            dark_stats = {"removed_cells":0,"components":0}
         if white_symbol:
             m, white_stats = cleanup_isolated_external_white(
                 m,
@@ -447,13 +544,13 @@ def rebuild_from_master(base_id: str, design: dict, collection: dict):
             )
         else:
             stats = {"changed": 0, "boundary_cells": 0, "extra_outline_removed": 0}
-        matrices[suffix] = (m, threads_from_matrix(m, palette), stats, white_stats)
+        matrices[suffix] = (m, threads_from_matrix(m, palette), stats, white_stats, dark_stats)
 
     page_assets = collection["mockup_spec"]["technique_assets"]
     for suffix in SUFFIXES:
         code = f"{base_id}-{suffix}"
         cfg = bg.TECHS[suffix]
-        mat, th, outline_stats, white_stats = matrices[suffix]
+        mat, th, outline_stats, white_stats, dark_stats = matrices[suffix]
         pattern_path = PATTERNS / code / "pattern.json"
         product_path = PRODUCTS / code / "product.json"
         pattern = read_json(pattern_path)
@@ -476,14 +573,20 @@ def rebuild_from_master(base_id: str, design: dict, collection: dict):
                 "matrix": mat,
                 "outline_policy": {
                     "enabled": bool(outline_symbol),
-                    "dmc": str(outline_rule.get("dmc", "3799")) if outline_symbol else None,
+                    "dmc": str(outline_rule.get("dmc", "310")) if outline_symbol else None,
                     "thickness_cells": 1 if outline_symbol else None,
                     "neighborhood": int(outline_rule.get("neighborhood", 8)) if outline_symbol else None,
                     "stats": outline_stats,
                 },
+                "external_dark_cleanup": {
+                    "enabled": bool(dark_symbol),
+                    "dmc": str(dark_rule.get("dmc", "310")) if dark_symbol else None,
+                    "neighborhood": int(dark_rule.get("neighborhood", 8)) if dark_symbol else None,
+                    "stats": dark_stats,
+                },
                 "external_white_cleanup": {
                     "enabled": bool(white_symbol),
-                    "dmc": str(white_rule.get("dmc", "3865")) if white_symbol else None,
+                    "dmc": str(white_rule.get("dmc", "B5200")) if white_symbol else None,
                     "max_isolated_component_cells": int(white_rule.get("max_isolated_component_cells", 12)) if white_symbol else None,
                     "neighborhood": int(white_rule.get("neighborhood", 8)) if white_symbol else None,
                     "stats": white_stats,
