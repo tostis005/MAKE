@@ -175,7 +175,7 @@
       "TC": "assets/page-1-tapestry-crochet.webp",
       "LH": "assets/page-1-latch-hook.webp"
     },
-    "status": "florals-specific-page-1-scenes-user-approved",
+    "status": "florals-specific-page-1-scenes-user-approved-and-verified",
     "technique_layouts": {
       "CS": {
         "cover_overlay": {
@@ -222,12 +222,18 @@
         "cover_stage_scale": 125
       }
     },
-    "mapping_note": "Strict one-to-one Florals mapping from the four user uploads: CS = framed white Aida/cross-stitch canvas (114968); C2C = cream blanket/panel on freestanding wooden rack (114966); TC = cream crochet wall hanging on horizontal dowel (114967); LH = plush tufted rug wall hanging on dowel (114969). Do not swap these assets between techniques.",
+    "mapping_note": "Verified one-to-one mapping from the four user uploads: CS = framed white Aida/cross-stitch canvas (114968); C2C = cream blanket/panel on freestanding wooden rack (114966); TC = cream crochet wall hanging on horizontal dowel (114967); LH = plush tufted rug wall hanging on dowel (114969). Do not swap these assets between techniques.",
     "source_files": {
       "CS": "user-upload-114968",
       "C2C": "user-upload-114966",
       "TC": "user-upload-114967",
       "LH": "user-upload-114969"
+    },
+    "verified_asset_blobs": {
+      "CS": "398fb3243f3058d2b0392804caa068668f16479d",
+      "C2C": "8aa223b8d4684bc03d3532cc17a15f8d3d638105",
+      "TC": "e84943a643d135fbc8270578428505f021c5e94f",
+      "LH": "c5d09d76172cd1de7f563308d09edb96fdccc84d"
     }
   },
   "preview_rules": {
