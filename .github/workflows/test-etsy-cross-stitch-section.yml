@@ -1,0 +1,70 @@
+name: Test Etsy Cross Stitch section update
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/test-etsy-cross-stitch-section.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_section_key
+          chmod 600 ~/.ssh/drielo_section_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Test section assignment on one Cross Stitch listing
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_section_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $sync=Drielo_Etsy_Sync::instance();
+            $ref=new ReflectionClass($sync);
+            $request=$ref->getMethod("etsy_request"); $request->setAccessible(true);
+            $settings_m=$ref->getMethod("settings"); $settings_m->setAccessible(true);
+            $settings=$settings_m->invoke($sync);
+
+            $listing=(string)get_post_meta(2490,"_drielo_etsy_listing_id",true);
+            $shop=(string)$settings["shop_id"];
+            $section=60539213;
+            echo "LISTING=".$listing." SHOP=".$shop." SECTION=".$section.PHP_EOL;
+
+            $r1=$request->invoke($sync,"PATCH","/v3/application/shops/".rawurlencode($shop)."/listings/".rawurlencode($listing),array("shop_section_id"=>$section),true);
+            echo "PATCH_SHOP_SECTION_ID=".(is_wp_error($r1)?$r1->get_error_message():wp_json_encode($r1)).PHP_EOL;
+
+            $after1=$request->invoke($sync,"GET","/v3/application/listings/".rawurlencode($listing),array(),true);
+            $assigned1=is_wp_error($after1)?0:(int)($after1["shop_section_id"]??0);
+            echo "AFTER_PATCH_SECTION=".$assigned1.PHP_EOL;
+
+            if($assigned1!==$section){
+              $r2=$request->invoke($sync,"PUT","/v3/application/shops/".rawurlencode($shop)."/listings/".rawurlencode($listing),array("section_id"=>$section),true);
+              echo "PUT_SECTION_ID=".(is_wp_error($r2)?$r2->get_error_message():wp_json_encode($r2)).PHP_EOL;
+            }
+
+            $after2=$request->invoke($sync,"GET","/v3/application/listings/".rawurlencode($listing),array(),true);
+            $assigned2=is_wp_error($after2)?0:(int)($after2["shop_section_id"]??0);
+            echo "FINAL_SECTION=".$assigned2.PHP_EOL;
+            if($assigned2!==$section) exit(3);
+          '
+          REMOTE
