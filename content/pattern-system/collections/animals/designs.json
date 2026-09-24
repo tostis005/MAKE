@@ -251,7 +251,9 @@
       ],
       "artwork_status": "canonical-reference-ready",
       "reference_asset": "collections/animals/reference-masters/A0014-elephant-heart-balloon-reference.png",
-      "source_asset": "collections/animals/source-designs/A0014-elephant-heart-balloon.png"
+      "source_asset": "collections/animals/source-designs/A0014-elephant-heart-balloon.png",
+      "product_status": "ready",
+      "transparent_background": true
     },
     {
       "order": 15,

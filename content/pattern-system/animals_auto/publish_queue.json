@@ -154,10 +154,11 @@
       "title_en": "Elephant with Heart Balloon",
       "title_es": "Elefante con globo corazón",
       "slug": "elephant-heart-balloon",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36002378112",
+      "last_error": null,
+      "published_at": "2026-09-24T13:01:40+00:00"
     },
     {
       "base_design_id": "A0015",
