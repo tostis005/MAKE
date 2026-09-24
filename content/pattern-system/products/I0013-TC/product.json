@@ -1,0 +1,19 @@
+{
+  "code": "I0013-TC",
+  "base_design_id": "I0013",
+  "technique_code": "TC",
+  "collection": "baby-nursery",
+  "title": "Baby Fox",
+  "title_en": "Baby Fox",
+  "title_es": "Zorrito bebé",
+  "design_slug": "fox-bow",
+  "technique": "tapestry-crochet",
+  "pattern_file": "patterns/I0013-TC/pattern.json",
+  "template": "crochet.html",
+  "website": "www.drielo.com",
+  "status": "active",
+  "render_ready": true,
+  "source_artwork": "collections/baby-nursery/source-designs/I0013-fox-bow.png",
+  "page_1_asset": "collections/baby-nursery/assets/cover-crochet.jpg",
+  "reference_artwork": "collections/baby-nursery/reference-masters/I0013-fox-bow-reference.png"
+}
