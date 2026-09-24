@@ -1,6 +1,6 @@
 {
   "collection": "baby-nursery",
-  "reference_policy": "User-approved uploaded reference sheets are canonical. Use per-design references first, then the verified direct-reference bundle; never invent, redraw, substitute, or approximate motifs.",
+  "reference_policy": "User-approved kawaii images are canonical for the approved v4 batch. Reconstruct their extracted 100x120 stitch matrices verbatim; do not supersample, redraw or approximate them.",
   "canonical_archive": null,
   "archive_encoding": "concatenated base64(zlib(json))",
   "decoded_sha256": "533a4d7ed0892fd142eed3406b4740a539f70cbfffeaf932813466800a97ad19",
@@ -247,11 +247,26 @@
     "WooCommerce"
   ],
   "direct_reference_bundle_parts": [
-    "direct-reference-bundle-v2.part00",
-    "direct-reference-bundle-v2.part01",
-    "direct-reference-bundle-v2.part02",
-    "direct-reference-bundle-v2.part03"
+    "direct-reference-bundle-v4.part00",
+    "direct-reference-bundle-v4.part01",
+    "direct-reference-bundle-v4.part02",
+    "direct-reference-bundle-v4.part03",
+    "direct-reference-bundle-v4.part04",
+    "direct-reference-bundle-v4.part05"
   ],
-  "direct_reference_bundle_decoded_sha256": "b211ce6d96b8afb211c3ee9e0be7b1488b0ca3f5ac8a48182fd9a63560c062a2",
-  "direct_reference_bundle_designs": 28
+  "direct_reference_bundle_decoded_sha256": "b27b12cc29723c258ca48e96ba6694d2e9079a8f58998134c9aa07347dbc5817",
+  "direct_reference_bundle_designs": 10,
+  "direct_reference_bundle_label": "user-approved-kawaii-v4",
+  "direct_reference_bundle_ids": [
+    "I0002",
+    "I0003",
+    "I0004",
+    "I0005",
+    "I0006",
+    "I0008",
+    "I0011",
+    "I0017",
+    "I0021",
+    "I0023"
+  ]
 }
