@@ -275,10 +275,11 @@
       "title_en": "Red Panda with Flowers",
       "title_es": "Panda rojo con flores",
       "slug": "red-panda-flowers",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36007624774",
+      "last_error": null,
+      "published_at": "2026-09-24T13:47:22+00:00"
     },
     {
       "base_design_id": "A0026",
