@@ -1,4 +1,5 @@
 name: Clear Cross Stitch section from reused C2C listings
+# trigger cleanup
 
 on:
   push:
