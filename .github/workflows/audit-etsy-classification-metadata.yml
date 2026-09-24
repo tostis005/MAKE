@@ -1,0 +1,85 @@
+name: Audit Etsy classification metadata
+
+on:
+  push:
+    branches:
+      - feature/etsy-technique-classification
+    paths:
+      - '.github/workflows/audit-etsy-classification-metadata.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/key
+          chmod 600 ~/.ssh/key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Audit local classification state
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          ssh -o ServerAliveInterval=30 -o ServerAliveCountMax=10 -i ~/.ssh/key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $expected=array(
+              "CS"=>array("taxonomy"=>87,"section"=>60539213,"craft"=>0),
+              "C2C"=>array("taxonomy"=>6343,"section"=>60541905,"craft"=>543),
+              "TC"=>array("taxonomy"=>6343,"section"=>60542781,"craft"=>543),
+              "LH"=>array("taxonomy"=>6343,"section"=>60542743,"craft"=>583)
+            );
+            $counts=array();
+            foreach($expected as $code=>$x) $counts[$code]=array("total"=>0,"linked"=>0,"unlinked"=>0,"correct"=>0,"mismatch"=>0);
+            $mismatches=array();
+
+            $ids=get_posts(array(
+              "post_type"=>"product",
+              "post_status"=>array("publish","draft","private","pending"),
+              "posts_per_page"=>-1,
+              "fields"=>"ids",
+              "orderby"=>"ID",
+              "order"=>"ASC"
+            ));
+            foreach($ids as $id){
+              $p=wc_get_product($id); if(!$p) continue;
+              $sku=(string)$p->get_sku();
+              if(!preg_match("/-(CS|C2C|TC|LH)$/",$sku,$m)) continue;
+              $code=$m[1]; $counts[$code]["total"]++;
+              $listing=absint(get_post_meta($id,"_drielo_etsy_listing_id",true));
+              if(!$listing){$counts[$code]["unlinked"]++;continue;}
+              $counts[$code]["linked"]++;
+              $tax=absint(get_post_meta($id,"_drielo_etsy_taxonomy_id",true));
+              $section=absint(get_post_meta($id,"_drielo_etsy_shop_section_id",true));
+              $craft=absint(get_post_meta($id,"_drielo_etsy_craft_type_value_id",true));
+              $x=$expected[$code];
+              if($tax===$x["taxonomy"] && $section===$x["section"] && $craft===$x["craft"]){
+                $counts[$code]["correct"]++;
+              }else{
+                $counts[$code]["mismatch"]++;
+                $mismatches[]=array(
+                  "id"=>$id,"sku"=>$sku,"listing"=>$listing,
+                  "taxonomy"=>$tax,"section"=>$section,"craft"=>$craft,
+                  "expected"=>$x
+                );
+              }
+            }
+            echo "COUNTS=".wp_json_encode($counts).PHP_EOL;
+            echo "MISMATCHES=".wp_json_encode($mismatches).PHP_EOL;
+            echo "MISMATCH_COUNT=".count($mismatches).PHP_EOL;
+          '
+          REMOTE
