@@ -232,5 +232,23 @@
       "dot": "#DDD8CF",
       "dot_radius": 0.05
     }
+  },
+  "pattern_rules": {
+    "external_outline": {
+      "enabled": true,
+      "dmc": "3799",
+      "name": "Very Dark Pewter Gray",
+      "thickness_cells": 1,
+      "neighborhood": 8,
+      "remove_extra_outer_layers": true,
+      "cleanup_depth_cells": 2,
+      "policy": "Every occupied exterior edge must have one continuous outline cell. Extra second-layer outline cells near the exterior are recolored from the nearest interior fill. Internal facial/details remain untouched.",
+      "applies_to": [
+        "CS",
+        "C2C",
+        "TC",
+        "LH"
+      ]
+    }
   }
 }
