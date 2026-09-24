@@ -163,10 +163,11 @@
       "title_en": "Marilyn Monroe Surprise",
       "title_es": "Marilyn Monroe sorprendida",
       "slug": "marilyn-monroe-surprise",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35997811939",
+      "last_error": null,
+      "published_at": "2026-09-24T12:18:50+00:00"
     },
     {
       "order": 13,
