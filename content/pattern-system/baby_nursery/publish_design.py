@@ -17,6 +17,7 @@ SYSTEM = ROOT / "content" / "pattern-system"
 COL_DIR = SYSTEM / "collections" / "baby-nursery"
 DESIGNS_PATH = COL_DIR / "designs.json"
 COLLECTION_PATH = COL_DIR / "collection.json"
+REFERENCE_DIR = COL_DIR / "reference-masters"
 PATTERNS = SYSTEM / "patterns"
 PRODUCTS = SYSTEM / "products"
 CATALOG_PATH = ROOT / "content" / "products" / "catalog.json"
@@ -82,23 +83,102 @@ def design_record(base_id: str):
     raise RuntimeError(f"Unknown Baby & Nursery design: {base_id}")
 
 
-def rebuild_from_master(base_id: str, design: dict, collection: dict):
+def _longest_true_run(values):
+    best = cur = 0
+    for value in values:
+        if value:
+            cur += 1
+            best = max(best, cur)
+        else:
+            cur = 0
+    return best
+
+
+def _crop_wall_score(alpha, bbox, side):
+    x0, y0, x1, y1 = bbox
+    px = alpha.load()
+    if side in ("top", "bottom"):
+        span = max(1, x1 - x0)
+        ys = [y0 + i for i in range(5)] if side == "top" else [y1 - 1 - i for i in range(5)]
+        ratios = []
+        for y in ys:
+            vals = [px[x, y] >= 128 for x in range(x0, x1)]
+            ratios.append(_longest_true_run(vals) / span)
+    else:
+        span = max(1, y1 - y0)
+        xs = [x0 + i for i in range(5)] if side == "left" else [x1 - 1 - i for i in range(5)]
+        ratios = []
+        for x in xs:
+            vals = [px[x, y] >= 128 for y in range(y0, y1)]
+            ratios.append(_longest_true_run(vals) / span)
+    return sum(ratios) / len(ratios)
+
+
+def validate_reference_master(base_id: str, image: Image.Image):
+    if image.size != (800, 960):
+        raise RuntimeError(f"{base_id}: reference master must be 800x960, got {image.size}")
+
+    alpha = image.getchannel("A")
+    amin, amax = alpha.getextrema()
+    bbox = alpha.getbbox()
+    if amin != 0 or amax == 0 or not bbox:
+        raise RuntimeError(f"{base_id}: reference master must contain transparent background")
+
+    x0, y0, x1, y1 = bbox
+    margins = {
+        "left": x0,
+        "top": y0,
+        "right": image.width - x1,
+        "bottom": image.height - y1,
+    }
+    if min(margins.values()) < 32:
+        raise RuntimeError(f"{base_id}: reference artwork is too close to canvas edge: bbox={bbox}, margins={margins}")
+
+    scores = {side: _crop_wall_score(alpha, bbox, side) for side in ("top", "bottom", "left", "right")}
+    # A long, repeated opaque wall at the artwork boundary is the signature of a
+    # sprite/tile crop. Reject it before any JSON/PDF can be created.
+    suspicious = {side: score for side, score in scores.items() if score >= 0.80}
+    if suspicious:
+        raise RuntimeError(
+            f"{base_id}: reference master looks cropped at artwork boundary: "
+            f"bbox={bbox}, crop_wall_scores={scores}"
+        )
+    return bbox, margins, scores
+
+
+def prepare_reference_master(base_id: str, design: dict):
     source_rel = design["source_asset"]
     source = SYSTEM / source_rel
     if not source.is_file():
         raise RuntimeError(f"{base_id}: source master missing: {source_rel}")
 
-    im = Image.open(source).convert("RGBA")
-    if im.size != (800, 960):
-        raise RuntimeError(f"{base_id}: source master must be 800x960, got {im.size}")
+    image = Image.open(source).convert("RGBA")
+    bbox, margins, scores = validate_reference_master(base_id, image)
 
-    alpha = im.getchannel("A")
-    amin, amax = alpha.getextrema()
-    bbox = alpha.getbbox()
-    if amin != 0 or amax == 0 or not bbox:
-        raise RuntimeError(f"{base_id}: source master must contain a real transparent background")
-    if bbox[0] <= 0 or bbox[1] <= 0 or bbox[2] >= im.width or bbox[3] >= im.height:
-        raise RuntimeError(f"{base_id}: artwork touches canvas edge: {bbox}")
+    REFERENCE_DIR.mkdir(parents=True, exist_ok=True)
+    ref_name = f"{base_id}-{design['slug']}-reference.png"
+    ref_path = REFERENCE_DIR / ref_name
+    image.save(ref_path, "PNG", optimize=True)
+    ref_rel = f"collections/baby-nursery/reference-masters/{ref_name}"
+
+    # Re-open the persisted reference and validate again. Pattern JSONs are built
+    # from this file, never from an unvalidated intermediate.
+    persisted = Image.open(ref_path).convert("RGBA")
+    bbox2, _, _ = validate_reference_master(base_id, persisted)
+    if bbox2 != bbox:
+        raise RuntimeError(f"{base_id}: persisted reference geometry changed: {bbox} -> {bbox2}")
+
+    print(
+        f"REFERENCE_MASTER_OK {base_id} path={ref_rel} bbox={bbox} "
+        f"margins={margins} crop_wall_scores={scores}"
+    )
+    return ref_rel, ref_path, bbox
+
+
+def rebuild_from_master(base_id: str, design: dict, collection: dict):
+    source_rel = design["source_asset"]
+    reference_rel, reference_path, bbox = prepare_reference_master(base_id, design)
+    im = Image.open(reference_path).convert("RGBA")
 
     palette = collection["palette"]
     palette_rgb = [rgb(p["hex"]) for p in palette]
@@ -171,6 +251,7 @@ def rebuild_from_master(base_id: str, design: dict, collection: dict):
                 "palette_collection": "baby-nursery",
                 "status": "ready",
                 "source_asset": source_rel,
+                "reference_asset": reference_rel,
                 "stitch_width": cfg["w"],
                 "stitch_height": cfg["h"],
                 "total_stitches": sum(1 for r in mat for v in r if v),
@@ -183,6 +264,7 @@ def rebuild_from_master(base_id: str, design: dict, collection: dict):
         product.update(
             {
                 "source_artwork": source_rel,
+                "reference_artwork": reference_rel,
                 "page_1_asset": page_assets[suffix],
                 "render_ready": True,
                 "status": "active",
@@ -423,6 +505,7 @@ def main():
         "design_id": base_id,
         "title": design["title_en"],
         "source_asset": design["source_asset"],
+        "reference_asset": f"collections/baby-nursery/reference-masters/{base_id}-{design['slug']}-reference.png",
         "source_bbox": bbox,
         "gallery_revision": revision,
         "products": {f"{base_id}-{s}": results[s] for s in SUFFIXES},
