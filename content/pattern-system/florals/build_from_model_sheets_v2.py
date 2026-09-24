@@ -85,10 +85,12 @@ def rgb(hexv: str):
 
 
 def nearest_index(rgbv, candidates, palette):
-    c = np.array(rgbv, dtype=np.int16)
-    arr = palette[np.array(candidates, dtype=int)]
+    # Use int32 here: squared RGB distances overflow int16 and can map a
+    # highlight to a completely unrelated palette colour.
+    c = np.array(rgbv, dtype=np.int32)
+    arr = palette[np.array(candidates, dtype=int)].astype(np.int32)
     diff = arr - c
-    dist = (diff * diff * np.array([2, 4, 3], dtype=np.int16)).sum(axis=1)
+    dist = (diff * diff * np.array([2, 4, 3], dtype=np.int32)).sum(axis=1)
     return int(candidates[int(np.argmin(dist))])
 
 
