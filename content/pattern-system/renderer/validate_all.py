@@ -6,8 +6,9 @@ load=lambda p:json.loads(p.read_text(encoding='utf-8'))
 errs=[]; cols={}
 for p in ROOT.glob('collections/*/collection.json'):
  try:
-  d=load(p); cols[d['id']]=d; dm=[str(x['dmc']) for x in d.get('palette',[])]
-  if not dm: errs.append(f'{p}: empty palette')
+  d=load(p); cols[d['id']]=d; mode=d.get('palette_mode','shared'); dm=[str(x['dmc']) for x in d.get('palette',[])]
+  if mode not in ('shared','per-design'): errs.append(f'{p}: invalid palette_mode {mode!r}')
+  if mode=='shared' and not dm: errs.append(f'{p}: empty shared palette')
   if len(dm)!=len(set(dm)): errs.append(f'{p}: duplicate DMC codes')
   f=d.get('mockup_spec',{}).get('frame',{})
   if f.get('enabled'):
