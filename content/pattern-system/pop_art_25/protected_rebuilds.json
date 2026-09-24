@@ -6,24 +6,22 @@
       "title_en": "Albert Einstein Tongue Out",
       "title_es": "Albert Einstein sacando la lengua",
       "slug": "albert-einstein-tongue-out",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35984419961",
-      "last_error": "Automatic Pop Art publish run failed; see GitHub Actions logs.",
-      "allow_protected": true,
-      "failed_at": "2026-09-24T09:59:02+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null,
+      "allow_protected": true
     },
     {
       "base_design_id": "P0012",
       "title_en": "Marilyn Monroe Bubble Gum",
       "title_es": "Marilyn Monroe con chicle",
       "slug": "marilyn-monroe-bubble-gum",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35984667808",
-      "last_error": "Automatic Pop Art publish run failed; see GitHub Actions logs.",
-      "allow_protected": true,
-      "failed_at": "2026-09-24T10:01:24+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null,
+      "allow_protected": true
     }
   ]
 }
