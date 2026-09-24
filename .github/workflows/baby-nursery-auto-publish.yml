@@ -1,5 +1,5 @@
 name: Baby Nursery Auto Publish Queue
-# PAUSED: Baby Nursery collection rebuild
+# rebuilt vivid no-outline Baby Nursery rollout
 # uniform-outline I0002 review v4
 # exact-reference I0002 review v3
 # canonical user-reference rollout with isolated-white cleanup
@@ -124,11 +124,32 @@ jobs:
               if prod.get('page_1_asset')!=expected[suffix]:
                   raise SystemExit(f'{code}: wrong cover route {prod.get("page_1_asset")}')
               outline=pat.get('outline_policy') or {}
+              dark_cleanup=pat.get('external_dark_cleanup') or {}
               white_cleanup=pat.get('external_white_cleanup') or {}
-              if not outline.get('enabled') or int(outline.get('thickness_cells') or 0)!=1:
-                  raise SystemExit(f'{code}: uniform one-cell external outline rule missing')
+              if outline.get('enabled'):
+                  raise SystemExit(f'{code}: forced exterior outline must be disabled')
+              if not dark_cleanup.get('enabled') or str(dark_cleanup.get('dmc'))!='310':
+                  raise SystemExit(f'{code}: exterior dark cleanup rule missing')
               if not white_cleanup.get('enabled'):
                   raise SystemExit(f'{code}: isolated exterior white cleanup rule missing')
+
+              # Quality guard: black is allowed for eyes, mouths, lettering and
+              # other internal details, but it must never form an exterior edge.
+              dark_symbols={t.get('symbol') for t in pat.get('threads',[]) if str(t.get('dmc'))=='310'}
+              if dark_symbols:
+                  dark_symbol=next(iter(dark_symbols))
+                  mat=pat['matrix']
+                  hh=len(mat); ww=len(mat[0])
+                  for yy,row2 in enumerate(mat):
+                      for xx,val in enumerate(row2):
+                          if val!=dark_symbol:
+                              continue
+                          for dy in (-1,0,1):
+                              for dx in (-1,0,1):
+                                  if dy==0 and dx==0: continue
+                                  y2,x2=yy+dy,xx+dx
+                                  if y2<0 or y2>=hh or x2<0 or x2>=ww or mat[y2][x2] is None:
+                                      raise SystemExit(f'{code}: exterior black cell remains at {xx},{yy}')
               pdf=root/'content/products/files'/f'Drielo_{code}.pdf'
               image=root/'content/products/assets'/f'{code}-product.webp'
               gallery=[root/'content/products/assets'/f'{code}-gallery-{i}.webp' for i in (2,3,4)]
