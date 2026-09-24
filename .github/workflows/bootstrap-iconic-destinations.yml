@@ -1,0 +1,67 @@
+name: Bootstrap Iconic Destinations structure
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-iconic-destinations-bootstrap
+  cancel-in-progress: false
+
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build draft product and pattern structure
+        run: python .github/scripts/bootstrap_iconic_destinations.py
+
+      - name: Validate collection structure
+        shell: bash
+        run: |
+          set -euo pipefail
+          python content/pattern-system/renderer/validate_all.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('content/pattern-system')
+          c=json.loads((root/'collections/iconic-destinations/collection.json').read_text(encoding='utf-8'))
+          d=json.loads((root/'collections/iconic-destinations/designs.json').read_text(encoding='utf-8'))
+          assert c['palette_mode']=='per-design'
+          assert c['palette']==[]
+          assert c['show_collection_palette'] is False
+          assert c['canvas_rules']['master_grid']['max_long_side_stitches']==120
+          assert c['canvas_rules']['target_chart_pages']==4
+          assert len(d['designs'])==60
+          for row in d['designs']:
+              code=row['base_design_id']+'-CS'
+              assert (root/'products'/code/'product.json').is_file()
+              assert (root/'patterns'/code/'pattern.json').is_file()
+          print('Iconic Destinations structure validated: 60 draft cross-stitch designs.')
+          PY
+
+      - name: Persist draft structure
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/pattern-system/products/D*-CS content/pattern-system/patterns/D*-CS
+          if git diff --cached --quiet; then
+            echo "No new draft structure to commit."
+          else
+            git commit -m "Stage Iconic Destinations draft patterns [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
