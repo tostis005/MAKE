@@ -1,4 +1,5 @@
 name: Inspect active global Etsy batch
+# recheck-current
 
 on:
   push:
