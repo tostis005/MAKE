@@ -9,7 +9,7 @@
   "technique": "latch-hook",
   "template": "rug.html",
   "source_artwork": "collections/florals/source-designs/F0006-cherry-blossom-branch.png",
-  "reference_artwork": "collections/florals/source-designs/F0006-cherry-blossom-branch.png",
+  "reference_artwork": "collections/florals/reference-masters/F0006-cherry-blossom-branch-reference.png",
   "page_1_asset": "collections/florals/assets/page-1-latch-hook.webp",
   "render_ready": true,
   "status": "active"
