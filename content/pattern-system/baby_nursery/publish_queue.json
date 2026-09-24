@@ -1,8 +1,8 @@
 {
   "collection": "baby-nursery",
-  "mode": "approved-premium-11-clean-relaunch-v3",
+  "mode": "approved-premium-11-clean-relaunch-v4",
   "branch": "feature/baby-nursery-sequential-rebuild",
-  "auto_continue": false,
+  "auto_continue": true,
   "publish_strategy": "strict-one-design-per-run-stop-on-failure",
   "max_attempts_per_design": 1,
   "reset_store_on_first_design": true,
@@ -24,7 +24,7 @@
     "Before I0001, WooCommerce Infantil products, linked/managed I-code media and I-code PDFs are hard-deleted.",
     "One design publishes all four techniques and passes source/hash verification before the next design.",
     "Any failure stops the queue; it never skips to another design.",
-    "Bootstrap lock: prevent any parallel/stale run from dispatching the next design while the clean I0001 purge/reset/import completes."
+    "2026-09-24 v4: removed destructive repository purge that deleted active I0001-I0011 pattern templates. Queue reset to the exact approved 11 and relaunched."
   ],
   "items": [
     {
@@ -34,12 +34,11 @@
       "title_es": "Osito de peluche",
       "slug": "teddy-bear",
       "source_asset": "collections/baby-nursery/source-designs/I0001-teddy-bear.png",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36043073402",
-      "last_error": "Automatic publish run failed; see GitHub Actions logs.",
-      "published_at": "2026-09-24T18:46:14+00:00",
-      "failed_at": "2026-09-24T18:54:53+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null,
+      "published_at": null
     },
     {
       "order": 2,
@@ -172,5 +171,5 @@
       "published_at": null
     }
   ],
-  "bootstrap_lock": true
+  "bootstrap_lock": false
 }
