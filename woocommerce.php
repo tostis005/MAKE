@@ -23,8 +23,8 @@ else :
     }
 
     $intro = make_t(
-        'Explora cada patrón por separado o descubre colecciones que comparten una misma paleta de color.',
-        'Browse each pattern individually or discover collections that share the same colour palette.'
+        'Explora cada patrón por separado o descubre colecciones temáticas creadas para reunir diseños relacionados.',
+        'Browse each pattern individually or explore themed collections built around related designs.'
     );
     $hero_kicker = make_t( 'Patrones digitales', 'Digital patterns' );
 
