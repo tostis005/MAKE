@@ -25,15 +25,15 @@
       "height": 72
     }
   },
-  "status": "approved-references-awaiting-canonical-extraction",
+  "status": "f0001-cross-stitch-preview-ready-collection-paused",
   "designs": [
     {
       "base_design_id": "F0001",
       "slug": "blue-daisy-pitcher",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0001-blue-daisy-pitcher.png",
       "reference_sheet": "reference-sheets/florals-sheet-01.png",
       "reference_cell": "r1c1",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "manual-cross-stitch-preview-ready"
     },
     {
       "base_design_id": "F0002",
