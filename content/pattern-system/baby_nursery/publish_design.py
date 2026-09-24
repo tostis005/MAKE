@@ -814,6 +814,28 @@ def replace_text_fields(row: dict, base_id: str, design: dict, suffix: str, patt
 
 def update_catalog(base_id: str, design: dict):
     catalog = read_json(CATALOG_PATH)
+    collection = read_json(COLLECTION_PATH)
+    collection_rows = catalog.setdefault("collections", [])
+    collection_row = next((c for c in collection_rows if c.get("slug") == "baby-nursery"), None)
+    if collection_row is None:
+        collection_row = {"id":"baby-nursery","slug":"baby-nursery"}
+        collection_rows.append(collection_row)
+    palette = collection["palette"]
+    collection_row.update({
+        "id":"baby-nursery",
+        "slug":"baby-nursery",
+        "name":"Baby & Nursery",
+        "name_en":"Baby & Nursery",
+        "name_es":"Bebé e Infantil",
+        "description":"Bright baby and nursery motifs in a vivid coordinated 24-colour palette, with clean transparent edges and no forced black exterior outline.",
+        "description_en":"Bright baby and nursery motifs in a vivid coordinated 24-colour palette, with clean transparent edges and no forced black exterior outline.",
+        "description_es":"Motivos de bebé e infantiles con una paleta viva y coordinada de 24 colores, bordes transparentes limpios y sin contorno negro exterior forzado.",
+        "palette_hex":[p["hex"] for p in palette],
+        "thread_codes":[str(p["dmc"]) for p in palette],
+        "cover_asset":f"assets/{base_id}-CS-product.webp",
+        "techniques":["cross-stitch","c2c-crochet","tapestry-crochet","latch-hook"],
+    })
+
     rows = catalog.setdefault("products", [])
     by_code = {p.get("code"): p for p in rows}
     revision = int(os.environ.get("DRIELO_GALLERY_REVISION", 202609242000 + int(base_id[1:])))
