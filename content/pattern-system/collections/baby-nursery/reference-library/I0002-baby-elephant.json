@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "base_design_id": "I0002",
+  "slug": "baby-elephant",
+  "source_sheet": "114946.png",
+  "source_sheet_size": [921, 1536],
+  "source_crop_bbox": [326, 72, 630, 333],
+  "source_crop_size": [304, 261],
+  "crop_policy": "tight to last colored pixel; external black background transparent; enclosed black facial details preserved",
+  "palette_policy": "Baby & Nursery collection palette only",
+  "allowed_palette_indices": [0, 5, 7, 8, 9, 15, 16, 17],
+  "allowed_dmc": ["3865", "3799", "3752", "3325", "3760", "761", "3713", "3733"],
+  "preprocess": "GaussianBlur(2.0) removes sheet grid texture; BOX resize to 92x79; nearest allowed collection palette color",
+  "master_grid": [100, 120],
+  "placement": [4, 20, 92, 79],
+  "matrix_encoding": "base64(zlib(120 newline-separated rows; '.' transparent; symbols index into standard Baby Nursery alphabet))",
+  "matrix_sha256": "feeb5c3319c9581943040497eb8fb4c408304bfb588b624eac025dcd787cca92",
+  "matrix_zlib_base64": "eNrtmjtyJCEMQHMOM3eYpIsSGXD/s2zzl5CgYexxbQCBa42BhwRCn97X6/tNvQ7kQA7kQA7kQA7kf4ZcuH0NYlrboagtKQyhLIujlhlGaIsUtSoGXhs2KWpyvLijrg65NZ2xS7EAScq/8PRMYA3L0mTlFDVWfh5cxAAZYuJmsD65NGpyheLgCaNRhIs3hCDFoE2NGVVjbaKoMkXFaIw6f4aoFNNBDJFF8WsK/QSYNjNoiKI6hjTrMwiiKHYem4wxxDBIkSP+1Ye2yEAYb22eR02oQJKyCsPebRlSZY/TrEdKLxSFBEl/8mlwwQAsilKmxXkypDGs3YaA6ScWOxUgZahLg5cZDeKsC5P1DAL3sNQyBGCZ4uvcu+U+DjEdxK9DTAexkGyBQKqR/DbkapD29qBxH0DQbGL1ikQh4D6DsDOJstSjJxDbM3YgNwVB3AgCeCd2h5Eo+i8g8BFkZekfS9LWuuRg5ar9P4ZkJ84hsX8EgS1ICUdERulnEP0lCD34/NoziBZvF14M+WTDIJ4zegiE0eKZSBBT4aAFCA1iu7eLS6Kd9QIj7ir0BzvPf7D8biFIe4XZ2xU1mHxdXgr9o7hDJ/iTgfulp5Ih2dUBYeRzvsW06entIXocSMSJjeKLaMifGhIFdRDmFxmEyUIk0USOKpV2WF1IDsJAwR2jxLdeV3V1sUuRO0B0PHZLbX0WprbDTx5Fh3VgBIkUereqZq9JVF+txaeFtNZ4Vaqv++w1EA2gpEXOT4gXhi5MlSA4Qk9761NJlmk1jemyP8QZQWoWFKWCh0zr1ad+NYd6gFwoHxMTYDWtO7QMj8X4ZBCdyFJ5NSk9XDyvNf3tajn2mDHP42cQqEpMi9Zx6xWJUr/gpyRn2GTeFkRidJSRgnaqRGIBSkgXHyhqowLVY5YLX4sQanyiqXwIwYxZvv5DSBGi3lmzUH/YgiBj/zIEOuv7JQgyRvYkAtDiS2ZnyJYxsqcVuGdkrqY9QM81yAu9QVSUiQtD5belBxIVWYhRoFqbCCR1xcenPqcAeuRBZEiWIgY2XBbFlRUjkBJoCn4KBPhVag2pWvJYTYUYM96yMAgMHEsNP1Kk52Dm42NInCJsi8IVM4dUQXJtKZYjHiCuVS9gvOvu+pqs5Bwa+xVI2o9zEwjuiVquVTK7AimatSX+fISUM09TY3y7KEmt3e1AXKkPbkDc8ORhACl7m0Ju9baCJYPIx95MJDH83E6Spfh2TdCKWhObiF3Y+l2R3z9ZfKLUW5IXCOG3fr9zmhAfhYDU7/BDm/aiNINfeYVbkhZs4F5N35BA0rmeEn573z/u7iqblXUlh6lXzpxzSSFCQIBEdpAkP/KlYL3itNj3qRJKpLfxol2lMDGNW+YQ6XMViyvJGDE2Ug8fkruvyn1snbsePjxvQ14vqWv+cfv8z4IDOZADOZADOZAD+bj9A+Wy+VM="
+}
