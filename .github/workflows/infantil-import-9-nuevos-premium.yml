@@ -1,5 +1,5 @@
 name: Infantil Import 9 New Premium
-# rollout-generation: ACTIVE-new-premium-9-no-reindeer-2026-09-24
+# rollout-generation: ACTIVE-new-premium-9-no-reindeer-clean-v2-2026-09-24
 # additive import: exactly nine new premium motifs, no reindeer; one design per run
 # Pop Art-style featured + 3 gallery previews
 
@@ -16,7 +16,7 @@ permissions:
 
 concurrency:
   group: drielo-infantil-new9-premium
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   publish-next:
