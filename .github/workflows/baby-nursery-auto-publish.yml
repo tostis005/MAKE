@@ -221,7 +221,7 @@ jobs:
           "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
           "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
 
-          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+          "${DOCKER[@]}" exec -e DESIGN="$DESIGN" make-wp php -d memory_limit=768M -r '
             require "/var/www/html/wp-load.php";
             $design=getenv("DESIGN");
             $suffixes=array("CS","C2C","TC","LH");
@@ -238,7 +238,7 @@ jobs:
                 fwrite(STDERR,"Incomplete ".$sku.PHP_EOL); exit(3);
               }
             }
-          ' DESIGN="$DESIGN"
+          '
 
           "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
           REMOTE
