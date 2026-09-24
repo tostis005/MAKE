@@ -109,10 +109,11 @@
       "title_es": "Dinosaurio infantil",
       "slug": "cute-dinosaur",
       "source_asset": "collections/baby-nursery/source-designs/I0008-cute-dinosaur.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36010065801",
+      "last_error": null,
+      "published_at": "2026-09-24T14:07:25+00:00"
     },
     {
       "order": 9,
