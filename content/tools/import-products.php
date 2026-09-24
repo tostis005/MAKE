@@ -305,11 +305,36 @@ foreach ( (array) ( $catalog['products'] ?? array() ) as $row ) {
     $product->set_sku( $sku );
     $product->set_status( 'publish' );
     $product->set_catalog_visibility( 'visible' );
-    $catalogue_price = (float) ( $row['price'] ?? 4.99 );
+    $catalogue_price = (float) ( $row['price'] ?? $catalog['default_product_price'] ?? 2.49 );
     $row_sku = (string) ( $row['sku'] ?? '' );
-    $row_technique = sanitize_key( (string) ( $row['filters']['technique'] ?? $row['technique'] ?? '' ) );
-    if ( 'cross-stitch' === $row_technique || preg_match( '/-CS$/', $row_sku ) ) {
-        $catalogue_price = 2.99;
+    $row_technique = sanitize_key( (string) ( $row['technique'] ?? '' ) );
+    if ( ! $row_technique && ! empty( $row['filters']['technique'] ) ) {
+        $filter_technique = $row['filters']['technique'];
+        $row_technique = sanitize_key( (string) ( is_array( $filter_technique ) ? reset( $filter_technique ) : $filter_technique ) );
+    }
+    $technique_code = strtoupper( sanitize_text_field( (string) ( $row['technique_code'] ?? '' ) ) );
+    if ( ! $technique_code && preg_match( '/-(CS|C2C|TC|LH)$/', $row_sku, $price_match ) ) {
+        $technique_code = $price_match[1];
+    }
+    $code_to_slug = array(
+        'CS'  => 'cross-stitch',
+        'C2C' => 'c2c-crochet',
+        'TC'  => 'tapestry-crochet',
+        'LH'  => 'latch-hook',
+    );
+    if ( ! $row_technique && isset( $code_to_slug[ $technique_code ] ) ) {
+        $row_technique = $code_to_slug[ $technique_code ];
+    }
+    $technique_prices = is_array( $catalog['technique_prices'] ?? null )
+        ? $catalog['technique_prices']
+        : array(
+            'cross-stitch'      => 2.99,
+            'c2c-crochet'       => 2.49,
+            'tapestry-crochet'  => 2.49,
+            'latch-hook'        => 2.49,
+        );
+    if ( isset( $technique_prices[ $row_technique ] ) ) {
+        $catalogue_price = (float) $technique_prices[ $row_technique ];
     }
     $product->set_regular_price( number_format( $catalogue_price, 2, '.', '' ) );
     $product->set_virtual( true );
