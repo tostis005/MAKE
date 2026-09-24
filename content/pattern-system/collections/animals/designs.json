@@ -523,7 +523,9 @@
       ],
       "artwork_status": "canonical-reference-ready",
       "reference_asset": "collections/animals/reference-masters/A0029-polar-bear-blue-scarf-reference.png",
-      "source_asset": "collections/animals/source-designs/A0029-polar-bear-blue-scarf.png"
+      "source_asset": "collections/animals/source-designs/A0029-polar-bear-blue-scarf.png",
+      "product_status": "ready",
+      "transparent_background": true
     },
     {
       "order": 30,
