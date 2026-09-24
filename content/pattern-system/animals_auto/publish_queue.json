@@ -1,7 +1,7 @@
 {
   "collection": "animals",
   "branch": "feature/animals-auto-publish",
-  "auto_continue": false,
+  "auto_continue": true,
   "max_attempts_per_design": 2,
   "recovery_attempts_per_design": 4,
   "created_from": "canonical Animals A0001-A0030 references",
@@ -11,11 +11,10 @@
       "title_en": "Sleeping Tabby on Quilts",
       "title_es": "Gato atigrado dormido sobre mantas",
       "slug": "sleeping-tabby-quilts",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35982454119",
-      "last_error": null,
-      "published_at": "2026-09-24T09:42:03+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "A0002",
@@ -308,7 +307,6 @@
       "last_error": null
     }
   ],
-  "restarted_at": "2026-09-24T09:37:30Z",
-  "restart_reason": "Clean restart from A0001 after upgrading GitHub Actions to Node 24 and isolating WooCommerce staging.",
-  "paused_reason": "Final workflow stabilization before clean restart from A0001."
+  "restarted_at": "2026-09-24T09:47:30Z",
+  "restart_reason": "Final clean restart after Node 24 action upgrade, renderer gallery fix, isolated WooCommerce staging, and serial queue stabilization."
 }
