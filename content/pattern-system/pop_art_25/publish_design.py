@@ -340,13 +340,22 @@ def render_design(base_id:str,design:dict,collection:dict):
         result=bg.render_one((code,suffix,data))
         pdf=STORE_FILES/f"Drielo_{code}.pdf"
         image=STORE_ASSETS/f"{code}-product.webp"
+        gallery=[STORE_ASSETS/f"{code}-gallery-{i}.webp" for i in (2,3,4)]
         shutil.copy2(result["pdf"],pdf)
         shutil.copy2(result["image"],image)
+        if len(result.get("gallery",[])) != 3:
+            raise RuntimeError(f"{code}: renderer did not return the three required gallery previews")
+        for src,dst in zip(result["gallery"],gallery):
+            shutil.copy2(src,dst)
         if pdf.stat().st_size<100000 or pdf.read_bytes()[:4]!=b"%PDF":
             raise RuntimeError(f"{code}: invalid PDF")
         if image.stat().st_size<50000:
             raise RuntimeError(f"{code}: invalid product image")
+        for g in gallery:
+            if not g.is_file() or g.stat().st_size<30000:
+                raise RuntimeError(f"{code}: invalid gallery preview {g.name}")
         results[suffix]={"pdf_bytes":pdf.stat().st_size,"image_bytes":image.stat().st_size,
+                         "gallery_bytes":[g.stat().st_size for g in gallery],
                          "stitches":pattern["total_stitches"],"colors":len(pattern["threads"])}
     return results
 
@@ -404,7 +413,13 @@ def update_catalog(base_id:str,design:dict):
             "stitch_type":cfg["stitch_type"],"stitch_type_en":cfg["stitch_type"],"stitch_type_es":meta["stitch_es"],
             "short_description":short_en,"short_description_en":short_en,"short_description_es":short_es,
             "description":desc_en,"description_en":desc_en,"description_es":desc_es,
-            "gallery":[],"featured_image":f"assets/{code}-product.webp","download":f"files/Drielo_{code}.pdf",
+            "gallery":[
+                f"assets/{code}-gallery-2.webp",
+                f"assets/{code}-gallery-3.webp",
+                f"assets/{code}-gallery-4.webp",
+            ],
+            "gallery_preview_pages":{"facts":3,"colour_a1":8,"symbol_a1":12},
+            "featured_image":f"assets/{code}-product.webp","download":f"files/Drielo_{code}.pdf",
             "gallery_revision":revision,"tags":tags,"etsy_tags_en":tags,"etsy_tags_es":tags,
             "seo_title":f"{title_en} | Drielo","seo_title_en":f"{title_en} | Drielo","seo_title_es":f"{title_es} | Drielo",
             "meta_description":short_en[:155],"meta_description_en":short_en[:155],"meta_description_es":short_es[:155],
