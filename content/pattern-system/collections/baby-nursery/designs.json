@@ -1,7 +1,8 @@
 {
   "collection": "baby-nursery",
   "code_prefix": "I",
-  "count": 30,
+  "count": 11,
+  "rebuild_version": "sequential-kawaii-v1",
   "designs": [
     {
       "order": 1,
@@ -15,23 +16,29 @@
         "I0001-TC",
         "I0001-LH"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0001-teddy-bear.png"
+      "artwork_status": "approved-kawaii-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0001-teddy-bear.png",
+      "reference_source_id": "I0001",
+      "reference_source_slug": "teddy-bear",
+      "reference_bundle_only": false
     },
     {
       "order": 2,
       "base_design_id": "I0002",
-      "title_en": "Baby Elephant",
-      "title_es": "Elefantito",
-      "slug": "baby-elephant",
+      "title_en": "Unicorn",
+      "title_es": "Unicornio",
+      "slug": "unicorn",
       "variants": [
         "I0002-CS",
         "I0002-C2C",
         "I0002-TC",
         "I0002-LH"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0002-baby-elephant.png"
+      "artwork_status": "approved-kawaii-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0002-unicorn.png",
+      "reference_source_id": "I0011",
+      "reference_source_slug": "unicorn",
+      "reference_bundle_only": true
     },
     {
       "order": 3,
@@ -45,413 +52,155 @@
         "I0003-TC",
         "I0003-LH"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0003-giraffe.png"
+      "artwork_status": "approved-kawaii-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0003-giraffe.png",
+      "reference_source_id": "I0003",
+      "reference_source_slug": "giraffe",
+      "reference_bundle_only": true
     },
     {
       "order": 4,
       "base_design_id": "I0004",
-      "title_en": "Crescent Moon",
-      "title_es": "Luna creciente",
-      "slug": "crescent-moon",
+      "title_en": "Baby Elephant",
+      "title_es": "Elefantito",
+      "slug": "baby-elephant",
       "variants": [
         "I0004-CS",
         "I0004-C2C",
         "I0004-TC",
         "I0004-LH"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0004-crescent-moon.png"
+      "artwork_status": "approved-kawaii-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0004-baby-elephant.png",
+      "reference_source_id": "I0002",
+      "reference_source_slug": "baby-elephant",
+      "reference_bundle_only": true
     },
     {
       "order": 5,
       "base_design_id": "I0005",
-      "title_en": "Smiling Cloud",
-      "title_es": "Nube sonriente",
-      "slug": "smiling-cloud",
+      "title_en": "Bunny with Heart",
+      "title_es": "Conejito con corazón",
+      "slug": "bunny-heart",
       "variants": [
         "I0005-CS",
         "I0005-C2C",
         "I0005-TC",
         "I0005-LH"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0005-smiling-cloud.png"
+      "artwork_status": "approved-kawaii-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0005-bunny-heart.png",
+      "reference_source_id": "I0006",
+      "reference_source_slug": "bunny-heart",
+      "reference_bundle_only": true
     },
     {
       "order": 6,
       "base_design_id": "I0006",
-      "title_en": "Bunny with Heart",
-      "title_es": "Conejito con corazón",
-      "slug": "bunny-heart",
+      "title_en": "Cute Dinosaur",
+      "title_es": "Dinosaurio infantil",
+      "slug": "cute-dinosaur",
       "variants": [
         "I0006-CS",
         "I0006-C2C",
         "I0006-TC",
         "I0006-LH"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0006-bunny-heart.png"
+      "artwork_status": "approved-kawaii-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0006-cute-dinosaur.png",
+      "reference_source_id": "I0008",
+      "reference_source_slug": "cute-dinosaur",
+      "reference_bundle_only": true
     },
     {
       "order": 7,
       "base_design_id": "I0007",
-      "title_en": "Rainbow with Clouds",
-      "title_es": "Arcoíris con nubes",
-      "slug": "rainbow-clouds",
+      "title_en": "Rubber Duck",
+      "title_es": "Patito",
+      "slug": "rubber-duck",
       "variants": [
         "I0007-CS",
         "I0007-C2C",
         "I0007-TC",
         "I0007-LH"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0007-rainbow-clouds.png"
+      "artwork_status": "approved-kawaii-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0007-rubber-duck.png",
+      "reference_source_id": "I0017",
+      "reference_source_slug": "rubber-duck",
+      "reference_bundle_only": true
     },
     {
       "order": 8,
       "base_design_id": "I0008",
-      "title_en": "Cute Dinosaur",
-      "title_es": "Dinosaurio infantil",
-      "slug": "cute-dinosaur",
+      "title_en": "Plush Lamb",
+      "title_es": "Corderito",
+      "slug": "plush-lamb",
       "variants": [
         "I0008-CS",
         "I0008-C2C",
         "I0008-TC",
         "I0008-LH"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0008-cute-dinosaur.png"
+      "artwork_status": "approved-kawaii-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0008-plush-lamb.png",
+      "reference_source_id": "I0023",
+      "reference_source_slug": "plush-lamb",
+      "reference_bundle_only": true
     },
     {
       "order": 9,
       "base_design_id": "I0009",
-      "title_en": "Hot Air Balloon",
-      "title_es": "Globo aerostático",
-      "slug": "hot-air-balloon",
+      "title_en": "Sleeping Owl",
+      "title_es": "Búho",
+      "slug": "sleeping-owl",
       "variants": [
         "I0009-CS",
         "I0009-C2C",
         "I0009-TC",
         "I0009-LH"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0009-hot-air-balloon.png"
+      "artwork_status": "approved-kawaii-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0009-sleeping-owl.png",
+      "reference_source_id": "I0021",
+      "reference_source_slug": "sleeping-owl",
+      "reference_bundle_only": true
     },
     {
       "order": 10,
       "base_design_id": "I0010",
-      "title_en": "Toy Sailboat",
-      "title_es": "Velero infantil",
-      "slug": "toy-sailboat",
+      "title_en": "Crescent Moon",
+      "title_es": "Luna creciente",
+      "slug": "crescent-moon",
       "variants": [
         "I0010-CS",
         "I0010-C2C",
         "I0010-TC",
         "I0010-LH"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0010-toy-sailboat.png"
+      "artwork_status": "approved-kawaii-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0010-crescent-moon.png",
+      "reference_source_id": "I0004",
+      "reference_source_slug": "crescent-moon",
+      "reference_bundle_only": true
     },
     {
       "order": 11,
       "base_design_id": "I0011",
-      "title_en": "Unicorn",
-      "title_es": "Unicornio",
-      "slug": "unicorn",
+      "title_en": "Smiling Cloud",
+      "title_es": "Nube sonriente",
+      "slug": "smiling-cloud",
       "variants": [
         "I0011-CS",
         "I0011-C2C",
         "I0011-TC",
         "I0011-LH"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0011-unicorn.png"
-    },
-    {
-      "order": 12,
-      "base_design_id": "I0012",
-      "title_en": "Baby Bottle",
-      "title_es": "Biberón",
-      "slug": "baby-bottle",
-      "variants": [
-        "I0012-CS",
-        "I0012-C2C",
-        "I0012-TC",
-        "I0012-LH"
-      ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0012-baby-bottle.png"
-    },
-    {
-      "order": 13,
-      "base_design_id": "I0013",
-      "title_en": "Pacifier",
-      "title_es": "Chupete",
-      "slug": "pacifier",
-      "variants": [
-        "I0013-CS",
-        "I0013-C2C",
-        "I0013-TC",
-        "I0013-LH"
-      ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0013-pacifier.png"
-    },
-    {
-      "order": 14,
-      "base_design_id": "I0014",
-      "title_en": "Baby Stroller",
-      "title_es": "Cochecito de bebé",
-      "slug": "baby-stroller",
-      "variants": [
-        "I0014-CS",
-        "I0014-C2C",
-        "I0014-TC",
-        "I0014-LH"
-      ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0014-baby-stroller.png"
-    },
-    {
-      "order": 15,
-      "base_design_id": "I0015",
-      "title_en": "Rocking Horse",
-      "title_es": "Caballito balancín",
-      "slug": "rocking-horse",
-      "variants": [
-        "I0015-CS",
-        "I0015-C2C",
-        "I0015-TC",
-        "I0015-LH"
-      ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0015-rocking-horse.png"
-    },
-    {
-      "order": 16,
-      "base_design_id": "I0016",
-      "title_en": "Teddy Bear Baby Onesie",
-      "title_es": "Body de bebé con osito",
-      "slug": "teddy-bear-onesie",
-      "variants": [
-        "I0016-CS",
-        "I0016-C2C",
-        "I0016-TC",
-        "I0016-LH"
-      ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0016-teddy-bear-onesie.png"
-    },
-    {
-      "order": 17,
-      "base_design_id": "I0017",
-      "title_en": "Rubber Duck",
-      "title_es": "Patito de goma",
-      "slug": "rubber-duck",
-      "variants": [
-        "I0017-CS",
-        "I0017-C2C",
-        "I0017-TC",
-        "I0017-LH"
-      ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0017-rubber-duck.png"
-    },
-    {
-      "order": 18,
-      "base_design_id": "I0018",
-      "title_en": "ABC Blocks",
-      "title_es": "Bloques ABC",
-      "slug": "abc-blocks",
-      "variants": [
-        "I0018-CS",
-        "I0018-C2C",
-        "I0018-TC",
-        "I0018-LH"
-      ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0018-abc-blocks.png"
-    },
-    {
-      "order": 19,
-      "base_design_id": "I0019",
-      "title_en": "Nursery Mobile",
-      "title_es": "Móvil de cuna",
-      "slug": "nursery-mobile",
-      "variants": [
-        "I0019-CS",
-        "I0019-C2C",
-        "I0019-TC",
-        "I0019-LH"
-      ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0019-nursery-mobile.png"
-    },
-    {
-      "order": 20,
-      "base_design_id": "I0020",
-      "title_en": "Smiling Star",
-      "title_es": "Estrella sonriente",
-      "slug": "smiling-star",
-      "variants": [
-        "I0020-CS",
-        "I0020-C2C",
-        "I0020-TC",
-        "I0020-LH"
-      ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0020-smiling-star.png"
-    },
-    {
-      "order": 21,
-      "base_design_id": "I0021",
-      "title_en": "Sleeping Owl",
-      "title_es": "Búho dormido",
-      "slug": "sleeping-owl",
-      "variants": [
-        "I0021-CS",
-        "I0021-C2C",
-        "I0021-TC",
-        "I0021-LH"
-      ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0021-sleeping-owl.png"
-    },
-    {
-      "order": 22,
-      "base_design_id": "I0022",
-      "title_en": "Floral Baby Bib",
-      "title_es": "Babero floral",
-      "slug": "floral-baby-bib",
-      "variants": [
-        "I0022-CS",
-        "I0022-C2C",
-        "I0022-TC",
-        "I0022-LH"
-      ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0022-floral-baby-bib.png"
-    },
-    {
-      "order": 23,
-      "base_design_id": "I0023",
-      "title_en": "Plush Lamb",
-      "title_es": "Corderito de peluche",
-      "slug": "plush-lamb",
-      "variants": [
-        "I0023-CS",
-        "I0023-C2C",
-        "I0023-TC",
-        "I0023-LH"
-      ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0023-plush-lamb.png"
-    },
-    {
-      "order": 24,
-      "base_design_id": "I0024",
-      "title_en": "Toy Train",
-      "title_es": "Tren de juguete",
-      "slug": "toy-train",
-      "variants": [
-        "I0024-CS",
-        "I0024-C2C",
-        "I0024-TC",
-        "I0024-LH"
-      ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0024-toy-train.png"
-    },
-    {
-      "order": 25,
-      "base_design_id": "I0025",
-      "title_en": "Stacking Rings",
-      "title_es": "Anillas apilables",
-      "slug": "stacking-rings",
-      "variants": [
-        "I0025-CS",
-        "I0025-C2C",
-        "I0025-TC",
-        "I0025-LH"
-      ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0025-stacking-rings.png"
-    },
-    {
-      "order": 26,
-      "base_design_id": "I0026",
-      "title_en": "Baby Crib",
-      "title_es": "Cuna de bebé",
-      "slug": "baby-crib",
-      "variants": [
-        "I0026-CS",
-        "I0026-C2C",
-        "I0026-TC",
-        "I0026-LH"
-      ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0026-baby-crib.png"
-    },
-    {
-      "order": 27,
-      "base_design_id": "I0027",
-      "title_en": "Pink Floral Baby Onesie",
-      "title_es": "Body rosa floral de bebé",
-      "slug": "pink-floral-onesie",
-      "variants": [
-        "I0027-CS",
-        "I0027-C2C",
-        "I0027-TC",
-        "I0027-LH"
-      ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0027-pink-floral-onesie.png"
-    },
-    {
-      "order": 28,
-      "base_design_id": "I0028",
-      "title_en": "Rocket",
-      "title_es": "Cohete",
-      "slug": "rocket",
-      "variants": [
-        "I0028-CS",
-        "I0028-C2C",
-        "I0028-TC",
-        "I0028-LH"
-      ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0028-rocket.png"
-    },
-    {
-      "order": 29,
-      "base_design_id": "I0029",
-      "title_en": "Kite",
-      "title_es": "Cometa",
-      "slug": "kite",
-      "variants": [
-        "I0029-CS",
-        "I0029-C2C",
-        "I0029-TC",
-        "I0029-LH"
-      ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0029-kite.png"
-    },
-    {
-      "order": 30,
-      "base_design_id": "I0030",
-      "title_en": "Fairytale Castle",
-      "title_es": "Castillo de cuento",
-      "slug": "fairytale-castle",
-      "variants": [
-        "I0030-CS",
-        "I0030-C2C",
-        "I0030-TC",
-        "I0030-LH"
-      ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0030-fairytale-castle.png"
+      "artwork_status": "approved-kawaii-pattern-ready",
+      "source_asset": "collections/baby-nursery/source-designs/I0011-smiling-cloud.png",
+      "reference_source_id": "I0005",
+      "reference_source_slug": "smiling-cloud",
+      "reference_bundle_only": true
     }
   ]
 }

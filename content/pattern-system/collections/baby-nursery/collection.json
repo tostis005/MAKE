@@ -5,9 +5,9 @@
   "name_es": "Bebé e Infantil",
   "slug": "baby-nursery",
   "code_prefix": "I",
-  "description": "A premium coordinated collection of baby and nursery motifs, rebuilt at higher stitch density for crisp, polished results across four grid-based craft techniques.",
-  "description_es": "Colección premium coordinada de motivos infantiles y de bebé, reconstruidos con mayor densidad de puntadas para lograr resultados nítidos y cuidados en cuatro técnicas artesanales basadas en cuadrícula.",
-  "design_count": 30,
+  "description": "A premium sequential Baby & Nursery rebuild: Teddy Bear followed by ten user-approved kawaii stitch designs, reconstructed verbatim from direct stitch-native masters.",
+  "description_es": "Reconstrucción premium secuencial de Bebé e Infantil: Osito seguido de diez diseños kawaii aprobados, reconstruidos literalmente desde masters nativos de puntadas.",
+  "design_count": 11,
   "techniques": [
     "cross-stitch",
     "c2c-crochet",
@@ -226,7 +226,7 @@
     "linecap": "round",
     "fit": "contain",
     "center": true,
-    "low_resolution_priority": true,
+    "low_resolution_priority": false,
     "fabric": {
       "color": "#FBFAF6",
       "dot": "#DDD8CF",
@@ -236,8 +236,9 @@
     "forced_external_outline": false,
     "palette_style": "approved-preview-v2",
     "avoid_neon_or_electric_substitutions": false,
-    "canonical_master_source": "reference-library/Ixxxx-slug.json",
-    "reconstruct_verbatim": true
+    "canonical_master_source": "I0001 approved direct reference + approved kawaii v4 bundle through sequential reference mapping",
+    "reconstruct_verbatim": true,
+    "edge_finish": "direct stitch-native cells; nearest-neighbour only; no interpolation, no supersampling"
   },
   "pattern_rules": {
     "external_outline": {
@@ -253,7 +254,7 @@
     },
     "external_white_cleanup": {
       "enabled": false,
-      "policy": "Approved preview v2 matrices are already cleaned. Do not delete, add or recolor cells during publication.",
+      "policy": "White-fringe cleanup is performed before premium v3 supersampling from palette-cell components, preserving large intentional pale shapes.",
       "applies_to": [
         "master",
         "CS",
@@ -264,7 +265,7 @@
     },
     "external_dark_cleanup": {
       "enabled": false,
-      "policy": "Approved preview v2 matrices are already final. Preserve all stored dark internal details and do not run exterior morphology.",
+      "policy": "Do not delete dark contour/detail cells globally. Premium v3 refines geometry without a forced exterior outline.",
       "applies_to": [
         "master",
         "CS",
@@ -275,27 +276,78 @@
     },
     "approved_master_policy": {
       "enabled": true,
-      "version": 2,
-      "source": "collections/baby-nursery/reference-library/Ixxxx-slug.json",
+      "version": 4,
+      "source": "I0001 direct reference plus verified kawaii v4 bundle using reference_source_id mapping",
       "reconstruct_verbatim": true,
       "background": "transparent",
       "apply_morphology": false,
       "apply_forced_outline": false,
-      "exact_palette": true
+      "exact_palette": true,
+      "refinement": "none; approved v4 matrices are final"
+    },
+    "premium_refinement": {
+      "enabled": false,
+      "version": 4,
+      "policy": "Disabled. Direct approved 100x120 matrices are final."
     }
   },
   "design_reference": {
     "asset": "collections/baby-nursery/assets/design-reference-master.avif",
-    "status": "approved",
+    "status": "approved-sequential-kawaii-v1",
     "purpose": "Canonical visual reference for Baby & Nursery redesign and pattern regeneration.",
     "source_dimensions_px": {
       "width": 1536,
       "height": 1024
     },
     "background": "white",
-    "target_cross_stitch_actual_stitches": "4500-8000 depending on motif complexity",
-    "notes": "Use the approved visual language and fine stitch density; do not force every motif to the same stitch count.",
-    "approved_batch": "I0001-I0010",
-    "matrix_standard": "100x120 master grid; exact approved 24-colour palette; transparent exterior"
+    "target_cross_stitch_actual_stitches": "approximately 4500-8000 depending on motif complexity",
+    "notes": "I0001 is the approved teddy reference. I0002-I0011 map to the ten user-approved kawaii v4 matrices. Reconstruct verbatim; no supersampling, interpolation, redraw or morphology.",
+    "approved_batch": [
+      "I0001",
+      "I0002",
+      "I0003",
+      "I0004",
+      "I0005",
+      "I0006",
+      "I0007",
+      "I0008",
+      "I0009",
+      "I0010",
+      "I0011"
+    ],
+    "matrix_standard": "100x120 direct stitch master; one matrix cell equals one stitch; exact approved 24-colour palette; transparent exterior"
+  },
+  "palette_enforcement": {
+    "enabled": true,
+    "mode": "exact-approved-24-colour-palette",
+    "allow_unlisted_master_colours": false,
+    "allow_unlisted_pattern_colours": false,
+    "alpha_background": "transparent",
+    "qa": "Every opaque master/source pixel and every pattern thread colour must match one of collection.palette exactly. Lifestyle/mockup photography is exempt; the inserted craft motif is not."
+  },
+  "sequential_rebuild": {
+    "enabled": true,
+    "version": 1,
+    "branch": "feature/baby-nursery-sequential-rebuild",
+    "order": [
+      "I0001",
+      "I0002",
+      "I0003",
+      "I0004",
+      "I0005",
+      "I0006",
+      "I0007",
+      "I0008",
+      "I0009",
+      "I0010",
+      "I0011"
+    ],
+    "publish_after_each_design": true,
+    "four_techniques_required": [
+      "CS",
+      "C2C",
+      "TC",
+      "LH"
+    ]
   }
 }

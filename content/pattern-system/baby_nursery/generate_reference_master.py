@@ -65,10 +65,13 @@ def load_archive():
 
 def load_design_reference(base_id: str, meta: dict):
     manifest = read_json(MANIFEST_PATH)
-    direct = LIBRARY_DIR / f"{base_id}-{meta['slug']}.json"
+    source_id = str(meta.get("reference_source_id") or base_id)
+    source_slug = str(meta.get("reference_source_slug") or meta["slug"])
+    bundle_only = bool(meta.get("reference_bundle_only", False))
+    direct = LIBRARY_DIR / f"{source_id}-{source_slug}.json"
     source_kind = "direct-user-sheet-crop"
 
-    if direct.is_file():
+    if direct.is_file() and not bundle_only:
         d = read_json(direct)
     else:
         parts = manifest.get("direct_reference_bundle_parts") or []
@@ -88,15 +91,18 @@ def load_design_reference(base_id: str, meta: dict):
         bundle = json.loads(bundle_raw.decode("utf-8"))
         if bundle.get("version") != 1:
             raise RuntimeError(f"Unsupported direct reference bundle version: {bundle.get('version')}")
-        d = (bundle.get("designs") or {}).get(base_id)
+        d = (bundle.get("designs") or {}).get(source_id)
         if d is None:
             return None
         source_kind = "direct-user-sheet-bundle"
 
     if d.get("version") != 1:
         raise RuntimeError(f"{base_id}: unsupported direct reference version")
-    if d.get("base_design_id") != base_id or d.get("slug") != meta["slug"]:
-        raise RuntimeError(f"{base_id}: direct reference identity mismatch")
+    if d.get("base_design_id") != source_id or d.get("slug") != source_slug:
+        raise RuntimeError(
+            f"{base_id}: mapped direct reference identity mismatch: "
+            f"{d.get('base_design_id')}/{d.get('slug')} != {source_id}/{source_slug}"
+        )
 
     try:
         raw = zlib.decompress(base64.b64decode(d["matrix_zlib_base64"], validate=True))
@@ -111,7 +117,7 @@ def load_design_reference(base_id: str, meta: dict):
     if len(rows) != 120 or any(len(row) != 100 for row in rows):
         raise RuntimeError(f"{base_id}: direct reference matrix is not 100x120")
 
-    manifest_row = next((x for x in manifest["designs"] if x["base_design_id"] == base_id), None)
+    manifest_row = next((x for x in manifest["designs"] if x["base_design_id"] == source_id), None)
     if not manifest_row:
         raise RuntimeError(f"{base_id}: missing from reference-library manifest")
 
