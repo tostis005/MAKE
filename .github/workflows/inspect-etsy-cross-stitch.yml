@@ -1,0 +1,90 @@
+name: Inspect Etsy Cross Stitch mapping
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/inspect-etsy-cross-stitch.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_inspect_key
+          chmod 600 ~/.ssh/drielo_inspect_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Inspect Etsy taxonomy and shop sections
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_inspect_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $sync=Drielo_Etsy_Sync::instance();
+            $ref=new ReflectionClass($sync);
+
+            $settings_m=$ref->getMethod("settings"); $settings_m->setAccessible(true);
+            $settings=$settings_m->invoke($sync);
+            echo "SHOP_ID=".($settings["shop_id"]??"").PHP_EOL;
+            echo "SHOP_NAME=".($settings["shop_name"]??"").PHP_EOL;
+
+            $request=$ref->getMethod("etsy_request"); $request->setAccessible(true);
+
+            $sections=$request->invoke($sync,"GET","/v3/application/shops/".rawurlencode($settings["shop_id"])."/sections",array(),false);
+            if(is_wp_error($sections)){
+              echo "SECTIONS_ERROR=".$sections->get_error_message().PHP_EOL;
+            } else {
+              echo "SECTIONS=".wp_json_encode($sections).PHP_EOL;
+            }
+
+            $nodes=$request->invoke($sync,"GET","/v3/application/seller-taxonomy/nodes",array(),false);
+            if(is_wp_error($nodes)){
+              echo "TAXONOMY_ERROR=".$nodes->get_error_message().PHP_EOL;
+              exit(2);
+            }
+            $items=isset($nodes["results"])&&is_array($nodes["results"])?$nodes["results"]:$nodes;
+            $matches=array();
+            $walk=function($arr,$trail=array()) use (&$walk,&$matches){
+              foreach((array)$arr as $node){
+                if(!is_array($node)) continue;
+                $name=trim((string)($node["name"]??""));
+                $path=array_merge($trail,array($name));
+                $joined=implode(" > ",array_filter($path));
+                $norm=strtolower(remove_accents($joined));
+                if(strpos($norm,"cross stitch")!==false || strpos($norm,"cross-stitch")!==false || strpos($norm,"punto de cruz")!==false || strpos($norm,"embroidery")!==false){
+                  $matches[]=array("id"=>(int)($node["id"]??0),"name"=>$name,"path"=>$joined,"children"=>!empty($node["children"]));
+                }
+                if(!empty($node["children"])&&is_array($node["children"])) $walk($node["children"],$path);
+              }
+            };
+            $walk($items);
+            echo "TAXONOMY_MATCHES=".wp_json_encode($matches).PHP_EOL;
+
+            $sample_id=2490;
+            $listing=(string)get_post_meta($sample_id,"_drielo_etsy_listing_id",true);
+            echo "SAMPLE_LISTING=".$listing.PHP_EOL;
+            if($listing){
+              $remote=$request->invoke($sync,"GET","/v3/application/listings/".rawurlencode($listing),array(),true);
+              echo "SAMPLE_REMOTE=".(is_wp_error($remote)?$remote->get_error_message():wp_json_encode($remote)).PHP_EOL;
+            }
+          '
+          REMOTE
