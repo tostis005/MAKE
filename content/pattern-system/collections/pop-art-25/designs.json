@@ -175,7 +175,9 @@
         "P0012-C2C",
         "P0012-TC",
         "P0012-LH"
-      ]
+      ],
+      "source_artwork": "sources/P0012.png",
+      "transparent_background": true
     },
     {
       "code": "P0013",
