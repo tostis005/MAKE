@@ -1,0 +1,87 @@
+name: Inspect Etsy crochet mapping
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/inspect-etsy-crochet-mapping.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_crochet_map_key
+          chmod 600 ~/.ssh/drielo_crochet_map_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Inspect Etsy taxonomy properties and shop sections
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_crochet_map_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $sync=Drielo_Etsy_Sync::instance();
+            $ref=new ReflectionClass($sync);
+            $req=$ref->getMethod("etsy_request"); $req->setAccessible(true);
+            $tax=$ref->getMethod("resolve_taxonomy_id"); $tax->setAccessible(true);
+
+            $settings=get_option("drielo_etsy_settings",array());
+            $shop=(string)($settings["shop_id"]??"");
+            $sections=$req->invoke($sync,"GET","/v3/application/shops/".rawurlencode($shop)."/sections",array());
+            echo "SECTIONS=".wp_json_encode($sections).PHP_EOL;
+
+            foreach(array("C2C"=>"c2c-crochet","TC"=>"tapestry-crochet") as $code=>$slug){
+              $ids=get_posts(array(
+                "post_type"=>"product","posts_per_page"=>1,"fields"=>"ids",
+                "meta_key"=>"_drielo_technique","meta_value"=>$slug
+              ));
+              if(!$ids){
+                global $wpdb;
+                $id=(int)$wpdb->get_var($wpdb->prepare(
+                  "SELECT p.ID FROM {$wpdb->posts} p JOIN {$wpdb->postmeta} pm ON pm.post_id=p.ID AND pm.meta_key="_sku" WHERE p.post_type="product" AND pm.meta_value LIKE %s LIMIT 1",
+                  "%-".$code
+                ));
+              } else $id=(int)$ids[0];
+              $p=$id?wc_get_product($id):null;
+              if(!$p){echo $code."_NO_PRODUCT=1".PHP_EOL;continue;}
+              $taxonomy=(int)$tax->invoke($sync,$p);
+              echo $code."_SKU=".$p->get_sku().PHP_EOL;
+              echo $code."_TAXONOMY=".$taxonomy.PHP_EOL;
+              if($taxonomy){
+                $props=$req->invoke($sync,"GET","/v3/application/seller-taxonomy/nodes/".$taxonomy."/properties",array(),false);
+                echo $code."_PROPERTIES=".wp_json_encode($props).PHP_EOL;
+              }
+            }
+
+            $counts=array("enabled"=>0,"all"=>0,"linked"=>0,"unlinked"=>0);
+            $all=get_posts(array("post_type"=>"product","post_status"=>array("publish","draft","private","pending"),"posts_per_page"=>-1,"fields"=>"ids"));
+            foreach($all as $id){
+              $p=wc_get_product($id); if(!$p) continue;
+              $sku=(string)$p->get_sku();
+              if(!preg_match("/-(CS|C2C|TC|LH)$/",$sku)) continue;
+              $counts["all"]++;
+              if(get_post_meta($id,"_drielo_etsy_enabled",true)==="yes") $counts["enabled"]++;
+              if(absint(get_post_meta($id,"_drielo_etsy_listing_id",true))) $counts["linked"]++; else $counts["unlinked"]++;
+            }
+            echo "COUNTS=".wp_json_encode($counts).PHP_EOL;
+          '
+          REMOTE
