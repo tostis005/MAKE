@@ -94,12 +94,7 @@ def main():
     collection = read_json(COLLECTION_DIR / "collection.json")
     layouts = collection["mockup_spec"]["technique_layouts"]
 
-    expected_pages = {
-        "CS": "collections/baby-nursery/assets/cover-cross-stitch.jpg",
-        "C2C": "collections/baby-nursery/assets/cover-crochet.jpg",
-        "TC": "collections/baby-nursery/assets/cover-c2c-crochet.jpg",
-        "LH": "collections/baby-nursery/assets/cover-rug.jpg",
-    }
+    expected_pages = dict(collection["mockup_spec"]["technique_assets"])
     for suffix in SUFFIXES:
         product = read_json(SYSTEM / "products" / f"I0001-{suffix}" / "product.json")
         if product.get("page_1_asset") != expected_pages[suffix]:
