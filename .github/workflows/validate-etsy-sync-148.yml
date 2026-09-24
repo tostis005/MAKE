@@ -1,0 +1,34 @@
+name: Validate Etsy Sync 1.4.8
+
+on:
+  push:
+    branches:
+      - feature/etsy-technique-classification
+    paths:
+      - '.github/workflows/validate-etsy-sync-148.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: feature/etsy-technique-classification
+          fetch-depth: 1
+          sparse-checkout: |
+            plugins/drielo-etsy-sync/drielo-etsy-sync.php
+            plugins/drielo-etsy-sync/readme.txt
+      - name: Validate PHP and classification table
+        run: |
+          set -euo pipefail
+          php -l plugins/drielo-etsy-sync/drielo-etsy-sync.php
+          grep -q "Version: 1.4.8" plugins/drielo-etsy-sync/drielo-etsy-sync.php
+          grep -q "'taxonomy_id'   => 87" plugins/drielo-etsy-sync/drielo-etsy-sync.php
+          grep -q "'value_id' => 543" plugins/drielo-etsy-sync/drielo-etsy-sync.php
+          grep -q "'value_id' => 583" plugins/drielo-etsy-sync/drielo-etsy-sync.php
+          grep -q "'section_title' => 'Tapestry Crochet'" plugins/drielo-etsy-sync/drielo-etsy-sync.php
+          grep -q "'section_title' => 'Latch Hook'" plugins/drielo-etsy-sync/drielo-etsy-sync.php
