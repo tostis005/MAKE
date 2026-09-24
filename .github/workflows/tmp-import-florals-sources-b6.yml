@@ -1,0 +1,53 @@
+name: TEMP Import Florals Sources Batch 6
+on:
+  push:
+    branches: [feature/florals-pattern-generation]
+    paths: ['.github/workflows/tmp-import-florals-sources-b6.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: drielo-florals-source-import-b6
+  cancel-in-progress: false
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/florals-pattern-generation
+          fetch-depth: 0
+      - name: Download approved sources F0026-F0030
+        shell: bash
+        run: |
+          set -euo pipefail
+          D='content/pattern-system/collections/florals/source-designs'
+          mkdir -p "$D"
+          curl -fL --retry 2 'https://sdmntprindiasocentral.oaiusercontent.com/files/00000000-8b70-8211-a08e-d76774362c19/raw?se=2026-09-24T14%3A27%3A09Z&sp=r&sv=2026-02-06&sr=b&scid=a4c501fb-6fc4-5a26-b13a-f7ce9814a97b&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T12%3A41%3A49Z&ske=2026-09-25T12%3A41%3A49Z&sks=b&skv=2026-02-06&sig=rDv7Bnpx0znr%2Be2qiEn8Bd3XQ/%2BivgqS0WwfjGjnL9k%3D' -o "$D/F0026-spring-flower-basket.png"
+          curl -fL --retry 2 'https://sdmntprpolandcentral.oaiusercontent.com/files/00000000-1fe4-820a-9434-635f263bcde9/raw?se=2026-09-24T14%3A27%3A14Z&sp=r&sv=2026-02-06&sr=b&scid=ee704888-680b-5abd-9a03-307255edb908&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T13%3A22%3A47Z&ske=2026-09-25T13%3A22%3A47Z&sks=b&skv=2026-02-06&sig=BrGfDGCrrc9HDcucOdu3TGeIS4YA//8PrKJFvEjc9Ok%3D' -o "$D/F0027-babys-breath-jar.png"
+          curl -fL --retry 2 'https://sdmntpreastus2.oaiusercontent.com/files/00000000-cb9c-81f6-a436-40919a6bb27d/raw?se=2026-09-24T14%3A27%3A15Z&sp=r&sv=2026-02-06&sr=b&scid=9b64b31a-4146-5dd5-a21d-3d3000cec78a&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T13%3A40%3A46Z&ske=2026-09-25T13%3A40%3A46Z&sks=b&skv=2026-02-06&sig=YAXL7rOQGAge46Wrp5Cf4RjFZN68e1TEvxNhZobK1wc%3D' -o "$D/F0028-carnation-bouquet.png"
+          curl -fL --retry 2 'https://sdmntprnznorth.oaiusercontent.com/files/00000000-ff2c-820b-82df-f89de0aeb995/raw?se=2026-09-24T14%3A27%3A30Z&sp=r&sv=2026-02-06&sr=b&scid=e4e6cc28-9b63-580b-b2af-0ce0124c04c7&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T09%3A11%3A58Z&ske=2026-09-25T09%3A11%3A58Z&sks=b&skv=2026-02-06&sig=/tjg7F/nkBjZNBy8Mx9oP/EM4ewEjc33vpmXJdwvU/k%3D' -o "$D/F0029-anemone-bouquet.png"
+          curl -fL --retry 2 'https://sdmntprdenmarkeast.oaiusercontent.com/files/00000000-5d60-8210-a5ad-f3acb791f713/raw?se=2026-09-24T14%3A27%3A32Z&sp=r&sv=2026-02-06&sr=b&scid=04f65ae8-b81f-5c08-833d-6dd7b4ae3cad&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T14%3A16%3A23Z&ske=2026-09-25T14%3A16%3A23Z&sks=b&skv=2026-02-06&sig=pvUvskS2wAb2U2jbV88CymW93jNSiKUVQ3gSWvYTi%2BI%3D' -o "$D/F0030-forget-me-not-bouquet.png"
+      - name: Verify and commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow
+          python3 - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          d=Path('content/pattern-system/collections/florals/source-designs')
+          for i in range(26,31):
+              p=next(d.glob(f'F{i:04d}-*.png'))
+              im=Image.open(p).convert('RGBA')
+              if im.size!=(100,120) or im.getchannel('A').getbbox() is None: raise SystemExit(f'bad {p}: {im.size}')
+              print(p.name,p.stat().st_size)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/pattern-system/collections/florals/source-designs/F002{6,7,8,9}-*.png content/pattern-system/collections/florals/source-designs/F0030-*.png
+          git commit -m "Import approved Florals sources F0026-F0030 [skip ci]"
+          git fetch origin feature/florals-pattern-generation
+          git rebase origin/feature/florals-pattern-generation
+          git push origin HEAD:feature/florals-pattern-generation
