@@ -1,0 +1,101 @@
+name: TEMP Stop and Purge Baby Nursery
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tmp-stop-and-purge-baby-nursery.yml'
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  stop-and-purge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel active Baby Nursery autopublish runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ids="$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/baby-nursery-auto-publish.yml/runs?status=in_progress&per_page=100" --jq '.workflow_runs[].id')"
+          for id in $ids; do
+            echo "Cancelling Baby Nursery run $id"
+            gh api --method POST "repos/${GITHUB_REPOSITORY}/actions/runs/$id/cancel" || true
+          done
+          queued="$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/baby-nursery-auto-publish.yml/runs?status=queued&per_page=100" --jq '.workflow_runs[].id')"
+          for id in $queued; do
+            echo "Cancelling queued Baby Nursery run $id"
+            gh api --method POST "repos/${GITHUB_REPOSITORY}/actions/runs/$id/cancel" || true
+          done
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_baby_purge_key
+          chmod 600 ~/.ssh/drielo_baby_purge_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Purge Baby Nursery products from production
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_baby_purge_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $ids=get_posts(array(
+              "post_type"=>"product",
+              "post_status"=>"any",
+              "posts_per_page"=>-1,
+              "fields"=>"ids",
+              "tax_query"=>array(array(
+                "taxonomy"=>"product_collection",
+                "field"=>"slug",
+                "terms"=>array("baby-nursery"),
+              )),
+            ));
+            echo "BABY_PRODUCTS_FOUND=".count($ids).PHP_EOL;
+            foreach($ids as $id){
+              $p=wc_get_product($id);
+              if($p){ echo "DELETE ".$p->get_sku()." id=".$id.PHP_EOL; }
+              wp_delete_post($id,true);
+            }
+
+            $left=get_posts(array(
+              "post_type"=>"product",
+              "post_status"=>"any",
+              "posts_per_page"=>-1,
+              "fields"=>"ids",
+              "tax_query"=>array(array(
+                "taxonomy"=>"product_collection",
+                "field"=>"slug",
+                "terms"=>array("baby-nursery"),
+              )),
+            ));
+            echo "BABY_PRODUCTS_LEFT=".count($left).PHP_EOL;
+            if(count($left)!==0){ exit(3); }
+          '
+
+          "${DOCKER[@]}" exec make-wp sh -lc 'find /var/www/html/wp-content/uploads/woocommerce_uploads/drielo -maxdepth 1 -type f -name "Drielo_I*.pdf" -print -delete 2>/dev/null || true'
+          REMOTE
