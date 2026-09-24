@@ -1,4 +1,5 @@
 name: Cleanup Generated Animals Products
+# Exact cover restart
 
 on:
   push:
