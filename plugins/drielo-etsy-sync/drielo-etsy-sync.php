@@ -975,7 +975,7 @@ final class Drielo_Etsy_Sync {
             if ( is_wp_error( $update ) ) {
                 return $this->record_error( $product_id, $update );
             }
-            $remote_state = sanitize_text_field( $update['state'] ?? get_post_meta( $product_id, self::META_REMOTE_STATE, true ) ?: 'draft' );
+            $remote_state = sanitize_text_field( $update['state'] ?? ( get_post_meta( $product_id, self::META_REMOTE_STATE, true ) ?: 'draft' ) );
         } else {
             // Safe mode deliberately reads Etsy but does not push managed
             // listing fields back. Manual Etsy edits therefore survive.
@@ -983,7 +983,7 @@ final class Drielo_Etsy_Sync {
             if ( is_wp_error( $remote ) ) {
                 return $this->record_error( $product_id, $remote );
             }
-            $remote_state = sanitize_text_field( $remote['state'] ?? get_post_meta( $product_id, self::META_REMOTE_STATE, true ) ?: 'draft' );
+            $remote_state = sanitize_text_field( $remote['state'] ?? ( get_post_meta( $product_id, self::META_REMOTE_STATE, true ) ?: 'draft' ) );
         }
 
         if ( ( $is_new || $overwrite ) && $product->get_sku() ) {
@@ -1305,7 +1305,6 @@ final class Drielo_Etsy_Sync {
     private function product_content_hash( WC_Product $product ): string {
         $settings = $this->settings();
         $data = [
-            'version'        => self::VERSION,
             'sku'            => (string) $product->get_sku(),
             'title'          => $this->etsy_title( $product ),
             'description'    => $this->formatted_etsy_description( $product ),
