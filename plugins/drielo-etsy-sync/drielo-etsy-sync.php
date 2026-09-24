@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Drielo Etsy Sync
  * Description: Centraliza la selección y sincronización de productos WooCommerce con Etsy, incluidos productos digitales, imágenes y PDFs.
- * Version: 1.4.0
+ * Version: 1.4.1
  * Author: Drielo
  * Requires Plugins: woocommerce
  * Requires PHP: 8.0
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 final class Drielo_Etsy_Sync {
-    const VERSION = '1.4.0';
+    const VERSION = '1.4.1';
     const OPTION_SETTINGS = 'drielo_etsy_settings';
     const OPTION_TOKENS   = 'drielo_etsy_tokens';
     const OPTION_SYNC_RUN = 'drielo_etsy_sync_run';
@@ -32,6 +32,7 @@ final class Drielo_Etsy_Sync {
     const META_BATCH_STATE      = '_drielo_etsy_batch_state';
     const META_BATCH_MESSAGE    = '_drielo_etsy_batch_message';
     const META_BATCH_UPDATED_AT = '_drielo_etsy_batch_updated_at';
+    const META_LAST_WARNING      = '_drielo_etsy_last_warning';
 
     private static $instance = null;
 
@@ -267,6 +268,10 @@ final class Drielo_Etsy_Sync {
                 <div class="notice notice-success is-dismissible"><p><?php echo esc_html( $notice ); ?></p></div>
             <?php endif; ?>
 
+            <?php if ( $this->is_connected() && ! $this->has_etsy_scope( 'shops_r' ) ) : ?>
+                <div class="notice notice-warning"><p><strong>Falta el permiso shops_r.</strong> Es necesario para localizar automáticamente la sección de tienda “Cross Stitch”. Ve a <a href="<?php echo esc_url( admin_url( 'admin.php?page=drielo-etsy-settings' ) ); ?>">Configuración</a> y pulsa “Actualizar permisos Etsy”.</p></div>
+            <?php endif; ?>
+
             <?php echo $this->sync_run_panel_html( $this->sync_run_snapshot() ); ?>
 
             <?php if ( ! $this->is_connected() ) : ?>
@@ -346,6 +351,7 @@ final class Drielo_Etsy_Sync {
                                 $listing_id = get_post_meta( $id, self::META_LISTING_ID, true );
                                 $last_sync = get_post_meta( $id, self::META_LAST_SYNC, true );
                                 $last_error = get_post_meta( $id, self::META_LAST_ERROR, true );
+                                $last_warning = get_post_meta( $id, self::META_LAST_WARNING, true );
                                 $queue_state = (string) get_post_meta( $id, self::META_QUEUE_STATE, true );
                                 $saved_content_hash = (string) get_post_meta( $id, self::META_CONTENT_HASH, true );
                                 $saved_asset_hash = (string) get_post_meta( $id, self::META_ASSET_HASH, true );
@@ -406,6 +412,7 @@ final class Drielo_Etsy_Sync {
                                             <?php if ( $collection_names ) : ?><small>Colección: <?php echo esc_html( implode( ', ', $collection_names ) ); ?></small><?php endif; ?>
                                             <?php if ( $technique_names ) : ?><small>Tipo: <?php echo esc_html( implode( ', ', $technique_names ) ); ?></small><?php endif; ?>
                                             <?php if ( $last_error ) : ?><span class="drielo-error" title="<?php echo esc_attr( $last_error ); ?>">Error: <?php echo esc_html( wp_trim_words( $last_error, 14 ) ); ?></span><?php endif; ?>
+                                            <?php if ( $last_warning ) : ?><span class="drielo-warning" title="<?php echo esc_attr( $last_warning ); ?>">Aviso: <?php echo esc_html( wp_trim_words( $last_warning, 18 ) ); ?></span><?php endif; ?>
                                         </div>
                                     </td>
                                     <td><?php echo esc_html( $product->get_sku() ?: '—' ); ?></td>
@@ -538,14 +545,24 @@ final class Drielo_Etsy_Sync {
                     <?php if ( $this->is_connected() ) : ?>
                         <div class="drielo-connected-panel">
                             <span class="dashicons dashicons-yes-alt"></span>
-                            <div><strong>Conectado</strong><p><?php echo esc_html( $settings['shop_name'] ? $settings['shop_name'] . ' · ' : '' ); ?>Shop ID: <?php echo esc_html( $settings['shop_id'] ?: '—' ); ?></p><p>Permisos: <?php echo esc_html( $tokens['scope'] ?: 'listings_r listings_w' ); ?></p></div>
+                            <div><strong>Conectado</strong><p><?php echo esc_html( $settings['shop_name'] ? $settings['shop_name'] . ' · ' : '' ); ?>Shop ID: <?php echo esc_html( $settings['shop_id'] ?: '—' ); ?></p><p>Permisos: <?php echo esc_html( $tokens['scope'] ?: 'listings_r listings_w shops_r' ); ?></p></div>
                         </div>
                         <p>El token de acceso se renueva automáticamente usando el refresh token.</p>
-                        <form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
-                            <?php wp_nonce_field( 'drielo_etsy_disconnect', 'drielo_nonce' ); ?>
-                            <input type="hidden" name="action" value="drielo_etsy_disconnect" />
-                            <button class="button">Desconectar Etsy</button>
-                        </form>
+                        <?php if ( ! $this->has_etsy_scope( 'shops_r' ) ) : ?>
+                            <div class="notice notice-warning inline"><p>Para asignar automáticamente la sección de tienda “Cross Stitch”, autoriza el permiso adicional <code>shops_r</code>.</p></div>
+                        <?php endif; ?>
+                        <div class="drielo-connected-actions">
+                            <form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+                                <?php wp_nonce_field( 'drielo_etsy_connect', 'drielo_nonce' ); ?>
+                                <input type="hidden" name="action" value="drielo_etsy_connect" />
+                                <button class="button button-primary">Actualizar permisos Etsy</button>
+                            </form>
+                            <form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+                                <?php wp_nonce_field( 'drielo_etsy_disconnect', 'drielo_nonce' ); ?>
+                                <input type="hidden" name="action" value="drielo_etsy_disconnect" />
+                                <button class="button">Desconectar Etsy</button>
+                            </form>
+                        </div>
                     <?php else : ?>
                         <p>Guarda primero el Keystring y Shared Secret. Después conecta Etsy mediante OAuth.</p>
                         <form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
@@ -984,7 +1001,11 @@ final class Drielo_Etsy_Sync {
             delete_post_meta( $product_id, self::META_QUEUE_STATE );
             if ( $batch_id ) {
                 $listing_id = (string) get_post_meta( $product_id, self::META_LISTING_ID, true );
+                $warning = (string) get_post_meta( $product_id, self::META_LAST_WARNING, true );
                 $message = $listing_id ? 'Sincronización completada. Listing ' . $listing_id . '.' : 'Sincronización completada.';
+                if ( $warning ) {
+                    $message .= ' Aviso: ' . $warning;
+                }
                 $this->set_batch_product_state( $product_id, $batch_id, 'success', $message );
                 $this->refresh_sync_run( $batch_id );
             }
@@ -1020,7 +1041,7 @@ final class Drielo_Etsy_Sync {
             'response_type'         => 'code',
             'client_id'             => $settings['api_key'],
             'redirect_uri'          => $callback,
-            'scope'                 => 'listings_r listings_w',
+            'scope'                 => 'listings_r listings_w shops_r',
             'state'                 => $state,
             'code_challenge'        => $challenge,
             'code_challenge_method' => 'S256',
@@ -1316,6 +1337,10 @@ final class Drielo_Etsy_Sync {
             $remote_state = sanitize_text_field( $remote['state'] ?? ( get_post_meta( $product_id, self::META_REMOTE_STATE, true ) ?: 'draft' ) );
         }
 
+        $section_result = $this->sync_shop_section( $product, $listing_id );
+        // Shop-section assignment is intentionally non-fatal: a missing Etsy
+        // permission or section should not prevent the listing itself syncing.
+
         if ( ( $is_new || $overwrite ) && $product->get_sku() ) {
             $inventory_result = $this->sync_inventory( $product, $listing_id );
             if ( is_wp_error( $inventory_result ) ) {
@@ -1499,6 +1524,100 @@ final class Drielo_Etsy_Sync {
         return ! is_wp_error( $terms ) && ! empty( $terms ) ? sanitize_key( (string) $terms[0] ) : '';
     }
 
+
+    private function has_etsy_scope( string $scope ): bool {
+        $tokens = $this->tokens();
+        $granted = preg_split( '/\s+/', trim( (string) ( $tokens['scope'] ?? '' ) ) );
+        return in_array( $scope, array_filter( (array) $granted ), true );
+    }
+
+    private function normalize_etsy_label( string $value ): string {
+        $value = strtolower( remove_accents( trim( $value ) ) );
+        $value = preg_replace( '/[^a-z0-9]+/', ' ', $value );
+        return trim( preg_replace( '/\s+/', ' ', (string) $value ) );
+    }
+
+    private function resolve_cross_stitch_shop_section_id() {
+        $settings = $this->settings();
+        $shop_id = preg_replace( '/\D+/', '', (string) ( $settings['shop_id'] ?? '' ) );
+        if ( ! $shop_id ) {
+            return new WP_Error( 'etsy_shop_id', 'No se puede asignar la sección Cross Stitch porque falta el Shop ID de Etsy.' );
+        }
+        if ( ! $this->has_etsy_scope( 'shops_r' ) ) {
+            return new WP_Error( 'etsy_shops_scope', 'Falta el permiso shops_r. En Drielo > Configuración, pulsa “Actualizar permisos Etsy” para poder localizar la sección Cross Stitch.' );
+        }
+
+        $cache_key = 'drielo_etsy_shop_section_cross_stitch_' . $shop_id;
+        $cached = absint( get_transient( $cache_key ) );
+        if ( $cached > 0 ) {
+            return $cached;
+        }
+
+        $response = $this->etsy_request( 'GET', '/v3/application/shops/' . rawurlencode( $shop_id ) . '/sections' );
+        if ( is_wp_error( $response ) ) {
+            return $response;
+        }
+        $sections = isset( $response['results'] ) && is_array( $response['results'] ) ? $response['results'] : $response;
+        if ( ! is_array( $sections ) ) {
+            return new WP_Error( 'etsy_shop_sections', 'Etsy no devolvió una lista válida de secciones de tienda.' );
+        }
+
+        $fallback_id = 0;
+        foreach ( $sections as $section ) {
+            if ( ! is_array( $section ) ) {
+                continue;
+            }
+            $id = absint( $section['shop_section_id'] ?? $section['section_id'] ?? $section['id'] ?? 0 );
+            $title = $this->normalize_etsy_label( (string) ( $section['title'] ?? $section['name'] ?? '' ) );
+            if ( ! $id || ! $title ) {
+                continue;
+            }
+            if ( 'cross stitch' === $title ) {
+                set_transient( $cache_key, $id, 12 * HOUR_IN_SECONDS );
+                return $id;
+            }
+            if ( ! $fallback_id && ( false !== strpos( $title, 'cross stitch' ) || false !== strpos( $title, 'punto de cruz' ) ) ) {
+                $fallback_id = $id;
+            }
+        }
+
+        if ( $fallback_id > 0 ) {
+            set_transient( $cache_key, $fallback_id, 12 * HOUR_IN_SECONDS );
+            return $fallback_id;
+        }
+
+        return new WP_Error( 'etsy_cross_stitch_section', 'No se encontró en Etsy una sección de tienda llamada “Cross Stitch”.' );
+    }
+
+    private function sync_shop_section( WC_Product $product, int $listing_id ) {
+        if ( 'cross-stitch' !== $this->product_technique( $product ) ) {
+            delete_post_meta( $product->get_id(), self::META_LAST_WARNING );
+            return true;
+        }
+
+        $section_id = $this->resolve_cross_stitch_shop_section_id();
+        if ( is_wp_error( $section_id ) ) {
+            update_post_meta( $product->get_id(), self::META_LAST_WARNING, $section_id->get_error_message() );
+            return $section_id;
+        }
+
+        $settings = $this->settings();
+        $shop_id = preg_replace( '/\D+/', '', (string) ( $settings['shop_id'] ?? '' ) );
+        $result = $this->etsy_request(
+            'PUT',
+            '/v3/application/shops/' . rawurlencode( $shop_id ) . '/listings/' . rawurlencode( $listing_id ),
+            [ 'section_id' => (int) $section_id ]
+        );
+        if ( is_wp_error( $result ) ) {
+            update_post_meta( $product->get_id(), self::META_LAST_WARNING, 'No se pudo asignar la sección Cross Stitch: ' . $result->get_error_message() );
+            return $result;
+        }
+
+        delete_post_meta( $product->get_id(), self::META_LAST_WARNING );
+        update_post_meta( $product->get_id(), '_drielo_etsy_shop_section_id', (int) $section_id );
+        return true;
+    }
+
     private function resolve_taxonomy_id( WC_Product $product ): int {
         $settings = $this->settings();
         $fallback = absint( $settings['taxonomy_id'] ?? 0 );
@@ -1511,7 +1630,7 @@ final class Drielo_Etsy_Sync {
             return $fallback;
         }
 
-        $cached_id = absint( get_transient( 'drielo_etsy_taxonomy_' . $technique ) );
+        $cached_id = absint( get_transient( 'drielo_etsy_taxonomy_v2_' . $technique ) );
         if ( $cached_id > 0 ) {
             return $cached_id;
         }
@@ -1530,7 +1649,7 @@ final class Drielo_Etsy_Sync {
         }
 
         $profiles = [
-            'cross-stitch'     => [ 'anchors' => [ 'cross stitch' ], 'boost' => [ 'pattern' => 30, 'needlecraft' => 8, 'sewing' => 3 ] ],
+            'cross-stitch'     => [ 'anchors' => [ 'cross stitch', 'cross-stitch', 'punto de cruz' ], 'boost' => [ 'pattern' => 40, 'patterns' => 40, 'patron' => 40, 'patrones' => 40, 'needlecraft' => 10, 'sewing' => 3 ] ],
             'c2c-crochet'      => [ 'anchors' => [ 'crochet' ], 'boost' => [ 'pattern' => 30, 'yarn' => 3 ] ],
             'tapestry-crochet' => [ 'anchors' => [ 'crochet' ], 'boost' => [ 'pattern' => 30, 'yarn' => 3 ] ],
             'latch-hook'       => [ 'anchors' => [ 'latch hook', 'rug' ], 'boost' => [ 'pattern' => 30, 'rug' => 10 ] ],
@@ -1549,6 +1668,7 @@ final class Drielo_Etsy_Sync {
                 $path = array_merge( $trail, [ $name ] );
                 $flat[] = [
                     'id'       => absint( $node['id'] ?? 0 ),
+                    'name'     => strtolower( (string) $name ),
                     'path'     => strtolower( implode( ' > ', array_filter( $path ) ) ),
                     'depth'    => count( $path ),
                     'has_kids' => ! empty( $node['children'] ),
@@ -1564,13 +1684,29 @@ final class Drielo_Etsy_Sync {
         $best_id = 0;
         $best_score = -1;
         foreach ( $flat as $node ) {
-            if ( empty( $node['id'] ) || false === strpos( $node['path'], 'pattern' ) ) {
+            if ( empty( $node['id'] ) ) {
+                continue;
+            }
+            $node_path = $this->normalize_etsy_label( (string) $node['path'] );
+            $node_name = $this->normalize_etsy_label( (string) ( $node['name'] ?? '' ) );
+            $has_pattern_context = false;
+            foreach ( [ 'pattern', 'patterns', 'patron', 'patrones' ] as $pattern_term ) {
+                if ( false !== strpos( $node_path, $pattern_term ) ) {
+                    $has_pattern_context = true;
+                    break;
+                }
+            }
+            if ( ! $has_pattern_context ) {
                 continue;
             }
             $anchor_score = 0;
             foreach ( $profile['anchors'] as $anchor ) {
-                if ( false !== strpos( $node['path'], $anchor ) ) {
-                    $anchor_score = max( $anchor_score, 100 + strlen( $anchor ) );
+                $normalized_anchor = $this->normalize_etsy_label( $anchor );
+                if ( false !== strpos( $node_path, $normalized_anchor ) ) {
+                    $anchor_score = max( $anchor_score, 100 + strlen( $normalized_anchor ) );
+                }
+                if ( $node_name === $normalized_anchor ) {
+                    $anchor_score = max( $anchor_score, 350 + strlen( $normalized_anchor ) );
                 }
             }
             if ( 0 === $anchor_score ) {
@@ -1579,7 +1715,7 @@ final class Drielo_Etsy_Sync {
 
             $score = $anchor_score + (int) $node['depth'];
             foreach ( $profile['boost'] as $term => $points ) {
-                if ( false !== strpos( $node['path'], $term ) ) {
+                if ( false !== strpos( $node_path, $this->normalize_etsy_label( $term ) ) ) {
                     $score += (int) $points;
                 }
             }
@@ -1593,7 +1729,7 @@ final class Drielo_Etsy_Sync {
         }
 
         if ( $best_id > 0 ) {
-            set_transient( 'drielo_etsy_taxonomy_' . $technique, $best_id, DAY_IN_SECONDS );
+            set_transient( 'drielo_etsy_taxonomy_v2_' . $technique, $best_id, DAY_IN_SECONDS );
             return $best_id;
         }
 
