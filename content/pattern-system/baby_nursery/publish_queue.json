@@ -1,30 +1,21 @@
 {
   "collection": "baby-nursery",
-  "mode": "latest-chat-approved-11-clean-v5",
-  "branch": "feature/baby-nursery-sequential-rebuild",
+  "mode": "refresh-osito-elefante-dinosaurio-v1",
+  "branch": "feature/infantil-refresh-osito-elefante-dinosaurio",
   "auto_continue": true,
   "publish_strategy": "strict-one-design-per-run-stop-on-failure",
   "max_attempts_per_design": 1,
   "reset_store_on_first_design": true,
   "exact_allowlist": [
     "I0001",
-    "I0002",
-    "I0003",
     "I0004",
-    "I0005",
-    "I0006",
-    "I0007",
-    "I0008",
-    "I0009",
-    "I0010",
-    "I0011"
+    "I0006"
   ],
   "notes": [
-    "ONLY the 11 latest user-approved images from this chat are active.",
-    "All active motifs are read from collections/baby-nursery/approved-latest-11; no legacy reference-library lookup or ID remapping is permitted.",
-    "Before I0001, all Infantil WooCommerce products, managed media and I-code PDFs are hard-deleted and verified absent.",
-    "Legacy reference-library/source/reference-master residues are removed from this feature branch, while I0001-I0011 structural pattern templates are preserved.",
-    "One design publishes all four techniques and passes exact matrix/media verification before the next design. Any failure stops the queue."
+    "Targeted refresh only: I0001 Teddy Bear, I0004 Baby Elephant, I0006 Cute Dinosaur.",
+    "These three matrices come from the newest images generated in the current chat and use the existing Baby & Nursery palette.",
+    "Before I0001, only the 12 WooCommerce products for I0001/I0004/I0006 plus their managed media and PDFs are deleted; all other Infantil products remain untouched.",
+    "Each design is rebuilt in CS, C2C, TC and LH, published, verified, then the next one starts."
   ],
   "items": [
     {
@@ -34,142 +25,37 @@
       "title_es": "Osito de peluche",
       "slug": "teddy-bear",
       "source_asset": "collections/baby-nursery/source-designs/I0001-teddy-bear.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36050895585",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
       "last_error": null,
-      "published_at": "2026-09-24T19:55:05+00:00"
+      "published_at": null
     },
     {
       "order": 2,
-      "base_design_id": "I0002",
-      "title_en": "Unicorn",
-      "title_es": "Unicornio",
-      "slug": "unicorn",
-      "source_asset": "collections/baby-nursery/source-designs/I0002-unicorn.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36051375374",
-      "last_error": null,
-      "published_at": "2026-09-24T19:58:30+00:00"
-    },
-    {
-      "order": 3,
-      "base_design_id": "I0003",
-      "title_en": "Giraffe",
-      "title_es": "Jirafa",
-      "slug": "giraffe",
-      "source_asset": "collections/baby-nursery/source-designs/I0003-giraffe.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36051752720",
-      "last_error": null,
-      "published_at": "2026-09-24T20:01:44+00:00"
-    },
-    {
-      "order": 4,
       "base_design_id": "I0004",
       "title_en": "Baby Elephant",
       "title_es": "Elefantito",
       "slug": "baby-elephant",
       "source_asset": "collections/baby-nursery/source-designs/I0004-baby-elephant.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36052110535",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
       "last_error": null,
-      "published_at": "2026-09-24T20:04:51+00:00"
+      "published_at": null
     },
     {
-      "order": 5,
-      "base_design_id": "I0005",
-      "title_en": "Bunny with Heart",
-      "title_es": "Conejito con corazón",
-      "slug": "bunny-heart",
-      "source_asset": "collections/baby-nursery/source-designs/I0005-bunny-heart.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36052454434",
-      "last_error": null,
-      "published_at": "2026-09-24T20:07:57+00:00"
-    },
-    {
-      "order": 6,
+      "order": 3,
       "base_design_id": "I0006",
       "title_en": "Cute Dinosaur",
       "title_es": "Dinosaurio infantil",
       "slug": "cute-dinosaur",
       "source_asset": "collections/baby-nursery/source-designs/I0006-cute-dinosaur.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36052804361",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
       "last_error": null,
-      "published_at": "2026-09-24T20:11:01+00:00"
-    },
-    {
-      "order": 7,
-      "base_design_id": "I0007",
-      "title_en": "Rubber Duck",
-      "title_es": "Patito",
-      "slug": "rubber-duck",
-      "source_asset": "collections/baby-nursery/source-designs/I0007-rubber-duck.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36053143147",
-      "last_error": null,
-      "published_at": "2026-09-24T20:14:11+00:00"
-    },
-    {
-      "order": 8,
-      "base_design_id": "I0008",
-      "title_en": "Plush Lamb",
-      "title_es": "Corderito",
-      "slug": "plush-lamb",
-      "source_asset": "collections/baby-nursery/source-designs/I0008-plush-lamb.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36053501956",
-      "last_error": null,
-      "published_at": "2026-09-24T20:17:53+00:00"
-    },
-    {
-      "order": 9,
-      "base_design_id": "I0009",
-      "title_en": "Sleeping Owl",
-      "title_es": "Búho",
-      "slug": "sleeping-owl",
-      "source_asset": "collections/baby-nursery/source-designs/I0009-sleeping-owl.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36053921815",
-      "last_error": null,
-      "published_at": "2026-09-24T20:20:57+00:00"
-    },
-    {
-      "order": 10,
-      "base_design_id": "I0010",
-      "title_en": "Crescent Moon",
-      "title_es": "Luna creciente",
-      "slug": "crescent-moon",
-      "source_asset": "collections/baby-nursery/source-designs/I0010-crescent-moon.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36054266937",
-      "last_error": null,
-      "published_at": "2026-09-24T20:24:31+00:00"
-    },
-    {
-      "order": 11,
-      "base_design_id": "I0011",
-      "title_en": "Smiling Cloud",
-      "title_es": "Nube sonriente",
-      "slug": "smiling-cloud",
-      "source_asset": "collections/baby-nursery/source-designs/I0011-smiling-cloud.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36054674735",
-      "last_error": null,
-      "published_at": "2026-09-24T20:28:06+00:00"
+      "published_at": null
     }
-  ],
-  "bootstrap_lock": false
+  ]
 }
