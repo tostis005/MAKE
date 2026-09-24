@@ -85,11 +85,11 @@
       "title_es": "Pingüino bebé",
       "slug": "penguin-scarf",
       "source_asset": "collections/baby-nursery/source-designs/I0016-penguin-scarf.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36066177630",
       "last_error": null,
-      "published_at": null
+      "published_at": "2026-09-24T22:17:45+00:00"
     },
     {
       "order": 6,
