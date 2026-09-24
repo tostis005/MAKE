@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Drielo Etsy Sync
  * Description: Centraliza la selección y sincronización de productos WooCommerce con Etsy, incluidos productos digitales, imágenes y PDFs.
- * Version: 1.4.8
+ * Version: 1.4.9
  * Author: Drielo
  * Requires Plugins: woocommerce
  * Requires PHP: 8.0
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 final class Drielo_Etsy_Sync {
-    const VERSION = '1.4.8';
+    const VERSION = '1.4.9';
     const OPTION_SETTINGS = 'drielo_etsy_settings';
     const OPTION_TOKENS   = 'drielo_etsy_tokens';
     const OPTION_SYNC_RUN = 'drielo_etsy_sync_run';
@@ -32,6 +32,12 @@ final class Drielo_Etsy_Sync {
     const META_BATCH_STATE      = '_drielo_etsy_batch_state';
     const META_BATCH_MESSAGE    = '_drielo_etsy_batch_message';
     const META_BATCH_UPDATED_AT = '_drielo_etsy_batch_updated_at';
+
+    /**
+     * Etsy writes are allowed only while processing a batch that was created
+     * explicitly from the plugin UI by an authenticated WooCommerce manager.
+     */
+    private bool $manual_sync_context = false;
     const META_LAST_WARNING      = '_drielo_etsy_last_warning';
 
     private static $instance = null;
@@ -55,7 +61,7 @@ final class Drielo_Etsy_Sync {
         add_action( 'admin_post_drielo_etsy_save_settings', [ $this, 'handle_save_settings' ] );
         add_action( 'admin_post_drielo_etsy_connect', [ $this, 'handle_connect' ] );
         add_action( 'admin_post_drielo_etsy_disconnect', [ $this, 'handle_disconnect' ] );
-        add_action( 'drielo_etsy_sync_product_async', [ $this, 'handle_async_sync_product' ], 10, 3 );
+        add_action( 'drielo_etsy_sync_product_async', [ $this, 'handle_async_sync_product' ], 10, 4 );
         add_action( 'wp_ajax_drielo_etsy_sync_status', [ $this, 'ajax_sync_status' ] );
     }
 
@@ -256,7 +262,7 @@ final class Drielo_Etsy_Sync {
             <div class="drielo-header">
                 <div>
                     <h1>Drielo · Etsy</h1>
-                    <p>Filtra el catálogo, activa los productos que quieras gestionar y usa la sincronización segura por defecto. La sobrescritura completa solo se ejecuta sobre filas marcadas explícitamente.</p>
+                    <p>Filtra el catálogo y sincroniza únicamente cuando tú lo decidas. <strong>Modo manual estricto:</strong> crear, importar, editar o regenerar productos en Drielo nunca envía nada automáticamente a Etsy. Solo los botones de esta pantalla pueden iniciar una sincronización.</p>
                 </div>
                 <div class="drielo-connection <?php echo $this->is_connected() ? 'is-connected' : 'is-disconnected'; ?>">
                     <span class="drielo-dot"></span>
@@ -897,15 +903,20 @@ final class Drielo_Etsy_Sync {
         }
 
         $batch_id = wp_generate_uuid4();
+        $manual_token = wp_generate_password( 64, false, false );
+        $manual_token_hash = hash_hmac( 'sha256', $manual_token, wp_salt( 'auth' ) );
         $run = [
-            'id'          => $batch_id,
-            'mode'        => $overwrite ? 'overwrite' : 'safe',
-            'product_ids' => $selected,
-            'started_at'  => current_time( 'mysql' ),
-            'started_by'  => get_current_user_id(),
-            'status'      => 'queued',
-            'completed_at'=> '',
-            'updated_at'  => current_time( 'mysql' ),
+            'id'                => $batch_id,
+            'mode'              => $overwrite ? 'overwrite' : 'safe',
+            'source'            => 'plugin-ui',
+            'manual_only'       => true,
+            'manual_token_hash' => $manual_token_hash,
+            'product_ids'       => $selected,
+            'started_at'        => current_time( 'mysql' ),
+            'started_by'        => get_current_user_id(),
+            'status'            => 'queued',
+            'completed_at'      => '',
+            'updated_at'        => current_time( 'mysql' ),
         ];
         update_option( self::OPTION_SYNC_RUN, $run, false );
 
@@ -913,7 +924,7 @@ final class Drielo_Etsy_Sync {
         $queue_failed = 0;
         foreach ( $selected as $index => $product_id ) {
             $mode = $overwrite ? 1 : 0;
-            $args = [ (int) $product_id, $mode, $batch_id ];
+            $args = [ (int) $product_id, $mode, $batch_id, $manual_token ];
             $scheduled = false;
             delete_post_meta( $product_id, self::META_BATCH_ID );
             delete_post_meta( $product_id, self::META_BATCH_STATE );
@@ -961,10 +972,36 @@ final class Drielo_Etsy_Sync {
         exit;
     }
 
-    public function handle_async_sync_product( $product_id, $overwrite = 0, $batch_id = '' ) {
-        $product_id = absint( $product_id );
-        $overwrite  = ! empty( $overwrite );
-        $batch_id   = sanitize_text_field( (string) $batch_id );
+    public function handle_async_sync_product( $product_id, $overwrite = 0, $batch_id = '', $manual_token = '' ) {
+        $product_id  = absint( $product_id );
+        $overwrite   = ! empty( $overwrite );
+        $batch_id    = sanitize_text_field( (string) $batch_id );
+        $manual_token = (string) $manual_token;
+
+        $run = get_option( self::OPTION_SYNC_RUN, [] );
+        $expected_hash = (string) ( $run['manual_token_hash'] ?? '' );
+        $received_hash = $manual_token !== ''
+            ? hash_hmac( 'sha256', $manual_token, wp_salt( 'auth' ) )
+            : '';
+        $manual_batch_valid =
+            $batch_id !== ''
+            && hash_equals( (string) ( $run['id'] ?? '' ), $batch_id )
+            && 'plugin-ui' === (string) ( $run['source'] ?? '' )
+            && ! empty( $run['manual_only'] )
+            && absint( $run['started_by'] ?? 0 ) > 0
+            && $expected_hash !== ''
+            && $received_hash !== ''
+            && hash_equals( $expected_hash, $received_hash );
+
+        if ( ! $manual_batch_valid ) {
+            if ( $product_id ) {
+                delete_post_meta( $product_id, self::META_QUEUE_STATE );
+                if ( $batch_id ) {
+                    $this->set_batch_product_state( $product_id, $batch_id, 'skipped', 'Bloqueado: Etsy está en modo manual y esta acción no procede de los botones del plugin.' );
+                }
+            }
+            return;
+        }
 
         if ( ! $product_id || ! wc_get_product( $product_id ) || 'yes' !== get_post_meta( $product_id, self::META_ENABLED, true ) ) {
             if ( $product_id ) {
@@ -985,6 +1022,7 @@ final class Drielo_Etsy_Sync {
         }
 
         try {
+            $this->manual_sync_context = true;
             $result = $this->sync_product( $product_id, $overwrite );
             if ( is_wp_error( $result ) ) {
                 update_post_meta( $product_id, self::META_QUEUE_STATE, 'failed' );
@@ -1013,6 +1051,8 @@ final class Drielo_Etsy_Sync {
                 $this->set_batch_product_state( $product_id, $batch_id, 'failed', $e->getMessage() );
                 $this->refresh_sync_run( $batch_id );
             }
+        } finally {
+            $this->manual_sync_context = false;
         }
     }
 
@@ -1169,6 +1209,13 @@ final class Drielo_Etsy_Sync {
     }
 
     private function etsy_request( $method, $path, $body = [], $needs_oauth = true ) {
+        $method = strtoupper( (string) $method );
+        if ( 'GET' !== $method && ! $this->manual_sync_context ) {
+            return new WP_Error(
+                'etsy_manual_only',
+                'Etsy está en modo manual estricto. Solo se permiten cambios iniciados con los botones Sincronizar/Sobrescribir del plugin.'
+            );
+        }
         $settings = $this->settings();
         if ( empty( $settings['api_key'] ) || empty( $settings['shared_secret'] ) ) {
             return new WP_Error( 'etsy_credentials', 'Faltan el Keystring o Shared Secret de Etsy.' );
@@ -1206,6 +1253,12 @@ final class Drielo_Etsy_Sync {
     }
 
     private function etsy_request_json( $method, $path, $body ) {
+        if ( ! $this->manual_sync_context ) {
+            return new WP_Error(
+                'etsy_manual_only',
+                'Etsy está en modo manual estricto. Solo se permiten cambios iniciados con los botones Sincronizar/Sobrescribir del plugin.'
+            );
+        }
         $settings = $this->settings();
         if ( empty( $settings['api_key'] ) || empty( $settings['shared_secret'] ) ) {
             return new WP_Error( 'etsy_credentials', 'Faltan el Keystring o Shared Secret de Etsy.' );
@@ -1238,6 +1291,12 @@ final class Drielo_Etsy_Sync {
     }
 
     private function etsy_upload_file( $path, $fields, $binary_path, $field_name, $mime, $filename ) {
+        if ( ! $this->manual_sync_context ) {
+            return new WP_Error(
+                'etsy_manual_only',
+                'Etsy está en modo manual estricto. Las imágenes y PDFs solo pueden subirse desde los botones del plugin.'
+            );
+        }
         $settings = $this->settings();
         $token = $this->get_access_token();
         if ( is_wp_error( $token ) ) {
@@ -1309,6 +1368,13 @@ final class Drielo_Etsy_Sync {
     }
 
     private function sync_product( $product_id, bool $overwrite = false ) {
+        if ( ! $this->manual_sync_context ) {
+            return new WP_Error(
+                'etsy_manual_only',
+                'Sincronización bloqueada: Etsy solo puede modificarse desde una sincronización iniciada manualmente en el plugin.'
+            );
+        }
+
         $product = wc_get_product( $product_id );
         if ( ! $product ) {
             return new WP_Error( 'invalid_product', 'Producto no válido.' );
