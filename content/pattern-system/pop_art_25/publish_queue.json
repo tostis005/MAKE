@@ -139,10 +139,11 @@
       "title_en": "Marilyn Monroe Blowing Kiss",
       "title_es": "Marilyn Monroe lanzando un beso",
       "slug": "marilyn-monroe-blowing-kiss",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35996832892",
+      "last_error": null,
+      "published_at": "2026-09-24T12:09:45+00:00"
     },
     {
       "order": 11,
