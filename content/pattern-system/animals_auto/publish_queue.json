@@ -1,7 +1,7 @@
 {
   "collection": "animals",
   "branch": "feature/animals-auto-publish",
-  "auto_continue": true,
+  "auto_continue": false,
   "max_attempts_per_design": 2,
   "recovery_attempts_per_design": 4,
   "created_from": "canonical Animals A0001-A0030 references",
@@ -314,5 +314,6 @@
     }
   ],
   "restarted_at": "2026-09-24T09:47:30Z",
-  "restart_reason": "Final clean restart after Node 24 action upgrade, renderer gallery fix, isolated WooCommerce staging, and serial queue stabilization."
+  "restart_reason": "Final clean restart after Node 24 action upgrade, renderer gallery fix, isolated WooCommerce staging, and serial queue stabilization.",
+  "paused_reason": "Paused by user pending replacement of the PDF background image."
 }
