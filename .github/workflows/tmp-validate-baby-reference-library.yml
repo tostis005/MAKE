@@ -38,3 +38,5 @@ jobs:
               raise SystemExit(f'unsafe margins {margins}')
           print('CANONICAL_I0002_VALID',bbox,margins)
           PY
+
+# rerun after archive repair
