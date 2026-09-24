@@ -1,7 +1,7 @@
 {
   "collection": "baby-nursery",
   "mode": "publish-one-design-per-run",
-  "auto_continue": true,
+  "auto_continue": false,
   "max_attempts_per_design": 2,
   "notes": [
     "I0001 is already approved and published.",
