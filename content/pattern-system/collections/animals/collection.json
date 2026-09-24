@@ -169,14 +169,14 @@
     }
   },
   "mockup_spec": {
-    "asset": "../../multitech/assets/cover-cross-stitch.webp",
+    "asset": "assets/animals-cover-cross-stitch.webp",
     "technique_assets": {
-      "CS": "../../multitech/assets/cover-cross-stitch.webp",
-      "C2C": "../../multitech/assets/cover-crochet.webp",
-      "TC": "../../multitech/assets/cover-c2c-crochet.webp",
-      "LH": "../../multitech/assets/cover-rug.webp"
+      "CS": "assets/animals-cover-cross-stitch.webp",
+      "C2C": "assets/animals-cover-c2c-crochet.webp",
+      "TC": "assets/animals-cover-tapestry-crochet.webp",
+      "LH": "assets/animals-cover-latch-hook.webp"
     },
-    "status": "ready-generic-technique-covers",
+    "status": "approved-animals-technique-covers",
     "frame": {
       "enabled": false
     },
@@ -184,6 +184,12 @@
       "purpose": "Future reusable page-1 lifestyle images for the Animals collection.",
       "frame_requirement": "Keep the craft display area empty; the renderer inserts the canonical design.",
       "post_generation_measurement": "Record source dimensions and usable placement geometry after approval."
+    },
+    "source_uploads": {
+      "CS": "114976.png",
+      "C2C": "114974.png",
+      "TC": "114975.png",
+      "LH": "114977.png"
     }
   },
   "preview_rules": {
