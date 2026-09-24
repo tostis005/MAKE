@@ -3,7 +3,7 @@ Contributors: Drielo
 Requires at least: 6.4
 Requires PHP: 8.0
 Requires Plugins: woocommerce
-Stable tag: 1.4.4
+Stable tag: 1.4.5
 
 Panel central para seleccionar y sincronizar productos WooCommerce con Etsy mediante Etsy Open API v3.
 
@@ -37,6 +37,12 @@ Panel central para seleccionar y sincronizar productos WooCommerce con Etsy medi
 Etsy no permite devolver un listing ya publicado al estado draft. Si un listing activo se cambia al objetivo Borrador, el plugin lo deja inactive.
 
 == Changelog ==
+
+= 1.4.5 =
+* C2C Crochet y Tapestry Crochet priorizan la categoría Etsy Crochet/Ganchillo.
+* Sincroniza el atributo requerido Craft type con Crochet (Ganchillo en la interfaz española).
+* C2C Crochet se asigna automáticamente a la sección de tienda “C2C Crochet”.
+* La sincronización segura puede corregir categoría, tipo de artesanía y sección sin sobrescribir imágenes, PDFs ni descripción.
 
 = 1.4.4 =
 * Usa el precio de Drielo como objetivo visible en Etsy y reduce automáticamente el precio base enviado para compensar IVA/impuestos y la conversión que Etsy muestra al comprador.
