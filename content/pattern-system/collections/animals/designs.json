@@ -215,7 +215,9 @@
       ],
       "artwork_status": "canonical-reference-ready",
       "reference_asset": "collections/animals/reference-masters/A0012-raccoon-heart-reference.png",
-      "source_asset": "collections/animals/source-designs/A0012-raccoon-heart.png"
+      "source_asset": "collections/animals/source-designs/A0012-raccoon-heart.png",
+      "product_status": "ready",
+      "transparent_background": true
     },
     {
       "order": 13,
