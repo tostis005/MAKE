@@ -5,7 +5,7 @@
   "collection": "animals",
   "source_artwork": "collections/animals/source-designs/A0001-sleeping-tabby-quilts.png",
   "reference_artwork": "collections/animals/reference-masters/A0001-sleeping-tabby-quilts-reference.png",
-  "page_1_asset": "../../multitech/assets/cover-cross-stitch.webp",
+  "page_1_asset": "assets/animals-cover-cross-stitch.webp",
   "render_ready": true,
   "status": "active",
   "palette_mode": "strict",
