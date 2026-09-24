@@ -326,3 +326,5 @@ jobs:
             echo "No pending Baby & Nursery designs remain."
             python3 content/pattern-system/baby_nursery/queue_state.py summary
           fi
+
+# canonical reference migration pause trigger
