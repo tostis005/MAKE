@@ -232,9 +232,9 @@
       "dot": "#DDD8CF",
       "dot_radius": 0.05
     },
-    "vivid_palette": true,
+    "vivid_palette": false,
     "forced_external_outline": false,
-    "palette_style": "soft-vivid-nursery",
+    "palette_style": "balanced-soft-nursery",
     "avoid_neon_or_electric_substitutions": true
   },
   "pattern_rules": {
