@@ -1,6 +1,7 @@
 name: Pop Art Branch Auto Publish Queue
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - feature/pop-art-resto-24
@@ -337,3 +338,21 @@ jobs:
           git add content/pattern-system/pop_art_25/publish_queue.json
           git commit -m "Record Pop Art ${DESIGN} auto-publish result"
           git push origin HEAD:feature/pop-art-resto-24
+
+
+      - name: Dispatch next queued Pop Art design
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin feature/pop-art-resto-24
+          git reset --hard origin/feature/pop-art-resto-24
+          if [ "$(python3 content/pattern-system/pop_art_25/queue_state.py has-work)" = "yes" ]; then
+            echo "Pending Pop Art designs remain; dispatching the next run."
+            gh api --method POST               "repos/${GITHUB_REPOSITORY}/actions/workflows/pop-art-branch-auto-publish.yml/dispatches"               -f ref=feature/pop-art-resto-24
+          else
+            echo "No pending Pop Art designs remain."
+            python3 content/pattern-system/pop_art_25/queue_state.py summary
+          fi
