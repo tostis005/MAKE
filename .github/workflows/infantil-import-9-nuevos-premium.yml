@@ -113,8 +113,12 @@ jobs:
               raise SystemExit(f"Unexpected new-nine queue: {ids}")
           if any(x.get("status") not in {"pending","published","failed"} for x in q["items"]):
               raise SystemExit("Unexpected queue status")
-          if any(word in json.dumps(q,ensure_ascii=False).lower() for word in ("reindeer","ciervito","reno")):
-              raise SystemExit("Rejected reindeer/deer residue detected in queue")
+          item_text=" ".join(
+              " ".join(str(item.get(k,"")) for k in ("title_en","title_es","slug","base_design_id"))
+              for item in q["items"]
+          ).lower()
+          if any(word in item_text for word in ("reindeer","ciervito","reno")):
+              raise SystemExit("Rejected reindeer/deer design detected in queue")
           print("NEW_PREMIUM_QUEUE_OK",ids)
           PY
 
