@@ -1,6 +1,6 @@
 {
   "collection": "animals",
-  "reference_policy": "The five approved 1200x960 Animals reference sheets are canonical. Their 100x120 per-design matrices are losslessly reversible to those exact sheets under 4x nearest-neighbour reconstruction. Do not redraw, substitute, approximate, or regenerate these motifs with AI.",
+  "reference_policy": "The five Animals reference sheets are canonical. A0014 has an approved 2026-09-24 replacement that supersedes the historical v2 matrix archive for A0014 only; all other designs remain tied to that archive.",
   "canonical_archive": null,
   "archive_encoding": "concatenated base64(zlib(json))",
   "decoded_sha256": "7ef2db4da5c568a5bfe13586063f8d82e065a9b1ed122f0b20fbabecd5e055c9",
@@ -40,7 +40,7 @@
     {
       "sheet": 3,
       "asset": "collections/animals/reference-sheets/animals-reference-sheet-03.png",
-      "sha256": "cd0933725781ec33e6ed00fabbd7a4a87dda30cc21a8446cb18b96d8f9f34631",
+      "sha256": "ee88e81a1efa574c4b1723b00c5149080d304413faceabda6379953fd13aa964",
       "design_ids": [
         "A0013",
         "A0014",
@@ -472,5 +472,21 @@
     "reference-matrices-v2.part13e",
     "reference-matrices-v2.part14"
   ],
-  "archive_version": 2
+  "archive_version": 2,
+  "approved_overrides": {
+    "A0014": {
+      "revision": "2026-09-24-elephant-palette-replacement",
+      "source_sha256": "eed786f6cf20ce00774b31d4e692fa3d0b9c4e593e35b832585a56b99ab9147e",
+      "master_sha256": "23c87161e91434c9645bae390f5eec5ef06dc2c48ebf40fbfe3d56381cbc14c8",
+      "palette_compliance": "100%",
+      "source_grid": "100x120",
+      "safe_bbox": [
+        6,
+        25,
+        94,
+        95
+      ],
+      "reason": "Approved improved elephant artwork; replaces prior colour treatment."
+    }
+  }
 }

@@ -249,11 +249,13 @@
         "A0014-TC",
         "A0014-LH"
       ],
-      "artwork_status": "canonical-reference-ready",
+      "artwork_status": "canonical-approved-replacement",
       "reference_asset": "collections/animals/reference-masters/A0014-elephant-heart-balloon-reference.png",
       "source_asset": "collections/animals/source-designs/A0014-elephant-heart-balloon.png",
-      "product_status": "ready",
-      "transparent_background": true
+      "product_status": "needs-regeneration",
+      "transparent_background": true,
+      "artwork_revision": "2026-09-24-elephant-palette-replacement",
+      "approved_palette_compliance": "100%"
     },
     {
       "order": 15,
