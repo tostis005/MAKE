@@ -53,7 +53,14 @@ def cmd_next(args):
     doc=load()
     item=None
     if doc.get("auto_continue",True):
-        item=next((x for x in doc["items"] if x.get("status")=="pending"),None)
+        recovery_limit=int(doc.get("recovery_attempts_per_design",4))
+        item=next(
+            (x for x in doc["items"]
+             if x.get("status")=="failed" and int(x.get("attempts",0))<recovery_limit),
+            None
+        )
+        if item is None:
+            item=next((x for x in doc["items"] if x.get("status")=="pending"),None)
         if item is None:
             item=gallery_backfill_item(doc)
     output=args.github_output or os.environ.get("GITHUB_OUTPUT")
@@ -85,19 +92,28 @@ def cmd_fail(args):
     item=get_item(doc,args.design_id)
     item["attempts"]=int(item.get("attempts",0))+1
     max_attempts=int(doc.get("max_attempts_per_design",2))
+    recovery_limit=int(doc.get("recovery_attempts_per_design",4))
     retry=item["attempts"]<max_attempts
-    item["status"]="pending" if retry else "failed"
+    if retry:
+        item["status"]="pending"
+    elif item["attempts"]<recovery_limit:
+        item["status"]="failed"
+    else:
+        item["status"]="blocked"
     item["last_run"]=args.run_url or None
     item["last_error"]=(args.error or "workflow failed")[:1000]
     item["failed_at"]=now()
     save(doc)
-    print(("RETRY " if retry else "FAILED ")+args.design_id)
+    label="RETRY " if item["status"]=="pending" else ("FAILED " if item["status"]=="failed" else "BLOCKED ")
+    print(label+args.design_id)
 
 def cmd_has_work(args):
     doc=load()
     pending=[x for x in doc["items"] if x.get("status")=="pending"]
+    recovery_limit=int(doc.get("recovery_attempts_per_design",4))
+    recoverable=[x for x in doc["items"] if x.get("status")=="failed" and int(x.get("attempts",0))<recovery_limit]
     backfill=gallery_backfill_item(doc)
-    print("yes" if doc.get("auto_continue",True) and (pending or backfill) else "no")
+    print("yes" if doc.get("auto_continue",True) and (recoverable or pending or backfill) else "no")
 
 def cmd_summary(args):
     doc=load()
