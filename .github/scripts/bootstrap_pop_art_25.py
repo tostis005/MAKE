@@ -125,7 +125,7 @@ def product_json(base,title_en,title_es,slug,suffix,ready):
   'pattern_file':f'patterns/{base}-{suffix}/pattern.json','template':template,'website':'www.drielo.com',
   'status':'published-test' if ready else 'draft','render_ready':False,'renderer':'multitech',
   'source_artwork':f'collections/{CID}/sources/{base}.png' if ready else None,
-  'page_1_asset':f'multitech/assets/cover-{ {"CS":"cross-stitch","C2C":"c2c-crochet","TC":"crochet","LH":"rug"}[suffix] }.webp'
+  'page_1_asset':f'multitech/assets/cover-{ {"CS":"cross-stitch","C2C":"crochet","TC":"c2c-crochet","LH":"rug"}[suffix] }.webp'
  }
 
 def pattern_json(base,suffix,matrix=None,threads=None):
@@ -196,8 +196,8 @@ def main():
   'description_es':'Nueva colección Pop Art de 26 diseños construida con una única paleta estricta de 25 colores y cuatro técnicas artesanales basadas en cuadrícula.',
   'palette':PALETTE,'design_count':26,'techniques':['cross-stitch','c2c-crochet','tapestry-crochet','latch-hook'],
   'mockup_spec':{'asset':'../../multitech/assets/cover-cross-stitch.webp','technique_assets':{
-    'CS':'../../multitech/assets/cover-cross-stitch.webp','C2C':'../../multitech/assets/cover-c2c-crochet.webp',
-    'TC':'../../multitech/assets/cover-crochet.webp','LH':'../../multitech/assets/cover-rug.webp'},'frame':{'enabled':False}},
+    'CS':'../../multitech/assets/cover-cross-stitch.webp','C2C':'../../multitech/assets/cover-crochet.webp',
+    'TC':'../../multitech/assets/cover-c2c-crochet.webp','LH':'../../multitech/assets/cover-rug.webp'},'frame':{'enabled':False}},
   'preview_rules':{'palette_mode':'strict','allowed_palette_size':25,'gradients':False,'extra_colours':False}}
  write_json(CDIR/'collection.json',collection)
  write_json(CDIR/'designs.json',{'collection':CID,'designs':[{'code':c,'title_en':en,'title_es':es,'slug':s,'status':'ready' if c in TEST else 'draft','variants':[f'{c}-{x}' for x in TECHS]} for c,en,es,s in DESIGNS]})
