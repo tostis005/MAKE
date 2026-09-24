@@ -1,7 +1,8 @@
 name: Audit Etsy listings for Pop Art relink
 # synchronize trigger
 # post-relink verification 20260924
-# PR audit run after C2C relink
+# progress check 2
+# final current-state probe
 
 on:
   push:
@@ -113,6 +114,9 @@ jobs:
                 "enabled"=>(string)get_post_meta($id,"_drielo_etsy_enabled",true),
                 "target_state"=>(string)get_post_meta($id,"_drielo_etsy_target_state",true),
                 "remote_state"=>(string)get_post_meta($id,"_drielo_etsy_remote_state",true),
+                "featured_image_id"=>(int)$p->get_image_id(),
+                "gallery_count"=>count($p->get_gallery_image_ids()),
+                "download_count"=>count($p->get_downloads()),
                 "collections"=>$c,
                 "techniques"=>$t
               );
