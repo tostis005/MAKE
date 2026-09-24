@@ -1,0 +1,175 @@
+name: Apply launch prices to all techniques
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/apply-launch-prices-all.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_launch_prices_key
+          chmod 600 ~/.ssh/drielo_launch_prices_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Update WooCommerce and linked Etsy listings
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_launch_prices_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -d max_execution_time=0 -r '
+            require "/var/www/html/wp-load.php";
+            require_once ABSPATH."wp-admin/includes/plugin.php";
+
+            $plugin_data=get_plugin_data(WP_PLUGIN_DIR."/drielo-etsy-sync/drielo-etsy-sync.php",false,false);
+            $version=(string)($plugin_data["Version"]??"");
+            echo "ETSY_PLUGIN_VERSION=".$version.PHP_EOL;
+            if(version_compare($version,"1.4.4","<") || !class_exists("Drielo_Etsy_Sync")){
+              fwrite(STDERR,"Etsy sync plugin 1.4.4+ is required.".PHP_EOL);
+              exit(2);
+            }
+
+            update_option("drielo_etsy_visible_price_factor",1.262104,false);
+
+            $targets=array(
+              "CS"=>2.99,
+              "C2C"=>2.49,
+              "TC"=>2.49,
+              "LH"=>2.49
+            );
+            $slug_to_code=array(
+              "cross-stitch"=>"CS",
+              "c2c-crochet"=>"C2C",
+              "tapestry-crochet"=>"TC",
+              "latch-hook"=>"LH"
+            );
+
+            $sync=Drielo_Etsy_Sync::instance();
+            $ref=new ReflectionClass($sync);
+            $price_method=$ref->getMethod("etsy_price_eur");
+            $price_method->setAccessible(true);
+            $inventory_method=$ref->getMethod("sync_inventory");
+            $inventory_method->setAccessible(true);
+            $request_method=$ref->getMethod("etsy_request");
+            $request_method->setAccessible(true);
+            $gone_method=$ref->getMethod("listing_reference_is_gone");
+            $gone_method->setAccessible(true);
+            $clear_method=$ref->getMethod("clear_local_listing_reference");
+            $clear_method->setAccessible(true);
+
+            $ids=get_posts(array(
+              "post_type"=>"product",
+              "post_status"=>array("publish","draft","private","pending"),
+              "posts_per_page"=>-1,
+              "fields"=>"ids",
+              "orderby"=>"ID",
+              "order"=>"ASC"
+            ));
+
+            $web=array("CS"=>0,"C2C"=>0,"TC"=>0,"LH"=>0);
+            $etsy=array("CS"=>0,"C2C"=>0,"TC"=>0,"LH"=>0);
+            $removed=array("CS"=>0,"C2C"=>0,"TC"=>0,"LH"=>0);
+            $failures=array();
+            $base_prices=array();
+
+            foreach($ids as $id){
+              $p=wc_get_product($id);
+              if(!$p) continue;
+              $sku=(string)$p->get_sku();
+              $code="";
+              if(preg_match("/-(CS|C2C|TC|LH)$/",$sku,$m)){
+                $code=$m[1];
+              } else {
+                $tech=(string)get_post_meta($id,"_drielo_technique",true);
+                $code=$slug_to_code[$tech]??"";
+              }
+              if(!$code || !isset($targets[$code])) continue;
+
+              $target=(float)$targets[$code];
+              $p->set_regular_price(number_format($target,2,".",""));
+              $p->set_sale_price("");
+              $p->set_price(number_format($target,2,".",""));
+              $p->save();
+              wc_delete_product_transients($id);
+              $web[$code]++;
+
+              $listing_id=absint(get_post_meta($id,"_drielo_etsy_listing_id",true));
+              if(!$listing_id) continue;
+
+              $probe=$request_method->invoke($sync,"GET","/v3/application/listings/".rawurlencode((string)$listing_id),array());
+              if($gone_method->invoke($sync,$probe)){
+                $clear_method->invoke($sync,(int)$id);
+                $removed[$code]++;
+                echo "REMOVED_LOCAL_REF sku=".$sku." old_listing=".$listing_id.PHP_EOL;
+                continue;
+              }
+              if(is_wp_error($probe)){
+                $failures[]=array("sku"=>$sku,"listing"=>$listing_id,"stage"=>"probe","error"=>$probe->get_error_message());
+                continue;
+              }
+
+              $base=(float)$price_method->invoke($sync,$p);
+              $result=$inventory_method->invoke($sync,$p,$listing_id);
+              if(is_wp_error($result)){
+                $failures[]=array("sku"=>$sku,"listing"=>$listing_id,"stage"=>"inventory","error"=>$result->get_error_message());
+                continue;
+              }
+
+              $etsy[$code]++;
+              $base_prices[$code]=number_format($base,2,".","");
+              update_post_meta($id,"_drielo_etsy_content_hash","");
+            }
+
+            echo "WEB_COUNTS=".wp_json_encode($web).PHP_EOL;
+            echo "ETSY_UPDATED=".wp_json_encode($etsy).PHP_EOL;
+            echo "REMOVED_REFS=".wp_json_encode($removed).PHP_EOL;
+            echo "ETSY_BASE_EUR=".wp_json_encode($base_prices).PHP_EOL;
+            echo "FAILURES=".wp_json_encode($failures).PHP_EOL;
+            echo "VISIBLE_FACTOR=".get_option("drielo_etsy_visible_price_factor").PHP_EOL;
+
+            $bad=array();
+            foreach($ids as $id){
+              $p=wc_get_product($id);
+              if(!$p) continue;
+              $sku=(string)$p->get_sku();
+              $code="";
+              if(preg_match("/-(CS|C2C|TC|LH)$/",$sku,$m)){
+                $code=$m[1];
+              } else {
+                $tech=(string)get_post_meta($id,"_drielo_technique",true);
+                $code=$slug_to_code[$tech]??"";
+              }
+              if(!$code || !isset($targets[$code])) continue;
+              $actual=(float)$p->get_regular_price("edit");
+              if(abs($actual-(float)$targets[$code])>0.001){
+                $bad[]=array("sku"=>$sku,"expected"=>$targets[$code],"actual"=>$actual);
+              }
+            }
+            echo "WEB_PRICE_ERRORS=".wp_json_encode($bad).PHP_EOL;
+
+            if($bad || $failures){
+              exit(3);
+            }
+          '
+          REMOTE
