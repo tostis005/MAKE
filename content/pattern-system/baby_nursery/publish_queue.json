@@ -1,7 +1,7 @@
 {
   "collection": "baby-nursery",
   "mode": "publish-one-canonical-user-reference-design-per-run",
-  "auto_continue": true,
+  "auto_continue": false,
   "max_attempts_per_design": 2,
   "notes": [
     "I0001 remains the approved published reference.",
@@ -29,11 +29,10 @@
       "title_es": "Elefantito",
       "slug": "baby-elephant",
       "source_asset": "collections/baby-nursery/source-designs/I0002-baby-elephant.png",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35966911476",
-      "last_error": "Automatic publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T06:56:41+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 3,
@@ -42,11 +41,10 @@
       "title_es": "Jirafa",
       "slug": "giraffe",
       "source_asset": "collections/baby-nursery/source-designs/I0003-giraffe.png",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35967197867",
-      "last_error": "Automatic publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T07:00:01+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 4,
@@ -55,11 +53,10 @@
       "title_es": "Luna creciente",
       "slug": "crescent-moon",
       "source_asset": "collections/baby-nursery/source-designs/I0004-crescent-moon.png",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35967347695",
-      "last_error": "Automatic publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T07:01:33+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 5,
@@ -68,11 +65,10 @@
       "title_es": "Nube sonriente",
       "slug": "smiling-cloud",
       "source_asset": "collections/baby-nursery/source-designs/I0005-smiling-cloud.png",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35967482521",
-      "last_error": "Automatic publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T07:03:08+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 6,
@@ -81,11 +77,10 @@
       "title_es": "Conejito con corazón",
       "slug": "bunny-heart",
       "source_asset": "collections/baby-nursery/source-designs/I0006-bunny-heart.png",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35967615364",
-      "last_error": "Automatic publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T07:04:52+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 7,
@@ -94,11 +89,10 @@
       "title_es": "Arcoíris con nubes",
       "slug": "rainbow-clouds",
       "source_asset": "collections/baby-nursery/source-designs/I0007-rainbow-clouds.png",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35967771881",
-      "last_error": "Automatic publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T07:06:31+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 8,
