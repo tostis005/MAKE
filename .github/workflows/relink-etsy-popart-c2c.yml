@@ -1,0 +1,342 @@
+name: Relink orphan Pop Art listings to C2C
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/relink-etsy-popart-c2c.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  relink:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_etsy_relink_key
+          chmod 600 ~/.ssh/drielo_etsy_relink_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Relink 26 orphan listings and force overwrite
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: "55"
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT=$(ssh -i ~/.ssh/drielo_etsy_relink_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"; exit 1
+          fi
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M -d max_execution_time=0 -r '
+            require "/var/www/html/wp-load.php";
+            require_once ABSPATH."wp-admin/includes/plugin.php";
+
+            $plugin=WP_PLUGIN_DIR."/drielo-etsy-sync/drielo-etsy-sync.php";
+            $data=get_plugin_data($plugin,false,false);
+            echo "PLUGIN_VERSION=".($data["Version"]??"unknown").PHP_EOL;
+            if(!class_exists("Drielo_Etsy_Sync")){fwrite(STDERR,"Plugin class unavailable\n");exit(2);}
+
+            $sync=Drielo_Etsy_Sync::instance();
+            $ref=new ReflectionClass($sync);
+            $method=function($name)use($ref,$sync){
+              $m=$ref->getMethod($name);
+              $m->setAccessible(true);
+              return [$m,$sync];
+            };
+            [$settings_m,$obj]=$method("settings");
+            [$request,$obj]=$method("etsy_request");
+            [$resolve_taxonomy,$obj]=$method("resolve_taxonomy_id");
+            [$listing_payload,$obj]=$method("listing_payload");
+            [$sync_inventory,$obj]=$method("sync_inventory");
+            [$sync_images,$obj]=$method("sync_images");
+            [$sync_downloads,$obj]=$method("sync_downloads");
+            [$asset_hash_m,$obj]=$method("product_asset_hash");
+            [$content_hash_m,$obj]=$method("product_content_hash");
+
+            $settings=$settings_m->invoke($sync);
+            $shop=(string)($settings["shop_id"]??"");
+            if($shop===""){fwrite(STDERR,"Shop ID missing\n");exit(3);}
+
+            $ids=get_posts(array(
+              "post_type"=>"product",
+              "post_status"=>array("publish","draft","private","pending"),
+              "posts_per_page"=>-1,
+              "fields"=>"ids",
+              "orderby"=>"ID",
+              "order"=>"ASC"
+            ));
+
+            $linked=array();
+            $cs_by_title=array();
+            $c2c_by_base=array();
+            foreach($ids as $id){
+              $p=wc_get_product($id);
+              if(!$p) continue;
+              $listing=(string)get_post_meta($id,"_drielo_etsy_listing_id",true);
+              if($listing!=="") $linked[$listing]=(int)$id;
+
+              $terms=taxonomy_exists("product_collection")?wp_get_post_terms($id,"product_collection",array("fields"=>"slugs")):array();
+              if(is_wp_error($terms) || !in_array("pop-art-25",(array)$terms,true)) continue;
+
+              $sku=(string)$p->get_sku();
+              if(preg_match("/^DRIELO-(P\\d{4})-CS$/",$sku,$m)){
+                $cs_by_title[(string)$p->get_name()]=array(
+                  "base"=>$m[1],
+                  "id"=>(int)$id,
+                  "sku"=>$sku,
+                  "listing_id"=>$listing
+                );
+              } elseif(preg_match("/^DRIELO-(P\\d{4})-C2C$/",$sku,$m)){
+                $c2c_by_base[$m[1]]=array(
+                  "id"=>(int)$id,
+                  "sku"=>$sku,
+                  "listing_id"=>$listing
+                );
+              }
+            }
+
+            if(count($cs_by_title)!==26 || count($c2c_by_base)!==26){
+              fwrite(STDERR,"Preflight failed: expected 26 CS and 26 C2C Pop Art products, got ".count($cs_by_title)." and ".count($c2c_by_base)."\n");
+              exit(4);
+            }
+
+            $remote=array();
+            for($offset=0;$offset<1000;$offset+=100){
+              $res=$request->invoke($sync,"GET","/v3/application/shops/".rawurlencode($shop)."/listings?state=active&limit=100&offset=".$offset,array(),true);
+              if(is_wp_error($res)){fwrite(STDERR,"Remote active listing fetch failed: ".$res->get_error_message()."\n");exit(5);}
+              $rows=(array)($res["results"]??array());
+              foreach($rows as $r){
+                $lid=(string)($r["listing_id"]??"");
+                if($lid!=="") $remote[$lid]=$r;
+              }
+              if(count($rows)<100) break;
+            }
+
+            $pairs=array();
+            foreach($remote as $lid=>$r){
+              if(isset($linked[$lid])) continue;
+              $title=(string)($r["title"]??"");
+              if(!isset($cs_by_title[$title])) continue;
+              $cs=$cs_by_title[$title];
+              $base=$cs["base"];
+              if(!isset($c2c_by_base[$base])){
+                fwrite(STDERR,"No C2C sibling for ".$base."\n");exit(6);
+              }
+              $target=$c2c_by_base[$base];
+              if($target["listing_id"]!==""){
+                fwrite(STDERR,"C2C target already linked: ".$target["sku"]."\n");exit(7);
+              }
+              $pairs[]=array(
+                "listing_id"=>$lid,
+                "old_title"=>$title,
+                "base"=>$base,
+                "cs_id"=>$cs["id"],
+                "cs_sku"=>$cs["sku"],
+                "c2c_id"=>$target["id"],
+                "c2c_sku"=>$target["sku"]
+              );
+            }
+
+            usort($pairs,static fn($a,$b)=>strcmp($a["base"],$b["base"]));
+            if(count($pairs)!==26){
+              echo "PAIR_PREVIEW=".wp_json_encode($pairs,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES).PHP_EOL;
+              fwrite(STDERR,"Safety stop: expected exactly 26 orphan-to-C2C pairs, got ".count($pairs)."\n");
+              exit(8);
+            }
+
+            // Complete preflight for every target BEFORE the first Etsy write.
+            foreach($pairs as &$pair){
+              $p=wc_get_product($pair["c2c_id"]);
+              if(!$p){fwrite(STDERR,"Missing target product ".$pair["c2c_sku"]."\n");exit(9);}
+              if(!$p->get_image_id()){fwrite(STDERR,"Missing featured image ".$pair["c2c_sku"]."\n");exit(10);}
+              if(count($p->get_downloads())<1){fwrite(STDERR,"Missing download ".$pair["c2c_sku"]."\n");exit(11);}
+
+              $check=$request->invoke($sync,"GET","/v3/application/listings/".rawurlencode($pair["listing_id"]),array(),true);
+              if(is_wp_error($check)){fwrite(STDERR,"Listing no longer readable ".$pair["listing_id"].": ".$check->get_error_message()."\n");exit(12);}
+              if((string)($check["state"]??"")!=="active" || (string)($check["title"]??"")!==$pair["old_title"]){
+                fwrite(STDERR,"Listing changed since audit ".$pair["listing_id"]."\n");exit(13);
+              }
+
+              $taxonomy=(int)$resolve_taxonomy->invoke($sync,$p);
+              if($taxonomy<=0){fwrite(STDERR,"No Etsy taxonomy for ".$pair["c2c_sku"]."\n");exit(14);}
+              $pair["taxonomy_id"]=$taxonomy;
+              $pair["new_title"]=(string)$p->get_name();
+            }
+            unset($pair);
+
+            // Reuse an existing C2C/Crochet shop section when available.
+            $c2c_section=0;
+            $sections=$request->invoke($sync,"GET","/v3/application/shops/".rawurlencode($shop)."/sections",array(),true);
+            if(!is_wp_error($sections)){
+              foreach((array)($sections["results"]??array()) as $section){
+                $name=strtolower(trim((string)($section["title"]??"")));
+                if(in_array($name,array("c2c","c2c crochet","corner to corner","corner-to-corner","crochet"),true)){
+                  $c2c_section=(int)($section["shop_section_id"]??0);
+                  if(str_contains($name,"c2c") || str_contains($name,"corner")) break;
+                }
+              }
+            }
+
+            echo "PREFLIGHT_OK=26".PHP_EOL;
+            echo "C2C_SECTION_ID=".$c2c_section.PHP_EOL;
+            echo "PAIR_PREVIEW=".wp_json_encode($pairs,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES).PHP_EOL;
+
+            $success=array();
+            $failed=array();
+            foreach($pairs as $pair){
+              $id=(int)$pair["c2c_id"];
+              $listing=(string)$pair["listing_id"];
+              $p=wc_get_product($id);
+
+              // Write the existing listing only. There is deliberately no create-listing POST in this workflow.
+              $payload=$listing_payload->invoke($sync,$p,(int)$pair["taxonomy_id"]);
+              $updated=$request->invoke(
+                $sync,
+                "PATCH",
+                "/v3/application/shops/".rawurlencode($shop)."/listings/".rawurlencode($listing),
+                $payload,
+                true
+              );
+              if(is_wp_error($updated)){
+                $failed[]=array("sku"=>$pair["c2c_sku"],"listing_id"=>$listing,"stage"=>"listing","error"=>$updated->get_error_message());
+                continue;
+              }
+
+              $inv=$sync_inventory->invoke($sync,$p,$listing);
+              if(is_wp_error($inv)){
+                $failed[]=array("sku"=>$pair["c2c_sku"],"listing_id"=>$listing,"stage"=>"inventory","error"=>$inv->get_error_message());
+                continue;
+              }
+
+              $img=$sync_images->invoke($sync,$p,$listing);
+              if(is_wp_error($img)){
+                $failed[]=array("sku"=>$pair["c2c_sku"],"listing_id"=>$listing,"stage"=>"images","error"=>$img->get_error_message());
+                continue;
+              }
+
+              $files=$sync_downloads->invoke($sync,$p,$listing);
+              if(is_wp_error($files)){
+                $failed[]=array("sku"=>$pair["c2c_sku"],"listing_id"=>$listing,"stage"=>"files","error"=>$files->get_error_message());
+                continue;
+              }
+
+              $state=$request->invoke(
+                $sync,
+                "PATCH",
+                "/v3/application/shops/".rawurlencode($shop)."/listings/".rawurlencode($listing),
+                array("state"=>"active","type"=>"download"),
+                true
+              );
+              if(is_wp_error($state)){
+                $failed[]=array("sku"=>$pair["c2c_sku"],"listing_id"=>$listing,"stage"=>"state","error"=>$state->get_error_message());
+                continue;
+              }
+
+              if($c2c_section>0){
+                $section_result=$request->invoke(
+                  $sync,
+                  "PATCH",
+                  "/v3/application/shops/".rawurlencode($shop)."/listings/".rawurlencode($listing),
+                  array("shop_section_id"=>$c2c_section),
+                  true
+                );
+                if(is_wp_error($section_result)){
+                  $failed[]=array("sku"=>$pair["c2c_sku"],"listing_id"=>$listing,"stage"=>"section","error"=>$section_result->get_error_message());
+                  continue;
+                }
+              }
+
+              // Persist one-to-one import mapping only after the remote overwrite succeeds.
+              update_post_meta($id,"_drielo_etsy_listing_id",$listing);
+              update_post_meta($id,"_drielo_etsy_remote_state","active");
+              update_post_meta($id,"_drielo_etsy_enabled","yes");
+              update_post_meta($id,"_drielo_etsy_target_state","active");
+              update_post_meta($id,"_drielo_etsy_taxonomy_id",(int)$pair["taxonomy_id"]);
+              update_post_meta($id,"_drielo_etsy_asset_hash",$asset_hash_m->invoke($sync,$p));
+              update_post_meta($id,"_drielo_etsy_content_hash",$content_hash_m->invoke($sync,$p));
+              update_post_meta($id,"_drielo_etsy_last_sync",current_time("mysql"));
+              delete_post_meta($id,"_drielo_etsy_last_error");
+              delete_post_meta($id,"_drielo_etsy_last_warning");
+              if($c2c_section>0) update_post_meta($id,"_drielo_etsy_shop_section_id",$c2c_section);
+              else delete_post_meta($id,"_drielo_etsy_shop_section_id");
+
+              // Verify the reused listing now represents the C2C target.
+              $verify=$request->invoke($sync,"GET","/v3/application/listings/".rawurlencode($listing),array(),true);
+              $images=$request->invoke($sync,"GET","/v3/application/listings/".rawurlencode($listing)."/images",array(),true);
+              $vfiles=$request->invoke($sync,"GET","/v3/application/shops/".rawurlencode($shop)."/listings/".rawurlencode($listing)."/files",array(),true);
+              if(is_wp_error($verify) || is_wp_error($images) || is_wp_error($vfiles)){
+                $failed[]=array("sku"=>$pair["c2c_sku"],"listing_id"=>$listing,"stage"=>"verify","error"=>"Remote verification request failed");
+                continue;
+              }
+
+              $remote_title=(string)($verify["title"]??"");
+              $remote_taxonomy=(int)($verify["taxonomy_id"]??0);
+              $image_count=count((array)($images["results"]??array()));
+              $file_count=count((array)($vfiles["results"]??array()));
+              if($remote_title!==$pair["new_title"] || $remote_taxonomy!==(int)$pair["taxonomy_id"] || $image_count<1 || $file_count<1){
+                $failed[]=array(
+                  "sku"=>$pair["c2c_sku"],
+                  "listing_id"=>$listing,
+                  "stage"=>"verify",
+                  "error"=>"Mismatch after overwrite",
+                  "remote_title"=>$remote_title,
+                  "taxonomy"=>$remote_taxonomy,
+                  "images"=>$image_count,
+                  "files"=>$file_count
+                );
+                continue;
+              }
+
+              $success[]=array(
+                "base"=>$pair["base"],
+                "sku"=>$pair["c2c_sku"],
+                "listing_id"=>$listing,
+                "title"=>$remote_title,
+                "taxonomy_id"=>$remote_taxonomy,
+                "images"=>$image_count,
+                "files"=>$file_count
+              );
+              echo "SYNC_OK ".$pair["c2c_sku"]." listing=".$listing." images=".$image_count." files=".$file_count.PHP_EOL;
+            }
+
+            echo "SUCCESS_COUNT=".count($success).PHP_EOL;
+            echo "FAILED_COUNT=".count($failed).PHP_EOL;
+            echo "SUCCESS=".wp_json_encode($success,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES).PHP_EOL;
+            echo "FAILED=".wp_json_encode($failed,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES).PHP_EOL;
+
+            if(count($success)!==26 || count($failed)!==0) exit(20);
+          '
+          REMOTE
+          )
+          printf '%s\n' "$OUT"
+
+          REPORT=$(printf '%s\n' "$OUT" | grep -E '^(PREFLIGHT_OK|C2C_SECTION_ID|SUCCESS_COUNT|FAILED_COUNT|SUCCESS=|FAILED=)' || true)
+          BODY=$(printf '### Etsy Pop Art C2C relink result\n\n```text\n%s\n```\n' "$REPORT")
+          PAYLOAD=$(jq -n --arg body "$BODY" '{body:$body}')
+          curl -fsS -X POST \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/${PR_NUMBER}/comments" \
+            -d "$PAYLOAD" >/dev/null
