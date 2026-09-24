@@ -1,5 +1,6 @@
 name: Cleanup Generated Animals Products
 # Exact cover restart
+# Final cancel before exact PNG restart
 
 on:
   push:
