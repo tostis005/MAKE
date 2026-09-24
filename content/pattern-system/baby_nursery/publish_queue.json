@@ -1,6 +1,6 @@
 {
   "collection": "baby-nursery",
-  "mode": "new-premium-9-no-reindeer-v1",
+  "mode": "new-premium-9-no-reindeer-v2-clean",
   "branch": "feature/infantil-9-nuevos-premium",
   "auto_continue": true,
   "publish_strategy": "strict-one-design-per-run-stop-on-failure",
@@ -22,7 +22,8 @@
     "The rejected reindeer/deer/ciervito is excluded and must never enter this queue.",
     "Existing Infantil products are not deleted or overwritten; only I0012-I0020 are created.",
     "Each design generates CS, C2C, TC and LH plus PDFs/images, publishes those four products to WooCommerce, verifies them, then advances to the next design.",
-    "Any failure stops the queue instead of skipping forward."
+    "Any failure stops the queue instead of skipping forward.",
+    "Recovery: initial validation-only failure reset; clean import restarts at I0012 before any WooCommerce product was created."
   ],
   "items": [
     {
@@ -32,12 +33,11 @@
       "title_es": "Koala con corazón",
       "slug": "koala-heart",
       "source_asset": "collections/baby-nursery/source-designs/I0012-koala-heart.png",
-      "status": "failed",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36064476689",
-      "last_error": "Automatic publish run failed; see GitHub Actions logs.",
-      "published_at": null,
-      "failed_at": "2026-09-24T21:56:01+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null,
+      "published_at": null
     },
     {
       "order": 2,
