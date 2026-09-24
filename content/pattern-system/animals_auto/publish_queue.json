@@ -1,7 +1,7 @@
 {
   "collection": "animals",
   "branch": "feature/animals-auto-publish",
-  "auto_continue": false,
+  "auto_continue": true,
   "max_attempts_per_design": 2,
   "recovery_attempts_per_design": 4,
   "created_from": "canonical Animals A0001-A0030 references",
@@ -307,8 +307,7 @@
       "last_error": null
     }
   ],
-  "restarted_at": "2026-09-24T09:47:30Z",
-  "restart_reason": "Final clean restart after Node 24 action upgrade, renderer gallery fix, isolated WooCommerce staging, and serial queue stabilization.",
-  "paused_reason": "Waiting for the new PDF background image before regenerating the Animals collection.",
+  "restarted_at": "2026-09-24T11:46:35Z",
+  "restart_reason": "Restarted with approved Animals technique-specific PDF cover mockups from uploads 114976 (CS), 114974 (C2C), 114975 (TC), and 114977 (LH).",
   "restart_from": "A0001"
 }
