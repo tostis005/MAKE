@@ -418,3 +418,5 @@ jobs:
             echo "No pending Florals designs remain."
             python3 content/pattern-system/florals/queue_state.py summary
           fi
+
+# paused-for-florals-artwork-quality-review-2026-09-24
