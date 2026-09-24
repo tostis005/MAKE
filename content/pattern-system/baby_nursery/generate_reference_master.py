@@ -364,13 +364,21 @@ def validate_master(base_id: str, im: Image.Image):
 def generate_reference_master(base_id: str):
     base_id = base_id.strip().upper()
     meta = design_meta(base_id)
+    collection = read_json(COLLECTION_PATH)
+    strict_policy = collection.get("pattern_rules", {}).get("approved_master_policy", {})
 
     direct = load_design_reference(base_id, meta)
+    if strict_policy.get("enabled", False):
+        if not direct:
+            raise RuntimeError(f"{base_id}: approved preview v2 direct reference is required; legacy fallback disabled")
+        if not direct.get("direct_metadata", {}).get("approved_preview_v2"):
+            raise RuntimeError(f"{base_id}: direct reference is not marked approved_preview_v2")
+
     if direct:
         manifest = direct["manifest"]
         canonical = direct["canonical"]
         alphabet = direct["alphabet"]
-        source_kind = direct["source_kind"]
+        source_kind = "approved-preview-v2" if direct["direct_metadata"].get("approved_preview_v2") else direct["source_kind"]
         source_digest = direct["source_sha256"]
         direct_metadata = direct["direct_metadata"]
     elif base_id == "I0001":
@@ -459,7 +467,6 @@ def generate_reference_master(base_id: str):
     ):
         raise RuntimeError(f"{base_id}: canonical manifest/reference mapping mismatch")
 
-    collection = read_json(COLLECTION_PATH)
     palette = collection["palette"]
     rows = canonical["rows"]
 
