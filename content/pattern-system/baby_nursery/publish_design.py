@@ -155,20 +155,35 @@ def normalize_external_outline(matrix, outline_symbol, cleanup_depth=2, neighbor
                     boundary.add((y, x))
                     break
 
+    # Only clean dark cells that are actually connected to the exterior outline.
+    # This preserves eyes, mouths and other black interior details even when they
+    # happen to sit close to an outer edge.
+    dark_boundary = {(y, x) for (y, x) in boundary if original[y][x] == outline_symbol}
+    connected_outer_dark = set(dark_boundary)
+    frontier = set(dark_boundary)
+    dark_offsets = [(dy, dx) for dy in (-1, 0, 1) for dx in (-1, 0, 1) if not (dy == 0 and dx == 0)]
+    for _ in range(max(0, cleanup_depth)):
+        nxt = set()
+        for y, x in frontier:
+            for dy, dx in dark_offsets:
+                yy, xx = y + dy, x + dx
+                if 0 <= yy < h and 0 <= xx < w and original[yy][xx] == outline_symbol:
+                    if (yy, xx) not in connected_outer_dark:
+                        nxt.add((yy, xx))
+        connected_outer_dark.update(nxt)
+        frontier = nxt
+        if not frontier:
+            break
+
     cleaned = [row[:] for row in original]
     removed = 0
-    for y in range(h):
-        for x in range(w):
-            if original[y][x] != outline_symbol:
-                continue
-            if (y, x) in boundary:
-                continue
-            dist = _distance_to_transparency(original, y, x, max_depth=max(3, cleanup_depth))
-            if dist <= cleanup_depth:
-                fill = _nearest_fill_symbol(original, y, x, outline_symbol)
-                if fill != outline_symbol:
-                    cleaned[y][x] = fill
-                    removed += 1
+    for y, x in sorted(connected_outer_dark - boundary):
+        dist = _distance_to_transparency(original, y, x, max_depth=max(3, cleanup_depth))
+        if dist <= cleanup_depth:
+            fill = _nearest_fill_symbol(original, y, x, outline_symbol)
+            if fill != outline_symbol:
+                cleaned[y][x] = fill
+                removed += 1
 
     changed = removed
     for y, x in boundary:
@@ -176,21 +191,30 @@ def normalize_external_outline(matrix, outline_symbol, cleanup_depth=2, neighbor
             cleaned[y][x] = outline_symbol
             changed += 1
 
-    # Guardrail: every exterior cell must be outline, and a second outline layer
-    # adjacent to transparent space is not allowed.
+    # Guardrail: every exterior cell must be outline. Also reject a second
+    # connected outline layer, while leaving isolated interior black details alone.
     for y, x in boundary:
         if cleaned[y][x] != outline_symbol:
             raise RuntimeError(f"External outline normalization failed at {x},{y}")
 
-    extras = 0
-    for y in range(h):
-        for x in range(w):
-            if cleaned[y][x] == outline_symbol and (y, x) not in boundary:
-                dist = _distance_to_transparency(cleaned, y, x, max_depth=max(3, cleanup_depth))
-                if dist <= cleanup_depth:
-                    extras += 1
+    dark_boundary_after = {(y, x) for (y, x) in boundary if cleaned[y][x] == outline_symbol}
+    connected_after = set(dark_boundary_after)
+    frontier = set(dark_boundary_after)
+    for _ in range(max(0, cleanup_depth)):
+        nxt = set()
+        for y, x in frontier:
+            for dy, dx in dark_offsets:
+                yy, xx = y + dy, x + dx
+                if 0 <= yy < h and 0 <= xx < w and cleaned[yy][xx] == outline_symbol:
+                    if (yy, xx) not in connected_after:
+                        nxt.add((yy, xx))
+        connected_after.update(nxt)
+        frontier = nxt
+        if not frontier:
+            break
+    extras = len(connected_after - boundary)
     if extras:
-        raise RuntimeError(f"External outline still has {extras} extra near-edge cells after normalization")
+        raise RuntimeError(f"External outline still has {extras} connected extra cells after normalization")
 
     return cleaned, {
         "changed": changed,
