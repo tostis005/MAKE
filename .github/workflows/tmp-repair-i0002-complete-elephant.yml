@@ -1,0 +1,295 @@
+name: TEMP repair I0002 complete elephant
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tmp-repair-i0002-complete-elephant.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: drielo-i0002-complete-elephant
+  cancel-in-progress: false
+
+jobs:
+  repair-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow playwright
+          python3 -m playwright install --with-deps chromium
+
+      - name: Generate complete high-resolution I0002 master
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/baby_nursery/generate_i0002_master.py
+
+      - name: Build validated reference, JSONs, PDFs and images
+        env:
+          DRIELO_GALLERY_REVISION: "202609240202"
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/baby_nursery/publish_design.py I0002
+
+      - name: Validate complete elephant before production
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image, ImageChops
+
+          root=Path('.')
+          system=root/'content'/'pattern-system'
+          src=system/'collections'/'baby-nursery'/'source-designs'/'I0002-baby-elephant.png'
+          ref=system/'collections'/'baby-nursery'/'reference-masters'/'I0002-baby-elephant-reference.png'
+
+          if not src.is_file() or not ref.is_file():
+              raise SystemExit('I0002 source/reference master missing')
+
+          a=Image.open(src).convert('RGBA')
+          b=Image.open(ref).convert('RGBA')
+          if a.size!=(800,960) or b.size!=(800,960):
+              raise SystemExit(f'Wrong master size source={a.size} reference={b.size}')
+          if ImageChops.difference(a,b).getbbox():
+              raise SystemExit('Persisted reference does not exactly match source master')
+
+          alpha=b.getchannel('A')
+          bbox=alpha.getbbox()
+          if not bbox:
+              raise SystemExit('Empty elephant reference')
+          margins=(bbox[0],bbox[1],800-bbox[2],960-bbox[3])
+          if min(margins)<64:
+              raise SystemExit(f'Insufficient safe margin: bbox={bbox} margins={margins}')
+
+          # Confirm two distinct complete lower feet with a transparent gap.
+          y=bbox[3]-8
+          row=[alpha.getpixel((x,y))>=128 for x in range(bbox[0],bbox[2])]
+          runs=[]
+          start=None
+          for i,val in enumerate(row):
+              x=bbox[0]+i
+              if val and start is None:
+                  start=x
+              elif not val and start is not None:
+                  runs.append((start,x-1))
+                  start=None
+          if start is not None:
+              runs.append((start,bbox[2]-1))
+          substantial=[r for r in runs if r[1]-r[0]+1>=24]
+          if len(substantial)<2:
+              raise SystemExit(f'Incomplete feet: expected two lower foot masses, got {substantial}')
+
+          collection=json.loads((system/'collections'/'baby-nursery'/'collection.json').read_text(encoding='utf-8'))
+          expected={
+            'CS':'collections/baby-nursery/assets/cover-cross-stitch.jpg',
+            'C2C':'collections/baby-nursery/assets/cover-c2c-crochet.jpg',
+            'TC':'collections/baby-nursery/assets/cover-crochet.jpg',
+            'LH':'collections/baby-nursery/assets/cover-rug.jpg',
+          }
+          if collection['mockup_spec']['technique_assets'] != expected:
+              raise SystemExit(f'Unexpected collection cover mapping: {collection["mockup_spec"]["technique_assets"]}')
+
+          catalog=json.loads((root/'content/products/catalog.json').read_text(encoding='utf-8'))
+          rows={p.get('code'):p for p in catalog.get('products',[])}
+          grids={'CS':(100,120),'C2C':(60,72),'TC':(80,96),'LH':(60,72)}
+          for suffix in ('CS','C2C','TC','LH'):
+              code=f'I0002-{suffix}'
+              pat=json.loads((system/'patterns'/code/'pattern.json').read_text(encoding='utf-8'))
+              prod=json.loads((system/'products'/code/'product.json').read_text(encoding='utf-8'))
+              w,h=grids[suffix]
+              if (pat.get('stitch_width'),pat.get('stitch_height'))!=(w,h):
+                  raise SystemExit(f'{code}: wrong grid')
+              if pat.get('reference_asset')!='collections/baby-nursery/reference-masters/I0002-baby-elephant-reference.png':
+                  raise SystemExit(f'{code}: JSON is not based on persisted reference master')
+              if prod.get('reference_artwork')!='collections/baby-nursery/reference-masters/I0002-baby-elephant-reference.png':
+                  raise SystemExit(f'{code}: product is not linked to persisted reference master')
+              if prod.get('page_1_asset')!=expected[suffix]:
+                  raise SystemExit(f'{code}: wrong cover route')
+              if str(rows[code].get('gallery_revision'))!='202609240202':
+                  raise SystemExit(f'{code}: stale gallery revision')
+              pdf=root/'content/products/files'/f'Drielo_{code}.pdf'
+              image=root/'content/products/assets'/f'{code}-product.webp'
+              if not pdf.is_file() or pdf.stat().st_size<100000 or pdf.read_bytes()[:4]!=b'%PDF':
+                  raise SystemExit(f'{code}: invalid PDF')
+              if not image.is_file() or image.stat().st_size<50000:
+                  raise SystemExit(f'{code}: invalid image')
+              print(code,'stitches',pat['total_stitches'],'colors',len(pat['threads']),'pdf',pdf.stat().st_size,'image',image.stat().st_size)
+          print('I0002_COMPLETE_MASTER_VALID',bbox,margins,substantial)
+          PY
+
+      - name: Build four-product WooCommerce package
+        shell: bash
+        run: |
+          set -euo pipefail
+          STAGE="/tmp/drielo-I0002-complete"
+          rm -rf "$STAGE"
+          mkdir -p "$STAGE/content/products/assets" "$STAGE/content/products/files" "$STAGE/content/tools"
+
+          python3 - "$STAGE" <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          stage=Path(sys.argv[1])
+          d=json.loads(Path('content/products/catalog.json').read_text(encoding='utf-8'))
+          codes={f'I0002-{s}' for s in ('CS','C2C','TC','LH')}
+          cats={
+            'cross-stitch-patterns','cross-stitch-baby-nursery',
+            'c2c-crochet-patterns','c2c-crochet-baby-nursery',
+            'tapestry-crochet-patterns','tapestry-crochet-baby-nursery',
+            'latch-hook-rug-patterns','latch-hook-rug-baby-nursery',
+          }
+          out=dict(d)
+          out['products']=[p for p in d.get('products',[]) if p.get('code') in codes]
+          out['collections']=[c for c in d.get('collections',[]) if c.get('slug')=='baby-nursery']
+          out['categories']=[c for c in d.get('categories',[]) if c.get('slug') in cats]
+          if {p.get('code') for p in out['products']} != codes:
+              raise SystemExit('I0002 package does not contain all four products')
+          (stage/'content/products/catalog.json').write_text(
+              json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8'
+          )
+          PY
+
+          for suffix in CS C2C TC LH; do
+            code="I0002-${suffix}"
+            cp "content/products/assets/${code}-product.webp" "$STAGE/content/products/assets/"
+            cp "content/products/files/Drielo_${code}.pdf" "$STAGE/content/products/files/"
+          done
+          cp content/tools/import-products.php "$STAGE/content/tools/"
+          tar -czf /tmp/drielo-I0002-complete.tgz -C "$STAGE" content
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_products_key
+          chmod 600 ~/.ssh/drielo_products_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Upload package
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          scp -i ~/.ssh/drielo_products_key /tmp/drielo-I0002-complete.tgz "$VPS_USER@$VPS_HOST:/tmp/drielo-I0002-complete-${GITHUB_RUN_ID}.tgz"
+
+      - name: Import corrected I0002 to WooCommerce and verify
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_products_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-I0002-complete-${GITHUB_RUN_ID}.tgz"
+          STAGE="/tmp/drielo-I0002-complete-${GITHUB_RUN_ID}"
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE"; }
+          trap cleanup EXIT
+
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $suffixes=array("CS","C2C","TC","LH");
+            foreach ($suffixes as $suffix) {
+              $sku="DRIELO-I0002-".$suffix;
+              $id=wc_get_product_id_by_sku($sku);
+              $p=$id ? wc_get_product($id) : false;
+              if (!$p) { fwrite(STDERR,"Missing ".$sku.PHP_EOL); exit(2); }
+              $cols=wp_get_object_terms($id,"product_collection",array("fields"=>"slugs"));
+              echo $sku." id=".$id." status=".$p->get_status()." image=".$p->get_image_id()." downloads=".count($p->get_downloads())." collection=".implode(",",is_wp_error($cols)?array():$cols)." url=".get_permalink($id).PHP_EOL;
+              if ($p->get_status()!=="publish" || !$p->get_image_id() || count($p->get_downloads())<1 || !in_array("baby-nursery",is_wp_error($cols)?array():$cols,true)) {
+                fwrite(STDERR,"Incomplete ".$sku.PHP_EOL); exit(3);
+              }
+            }
+          '
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
+          REMOTE
+
+      - name: Mark I0002 published and resume queue
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('content/pattern-system/baby_nursery/publish_queue.json')
+          d=json.loads(p.read_text(encoding='utf-8'))
+          d['auto_continue']=True
+          item=next(x for x in d['items'] if x['base_design_id']=='I0002')
+          item['status']='published'
+          item['attempts']=int(item.get('attempts',0))+1
+          item['last_run']='https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}'
+          item['last_error']=None
+          p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+
+      - name: Commit corrected source, reference and production assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add             content/pattern-system/collections/baby-nursery/source-designs/I0002-baby-elephant.png             content/pattern-system/collections/baby-nursery/reference-masters/I0002-baby-elephant-reference.png             content/pattern-system/baby_nursery/publish_queue.json             content/pattern-system/patterns/I0002-CS/pattern.json             content/pattern-system/patterns/I0002-C2C/pattern.json             content/pattern-system/patterns/I0002-TC/pattern.json             content/pattern-system/patterns/I0002-LH/pattern.json             content/pattern-system/products/I0002-CS/product.json             content/pattern-system/products/I0002-C2C/product.json             content/pattern-system/products/I0002-TC/product.json             content/pattern-system/products/I0002-LH/product.json             content/products/catalog.json             content/products/assets/I0002-CS-product.webp             content/products/assets/I0002-C2C-product.webp             content/products/assets/I0002-TC-product.webp             content/products/assets/I0002-LH-product.webp
+
+          git commit -m "Regenerate I0002 from complete validated reference master [skip ci]"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
+
+      - name: Archive corrected PDFs
+        uses: actions/upload-artifact@v4
+        with:
+          name: baby-nursery-I0002-complete-reference-pdfs
+          path: |
+            content/products/files/Drielo_I0002-CS.pdf
+            content/products/files/Drielo_I0002-C2C.pdf
+            content/products/files/Drielo_I0002-TC.pdf
+            content/products/files/Drielo_I0002-LH.pdf
+          retention-days: 30
+
+      - name: Resume automatic queue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api --method POST             "repos/${GITHUB_REPOSITORY}/actions/workflows/baby-nursery-auto-publish.yml/dispatches"             -f ref=main
