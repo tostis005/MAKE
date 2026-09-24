@@ -31,9 +31,10 @@
       "slug": "venice-grand-canal",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0002.pixz",
       "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36065930133",
+      "last_error": "Automatic Iconic Destinations publish run failed; see GitHub Actions logs.",
+      "failed_at": "2026-09-24T22:11:49+00:00"
     },
     {
       "order": 3,
