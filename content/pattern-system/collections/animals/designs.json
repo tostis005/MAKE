@@ -161,7 +161,9 @@
       ],
       "artwork_status": "canonical-reference-ready",
       "reference_asset": "collections/animals/reference-masters/A0009-fox-butterfly-reference.png",
-      "source_asset": "collections/animals/source-designs/A0009-fox-butterfly.png"
+      "source_asset": "collections/animals/source-designs/A0009-fox-butterfly.png",
+      "product_status": "ready",
+      "transparent_background": true
     },
     {
       "order": 10,
