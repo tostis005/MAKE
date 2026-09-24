@@ -19,7 +19,14 @@ for p in ROOT.glob('products/*/product.json'):
  if p.parent.name.startswith('_'): continue
  try:
   d=load(p)
-  if d['collection'] not in cols: errs.append(f'{p}: unknown collection')
+  coll=cols.get(d['collection'])
+  if not coll:
+   errs.append(f'{p}: unknown collection')
+  else:
+   allowed=set(coll.get('techniques',[]))
+   technique=str(d.get('technique',''))
+   if allowed and technique not in allowed:
+    errs.append(f'{p}: technique {technique!r} is not allowed by collection {d["collection"]!r}')
   if not (ROOT/d['pattern_file']).is_file(): errs.append(f'{p}: missing pattern file')
  except Exception as e: errs.append(f'{p}: {e}')
 if errs:
