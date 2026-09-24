@@ -1,7 +1,7 @@
 {
   "collection": "animals",
   "branch": "feature/animals-auto-publish",
-  "auto_continue": true,
+  "auto_continue": false,
   "max_attempts_per_design": 2,
   "recovery_attempts_per_design": 4,
   "created_from": "canonical Animals A0001-A0030 references",
@@ -154,12 +154,11 @@
       "title_en": "Elephant with Heart Balloon",
       "title_es": "Elefante con globo corazón",
       "slug": "elephant-heart-balloon",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36019090149",
-      "last_error": "Automatic Animals publish run failed; see GitHub Actions logs.",
-      "published_at": "2026-09-24T15:20:24+00:00",
-      "failed_at": "2026-09-24T15:22:32+00:00"
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36018935488",
+      "last_error": null,
+      "published_at": "2026-09-24T15:20:24+00:00"
     },
     {
       "base_design_id": "A0015",
@@ -342,6 +341,6 @@
   "restarted_at": "2026-09-24T11:57:30Z",
   "restart_reason": "Restart from A0001 using the exact four approved uploaded Animals PNG cover backgrounds.",
   "restart_from": "A0001",
-  "paused_reason": null,
+  "paused_reason": "Stopping duplicate A0014 retries after successful clean-gridless republish.",
   "a0014_replacement_reason": "Regenerate A0014 from clean palette-compliant source without preview-grid artifacts."
 }
