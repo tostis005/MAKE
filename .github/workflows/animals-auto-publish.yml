@@ -317,7 +317,7 @@ jobs:
               }
             }
           '
-          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
+          "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '$CONTAINER_STAGE' '$CONTAINER_IMPORTER'"
           REMOTE
 
       - name: Mark Animals design published
