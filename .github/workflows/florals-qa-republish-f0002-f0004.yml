@@ -1,0 +1,285 @@
+name: Florals QA Republish F0002-F0004
+
+on:
+  push:
+    branches:
+      - feature/florals-qa-republish-f0002-f0004
+    paths:
+      - '.github/workflows/florals-qa-republish-f0002-f0004.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-florals-qa-republish-f0002-f0004
+  cancel-in-progress: true
+
+jobs:
+  republish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+
+    steps:
+      - name: Checkout QA republish branch
+        uses: actions/checkout@v4
+        with:
+          ref: feature/florals-qa-republish-f0002-f0004
+          fetch-depth: 20
+
+      - name: Install renderer dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow playwright
+          python3 -m playwright install --with-deps chromium
+
+      - name: Preflight corrected artwork and queue state
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('content/pattern-system')
+          banned={'3753','3747','3325','3760'}
+          q=json.loads((root/'florals/publish_queue.json').read_text(encoding='utf-8'))
+          if q.get('auto_continue') is not False:
+              raise SystemExit('Florals auto_continue must remain false in QA republish branch')
+          for bid in ('F0002','F0003','F0004'):
+              p=json.loads((root/'patterns'/f'{bid}-CS'/'pattern.json').read_text(encoding='utf-8'))
+              dmcs={str(t['dmc']) for t in p['threads']}
+              if dmcs & banned:
+                  raise SystemExit(f'{bid}-CS still contains banned blue artefact DMCs: {sorted(dmcs & banned)}')
+              print(bid,'preflight colors',len(p['threads']),'stitches',p['total_stitches'])
+          print('QA_PREFLIGHT_OK')
+          PY
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$VPS_HOST"
+          test -n "$VPS_SSH_KEY"
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_florals_qa_key
+          chmod 600 ~/.ssh/drielo_florals_qa_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Regenerate validate and republish corrected designs
+        env:
+          DRIELO_GALLERY_REVISION: ${{ github.run_id }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          for DESIGN in F0002 F0003 F0004; do
+            echo "===== GENERATE $DESIGN ====="
+            python3 content/pattern-system/florals/publish_design.py "$DESIGN"
+
+            python3 - "$DESIGN" <<'PY'
+          import json,sys
+          from pathlib import Path
+          design=sys.argv[1]
+          root=Path('.')
+          system=root/'content/pattern-system'
+          store=root/'content/products'
+          banned={'3753','3747','3325','3760'}
+          grids={'CS':(100,120),'C2C':(60,72),'TC':(80,96),'LH':(60,72)}
+          catalog=json.loads((store/'catalog.json').read_text(encoding='utf-8'))
+          rows={p.get('code'):p for p in catalog.get('products',[])}
+          for suffix,(w,h) in grids.items():
+              code=f'{design}-{suffix}'
+              pat=json.loads((system/'patterns'/code/'pattern.json').read_text(encoding='utf-8'))
+              dmcs={str(t.get('dmc')) for t in pat.get('threads',[])}
+              if dmcs & banned:
+                  raise SystemExit(f'{code}: banned blue artefact DMCs present {sorted(dmcs & banned)}')
+              if (pat.get('stitch_width'),pat.get('stitch_height'))!=(w,h):
+                  raise SystemExit(f'{code}: wrong grid')
+              if not pat.get('threads') or len(pat['threads'])>14:
+                  raise SystemExit(f'{code}: invalid colour count')
+              pdf=store/'files'/f'Drielo_{code}.pdf'
+              feat=store/'assets'/f'{code}-product.webp'
+              gal=[store/'assets'/f'{code}-gallery-{i}.webp' for i in (2,3,4)]
+              if not pdf.is_file() or pdf.stat().st_size<100000 or pdf.read_bytes()[:4]!=b'%PDF':
+                  raise SystemExit(f'{code}: invalid PDF')
+              if not feat.is_file() or feat.stat().st_size<40000:
+                  raise SystemExit(f'{code}: invalid featured image')
+              if any((not p.is_file()) or p.stat().st_size<25000 for p in gal):
+                  raise SystemExit(f'{code}: invalid gallery')
+              row=rows.get(code)
+              if not row or row.get('collection')!='florals':
+                  raise SystemExit(f'{code}: catalogue row missing')
+              print(code,'colors',len(pat['threads']),'stitches',pat['total_stitches'])
+          print(design,'QA_BUNDLE_VALID')
+          PY
+
+            STAGE="/tmp/drielo-qa-${DESIGN}-${GITHUB_RUN_ID}"
+            ARCHIVE="/tmp/drielo-qa-${DESIGN}-${GITHUB_RUN_ID}.tgz"
+            rm -rf "$STAGE" "$ARCHIVE"
+            mkdir -p "$STAGE/content/products/assets" "$STAGE/content/products/files" "$STAGE/content/tools"
+
+            python3 - "$DESIGN" "$STAGE" <<'PY'
+          import json,sys
+          from pathlib import Path
+          design=sys.argv[1]
+          stage=Path(sys.argv[2])
+          catalog=json.loads(Path('content/products/catalog.json').read_text(encoding='utf-8'))
+          codes={f'{design}-{s}' for s in ('CS','C2C','TC','LH')}
+          selected=[p for p in catalog.get('products',[]) if p.get('code') in codes]
+          if {p.get('code') for p in selected} != codes:
+              raise SystemExit('Package catalogue mismatch')
+          cats={slug for p in selected for slug in p.get('categories',[])}
+          base=dict(catalog)
+          base['collections']=[c for c in catalog.get('collections',[]) if c.get('slug')=='florals']
+          base['categories']=[c for c in catalog.get('categories',[]) if c.get('slug') in cats]
+          base['retired_products']=[]
+          base['retired_collections']=[]
+          by_code={p['code']:p for p in selected}
+          for suffix in ('CS','C2C','TC','LH'):
+              one=dict(base)
+              one['products']=[by_code[f'{design}-{suffix}']]
+              (stage/f'content/products/catalog-{suffix}.json').write_text(
+                  json.dumps(one,ensure_ascii=False,indent=2)+'\n',encoding='utf-8'
+              )
+          PY
+
+            for suffix in CS C2C TC LH; do
+              code="${DESIGN}-${suffix}"
+              cp "content/products/assets/${code}-product.webp" "$STAGE/content/products/assets/"
+              cp "content/products/assets/${code}-gallery-2.webp" "$STAGE/content/products/assets/"
+              cp "content/products/assets/${code}-gallery-3.webp" "$STAGE/content/products/assets/"
+              cp "content/products/assets/${code}-gallery-4.webp" "$STAGE/content/products/assets/"
+              cp "content/products/files/Drielo_${code}.pdf" "$STAGE/content/products/files/"
+            done
+            cp content/tools/import-products.php "$STAGE/content/tools/"
+            tar -czf "$ARCHIVE" -C "$STAGE" content
+
+            scp -i ~/.ssh/drielo_florals_qa_key "$ARCHIVE"               "$VPS_USER@$VPS_HOST:/tmp/drielo-qa-${DESIGN}-${GITHUB_RUN_ID}.tgz"
+
+            ssh -i ~/.ssh/drielo_florals_qa_key "$VPS_USER@$VPS_HOST"               "DESIGN='${DESIGN}' GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-qa-${DESIGN}-${GITHUB_RUN_ID}.tgz"
+          STAGE="/tmp/drielo-qa-${DESIGN}-${GITHUB_RUN_ID}"
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE"; }
+          trap cleanup EXIT
+
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+
+          CONTAINER_STAGE="/tmp/drielo-products-florals-qa-${GITHUB_RUN_ID}"
+          IMPORTER="/tmp/drielo-import-florals-qa-${GITHUB_RUN_ID}.php"
+          "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '$CONTAINER_STAGE' '$IMPORTER' && mkdir -p '$CONTAINER_STAGE'"
+          "${DOCKER[@]}" cp "$STAGE/content/products/." "make-wp:${CONTAINER_STAGE}/"
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" "make-wp:${IMPORTER}"
+
+          for suffix in CS C2C TC LH; do
+            code="${DESIGN}-${suffix}"
+            "${DOCKER[@]}" exec make-wp sh -lc "cp '${CONTAINER_STAGE}/catalog-${suffix}.json' '${CONTAINER_STAGE}/catalog.json'"
+            ok=0
+            for attempt in 1 2 3; do
+              echo "Importing ${code}, attempt ${attempt}/3"
+              if "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M -d max_execution_time=0                    "$IMPORTER" /var/www/html "$CONTAINER_STAGE"; then
+                ok=1
+                break
+              fi
+              sleep 3
+            done
+            test "$ok" = 1
+          done
+
+          "${DOCKER[@]}" exec -e DESIGN="$DESIGN" make-wp php -d memory_limit=1024M -r '
+            require "/var/www/html/wp-load.php";
+            $design=getenv("DESIGN");
+            foreach(array("CS","C2C","TC","LH") as $suffix){
+              $sku="DRIELO-".$design."-".$suffix;
+              $id=wc_get_product_id_by_sku($sku);
+              $p=$id ? wc_get_product($id) : false;
+              if(!$p){fwrite(STDERR,"MISSING ".$sku.PHP_EOL);exit(2);}
+              $terms=wp_get_object_terms($id,"product_collection",array("fields"=>"slugs"));
+              $terms=is_wp_error($terms)?array():$terms;
+              $downloads=count($p->get_downloads());
+              $gallery=count($p->get_gallery_image_ids());
+              echo $sku." id=".$id." image=".$p->get_image_id().
+                   " gallery=".$gallery." downloads=".$downloads.
+                   " collection=".implode(",",$terms)." url=".get_permalink($id).PHP_EOL;
+              if($p->get_status()!=="publish" || !$p->get_image_id() || $gallery<3 ||
+                 $downloads<1 || !in_array("florals",$terms,true)){exit(3);}
+            }
+          '
+          "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '$CONTAINER_STAGE' '$IMPORTER'"
+          REMOTE
+
+            rm -rf "$STAGE" "$ARCHIVE"
+          done
+
+      - name: Record QA republish success
+        shell: bash
+        run: |
+          set -euo pipefail
+          for DESIGN in F0002 F0003 F0004; do
+            python3 content/pattern-system/florals/queue_state.py success "$DESIGN"               --run-url "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          done
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('content/pattern-system/florals/publish_queue.json')
+          q=json.loads(p.read_text(encoding='utf-8'))
+          q['auto_continue']=False
+          p.write_text(json.dumps(q,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+
+      - name: Commit corrected products to QA branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add content/pattern-system/florals/publish_queue.json
+          git add content/pattern-system/collections/florals/designs.json
+          git add content/pattern-system/collections/florals/source-designs/manifest.json
+          git add content/pattern-system/collections/florals/reference-masters
+          git add content/products/catalog.json
+          for DESIGN in F0002 F0003 F0004; do
+            git add content/pattern-system/collections/florals/source-designs/${DESIGN}-*.png
+            for suffix in CS C2C TC LH; do
+              code="${DESIGN}-${suffix}"
+              git add "content/pattern-system/patterns/${code}/pattern.json"
+              git add "content/pattern-system/products/${code}/product.json"
+              git add "content/products/assets/${code}-product.webp"
+              git add "content/products/assets/${code}-gallery-2.webp"
+              git add "content/products/assets/${code}-gallery-3.webp"
+              git add "content/products/assets/${code}-gallery-4.webp"
+              git add "content/products/files/Drielo_${code}.pdf"
+            done
+          done
+
+          if ! git diff --cached --quiet; then
+            git commit -m "Republish corrected Florals F0002-F0004 [skip ci]"
+            git push origin HEAD:feature/florals-qa-republish-f0002-f0004
+          fi
+
+      - name: Archive corrected PDFs
+        uses: actions/upload-artifact@v4
+        with:
+          name: florals-qa-republish-f0002-f0004
+          path: |
+            content/products/files/Drielo_F0002-*.pdf
+            content/products/files/Drielo_F0003-*.pdf
+            content/products/files/Drielo_F0004-*.pdf
+          retention-days: 30
