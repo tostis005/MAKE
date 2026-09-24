@@ -81,11 +81,12 @@
       "title_es": "Conejito con corazón",
       "slug": "bunny-heart",
       "source_asset": "collections/baby-nursery/source-designs/I0006-bunny-heart.png",
-      "status": "pending",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36007557957",
-      "last_error": "Automatic publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T13:45:49+00:00"
+      "status": "published",
+      "attempts": 2,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36007915388",
+      "last_error": null,
+      "failed_at": "2026-09-24T13:45:49+00:00",
+      "published_at": "2026-09-24T13:49:24+00:00"
     },
     {
       "order": 7,
