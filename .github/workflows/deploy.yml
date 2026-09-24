@@ -199,13 +199,12 @@ jobs:
             }
             $data = get_plugin_data(WP_PLUGIN_DIR . "/" . $plugin, false, false);
             $version = isset($data["Version"]) ? (string) $data["Version"] : "";
-            if ("1.2.0" !== $version) {
+            if ("1.3.0" !== $version) {
                 fwrite(STDERR, "Unexpected Drielo Etsy Sync version: " . $version . PHP_EOL);
                 exit(2);
             }
             echo "DRIELO_ETSY_PLUGIN_VERSION=" . $version . PHP_EOL;
-            echo "DRIELO_ETSY_PLUGIN_PDF_PREVIEWS=" . (class_exists("Imagick") ? "imagick" : "gallery-assets-only") . PHP_EOL;
-            echo "DRIELO_ETSY_PLUGIN_VERIFIED=yes" . PHP_EOL;
+                        echo "DRIELO_ETSY_PLUGIN_VERIFIED=yes" . PHP_EOL;
           '
 
           "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '$CATALOG_PLUGIN_TARGET' && mkdir -p '$CATALOG_PLUGIN_TARGET'"

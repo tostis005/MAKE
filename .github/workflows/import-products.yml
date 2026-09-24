@@ -6,7 +6,6 @@ on:
     paths:
       - 'content/products/**'
       - 'content/tools/import-products.php'
-      - 'content/tools/generate-etsy-preview-images.py'
       - '.github/workflows/import-products.yml'
   workflow_dispatch:
 
@@ -128,13 +127,12 @@ jobs:
               print(f'{filename}: {target.stat().st_size} bytes')
           PY
 
-      - name: Generate clean featured and Etsy preview images
+      - name: Generate clean featured product images
         shell: bash
         run: |
           set -euo pipefail
-          python3 -m pip install --disable-pip-version-check --quiet Pillow PyMuPDF
+          python3 -m pip install --disable-pip-version-check --quiet Pillow
           python3 content/tools/generate-featured-images.py
-          python3 content/tools/generate-etsy-preview-images.py
 
       - name: Persist generated product gallery assets
         shell: bash
@@ -146,7 +144,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No generated gallery asset changes to persist."
           else
-            git commit -m "Refresh generated product gallery assets [skip ci]"
+            git commit -m "Refresh generated product assets [skip ci]"
             git fetch origin main
             if git rebase origin/main && git push origin HEAD:main; then
               echo "Generated gallery assets persisted."
