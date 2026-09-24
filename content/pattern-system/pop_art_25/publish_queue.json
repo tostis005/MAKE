@@ -1,0 +1,282 @@
+{
+  "collection": "pop-art-25",
+  "branch": "feature/pop-art-resto-24",
+  "mode": "publish-one-design-per-run",
+  "auto_continue": true,
+  "max_attempts_per_design": 2,
+  "protected_designs": [
+    "P0001",
+    "P0012"
+  ],
+  "notes": [
+    "P0001 Einstein and P0012 Marilyn Bubble Gum are approved and protected; this queue never regenerates them.",
+    "Each pending design is rebuilt from its encoded 100x120 transparent master matrix, expanded to an 800x960 transparent PNG, rendered in CS/C2C/TC/LH, published to WooCommerce, committed back to the feature branch, then the queue advances.",
+    "C2C uses cover-crochet.webp and TC uses cover-c2c-crochet.webp as intentionally configured for this collection."
+  ],
+  "items": [
+    {
+      "order": 1,
+      "base_design_id": "P0002",
+      "title_en": "Apple Man Portrait",
+      "title_es": "Retrato del hombre de la manzana",
+      "slug": "apple-man-portrait",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 2,
+      "base_design_id": "P0003",
+      "title_en": "Audrey Hepburn Bubble Gum",
+      "title_es": "Audrey Hepburn con chicle",
+      "slug": "audrey-hepburn-bubble-gum",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 3,
+      "base_design_id": "P0004",
+      "title_en": "Audrey Hepburn Profile",
+      "title_es": "Audrey Hepburn de perfil",
+      "slug": "audrey-hepburn-profile",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 4,
+      "base_design_id": "P0005",
+      "title_en": "Audrey Hepburn Sunglasses",
+      "title_es": "Audrey Hepburn con gafas",
+      "slug": "audrey-hepburn-sunglasses",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 5,
+      "base_design_id": "P0006",
+      "title_en": "Charlie Chaplin Portrait",
+      "title_es": "Retrato de Charlie Chaplin",
+      "slug": "charlie-chaplin-portrait",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 6,
+      "base_design_id": "P0007",
+      "title_en": "Frida Kahlo Floral Crown",
+      "title_es": "Frida Kahlo con corona floral",
+      "slug": "frida-kahlo-floral-crown",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 7,
+      "base_design_id": "P0008",
+      "title_en": "Girl with a Pearl Earring Bubble Gum",
+      "title_es": "La joven de la perla con chicle",
+      "slug": "girl-pearl-earring-bubble-gum",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 8,
+      "base_design_id": "P0009",
+      "title_en": "Girl with a Pearl Earring",
+      "title_es": "La joven de la perla",
+      "slug": "girl-with-a-pearl-earring",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 9,
+      "base_design_id": "P0010",
+      "title_en": "Girl with a Pearl Earring Sunglasses",
+      "title_es": "La joven de la perla con gafas",
+      "slug": "girl-pearl-earring-sunglasses",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 10,
+      "base_design_id": "P0011",
+      "title_en": "Marilyn Monroe Blowing Kiss",
+      "title_es": "Marilyn Monroe lanzando un beso",
+      "slug": "marilyn-monroe-blowing-kiss",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 11,
+      "base_design_id": "P0013",
+      "title_en": "Marilyn Monroe Sunglasses",
+      "title_es": "Marilyn Monroe con gafas",
+      "slug": "marilyn-monroe-sunglasses",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 12,
+      "base_design_id": "P0014",
+      "title_en": "Marilyn Monroe Surprise",
+      "title_es": "Marilyn Monroe sorprendida",
+      "slug": "marilyn-monroe-surprise",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 13,
+      "base_design_id": "P0015",
+      "title_en": "Marilyn Monroe Wink",
+      "title_es": "Marilyn Monroe guiñando un ojo",
+      "slug": "marilyn-monroe-wink",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 14,
+      "base_design_id": "P0016",
+      "title_en": "Mona Lisa Portrait",
+      "title_es": "Retrato de la Mona Lisa",
+      "slug": "mona-lisa-portrait",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 15,
+      "base_design_id": "P0017",
+      "title_en": "Salvador Dalí Portrait",
+      "title_es": "Retrato de Salvador Dalí",
+      "slug": "salvador-dali-portrait",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 16,
+      "base_design_id": "P0018",
+      "title_en": "Van Gogh with Sunflower",
+      "title_es": "Van Gogh con girasol",
+      "slug": "van-gogh-sunflower",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 17,
+      "base_design_id": "P0019",
+      "title_en": "Vincent van Gogh Portrait",
+      "title_es": "Retrato de Vincent van Gogh",
+      "slug": "vincent-van-gogh-portrait",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 18,
+      "base_design_id": "P0020",
+      "title_en": "James Dean Portrait",
+      "title_es": "Retrato de James Dean",
+      "slug": "james-dean-portrait",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 19,
+      "base_design_id": "P0021",
+      "title_en": "David Bowie Portrait",
+      "title_es": "Retrato de David Bowie",
+      "slug": "david-bowie-portrait",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 20,
+      "base_design_id": "P0022",
+      "title_en": "Princess Diana Bubble Gum",
+      "title_es": "Princesa Diana con chicle",
+      "slug": "princess-diana-bubble-gum",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 21,
+      "base_design_id": "P0023",
+      "title_en": "Princess Diana Portrait",
+      "title_es": "Retrato de la princesa Diana",
+      "slug": "princess-diana-portrait",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 22,
+      "base_design_id": "P0024",
+      "title_en": "Michael Jackson Portrait",
+      "title_es": "Retrato de Michael Jackson",
+      "slug": "michael-jackson-portrait",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 23,
+      "base_design_id": "P0025",
+      "title_en": "Nelson Mandela Portrait",
+      "title_es": "Retrato de Nelson Mandela",
+      "slug": "nelson-mandela-portrait",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 24,
+      "base_design_id": "P0026",
+      "title_en": "Freddie Mercury Portrait",
+      "title_es": "Retrato de Freddie Mercury",
+      "slug": "freddie-mercury-portrait",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    }
+  ]
+}
