@@ -93,7 +93,7 @@ def build_pattern(collection: dict):
         "palette_collection": "florals",
         "status": "ready",
         "source_asset": "collections/florals/source-designs/F0001-blue-daisy-pitcher.png",
-        "reference_asset": "collections/florals/reference-masters/F0001-blue-daisy-pitcher-reference.png",
+        "reference_asset": "collections/florals/source-designs/F0001-blue-daisy-pitcher.png",
         "stitch_width": 100,
         "stitch_height": 120,
         "total_stitches": sum(counts.values()),
@@ -150,7 +150,7 @@ def render_product(collection: dict, pattern: dict):
         "technique": "cross-stitch",
         "template": "cross-stitch",
         "source_artwork": "collections/florals/source-designs/F0001-blue-daisy-pitcher.png",
-        "reference_artwork": "collections/florals/reference-masters/F0001-blue-daisy-pitcher-reference.png",
+        "reference_artwork": "collections/florals/source-designs/F0001-blue-daisy-pitcher.png",
         "page_1_asset": "multitech/assets/cover-cross-stitch.webp",
         "render_ready": True,
         "status": "active",
@@ -312,9 +312,8 @@ def main():
     pattern = build_pattern(collection)
 
     src = Image.open(SOURCE).convert("RGBA")
-    REFERENCE.parent.mkdir(parents=True, exist_ok=True)
-    ref = src.resize((800, 960), Image.Resampling.NEAREST)
-    ref.save(REFERENCE, "PNG", optimize=True)
+    if src.size != (100, 120):
+        raise RuntimeError(f"Source must be 100x120, got {src.size}")
 
     render_product(collection, pattern)
     update_catalog(collection, pattern)
