@@ -1,0 +1,46 @@
+name: Build Animals canonical reference assets
+
+on:
+  push:
+    branches:
+      - collection/animals
+    paths:
+      - 'content/pattern-system/collections/animals/collection.json'
+      - 'content/pattern-system/collections/animals/designs.json'
+      - 'content/pattern-system/collections/animals/reference-library/**'
+      - 'content/pattern-system/collections/animals/tools/build_reference_assets.py'
+      - '.github/workflows/animals-reference-assets.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-reference-assets:
+    if: ${{ !contains(github.event.head_commit.message, '[skip animals refs]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --quiet Pillow
+      - name: Rebuild deterministic Animals references
+        run: python content/pattern-system/collections/animals/tools/build_reference_assets.py --write
+      - name: Commit generated PNG references
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/pattern-system/collections/animals/source-designs \
+                  content/pattern-system/collections/animals/reference-masters \
+                  content/pattern-system/collections/animals/reference-sheets
+          if git diff --cached --quiet; then
+            echo "Animals reference assets already match the canonical archive."
+            exit 0
+          fi
+          git commit -m "Build Animals canonical reference assets [skip animals refs]"
+          git push origin HEAD:${{ github.ref_name }}
