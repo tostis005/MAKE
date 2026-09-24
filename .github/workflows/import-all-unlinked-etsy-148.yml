@@ -1,0 +1,126 @@
+name: Import all unlinked Etsy products with 1.4.8
+
+on:
+  push:
+    branches:
+      - feature/etsy-technique-classification
+    paths:
+      - '.github/workflows/import-all-unlinked-etsy-148.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  launch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/key
+          chmod 600 ~/.ssh/key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Queue every currently unlinked craft product
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          ssh -o ServerAliveInterval=30 -o ServerAliveCountMax=10 -i ~/.ssh/key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -d max_execution_time=0 -r '
+            require "/var/www/html/wp-load.php";
+            require_once ABSPATH."wp-admin/includes/plugin.php";
+            $data=get_plugin_data(WP_PLUGIN_DIR."/drielo-etsy-sync/drielo-etsy-sync.php",false,false);
+            if(version_compare((string)($data["Version"]??""),"1.4.8","<")) exit(2);
+
+            $run=get_option("drielo_etsy_sync_run",array());
+            if(in_array((string)($run["status"]??""),array("queued","running"),true)){
+              fwrite(STDERR,"ACTIVE_BATCH ".wp_json_encode($run).PHP_EOL); exit(3);
+            }
+
+            $sync=Drielo_Etsy_Sync::instance();
+            $ref=new ReflectionClass($sync);
+            $set_state=$ref->getMethod("set_batch_product_state"); $set_state->setAccessible(true);
+            $refresh=$ref->getMethod("refresh_sync_run"); $refresh->setAccessible(true);
+
+            $ids=get_posts(array(
+              "post_type"=>"product",
+              "post_status"=>array("publish","draft","private","pending"),
+              "posts_per_page"=>-1,
+              "fields"=>"ids",
+              "orderby"=>"ID",
+              "order"=>"ASC"
+            ));
+
+            $selected=array();
+            $by=array("CS"=>0,"C2C"=>0,"TC"=>0,"LH"=>0);
+            foreach($ids as $id){
+              $p=wc_get_product($id); if(!$p) continue;
+              $sku=(string)$p->get_sku();
+              if(!preg_match("/-(CS|C2C|TC|LH)$/",$sku,$m)) continue;
+              if(absint(get_post_meta($id,"_drielo_etsy_listing_id",true))) continue;
+              update_post_meta($id,"_drielo_etsy_enabled","yes");
+              update_post_meta($id,"_drielo_etsy_target_state","active");
+              $selected[]=(int)$id;
+              $by[$m[1]]++;
+            }
+
+            echo "TO_IMPORT=".count($selected).PHP_EOL;
+            echo "BY_TECH=".wp_json_encode($by).PHP_EOL;
+            if(!$selected){echo "NOTHING_TO_IMPORT=yes".PHP_EOL;exit(0);}
+
+            $batch=wp_generate_uuid4();
+            $newrun=array(
+              "id"=>$batch,
+              "mode"=>"safe",
+              "product_ids"=>$selected,
+              "started_at"=>current_time("mysql"),
+              "started_by"=>0,
+              "status"=>"queued",
+              "completed_at"=>"",
+              "updated_at"=>current_time("mysql"),
+              "global_import"=>1,
+              "classification_version"=>"1.4.8"
+            );
+            update_option("drielo_etsy_sync_run",$newrun,false);
+
+            $queued=0;$failed=0;
+            foreach($selected as $id){
+              $args=array((int)$id,0,$batch);
+              foreach(array("_drielo_etsy_batch_id","_drielo_etsy_batch_state","_drielo_etsy_batch_message","_drielo_etsy_batch_updated_at") as $key) delete_post_meta($id,$key);
+              $set_state->invoke($sync,(int)$id,$batch,"queued","Pendiente de importación Etsy 1.4.8.");
+
+              $scheduled=false;
+              if(function_exists("as_enqueue_async_action")){
+                $action_id=as_enqueue_async_action("drielo_etsy_sync_product_async",$args,"drielo-etsy",true);
+                $scheduled=!empty($action_id);
+                if(!$scheduled && function_exists("as_has_scheduled_action")){
+                  $scheduled=(bool)as_has_scheduled_action("drielo_etsy_sync_product_async",$args,"drielo-etsy");
+                }
+              }else{
+                $scheduled=wp_schedule_single_event(time()+1,"drielo_etsy_sync_product_async",$args);
+              }
+
+              if($scheduled){
+                update_post_meta($id,"_drielo_etsy_queue_state","queued-safe");
+                $queued++;
+              }else{
+                $set_state->invoke($sync,(int)$id,$batch,"failed","No se pudo añadir a la cola.");
+                $failed++;
+              }
+            }
+            $refresh->invoke($sync,$batch);
+            echo "BATCH=".$batch.PHP_EOL;
+            echo "QUEUED=".$queued.PHP_EOL;
+            echo "QUEUE_FAILED=".$failed.PHP_EOL;
+            if($failed>0) exit(4);
+          '
+          REMOTE
