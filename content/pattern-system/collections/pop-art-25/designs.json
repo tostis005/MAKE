@@ -12,7 +12,9 @@
         "P0001-C2C",
         "P0001-TC",
         "P0001-LH"
-      ]
+      ],
+      "source_artwork": "sources/P0001.png",
+      "transparent_background": true
     },
     {
       "code": "P0002",

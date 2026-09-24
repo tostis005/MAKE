@@ -6,11 +6,12 @@
       "title_en": "Albert Einstein Tongue Out",
       "title_es": "Albert Einstein sacando la lengua",
       "slug": "albert-einstein-tongue-out",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35985899139",
       "last_error": null,
-      "allow_protected": true
+      "allow_protected": true,
+      "published_at": "2026-09-24T10:16:34+00:00"
     },
     {
       "base_design_id": "P0012",
