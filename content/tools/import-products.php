@@ -61,10 +61,10 @@ function drielo_media_from_file( string $path, string $source_key, string $title
     if ( $existing ) {
         $attachment_id = (int) $existing[0];
         $known_revision = (string) get_post_meta( $attachment_id, '_drielo_source_revision', true );
-        if ( '' !== $source_revision && hash_equals( $known_revision, $source_revision ) ) {
+        $known_hash = (string) get_post_meta( $attachment_id, '_drielo_source_hash', true );
+        if ( '' !== $source_revision && hash_equals( $known_revision, $source_revision ) && $source_hash && hash_equals( $known_hash, $source_hash ) ) {
             return $attachment_id;
         }
-        $known_hash = (string) get_post_meta( $attachment_id, '_drielo_source_hash', true );
         if ( '' === $source_revision && $source_hash && hash_equals( $known_hash, $source_hash ) ) {
             return $attachment_id;
         }
