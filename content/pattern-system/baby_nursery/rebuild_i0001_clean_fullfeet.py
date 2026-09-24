@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import base64
+import hashlib
 import json
 import sys
 from collections import Counter
@@ -12,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[3]
 SYSTEM = ROOT / "content" / "pattern-system"
 COL = SYSTEM / "collections" / "baby-nursery"
 SRC = COL / "source-designs" / "I0001-teddy-bear.png"
+STAGED = SYSTEM / "baby_nursery" / "i0001_clean_fullfeet.b64"
 PATTERNS = SYSTEM / "patterns"
 PRODUCTS = SYSTEM / "products"
 
@@ -32,6 +35,7 @@ PAGE1 = {
     "LH": "collections/baby-nursery/assets/cover-rug.jpg",
 }
 SYMBOLS = list("ABCDEFGHJKLMNPQRSTUVWXYZ23456789")
+EXPECTED_SHA256 = "2fdb392651d9eaa47a2b70c7f9349a972e61260bd0a00c2d5f30ac107bb89ea4"
 
 def read_json(p: Path):
     return json.loads(p.read_text(encoding="utf-8"))
@@ -43,6 +47,14 @@ def write_json(p: Path, d):
 def rgb(hexv: str):
     h = hexv.lstrip("#")
     return tuple(int(h[i:i+2],16) for i in (0,2,4))
+
+def install_master():
+    raw = base64.b64decode(STAGED.read_text(encoding="ascii").strip(), validate=True)
+    digest = hashlib.sha256(raw).hexdigest()
+    if digest != EXPECTED_SHA256:
+        raise RuntimeError(f"Unexpected clean master digest: {digest}")
+    SRC.parent.mkdir(parents=True, exist_ok=True)
+    SRC.write_bytes(raw)
 
 def build_cs_matrix():
     collection = read_json(COL / "collection.json")
@@ -70,7 +82,6 @@ def build_cs_matrix():
                 continue
             idx = exact.get((r,g,b))
             if idx is None:
-                # Safety fallback: nearest palette colour.
                 idx = min(
                     range(len(palette_rgb)),
                     key=lambda i: sum((palette_rgb[i][k] - (r,g,b)[k]) ** 2 for k in range(3))
@@ -125,6 +136,8 @@ def update_product(suffix):
     write_json(path, d)
 
 def main():
+    install_master()
+
     cs_matrix, cs_threads = build_cs_matrix()
     update_pattern("CS", cs_matrix, cs_threads)
 
@@ -136,13 +149,12 @@ def main():
     for suffix in SUFFIXES:
         update_product(suffix)
 
-    # Final structural checks: full feet must remain within the master and not touch bottom.
     im = Image.open(SRC).convert("RGBA")
     bbox = im.getchannel("A").getbbox()
-    if bbox[3] > 864:
-        raise RuntimeError(f"Feet extend below approved boundary: {bbox}")
-    if 960 - bbox[3] < 80:
-        raise RuntimeError(f"Insufficient transparent margin below feet: {960-bbox[3]}px")
+    if bbox != (32,96,768,864):
+        raise RuntimeError(f"Final source geometry mismatch: {bbox}")
+    if 960 - bbox[3] != 96:
+        raise RuntimeError(f"Expected 96px bottom margin, got {960-bbox[3]}")
 
     for suffix in SUFFIXES:
         code = f"I0001-{suffix}"
