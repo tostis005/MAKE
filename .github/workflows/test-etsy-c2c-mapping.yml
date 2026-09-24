@@ -1,0 +1,80 @@
+name: Test Etsy C2C mapping
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/test-etsy-c2c-mapping.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_c2c_test_key
+          chmod 600 ~/.ssh/drielo_c2c_test_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Apply and verify mapping on one linked C2C listing
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_c2c_test_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $sync=Drielo_Etsy_Sync::instance();
+            $ref=new ReflectionClass($sync);
+            $craft=$ref->getMethod("sync_crochet_taxonomy_and_craft_type"); $craft->setAccessible(true);
+            $section=$ref->getMethod("sync_shop_section"); $section->setAccessible(true);
+            $req=$ref->getMethod("etsy_request"); $req->setAccessible(true);
+
+            $ids=get_posts(array("post_type"=>"product","post_status"=>"publish","posts_per_page"=>-1,"fields"=>"ids","orderby"=>"ID","order"=>"ASC"));
+            $p=null;$listing=0;
+            foreach($ids as $id){
+              $candidate=wc_get_product($id);
+              if(!$candidate) continue;
+              if(!preg_match("/-C2C$/",(string)$candidate->get_sku())) continue;
+              $lid=absint(get_post_meta($id,"_drielo_etsy_listing_id",true));
+              if($lid){$p=$candidate;$listing=$lid;break;}
+            }
+            if(!$p||!$listing){fwrite(STDERR,"No linked C2C listing found".PHP_EOL);exit(2);}
+
+            echo "SKU=".$p->get_sku()." LISTING=".$listing.PHP_EOL;
+            $a=$craft->invoke($sync,$p,$listing);
+            if(is_wp_error($a)){fwrite(STDERR,"CRAFT_ERROR=".$a->get_error_message().PHP_EOL);exit(3);}
+            $b=$section->invoke($sync,$p,$listing);
+            if(is_wp_error($b)){fwrite(STDERR,"SECTION_ERROR=".$b->get_error_message().PHP_EOL);exit(4);}
+
+            $remote=$req->invoke($sync,"GET","/v3/application/listings/".$listing,array());
+            if(is_wp_error($remote)){fwrite(STDERR,"LISTING_ERROR=".$remote->get_error_message().PHP_EOL);exit(5);}
+            $property=$req->invoke($sync,"GET","/v3/application/listings/".$listing."/properties/47626759760",array());
+            if(is_wp_error($property)){fwrite(STDERR,"PROPERTY_ERROR=".$property->get_error_message().PHP_EOL);exit(6);}
+
+            echo "TAXONOMY=".($remote["taxonomy_id"]??0).PHP_EOL;
+            echo "SHOP_SECTION=".($remote["shop_section_id"]??0).PHP_EOL;
+            echo "CRAFT_PROPERTY=".wp_json_encode($property).PHP_EOL;
+
+            $values=array_map("intval",(array)($property["value_ids"]??array()));
+            if((int)($remote["taxonomy_id"]??0)!==6343) exit(7);
+            if((int)($remote["shop_section_id"]??0)!==60541905) exit(8);
+            if(!in_array(543,$values,true)) exit(9);
+            echo "C2C_MAPPING_OK=yes".PHP_EOL;
+          '
+          REMOTE
