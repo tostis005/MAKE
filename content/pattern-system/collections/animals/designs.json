@@ -485,7 +485,9 @@
       ],
       "artwork_status": "canonical-reference-ready",
       "reference_asset": "collections/animals/reference-masters/A0027-chick-daisy-reference.png",
-      "source_asset": "collections/animals/source-designs/A0027-chick-daisy.png"
+      "source_asset": "collections/animals/source-designs/A0027-chick-daisy.png",
+      "product_status": "ready",
+      "transparent_background": true
     },
     {
       "order": 28,
