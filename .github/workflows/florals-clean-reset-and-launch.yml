@@ -32,6 +32,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow
           python3 - <<'PY'
           import json
           from pathlib import Path
