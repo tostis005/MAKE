@@ -131,6 +131,92 @@ def load_design_reference(base_id: str, meta: dict):
     }
 
 
+def clean_exterior_near_white_rows(rows, palette, alphabet, max_component_cells=16, white_distance=70):
+    grid=[list(r) for r in rows]
+    h=len(grid); w=len(grid[0]) if h else 0
+    near_white=set()
+    for i,p in enumerate(palette):
+        if i >= len(alphabet):
+            break
+        hx=str(p.get("hex","")).lstrip("#")
+        if len(hx)!=6:
+            continue
+        rgb=tuple(int(hx[j:j+2],16) for j in (0,2,4))
+        dist=sum((255-v)**2 for v in rgb) ** 0.5
+        if dist <= white_distance:
+            near_white.add(alphabet[i])
+    if not near_white:
+        return rows, {"removed_components":0,"removed_cells":0,"symbols":[]}
+
+    dirs=[(-1,-1),(-1,0),(-1,1),(0,-1),(0,1),(1,-1),(1,0),(1,1)]
+    seen=set()
+    removed_components=0
+    removed_cells=0
+
+    for sy in range(h):
+        for sx in range(w):
+            if (sy,sx) in seen or grid[sy][sx] not in near_white:
+                continue
+            stack=[(sy,sx)]
+            seen.add((sy,sx))
+            comp=[]
+            nonwhite_neighbors=set()
+            enclosed=0
+            boundary_cells=0
+            while stack:
+                y,x=stack.pop()
+                comp.append((y,x))
+                is_boundary=False
+                for dy,dx in dirs:
+                    yy,xx=y+dy,x+dx
+                    if yy<0 or yy>=h or xx<0 or xx>=w:
+                        is_boundary=True
+                        continue
+                    v=grid[yy][xx]
+                    if v==".":
+                        is_boundary=True
+                    elif v in near_white:
+                        if (yy,xx) not in seen:
+                            seen.add((yy,xx))
+                            stack.append((yy,xx))
+                    else:
+                        nonwhite_neighbors.add((yy,xx))
+                if is_boundary:
+                    boundary_cells+=1
+
+                left=any(grid[y][xx]!="." and grid[y][xx] not in near_white for xx in range(max(0,x-4),x))
+                right=any(grid[y][xx]!="." and grid[y][xx] not in near_white for xx in range(x+1,min(w,x+5)))
+                up=any(grid[yy][x]!="." and grid[yy][x] not in near_white for yy in range(max(0,y-4),y))
+                down=any(grid[yy][x]!="." and grid[yy][x] not in near_white for yy in range(y+1,min(h,y+5)))
+                if (left and right) or (up and down):
+                    enclosed+=1
+
+            n=len(comp)
+            fully_exterior = boundary_cells == n
+            weakly_attached = len(nonwhite_neighbors) <= 1
+            intentional = n >= 20 or enclosed >= max(1,n//3) or len(nonwhite_neighbors) >= 3
+
+            # Remove detached white/near-white flecks and very small exterior
+            # antialias remnants even when they touch one coloured cell.
+            remove = (
+                (n <= max_component_cells and weakly_attached and not intentional)
+                or (n <= 4 and fully_exterior and not intentional)
+            )
+            if remove:
+                for y,x in comp:
+                    grid[y][x]="."
+                removed_components+=1
+                removed_cells+=n
+
+    return ["".join(r) for r in grid], {
+        "removed_components":removed_components,
+        "removed_cells":removed_cells,
+        "symbols":sorted(near_white),
+        "white_distance":white_distance,
+        "max_component_cells":max_component_cells,
+    }
+
+
 def rgba_from_matrix(rows, palette, alphabet):
     if len(rows) != 120 or any(len(row) != 100 for row in rows):
         raise RuntimeError("Canonical matrix is not 100x120")
@@ -185,6 +271,37 @@ def generate_reference_master(base_id: str):
         source_kind = direct["source_kind"]
         source_digest = direct["source_sha256"]
         direct_metadata = direct["direct_metadata"]
+    elif base_id == "I0001":
+        # I0001 is the already-approved full-feet master. Reuse that exact
+        # reference when restarting the collection from the first pattern.
+        manifest = read_json(MANIFEST_PATH)
+        source_rel = meta["source_asset"]
+        source_path = SYSTEM / source_rel
+        if not source_path.is_file():
+            raise RuntimeError("I0001 approved source master is missing")
+        approved = Image.open(source_path).convert("RGBA")
+        bbox, margins = validate_master(base_id, approved)
+        ref_name = f"{base_id}-{meta['slug']}-reference.png"
+        ref_path = REFERENCE_DIR / ref_name
+        ref_rel = f"collections/baby-nursery/reference-masters/{ref_name}"
+        ref_path.parent.mkdir(parents=True, exist_ok=True)
+        approved.save(ref_path, "PNG", optimize=True)
+        result = {
+            "design_id": base_id,
+            "slug": meta["slug"],
+            "reference_sheet": 1,
+            "reference_row": 1,
+            "reference_column": 1,
+            "source_asset": source_rel,
+            "reference_asset": ref_rel,
+            "bbox": bbox,
+            "margins": margins,
+            "reference_source": "approved-existing-master",
+            "reference_sha256": hashlib.sha256(approved.tobytes()).hexdigest(),
+            "near_white_cleanup": {"removed_components":0,"removed_cells":0,"symbols":[]},
+        }
+        print("CANONICAL_REFERENCE_MASTER_OK", json.dumps(result, ensure_ascii=False))
+        return result
     else:
         manifest, archive = load_archive()
         if base_id not in archive["designs"]:
@@ -213,7 +330,19 @@ def generate_reference_master(base_id: str):
 
     collection = read_json(COLLECTION_PATH)
     palette = collection["palette"]
-    grid = rgba_from_matrix(canonical["rows"], palette, alphabet)
+    white_rule = collection.get("pattern_rules", {}).get("external_white_cleanup", {})
+    rows = canonical["rows"]
+    if white_rule.get("enabled", False):
+        rows, near_white_stats = clean_exterior_near_white_rows(
+            rows,
+            palette,
+            alphabet,
+            max_component_cells=int(white_rule.get("max_isolated_component_cells", 16)),
+            white_distance=float(white_rule.get("near_white_distance", 70)),
+        )
+    else:
+        near_white_stats = {"removed_components":0,"removed_cells":0,"symbols":[]}
+    grid = rgba_from_matrix(rows, palette, alphabet)
     master = grid.resize((800, 960), Image.Resampling.NEAREST)
     bbox, margins = validate_master(base_id, master)
 
@@ -252,6 +381,7 @@ def generate_reference_master(base_id: str):
         "margins": margins,
         "reference_source": source_kind,
         "reference_sha256": source_digest,
+        "near_white_cleanup": near_white_stats,
     }
     if direct_metadata:
         result["source_crop_bbox"] = direct_metadata.get("source_crop_bbox")
