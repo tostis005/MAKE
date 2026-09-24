@@ -1,5 +1,5 @@
 name: Baby Nursery Auto Publish Queue
-# automatic remaining-design rollout
+# Pop Art-style four-image rollout from I0001
 # uniform-outline I0002 review v4
 # exact-reference I0002 review v3
 # canonical user-reference rollout with isolated-white cleanup
@@ -17,7 +17,7 @@ permissions:
 
 concurrency:
   group: drielo-baby-nursery-auto-publish
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   publish-next:
@@ -131,13 +131,25 @@ jobs:
                   raise SystemExit(f'{code}: isolated exterior white cleanup rule missing')
               pdf=root/'content/products/files'/f'Drielo_{code}.pdf'
               image=root/'content/products/assets'/f'{code}-product.webp'
+              gallery=[root/'content/products/assets'/f'{code}-gallery-{i}.webp' for i in (2,3,4)]
               if not pdf.is_file() or pdf.stat().st_size<100000 or pdf.read_bytes()[:4]!=b'%PDF':
                   raise SystemExit(f'{code}: invalid PDF')
               if not image.is_file() or image.stat().st_size<50000:
                   raise SystemExit(f'{code}: invalid product image')
-              if code not in rows:
+              for g in gallery:
+                  if not g.is_file() or g.stat().st_size<30000:
+                      raise SystemExit(f'{code}: invalid gallery preview {g.name}')
+              row=rows.get(code)
+              if not row:
                   raise SystemExit(f'{code}: missing catalog row')
-              print(code,'stitches',pat['total_stitches'],'colors',len(pat['threads']),'pdf',pdf.stat().st_size,'image',image.stat().st_size)
+              expected_gallery=[f'assets/{code}-gallery-{i}.webp' for i in (2,3,4)]
+              if row.get('gallery') != expected_gallery:
+                  raise SystemExit(f'{code}: wrong gallery list {row.get("gallery")}')
+              if row.get('gallery_preview_pages') != {'facts':3,'colour_a1':8,'symbol_a1':12}:
+                  raise SystemExit(f'{code}: gallery preview page mapping missing')
+              print(code,'stitches',pat['total_stitches'],'colors',len(pat['threads']),
+                    'pdf',pdf.stat().st_size,'image',image.stat().st_size,
+                    'gallery',[g.stat().st_size for g in gallery])
           print(design,'BUNDLE_VALID','bbox',bbox)
           PY
 
@@ -181,6 +193,9 @@ jobs:
           for suffix in CS C2C TC LH; do
             code="${DESIGN}-${suffix}"
             cp "content/products/assets/${code}-product.webp" "$STAGE/content/products/assets/"
+            cp "content/products/assets/${code}-gallery-2.webp" "$STAGE/content/products/assets/"
+            cp "content/products/assets/${code}-gallery-3.webp" "$STAGE/content/products/assets/"
+            cp "content/products/assets/${code}-gallery-4.webp" "$STAGE/content/products/assets/"
             cp "content/products/files/Drielo_${code}.pdf" "$STAGE/content/products/files/"
           done
           cp content/tools/import-products.php "$STAGE/content/tools/"
@@ -253,8 +268,9 @@ jobs:
               $cols=wp_get_object_terms($id,"product_collection",array("fields"=>"slugs"));
               $downloads=count($p->get_downloads());
               $image=$p->get_image_id();
-              echo $sku." id=".$id." status=".$p->get_status()." image=".$image." downloads=".$downloads." collection=".implode(",",is_wp_error($cols)?array():$cols)." url=".get_permalink($id).PHP_EOL;
-              if ($p->get_status()!=="publish" || !$image || $downloads<1 || !in_array("baby-nursery",is_wp_error($cols)?array():$cols,true)) {
+              $gallery=count($p->get_gallery_image_ids());
+              echo $sku." id=".$id." status=".$p->get_status()." image=".$image." gallery=".$gallery." downloads=".$downloads." collection=".implode(",",is_wp_error($cols)?array():$cols)." url=".get_permalink($id).PHP_EOL;
+              if ($p->get_status()!=="publish" || !$image || $gallery<3 || $downloads<1 || !in_array("baby-nursery",is_wp_error($cols)?array():$cols,true)) {
                 fwrite(STDERR,"Incomplete ".$sku.PHP_EOL); exit(3);
               }
             }
@@ -272,7 +288,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add content/pattern-system/collections/baby-nursery/source-designs/${DESIGN}-*.png content/pattern-system/collections/baby-nursery/reference-masters/${DESIGN}-*-reference.png content/pattern-system/patterns/${DESIGN}-CS/pattern.json content/pattern-system/patterns/${DESIGN}-C2C/pattern.json content/pattern-system/patterns/${DESIGN}-TC/pattern.json content/pattern-system/patterns/${DESIGN}-LH/pattern.json content/pattern-system/products/${DESIGN}-CS/product.json content/pattern-system/products/${DESIGN}-C2C/product.json content/pattern-system/products/${DESIGN}-TC/product.json content/pattern-system/products/${DESIGN}-LH/product.json content/products/catalog.json content/products/assets/${DESIGN}-CS-product.webp content/products/assets/${DESIGN}-C2C-product.webp content/products/assets/${DESIGN}-TC-product.webp content/products/assets/${DESIGN}-LH-product.webp
+          git add content/pattern-system/collections/baby-nursery/source-designs/${DESIGN}-*.png content/pattern-system/collections/baby-nursery/reference-masters/${DESIGN}-*-reference.png content/pattern-system/patterns/${DESIGN}-CS/pattern.json content/pattern-system/patterns/${DESIGN}-C2C/pattern.json content/pattern-system/patterns/${DESIGN}-TC/pattern.json content/pattern-system/patterns/${DESIGN}-LH/pattern.json content/pattern-system/products/${DESIGN}-CS/product.json content/pattern-system/products/${DESIGN}-C2C/product.json content/pattern-system/products/${DESIGN}-TC/product.json content/pattern-system/products/${DESIGN}-LH/product.json content/products/catalog.json content/products/assets/${DESIGN}-CS-product.webp content/products/assets/${DESIGN}-CS-gallery-2.webp content/products/assets/${DESIGN}-CS-gallery-3.webp content/products/assets/${DESIGN}-CS-gallery-4.webp content/products/assets/${DESIGN}-C2C-product.webp content/products/assets/${DESIGN}-C2C-gallery-2.webp content/products/assets/${DESIGN}-C2C-gallery-3.webp content/products/assets/${DESIGN}-C2C-gallery-4.webp content/products/assets/${DESIGN}-TC-product.webp content/products/assets/${DESIGN}-TC-gallery-2.webp content/products/assets/${DESIGN}-TC-gallery-3.webp content/products/assets/${DESIGN}-TC-gallery-4.webp content/products/assets/${DESIGN}-LH-product.webp content/products/assets/${DESIGN}-LH-gallery-2.webp content/products/assets/${DESIGN}-LH-gallery-3.webp content/products/assets/${DESIGN}-LH-gallery-4.webp
 
           if git diff --cached --quiet; then
             echo "Generated design already matches main."
