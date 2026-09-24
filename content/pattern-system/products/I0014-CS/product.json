@@ -1,0 +1,19 @@
+{
+  "code": "I0014-CS",
+  "base_design_id": "I0014",
+  "technique_code": "CS",
+  "collection": "baby-nursery",
+  "title": "Panda with Star",
+  "title_en": "Panda with Star",
+  "title_es": "Panda con estrella",
+  "design_slug": "panda-star",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/I0014-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "active",
+  "render_ready": true,
+  "source_artwork": "collections/baby-nursery/source-designs/I0014-panda-star.png",
+  "page_1_asset": "collections/baby-nursery/assets/cover-cross-stitch.jpg",
+  "reference_artwork": "collections/baby-nursery/reference-masters/I0014-panda-star-reference.png"
+}

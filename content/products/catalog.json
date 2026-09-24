@@ -74,7 +74,7 @@
         "310",
         "550"
       ],
-      "cover_asset": "assets/I0013-CS-product.webp",
+      "cover_asset": "assets/I0014-CS-product.webp",
       "name_es": "Bebé e Infantil",
       "name_en": "Baby & Nursery",
       "description_es": "Motivos de bebé e infantiles con una paleta viva y coordinada de 24 colores, bordes transparentes limpios y sin contorno negro exterior forzado.",
@@ -6481,6 +6481,486 @@
       ],
       "design_id": "I0013-TC",
       "base_design_id": "I0013",
+      "technique_code": "TC",
+      "technique": "tapestry-crochet",
+      "size_attribute_label": "Chart size",
+      "colour_attribute_label": "Yarn colours",
+      "type_attribute_label": "Technique",
+      "count_attribute_label": "Colourwork stitches",
+      "filters": {
+        "technique": [
+          "tapestry-crochet"
+        ],
+        "theme": [
+          "baby-nursery"
+        ],
+        "style": [
+          "cute",
+          "soft",
+          "nursery"
+        ],
+        "project": [
+          "tapestry"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "pastel"
+        ],
+        "season": []
+      }
+    },
+    {
+      "code": "I0014-C2C",
+      "sku": "DRIELO-I0014-C2C",
+      "price": 2.49,
+      "categories": [
+        "c2c-crochet-patterns",
+        "c2c-crochet-baby-nursery"
+      ],
+      "purchase_note_en": "Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.",
+      "purchase_note_es": "Tu PDF digital estará disponible desde la confirmación del pedido y en Mi cuenta > Descargas una vez completado el pago.",
+      "title": "Panda with Star C2C Crochet Pattern PDF",
+      "title_en": "Panda with Star C2C Crochet Pattern PDF",
+      "title_es": "Patrón PDF de crochet C2C: Panda con estrella",
+      "slug": "panda-star-c2c-crochet-pattern",
+      "collection": "baby-nursery",
+      "stitches": 2682,
+      "grid": "60 × 72 blocks",
+      "colours": 17,
+      "color_count": 17,
+      "grid_width": 60,
+      "grid_height": 72,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Corner-to-corner blocks",
+      "stitch_type_en": "Corner-to-corner blocks",
+      "stitch_type_es": "crochet C2C",
+      "short_description": "Downloadable Panda with Star C2C Crochet pattern PDF from the Baby & Nursery collection. 60 × 72 blocks; 2,682 filled blocks; 17 coordinated colours; beginner friendly. Pattern code: I0014-C2C.",
+      "short_description_en": "Downloadable Panda with Star C2C Crochet pattern PDF from the Baby & Nursery collection. 60 × 72 blocks; 2,682 filled blocks; 17 coordinated colours; beginner friendly. Pattern code: I0014-C2C.",
+      "short_description_es": "Patrón PDF descargable de panda con estrella para crochet C2C. 60 × 72; 2,682 celdas ocupadas; 17 colores coordinados; apto para principiantes. Código: I0014-C2C.",
+      "description": "<p><strong>Panda with Star C2C Crochet Pattern PDF</strong> is a downloadable digital pattern from the Baby & Nursery collection.</p><p><strong>Digital product only:</strong> no finished item or physical materials are included.</p><h3>Pattern details</h3><ul><li>Pattern code: I0014-C2C</li><li>Grid: 60 × 72 blocks</li><li>Filled blocks: 2,682</li><li>Colours: 17 coordinated collection colours</li><li>Technique: Corner-to-corner blocks</li><li>Skill level: Beginner friendly</li></ul><h3>What you receive</h3><ul><li>17-page PDF pattern</li><li>Finished-design preview</li><li>Colour key with counts</li><li>Full-colour chart overview</li><li>Black-and-white symbol chart</li><li>Enlarged chart sections</li><li>Print-and-make guide</li></ul><p>Personal use only. The pattern and PDF may not be redistributed or resold.</p>",
+      "description_en": "<p><strong>Panda with Star C2C Crochet Pattern PDF</strong> is a downloadable digital pattern from the Baby & Nursery collection.</p><p><strong>Digital product only:</strong> no finished item or physical materials are included.</p><h3>Pattern details</h3><ul><li>Pattern code: I0014-C2C</li><li>Grid: 60 × 72 blocks</li><li>Filled blocks: 2,682</li><li>Colours: 17 coordinated collection colours</li><li>Technique: Corner-to-corner blocks</li><li>Skill level: Beginner friendly</li></ul><h3>What you receive</h3><ul><li>17-page PDF pattern</li><li>Finished-design preview</li><li>Colour key with counts</li><li>Full-colour chart overview</li><li>Black-and-white symbol chart</li><li>Enlarged chart sections</li><li>Print-and-make guide</li></ul><p>Personal use only. The pattern and PDF may not be redistributed or resold.</p>",
+      "description_es": "<p><strong>Patrón PDF de crochet C2C: Panda con estrella</strong> es un patrón digital descargable de la colección Bebé e Infantil.</p><p><strong>Solo producto digital:</strong> no se incluye la pieza terminada ni materiales físicos.</p><h3>Detalles</h3><ul><li>Código: I0014-C2C</li><li>Cuadrícula: 60 × 72</li><li>Celdas ocupadas: 2,682</li><li>Colores: 17 colores coordinados</li><li>Técnica: crochet C2C</li><li>Nivel: apto para principiantes</li></ul><h3>Qué recibirás</h3><ul><li>PDF de 17 páginas</li><li>Vista previa del diseño</li><li>Clave de colores</li><li>Gráfico general a color</li><li>Gráfico con símbolos</li><li>Secciones ampliadas</li><li>Guía para realizar el proyecto</li></ul><p>Solo para uso personal.</p>",
+      "gallery": [
+        "assets/I0014-C2C-gallery-2.webp",
+        "assets/I0014-C2C-gallery-3.webp",
+        "assets/I0014-C2C-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_I0014-C2C.pdf",
+      "featured_image": "assets/I0014-C2C-product.webp",
+      "gallery_revision": 36065393119,
+      "seo_title": "Panda with Star C2C Crochet Pattern PDF | Drielo",
+      "seo_title_en": "Panda with Star C2C Crochet Pattern PDF | Drielo",
+      "seo_title_es": "Patrón PDF de crochet C2C: Panda con estrella | Drielo",
+      "meta_description": "Downloadable Panda with Star C2C Crochet pattern PDF from the Baby & Nursery collection. 60 × 72 blocks; 2,682 filled blocks; 17 coordinated colours; begin",
+      "meta_description_en": "Downloadable Panda with Star C2C Crochet pattern PDF from the Baby & Nursery collection. 60 × 72 blocks; 2,682 filled blocks; 17 coordinated colours; begin",
+      "meta_description_es": "Patrón PDF descargable de panda con estrella para crochet C2C. 60 × 72; 2,682 celdas ocupadas; 17 colores coordinados; apto para principiantes. Código: I00",
+      "etsy_title_en": "Panda with Star C2C Crochet Pattern PDF",
+      "etsy_title_es": "Patrón PDF de crochet C2C: Panda con estrella",
+      "etsy_description_en": "Downloadable Panda with Star C2C Crochet pattern PDF from the Baby & Nursery collection. 60 × 72 blocks; 2,682 filled blocks; 17 coordinated colours; beginner friendly. Pattern code: I0014-C2C.",
+      "etsy_description_es": "Patrón PDF descargable de panda con estrella para crochet C2C. 60 × 72; 2,682 celdas ocupadas; 17 colores coordinados; apto para principiantes. Código: I0014-C2C.",
+      "tags": [
+        "panda with star",
+        "baby nursery",
+        "nursery pattern",
+        "digital pattern",
+        "beginner pattern",
+        "c2c crochet",
+        "crochet graph",
+        "baby blanket"
+      ],
+      "etsy_tags_en": [
+        "panda with star",
+        "baby nursery",
+        "nursery pattern",
+        "digital pattern",
+        "beginner pattern",
+        "c2c crochet",
+        "crochet graph",
+        "baby blanket"
+      ],
+      "etsy_tags_es": [
+        "panda con estrella",
+        "bebé",
+        "infantil",
+        "patrón digital",
+        "descarga pdf",
+        "crochet C2C",
+        "principiantes"
+      ],
+      "design_id": "I0014-C2C",
+      "base_design_id": "I0014",
+      "technique_code": "C2C",
+      "technique": "c2c-crochet",
+      "size_attribute_label": "Graph size",
+      "colour_attribute_label": "Yarn colours",
+      "type_attribute_label": "Technique",
+      "count_attribute_label": "Filled blocks",
+      "filters": {
+        "technique": [
+          "c2c-crochet"
+        ],
+        "theme": [
+          "baby-nursery"
+        ],
+        "style": [
+          "cute",
+          "soft",
+          "nursery"
+        ],
+        "project": [
+          "blanket"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "pastel"
+        ],
+        "season": []
+      }
+    },
+    {
+      "code": "I0014-CS",
+      "sku": "DRIELO-I0014-CS",
+      "price": 2.99,
+      "categories": [
+        "cross-stitch-patterns",
+        "cross-stitch-baby-nursery"
+      ],
+      "purchase_note_en": "Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.",
+      "purchase_note_es": "Tu PDF digital estará disponible desde la confirmación del pedido y en Mi cuenta > Descargas una vez completado el pago.",
+      "title": "Panda with Star Cross Stitch Pattern PDF",
+      "title_en": "Panda with Star Cross Stitch Pattern PDF",
+      "title_es": "Patrón PDF de punto de cruz: Panda con estrella",
+      "slug": "panda-star-cross-stitch-pattern",
+      "collection": "baby-nursery",
+      "stitches": 7278,
+      "grid": "100 × 120 stitches",
+      "colours": 17,
+      "color_count": 17,
+      "grid_width": 100,
+      "grid_height": 120,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Full cross stitch",
+      "stitch_type_en": "Full cross stitch",
+      "stitch_type_es": "punto de cruz",
+      "short_description": "Downloadable Panda with Star Cross Stitch pattern PDF from the Baby & Nursery collection. 100 × 120 stitches; 7,278 total stitches; 17 coordinated colours; beginner friendly. Pattern code: I0014-CS.",
+      "short_description_en": "Downloadable Panda with Star Cross Stitch pattern PDF from the Baby & Nursery collection. 100 × 120 stitches; 7,278 total stitches; 17 coordinated colours; beginner friendly. Pattern code: I0014-CS.",
+      "short_description_es": "Patrón PDF descargable de panda con estrella para punto de cruz. 100 × 120; 7,278 celdas ocupadas; 17 colores coordinados; apto para principiantes. Código: I0014-CS.",
+      "description": "<p><strong>Panda with Star Cross Stitch Pattern PDF</strong> is a downloadable digital pattern from the Baby & Nursery collection.</p><p><strong>Digital product only:</strong> no finished item or physical materials are included.</p><h3>Pattern details</h3><ul><li>Pattern code: I0014-CS</li><li>Grid: 100 × 120 stitches</li><li>Total stitches: 7,278</li><li>Colours: 17 coordinated collection colours</li><li>Technique: Full cross stitch</li><li>Skill level: Beginner friendly</li></ul><h3>What you receive</h3><ul><li>17-page PDF pattern</li><li>Finished-design preview</li><li>Colour key with counts</li><li>Full-colour chart overview</li><li>Black-and-white symbol chart</li><li>Enlarged chart sections</li><li>Print-and-make guide</li></ul><p>Personal use only. The pattern and PDF may not be redistributed or resold.</p>",
+      "description_en": "<p><strong>Panda with Star Cross Stitch Pattern PDF</strong> is a downloadable digital pattern from the Baby & Nursery collection.</p><p><strong>Digital product only:</strong> no finished item or physical materials are included.</p><h3>Pattern details</h3><ul><li>Pattern code: I0014-CS</li><li>Grid: 100 × 120 stitches</li><li>Total stitches: 7,278</li><li>Colours: 17 coordinated collection colours</li><li>Technique: Full cross stitch</li><li>Skill level: Beginner friendly</li></ul><h3>What you receive</h3><ul><li>17-page PDF pattern</li><li>Finished-design preview</li><li>Colour key with counts</li><li>Full-colour chart overview</li><li>Black-and-white symbol chart</li><li>Enlarged chart sections</li><li>Print-and-make guide</li></ul><p>Personal use only. The pattern and PDF may not be redistributed or resold.</p>",
+      "description_es": "<p><strong>Patrón PDF de punto de cruz: Panda con estrella</strong> es un patrón digital descargable de la colección Bebé e Infantil.</p><p><strong>Solo producto digital:</strong> no se incluye la pieza terminada ni materiales físicos.</p><h3>Detalles</h3><ul><li>Código: I0014-CS</li><li>Cuadrícula: 100 × 120</li><li>Celdas ocupadas: 7,278</li><li>Colores: 17 colores coordinados</li><li>Técnica: punto de cruz</li><li>Nivel: apto para principiantes</li></ul><h3>Qué recibirás</h3><ul><li>PDF de 17 páginas</li><li>Vista previa del diseño</li><li>Clave de colores</li><li>Gráfico general a color</li><li>Gráfico con símbolos</li><li>Secciones ampliadas</li><li>Guía para realizar el proyecto</li></ul><p>Solo para uso personal.</p>",
+      "gallery": [
+        "assets/I0014-CS-gallery-2.webp",
+        "assets/I0014-CS-gallery-3.webp",
+        "assets/I0014-CS-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_I0014-CS.pdf",
+      "featured_image": "assets/I0014-CS-product.webp",
+      "gallery_revision": 36065393119,
+      "seo_title": "Panda with Star Cross Stitch Pattern PDF | Drielo",
+      "seo_title_en": "Panda with Star Cross Stitch Pattern PDF | Drielo",
+      "seo_title_es": "Patrón PDF de punto de cruz: Panda con estrella | Drielo",
+      "meta_description": "Downloadable Panda with Star Cross Stitch pattern PDF from the Baby & Nursery collection. 100 × 120 stitches; 7,278 total stitches; 17 coordinated colours;",
+      "meta_description_en": "Downloadable Panda with Star Cross Stitch pattern PDF from the Baby & Nursery collection. 100 × 120 stitches; 7,278 total stitches; 17 coordinated colours;",
+      "meta_description_es": "Patrón PDF descargable de panda con estrella para punto de cruz. 100 × 120; 7,278 celdas ocupadas; 17 colores coordinados; apto para principiantes. Código:",
+      "etsy_title_en": "Panda with Star Cross Stitch Pattern PDF",
+      "etsy_title_es": "Patrón PDF de punto de cruz: Panda con estrella",
+      "etsy_description_en": "Downloadable Panda with Star Cross Stitch pattern PDF from the Baby & Nursery collection. 100 × 120 stitches; 7,278 total stitches; 17 coordinated colours; beginner friendly. Pattern code: I0014-CS.",
+      "etsy_description_es": "Patrón PDF descargable de panda con estrella para punto de cruz. 100 × 120; 7,278 celdas ocupadas; 17 colores coordinados; apto para principiantes. Código: I0014-CS.",
+      "tags": [
+        "panda with star",
+        "baby nursery",
+        "nursery pattern",
+        "digital pattern",
+        "beginner pattern",
+        "cross stitch pdf",
+        "counted cross stitch",
+        "dmc pattern"
+      ],
+      "etsy_tags_en": [
+        "panda with star",
+        "baby nursery",
+        "nursery pattern",
+        "digital pattern",
+        "beginner pattern",
+        "cross stitch pdf",
+        "counted cross stitch",
+        "dmc pattern"
+      ],
+      "etsy_tags_es": [
+        "panda con estrella",
+        "bebé",
+        "infantil",
+        "patrón digital",
+        "descarga pdf",
+        "punto de cruz",
+        "principiantes"
+      ],
+      "design_id": "I0014-CS",
+      "base_design_id": "I0014",
+      "technique_code": "CS",
+      "technique": "cross-stitch",
+      "size_attribute_label": "Pattern size",
+      "colour_attribute_label": "DMC colours",
+      "type_attribute_label": "Technique",
+      "count_attribute_label": "Total stitches",
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "baby-nursery"
+        ],
+        "style": [
+          "cute",
+          "soft",
+          "nursery"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "pastel"
+        ],
+        "season": []
+      }
+    },
+    {
+      "code": "I0014-LH",
+      "sku": "DRIELO-I0014-LH",
+      "price": 2.49,
+      "categories": [
+        "latch-hook-rug-patterns",
+        "latch-hook-rug-baby-nursery"
+      ],
+      "purchase_note_en": "Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.",
+      "purchase_note_es": "Tu PDF digital estará disponible desde la confirmación del pedido y en Mi cuenta > Descargas una vez completado el pago.",
+      "title": "Panda with Star Latch Hook Rug Pattern PDF",
+      "title_en": "Panda with Star Latch Hook Rug Pattern PDF",
+      "title_es": "Patrón PDF de alfombra latch hook: Panda con estrella",
+      "slug": "panda-star-latch-hook-pattern",
+      "collection": "baby-nursery",
+      "stitches": 2682,
+      "grid": "60 × 72 knots",
+      "colours": 17,
+      "color_count": 17,
+      "grid_width": 60,
+      "grid_height": 72,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Latch hook / rug knots",
+      "stitch_type_en": "Latch hook / rug knots",
+      "stitch_type_es": "alfombra latch hook",
+      "short_description": "Downloadable Panda with Star Latch Hook Rug pattern PDF from the Baby & Nursery collection. 60 × 72 knots; 2,682 filled knots; 17 coordinated colours; beginner friendly. Pattern code: I0014-LH.",
+      "short_description_en": "Downloadable Panda with Star Latch Hook Rug pattern PDF from the Baby & Nursery collection. 60 × 72 knots; 2,682 filled knots; 17 coordinated colours; beginner friendly. Pattern code: I0014-LH.",
+      "short_description_es": "Patrón PDF descargable de panda con estrella para alfombra latch hook. 60 × 72; 2,682 celdas ocupadas; 17 colores coordinados; apto para principiantes. Código: I0014-LH.",
+      "description": "<p><strong>Panda with Star Latch Hook Rug Pattern PDF</strong> is a downloadable digital pattern from the Baby & Nursery collection.</p><p><strong>Digital product only:</strong> no finished item or physical materials are included.</p><h3>Pattern details</h3><ul><li>Pattern code: I0014-LH</li><li>Grid: 60 × 72 knots</li><li>Filled knots: 2,682</li><li>Colours: 17 coordinated collection colours</li><li>Technique: Latch hook / rug knots</li><li>Skill level: Beginner friendly</li></ul><h3>What you receive</h3><ul><li>17-page PDF pattern</li><li>Finished-design preview</li><li>Colour key with counts</li><li>Full-colour chart overview</li><li>Black-and-white symbol chart</li><li>Enlarged chart sections</li><li>Print-and-make guide</li></ul><p>Personal use only. The pattern and PDF may not be redistributed or resold.</p>",
+      "description_en": "<p><strong>Panda with Star Latch Hook Rug Pattern PDF</strong> is a downloadable digital pattern from the Baby & Nursery collection.</p><p><strong>Digital product only:</strong> no finished item or physical materials are included.</p><h3>Pattern details</h3><ul><li>Pattern code: I0014-LH</li><li>Grid: 60 × 72 knots</li><li>Filled knots: 2,682</li><li>Colours: 17 coordinated collection colours</li><li>Technique: Latch hook / rug knots</li><li>Skill level: Beginner friendly</li></ul><h3>What you receive</h3><ul><li>17-page PDF pattern</li><li>Finished-design preview</li><li>Colour key with counts</li><li>Full-colour chart overview</li><li>Black-and-white symbol chart</li><li>Enlarged chart sections</li><li>Print-and-make guide</li></ul><p>Personal use only. The pattern and PDF may not be redistributed or resold.</p>",
+      "description_es": "<p><strong>Patrón PDF de alfombra latch hook: Panda con estrella</strong> es un patrón digital descargable de la colección Bebé e Infantil.</p><p><strong>Solo producto digital:</strong> no se incluye la pieza terminada ni materiales físicos.</p><h3>Detalles</h3><ul><li>Código: I0014-LH</li><li>Cuadrícula: 60 × 72</li><li>Celdas ocupadas: 2,682</li><li>Colores: 17 colores coordinados</li><li>Técnica: alfombra latch hook</li><li>Nivel: apto para principiantes</li></ul><h3>Qué recibirás</h3><ul><li>PDF de 17 páginas</li><li>Vista previa del diseño</li><li>Clave de colores</li><li>Gráfico general a color</li><li>Gráfico con símbolos</li><li>Secciones ampliadas</li><li>Guía para realizar el proyecto</li></ul><p>Solo para uso personal.</p>",
+      "gallery": [
+        "assets/I0014-LH-gallery-2.webp",
+        "assets/I0014-LH-gallery-3.webp",
+        "assets/I0014-LH-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_I0014-LH.pdf",
+      "featured_image": "assets/I0014-LH-product.webp",
+      "gallery_revision": 36065393119,
+      "seo_title": "Panda with Star Latch Hook Rug Pattern PDF | Drielo",
+      "seo_title_en": "Panda with Star Latch Hook Rug Pattern PDF | Drielo",
+      "seo_title_es": "Patrón PDF de alfombra latch hook: Panda con estrella | Drielo",
+      "meta_description": "Downloadable Panda with Star Latch Hook Rug pattern PDF from the Baby & Nursery collection. 60 × 72 knots; 2,682 filled knots; 17 coordinated colours; begi",
+      "meta_description_en": "Downloadable Panda with Star Latch Hook Rug pattern PDF from the Baby & Nursery collection. 60 × 72 knots; 2,682 filled knots; 17 coordinated colours; begi",
+      "meta_description_es": "Patrón PDF descargable de panda con estrella para alfombra latch hook. 60 × 72; 2,682 celdas ocupadas; 17 colores coordinados; apto para principiantes. Cód",
+      "etsy_title_en": "Panda with Star Latch Hook Rug Pattern PDF",
+      "etsy_title_es": "Patrón PDF de alfombra latch hook: Panda con estrella",
+      "etsy_description_en": "Downloadable Panda with Star Latch Hook Rug pattern PDF from the Baby & Nursery collection. 60 × 72 knots; 2,682 filled knots; 17 coordinated colours; beginner friendly. Pattern code: I0014-LH.",
+      "etsy_description_es": "Patrón PDF descargable de panda con estrella para alfombra latch hook. 60 × 72; 2,682 celdas ocupadas; 17 colores coordinados; apto para principiantes. Código: I0014-LH.",
+      "tags": [
+        "panda with star",
+        "baby nursery",
+        "nursery pattern",
+        "digital pattern",
+        "beginner pattern",
+        "latch hook",
+        "rug pattern pdf",
+        "rug making"
+      ],
+      "etsy_tags_en": [
+        "panda with star",
+        "baby nursery",
+        "nursery pattern",
+        "digital pattern",
+        "beginner pattern",
+        "latch hook",
+        "rug pattern pdf",
+        "rug making"
+      ],
+      "etsy_tags_es": [
+        "panda con estrella",
+        "bebé",
+        "infantil",
+        "patrón digital",
+        "descarga pdf",
+        "alfombra latch hook",
+        "principiantes"
+      ],
+      "design_id": "I0014-LH",
+      "base_design_id": "I0014",
+      "technique_code": "LH",
+      "technique": "latch-hook",
+      "size_attribute_label": "Chart size",
+      "colour_attribute_label": "Wool colours",
+      "type_attribute_label": "Technique",
+      "count_attribute_label": "Filled knots",
+      "filters": {
+        "technique": [
+          "latch-hook"
+        ],
+        "theme": [
+          "baby-nursery"
+        ],
+        "style": [
+          "cute",
+          "soft",
+          "nursery"
+        ],
+        "project": [
+          "rug"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "pastel"
+        ],
+        "season": []
+      }
+    },
+    {
+      "code": "I0014-TC",
+      "sku": "DRIELO-I0014-TC",
+      "price": 2.49,
+      "categories": [
+        "tapestry-crochet-patterns",
+        "tapestry-crochet-baby-nursery"
+      ],
+      "purchase_note_en": "Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.",
+      "purchase_note_es": "Tu PDF digital estará disponible desde la confirmación del pedido y en Mi cuenta > Descargas una vez completado el pago.",
+      "title": "Panda with Star Tapestry Crochet Pattern PDF",
+      "title_en": "Panda with Star Tapestry Crochet Pattern PDF",
+      "title_es": "Patrón PDF de tapestry crochet: Panda con estrella",
+      "slug": "panda-star-tapestry-crochet-pattern",
+      "collection": "baby-nursery",
+      "stitches": 4685,
+      "grid": "80 × 96 crochet stitches",
+      "colours": 17,
+      "color_count": 17,
+      "grid_width": 80,
+      "grid_height": 96,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Tapestry crochet colourwork",
+      "stitch_type_en": "Tapestry crochet colourwork",
+      "stitch_type_es": "tapestry crochet",
+      "short_description": "Downloadable Panda with Star Tapestry Crochet pattern PDF from the Baby & Nursery collection. 80 × 96 crochet stitches; 4,685 colourwork stitches; 17 coordinated colours; beginner friendly. Pattern code: I0014-TC.",
+      "short_description_en": "Downloadable Panda with Star Tapestry Crochet pattern PDF from the Baby & Nursery collection. 80 × 96 crochet stitches; 4,685 colourwork stitches; 17 coordinated colours; beginner friendly. Pattern code: I0014-TC.",
+      "short_description_es": "Patrón PDF descargable de panda con estrella para tapestry crochet. 80 × 96; 4,685 celdas ocupadas; 17 colores coordinados; apto para principiantes. Código: I0014-TC.",
+      "description": "<p><strong>Panda with Star Tapestry Crochet Pattern PDF</strong> is a downloadable digital pattern from the Baby & Nursery collection.</p><p><strong>Digital product only:</strong> no finished item or physical materials are included.</p><h3>Pattern details</h3><ul><li>Pattern code: I0014-TC</li><li>Grid: 80 × 96 crochet stitches</li><li>Colourwork stitches: 4,685</li><li>Colours: 17 coordinated collection colours</li><li>Technique: Tapestry crochet colourwork</li><li>Skill level: Beginner friendly</li></ul><h3>What you receive</h3><ul><li>17-page PDF pattern</li><li>Finished-design preview</li><li>Colour key with counts</li><li>Full-colour chart overview</li><li>Black-and-white symbol chart</li><li>Enlarged chart sections</li><li>Print-and-make guide</li></ul><p>Personal use only. The pattern and PDF may not be redistributed or resold.</p>",
+      "description_en": "<p><strong>Panda with Star Tapestry Crochet Pattern PDF</strong> is a downloadable digital pattern from the Baby & Nursery collection.</p><p><strong>Digital product only:</strong> no finished item or physical materials are included.</p><h3>Pattern details</h3><ul><li>Pattern code: I0014-TC</li><li>Grid: 80 × 96 crochet stitches</li><li>Colourwork stitches: 4,685</li><li>Colours: 17 coordinated collection colours</li><li>Technique: Tapestry crochet colourwork</li><li>Skill level: Beginner friendly</li></ul><h3>What you receive</h3><ul><li>17-page PDF pattern</li><li>Finished-design preview</li><li>Colour key with counts</li><li>Full-colour chart overview</li><li>Black-and-white symbol chart</li><li>Enlarged chart sections</li><li>Print-and-make guide</li></ul><p>Personal use only. The pattern and PDF may not be redistributed or resold.</p>",
+      "description_es": "<p><strong>Patrón PDF de tapestry crochet: Panda con estrella</strong> es un patrón digital descargable de la colección Bebé e Infantil.</p><p><strong>Solo producto digital:</strong> no se incluye la pieza terminada ni materiales físicos.</p><h3>Detalles</h3><ul><li>Código: I0014-TC</li><li>Cuadrícula: 80 × 96</li><li>Celdas ocupadas: 4,685</li><li>Colores: 17 colores coordinados</li><li>Técnica: tapestry crochet</li><li>Nivel: apto para principiantes</li></ul><h3>Qué recibirás</h3><ul><li>PDF de 17 páginas</li><li>Vista previa del diseño</li><li>Clave de colores</li><li>Gráfico general a color</li><li>Gráfico con símbolos</li><li>Secciones ampliadas</li><li>Guía para realizar el proyecto</li></ul><p>Solo para uso personal.</p>",
+      "gallery": [
+        "assets/I0014-TC-gallery-2.webp",
+        "assets/I0014-TC-gallery-3.webp",
+        "assets/I0014-TC-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_I0014-TC.pdf",
+      "featured_image": "assets/I0014-TC-product.webp",
+      "gallery_revision": 36065393119,
+      "seo_title": "Panda with Star Tapestry Crochet Pattern PDF | Drielo",
+      "seo_title_en": "Panda with Star Tapestry Crochet Pattern PDF | Drielo",
+      "seo_title_es": "Patrón PDF de tapestry crochet: Panda con estrella | Drielo",
+      "meta_description": "Downloadable Panda with Star Tapestry Crochet pattern PDF from the Baby & Nursery collection. 80 × 96 crochet stitches; 4,685 colourwork stitches; 17 coord",
+      "meta_description_en": "Downloadable Panda with Star Tapestry Crochet pattern PDF from the Baby & Nursery collection. 80 × 96 crochet stitches; 4,685 colourwork stitches; 17 coord",
+      "meta_description_es": "Patrón PDF descargable de panda con estrella para tapestry crochet. 80 × 96; 4,685 celdas ocupadas; 17 colores coordinados; apto para principiantes. Código",
+      "etsy_title_en": "Panda with Star Tapestry Crochet Pattern PDF",
+      "etsy_title_es": "Patrón PDF de tapestry crochet: Panda con estrella",
+      "etsy_description_en": "Downloadable Panda with Star Tapestry Crochet pattern PDF from the Baby & Nursery collection. 80 × 96 crochet stitches; 4,685 colourwork stitches; 17 coordinated colours; beginner friendly. Pattern code: I0014-TC.",
+      "etsy_description_es": "Patrón PDF descargable de panda con estrella para tapestry crochet. 80 × 96; 4,685 celdas ocupadas; 17 colores coordinados; apto para principiantes. Código: I0014-TC.",
+      "tags": [
+        "panda with star",
+        "baby nursery",
+        "nursery pattern",
+        "digital pattern",
+        "beginner pattern",
+        "tapestry crochet",
+        "crochet chart",
+        "colorwork crochet"
+      ],
+      "etsy_tags_en": [
+        "panda with star",
+        "baby nursery",
+        "nursery pattern",
+        "digital pattern",
+        "beginner pattern",
+        "tapestry crochet",
+        "crochet chart",
+        "colorwork crochet"
+      ],
+      "etsy_tags_es": [
+        "panda con estrella",
+        "bebé",
+        "infantil",
+        "patrón digital",
+        "descarga pdf",
+        "tapestry crochet",
+        "principiantes"
+      ],
+      "design_id": "I0014-TC",
+      "base_design_id": "I0014",
       "technique_code": "TC",
       "technique": "tapestry-crochet",
       "size_attribute_label": "Chart size",
