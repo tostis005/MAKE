@@ -1,0 +1,14 @@
+{
+  "code": "A0005-C2C",
+  "base_design_id": "A0005",
+  "technique_code": "C2C",
+  "collection": "animals",
+  "source_artwork": "collections/animals/source-designs/A0005-lovebirds-branch.png",
+  "reference_artwork": "collections/animals/reference-masters/A0005-lovebirds-branch-reference.png",
+  "page_1_asset": "../../multitech/assets/cover-crochet.webp",
+  "render_ready": true,
+  "status": "active",
+  "palette_mode": "strict",
+  "palette_size": 24,
+  "transparent_source": true
+}
