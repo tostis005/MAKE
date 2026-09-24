@@ -40,7 +40,7 @@
     {
       "sheet": 3,
       "asset": "collections/animals/reference-sheets/animals-reference-sheet-03.png",
-      "sha256": "ee88e81a1efa574c4b1723b00c5149080d304413faceabda6379953fd13aa964",
+      "sha256": "d6a0da7ebb5730a0f9450afd40571c02a22e88ae29f06ef5de4bd2d8d3352ed0",
       "design_ids": [
         "A0013",
         "A0014",
@@ -475,9 +475,9 @@
   "archive_version": 2,
   "approved_overrides": {
     "A0014": {
-      "revision": "2026-09-24-elephant-palette-replacement",
-      "source_sha256": "eed786f6cf20ce00774b31d4e692fa3d0b9c4e593e35b832585a56b99ab9147e",
-      "master_sha256": "23c87161e91434c9645bae390f5eec5ef06dc2c48ebf40fbfe3d56381cbc14c8",
+      "revision": "2026-09-24-elephant-clean-gridless",
+      "source_sha256": "6523a4b63805b56ac399769d5c415d1d69b69530c53a523bc250dfe4018c7b4b",
+      "master_sha256": "35eedc3871bd2ab3a0e95e626d755302a7693839aa5e82f3d0c658dcfeec81ab",
       "palette_compliance": "100%",
       "source_grid": "100x120",
       "safe_bbox": [
@@ -486,7 +486,8 @@
         94,
         95
       ],
-      "reason": "Approved improved elephant artwork; replaces prior colour treatment."
+      "visible_colors": 15,
+      "reason": "Approved palette-compliant elephant cleaned so decorative preview grid lines are not interpreted as stitches."
     }
   }
 }

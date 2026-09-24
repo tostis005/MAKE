@@ -154,11 +154,10 @@
       "title_en": "Elephant with Heart Balloon",
       "title_es": "Elefante con globo corazón",
       "slug": "elephant-heart-balloon",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36011616887",
-      "last_error": null,
-      "published_at": "2026-09-24T14:21:29+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "A0015",
@@ -342,5 +341,5 @@
   "restart_reason": "Restart from A0001 using the exact four approved uploaded Animals PNG cover backgrounds.",
   "restart_from": "A0001",
   "paused_reason": null,
-  "a0014_replacement_reason": "Approved improved elephant artwork; regenerate all four techniques."
+  "a0014_replacement_reason": "Regenerate A0014 from clean palette-compliant source without preview-grid artifacts."
 }
