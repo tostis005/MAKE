@@ -1,6 +1,13 @@
 name: Bootstrap Iconic Destinations structure
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/bootstrap-iconic-destinations.yml'
+      - '.github/scripts/bootstrap_iconic_destinations.py'
+      - 'content/pattern-system/collections/iconic-destinations/collection.json'
+      - 'content/pattern-system/collections/iconic-destinations/designs.json'
   workflow_dispatch:
 
 permissions:
