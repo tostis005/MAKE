@@ -1,8 +1,8 @@
 {
   "collection": "baby-nursery",
-  "reference_policy": "User-approved uploaded reference sheets are canonical. Do not invent or redraw designs.",
-  "canonical_archive": "reference-matrices-v1.b64",
-  "archive_encoding": "base64(zlib(json))",
+  "reference_policy": "User-approved uploaded reference sheets are canonical. Every source master must be reconstructed from this archive; do not invent, redraw, substitute, or approximate motifs.",
+  "canonical_archive": null,
+  "archive_encoding": "concatenated base64(zlib(json))",
   "decoded_sha256": "533a4d7ed0892fd142eed3406b4740a539f70cbfffeaf932813466800a97ad19",
   "master_grid": {
     "width": 100,
@@ -225,5 +225,25 @@
       "row": 5,
       "column": 3
     }
+  ],
+  "canonical_archive_parts": [
+    "reference-matrices-v1.part00",
+    "reference-matrices-v1.part01",
+    "reference-matrices-v1.part02",
+    "reference-matrices-v1.part03",
+    "reference-matrices-v1.part04",
+    "reference-matrices-v1.part05",
+    "reference-matrices-v1.part06",
+    "reference-matrices-v1.part07",
+    "reference-matrices-v1.part08",
+    "reference-matrices-v1.part09"
+  ],
+  "generation_order": [
+    "canonical reference matrix",
+    "800x960 transparent master/reference",
+    "validated safe margins",
+    "CS/C2C/TC/LH JSON",
+    "PDFs and product images",
+    "WooCommerce"
   ]
 }
