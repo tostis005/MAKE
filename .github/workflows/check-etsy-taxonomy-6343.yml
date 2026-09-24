@@ -1,0 +1,66 @@
+name: Check Etsy taxonomy 6343
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/check-etsy-taxonomy-6343.yml'
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_tax_key
+          chmod 600 ~/.ssh/drielo_tax_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+      - name: Resolve taxonomy path
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: "55"
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT=$(ssh -i ~/.ssh/drielo_tax_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          "${DOCKER[@]}" exec make-wp php -r '
+            require "/var/www/html/wp-load.php";
+            $sync=Drielo_Etsy_Sync::instance();
+            $ref=new ReflectionClass($sync);
+            $req=$ref->getMethod("etsy_request"); $req->setAccessible(true);
+            $res=$req->invoke($sync,"GET","/v3/application/seller-taxonomy/nodes",array(),false);
+            if(is_wp_error($res)){echo "ERROR=".$res->get_error_message().PHP_EOL;exit(2);}
+            $nodes=(array)($res["results"]??$res);
+            $found=null;
+            $walk=function($items,$trail=array())use(&$walk,&$found){
+              foreach((array)$items as $n){
+                if(!is_array($n)) continue;
+                $path=array_merge($trail,array((string)($n["name"]??"")));
+                if((int)($n["id"]??0)===6343){$found=array("id"=>6343,"name"=>(string)($n["name"]??""),"path"=>$path);return;}
+                if(!empty($n["children"])){$walk($n["children"],$path);if($found)return;}
+              }
+            };
+            $walk($nodes);
+            echo "TAXONOMY=".wp_json_encode($found,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES).PHP_EOL;
+          '
+          REMOTE
+          )
+          BODY=$(printf '### Etsy taxonomy 6343 check\n\n```text\n%s\n```\n' "$OUT")
+          PAYLOAD=$(jq -n --arg body "$BODY" '{body:$body}')
+          curl -fsS -X POST -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" "https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/${PR_NUMBER}/comments" -d "$PAYLOAD" >/dev/null
