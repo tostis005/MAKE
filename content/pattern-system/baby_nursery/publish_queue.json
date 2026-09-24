@@ -1,6 +1,6 @@
 {
   "collection": "baby-nursery",
-  "mode": "paused-quality-review",
+  "mode": "paused-for-quality-rebuild",
   "auto_continue": false,
   "max_attempts_per_design": 2,
   "notes": [
