@@ -14,8 +14,8 @@ $error = isset( $_GET['contact_error'] ) ? sanitize_key( (string) wp_unslash( $_
 
 $intro = array(
     'contact' => $is_en
-        ? 'Questions about an order, a download or one of our patterns? Send us a message and we will get back to you by email.'
-        : '¿Tienes alguna duda sobre un pedido, una descarga o uno de nuestros patrones? Escríbenos y te responderemos por correo.',
+        ? 'Questions about an order, a download or one of our patterns? Send us a message and we will get back to you as soon as possible.'
+        : '¿Tienes alguna duda sobre un pedido, una descarga o uno de nuestros patrones? Escríbenos y te responderemos lo antes posible.',
     'privacy' => $is_en
         ? 'How Drielo handles personal data when you browse the site, buy a digital pattern or contact us.'
         : 'Cómo trata Drielo los datos personales cuando navegas por la web, compras un patrón digital o nos escribes.',
