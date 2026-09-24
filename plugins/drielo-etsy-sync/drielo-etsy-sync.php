@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Drielo Etsy Sync
  * Description: Centraliza la selección y sincronización de productos WooCommerce con Etsy, incluidos productos digitales, imágenes y PDFs.
- * Version: 1.4.1
+ * Version: 1.4.2
  * Author: Drielo
  * Requires Plugins: woocommerce
  * Requires PHP: 8.0
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 final class Drielo_Etsy_Sync {
-    const VERSION = '1.4.1';
+    const VERSION = '1.4.2';
     const OPTION_SETTINGS = 'drielo_etsy_settings';
     const OPTION_TOKENS   = 'drielo_etsy_tokens';
     const OPTION_SYNC_RUN = 'drielo_etsy_sync_run';
@@ -635,7 +635,7 @@ final class Drielo_Etsy_Sync {
             return;
         }
         $current_batch = (string) get_post_meta( $product_id, self::META_BATCH_ID, true );
-        if ( $current_batch && ! hash_equals( $current_batch, $batch_id ) ) {
+        if ( $current_batch && ! hash_equals( $current_batch, $batch_id ) && 'queued' !== $state ) {
             return;
         }
         update_post_meta( $product_id, self::META_BATCH_ID, $batch_id );
@@ -922,6 +922,10 @@ final class Drielo_Etsy_Sync {
             $mode = $overwrite ? 1 : 0;
             $args = [ (int) $product_id, $mode, $batch_id ];
             $scheduled = false;
+            delete_post_meta( $product_id, self::META_BATCH_ID );
+            delete_post_meta( $product_id, self::META_BATCH_STATE );
+            delete_post_meta( $product_id, self::META_BATCH_MESSAGE );
+            delete_post_meta( $product_id, self::META_BATCH_UPDATED_AT );
             $this->set_batch_product_state( (int) $product_id, $batch_id, 'queued', 'Pendiente de procesamiento.' );
 
             if ( function_exists( 'as_enqueue_async_action' ) ) {
