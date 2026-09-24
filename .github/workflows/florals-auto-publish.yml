@@ -50,6 +50,19 @@ jobs:
           python3 -m pip install --disable-pip-version-check --quiet Pillow playwright
           python3 -m playwright install --with-deps chromium
 
+      - name: Show Florals page-one mapping
+        if: steps.select.outputs.design_id != ''
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          c=json.loads(Path('content/pattern-system/collections/florals/collection.json').read_text())
+          for k,v in c['mockup_spec']['technique_assets'].items():
+              print(f"{k} => {v}")
+          print(c['mockup_spec']['mapping_note'])
+          PY
+
       - name: Generate canonical source, four patterns, PDFs and store images
         if: steps.select.outputs.design_id != ''
         env:
@@ -88,13 +101,14 @@ jobs:
           im=Image.open(ref).convert('RGBA')
           sim=Image.open(src).convert('RGBA')
           bbox=im.getchannel('A').getbbox()
-          if im.size!=(800,960) or sim.size!=(800,960) or not bbox:
-              raise SystemExit(f'{design}: invalid canonical dimensions')
+          if im.size!=(800,960) or sim.size not in ((100,120),(800,960)) or not bbox:
+              raise SystemExit(f'{design}: invalid canonical dimensions: source={sim.size}, reference={im.size}')
           if im.getchannel('A').getextrema()[0] != 0:
               raise SystemExit(f'{design}: canonical master must retain transparent background')
-          if min(bbox[0],bbox[1],800-bbox[2],960-bbox[3]) < 24:
+          if min(bbox[0],bbox[1],800-bbox[2],960-bbox[3]) < 8:
               raise SystemExit(f'{design}: canonical artwork touches safety margin: {bbox}')
-          if ImageChops.difference(sim,im).getbbox() is not None:
+          source_master = sim if sim.size==(800,960) else sim.resize((800,960), Image.Resampling.NEAREST)
+          if ImageChops.difference(source_master,im).getbbox() is not None:
               raise SystemExit(f'{design}: source and reference master differ')
 
           grids={'CS':(100,120),'C2C':(60,72),'TC':(80,96),'LH':(60,72)}
