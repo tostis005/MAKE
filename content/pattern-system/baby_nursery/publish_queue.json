@@ -1,17 +1,29 @@
 {
   "collection": "baby-nursery",
-  "mode": "sequential-kawaii-rebuild-v2-clean",
+  "mode": "approved-premium-11-clean-relaunch-v3",
   "branch": "feature/baby-nursery-sequential-rebuild",
   "auto_continue": true,
-  "publish_strategy": "strict-one-design-per-run-no-overlap",
-  "max_attempts_per_design": 2,
+  "publish_strategy": "strict-one-design-per-run-stop-on-failure",
+  "max_attempts_per_design": 1,
   "reset_store_on_first_design": true,
+  "exact_allowlist": [
+    "I0001",
+    "I0002",
+    "I0003",
+    "I0004",
+    "I0005",
+    "I0006",
+    "I0007",
+    "I0008",
+    "I0009",
+    "I0010",
+    "I0011"
+  ],
   "notes": [
-    "Clean relaunch after image overwrite/mix-up audit.",
-    "Root flow issue fixed: queue commits no longer trigger extra runs; only one explicit workflow dispatch advances the queue.",
-    "GitHub concurrency is serialized and never cancels an in-progress design midway through WooCommerce publishing.",
-    "Before I0001, all existing Baby & Nursery products, I-code media attachments and I-code downloadable PDFs are deleted from WooCommerce uploads.",
-    "I0001 is Teddy Bear, followed by the ten approved kawaii designs. Each design publishes its four techniques before the next starts."
+    "ONLY Teddy Bear plus the 10 user-approved premium kawaii designs are active.",
+    "Before I0001, WooCommerce Infantil products, linked/managed I-code media and I-code PDFs are hard-deleted.",
+    "One design publishes all four techniques and passes source/hash verification before the next design.",
+    "Any failure stops the queue; it never skips to another design."
   ],
   "items": [
     {
@@ -157,7 +169,5 @@
       "last_error": null,
       "published_at": null
     }
-  ],
-  "store_reset_scope": "Baby & Nursery products + I-code Drielo media attachments + I-code Drielo PDFs",
-  "integrity_policy": "Preflight unique reference matrices; exact target/source mapping; post-import featured/gallery source-key + MD5 verification."
+  ]
 }

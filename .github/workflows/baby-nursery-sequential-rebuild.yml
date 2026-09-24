@@ -16,7 +16,7 @@ permissions:
 
 concurrency:
   group: drielo-baby-nursery-sequential-rebuild
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   publish-next:
@@ -29,52 +29,49 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Preflight immutable reference mapping
+      - name: Preflight exact approved 11
         shell: bash
         run: |
           set -euo pipefail
           python3 - <<'PY'
-          import hashlib, json, sys
+          import base64, hashlib, json, zlib
           from pathlib import Path
-
           system=Path("content/pattern-system")
-          sys.path.insert(0,str((system/"baby_nursery").resolve()))
-          from generate_reference_master import load_design_reference
-
-          designs=json.loads((system/"collections"/"baby-nursery"/"designs.json").read_text(encoding="utf-8"))["designs"]
-          expected=json.loads((system/"baby_nursery"/"sequential_reference_map.json").read_text(encoding="utf-8"))["mappings"]
-          by_target={d["base_design_id"]:d for d in designs}
+          cold=system/"collections"/"baby-nursery"
+          lib=cold/"reference-library"
+          designs=json.loads((cold/"designs.json").read_text(encoding="utf-8"))["designs"]
+          mapping=json.loads((system/"baby_nursery"/"sequential_reference_map.json").read_text(encoding="utf-8"))["mappings"]
+          expected=[f"I{i:04d}" for i in range(1,12)]
+          if [d["base_design_id"] for d in designs]!=expected or [m["target_id"] for m in mapping]!=expected:
+              raise SystemExit("Active Infantil queue must be exactly I0001-I0011")
+          manifest=json.loads((lib/"manifest.json").read_text(encoding="utf-8"))
+          encoded="".join((lib/p).read_text(encoding="ascii").strip() for p in manifest["direct_reference_bundle_parts"])
+          raw_bundle=zlib.decompress(base64.b64decode(encoded,validate=True))
+          if hashlib.sha256(raw_bundle).hexdigest()!=manifest["direct_reference_bundle_decoded_sha256"]:
+              raise SystemExit("Premium bundle SHA mismatch")
+          bundle=json.loads(raw_bundle.decode("utf-8"))["designs"]
           hashes={}
-          if [m["target_id"] for m in expected] != [d["base_design_id"] for d in designs]:
-              raise SystemExit("Sequential target order differs from immutable reference map")
-
-          for m in expected:
-              target=m["target_id"]
-              d=by_target[target]
-              checks={
-                  "slug":(d["slug"],m["target_slug"]),
-                  "reference_source_id":(str(d.get("reference_source_id")),m["reference_source_id"]),
-                  "reference_source_slug":(str(d.get("reference_source_slug")),m["reference_source_slug"]),
-                  "reference_bundle_only":(bool(d.get("reference_bundle_only")),bool(m["reference_bundle_only"])),
-              }
-              bad={k:v for k,v in checks.items() if v[0]!=v[1]}
-              if bad:
-                  raise SystemExit(f"{target}: mapping drift {bad}")
-
-              direct=load_design_reference(target,d)
-              if not direct:
-                  raise SystemExit(f"{target}: approved reference missing")
-              rows=direct["canonical"]["rows"]
-              raw=("\n".join(rows)+"\n").encode("ascii")
-              digest=hashlib.sha256(raw).hexdigest()
-              if digest in hashes:
-                  raise SystemExit(f"Duplicate approved matrix: {target} and {hashes[digest]} share {digest}")
+          by_id={d["base_design_id"]:d for d in designs}
+          for m in mapping:
+              target=m["target_id"]; d=by_id[target]
+              if d["slug"]!=m["target_slug"]: raise SystemExit(f"{target}: slug mismatch")
+              sid=m["approved_reference_id"]; sslug=m["approved_reference_slug"]
+              if m["bundle_only"]:
+                  ref=bundle.get(sid)
+              else:
+                  ref=json.loads((lib/f"{sid}-{sslug}.json").read_text(encoding="utf-8"))
+              if not ref or ref.get("base_design_id")!=sid or ref.get("slug")!=sslug:
+                  raise SystemExit(f"{target}: approved reference mismatch")
+              matrix=zlib.decompress(base64.b64decode(ref["matrix_zlib_base64"],validate=True))
+              digest=hashlib.sha256(matrix).hexdigest()
+              if digest!=ref["matrix_sha256"]: raise SystemExit(f"{target}: matrix SHA mismatch")
+              rows=matrix.decode("ascii").splitlines()
+              if len(rows)!=120 or any(len(r)!=100 for r in rows): raise SystemExit(f"{target}: matrix grid invalid")
+              if digest in hashes: raise SystemExit(f"Duplicate motif: {target} == {hashes[digest]}")
               hashes[digest]=target
-              print("REFERENCE_OK",target,"<-",m["reference_source_id"],m["reference_source_slug"],digest)
-
-          if len(hashes)!=len(expected):
-              raise SystemExit("Reference matrix uniqueness preflight failed")
-          print("REFERENCE_PREFLIGHT_OK",len(hashes))
+              print("APPROVED",target,d["title_en"],digest)
+          if len(hashes)!=11: raise SystemExit("Expected 11 unique approved motifs")
+          print("APPROVED_11_PREFLIGHT_OK")
           PY
 
       - name: Select next pending design
@@ -104,7 +101,7 @@ jobs:
           chmod 600 ~/.ssh/drielo_products_key
           ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
 
-      - name: Hard reset Baby Nursery products and media before I0001
+      - name: Hard reset all Infantil products before I0001
         if: steps.select.outputs.design_id == 'I0001'
         env:
           VPS_HOST: ${{ secrets.VPS_HOST }}
@@ -114,60 +111,26 @@ jobs:
           set -euo pipefail
           ssh -i ~/.ssh/drielo_products_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
           set -euo pipefail
-          if docker inspect make-wp >/dev/null 2>&1; then
-            DOCKER=(docker)
-          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
-            DOCKER=(sudo -n docker)
-          else
-            echo "ERROR: make-wp container not found"
-            exit 1
-          fi
-
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker);
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then DOCKER=(sudo -n docker);
+          else echo "ERROR: make-wp container not found"; exit 1; fi
           "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
             require "/var/www/html/wp-load.php";
-
-            $products=array();
-            $ids=get_posts(array(
-              "post_type"=>"product","post_status"=>"any","posts_per_page"=>-1,"fields"=>"ids",
-              "tax_query"=>array(array("taxonomy"=>"product_collection","field"=>"slug","terms"=>array("baby-nursery")))
-            ));
+            $products=array(); $media=array();
+            $ids=get_posts(array("post_type"=>"product","post_status"=>"any","posts_per_page"=>-1,"fields"=>"ids",
+              "tax_query"=>array(array("taxonomy"=>"product_collection","field"=>"slug","terms"=>array("baby-nursery")))));
             foreach($ids as $id) $products[intval($id)]=true;
-
             $all=wc_get_products(array("limit"=>-1,"return"=>"ids","status"=>array("publish","draft","pending","private")));
-            foreach($all as $id){
-              $p=wc_get_product($id);
-              if($p && preg_match("/^DRIELO-I[0-9]{4}-(CS|C2C|TC|LH)$/",$p->get_sku())){
-                $products[intval($id)]=true;
-              }
-            }
-
-            $product_count=0;
-            foreach(array_keys($products) as $id){ wp_delete_post($id,true); $product_count++; }
-
-            $attachments=get_posts(array(
-              "post_type"=>"attachment","post_status"=>"inherit","posts_per_page"=>-1,"fields"=>"ids",
-              "meta_query"=>array(array("key"=>"_drielo_source_asset","compare"=>"EXISTS"))
-            ));
-            $media_count=0;
-            foreach($attachments as $aid){
-              $key=(string)get_post_meta($aid,"_drielo_source_asset",true);
-              if(preg_match("#^assets/I[0-9]{4}-(CS|C2C|TC|LH)-(product|gallery-[234])\\.webp$#",$key)){
-                wp_delete_attachment($aid,true);
-                $media_count++;
-              }
-            }
-
-            $uploads=wp_upload_dir();
-            $pdf_dir=trailingslashit($uploads["basedir"])."woocommerce_uploads/drielo";
-            $pdf_count=0;
-            if(is_dir($pdf_dir)){
-              foreach(glob($pdf_dir."/Drielo_I[0-9][0-9][0-9][0-9]-*.pdf") ?: array() as $file){
-                if(is_file($file) && @unlink($file)) $pdf_count++;
-              }
-            }
-
+            foreach($all as $id){ $p=wc_get_product($id); if($p && preg_match("/^DRIELO-I[0-9]{4}-(CS|C2C|TC|LH)$/",$p->get_sku())) $products[intval($id)]=true; }
+            foreach(array_keys($products) as $id){ $p=wc_get_product($id); if($p){ if($p->get_image_id()) $media[intval($p->get_image_id())]=true; foreach($p->get_gallery_image_ids() as $mid) $media[intval($mid)]=true; } }
+            $managed=get_posts(array("post_type"=>"attachment","post_status"=>"inherit","posts_per_page"=>-1,"fields"=>"ids","meta_query"=>array(array("key"=>"_drielo_source_asset","compare"=>"EXISTS"))));
+            foreach($managed as $aid){ $key=(string)get_post_meta($aid,"_drielo_source_asset",true); if(preg_match("#^assets/I[0-9]{4}-(CS|C2C|TC|LH)-(product|gallery-[234])\\.webp$#",$key)) $media[intval($aid)]=true; }
+            $pc=0; foreach(array_keys($products) as $id){ wp_delete_post($id,true); $pc++; }
+            $mc=0; foreach(array_keys($media) as $id){ if(get_post($id)){ wp_delete_attachment($id,true); $mc++; } }
+            $uploads=wp_upload_dir(); $dir=trailingslashit($uploads["basedir"])."woocommerce_uploads/drielo"; $pdfc=0;
+            if(is_dir($dir)){ foreach(glob($dir."/Drielo_I[0-9][0-9][0-9][0-9]-*.pdf") ?: array() as $f){ if(is_file($f) && @unlink($f)) $pdfc++; } }
             wc_delete_product_transients();
-            echo "BABY_NURSERY_HARD_RESET products=".$product_count." media=".$media_count." pdfs=".$pdf_count.PHP_EOL;
+            echo "INFANTIL_RESET products=".$pc." media=".$mc." pdfs=".$pdfc.PHP_EOL;
           '
           REMOTE
 
@@ -467,7 +430,7 @@ jobs:
             content/products/files/Drielo_${{ steps.select.outputs.design_id }}-LH.pdf
           retention-days: 30
 
-      - name: Record failure and allow queue to continue
+      - name: Record failure and stop queue
         if: failure() && steps.select.outputs.design_id != ''
         shell: bash
         run: |
@@ -483,7 +446,7 @@ jobs:
           git push origin HEAD:feature/baby-nursery-sequential-rebuild
 
       - name: Dispatch next queued design
-        if: always()
+        if: success()
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash

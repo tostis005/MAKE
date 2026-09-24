@@ -2,7 +2,8 @@
   "collection": "baby-nursery",
   "code_prefix": "I",
   "count": 11,
-  "rebuild_version": "sequential-kawaii-v1",
+  "rebuild_version": "approved-premium-11-v3",
+  "policy": "Active Baby & Nursery generation is restricted to exactly these 11 approved motifs.",
   "designs": [
     {
       "order": 1,
@@ -16,7 +17,8 @@
         "I0001-TC",
         "I0001-LH"
       ],
-      "artwork_status": "approved-kawaii-pattern-ready",
+      "artwork_status": "approved-premium-final",
+      "approved_batch": "teddy-plus-premium-10",
       "source_asset": "collections/baby-nursery/source-designs/I0001-teddy-bear.png",
       "reference_source_id": "I0001",
       "reference_source_slug": "teddy-bear",
@@ -34,7 +36,8 @@
         "I0002-TC",
         "I0002-LH"
       ],
-      "artwork_status": "approved-kawaii-pattern-ready",
+      "artwork_status": "approved-premium-final",
+      "approved_batch": "teddy-plus-premium-10",
       "source_asset": "collections/baby-nursery/source-designs/I0002-unicorn.png",
       "reference_source_id": "I0011",
       "reference_source_slug": "unicorn",
@@ -52,7 +55,8 @@
         "I0003-TC",
         "I0003-LH"
       ],
-      "artwork_status": "approved-kawaii-pattern-ready",
+      "artwork_status": "approved-premium-final",
+      "approved_batch": "teddy-plus-premium-10",
       "source_asset": "collections/baby-nursery/source-designs/I0003-giraffe.png",
       "reference_source_id": "I0003",
       "reference_source_slug": "giraffe",
@@ -70,7 +74,8 @@
         "I0004-TC",
         "I0004-LH"
       ],
-      "artwork_status": "approved-kawaii-pattern-ready",
+      "artwork_status": "approved-premium-final",
+      "approved_batch": "teddy-plus-premium-10",
       "source_asset": "collections/baby-nursery/source-designs/I0004-baby-elephant.png",
       "reference_source_id": "I0002",
       "reference_source_slug": "baby-elephant",
@@ -88,7 +93,8 @@
         "I0005-TC",
         "I0005-LH"
       ],
-      "artwork_status": "approved-kawaii-pattern-ready",
+      "artwork_status": "approved-premium-final",
+      "approved_batch": "teddy-plus-premium-10",
       "source_asset": "collections/baby-nursery/source-designs/I0005-bunny-heart.png",
       "reference_source_id": "I0006",
       "reference_source_slug": "bunny-heart",
@@ -106,7 +112,8 @@
         "I0006-TC",
         "I0006-LH"
       ],
-      "artwork_status": "approved-kawaii-pattern-ready",
+      "artwork_status": "approved-premium-final",
+      "approved_batch": "teddy-plus-premium-10",
       "source_asset": "collections/baby-nursery/source-designs/I0006-cute-dinosaur.png",
       "reference_source_id": "I0008",
       "reference_source_slug": "cute-dinosaur",
@@ -124,7 +131,8 @@
         "I0007-TC",
         "I0007-LH"
       ],
-      "artwork_status": "approved-kawaii-pattern-ready",
+      "artwork_status": "approved-premium-final",
+      "approved_batch": "teddy-plus-premium-10",
       "source_asset": "collections/baby-nursery/source-designs/I0007-rubber-duck.png",
       "reference_source_id": "I0017",
       "reference_source_slug": "rubber-duck",
@@ -142,7 +150,8 @@
         "I0008-TC",
         "I0008-LH"
       ],
-      "artwork_status": "approved-kawaii-pattern-ready",
+      "artwork_status": "approved-premium-final",
+      "approved_batch": "teddy-plus-premium-10",
       "source_asset": "collections/baby-nursery/source-designs/I0008-plush-lamb.png",
       "reference_source_id": "I0023",
       "reference_source_slug": "plush-lamb",
@@ -160,7 +169,8 @@
         "I0009-TC",
         "I0009-LH"
       ],
-      "artwork_status": "approved-kawaii-pattern-ready",
+      "artwork_status": "approved-premium-final",
+      "approved_batch": "teddy-plus-premium-10",
       "source_asset": "collections/baby-nursery/source-designs/I0009-sleeping-owl.png",
       "reference_source_id": "I0021",
       "reference_source_slug": "sleeping-owl",
@@ -178,7 +188,8 @@
         "I0010-TC",
         "I0010-LH"
       ],
-      "artwork_status": "approved-kawaii-pattern-ready",
+      "artwork_status": "approved-premium-final",
+      "approved_batch": "teddy-plus-premium-10",
       "source_asset": "collections/baby-nursery/source-designs/I0010-crescent-moon.png",
       "reference_source_id": "I0004",
       "reference_source_slug": "crescent-moon",
@@ -196,7 +207,8 @@
         "I0011-TC",
         "I0011-LH"
       ],
-      "artwork_status": "approved-kawaii-pattern-ready",
+      "artwork_status": "approved-premium-final",
+      "approved_batch": "teddy-plus-premium-10",
       "source_asset": "collections/baby-nursery/source-designs/I0011-smiling-cloud.png",
       "reference_source_id": "I0005",
       "reference_source_slug": "smiling-cloud",
