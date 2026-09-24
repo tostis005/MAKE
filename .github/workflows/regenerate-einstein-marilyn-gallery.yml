@@ -1,0 +1,254 @@
+name: Regenerate Einstein and Marilyn galleries
+
+on:
+  push:
+    branches:
+      - fix/pop-art-einstein-marilyn-gallery
+    paths:
+      - '.github/workflows/regenerate-einstein-marilyn-gallery.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-pop-art-protected-gallery-rebuild
+  cancel-in-progress: false
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout repair branch
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: fix/pop-art-einstein-marilyn-gallery
+
+      - name: Install renderer dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow playwright
+          python3 -m playwright install --with-deps chromium
+
+      - name: Regenerate protected Pop Art bundles
+        env:
+          DRIELO_ALLOW_PROTECTED: '1'
+          DRIELO_GALLERY_REVISION: ${{ github.run_id }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          for design in P0001 P0012; do
+            echo "=== Regenerating $design ==="
+            python3 content/pattern-system/pop_art_25/publish_design.py "$design"
+          done
+
+      - name: Validate eight products and four images each
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+
+          root=Path('.')
+          catalog=json.loads((root/'content/products/catalog.json').read_text(encoding='utf-8'))
+          rows={p.get('code'):p for p in catalog.get('products',[])}
+
+          for design in ('P0001','P0012'):
+              for suffix in ('CS','C2C','TC','LH'):
+                  code=f'{design}-{suffix}'
+                  row=rows.get(code)
+                  if not row:
+                      raise SystemExit(f'Missing catalogue row: {code}')
+
+                  featured=root/'content/products'/row['featured_image']
+                  expected_gallery=[f'assets/{code}-gallery-{i}.webp' for i in (2,3,4)]
+                  if row.get('gallery') != expected_gallery:
+                      raise SystemExit(f'{code}: wrong gallery metadata: {row.get("gallery")}')
+
+                  images=[featured]+[root/'content/products'/p for p in expected_gallery]
+                  if len(images) != 4:
+                      raise SystemExit(f'{code}: expected exactly four images')
+                  for img in images:
+                      if not img.is_file() or img.stat().st_size < 30000:
+                          raise SystemExit(f'{code}: missing/invalid image {img}')
+                      with Image.open(img) as im:
+                          im.verify()
+
+                  pdf=root/'content/products'/row['download']
+                  if not pdf.is_file() or pdf.stat().st_size < 100000 or pdf.read_bytes()[:4] != b'%PDF':
+                      raise SystemExit(f'{code}: invalid PDF')
+
+                  print(code, 'FOUR_IMAGES_OK',
+                        featured.name,
+                        *(p.name for p in images[1:]),
+                        'revision', row.get('gallery_revision'))
+          PY
+
+      - name: Build targeted WooCommerce package
+        shell: bash
+        run: |
+          set -euo pipefail
+          STAGE="/tmp/drielo-protected-gallery-${GITHUB_RUN_ID}"
+          rm -rf "$STAGE"
+          mkdir -p "$STAGE/content/products/assets" "$STAGE/content/products/files" "$STAGE/content/tools"
+
+          python3 - "$STAGE" <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          stage=Path(sys.argv[1])
+          catalog=json.loads(Path('content/products/catalog.json').read_text(encoding='utf-8'))
+          codes={f'{d}-{s}' for d in ('P0001','P0012') for s in ('CS','C2C','TC','LH')}
+          selected=[p for p in catalog.get('products',[]) if p.get('code') in codes]
+          if {p.get('code') for p in selected} != codes:
+              raise SystemExit('Targeted catalogue is incomplete')
+
+          cats={slug for p in selected for slug in p.get('categories',[])}
+          out=dict(catalog)
+          out['products']=selected
+          out['collections']=[c for c in catalog.get('collections',[]) if c.get('slug')=='pop-art-25']
+          out['categories']=[c for c in catalog.get('categories',[]) if c.get('slug') in cats]
+          (stage/'content/products/catalog.json').write_text(
+              json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8'
+          )
+
+          by_code={p['code']:p for p in selected}
+          for design in ('P0001','P0012'):
+              for suffix in ('CS','C2C','TC','LH'):
+                  one=dict(out)
+                  one['products']=[by_code[f'{design}-{suffix}']]
+                  (stage/f'content/products/catalog-{design}-{suffix}.json').write_text(
+                      json.dumps(one,ensure_ascii=False,indent=2)+'\n',encoding='utf-8'
+                  )
+          PY
+
+          for design in P0001 P0012; do
+            for suffix in CS C2C TC LH; do
+              code="${design}-${suffix}"
+              cp "content/products/assets/${code}-product.webp" "$STAGE/content/products/assets/"
+              cp "content/products/assets/${code}-gallery-2.webp" "$STAGE/content/products/assets/"
+              cp "content/products/assets/${code}-gallery-3.webp" "$STAGE/content/products/assets/"
+              cp "content/products/assets/${code}-gallery-4.webp" "$STAGE/content/products/assets/"
+              cp "content/products/files/Drielo_${code}.pdf" "$STAGE/content/products/files/"
+            done
+          done
+          cp content/tools/import-products.php "$STAGE/content/tools/"
+          tar -czf "/tmp/drielo-protected-gallery-${GITHUB_RUN_ID}.tgz" -C "$STAGE" content
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_gallery_repair_key
+          chmod 600 ~/.ssh/drielo_gallery_repair_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Upload targeted package
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          scp -i ~/.ssh/drielo_gallery_repair_key             "/tmp/drielo-protected-gallery-${GITHUB_RUN_ID}.tgz"             "$VPS_USER@$VPS_HOST:/tmp/drielo-protected-gallery-${GITHUB_RUN_ID}.tgz"
+
+      - name: Import regenerated products and verify galleries
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_gallery_repair_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-protected-gallery-${GITHUB_RUN_ID}.tgz"
+          STAGE="/tmp/drielo-protected-gallery-${GITHUB_RUN_ID}"
+          trap 'rm -rf "$ARCHIVE" "$STAGE"' EXIT
+
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+
+          REMOTE_DIR="/tmp/drielo-products-gallery-${GITHUB_RUN_ID}"
+          IMPORTER="/tmp/drielo-import-gallery-${GITHUB_RUN_ID}.php"
+          "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '${REMOTE_DIR}' '${IMPORTER}' && mkdir -p '${REMOTE_DIR}'"
+          "${DOCKER[@]}" cp "$STAGE/content/products/." "make-wp:${REMOTE_DIR}/"
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" "make-wp:${IMPORTER}"
+
+          for design in P0001 P0012; do
+            for suffix in CS C2C TC LH; do
+              code="${design}-${suffix}"
+              "${DOCKER[@]}" exec make-wp sh -lc "
+                test -s ${REMOTE_DIR}/assets/${code}-product.webp &&
+                test -s ${REMOTE_DIR}/assets/${code}-gallery-2.webp &&
+                test -s ${REMOTE_DIR}/assets/${code}-gallery-3.webp &&
+                test -s ${REMOTE_DIR}/assets/${code}-gallery-4.webp &&
+                test -s ${REMOTE_DIR}/files/Drielo_${code}.pdf &&
+                cp ${REMOTE_DIR}/catalog-${design}-${suffix}.json ${REMOTE_DIR}/catalog.json
+              "
+              "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M -d max_execution_time=0                 "${IMPORTER}" /var/www/html "${REMOTE_DIR}"
+            done
+          done
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M -r '
+            require "/var/www/html/wp-load.php";
+            foreach(array("P0001","P0012") as $design){
+              foreach(array("CS","C2C","TC","LH") as $suffix){
+                $sku="DRIELO-".$design."-".$suffix;
+                $id=wc_get_product_id_by_sku($sku);
+                $p=$id?wc_get_product($id):false;
+                if(!$p){fwrite(STDERR,"MISSING ".$sku.PHP_EOL);exit(2);}
+                $image=(int)$p->get_image_id();
+                $gallery=array_values(array_filter(array_map("intval",$p->get_gallery_image_ids())));
+                echo $sku." id=".$id." featured=".$image." gallery=".count($gallery)." downloads=".count($p->get_downloads()).PHP_EOL;
+                if(!$image || count($gallery)!==3 || count($p->get_downloads())<1){
+                  fwrite(STDERR,"INCOMPLETE ".$sku.PHP_EOL);exit(3);
+                }
+              }
+            }
+            echo "ALL_EIGHT_PRODUCTS_HAVE_FOUR_IMAGES=yes".PHP_EOL;
+          '
+
+          "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '${REMOTE_DIR}' '${IMPORTER}'"
+          REMOTE
+
+      - name: Commit regenerated assets to repair branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add content/products/catalog.json
+          for design in P0001 P0012; do
+            git add "content/pattern-system/collections/pop-art-25/sources/${design}.png"
+            git add content/pattern-system/collections/pop-art-25/reference-masters/${design}-*-reference.png
+            for suffix in CS C2C TC LH; do
+              code="${design}-${suffix}"
+              git add "content/pattern-system/patterns/${code}/pattern.json"
+              git add "content/pattern-system/products/${code}/product.json"
+              git add "content/products/assets/${code}-product.webp"
+              git add "content/products/assets/${code}-gallery-2.webp"
+              git add "content/products/assets/${code}-gallery-3.webp"
+              git add "content/products/assets/${code}-gallery-4.webp"
+              git add "content/products/files/Drielo_${code}.pdf"
+            done
+          done
+
+          if git diff --cached --quiet; then
+            echo "No generated changes to commit."
+          else
+            git commit -m "Regenerate Einstein and Marilyn Bubble Gum four-image galleries"
+            git push origin HEAD:fix/pop-art-einstein-marilyn-gallery
+          fi
