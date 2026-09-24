@@ -8,7 +8,6 @@ on:
       - feature/florals-pattern-generation
     paths:
       - '.github/workflows/florals-pattern-generation-publish.yml'
-      - 'content/pattern-system/florals/publish_queue.json'
 
 permissions:
   contents: write
@@ -27,7 +26,7 @@ jobs:
       - name: Checkout Florals feature branch
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 1
           ref: feature/florals-pattern-generation
 
       - name: Select next pending Florals design
@@ -367,7 +366,7 @@ jobs:
             echo "No Florals files changed."
           else
             git commit -m "Publish Florals ${DESIGN} in four techniques"
-            git fetch origin feature/florals-pattern-generation
+            git fetch --depth=20 origin feature/florals-pattern-generation
             git rebase origin/feature/florals-pattern-generation
             git push origin HEAD:feature/florals-pattern-generation
           fi
@@ -392,7 +391,7 @@ jobs:
           DESIGN="${{ steps.select.outputs.design_id }}"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin feature/florals-pattern-generation
+          git fetch --depth=20 origin feature/florals-pattern-generation
           git reset --hard origin/feature/florals-pattern-generation
           python3 content/pattern-system/florals/queue_state.py fail "$DESIGN" \
             --run-url "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" \
@@ -408,7 +407,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          git fetch origin feature/florals-pattern-generation
+          git fetch --depth=20 origin feature/florals-pattern-generation
           git reset --hard origin/feature/florals-pattern-generation
           if [ "$(python3 content/pattern-system/florals/queue_state.py has-work)" = "yes" ]; then
             echo "Pending Florals designs remain; dispatching the next run."
