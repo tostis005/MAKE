@@ -102,10 +102,10 @@ jobs:
 
           covers=collection['mockup_spec']['technique_assets']
           expected={
-              'CS':'../../multitech/assets/cover-cross-stitch.webp',
-              'C2C':'../../multitech/assets/cover-crochet.webp',
-              'TC':'../../multitech/assets/cover-c2c-crochet.webp',
-              'LH':'../../multitech/assets/cover-rug.webp',
+              'CS':'assets/animals-cover-cross-stitch.webp',
+              'C2C':'assets/animals-cover-c2c-crochet.webp',
+              'TC':'assets/animals-cover-tapestry-crochet.webp',
+              'LH':'assets/animals-cover-latch-hook.webp',
           }
           if {k:covers[k] for k in expected} != expected:
               raise SystemExit(f'Animals cover mapping changed unexpectedly: {covers}')
