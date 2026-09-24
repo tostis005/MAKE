@@ -816,17 +816,36 @@ def update_catalog(base_id: str, design: dict):
     catalog = read_json(CATALOG_PATH)
     rows = catalog.setdefault("products", [])
     by_code = {p.get("code"): p for p in rows}
-    templates = {s: deepcopy(by_code[f"I0001-{s}"]) for s in SUFFIXES}
     revision = int(os.environ.get("DRIELO_GALLERY_REVISION", 202609242000 + int(base_id[1:])))
+    categories = {
+        "CS": ["cross-stitch-patterns", "cross-stitch-baby-nursery"],
+        "C2C": ["c2c-crochet-patterns", "c2c-crochet-baby-nursery"],
+        "TC": ["tapestry-crochet-patterns", "tapestry-crochet-baby-nursery"],
+        "LH": ["latch-hook-rug-patterns", "latch-hook-rug-baby-nursery"],
+    }
+    purchase_en = "Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete."
+    purchase_es = "Tu PDF digital estará disponible desde la confirmación del pedido y en Mi cuenta > Descargas una vez completado el pago."
 
     for suffix in SUFFIXES:
         code = f"{base_id}-{suffix}"
         pattern = read_json(PATTERNS / code / "pattern.json")
         row = by_code.get(code)
         if row is None:
-            row = templates[suffix]
+            row = {
+                "code": code,
+                "sku": f"DRIELO-{code}",
+                "price": 4.99,
+                "categories": categories[suffix],
+                "purchase_note_en": purchase_en,
+                "purchase_note_es": purchase_es,
+            }
             rows.append(row)
             by_code[code] = row
+        else:
+            row["categories"] = categories[suffix]
+            row["price"] = 4.99
+            row["purchase_note_en"] = purchase_en
+            row["purchase_note_es"] = purchase_es
         replace_text_fields(row, base_id, design, suffix, pattern, revision)
 
     rows.sort(key=lambda x: x.get("code", ""))
