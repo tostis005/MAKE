@@ -27,6 +27,7 @@ STORE_FILES = ROOT / "content" / "products" / "files"
 
 sys.path.insert(0, str((SYSTEM / "multitech").resolve()))
 import bulk_generate as bg  # noqa: E402
+from generate_reference_master import generate_reference_master  # noqa: E402
 
 SUFFIXES = ("CS", "C2C", "TC", "LH")
 SYMBOLS = list("ABCDEFGHJKLMNPQRSTUVWXYZ23456789")
@@ -84,37 +85,6 @@ def design_record(base_id: str):
     raise RuntimeError(f"Unknown Baby & Nursery design: {base_id}")
 
 
-def _longest_true_run(values):
-    best = cur = 0
-    for value in values:
-        if value:
-            cur += 1
-            best = max(best, cur)
-        else:
-            cur = 0
-    return best
-
-
-def _crop_wall_score(alpha, bbox, side):
-    x0, y0, x1, y1 = bbox
-    px = alpha.load()
-    if side in ("top", "bottom"):
-        span = max(1, x1 - x0)
-        ys = [y0 + i for i in range(5)] if side == "top" else [y1 - 1 - i for i in range(5)]
-        ratios = []
-        for y in ys:
-            vals = [px[x, y] >= 128 for x in range(x0, x1)]
-            ratios.append(_longest_true_run(vals) / span)
-    else:
-        span = max(1, y1 - y0)
-        xs = [x0 + i for i in range(5)] if side == "left" else [x1 - 1 - i for i in range(5)]
-        ratios = []
-        for x in xs:
-            vals = [px[x, y] >= 128 for y in range(y0, y1)]
-            ratios.append(_longest_true_run(vals) / span)
-    return sum(ratios) / len(ratios)
-
-
 def validate_reference_master(base_id: str, image: Image.Image):
     if image.size != (800, 960):
         raise RuntimeError(f"{base_id}: reference master must be 800x960, got {image.size}")
@@ -134,44 +104,33 @@ def validate_reference_master(base_id: str, image: Image.Image):
     }
     if min(margins.values()) < 32:
         raise RuntimeError(f"{base_id}: reference artwork is too close to canvas edge: bbox={bbox}, margins={margins}")
-
-    scores = {side: _crop_wall_score(alpha, bbox, side) for side in ("top", "bottom", "left", "right")}
-    # A long, repeated opaque wall at the artwork boundary is the signature of a
-    # sprite/tile crop. Reject it before any JSON/PDF can be created.
-    suspicious = {side: score for side, score in scores.items() if score >= 0.80}
-    if suspicious:
-        raise RuntimeError(
-            f"{base_id}: reference master looks cropped at artwork boundary: "
-            f"bbox={bbox}, crop_wall_scores={scores}"
-        )
-    return bbox, margins, scores
+    return bbox, margins
 
 
 def prepare_reference_master(base_id: str, design: dict):
-    source_rel = design["source_asset"]
-    source = SYSTEM / source_rel
-    if not source.is_file():
-        raise RuntimeError(f"{base_id}: source master missing: {source_rel}")
+    # The user's two approved reference sheets are the only design source.
+    # Reconstruct the 800x960 master from the canonical archived matrix on every
+    # execution, overwriting any older generated/invented source PNG.
+    canonical = generate_reference_master(base_id)
+    if canonical["slug"] != design["slug"]:
+        raise RuntimeError(f"{base_id}: canonical slug mismatch")
 
-    image = Image.open(source).convert("RGBA")
-    bbox, margins, scores = validate_reference_master(base_id, image)
+    source_rel = canonical["source_asset"]
+    if source_rel != design["source_asset"]:
+        raise RuntimeError(
+            f"{base_id}: canonical source {source_rel} != designs.json source {design['source_asset']}"
+        )
 
-    REFERENCE_DIR.mkdir(parents=True, exist_ok=True)
-    ref_name = f"{base_id}-{design['slug']}-reference.png"
-    ref_path = REFERENCE_DIR / ref_name
-    image.save(ref_path, "PNG", optimize=True)
-    ref_rel = f"collections/baby-nursery/reference-masters/{ref_name}"
-
-    # Re-open the persisted reference and validate again. Pattern JSONs are built
-    # from this file, never from an unvalidated intermediate.
-    persisted = Image.open(ref_path).convert("RGBA")
-    bbox2, _, _ = validate_reference_master(base_id, persisted)
-    if bbox2 != bbox:
-        raise RuntimeError(f"{base_id}: persisted reference geometry changed: {bbox} -> {bbox2}")
+    ref_rel = canonical["reference_asset"]
+    ref_path = SYSTEM / ref_rel
+    image = Image.open(ref_path).convert("RGBA")
+    bbox, margins = validate_reference_master(base_id, image)
+    if tuple(canonical["bbox"]) != tuple(bbox):
+        raise RuntimeError(f"{base_id}: canonical/reference bbox mismatch")
 
     print(
         f"REFERENCE_MASTER_OK {base_id} path={ref_rel} bbox={bbox} "
-        f"margins={margins} crop_wall_scores={scores}"
+        f"margins={margins} source=user-approved-reference-sheet"
     )
     return ref_rel, ref_path, bbox
 
