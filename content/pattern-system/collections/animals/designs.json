@@ -541,7 +541,9 @@
       ],
       "artwork_status": "canonical-reference-ready",
       "reference_asset": "collections/animals/reference-masters/A0030-otter-seashell-heart-reference.png",
-      "source_asset": "collections/animals/source-designs/A0030-otter-seashell-heart.png"
+      "source_asset": "collections/animals/source-designs/A0030-otter-seashell-heart.png",
+      "product_status": "ready",
+      "transparent_background": true
     }
   ]
 }

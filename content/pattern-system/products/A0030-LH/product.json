@@ -1,0 +1,14 @@
+{
+  "code": "A0030-LH",
+  "base_design_id": "A0030",
+  "technique_code": "LH",
+  "collection": "animals",
+  "source_artwork": "collections/animals/source-designs/A0030-otter-seashell-heart.png",
+  "reference_artwork": "collections/animals/reference-masters/A0030-otter-seashell-heart-reference.png",
+  "page_1_asset": "mockups/animals-cover-latch-hook.png",
+  "render_ready": true,
+  "status": "active",
+  "palette_mode": "strict",
+  "palette_size": 24,
+  "transparent_source": true
+}

@@ -331,10 +331,11 @@
       "title_en": "Otter with Seashell Heart",
       "title_es": "Nutria con concha corazón",
       "slug": "otter-seashell-heart",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36015149132",
+      "last_error": null,
+      "published_at": "2026-09-24T14:50:24+00:00"
     }
   ],
   "restarted_at": "2026-09-24T11:57:30Z",
