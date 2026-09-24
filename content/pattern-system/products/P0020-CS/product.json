@@ -11,9 +11,12 @@
   "pattern_file": "patterns/P0020-CS/pattern.json",
   "template": "cross-stitch.html",
   "website": "www.drielo.com",
-  "status": "draft",
-  "render_ready": false,
+  "status": "ready",
+  "render_ready": true,
   "renderer": "multitech",
-  "source_artwork": null,
-  "page_1_asset": "multitech/assets/cover-cross-stitch.webp"
+  "source_artwork": "collections/pop-art-25/sources/P0020.png",
+  "page_1_asset": "multitech/assets/cover-cross-stitch.webp",
+  "palette_mode": "strict",
+  "palette_size": 25,
+  "transparent_source": true
 }

@@ -19,130 +19,150 @@
       "title_en": "Apple Man Portrait",
       "title_es": "Retrato del hombre de la manzana",
       "slug": "apple-man-portrait",
-      "status": "draft",
+      "status": "ready",
       "variants": [
         "P0002-CS",
         "P0002-C2C",
         "P0002-TC",
         "P0002-LH"
-      ]
+      ],
+      "source_artwork": "sources/P0002.png",
+      "transparent_background": true
     },
     {
       "code": "P0003",
-      "title_en": "Audrey Hepburn Classic Portrait",
-      "title_es": "Retrato clásico de Audrey Hepburn",
-      "slug": "audrey-hepburn-classic",
-      "status": "draft",
+      "title_en": "Audrey Hepburn Bubble Gum",
+      "title_es": "Audrey Hepburn con chicle",
+      "slug": "audrey-hepburn-bubble-gum",
+      "status": "ready",
       "variants": [
         "P0003-CS",
         "P0003-C2C",
         "P0003-TC",
         "P0003-LH"
-      ]
+      ],
+      "source_artwork": "sources/P0003.png",
+      "transparent_background": true
     },
     {
       "code": "P0004",
-      "title_en": "Audrey Hepburn Elegant Profile",
-      "title_es": "Audrey Hepburn de perfil elegante",
-      "slug": "audrey-hepburn-elegant-profile",
-      "status": "draft",
+      "title_en": "Audrey Hepburn Profile",
+      "title_es": "Audrey Hepburn de perfil",
+      "slug": "audrey-hepburn-profile",
+      "status": "ready",
       "variants": [
         "P0004-CS",
         "P0004-C2C",
         "P0004-TC",
         "P0004-LH"
-      ]
+      ],
+      "source_artwork": "sources/P0004.png",
+      "transparent_background": true
     },
     {
       "code": "P0005",
       "title_en": "Audrey Hepburn Sunglasses",
       "title_es": "Audrey Hepburn con gafas",
       "slug": "audrey-hepburn-sunglasses",
-      "status": "draft",
+      "status": "ready",
       "variants": [
         "P0005-CS",
         "P0005-C2C",
         "P0005-TC",
         "P0005-LH"
-      ]
+      ],
+      "source_artwork": "sources/P0005.png",
+      "transparent_background": true
     },
     {
       "code": "P0006",
       "title_en": "Charlie Chaplin Portrait",
       "title_es": "Retrato de Charlie Chaplin",
       "slug": "charlie-chaplin-portrait",
-      "status": "draft",
+      "status": "ready",
       "variants": [
         "P0006-CS",
         "P0006-C2C",
         "P0006-TC",
         "P0006-LH"
-      ]
+      ],
+      "source_artwork": "sources/P0006.png",
+      "transparent_background": true
     },
     {
       "code": "P0007",
       "title_en": "Frida Kahlo Floral Crown",
       "title_es": "Frida Kahlo con corona floral",
       "slug": "frida-kahlo-floral-crown",
-      "status": "draft",
+      "status": "ready",
       "variants": [
         "P0007-CS",
         "P0007-C2C",
         "P0007-TC",
         "P0007-LH"
-      ]
+      ],
+      "source_artwork": "sources/P0007.png",
+      "transparent_background": true
     },
     {
       "code": "P0008",
       "title_en": "Girl with a Pearl Earring Bubble Gum",
       "title_es": "La joven de la perla con chicle",
       "slug": "girl-pearl-earring-bubble-gum",
-      "status": "draft",
+      "status": "ready",
       "variants": [
         "P0008-CS",
         "P0008-C2C",
         "P0008-TC",
         "P0008-LH"
-      ]
+      ],
+      "source_artwork": "sources/P0008.png",
+      "transparent_background": true
     },
     {
       "code": "P0009",
       "title_en": "Girl with a Pearl Earring",
       "title_es": "La joven de la perla",
       "slug": "girl-with-a-pearl-earring",
-      "status": "draft",
+      "status": "ready",
       "variants": [
         "P0009-CS",
         "P0009-C2C",
         "P0009-TC",
         "P0009-LH"
-      ]
+      ],
+      "source_artwork": "sources/P0009.png",
+      "transparent_background": true
     },
     {
       "code": "P0010",
       "title_en": "Girl with a Pearl Earring Sunglasses",
       "title_es": "La joven de la perla con gafas",
       "slug": "girl-pearl-earring-sunglasses",
-      "status": "draft",
+      "status": "ready",
       "variants": [
         "P0010-CS",
         "P0010-C2C",
         "P0010-TC",
         "P0010-LH"
-      ]
+      ],
+      "source_artwork": "sources/P0010.png",
+      "transparent_background": true
     },
     {
       "code": "P0011",
       "title_en": "Marilyn Monroe Blowing Kiss",
       "title_es": "Marilyn Monroe lanzando un beso",
       "slug": "marilyn-monroe-blowing-kiss",
-      "status": "draft",
+      "status": "ready",
       "variants": [
         "P0011-CS",
         "P0011-C2C",
         "P0011-TC",
         "P0011-LH"
-      ]
+      ],
+      "source_artwork": "sources/P0011.png",
+      "transparent_background": true
     },
     {
       "code": "P0012",
@@ -162,182 +182,212 @@
       "title_en": "Marilyn Monroe Sunglasses",
       "title_es": "Marilyn Monroe con gafas",
       "slug": "marilyn-monroe-sunglasses",
-      "status": "draft",
+      "status": "ready",
       "variants": [
         "P0013-CS",
         "P0013-C2C",
         "P0013-TC",
         "P0013-LH"
-      ]
+      ],
+      "source_artwork": "sources/P0013.png",
+      "transparent_background": true
     },
     {
       "code": "P0014",
       "title_en": "Marilyn Monroe Surprise",
       "title_es": "Marilyn Monroe sorprendida",
       "slug": "marilyn-monroe-surprise",
-      "status": "draft",
+      "status": "ready",
       "variants": [
         "P0014-CS",
         "P0014-C2C",
         "P0014-TC",
         "P0014-LH"
-      ]
+      ],
+      "source_artwork": "sources/P0014.png",
+      "transparent_background": true
     },
     {
       "code": "P0015",
       "title_en": "Marilyn Monroe Wink",
       "title_es": "Marilyn Monroe guiñando un ojo",
       "slug": "marilyn-monroe-wink",
-      "status": "draft",
+      "status": "ready",
       "variants": [
         "P0015-CS",
         "P0015-C2C",
         "P0015-TC",
         "P0015-LH"
-      ]
+      ],
+      "source_artwork": "sources/P0015.png",
+      "transparent_background": true
     },
     {
       "code": "P0016",
       "title_en": "Mona Lisa Portrait",
       "title_es": "Retrato de la Mona Lisa",
       "slug": "mona-lisa-portrait",
-      "status": "draft",
+      "status": "ready",
       "variants": [
         "P0016-CS",
         "P0016-C2C",
         "P0016-TC",
         "P0016-LH"
-      ]
+      ],
+      "source_artwork": "sources/P0016.png",
+      "transparent_background": true
     },
     {
       "code": "P0017",
       "title_en": "Salvador Dalí Portrait",
       "title_es": "Retrato de Salvador Dalí",
       "slug": "salvador-dali-portrait",
-      "status": "draft",
+      "status": "ready",
       "variants": [
         "P0017-CS",
         "P0017-C2C",
         "P0017-TC",
         "P0017-LH"
-      ]
+      ],
+      "source_artwork": "sources/P0017.png",
+      "transparent_background": true
     },
     {
       "code": "P0018",
       "title_en": "Van Gogh with Sunflower",
       "title_es": "Van Gogh con girasol",
       "slug": "van-gogh-sunflower",
-      "status": "draft",
+      "status": "ready",
       "variants": [
         "P0018-CS",
         "P0018-C2C",
         "P0018-TC",
         "P0018-LH"
-      ]
+      ],
+      "source_artwork": "sources/P0018.png",
+      "transparent_background": true
     },
     {
       "code": "P0019",
       "title_en": "Vincent van Gogh Portrait",
       "title_es": "Retrato de Vincent van Gogh",
       "slug": "vincent-van-gogh-portrait",
-      "status": "draft",
+      "status": "ready",
       "variants": [
         "P0019-CS",
         "P0019-C2C",
         "P0019-TC",
         "P0019-LH"
-      ]
+      ],
+      "source_artwork": "sources/P0019.png",
+      "transparent_background": true
     },
     {
       "code": "P0020",
       "title_en": "James Dean Portrait",
       "title_es": "Retrato de James Dean",
       "slug": "james-dean-portrait",
-      "status": "draft",
+      "status": "ready",
       "variants": [
         "P0020-CS",
         "P0020-C2C",
         "P0020-TC",
         "P0020-LH"
-      ]
+      ],
+      "source_artwork": "sources/P0020.png",
+      "transparent_background": true
     },
     {
       "code": "P0021",
       "title_en": "David Bowie Portrait",
       "title_es": "Retrato de David Bowie",
       "slug": "david-bowie-portrait",
-      "status": "draft",
+      "status": "ready",
       "variants": [
         "P0021-CS",
         "P0021-C2C",
         "P0021-TC",
         "P0021-LH"
-      ]
+      ],
+      "source_artwork": "sources/P0021.png",
+      "transparent_background": true
     },
     {
       "code": "P0022",
       "title_en": "Princess Diana Bubble Gum",
       "title_es": "Princesa Diana con chicle",
       "slug": "princess-diana-bubble-gum",
-      "status": "draft",
+      "status": "ready",
       "variants": [
         "P0022-CS",
         "P0022-C2C",
         "P0022-TC",
         "P0022-LH"
-      ]
+      ],
+      "source_artwork": "sources/P0022.png",
+      "transparent_background": true
     },
     {
       "code": "P0023",
       "title_en": "Princess Diana Portrait",
       "title_es": "Retrato de la princesa Diana",
       "slug": "princess-diana-portrait",
-      "status": "draft",
+      "status": "ready",
       "variants": [
         "P0023-CS",
         "P0023-C2C",
         "P0023-TC",
         "P0023-LH"
-      ]
+      ],
+      "source_artwork": "sources/P0023.png",
+      "transparent_background": true
     },
     {
       "code": "P0024",
       "title_en": "Michael Jackson Portrait",
       "title_es": "Retrato de Michael Jackson",
       "slug": "michael-jackson-portrait",
-      "status": "draft",
+      "status": "ready",
       "variants": [
         "P0024-CS",
         "P0024-C2C",
         "P0024-TC",
         "P0024-LH"
-      ]
+      ],
+      "source_artwork": "sources/P0024.png",
+      "transparent_background": true
     },
     {
       "code": "P0025",
       "title_en": "Nelson Mandela Portrait",
       "title_es": "Retrato de Nelson Mandela",
       "slug": "nelson-mandela-portrait",
-      "status": "draft",
+      "status": "ready",
       "variants": [
         "P0025-CS",
         "P0025-C2C",
         "P0025-TC",
         "P0025-LH"
-      ]
+      ],
+      "source_artwork": "sources/P0025.png",
+      "transparent_background": true
     },
     {
       "code": "P0026",
       "title_en": "Freddie Mercury Portrait",
       "title_es": "Retrato de Freddie Mercury",
       "slug": "freddie-mercury-portrait",
-      "status": "draft",
+      "status": "ready",
       "variants": [
         "P0026-CS",
         "P0026-C2C",
         "P0026-TC",
         "P0026-LH"
-      ]
+      ],
+      "source_artwork": "sources/P0026.png",
+      "transparent_background": true
     }
-  ]
+  ],
+  "palette_size": 25,
+  "transparent_background": true
 }
