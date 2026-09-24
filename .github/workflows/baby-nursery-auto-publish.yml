@@ -1,0 +1,309 @@
+name: Baby Nursery Auto Publish Queue
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/baby-nursery-auto-publish.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: drielo-baby-nursery-auto-publish
+  cancel-in-progress: false
+
+jobs:
+  publish-next:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Select next pending design
+        id: select
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/baby_nursery/queue_state.py next --github-output "$GITHUB_OUTPUT"
+
+      - name: Show queue state
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/baby_nursery/queue_state.py summary
+          echo "Selected: ${{ steps.select.outputs.design_id }}"
+
+      - name: Install renderer dependencies
+        if: steps.select.outputs.design_id != ''
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow playwright
+          python3 -m playwright install --with-deps chromium
+
+      - name: Build master-derived patterns and render four techniques
+        if: steps.select.outputs.design_id != ''
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/baby_nursery/publish_design.py "${{ steps.select.outputs.design_id }}"
+
+      - name: Validate generated design bundle
+        if: steps.select.outputs.design_id != ''
+        shell: bash
+        run: |
+          set -euo pipefail
+          DESIGN="${{ steps.select.outputs.design_id }}"
+          python3 - "$DESIGN" <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+          from PIL import Image
+
+          design=sys.argv[1]
+          root=Path('.')
+          system=root/'content'/'pattern-system'
+          designs=json.loads((system/'collections'/'baby-nursery'/'designs.json').read_text(encoding='utf-8'))['designs']
+          meta=next(x for x in designs if x['base_design_id']==design)
+          src=system/meta['source_asset']
+          im=Image.open(src).convert('RGBA')
+          amin,amax=im.getchannel('A').getextrema()
+          bbox=im.getchannel('A').getbbox()
+          if im.size!=(800,960) or amin!=0 or amax==0 or not bbox:
+              raise SystemExit(f'{design}: invalid HD transparent master')
+          if bbox[0]<=0 or bbox[1]<=0 or bbox[2]>=800 or bbox[3]>=960:
+              raise SystemExit(f'{design}: master touches canvas edge: {bbox}')
+
+          collection=json.loads((system/'collections'/'baby-nursery'/'collection.json').read_text(encoding='utf-8'))
+          covers=collection['mockup_spec']['technique_assets']
+          expected={
+            'CS':'collections/baby-nursery/assets/cover-cross-stitch.jpg',
+            'C2C':'collections/baby-nursery/assets/cover-c2c-crochet.jpg',
+            'TC':'collections/baby-nursery/assets/cover-crochet.jpg',
+            'LH':'collections/baby-nursery/assets/cover-rug.jpg',
+          }
+          if {k:covers[k] for k in expected} != expected:
+              raise SystemExit(f'Collection cover mapping changed unexpectedly: {covers}')
+
+          catalog=json.loads((root/'content/products/catalog.json').read_text(encoding='utf-8'))
+          rows={p.get('code'):p for p in catalog.get('products',[])}
+
+          grids={'CS':(100,120),'C2C':(60,72),'TC':(80,96),'LH':(60,72)}
+          for suffix in ('CS','C2C','TC','LH'):
+              code=f'{design}-{suffix}'
+              pat=json.loads((system/'patterns'/code/'pattern.json').read_text(encoding='utf-8'))
+              prod=json.loads((system/'products'/code/'product.json').read_text(encoding='utf-8'))
+              w,h=grids[suffix]
+              if (pat.get('stitch_width'),pat.get('stitch_height'))!=(w,h):
+                  raise SystemExit(f'{code}: wrong grid')
+              if len(pat.get('matrix',[]))!=h or any(len(r)!=w for r in pat['matrix']):
+                  raise SystemExit(f'{code}: malformed matrix')
+              if pat.get('total_stitches',0)<=0 or not pat.get('threads'):
+                  raise SystemExit(f'{code}: empty pattern')
+              if prod.get('page_1_asset')!=expected[suffix]:
+                  raise SystemExit(f'{code}: wrong cover route {prod.get("page_1_asset")}')
+              pdf=root/'content/products/files'/f'Drielo_{code}.pdf'
+              image=root/'content/products/assets'/f'{code}-product.webp'
+              if not pdf.is_file() or pdf.stat().st_size<100000 or pdf.read_bytes()[:4]!=b'%PDF':
+                  raise SystemExit(f'{code}: invalid PDF')
+              if not image.is_file() or image.stat().st_size<50000:
+                  raise SystemExit(f'{code}: invalid product image')
+              if code not in rows:
+                  raise SystemExit(f'{code}: missing catalog row')
+              print(code,'stitches',pat['total_stitches'],'colors',len(pat['threads']),'pdf',pdf.stat().st_size,'image',image.stat().st_size)
+          print(design,'BUNDLE_VALID','bbox',bbox)
+          PY
+
+      - name: Build four-product WooCommerce package
+        if: steps.select.outputs.design_id != ''
+        shell: bash
+        run: |
+          set -euo pipefail
+          DESIGN="${{ steps.select.outputs.design_id }}"
+          STAGE="/tmp/drielo-${DESIGN}"
+          rm -rf "$STAGE"
+          mkdir -p "$STAGE/content/products/assets" "$STAGE/content/products/files" "$STAGE/content/tools"
+
+          python3 - "$DESIGN" "$STAGE" <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          design=sys.argv[1]
+          stage=Path(sys.argv[2])
+          d=json.loads(Path('content/products/catalog.json').read_text(encoding='utf-8'))
+          codes={f'{design}-{s}' for s in ('CS','C2C','TC','LH')}
+          cats={
+            'cross-stitch-patterns','cross-stitch-baby-nursery',
+            'c2c-crochet-patterns','c2c-crochet-baby-nursery',
+            'tapestry-crochet-patterns','tapestry-crochet-baby-nursery',
+            'latch-hook-rug-patterns','latch-hook-rug-baby-nursery',
+          }
+          out=dict(d)
+          out['products']=[p for p in d.get('products',[]) if p.get('code') in codes]
+          out['collections']=[c for c in d.get('collections',[]) if c.get('slug')=='baby-nursery']
+          out['categories']=[c for c in d.get('categories',[]) if c.get('slug') in cats]
+          found={p.get('code') for p in out['products']}
+          if found!=codes:
+              raise SystemExit(f'Package catalog mismatch: {found} != {codes}')
+          (stage/'content/products/catalog.json').write_text(
+              json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8'
+          )
+          PY
+
+          for suffix in CS C2C TC LH; do
+            code="${DESIGN}-${suffix}"
+            cp "content/products/assets/${code}-product.webp" "$STAGE/content/products/assets/"
+            cp "content/products/files/Drielo_${code}.pdf" "$STAGE/content/products/files/"
+          done
+          cp content/tools/import-products.php "$STAGE/content/tools/"
+          tar -czf "/tmp/drielo-${DESIGN}.tgz" -C "$STAGE" content
+
+      - name: Configure SSH
+        if: steps.select.outputs.design_id != ''
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_products_key
+          chmod 600 ~/.ssh/drielo_products_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Upload package
+        if: steps.select.outputs.design_id != ''
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          DESIGN="${{ steps.select.outputs.design_id }}"
+          scp -i ~/.ssh/drielo_products_key "/tmp/drielo-${DESIGN}.tgz" "$VPS_USER@$VPS_HOST:/tmp/drielo-${DESIGN}-${GITHUB_RUN_ID}.tgz"
+
+      - name: Publish four products to WooCommerce and verify
+        if: steps.select.outputs.design_id != ''
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          DESIGN="${{ steps.select.outputs.design_id }}"
+          ssh -i ~/.ssh/drielo_products_key "$VPS_USER@$VPS_HOST" "DESIGN='${DESIGN}' GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-${DESIGN}-${GITHUB_RUN_ID}.tgz"
+          STAGE="/tmp/drielo-${DESIGN}-${GITHUB_RUN_ID}"
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE"; }
+          trap cleanup EXIT
+
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $design=getenv("DESIGN");
+            $suffixes=array("CS","C2C","TC","LH");
+            foreach ($suffixes as $suffix) {
+              $sku="DRIELO-".$design."-".$suffix;
+              $id=wc_get_product_id_by_sku($sku);
+              $p=$id ? wc_get_product($id) : false;
+              if (!$p) { fwrite(STDERR,"Missing ".$sku.PHP_EOL); exit(2); }
+              $cols=wp_get_object_terms($id,"product_collection",array("fields"=>"slugs"));
+              $downloads=count($p->get_downloads());
+              $image=$p->get_image_id();
+              echo $sku." id=".$id." status=".$p->get_status()." image=".$image." downloads=".$downloads." collection=".implode(",",is_wp_error($cols)?array():$cols)." url=".get_permalink($id).PHP_EOL;
+              if ($p->get_status()!=="publish" || !$image || $downloads<1 || !in_array("baby-nursery",is_wp_error($cols)?array():$cols,true)) {
+                fwrite(STDERR,"Incomplete ".$sku.PHP_EOL); exit(3);
+              }
+            }
+          ' DESIGN="$DESIGN"
+
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
+          REMOTE
+
+      - name: Mark design published
+        if: steps.select.outputs.design_id != ''
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/baby_nursery/queue_state.py success "${{ steps.select.outputs.design_id }}"             --run-url "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+
+      - name: Commit design to main
+        if: steps.select.outputs.design_id != ''
+        shell: bash
+        run: |
+          set -euo pipefail
+          DESIGN="${{ steps.select.outputs.design_id }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add             content/pattern-system/baby_nursery/publish_queue.json             content/pattern-system/patterns/${DESIGN}-CS/pattern.json             content/pattern-system/patterns/${DESIGN}-C2C/pattern.json             content/pattern-system/patterns/${DESIGN}-TC/pattern.json             content/pattern-system/patterns/${DESIGN}-LH/pattern.json             content/pattern-system/products/${DESIGN}-CS/product.json             content/pattern-system/products/${DESIGN}-C2C/product.json             content/pattern-system/products/${DESIGN}-TC/product.json             content/pattern-system/products/${DESIGN}-LH/product.json             content/products/catalog.json             content/products/assets/${DESIGN}-CS-product.webp             content/products/assets/${DESIGN}-C2C-product.webp             content/products/assets/${DESIGN}-TC-product.webp             content/products/assets/${DESIGN}-LH-product.webp
+
+          git commit -m "Publish Baby Nursery ${DESIGN} in four techniques [skip ci]"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
+
+      - name: Archive PDFs for this design
+        if: success() && steps.select.outputs.design_id != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: baby-nursery-${{ steps.select.outputs.design_id }}-pdfs
+          path: |
+            content/products/files/Drielo_${{ steps.select.outputs.design_id }}-CS.pdf
+            content/products/files/Drielo_${{ steps.select.outputs.design_id }}-C2C.pdf
+            content/products/files/Drielo_${{ steps.select.outputs.design_id }}-TC.pdf
+            content/products/files/Drielo_${{ steps.select.outputs.design_id }}-LH.pdf
+          retention-days: 30
+
+      - name: Record failure and allow queue to continue
+        if: failure() && steps.select.outputs.design_id != ''
+        shell: bash
+        run: |
+          set -euo pipefail
+          DESIGN="${{ steps.select.outputs.design_id }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git reset --hard origin/main
+          python3 content/pattern-system/baby_nursery/queue_state.py fail "$DESIGN"             --run-url "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"             --error "Automatic publish run failed; see GitHub Actions logs."
+          git add content/pattern-system/baby_nursery/publish_queue.json
+          git commit -m "Record Baby Nursery ${DESIGN} auto-publish failure [skip ci]"
+          git push origin HEAD:main
+
+      - name: Dispatch next queued design
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "$(python3 content/pattern-system/baby_nursery/queue_state.py has-work)" = "yes" ]; then
+            echo "Pending Baby & Nursery designs remain; dispatching the next run."
+            gh api --method POST               "repos/${GITHUB_REPOSITORY}/actions/workflows/baby-nursery-auto-publish.yml/dispatches"               -f ref=main
+          else
+            echo "No pending Baby & Nursery designs remain."
+            python3 content/pattern-system/baby_nursery/queue_state.py summary
+          fi
