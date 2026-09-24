@@ -16,39 +16,39 @@
   ],
   "palette": [
     {
-      "dmc": "3865",
-      "name": "Winter White",
-      "hex": "#F5ECDF"
+      "dmc": "B5200",
+      "name": "Snow White",
+      "hex": "#FFFFFF"
     },
     {
-      "dmc": "842",
-      "name": "Very Light Beige Brown",
-      "hex": "#D8C0A6"
+      "dmc": "948",
+      "name": "Very Light Peach",
+      "hex": "#FEE7DA"
     },
     {
       "dmc": "437",
       "name": "Light Tan",
-      "hex": "#C19671"
+      "hex": "#E4BB8E"
     },
     {
       "dmc": "434",
       "name": "Light Brown",
-      "hex": "#986C4B"
+      "hex": "#985B3B"
     },
     {
       "dmc": "801",
       "name": "Dark Coffee Brown",
-      "hex": "#664B37"
+      "hex": "#653919"
     },
     {
-      "dmc": "3799",
-      "name": "Very Dark Pewter Gray",
-      "hex": "#404040"
+      "dmc": "310",
+      "name": "Black",
+      "hex": "#000000"
     },
     {
       "dmc": "415",
       "name": "Pearl Gray",
-      "hex": "#AEB3B9"
+      "hex": "#D3D3D6"
     },
     {
       "dmc": "3752",
@@ -61,34 +61,34 @@
       "hex": "#86B1D0"
     },
     {
-      "dmc": "3760",
-      "name": "Medium Wedgewood",
-      "hex": "#558EBD"
+      "dmc": "996",
+      "name": "Medium Electric Blue",
+      "hex": "#30C2EC"
     },
     {
       "dmc": "3813",
       "name": "Light Blue Green",
-      "hex": "#A4BFB0"
+      "hex": "#A4D4C5"
     },
     {
-      "dmc": "522",
-      "name": "Fern Green",
-      "hex": "#829879"
+      "dmc": "907",
+      "name": "Light Parrot Green",
+      "hex": "#C7E666"
     },
     {
-      "dmc": "3051",
-      "name": "Dark Green Gray",
+      "dmc": "905",
+      "name": "Dark Parrot Green",
       "hex": "#627650"
     },
     {
-      "dmc": "744",
-      "name": "Pale Yellow",
-      "hex": "#F5CB79"
+      "dmc": "444",
+      "name": "Dark Lemon",
+      "hex": "#FFD600"
     },
     {
-      "dmc": "3824",
-      "name": "Light Apricot",
-      "hex": "#F3B98E"
+      "dmc": "970",
+      "name": "Light Pumpkin",
+      "hex": "#F78B2D"
     },
     {
       "dmc": "761",
@@ -101,9 +101,9 @@
       "hex": "#FBB4B9"
     },
     {
-      "dmc": "3733",
-      "name": "DMC 3733",
-      "hex": "#D16F81"
+      "dmc": "604",
+      "name": "Light Cranberry",
+      "hex": "#E996B8"
     },
     {
       "dmc": "211",
@@ -111,29 +111,29 @@
       "hex": "#C6A2C6"
     },
     {
-      "dmc": "3042",
-      "name": "Light Antique Violet",
-      "hex": "#BBA7C7"
+      "dmc": "550",
+      "name": "Very Dark Violet",
+      "hex": "#5C295F"
     },
     {
-      "dmc": "598",
-      "name": "Light Turquoise",
-      "hex": "#8EB8BC"
+      "dmc": "3846",
+      "name": "Light Bright Turquoise",
+      "hex": "#06BFC1"
     },
     {
-      "dmc": "3013",
-      "name": "Light Khaki Green",
-      "hex": "#BDBF9F"
+      "dmc": "702",
+      "name": "Kelly Green",
+      "hex": "#47A72F"
     },
     {
       "dmc": "453",
-      "name": "DMC 453",
+      "name": "Shell Gray",
       "hex": "#D3C1BE"
     },
     {
-      "dmc": "3727",
-      "name": "Light Antique Mauve",
-      "hex": "#D1B5B3"
+      "dmc": "321",
+      "name": "Red",
+      "hex": "#C72B3B"
     }
   ],
   "mockup_spec": {
@@ -231,18 +231,16 @@
       "color": "#FBFAF6",
       "dot": "#DDD8CF",
       "dot_radius": 0.05
-    }
+    },
+    "vivid_palette": true,
+    "forced_external_outline": false
   },
   "pattern_rules": {
     "external_outline": {
-      "enabled": true,
-      "dmc": "3799",
-      "name": "Very Dark Pewter Gray",
-      "thickness_cells": 1,
-      "neighborhood": 8,
-      "remove_extra_outer_layers": true,
-      "cleanup_depth_cells": 2,
-      "policy": "Every occupied exterior edge must have one continuous outline cell. Extra second-layer outline cells near the exterior are recolored from the nearest interior fill. Internal facial/details remain untouched.",
+      "enabled": false,
+      "policy": "Do not add a forced dark/black exterior outline. Remove the dark outline connected to the transparent exterior from the user-reference motif, while preserving internal dark facial/detail pixels.",
+      "preserve_internal_dark_details": true,
+      "exterior_dark_dmc": "310",
       "applies_to": [
         "CS",
         "C2C",
@@ -259,6 +257,19 @@
       "remove_small_boundary_flecks": true,
       "policy": "Before pattern generation, remove detached or weakly attached white/near-white exterior flecks from the canonical reference matrix. Preserve substantial or enclosed intentional white motif areas. Repeat the isolated-white cleanup after technique downsampling.",
       "applies_to": [
+        "CS",
+        "C2C",
+        "TC",
+        "LH"
+      ]
+    },
+    "external_dark_cleanup": {
+      "enabled": true,
+      "dmc": "310",
+      "neighborhood": 8,
+      "policy": "Remove dark cells connected to the transparent exterior before rendering the master. Preserve isolated internal dark details such as eyes, mouths, lettering and small accents.",
+      "applies_to": [
+        "master",
         "CS",
         "C2C",
         "TC",
