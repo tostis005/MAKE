@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[3]
 SYSTEM = ROOT / "content" / "pattern-system"
 COL_DIR = SYSTEM / "collections" / "florals"
 DESIGNS_PATH = COL_DIR / "designs.json"
+COLLECTION_PATH = COL_DIR / "collection.json"
 
 PALE_BLUE = {
     (0xC7, 0xD8, 0xE8),  # DMC 3753
@@ -81,8 +82,34 @@ def repair_nearest(image: Image.Image, bad_colours: set[tuple[int, int, int]]):
     return Image.fromarray(out, "RGBA"), count
 
 
+def _rgb(hexv: str):
+    h = hexv.lstrip("#")
+    return tuple(int(h[i:i+2], 16) for i in (0, 2, 4))
+
+
+def _snap_out_of_palette(image: Image.Image, palette_rgb: list[tuple[int, int, int]]):
+    arr = np.array(image.convert("RGBA"))
+    opaque = arr[:, :, 3] >= 128
+    allowed = set(palette_rgb)
+    repaired = 0
+    for y, x in zip(*np.where(opaque)):
+        col = tuple(int(v) for v in arr[y, x, :3])
+        if col in allowed:
+            continue
+        r, g, b = col
+        best = min(
+            palette_rgb,
+            key=lambda p: 2*(r-p[0])**2 + 4*(g-p[1])**2 + 3*(b-p[2])**2
+        )
+        arr[y, x, :3] = best
+        repaired += 1
+    return Image.fromarray(arr, "RGBA"), repaired
+
+
 def main():
     designs = json.loads(DESIGNS_PATH.read_text(encoding="utf-8"))["designs"]
+    collection = json.loads(COLLECTION_PATH.read_text(encoding="utf-8"))
+    palette_rgb = [_rgb(p["hex"]) for p in collection["palette"]]
     report = []
 
     for design in designs:
@@ -106,6 +133,7 @@ def main():
             policy = "preserve"
 
         repaired, count = repair_nearest(image, bad) if bad else (image, 0)
+        repaired, snapped = _snap_out_of_palette(repaired, palette_rgb)
         repaired.save(source, "PNG", optimize=True)
 
         colours = {
@@ -122,10 +150,11 @@ def main():
             "base_design_id": bid,
             "policy": policy,
             "pixels_repaired": count,
+            "out_of_palette_pixels_snapped": snapped,
             "source_asset": design["source_asset"],
         })
-        if count:
-            print(bid, policy, "pixels_repaired", count)
+        if count or snapped:
+            print(bid, policy, "pixels_repaired", count, "palette_snapped", snapped)
 
     out = SYSTEM / "florals" / "artwork_quality_review.json"
     out.write_text(
