@@ -550,16 +550,27 @@ def render_design(base_id: str, design: dict, collection: dict):
         result = bg.render_one((code, suffix, data))
         pdf_target = STORE_FILES / f"Drielo_{code}.pdf"
         image_target = STORE_ASSETS / f"{code}-product.webp"
+        gallery_targets = [STORE_ASSETS / f"{code}-gallery-{i}.webp" for i in (2, 3, 4)]
         shutil.copy2(result["pdf"], pdf_target)
         shutil.copy2(result["image"], image_target)
+
+        gallery_sources = result.get("gallery", [])
+        if len(gallery_sources) != 3:
+            raise RuntimeError(f"{code}: renderer did not return the three Pop Art-style gallery previews")
+        for src, dst in zip(gallery_sources, gallery_targets):
+            shutil.copy2(src, dst)
 
         if pdf_target.stat().st_size < 100000 or pdf_target.read_bytes()[:4] != b"%PDF":
             raise RuntimeError(f"{code}: invalid generated PDF")
         if image_target.stat().st_size < 50000:
             raise RuntimeError(f"{code}: invalid generated product image")
+        for gallery in gallery_targets:
+            if not gallery.is_file() or gallery.stat().st_size < 30000:
+                raise RuntimeError(f"{code}: invalid gallery preview {gallery.name}")
         results[suffix] = {
             "pdf_bytes": pdf_target.stat().st_size,
             "image_bytes": image_target.stat().st_size,
+            "gallery_bytes": [g.stat().st_size for g in gallery_targets],
             "stitches": pattern["total_stitches"],
             "colors": len(pattern["threads"]),
         }
@@ -653,7 +664,12 @@ def replace_text_fields(row: dict, base_id: str, design: dict, suffix: str, patt
             "description": desc_en,
             "description_en": desc_en,
             "description_es": desc_es,
-            "gallery": [],
+            "gallery": [
+                f"assets/{code}-gallery-2.webp",
+                f"assets/{code}-gallery-3.webp",
+                f"assets/{code}-gallery-4.webp",
+            ],
+            "gallery_preview_pages": {"facts": 3, "colour_a1": 8, "symbol_a1": 12},
             "download": f"files/Drielo_{code}.pdf",
             "featured_image": f"assets/{code}-product.webp",
             "gallery_revision": revision,
@@ -722,9 +738,6 @@ def main():
     base_id = args.design_id.strip().upper()
     if not base_id.startswith("I") or len(base_id) != 5:
         raise SystemExit("Expected base design id like I0002")
-    if base_id == "I0001":
-        raise SystemExit("I0001 is the approved reference and is not part of the automatic queue")
-
     design = design_record(base_id)
     collection = read_json(COLLECTION_PATH)
 
