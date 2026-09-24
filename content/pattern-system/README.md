@@ -13,7 +13,10 @@ The installed master template is derived from the approved `DRIELO_Pattern_Templ
 
 ## Palette rule
 
-The collection palette is authoritative. Pattern generation must choose only those DMC entries. The renderer performs a second check immediately before PDF export. Unknown/out-of-collection thread colours are automatically remapped to the nearest permitted collection colour when `--fix-palette` is enabled (the GitHub workflow enables it).
+Collections support two palette modes:
+
+- `shared` (default): the collection palette is authoritative. Pattern generation must choose only those DMC entries. The renderer performs a second check before PDF export and can remap unknown colours to the nearest permitted collection colour when `--fix-palette` is enabled.
+- `per-design`: the collection has no shared colour restriction. Each pattern owns its DMC/HEX thread list and the renderer validates those colours without remapping them to a collection palette. The storefront must not show a shared-palette block for these collections.
 
 ## First page / collection mockup
 
@@ -31,12 +34,12 @@ Chromium/Chrome is required. The resulting PDF is written to `output/<CODE>/Drie
 
 ## Product-code convention
 
-Every sellable pattern code is technique-qualified and unique. The legacy/Pop Art families use `P####`; Baby & Nursery uses `I####`:
+Every sellable pattern code is technique-qualified and unique. The legacy/Pop Art families use `P####`; Baby & Nursery uses `I####`; Iconic Destinations uses `D####`:
 
-- Cross Stitch: `P0001-CS` or `I0001-CS`
-- C2C Crochet: `P0001-C2C` or `I0001-C2C`
-- Tapestry Crochet: `P0001-TC` or `I0001-TC`
-- Latch Hook / Rug: `P0001-LH` or `I0001-LH`
+- Cross Stitch: `P0001-CS`, `I0001-CS` or `D0001-CS`
+- C2C Crochet: `P0001-C2C`, `I0001-C2C` or `D0001-C2C`
+- Tapestry Crochet: `P0001-TC`, `I0001-TC` or `D0001-TC`
+- Latch Hook / Rug: `P0001-LH`, `I0001-LH` or `D0001-LH`
 
 The shared artwork/design family keeps the base ID separately (for example `P0001`). Never publish a technique product using only the base ID.
 
