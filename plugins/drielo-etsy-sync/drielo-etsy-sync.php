@@ -676,6 +676,9 @@ final class Drielo_Etsy_Sync {
                     true
                 );
                 $scheduled = ! empty( $action_id );
+                if ( ! $scheduled && function_exists( 'as_has_scheduled_action' ) ) {
+                    $scheduled = (bool) as_has_scheduled_action( 'drielo_etsy_sync_product_async', $args, 'drielo-etsy' );
+                }
             } else {
                 $scheduled = wp_schedule_single_event(
                     time() + max( 1, $index * 5 ),
@@ -1468,6 +1471,29 @@ final class Drielo_Etsy_Sync {
             }
 
             $rank++;
+        }
+
+        $expected_count = min( 20, count( $ids ) );
+        $remote_images = $this->etsy_request(
+            'GET',
+            '/v3/application/listings/' . rawurlencode( $listing_id ) . '/images'
+        );
+        if ( is_wp_error( $remote_images ) ) {
+            return $remote_images;
+        }
+
+        foreach ( (array) ( $remote_images['results'] ?? [] ) as $remote_image ) {
+            $remote_rank = absint( $remote_image['rank'] ?? 0 );
+            $remote_id   = absint( $remote_image['listing_image_id'] ?? 0 );
+            if ( $remote_id && $remote_rank > $expected_count ) {
+                $deleted = $this->etsy_request(
+                    'DELETE',
+                    '/v3/application/shops/' . rawurlencode( $settings['shop_id'] ) . '/listings/' . rawurlencode( $listing_id ) . '/images/' . rawurlencode( $remote_id )
+                );
+                if ( is_wp_error( $deleted ) ) {
+                    return $deleted;
+                }
+            }
         }
 
         return true;
