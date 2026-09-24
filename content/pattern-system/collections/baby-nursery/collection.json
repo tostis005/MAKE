@@ -283,5 +283,17 @@
       "apply_forced_outline": false,
       "exact_palette": true
     }
+  },
+  "design_reference": {
+    "asset": "collections/baby-nursery/assets/design-reference-master.avif",
+    "status": "approved",
+    "purpose": "Canonical visual reference for Baby & Nursery redesign and pattern regeneration.",
+    "source_dimensions_px": {
+      "width": 1536,
+      "height": 1024
+    },
+    "background": "white",
+    "target_cross_stitch_actual_stitches": "4500-8000 depending on motif complexity",
+    "notes": "Use the approved visual language and fine stitch density; do not force every motif to the same stitch count."
   }
 }
