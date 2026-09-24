@@ -1674,6 +1674,7 @@ a.drielo-store-technique:hover{
 .info-hero h1{max-width:14ch;margin:0;font:500 clamp(44px,6vw,72px)/.95 Georgia,"Times New Roman",serif;letter-spacing:-.055em;text-wrap:balance}
 .info-hero p{max-width:66ch;margin:18px 0 0;color:var(--mk-muted);font-size:15px}
 .info-shell{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:28px;margin-top:28px;align-items:start}
+.info-shell--contact{grid-template-columns:minmax(0,820px);justify-content:center}
 .info-card{border:1px solid rgba(70,59,44,.11);border-radius:var(--mk-radius);background:var(--mk-paper);padding:clamp(24px,4vw,42px)}
 .info-card--aside{position:sticky;top:122px}
 .info-card h2,.legal-copy h2{margin:30px 0 10px;font:500 28px/1.08 Georgia,"Times New Roman",serif;letter-spacing:-.03em}

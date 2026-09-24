@@ -36,7 +36,7 @@ $intro = array(
     </header>
 
     <?php if ( 'contact' === $key ) : ?>
-      <div class="info-shell">
+      <div class="info-shell info-shell--contact">
         <section class="info-card">
           <?php if ( $sent ) : ?>
             <p class="contact-alert contact-alert--success"><?php echo esc_html( $is_en ? 'Message received. Thank you — we will reply by email as soon as possible.' : 'Mensaje recibido. Gracias — te responderemos por correo lo antes posible.' ); ?></p>
@@ -80,23 +80,6 @@ $intro = array(
             <button class="button button-primary contact-submit" type="submit"><?php echo esc_html( $is_en ? 'Send message' : 'Enviar mensaje' ); ?></button>
           </form>
         </section>
-
-        <aside class="info-card info-card--aside">
-          <div class="contact-meta">
-            <div class="contact-meta-item">
-              <small><?php echo esc_html( $is_en ? 'Email' : 'Correo' ); ?></small>
-              <strong><a href="mailto:<?php echo esc_attr( $email ); ?>"><?php echo esc_html( antispambot( $email ) ); ?></a></strong>
-            </div>
-            <div class="contact-meta-item">
-              <small><?php echo esc_html( $is_en ? 'Best for' : 'Para qué escribirnos' ); ?></small>
-              <strong><?php echo esc_html( $is_en ? 'Orders, downloads and patterns' : 'Pedidos, descargas y patrones' ); ?></strong>
-            </div>
-            <div class="contact-meta-item">
-              <small><?php echo esc_html( $is_en ? 'Anti-spam' : 'Antispam' ); ?></small>
-              <strong><?php echo esc_html( $is_en ? 'Protected form' : 'Formulario protegido' ); ?></strong>
-            </div>
-          </div>
-        </aside>
       </div>
 
     <?php else : ?>
