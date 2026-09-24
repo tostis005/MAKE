@@ -11,12 +11,13 @@
   "pattern_file": "patterns/P0009-C2C/pattern.json",
   "template": "c2c-crochet.html",
   "website": "www.drielo.com",
-  "status": "ready",
+  "status": "active",
   "render_ready": true,
   "renderer": "multitech",
   "source_artwork": "collections/pop-art-25/sources/P0009.png",
-  "page_1_asset": "multitech/assets/cover-crochet.webp",
+  "page_1_asset": "../../multitech/assets/cover-crochet.webp",
   "palette_mode": "strict",
   "palette_size": 25,
-  "transparent_source": true
+  "transparent_source": true,
+  "reference_artwork": "collections/pop-art-25/reference-masters/P0009-girl-with-a-pearl-earring-reference.png"
 }
