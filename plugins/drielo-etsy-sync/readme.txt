@@ -3,7 +3,7 @@ Contributors: Drielo
 Requires at least: 6.4
 Requires PHP: 8.0
 Requires Plugins: woocommerce
-Stable tag: 1.4.7
+Stable tag: 1.4.8
 
 Panel central para seleccionar y sincronizar productos WooCommerce con Etsy mediante Etsy Open API v3.
 
@@ -37,6 +37,14 @@ Panel central para seleccionar y sincronizar productos WooCommerce con Etsy medi
 Etsy no permite devolver un listing ya publicado al estado draft. Si un listing activo se cambia al objetivo Borrador, el plugin lo deja inactive.
 
 == Changelog ==
+
+= 1.4.8 =
+* Clasifica explícitamente las cuatro técnicas de Drielo en Etsy.
+* Cross Stitch usa la categoría Etsy Cross Stitch y la sección Cross Stitch.
+* C2C Crochet usa Patterns & Blueprints + Craft type Crochet y la sección C2C Crochet.
+* Tapestry Crochet usa Patterns & Blueprints + Craft type Crochet y la sección Tapestry Crochet.
+* Latch Hook usa Patterns & Blueprints + Craft type Rug making y la sección Latch Hook.
+* La sincronización segura corrige taxonomía, Craft type y sección sin sobrescribir imágenes, PDFs ni descripciones.
 
 = 1.4.7 =
 * Mantiene C2C/Tapestry dentro de la taxonomía de patrones de crochet, evitando la categoría genérica Crochet que no admite Craft type.
