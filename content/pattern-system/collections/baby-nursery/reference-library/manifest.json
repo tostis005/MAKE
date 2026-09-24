@@ -1,6 +1,6 @@
 {
   "collection": "baby-nursery",
-  "reference_policy": "User-approved uploaded reference sheets are canonical. Every source master must be reconstructed from this archive; do not invent, redraw, substitute, or approximate motifs.",
+  "reference_policy": "User-approved uploaded reference sheets are canonical. Use per-design references first, then the verified direct-reference bundle; never invent, redraw, substitute, or approximate motifs.",
   "canonical_archive": null,
   "archive_encoding": "concatenated base64(zlib(json))",
   "decoded_sha256": "533a4d7ed0892fd142eed3406b4740a539f70cbfffeaf932813466800a97ad19",
@@ -245,5 +245,13 @@
     "CS/C2C/TC/LH JSON",
     "PDFs and product images",
     "WooCommerce"
-  ]
+  ],
+  "direct_reference_bundle_parts": [
+    "direct-reference-bundle-v2.part00",
+    "direct-reference-bundle-v2.part01",
+    "direct-reference-bundle-v2.part02",
+    "direct-reference-bundle-v2.part03"
+  ],
+  "direct_reference_bundle_decoded_sha256": "b211ce6d96b8afb211c3ee9e0be7b1488b0ca3f5ac8a48182fd9a63560c062a2",
+  "direct_reference_bundle_designs": 28
 }
