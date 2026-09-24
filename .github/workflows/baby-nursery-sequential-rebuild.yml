@@ -8,6 +8,11 @@ on:
     branches: [feature/baby-nursery-sequential-rebuild]
     paths:
       - '.github/workflows/baby-nursery-sequential-rebuild.yml'
+      - 'content/pattern-system/baby_nursery/generate_reference_master.py'
+      - 'content/pattern-system/baby_nursery/publish_queue.json'
+      - 'content/pattern-system/collections/baby-nursery/designs.json'
+      - 'content/pattern-system/collections/baby-nursery/collection.json'
+      - 'content/pattern-system/collections/baby-nursery/reference-library/**'
   workflow_dispatch:
 
 permissions:
