@@ -1,0 +1,172 @@
+name: Florals Clean Reset and Launch
+
+on:
+  push:
+    branches:
+      - feature/florals-clean-reimport
+    paths:
+      - '.github/workflows/florals-clean-reset-and-launch.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: drielo-florals-clean-reset
+  cancel-in-progress: true
+
+jobs:
+  reset:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout clean Florals branch
+        uses: actions/checkout@v4
+        with:
+          ref: feature/florals-clean-reimport
+          fetch-depth: 1
+
+      - name: Verify corrected source set and reset queue
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+
+          root=Path('content/pattern-system')
+          q=json.loads((root/'florals/publish_queue.json').read_text(encoding='utf-8'))
+          if q.get('auto_continue') is not True:
+              raise SystemExit('Clean reimport queue must have auto_continue=true')
+          if len(q.get('items',[])) != 30:
+              raise SystemExit('Expected 30 Florals queue items')
+          if any(x.get('status')!='pending' or x.get('attempts')!=0 for x in q['items']):
+              raise SystemExit('Florals queue is not fully reset')
+
+          designs=json.loads((root/'collections/florals/designs.json').read_text(encoding='utf-8'))['designs']
+          if len(designs) != 30:
+              raise SystemExit('Expected 30 Florals designs')
+          for d in designs:
+              p=root/d['source_asset']
+              im=Image.open(p).convert('RGBA')
+              if im.size!=(100,120) or im.getchannel('A').getbbox() is None:
+                  raise SystemExit(f"{d['base_design_id']}: invalid canonical source")
+          print('CLEAN_REIMPORT_PREFLIGHT_OK')
+          PY
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$VPS_HOST"
+          test -n "$VPS_SSH_KEY"
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_florals_reset_key
+          chmod 600 ~/.ssh/drielo_florals_reset_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Permanently remove all Florals products media and protected PDFs
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_florals_reset_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M -d max_execution_time=0 -r '
+            require "/var/www/html/wp-load.php";
+            require_once ABSPATH."wp-admin/includes/post.php";
+
+            global $wpdb;
+
+            $ids=array_map("intval",$wpdb->get_col(
+              "SELECT DISTINCT p.ID
+               FROM {$wpdb->posts} p
+               LEFT JOIN {$wpdb->postmeta} pm ON pm.post_id=p.ID AND pm.meta_key=\"_sku\"
+               LEFT JOIN {$wpdb->term_relationships} tr ON tr.object_id=p.ID
+               LEFT JOIN {$wpdb->term_taxonomy} tt ON tt.term_taxonomy_id=tr.term_taxonomy_id AND tt.taxonomy=\"product_collection\"
+               LEFT JOIN {$wpdb->terms} t ON t.term_id=tt.term_id
+               WHERE p.post_type=\"product\"
+                 AND ((pm.meta_value LIKE \"DRIELO-F%\") OR t.slug=\"florals\")"
+            ));
+
+            $media=array();
+            foreach($ids as $id){
+              $p=wc_get_product($id);
+              if($p){
+                if($p->get_image_id()) $media[]=(int)$p->get_image_id();
+                foreach($p->get_gallery_image_ids() as $mid) $media[]=(int)$mid;
+                echo "DELETE PRODUCT ".$p->get_sku()." id=".$id.PHP_EOL;
+              }
+              wp_delete_post($id,true);
+            }
+
+            $managed_media=array_map("intval",$wpdb->get_col(
+              "SELECT DISTINCT post_id FROM {$wpdb->postmeta}
+               WHERE meta_key=\"_drielo_source_asset\"
+                 AND meta_value LIKE \"assets/F%\""
+            ));
+            $media=array_values(array_unique(array_merge($media,$managed_media)));
+
+            foreach($media as $mid){
+              if("attachment"===get_post_type($mid)){
+                echo "DELETE MEDIA id=".$mid." file=".get_attached_file($mid).PHP_EOL;
+                wp_delete_attachment($mid,true);
+              }
+            }
+
+            $uploads=wp_upload_dir();
+            $dir=trailingslashit($uploads["basedir"])."woocommerce_uploads/drielo";
+            foreach((array)glob($dir."/Drielo_F*.pdf") as $file){
+              echo "DELETE PDF ".$file.PHP_EOL;
+              @unlink($file);
+            }
+
+            wc_delete_product_transients();
+
+            $remaining=(int)$wpdb->get_var(
+              "SELECT COUNT(DISTINCT p.ID)
+               FROM {$wpdb->posts} p
+               LEFT JOIN {$wpdb->postmeta} pm ON pm.post_id=p.ID AND pm.meta_key=\"_sku\"
+               LEFT JOIN {$wpdb->term_relationships} tr ON tr.object_id=p.ID
+               LEFT JOIN {$wpdb->term_taxonomy} tt ON tt.term_taxonomy_id=tr.term_taxonomy_id AND tt.taxonomy=\"product_collection\"
+               LEFT JOIN {$wpdb->terms} t ON t.term_id=tt.term_id
+               WHERE p.post_type=\"product\"
+                 AND ((pm.meta_value LIKE \"DRIELO-F%\") OR t.slug=\"florals\")"
+            );
+            $remaining_media=(int)$wpdb->get_var(
+              "SELECT COUNT(*) FROM {$wpdb->postmeta}
+               WHERE meta_key=\"_drielo_source_asset\"
+                 AND meta_value LIKE \"assets/F%\""
+            );
+            echo "FLORALS_PRODUCTS_REMAINING=".$remaining.PHP_EOL;
+            echo "FLORALS_MEDIA_REMAINING=".$remaining_media.PHP_EOL;
+            if($remaining!==0 || $remaining_media!==0){exit(4);}
+          '
+          REMOTE
+
+      - name: Launch clean sequential Florals reimport
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api --method POST             "repos/${GITHUB_REPOSITORY}/actions/workflows/florals-clean-reimport-publish.yml/dispatches"             -f ref=feature/florals-clean-reimport
+          echo "CLEAN_FLORALS_REIMPORT_DISPATCHED"
