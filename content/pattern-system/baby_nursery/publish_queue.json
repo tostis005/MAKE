@@ -1,7 +1,7 @@
 {
   "collection": "baby-nursery",
-  "mode": "approved-preview-v2-ready-to-start",
-  "auto_continue": false,
+  "mode": "publish-approved-preview-v2-one-design-per-run",
+  "auto_continue": true,
   "max_attempts_per_design": 2,
   "notes": [
     "All previous Baby Nursery WooCommerce products were deleted before this rebuild.",
