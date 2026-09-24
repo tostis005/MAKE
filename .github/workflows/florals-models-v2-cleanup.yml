@@ -1,0 +1,182 @@
+name: Florals Models V2 Full Cleanup
+
+on:
+  push:
+    branches:
+      - feature/florals-models-v2-clean
+    paths:
+      - '.github/workflows/florals-models-v2-cleanup.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-florals-models-v2-cleanup
+  cancel-in-progress: true
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout models-v2 branch
+        uses: actions/checkout@v4
+        with:
+          ref: feature/florals-models-v2-clean
+          fetch-depth: 20
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$VPS_HOST"
+          test -n "$VPS_SSH_KEY"
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_florals_v2_cleanup
+          chmod 600 ~/.ssh/drielo_florals_v2_cleanup
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Permanently delete all Florals products media and protected PDFs
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_florals_v2_cleanup "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M -d max_execution_time=0 -r '
+            require "/var/www/html/wp-load.php";
+            require_once ABSPATH."wp-admin/includes/post.php";
+            global $wpdb;
+
+            $ids=array_map("intval",$wpdb->get_col(
+              "SELECT DISTINCT p.ID
+               FROM {$wpdb->posts} p
+               LEFT JOIN {$wpdb->postmeta} pm ON pm.post_id=p.ID AND pm.meta_key=\"_sku\"
+               LEFT JOIN {$wpdb->term_relationships} tr ON tr.object_id=p.ID
+               LEFT JOIN {$wpdb->term_taxonomy} tt ON tt.term_taxonomy_id=tr.term_taxonomy_id AND tt.taxonomy=\"product_collection\"
+               LEFT JOIN {$wpdb->terms} t ON t.term_id=tt.term_id
+               WHERE p.post_type=\"product\"
+                 AND ((pm.meta_value LIKE \"DRIELO-F%\") OR t.slug=\"florals\")"
+            ));
+
+            $media=array();
+            foreach($ids as $id){
+              $p=wc_get_product($id);
+              if($p){
+                if($p->get_image_id()) $media[]=(int)$p->get_image_id();
+                foreach($p->get_gallery_image_ids() as $mid) $media[]=(int)$mid;
+                echo "DELETE PRODUCT ".$p->get_sku()." id=".$id.PHP_EOL;
+              }
+              wp_delete_post($id,true);
+            }
+
+            $managed_media=array_map("intval",$wpdb->get_col(
+              "SELECT DISTINCT post_id FROM {$wpdb->postmeta}
+               WHERE meta_key=\"_drielo_source_asset\"
+                 AND meta_value LIKE \"assets/F%\""
+            ));
+            $media=array_values(array_unique(array_merge($media,$managed_media)));
+            foreach($media as $mid){
+              if("attachment"===get_post_type($mid)){
+                echo "DELETE MEDIA id=".$mid.PHP_EOL;
+                wp_delete_attachment($mid,true);
+              }
+            }
+
+            $uploads=wp_upload_dir();
+            $dir=trailingslashit($uploads["basedir"])."woocommerce_uploads/drielo";
+            foreach((array)glob($dir."/Drielo_F*.pdf") as $file){
+              echo "DELETE PDF ".$file.PHP_EOL;
+              @unlink($file);
+            }
+
+            wc_delete_product_transients();
+
+            $remaining=(int)$wpdb->get_var(
+              "SELECT COUNT(DISTINCT p.ID)
+               FROM {$wpdb->posts} p
+               LEFT JOIN {$wpdb->postmeta} pm ON pm.post_id=p.ID AND pm.meta_key=\"_sku\"
+               LEFT JOIN {$wpdb->term_relationships} tr ON tr.object_id=p.ID
+               LEFT JOIN {$wpdb->term_taxonomy} tt ON tt.term_taxonomy_id=tr.term_taxonomy_id AND tt.taxonomy=\"product_collection\"
+               LEFT JOIN {$wpdb->terms} t ON t.term_id=tt.term_id
+               WHERE p.post_type=\"product\"
+                 AND ((pm.meta_value LIKE \"DRIELO-F%\") OR t.slug=\"florals\")"
+            );
+            $remaining_media=(int)$wpdb->get_var(
+              "SELECT COUNT(*) FROM {$wpdb->postmeta}
+               WHERE meta_key=\"_drielo_source_asset\"
+                 AND meta_value LIKE \"assets/F%\""
+            );
+            echo "FLORALS_PRODUCTS_REMAINING=".$remaining.PHP_EOL;
+            echo "FLORALS_MEDIA_REMAINING=".$remaining_media.PHP_EOL;
+            if($remaining!==0 || $remaining_media!==0){exit(4);}
+          '
+          REMOTE
+
+      - name: Remove old generated Florals files and reset local state
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf content/pattern-system/patterns/F????-CS
+          rm -rf content/pattern-system/patterns/F????-C2C
+          rm -rf content/pattern-system/patterns/F????-TC
+          rm -rf content/pattern-system/patterns/F????-LH
+          rm -rf content/pattern-system/products/F????-CS
+          rm -rf content/pattern-system/products/F????-C2C
+          rm -rf content/pattern-system/products/F????-TC
+          rm -rf content/pattern-system/products/F????-LH
+          rm -f content/products/assets/F????-*.webp
+          rm -f content/products/files/Drielo_F????-*.pdf
+          rm -f content/pattern-system/collections/florals/source-designs/F????-*.png
+          rm -f content/pattern-system/collections/florals/reference-masters/F????-*.png
+
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          catalog=Path('content/products/catalog.json')
+          d=json.loads(catalog.read_text(encoding='utf-8'))
+          d['products']=[p for p in d.get('products',[]) if p.get('collection')!='florals']
+          d['retired_products']=[x for x in d.get('retired_products',[]) if not str(x).startswith('F')]
+          catalog.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+          qpath=Path('content/pattern-system/florals/publish_queue.json')
+          q=json.loads(qpath.read_text(encoding='utf-8'))
+          q['auto_continue']=False
+          for item in q['items']:
+              item['status']='pending'
+              item['attempts']=0
+              item['last_run']=None
+              item['last_error']=None
+              item.pop('published_at',None)
+              item.pop('failed_at',None)
+          qpath.write_text(json.dumps(q,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+
+      - name: Commit clean Florals state
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Remove all old Florals products and generated residues [skip ci]"
+            git push origin HEAD:feature/florals-models-v2-clean
+          fi
