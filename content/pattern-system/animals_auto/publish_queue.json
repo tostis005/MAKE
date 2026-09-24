@@ -1,7 +1,7 @@
 {
   "collection": "animals",
   "branch": "feature/animals-auto-publish",
-  "auto_continue": true,
+  "auto_continue": false,
   "max_attempts_per_design": 2,
   "recovery_attempts_per_design": 4,
   "created_from": "canonical Animals A0001-A0030 references",
@@ -308,5 +308,6 @@
       "last_run": null,
       "last_error": null
     }
-  ]
+  ],
+  "paused_reason": "Flow maintenance: Node 24 actions upgrade and clean restart requested 2026-09-24."
 }
