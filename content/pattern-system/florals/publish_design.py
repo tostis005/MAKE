@@ -155,6 +155,44 @@ def _normalize_artwork(cell: Image.Image, collection: dict):
 
 
 def prepare_reference_master(base_id: str, design: dict, collection: dict):
+    # Approved high-quality stitch sources are authoritative. Never regenerate them
+    # from the compact reference sheets: that earlier path caused shape/color artifacts.
+    approved_rel = design.get("source_asset")
+    approved_status = str(design.get("artwork_status") or "")
+    if approved_rel and approved_status.startswith("approved-"):
+        approved_path = SYSTEM / approved_rel
+        if not approved_path.is_file():
+            raise RuntimeError(f"{base_id}: approved source missing: {approved_path}")
+        approved = Image.open(approved_path).convert("RGBA")
+        if approved.size == (100, 120):
+            canvas = approved.resize((800, 960), Image.Resampling.NEAREST)
+        elif approved.size == (800, 960):
+            canvas = approved
+        else:
+            raise RuntimeError(
+                f"{base_id}: approved source must be 100x120 or 800x960, got {approved.size}"
+            )
+
+        palette_rgb = {rgb(p["hex"]) for p in collection["palette"]}
+        for px in approved.getdata():
+            r, g, b, a = px
+            if a >= 128 and (r, g, b) not in palette_rgb:
+                raise RuntimeError(f"{base_id}: approved source contains out-of-palette colour {(r,g,b)}")
+
+        bbox = canvas.getchannel("A").getbbox()
+        if not bbox:
+            raise RuntimeError(f"{base_id}: approved source is empty")
+        margins = (bbox[0], bbox[1], canvas.width - bbox[2], canvas.height - bbox[3])
+        if min(margins) < 8:
+            raise RuntimeError(f"{base_id}: approved source too close to edge: {bbox}")
+
+        REFERENCE_DIR.mkdir(parents=True, exist_ok=True)
+        ref_name = f"{base_id}-{design['slug']}-reference.png"
+        ref_path = REFERENCE_DIR / ref_name
+        canvas.save(ref_path, "PNG", optimize=True)
+        reference_rel = f"collections/florals/reference-masters/{ref_name}"
+        return approved_rel, reference_rel, ref_path, bbox
+
     ref = design.get("canonical_reference") or {}
     sheet_rel = ref.get("sheet")
     cell_name = ref.get("cell")
@@ -312,12 +350,7 @@ def build_pattern_jsons(base_id: str, design: dict, collection: dict, source_rel
             "template": cfg["template"],
             "source_artwork": source_rel,
             "reference_artwork": reference_rel,
-            "page_1_asset": {
-                "CS": "multitech/assets/cover-cross-stitch.webp",
-                "C2C": "multitech/assets/cover-c2c-crochet.webp",
-                "TC": "multitech/assets/cover-crochet.webp",
-                "LH": "multitech/assets/cover-rug.webp",
-            }[suffix],
+            "page_1_asset": f"collections/florals/{collection['mockup_spec']['technique_assets'][suffix]}",
             "render_ready": True,
             "status": "active",
         }
