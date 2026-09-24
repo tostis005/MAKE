@@ -1,9 +1,9 @@
 {
   "collection": "baby-nursery",
   "code_prefix": "I",
-  "count": 11,
-  "rebuild_version": "chat-refresh-3-v1",
-  "policy": "Baby & Nursery collection remains the latest approved set; I0001, I0004 and I0006 are refreshed from the newest chat artwork.",
+  "count": 20,
+  "rebuild_version": "latest-chat-20-with-new-premium-9-v1",
+  "policy": "Active Baby & Nursery designs include the existing approved 11 plus exactly nine new premium chat-approved designs I0012-I0020. The rejected reindeer/deer is excluded.",
   "designs": [
     {
       "order": 1,
@@ -202,6 +202,168 @@
       "source_asset": "collections/baby-nursery/source-designs/I0011-smiling-cloud.png",
       "approved_matrix_asset": "collections/baby-nursery/approved-latest-11/I0011.matrix.zlib.b64",
       "approved_matrix_sha256": "48e4f657f64c898a4ef4bf43bea59fa95e80ffadc6d684b94a30e875de479d10"
+    },
+    {
+      "order": 12,
+      "base_design_id": "I0012",
+      "title_en": "Koala with Heart",
+      "title_es": "Koala con corazón",
+      "slug": "koala-heart",
+      "variants": [
+        "I0012-CS",
+        "I0012-C2C",
+        "I0012-TC",
+        "I0012-LH"
+      ],
+      "artwork_status": "chat-approved-new-premium",
+      "approved_batch": "new-premium-9-no-reindeer",
+      "source_asset": "collections/baby-nursery/source-designs/I0012-koala-heart.png",
+      "approved_matrix_asset": "collections/baby-nursery/approved-new-9/I0012.matrix.zlib.b64",
+      "approved_matrix_sha256": "a367038273ccaf60c94092e7803520e487bd7810e078a76076ff7b1c8d018968"
+    },
+    {
+      "order": 13,
+      "base_design_id": "I0013",
+      "title_en": "Baby Fox",
+      "title_es": "Zorrito bebé",
+      "slug": "fox-bow",
+      "variants": [
+        "I0013-CS",
+        "I0013-C2C",
+        "I0013-TC",
+        "I0013-LH"
+      ],
+      "artwork_status": "chat-approved-new-premium",
+      "approved_batch": "new-premium-9-no-reindeer",
+      "source_asset": "collections/baby-nursery/source-designs/I0013-fox-bow.png",
+      "approved_matrix_asset": "collections/baby-nursery/approved-new-9/I0013.matrix.zlib.b64",
+      "approved_matrix_sha256": "6824966717a6501e4e12f08dc7ac6e0fc56935761345eee08b7df212863a2e86"
+    },
+    {
+      "order": 14,
+      "base_design_id": "I0014",
+      "title_en": "Panda with Star",
+      "title_es": "Panda con estrella",
+      "slug": "panda-star",
+      "variants": [
+        "I0014-CS",
+        "I0014-C2C",
+        "I0014-TC",
+        "I0014-LH"
+      ],
+      "artwork_status": "chat-approved-new-premium",
+      "approved_batch": "new-premium-9-no-reindeer",
+      "source_asset": "collections/baby-nursery/source-designs/I0014-panda-star.png",
+      "approved_matrix_asset": "collections/baby-nursery/approved-new-9/I0014.matrix.zlib.b64",
+      "approved_matrix_sha256": "26185b07e3a2424ae27629d5d0696f5886584d26c0c8e6bc33dc990381fed7f6"
+    },
+    {
+      "order": 15,
+      "base_design_id": "I0015",
+      "title_en": "Hedgehog with Flower",
+      "title_es": "Erizo con flor",
+      "slug": "hedgehog-flower",
+      "variants": [
+        "I0015-CS",
+        "I0015-C2C",
+        "I0015-TC",
+        "I0015-LH"
+      ],
+      "artwork_status": "chat-approved-new-premium",
+      "approved_batch": "new-premium-9-no-reindeer",
+      "source_asset": "collections/baby-nursery/source-designs/I0015-hedgehog-flower.png",
+      "approved_matrix_asset": "collections/baby-nursery/approved-new-9/I0015.matrix.zlib.b64",
+      "approved_matrix_sha256": "38bced43db375b58d9370c6179203efbf80bb756de44431f2279d8929de29cf9"
+    },
+    {
+      "order": 16,
+      "base_design_id": "I0016",
+      "title_en": "Baby Penguin",
+      "title_es": "Pingüino bebé",
+      "slug": "penguin-scarf",
+      "variants": [
+        "I0016-CS",
+        "I0016-C2C",
+        "I0016-TC",
+        "I0016-LH"
+      ],
+      "artwork_status": "chat-approved-new-premium",
+      "approved_batch": "new-premium-9-no-reindeer",
+      "source_asset": "collections/baby-nursery/source-designs/I0016-penguin-scarf.png",
+      "approved_matrix_asset": "collections/baby-nursery/approved-new-9/I0016.matrix.zlib.b64",
+      "approved_matrix_sha256": "1ab227834df5af6aba4f80adcb992520c310406e7dd25b03d6023b6cfe8a7763"
+    },
+    {
+      "order": 17,
+      "base_design_id": "I0017",
+      "title_en": "Tabby Kitten",
+      "title_es": "Gatito atigrado",
+      "slug": "tabby-kitten-bow",
+      "variants": [
+        "I0017-CS",
+        "I0017-C2C",
+        "I0017-TC",
+        "I0017-LH"
+      ],
+      "artwork_status": "chat-approved-new-premium",
+      "approved_batch": "new-premium-9-no-reindeer",
+      "source_asset": "collections/baby-nursery/source-designs/I0017-tabby-kitten-bow.png",
+      "approved_matrix_asset": "collections/baby-nursery/approved-new-9/I0017.matrix.zlib.b64",
+      "approved_matrix_sha256": "dad725cfec92a27b51e0c112dfdaecfa7fc7f59408de9da34eb8d2065f34f005"
+    },
+    {
+      "order": 18,
+      "base_design_id": "I0018",
+      "title_en": "Cute Puppy",
+      "title_es": "Perrito kawaii",
+      "slug": "puppy-bow",
+      "variants": [
+        "I0018-CS",
+        "I0018-C2C",
+        "I0018-TC",
+        "I0018-LH"
+      ],
+      "artwork_status": "chat-approved-new-premium",
+      "approved_batch": "new-premium-9-no-reindeer",
+      "source_asset": "collections/baby-nursery/source-designs/I0018-puppy-bow.png",
+      "approved_matrix_asset": "collections/baby-nursery/approved-new-9/I0018.matrix.zlib.b64",
+      "approved_matrix_sha256": "5d9983c5d644ce5a7a8b8a0c49e1c5729ffb9a93a4447150fa5b196408ce0c03"
+    },
+    {
+      "order": 19,
+      "base_design_id": "I0019",
+      "title_en": "Cute Mouse",
+      "title_es": "Ratón kawaii",
+      "slug": "mouse-bow",
+      "variants": [
+        "I0019-CS",
+        "I0019-C2C",
+        "I0019-TC",
+        "I0019-LH"
+      ],
+      "artwork_status": "chat-approved-new-premium",
+      "approved_batch": "new-premium-9-no-reindeer",
+      "source_asset": "collections/baby-nursery/source-designs/I0019-mouse-bow.png",
+      "approved_matrix_asset": "collections/baby-nursery/approved-new-9/I0019.matrix.zlib.b64",
+      "approved_matrix_sha256": "48fe7956d1432f724aee78afeb9b118183cd2c8197cfc0c0219cb3504f9517ff"
+    },
+    {
+      "order": 20,
+      "base_design_id": "I0020",
+      "title_en": "Baby Lion",
+      "title_es": "Leoncito bebé",
+      "slug": "lion-bow",
+      "variants": [
+        "I0020-CS",
+        "I0020-C2C",
+        "I0020-TC",
+        "I0020-LH"
+      ],
+      "artwork_status": "chat-approved-new-premium",
+      "approved_batch": "new-premium-9-no-reindeer",
+      "source_asset": "collections/baby-nursery/source-designs/I0020-lion-bow.png",
+      "approved_matrix_asset": "collections/baby-nursery/approved-new-9/I0020.matrix.zlib.b64",
+      "approved_matrix_sha256": "30e186dd4e7841066c7e48e58452b8aa36e7d4a045ff86a1b92ab7492f23bc9d"
     }
   ]
 }
