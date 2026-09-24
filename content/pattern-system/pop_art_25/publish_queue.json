@@ -268,9 +268,10 @@
       "title_es": "Retrato de la princesa Diana",
       "slug": "princess-diana-portrait",
       "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35981657950",
+      "last_error": "Automatic Pop Art publish run failed; see GitHub Actions logs.",
+      "failed_at": "2026-09-24T09:32:45+00:00"
     },
     {
       "order": 22,
