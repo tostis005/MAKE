@@ -41,10 +41,11 @@
       "title_en": "Audrey Hepburn Bubble Gum",
       "title_es": "Audrey Hepburn con chicle",
       "slug": "audrey-hepburn-bubble-gum",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35995370735",
+      "last_error": null,
+      "published_at": "2026-09-24T11:54:46+00:00"
     },
     {
       "order": 3,
