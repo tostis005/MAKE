@@ -10,7 +10,8 @@
     "Fresh Baby & Nursery rebuild. Existing WooCommerce Baby & Nursery products are deleted before I0001 is published.",
     "I0001 is Teddy Bear. Then the ten user-approved kawaii designs are published sequentially.",
     "Each run builds exactly one design, creates all four PDFs/products, publishes those four to WooCommerce, verifies them, commits them to this branch, marks the item published, then dispatches the next design.",
-    "No batch of 10/40 products: the next design starts only after the current design has been uploaded and verified."
+    "No batch of 10/40 products: the next design starts only after the current design has been uploaded and verified.",
+    "2026-09-24: fixed sequential ID -> approved v4 reference mapping validation; failed remapped designs reset to pending and will retry in order."
   ],
   "items": [
     {
@@ -33,12 +34,11 @@
       "title_es": "Unicornio",
       "slug": "unicorn",
       "source_asset": "collections/baby-nursery/source-designs/I0002-unicorn.png",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36030655308",
-      "last_error": "Automatic publish run failed; see GitHub Actions logs.",
-      "published_at": null,
-      "failed_at": "2026-09-24T16:56:17+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null,
+      "published_at": null
     },
     {
       "order": 3,
@@ -60,12 +60,11 @@
       "title_es": "Elefantito",
       "slug": "baby-elephant",
       "source_asset": "collections/baby-nursery/source-designs/I0004-baby-elephant.png",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36032416499",
-      "last_error": "Automatic publish run failed; see GitHub Actions logs.",
-      "published_at": null,
-      "failed_at": "2026-09-24T17:11:46+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null,
+      "published_at": null
     },
     {
       "order": 5,
@@ -74,12 +73,11 @@
       "title_es": "Conejito con corazón",
       "slug": "bunny-heart",
       "source_asset": "collections/baby-nursery/source-designs/I0005-bunny-heart.png",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36034095412",
-      "last_error": "Automatic publish run failed; see GitHub Actions logs.",
-      "published_at": null,
-      "failed_at": "2026-09-24T17:26:01+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null,
+      "published_at": null
     },
     {
       "order": 6,
@@ -88,12 +86,11 @@
       "title_es": "Dinosaurio infantil",
       "slug": "cute-dinosaur",
       "source_asset": "collections/baby-nursery/source-designs/I0006-cute-dinosaur.png",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36034470748",
-      "last_error": "Automatic publish run failed; see GitHub Actions logs.",
-      "published_at": null,
-      "failed_at": "2026-09-24T18:00:02+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null,
+      "published_at": null
     },
     {
       "order": 7,
@@ -102,12 +99,11 @@
       "title_es": "Patito",
       "slug": "rubber-duck",
       "source_asset": "collections/baby-nursery/source-designs/I0007-rubber-duck.png",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36038398282",
-      "last_error": "Automatic publish run failed; see GitHub Actions logs.",
-      "published_at": null,
-      "failed_at": "2026-09-24T18:03:07+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null,
+      "published_at": null
     },
     {
       "order": 8,

@@ -462,16 +462,23 @@ def generate_reference_master(base_id: str):
             f"{base_id}: canonical slug {canonical.get('slug')} != designs.json slug {meta.get('slug')}"
         )
 
-    manifest_row = next((x for x in manifest["designs"] if x["base_design_id"] == base_id), None)
+    mapped_source_id = str(meta.get("reference_source_id") or base_id)
+    mapped_source_slug = str(meta.get("reference_source_slug") or meta["slug"])
+    manifest_row = next((x for x in manifest["designs"] if x["base_design_id"] == mapped_source_id), None)
     if not manifest_row:
-        raise RuntimeError(f"{base_id}: missing from canonical manifest")
+        raise RuntimeError(
+            f"{base_id}: mapped source {mapped_source_id} missing from canonical manifest"
+        )
     if (
-        manifest_row["slug"] != meta["slug"]
+        manifest_row["slug"] != mapped_source_slug
         or int(manifest_row["reference_sheet"]) != int(canonical["sheet"])
         or int(manifest_row["row"]) != int(canonical["row"])
         or int(manifest_row["column"]) != int(canonical["column"])
     ):
-        raise RuntimeError(f"{base_id}: canonical manifest/reference mapping mismatch")
+        raise RuntimeError(
+            f"{base_id}: canonical manifest/reference mapping mismatch "
+            f"for mapped source {mapped_source_id}/{mapped_source_slug}"
+        )
 
     palette = collection["palette"]
     rows = canonical["rows"]
