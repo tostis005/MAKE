@@ -18,11 +18,12 @@
       "title_es": "París — Torre Eiffel",
       "slug": "paris-eiffel-tower",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0001.pixz",
-      "status": "pending",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36066057142",
-      "last_error": "Automatic Iconic Destinations publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T22:13:05+00:00"
+      "status": "published",
+      "attempts": 2,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36066169701",
+      "last_error": null,
+      "failed_at": "2026-09-24T22:13:05+00:00",
+      "published_at": "2026-09-24T22:14:58+00:00"
     },
     {
       "order": 2,
