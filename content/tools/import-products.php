@@ -69,29 +69,20 @@ function drielo_media_from_file( string $path, string $source_key, string $title
             return $attachment_id;
         }
 
-        $attached_file = get_attached_file( $attachment_id );
-        if ( $attached_file ) {
-            wp_mkdir_p( dirname( $attached_file ) );
-            if ( ! copy( $path, $attached_file ) ) {
-                throw new RuntimeException( 'Could not refresh existing product image: ' . $source_key );
-            }
-            $metadata = wp_generate_attachment_metadata( $attachment_id, $attached_file );
-            if ( is_array( $metadata ) ) {
-                wp_update_attachment_metadata( $attachment_id, $metadata );
-            }
-            wp_update_post(
-                array(
-                    'ID'         => $attachment_id,
-                    'post_title' => $title,
-                )
-            );
-            update_post_meta( $attachment_id, '_drielo_source_hash', $source_hash );
-            if ( '' !== $source_revision ) { update_post_meta( $attachment_id, '_drielo_source_revision', $source_revision ); }
-            return $attachment_id;
-        }
+        // Do not overwrite an attachment at the same public URL: browsers/CDNs
+        // may keep serving the previous bytes. Remove the stale attachment and
+        // create a revisioned one so every changed product image gets a new URL.
+        wp_delete_attachment( $attachment_id, true );
     }
 
     $filename = wp_basename( $path );
+    if ( '' !== $source_revision ) {
+        $info = pathinfo( $filename );
+        $stem = sanitize_file_name( (string) ( $info['filename'] ?? $filename ) );
+        $ext  = isset( $info['extension'] ) ? '.' . sanitize_file_name( (string) $info['extension'] ) : '';
+        $rev  = sanitize_file_name( $source_revision );
+        $filename = $stem . '-r' . $rev . $ext;
+    }
     $bits = wp_upload_bits( $filename, null, (string) file_get_contents( $path ) );
     if ( ! empty( $bits['error'] ) ) { throw new RuntimeException( (string) $bits['error'] ); }
 
@@ -114,7 +105,7 @@ function drielo_media_from_file( string $path, string $source_key, string $title
     return (int) $attachment_id;
 }
 
-function drielo_install_download( string $source_path, string $filename ): array {
+function drielo_install_download( string $source_path, string $filename, string $source_revision = '' ): array {
     if ( ! is_file( $source_path ) || filesize( $source_path ) < 1000 ) { return array(); }
 
     $uploads = wp_upload_dir();
@@ -124,7 +115,16 @@ function drielo_install_download( string $source_path, string $filename ): array
     $dir = trailingslashit( $uploads['basedir'] ) . $relative;
     if ( ! wp_mkdir_p( $dir ) ) { throw new RuntimeException( 'Could not create protected downloads directory' ); }
 
-    $destination = trailingslashit( $dir ) . $filename;
+    $stored_filename = $filename;
+    if ( '' !== $source_revision ) {
+        $info = pathinfo( $filename );
+        $stem = sanitize_file_name( (string) ( $info['filename'] ?? $filename ) );
+        $ext  = isset( $info['extension'] ) ? '.' . sanitize_file_name( (string) $info['extension'] ) : '';
+        $rev  = sanitize_file_name( $source_revision );
+        $stored_filename = $stem . '-r' . $rev . $ext;
+    }
+
+    $destination = trailingslashit( $dir ) . $stored_filename;
     if ( ! copy( $source_path, $destination ) ) { throw new RuntimeException( 'Could not copy downloadable PDF' ); }
     @chmod( $destination, 0644 );
 
@@ -133,7 +133,7 @@ function drielo_install_download( string $source_path, string $filename ): array
         @file_put_contents( $deny, "deny from all\n" );
     }
 
-    $url = trailingslashit( $uploads['baseurl'] ) . $relative . '/' . rawurlencode( $filename );
+    $url = trailingslashit( $uploads['baseurl'] ) . $relative . '/' . rawurlencode( $stored_filename );
     $download = new WC_Product_Download();
     $download->set_id( md5( $destination ) );
     $download->set_name( $filename );
@@ -385,7 +385,7 @@ foreach ( (array) ( $catalog['products'] ?? array() ) as $row ) {
     $download_abs = $download_rel ? rtrim( $source, '/' ) . '/' . $download_rel : '';
     $prepared_downloads = array();
     if ( $download_abs && is_file( $download_abs ) && filesize( $download_abs ) > 1000 ) {
-        $prepared_downloads = drielo_install_download( $download_abs, wp_basename( $download_abs ) );
+        $prepared_downloads = drielo_install_download( $download_abs, wp_basename( $download_abs ), $gallery_revision );
         $product->set_stock_status( 'instock' );
     } else {
         $existing_downloads = $existing_id ? $product->get_downloads() : array();
