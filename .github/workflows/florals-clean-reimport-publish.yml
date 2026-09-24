@@ -2,6 +2,11 @@ name: Florals Clean Reimport Queue
 # Page-one assets: approved Florals uploads; strict one-to-one technique mapping.
 
 on:
+  push:
+    branches:
+      - feature/florals-clean-reimport
+    paths:
+      - '.github/workflows/florals-clean-reimport-publish.yml'
   workflow_dispatch:
 
 permissions:
