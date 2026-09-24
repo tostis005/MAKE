@@ -13,7 +13,7 @@ permissions:
 
 concurrency:
   group: drielo-baby-nursery-auto-publish
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   publish-next:
