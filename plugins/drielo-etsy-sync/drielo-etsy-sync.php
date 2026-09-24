@@ -1289,6 +1289,32 @@ final class Drielo_Etsy_Sync {
         return is_array( $data ) ? $data : [];
     }
 
+    private function clear_local_listing_reference( int $product_id ): void {
+        delete_post_meta( $product_id, self::META_LISTING_ID );
+        delete_post_meta( $product_id, self::META_REMOTE_STATE );
+        delete_post_meta( $product_id, self::META_ASSET_HASH );
+        delete_post_meta( $product_id, self::META_CONTENT_HASH );
+        delete_post_meta( $product_id, self::META_LAST_ERROR );
+        delete_post_meta( $product_id, self::META_LAST_WARNING );
+        delete_post_meta( $product_id, '_drielo_etsy_shop_section_id' );
+    }
+
+    private function listing_reference_is_gone( $response ): bool {
+        if ( is_wp_error( $response ) ) {
+            $code = (string) $response->get_error_code();
+            $message = strtolower( (string) $response->get_error_message() );
+            return 'etsy_http_404' === $code
+                || false !== strpos( $message, 'is removed' )
+                || false !== strpos( $message, 'resource not found' )
+                || false !== strpos( $message, 'listing not found' );
+        }
+        if ( is_array( $response ) ) {
+            $state = strtolower( sanitize_text_field( (string) ( $response['state'] ?? '' ) ) );
+            return in_array( $state, [ 'removed', 'deleted' ], true );
+        }
+        return false;
+    }
+
     private function sync_product( $product_id, bool $overwrite = false ) {
         $product = wc_get_product( $product_id );
         if ( ! $product ) {
@@ -1305,10 +1331,22 @@ final class Drielo_Etsy_Sync {
             return $this->record_error( $product_id, new WP_Error( 'taxonomy_id', 'No se pudo resolver una categoría de Etsy para este producto.' ) );
         }
 
-        $listing_id  = absint( get_post_meta( $product_id, self::META_LISTING_ID, true ) );
-        $is_new      = ! $listing_id;
-        $target      = get_post_meta( $product_id, self::META_TARGET_STATE, true ) === 'active' ? 'active' : 'draft';
-        $payload     = $this->listing_payload( $product, $taxonomy_id );
+        $listing_id   = absint( get_post_meta( $product_id, self::META_LISTING_ID, true ) );
+        $remote_probe = null;
+        if ( $listing_id ) {
+            $remote_probe = $this->etsy_request( 'GET', '/v3/application/listings/' . rawurlencode( $listing_id ) );
+            if ( $this->listing_reference_is_gone( $remote_probe ) ) {
+                $this->clear_local_listing_reference( $product_id );
+                $listing_id = 0;
+                $remote_probe = null;
+            } elseif ( is_wp_error( $remote_probe ) ) {
+                return $this->record_error( $product_id, $remote_probe );
+            }
+        }
+
+        $is_new       = ! $listing_id;
+        $target       = get_post_meta( $product_id, self::META_TARGET_STATE, true ) === 'active' ? 'active' : 'draft';
+        $payload      = $this->listing_payload( $product, $taxonomy_id );
         $content_hash = $this->product_content_hash( $product );
 
         update_post_meta( $product_id, '_drielo_etsy_taxonomy_id', $taxonomy_id );
@@ -1334,7 +1372,7 @@ final class Drielo_Etsy_Sync {
         } else {
             // Safe mode deliberately reads Etsy but does not push managed
             // listing fields back. Manual Etsy edits therefore survive.
-            $remote = $this->etsy_request( 'GET', '/v3/application/listings/' . rawurlencode( $listing_id ) );
+            $remote = is_array( $remote_probe ) ? $remote_probe : $this->etsy_request( 'GET', '/v3/application/listings/' . rawurlencode( $listing_id ) );
             if ( is_wp_error( $remote ) ) {
                 return $this->record_error( $product_id, $remote );
             }
@@ -1608,9 +1646,9 @@ final class Drielo_Etsy_Sync {
         $settings = $this->settings();
         $shop_id = preg_replace( '/\D+/', '', (string) ( $settings['shop_id'] ?? '' ) );
         $result = $this->etsy_request(
-            'PUT',
+            'PATCH',
             '/v3/application/shops/' . rawurlencode( $shop_id ) . '/listings/' . rawurlencode( $listing_id ),
-            [ 'section_id' => (int) $section_id ]
+            [ 'shop_section_id' => (int) $section_id ]
         );
         if ( is_wp_error( $result ) ) {
             update_post_meta( $product->get_id(), self::META_LAST_WARNING, 'No se pudo asignar la sección Cross Stitch: ' . $result->get_error_message() );
