@@ -1,0 +1,161 @@
+name: Update live Pop Art prices
+
+on:
+  push:
+    branches:
+      - feature/pop-art-resto-24
+    paths:
+      - '.github/workflows/update-pop-art-prices.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: drielo-pop-art-price-update
+  cancel-in-progress: false
+
+jobs:
+  update-prices:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_prices_key
+          chmod 600 ~/.ssh/drielo_prices_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Update Pop Art prices in WooCommerce
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_prices_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=512M -r '
+            require "/var/www/html/wp-load.php";
+
+            $targets = array(
+              "CS"  => "5.99",
+              "C2C" => "4.99",
+              "TC"  => "4.49",
+              "LH"  => "3.99",
+            );
+
+            $ids = get_posts(array(
+              "post_type"      => "product",
+              "post_status"    => array("publish","draft","private"),
+              "posts_per_page" => -1,
+              "fields"         => "ids",
+              "tax_query"      => array(array(
+                "taxonomy" => "product_collection",
+                "field"    => "slug",
+                "terms"    => array("pop-art-25"),
+              )),
+            ));
+
+            $counts = array("CS"=>0,"C2C"=>0,"TC"=>0,"LH"=>0);
+            $updated = 0;
+            foreach ($ids as $id) {
+              $p = wc_get_product($id);
+              if (!$p) continue;
+              $sku = $p->get_sku();
+              if (!preg_match("/^DRIELO-P\\d{4}-(CS|C2C|TC|LH)$/", $sku, $m)) {
+                echo "SKIP unexpected SKU: ".$sku.PHP_EOL;
+                continue;
+              }
+              $suffix = $m[1];
+              $price = $targets[$suffix];
+              $p->set_regular_price($price);
+              $p->set_sale_price("");
+              $p->set_price($price);
+              $p->save();
+              wc_delete_product_transients($id);
+              $counts[$suffix]++;
+              $updated++;
+              echo $sku." => $".$price.PHP_EOL;
+            }
+
+            wp_cache_flush();
+            echo "UPDATED=".$updated.PHP_EOL;
+            foreach ($counts as $suffix=>$count) {
+              echo $suffix."_COUNT=".$count.PHP_EOL;
+            }
+
+            if ($updated !== 104) {
+              fwrite(STDERR, "Expected 104 Pop Art products, updated ".$updated.PHP_EOL);
+              exit(2);
+            }
+            foreach ($counts as $suffix=>$count) {
+              if ($count !== 26) {
+                fwrite(STDERR, "Expected 26 ".$suffix." products, got ".$count.PHP_EOL);
+                exit(3);
+              }
+            }
+          '
+          REMOTE
+
+      - name: Verify live Pop Art prices in WooCommerce
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_prices_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          else
+            DOCKER=(sudo -n docker)
+          fi
+          "${DOCKER[@]}" exec make-wp php -r '
+            require "/var/www/html/wp-load.php";
+            $expected=array("CS"=>"5.99","C2C"=>"4.99","TC"=>"4.49","LH"=>"3.99");
+            $ids=get_posts(array(
+              "post_type"=>"product",
+              "post_status"=>array("publish","draft","private"),
+              "posts_per_page"=>-1,
+              "fields"=>"ids",
+              "tax_query"=>array(array(
+                "taxonomy"=>"product_collection",
+                "field"=>"slug",
+                "terms"=>array("pop-art-25"),
+              )),
+            ));
+            $bad=0; $checked=0;
+            foreach($ids as $id){
+              $p=wc_get_product($id);
+              if(!$p) continue;
+              $sku=$p->get_sku();
+              if(!preg_match("/^DRIELO-P\\d{4}-(CS|C2C|TC|LH)$/",$sku,$m)) continue;
+              $checked++;
+              $suffix=$m[1];
+              $actual=(string)$p->get_price();
+              if(bccomp($actual,$expected[$suffix],2)!==0){
+                echo "BAD ".$sku." actual=".$actual." expected=".$expected[$suffix].PHP_EOL;
+                $bad++;
+              }
+            }
+            echo "CHECKED=".$checked." BAD=".$bad.PHP_EOL;
+            if($checked!==104 || $bad!==0) exit(4);
+          '
+          REMOTE
