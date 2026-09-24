@@ -5,7 +5,7 @@
     "USD",
     "EUR"
   ],
-  "default_product_price": 4.99,
+  "default_product_price": 2.49,
   "collection_addon_price": 1.49,
   "preview_policy": {
     "primary_page": 1,
@@ -396,7 +396,7 @@
     {
       "code": "I0001-C2C",
       "sku": "DRIELO-I0001-C2C",
-      "price": 4.99,
+      "price": 2.49,
       "categories": [
         "c2c-crochet-patterns",
         "c2c-crochet-baby-nursery"
@@ -516,7 +516,7 @@
     {
       "code": "I0001-TC",
       "sku": "DRIELO-I0001-TC",
-      "price": 4.99,
+      "price": 2.49,
       "categories": [
         "tapestry-crochet-patterns",
         "tapestry-crochet-baby-nursery"
@@ -636,7 +636,7 @@
     {
       "code": "I0001-LH",
       "sku": "DRIELO-I0001-LH",
-      "price": 4.99,
+      "price": 2.49,
       "categories": [
         "latch-hook-rug-patterns",
         "latch-hook-rug-baby-nursery"
@@ -876,7 +876,7 @@
     {
       "code": "I0002-C2C",
       "sku": "DRIELO-I0002-C2C",
-      "price": 4.99,
+      "price": 2.49,
       "categories": [
         "c2c-crochet-patterns",
         "c2c-crochet-baby-nursery"
@@ -996,7 +996,7 @@
     {
       "code": "I0002-TC",
       "sku": "DRIELO-I0002-TC",
-      "price": 4.99,
+      "price": 2.49,
       "categories": [
         "tapestry-crochet-patterns",
         "tapestry-crochet-baby-nursery"
@@ -1116,7 +1116,7 @@
     {
       "code": "I0002-LH",
       "sku": "DRIELO-I0002-LH",
-      "price": 4.99,
+      "price": 2.49,
       "categories": [
         "latch-hook-rug-patterns",
         "latch-hook-rug-baby-nursery"
@@ -1356,7 +1356,7 @@
     {
       "code": "I0003-C2C",
       "sku": "DRIELO-I0003-C2C",
-      "price": 4.99,
+      "price": 2.49,
       "categories": [
         "c2c-crochet-patterns",
         "c2c-crochet-baby-nursery"
@@ -1476,7 +1476,7 @@
     {
       "code": "I0003-TC",
       "sku": "DRIELO-I0003-TC",
-      "price": 4.99,
+      "price": 2.49,
       "categories": [
         "tapestry-crochet-patterns",
         "tapestry-crochet-baby-nursery"
@@ -1596,7 +1596,7 @@
     {
       "code": "I0003-LH",
       "sku": "DRIELO-I0003-LH",
-      "price": 4.99,
+      "price": 2.49,
       "categories": [
         "latch-hook-rug-patterns",
         "latch-hook-rug-baby-nursery"
@@ -1836,7 +1836,7 @@
     {
       "code": "I0004-C2C",
       "sku": "DRIELO-I0004-C2C",
-      "price": 4.99,
+      "price": 2.49,
       "categories": [
         "c2c-crochet-patterns",
         "c2c-crochet-baby-nursery"
@@ -1956,7 +1956,7 @@
     {
       "code": "I0004-TC",
       "sku": "DRIELO-I0004-TC",
-      "price": 4.99,
+      "price": 2.49,
       "categories": [
         "tapestry-crochet-patterns",
         "tapestry-crochet-baby-nursery"
@@ -2076,7 +2076,7 @@
     {
       "code": "I0004-LH",
       "sku": "DRIELO-I0004-LH",
-      "price": 4.99,
+      "price": 2.49,
       "categories": [
         "latch-hook-rug-patterns",
         "latch-hook-rug-baby-nursery"
@@ -2316,7 +2316,7 @@
     {
       "code": "I0005-C2C",
       "sku": "DRIELO-I0005-C2C",
-      "price": 4.99,
+      "price": 2.49,
       "categories": [
         "c2c-crochet-patterns",
         "c2c-crochet-baby-nursery"
@@ -2436,7 +2436,7 @@
     {
       "code": "I0005-TC",
       "sku": "DRIELO-I0005-TC",
-      "price": 4.99,
+      "price": 2.49,
       "categories": [
         "tapestry-crochet-patterns",
         "tapestry-crochet-baby-nursery"
@@ -2556,7 +2556,7 @@
     {
       "code": "I0005-LH",
       "sku": "DRIELO-I0005-LH",
-      "price": 4.99,
+      "price": 2.49,
       "categories": [
         "latch-hook-rug-patterns",
         "latch-hook-rug-baby-nursery"
@@ -2796,7 +2796,7 @@
     {
       "code": "I0006-C2C",
       "sku": "DRIELO-I0006-C2C",
-      "price": 4.99,
+      "price": 2.49,
       "categories": [
         "c2c-crochet-patterns",
         "c2c-crochet-baby-nursery"
@@ -2916,7 +2916,7 @@
     {
       "code": "I0006-TC",
       "sku": "DRIELO-I0006-TC",
-      "price": 4.99,
+      "price": 2.49,
       "categories": [
         "tapestry-crochet-patterns",
         "tapestry-crochet-baby-nursery"
@@ -3036,7 +3036,7 @@
     {
       "code": "I0006-LH",
       "sku": "DRIELO-I0006-LH",
-      "price": 4.99,
+      "price": 2.49,
       "categories": [
         "latch-hook-rug-patterns",
         "latch-hook-rug-baby-nursery"
@@ -3276,7 +3276,7 @@
     {
       "code": "I0007-C2C",
       "sku": "DRIELO-I0007-C2C",
-      "price": 4.99,
+      "price": 2.49,
       "categories": [
         "c2c-crochet-patterns",
         "c2c-crochet-baby-nursery"
@@ -3396,7 +3396,7 @@
     {
       "code": "I0007-TC",
       "sku": "DRIELO-I0007-TC",
-      "price": 4.99,
+      "price": 2.49,
       "categories": [
         "tapestry-crochet-patterns",
         "tapestry-crochet-baby-nursery"
@@ -3516,7 +3516,7 @@
     {
       "code": "I0007-LH",
       "sku": "DRIELO-I0007-LH",
-      "price": 4.99,
+      "price": 2.49,
       "categories": [
         "latch-hook-rug-patterns",
         "latch-hook-rug-baby-nursery"
@@ -3756,7 +3756,7 @@
     {
       "code": "I0008-C2C",
       "sku": "DRIELO-I0008-C2C",
-      "price": 4.99,
+      "price": 2.49,
       "categories": [
         "c2c-crochet-patterns",
         "c2c-crochet-baby-nursery"
@@ -3876,7 +3876,7 @@
     {
       "code": "I0008-TC",
       "sku": "DRIELO-I0008-TC",
-      "price": 4.99,
+      "price": 2.49,
       "categories": [
         "tapestry-crochet-patterns",
         "tapestry-crochet-baby-nursery"
@@ -3996,7 +3996,7 @@
     {
       "code": "I0008-LH",
       "sku": "DRIELO-I0008-LH",
-      "price": 4.99,
+      "price": 2.49,
       "categories": [
         "latch-hook-rug-patterns",
         "latch-hook-rug-baby-nursery"
@@ -4236,7 +4236,7 @@
     {
       "code": "I0009-C2C",
       "sku": "DRIELO-I0009-C2C",
-      "price": 4.99,
+      "price": 2.49,
       "categories": [
         "c2c-crochet-patterns",
         "c2c-crochet-baby-nursery"
@@ -4356,7 +4356,7 @@
     {
       "code": "I0009-TC",
       "sku": "DRIELO-I0009-TC",
-      "price": 4.99,
+      "price": 2.49,
       "categories": [
         "tapestry-crochet-patterns",
         "tapestry-crochet-baby-nursery"
@@ -4476,7 +4476,7 @@
     {
       "code": "I0009-LH",
       "sku": "DRIELO-I0009-LH",
-      "price": 4.99,
+      "price": 2.49,
       "categories": [
         "latch-hook-rug-patterns",
         "latch-hook-rug-baby-nursery"
@@ -4712,7 +4712,7 @@
       "title_en": "Albert Einstein Tongue Out C2C Crochet Pattern PDF",
       "title_es": "Patrón PDF de crochet C2C: Albert Einstein sacando la lengua",
       "slug": "albert-einstein-tongue-out-c2c-crochet-pattern",
-      "price": 4.99,
+      "price": 2.49,
       "collection": "pop-art-25",
       "stitches": 3141,
       "grid": "60 × 72 blocks",
@@ -4820,7 +4820,7 @@
       "title_en": "Albert Einstein Tongue Out Tapestry Crochet Pattern PDF",
       "title_es": "Patrón PDF de crochet tapestry: Albert Einstein sacando la lengua",
       "slug": "albert-einstein-tongue-out-tapestry-crochet-pattern",
-      "price": 4.49,
+      "price": 2.49,
       "collection": "pop-art-25",
       "stitches": 5510,
       "grid": "80 × 96 crochet stitches",
@@ -4928,7 +4928,7 @@
       "title_en": "Albert Einstein Tongue Out Latch Hook Rug Pattern PDF",
       "title_es": "Patrón PDF de alfombra latch hook: Albert Einstein sacando la lengua",
       "slug": "albert-einstein-tongue-out-latch-hook-pattern",
-      "price": 3.99,
+      "price": 2.49,
       "collection": "pop-art-25",
       "stitches": 3141,
       "grid": "60 × 72 knots",
@@ -5147,7 +5147,7 @@
       "title_en": "Marilyn Monroe Bubble Gum C2C Crochet Pattern PDF",
       "title_es": "Patrón PDF de crochet C2C: Marilyn Monroe con chicle",
       "slug": "marilyn-monroe-bubble-gum-c2c-crochet-pattern",
-      "price": 4.99,
+      "price": 2.49,
       "collection": "pop-art-25",
       "stitches": 3209,
       "grid": "60 × 72 blocks",
@@ -5255,7 +5255,7 @@
       "title_en": "Marilyn Monroe Bubble Gum Tapestry Crochet Pattern PDF",
       "title_es": "Patrón PDF de crochet tapestry: Marilyn Monroe con chicle",
       "slug": "marilyn-monroe-bubble-gum-tapestry-crochet-pattern",
-      "price": 4.49,
+      "price": 2.49,
       "collection": "pop-art-25",
       "stitches": 5632,
       "grid": "80 × 96 crochet stitches",
@@ -5363,7 +5363,7 @@
       "title_en": "Marilyn Monroe Bubble Gum Latch Hook Rug Pattern PDF",
       "title_es": "Patrón PDF de alfombra latch hook: Marilyn Monroe con chicle",
       "slug": "marilyn-monroe-bubble-gum-latch-hook-pattern",
-      "price": 3.99,
+      "price": 2.49,
       "collection": "pop-art-25",
       "stitches": 3209,
       "grid": "60 × 72 knots",
@@ -5503,5 +5503,11 @@
     "DRIELO-P0018",
     "DRIELO-P0019",
     "DRIELO-P0020"
-  ]
+  ],
+  "technique_prices": {
+    "cross-stitch": 2.99,
+    "c2c-crochet": 2.49,
+    "tapestry-crochet": 2.49,
+    "latch-hook": 2.49
+  }
 }
