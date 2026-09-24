@@ -1,0 +1,243 @@
+.drielo-pdf-hero .shop-hero-inner {
+  align-items: end;
+}
+
+.drielo-pdf-main {
+  padding-top: 28px;
+}
+
+.drielo-pdf-filters {
+  margin: 0 0 34px;
+  padding: 20px;
+  border: 1px solid rgba(38, 30, 31, 0.12);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(38, 30, 31, 0.04);
+}
+
+.drielo-pdf-filter-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.drielo-pdf-filter {
+  display: grid;
+  gap: 7px;
+}
+
+.drielo-pdf-filter > span {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.66;
+}
+
+.drielo-pdf-filter select {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 36px 0 12px;
+  border: 1px solid rgba(38, 30, 31, 0.16);
+  border-radius: 10px;
+  background: #fff;
+  color: inherit;
+  font: inherit;
+}
+
+.drielo-pdf-filter-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.drielo-pdf-filter-actions button {
+  min-height: 42px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 999px;
+  background: #2f2527;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.drielo-pdf-filter-actions a {
+  color: inherit;
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+
+.drielo-pdf-count {
+  margin-left: auto;
+  font-size: 0.88rem;
+  opacity: 0.62;
+}
+
+.drielo-pdf-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px 18px;
+}
+
+.drielo-pdf-card {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #fff;
+  color: inherit;
+  text-decoration: none;
+  box-shadow: 0 8px 26px rgba(38, 30, 31, 0.06);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+a.drielo-pdf-card:hover,
+a.drielo-pdf-card:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(38, 30, 31, 0.1);
+}
+
+.drielo-pdf-card-media {
+  display: block;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: rgba(38, 30, 31, 0.04);
+}
+
+.drielo-pdf-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.drielo-pdf-placeholder {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  font-size: 2rem;
+  opacity: 0.22;
+}
+
+.drielo-pdf-card-meta {
+  display: flex;
+  align-items: center;
+  min-height: 54px;
+  gap: 8px;
+  padding: 12px 14px;
+}
+
+.drielo-pdf-card-meta strong {
+  font-size: 0.86rem;
+  line-height: 1.2;
+}
+
+.drielo-pdf-card-meta small {
+  margin-left: auto;
+  font-size: 0.72rem;
+  font-weight: 700;
+  opacity: 0.55;
+}
+
+.drielo-pdf-card--missing {
+  opacity: 0.54;
+}
+
+.drielo-pdf-pagination {
+  margin-top: 38px;
+}
+
+.drielo-pdf-pagination .page-numbers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.drielo-pdf-pagination .page-numbers li {
+  margin: 0;
+}
+
+.drielo-pdf-pagination a,
+.drielo-pdf-pagination span.current {
+  display: grid;
+  min-width: 42px;
+  height: 42px;
+  place-items: center;
+  padding: 0 10px;
+  border: 1px solid rgba(38, 30, 31, 0.14);
+  border-radius: 999px;
+  background: #fff;
+  color: inherit;
+  text-decoration: none;
+}
+
+.drielo-pdf-pagination span.current {
+  border-color: #2f2527;
+  background: #2f2527;
+  color: #fff;
+}
+
+.drielo-pdf-empty {
+  padding: 48px 24px;
+  border: 1px dashed rgba(38, 30, 31, 0.18);
+  border-radius: 16px;
+  text-align: center;
+}
+
+@media (max-width: 1100px) {
+  .drielo-pdf-filter-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .drielo-pdf-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .drielo-pdf-main {
+    padding-top: 18px;
+  }
+
+  .drielo-pdf-filters {
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .drielo-pdf-filter-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .drielo-pdf-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 10px;
+  }
+
+  .drielo-pdf-filter-actions {
+    flex-wrap: wrap;
+  }
+
+  .drielo-pdf-count {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .drielo-pdf-card-meta {
+    min-height: 48px;
+    padding: 10px 11px;
+  }
+}
+
+@media (max-width: 440px) {
+  .drielo-pdf-filter-grid {
+    grid-template-columns: 1fr;
+  }
+}
