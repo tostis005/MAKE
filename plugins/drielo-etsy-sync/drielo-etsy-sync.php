@@ -123,7 +123,6 @@ final class Drielo_Etsy_Sync {
             'sync_tags'         => 1,
             'auto_taxonomy'     => 1,
             'auto_renew'        => 1,
-            'ai_disclosure'     => 1,
         ];
         $settings = wp_parse_args( get_option( self::OPTION_SETTINGS, [] ), $defaults );
         if ( empty( $settings['taxonomy_id'] ) ) {
@@ -521,7 +520,6 @@ final class Drielo_Etsy_Sync {
                         <table class="form-table" role="presentation">
                             <tr><th><label for="taxonomy_id">Taxonomy ID de respaldo</label></th><td><input type="number" class="small-text" id="taxonomy_id" name="settings[taxonomy_id]" value="<?php echo esc_attr( $settings['taxonomy_id'] ); ?>" min="1" /><p class="description">Solo se usa si Etsy no permite resolver automáticamente una categoría específica para la técnica del patrón.</p><label><input type="checkbox" name="settings[auto_taxonomy]" value="1" <?php checked( ! empty( $settings['auto_taxonomy'] ) ); ?> /> Elegir automáticamente la categoría Etsy según la técnica (punto de cruz, C2C, tapestry o latch hook)</label></td></tr>
                             <tr><th><label for="quantity">Cantidad</label></th><td><input type="number" class="small-text" id="quantity" name="settings[quantity]" value="<?php echo esc_attr( $settings['quantity'] ); ?>" min="1" max="999" /></td></tr>
-                            <tr><th>Autoría / IA</th><td><strong>Diseñado por Drielo</strong><p class="description">Etsy clasifica los diseños digitales asistidos por IA dentro de “Designed by a seller”. La API pública no expone un campo separado para “generador de IA”, así que el plugin envía Drielo como autor y añade automáticamente la declaración de uso de IA en la descripción.</p></td></tr>
                             <tr><th><label for="when_made">Cuándo se hizo</label></th><td><select id="when_made" name="settings[when_made]"><option value="2020_2026" <?php selected( $settings['when_made'], '2020_2026' ); ?>>2020–2026</option><option value="made_to_order" <?php selected( $settings['when_made'], 'made_to_order' ); ?>>Hecho bajo pedido</option></select></td></tr>
                             <tr><th><label for="default_language">Idioma Etsy</label></th><td><input class="small-text" type="text" id="default_language" name="settings[default_language]" value="<?php echo esc_attr( $settings['default_language'] ); ?>" /></td></tr>
                             <tr><th>Sincronizar</th><td>
@@ -529,7 +527,6 @@ final class Drielo_Etsy_Sync {
                                 <label><input type="checkbox" name="settings[sync_files]" value="1" <?php checked( ! empty( $settings['sync_files'] ) ); ?> /> Archivos descargables/PDF</label><br />
                                 <label><input type="checkbox" name="settings[sync_tags]" value="1" <?php checked( ! empty( $settings['sync_tags'] ) ); ?> /> Tags específicos para Etsy</label><br />
                                 <label><input type="checkbox" name="settings[auto_renew]" value="1" <?php checked( ! empty( $settings['auto_renew'] ) ); ?> /> Renovación automática del listing al caducar</label><br />
-                                <label><input type="checkbox" name="settings[ai_disclosure]" value="1" <?php checked( ! empty( $settings['ai_disclosure'] ) ); ?> /> Añadir declaración de uso de IA a la descripción</label>
                             </td></tr>
                         </table>
                         <?php submit_button( 'Guardar configuración' ); ?>
@@ -559,7 +556,7 @@ final class Drielo_Etsy_Sync {
                     <?php endif; ?>
                     <hr />
                     <h3>Qué se sincroniza</h3>
-                    <ul class="drielo-check-list"><li>Título específico para Etsy</li><li>Descripción estructurada con párrafos y viñetas</li><li>Precio EUR de la web y SKU</li><li>Categoría automática según técnica</li><li>Imagen destacada y galería existentes en WooCommerce</li><li>PDFs/archivos descargables</li><li>Tags específicos para Etsy</li><li>Producto digital, renovación automática y declaración de IA</li><li>Estado Borrador / Publicado</li></ul>
+                    <ul class="drielo-check-list"><li>Título específico para Etsy</li><li>Descripción estructurada con párrafos y viñetas</li><li>Precio EUR de la web y SKU</li><li>Categoría automática según técnica</li><li>Imagen destacada y galería existentes en WooCommerce</li><li>PDFs/archivos descargables</li><li>Tags específicos para Etsy</li><li>Producto digital y renovación automática</li><li>Estado Borrador / Publicado</li></ul>
                 </div>
             </div>
         </div>
@@ -586,7 +583,6 @@ final class Drielo_Etsy_Sync {
             'sync_tags'         => empty( $input['sync_tags'] ) ? 0 : 1,
             'auto_taxonomy'     => empty( $input['auto_taxonomy'] ) ? 0 : 1,
             'auto_renew'        => empty( $input['auto_renew'] ) ? 0 : 1,
-            'ai_disclosure'     => empty( $input['ai_disclosure'] ) ? 0 : 1,
         ];
         update_option( self::OPTION_SETTINGS, $settings, false );
         wp_safe_redirect( add_query_arg( 'drielo_notice', rawurlencode( 'Configuración guardada.' ), admin_url( 'admin.php?page=drielo-etsy-settings' ) ) );
@@ -1426,14 +1422,6 @@ final class Drielo_Etsy_Sync {
             $description = $this->etsy_title( $product );
         }
 
-        $settings = $this->settings();
-        if ( ! empty( $settings['ai_disclosure'] ) ) {
-            $disclosure = 'es' === $language
-                ? "DECLARACIÓN DE IA\nEste diseño se creó con ayuda de un generador de imágenes con IA y después fue preparado, editado y convertido por Drielo en un patrón digital para manualidades."
-                : "AI DISCLOSURE\nThis design was created with the assistance of an AI image generator and then prepared, edited and converted by Drielo into a digital craft pattern.";
-            $description = rtrim( $description ) . "\n\n" . $disclosure;
-        }
-
         return $description;
     }
 
@@ -1649,7 +1637,6 @@ final class Drielo_Etsy_Sync {
             'language'       => $this->listing_language(),
             'when_made'      => (string) $settings['when_made'],
             'auto_renew'     => ! empty( $settings['auto_renew'] ),
-            'ai_disclosure'  => ! empty( $settings['ai_disclosure'] ),
             'auto_taxonomy'  => ! empty( $settings['auto_taxonomy'] ),
         ];
         return hash( 'sha256', wp_json_encode( $data ) );
