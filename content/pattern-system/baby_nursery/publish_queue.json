@@ -1,8 +1,8 @@
 {
   "collection": "baby-nursery",
-  "mode": "sequential-kawaii-rebuild-v1",
+  "mode": "paused-flow-audit-before-clean-relaunch",
   "branch": "feature/baby-nursery-sequential-rebuild",
-  "auto_continue": true,
+  "auto_continue": false,
   "publish_strategy": "one-design-per-run",
   "max_attempts_per_design": 2,
   "reset_store_on_first_design": true,
@@ -11,7 +11,8 @@
     "I0001 is Teddy Bear. Then the ten user-approved kawaii designs are published sequentially.",
     "Each run builds exactly one design, creates all four PDFs/products, publishes those four to WooCommerce, verifies them, commits them to this branch, marks the item published, then dispatches the next design.",
     "No batch of 10/40 products: the next design starts only after the current design has been uploaded and verified.",
-    "2026-09-24: fixed sequential ID -> approved v4 reference mapping validation; failed remapped designs reset to pending and will retry in order."
+    "2026-09-24: fixed sequential ID -> approved v4 reference mapping validation; failed remapped designs reset to pending and will retry in order.",
+    "Paused for flow audit after WooCommerce image mix-up/overwrite report. No further designs should publish until a clean reset and integrity-checked relaunch."
   ],
   "items": [
     {
