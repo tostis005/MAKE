@@ -19,7 +19,7 @@ STORE_ASSETS = ROOT / "content" / "products" / "assets"
 STORE_FILES = ROOT / "content" / "products" / "files"
 CATALOG = ROOT / "content" / "products" / "catalog.json"
 SOURCE = COL_DIR / "source-designs" / "F0001-blue-daisy-pitcher.png"
-REFERENCE = COL_DIR / "reference-masters" / "F0001-blue-daisy-pitcher-reference.png"
+REFERENCE = SOURCE
 
 sys.path.insert(0, str((SYSTEM / "multitech").resolve()))
 import bulk_generate as bg  # noqa: E402
@@ -107,10 +107,25 @@ def build_pattern(collection: dict):
     return pattern
 
 
+def prepare_renderer_assets(collection: dict):
+    temp_assets = Path("/tmp/drielo-florals-f0001-assets")
+    if temp_assets.exists():
+        shutil.rmtree(temp_assets)
+    temp_assets.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(bg.ENGINE_ASSETS / "floral.png", temp_assets / "floral.png")
+    rel = collection["mockup_spec"]["technique_assets"]["CS"]
+    page1 = (COL_DIR / rel).resolve()
+    if not page1.is_file():
+        raise RuntimeError(f"Missing Florals CS page-1 scene: {page1}")
+    shutil.copy2(page1, temp_assets / "cover-cross-stitch.webp")
+    bg.ENGINE_ASSETS = temp_assets
+
+
 def render_product(collection: dict, pattern: dict):
     STORE_ASSETS.mkdir(parents=True, exist_ok=True)
     STORE_FILES.mkdir(parents=True, exist_ok=True)
 
+    prepare_renderer_assets(collection)
     data = bg.pattern_data(CODE, TITLE, "CS", pattern["matrix"], pattern["threads"])
     data["collection"] = collection["name_en"]
     data["collection_id"] = collection["id"]
@@ -151,7 +166,7 @@ def render_product(collection: dict, pattern: dict):
         "template": "cross-stitch",
         "source_artwork": "collections/florals/source-designs/F0001-blue-daisy-pitcher.png",
         "reference_artwork": "collections/florals/source-designs/F0001-blue-daisy-pitcher.png",
-        "page_1_asset": "multitech/assets/cover-cross-stitch.webp",
+        "page_1_asset": "collections/florals/assets/page-1-cross-stitch.webp",
         "render_ready": True,
         "status": "active",
     }
