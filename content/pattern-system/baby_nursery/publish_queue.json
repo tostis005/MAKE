@@ -1,13 +1,14 @@
 {
   "collection": "baby-nursery",
-  "mode": "paused-for-collection-rebuild",
-  "auto_continue": false,
+  "mode": "publish-one-clean-vivid-no-outline-design-per-run",
+  "auto_continue": true,
   "max_attempts_per_design": 2,
   "notes": [
-    "Restarted from I0001 so every Baby & Nursery product gets the same four-image WooCommerce presentation as the Pop Art autopublish.",
-    "Each product image set is featured cover + PDF page 3 facts preview + PDF page 8 colour A1 preview + PDF page 12 symbol A1 preview.",
-    "Before JSON generation remove detached or tiny exterior white/near-white remnants; intentional white motif areas are preserved.",
-    "Each design publishes CS/C2C/TC/LH to WooCommerce before the queue advances to the next design."
+    "All previous Baby Nursery WooCommerce products were deleted before this rebuild.",
+    "No forced black/dark exterior outline is allowed; DMC 310 is reserved for internal details such as eyes, mouths, lettering and small accents.",
+    "Detached or weakly attached white/near-white edge remnants are removed before JSON generation and checked again after technique downsampling.",
+    "Each product publishes with four WooCommerce images: featured mockup + facts preview + colour A1 preview + symbol A1 preview.",
+    "Process I0001 through I0030 sequentially, publishing CS/C2C/TC/LH before advancing."
   ],
   "items": [
     {
@@ -17,12 +18,10 @@
       "title_es": "Osito de peluche",
       "slug": "teddy-bear",
       "source_asset": "collections/baby-nursery/source-designs/I0001-teddy-bear.png",
-      "status": "published",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35975756904",
-      "last_error": null,
-      "failed_at": "2026-09-24T08:31:33+00:00",
-      "published_at": "2026-09-24T08:35:13+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 2,
@@ -31,11 +30,10 @@
       "title_es": "Elefantito",
       "slug": "baby-elephant",
       "source_asset": "collections/baby-nursery/source-designs/I0002-baby-elephant.png",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35976312362",
-      "last_error": "Automatic publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T08:39:26+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 3,
@@ -44,11 +42,10 @@
       "title_es": "Jirafa",
       "slug": "giraffe",
       "source_asset": "collections/baby-nursery/source-designs/I0003-giraffe.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35976525884",
-      "last_error": null,
-      "published_at": "2026-09-24T08:42:31+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 4,
@@ -57,11 +54,10 @@
       "title_es": "Luna creciente",
       "slug": "crescent-moon",
       "source_asset": "collections/baby-nursery/source-designs/I0004-crescent-moon.png",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35977084566",
-      "last_error": "Automatic publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T08:47:27+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 5,
@@ -70,11 +66,10 @@
       "title_es": "Nube sonriente",
       "slug": "smiling-cloud",
       "source_asset": "collections/baby-nursery/source-designs/I0005-smiling-cloud.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35977315953",
-      "last_error": null,
-      "published_at": "2026-09-24T08:50:50+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 6,
@@ -83,11 +78,10 @@
       "title_es": "Conejito con corazón",
       "slug": "bunny-heart",
       "source_asset": "collections/baby-nursery/source-designs/I0006-bunny-heart.png",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35977890178",
-      "last_error": "Automatic publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T08:55:44+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 7,
@@ -96,11 +90,10 @@
       "title_es": "Arcoíris con nubes",
       "slug": "rainbow-clouds",
       "source_asset": "collections/baby-nursery/source-designs/I0007-rainbow-clouds.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35978137252",
-      "last_error": null,
-      "published_at": "2026-09-24T08:59:30+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 8,
@@ -109,11 +102,10 @@
       "title_es": "Dinosaurio infantil",
       "slug": "cute-dinosaur",
       "source_asset": "collections/baby-nursery/source-designs/I0008-cute-dinosaur.png",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35978744480",
-      "last_error": "Automatic publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T09:04:06+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 9,
@@ -122,11 +114,10 @@
       "title_es": "Globo aerostático",
       "slug": "hot-air-balloon",
       "source_asset": "collections/baby-nursery/source-designs/I0009-hot-air-balloon.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35978985441",
-      "last_error": null,
-      "published_at": "2026-09-24T09:07:49+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 10,
@@ -135,11 +126,10 @@
       "title_es": "Velero infantil",
       "slug": "toy-sailboat",
       "source_asset": "collections/baby-nursery/source-designs/I0010-toy-sailboat.png",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35979589698",
-      "last_error": "Automatic publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T09:12:36+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 11,
@@ -148,11 +138,10 @@
       "title_es": "Unicornio",
       "slug": "unicorn",
       "source_asset": "collections/baby-nursery/source-designs/I0011-unicorn.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35979840889",
-      "last_error": null,
-      "published_at": "2026-09-24T09:15:54+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 12,
@@ -383,5 +372,5 @@
       "last_error": null
     }
   ],
-  "reference_policy": "Use only exact user-approved Baby & Nursery references. Clean exterior white/near-white flecks before pattern generation, enforce the uniform one-cell outline, render four product images total (featured + three PDF previews), publish four techniques, then advance automatically."
+  "reference_policy": "Use only the exact user-approved Baby & Nursery motifs. Rebuild with the vivid 24-colour palette, remove exterior black outline components, remove detached/weak white and near-white flecks, render four product images, publish all four techniques, then continue automatically."
 }
