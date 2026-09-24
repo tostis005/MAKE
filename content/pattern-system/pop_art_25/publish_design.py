@@ -499,8 +499,8 @@ def main():
     base=args.design_id.strip().upper()
     if not base.startswith("P") or len(base)!=5:
         raise SystemExit("Expected design id like P0002")
-    if base in {"P0001","P0012"}:
-        raise SystemExit(f"{base} is protected and must not be overwritten")
+    if base in {"P0001","P0012"} and os.environ.get("DRIELO_ALLOW_PROTECTED")!="1":
+        raise SystemExit(f"{base} is protected and requires an explicit protected rebuild")
     design=design_record(base)
     collection=read_json(COLLECTION_PATH)
     bbox=build_patterns(base,design,collection)
