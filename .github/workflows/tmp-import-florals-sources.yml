@@ -1,4 +1,4 @@
-name: TEMP Import Florals Sources Batch 1
+name: TEMP Import Florals Sources Batch 2
 
 on:
   push:
@@ -25,17 +25,17 @@ jobs:
           ref: feature/florals-pattern-generation
           fetch-depth: 0
 
-      - name: Download approved sources F0001-F0005
+      - name: Download approved sources F0006-F0010
         shell: bash
         run: |
           set -euo pipefail
           D='content/pattern-system/collections/florals/source-designs'
           mkdir -p "$D"
-          curl -fL --retry 2 'https://sdmntprseasia.oaiusercontent.com/files/00000000-4e3c-8207-92f2-a140f28349b0/raw?se=2026-09-24T14%3A15%3A51Z&sp=r&sv=2026-02-06&sr=b&scid=6dc48868-a488-58e2-8c29-ad9b79e82d30&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T11%3A29%3A48Z&ske=2026-09-25T11%3A29%3A48Z&sks=b&skv=2026-02-06&sig=oO4yhiLWPtLRluqpY1RPtlZXBu/Qft5NjGlbOXNlqEg%3D' -o "$D/F0001-blue-daisy-pitcher.png"
-          curl -fL --retry 2 'https://sdmntpreastus.oaiusercontent.com/files/00000000-a1a0-81f9-981d-4ac3c6bf8405/raw?se=2026-09-24T14%3A15%3A53Z&sp=r&sv=2026-02-06&sr=b&scid=f9415396-f270-50de-b50f-02b084953828&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T12%3A26%3A30Z&ske=2026-09-25T12%3A26%3A30Z&sks=b&skv=2026-02-06&sig=p8XdGyCtFyiJnIOr8ndMay7DkNT8JdBdJoHFcrnsIbU%3D' -o "$D/F0002-pink-peony.png"
-          curl -fL --retry 2 'https://sdmntprcacentral.oaiusercontent.com/files/00000000-cc04-820d-ba3f-332249939f58/raw?se=2026-09-24T14%3A15%3A59Z&sp=r&sv=2026-02-06&sr=b&scid=c0388738-a4fd-57c7-a078-8037f7d0e3fa&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T13%3A35%3A06Z&ske=2026-09-25T13%3A35%3A06Z&sks=b&skv=2026-02-06&sig=jaOGmlXFHwm/1pyfuswjpnNynbDexhatmFUWpTxl1kM%3D' -o "$D/F0003-lavender-ribbon-bundle.png"
-          curl -fL --retry 2 'https://sdmntprsoutheastus3.oaiusercontent.com/files/00000000-90ac-820c-80e7-f7a700253bd2/raw?se=2026-09-24T14%3A16%3A00Z&sp=r&sv=2026-02-06&sr=b&scid=dab35d95-f8a1-5023-91d8-03ae8cc359e9&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T12%3A21%3A06Z&ske=2026-09-25T12%3A21%3A06Z&sks=b&skv=2026-02-06&sig=f/8oMOfrBJ4QdWhCwDV0iD5JNxsgfuKUPGxuAORqdyg%3D' -o "$D/F0004-sunflower-stem.png"
-          curl -fL --retry 2 'https://sdmntprwestus3.oaiusercontent.com/files/00000000-e378-81fd-b203-2bc03c18d917/raw?se=2026-09-24T14%3A16%3A03Z&sp=r&sv=2026-02-06&sr=b&scid=1895ed08-6ce5-509f-8a2f-9753a89dec9e&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T06%3A41%3A53Z&ske=2026-09-25T06%3A41%3A53Z&sks=b&skv=2026-02-06&sig=tCEHldZILtW8t3POhpwPtBBZuUVQ64XHRqLlS6JMZps%3D' -o "$D/F0005-blue-hydrangea.png"
+          curl -fL --retry 2 'https://sdmntprwestus3.oaiusercontent.com/files/00000000-d224-81fd-979f-6d7335065719/raw?se=2026-09-24T14%3A19%3A52Z&sp=r&sv=2026-02-06&sr=b&scid=a7b4e2b6-d90d-52db-bb60-7ae95bcc79de&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T13%3A37%3A54Z&ske=2026-09-25T13%3A37%3A54Z&sks=b&skv=2026-02-06&sig=Dd8TwpreLENy9sQHTREmys2vTkc42Zwh0bEVbP8XD/k%3D' -o "$D/F0006-cherry-blossom-branch.png"
+          curl -fL --retry 2 'https://sdmntpreastus.oaiusercontent.com/files/00000000-041c-81f9-ad42-45c5ffbd0127/raw?se=2026-09-24T14%3A20%3A55Z&sp=r&sv=2026-02-06&sr=b&scid=ccd82936-a61e-5ba6-b51b-fe605e7a51bf&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T13%3A37%3A37Z&ske=2026-09-25T13%3A37%3A37Z&sks=b&skv=2026-02-06&sig=TVLi%2BpnfiPMcOfmzyO2MWeGDWSSW8SwKK7OeT6mE84E%3D' -o "$D/F0007-pink-floral-heart-wreath.png"
+          curl -fL --retry 2 'https://sdmntpritalynorth.oaiusercontent.com/files/00000000-62d4-8246-90af-9bfda5179331/raw?se=2026-09-24T14%3A20%3A57Z&sp=r&sv=2026-02-06&sr=b&scid=d926d40f-75ca-56e0-89ea-1418ab5bfc7c&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T13%3A07%3A45Z&ske=2026-09-25T13%3A07%3A45Z&sks=b&skv=2026-02-06&sig=1XSelfHpFLZ8p4kdcKmQD3uld0qDpJnvHuTghEl%2BYSg%3D' -o "$D/F0008-daisy-mason-jar.png"
+          curl -fL --retry 2 'https://sdmntprnortheu.oaiusercontent.com/files/00000000-b0a0-81f4-ba95-0a9040641816/raw?se=2026-09-24T14%3A21%3A00Z&sp=r&sv=2026-02-06&sr=b&scid=b8471e8d-ec19-5990-aa1b-ce318b8ae8ca&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T12%3A26%3A17Z&ske=2026-09-25T12%3A26%3A17Z&sks=b&skv=2026-02-06&sig=OIDAxvcyFaSl8ulPV0RZtIVjZTylLuiNkxTRhmGbnR8%3D' -o "$D/F0009-eucalyptus-ribbon-bundle.png"
+          curl -fL --retry 2 'https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-bc90-81f7-ab39-04ee948d6f32/raw?se=2026-09-24T14%3A21%3A02Z&sp=r&sv=2026-02-06&sr=b&scid=1f15e925-153f-5840-a4a7-f068349941ce&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T12%3A01%3A15Z&ske=2026-09-25T12%3A01%3A15Z&sks=b&skv=2026-02-06&sig=knhCfjS7zzfksou3RV%2B73lV8BNy7sOxXo/bXzjSdq00%3D' -o "$D/F0010-potted-strawberry-plant.png"
 
       - name: Verify and commit
         shell: bash
@@ -45,8 +45,9 @@ jobs:
           python3 - <<'PY'
           from PIL import Image
           from pathlib import Path
-          for i in range(1,6):
-              p=next(Path('content/pattern-system/collections/florals/source-designs').glob(f'F{i:04d}-*.png'))
+          d=Path('content/pattern-system/collections/florals/source-designs')
+          for i in range(6,11):
+              p=next(d.glob(f'F{i:04d}-*.png'))
               im=Image.open(p).convert('RGBA')
               if im.size!=(100,120) or im.getchannel('A').getbbox() is None:
                   raise SystemExit(f'bad source {p}: {im.size}')
@@ -54,6 +55,6 @@ jobs:
           PY
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add content/pattern-system/collections/florals/source-designs/F000{1,2,3,4,5}-*.png
-          git commit -m "Import approved Florals sources F0001-F0005 [skip ci]"
+          git add content/pattern-system/collections/florals/source-designs/F000{6,7,8,9}-*.png content/pattern-system/collections/florals/source-designs/F0010-*.png
+          git commit -m "Import approved Florals sources F0006-F0010 [skip ci]"
           git push origin HEAD:feature/florals-pattern-generation
