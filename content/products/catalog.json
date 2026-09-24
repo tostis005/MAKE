@@ -2149,11 +2149,15 @@
         "crochet graph",
         "baby blanket"
       ],
-      "gallery": [],
+      "gallery": [
+        "assets/I0005-C2C-gallery-2.webp",
+        "assets/I0005-C2C-gallery-3.webp",
+        "assets/I0005-C2C-gallery-4.webp"
+      ],
       "download": "files/Drielo_I0005-C2C.pdf",
       "seo_title": "Smiling Cloud C2C Crochet Pattern PDF | Drielo",
       "meta_description": "Downloadable Smiling Cloud C2C Crochet pattern PDF from the Baby & Nursery collection. 60 × 72 blocks; 1,934 filled blocks; 12 coordinated colours; beginne",
-      "gallery_revision": 35974523176,
+      "gallery_revision": 35977315953,
       "title_en": "Smiling Cloud C2C Crochet Pattern PDF",
       "title_es": "Patrón PDF de crochet C2C: Nube sonriente",
       "short_description_en": "Downloadable Smiling Cloud C2C Crochet pattern PDF from the Baby & Nursery collection. 60 × 72 blocks; 1,934 filled blocks; 12 coordinated colours; beginner friendly. Pattern code: I0005-C2C.",
@@ -2230,7 +2234,12 @@
       "colour_attribute_label": "Yarn colours",
       "type_attribute_label": "Technique",
       "count_attribute_label": "Filled blocks",
-      "featured_image": "assets/I0005-C2C-product.webp"
+      "featured_image": "assets/I0005-C2C-product.webp",
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      }
     },
     {
       "code": "I0005-CS",
@@ -2260,11 +2269,15 @@
         "counted cross stitch",
         "dmc pattern"
       ],
-      "gallery": [],
+      "gallery": [
+        "assets/I0005-CS-gallery-2.webp",
+        "assets/I0005-CS-gallery-3.webp",
+        "assets/I0005-CS-gallery-4.webp"
+      ],
       "download": "files/Drielo_I0005-CS.pdf",
       "seo_title": "Smiling Cloud Cross Stitch Pattern PDF | Drielo",
       "meta_description": "Downloadable Smiling Cloud Cross Stitch pattern PDF from the Baby & Nursery collection. 100 × 120 stitches; 5,157 total stitches; 14 coordinated colours; b",
-      "gallery_revision": 35974523176,
+      "gallery_revision": 35977315953,
       "title_en": "Smiling Cloud Cross Stitch Pattern PDF",
       "title_es": "Patrón PDF de punto de cruz: Nube sonriente",
       "short_description_en": "Downloadable Smiling Cloud Cross Stitch pattern PDF from the Baby & Nursery collection. 100 × 120 stitches; 5,157 total stitches; 14 coordinated colours; beginner friendly. Pattern code: I0005-CS.",
@@ -2341,7 +2354,12 @@
       "colour_attribute_label": "DMC colours",
       "type_attribute_label": "Technique",
       "count_attribute_label": "Total stitches",
-      "featured_image": "assets/I0005-CS-product.webp"
+      "featured_image": "assets/I0005-CS-product.webp",
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      }
     },
     {
       "code": "I0005-LH",
@@ -2371,11 +2389,15 @@
         "rug pattern pdf",
         "rug making"
       ],
-      "gallery": [],
+      "gallery": [
+        "assets/I0005-LH-gallery-2.webp",
+        "assets/I0005-LH-gallery-3.webp",
+        "assets/I0005-LH-gallery-4.webp"
+      ],
       "download": "files/Drielo_I0005-LH.pdf",
       "seo_title": "Smiling Cloud Latch Hook Rug Pattern PDF | Drielo",
       "meta_description": "Downloadable Smiling Cloud Latch Hook Rug pattern PDF from the Baby & Nursery collection. 60 × 72 knots; 1,934 filled knots; 12 coordinated colours; beginn",
-      "gallery_revision": 35974523176,
+      "gallery_revision": 35977315953,
       "title_en": "Smiling Cloud Latch Hook Rug Pattern PDF",
       "title_es": "Patrón PDF de alfombra latch hook: Nube sonriente",
       "short_description_en": "Downloadable Smiling Cloud Latch Hook Rug pattern PDF from the Baby & Nursery collection. 60 × 72 knots; 1,934 filled knots; 12 coordinated colours; beginner friendly. Pattern code: I0005-LH.",
@@ -2452,7 +2474,12 @@
       "colour_attribute_label": "Wool colours",
       "type_attribute_label": "Technique",
       "count_attribute_label": "Filled knots",
-      "featured_image": "assets/I0005-LH-product.webp"
+      "featured_image": "assets/I0005-LH-product.webp",
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      }
     },
     {
       "code": "I0005-TC",
@@ -2482,11 +2509,15 @@
         "crochet chart",
         "colorwork crochet"
       ],
-      "gallery": [],
+      "gallery": [
+        "assets/I0005-TC-gallery-2.webp",
+        "assets/I0005-TC-gallery-3.webp",
+        "assets/I0005-TC-gallery-4.webp"
+      ],
       "download": "files/Drielo_I0005-TC.pdf",
       "seo_title": "Smiling Cloud Tapestry Crochet Pattern PDF | Drielo",
       "meta_description": "Downloadable Smiling Cloud Tapestry Crochet pattern PDF from the Baby & Nursery collection. 80 × 96 crochet stitches; 3,343 colourwork stitches; 14 coordin",
-      "gallery_revision": 35974523176,
+      "gallery_revision": 35977315953,
       "title_en": "Smiling Cloud Tapestry Crochet Pattern PDF",
       "title_es": "Patrón PDF de tapestry crochet: Nube sonriente",
       "short_description_en": "Downloadable Smiling Cloud Tapestry Crochet pattern PDF from the Baby & Nursery collection. 80 × 96 crochet stitches; 3,343 colourwork stitches; 14 coordinated colours; beginner friendly. Pattern code: I0005-TC.",
@@ -2563,7 +2594,12 @@
       "colour_attribute_label": "Yarn colours",
       "type_attribute_label": "Technique",
       "count_attribute_label": "Colourwork stitches",
-      "featured_image": "assets/I0005-TC-product.webp"
+      "featured_image": "assets/I0005-TC-product.webp",
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      }
     },
     {
       "code": "I0006-C2C",

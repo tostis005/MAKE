@@ -8000,12 +8000,12 @@
   "external_white_cleanup": {
     "enabled": true,
     "dmc": "3865",
-    "max_isolated_component_cells": 12,
+    "max_isolated_component_cells": 16,
     "neighborhood": 8,
     "stats": {
       "removed_components": 0,
       "removed_cells": 0,
-      "max_component_cells": 12,
+      "max_component_cells": 16,
       "neighborhood": 8
     }
   }
