@@ -1,0 +1,430 @@
+{
+  "version": 3,
+  "branch": "feature/baby-nursery-premium-edge-refinement",
+  "palette_mode": "exact-approved-24-colour-palette",
+  "palette": [
+    {
+      "dmc": "3865",
+      "hex": "#F8E7D7",
+      "name": "Winter White"
+    },
+    {
+      "dmc": "996",
+      "hex": "#0279F1",
+      "name": "Medium Electric Blue"
+    },
+    {
+      "dmc": "3325",
+      "hex": "#63BEFB",
+      "name": "Light Baby Blue"
+    },
+    {
+      "dmc": "3846",
+      "hex": "#169CFA",
+      "name": "Light Bright Turquoise"
+    },
+    {
+      "dmc": "444",
+      "hex": "#FDD336",
+      "name": "Dark Lemon"
+    },
+    {
+      "dmc": "604",
+      "hex": "#FC5172",
+      "name": "Light Cranberry"
+    },
+    {
+      "dmc": "905",
+      "hex": "#1B6F3F",
+      "name": "Dark Parrot Green"
+    },
+    {
+      "dmc": "922",
+      "hex": "#B94D17",
+      "name": "Light Copper"
+    },
+    {
+      "dmc": "522",
+      "hex": "#6CAB67",
+      "name": "Fern Green"
+    },
+    {
+      "dmc": "321",
+      "hex": "#F81948",
+      "name": "Red"
+    },
+    {
+      "dmc": "801",
+      "hex": "#8E3911",
+      "name": "Dark Coffee Brown"
+    },
+    {
+      "dmc": "3713",
+      "hex": "#FBB1BE",
+      "name": "Very Light Salmon"
+    },
+    {
+      "dmc": "948",
+      "hex": "#ECC9AB",
+      "name": "Very Light Peach"
+    },
+    {
+      "dmc": "797",
+      "hex": "#0253D0",
+      "name": "Royal Blue"
+    },
+    {
+      "dmc": "970",
+      "hex": "#F78E02",
+      "name": "Light Pumpkin"
+    },
+    {
+      "dmc": "3371",
+      "hex": "#652309",
+      "name": "Black Brown"
+    },
+    {
+      "dmc": "754",
+      "hex": "#EF975B",
+      "name": "Light Peach"
+    },
+    {
+      "dmc": "434",
+      "hex": "#D67138",
+      "name": "Light Brown"
+    },
+    {
+      "dmc": "726",
+      "hex": "#FCBE0B",
+      "name": "Light Topaz"
+    },
+    {
+      "dmc": "3752",
+      "hex": "#96D8FB",
+      "name": "Very Light Antique Blue"
+    },
+    {
+      "dmc": "761",
+      "hex": "#FC8395",
+      "name": "Light Salmon"
+    },
+    {
+      "dmc": "453",
+      "hex": "#C3A089",
+      "name": "Shell Gray"
+    },
+    {
+      "dmc": "310",
+      "hex": "#0D0805",
+      "name": "Black"
+    },
+    {
+      "dmc": "550",
+      "hex": "#8B40C6",
+      "name": "Very Dark Violet"
+    }
+  ],
+  "policy": "stitch-native palette-mask supersampling; transparent exterior; no raster paste; exact collection palette",
+  "designs": [
+    {
+      "design_id": "I0001",
+      "slug": "teddy-bear",
+      "baseline_stitches": 7133,
+      "premium_v3_stitches": 6777,
+      "target_stitches": 5800,
+      "increase": -356,
+      "bbox": [
+        40,
+        88,
+        760,
+        872
+      ],
+      "quality": {
+        "occupied_cells": 6777,
+        "isolated_cells": 0,
+        "weak_exterior_near_white_cells": 0,
+        "edge_cells": 496,
+        "bbox": [
+          5,
+          11,
+          95,
+          109
+        ],
+        "near_white_symbols": [
+          "A"
+        ]
+      },
+      "palette_check": "PASS"
+    },
+    {
+      "design_id": "I0002",
+      "slug": "baby-elephant",
+      "baseline_stitches": 6213,
+      "premium_v3_stitches": 5874,
+      "target_stitches": 5600,
+      "increase": -339,
+      "bbox": [
+        40,
+        152,
+        760,
+        800
+      ],
+      "quality": {
+        "occupied_cells": 5874,
+        "isolated_cells": 0,
+        "weak_exterior_near_white_cells": 0,
+        "edge_cells": 565,
+        "bbox": [
+          5,
+          19,
+          95,
+          100
+        ],
+        "near_white_symbols": [
+          "A"
+        ]
+      },
+      "palette_check": "PASS"
+    },
+    {
+      "design_id": "I0003",
+      "slug": "giraffe",
+      "baseline_stitches": 6190,
+      "premium_v3_stitches": 5706,
+      "target_stitches": 6500,
+      "increase": -484,
+      "bbox": [
+        88,
+        48,
+        704,
+        912
+      ],
+      "quality": {
+        "occupied_cells": 5706,
+        "isolated_cells": 0,
+        "weak_exterior_near_white_cells": 0,
+        "edge_cells": 611,
+        "bbox": [
+          11,
+          6,
+          88,
+          114
+        ],
+        "near_white_symbols": [
+          "A"
+        ]
+      },
+      "palette_check": "PASS"
+    },
+    {
+      "design_id": "I0004",
+      "slug": "crescent-moon",
+      "baseline_stitches": 5031,
+      "premium_v3_stitches": 4779,
+      "target_stitches": 4600,
+      "increase": -252,
+      "bbox": [
+        40,
+        120,
+        760,
+        832
+      ],
+      "quality": {
+        "occupied_cells": 4779,
+        "isolated_cells": 0,
+        "weak_exterior_near_white_cells": 0,
+        "edge_cells": 730,
+        "bbox": [
+          5,
+          15,
+          95,
+          104
+        ],
+        "near_white_symbols": [
+          "A"
+        ]
+      },
+      "palette_check": "PASS"
+    },
+    {
+      "design_id": "I0005",
+      "slug": "smiling-cloud",
+      "baseline_stitches": 5104,
+      "premium_v3_stitches": 4870,
+      "target_stitches": 4500,
+      "increase": -234,
+      "bbox": [
+        40,
+        136,
+        760,
+        824
+      ],
+      "quality": {
+        "occupied_cells": 4870,
+        "isolated_cells": 0,
+        "weak_exterior_near_white_cells": 0,
+        "edge_cells": 584,
+        "bbox": [
+          5,
+          17,
+          95,
+          103
+        ],
+        "near_white_symbols": [
+          "A"
+        ]
+      },
+      "palette_check": "PASS"
+    },
+    {
+      "design_id": "I0006",
+      "slug": "bunny-heart",
+      "baseline_stitches": 6786,
+      "premium_v3_stitches": 6441,
+      "target_stitches": 5600,
+      "increase": -345,
+      "bbox": [
+        40,
+        56,
+        760,
+        904
+      ],
+      "quality": {
+        "occupied_cells": 6441,
+        "isolated_cells": 0,
+        "weak_exterior_near_white_cells": 0,
+        "edge_cells": 545,
+        "bbox": [
+          5,
+          7,
+          95,
+          113
+        ],
+        "near_white_symbols": [
+          "A"
+        ]
+      },
+      "palette_check": "PASS"
+    },
+    {
+      "design_id": "I0007",
+      "slug": "rainbow-clouds",
+      "baseline_stitches": 5201,
+      "premium_v3_stitches": 4578,
+      "target_stitches": 6000,
+      "increase": -623,
+      "bbox": [
+        40,
+        200,
+        760,
+        752
+      ],
+      "quality": {
+        "occupied_cells": 4578,
+        "isolated_cells": 0,
+        "weak_exterior_near_white_cells": 91,
+        "edge_cells": 643,
+        "bbox": [
+          5,
+          25,
+          95,
+          94
+        ],
+        "near_white_symbols": [
+          "A"
+        ]
+      },
+      "palette_check": "PASS"
+    },
+    {
+      "design_id": "I0008",
+      "slug": "cute-dinosaur",
+      "baseline_stitches": 2835,
+      "premium_v3_stitches": 4269,
+      "target_stitches": 6200,
+      "increase": 1434,
+      "bbox": [
+        40,
+        136,
+        760,
+        816
+      ],
+      "quality": {
+        "occupied_cells": 4269,
+        "isolated_cells": 0,
+        "weak_exterior_near_white_cells": 0,
+        "edge_cells": 466,
+        "bbox": [
+          5,
+          17,
+          95,
+          102
+        ],
+        "near_white_symbols": [
+          "A"
+        ]
+      },
+      "palette_check": "PASS"
+    },
+    {
+      "design_id": "I0009",
+      "slug": "hot-air-balloon",
+      "baseline_stitches": 6205,
+      "premium_v3_stitches": 5057,
+      "target_stitches": 6000,
+      "increase": -1148,
+      "bbox": [
+        40,
+        104,
+        760,
+        856
+      ],
+      "quality": {
+        "occupied_cells": 5057,
+        "isolated_cells": 0,
+        "weak_exterior_near_white_cells": 0,
+        "edge_cells": 589,
+        "bbox": [
+          5,
+          13,
+          95,
+          107
+        ],
+        "near_white_symbols": [
+          "A"
+        ]
+      },
+      "palette_check": "PASS"
+    },
+    {
+      "design_id": "I0010",
+      "slug": "toy-sailboat",
+      "baseline_stitches": 4395,
+      "premium_v3_stitches": 4708,
+      "target_stitches": 5200,
+      "increase": 313,
+      "bbox": [
+        40,
+        120,
+        760,
+        840
+      ],
+      "quality": {
+        "occupied_cells": 4708,
+        "isolated_cells": 0,
+        "weak_exterior_near_white_cells": 18,
+        "edge_cells": 805,
+        "bbox": [
+          5,
+          15,
+          95,
+          105
+        ],
+        "near_white_symbols": [
+          "A"
+        ]
+      },
+      "palette_check": "PASS"
+    }
+  ]
+}
