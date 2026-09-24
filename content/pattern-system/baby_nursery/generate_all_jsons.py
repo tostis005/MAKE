@@ -85,9 +85,9 @@ TECH = {
     "CS":  {"w":100,"h":120,"technique":"cross-stitch","template":"cross-stitch.html",
             "page":"collections/baby-nursery/assets/cover-cross-stitch.jpg"},
     "C2C": {"w":60,"h":72,"technique":"c2c-crochet","template":"c2c-crochet.html",
-            "page":"collections/baby-nursery/assets/cover-crochet.jpg"},
-    "TC":  {"w":80,"h":96,"technique":"tapestry-crochet","template":"crochet.html",
             "page":"collections/baby-nursery/assets/cover-c2c-crochet.jpg"},
+    "TC":  {"w":80,"h":96,"technique":"tapestry-crochet","template":"crochet.html",
+            "page":"collections/baby-nursery/assets/cover-crochet.jpg"},
     "LH":  {"w":60,"h":72,"technique":"latch-hook","template":"rug.html",
             "page":"collections/baby-nursery/assets/cover-rug.jpg"},
 }
@@ -257,9 +257,9 @@ def main():
 
     col_path = COL / "collection.json"
     col = json.loads(col_path.read_text(encoding="utf-8"))
-    col["mockup_spec"]["technique_assets"]["C2C"] = "collections/baby-nursery/assets/cover-crochet.jpg"
-    col["mockup_spec"]["technique_assets"]["TC"] = "collections/baby-nursery/assets/cover-c2c-crochet.jpg"
-    col["mockup_spec"]["crochet_asset_mapping_note"] = "C2C and tapestry cover assets corrected per approved collection reference."
+    col["mockup_spec"]["technique_assets"]["C2C"] = "collections/baby-nursery/assets/cover-c2c-crochet.jpg"
+    col["mockup_spec"]["technique_assets"]["TC"] = "collections/baby-nursery/assets/cover-crochet.jpg"
+    col["mockup_spec"]["crochet_asset_mapping_note"] = "Canonical mapping: C2C uses cover-c2c-crochet.jpg; tapestry crochet (TC) uses cover-crochet.jpg. Keep this mapping for future executions."
     write_json(col_path, col)
 
     write_json(OUT_SRC/"manifest.json", {
