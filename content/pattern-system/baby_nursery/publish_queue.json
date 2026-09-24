@@ -1,7 +1,7 @@
 {
   "collection": "baby-nursery",
-  "mode": "publish-one-clean-vivid-no-outline-design-per-run",
-  "auto_continue": true,
+  "mode": "paused-for-palette-and-master-rebuild",
+  "auto_continue": false,
   "max_attempts_per_design": 2,
   "notes": [
     "All previous Baby Nursery WooCommerce products were deleted before this rebuild.",
@@ -372,5 +372,5 @@
       "last_error": null
     }
   ],
-  "reference_policy": "Use only the exact user-approved Baby & Nursery motifs. Rebuild with the vivid 24-colour palette, remove exterior black outline components, remove detached/weak white and near-white flecks, render four product images, publish all four techniques, then continue automatically."
+  "reference_policy": "Paused. Do not publish Baby & Nursery until palette/master cleanup is revalidated."
 }
