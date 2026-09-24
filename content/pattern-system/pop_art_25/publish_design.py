@@ -241,13 +241,22 @@ def ensure_source_png(base_id:str,collection:dict):
         return src
 
     # Always rebuild branch-generated sources from the canonical matrix/override.
-    # This guarantees that the exterior-white cleanup is applied consistently,
-    # even when a previous run already left a derived PNG in sources/.
-    try:
+    # Explicit per-design overrides are authoritative and must fail closed:
+    # a malformed override must never silently reuse an older PNG.
+    override_path=SYSTEM/"pop_art_25"/"source_overrides.json"
+    explicit_override=False
+    if override_path.is_file():
+        explicit_override=bool(read_json(override_path).get(base_id))
+
+    if explicit_override:
         rows=_load_encoded_matrix(base_id)
-    except Exception as exc:
-        print(f"SOURCE_MATRIX_FALLBACK {base_id}: {type(exc).__name__}: {exc}")
-        rows=_rows_from_existing_source(base_id,collection)
+        print(f"SOURCE_OVERRIDE_REQUIRED {base_id}")
+    else:
+        try:
+            rows=_load_encoded_matrix(base_id)
+        except Exception as exc:
+            print(f"SOURCE_MATRIX_FALLBACK {base_id}: {type(exc).__name__}: {exc}")
+            rows=_rows_from_existing_source(base_id,collection)
     rows,removed=_clean_exterior_white_noise(rows,collection)
     if removed:
         print(f"EXTERIOR_WHITE_CLEANUP {base_id} removed={removed}")
