@@ -237,6 +237,35 @@ foreach ( array_values( array_unique( array_filter( array_map( 'sanitize_title',
     $retired_term = get_term_by( 'slug', $retired_collection_slug, 'product_collection' );
     if ( ! $retired_term instanceof WP_Term ) { continue; }
 
+    $retired_collection_product_ids = get_posts(
+        array(
+            'post_type'      => 'product',
+            'post_status'    => array( 'publish', 'draft', 'pending', 'private', 'future' ),
+            'posts_per_page' => -1,
+            'fields'         => 'ids',
+            'no_found_rows'  => true,
+            'tax_query'      => array(
+                array(
+                    'taxonomy' => 'product_collection',
+                    'field'    => 'term_id',
+                    'terms'    => array( (int) $retired_term->term_id ),
+                ),
+            ),
+        )
+    );
+
+    foreach ( array_map( 'intval', $retired_collection_product_ids ) as $retired_collection_product_id ) {
+        if ( '1' !== (string) get_post_meta( $retired_collection_product_id, '_drielo_managed_product', true ) ) {
+            echo 'SKIPPED RETIRED COLLECTION PRODUCT unmanaged product_id=' . $retired_collection_product_id . PHP_EOL;
+            continue;
+        }
+
+        $retired_collection_product = wc_get_product( $retired_collection_product_id );
+        $retired_collection_sku = $retired_collection_product instanceof WC_Product ? $retired_collection_product->get_sku() : '';
+        wp_trash_post( $retired_collection_product_id );
+        echo 'RETIRED COLLECTION PRODUCT slug=' . $retired_collection_slug . ' sku=' . $retired_collection_sku . ' product_id=' . $retired_collection_product_id . PHP_EOL;
+    }
+
     clean_term_cache( $retired_term->term_id, 'product_collection' );
     $retired_term = get_term( $retired_term->term_id, 'product_collection' );
     if ( $retired_term instanceof WP_Term && 0 === (int) $retired_term->count ) {

@@ -279,7 +279,7 @@ jobs:
               raise SystemExit('Drielo shop template is not being rendered')
           if product_links < 1:
               raise SystemExit('Public shop contains no product links')
-          if 'P0001-CS-featured' not in html:
-              raise SystemExit('Clean P0001 featured image is not rendered in the public shop')
+          if 'P0001-CS-product' not in html:
+              raise SystemExit('Current P0001 product image is not rendered in the public shop')
           PY
 
