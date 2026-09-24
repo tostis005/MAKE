@@ -1224,7 +1224,7 @@ final class Drielo_Etsy_Sync {
             $rank++;
         }
 
-        if ( ! empty( $settings['sync_pdf_previews'] ) && $rank <= 20 ) {
+        if ( ! empty( $settings['sync_pdf_previews'] ) && $rank <= 20 && ! $this->has_generated_pdf_gallery( $product->get_gallery_image_ids() ) ) {
             foreach ( $this->generate_pdf_preview_images( $product ) as $preview ) {
                 if ( $rank > 20 ) {
                     break;
@@ -1246,6 +1246,16 @@ final class Drielo_Etsy_Sync {
         }
 
         return true;
+    }
+
+    private function has_generated_pdf_gallery( array $attachment_ids ): bool {
+        foreach ( $attachment_ids as $attachment_id ) {
+            $source = (string) get_post_meta( absint( $attachment_id ), '_drielo_source_asset', true );
+            if ( false !== strpos( basename( $source ), '-etsy-' ) ) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private function generate_pdf_preview_images( WC_Product $product ): array {
