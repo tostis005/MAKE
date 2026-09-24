@@ -1,0 +1,300 @@
+{
+  "collection": "florals",
+  "purpose": "Canonical visual reference sheets for extracting the 30 Florals source motifs.",
+  "visual_authority": true,
+  "instructions": [
+    "Use the assigned sheet cell as the visual authority for the corresponding F#### design.",
+    "Do not invent an alternative floral composition when extracting or regenerating a source motif.",
+    "Preserve the complete silhouette and transparent background.",
+    "Ignore stitch-texture micro-detail when necessary for grid reduction, but preserve identity, proportions, principal colors and composition.",
+    "Apply the collection 24-color palette strictly when canonicalizing and reducing."
+  ],
+  "sheets": [
+    {
+      "id": "florals-sheet-01",
+      "file": "florals-sheet-01.png",
+      "layout": {
+        "columns": 3,
+        "rows": 2
+      },
+      "transparent_background": true,
+      "status": "approved-reference",
+      "designs": [
+        {
+          "base_design_id": "F0001",
+          "slug": "blue-daisy-pitcher",
+          "cell": "r1c1"
+        },
+        {
+          "base_design_id": "F0002",
+          "slug": "pink-peony",
+          "cell": "r1c2"
+        },
+        {
+          "base_design_id": "F0003",
+          "slug": "lavender-ribbon-bundle",
+          "cell": "r1c3"
+        },
+        {
+          "base_design_id": "F0004",
+          "slug": "sunflower-stem",
+          "cell": "r2c1"
+        },
+        {
+          "base_design_id": "F0005",
+          "slug": "blue-hydrangea",
+          "cell": "r2c2"
+        },
+        {
+          "base_design_id": "F0006",
+          "slug": "cherry-blossom-branch",
+          "cell": "r2c3"
+        }
+      ],
+      "original_generation_dimensions": {
+        "width": 1448,
+        "height": 1086
+      },
+      "repository_reference_dimensions": {
+        "width": 192,
+        "height": 144
+      },
+      "processing": {
+        "type": "palette-normalized visual derivative",
+        "resize": "palette-normalized nearest-neighbor reference copy, 1448x1086 -> 192x144",
+        "palette": "strict Florals 24-color palette",
+        "transparency": "preserved",
+        "composition_preserved": true
+      }
+    },
+    {
+      "id": "florals-sheet-02",
+      "file": "florals-sheet-02.png",
+      "layout": {
+        "columns": 3,
+        "rows": 2
+      },
+      "transparent_background": true,
+      "status": "approved-reference",
+      "designs": [
+        {
+          "base_design_id": "F0007",
+          "slug": "pink-floral-heart-wreath",
+          "cell": "r1c1"
+        },
+        {
+          "base_design_id": "F0008",
+          "slug": "daisy-mason-jar",
+          "cell": "r1c2"
+        },
+        {
+          "base_design_id": "F0009",
+          "slug": "eucalyptus-ribbon-bundle",
+          "cell": "r1c3"
+        },
+        {
+          "base_design_id": "F0010",
+          "slug": "potted-strawberry-plant",
+          "cell": "r2c1"
+        },
+        {
+          "base_design_id": "F0011",
+          "slug": "wrapped-wildflower-bouquet",
+          "cell": "r2c2"
+        },
+        {
+          "base_design_id": "F0012",
+          "slug": "rose-teacup",
+          "cell": "r2c3"
+        }
+      ],
+      "original_generation_dimensions": {
+        "width": 1448,
+        "height": 1086
+      },
+      "repository_reference_dimensions": {
+        "width": 192,
+        "height": 144
+      },
+      "processing": {
+        "type": "palette-normalized visual derivative",
+        "resize": "palette-normalized nearest-neighbor reference copy, 1448x1086 -> 192x144",
+        "palette": "strict Florals 24-color palette",
+        "transparency": "preserved",
+        "composition_preserved": true
+      }
+    },
+    {
+      "id": "florals-sheet-03",
+      "file": "florals-sheet-03.png",
+      "layout": {
+        "columns": 3,
+        "rows": 2
+      },
+      "transparent_background": true,
+      "status": "approved-reference",
+      "designs": [
+        {
+          "base_design_id": "F0013",
+          "slug": "rose-ribbon-bouquet",
+          "cell": "r1c1"
+        },
+        {
+          "base_design_id": "F0014",
+          "slug": "tulip-bouquet",
+          "cell": "r1c2"
+        },
+        {
+          "base_design_id": "F0015",
+          "slug": "succulent-pot-trio",
+          "cell": "r1c3"
+        },
+        {
+          "base_design_id": "F0016",
+          "slug": "daffodil-bouquet",
+          "cell": "r2c1"
+        },
+        {
+          "base_design_id": "F0017",
+          "slug": "lilac-twine-bouquet",
+          "cell": "r2c2"
+        },
+        {
+          "base_design_id": "F0018",
+          "slug": "potted-lavender",
+          "cell": "r2c3"
+        }
+      ],
+      "original_generation_dimensions": {
+        "width": 1448,
+        "height": 1086
+      },
+      "repository_reference_dimensions": {
+        "width": 192,
+        "height": 144
+      },
+      "processing": {
+        "type": "palette-normalized visual derivative",
+        "resize": "palette-normalized nearest-neighbor reference copy, 1448x1086 -> 192x144",
+        "palette": "strict Florals 24-color palette",
+        "transparency": "preserved",
+        "composition_preserved": true
+      }
+    },
+    {
+      "id": "florals-sheet-04",
+      "file": "florals-sheet-04.png",
+      "layout": {
+        "columns": 3,
+        "rows": 2
+      },
+      "transparent_background": true,
+      "status": "approved-reference",
+      "designs": [
+        {
+          "base_design_id": "F0019",
+          "slug": "chamomile-bundle",
+          "cell": "r1c1"
+        },
+        {
+          "base_design_id": "F0020",
+          "slug": "floral-watering-can",
+          "cell": "r1c2"
+        },
+        {
+          "base_design_id": "F0021",
+          "slug": "hanging-pink-flower-basket",
+          "cell": "r1c3"
+        },
+        {
+          "base_design_id": "F0022",
+          "slug": "bluebell-bouquet",
+          "cell": "r2c1"
+        },
+        {
+          "base_design_id": "F0023",
+          "slug": "magnolia-branch",
+          "cell": "r2c2"
+        },
+        {
+          "base_design_id": "F0024",
+          "slug": "enamel-herb-pot",
+          "cell": "r2c3"
+        }
+      ],
+      "original_generation_dimensions": {
+        "width": 1448,
+        "height": 1086
+      },
+      "repository_reference_dimensions": {
+        "width": 192,
+        "height": 144
+      },
+      "processing": {
+        "type": "palette-normalized visual derivative",
+        "resize": "palette-normalized nearest-neighbor reference copy, 1448x1086 -> 192x144",
+        "palette": "strict Florals 24-color palette",
+        "transparency": "preserved",
+        "composition_preserved": true
+      }
+    },
+    {
+      "id": "florals-sheet-05",
+      "file": "florals-sheet-05.png",
+      "layout": {
+        "columns": 3,
+        "rows": 2
+      },
+      "transparent_background": true,
+      "status": "approved-reference",
+      "designs": [
+        {
+          "base_design_id": "F0025",
+          "slug": "daisy-wreath",
+          "cell": "r1c1"
+        },
+        {
+          "base_design_id": "F0026",
+          "slug": "spring-flower-basket",
+          "cell": "r1c2"
+        },
+        {
+          "base_design_id": "F0027",
+          "slug": "babys-breath-jar",
+          "cell": "r1c3"
+        },
+        {
+          "base_design_id": "F0028",
+          "slug": "carnation-bouquet",
+          "cell": "r2c1"
+        },
+        {
+          "base_design_id": "F0029",
+          "slug": "anemone-bouquet",
+          "cell": "r2c2"
+        },
+        {
+          "base_design_id": "F0030",
+          "slug": "forget-me-not-bouquet",
+          "cell": "r2c3"
+        }
+      ],
+      "original_generation_dimensions": {
+        "width": 1448,
+        "height": 1086
+      },
+      "repository_reference_dimensions": {
+        "width": 192,
+        "height": 144
+      },
+      "processing": {
+        "type": "palette-normalized visual derivative",
+        "resize": "palette-normalized nearest-neighbor reference copy, 1448x1086 -> 192x144",
+        "palette": "strict Florals 24-color palette",
+        "transparency": "preserved",
+        "composition_preserved": true
+      }
+    }
+  ],
+  "repository_reference_note": "Repository images are compact palette-normalized PNG reference copies of the approved 1448×1086 generated sheets. They preserve motif identity, composition, cell assignment, transparency and the strict Florals 24-color palette."
+}

@@ -1,0 +1,54 @@
+{
+  "collection": "florals",
+  "purpose": "Trace the compact repository reference sheets back to the exact approved image-generation outputs used in this conversation.",
+  "authority": {
+    "motif_identity_and_composition": "The approved original generated sheet and its assigned cell define the required motif.",
+    "repository_reference": "The 192×144 palette-normalized PNG reference copy is the in-repository working visual reference for canonical extraction.",
+    "note": "Technique-specific patterns cannot be pixel-identical to the illustration because they are grid reductions; they must preserve the same motif, proportions, major components and composition."
+  },
+  "processing": {
+    "original_dimensions": {
+      "width": 1448,
+      "height": 1086
+    },
+    "repository_dimensions": {
+      "width": 192,
+      "height": 144
+    },
+    "resize": "palette-normalized nearest-neighbor reference copy",
+    "color_normalization": "strict Florals 24-color collection palette",
+    "transparency": "preserved"
+  },
+  "sheets": [
+    {
+      "id": "florals-sheet-01",
+      "file": "florals-sheet-01.png",
+      "gen_id": "fbf3d7c8-d4ab-45e8-8a05-f46defdf40a5",
+      "original_sha256": "7b877ec3165a177f03a302090ca5446eea2d40679ffd08701719b99d5a61588b"
+    },
+    {
+      "id": "florals-sheet-02",
+      "file": "florals-sheet-02.png",
+      "gen_id": "a79cc41d-74a2-438a-9c4f-3790a868072e",
+      "original_sha256": "0a24f5d089913fde08c1b2963d8242b2180970e4bedacdec25f9098397b46bc2"
+    },
+    {
+      "id": "florals-sheet-03",
+      "file": "florals-sheet-03.png",
+      "gen_id": "8ac5194d-dc1d-4b51-a4d7-11b4db04e935",
+      "original_sha256": "3a4a4cbae498e0287d4f8fd203a2a96495f4efc26fc17b616abd1fe071d63ad4"
+    },
+    {
+      "id": "florals-sheet-04",
+      "file": "florals-sheet-04.png",
+      "gen_id": "4946ad38-f8ac-424a-8ff0-579eef1d3cb6",
+      "original_sha256": "864f528902f62b1eea342695d07e8f803d1577a756836b145b24a39eea91bbbc"
+    },
+    {
+      "id": "florals-sheet-05",
+      "file": "florals-sheet-05.png",
+      "gen_id": "6855ec4c-21c1-491c-beb5-753349d1178e",
+      "original_sha256": "aa1d685540afb6635278da7ca751f7d63d7b3635d961394a7f22b83ae8061098"
+    }
+  ]
+}

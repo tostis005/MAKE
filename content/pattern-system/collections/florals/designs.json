@@ -1,0 +1,577 @@
+{
+  "collection": "florals",
+  "code_prefix": "F",
+  "count": 30,
+  "designs": [
+    {
+      "order": 1,
+      "base_design_id": "F0001",
+      "title_en": "Blue Daisy Pitcher",
+      "title_es": "Jarra azul con margaritas",
+      "slug": "blue-daisy-pitcher",
+      "variants": [
+        "F0001-CS",
+        "F0001-C2C",
+        "F0001-TC",
+        "F0001-LH"
+      ],
+      "artwork_status": "approved-reference-awaiting-canonical-extraction",
+      "source_asset": null,
+      "canonical_reference": {
+        "sheet": "reference-sheets/florals-sheet-01.png",
+        "cell": "r1c1"
+      }
+    },
+    {
+      "order": 2,
+      "base_design_id": "F0002",
+      "title_en": "Pink Peony",
+      "title_es": "Peonía rosa",
+      "slug": "pink-peony",
+      "variants": [
+        "F0002-CS",
+        "F0002-C2C",
+        "F0002-TC",
+        "F0002-LH"
+      ],
+      "artwork_status": "approved-reference-awaiting-canonical-extraction",
+      "source_asset": null,
+      "canonical_reference": {
+        "sheet": "reference-sheets/florals-sheet-01.png",
+        "cell": "r1c2"
+      }
+    },
+    {
+      "order": 3,
+      "base_design_id": "F0003",
+      "title_en": "Lavender Ribbon Bundle",
+      "title_es": "Ramo de lavanda con lazo",
+      "slug": "lavender-ribbon-bundle",
+      "variants": [
+        "F0003-CS",
+        "F0003-C2C",
+        "F0003-TC",
+        "F0003-LH"
+      ],
+      "artwork_status": "approved-reference-awaiting-canonical-extraction",
+      "source_asset": null,
+      "canonical_reference": {
+        "sheet": "reference-sheets/florals-sheet-01.png",
+        "cell": "r1c3"
+      }
+    },
+    {
+      "order": 4,
+      "base_design_id": "F0004",
+      "title_en": "Sunflower Stem",
+      "title_es": "Girasol",
+      "slug": "sunflower-stem",
+      "variants": [
+        "F0004-CS",
+        "F0004-C2C",
+        "F0004-TC",
+        "F0004-LH"
+      ],
+      "artwork_status": "approved-reference-awaiting-canonical-extraction",
+      "source_asset": null,
+      "canonical_reference": {
+        "sheet": "reference-sheets/florals-sheet-01.png",
+        "cell": "r2c1"
+      }
+    },
+    {
+      "order": 5,
+      "base_design_id": "F0005",
+      "title_en": "Blue Hydrangea",
+      "title_es": "Hortensia azul",
+      "slug": "blue-hydrangea",
+      "variants": [
+        "F0005-CS",
+        "F0005-C2C",
+        "F0005-TC",
+        "F0005-LH"
+      ],
+      "artwork_status": "approved-reference-awaiting-canonical-extraction",
+      "source_asset": null,
+      "canonical_reference": {
+        "sheet": "reference-sheets/florals-sheet-01.png",
+        "cell": "r2c2"
+      }
+    },
+    {
+      "order": 6,
+      "base_design_id": "F0006",
+      "title_en": "Cherry Blossom Branch",
+      "title_es": "Rama de cerezo en flor",
+      "slug": "cherry-blossom-branch",
+      "variants": [
+        "F0006-CS",
+        "F0006-C2C",
+        "F0006-TC",
+        "F0006-LH"
+      ],
+      "artwork_status": "approved-reference-awaiting-canonical-extraction",
+      "source_asset": null,
+      "canonical_reference": {
+        "sheet": "reference-sheets/florals-sheet-01.png",
+        "cell": "r2c3"
+      }
+    },
+    {
+      "order": 7,
+      "base_design_id": "F0007",
+      "title_en": "Pink Floral Heart Wreath",
+      "title_es": "Corona corazón floral rosa",
+      "slug": "pink-floral-heart-wreath",
+      "variants": [
+        "F0007-CS",
+        "F0007-C2C",
+        "F0007-TC",
+        "F0007-LH"
+      ],
+      "artwork_status": "approved-reference-awaiting-canonical-extraction",
+      "source_asset": null,
+      "canonical_reference": {
+        "sheet": "reference-sheets/florals-sheet-02.png",
+        "cell": "r1c1"
+      }
+    },
+    {
+      "order": 8,
+      "base_design_id": "F0008",
+      "title_en": "Daisy Mason Jar",
+      "title_es": "Tarro con margaritas",
+      "slug": "daisy-mason-jar",
+      "variants": [
+        "F0008-CS",
+        "F0008-C2C",
+        "F0008-TC",
+        "F0008-LH"
+      ],
+      "artwork_status": "approved-reference-awaiting-canonical-extraction",
+      "source_asset": null,
+      "canonical_reference": {
+        "sheet": "reference-sheets/florals-sheet-02.png",
+        "cell": "r1c2"
+      }
+    },
+    {
+      "order": 9,
+      "base_design_id": "F0009",
+      "title_en": "Eucalyptus Ribbon Bundle",
+      "title_es": "Ramo de eucalipto con lazo",
+      "slug": "eucalyptus-ribbon-bundle",
+      "variants": [
+        "F0009-CS",
+        "F0009-C2C",
+        "F0009-TC",
+        "F0009-LH"
+      ],
+      "artwork_status": "approved-reference-awaiting-canonical-extraction",
+      "source_asset": null,
+      "canonical_reference": {
+        "sheet": "reference-sheets/florals-sheet-02.png",
+        "cell": "r1c3"
+      }
+    },
+    {
+      "order": 10,
+      "base_design_id": "F0010",
+      "title_en": "Potted Strawberry Plant",
+      "title_es": "Planta de fresas en maceta",
+      "slug": "potted-strawberry-plant",
+      "variants": [
+        "F0010-CS",
+        "F0010-C2C",
+        "F0010-TC",
+        "F0010-LH"
+      ],
+      "artwork_status": "approved-reference-awaiting-canonical-extraction",
+      "source_asset": null,
+      "canonical_reference": {
+        "sheet": "reference-sheets/florals-sheet-02.png",
+        "cell": "r2c1"
+      }
+    },
+    {
+      "order": 11,
+      "base_design_id": "F0011",
+      "title_en": "Wrapped Wildflower Bouquet",
+      "title_es": "Ramo de flores silvestres envuelto",
+      "slug": "wrapped-wildflower-bouquet",
+      "variants": [
+        "F0011-CS",
+        "F0011-C2C",
+        "F0011-TC",
+        "F0011-LH"
+      ],
+      "artwork_status": "approved-reference-awaiting-canonical-extraction",
+      "source_asset": null,
+      "canonical_reference": {
+        "sheet": "reference-sheets/florals-sheet-02.png",
+        "cell": "r2c2"
+      }
+    },
+    {
+      "order": 12,
+      "base_design_id": "F0012",
+      "title_en": "Rose Teacup",
+      "title_es": "Taza con rosas",
+      "slug": "rose-teacup",
+      "variants": [
+        "F0012-CS",
+        "F0012-C2C",
+        "F0012-TC",
+        "F0012-LH"
+      ],
+      "artwork_status": "approved-reference-awaiting-canonical-extraction",
+      "source_asset": null,
+      "canonical_reference": {
+        "sheet": "reference-sheets/florals-sheet-02.png",
+        "cell": "r2c3"
+      }
+    },
+    {
+      "order": 13,
+      "base_design_id": "F0013",
+      "title_en": "Rose Ribbon Bouquet",
+      "title_es": "Ramo de rosas con lazo",
+      "slug": "rose-ribbon-bouquet",
+      "variants": [
+        "F0013-CS",
+        "F0013-C2C",
+        "F0013-TC",
+        "F0013-LH"
+      ],
+      "artwork_status": "approved-reference-awaiting-canonical-extraction",
+      "source_asset": null,
+      "canonical_reference": {
+        "sheet": "reference-sheets/florals-sheet-03.png",
+        "cell": "r1c1"
+      }
+    },
+    {
+      "order": 14,
+      "base_design_id": "F0014",
+      "title_en": "Tulip Bouquet",
+      "title_es": "Ramo de tulipanes",
+      "slug": "tulip-bouquet",
+      "variants": [
+        "F0014-CS",
+        "F0014-C2C",
+        "F0014-TC",
+        "F0014-LH"
+      ],
+      "artwork_status": "approved-reference-awaiting-canonical-extraction",
+      "source_asset": null,
+      "canonical_reference": {
+        "sheet": "reference-sheets/florals-sheet-03.png",
+        "cell": "r1c2"
+      }
+    },
+    {
+      "order": 15,
+      "base_design_id": "F0015",
+      "title_en": "Succulent Pot Trio",
+      "title_es": "Trío de suculentas en macetas",
+      "slug": "succulent-pot-trio",
+      "variants": [
+        "F0015-CS",
+        "F0015-C2C",
+        "F0015-TC",
+        "F0015-LH"
+      ],
+      "artwork_status": "approved-reference-awaiting-canonical-extraction",
+      "source_asset": null,
+      "canonical_reference": {
+        "sheet": "reference-sheets/florals-sheet-03.png",
+        "cell": "r1c3"
+      }
+    },
+    {
+      "order": 16,
+      "base_design_id": "F0016",
+      "title_en": "Daffodil Bouquet",
+      "title_es": "Ramo de narcisos",
+      "slug": "daffodil-bouquet",
+      "variants": [
+        "F0016-CS",
+        "F0016-C2C",
+        "F0016-TC",
+        "F0016-LH"
+      ],
+      "artwork_status": "approved-reference-awaiting-canonical-extraction",
+      "source_asset": null,
+      "canonical_reference": {
+        "sheet": "reference-sheets/florals-sheet-03.png",
+        "cell": "r2c1"
+      }
+    },
+    {
+      "order": 17,
+      "base_design_id": "F0017",
+      "title_en": "Lilac Twine Bouquet",
+      "title_es": "Ramo de lilas con cordel",
+      "slug": "lilac-twine-bouquet",
+      "variants": [
+        "F0017-CS",
+        "F0017-C2C",
+        "F0017-TC",
+        "F0017-LH"
+      ],
+      "artwork_status": "approved-reference-awaiting-canonical-extraction",
+      "source_asset": null,
+      "canonical_reference": {
+        "sheet": "reference-sheets/florals-sheet-03.png",
+        "cell": "r2c2"
+      }
+    },
+    {
+      "order": 18,
+      "base_design_id": "F0018",
+      "title_en": "Potted Lavender",
+      "title_es": "Lavanda en maceta",
+      "slug": "potted-lavender",
+      "variants": [
+        "F0018-CS",
+        "F0018-C2C",
+        "F0018-TC",
+        "F0018-LH"
+      ],
+      "artwork_status": "approved-reference-awaiting-canonical-extraction",
+      "source_asset": null,
+      "canonical_reference": {
+        "sheet": "reference-sheets/florals-sheet-03.png",
+        "cell": "r2c3"
+      }
+    },
+    {
+      "order": 19,
+      "base_design_id": "F0019",
+      "title_en": "Chamomile Bundle",
+      "title_es": "Ramo de manzanilla",
+      "slug": "chamomile-bundle",
+      "variants": [
+        "F0019-CS",
+        "F0019-C2C",
+        "F0019-TC",
+        "F0019-LH"
+      ],
+      "artwork_status": "approved-reference-awaiting-canonical-extraction",
+      "source_asset": null,
+      "canonical_reference": {
+        "sheet": "reference-sheets/florals-sheet-04.png",
+        "cell": "r1c1"
+      }
+    },
+    {
+      "order": 20,
+      "base_design_id": "F0020",
+      "title_en": "Floral Watering Can",
+      "title_es": "Regadera con flores",
+      "slug": "floral-watering-can",
+      "variants": [
+        "F0020-CS",
+        "F0020-C2C",
+        "F0020-TC",
+        "F0020-LH"
+      ],
+      "artwork_status": "approved-reference-awaiting-canonical-extraction",
+      "source_asset": null,
+      "canonical_reference": {
+        "sheet": "reference-sheets/florals-sheet-04.png",
+        "cell": "r1c2"
+      }
+    },
+    {
+      "order": 21,
+      "base_design_id": "F0021",
+      "title_en": "Hanging Pink Flower Basket",
+      "title_es": "Cesta colgante de flores rosas",
+      "slug": "hanging-pink-flower-basket",
+      "variants": [
+        "F0021-CS",
+        "F0021-C2C",
+        "F0021-TC",
+        "F0021-LH"
+      ],
+      "artwork_status": "approved-reference-awaiting-canonical-extraction",
+      "source_asset": null,
+      "canonical_reference": {
+        "sheet": "reference-sheets/florals-sheet-04.png",
+        "cell": "r1c3"
+      }
+    },
+    {
+      "order": 22,
+      "base_design_id": "F0022",
+      "title_en": "Bluebell Bouquet",
+      "title_es": "Ramo de campanillas azules",
+      "slug": "bluebell-bouquet",
+      "variants": [
+        "F0022-CS",
+        "F0022-C2C",
+        "F0022-TC",
+        "F0022-LH"
+      ],
+      "artwork_status": "approved-reference-awaiting-canonical-extraction",
+      "source_asset": null,
+      "canonical_reference": {
+        "sheet": "reference-sheets/florals-sheet-04.png",
+        "cell": "r2c1"
+      }
+    },
+    {
+      "order": 23,
+      "base_design_id": "F0023",
+      "title_en": "Magnolia Branch",
+      "title_es": "Rama de magnolia",
+      "slug": "magnolia-branch",
+      "variants": [
+        "F0023-CS",
+        "F0023-C2C",
+        "F0023-TC",
+        "F0023-LH"
+      ],
+      "artwork_status": "approved-reference-awaiting-canonical-extraction",
+      "source_asset": null,
+      "canonical_reference": {
+        "sheet": "reference-sheets/florals-sheet-04.png",
+        "cell": "r2c2"
+      }
+    },
+    {
+      "order": 24,
+      "base_design_id": "F0024",
+      "title_en": "Enamel Herb Pot",
+      "title_es": "Maceta esmaltada con hierbas",
+      "slug": "enamel-herb-pot",
+      "variants": [
+        "F0024-CS",
+        "F0024-C2C",
+        "F0024-TC",
+        "F0024-LH"
+      ],
+      "artwork_status": "approved-reference-awaiting-canonical-extraction",
+      "source_asset": null,
+      "canonical_reference": {
+        "sheet": "reference-sheets/florals-sheet-04.png",
+        "cell": "r2c3"
+      }
+    },
+    {
+      "order": 25,
+      "base_design_id": "F0025",
+      "title_en": "Daisy Wreath",
+      "title_es": "Corona de margaritas",
+      "slug": "daisy-wreath",
+      "variants": [
+        "F0025-CS",
+        "F0025-C2C",
+        "F0025-TC",
+        "F0025-LH"
+      ],
+      "artwork_status": "approved-reference-awaiting-canonical-extraction",
+      "source_asset": null,
+      "canonical_reference": {
+        "sheet": "reference-sheets/florals-sheet-05.png",
+        "cell": "r1c1"
+      }
+    },
+    {
+      "order": 26,
+      "base_design_id": "F0026",
+      "title_en": "Spring Flower Basket",
+      "title_es": "Cesta de flores de primavera",
+      "slug": "spring-flower-basket",
+      "variants": [
+        "F0026-CS",
+        "F0026-C2C",
+        "F0026-TC",
+        "F0026-LH"
+      ],
+      "artwork_status": "approved-reference-awaiting-canonical-extraction",
+      "source_asset": null,
+      "canonical_reference": {
+        "sheet": "reference-sheets/florals-sheet-05.png",
+        "cell": "r1c2"
+      }
+    },
+    {
+      "order": 27,
+      "base_design_id": "F0027",
+      "title_en": "Baby's Breath Jar",
+      "title_es": "Tarro con paniculata",
+      "slug": "babys-breath-jar",
+      "variants": [
+        "F0027-CS",
+        "F0027-C2C",
+        "F0027-TC",
+        "F0027-LH"
+      ],
+      "artwork_status": "approved-reference-awaiting-canonical-extraction",
+      "source_asset": null,
+      "canonical_reference": {
+        "sheet": "reference-sheets/florals-sheet-05.png",
+        "cell": "r1c3"
+      }
+    },
+    {
+      "order": 28,
+      "base_design_id": "F0028",
+      "title_en": "Carnation Bouquet",
+      "title_es": "Ramo de claveles",
+      "slug": "carnation-bouquet",
+      "variants": [
+        "F0028-CS",
+        "F0028-C2C",
+        "F0028-TC",
+        "F0028-LH"
+      ],
+      "artwork_status": "approved-reference-awaiting-canonical-extraction",
+      "source_asset": null,
+      "canonical_reference": {
+        "sheet": "reference-sheets/florals-sheet-05.png",
+        "cell": "r2c1"
+      }
+    },
+    {
+      "order": 29,
+      "base_design_id": "F0029",
+      "title_en": "Anemone Bouquet",
+      "title_es": "Ramo de anémonas",
+      "slug": "anemone-bouquet",
+      "variants": [
+        "F0029-CS",
+        "F0029-C2C",
+        "F0029-TC",
+        "F0029-LH"
+      ],
+      "artwork_status": "approved-reference-awaiting-canonical-extraction",
+      "source_asset": null,
+      "canonical_reference": {
+        "sheet": "reference-sheets/florals-sheet-05.png",
+        "cell": "r2c2"
+      }
+    },
+    {
+      "order": 30,
+      "base_design_id": "F0030",
+      "title_en": "Forget-Me-Not Bouquet",
+      "title_es": "Ramo de nomeolvides",
+      "slug": "forget-me-not-bouquet",
+      "variants": [
+        "F0030-CS",
+        "F0030-C2C",
+        "F0030-TC",
+        "F0030-LH"
+      ],
+      "artwork_status": "approved-reference-awaiting-canonical-extraction",
+      "source_asset": null,
+      "canonical_reference": {
+        "sheet": "reference-sheets/florals-sheet-05.png",
+        "cell": "r2c3"
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "collection": "florals",
+  "version": 1,
+  "hard_requirements": {
+    "use_reference_motif_exactly": true,
+    "transparent_source": true,
+    "full_motif_inside_canvas": true,
+    "no_edge_cropping": true,
+    "no_invented_elements": true,
+    "palette_mode": "strict",
+    "palette_size": 24,
+    "canonical_source_first": true
+  },
+  "workflow": [
+    "Open the exact approved reference sheet and isolate the cell assigned in designs.json.",
+    "Recreate/extract that motif as a full transparent canonical source; do not design a new motif.",
+    "Normalize the canonical source to the collection 24-color palette.",
+    "Verify complete silhouette and safe transparent margins on all four sides.",
+    "Only after canonical source approval, derive CS/C2C/TC/LH matrices using the configured grid targets.",
+    "Keep product render_ready=false until the canonical source and technique matrices pass visual QA."
+  ],
+  "qa_reject_if": [
+    "wrong flower/species or vessel compared with reference",
+    "missing major flower, leaf, bow, pot, branch or container",
+    "head/top/bottom/side equivalent clipping of any motif component",
+    "non-transparent background introduced",
+    "more than 24 collection colors",
+    "materially altered pose, arrangement or proportions"
+  ]
+}

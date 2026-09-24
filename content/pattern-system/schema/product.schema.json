@@ -14,7 +14,7 @@
   "properties": {
     "code": {
       "type": "string",
-      "pattern": "^[PI][0-9]{4,}-(CS|C2C|TC|LH)$"
+      "pattern": "^[PIF][0-9]{4,}-(CS|C2C|TC|LH)$"
     },
     "collection": {
       "type": "string"
@@ -51,7 +51,7 @@
     },
     "base_design_id": {
       "type": "string",
-      "pattern": "^[PI][0-9]{4,}$"
+      "pattern": "^[PIF][0-9]{4,}$"
     },
     "technique_code": {
       "type": "string",
