@@ -1,0 +1,14 @@
+{
+  "code": "A0020-CS",
+  "base_design_id": "A0020",
+  "technique_code": "CS",
+  "collection": "animals",
+  "source_artwork": "collections/animals/source-designs/A0020-squirrel-acorn.png",
+  "reference_artwork": "collections/animals/reference-masters/A0020-squirrel-acorn-reference.png",
+  "page_1_asset": "mockups/animals-cover-cross-stitch.png",
+  "render_ready": true,
+  "status": "active",
+  "palette_mode": "strict",
+  "palette_size": 24,
+  "transparent_source": true
+}
