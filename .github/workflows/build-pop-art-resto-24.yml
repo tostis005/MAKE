@@ -1,0 +1,117 @@
+name: Build remaining Pop Art 24 designs
+
+on:
+  push:
+    branches:
+      - feature/pop-art-resto-24
+    paths:
+      - '.github/workflows/build-pop-art-resto-24.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-pop-art-resto-24
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout feature branch
+        uses: actions/checkout@v4
+        with:
+          ref: feature/pop-art-resto-24
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install renderer
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --quiet Pillow playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Build remaining 24 designs in four techniques
+        shell: bash
+        run: |
+          set -euo pipefail
+          python .github/scripts/build_pop_art_remaining.py --workers 4
+
+      - name: Validate branch deliverables
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+
+          root=Path('.')
+          ps=root/'content/pattern-system'
+          cat=json.loads((root/'content/products/catalog.json').read_text(encoding='utf-8'))
+          collection=json.loads((ps/'collections/pop-art-25/collection.json').read_text(encoding='utf-8'))
+          allowed={(str(p['dmc']),p['hex'].upper()) for p in collection['palette']}
+          if len(allowed)!=25:
+              raise SystemExit(f'Expected exactly 25 palette colours, got {len(allowed)}')
+          if collection['mockup_spec']['technique_assets']['C2C']!='../../multitech/assets/cover-crochet.webp':
+              raise SystemExit('C2C cover route changed')
+          if collection['mockup_spec']['technique_assets']['TC']!='../../multitech/assets/cover-c2c-crochet.webp':
+              raise SystemExit('TC cover route changed')
+
+          excluded={'P0001','P0012'}
+          remaining=[f'P{i:04d}' for i in range(1,27) if f'P{i:04d}' not in excluded]
+          techs=('CS','C2C','TC','LH')
+          for base in remaining:
+              src=ps/'collections/pop-art-25/sources'/f'{base}.png'
+              if not src.is_file():
+                  raise SystemExit(f'Missing source {src}')
+              im=Image.open(src)
+              if im.mode!='RGBA' or im.getextrema()[3][0] != 0:
+                  raise SystemExit(f'Source is not transparent: {src}')
+              for tech in techs:
+                  code=f'{base}-{tech}'
+                  pat=json.loads((ps/'patterns'/code/'pattern.json').read_text(encoding='utf-8'))
+                  prod=json.loads((ps/'products'/code/'product.json').read_text(encoding='utf-8'))
+                  if pat.get('status')!='ready' or not pat.get('matrix') or not pat.get('threads'):
+                      raise SystemExit(f'Pattern not ready: {code}')
+                  if prod.get('status')!='ready' or not prod.get('render_ready'):
+                      raise SystemExit(f'Product JSON not ready: {code}')
+                  for t in pat['threads']:
+                      if (str(t['dmc']),str(t['color']).upper()) not in allowed:
+                          raise SystemExit(f'Out-of-palette thread: {code} {t}')
+                  pdf=root/'content/products/files'/f'Drielo_{code}.pdf'
+                  img=root/'content/products/assets'/f'{code}-product.webp'
+                  if not pdf.is_file() or pdf.stat().st_size<100000 or pdf.read_bytes()[:4]!=b'%PDF':
+                      raise SystemExit(f'Invalid PDF: {pdf}')
+                  if not img.is_file() or img.stat().st_size<10000:
+                      raise SystemExit(f'Invalid product image: {img}')
+
+          pop=[p for p in cat['products'] if p.get('collection')=='pop-art-25']
+          codes={p['code'] for p in pop}
+          expected={f'P{i:04d}-{t}' for i in range(1,27) for t in techs}
+          if codes!=expected:
+              raise SystemExit(f'Catalogue mismatch missing={sorted(expected-codes)} extra={sorted(codes-expected)}')
+          print('QA_OK remaining_designs=24 rendered_variants=96 catalogue_variants=104 palette=25')
+          PY
+
+      - name: Commit generated products to feature branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf content/pattern-system/output-multitech
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add             content/pattern-system/collections/pop-art-25/designs.json             content/pattern-system/collections/pop-art-25/sources             content/pattern-system/products/P0*             content/pattern-system/patterns/P0*             content/products/catalog.json             content/products/assets/P0*-product.webp             content/products/files/Drielo_P0*.pdf
+          if git diff --cached --quiet; then
+            echo "No generated changes to commit."
+            exit 0
+          fi
+          git commit -m "Build remaining 24 Pop Art designs in four techniques [skip ci]"
+          git push origin HEAD:feature/pop-art-resto-24
