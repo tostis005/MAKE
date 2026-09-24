@@ -1356,3 +1356,262 @@ function make_journal_pagination_html( WP_Query $query, string $language = '', s
 
     return '<div class="journal-pagination-buttons">' . implode( '', $pages ) . '</div>';
 }
+
+
+/* Drielo professional storefront pages v1 */
+
+function make_contact_recipient(): string {
+    return 'tostis005@gmail.com';
+}
+
+function make_contact_url( string $language = '' ): string {
+    $language = in_array( $language, array( 'es', 'en' ), true ) ? $language : make_current_language();
+    return home_url( 'en' === $language ? '/en/contact/' : '/contacto/' );
+}
+
+function make_privacy_url( string $language = '' ): string {
+    $language = in_array( $language, array( 'es', 'en' ), true ) ? $language : make_current_language();
+    return home_url( 'en' === $language ? '/en/privacy/' : '/privacidad/' );
+}
+
+function make_refund_policy_url( string $language = '' ): string {
+    $language = in_array( $language, array( 'es', 'en' ), true ) ? $language : make_current_language();
+    return home_url( 'en' === $language ? '/en/refunds/' : '/reembolsos/' );
+}
+
+function make_terms_url( string $language = '' ): string {
+    $language = in_array( $language, array( 'es', 'en' ), true ) ? $language : make_current_language();
+    return home_url( 'en' === $language ? '/en/terms/' : '/terminos-y-condiciones/' );
+}
+
+function make_info_page_key(): string {
+    $key = sanitize_key( (string) get_query_var( 'make_info_page' ) );
+    return in_array( $key, array( 'contact', 'privacy', 'refunds', 'terms' ), true ) ? $key : '';
+}
+
+function make_info_page_url( string $key, string $language = '' ): string {
+    if ( 'contact' === $key ) { return make_contact_url( $language ); }
+    if ( 'privacy' === $key ) { return make_privacy_url( $language ); }
+    if ( 'refunds' === $key ) { return make_refund_policy_url( $language ); }
+    if ( 'terms' === $key ) { return make_terms_url( $language ); }
+    return make_home_url( $language );
+}
+
+function make_info_page_title( string $key = '' ): string {
+    $key = $key ?: make_info_page_key();
+    $titles = array(
+        'contact' => make_t( 'Contacto', 'Contact' ),
+        'privacy' => make_t( 'Política de privacidad', 'Privacy policy' ),
+        'refunds' => make_t( 'Política de reembolso', 'Refund policy' ),
+        'terms'   => make_t( 'Términos y condiciones', 'Terms & conditions' ),
+    );
+    return $titles[ $key ] ?? make_brand_name();
+}
+
+function make_register_info_rewrites(): void {
+    add_rewrite_rule( '^contacto/?$', 'index.php?make_info_page=contact&make_lang=es', 'top' );
+    add_rewrite_rule( '^privacidad/?$', 'index.php?make_info_page=privacy&make_lang=es', 'top' );
+    add_rewrite_rule( '^reembolsos/?$', 'index.php?make_info_page=refunds&make_lang=es', 'top' );
+    add_rewrite_rule( '^terminos-y-condiciones/?$', 'index.php?make_info_page=terms&make_lang=es', 'top' );
+
+    add_rewrite_rule( '^en/contact/?$', 'index.php?make_info_page=contact&make_lang=en', 'top' );
+    add_rewrite_rule( '^en/privacy/?$', 'index.php?make_info_page=privacy&make_lang=en', 'top' );
+    add_rewrite_rule( '^en/refunds/?$', 'index.php?make_info_page=refunds&make_lang=en', 'top' );
+    add_rewrite_rule( '^en/terms/?$', 'index.php?make_info_page=terms&make_lang=en', 'top' );
+}
+add_action( 'init', 'make_register_info_rewrites', 21 );
+
+function make_maybe_flush_info_rewrites(): void {
+    $version = '1';
+    if ( $version === (string) get_option( 'drielo_info_rewrite_schema', '' ) ) { return; }
+    flush_rewrite_rules( false );
+    update_option( 'drielo_info_rewrite_schema', $version, false );
+}
+add_action( 'init', 'make_maybe_flush_info_rewrites', 110 );
+
+function make_info_query_vars( array $vars ): array {
+    $vars[] = 'make_info_page';
+    return $vars;
+}
+add_filter( 'query_vars', 'make_info_query_vars' );
+
+function make_info_template_router( string $template ): string {
+    if ( '' === make_info_page_key() ) { return $template; }
+    $info_template = locate_template( 'page-info.php' );
+    return $info_template ?: $template;
+}
+add_filter( 'template_include', 'make_info_template_router', 98 );
+
+function make_info_page_status(): void {
+    if ( '' === make_info_page_key() ) { return; }
+    global $wp_query;
+    if ( $wp_query instanceof WP_Query ) {
+        $wp_query->is_404 = false;
+        $wp_query->is_page = true;
+    }
+    status_header( 200 );
+}
+add_action( 'template_redirect', 'make_info_page_status', -50 );
+
+add_filter( 'redirect_canonical', static function ( $redirect_url ) {
+    return '' !== make_info_page_key() ? false : $redirect_url;
+}, 10, 1 );
+
+add_filter( 'pre_get_document_title', static function ( string $title ): string {
+    return '' !== make_info_page_key() ? make_info_page_title() . ' — ' . make_brand_name() : $title;
+}, 20 );
+
+function make_info_page_canonical(): void {
+    $key = make_info_page_key();
+    if ( '' === $key ) { return; }
+    echo '<link rel="canonical" href="' . esc_url( make_info_page_url( $key ) ) . '">' . "\n";
+}
+add_action( 'wp_head', 'make_info_page_canonical', 4 );
+
+function make_register_contact_message_type(): void {
+    register_post_type(
+        'drielo_contact',
+        array(
+            'labels' => array(
+                'name'          => 'Contact messages',
+                'singular_name' => 'Contact message',
+                'menu_name'     => 'Contact messages',
+            ),
+            'public'              => false,
+            'show_ui'             => true,
+            'show_in_menu'        => true,
+            'menu_icon'           => 'dashicons-email-alt',
+            'supports'            => array( 'title', 'editor' ),
+            'exclude_from_search' => true,
+            'show_in_rest'        => false,
+        )
+    );
+}
+add_action( 'init', 'make_register_contact_message_type', 8 );
+
+function make_contact_redirect( string $language, array $args = array() ): void {
+    $url = make_contact_url( $language );
+    if ( $args ) { $url = add_query_arg( $args, $url ); }
+    wp_safe_redirect( $url );
+    exit;
+}
+
+function make_contact_form_handler(): void {
+    $language = isset( $_POST['contact_language'] ) ? sanitize_key( (string) wp_unslash( $_POST['contact_language'] ) ) : 'es';
+    $language = in_array( $language, array( 'es', 'en' ), true ) ? $language : 'es';
+
+    if (
+        ! isset( $_POST['make_contact_nonce'] ) ||
+        ! wp_verify_nonce( sanitize_text_field( (string) wp_unslash( $_POST['make_contact_nonce'] ) ), 'make_contact_form' )
+    ) {
+        make_contact_redirect( $language, array( 'contact_error' => 'security' ) );
+    }
+
+    $honeypot = isset( $_POST['company'] ) ? trim( (string) wp_unslash( $_POST['company'] ) ) : '';
+    $started  = isset( $_POST['started_at'] ) ? absint( $_POST['started_at'] ) : 0;
+    $elapsed  = $started > 0 ? time() - $started : 0;
+
+    if ( '' !== $honeypot || $elapsed < 2 || $elapsed > 7200 ) {
+        make_contact_redirect( $language, array( 'sent' => '1' ) );
+    }
+
+    $name    = isset( $_POST['contact_name'] ) ? sanitize_text_field( (string) wp_unslash( $_POST['contact_name'] ) ) : '';
+    $email   = isset( $_POST['contact_email'] ) ? sanitize_email( (string) wp_unslash( $_POST['contact_email'] ) ) : '';
+    $message = isset( $_POST['contact_message'] ) ? sanitize_textarea_field( (string) wp_unslash( $_POST['contact_message'] ) ) : '';
+    $privacy = ! empty( $_POST['privacy_accept'] );
+
+    if ( '' === $name || ! is_email( $email ) || mb_strlen( $message ) < 10 || mb_strlen( $message ) > 5000 || ! $privacy ) {
+        make_contact_redirect( $language, array( 'contact_error' => 'fields' ) );
+    }
+
+    $ip = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( (string) wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : 'unknown';
+    $rate_key = 'drielo_contact_' . md5( $ip . wp_salt( 'nonce' ) );
+    $rate_count = (int) get_transient( $rate_key );
+
+    if ( $rate_count >= 5 ) {
+        make_contact_redirect( $language, array( 'contact_error' => 'rate' ) );
+    }
+    set_transient( $rate_key, $rate_count + 1, HOUR_IN_SECONDS );
+
+    $post_id = wp_insert_post(
+        array(
+            'post_type'    => 'drielo_contact',
+            'post_status'  => 'private',
+            'post_title'   => wp_strip_all_tags( $name . ' — ' . $email ),
+            'post_content' => $message,
+        ),
+        true
+    );
+
+    if ( ! is_wp_error( $post_id ) && $post_id ) {
+        update_post_meta( (int) $post_id, '_drielo_contact_name', $name );
+        update_post_meta( (int) $post_id, '_drielo_contact_email', $email );
+        update_post_meta( (int) $post_id, '_drielo_contact_language', $language );
+    }
+
+    $subject = '[Drielo] ' . ( 'en' === $language ? 'New contact message' : 'Nuevo mensaje de contacto' ) . ' — ' . mb_substr( $name, 0, 80 );
+    $body = "Nombre / Name: {$name}\nEmail: {$email}\nIdioma / Language: {$language}\n\nMensaje / Message:\n{$message}\n";
+    $headers = array(
+        'Content-Type: text/plain; charset=UTF-8',
+        'Reply-To: ' . $name . ' <' . $email . '>',
+    );
+
+    $mail_sent = wp_mail( make_contact_recipient(), $subject, $body, $headers );
+
+    if ( ! is_wp_error( $post_id ) && $post_id ) {
+        update_post_meta( (int) $post_id, '_drielo_contact_mail_sent', $mail_sent ? 'yes' : 'no' );
+    }
+
+    make_contact_redirect( $language, array( 'sent' => '1' ) );
+}
+add_action( 'admin_post_nopriv_make_contact', 'make_contact_form_handler' );
+add_action( 'admin_post_make_contact', 'make_contact_form_handler' );
+
+function make_cart_has_digital_content(): bool {
+    if ( ! function_exists( 'WC' ) || ! WC()->cart ) { return false; }
+    foreach ( WC()->cart->get_cart() as $item ) {
+        $product = isset( $item['data'] ) && $item['data'] instanceof WC_Product ? $item['data'] : null;
+        if ( $product && ( $product->is_downloadable() || $product->is_virtual() ) ) { return true; }
+    }
+    return false;
+}
+
+function make_digital_content_checkout_consent(): void {
+    if ( ! make_cart_has_digital_content() ) { return; }
+    $label = make_t(
+        'Solicito el acceso inmediato al contenido digital y reconozco que, cuando la ley aplicable lo permita, al comenzar la descarga o el acceso puedo perder el derecho de desistimiento correspondiente.',
+        'I request immediate access to the digital content and acknowledge that, where applicable law allows, once download or access begins I may lose the relevant right of withdrawal.'
+    );
+    woocommerce_form_field(
+        'make_digital_content_consent',
+        array(
+            'type'     => 'checkbox',
+            'class'    => array( 'form-row', 'make-digital-consent' ),
+            'required' => true,
+            'label'    => $label,
+        ),
+        WC()->checkout()->get_value( 'make_digital_content_consent' )
+    );
+}
+add_action( 'woocommerce_review_order_before_submit', 'make_digital_content_checkout_consent', 8 );
+
+function make_validate_digital_content_checkout_consent(): void {
+    if ( make_cart_has_digital_content() && empty( $_POST['make_digital_content_consent'] ) ) {
+        wc_add_notice(
+            make_t(
+                'Confirma el acceso inmediato al contenido digital para continuar.',
+                'Please confirm immediate access to the digital content to continue.'
+            ),
+            'error'
+        );
+    }
+}
+add_action( 'woocommerce_checkout_process', 'make_validate_digital_content_checkout_consent' );
+
+function make_save_digital_content_checkout_consent( WC_Order $order ): void {
+    if ( ! empty( $_POST['make_digital_content_consent'] ) ) {
+        $order->update_meta_data( '_drielo_digital_content_consent', 'yes' );
+        $order->update_meta_data( '_drielo_digital_content_consent_at', gmdate( 'c' ) );
+    }
+}
+add_action( 'woocommerce_checkout_create_order', 'make_save_digital_content_checkout_consent', 10, 1 );

@@ -5,9 +5,9 @@ $home_url         = make_home_url();
 $site_name        = make_brand_name();
 $site_tagline     = make_brand_tagline();
 $nav              = array(
-    array( 'label' => make_t( 'Aprender', 'Learn' ), 'url' => make_journal_url() ),
     array( 'label' => make_t( 'Tienda', 'Shop' ), 'url' => make_shop_url() ),
-    array( 'label' => make_t( 'Artículos', 'Articles' ), 'url' => make_journal_url() ),
+    array( 'label' => make_t( 'Aprender', 'Learn' ), 'url' => make_journal_url() ),
+    array( 'label' => make_t( 'Contacto', 'Contact' ), 'url' => make_contact_url() ),
 );
 ?><!doctype html>
 <html <?php language_attributes(); ?>>
@@ -32,11 +32,7 @@ $nav              = array(
     </a>
 
     <nav class="primary-nav" aria-label="<?php echo esc_attr( make_t( 'Navegación principal', 'Primary navigation' ) ); ?>">
-      <?php if ( has_nav_menu( 'primary' ) ) : ?>
-        <?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'primary-menu', 'fallback_cb' => false ) ); ?>
-      <?php else : ?>
-        <ul><?php foreach ( $nav as $item ) : ?><li><a href="<?php echo esc_url( $item['url'] ); ?>"><?php echo esc_html( $item['label'] ); ?></a></li><?php endforeach; ?></ul>
-      <?php endif; ?>
+      <ul><?php foreach ( $nav as $item ) : ?><li><a href="<?php echo esc_url( $item['url'] ); ?>"><?php echo esc_html( $item['label'] ); ?></a></li><?php endforeach; ?></ul>
     </nav>
 
     <div class="header-actions">
@@ -113,11 +109,7 @@ $nav              = array(
   <div class="overlay-body">
     <div class="mobile-menu-panel">
       <nav class="mobile-menu-nav" aria-label="<?php echo esc_attr( make_t( 'Menú móvil', 'Mobile menu' ) ); ?>">
-        <?php if ( has_nav_menu( 'primary' ) ) : ?>
-          <?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'mobile-primary-menu', 'fallback_cb' => false ) ); ?>
-        <?php else : ?>
-          <ul><?php foreach ( $nav as $item ) : ?><li><a href="<?php echo esc_url( $item['url'] ); ?>"><?php echo esc_html( $item['label'] ); ?></a></li><?php endforeach; ?></ul>
-        <?php endif; ?>
+        <ul><?php foreach ( $nav as $item ) : ?><li><a href="<?php echo esc_url( $item['url'] ); ?>"><?php echo esc_html( $item['label'] ); ?></a></li><?php endforeach; ?></ul>
       </nav>
       <div class="mobile-menu-bottom">
         <?php if ( class_exists( 'WooCommerce' ) ) : ?>

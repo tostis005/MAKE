@@ -17,18 +17,16 @@
     </div>
 
     <div>
-      <h3 class="footer-title"><?php echo esc_html( make_t( 'Información', 'Information' ) ); ?></h3>
-      <?php if ( has_nav_menu( 'footer' ) ) : ?>
-        <?php wp_nav_menu( array( 'theme_location' => 'footer', 'container' => false, 'menu_class' => 'footer-links', 'fallback_cb' => false ) ); ?>
-      <?php else : ?>
-        <ul class="footer-links">
-          <?php if ( get_privacy_policy_url() ) : ?><li><a href="<?php echo esc_url( get_privacy_policy_url() ); ?>"><?php echo esc_html( make_t( 'Privacidad', 'Privacy' ) ); ?></a></li><?php endif; ?>
-          <?php if ( class_exists( 'WooCommerce' ) ) : ?>
-            <li><a href="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>"><?php echo esc_html( make_t( 'Mi cuenta', 'My account' ) ); ?></a></li>
-            <li><a href="<?php echo esc_url( make_cart_url() ); ?>"><?php echo esc_html( make_t( 'Carrito', 'Cart' ) ); ?></a></li>
-          <?php endif; ?>
-        </ul>
-      <?php endif; ?>
+      <h3 class="footer-title"><?php echo esc_html( make_t( 'Ayuda y legal', 'Help & legal' ) ); ?></h3>
+      <ul class="footer-links">
+        <li><a href="<?php echo esc_url( make_contact_url() ); ?>"><?php echo esc_html( make_t( 'Contacto', 'Contact' ) ); ?></a></li>
+        <li><a href="<?php echo esc_url( make_refund_policy_url() ); ?>"><?php echo esc_html( make_t( 'Reembolsos', 'Refunds' ) ); ?></a></li>
+        <li><a href="<?php echo esc_url( make_terms_url() ); ?>"><?php echo esc_html( make_t( 'Términos y condiciones', 'Terms & conditions' ) ); ?></a></li>
+        <li><a href="<?php echo esc_url( make_privacy_url() ); ?>"><?php echo esc_html( make_t( 'Política de privacidad', 'Privacy policy' ) ); ?></a></li>
+        <?php if ( class_exists( 'WooCommerce' ) ) : ?>
+          <li><a href="<?php echo esc_url( make_account_url() ); ?>"><?php echo esc_html( make_t( 'Mi cuenta', 'My account' ) ); ?></a></li>
+        <?php endif; ?>
+      </ul>
     </div>
   </div>
 
