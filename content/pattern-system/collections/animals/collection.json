@@ -169,14 +169,14 @@
     }
   },
   "mockup_spec": {
-    "asset": "assets/animals-cover-cross-stitch.webp",
+    "asset": "mockups/animals-cover-cross-stitch.png",
     "technique_assets": {
-      "CS": "assets/animals-cover-cross-stitch.webp",
-      "C2C": "assets/animals-cover-c2c-crochet.webp",
-      "TC": "assets/animals-cover-tapestry-crochet.webp",
-      "LH": "assets/animals-cover-latch-hook.webp"
+      "CS": "mockups/animals-cover-cross-stitch.png",
+      "C2C": "mockups/animals-cover-c2c-crochet.png",
+      "TC": "mockups/animals-cover-tapestry-crochet.png",
+      "LH": "mockups/animals-cover-latch-hook.png"
     },
-    "status": "approved-animals-technique-covers",
+    "status": "approved-exact-uploaded-animals-technique-covers",
     "frame": {
       "enabled": false
     },
@@ -190,6 +190,12 @@
       "C2C": "114974.png",
       "TC": "114975.png",
       "LH": "114977.png"
+    },
+    "source_sha256": {
+      "CS": "3d0057ee0d3845b4baaddbe138f080c92c4bcd8f6a0447c9c60f444aa3d62f77",
+      "C2C": "734030ff2b8a1fbc77b9b00f59cbe27f9d01424819c683be15546caeed1dc254",
+      "TC": "631a7fe921d11ce128e8142fb9b6645e5b04a9ce5361f5bd6d40ae3f0b47d0b8",
+      "LH": "c32189d92f4ce27bd4c1cc78eef610c9960e1ef0e0267130728e43d5086125ef"
     }
   },
   "preview_rules": {
