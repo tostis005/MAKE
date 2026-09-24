@@ -74,7 +74,7 @@
         "310",
         "550"
       ],
-      "cover_asset": "assets/I0009-CS-product.webp",
+      "cover_asset": "assets/I0010-CS-product.webp",
       "name_es": "Bebé e Infantil",
       "name_en": "Baby & Nursery",
       "description_es": "Motivos de bebé e infantiles con una paleta viva y coordinada de 24 colores, bordes transparentes limpios y sin contorno negro exterior forzado.",
@@ -4561,6 +4561,486 @@
       ],
       "design_id": "I0009-TC",
       "base_design_id": "I0009",
+      "technique_code": "TC",
+      "technique": "tapestry-crochet",
+      "size_attribute_label": "Chart size",
+      "colour_attribute_label": "Yarn colours",
+      "type_attribute_label": "Technique",
+      "count_attribute_label": "Colourwork stitches",
+      "filters": {
+        "technique": [
+          "tapestry-crochet"
+        ],
+        "theme": [
+          "baby-nursery"
+        ],
+        "style": [
+          "cute",
+          "soft",
+          "nursery"
+        ],
+        "project": [
+          "tapestry"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "pastel"
+        ],
+        "season": []
+      }
+    },
+    {
+      "code": "I0010-C2C",
+      "sku": "DRIELO-I0010-C2C",
+      "price": 2.49,
+      "categories": [
+        "c2c-crochet-patterns",
+        "c2c-crochet-baby-nursery"
+      ],
+      "purchase_note_en": "Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.",
+      "purchase_note_es": "Tu PDF digital estará disponible desde la confirmación del pedido y en Mi cuenta > Descargas una vez completado el pago.",
+      "title": "Crescent Moon C2C Crochet Pattern PDF",
+      "title_en": "Crescent Moon C2C Crochet Pattern PDF",
+      "title_es": "Patrón PDF de crochet C2C: Luna creciente",
+      "slug": "crescent-moon-c2c-crochet-pattern",
+      "collection": "baby-nursery",
+      "stitches": 1579,
+      "grid": "60 × 72 blocks",
+      "colours": 17,
+      "color_count": 17,
+      "grid_width": 60,
+      "grid_height": 72,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Corner-to-corner blocks",
+      "stitch_type_en": "Corner-to-corner blocks",
+      "stitch_type_es": "crochet C2C",
+      "short_description": "Downloadable Crescent Moon C2C Crochet pattern PDF from the Baby & Nursery collection. 60 × 72 blocks; 1,579 filled blocks; 17 coordinated colours; beginner friendly. Pattern code: I0010-C2C.",
+      "short_description_en": "Downloadable Crescent Moon C2C Crochet pattern PDF from the Baby & Nursery collection. 60 × 72 blocks; 1,579 filled blocks; 17 coordinated colours; beginner friendly. Pattern code: I0010-C2C.",
+      "short_description_es": "Patrón PDF descargable de luna creciente para crochet C2C. 60 × 72; 1,579 celdas ocupadas; 17 colores coordinados; apto para principiantes. Código: I0010-C2C.",
+      "description": "<p><strong>Crescent Moon C2C Crochet Pattern PDF</strong> is a downloadable digital pattern from the Baby & Nursery collection.</p><p><strong>Digital product only:</strong> no finished item or physical materials are included.</p><h3>Pattern details</h3><ul><li>Pattern code: I0010-C2C</li><li>Grid: 60 × 72 blocks</li><li>Filled blocks: 1,579</li><li>Colours: 17 coordinated collection colours</li><li>Technique: Corner-to-corner blocks</li><li>Skill level: Beginner friendly</li></ul><h3>What you receive</h3><ul><li>17-page PDF pattern</li><li>Finished-design preview</li><li>Colour key with counts</li><li>Full-colour chart overview</li><li>Black-and-white symbol chart</li><li>Enlarged chart sections</li><li>Print-and-make guide</li></ul><p>Personal use only. The pattern and PDF may not be redistributed or resold.</p>",
+      "description_en": "<p><strong>Crescent Moon C2C Crochet Pattern PDF</strong> is a downloadable digital pattern from the Baby & Nursery collection.</p><p><strong>Digital product only:</strong> no finished item or physical materials are included.</p><h3>Pattern details</h3><ul><li>Pattern code: I0010-C2C</li><li>Grid: 60 × 72 blocks</li><li>Filled blocks: 1,579</li><li>Colours: 17 coordinated collection colours</li><li>Technique: Corner-to-corner blocks</li><li>Skill level: Beginner friendly</li></ul><h3>What you receive</h3><ul><li>17-page PDF pattern</li><li>Finished-design preview</li><li>Colour key with counts</li><li>Full-colour chart overview</li><li>Black-and-white symbol chart</li><li>Enlarged chart sections</li><li>Print-and-make guide</li></ul><p>Personal use only. The pattern and PDF may not be redistributed or resold.</p>",
+      "description_es": "<p><strong>Patrón PDF de crochet C2C: Luna creciente</strong> es un patrón digital descargable de la colección Bebé e Infantil.</p><p><strong>Solo producto digital:</strong> no se incluye la pieza terminada ni materiales físicos.</p><h3>Detalles</h3><ul><li>Código: I0010-C2C</li><li>Cuadrícula: 60 × 72</li><li>Celdas ocupadas: 1,579</li><li>Colores: 17 colores coordinados</li><li>Técnica: crochet C2C</li><li>Nivel: apto para principiantes</li></ul><h3>Qué recibirás</h3><ul><li>PDF de 17 páginas</li><li>Vista previa del diseño</li><li>Clave de colores</li><li>Gráfico general a color</li><li>Gráfico con símbolos</li><li>Secciones ampliadas</li><li>Guía para realizar el proyecto</li></ul><p>Solo para uso personal.</p>",
+      "gallery": [
+        "assets/I0010-C2C-gallery-2.webp",
+        "assets/I0010-C2C-gallery-3.webp",
+        "assets/I0010-C2C-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_I0010-C2C.pdf",
+      "featured_image": "assets/I0010-C2C-product.webp",
+      "gallery_revision": 36054266937,
+      "seo_title": "Crescent Moon C2C Crochet Pattern PDF | Drielo",
+      "seo_title_en": "Crescent Moon C2C Crochet Pattern PDF | Drielo",
+      "seo_title_es": "Patrón PDF de crochet C2C: Luna creciente | Drielo",
+      "meta_description": "Downloadable Crescent Moon C2C Crochet pattern PDF from the Baby & Nursery collection. 60 × 72 blocks; 1,579 filled blocks; 17 coordinated colours; beginne",
+      "meta_description_en": "Downloadable Crescent Moon C2C Crochet pattern PDF from the Baby & Nursery collection. 60 × 72 blocks; 1,579 filled blocks; 17 coordinated colours; beginne",
+      "meta_description_es": "Patrón PDF descargable de luna creciente para crochet C2C. 60 × 72; 1,579 celdas ocupadas; 17 colores coordinados; apto para principiantes. Código: I0010-C",
+      "etsy_title_en": "Crescent Moon C2C Crochet Pattern PDF",
+      "etsy_title_es": "Patrón PDF de crochet C2C: Luna creciente",
+      "etsy_description_en": "Downloadable Crescent Moon C2C Crochet pattern PDF from the Baby & Nursery collection. 60 × 72 blocks; 1,579 filled blocks; 17 coordinated colours; beginner friendly. Pattern code: I0010-C2C.",
+      "etsy_description_es": "Patrón PDF descargable de luna creciente para crochet C2C. 60 × 72; 1,579 celdas ocupadas; 17 colores coordinados; apto para principiantes. Código: I0010-C2C.",
+      "tags": [
+        "crescent moon",
+        "baby nursery",
+        "nursery pattern",
+        "digital pattern",
+        "beginner pattern",
+        "c2c crochet",
+        "crochet graph",
+        "baby blanket"
+      ],
+      "etsy_tags_en": [
+        "crescent moon",
+        "baby nursery",
+        "nursery pattern",
+        "digital pattern",
+        "beginner pattern",
+        "c2c crochet",
+        "crochet graph",
+        "baby blanket"
+      ],
+      "etsy_tags_es": [
+        "luna creciente",
+        "bebé",
+        "infantil",
+        "patrón digital",
+        "descarga pdf",
+        "crochet C2C",
+        "principiantes"
+      ],
+      "design_id": "I0010-C2C",
+      "base_design_id": "I0010",
+      "technique_code": "C2C",
+      "technique": "c2c-crochet",
+      "size_attribute_label": "Graph size",
+      "colour_attribute_label": "Yarn colours",
+      "type_attribute_label": "Technique",
+      "count_attribute_label": "Filled blocks",
+      "filters": {
+        "technique": [
+          "c2c-crochet"
+        ],
+        "theme": [
+          "baby-nursery"
+        ],
+        "style": [
+          "cute",
+          "soft",
+          "nursery"
+        ],
+        "project": [
+          "blanket"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "pastel"
+        ],
+        "season": []
+      }
+    },
+    {
+      "code": "I0010-CS",
+      "sku": "DRIELO-I0010-CS",
+      "price": 2.99,
+      "categories": [
+        "cross-stitch-patterns",
+        "cross-stitch-baby-nursery"
+      ],
+      "purchase_note_en": "Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.",
+      "purchase_note_es": "Tu PDF digital estará disponible desde la confirmación del pedido y en Mi cuenta > Descargas una vez completado el pago.",
+      "title": "Crescent Moon Cross Stitch Pattern PDF",
+      "title_en": "Crescent Moon Cross Stitch Pattern PDF",
+      "title_es": "Patrón PDF de punto de cruz: Luna creciente",
+      "slug": "crescent-moon-cross-stitch-pattern",
+      "collection": "baby-nursery",
+      "stitches": 4192,
+      "grid": "100 × 120 stitches",
+      "colours": 19,
+      "color_count": 19,
+      "grid_width": 100,
+      "grid_height": 120,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Full cross stitch",
+      "stitch_type_en": "Full cross stitch",
+      "stitch_type_es": "punto de cruz",
+      "short_description": "Downloadable Crescent Moon Cross Stitch pattern PDF from the Baby & Nursery collection. 100 × 120 stitches; 4,192 total stitches; 19 coordinated colours; beginner friendly. Pattern code: I0010-CS.",
+      "short_description_en": "Downloadable Crescent Moon Cross Stitch pattern PDF from the Baby & Nursery collection. 100 × 120 stitches; 4,192 total stitches; 19 coordinated colours; beginner friendly. Pattern code: I0010-CS.",
+      "short_description_es": "Patrón PDF descargable de luna creciente para punto de cruz. 100 × 120; 4,192 celdas ocupadas; 19 colores coordinados; apto para principiantes. Código: I0010-CS.",
+      "description": "<p><strong>Crescent Moon Cross Stitch Pattern PDF</strong> is a downloadable digital pattern from the Baby & Nursery collection.</p><p><strong>Digital product only:</strong> no finished item or physical materials are included.</p><h3>Pattern details</h3><ul><li>Pattern code: I0010-CS</li><li>Grid: 100 × 120 stitches</li><li>Total stitches: 4,192</li><li>Colours: 19 coordinated collection colours</li><li>Technique: Full cross stitch</li><li>Skill level: Beginner friendly</li></ul><h3>What you receive</h3><ul><li>17-page PDF pattern</li><li>Finished-design preview</li><li>Colour key with counts</li><li>Full-colour chart overview</li><li>Black-and-white symbol chart</li><li>Enlarged chart sections</li><li>Print-and-make guide</li></ul><p>Personal use only. The pattern and PDF may not be redistributed or resold.</p>",
+      "description_en": "<p><strong>Crescent Moon Cross Stitch Pattern PDF</strong> is a downloadable digital pattern from the Baby & Nursery collection.</p><p><strong>Digital product only:</strong> no finished item or physical materials are included.</p><h3>Pattern details</h3><ul><li>Pattern code: I0010-CS</li><li>Grid: 100 × 120 stitches</li><li>Total stitches: 4,192</li><li>Colours: 19 coordinated collection colours</li><li>Technique: Full cross stitch</li><li>Skill level: Beginner friendly</li></ul><h3>What you receive</h3><ul><li>17-page PDF pattern</li><li>Finished-design preview</li><li>Colour key with counts</li><li>Full-colour chart overview</li><li>Black-and-white symbol chart</li><li>Enlarged chart sections</li><li>Print-and-make guide</li></ul><p>Personal use only. The pattern and PDF may not be redistributed or resold.</p>",
+      "description_es": "<p><strong>Patrón PDF de punto de cruz: Luna creciente</strong> es un patrón digital descargable de la colección Bebé e Infantil.</p><p><strong>Solo producto digital:</strong> no se incluye la pieza terminada ni materiales físicos.</p><h3>Detalles</h3><ul><li>Código: I0010-CS</li><li>Cuadrícula: 100 × 120</li><li>Celdas ocupadas: 4,192</li><li>Colores: 19 colores coordinados</li><li>Técnica: punto de cruz</li><li>Nivel: apto para principiantes</li></ul><h3>Qué recibirás</h3><ul><li>PDF de 17 páginas</li><li>Vista previa del diseño</li><li>Clave de colores</li><li>Gráfico general a color</li><li>Gráfico con símbolos</li><li>Secciones ampliadas</li><li>Guía para realizar el proyecto</li></ul><p>Solo para uso personal.</p>",
+      "gallery": [
+        "assets/I0010-CS-gallery-2.webp",
+        "assets/I0010-CS-gallery-3.webp",
+        "assets/I0010-CS-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_I0010-CS.pdf",
+      "featured_image": "assets/I0010-CS-product.webp",
+      "gallery_revision": 36054266937,
+      "seo_title": "Crescent Moon Cross Stitch Pattern PDF | Drielo",
+      "seo_title_en": "Crescent Moon Cross Stitch Pattern PDF | Drielo",
+      "seo_title_es": "Patrón PDF de punto de cruz: Luna creciente | Drielo",
+      "meta_description": "Downloadable Crescent Moon Cross Stitch pattern PDF from the Baby & Nursery collection. 100 × 120 stitches; 4,192 total stitches; 19 coordinated colours; b",
+      "meta_description_en": "Downloadable Crescent Moon Cross Stitch pattern PDF from the Baby & Nursery collection. 100 × 120 stitches; 4,192 total stitches; 19 coordinated colours; b",
+      "meta_description_es": "Patrón PDF descargable de luna creciente para punto de cruz. 100 × 120; 4,192 celdas ocupadas; 19 colores coordinados; apto para principiantes. Código: I00",
+      "etsy_title_en": "Crescent Moon Cross Stitch Pattern PDF",
+      "etsy_title_es": "Patrón PDF de punto de cruz: Luna creciente",
+      "etsy_description_en": "Downloadable Crescent Moon Cross Stitch pattern PDF from the Baby & Nursery collection. 100 × 120 stitches; 4,192 total stitches; 19 coordinated colours; beginner friendly. Pattern code: I0010-CS.",
+      "etsy_description_es": "Patrón PDF descargable de luna creciente para punto de cruz. 100 × 120; 4,192 celdas ocupadas; 19 colores coordinados; apto para principiantes. Código: I0010-CS.",
+      "tags": [
+        "crescent moon",
+        "baby nursery",
+        "nursery pattern",
+        "digital pattern",
+        "beginner pattern",
+        "cross stitch pdf",
+        "counted cross stitch",
+        "dmc pattern"
+      ],
+      "etsy_tags_en": [
+        "crescent moon",
+        "baby nursery",
+        "nursery pattern",
+        "digital pattern",
+        "beginner pattern",
+        "cross stitch pdf",
+        "counted cross stitch",
+        "dmc pattern"
+      ],
+      "etsy_tags_es": [
+        "luna creciente",
+        "bebé",
+        "infantil",
+        "patrón digital",
+        "descarga pdf",
+        "punto de cruz",
+        "principiantes"
+      ],
+      "design_id": "I0010-CS",
+      "base_design_id": "I0010",
+      "technique_code": "CS",
+      "technique": "cross-stitch",
+      "size_attribute_label": "Pattern size",
+      "colour_attribute_label": "DMC colours",
+      "type_attribute_label": "Technique",
+      "count_attribute_label": "Total stitches",
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "baby-nursery"
+        ],
+        "style": [
+          "cute",
+          "soft",
+          "nursery"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "pastel"
+        ],
+        "season": []
+      }
+    },
+    {
+      "code": "I0010-LH",
+      "sku": "DRIELO-I0010-LH",
+      "price": 2.49,
+      "categories": [
+        "latch-hook-rug-patterns",
+        "latch-hook-rug-baby-nursery"
+      ],
+      "purchase_note_en": "Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.",
+      "purchase_note_es": "Tu PDF digital estará disponible desde la confirmación del pedido y en Mi cuenta > Descargas una vez completado el pago.",
+      "title": "Crescent Moon Latch Hook Rug Pattern PDF",
+      "title_en": "Crescent Moon Latch Hook Rug Pattern PDF",
+      "title_es": "Patrón PDF de alfombra latch hook: Luna creciente",
+      "slug": "crescent-moon-latch-hook-pattern",
+      "collection": "baby-nursery",
+      "stitches": 1579,
+      "grid": "60 × 72 knots",
+      "colours": 17,
+      "color_count": 17,
+      "grid_width": 60,
+      "grid_height": 72,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Latch hook / rug knots",
+      "stitch_type_en": "Latch hook / rug knots",
+      "stitch_type_es": "alfombra latch hook",
+      "short_description": "Downloadable Crescent Moon Latch Hook Rug pattern PDF from the Baby & Nursery collection. 60 × 72 knots; 1,579 filled knots; 17 coordinated colours; beginner friendly. Pattern code: I0010-LH.",
+      "short_description_en": "Downloadable Crescent Moon Latch Hook Rug pattern PDF from the Baby & Nursery collection. 60 × 72 knots; 1,579 filled knots; 17 coordinated colours; beginner friendly. Pattern code: I0010-LH.",
+      "short_description_es": "Patrón PDF descargable de luna creciente para alfombra latch hook. 60 × 72; 1,579 celdas ocupadas; 17 colores coordinados; apto para principiantes. Código: I0010-LH.",
+      "description": "<p><strong>Crescent Moon Latch Hook Rug Pattern PDF</strong> is a downloadable digital pattern from the Baby & Nursery collection.</p><p><strong>Digital product only:</strong> no finished item or physical materials are included.</p><h3>Pattern details</h3><ul><li>Pattern code: I0010-LH</li><li>Grid: 60 × 72 knots</li><li>Filled knots: 1,579</li><li>Colours: 17 coordinated collection colours</li><li>Technique: Latch hook / rug knots</li><li>Skill level: Beginner friendly</li></ul><h3>What you receive</h3><ul><li>17-page PDF pattern</li><li>Finished-design preview</li><li>Colour key with counts</li><li>Full-colour chart overview</li><li>Black-and-white symbol chart</li><li>Enlarged chart sections</li><li>Print-and-make guide</li></ul><p>Personal use only. The pattern and PDF may not be redistributed or resold.</p>",
+      "description_en": "<p><strong>Crescent Moon Latch Hook Rug Pattern PDF</strong> is a downloadable digital pattern from the Baby & Nursery collection.</p><p><strong>Digital product only:</strong> no finished item or physical materials are included.</p><h3>Pattern details</h3><ul><li>Pattern code: I0010-LH</li><li>Grid: 60 × 72 knots</li><li>Filled knots: 1,579</li><li>Colours: 17 coordinated collection colours</li><li>Technique: Latch hook / rug knots</li><li>Skill level: Beginner friendly</li></ul><h3>What you receive</h3><ul><li>17-page PDF pattern</li><li>Finished-design preview</li><li>Colour key with counts</li><li>Full-colour chart overview</li><li>Black-and-white symbol chart</li><li>Enlarged chart sections</li><li>Print-and-make guide</li></ul><p>Personal use only. The pattern and PDF may not be redistributed or resold.</p>",
+      "description_es": "<p><strong>Patrón PDF de alfombra latch hook: Luna creciente</strong> es un patrón digital descargable de la colección Bebé e Infantil.</p><p><strong>Solo producto digital:</strong> no se incluye la pieza terminada ni materiales físicos.</p><h3>Detalles</h3><ul><li>Código: I0010-LH</li><li>Cuadrícula: 60 × 72</li><li>Celdas ocupadas: 1,579</li><li>Colores: 17 colores coordinados</li><li>Técnica: alfombra latch hook</li><li>Nivel: apto para principiantes</li></ul><h3>Qué recibirás</h3><ul><li>PDF de 17 páginas</li><li>Vista previa del diseño</li><li>Clave de colores</li><li>Gráfico general a color</li><li>Gráfico con símbolos</li><li>Secciones ampliadas</li><li>Guía para realizar el proyecto</li></ul><p>Solo para uso personal.</p>",
+      "gallery": [
+        "assets/I0010-LH-gallery-2.webp",
+        "assets/I0010-LH-gallery-3.webp",
+        "assets/I0010-LH-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_I0010-LH.pdf",
+      "featured_image": "assets/I0010-LH-product.webp",
+      "gallery_revision": 36054266937,
+      "seo_title": "Crescent Moon Latch Hook Rug Pattern PDF | Drielo",
+      "seo_title_en": "Crescent Moon Latch Hook Rug Pattern PDF | Drielo",
+      "seo_title_es": "Patrón PDF de alfombra latch hook: Luna creciente | Drielo",
+      "meta_description": "Downloadable Crescent Moon Latch Hook Rug pattern PDF from the Baby & Nursery collection. 60 × 72 knots; 1,579 filled knots; 17 coordinated colours; beginn",
+      "meta_description_en": "Downloadable Crescent Moon Latch Hook Rug pattern PDF from the Baby & Nursery collection. 60 × 72 knots; 1,579 filled knots; 17 coordinated colours; beginn",
+      "meta_description_es": "Patrón PDF descargable de luna creciente para alfombra latch hook. 60 × 72; 1,579 celdas ocupadas; 17 colores coordinados; apto para principiantes. Código:",
+      "etsy_title_en": "Crescent Moon Latch Hook Rug Pattern PDF",
+      "etsy_title_es": "Patrón PDF de alfombra latch hook: Luna creciente",
+      "etsy_description_en": "Downloadable Crescent Moon Latch Hook Rug pattern PDF from the Baby & Nursery collection. 60 × 72 knots; 1,579 filled knots; 17 coordinated colours; beginner friendly. Pattern code: I0010-LH.",
+      "etsy_description_es": "Patrón PDF descargable de luna creciente para alfombra latch hook. 60 × 72; 1,579 celdas ocupadas; 17 colores coordinados; apto para principiantes. Código: I0010-LH.",
+      "tags": [
+        "crescent moon",
+        "baby nursery",
+        "nursery pattern",
+        "digital pattern",
+        "beginner pattern",
+        "latch hook",
+        "rug pattern pdf",
+        "rug making"
+      ],
+      "etsy_tags_en": [
+        "crescent moon",
+        "baby nursery",
+        "nursery pattern",
+        "digital pattern",
+        "beginner pattern",
+        "latch hook",
+        "rug pattern pdf",
+        "rug making"
+      ],
+      "etsy_tags_es": [
+        "luna creciente",
+        "bebé",
+        "infantil",
+        "patrón digital",
+        "descarga pdf",
+        "alfombra latch hook",
+        "principiantes"
+      ],
+      "design_id": "I0010-LH",
+      "base_design_id": "I0010",
+      "technique_code": "LH",
+      "technique": "latch-hook",
+      "size_attribute_label": "Chart size",
+      "colour_attribute_label": "Wool colours",
+      "type_attribute_label": "Technique",
+      "count_attribute_label": "Filled knots",
+      "filters": {
+        "technique": [
+          "latch-hook"
+        ],
+        "theme": [
+          "baby-nursery"
+        ],
+        "style": [
+          "cute",
+          "soft",
+          "nursery"
+        ],
+        "project": [
+          "rug"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "pastel"
+        ],
+        "season": []
+      }
+    },
+    {
+      "code": "I0010-TC",
+      "sku": "DRIELO-I0010-TC",
+      "price": 2.49,
+      "categories": [
+        "tapestry-crochet-patterns",
+        "tapestry-crochet-baby-nursery"
+      ],
+      "purchase_note_en": "Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.",
+      "purchase_note_es": "Tu PDF digital estará disponible desde la confirmación del pedido y en Mi cuenta > Descargas una vez completado el pago.",
+      "title": "Crescent Moon Tapestry Crochet Pattern PDF",
+      "title_en": "Crescent Moon Tapestry Crochet Pattern PDF",
+      "title_es": "Patrón PDF de tapestry crochet: Luna creciente",
+      "slug": "crescent-moon-tapestry-crochet-pattern",
+      "collection": "baby-nursery",
+      "stitches": 2732,
+      "grid": "80 × 96 crochet stitches",
+      "colours": 18,
+      "color_count": 18,
+      "grid_width": 80,
+      "grid_height": 96,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Tapestry crochet colourwork",
+      "stitch_type_en": "Tapestry crochet colourwork",
+      "stitch_type_es": "tapestry crochet",
+      "short_description": "Downloadable Crescent Moon Tapestry Crochet pattern PDF from the Baby & Nursery collection. 80 × 96 crochet stitches; 2,732 colourwork stitches; 18 coordinated colours; beginner friendly. Pattern code: I0010-TC.",
+      "short_description_en": "Downloadable Crescent Moon Tapestry Crochet pattern PDF from the Baby & Nursery collection. 80 × 96 crochet stitches; 2,732 colourwork stitches; 18 coordinated colours; beginner friendly. Pattern code: I0010-TC.",
+      "short_description_es": "Patrón PDF descargable de luna creciente para tapestry crochet. 80 × 96; 2,732 celdas ocupadas; 18 colores coordinados; apto para principiantes. Código: I0010-TC.",
+      "description": "<p><strong>Crescent Moon Tapestry Crochet Pattern PDF</strong> is a downloadable digital pattern from the Baby & Nursery collection.</p><p><strong>Digital product only:</strong> no finished item or physical materials are included.</p><h3>Pattern details</h3><ul><li>Pattern code: I0010-TC</li><li>Grid: 80 × 96 crochet stitches</li><li>Colourwork stitches: 2,732</li><li>Colours: 18 coordinated collection colours</li><li>Technique: Tapestry crochet colourwork</li><li>Skill level: Beginner friendly</li></ul><h3>What you receive</h3><ul><li>17-page PDF pattern</li><li>Finished-design preview</li><li>Colour key with counts</li><li>Full-colour chart overview</li><li>Black-and-white symbol chart</li><li>Enlarged chart sections</li><li>Print-and-make guide</li></ul><p>Personal use only. The pattern and PDF may not be redistributed or resold.</p>",
+      "description_en": "<p><strong>Crescent Moon Tapestry Crochet Pattern PDF</strong> is a downloadable digital pattern from the Baby & Nursery collection.</p><p><strong>Digital product only:</strong> no finished item or physical materials are included.</p><h3>Pattern details</h3><ul><li>Pattern code: I0010-TC</li><li>Grid: 80 × 96 crochet stitches</li><li>Colourwork stitches: 2,732</li><li>Colours: 18 coordinated collection colours</li><li>Technique: Tapestry crochet colourwork</li><li>Skill level: Beginner friendly</li></ul><h3>What you receive</h3><ul><li>17-page PDF pattern</li><li>Finished-design preview</li><li>Colour key with counts</li><li>Full-colour chart overview</li><li>Black-and-white symbol chart</li><li>Enlarged chart sections</li><li>Print-and-make guide</li></ul><p>Personal use only. The pattern and PDF may not be redistributed or resold.</p>",
+      "description_es": "<p><strong>Patrón PDF de tapestry crochet: Luna creciente</strong> es un patrón digital descargable de la colección Bebé e Infantil.</p><p><strong>Solo producto digital:</strong> no se incluye la pieza terminada ni materiales físicos.</p><h3>Detalles</h3><ul><li>Código: I0010-TC</li><li>Cuadrícula: 80 × 96</li><li>Celdas ocupadas: 2,732</li><li>Colores: 18 colores coordinados</li><li>Técnica: tapestry crochet</li><li>Nivel: apto para principiantes</li></ul><h3>Qué recibirás</h3><ul><li>PDF de 17 páginas</li><li>Vista previa del diseño</li><li>Clave de colores</li><li>Gráfico general a color</li><li>Gráfico con símbolos</li><li>Secciones ampliadas</li><li>Guía para realizar el proyecto</li></ul><p>Solo para uso personal.</p>",
+      "gallery": [
+        "assets/I0010-TC-gallery-2.webp",
+        "assets/I0010-TC-gallery-3.webp",
+        "assets/I0010-TC-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_I0010-TC.pdf",
+      "featured_image": "assets/I0010-TC-product.webp",
+      "gallery_revision": 36054266937,
+      "seo_title": "Crescent Moon Tapestry Crochet Pattern PDF | Drielo",
+      "seo_title_en": "Crescent Moon Tapestry Crochet Pattern PDF | Drielo",
+      "seo_title_es": "Patrón PDF de tapestry crochet: Luna creciente | Drielo",
+      "meta_description": "Downloadable Crescent Moon Tapestry Crochet pattern PDF from the Baby & Nursery collection. 80 × 96 crochet stitches; 2,732 colourwork stitches; 18 coordin",
+      "meta_description_en": "Downloadable Crescent Moon Tapestry Crochet pattern PDF from the Baby & Nursery collection. 80 × 96 crochet stitches; 2,732 colourwork stitches; 18 coordin",
+      "meta_description_es": "Patrón PDF descargable de luna creciente para tapestry crochet. 80 × 96; 2,732 celdas ocupadas; 18 colores coordinados; apto para principiantes. Código: I0",
+      "etsy_title_en": "Crescent Moon Tapestry Crochet Pattern PDF",
+      "etsy_title_es": "Patrón PDF de tapestry crochet: Luna creciente",
+      "etsy_description_en": "Downloadable Crescent Moon Tapestry Crochet pattern PDF from the Baby & Nursery collection. 80 × 96 crochet stitches; 2,732 colourwork stitches; 18 coordinated colours; beginner friendly. Pattern code: I0010-TC.",
+      "etsy_description_es": "Patrón PDF descargable de luna creciente para tapestry crochet. 80 × 96; 2,732 celdas ocupadas; 18 colores coordinados; apto para principiantes. Código: I0010-TC.",
+      "tags": [
+        "crescent moon",
+        "baby nursery",
+        "nursery pattern",
+        "digital pattern",
+        "beginner pattern",
+        "tapestry crochet",
+        "crochet chart",
+        "colorwork crochet"
+      ],
+      "etsy_tags_en": [
+        "crescent moon",
+        "baby nursery",
+        "nursery pattern",
+        "digital pattern",
+        "beginner pattern",
+        "tapestry crochet",
+        "crochet chart",
+        "colorwork crochet"
+      ],
+      "etsy_tags_es": [
+        "luna creciente",
+        "bebé",
+        "infantil",
+        "patrón digital",
+        "descarga pdf",
+        "tapestry crochet",
+        "principiantes"
+      ],
+      "design_id": "I0010-TC",
+      "base_design_id": "I0010",
       "technique_code": "TC",
       "technique": "tapestry-crochet",
       "size_attribute_label": "Chart size",
