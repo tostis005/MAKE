@@ -96,11 +96,12 @@
       "title_en": "Girl with a Pearl Earring Bubble Gum",
       "title_es": "La joven de la perla con chicle",
       "slug": "girl-pearl-earring-bubble-gum",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35974532372",
-      "last_error": "Automatic Pop Art publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T08:21:31+00:00"
+      "status": "published",
+      "attempts": 3,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35977485681",
+      "last_error": null,
+      "failed_at": "2026-09-24T08:21:31+00:00",
+      "published_at": "2026-09-24T08:53:10+00:00"
     },
     {
       "order": 8,
