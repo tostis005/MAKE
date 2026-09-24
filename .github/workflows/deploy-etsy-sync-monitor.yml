@@ -20,6 +20,10 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            plugins/drielo-etsy-sync
+          sparse-checkout-cone-mode: true
 
       - name: Validate plugin
         shell: bash
