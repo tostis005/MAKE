@@ -227,7 +227,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add             content/pattern-system/patterns/I0001-CS/pattern.json             content/pattern-system/patterns/I0001-C2C/pattern.json             content/pattern-system/patterns/I0001-TC/pattern.json             content/pattern-system/patterns/I0001-LH/pattern.json             content/pattern-system/products/I0001-CS/product.json             content/pattern-system/products/I0001-C2C/product.json             content/pattern-system/products/I0001-TC/product.json             content/pattern-system/products/I0001-LH/product.json             content/products/catalog.json             content/products/assets/I0001-CS-product.webp             content/products/assets/I0001-C2C-product.webp             content/products/assets/I0001-TC-product.webp             content/products/assets/I0001-LH-product.webp
+          git add             content/pattern-system/collections/baby-nursery/source-designs/I0001-teddy-bear.png             content/pattern-system/patterns/I0001-CS/pattern.json             content/pattern-system/patterns/I0001-C2C/pattern.json             content/pattern-system/patterns/I0001-TC/pattern.json             content/pattern-system/patterns/I0001-LH/pattern.json             content/pattern-system/products/I0001-CS/product.json             content/pattern-system/products/I0001-C2C/product.json             content/pattern-system/products/I0001-TC/product.json             content/pattern-system/products/I0001-LH/product.json             content/products/catalog.json             content/products/assets/I0001-CS-product.webp             content/products/assets/I0001-C2C-product.webp             content/products/assets/I0001-TC-product.webp             content/products/assets/I0001-LH-product.webp
           if git diff --cached --quiet; then
             echo "No generated changes."
           else
@@ -254,3 +254,5 @@ jobs:
 # rerun with chunked master staging
 
 # rerun after decode syntax fix
+
+# rerun with source master persisted
