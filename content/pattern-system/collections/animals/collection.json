@@ -138,12 +138,13 @@
   ],
   "reference_policy": {
     "canonical_source": "collections/animals/reference-library/manifest.json",
-    "rule": "The canonical matrices are derived from the user-approved animal reference sheets. Do not invent, redraw, substitute or reinterpret a motif. Pattern generation must start from the canonical matrix for that A#### design.",
+    "rule": "The five approved Animals reference sheets and their lossless v2 canonical matrix archive are authoritative. Every sellable A#### pattern must originate from the exact canonical matrix; never redraw or regenerate the motif.",
     "strict_palette": true,
     "palette_size": 24,
     "transparent_background": true,
     "archive_parts": 9,
-    "reference_assets_workflow": ".github/workflows/animals-reference-assets.yml"
+    "reference_assets_workflow": ".github/workflows/animals-reference-assets.yml",
+    "archive_version": 2
   },
   "grid_profiles": {
     "master": {
