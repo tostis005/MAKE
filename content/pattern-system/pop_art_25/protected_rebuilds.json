@@ -1,0 +1,27 @@
+{
+  "purpose": "One-off protected rebuilds to refresh approved products with the current four-image gallery while preserving the approved source artwork.",
+  "items": [
+    {
+      "base_design_id": "P0001",
+      "title_en": "Albert Einstein Tongue Out",
+      "title_es": "Albert Einstein sacando la lengua",
+      "slug": "albert-einstein-tongue-out",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null,
+      "allow_protected": true
+    },
+    {
+      "base_design_id": "P0012",
+      "title_en": "Marilyn Monroe Bubble Gum",
+      "title_es": "Marilyn Monroe con chicle",
+      "slug": "marilyn-monroe-bubble-gum",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null,
+      "allow_protected": true
+    }
+  ]
+}
