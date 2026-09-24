@@ -1,7 +1,7 @@
 {
   "collection": "baby-nursery",
-  "mode": "publish-one-design-per-run",
-  "auto_continue": false,
+  "mode": "publish-one-canonical-user-reference-design-per-run",
+  "auto_continue": true,
   "max_attempts_per_design": 2,
   "notes": [
     "I0001 remains the approved published reference.",
@@ -370,5 +370,6 @@
       "last_run": null,
       "last_error": null
     }
-  ]
+  ],
+  "reference_policy": "Only the user-approved reference-library archive may generate Baby & Nursery masters. Never invent, redraw, or approximate a motif."
 }
