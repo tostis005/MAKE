@@ -172,11 +172,11 @@
       "title_es": "Chupete",
       "slug": "pacifier",
       "source_asset": "collections/baby-nursery/source-designs/I0013-pacifier.png",
-      "status": "pending",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35965145127",
+      "status": "failed",
+      "attempts": 2,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35965223130",
       "last_error": "Automatic publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T06:35:22+00:00"
+      "failed_at": "2026-09-24T06:36:08+00:00"
     },
     {
       "order": 14,
