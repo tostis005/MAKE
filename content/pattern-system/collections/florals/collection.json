@@ -170,12 +170,12 @@
   "mockup_spec": {
     "asset": null,
     "technique_assets": {
-      "CS": "../../multitech/assets/cover-cross-stitch.webp",
-      "C2C": "../../multitech/assets/cover-c2c-crochet.webp",
-      "TC": "../../multitech/assets/cover-crochet.webp",
-      "LH": "../../multitech/assets/cover-rug.webp"
+      "CS": "assets/page-1-cross-stitch.webp",
+      "C2C": "assets/page-1-c2c-crochet.webp",
+      "TC": "assets/page-1-tapestry-crochet.webp",
+      "LH": "assets/page-1-latch-hook.webp"
     },
-    "status": "reuse-approved-multitech-page-1-scenes",
+    "status": "florals-specific-page-1-scenes-approved",
     "technique_layouts": {
       "CS": {
         "cover_overlay": {
@@ -222,7 +222,13 @@
         "cover_stage_scale": 125
       }
     },
-    "mapping_note": "C2C uses the approved C2C scene; tapestry crochet uses the approved tapestry/crochet scene. publish_design.py remaps them to the legacy renderer filenames."
+    "mapping_note": "Strict one-to-one Florals mapping: CS = framed white Aida/cross-stitch canvas; C2C = cream blanket/panel on freestanding wooden rack; TC = cream crochet wall hanging on horizontal dowel; LH = plush tufted rug wall hanging on dowel. Do not swap these assets between techniques.",
+    "source_files": {
+      "CS": "user-upload-114966",
+      "C2C": "user-upload-114969",
+      "TC": "user-upload-114968",
+      "LH": "user-upload-114967"
+    }
   },
   "preview_rules": {
     "vector": true,
