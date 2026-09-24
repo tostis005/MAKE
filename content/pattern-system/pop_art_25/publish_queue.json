@@ -13,7 +13,8 @@
     "Each pending design is rebuilt from its encoded 100x120 transparent master matrix, expanded to an 800x960 transparent PNG, rendered in CS/C2C/TC/LH, published to WooCommerce, committed back to the feature branch, then the queue advances.",
     "C2C uses cover-crochet.webp and TC uses cover-c2c-crochet.webp as intentionally configured for this collection.",
     "P0002 uses a design-specific colour master derived from the approved contact sheet; the shared 25-colour palette itself is unchanged.",
-    "WooCommerce gallery revision is unique per run so updated product images cannot be skipped by stale attachment metadata."
+    "WooCommerce gallery revision is unique per run so updated product images cannot be skipped by stale attachment metadata.",
+    "P0002 cleanup override removes background-white/gray edge noise and balances the viewer-right shoulder without changing the shared palette."
   ],
   "items": [
     {
@@ -22,11 +23,10 @@
       "title_en": "Apple Man Portrait",
       "title_es": "Retrato del hombre de la manzana",
       "slug": "apple-man-portrait",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35969235399",
-      "last_error": null,
-      "published_at": "2026-09-24T07:24:04+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 2,
