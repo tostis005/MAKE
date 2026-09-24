@@ -1,7 +1,7 @@
 {
   "collection": "baby-nursery",
-  "mode": "publish-one-design-per-run-pop-art-style",
-  "auto_continue": true,
+  "mode": "paused-for-collection-rebuild",
+  "auto_continue": false,
   "max_attempts_per_design": 2,
   "notes": [
     "Restarted from I0001 so every Baby & Nursery product gets the same four-image WooCommerce presentation as the Pop Art autopublish.",
