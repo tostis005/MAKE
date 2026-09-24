@@ -95,6 +95,62 @@ def threads_from_matrix(matrix, palette):
     return threads
 
 
+def cleanup_isolated_external_white(matrix, white_symbol, max_component_cells=12, neighborhood=8):
+    if not matrix or not matrix[0] or not white_symbol:
+        return matrix, {"removed_components": 0, "removed_cells": 0}
+
+    out = [row[:] for row in matrix]
+    h, w = len(out), len(out[0])
+    if neighborhood == 4:
+        offsets = [(-1,0),(1,0),(0,-1),(0,1)]
+    else:
+        offsets = [(dy,dx) for dy in (-1,0,1) for dx in (-1,0,1) if not (dy == 0 and dx == 0)]
+
+    seen = set()
+    removed_components = 0
+    removed_cells = 0
+
+    for y in range(h):
+        for x in range(w):
+            if out[y][x] != white_symbol or (y, x) in seen:
+                continue
+
+            stack = [(y, x)]
+            seen.add((y, x))
+            component = []
+            touches_nonwhite = False
+
+            while stack:
+                cy, cx = stack.pop()
+                component.append((cy, cx))
+                for dy, dx in offsets:
+                    yy, xx = cy + dy, cx + dx
+                    if yy < 0 or yy >= h or xx < 0 or xx >= w:
+                        continue
+                    value = out[yy][xx]
+                    if value == white_symbol and (yy, xx) not in seen:
+                        seen.add((yy, xx))
+                        stack.append((yy, xx))
+                    elif value is not None and value != white_symbol:
+                        touches_nonwhite = True
+
+            # Exterior antialias/fleck pixels are small white islands floating in
+            # transparent canvas. Intentional motif whites touch another motif
+            # colour/outline or form a larger region, so they are preserved.
+            if len(component) <= max_component_cells and not touches_nonwhite:
+                for cy, cx in component:
+                    out[cy][cx] = None
+                removed_components += 1
+                removed_cells += len(component)
+
+    return out, {
+        "removed_components": removed_components,
+        "removed_cells": removed_cells,
+        "max_component_cells": max_component_cells,
+        "neighborhood": neighborhood,
+    }
+
+
 def _distance_to_transparency(matrix, y, x, max_depth=3):
     if matrix[y][x] is None:
         return 0
@@ -331,6 +387,24 @@ def rebuild_from_master(base_id: str, design: dict, collection: dict):
     if not counts:
         raise RuntimeError(f"{base_id}: source master produced an empty pattern")
 
+    white_rule = collection.get("pattern_rules", {}).get("external_white_cleanup", {})
+    white_symbol = None
+    if white_rule.get("enabled", False):
+        white_dmc = str(white_rule.get("dmc", "3865"))
+        try:
+            white_index = next(i for i, p in enumerate(palette) if str(p["dmc"]) == white_dmc)
+        except StopIteration:
+            raise RuntimeError(f"{base_id}: white cleanup DMC {white_dmc} not found in collection palette")
+        white_symbol = SYMBOLS[white_index]
+        matrix, white_stats_cs = cleanup_isolated_external_white(
+            matrix,
+            white_symbol,
+            max_component_cells=int(white_rule.get("max_isolated_component_cells", 12)),
+            neighborhood=int(white_rule.get("neighborhood", 8)),
+        )
+    else:
+        white_stats_cs = {"removed_components": 0, "removed_cells": 0}
+
     outline_rule = collection.get("pattern_rules", {}).get("external_outline", {})
     if outline_rule.get("enabled", False):
         outline_dmc = str(outline_rule.get("dmc", "3799"))
@@ -350,11 +424,20 @@ def rebuild_from_master(base_id: str, design: dict, collection: dict):
         outline_stats_cs = {"changed": 0, "boundary_cells": 0, "extra_outline_removed": 0}
 
     threads = threads_from_matrix(matrix, palette)
-    matrices = {"CS": (matrix, threads, outline_stats_cs)}
+    matrices = {"CS": (matrix, threads, outline_stats_cs, white_stats_cs)}
 
     for suffix in ("C2C", "TC", "LH"):
         cfg = bg.TECHS[suffix]
         m, _ = bg.downsample(matrix, threads, cfg["w"], cfg["h"])
+        if white_symbol:
+            m, white_stats = cleanup_isolated_external_white(
+                m,
+                white_symbol,
+                max_component_cells=int(white_rule.get("max_isolated_component_cells", 12)),
+                neighborhood=int(white_rule.get("neighborhood", 8)),
+            )
+        else:
+            white_stats = {"removed_components": 0, "removed_cells": 0}
         if outline_symbol:
             m, stats = normalize_external_outline(
                 m,
@@ -364,13 +447,13 @@ def rebuild_from_master(base_id: str, design: dict, collection: dict):
             )
         else:
             stats = {"changed": 0, "boundary_cells": 0, "extra_outline_removed": 0}
-        matrices[suffix] = (m, threads_from_matrix(m, palette), stats)
+        matrices[suffix] = (m, threads_from_matrix(m, palette), stats, white_stats)
 
     page_assets = collection["mockup_spec"]["technique_assets"]
     for suffix in SUFFIXES:
         code = f"{base_id}-{suffix}"
         cfg = bg.TECHS[suffix]
-        mat, th, outline_stats = matrices[suffix]
+        mat, th, outline_stats, white_stats = matrices[suffix]
         pattern_path = PATTERNS / code / "pattern.json"
         product_path = PRODUCTS / code / "product.json"
         pattern = read_json(pattern_path)
@@ -397,6 +480,13 @@ def rebuild_from_master(base_id: str, design: dict, collection: dict):
                     "thickness_cells": 1 if outline_symbol else None,
                     "neighborhood": int(outline_rule.get("neighborhood", 8)) if outline_symbol else None,
                     "stats": outline_stats,
+                },
+                "external_white_cleanup": {
+                    "enabled": bool(white_symbol),
+                    "dmc": str(white_rule.get("dmc", "3865")) if white_symbol else None,
+                    "max_isolated_component_cells": int(white_rule.get("max_isolated_component_cells", 12)) if white_symbol else None,
+                    "neighborhood": int(white_rule.get("neighborhood", 8)) if white_symbol else None,
+                    "stats": white_stats,
                 },
             }
         )
