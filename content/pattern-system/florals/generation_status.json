@@ -1,7 +1,7 @@
 {
   "collection": "florals",
   "branch_purpose": "pattern-generation",
-  "generated_at_utc": "2026-09-24T14:32:10+00:00",
+  "generated_at_utc": "2026-09-24T15:50:09+00:00",
   "source_policy": "30 approved PNGs; 100x120; one opaque pixel equals one cross",
   "master_palette_colors": 24,
   "design_count": 30,
@@ -69,7 +69,7 @@
             120
           ],
           "filled_cells": 4998,
-          "colors": 14
+          "colors": 12
         },
         "C2C": {
           "code": "F0002-C2C",
@@ -78,7 +78,7 @@
             72
           ],
           "filled_cells": 1921,
-          "colors": 14
+          "colors": 12
         },
         "TC": {
           "code": "F0002-TC",
@@ -87,7 +87,7 @@
             96
           ],
           "filled_cells": 3271,
-          "colors": 14
+          "colors": 12
         },
         "LH": {
           "code": "F0002-LH",
@@ -96,7 +96,7 @@
             72
           ],
           "filled_cells": 1921,
-          "colors": 14
+          "colors": 12
         }
       }
     },
@@ -112,7 +112,7 @@
             120
           ],
           "filled_cells": 4329,
-          "colors": 14
+          "colors": 12
         },
         "C2C": {
           "code": "F0003-C2C",
@@ -121,7 +121,7 @@
             72
           ],
           "filled_cells": 1732,
-          "colors": 14
+          "colors": 12
         },
         "TC": {
           "code": "F0003-TC",
@@ -130,7 +130,7 @@
             96
           ],
           "filled_cells": 2886,
-          "colors": 14
+          "colors": 12
         },
         "LH": {
           "code": "F0003-LH",
@@ -139,7 +139,7 @@
             72
           ],
           "filled_cells": 1732,
-          "colors": 14
+          "colors": 12
         }
       }
     },
@@ -155,7 +155,7 @@
             120
           ],
           "filled_cells": 5429,
-          "colors": 14
+          "colors": 11
         },
         "C2C": {
           "code": "F0004-C2C",
@@ -164,7 +164,7 @@
             72
           ],
           "filled_cells": 2061,
-          "colors": 14
+          "colors": 11
         },
         "TC": {
           "code": "F0004-TC",
@@ -173,7 +173,7 @@
             96
           ],
           "filled_cells": 3555,
-          "colors": 14
+          "colors": 11
         },
         "LH": {
           "code": "F0004-LH",
@@ -182,7 +182,7 @@
             72
           ],
           "filled_cells": 2061,
-          "colors": 14
+          "colors": 11
         }
       }
     },
@@ -241,7 +241,7 @@
             120
           ],
           "filled_cells": 3521,
-          "colors": 14
+          "colors": 12
         },
         "C2C": {
           "code": "F0006-C2C",
@@ -250,7 +250,7 @@
             72
           ],
           "filled_cells": 1432,
-          "colors": 14
+          "colors": 12
         },
         "TC": {
           "code": "F0006-TC",
@@ -259,7 +259,7 @@
             96
           ],
           "filled_cells": 2388,
-          "colors": 14
+          "colors": 12
         },
         "LH": {
           "code": "F0006-LH",
@@ -268,7 +268,7 @@
             72
           ],
           "filled_cells": 1432,
-          "colors": 14
+          "colors": 12
         }
       }
     },
@@ -284,7 +284,7 @@
             120
           ],
           "filled_cells": 3726,
-          "colors": 14
+          "colors": 12
         },
         "C2C": {
           "code": "F0007-C2C",
@@ -293,7 +293,7 @@
             72
           ],
           "filled_cells": 1532,
-          "colors": 14
+          "colors": 12
         },
         "TC": {
           "code": "F0007-TC",
@@ -302,7 +302,7 @@
             96
           ],
           "filled_cells": 2515,
-          "colors": 14
+          "colors": 12
         },
         "LH": {
           "code": "F0007-LH",
@@ -311,7 +311,7 @@
             72
           ],
           "filled_cells": 1532,
-          "colors": 14
+          "colors": 12
         }
       }
     },
@@ -370,7 +370,7 @@
             120
           ],
           "filled_cells": 4144,
-          "colors": 14
+          "colors": 12
         },
         "C2C": {
           "code": "F0009-C2C",
@@ -379,7 +379,7 @@
             72
           ],
           "filled_cells": 1715,
-          "colors": 14
+          "colors": 12
         },
         "TC": {
           "code": "F0009-TC",
@@ -388,7 +388,7 @@
             96
           ],
           "filled_cells": 2778,
-          "colors": 14
+          "colors": 12
         },
         "LH": {
           "code": "F0009-LH",
@@ -397,7 +397,7 @@
             72
           ],
           "filled_cells": 1715,
-          "colors": 14
+          "colors": 12
         }
       }
     },
@@ -413,7 +413,7 @@
             120
           ],
           "filled_cells": 5573,
-          "colors": 14
+          "colors": 12
         },
         "C2C": {
           "code": "F0010-C2C",
@@ -422,7 +422,7 @@
             72
           ],
           "filled_cells": 2115,
-          "colors": 14
+          "colors": 12
         },
         "TC": {
           "code": "F0010-TC",
@@ -431,7 +431,7 @@
             96
           ],
           "filled_cells": 3622,
-          "colors": 14
+          "colors": 12
         },
         "LH": {
           "code": "F0010-LH",
@@ -440,7 +440,7 @@
             72
           ],
           "filled_cells": 2115,
-          "colors": 14
+          "colors": 12
         }
       }
     },
@@ -499,7 +499,7 @@
             120
           ],
           "filled_cells": 4862,
-          "colors": 14
+          "colors": 12
         },
         "C2C": {
           "code": "F0012-C2C",
@@ -508,7 +508,7 @@
             72
           ],
           "filled_cells": 1873,
-          "colors": 14
+          "colors": 12
         },
         "TC": {
           "code": "F0012-TC",
@@ -517,7 +517,7 @@
             96
           ],
           "filled_cells": 3204,
-          "colors": 14
+          "colors": 12
         },
         "LH": {
           "code": "F0012-LH",
@@ -526,7 +526,7 @@
             72
           ],
           "filled_cells": 1873,
-          "colors": 14
+          "colors": 12
         }
       }
     },
@@ -542,7 +542,7 @@
             120
           ],
           "filled_cells": 4864,
-          "colors": 14
+          "colors": 12
         },
         "C2C": {
           "code": "F0013-C2C",
@@ -551,7 +551,7 @@
             72
           ],
           "filled_cells": 1881,
-          "colors": 14
+          "colors": 12
         },
         "TC": {
           "code": "F0013-TC",
@@ -560,7 +560,7 @@
             96
           ],
           "filled_cells": 3195,
-          "colors": 14
+          "colors": 12
         },
         "LH": {
           "code": "F0013-LH",
@@ -569,7 +569,7 @@
             72
           ],
           "filled_cells": 1881,
-          "colors": 14
+          "colors": 12
         }
       }
     },
@@ -585,7 +585,7 @@
             120
           ],
           "filled_cells": 4594,
-          "colors": 14
+          "colors": 12
         },
         "C2C": {
           "code": "F0014-C2C",
@@ -594,7 +594,7 @@
             72
           ],
           "filled_cells": 1793,
-          "colors": 14
+          "colors": 12
         },
         "TC": {
           "code": "F0014-TC",
@@ -603,7 +603,7 @@
             96
           ],
           "filled_cells": 3026,
-          "colors": 14
+          "colors": 12
         },
         "LH": {
           "code": "F0014-LH",
@@ -612,7 +612,7 @@
             72
           ],
           "filled_cells": 1793,
-          "colors": 14
+          "colors": 12
         }
       }
     },
@@ -628,7 +628,7 @@
             120
           ],
           "filled_cells": 2959,
-          "colors": 14
+          "colors": 12
         },
         "C2C": {
           "code": "F0015-C2C",
@@ -637,7 +637,7 @@
             72
           ],
           "filled_cells": 1161,
-          "colors": 14
+          "colors": 12
         },
         "TC": {
           "code": "F0015-TC",
@@ -646,7 +646,7 @@
             96
           ],
           "filled_cells": 1950,
-          "colors": 14
+          "colors": 12
         },
         "LH": {
           "code": "F0015-LH",
@@ -655,7 +655,7 @@
             72
           ],
           "filled_cells": 1161,
-          "colors": 14
+          "colors": 12
         }
       }
     },
@@ -671,7 +671,7 @@
             120
           ],
           "filled_cells": 4507,
-          "colors": 14
+          "colors": 12
         },
         "C2C": {
           "code": "F0016-C2C",
@@ -680,7 +680,7 @@
             72
           ],
           "filled_cells": 1789,
-          "colors": 14
+          "colors": 12
         },
         "TC": {
           "code": "F0016-TC",
@@ -689,7 +689,7 @@
             96
           ],
           "filled_cells": 2979,
-          "colors": 14
+          "colors": 12
         },
         "LH": {
           "code": "F0016-LH",
@@ -698,7 +698,7 @@
             72
           ],
           "filled_cells": 1789,
-          "colors": 14
+          "colors": 12
         }
       }
     },
@@ -714,7 +714,7 @@
             120
           ],
           "filled_cells": 4271,
-          "colors": 14
+          "colors": 12
         },
         "C2C": {
           "code": "F0017-C2C",
@@ -723,7 +723,7 @@
             72
           ],
           "filled_cells": 1665,
-          "colors": 14
+          "colors": 12
         },
         "TC": {
           "code": "F0017-TC",
@@ -732,7 +732,7 @@
             96
           ],
           "filled_cells": 2813,
-          "colors": 14
+          "colors": 12
         },
         "LH": {
           "code": "F0017-LH",
@@ -741,7 +741,7 @@
             72
           ],
           "filled_cells": 1665,
-          "colors": 14
+          "colors": 12
         }
       }
     },
@@ -757,7 +757,7 @@
             120
           ],
           "filled_cells": 4407,
-          "colors": 14
+          "colors": 12
         },
         "C2C": {
           "code": "F0018-C2C",
@@ -766,7 +766,7 @@
             72
           ],
           "filled_cells": 1792,
-          "colors": 14
+          "colors": 12
         },
         "TC": {
           "code": "F0018-TC",
@@ -775,7 +775,7 @@
             96
           ],
           "filled_cells": 2965,
-          "colors": 14
+          "colors": 12
         },
         "LH": {
           "code": "F0018-LH",
@@ -784,7 +784,7 @@
             72
           ],
           "filled_cells": 1792,
-          "colors": 14
+          "colors": 12
         }
       }
     },
@@ -800,7 +800,7 @@
             120
           ],
           "filled_cells": 4545,
-          "colors": 14
+          "colors": 13
         },
         "C2C": {
           "code": "F0019-C2C",
@@ -809,7 +809,7 @@
             72
           ],
           "filled_cells": 1818,
-          "colors": 14
+          "colors": 13
         },
         "TC": {
           "code": "F0019-TC",
@@ -818,7 +818,7 @@
             96
           ],
           "filled_cells": 3011,
-          "colors": 14
+          "colors": 13
         },
         "LH": {
           "code": "F0019-LH",
@@ -827,7 +827,7 @@
             72
           ],
           "filled_cells": 1818,
-          "colors": 14
+          "colors": 13
         }
       }
     },
@@ -886,7 +886,7 @@
             120
           ],
           "filled_cells": 4172,
-          "colors": 14
+          "colors": 12
         },
         "C2C": {
           "code": "F0021-C2C",
@@ -895,7 +895,7 @@
             72
           ],
           "filled_cells": 1676,
-          "colors": 14
+          "colors": 12
         },
         "TC": {
           "code": "F0021-TC",
@@ -904,7 +904,7 @@
             96
           ],
           "filled_cells": 2772,
-          "colors": 14
+          "colors": 12
         },
         "LH": {
           "code": "F0021-LH",
@@ -913,7 +913,7 @@
             72
           ],
           "filled_cells": 1676,
-          "colors": 14
+          "colors": 12
         }
       }
     },
@@ -972,7 +972,7 @@
             120
           ],
           "filled_cells": 4960,
-          "colors": 14
+          "colors": 12
         },
         "C2C": {
           "code": "F0023-C2C",
@@ -981,7 +981,7 @@
             72
           ],
           "filled_cells": 1934,
-          "colors": 14
+          "colors": 12
         },
         "TC": {
           "code": "F0023-TC",
@@ -990,7 +990,7 @@
             96
           ],
           "filled_cells": 3263,
-          "colors": 14
+          "colors": 12
         },
         "LH": {
           "code": "F0023-LH",
@@ -999,7 +999,7 @@
             72
           ],
           "filled_cells": 1934,
-          "colors": 14
+          "colors": 12
         }
       }
     },
@@ -1058,7 +1058,7 @@
             120
           ],
           "filled_cells": 3613,
-          "colors": 14
+          "colors": 12
         },
         "C2C": {
           "code": "F0025-C2C",
@@ -1067,7 +1067,7 @@
             72
           ],
           "filled_cells": 1487,
-          "colors": 14
+          "colors": 12
         },
         "TC": {
           "code": "F0025-TC",
@@ -1076,7 +1076,7 @@
             96
           ],
           "filled_cells": 2418,
-          "colors": 14
+          "colors": 12
         },
         "LH": {
           "code": "F0025-LH",
@@ -1085,7 +1085,7 @@
             72
           ],
           "filled_cells": 1487,
-          "colors": 14
+          "colors": 12
         }
       }
     },
@@ -1187,7 +1187,7 @@
             120
           ],
           "filled_cells": 4387,
-          "colors": 14
+          "colors": 12
         },
         "C2C": {
           "code": "F0028-C2C",
@@ -1196,7 +1196,7 @@
             72
           ],
           "filled_cells": 1753,
-          "colors": 14
+          "colors": 12
         },
         "TC": {
           "code": "F0028-TC",
@@ -1205,7 +1205,7 @@
             96
           ],
           "filled_cells": 2938,
-          "colors": 14
+          "colors": 12
         },
         "LH": {
           "code": "F0028-LH",
@@ -1214,7 +1214,7 @@
             72
           ],
           "filled_cells": 1753,
-          "colors": 14
+          "colors": 12
         }
       }
     },
@@ -1230,7 +1230,7 @@
             120
           ],
           "filled_cells": 4093,
-          "colors": 14
+          "colors": 12
         },
         "C2C": {
           "code": "F0029-C2C",
@@ -1239,7 +1239,7 @@
             72
           ],
           "filled_cells": 1642,
-          "colors": 14
+          "colors": 12
         },
         "TC": {
           "code": "F0029-TC",
@@ -1248,7 +1248,7 @@
             96
           ],
           "filled_cells": 2725,
-          "colors": 14
+          "colors": 12
         },
         "LH": {
           "code": "F0029-LH",
@@ -1257,7 +1257,7 @@
             72
           ],
           "filled_cells": 1642,
-          "colors": 14
+          "colors": 12
         }
       }
     },

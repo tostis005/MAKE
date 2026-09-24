@@ -1,0 +1,223 @@
+{
+  "collection": "florals",
+  "status": "blue-artifact-repair-applied",
+  "auto_publish": false,
+  "published_offenders_for_qa": [
+    "F0002",
+    "F0003",
+    "F0004"
+  ],
+  "report": [
+    {
+      "base_design_id": "F0001",
+      "policy": "preserve",
+      "pixels_repaired": 0,
+      "out_of_palette_pixels_snapped": 0,
+      "source_asset": "collections/florals/source-designs/F0001-blue-daisy-pitcher.png"
+    },
+    {
+      "base_design_id": "F0002",
+      "policy": "all-blue",
+      "pixels_repaired": 709,
+      "out_of_palette_pixels_snapped": 0,
+      "source_asset": "collections/florals/source-designs/F0002-pink-peony.png"
+    },
+    {
+      "base_design_id": "F0003",
+      "policy": "all-blue",
+      "pixels_repaired": 355,
+      "out_of_palette_pixels_snapped": 0,
+      "source_asset": "collections/florals/source-designs/F0003-lavender-ribbon-bundle.png"
+    },
+    {
+      "base_design_id": "F0004",
+      "policy": "all-blue",
+      "pixels_repaired": 1994,
+      "out_of_palette_pixels_snapped": 0,
+      "source_asset": "collections/florals/source-designs/F0004-sunflower-stem.png"
+    },
+    {
+      "base_design_id": "F0005",
+      "policy": "preserve",
+      "pixels_repaired": 0,
+      "out_of_palette_pixels_snapped": 0,
+      "source_asset": "collections/florals/source-designs/F0005-blue-hydrangea.png"
+    },
+    {
+      "base_design_id": "F0006",
+      "policy": "pale-blue",
+      "pixels_repaired": 497,
+      "out_of_palette_pixels_snapped": 0,
+      "source_asset": "collections/florals/source-designs/F0006-cherry-blossom-branch.png"
+    },
+    {
+      "base_design_id": "F0007",
+      "policy": "pale-blue",
+      "pixels_repaired": 957,
+      "out_of_palette_pixels_snapped": 0,
+      "source_asset": "collections/florals/source-designs/F0007-pink-floral-heart-wreath.png"
+    },
+    {
+      "base_design_id": "F0008",
+      "policy": "preserve",
+      "pixels_repaired": 0,
+      "out_of_palette_pixels_snapped": 0,
+      "source_asset": "collections/florals/source-designs/F0008-daisy-mason-jar.png"
+    },
+    {
+      "base_design_id": "F0009",
+      "policy": "pale-blue",
+      "pixels_repaired": 635,
+      "out_of_palette_pixels_snapped": 0,
+      "source_asset": "collections/florals/source-designs/F0009-eucalyptus-ribbon-bundle.png"
+    },
+    {
+      "base_design_id": "F0010",
+      "policy": "pale-blue",
+      "pixels_repaired": 1782,
+      "out_of_palette_pixels_snapped": 0,
+      "source_asset": "collections/florals/source-designs/F0010-potted-strawberry-plant.png"
+    },
+    {
+      "base_design_id": "F0011",
+      "policy": "preserve",
+      "pixels_repaired": 0,
+      "out_of_palette_pixels_snapped": 0,
+      "source_asset": "collections/florals/source-designs/F0011-wrapped-wildflower-bouquet.png"
+    },
+    {
+      "base_design_id": "F0012",
+      "policy": "pale-blue",
+      "pixels_repaired": 852,
+      "out_of_palette_pixels_snapped": 0,
+      "source_asset": "collections/florals/source-designs/F0012-rose-teacup.png"
+    },
+    {
+      "base_design_id": "F0013",
+      "policy": "pale-blue",
+      "pixels_repaired": 492,
+      "out_of_palette_pixels_snapped": 0,
+      "source_asset": "collections/florals/source-designs/F0013-rose-ribbon-bouquet.png"
+    },
+    {
+      "base_design_id": "F0014",
+      "policy": "pale-blue",
+      "pixels_repaired": 792,
+      "out_of_palette_pixels_snapped": 0,
+      "source_asset": "collections/florals/source-designs/F0014-tulip-bouquet.png"
+    },
+    {
+      "base_design_id": "F0015",
+      "policy": "pale-blue",
+      "pixels_repaired": 518,
+      "out_of_palette_pixels_snapped": 0,
+      "source_asset": "collections/florals/source-designs/F0015-succulent-pot-trio.png"
+    },
+    {
+      "base_design_id": "F0016",
+      "policy": "pale-blue",
+      "pixels_repaired": 741,
+      "out_of_palette_pixels_snapped": 0,
+      "source_asset": "collections/florals/source-designs/F0016-daffodil-bouquet.png"
+    },
+    {
+      "base_design_id": "F0017",
+      "policy": "pale-blue",
+      "pixels_repaired": 521,
+      "out_of_palette_pixels_snapped": 0,
+      "source_asset": "collections/florals/source-designs/F0017-lilac-twine-bouquet.png"
+    },
+    {
+      "base_design_id": "F0018",
+      "policy": "pale-blue",
+      "pixels_repaired": 509,
+      "out_of_palette_pixels_snapped": 0,
+      "source_asset": "collections/florals/source-designs/F0018-potted-lavender.png"
+    },
+    {
+      "base_design_id": "F0019",
+      "policy": "pale-blue",
+      "pixels_repaired": 557,
+      "out_of_palette_pixels_snapped": 0,
+      "source_asset": "collections/florals/source-designs/F0019-chamomile-bundle.png"
+    },
+    {
+      "base_design_id": "F0020",
+      "policy": "preserve",
+      "pixels_repaired": 0,
+      "out_of_palette_pixels_snapped": 0,
+      "source_asset": "collections/florals/source-designs/F0020-floral-watering-can.png"
+    },
+    {
+      "base_design_id": "F0021",
+      "policy": "pale-blue",
+      "pixels_repaired": 1145,
+      "out_of_palette_pixels_snapped": 0,
+      "source_asset": "collections/florals/source-designs/F0021-hanging-pink-flower-basket.png"
+    },
+    {
+      "base_design_id": "F0022",
+      "policy": "preserve",
+      "pixels_repaired": 0,
+      "out_of_palette_pixels_snapped": 0,
+      "source_asset": "collections/florals/source-designs/F0022-bluebell-bouquet.png"
+    },
+    {
+      "base_design_id": "F0023",
+      "policy": "pale-blue",
+      "pixels_repaired": 274,
+      "out_of_palette_pixels_snapped": 0,
+      "source_asset": "collections/florals/source-designs/F0023-magnolia-branch.png"
+    },
+    {
+      "base_design_id": "F0024",
+      "policy": "preserve",
+      "pixels_repaired": 0,
+      "out_of_palette_pixels_snapped": 0,
+      "source_asset": "collections/florals/source-designs/F0024-enamel-herb-pot.png"
+    },
+    {
+      "base_design_id": "F0025",
+      "policy": "pale-blue",
+      "pixels_repaired": 735,
+      "out_of_palette_pixels_snapped": 1,
+      "source_asset": "collections/florals/source-designs/F0025-daisy-wreath.png"
+    },
+    {
+      "base_design_id": "F0026",
+      "policy": "preserve",
+      "pixels_repaired": 0,
+      "out_of_palette_pixels_snapped": 0,
+      "source_asset": "collections/florals/source-designs/F0026-spring-flower-basket.png"
+    },
+    {
+      "base_design_id": "F0027",
+      "policy": "preserve",
+      "pixels_repaired": 0,
+      "out_of_palette_pixels_snapped": 0,
+      "source_asset": "collections/florals/source-designs/F0027-babys-breath-jar.png"
+    },
+    {
+      "base_design_id": "F0028",
+      "policy": "pale-blue",
+      "pixels_repaired": 406,
+      "out_of_palette_pixels_snapped": 0,
+      "source_asset": "collections/florals/source-designs/F0028-carnation-bouquet.png"
+    },
+    {
+      "base_design_id": "F0029",
+      "policy": "pale-blue",
+      "pixels_repaired": 551,
+      "out_of_palette_pixels_snapped": 2,
+      "source_asset": "collections/florals/source-designs/F0029-anemone-bouquet.png"
+    },
+    {
+      "base_design_id": "F0030",
+      "policy": "preserve",
+      "pixels_repaired": 0,
+      "out_of_palette_pixels_snapped": 0,
+      "source_asset": "collections/florals/source-designs/F0030-forget-me-not-bouquet.png"
+    }
+  ],
+  "next_action": "Review QA renders before resuming WooCommerce publication"
+}
