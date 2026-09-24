@@ -856,7 +856,7 @@ def update_catalog(base_id: str, design: dict):
             row = {
                 "code": code,
                 "sku": f"DRIELO-{code}",
-                "price": 2.99 if suffix == "CS" else 4.99,
+                "price": {"CS": 2.99, "C2C": 2.49, "TC": 2.49, "LH": 2.49}[suffix],
                 "categories": categories[suffix],
                 "purchase_note_en": purchase_en,
                 "purchase_note_es": purchase_es,
@@ -865,7 +865,7 @@ def update_catalog(base_id: str, design: dict):
             by_code[code] = row
         else:
             row["categories"] = categories[suffix]
-            row["price"] = 2.99 if suffix == "CS" else 4.99
+            row["price"] = {"CS": 2.99, "C2C": 2.49, "TC": 2.49, "LH": 2.49}[suffix]
             row["purchase_note_en"] = purchase_en
             row["purchase_note_es"] = purchase_es
         replace_text_fields(row, base_id, design, suffix, pattern, revision)
