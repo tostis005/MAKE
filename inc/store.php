@@ -590,6 +590,14 @@ add_filter( 'woocommerce_is_sold_individually', 'make_downloadables_sold_individ
 function make_collection_meta_fields_add(): void {
     ?>
     <div class="form-field">
+        <label for="drielo_palette_mode"><?php esc_html_e( 'Palette mode', 'make' ); ?></label>
+        <select name="drielo_palette_mode" id="drielo_palette_mode">
+            <option value="shared"><?php esc_html_e( 'Shared collection palette', 'make' ); ?></option>
+            <option value="per-design"><?php esc_html_e( 'Each design has its own palette', 'make' ); ?></option>
+        </select>
+        <p><?php esc_html_e( 'Per-design collections do not show a shared colour palette on the storefront.', 'make' ); ?></p>
+    </div>
+    <div class="form-field">
         <label for="drielo_palette_hex"><?php esc_html_e( 'Palette colours', 'make' ); ?></label>
         <input type="text" name="drielo_palette_hex" id="drielo_palette_hex" placeholder="#B9657D, #6E586C, #A7B497">
         <p><?php esc_html_e( 'Comma-separated HEX colours used to preview the shared palette.', 'make' ); ?></p>
@@ -606,7 +614,19 @@ add_action( 'product_collection_add_form_fields', 'make_collection_meta_fields_a
 function make_collection_meta_fields_edit( WP_Term $term ): void {
     $palette = (string) get_term_meta( $term->term_id, 'drielo_palette_hex', true );
     $threads = (string) get_term_meta( $term->term_id, 'drielo_thread_codes', true );
+    $mode = sanitize_key( (string) get_term_meta( $term->term_id, 'drielo_palette_mode', true ) );
+    if ( ! in_array( $mode, array( 'shared', 'per-design' ), true ) ) { $mode = 'shared'; }
     ?>
+    <tr class="form-field">
+        <th scope="row"><label for="drielo_palette_mode"><?php esc_html_e( 'Palette mode', 'make' ); ?></label></th>
+        <td>
+            <select name="drielo_palette_mode" id="drielo_palette_mode">
+                <option value="shared" <?php selected( $mode, 'shared' ); ?>><?php esc_html_e( 'Shared collection palette', 'make' ); ?></option>
+                <option value="per-design" <?php selected( $mode, 'per-design' ); ?>><?php esc_html_e( 'Each design has its own palette', 'make' ); ?></option>
+            </select>
+            <p class="description"><?php esc_html_e( 'Per-design collections do not show a shared colour palette on the storefront.', 'make' ); ?></p>
+        </td>
+    </tr>
     <tr class="form-field">
         <th scope="row"><label for="drielo_palette_hex"><?php esc_html_e( 'Palette colours', 'make' ); ?></label></th>
         <td><input type="text" name="drielo_palette_hex" id="drielo_palette_hex" value="<?php echo esc_attr( $palette ); ?>"><p class="description"><?php esc_html_e( 'Comma-separated HEX colours.', 'make' ); ?></p></td>
@@ -632,6 +652,12 @@ function make_sanitize_palette_hex( string $value ): string {
 }
 
 function make_save_collection_meta( int $term_id ): void {
+    if ( isset( $_POST['drielo_palette_mode'] ) ) {
+        $mode = sanitize_key( wp_unslash( $_POST['drielo_palette_mode'] ) );
+        if ( ! in_array( $mode, array( 'shared', 'per-design' ), true ) ) { $mode = 'shared'; }
+        update_term_meta( $term_id, 'drielo_palette_mode', $mode );
+        update_term_meta( $term_id, 'drielo_show_collection_palette', 'shared' === $mode ? '1' : '0' );
+    }
     if ( isset( $_POST['drielo_palette_hex'] ) ) {
         update_term_meta( $term_id, 'drielo_palette_hex', make_sanitize_palette_hex( sanitize_text_field( wp_unslash( $_POST['drielo_palette_hex'] ) ) ) );
     }
