@@ -1,7 +1,7 @@
 {
   "collection": "animals",
   "branch": "feature/animals-auto-publish",
-  "auto_continue": true,
+  "auto_continue": false,
   "max_attempts_per_design": 2,
   "recovery_attempts_per_design": 4,
   "created_from": "canonical Animals A0001-A0030 references",
@@ -311,5 +311,6 @@
   ],
   "restarted_at": "2026-09-24T11:46:35Z",
   "restart_reason": "Restarted with approved Animals technique-specific PDF cover mockups from uploads 114976 (CS), 114974 (C2C), 114975 (TC), and 114977 (LH).",
-  "restart_from": "A0001"
+  "restart_from": "A0001",
+  "paused_reason": "Paused while switching Animals PDF covers to the exact four uploaded PNGs."
 }
