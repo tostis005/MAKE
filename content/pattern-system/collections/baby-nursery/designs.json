@@ -2,8 +2,8 @@
   "collection": "baby-nursery",
   "code_prefix": "I",
   "count": 11,
-  "rebuild_version": "latest-chat-approved-11-v5",
-  "policy": "Only the 11 latest user-approved images from this chat are valid. No legacy Baby & Nursery reference IDs or bundles may be used.",
+  "rebuild_version": "chat-refresh-3-v1",
+  "policy": "Baby & Nursery collection remains the latest approved set; I0001, I0004 and I0006 are refreshed from the newest chat artwork.",
   "designs": [
     {
       "order": 1,
@@ -17,11 +17,11 @@
         "I0001-TC",
         "I0001-LH"
       ],
-      "artwork_status": "latest-chat-approved-final",
-      "approved_batch": "latest-chat-11",
+      "artwork_status": "chat-refresh-approved-2026-09-24",
+      "approved_batch": "chat-refresh-osito-elefante-dinosaurio",
       "source_asset": "collections/baby-nursery/source-designs/I0001-teddy-bear.png",
       "approved_matrix_asset": "collections/baby-nursery/approved-latest-11/I0001.matrix.zlib.b64",
-      "approved_matrix_sha256": "7ba54681cc4aa940bf10e638ab70b0a9d18ce73c361677da54c65029be76891c"
+      "approved_matrix_sha256": "90fda4ec3929c1cbf825bb1b939d12dcb3ab668fdd3a3baf263bbc7a26def6ba"
     },
     {
       "order": 2,
@@ -71,11 +71,11 @@
         "I0004-TC",
         "I0004-LH"
       ],
-      "artwork_status": "latest-chat-approved-final",
-      "approved_batch": "latest-chat-11",
+      "artwork_status": "chat-refresh-approved-2026-09-24",
+      "approved_batch": "chat-refresh-osito-elefante-dinosaurio",
       "source_asset": "collections/baby-nursery/source-designs/I0004-baby-elephant.png",
       "approved_matrix_asset": "collections/baby-nursery/approved-latest-11/I0004.matrix.zlib.b64",
-      "approved_matrix_sha256": "ede03faaba6506584498d537ff6385aaa4cf6050286c3b4cf4221d4d32f35826"
+      "approved_matrix_sha256": "6a0ab252614fb493d760b99f437cbfb9300d189a42ac6e4e033eb8f1daec5e52"
     },
     {
       "order": 5,
@@ -107,11 +107,11 @@
         "I0006-TC",
         "I0006-LH"
       ],
-      "artwork_status": "latest-chat-approved-final",
-      "approved_batch": "latest-chat-11",
+      "artwork_status": "chat-refresh-approved-2026-09-24",
+      "approved_batch": "chat-refresh-osito-elefante-dinosaurio",
       "source_asset": "collections/baby-nursery/source-designs/I0006-cute-dinosaur.png",
       "approved_matrix_asset": "collections/baby-nursery/approved-latest-11/I0006.matrix.zlib.b64",
-      "approved_matrix_sha256": "e647f02d26dddac6225caf2284f80cc842e637c0b37890b1ec085edfe4078131"
+      "approved_matrix_sha256": "6bcfe4db657f3101ccf8305f80a487d9ad8683a1ec5195c0932602caafef98a7"
     },
     {
       "order": 7,
