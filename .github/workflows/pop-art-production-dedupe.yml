@@ -1,0 +1,221 @@
+name: Pop Art Production Dedupe
+
+on:
+  push:
+    branches:
+      - feature/pop-art-resto-24
+    paths:
+      - '.github/workflows/pop-art-production-dedupe.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit-and-clean:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout feature branch
+        uses: actions/checkout@v4
+
+      - name: Build canonical Pop Art map
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          catalog=json.loads(Path('content/products/catalog.json').read_text(encoding='utf-8'))
+          rows=[]
+          for p in catalog.get('products',[]):
+              if p.get('collection')!='pop-art-25':
+                  continue
+              rows.append({
+                  'code':p['code'],
+                  'sku':p['sku'],
+                  'title':p['title'],
+                  'slug':p['slug'],
+                  'base_design_id':p.get('base_design_id',''),
+                  'technique_code':p.get('technique_code',''),
+              })
+          if len(rows)!=104:
+              raise SystemExit(f'Expected 104 canonical Pop Art products, got {len(rows)}')
+          Path('/tmp/pop-art-canonical.json').write_text(
+              json.dumps(rows,ensure_ascii=False,indent=2),encoding='utf-8'
+          )
+          print('CANONICAL_COUNT',len(rows))
+          PY
+
+      - name: Build WordPress dedupe script
+        shell: bash
+        run: |
+          cat >/tmp/pop-art-dedupe.php <<'PHP'
+          <?php
+          require '/var/www/html/wp-load.php';
+
+          $rows=json_decode(file_get_contents('/tmp/pop-art-canonical.json'),true);
+          if (!is_array($rows) || count($rows)!==104) {
+              fwrite(STDERR,"Invalid canonical Pop Art map\n");
+              exit(2);
+          }
+
+          $by_code=$by_sku=$by_title=$by_slug=$by_base_tech=array();
+          foreach ($rows as $row) {
+              $code=(string)$row['code'];
+              $by_code[$code]=$row;
+              $by_sku[(string)$row['sku']]=$code;
+              $by_title[(string)$row['title']]=$code;
+              $by_slug[(string)$row['slug']]=$code;
+              $key=(string)$row['base_design_id'].'|'.(string)$row['technique_code'];
+              $by_base_tech[$key]=$code;
+          }
+
+          $q=new WP_Query(array(
+              'post_type'=>'product',
+              'post_status'=>'any',
+              'posts_per_page'=>-1,
+              'fields'=>'ids',
+              'tax_query'=>array(array(
+                  'taxonomy'=>'product_collection',
+                  'field'=>'slug',
+                  'terms'=>array('pop-art-25'),
+              )),
+          ));
+          $ids=array_map('intval',$q->posts);
+          sort($ids);
+          echo "STORE_POP_ART_COUNT_BEFORE=".count($ids).PHP_EOL;
+
+          $groups=array();
+          $unknown=array();
+
+          foreach ($ids as $id) {
+              $p=wc_get_product($id);
+              if (!$p) continue;
+
+              $sku=(string)$p->get_sku();
+              $code=(string)get_post_meta($id,'_drielo_product_code',true);
+              $base=(string)get_post_meta($id,'_drielo_base_design_id',true);
+              $tech=(string)get_post_meta($id,'_drielo_technique_code',true);
+              $title=(string)get_the_title($id);
+              $slug=(string)get_post_field('post_name',$id);
+
+              $canonical=null;
+              if ($code!=='' && isset($by_code[$code])) {
+                  $canonical=$code;
+              } elseif ($sku!=='' && isset($by_sku[$sku])) {
+                  $canonical=$by_sku[$sku];
+              } elseif ($base!=='' && $tech!=='' && isset($by_base_tech[$base.'|'.$tech])) {
+                  $canonical=$by_base_tech[$base.'|'.$tech];
+              } elseif (isset($by_title[$title])) {
+                  $canonical=$by_title[$title];
+              } else {
+                  $slug_base=preg_replace('/-\d+$/','',$slug);
+                  if (isset($by_slug[$slug_base])) $canonical=$by_slug[$slug_base];
+              }
+
+              $gallery=count($p->get_gallery_image_ids());
+              $downloads=count($p->get_downloads());
+              $image=(int)$p->get_image_id();
+              $score=0;
+              if ($p->get_status()==='publish') $score+=100;
+              if ($image>0) $score+=100;
+              if ($gallery>=3) $score+=150;
+              elseif ($gallery>0) $score+=25;
+              if ($downloads>=1) $score+=100;
+              if ($canonical!==null && $sku===$by_code[$canonical]['sku']) $score+=50;
+              if ($canonical!==null && $code===$canonical) $score+=25;
+
+              $rec=array(
+                  'id'=>$id,'sku'=>$sku,'code'=>$code,'base'=>$base,'tech'=>$tech,
+                  'title'=>$title,'slug'=>$slug,'status'=>$p->get_status(),
+                  'image'=>$image,'gallery'=>$gallery,'downloads'=>$downloads,'score'=>$score,
+              );
+              if ($canonical===null) {
+                  $unknown[]=$rec;
+              } else {
+                  if (!isset($groups[$canonical])) $groups[$canonical]=array();
+                  $groups[$canonical][]=$rec;
+              }
+          }
+
+          $deleted=array();
+          $missing=array();
+          foreach ($by_code as $code=>$row) {
+              $cand=$groups[$code] ?? array();
+              if (!$cand) {
+                  $missing[]=$code;
+                  continue;
+              }
+              usort($cand,function($a,$b){
+                  if ($a['score']===$b['score']) return $a['id']<=>$b['id'];
+                  return $b['score']<=>$a['score'];
+              });
+              $keep=$cand[0];
+              echo "KEEP ".$code." id=".$keep['id']." sku=".$keep['sku'].
+                   " image=".$keep['image']." gallery=".$keep['gallery'].
+                   " downloads=".$keep['downloads']." score=".$keep['score'].PHP_EOL;
+              foreach (array_slice($cand,1) as $dup) {
+                  echo "DELETE_DUP ".$code." id=".$dup['id']." sku=".$dup['sku'].
+                       " title=".$dup['title']." score=".$dup['score'].PHP_EOL;
+                  wp_delete_post($dup['id'],true);
+                  $deleted[]=$dup['id'];
+              }
+          }
+
+          foreach ($unknown as $rec) {
+              echo "UNMATCHED_KEEP id=".$rec['id']." sku=".$rec['sku'].
+                   " code=".$rec['code']." title=".$rec['title'].PHP_EOL;
+          }
+          foreach ($missing as $code) {
+              echo "MISSING_CANONICAL ".$code.PHP_EOL;
+          }
+
+          $q2=new WP_Query(array(
+              'post_type'=>'product','post_status'=>'any','posts_per_page'=>-1,'fields'=>'ids',
+              'tax_query'=>array(array(
+                  'taxonomy'=>'product_collection','field'=>'slug','terms'=>array('pop-art-25')
+              )),
+          ));
+          echo "DELETED_DUPLICATES=".count($deleted).PHP_EOL;
+          echo "UNMATCHED_PRODUCTS=".count($unknown).PHP_EOL;
+          echo "MISSING_CANONICAL_COUNT=".count($missing).PHP_EOL;
+          echo "STORE_POP_ART_COUNT_AFTER=".count($q2->posts).PHP_EOL;
+          PHP
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: \${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: \${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_pop_art_dedupe_key
+          chmod 600 ~/.ssh/drielo_pop_art_dedupe_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Audit and remove duplicate Pop Art products
+        env:
+          VPS_HOST: \${{ secrets.VPS_HOST }}
+          VPS_USER: \${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          scp -i ~/.ssh/drielo_pop_art_dedupe_key /tmp/pop-art-canonical.json /tmp/pop-art-dedupe.php \
+            "$VPS_USER@$VPS_HOST:/tmp/"
+          ssh -i ~/.ssh/drielo_pop_art_dedupe_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+          "\${DOCKER[@]}" cp /tmp/pop-art-canonical.json make-wp:/tmp/pop-art-canonical.json
+          "\${DOCKER[@]}" cp /tmp/pop-art-dedupe.php make-wp:/tmp/pop-art-dedupe.php
+          "\${DOCKER[@]}" exec make-wp php -d memory_limit=1024M -d max_execution_time=0 /tmp/pop-art-dedupe.php
+          "\${DOCKER[@]}" exec make-wp rm -f /tmp/pop-art-canonical.json /tmp/pop-art-dedupe.php
+          rm -f /tmp/pop-art-canonical.json /tmp/pop-art-dedupe.php
+          REMOTE
