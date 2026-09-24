@@ -131,6 +131,108 @@ def load_design_reference(base_id: str, meta: dict):
     }
 
 
+def rows_from_master_image(image, palette, alphabet):
+    image=image.convert("RGBA")
+    if image.size != (800,960):
+        raise RuntimeError(f"Expected 800x960 approved master, got {image.size}")
+    pal=[]
+    for p in palette:
+        hx=str(p["hex"]).lstrip("#")
+        pal.append(tuple(int(hx[i:i+2],16) for i in (0,2,4)))
+
+    rows=[]
+    px=image.load()
+    for gy in range(120):
+        row=[]
+        for gx in range(100):
+            samples=[]
+            for yy in range(gy*8, gy*8+8):
+                for xx in range(gx*8, gx*8+8):
+                    r,g,b,a=px[xx,yy]
+                    if a >= 128:
+                        samples.append((r,g,b))
+            if len(samples) < 8:
+                row.append(".")
+                continue
+            # Average the occupied pixels so old palette colours can be mapped
+            # cleanly into the rebuilt vivid palette.
+            rr=sum(c[0] for c in samples)/len(samples)
+            gg=sum(c[1] for c in samples)/len(samples)
+            bb=sum(c[2] for c in samples)/len(samples)
+            idx=min(
+                range(len(pal)),
+                key=lambda i: 2*(rr-pal[i][0])**2 + 4*(gg-pal[i][1])**2 + 3*(bb-pal[i][2])**2,
+            )
+            row.append(alphabet[idx])
+        rows.append("".join(row))
+    return rows
+
+
+def remove_exterior_dark_rows(rows, palette, alphabet, dark_dmc="310", neighborhood=8):
+    grid=[list(r) for r in rows]
+    h=len(grid); w=len(grid[0]) if h else 0
+    try:
+        dark_index=next(i for i,p in enumerate(palette) if str(p.get("dmc","")).upper()==str(dark_dmc).upper())
+    except StopIteration:
+        return rows, {"removed_cells":0,"components":0,"symbol":None}
+    if dark_index >= len(alphabet):
+        return rows, {"removed_cells":0,"components":0,"symbol":None}
+    dark=alphabet[dark_index]
+
+    if neighborhood == 4:
+        dirs=[(-1,0),(1,0),(0,-1),(0,1)]
+    else:
+        dirs=[(dy,dx) for dy in (-1,0,1) for dx in (-1,0,1) if not (dy==0 and dx==0)]
+
+    # Exterior dark outline is the set of dark components that touch
+    # transparency or the canvas boundary. Isolated internal dark details
+    # (eyes, mouth, lettering, accents) are intentionally preserved.
+    exterior_seeds=[]
+    for y in range(h):
+        for x in range(w):
+            if grid[y][x] != dark:
+                continue
+            exterior=False
+            for dy,dx in dirs:
+                yy,xx=y+dy,x+dx
+                if yy<0 or yy>=h or xx<0 or xx>=w or grid[yy][xx]==".":
+                    exterior=True
+                    break
+            if exterior:
+                exterior_seeds.append((y,x))
+
+    seen=set()
+    removed=set()
+    components=0
+    for seed in exterior_seeds:
+        if seed in seen:
+            continue
+        components+=1
+        stack=[seed]
+        seen.add(seed)
+        comp=[]
+        while stack:
+            y,x=stack.pop()
+            comp.append((y,x))
+            for dy,dx in dirs:
+                yy,xx=y+dy,x+dx
+                if 0<=yy<h and 0<=xx<w and grid[yy][xx]==dark and (yy,xx) not in seen:
+                    seen.add((yy,xx))
+                    stack.append((yy,xx))
+        removed.update(comp)
+
+    for y,x in removed:
+        grid[y][x]="."
+
+    return ["".join(r) for r in grid], {
+        "removed_cells":len(removed),
+        "components":components,
+        "symbol":dark,
+        "dmc":str(dark_dmc),
+        "neighborhood":neighborhood,
+    }
+
+
 def clean_exterior_near_white_rows(rows, palette, alphabet, max_component_cells=16, white_distance=70):
     grid=[list(r) for r in rows]
     h=len(grid); w=len(grid[0]) if h else 0
@@ -272,35 +374,64 @@ def generate_reference_master(base_id: str):
         source_digest = direct["source_sha256"]
         direct_metadata = direct["direct_metadata"]
     elif base_id == "I0001":
-        # I0001 is the already-approved full-feet master. Reuse that exact
-        # reference when restarting the collection from the first pattern.
+        # Keep the approved full-feet silhouette, but rebuild its colours and
+        # exterior treatment under the new collection rules.
         manifest = read_json(MANIFEST_PATH)
+        collection = read_json(COLLECTION_PATH)
+        palette = collection["palette"]
+        alphabet = STANDARD_ALPHABET
         source_rel = meta["source_asset"]
         source_path = SYSTEM / source_rel
         if not source_path.is_file():
-            raise RuntimeError("I0001 approved source master is missing")
+            raise RuntimeError("I0001 approved full-feet source master is missing")
         approved = Image.open(source_path).convert("RGBA")
-        bbox, margins = validate_master(base_id, approved)
-        ref_name = f"{base_id}-{meta['slug']}-reference.png"
-        ref_path = REFERENCE_DIR / ref_name
-        ref_rel = f"collections/baby-nursery/reference-masters/{ref_name}"
-        ref_path.parent.mkdir(parents=True, exist_ok=True)
-        approved.save(ref_path, "PNG", optimize=True)
-        result = {
-            "design_id": base_id,
-            "slug": meta["slug"],
-            "reference_sheet": 1,
-            "reference_row": 1,
-            "reference_column": 1,
-            "source_asset": source_rel,
-            "reference_asset": ref_rel,
-            "bbox": bbox,
-            "margins": margins,
-            "reference_source": "approved-existing-master",
-            "reference_sha256": hashlib.sha256(approved.tobytes()).hexdigest(),
-            "near_white_cleanup": {"removed_components":0,"removed_cells":0,"symbols":[]},
+        rows = rows_from_master_image(approved, palette, alphabet)
+
+        dark_rule=collection.get("pattern_rules",{}).get("external_dark_cleanup",{})
+        if dark_rule.get("enabled",False):
+            rows,dark_stats=remove_exterior_dark_rows(
+                rows,palette,alphabet,
+                dark_dmc=str(dark_rule.get("dmc","310")),
+                neighborhood=int(dark_rule.get("neighborhood",8)),
+            )
+        else:
+            dark_stats={"removed_cells":0,"components":0,"symbol":None}
+
+        white_rule=collection.get("pattern_rules",{}).get("external_white_cleanup",{})
+        if white_rule.get("enabled",False):
+            rows,near_white_stats=clean_exterior_near_white_rows(
+                rows,palette,alphabet,
+                max_component_cells=int(white_rule.get("max_isolated_component_cells",16)),
+                white_distance=float(white_rule.get("near_white_distance",70)),
+            )
+        else:
+            near_white_stats={"removed_components":0,"removed_cells":0,"symbols":[]}
+
+        master=rgba_from_matrix(rows,palette,alphabet).resize((800,960),Image.Resampling.NEAREST)
+        bbox,margins=validate_master(base_id,master)
+        ref_name=f"{base_id}-{meta['slug']}-reference.png"
+        ref_path=REFERENCE_DIR/ref_name
+        ref_rel=f"collections/baby-nursery/reference-masters/{ref_name}"
+        source_path.parent.mkdir(parents=True,exist_ok=True)
+        ref_path.parent.mkdir(parents=True,exist_ok=True)
+        master.save(source_path,"PNG",optimize=True)
+        master.save(ref_path,"PNG",optimize=True)
+        result={
+            "design_id":base_id,
+            "slug":meta["slug"],
+            "reference_sheet":1,
+            "reference_row":1,
+            "reference_column":1,
+            "source_asset":source_rel,
+            "reference_asset":ref_rel,
+            "bbox":bbox,
+            "margins":margins,
+            "reference_source":"approved-full-feet-master-recoloured",
+            "reference_sha256":hashlib.sha256(master.tobytes()).hexdigest(),
+            "exterior_dark_cleanup":dark_stats,
+            "near_white_cleanup":near_white_stats,
         }
-        print("CANONICAL_REFERENCE_MASTER_OK", json.dumps(result, ensure_ascii=False))
+        print("CANONICAL_REFERENCE_MASTER_OK",json.dumps(result,ensure_ascii=False))
         return result
     else:
         manifest, archive = load_archive()
@@ -330,8 +461,21 @@ def generate_reference_master(base_id: str):
 
     collection = read_json(COLLECTION_PATH)
     palette = collection["palette"]
-    white_rule = collection.get("pattern_rules", {}).get("external_white_cleanup", {})
     rows = canonical["rows"]
+
+    dark_rule = collection.get("pattern_rules", {}).get("external_dark_cleanup", {})
+    if dark_rule.get("enabled", False):
+        rows, dark_stats = remove_exterior_dark_rows(
+            rows,
+            palette,
+            alphabet,
+            dark_dmc=str(dark_rule.get("dmc", "310")),
+            neighborhood=int(dark_rule.get("neighborhood", 8)),
+        )
+    else:
+        dark_stats = {"removed_cells":0,"components":0,"symbol":None}
+
+    white_rule = collection.get("pattern_rules", {}).get("external_white_cleanup", {})
     if white_rule.get("enabled", False):
         rows, near_white_stats = clean_exterior_near_white_rows(
             rows,
@@ -381,6 +525,7 @@ def generate_reference_master(base_id: str):
         "margins": margins,
         "reference_source": source_kind,
         "reference_sha256": source_digest,
+        "exterior_dark_cleanup": dark_stats,
         "near_white_cleanup": near_white_stats,
     }
     if direct_metadata:
