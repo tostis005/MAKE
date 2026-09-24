@@ -21,8 +21,8 @@
         "sheet": "reference-sheets/florals-sheet-01.png",
         "cell": "r1c1"
       },
-      "reference_asset": "collections/florals/reference-masters/F0001-blue-daisy-pitcher-reference.png",
-      "design_note": "Redesigned directly from the high-resolution approved Blue Daisy Pitcher reference; do not derive from compact reference-sheet proxies."
+      "reference_asset": "collections/florals/source-designs/F0001-blue-daisy-pitcher.png",
+      "design_note": "Manual cross-stitch redesign from the high-resolution approved Blue Daisy Pitcher reference. The exact 100x120 stitch source is the canonical preview reference; compact reference-sheet derivatives are not used."
     },
     {
       "order": 2,
