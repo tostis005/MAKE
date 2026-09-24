@@ -49,7 +49,8 @@ def rgb(hexv: str):
     return tuple(int(h[i:i+2],16) for i in (0,2,4))
 
 def install_master():
-    encoded = "".join((PARTS / f"part0{i}.txt").read_text(encoding="ascii").strip() for i in range(3))\n    raw = base64.b64decode(encoded, validate=True)
+    encoded = "".join((PARTS / f"part0{i}.txt").read_text(encoding="ascii").strip() for i in range(3))
+    raw = base64.b64decode(encoded, validate=True)
     digest = hashlib.sha256(raw).hexdigest()
     if digest != EXPECTED_SHA256:
         raise RuntimeError(f"Unexpected clean master digest: {digest}")
