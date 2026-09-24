@@ -26,6 +26,7 @@ else :
         'Explora cada patrón por separado o descubre colecciones que comparten una misma paleta de color.',
         'Browse each pattern individually or discover collections that share the same colour palette.'
     );
+    $hero_kicker = make_t( 'Patrones digitales', 'Digital patterns' );
 
     if ( is_tax( 'product_collection' ) ) {
         $term = get_queried_object();
@@ -33,17 +34,12 @@ else :
             if ( function_exists( 'make_collection_display_name' ) ) {
                 $title = make_collection_display_name( $term );
             }
-            if ( function_exists( 'make_collection_display_description' ) ) {
-                $localized_intro = make_collection_display_description( $term );
-                if ( '' !== $localized_intro ) { $intro = $localized_intro; }
+            if ( function_exists( 'make_collection_stats_label' ) ) {
+                $hero_kicker = make_collection_stats_label( $term );
             }
-        }
-
-        if ( '' === trim( (string) $intro ) ) {
-            $intro = make_t(
-                'Diseños que comparten una misma paleta de color para que puedas combinarlos dentro de la colección.',
-                'Designs that share one colour palette so you can combine them within the collection.'
-            );
+            if ( function_exists( 'make_collection_stats_description' ) ) {
+                $intro = make_collection_stats_description( $term );
+            }
         }
     }
 ?>
@@ -51,7 +47,7 @@ else :
   <div class="container">
     <div class="shop-hero-inner <?php echo $is_shop_archive ? 'shop-hero-inner--stacked' : ''; ?>">
       <div>
-        <span class="section-kicker"><?php echo esc_html( make_t( 'Patrones digitales', 'Digital patterns' ) ); ?></span>
+        <span class="section-kicker"><?php echo esc_html( $hero_kicker ); ?></span>
         <h1><?php echo esc_html( $title ); ?></h1>
       </div>
       <p><?php echo esc_html( $intro ); ?></p>
