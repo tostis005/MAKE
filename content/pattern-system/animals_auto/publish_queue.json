@@ -11,12 +11,10 @@
       "title_en": "Sleeping Tabby on Quilts",
       "title_es": "Gato atigrado dormido sobre mantas",
       "slug": "sleeping-tabby-quilts",
-      "status": "published",
-      "attempts": 4,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35981501778",
-      "last_error": null,
-      "failed_at": "2026-09-24T09:28:58+00:00",
-      "published_at": "2026-09-24T09:32:42+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "A0002",
@@ -309,5 +307,6 @@
       "last_error": null
     }
   ],
-  "paused_reason": "Flow maintenance: Node 24 actions upgrade and clean restart requested 2026-09-24."
+  "restarted_at": "2026-09-24T09:37:30Z",
+  "restart_reason": "Clean restart from A0001 after upgrading GitHub Actions to Node 24 and isolating WooCommerce staging."
 }
