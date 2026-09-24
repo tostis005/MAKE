@@ -16,141 +16,127 @@
       "base_design_id": "F0002",
       "title_en": "Pink Peony",
       "slug": "pink-peony",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35982241137",
-      "last_error": "Automatic Florals publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T09:37:19+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "F0003",
       "title_en": "Lavender Ribbon Bundle",
       "slug": "lavender-ribbon-bundle",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35982349960",
-      "last_error": "Automatic Florals publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T09:38:15+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "F0004",
       "title_en": "Sunflower Stem",
       "slug": "sunflower-stem",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35982443282",
-      "last_error": "Automatic Florals publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T09:39:16+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "F0005",
       "title_en": "Blue Hydrangea",
       "slug": "blue-hydrangea",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35982542407",
-      "last_error": "Automatic Florals publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T09:40:19+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "F0006",
       "title_en": "Cherry Blossom Branch",
       "slug": "cherry-blossom-branch",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35982654073",
-      "last_error": "Automatic Florals publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T09:41:16+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "F0007",
       "title_en": "Pink Floral Heart Wreath",
       "slug": "pink-floral-heart-wreath",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35982746814",
-      "last_error": "Automatic Florals publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T09:42:17+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "F0008",
       "title_en": "Daisy Mason Jar",
       "slug": "daisy-mason-jar",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35982851657",
-      "last_error": "Automatic Florals publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T09:43:24+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "F0009",
       "title_en": "Eucalyptus Ribbon Bundle",
       "slug": "eucalyptus-ribbon-bundle",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35982966925",
-      "last_error": "Automatic Florals publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T09:44:19+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "F0010",
       "title_en": "Potted Strawberry Plant",
       "slug": "potted-strawberry-plant",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35983062841",
-      "last_error": "Automatic Florals publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T09:45:15+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "F0011",
       "title_en": "Wrapped Wildflower Bouquet",
       "slug": "wrapped-wildflower-bouquet",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35983158224",
-      "last_error": "Automatic Florals publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T09:46:19+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "F0012",
       "title_en": "Rose Teacup",
       "slug": "rose-teacup",
       "status": "pending",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35981407020",
-      "last_error": "Automatic Florals publish job failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T09:42:48+00:00"
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "F0013",
       "title_en": "Rose Ribbon Bouquet",
       "slug": "rose-ribbon-bouquet",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35981407020",
-      "last_error": null,
-      "published_at": "2026-09-24T09:46:29+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "F0014",
       "title_en": "Tulip Bouquet",
       "slug": "tulip-bouquet",
       "status": "pending",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35981407020",
-      "last_error": "Automatic Florals publish job failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T09:48:53+00:00"
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "F0015",
       "title_en": "Succulent Pot Trio",
       "slug": "succulent-pot-trio",
       "status": "pending",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35981407020",
-      "last_error": "Automatic Florals publish job failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T09:49:59+00:00"
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "F0016",
