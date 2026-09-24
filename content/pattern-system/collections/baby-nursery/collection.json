@@ -250,8 +250,8 @@
     },
     "external_white_cleanup": {
       "enabled": true,
-      "dmc": "3865",
-      "near_white_distance": 70,
+      "dmc": "B5200",
+      "near_white_distance": 80,
       "max_isolated_component_cells": 16,
       "neighborhood": 8,
       "remove_small_boundary_flecks": true,
@@ -261,7 +261,8 @@
         "C2C",
         "TC",
         "LH"
-      ]
+      ],
+      "name": "Snow White"
     },
     "external_dark_cleanup": {
       "enabled": true,
