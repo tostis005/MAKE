@@ -1,0 +1,210 @@
+name: Clean A0014 Exterior White Pixels
+
+on:
+  push:
+    branches:
+      - feature/animals-auto-publish
+    paths:
+      - '.github/workflows/animals-clean-a0014-white-contour.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  clean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: feature/animals-auto-publish
+          fetch-depth: 0
+
+      - name: Remove only exterior-connected pure-white pixels
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow
+          python3 - <<'PY'
+          from pathlib import Path
+          from collections import deque
+          import hashlib, json
+          from PIL import Image
+
+          root=Path('.')
+          system=root/'content'/'pattern-system'
+          col=system/'collections'/'animals'
+          src_path=col/'source-designs'/'A0014-elephant-heart-balloon.png'
+          master_path=col/'reference-masters'/'A0014-elephant-heart-balloon-reference.png'
+          sheet_path=col/'reference-sheets'/'animals-reference-sheet-03.png'
+          designs_path=col/'designs.json'
+          manifest_path=col/'reference-library'/'manifest.json'
+          queue_path=system/'animals_auto'/'publish_queue.json'
+
+          img=Image.open(src_path).convert('RGBA')
+          if img.size != (100,120):
+              raise SystemExit(f'Unexpected A0014 source size: {img.size}')
+
+          px=img.load()
+          W,H=img.size
+          WHITE=(255,255,255)
+
+          white={(x,y) for y in range(H) for x in range(W)
+                 if px[x,y][3] >= 128 and px[x,y][:3] == WHITE}
+          if not white:
+              raise SystemExit('No visible pure-white pixels found in A0014')
+
+          def touches_transparency(x,y):
+              for dy in (-1,0,1):
+                  for dx in (-1,0,1):
+                      if dx==0 and dy==0:
+                          continue
+                      nx,ny=x+dx,y+dy
+                      if nx<0 or ny<0 or nx>=W or ny>=H:
+                          return True
+                      if px[nx,ny][3] < 128:
+                          return True
+              return False
+
+          seen=set()
+          remove=set()
+          comps=[]
+          for seed in white:
+              if seed in seen:
+                  continue
+              q=deque([seed]); seen.add(seed)
+              comp=set([seed]); exterior=False
+              while q:
+                  x,y=q.popleft()
+                  if touches_transparency(x,y):
+                      exterior=True
+                  for dy in (-1,0,1):
+                      for dx in (-1,0,1):
+                          if dx==0 and dy==0:
+                              continue
+                          n=(x+dx,y+dy)
+                          if n in white and n not in seen:
+                              seen.add(n); q.append(n); comp.add(n)
+              comps.append((len(comp), exterior))
+              if exterior:
+                  remove |= comp
+
+          before=len(white)
+          for x,y in remove:
+              px[x,y]=(0,0,0,0)
+
+          after=sum(1 for y in range(H) for x in range(W)
+                    if px[x,y][3] >= 128 and px[x,y][:3] == WHITE)
+
+          if not remove:
+              raise SystemExit('No exterior-connected white pixels detected; refusing no-op')
+          if after <= 0:
+              raise SystemExit('Cleanup removed every white pixel; internal highlights must remain')
+
+          # Palette validation.
+          palette=json.loads((col/'collection.json').read_text(encoding='utf-8'))['palette']
+          allowed={tuple(int(p['hex'][i:i+2],16) for i in (1,3,5)) for p in palette}
+          used={(r,g,b) for r,g,b,a in img.getdata() if a>=128}
+          if not used.issubset(allowed):
+              raise SystemExit(f'Out-of-palette colors after cleanup: {sorted(used-allowed)}')
+
+          bbox=img.getchannel('A').getbbox()
+          if not bbox or bbox[0] < 6 or bbox[1] < 6 or bbox[2] > 94 or bbox[3] > 114:
+              raise SystemExit(f'A0014 safe margin invalid after cleanup: {bbox}')
+
+          img.save(src_path,optimize=True)
+          img.resize((800,960),Image.Resampling.NEAREST).save(master_path,optimize=True)
+
+          names=[
+              'A0013-teddy-blue-bow.png',
+              'A0014-elephant-heart-balloon.png',
+              'A0015-giraffe-daisies.png',
+              'A0016-lamb-flower-crown.png',
+              'A0017-koala-eucalyptus.png',
+              'A0018-panda-bamboo.png',
+          ]
+          sheet=Image.new('RGBA',(1200,960),(0,0,0,0))
+          for i,name in enumerate(names):
+              sim=Image.open(col/'source-designs'/name).convert('RGBA')
+              if sim.size != (100,120):
+                  raise SystemExit(f'{name}: wrong source size {sim.size}')
+              sheet.alpha_composite(sim.resize((400,480),Image.Resampling.NEAREST),
+                                    ((i%3)*400,(i//3)*480))
+          sheet.save(sheet_path,optimize=True)
+
+          def sha(p):
+              return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+
+          designs=json.loads(designs_path.read_text(encoding='utf-8'))
+          d=next(x for x in designs['designs'] if x['base_design_id']=='A0014')
+          d['artwork_status']='canonical-approved-clean-gridless-no-exterior-white'
+          d['product_status']='needs-regeneration'
+          d['artwork_revision']='2026-09-24-elephant-clean-exterior-white'
+          d['approved_palette_compliance']='100%'
+          designs_path.write_text(json.dumps(designs,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+          manifest=json.loads(manifest_path.read_text(encoding='utf-8'))
+          for s in manifest.get('source_reference_sheets',[]):
+              if s.get('sheet')==3:
+                  s['sha256']=sha(sheet_path)
+          manifest.setdefault('approved_overrides',{})['A0014']={
+              'revision':'2026-09-24-elephant-clean-exterior-white',
+              'source_sha256':sha(src_path),
+              'master_sha256':sha(master_path),
+              'palette_compliance':'100%',
+              'source_grid':'100x120',
+              'safe_bbox':list(bbox),
+              'visible_colors':len(used),
+              'pure_white_before':before,
+              'exterior_white_removed':len(remove),
+              'pure_white_remaining_internal':after,
+              'reason':'Remove pure-white pixels belonging to exterior-connected contour artifacts while preserving enclosed white eye/heart/foot highlights.'
+          }
+          manifest_path.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+          queue=json.loads(queue_path.read_text(encoding='utf-8'))
+          a=next(x for x in queue['items'] if x['base_design_id']=='A0014')
+          a['status']='pending'
+          a['attempts']=0
+          a['last_run']=None
+          a['last_error']=None
+          a.pop('published_at',None)
+          a.pop('failed_at',None)
+          queue['auto_continue']=True
+          queue['a0014_replacement_reason']='Regenerate A0014 after removing exterior-connected pure-white contour pixels.'
+          queue_path.write_text(json.dumps(queue,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+          print('PURE_WHITE_BEFORE',before)
+          print('EXTERIOR_WHITE_REMOVED',len(remove))
+          print('PURE_WHITE_REMAINING_INTERNAL',after)
+          print('WHITE_COMPONENTS',comps)
+          print('SOURCE_SHA256',sha(src_path))
+          print('MASTER_SHA256',sha(master_path))
+          print('SHEET3_SHA256',sha(sheet_path))
+          PY
+
+      - name: Commit cleaned A0014
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/pattern-system/collections/animals/source-designs/A0014-elephant-heart-balloon.png
+          git add content/pattern-system/collections/animals/reference-masters/A0014-elephant-heart-balloon-reference.png
+          git add content/pattern-system/collections/animals/reference-sheets/animals-reference-sheet-03.png
+          git add content/pattern-system/collections/animals/designs.json
+          git add content/pattern-system/collections/animals/reference-library/manifest.json
+          git add content/pattern-system/animals_auto/publish_queue.json
+          git commit -m "Clean exterior white pixels from Animals A0014"
+          git fetch origin feature/animals-auto-publish
+          git rebase origin/feature/animals-auto-publish
+          git push origin HEAD:feature/animals-auto-publish
+
+      - name: Republish cleaned A0014
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api --method POST             "repos/${GITHUB_REPOSITORY}/actions/workflows/animals-auto-publish.yml/dispatches"             -f ref=feature/animals-auto-publish
