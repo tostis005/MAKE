@@ -1,6 +1,7 @@
 name: Cancel Animals Publisher Only
 # Cancel stalled A0014 republish
 # Cancel duplicate A0014 republish
+# Stop final duplicate A0014 retry
 
 on:
   push:
