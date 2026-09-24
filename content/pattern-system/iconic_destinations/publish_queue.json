@@ -1,0 +1,134 @@
+{
+  "collection": "iconic-destinations",
+  "mode": "exact-pixel-cross-stitch-v1",
+  "auto_continue": false,
+  "max_attempts_per_design": 2,
+  "notes": [
+    "First production batch contains D0001-D0010 only.",
+    "Cross-stitch only: no C2C, tapestry crochet or latch-hook variants may be generated.",
+    "Every source is exactly 100x120 cells. The publisher changes colour to the nearest DMC only; cell geometry is never resampled.",
+    "Queue remains paused until all ten exact pixel sources are committed."
+  ],
+  "items": [
+    {
+      "order": 1,
+      "base_design_id": "D0001",
+      "title_en": "Paris Eiffel Tower",
+      "title_es": "París — Torre Eiffel",
+      "slug": "paris-eiffel-tower",
+      "pixel_source": "collections/iconic-destinations/pixel-sources/D0001.pixz",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 2,
+      "base_design_id": "D0002",
+      "title_en": "Venice Grand Canal",
+      "title_es": "Venecia — Gran Canal",
+      "slug": "venice-grand-canal",
+      "pixel_source": "collections/iconic-destinations/pixel-sources/D0002.pixz",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 3,
+      "base_design_id": "D0003",
+      "title_en": "London Westminster",
+      "title_es": "Londres — Big Ben y Westminster",
+      "slug": "london-westminster",
+      "pixel_source": "collections/iconic-destinations/pixel-sources/D0003.pixz",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 4,
+      "base_design_id": "D0004",
+      "title_en": "Rome Colosseum",
+      "title_es": "Roma — Coliseo",
+      "slug": "rome-colosseum",
+      "pixel_source": "collections/iconic-destinations/pixel-sources/D0004.pixz",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 5,
+      "base_design_id": "D0005",
+      "title_en": "Prague Charles Bridge",
+      "title_es": "Praga — Puente de Carlos",
+      "slug": "prague-charles-bridge",
+      "pixel_source": "collections/iconic-destinations/pixel-sources/D0005.pixz",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 6,
+      "base_design_id": "D0006",
+      "title_en": "Amsterdam Canals",
+      "title_es": "Ámsterdam — Canales",
+      "slug": "amsterdam-canals",
+      "pixel_source": "collections/iconic-destinations/pixel-sources/D0006.pixz",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 7,
+      "base_design_id": "D0007",
+      "title_en": "Santorini Blue Domes",
+      "title_es": "Santorini — Cúpulas azules",
+      "slug": "santorini-blue-domes",
+      "pixel_source": "collections/iconic-destinations/pixel-sources/D0007.pixz",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 8,
+      "base_design_id": "D0008",
+      "title_en": "Positano Amalfi Coast",
+      "title_es": "Positano — Costa Amalfitana",
+      "slug": "positano-amalfi-coast",
+      "pixel_source": "collections/iconic-destinations/pixel-sources/D0008.pixz",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 9,
+      "base_design_id": "D0009",
+      "title_en": "Cinque Terre Village",
+      "title_es": "Cinque Terre — Pueblo costero",
+      "slug": "cinque-terre-village",
+      "pixel_source": "collections/iconic-destinations/pixel-sources/D0009.pixz",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    },
+    {
+      "order": 10,
+      "base_design_id": "D0010",
+      "title_en": "Mykonos Windmills",
+      "title_es": "Mykonos — Molinos",
+      "slug": "mykonos-windmills",
+      "pixel_source": "collections/iconic-destinations/pixel-sources/D0010.pixz",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
+    }
+  ]
+}
