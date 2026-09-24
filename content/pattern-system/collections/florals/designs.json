@@ -15,12 +15,14 @@
         "F0001-TC",
         "F0001-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "manual-cross-stitch-test-ready",
+      "source_asset": "collections/florals/source-designs/F0001-blue-daisy-pitcher.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-01.png",
         "cell": "r1c1"
-      }
+      },
+      "reference_asset": "collections/florals/reference-masters/F0001-blue-daisy-pitcher-reference.png",
+      "design_note": "Redesigned directly from the high-resolution approved Blue Daisy Pitcher reference; do not derive from compact reference-sheet proxies."
     },
     {
       "order": 2,
