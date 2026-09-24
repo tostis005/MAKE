@@ -76,6 +76,16 @@ def validate_master(base_id:str,image:Image.Image):
     return bbox,margins
 
 def _load_encoded_matrix(base_id:str):
+    override_path=SYSTEM/"pop_art_25"/"source_overrides.json"
+    if override_path.is_file():
+        override=read_json(override_path).get(base_id)
+        if override:
+            rows=list(override)
+            if len(rows)!=120 or any(len(row)!=100 for row in rows):
+                raise RuntimeError(f"{base_id}: malformed source override in {override_path}")
+            print(f"SOURCE_OVERRIDE {base_id} {override_path}")
+            return rows
+
     for path in sorted((SYSTEM/"pop_art_25").glob("source_matrices_*.json")):
         doc=read_json(path)
         encoded=doc.get(base_id)
