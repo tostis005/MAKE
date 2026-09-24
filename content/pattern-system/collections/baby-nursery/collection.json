@@ -253,9 +253,11 @@
     "external_white_cleanup": {
       "enabled": true,
       "dmc": "3865",
-      "max_isolated_component_cells": 12,
+      "near_white_distance": 70,
+      "max_isolated_component_cells": 16,
       "neighborhood": 8,
-      "policy": "Remove isolated exterior white flecks that do not touch any non-white pattern cell. Preserve all white cells that belong to the motif, including internal white fills, highlights, clouds, sails, unicorn bodies and other intentional white areas.",
+      "remove_small_boundary_flecks": true,
+      "policy": "Before pattern generation, remove detached or weakly attached white/near-white exterior flecks from the canonical reference matrix. Preserve substantial or enclosed intentional white motif areas. Repeat the isolated-white cleanup after technique downsampling.",
       "applies_to": [
         "CS",
         "C2C",
