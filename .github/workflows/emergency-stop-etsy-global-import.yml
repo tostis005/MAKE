@@ -62,6 +62,24 @@ jobs:
             if(function_exists("as_unschedule_all_actions")){
               as_unschedule_all_actions($hook,array(),$group);
             }
+            if(class_exists("ActionScheduler")){
+              $store=ActionScheduler::store();
+              if(function_exists("as_get_scheduled_actions")){
+                $pending_ids=as_get_scheduled_actions(array(
+                  "hook"=>$hook,
+                  "group"=>$group,
+                  "status"=>ActionScheduler_Store::STATUS_PENDING,
+                  "per_page"=>500
+                ),"ids");
+                foreach((array)$pending_ids as $action_id){
+                  try{
+                    $store->cancel_action((int)$action_id);
+                  }catch(Throwable $e){
+                    echo "CANCEL_ACTION_WARNING id=".$action_id." error=".$e->getMessage().PHP_EOL;
+                  }
+                }
+              }
+            }
 
             $cancelled_meta=0;
             foreach($run_ids as $id){
@@ -121,6 +139,7 @@ jobs:
             }
 
             $pending_after=0;
+            $running_after=0;
             if(function_exists("as_get_scheduled_actions")){
               $ids=as_get_scheduled_actions(array(
                 "hook"=>$hook,
@@ -129,19 +148,27 @@ jobs:
                 "per_page"=>500
               ),"ids");
               $pending_after=count($ids);
+              $running_ids=as_get_scheduled_actions(array(
+                "hook"=>$hook,
+                "group"=>$group,
+                "status"=>ActionScheduler_Store::STATUS_RUNNING,
+                "per_page"=>500
+              ),"ids");
+              $running_after=count($running_ids);
             }
 
             echo "BATCH=".$batch.PHP_EOL;
             echo "PENDING_BEFORE=".$pending_before.PHP_EOL;
             echo "PENDING_AFTER=".$pending_after.PHP_EOL;
+            echo "RUNNING_AFTER=".$running_after.PHP_EOL;
             echo "BATCH_ITEMS_MARKED_CANCELLED=".$cancelled_meta.PHP_EOL;
             echo "ALLOWED_ANIMALS_POP_ART=".$allowed.PHP_EOL;
             echo "NON_ALLOWED_DISABLED=".$disabled.PHP_EOL;
             echo "NON_ALLOWED_ALREADY_LINKED=".$nonallowed_linked.PHP_EOL;
             echo "NON_ALLOWED_LINKED_SAMPLES=".wp_json_encode($nonallowed_linked_samples).PHP_EOL;
 
-            if($pending_after!==0){
-              fwrite(STDERR,"Pending Etsy actions remain after emergency stop".PHP_EOL);
+            if($pending_after!==0 || $running_after!==0){
+              fwrite(STDERR,"Etsy actions remain after emergency stop: pending=".$pending_after." running=".$running_after.PHP_EOL);
               exit(2);
             }
           '
