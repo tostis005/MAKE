@@ -248,3 +248,5 @@ jobs:
             content/products/files/Drielo_I0001-TC.pdf
             content/products/files/Drielo_I0001-LH.pdf
           retention-days: 30
+
+# rerun after valid master reconstruction
