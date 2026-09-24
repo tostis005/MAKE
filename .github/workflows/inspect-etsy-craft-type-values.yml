@@ -1,0 +1,54 @@
+name: Inspect Etsy craft type values
+
+on:
+  push:
+    branches:
+      - feature/etsy-technique-classification
+    paths:
+      - '.github/workflows/inspect-etsy-craft-type-values.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/key
+          chmod 600 ~/.ssh/key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Inspect Etsy craft type property values
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $sync=Drielo_Etsy_Sync::instance();
+            $ref=new ReflectionClass($sync);
+            $req=$ref->getMethod("etsy_request"); $req->setAccessible(true);
+            $props=$req->invoke($sync,"GET","/v3/application/seller-taxonomy/nodes/6343/properties",array(),false);
+            $rows=is_array($props)&&isset($props["results"])?$props["results"]:array();
+            foreach($rows as $p){
+              $name=(string)($p["display_name"]??$p["name"]??"");
+              if(stripos($name,"craft")===false && stripos($name,"artes")===false) continue;
+              echo "PROPERTY_ID=".($p["property_id"]??0)." NAME=".$name.PHP_EOL;
+              foreach((array)($p["possible_values"]??array()) as $v){
+                echo "VALUE=".wp_json_encode(array("id"=>$v["value_id"]??0,"name"=>$v["name"]??"")).PHP_EOL;
+              }
+            }
+          '
+          REMOTE
