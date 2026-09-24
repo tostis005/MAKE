@@ -1,0 +1,97 @@
+name: Apply Cross Stitch Etsy mapping
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/apply-cross-stitch-etsy-mapping.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_mapping_key
+          chmod 600 ~/.ssh/drielo_mapping_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Apply and verify Cross Stitch category and shop section
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_mapping_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -d max_execution_time=900 -r '
+            require "/var/www/html/wp-load.php";
+            require_once ABSPATH."wp-admin/includes/plugin.php";
+            $data=get_plugin_data(WP_PLUGIN_DIR."/drielo-etsy-sync/drielo-etsy-sync.php",false,false);
+            if((string)($data["Version"]??"")!=="1.4.3") exit(2);
+
+            $sync=Drielo_Etsy_Sync::instance();
+            $ref=new ReflectionClass($sync);
+            $request=$ref->getMethod("etsy_request"); $request->setAccessible(true);
+            $settings_m=$ref->getMethod("settings"); $settings_m->setAccessible(true);
+            $settings=$settings_m->invoke($sync);
+
+            $run=get_option("drielo_etsy_sync_run",array());
+            $ids=array_values(array_unique(array_filter(array_map("absint",(array)($run["product_ids"]??array())))));
+            if(!$ids){fwrite(STDERR,"No current batch products".PHP_EOL);exit(3);}
+            $shop=(string)$settings["shop_id"];
+            $taxonomy=87;
+            $section=60539213;
+            $ok=0;$bad=0;
+
+            foreach($ids as $id){
+              $p=wc_get_product($id);
+              if(!$p || strpos((string)$p->get_sku(),"-CS")===false) continue;
+              $listing=(string)get_post_meta($id,"_drielo_etsy_listing_id",true);
+              if(!$listing){echo "NO_LISTING ".$id.PHP_EOL;$bad++;continue;}
+
+              $update=$request->invoke(
+                $sync,
+                "PATCH",
+                "/v3/application/shops/".rawurlencode($shop)."/listings/".rawurlencode($listing),
+                array("taxonomy_id"=>$taxonomy,"shop_section_id"=>$section),
+                true
+              );
+              if(is_wp_error($update)){
+                echo "UPDATE_ERROR ".$p->get_sku()." ".$update->get_error_message().PHP_EOL;
+                $bad++; continue;
+              }
+
+              $remote=$request->invoke($sync,"GET","/v3/application/listings/".rawurlencode($listing),array(),true);
+              if(is_wp_error($remote)){
+                echo "VERIFY_ERROR ".$p->get_sku()." ".$remote->get_error_message().PHP_EOL;
+                $bad++; continue;
+              }
+              $rt=(int)($remote["taxonomy_id"]??0);
+              $rs=(int)($remote["shop_section_id"]??0);
+              echo "VERIFY ".$p->get_sku()." listing=".$listing." taxonomy=".$rt." section=".$rs.PHP_EOL;
+              if($rt!==$taxonomy || $rs!==$section){
+                $bad++; continue;
+              }
+              update_post_meta($id,"_drielo_etsy_taxonomy_id",$taxonomy);
+              update_post_meta($id,"_drielo_etsy_shop_section_id",$section);
+              delete_post_meta($id,"_drielo_etsy_last_warning");
+              $ok++;
+            }
+            echo "FINAL ok=".$ok." bad=".$bad.PHP_EOL;
+            if($bad>0) exit(4);
+          '
+          REMOTE
