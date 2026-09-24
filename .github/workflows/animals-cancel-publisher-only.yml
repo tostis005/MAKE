@@ -1,0 +1,29 @@
+name: Cancel Animals Publisher Only
+
+on:
+  push:
+    branches:
+      - feature/animals-auto-publish
+    paths:
+      - '.github/workflows/animals-cancel-publisher-only.yml'
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  cancel:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel active and queued Animals publisher runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ids=$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs?branch=feature%2Fanimals-auto-publish&per_page=50" --jq '.workflow_runs[] | select(.name=="Animals Branch Auto Publish Queue" and (.status=="in_progress" or .status=="queued" or .status=="pending" or .status=="waiting" or .status=="requested")) | .id')
+          for id in $ids; do
+            echo "Cancelling Animals publisher run $id"
+            gh api --method POST "repos/${GITHUB_REPOSITORY}/actions/runs/${id}/cancel" || true
+          done
