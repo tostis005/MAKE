@@ -1,0 +1,62 @@
+name: Inspect Etsy target states
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/inspect-etsy-target-states.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_target_key
+          chmod 600 ~/.ssh/drielo_target_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Inspect current product sync targets
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_target_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $ids=get_posts(array("post_type"=>"product","post_status"=>array("publish","draft","private","pending"),"posts_per_page"=>-1,"fields"=>"ids"));
+            $counts=array("total"=>0,"enabled"=>0,"linked"=>0,"active"=>0,"draft"=>0,"unset"=>0);
+            $bytech=array();
+            foreach($ids as $id){
+              $p=wc_get_product($id); if(!$p) continue;
+              $sku=(string)$p->get_sku();
+              if(!preg_match("/-(CS|C2C|TC|LH)$/",$sku,$m)) continue;
+              $code=$m[1]; $counts["total"]++;
+              if(!isset($bytech[$code])) $bytech[$code]=array("total"=>0,"enabled"=>0,"linked"=>0,"active"=>0,"draft"=>0,"unset"=>0);
+              $bytech[$code]["total"]++;
+              if(get_post_meta($id,"_drielo_etsy_enabled",true)==="yes"){$counts["enabled"]++;$bytech[$code]["enabled"]++;}
+              if(absint(get_post_meta($id,"_drielo_etsy_listing_id",true))){$counts["linked"]++;$bytech[$code]["linked"]++;}
+              $target=(string)get_post_meta($id,"_drielo_etsy_target_state",true);
+              if($target==="active"){$counts["active"]++;$bytech[$code]["active"]++;}
+              elseif($target==="draft"){$counts["draft"]++;$bytech[$code]["draft"]++;}
+              else{$counts["unset"]++;$bytech[$code]["unset"]++;}
+            }
+            echo "COUNTS=".wp_json_encode($counts).PHP_EOL;
+            echo "BY_TECH=".wp_json_encode($bytech).PHP_EOL;
+          '
+          REMOTE
