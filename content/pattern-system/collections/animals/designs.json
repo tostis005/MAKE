@@ -249,12 +249,12 @@
         "A0014-TC",
         "A0014-LH"
       ],
-      "artwork_status": "canonical-approved-clean-gridless",
+      "artwork_status": "canonical-approved-clean-gridless-no-exterior-white",
       "reference_asset": "collections/animals/reference-masters/A0014-elephant-heart-balloon-reference.png",
       "source_asset": "collections/animals/source-designs/A0014-elephant-heart-balloon.png",
-      "product_status": "ready",
+      "product_status": "needs-regeneration",
       "transparent_background": true,
-      "artwork_revision": "2026-09-24-elephant-clean-gridless",
+      "artwork_revision": "2026-09-24-elephant-clean-exterior-white",
       "approved_palette_compliance": "100%"
     },
     {

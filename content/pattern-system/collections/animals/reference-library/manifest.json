@@ -40,7 +40,7 @@
     {
       "sheet": 3,
       "asset": "collections/animals/reference-sheets/animals-reference-sheet-03.png",
-      "sha256": "d6a0da7ebb5730a0f9450afd40571c02a22e88ae29f06ef5de4bd2d8d3352ed0",
+      "sha256": "d9d73240e3bb18d52160688e2921dff0462014865ca968577f20944894ec021e",
       "design_ids": [
         "A0013",
         "A0014",
@@ -475,9 +475,9 @@
   "archive_version": 2,
   "approved_overrides": {
     "A0014": {
-      "revision": "2026-09-24-elephant-clean-gridless",
-      "source_sha256": "6523a4b63805b56ac399769d5c415d1d69b69530c53a523bc250dfe4018c7b4b",
-      "master_sha256": "35eedc3871bd2ab3a0e95e626d755302a7693839aa5e82f3d0c658dcfeec81ab",
+      "revision": "2026-09-24-elephant-clean-exterior-white",
+      "source_sha256": "0896d0e9acec5b1ee7998447818191164c72811ec57b680015cfe2e44821ec7d",
+      "master_sha256": "5e67a4b24ad58ade4ebeee9a1f3279171635e20ccba5a4cfb55bb220645a8585",
       "palette_compliance": "100%",
       "source_grid": "100x120",
       "safe_bbox": [
@@ -487,7 +487,10 @@
         95
       ],
       "visible_colors": 15,
-      "reason": "Approved palette-compliant elephant cleaned so decorative preview grid lines are not interpreted as stitches."
+      "pure_white_before": 62,
+      "exterior_white_removed": 39,
+      "pure_white_remaining_internal": 23,
+      "reason": "Remove pure-white pixels belonging to exterior-connected contour artifacts while preserving enclosed white eye/heart/foot highlights."
     }
   }
 }
