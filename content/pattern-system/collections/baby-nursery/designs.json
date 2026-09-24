@@ -2,8 +2,8 @@
   "collection": "baby-nursery",
   "code_prefix": "I",
   "count": 11,
-  "rebuild_version": "approved-premium-11-v3",
-  "policy": "Active Baby & Nursery generation is restricted to exactly these 11 approved motifs.",
+  "rebuild_version": "latest-chat-approved-11-v5",
+  "policy": "Only the 11 latest user-approved images from this chat are valid. No legacy Baby & Nursery reference IDs or bundles may be used.",
   "designs": [
     {
       "order": 1,
@@ -17,12 +17,11 @@
         "I0001-TC",
         "I0001-LH"
       ],
-      "artwork_status": "approved-premium-final",
-      "approved_batch": "teddy-plus-premium-10",
+      "artwork_status": "latest-chat-approved-final",
+      "approved_batch": "latest-chat-11",
       "source_asset": "collections/baby-nursery/source-designs/I0001-teddy-bear.png",
-      "reference_source_id": "I0001",
-      "reference_source_slug": "teddy-bear",
-      "reference_bundle_only": false
+      "approved_matrix_asset": "collections/baby-nursery/approved-latest-11/I0001.matrix.zlib.b64",
+      "approved_matrix_sha256": "7ba54681cc4aa940bf10e638ab70b0a9d18ce73c361677da54c65029be76891c"
     },
     {
       "order": 2,
@@ -36,12 +35,11 @@
         "I0002-TC",
         "I0002-LH"
       ],
-      "artwork_status": "approved-premium-final",
-      "approved_batch": "teddy-plus-premium-10",
+      "artwork_status": "latest-chat-approved-final",
+      "approved_batch": "latest-chat-11",
       "source_asset": "collections/baby-nursery/source-designs/I0002-unicorn.png",
-      "reference_source_id": "I0011",
-      "reference_source_slug": "unicorn",
-      "reference_bundle_only": true
+      "approved_matrix_asset": "collections/baby-nursery/approved-latest-11/I0002.matrix.zlib.b64",
+      "approved_matrix_sha256": "872985fbd9a42a00fa998e3f146f7b4c1ea50ff558beb4e9438fe445e632eaf4"
     },
     {
       "order": 3,
@@ -55,12 +53,11 @@
         "I0003-TC",
         "I0003-LH"
       ],
-      "artwork_status": "approved-premium-final",
-      "approved_batch": "teddy-plus-premium-10",
+      "artwork_status": "latest-chat-approved-final",
+      "approved_batch": "latest-chat-11",
       "source_asset": "collections/baby-nursery/source-designs/I0003-giraffe.png",
-      "reference_source_id": "I0003",
-      "reference_source_slug": "giraffe",
-      "reference_bundle_only": true
+      "approved_matrix_asset": "collections/baby-nursery/approved-latest-11/I0003.matrix.zlib.b64",
+      "approved_matrix_sha256": "c0ee156b4ec032f2ceb23756fd427cb4139e130098c1948f6b32b8bbd3b9ee8c"
     },
     {
       "order": 4,
@@ -74,12 +71,11 @@
         "I0004-TC",
         "I0004-LH"
       ],
-      "artwork_status": "approved-premium-final",
-      "approved_batch": "teddy-plus-premium-10",
+      "artwork_status": "latest-chat-approved-final",
+      "approved_batch": "latest-chat-11",
       "source_asset": "collections/baby-nursery/source-designs/I0004-baby-elephant.png",
-      "reference_source_id": "I0002",
-      "reference_source_slug": "baby-elephant",
-      "reference_bundle_only": true
+      "approved_matrix_asset": "collections/baby-nursery/approved-latest-11/I0004.matrix.zlib.b64",
+      "approved_matrix_sha256": "ede03faaba6506584498d537ff6385aaa4cf6050286c3b4cf4221d4d32f35826"
     },
     {
       "order": 5,
@@ -93,12 +89,11 @@
         "I0005-TC",
         "I0005-LH"
       ],
-      "artwork_status": "approved-premium-final",
-      "approved_batch": "teddy-plus-premium-10",
+      "artwork_status": "latest-chat-approved-final",
+      "approved_batch": "latest-chat-11",
       "source_asset": "collections/baby-nursery/source-designs/I0005-bunny-heart.png",
-      "reference_source_id": "I0006",
-      "reference_source_slug": "bunny-heart",
-      "reference_bundle_only": true
+      "approved_matrix_asset": "collections/baby-nursery/approved-latest-11/I0005.matrix.zlib.b64",
+      "approved_matrix_sha256": "837a87f449caff1ada587897df300a289367851999f5332e582823b6d43737f0"
     },
     {
       "order": 6,
@@ -112,12 +107,11 @@
         "I0006-TC",
         "I0006-LH"
       ],
-      "artwork_status": "approved-premium-final",
-      "approved_batch": "teddy-plus-premium-10",
+      "artwork_status": "latest-chat-approved-final",
+      "approved_batch": "latest-chat-11",
       "source_asset": "collections/baby-nursery/source-designs/I0006-cute-dinosaur.png",
-      "reference_source_id": "I0008",
-      "reference_source_slug": "cute-dinosaur",
-      "reference_bundle_only": true
+      "approved_matrix_asset": "collections/baby-nursery/approved-latest-11/I0006.matrix.zlib.b64",
+      "approved_matrix_sha256": "e647f02d26dddac6225caf2284f80cc842e637c0b37890b1ec085edfe4078131"
     },
     {
       "order": 7,
@@ -131,12 +125,11 @@
         "I0007-TC",
         "I0007-LH"
       ],
-      "artwork_status": "approved-premium-final",
-      "approved_batch": "teddy-plus-premium-10",
+      "artwork_status": "latest-chat-approved-final",
+      "approved_batch": "latest-chat-11",
       "source_asset": "collections/baby-nursery/source-designs/I0007-rubber-duck.png",
-      "reference_source_id": "I0017",
-      "reference_source_slug": "rubber-duck",
-      "reference_bundle_only": true
+      "approved_matrix_asset": "collections/baby-nursery/approved-latest-11/I0007.matrix.zlib.b64",
+      "approved_matrix_sha256": "3f5ce4c1c9df75b5b85de289d5ca60981660099018e4dd78f4ecb4a809f4c01f"
     },
     {
       "order": 8,
@@ -150,12 +143,11 @@
         "I0008-TC",
         "I0008-LH"
       ],
-      "artwork_status": "approved-premium-final",
-      "approved_batch": "teddy-plus-premium-10",
+      "artwork_status": "latest-chat-approved-final",
+      "approved_batch": "latest-chat-11",
       "source_asset": "collections/baby-nursery/source-designs/I0008-plush-lamb.png",
-      "reference_source_id": "I0023",
-      "reference_source_slug": "plush-lamb",
-      "reference_bundle_only": true
+      "approved_matrix_asset": "collections/baby-nursery/approved-latest-11/I0008.matrix.zlib.b64",
+      "approved_matrix_sha256": "881d80476d90f780430bc00a9f69bd0d47b05760200bafcc5c1703deeaeb53d9"
     },
     {
       "order": 9,
@@ -169,12 +161,11 @@
         "I0009-TC",
         "I0009-LH"
       ],
-      "artwork_status": "approved-premium-final",
-      "approved_batch": "teddy-plus-premium-10",
+      "artwork_status": "latest-chat-approved-final",
+      "approved_batch": "latest-chat-11",
       "source_asset": "collections/baby-nursery/source-designs/I0009-sleeping-owl.png",
-      "reference_source_id": "I0021",
-      "reference_source_slug": "sleeping-owl",
-      "reference_bundle_only": true
+      "approved_matrix_asset": "collections/baby-nursery/approved-latest-11/I0009.matrix.zlib.b64",
+      "approved_matrix_sha256": "468f79559b81f5c8d8062912c469849c6d26c0358b447f9287e018122bf62889"
     },
     {
       "order": 10,
@@ -188,12 +179,11 @@
         "I0010-TC",
         "I0010-LH"
       ],
-      "artwork_status": "approved-premium-final",
-      "approved_batch": "teddy-plus-premium-10",
+      "artwork_status": "latest-chat-approved-final",
+      "approved_batch": "latest-chat-11",
       "source_asset": "collections/baby-nursery/source-designs/I0010-crescent-moon.png",
-      "reference_source_id": "I0004",
-      "reference_source_slug": "crescent-moon",
-      "reference_bundle_only": true
+      "approved_matrix_asset": "collections/baby-nursery/approved-latest-11/I0010.matrix.zlib.b64",
+      "approved_matrix_sha256": "48f2ed510c0e473d9bfc5a10944c0f0fe966929fbbb2669be3b05b554fbb7736"
     },
     {
       "order": 11,
@@ -207,12 +197,11 @@
         "I0011-TC",
         "I0011-LH"
       ],
-      "artwork_status": "approved-premium-final",
-      "approved_batch": "teddy-plus-premium-10",
+      "artwork_status": "latest-chat-approved-final",
+      "approved_batch": "latest-chat-11",
       "source_asset": "collections/baby-nursery/source-designs/I0011-smiling-cloud.png",
-      "reference_source_id": "I0005",
-      "reference_source_slug": "smiling-cloud",
-      "reference_bundle_only": true
+      "approved_matrix_asset": "collections/baby-nursery/approved-latest-11/I0011.matrix.zlib.b64",
+      "approved_matrix_sha256": "48e4f657f64c898a4ef4bf43bea59fa95e80ffadc6d684b94a30e875de479d10"
     }
   ]
 }
