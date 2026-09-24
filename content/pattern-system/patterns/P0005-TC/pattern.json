@@ -8,7 +8,7 @@
   "source_asset": "content/pattern-system/collections/pop-art-25/sources/P0005.png",
   "stitch_width": 80,
   "stitch_height": 96,
-  "total_stitches": 4004,
+  "total_stitches": 4003,
   "color_count": 15,
   "palette_size": 25,
   "transparent_background": true,
@@ -39,7 +39,7 @@
       "dmc": "B5200",
       "color": "#FFFFFF",
       "name": "Snow White",
-      "stitches": 31
+      "stitches": 30
     },
     {
       "symbol": "E",
@@ -2179,7 +2179,7 @@
       "A",
       "A",
       "A",
-      "D",
+      null,
       null,
       null,
       null,
