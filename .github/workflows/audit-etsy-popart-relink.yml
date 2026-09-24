@@ -112,6 +112,9 @@ jobs:
                 "enabled"=>(string)get_post_meta($id,"_drielo_etsy_enabled",true),
                 "target_state"=>(string)get_post_meta($id,"_drielo_etsy_target_state",true),
                 "remote_state"=>(string)get_post_meta($id,"_drielo_etsy_remote_state",true),
+                "featured_image_id"=>(int)$p->get_image_id(),
+                "gallery_count"=>count($p->get_gallery_image_ids()),
+                "download_count"=>count($p->get_downloads()),
                 "collections"=>$c,
                 "techniques"=>$t
               );
