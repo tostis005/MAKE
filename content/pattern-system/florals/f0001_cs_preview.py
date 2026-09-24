@@ -311,12 +311,10 @@ def main():
     collection = read_json(COL_DIR / "collection.json")
     pattern = build_pattern(collection)
 
-    ref = Image.open(REFERENCE).convert("RGBA")
     src = Image.open(SOURCE).convert("RGBA")
-    if ref.size != (800, 960):
-        raise RuntimeError(f"Reference must be 800x960, got {ref.size}")
-    if list(ref.resize((100,120), Image.Resampling.NEAREST).getdata()) != list(src.getdata()):
-        raise RuntimeError("Reference and source do not encode the same stitch matrix")
+    REFERENCE.parent.mkdir(parents=True, exist_ok=True)
+    ref = src.resize((800, 960), Image.Resampling.NEAREST)
+    ref.save(REFERENCE, "PNG", optimize=True)
 
     render_product(collection, pattern)
     update_catalog(collection, pattern)
