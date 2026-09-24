@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import os
 import shutil
 import sys
 from pathlib import Path
@@ -20,7 +21,7 @@ import bulk_generate as bg  # noqa: E402
 
 CODES = ("I0001-CS","I0001-C2C","I0001-TC","I0001-LH")
 SUFFIXES = ("CS","C2C","TC","LH")
-REVISION = 2026092406
+REVISION = 2026092407
 
 def read_json(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
@@ -94,27 +95,37 @@ def main():
     collection = read_json(COLLECTION_DIR / "collection.json")
     layouts = collection["mockup_spec"]["technique_layouts"]
 
+    requested = os.environ.get("DRIELO_I0001_SUFFIXES", "").strip()
+    suffixes = tuple(x.strip() for x in requested.split(",") if x.strip()) if requested else SUFFIXES
+    invalid = [x for x in suffixes if x not in SUFFIXES]
+    if invalid or not suffixes:
+        raise RuntimeError(f"Invalid I0001 suffix selection: {suffixes}")
+
     expected_pages = dict(collection["mockup_spec"]["technique_assets"])
-    for suffix in SUFFIXES:
+    for suffix in suffixes:
         product = read_json(SYSTEM / "products" / f"I0001-{suffix}" / "product.json")
         if product.get("page_1_asset") != expected_pages[suffix]:
             raise RuntimeError(f"{suffix}: incorrect page_1_asset: {product.get('page_1_asset')}")
 
-    # Convert collection covers to the fixed filenames expected by the renderer.
+    # The legacy renderer uses historical engine filenames where C2C/TC names are
+    # inverted. Populate those filenames from the collection config so collection.json
+    # remains the canonical source of truth.
     temp_assets = Path("/tmp/drielo-baby-i0001-assets")
     if temp_assets.exists():
         shutil.rmtree(temp_assets)
     temp_assets.mkdir(parents=True, exist_ok=True)
     shutil.copy2(bg.ENGINE_ASSETS / "floral.png", temp_assets / "floral.png")
-    cover_map = {
-        "cover-cross-stitch.jpg": "cover-cross-stitch.webp",
-        "cover-crochet.jpg": "cover-crochet.webp",
-        "cover-c2c-crochet.jpg": "cover-c2c-crochet.webp",
-        "cover-rug.jpg": "cover-rug.webp",
+    renderer_targets = {
+        "CS": "cover-cross-stitch.webp",
+        "C2C": "cover-crochet.webp",
+        "TC": "cover-c2c-crochet.webp",
+        "LH": "cover-rug.webp",
     }
-    for src, dst in cover_map.items():
-        Image.open(COLLECTION_DIR / "assets" / src).convert("RGB").save(
-            temp_assets / dst, "WEBP", quality=94, method=6
+    for suffix in suffixes:
+        src_name = Path(expected_pages[suffix]).name
+        dst_name = renderer_targets[suffix]
+        Image.open(COLLECTION_DIR / "assets" / src_name).convert("RGB").save(
+            temp_assets / dst_name, "WEBP", quality=94, method=6
         )
     bg.ENGINE_ASSETS = temp_assets
 
@@ -122,7 +133,7 @@ def main():
     STORE_FILES.mkdir(parents=True, exist_ok=True)
 
     patterns = {}
-    for suffix in SUFFIXES:
+    for suffix in suffixes:
         code = f"I0001-{suffix}"
         pattern = read_json(SYSTEM / "patterns" / code / "pattern.json")
         patterns[suffix] = pattern
@@ -147,14 +158,14 @@ def main():
 
     catalog = read_json(CATALOG_PATH)
     by_code = {p.get("code"): p for p in catalog.get("products", [])}
-    for suffix in SUFFIXES:
+    for suffix in suffixes:
         code = f"I0001-{suffix}"
         if code not in by_code:
             raise RuntimeError(f"Catalog missing {code}")
         update_catalog_row(by_code[code], suffix, patterns[suffix])
 
     write_json(CATALOG_PATH, catalog)
-    print("I0001_RENDERED=4")
+    print(f"I0001_RENDERED={len(suffixes)}")
     print(f"GALLERY_REVISION={REVISION}")
 
 if __name__ == "__main__":
