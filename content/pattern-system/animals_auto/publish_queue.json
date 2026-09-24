@@ -1,7 +1,7 @@
 {
   "collection": "animals",
   "branch": "feature/animals-auto-publish",
-  "auto_continue": true,
+  "auto_continue": false,
   "max_attempts_per_design": 2,
   "recovery_attempts_per_design": 4,
   "created_from": "canonical Animals A0001-A0030 references",
@@ -309,5 +309,6 @@
     }
   ],
   "restarted_at": "2026-09-24T09:37:30Z",
-  "restart_reason": "Clean restart from A0001 after upgrading GitHub Actions to Node 24 and isolating WooCommerce staging."
+  "restart_reason": "Clean restart from A0001 after upgrading GitHub Actions to Node 24 and isolating WooCommerce staging.",
+  "paused_reason": "Final workflow stabilization before clean restart from A0001."
 }
