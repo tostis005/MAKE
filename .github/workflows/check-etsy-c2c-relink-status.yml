@@ -1,4 +1,5 @@
 name: Check Etsy C2C relink status
+# refresh status 20260924
 
 on:
   push:
