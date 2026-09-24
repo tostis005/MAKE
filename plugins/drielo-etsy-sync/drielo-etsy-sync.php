@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Drielo Etsy Sync
  * Description: Centraliza la selección y sincronización de productos WooCommerce con Etsy, incluidos productos digitales, imágenes y PDFs.
- * Version: 1.0.3
+ * Version: 1.1.0
  * Author: Drielo
  * Requires Plugins: woocommerce
  * Requires PHP: 8.0
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 final class Drielo_Etsy_Sync {
-    const VERSION = '1.0.3';
+    const VERSION = '1.1.0';
     const OPTION_SETTINGS = 'drielo_etsy_settings';
     const OPTION_TOKENS   = 'drielo_etsy_tokens';
 
@@ -103,9 +103,13 @@ final class Drielo_Etsy_Sync {
             'when_made'        => '2020_2026',
             'quantity'         => 999,
             'default_language' => 'en-US',
-            'sync_images'      => 1,
-            'sync_files'       => 1,
-            'sync_tags'        => 1,
+            'sync_images'       => 1,
+            'sync_files'        => 1,
+            'sync_tags'         => 1,
+            'sync_pdf_previews' => 1,
+            'auto_taxonomy'     => 1,
+            'auto_renew'        => 1,
+            'ai_disclosure'     => 1,
         ];
         $settings = wp_parse_args( get_option( self::OPTION_SETTINGS, [] ), $defaults );
         if ( empty( $settings['taxonomy_id'] ) ) {
@@ -382,15 +386,18 @@ final class Drielo_Etsy_Sync {
 
                         <h2>2. Valores por defecto para patrones</h2>
                         <table class="form-table" role="presentation">
-                            <tr><th><label for="taxonomy_id">Taxonomy ID de Etsy</label></th><td><input type="number" class="small-text" id="taxonomy_id" name="settings[taxonomy_id]" value="<?php echo esc_attr( $settings['taxonomy_id'] ); ?>" min="1" /><p class="description">Categoría Etsy usada al crear un listing nuevo. Puede ajustarse después si quieres mapping por colección.</p></td></tr>
+                            <tr><th><label for="taxonomy_id">Taxonomy ID de respaldo</label></th><td><input type="number" class="small-text" id="taxonomy_id" name="settings[taxonomy_id]" value="<?php echo esc_attr( $settings['taxonomy_id'] ); ?>" min="1" /><p class="description">Solo se usa si Etsy no permite resolver automáticamente una categoría específica para la técnica del patrón.</p><label><input type="checkbox" name="settings[auto_taxonomy]" value="1" <?php checked( ! empty( $settings['auto_taxonomy'] ) ); ?> /> Elegir automáticamente la categoría Etsy según la técnica (punto de cruz, C2C, tapestry o latch hook)</label></td></tr>
                             <tr><th><label for="quantity">Cantidad</label></th><td><input type="number" class="small-text" id="quantity" name="settings[quantity]" value="<?php echo esc_attr( $settings['quantity'] ); ?>" min="1" max="999" /></td></tr>
                             <tr><th><label for="who_made">Quién lo hizo</label></th><td><select id="who_made" name="settings[who_made]"><option value="i_did" <?php selected( $settings['who_made'], 'i_did' ); ?>>Yo / Drielo</option><option value="collective" <?php selected( $settings['who_made'], 'collective' ); ?>>Colectivo</option><option value="someone_else" <?php selected( $settings['who_made'], 'someone_else' ); ?>>Otra persona</option></select></td></tr>
                             <tr><th><label for="when_made">Cuándo se hizo</label></th><td><select id="when_made" name="settings[when_made]"><option value="2020_2026" <?php selected( $settings['when_made'], '2020_2026' ); ?>>2020–2026</option><option value="made_to_order" <?php selected( $settings['when_made'], 'made_to_order' ); ?>>Hecho bajo pedido</option></select></td></tr>
                             <tr><th><label for="default_language">Idioma Etsy</label></th><td><input class="small-text" type="text" id="default_language" name="settings[default_language]" value="<?php echo esc_attr( $settings['default_language'] ); ?>" /></td></tr>
                             <tr><th>Sincronizar</th><td>
-                                <label><input type="checkbox" name="settings[sync_images]" value="1" <?php checked( ! empty( $settings['sync_images'] ) ); ?> /> Imágenes destacada + galería</label><br />
+                                <label><input type="checkbox" name="settings[sync_images]" value="1" <?php checked( ! empty( $settings['sync_images'] ) ); ?> /> Imagen destacada + galería</label><br />
+                                <label><input type="checkbox" name="settings[sync_pdf_previews]" value="1" <?php checked( ! empty( $settings['sync_pdf_previews'] ) ); ?> /> Crear imágenes extra desde el PDF (ficha, colores y recortes parciales de gráficos)</label><br />
                                 <label><input type="checkbox" name="settings[sync_files]" value="1" <?php checked( ! empty( $settings['sync_files'] ) ); ?> /> Archivos descargables/PDF</label><br />
-                                <label><input type="checkbox" name="settings[sync_tags]" value="1" <?php checked( ! empty( $settings['sync_tags'] ) ); ?> /> Tags del producto</label>
+                                <label><input type="checkbox" name="settings[sync_tags]" value="1" <?php checked( ! empty( $settings['sync_tags'] ) ); ?> /> Tags específicos para Etsy</label><br />
+                                <label><input type="checkbox" name="settings[auto_renew]" value="1" <?php checked( ! empty( $settings['auto_renew'] ) ); ?> /> Renovación automática del listing al caducar</label><br />
+                                <label><input type="checkbox" name="settings[ai_disclosure]" value="1" <?php checked( ! empty( $settings['ai_disclosure'] ) ); ?> /> Añadir declaración de uso de IA a la descripción</label>
                             </td></tr>
                         </table>
                         <?php submit_button( 'Guardar configuración' ); ?>
@@ -420,7 +427,7 @@ final class Drielo_Etsy_Sync {
                     <?php endif; ?>
                     <hr />
                     <h3>Qué se sincroniza</h3>
-                    <ul class="drielo-check-list"><li>Título y descripción de WooCommerce</li><li>Precio y SKU</li><li>Imagen destacada y galería</li><li>PDFs/archivos descargables</li><li>Tags de WooCommerce</li><li>Estado Borrador / Publicado</li></ul>
+                    <ul class="drielo-check-list"><li>Título específico para Etsy</li><li>Descripción estructurada con párrafos y viñetas</li><li>Precio EUR de la web y SKU</li><li>Categoría automática según técnica</li><li>Imagen destacada, galería y previews seguros del PDF</li><li>PDFs/archivos descargables</li><li>Tags específicos para Etsy</li><li>Producto digital, renovación automática y declaración de IA</li><li>Estado Borrador / Publicado</li></ul>
                 </div>
             </div>
         </div>
@@ -442,9 +449,13 @@ final class Drielo_Etsy_Sync {
             'when_made'        => in_array( $input['when_made'] ?? '', [ '2020_2026', 'made_to_order' ], true ) ? $input['when_made'] : '2020_2026',
             'quantity'         => min( 999, max( 1, absint( $input['quantity'] ?? 999 ) ) ),
             'default_language' => sanitize_text_field( $input['default_language'] ?? 'en-US' ),
-            'sync_images'      => empty( $input['sync_images'] ) ? 0 : 1,
-            'sync_files'       => empty( $input['sync_files'] ) ? 0 : 1,
-            'sync_tags'        => empty( $input['sync_tags'] ) ? 0 : 1,
+            'sync_images'       => empty( $input['sync_images'] ) ? 0 : 1,
+            'sync_files'        => empty( $input['sync_files'] ) ? 0 : 1,
+            'sync_tags'         => empty( $input['sync_tags'] ) ? 0 : 1,
+            'sync_pdf_previews' => empty( $input['sync_pdf_previews'] ) ? 0 : 1,
+            'auto_taxonomy'     => empty( $input['auto_taxonomy'] ) ? 0 : 1,
+            'auto_renew'        => empty( $input['auto_renew'] ) ? 0 : 1,
+            'ai_disclosure'     => empty( $input['ai_disclosure'] ) ? 0 : 1,
         ];
         update_option( self::OPTION_SETTINGS, $settings, false );
         wp_safe_redirect( add_query_arg( 'drielo_notice', rawurlencode( 'Configuración guardada.' ), admin_url( 'admin.php?page=drielo-etsy-settings' ) ) );
@@ -795,13 +806,15 @@ final class Drielo_Etsy_Sync {
         if ( empty( $settings['shop_id'] ) ) {
             return $this->record_error( $product_id, new WP_Error( 'shop_id', 'Falta el Shop ID de Etsy.' ) );
         }
-        if ( empty( $settings['taxonomy_id'] ) ) {
-            return $this->record_error( $product_id, new WP_Error( 'taxonomy_id', 'Falta el Taxonomy ID de Etsy en Configuración.' ) );
+        $taxonomy_id = $this->resolve_taxonomy_id( $product );
+        if ( $taxonomy_id <= 0 ) {
+            return $this->record_error( $product_id, new WP_Error( 'taxonomy_id', 'No se pudo resolver una categoría de Etsy para este producto.' ) );
         }
 
         $listing_id = get_post_meta( $product_id, self::META_LISTING_ID, true );
         $target = get_post_meta( $product_id, self::META_TARGET_STATE, true ) === 'active' ? 'active' : 'draft';
-        $payload = $this->listing_payload( $product );
+        $payload = $this->listing_payload( $product, $taxonomy_id );
+        update_post_meta( $product_id, '_drielo_etsy_taxonomy_id', $taxonomy_id );
 
         if ( ! $listing_id ) {
             $create = $this->etsy_request( 'POST', '/v3/application/shops/' . rawurlencode( $settings['shop_id'] ) . '/listings', $payload );
@@ -871,64 +884,256 @@ final class Drielo_Etsy_Sync {
         return true;
     }
 
-    private function listing_payload( WC_Product $product ) {
-        $settings = $this->settings();
-        $description = wp_strip_all_tags( $product->get_description() ?: $product->get_short_description() );
-        $description = trim( preg_replace( '/\s+/', ' ', html_entity_decode( $description, ENT_QUOTES, 'UTF-8' ) ) );
-        if ( ! $description ) {
-            $description = $product->get_name();
-        }
-        $title = wp_strip_all_tags( html_entity_decode( $product->get_name(), ENT_QUOTES, 'UTF-8' ) );
-        if ( function_exists( 'mb_substr' ) ) {
-            $title = mb_substr( $title, 0, 140 );
-        } else {
-            $title = substr( $title, 0, 140 );
-        }
-        $price = (float) wc_get_price_to_display( $product );
-        if ( $price <= 0 ) {
-            $price = (float) $product->get_regular_price();
-        }
+    private function listing_payload( WC_Product $product, int $taxonomy_id ) {
+        $settings    = $this->settings();
+        $description = $this->formatted_etsy_description( $product );
+        $title       = $this->etsy_title( $product );
+        $price       = $this->etsy_price_eur( $product );
+
         $payload = [
             'quantity'          => (int) $settings['quantity'],
             'title'             => $title,
             'description'       => $description,
-            'price'             => number_format( max( 0.01, $price ), 2, '.', '' ),
-            'who_made'          => $settings['who_made'],
+            'price'             => number_format( $price, 2, '.', '' ),
+            'who_made'          => 'i_did',
             'when_made'         => $settings['when_made'],
-            'taxonomy_id'       => (int) $settings['taxonomy_id'],
-            'is_supply'         => 'false',
+            'taxonomy_id'       => $taxonomy_id,
+            'is_supply'         => 'true',
             'type'              => 'download',
-            'should_auto_renew' => 'true',
+            'is_customizable'   => 'false',
+            'should_auto_renew' => ! empty( $settings['auto_renew'] ) ? 'true' : 'false',
         ];
+
         if ( ! empty( $settings['sync_tags'] ) ) {
-            $tags = wp_get_post_terms( $product->get_id(), 'product_tag', [ 'fields' => 'names' ] );
-            if ( ! is_wp_error( $tags ) ) {
-                $clean = [];
-                foreach ( array_slice( $tags, 0, 13 ) as $tag ) {
-                    $tag = trim( wp_strip_all_tags( $tag ) );
-                    if ( function_exists( 'mb_substr' ) ) {
-                        $tag = mb_substr( $tag, 0, 20 );
-                    } else {
-                        $tag = substr( $tag, 0, 20 );
-                    }
-                    if ( $tag !== '' ) {
-                        $clean[] = $tag;
-                    }
-                }
-                if ( $clean ) {
-                    $payload['tags'] = $clean;
-                }
+            $tags = $this->etsy_tags( $product );
+            if ( $tags ) {
+                $payload['tags'] = $tags;
             }
         }
+
         return $payload;
+    }
+
+    private function listing_language(): string {
+        $language = strtolower( (string) ( $this->settings()['default_language'] ?? 'en-US' ) );
+        return str_starts_with( $language, 'es' ) ? 'es' : 'en';
+    }
+
+    private function etsy_title( WC_Product $product ): string {
+        $language = $this->listing_language();
+        $title = trim( (string) get_post_meta( $product->get_id(), '_drielo_etsy_title_' . $language, true ) );
+        if ( '' === $title ) {
+            $title = trim( (string) get_post_meta( $product->get_id(), '_drielo_title_' . $language, true ) );
+        }
+        if ( '' === $title ) {
+            $title = $product->get_name();
+        }
+
+        $title = trim( wp_strip_all_tags( html_entity_decode( $title, ENT_QUOTES, 'UTF-8' ) ) );
+        return function_exists( 'mb_substr' ) ? mb_substr( $title, 0, 140 ) : substr( $title, 0, 140 );
+    }
+
+    private function formatted_etsy_description( WC_Product $product ): string {
+        $language = $this->listing_language();
+        $html = trim( (string) get_post_meta( $product->get_id(), '_drielo_description_' . $language, true ) );
+        if ( '' === $html ) {
+            $html = $product->get_description() ?: $product->get_short_description();
+        }
+
+        $description = $this->html_to_etsy_text( $html );
+        if ( '' === $description ) {
+            $description = $this->etsy_title( $product );
+        }
+
+        $settings = $this->settings();
+        if ( ! empty( $settings['ai_disclosure'] ) ) {
+            $disclosure = 'es' === $language
+                ? "DECLARACIÓN DE IA\nEste diseño se creó con ayuda de un generador de imágenes con IA y después fue preparado, editado y convertido por Drielo en un patrón digital para manualidades."
+                : "AI DISCLOSURE\nThis design was created with the assistance of an AI image generator and then prepared, edited and converted by Drielo into a digital craft pattern.";
+            $description = rtrim( $description ) . "\n\n" . $disclosure;
+        }
+
+        return $description;
+    }
+
+    private function html_to_etsy_text( string $html ): string {
+        $text = preg_replace( '#<\s*br\s*/?\s*>#i', "\n", $html );
+        $text = preg_replace( '#<\s*li\b[^>]*>#i', "\n• ", (string) $text );
+        $text = preg_replace( '#</\s*li\s*>#i', "\n", (string) $text );
+        $text = preg_replace( '#</\s*(p|div|h[1-6]|ul|ol)\s*>#i', "\n\n", (string) $text );
+        $text = preg_replace( '#<\s*h[1-6]\b[^>]*>#i', "\n\n", (string) $text );
+        $text = wp_strip_all_tags( (string) $text );
+        $text = html_entity_decode( $text, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+        $text = str_replace( [ "\r\n", "\r", "\xC2\xA0" ], [ "\n", "\n", ' ' ], $text );
+
+        $lines = preg_split( '/\n/u', $text );
+        $clean = [];
+        foreach ( (array) $lines as $line ) {
+            $line = trim( preg_replace( '/[ \t]+/u', ' ', (string) $line ) );
+            $clean[] = $line;
+        }
+
+        $text = implode( "\n", $clean );
+        $text = preg_replace( "/\n{3,}/u", "\n\n", $text );
+        return trim( (string) $text );
+    }
+
+    private function etsy_tags( WC_Product $product ): array {
+        $language = $this->listing_language();
+        $tags = get_post_meta( $product->get_id(), '_drielo_etsy_tags_' . $language, true );
+        if ( ! is_array( $tags ) || ! $tags ) {
+            $tags = wp_get_post_terms( $product->get_id(), 'product_tag', [ 'fields' => 'names' ] );
+        }
+        if ( is_wp_error( $tags ) ) {
+            return [];
+        }
+
+        $clean = [];
+        foreach ( (array) $tags as $tag ) {
+            $tag = trim( wp_strip_all_tags( html_entity_decode( (string) $tag, ENT_QUOTES, 'UTF-8' ) ) );
+            $tag = function_exists( 'mb_substr' ) ? mb_substr( $tag, 0, 20 ) : substr( $tag, 0, 20 );
+            if ( '' !== $tag && ! in_array( $tag, $clean, true ) ) {
+                $clean[] = $tag;
+            }
+            if ( count( $clean ) >= 13 ) {
+                break;
+            }
+        }
+        return $clean;
+    }
+
+    private function etsy_price_eur( WC_Product $product ): float {
+        $raw = (float) $product->get_price( 'edit' );
+        if ( $raw <= 0 ) {
+            $raw = (float) $product->get_regular_price( 'edit' );
+        }
+        if ( $raw <= 0 ) {
+            $raw = 0.01;
+        }
+
+        $rate = function_exists( 'make_store_usd_eur_rate' )
+            ? (float) make_store_usd_eur_rate()
+            : (float) get_option( 'drielo_usd_eur_rate_fallback', 0.871743 );
+        if ( $rate <= 0.5 || $rate >= 1.5 ) {
+            $rate = 0.871743;
+        }
+
+        return round( max( 0.01, $raw * $rate ), 2 );
+    }
+
+    private function product_technique( WC_Product $product ): string {
+        $technique = sanitize_key( (string) get_post_meta( $product->get_id(), '_drielo_technique', true ) );
+        if ( '' !== $technique ) {
+            return $technique;
+        }
+        $terms = wp_get_post_terms( $product->get_id(), 'pa_technique', [ 'fields' => 'slugs' ] );
+        return ! is_wp_error( $terms ) && ! empty( $terms ) ? sanitize_key( (string) $terms[0] ) : '';
+    }
+
+    private function resolve_taxonomy_id( WC_Product $product ): int {
+        $settings = $this->settings();
+        $fallback = absint( $settings['taxonomy_id'] ?? 0 );
+        if ( empty( $settings['auto_taxonomy'] ) ) {
+            return $fallback;
+        }
+
+        $technique = $this->product_technique( $product );
+        if ( '' === $technique ) {
+            return $fallback;
+        }
+
+        $cached_id = absint( get_transient( 'drielo_etsy_taxonomy_' . $technique ) );
+        if ( $cached_id > 0 ) {
+            return $cached_id;
+        }
+
+        $nodes = get_transient( 'drielo_etsy_seller_taxonomy_v1' );
+        if ( ! is_array( $nodes ) || ! $nodes ) {
+            $response = $this->etsy_request( 'GET', '/v3/application/seller-taxonomy/nodes', [], false );
+            if ( is_wp_error( $response ) ) {
+                return $fallback;
+            }
+            $nodes = isset( $response['results'] ) && is_array( $response['results'] ) ? $response['results'] : $response;
+            if ( ! is_array( $nodes ) || ! $nodes ) {
+                return $fallback;
+            }
+            set_transient( 'drielo_etsy_seller_taxonomy_v1', $nodes, 12 * HOUR_IN_SECONDS );
+        }
+
+        $profiles = [
+            'cross-stitch'     => [ 'anchors' => [ 'cross stitch' ], 'boost' => [ 'pattern' => 30, 'needlecraft' => 8, 'sewing' => 3 ] ],
+            'c2c-crochet'      => [ 'anchors' => [ 'crochet' ], 'boost' => [ 'pattern' => 30, 'yarn' => 3 ] ],
+            'tapestry-crochet' => [ 'anchors' => [ 'crochet' ], 'boost' => [ 'pattern' => 30, 'yarn' => 3 ] ],
+            'latch-hook'       => [ 'anchors' => [ 'latch hook', 'rug' ], 'boost' => [ 'pattern' => 30, 'rug' => 10 ] ],
+        ];
+        if ( ! isset( $profiles[ $technique ] ) ) {
+            return $fallback;
+        }
+
+        $flat = [];
+        $walk = static function( $items, array $trail = [] ) use ( &$walk, &$flat ): void {
+            foreach ( (array) $items as $node ) {
+                if ( ! is_array( $node ) ) {
+                    continue;
+                }
+                $name = trim( (string) ( $node['name'] ?? '' ) );
+                $path = array_merge( $trail, [ $name ] );
+                $flat[] = [
+                    'id'       => absint( $node['id'] ?? 0 ),
+                    'path'     => strtolower( implode( ' > ', array_filter( $path ) ) ),
+                    'depth'    => count( $path ),
+                    'has_kids' => ! empty( $node['children'] ),
+                ];
+                if ( ! empty( $node['children'] ) && is_array( $node['children'] ) ) {
+                    $walk( $node['children'], $path );
+                }
+            }
+        };
+        $walk( $nodes );
+
+        $profile = $profiles[ $technique ];
+        $best_id = 0;
+        $best_score = -1;
+        foreach ( $flat as $node ) {
+            if ( empty( $node['id'] ) || false === strpos( $node['path'], 'pattern' ) ) {
+                continue;
+            }
+            $anchor_score = 0;
+            foreach ( $profile['anchors'] as $anchor ) {
+                if ( false !== strpos( $node['path'], $anchor ) ) {
+                    $anchor_score = max( $anchor_score, 100 + strlen( $anchor ) );
+                }
+            }
+            if ( 0 === $anchor_score ) {
+                continue;
+            }
+
+            $score = $anchor_score + (int) $node['depth'];
+            foreach ( $profile['boost'] as $term => $points ) {
+                if ( false !== strpos( $node['path'], $term ) ) {
+                    $score += (int) $points;
+                }
+            }
+            if ( empty( $node['has_kids'] ) ) {
+                $score += 8;
+            }
+            if ( $score > $best_score ) {
+                $best_score = $score;
+                $best_id = (int) $node['id'];
+            }
+        }
+
+        if ( $best_id > 0 ) {
+            set_transient( 'drielo_etsy_taxonomy_' . $technique, $best_id, DAY_IN_SECONDS );
+            return $best_id;
+        }
+
+        return $fallback;
     }
 
     private function sync_inventory( WC_Product $product, $listing_id ) {
         $settings = $this->settings();
-        $price = (float) wc_get_price_to_display( $product );
-        if ( $price <= 0 ) {
-            $price = (float) $product->get_regular_price();
-        }
+        $price = $this->etsy_price_eur( $product );
         $payload = [
             'products' => [
                 [
@@ -951,10 +1156,24 @@ final class Drielo_Etsy_Sync {
     }
 
     private function product_asset_hash( WC_Product $product ) {
-        $data = [ 'image' => $product->get_image_id(), 'gallery' => $product->get_gallery_image_ids(), 'downloads' => [] ];
+        $data = [
+            'plugin_version' => self::VERSION,
+            'image'          => $product->get_image_id(),
+            'gallery'        => $product->get_gallery_image_ids(),
+            'downloads'      => [],
+        ];
+
         foreach ( $product->get_downloads() as $download ) {
-            $data['downloads'][] = [ $download->get_name(), $download->get_file() ];
+            $source = $download->get_file();
+            $item = [ $download->get_name(), $source ];
+            $path = preg_match( '#^https?://#i', $source ) ? $this->local_path_from_url( $source ) : $source;
+            if ( $path && is_file( $path ) ) {
+                $item[] = (int) filesize( $path );
+                $item[] = (int) filemtime( $path );
+            }
+            $data['downloads'][] = $item;
         }
+
         return hash( 'sha256', wp_json_encode( $data ) );
     }
 
@@ -964,8 +1183,9 @@ final class Drielo_Etsy_Sync {
         if ( empty( $ids ) ) {
             return new WP_Error( 'no_images', 'El producto no tiene imágenes; Etsy necesita al menos una para publicar.' );
         }
+
         $rank = 1;
-        foreach ( array_slice( $ids, 0, 10 ) as $attachment_id ) {
+        foreach ( array_slice( $ids, 0, 14 ) as $attachment_id ) {
             $path = get_attached_file( $attachment_id );
             $cleanup = false;
             if ( ! $path || ! file_exists( $path ) ) {
@@ -973,12 +1193,18 @@ final class Drielo_Etsy_Sync {
                 if ( ! $url ) {
                     continue;
                 }
-                $path = $this->download_to_temp( $url );
-                if ( is_wp_error( $path ) ) {
-                    return $path;
+                $local = $this->local_path_from_url( $url );
+                if ( $local ) {
+                    $path = $local;
+                } else {
+                    $path = $this->download_to_temp( $url );
+                    if ( is_wp_error( $path ) ) {
+                        return $path;
+                    }
+                    $cleanup = true;
                 }
-                $cleanup = true;
             }
+
             $mime = get_post_mime_type( $attachment_id ) ?: 'image/jpeg';
             $name = basename( $path );
             $result = $this->etsy_upload_file(
@@ -997,7 +1223,127 @@ final class Drielo_Etsy_Sync {
             }
             $rank++;
         }
+
+        if ( ! empty( $settings['sync_pdf_previews'] ) && $rank <= 20 ) {
+            foreach ( $this->generate_pdf_preview_images( $product ) as $preview ) {
+                if ( $rank > 20 ) {
+                    break;
+                }
+                $result = $this->etsy_upload_file(
+                    '/v3/application/shops/' . rawurlencode( $settings['shop_id'] ) . '/listings/' . rawurlencode( $listing_id ) . '/images',
+                    [ 'rank' => $rank, 'overwrite' => 'true', 'is_watermarked' => 'false', 'alt_text' => $preview['alt'] ],
+                    $preview['path'],
+                    'image',
+                    'image/jpeg',
+                    $preview['name']
+                );
+                @unlink( $preview['path'] );
+                if ( is_wp_error( $result ) ) {
+                    return $result;
+                }
+                $rank++;
+            }
+        }
+
         return true;
+    }
+
+    private function generate_pdf_preview_images( WC_Product $product ): array {
+        if ( ! class_exists( 'Imagick' ) ) {
+            return [];
+        }
+
+        $pdf = $this->local_product_pdf( $product );
+        if ( '' === $pdf ) {
+            return [];
+        }
+
+        $specs = [
+            [ 'page' => 1,  'slug' => 'finished-design', 'alt' => $product->get_name() . ' finished design preview', 'partial' => false ],
+            [ 'page' => 2,  'slug' => 'pattern-facts',   'alt' => $product->get_name() . ' pattern facts', 'partial' => false ],
+            [ 'page' => 3,  'slug' => 'colour-key',     'alt' => $product->get_name() . ' colour key preview', 'partial' => false ],
+            [ 'page' => 7,  'slug' => 'colour-chart',   'alt' => $product->get_name() . ' partial colour chart preview', 'partial' => true ],
+            [ 'page' => 11, 'slug' => 'symbol-chart',   'alt' => $product->get_name() . ' partial black and white symbol chart preview', 'partial' => true ],
+            [ 'page' => 15, 'slug' => 'print-guide',    'alt' => $product->get_name() . ' print and craft guide', 'partial' => false ],
+        ];
+
+        $previews = [];
+        foreach ( $specs as $spec ) {
+            $image = null;
+            try {
+                $image = new Imagick();
+                $image->setResolution( 130, 130 );
+                $image->readImage( $pdf . '[' . (int) $spec['page'] . ']' );
+                $image->setIteratorIndex( 0 );
+                $image->setImageBackgroundColor( 'white' );
+                if ( defined( 'Imagick::ALPHACHANNEL_REMOVE' ) ) {
+                    $image->setImageAlphaChannel( Imagick::ALPHACHANNEL_REMOVE );
+                }
+                $image = $image->mergeImageLayers( Imagick::LAYERMETHOD_FLATTEN );
+
+                if ( ! empty( $spec['partial'] ) ) {
+                    $width  = (int) $image->getImageWidth();
+                    $height = (int) $image->getImageHeight();
+                    $crop_w = max( 1, (int) round( $width * 0.86 ) );
+                    $crop_h = max( 1, (int) round( $height * 0.56 ) );
+                    $x = max( 0, (int) floor( ( $width - $crop_w ) / 2 ) );
+                    $y = max( 0, (int) floor( $height * 0.08 ) );
+                    $image->cropImage( $crop_w, min( $crop_h, $height - $y ), $x, $y );
+                    $image->setImagePage( 0, 0, 0, 0 );
+                }
+
+                $image->setImageFormat( 'jpeg' );
+                $image->setImageCompressionQuality( 86 );
+                $image->thumbnailImage( 1600, 2000, true, true );
+
+                $tmp = wp_tempnam( 'drielo-etsy-' . $spec['slug'] );
+                if ( ! $tmp ) {
+                    $image->clear();
+                    continue;
+                }
+                $jpg = $tmp . '.jpg';
+                @unlink( $tmp );
+                if ( ! $image->writeImage( $jpg ) || ! is_file( $jpg ) || filesize( $jpg ) < 10000 ) {
+                    @unlink( $jpg );
+                    $image->clear();
+                    continue;
+                }
+
+                $previews[] = [
+                    'path' => $jpg,
+                    'name' => sanitize_file_name( $product->get_sku() . '-' . $spec['slug'] . '.jpg' ),
+                    'alt'  => (string) $spec['alt'],
+                ];
+                $image->clear();
+                $image->destroy();
+            } catch ( Throwable $e ) {
+                if ( $image instanceof Imagick ) {
+                    $image->clear();
+                    $image->destroy();
+                }
+                continue;
+            }
+        }
+
+        return $previews;
+    }
+
+    private function local_product_pdf( WC_Product $product ): string {
+        foreach ( $product->get_downloads() as $download ) {
+            $source = (string) $download->get_file();
+            $path = $source;
+            if ( preg_match( '#^https?://#i', $source ) ) {
+                $path = $this->local_path_from_url( $source );
+            } elseif ( ! is_file( $path ) ) {
+                $upload_dir = wp_upload_dir();
+                $candidate = trailingslashit( $upload_dir['basedir'] ) . ltrim( $source, '/\\' );
+                $path = is_file( $candidate ) ? $candidate : '';
+            }
+            if ( $path && is_file( $path ) && 'pdf' === strtolower( (string) pathinfo( $path, PATHINFO_EXTENSION ) ) ) {
+                return $path;
+            }
+        }
+        return '';
     }
 
     private function sync_downloads( WC_Product $product, $listing_id ) {
