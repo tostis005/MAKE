@@ -1,0 +1,229 @@
+{
+  "collection": "baby-nursery",
+  "reference_policy": "User-approved uploaded reference sheets are canonical. Do not invent or redraw designs.",
+  "canonical_archive": "reference-matrices-v1.b64",
+  "archive_encoding": "base64(zlib(json))",
+  "decoded_sha256": "533a4d7ed0892fd142eed3406b4740a539f70cbfffeaf932813466800a97ad19",
+  "master_grid": {
+    "width": 100,
+    "height": 120
+  },
+  "master_png": {
+    "width": 800,
+    "height": 960,
+    "cell_px": 8,
+    "transparent_background": true
+  },
+  "designs": [
+    {
+      "base_design_id": "I0001",
+      "slug": "teddy-bear",
+      "reference_sheet": 1,
+      "row": 1,
+      "column": 1
+    },
+    {
+      "base_design_id": "I0002",
+      "slug": "baby-elephant",
+      "reference_sheet": 1,
+      "row": 1,
+      "column": 2
+    },
+    {
+      "base_design_id": "I0003",
+      "slug": "giraffe",
+      "reference_sheet": 1,
+      "row": 1,
+      "column": 3
+    },
+    {
+      "base_design_id": "I0004",
+      "slug": "crescent-moon",
+      "reference_sheet": 1,
+      "row": 2,
+      "column": 1
+    },
+    {
+      "base_design_id": "I0005",
+      "slug": "smiling-cloud",
+      "reference_sheet": 1,
+      "row": 2,
+      "column": 2
+    },
+    {
+      "base_design_id": "I0006",
+      "slug": "bunny-heart",
+      "reference_sheet": 1,
+      "row": 2,
+      "column": 3
+    },
+    {
+      "base_design_id": "I0007",
+      "slug": "rainbow-clouds",
+      "reference_sheet": 1,
+      "row": 3,
+      "column": 1
+    },
+    {
+      "base_design_id": "I0008",
+      "slug": "cute-dinosaur",
+      "reference_sheet": 1,
+      "row": 3,
+      "column": 2
+    },
+    {
+      "base_design_id": "I0009",
+      "slug": "hot-air-balloon",
+      "reference_sheet": 1,
+      "row": 3,
+      "column": 3
+    },
+    {
+      "base_design_id": "I0010",
+      "slug": "toy-sailboat",
+      "reference_sheet": 1,
+      "row": 4,
+      "column": 1
+    },
+    {
+      "base_design_id": "I0011",
+      "slug": "unicorn",
+      "reference_sheet": 1,
+      "row": 4,
+      "column": 2
+    },
+    {
+      "base_design_id": "I0012",
+      "slug": "baby-bottle",
+      "reference_sheet": 1,
+      "row": 4,
+      "column": 3
+    },
+    {
+      "base_design_id": "I0013",
+      "slug": "pacifier",
+      "reference_sheet": 1,
+      "row": 5,
+      "column": 1
+    },
+    {
+      "base_design_id": "I0014",
+      "slug": "baby-stroller",
+      "reference_sheet": 1,
+      "row": 5,
+      "column": 2
+    },
+    {
+      "base_design_id": "I0015",
+      "slug": "rocking-horse",
+      "reference_sheet": 1,
+      "row": 5,
+      "column": 3
+    },
+    {
+      "base_design_id": "I0016",
+      "slug": "teddy-bear-onesie",
+      "reference_sheet": 2,
+      "row": 1,
+      "column": 1
+    },
+    {
+      "base_design_id": "I0017",
+      "slug": "rubber-duck",
+      "reference_sheet": 2,
+      "row": 1,
+      "column": 2
+    },
+    {
+      "base_design_id": "I0018",
+      "slug": "abc-blocks",
+      "reference_sheet": 2,
+      "row": 1,
+      "column": 3
+    },
+    {
+      "base_design_id": "I0019",
+      "slug": "nursery-mobile",
+      "reference_sheet": 2,
+      "row": 2,
+      "column": 1
+    },
+    {
+      "base_design_id": "I0020",
+      "slug": "smiling-star",
+      "reference_sheet": 2,
+      "row": 2,
+      "column": 2
+    },
+    {
+      "base_design_id": "I0021",
+      "slug": "sleeping-owl",
+      "reference_sheet": 2,
+      "row": 2,
+      "column": 3
+    },
+    {
+      "base_design_id": "I0022",
+      "slug": "floral-baby-bib",
+      "reference_sheet": 2,
+      "row": 3,
+      "column": 1
+    },
+    {
+      "base_design_id": "I0023",
+      "slug": "plush-lamb",
+      "reference_sheet": 2,
+      "row": 3,
+      "column": 2
+    },
+    {
+      "base_design_id": "I0024",
+      "slug": "toy-train",
+      "reference_sheet": 2,
+      "row": 3,
+      "column": 3
+    },
+    {
+      "base_design_id": "I0025",
+      "slug": "stacking-rings",
+      "reference_sheet": 2,
+      "row": 4,
+      "column": 1
+    },
+    {
+      "base_design_id": "I0026",
+      "slug": "baby-crib",
+      "reference_sheet": 2,
+      "row": 4,
+      "column": 2
+    },
+    {
+      "base_design_id": "I0027",
+      "slug": "pink-floral-onesie",
+      "reference_sheet": 2,
+      "row": 4,
+      "column": 3
+    },
+    {
+      "base_design_id": "I0028",
+      "slug": "rocket",
+      "reference_sheet": 2,
+      "row": 5,
+      "column": 1
+    },
+    {
+      "base_design_id": "I0029",
+      "slug": "kite",
+      "reference_sheet": 2,
+      "row": 5,
+      "column": 2
+    },
+    {
+      "base_design_id": "I0030",
+      "slug": "fairytale-castle",
+      "reference_sheet": 2,
+      "row": 5,
+      "column": 3
+    }
+  ]
+}
