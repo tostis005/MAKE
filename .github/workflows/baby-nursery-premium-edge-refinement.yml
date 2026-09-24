@@ -58,7 +58,7 @@ jobs:
 
       - name: Regenerate premium stitch-native masters, patterns and PDFs
         env:
-          DRIELO_GALLERY_REVISION: premium-v3-${{ github.run_id }}
+          DRIELO_GALLERY_REVISION: ${{ github.run_id }}
         shell: bash
         run: |
           set -euo pipefail
