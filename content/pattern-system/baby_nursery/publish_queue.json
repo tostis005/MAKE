@@ -2,7 +2,7 @@
   "collection": "baby-nursery",
   "mode": "publish-one-design-per-run",
   "auto_continue": true,
-  "max_attempts_per_design": 10,
+  "max_attempts_per_design": 2,
   "notes": [
     "I0001 is already approved and published.",
     "Each remaining design is rebuilt from its transparent 800x960 source master, rendered in CS/C2C/TC/LH, published to WooCommerce, committed to main, then the workflow dispatches the next design.",
