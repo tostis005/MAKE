@@ -65,10 +65,11 @@
       "title_en": "Audrey Hepburn Sunglasses",
       "title_es": "Audrey Hepburn con gafas",
       "slug": "audrey-hepburn-sunglasses",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35996294665",
+      "last_error": null,
+      "published_at": "2026-09-24T12:04:41+00:00"
     },
     {
       "order": 5,
