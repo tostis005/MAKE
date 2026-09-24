@@ -1,5 +1,5 @@
 name: Baby Nursery Auto Publish Queue
-# canonical user-reference rollout
+# canonical user-reference rollout paused
 
 on:
   push:
