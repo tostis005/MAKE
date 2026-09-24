@@ -1,0 +1,14 @@
+{
+  "code": "A0017-C2C",
+  "base_design_id": "A0017",
+  "technique_code": "C2C",
+  "collection": "animals",
+  "source_artwork": "collections/animals/source-designs/A0017-koala-eucalyptus.png",
+  "reference_artwork": "collections/animals/reference-masters/A0017-koala-eucalyptus-reference.png",
+  "page_1_asset": "mockups/animals-cover-c2c-crochet.png",
+  "render_ready": true,
+  "status": "active",
+  "palette_mode": "strict",
+  "palette_size": 24,
+  "transparent_source": true
+}

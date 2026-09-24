@@ -305,7 +305,9 @@
       ],
       "artwork_status": "canonical-reference-ready",
       "reference_asset": "collections/animals/reference-masters/A0017-koala-eucalyptus-reference.png",
-      "source_asset": "collections/animals/source-designs/A0017-koala-eucalyptus.png"
+      "source_asset": "collections/animals/source-designs/A0017-koala-eucalyptus.png",
+      "product_status": "ready",
+      "transparent_background": true
     },
     {
       "order": 18,
