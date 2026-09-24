@@ -87,11 +87,11 @@
       "base_design_id": "F0009",
       "title_en": "Eucalyptus Ribbon Bundle",
       "slug": "eucalyptus-ribbon-bundle",
-      "status": "pending",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35981407020",
-      "last_error": "Automatic Florals publish job failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T09:38:25+00:00"
+      "status": "failed",
+      "attempts": 2,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35982966925",
+      "last_error": "Automatic Florals publish run failed; see GitHub Actions logs.",
+      "failed_at": "2026-09-24T09:44:19+00:00"
     },
     {
       "base_design_id": "F0010",
