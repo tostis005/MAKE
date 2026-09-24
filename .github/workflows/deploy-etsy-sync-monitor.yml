@@ -31,7 +31,7 @@ jobs:
         run: |
           set -euo pipefail
           php -l plugins/drielo-etsy-sync/drielo-etsy-sync.php
-          grep -q "Version: 1.4.8" plugins/drielo-etsy-sync/drielo-etsy-sync.php
+          grep -q "Version: 1.4.9" plugins/drielo-etsy-sync/drielo-etsy-sync.php
           grep -q "OPTION_SYNC_RUN" plugins/drielo-etsy-sync/drielo-etsy-sync.php
           grep -q "drielo_etsy_sync_status" plugins/drielo-etsy-sync/drielo-etsy-sync.php
           tar -C plugins -czf /tmp/drielo-etsy-sync.tar.gz drielo-etsy-sync
@@ -91,7 +91,7 @@ jobs:
             $version=(string)($data["Version"]??"");
             echo "DRIELO_ETSY_VERSION=".$version.PHP_EOL;
             echo "DRIELO_ETSY_ACTIVE=".(is_plugin_active($plugin)?"yes":"no").PHP_EOL;
-            if($version!=="1.4.8" || !class_exists("Drielo_Etsy_Sync")) exit(3);
+            if($version!=="1.4.9" || !class_exists("Drielo_Etsy_Sync")) exit(3);
           '
           rm -rf "$ARCHIVE" "$STAGE"
           REMOTE
