@@ -1,0 +1,138 @@
+name: Set Cross Stitch launch price
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/set-cross-stitch-launch-price.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_cs_price_key
+          chmod 600 ~/.ssh/drielo_cs_price_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Update WooCommerce and existing Etsy Cross Stitch prices
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_cs_price_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+
+          for attempt in $(seq 1 24); do
+            VERSION=$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+              require "/var/www/html/wp-load.php";
+              require_once ABSPATH."wp-admin/includes/plugin.php";
+              $d=get_plugin_data(WP_PLUGIN_DIR."/drielo-etsy-sync/drielo-etsy-sync.php",false,false);
+              echo (string)($d["Version"]??"");
+            ')
+            echo "ETSY_PLUGIN_VERSION=$VERSION"
+            if php -r 'exit(version_compare($argv[1],"1.4.4",">=")?0:1);' "$VERSION"; then break; fi
+            sleep 5
+          done
+          php -r 'exit(version_compare($argv[1],"1.4.4",">=")?0:1);' "$VERSION"
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -d max_execution_time=0 -r '
+            require "/var/www/html/wp-load.php";
+
+            update_option("drielo_etsy_visible_price_factor",1.262104,false);
+
+            $ids=get_posts(array(
+              "post_type"=>"product",
+              "post_status"=>array("publish","draft","private","pending"),
+              "posts_per_page"=>-1,
+              "fields"=>"ids",
+              "orderby"=>"ID",
+              "order"=>"ASC"
+            ));
+
+            $sync=Drielo_Etsy_Sync::instance();
+            $ref=new ReflectionClass($sync);
+            $price_method=$ref->getMethod("etsy_price_eur");
+            $price_method->setAccessible(true);
+            $inventory_method=$ref->getMethod("sync_inventory");
+            $inventory_method->setAccessible(true);
+            $request_method=$ref->getMethod("etsy_request");
+            $request_method->setAccessible(true);
+
+            $web_count=0;
+            $etsy_count=0;
+            $etsy_fail=0;
+            $remote_prices=array();
+
+            foreach($ids as $id){
+              $p=wc_get_product($id);
+              if(!$p) continue;
+              $sku=(string)$p->get_sku();
+              $tech=(string)get_post_meta($id,"_drielo_technique",true);
+              if(!preg_match("/-CS$/",$sku) && $tech!=="cross-stitch") continue;
+
+              $p->set_regular_price("2.99");
+              $p->set_sale_price("");
+              $p->set_price("2.99");
+              $p->save();
+              wc_delete_product_transients($id);
+              $web_count++;
+
+              $listing_id=absint(get_post_meta($id,"_drielo_etsy_listing_id",true));
+              if(!$listing_id) continue;
+
+              $base=(float)$price_method->invoke($sync,$p);
+              $result=$inventory_method->invoke($sync,$p,$listing_id);
+              if(is_wp_error($result)){
+                $etsy_fail++;
+                echo "ETSY_ERROR sku=".$sku." listing=".$listing_id." error=".$result->get_error_message().PHP_EOL;
+                continue;
+              }
+
+              $remote=$request_method->invoke($sync,"GET","/v3/application/listings/".rawurlencode((string)$listing_id),array());
+              $remote_price=null;
+              if(is_array($remote) && isset($remote["price"]) && is_array($remote["price"])){
+                $amount=(float)($remote["price"]["amount"]??0);
+                $divisor=(float)($remote["price"]["divisor"]??100);
+                if($divisor>0) $remote_price=$amount/$divisor;
+              }
+              $etsy_count++;
+              $remote_prices[]=array("sku"=>$sku,"listing"=>$listing_id,"base_eur"=>$base,"remote_eur"=>$remote_price);
+            }
+
+            echo "WEB_CS_UPDATED=".$web_count.PHP_EOL;
+            echo "ETSY_CS_UPDATED=".$etsy_count.PHP_EOL;
+            echo "ETSY_CS_FAILED=".$etsy_fail.PHP_EOL;
+            echo "ETSY_VISIBLE_FACTOR=".get_option("drielo_etsy_visible_price_factor").PHP_EOL;
+            echo "REMOTE_PRICES=".wp_json_encode($remote_prices).PHP_EOL;
+
+            if($web_count<1 || $etsy_fail>0) exit(3);
+
+            foreach($ids as $id){
+              $p=wc_get_product($id);
+              if(!$p) continue;
+              $sku=(string)$p->get_sku();
+              $tech=(string)get_post_meta($id,"_drielo_technique",true);
+              if(!preg_match("/-CS$/",$sku) && $tech!=="cross-stitch") continue;
+              if(abs((float)$p->get_regular_price("edit")-2.99)>0.001){
+                fwrite(STDERR,"PRICE_VERIFY_FAILED ".$sku."=".$p->get_regular_price("edit").PHP_EOL);
+                exit(4);
+              }
+            }
+          '
+          REMOTE
