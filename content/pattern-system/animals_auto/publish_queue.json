@@ -11,66 +11,60 @@
       "title_en": "Sleeping Tabby on Quilts",
       "title_es": "Gato atigrado dormido sobre mantas",
       "slug": "sleeping-tabby-quilts",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35983201666",
-      "last_error": null,
-      "published_at": "2026-09-24T09:50:33+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "A0002",
       "title_en": "Black Cat with Red Bow",
       "title_es": "Gato negro con lazo rojo",
       "slug": "black-cat-red-bow",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35983710324",
-      "last_error": null,
-      "published_at": "2026-09-24T09:54:07+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "A0003",
       "title_en": "Puppy with Heart",
       "title_es": "Perrito con corazón",
       "slug": "puppy-heart",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35984073884",
-      "last_error": null,
-      "published_at": "2026-09-24T09:58:05+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "A0004",
       "title_en": "Kitten in Teacup",
       "title_es": "Gatito en taza",
       "slug": "kitten-teacup",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35984463054",
-      "last_error": null,
-      "published_at": "2026-09-24T10:01:51+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "A0005",
       "title_en": "Lovebirds on Branch",
       "title_es": "Agapornis en rama",
       "slug": "lovebirds-branch",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35984842937",
-      "last_error": null,
-      "published_at": "2026-09-24T10:05:35+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "A0006",
       "title_en": "Floral Bunny",
       "title_es": "Conejito floral",
       "slug": "floral-bunny",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35985227046",
-      "last_error": null,
-      "published_at": "2026-09-24T10:09:12+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "A0007",
@@ -315,5 +309,6 @@
   ],
   "restarted_at": "2026-09-24T09:47:30Z",
   "restart_reason": "Final clean restart after Node 24 action upgrade, renderer gallery fix, isolated WooCommerce staging, and serial queue stabilization.",
-  "paused_reason": "Paused by user pending replacement of the PDF background image."
+  "paused_reason": "Waiting for the new PDF background image before regenerating the Animals collection.",
+  "restart_from": "A0001"
 }
