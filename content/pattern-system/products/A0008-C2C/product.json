@@ -1,0 +1,14 @@
+{
+  "code": "A0008-C2C",
+  "base_design_id": "A0008",
+  "technique_code": "C2C",
+  "collection": "animals",
+  "source_artwork": "collections/animals/source-designs/A0008-frog-mushroom.png",
+  "reference_artwork": "collections/animals/reference-masters/A0008-frog-mushroom-reference.png",
+  "page_1_asset": "mockups/animals-cover-c2c-crochet.png",
+  "render_ready": true,
+  "status": "active",
+  "palette_mode": "strict",
+  "palette_size": 24,
+  "transparent_source": true
+}
