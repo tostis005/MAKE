@@ -68,11 +68,11 @@
       "title_es": "Nube sonriente",
       "slug": "smiling-cloud",
       "source_asset": "collections/baby-nursery/source-designs/I0005-smiling-cloud.png",
-      "status": "pending",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35963598453",
+      "status": "failed",
+      "attempts": 3,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35963658640",
       "last_error": "Automatic publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T06:15:48+00:00"
+      "failed_at": "2026-09-24T06:16:29+00:00"
     },
     {
       "order": 6,
