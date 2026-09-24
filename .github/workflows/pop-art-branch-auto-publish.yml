@@ -1,4 +1,5 @@
 name: Pop Art Branch Auto Publish Queue
+# final correction trigger: P0005 P0010 P0016
 
 on:
   workflow_dispatch:
