@@ -5,9 +5,9 @@
   "name_es": "Bebé e Infantil",
   "slug": "baby-nursery",
   "code_prefix": "I",
-  "description": "A premium sequential Baby & Nursery rebuild: Teddy Bear followed by ten user-approved kawaii stitch designs, reconstructed verbatim from direct stitch-native masters.",
-  "description_es": "Reconstrucción premium secuencial de Bebé e Infantil: Osito seguido de diez diseños kawaii aprobados, reconstruidos literalmente desde masters nativos de puntadas.",
-  "design_count": 11,
+  "description": "A coordinated Baby & Nursery collection using the fixed 24-colour palette, including the original approved set and nine new premium kawaii motifs.",
+  "description_es": "Colección coordinada Bebé e Infantil con la paleta fija de 24 colores, incluyendo el conjunto aprobado anterior y nueve nuevos motivos kawaii premium.",
+  "design_count": 20,
   "techniques": [
     "cross-stitch",
     "c2c-crochet",
@@ -349,5 +349,26 @@
       "TC",
       "LH"
     ]
+  },
+  "new_premium_batch": {
+    "enabled": true,
+    "ids": [
+      "I0012",
+      "I0013",
+      "I0014",
+      "I0015",
+      "I0016",
+      "I0017",
+      "I0018",
+      "I0019",
+      "I0020"
+    ],
+    "excluded": [
+      "reindeer",
+      "deer",
+      "ciervito",
+      "reno"
+    ],
+    "policy": "Only the nine chat-approved new motifs I0012-I0020 are part of this batch."
   }
 }
