@@ -32,7 +32,7 @@ def get_item(doc, design_id):
 
 def cmd_next(args):
     doc = load()
-    item = next((x for x in doc["items"] if x.get("status") == "pending"), None)
+    item = None if not doc.get("auto_continue", True) else next((x for x in doc["items"] if x.get("status") == "pending"), None)
     output = args.github_output or os.environ.get("GITHUB_OUTPUT")
     values = {
         "design_id": item["base_design_id"] if item else "",
@@ -76,7 +76,7 @@ def cmd_fail(args):
 def cmd_has_work(args):
     doc = load()
     pending = [x for x in doc["items"] if x.get("status") == "pending"]
-    print("yes" if pending else "no")
+    print("yes" if doc.get("auto_continue", True) and pending else "no")
 
 
 def cmd_summary(args):
