@@ -190,3 +190,5 @@ jobs:
           set -euo pipefail
           gh api --method POST             "repos/${GITHUB_REPOSITORY}/actions/workflows/florals-models-v2-publish.yml/dispatches"             -f ref=feature/florals-models-v2-clean
           echo "FLORALS_MODELS_V2_IMPORT_DISPATCHED"
+
+# rerun-after-int32-palette-distance-fix-2026-09-24
