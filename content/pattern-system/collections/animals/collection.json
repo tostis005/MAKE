@@ -1,1 +1,198 @@
-{"id":"animals","name":"Animals","name_en":"Animals","name_es":"Animales","slug":"animals","code_prefix":"A","description":"A coordinated collection of 30 cute animal motifs derived from the approved reference sheets and constrained to one strict shared 24-colour DMC palette for cross stitch, C2C crochet, tapestry crochet and latch-hook/rug formats.","description_es":"Colección coordinada de 30 motivos de animales adorables derivados de las láminas de referencia aprobadas y limitada a una única paleta estricta de 24 colores DMC para punto de cruz, crochet C2C, tapestry crochet y alfombra/latch hook.","design_count":30,"techniques":["cross-stitch","c2c-crochet","tapestry-crochet","latch-hook"],"palette":[{"dmc":"310","name":"Black","hex":"#000000"},{"dmc":"3799","name":"Very Dark Pewter Gray","hex":"#404040"},{"dmc":"414","name":"Dark Steel Gray","hex":"#8C8C8C"},{"dmc":"B5200","name":"Snow White","hex":"#FFFFFF"},{"dmc":"3865","name":"Winter White","hex":"#F5ECDF"},{"dmc":"948","name":"Very Light Peach","hex":"#FEE7DA"},{"dmc":"437","name":"Light Tan","hex":"#E4BB8E"},{"dmc":"436","name":"Tan","hex":"#CB9051"},{"dmc":"434","name":"Light Brown","hex":"#985B3B"},{"dmc":"801","name":"Dark Coffee Brown","hex":"#653919"},{"dmc":"3371","name":"Black Brown","hex":"#1E1916"},{"dmc":"321","name":"Red","hex":"#C72B3B"},{"dmc":"351","name":"Coral","hex":"#E96A67"},{"dmc":"970","name":"Light Pumpkin","hex":"#F78B2D"},{"dmc":"3820","name":"Dark Straw","hex":"#DFB65B"},{"dmc":"444","name":"Dark Lemon","hex":"#FFD600"},{"dmc":"3013","name":"Light Khaki Green","hex":"#BDBF9F"},{"dmc":"522","name":"Fern Green","hex":"#829879"},{"dmc":"3051","name":"Dark Green Gray","hex":"#627650"},{"dmc":"598","name":"Light Turquoise","hex":"#8EB8BC"},{"dmc":"3325","name":"Light Baby Blue","hex":"#86B1D0"},{"dmc":"761","name":"Light Salmon","hex":"#FC9F8B"},{"dmc":"604","name":"Light Cranberry","hex":"#E996B8"},{"dmc":"963","name":"Ultra Very Light Dusty Rose","hex":"#FFD7E2"}],"reference_policy":{"canonical_source":"collections/animals/reference-library/reference-matrices-v1.b64","rule":"The canonical matrices are derived from the user-approved animal reference sheets. Do not invent, redraw, substitute or reinterpret a motif. Pattern generation must start from the canonical matrix for that A#### design.","strict_palette":true,"palette_size":24,"transparent_background":true},"grid_profiles":{"master":{"width":100,"height":120},"CS":{"width":100,"height":120},"C2C":{"width":60,"height":72},"TC":{"width":80,"height":96},"LH":{"width":60,"height":72}},"mockup_spec":{"asset":null,"technique_assets":{"CS":null,"C2C":null,"TC":null,"LH":null},"status":"pending-approved-page-1-images","frame":{"enabled":false},"generation":{"purpose":"Future reusable page-1 lifestyle images for the Animals collection.","frame_requirement":"Keep the craft display area empty; the renderer inserts the canonical design.","post_generation_measurement":"Record source dimensions and usable placement geometry after approval."}},"preview_rules":{"vector":true,"transparent_pattern_background_on_cover":true,"fit":"contain","center":true,"palette_mode":"strict","allowed_palette_size":24,"gradients":false,"extra_colours":false,"safe_margin_cells":6}}
+{
+  "id": "animals",
+  "name": "Animals",
+  "name_en": "Animals",
+  "name_es": "Animales",
+  "slug": "animals",
+  "code_prefix": "A",
+  "description": "A coordinated collection of 30 cute animal motifs derived from the approved reference sheets and constrained to one strict shared 24-colour DMC palette for cross stitch, C2C crochet, tapestry crochet and latch-hook/rug formats.",
+  "description_es": "Colección coordinada de 30 motivos de animales adorables derivados de las láminas de referencia aprobadas y limitada a una única paleta estricta de 24 colores DMC para punto de cruz, crochet C2C, tapestry crochet y alfombra/latch hook.",
+  "design_count": 30,
+  "techniques": [
+    "cross-stitch",
+    "c2c-crochet",
+    "tapestry-crochet",
+    "latch-hook"
+  ],
+  "palette": [
+    {
+      "dmc": "310",
+      "name": "Black",
+      "hex": "#000000"
+    },
+    {
+      "dmc": "3799",
+      "name": "Very Dark Pewter Gray",
+      "hex": "#404040"
+    },
+    {
+      "dmc": "414",
+      "name": "Dark Steel Gray",
+      "hex": "#8C8C8C"
+    },
+    {
+      "dmc": "B5200",
+      "name": "Snow White",
+      "hex": "#FFFFFF"
+    },
+    {
+      "dmc": "3865",
+      "name": "Winter White",
+      "hex": "#F5ECDF"
+    },
+    {
+      "dmc": "948",
+      "name": "Very Light Peach",
+      "hex": "#FEE7DA"
+    },
+    {
+      "dmc": "437",
+      "name": "Light Tan",
+      "hex": "#E4BB8E"
+    },
+    {
+      "dmc": "436",
+      "name": "Tan",
+      "hex": "#CB9051"
+    },
+    {
+      "dmc": "434",
+      "name": "Light Brown",
+      "hex": "#985B3B"
+    },
+    {
+      "dmc": "801",
+      "name": "Dark Coffee Brown",
+      "hex": "#653919"
+    },
+    {
+      "dmc": "3371",
+      "name": "Black Brown",
+      "hex": "#1E1916"
+    },
+    {
+      "dmc": "321",
+      "name": "Red",
+      "hex": "#C72B3B"
+    },
+    {
+      "dmc": "351",
+      "name": "Coral",
+      "hex": "#E96A67"
+    },
+    {
+      "dmc": "970",
+      "name": "Light Pumpkin",
+      "hex": "#F78B2D"
+    },
+    {
+      "dmc": "3820",
+      "name": "Dark Straw",
+      "hex": "#DFB65B"
+    },
+    {
+      "dmc": "444",
+      "name": "Dark Lemon",
+      "hex": "#FFD600"
+    },
+    {
+      "dmc": "3013",
+      "name": "Light Khaki Green",
+      "hex": "#BDBF9F"
+    },
+    {
+      "dmc": "522",
+      "name": "Fern Green",
+      "hex": "#829879"
+    },
+    {
+      "dmc": "3051",
+      "name": "Dark Green Gray",
+      "hex": "#627650"
+    },
+    {
+      "dmc": "598",
+      "name": "Light Turquoise",
+      "hex": "#8EB8BC"
+    },
+    {
+      "dmc": "3325",
+      "name": "Light Baby Blue",
+      "hex": "#86B1D0"
+    },
+    {
+      "dmc": "761",
+      "name": "Light Salmon",
+      "hex": "#FC9F8B"
+    },
+    {
+      "dmc": "604",
+      "name": "Light Cranberry",
+      "hex": "#E996B8"
+    },
+    {
+      "dmc": "963",
+      "name": "Ultra Very Light Dusty Rose",
+      "hex": "#FFD7E2"
+    }
+  ],
+  "reference_policy": {
+    "canonical_source": "collections/animals/reference-library/manifest.json",
+    "rule": "The canonical matrices are derived from the user-approved animal reference sheets. Do not invent, redraw, substitute or reinterpret a motif. Pattern generation must start from the canonical matrix for that A#### design.",
+    "strict_palette": true,
+    "palette_size": 24,
+    "transparent_background": true,
+    "archive_parts": 9
+  },
+  "grid_profiles": {
+    "master": {
+      "width": 100,
+      "height": 120
+    },
+    "CS": {
+      "width": 100,
+      "height": 120
+    },
+    "C2C": {
+      "width": 60,
+      "height": 72
+    },
+    "TC": {
+      "width": 80,
+      "height": 96
+    },
+    "LH": {
+      "width": 60,
+      "height": 72
+    }
+  },
+  "mockup_spec": {
+    "asset": null,
+    "technique_assets": {
+      "CS": null,
+      "C2C": null,
+      "TC": null,
+      "LH": null
+    },
+    "status": "pending-approved-page-1-images",
+    "frame": {
+      "enabled": false
+    },
+    "generation": {
+      "purpose": "Future reusable page-1 lifestyle images for the Animals collection.",
+      "frame_requirement": "Keep the craft display area empty; the renderer inserts the canonical design.",
+      "post_generation_measurement": "Record source dimensions and usable placement geometry after approval."
+    }
+  },
+  "preview_rules": {
+    "vector": true,
+    "transparent_pattern_background_on_cover": true,
+    "fit": "contain",
+    "center": true,
+    "palette_mode": "strict",
+    "allowed_palette_size": 24,
+    "gradients": false,
+    "extra_colours": false,
+    "safe_margin_cells": 6
+  }
+}
