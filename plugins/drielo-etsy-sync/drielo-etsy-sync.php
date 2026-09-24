@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Drielo Etsy Sync
  * Description: Centraliza la selección y sincronización de productos WooCommerce con Etsy, incluidos productos digitales, imágenes y PDFs.
- * Version: 1.4.4
+ * Version: 1.4.5
  * Author: Drielo
  * Requires Plugins: woocommerce
  * Requires PHP: 8.0
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 final class Drielo_Etsy_Sync {
-    const VERSION = '1.4.4';
+    const VERSION = '1.4.5';
     const OPTION_SETTINGS = 'drielo_etsy_settings';
     const OPTION_TOKENS   = 'drielo_etsy_tokens';
     const OPTION_SYNC_RUN = 'drielo_etsy_sync_run';
@@ -1411,6 +1411,13 @@ final class Drielo_Etsy_Sync {
             $remote_state = sanitize_text_field( $state_result['state'] ?? 'inactive' );
         }
 
+        // Keep crochet taxonomy + required Craft type attribute aligned even
+        // during safe sync, without overwriting images, PDFs or descriptions.
+        $crochet_result = $this->sync_crochet_taxonomy_and_craft_type( $product, $listing_id );
+        if ( is_wp_error( $crochet_result ) ) {
+            update_post_meta( $product_id, self::META_LAST_WARNING, 'No se pudo asignar Ganchillo/Crochet: ' . $crochet_result->get_error_message() );
+        }
+
         // Assign the shop section only after the listing has inventory/assets
         // and its final state, because Etsy may reject section updates too early.
         $this->sync_shop_section( $product, $listing_id );
@@ -1632,13 +1639,68 @@ final class Drielo_Etsy_Sync {
         return new WP_Error( 'etsy_cross_stitch_section', 'No se encontró en Etsy una sección de tienda llamada “Cross Stitch”.' );
     }
 
+    private function resolve_c2c_shop_section_id() {
+        $settings = $this->settings();
+        $shop_id = preg_replace( '/\D+/', '', (string) ( $settings['shop_id'] ?? '' ) );
+        if ( ! $shop_id ) {
+            return new WP_Error( 'etsy_shop_id', 'No se puede asignar la sección C2C Crochet porque falta el Shop ID de Etsy.' );
+        }
+
+        $cache_key = 'drielo_etsy_shop_section_c2c_crochet_' . $shop_id;
+        $cached = absint( get_transient( $cache_key ) );
+        if ( $cached > 0 ) {
+            return $cached;
+        }
+
+        $response = $this->etsy_request( 'GET', '/v3/application/shops/' . rawurlencode( $shop_id ) . '/sections', [], false );
+        if ( is_wp_error( $response ) ) {
+            return $response;
+        }
+        $sections = isset( $response['results'] ) && is_array( $response['results'] ) ? $response['results'] : $response;
+        if ( ! is_array( $sections ) ) {
+            return new WP_Error( 'etsy_shop_sections', 'Etsy no devolvió una lista válida de secciones de tienda.' );
+        }
+
+        $fallback_id = 0;
+        foreach ( $sections as $section ) {
+            if ( ! is_array( $section ) ) {
+                continue;
+            }
+            $id = absint( $section['shop_section_id'] ?? $section['section_id'] ?? $section['id'] ?? 0 );
+            $title = $this->normalize_etsy_label( (string) ( $section['title'] ?? $section['name'] ?? '' ) );
+            if ( ! $id || ! $title ) {
+                continue;
+            }
+            if ( 'c2c crochet' === $title ) {
+                set_transient( $cache_key, $id, 12 * HOUR_IN_SECONDS );
+                return $id;
+            }
+            if ( ! $fallback_id && false !== strpos( $title, 'c2c' ) && false !== strpos( $title, 'crochet' ) ) {
+                $fallback_id = $id;
+            }
+        }
+
+        if ( $fallback_id > 0 ) {
+            set_transient( $cache_key, $fallback_id, 12 * HOUR_IN_SECONDS );
+            return $fallback_id;
+        }
+
+        return new WP_Error( 'etsy_c2c_section', 'No se encontró en Etsy una sección de tienda llamada “C2C Crochet”.' );
+    }
+
     private function sync_shop_section( WC_Product $product, int $listing_id ) {
-        if ( 'cross-stitch' !== $this->product_technique( $product ) ) {
+        $technique = $this->product_technique( $product );
+        if ( 'cross-stitch' === $technique ) {
+            $section_label = 'Cross Stitch';
+            $section_id = $this->resolve_cross_stitch_shop_section_id();
+        } elseif ( 'c2c-crochet' === $technique ) {
+            $section_label = 'C2C Crochet';
+            $section_id = $this->resolve_c2c_shop_section_id();
+        } else {
             delete_post_meta( $product->get_id(), self::META_LAST_WARNING );
             return true;
         }
 
-        $section_id = $this->resolve_cross_stitch_shop_section_id();
         if ( is_wp_error( $section_id ) ) {
             update_post_meta( $product->get_id(), self::META_LAST_WARNING, $section_id->get_error_message() );
             return $section_id;
@@ -1652,7 +1714,7 @@ final class Drielo_Etsy_Sync {
             [ 'shop_section_id' => (int) $section_id ]
         );
         if ( is_wp_error( $result ) ) {
-            update_post_meta( $product->get_id(), self::META_LAST_WARNING, 'No se pudo asignar la sección Cross Stitch: ' . $result->get_error_message() );
+            update_post_meta( $product->get_id(), self::META_LAST_WARNING, 'No se pudo asignar la sección ' . $section_label . ': ' . $result->get_error_message() );
             return $result;
         }
 
@@ -1673,7 +1735,7 @@ final class Drielo_Etsy_Sync {
             return $fallback;
         }
 
-        $cached_id = absint( get_transient( 'drielo_etsy_taxonomy_v3_' . $technique ) );
+        $cached_id = absint( get_transient( 'drielo_etsy_taxonomy_v4_' . $technique ) );
         if ( $cached_id > 0 ) {
             return $cached_id;
         }
@@ -1693,8 +1755,8 @@ final class Drielo_Etsy_Sync {
 
         $profiles = [
             'cross-stitch'     => [ 'anchors' => [ 'cross stitch', 'cross-stitch', 'punto de cruz' ], 'boost' => [ 'pattern' => 40, 'patterns' => 40, 'patron' => 40, 'patrones' => 40, 'needlecraft' => 10, 'sewing' => 3 ] ],
-            'c2c-crochet'      => [ 'anchors' => [ 'crochet' ], 'boost' => [ 'pattern' => 30, 'yarn' => 3 ] ],
-            'tapestry-crochet' => [ 'anchors' => [ 'crochet' ], 'boost' => [ 'pattern' => 30, 'yarn' => 3 ] ],
+            'c2c-crochet'      => [ 'anchors' => [ 'crochet', 'ganchillo' ], 'boost' => [ 'pattern' => 30, 'patterns' => 30, 'patron' => 30, 'patrones' => 30, 'yarn' => 3 ] ],
+            'tapestry-crochet' => [ 'anchors' => [ 'crochet', 'ganchillo' ], 'boost' => [ 'pattern' => 30, 'patterns' => 30, 'patron' => 30, 'patrones' => 30, 'yarn' => 3 ] ],
             'latch-hook'       => [ 'anchors' => [ 'latch hook', 'rug' ], 'boost' => [ 'pattern' => 30, 'rug' => 10 ] ],
         ];
         if ( ! isset( $profiles[ $technique ] ) ) {
@@ -1740,10 +1802,12 @@ final class Drielo_Etsy_Sync {
                 }
             }
             $exact_cross_stitch = 'cross-stitch' === $technique && in_array( $node_name, [ 'cross stitch', 'punto de cruz' ], true );
-            if ( ! $has_pattern_context && ! $exact_cross_stitch ) {
+            $exact_crochet = in_array( $technique, [ 'c2c-crochet', 'tapestry-crochet' ], true )
+                && in_array( $node_name, [ 'crochet', 'ganchillo' ], true );
+            if ( ! $has_pattern_context && ! $exact_cross_stitch && ! $exact_crochet ) {
                 continue;
             }
-            $anchor_score = $exact_cross_stitch ? 500 : 0;
+            $anchor_score = ( $exact_cross_stitch || $exact_crochet ) ? 500 : 0;
             foreach ( $profile['anchors'] as $anchor ) {
                 $normalized_anchor = $this->normalize_etsy_label( $anchor );
                 if ( false !== strpos( $node_path, $normalized_anchor ) ) {
@@ -1773,11 +1837,103 @@ final class Drielo_Etsy_Sync {
         }
 
         if ( $best_id > 0 ) {
-            set_transient( 'drielo_etsy_taxonomy_v3_' . $technique, $best_id, DAY_IN_SECONDS );
+            set_transient( 'drielo_etsy_taxonomy_v4_' . $technique, $best_id, DAY_IN_SECONDS );
             return $best_id;
         }
 
         return $fallback;
+    }
+
+    private function resolve_crochet_craft_property( int $taxonomy_id ) {
+        $cache_key = 'drielo_etsy_crochet_craft_property_' . $taxonomy_id;
+        $cached = get_transient( $cache_key );
+        if ( is_array( $cached ) && ! empty( $cached['property_id'] ) && ! empty( $cached['value_id'] ) ) {
+            return $cached;
+        }
+
+        $response = $this->etsy_request(
+            'GET',
+            '/v3/application/seller-taxonomy/nodes/' . rawurlencode( $taxonomy_id ) . '/properties',
+            [],
+            false
+        );
+        if ( is_wp_error( $response ) ) {
+            return $response;
+        }
+
+        $properties = isset( $response['results'] ) && is_array( $response['results'] ) ? $response['results'] : [];
+        foreach ( $properties as $property ) {
+            if ( ! is_array( $property ) || empty( $property['property_id'] ) ) {
+                continue;
+            }
+            $property_name = $this->normalize_etsy_label( (string) ( $property['display_name'] ?? $property['name'] ?? '' ) );
+            if ( ! in_array( $property_name, [ 'craft type', 'tipo de artesania', 'tipo artesania' ], true ) ) {
+                continue;
+            }
+            foreach ( (array) ( $property['possible_values'] ?? [] ) as $value ) {
+                if ( ! is_array( $value ) || empty( $value['value_id'] ) ) {
+                    continue;
+                }
+                $value_name = $this->normalize_etsy_label( (string) ( $value['name'] ?? '' ) );
+                if ( in_array( $value_name, [ 'crochet', 'ganchillo' ], true ) ) {
+                    $resolved = [
+                        'property_id' => absint( $property['property_id'] ),
+                        'value_id'    => absint( $value['value_id'] ),
+                    ];
+                    set_transient( $cache_key, $resolved, DAY_IN_SECONDS );
+                    return $resolved;
+                }
+            }
+        }
+
+        // Current Etsy seller taxonomy fallback for Craft type -> Crochet.
+        return [
+            'property_id' => 47626759760,
+            'value_id'    => 543,
+        ];
+    }
+
+    private function sync_crochet_taxonomy_and_craft_type( WC_Product $product, int $listing_id ) {
+        $technique = $this->product_technique( $product );
+        if ( ! in_array( $technique, [ 'c2c-crochet', 'tapestry-crochet' ], true ) ) {
+            return true;
+        }
+
+        $taxonomy_id = $this->resolve_taxonomy_id( $product );
+        if ( $taxonomy_id <= 0 ) {
+            return new WP_Error( 'etsy_crochet_taxonomy', 'No se pudo resolver la categoría de Ganchillo/Crochet en Etsy.' );
+        }
+
+        $settings = $this->settings();
+        $shop_id = preg_replace( '/\D+/', '', (string) ( $settings['shop_id'] ?? '' ) );
+        $listing_update = $this->etsy_request(
+            'PATCH',
+            '/v3/application/shops/' . rawurlencode( $shop_id ) . '/listings/' . rawurlencode( $listing_id ),
+            [ 'taxonomy_id' => (int) $taxonomy_id ]
+        );
+        if ( is_wp_error( $listing_update ) ) {
+            return $listing_update;
+        }
+
+        $craft = $this->resolve_crochet_craft_property( $taxonomy_id );
+        if ( is_wp_error( $craft ) ) {
+            return $craft;
+        }
+
+        $property_result = $this->etsy_request(
+            'PUT',
+            '/v3/application/shops/' . rawurlencode( $shop_id ) . '/listings/' . rawurlencode( $listing_id ) . '/properties/' . rawurlencode( (int) $craft['property_id'] ),
+            [ 'value_ids' => [ (int) $craft['value_id'] ] ]
+        );
+        if ( is_wp_error( $property_result ) ) {
+            return $property_result;
+        }
+
+        update_post_meta( $product->get_id(), '_drielo_etsy_taxonomy_id', (int) $taxonomy_id );
+        update_post_meta( $product->get_id(), '_drielo_etsy_craft_type', 'crochet' );
+        update_post_meta( $product->get_id(), '_drielo_etsy_craft_type_property_id', (int) $craft['property_id'] );
+        update_post_meta( $product->get_id(), '_drielo_etsy_craft_type_value_id', (int) $craft['value_id'] );
+        return true;
     }
 
     private function sync_inventory( WC_Product $product, $listing_id ) {
