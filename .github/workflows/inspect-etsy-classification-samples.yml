@@ -1,0 +1,80 @@
+name: Inspect Etsy classification samples
+
+on:
+  push:
+    branches:
+      - feature/etsy-technique-classification
+    paths:
+      - '.github/workflows/inspect-etsy-classification-samples.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/key
+          chmod 600 ~/.ssh/key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Inspect section IDs and remote samples
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $sync=Drielo_Etsy_Sync::instance();
+            $ref=new ReflectionClass($sync);
+            $req=$ref->getMethod("etsy_request"); $req->setAccessible(true);
+            $settings=get_option("drielo_etsy_settings",array());
+            $shop=preg_replace("/\D+/","",(string)($settings["shop_id"]??""));
+            $sections=$req->invoke($sync,"GET","/v3/application/shops/".$shop."/sections",array(),false);
+            echo "SECTIONS=".wp_json_encode($sections).PHP_EOL;
+
+            $ids=get_posts(array(
+              "post_type"=>"product",
+              "post_status"=>array("publish","draft","private","pending"),
+              "posts_per_page"=>-1,
+              "fields"=>"ids",
+              "orderby"=>"modified",
+              "order"=>"DESC"
+            ));
+            $left=array("CS"=>6,"C2C"=>6,"TC"=>6,"LH"=>12);
+            foreach($ids as $id){
+              $p=wc_get_product($id); if(!$p) continue;
+              $sku=(string)$p->get_sku();
+              if(!preg_match("/-(CS|C2C|TC|LH)$/",$sku,$m)) continue;
+              $code=$m[1];
+              if(($left[$code]??0)<=0) continue;
+              $lid=absint(get_post_meta($id,"_drielo_etsy_listing_id",true));
+              if(!$lid) continue;
+              $remote=$req->invoke($sync,"GET","/v3/application/listings/".$lid,array(),false);
+              if(is_wp_error($remote)) continue;
+              echo "SAMPLE=".wp_json_encode(array(
+                "code"=>$code,
+                "sku"=>$sku,
+                "listing_id"=>$lid,
+                "title"=>(string)($remote["title"]??""),
+                "taxonomy_id"=>absint($remote["taxonomy_id"]??0),
+                "shop_section_id"=>absint($remote["shop_section_id"]??0),
+                "state"=>(string)($remote["state"]??"")
+              )).PHP_EOL;
+              $left[$code]--;
+              if(array_sum($left)<=0) break;
+            }
+          '
+          REMOTE
