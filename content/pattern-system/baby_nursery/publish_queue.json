@@ -1,12 +1,12 @@
 {
   "collection": "baby-nursery",
-  "mode": "paused-for-quality-rebuild",
-  "auto_continue": false,
+  "mode": "active-approved-premium-v3",
+  "auto_continue": true,
   "max_attempts_per_design": 2,
   "notes": [
-    "Paused by quality review: current generated Baby Nursery motifs are not approved.",
-    "Do not publish any further Baby Nursery design until the canonical preview sprites and palette are rebuilt and approved.",
-    "Next rollout must start from clean products and exact approved preview sprites."
+    "Approved premium Baby & Nursery rollout.",
+    "I0001-I0010 were rebuilt from the user-approved premium motif references into exact 100x120 palette matrices.",
+    "Only I0001-I0010 are queued; I0011-I0030 remain blocked until their premium references are approved."
   ],
   "items": [
     {
@@ -16,12 +16,10 @@
       "title_es": "Osito de peluche",
       "slug": "teddy-bear",
       "source_asset": "collections/baby-nursery/source-designs/I0001-teddy-bear.png",
-      "status": "reference_pending",
+      "status": "pending",
       "attempts": 0,
       "last_run": null,
-      "last_error": null,
-      "failed_at": "2026-09-24T11:11:06+00:00",
-      "published_at": "2026-09-24T11:14:52+00:00"
+      "last_error": null
     },
     {
       "order": 2,
@@ -30,11 +28,10 @@
       "title_es": "Elefantito",
       "slug": "baby-elephant",
       "source_asset": "collections/baby-nursery/source-designs/I0002-baby-elephant.png",
-      "status": "reference_pending",
+      "status": "pending",
       "attempts": 0,
       "last_run": null,
-      "last_error": null,
-      "published_at": "2026-09-24T11:19:58+00:00"
+      "last_error": null
     },
     {
       "order": 3,
@@ -43,11 +40,10 @@
       "title_es": "Jirafa",
       "slug": "giraffe",
       "source_asset": "collections/baby-nursery/source-designs/I0003-giraffe.png",
-      "status": "reference_pending",
+      "status": "pending",
       "attempts": 0,
       "last_run": null,
-      "last_error": null,
-      "published_at": "2026-09-24T11:23:55+00:00"
+      "last_error": null
     },
     {
       "order": 4,
@@ -56,11 +52,10 @@
       "title_es": "Luna creciente",
       "slug": "crescent-moon",
       "source_asset": "collections/baby-nursery/source-designs/I0004-crescent-moon.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35992786146",
-      "last_error": null,
-      "published_at": "2026-09-24T11:27:48+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 5,
@@ -69,7 +64,7 @@
       "title_es": "Nube sonriente",
       "slug": "smiling-cloud",
       "source_asset": "collections/baby-nursery/source-designs/I0005-smiling-cloud.png",
-      "status": "reference_pending",
+      "status": "pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -81,7 +76,7 @@
       "title_es": "Conejito con corazón",
       "slug": "bunny-heart",
       "source_asset": "collections/baby-nursery/source-designs/I0006-bunny-heart.png",
-      "status": "reference_pending",
+      "status": "pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -93,7 +88,7 @@
       "title_es": "Arcoíris con nubes",
       "slug": "rainbow-clouds",
       "source_asset": "collections/baby-nursery/source-designs/I0007-rainbow-clouds.png",
-      "status": "reference_pending",
+      "status": "pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -105,7 +100,7 @@
       "title_es": "Dinosaurio infantil",
       "slug": "cute-dinosaur",
       "source_asset": "collections/baby-nursery/source-designs/I0008-cute-dinosaur.png",
-      "status": "reference_pending",
+      "status": "pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -117,7 +112,7 @@
       "title_es": "Globo aerostático",
       "slug": "hot-air-balloon",
       "source_asset": "collections/baby-nursery/source-designs/I0009-hot-air-balloon.png",
-      "status": "reference_pending",
+      "status": "pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -129,7 +124,7 @@
       "title_es": "Velero infantil",
       "slug": "toy-sailboat",
       "source_asset": "collections/baby-nursery/source-designs/I0010-toy-sailboat.png",
-      "status": "reference_pending",
+      "status": "pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null

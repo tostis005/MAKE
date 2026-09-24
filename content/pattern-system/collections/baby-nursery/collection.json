@@ -5,8 +5,8 @@
   "name_es": "Bebé e Infantil",
   "slug": "baby-nursery",
   "code_prefix": "I",
-  "description": "A coordinated collection of simple, low-detail baby and nursery motifs designed to remain readable across cross stitch, C2C crochet, tapestry crochet and latch-hook/rug formats.",
-  "description_es": "Colección coordinada de motivos infantiles y de bebé, simplificados para conservar una buena lectura en punto de cruz, crochet C2C, tapestry crochet y alfombra/latch hook.",
+  "description": "A premium coordinated collection of baby and nursery motifs, rebuilt at higher stitch density for crisp, polished results across four grid-based craft techniques.",
+  "description_es": "Colección premium coordinada de motivos infantiles y de bebé, reconstruidos con mayor densidad de puntadas para lograr resultados nítidos y cuidados en cuatro técnicas artesanales basadas en cuadrícula.",
   "design_count": 30,
   "techniques": [
     "cross-stitch",
@@ -294,6 +294,8 @@
     },
     "background": "white",
     "target_cross_stitch_actual_stitches": "4500-8000 depending on motif complexity",
-    "notes": "Use the approved visual language and fine stitch density; do not force every motif to the same stitch count."
+    "notes": "Use the approved visual language and fine stitch density; do not force every motif to the same stitch count.",
+    "approved_batch": "I0001-I0010",
+    "matrix_standard": "100x120 master grid; exact approved 24-colour palette; transparent exterior"
   }
 }
