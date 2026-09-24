@@ -1,4 +1,5 @@
 name: Drain current Etsy batch
+# rerun-final
 
 on:
   push:
