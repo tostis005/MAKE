@@ -15,7 +15,7 @@
       "dmc": "3865",
       "color": "#F8E7D7",
       "name": "Winter White",
-      "stitches": 501
+      "stitches": 498
     },
     {
       "symbol": "B",
@@ -29,28 +29,28 @@
       "dmc": "3325",
       "color": "#63BEFB",
       "name": "Light Baby Blue",
-      "stitches": 89
+      "stitches": 83
     },
     {
       "symbol": "D",
       "dmc": "3846",
       "color": "#169CFA",
       "name": "Light Bright Turquoise",
-      "stitches": 27
+      "stitches": 29
     },
     {
       "symbol": "E",
       "dmc": "444",
       "color": "#FDD336",
       "name": "Dark Lemon",
-      "stitches": 124
+      "stitches": 123
     },
     {
       "symbol": "F",
       "dmc": "604",
       "color": "#FC5172",
       "name": "Light Cranberry",
-      "stitches": 146
+      "stitches": 145
     },
     {
       "symbol": "G",
@@ -71,7 +71,7 @@
       "dmc": "522",
       "color": "#6CAB67",
       "name": "Fern Green",
-      "stitches": 27
+      "stitches": 28
     },
     {
       "symbol": "K",
@@ -92,7 +92,7 @@
       "dmc": "3713",
       "color": "#FBB1BE",
       "name": "Very Light Salmon",
-      "stitches": 124
+      "stitches": 121
     },
     {
       "symbol": "N",
@@ -106,14 +106,14 @@
       "dmc": "797",
       "color": "#0253D0",
       "name": "Royal Blue",
-      "stitches": 40
+      "stitches": 42
     },
     {
       "symbol": "Q",
       "dmc": "970",
       "color": "#F78E02",
       "name": "Light Pumpkin",
-      "stitches": 54
+      "stitches": 55
     },
     {
       "symbol": "R",
@@ -127,7 +127,7 @@
       "dmc": "754",
       "color": "#EF975B",
       "name": "Light Peach",
-      "stitches": 99
+      "stitches": 102
     },
     {
       "symbol": "T",
@@ -148,28 +148,28 @@
       "dmc": "3752",
       "color": "#96D8FB",
       "name": "Very Light Antique Blue",
-      "stitches": 22
+      "stitches": 23
     },
     {
       "symbol": "W",
       "dmc": "761",
       "color": "#FC8395",
       "name": "Light Salmon",
-      "stitches": 134
+      "stitches": 138
     },
     {
       "symbol": "X",
       "dmc": "453",
       "color": "#C3A089",
       "name": "Shell Gray",
-      "stitches": 93
+      "stitches": 91
     },
     {
       "symbol": "Z",
       "dmc": "550",
       "color": "#8B40C6",
       "name": "Very Dark Violet",
-      "stitches": 72
+      "stitches": 74
     }
   ],
   "matrix": [
@@ -1058,7 +1058,7 @@
       "A",
       "X",
       "X",
-      "X",
+      "S",
       null,
       null,
       "Z",
@@ -1183,8 +1183,8 @@
       "A",
       "A",
       "A",
-      "X",
-      "X",
+      "S",
+      "Z",
       "Z",
       "D",
       "C",
@@ -1195,7 +1195,7 @@
       "U",
       "E",
       "E",
-      "E",
+      "Q",
       "E",
       "E",
       "H",
@@ -1236,7 +1236,7 @@
       null,
       null,
       null,
-      "N",
+      "S",
       "A",
       "A",
       "W",
@@ -1298,7 +1298,7 @@
       null,
       null,
       null,
-      "N",
+      "X",
       "A",
       "A",
       "W",
@@ -1880,7 +1880,7 @@
       "X",
       "Z",
       "Z",
-      "X",
+      "Z",
       "X",
       "M",
       "Z",
@@ -2067,7 +2067,7 @@
       "A",
       "F",
       "F",
-      "F",
+      "M",
       "W",
       "W",
       "W",
@@ -2079,8 +2079,8 @@
       "J",
       "C",
       "C",
-      "C",
-      "C",
+      "J",
+      "J",
       null,
       null,
       null,
@@ -2579,8 +2579,8 @@
       null,
       "W",
       "M",
-      "M",
       "W",
+      "M",
       "W",
       null,
       null,
@@ -2595,7 +2595,7 @@
       null,
       null,
       null,
-      "M",
+      "W",
       "M",
       "M",
       "M",
@@ -2642,7 +2642,7 @@
       "W",
       "M",
       "M",
-      "M",
+      "W",
       "M",
       "W",
       null,
@@ -2764,7 +2764,7 @@
       null,
       null,
       null,
-      "M",
+      "W",
       "M",
       "W",
       null,
@@ -2827,7 +2827,7 @@
       null,
       null,
       null,
-      "M",
+      "W",
       null,
       null,
       null,
@@ -2942,7 +2942,7 @@
       "G",
       "J",
       "P",
-      "J",
+      "P",
       "T",
       "Q",
       "Q",
@@ -2976,7 +2976,7 @@
       "F",
       "W",
       "C",
-      "C",
+      "V",
       "C",
       "P",
       "D",
@@ -3301,7 +3301,7 @@
       "A",
       "A",
       "A",
-      "A",
+      "N",
       "A",
       "A",
       "A",
@@ -3317,7 +3317,7 @@
       "P",
       "D",
       "P",
-      "C",
+      "P",
       "C",
       "C",
       "C",
@@ -3362,8 +3362,8 @@
       "X",
       "A",
       "A",
-      "A",
-      "A",
+      "N",
+      "N",
       "A",
       "A",
       "A",
@@ -3445,7 +3445,7 @@
       "C",
       "C",
       "C",
-      "C",
+      "D",
       "V",
       "V",
       "D",
@@ -3507,7 +3507,7 @@
       "E",
       "J",
       "C",
-      "C",
+      "D",
       "C",
       "V",
       "C",
@@ -3618,7 +3618,7 @@
       "A",
       "A",
       "A",
-      "N",
+      "X",
       "H",
       "T",
       "S",
