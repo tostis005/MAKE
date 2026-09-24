@@ -622,7 +622,7 @@ function make_sanitize_palette_hex( string $value ): string {
     $colours = array_filter( array_map( 'trim', explode( ',', $value ) ) );
     $clean   = array();
 
-    foreach ( array_slice( $colours, 0, 16 ) as $colour ) {
+    foreach ( array_slice( $colours, 0, 64 ) as $colour ) {
         $hex = sanitize_hex_color( $colour );
         if ( $hex ) { $clean[] = strtoupper( $hex ); }
     }
@@ -782,9 +782,9 @@ function make_render_shop_view_switcher(): void {
 
     echo '<nav class="drielo-shop-views" aria-label="' . esc_attr( make_t( 'Cómo ver la tienda', 'Shop view' ) ) . '">';
     if ( 'patterns' === $view ) {
-        echo '<span class="is-active" aria-current="page">' . esc_html( make_t( 'Diseños individuales', 'Individual designs' ) ) . '</span>';
+        echo '<span class="is-active" aria-current="page">' . esc_html( make_t( 'Patrones individuales', 'Individual patterns' ) ) . '</span>';
     } else {
-        echo '<a href="' . esc_url( make_shop_view_url( 'patterns' ) ) . '">' . esc_html( make_t( 'Diseños individuales', 'Individual designs' ) ) . '</a>';
+        echo '<a href="' . esc_url( make_shop_view_url( 'patterns' ) ) . '">' . esc_html( make_t( 'Patrones individuales', 'Individual patterns' ) ) . '</a>';
     }
     if ( 'collections' === $view ) {
         echo '<span class="is-active" aria-current="page">' . esc_html( make_t( 'Ver por colección', 'Browse collections' ) ) . '</span>';
@@ -853,14 +853,14 @@ function make_store_product_design_id( int $product_id ): string {
     foreach ( array( '_drielo_design_id', '_drielo_product_code' ) as $meta_key ) {
         $value = strtoupper( trim( (string) get_post_meta( $product_id, $meta_key, true ) ) );
         if ( '' === $value ) { continue; }
-        if ( preg_match( '/P\\d{4,}/', $value, $matches ) ) { return (string) $matches[0]; }
+        if ( preg_match( '/[A-Z]{1,4}\\d{4,}/', $value, $matches ) ) { return (string) $matches[0]; }
         return $value;
     }
 
     $product = wc_get_product( $product_id );
     if ( $product instanceof WC_Product ) {
         $sku = strtoupper( (string) $product->get_sku() );
-        if ( preg_match( '/P\\d{4,}/', $sku, $matches ) ) { return (string) $matches[0]; }
+        if ( preg_match( '/[A-Z]{1,4}\\d{4,}/', $sku, $matches ) ) { return (string) $matches[0]; }
     }
 
     return sprintf( 'P%06d', $product_id );
@@ -930,18 +930,127 @@ function make_collection_design_count( array $records ): int {
     return count( $designs );
 }
 
+function make_collection_stats( WP_Term $term ): array {
+    $product_ids = make_collection_product_ids( $term );
+    $designs = array();
+    $techniques = array();
+    $design_techniques = array();
+
+    foreach ( $product_ids as $product_id ) {
+        $design_id = make_store_product_design_id( (int) $product_id );
+        $technique = make_store_product_technique( (int) $product_id );
+
+        if ( '' !== $design_id ) {
+            $designs[ $design_id ] = true;
+            if ( ! isset( $design_techniques[ $design_id ] ) ) {
+                $design_techniques[ $design_id ] = array();
+            }
+            if ( '' !== $technique ) {
+                $design_techniques[ $design_id ][ $technique ] = true;
+            }
+        }
+        if ( '' !== $technique ) {
+            $techniques[ $technique ] = true;
+        }
+    }
+
+    $design_count = count( $designs );
+    $pattern_count = count( $product_ids );
+    $technique_count = count( $techniques );
+    $palette_count = count( make_collection_palette( $term ) );
+
+    $every_design_has_every_technique = $design_count > 0 && $technique_count > 0 && $pattern_count === ( $design_count * $technique_count );
+    if ( $every_design_has_every_technique ) {
+        $expected = array_keys( $techniques );
+        foreach ( array_keys( $designs ) as $design_id ) {
+            $available = array_keys( $design_techniques[ $design_id ] ?? array() );
+            if ( count( array_diff( $expected, $available ) ) > 0 ) {
+                $every_design_has_every_technique = false;
+                break;
+            }
+        }
+    }
+
+    return array(
+        'design_count'                    => $design_count,
+        'pattern_count'                   => $pattern_count,
+        'technique_count'                 => $technique_count,
+        'palette_count'                   => $palette_count,
+        'every_design_has_every_technique'=> $every_design_has_every_technique,
+    );
+}
+
+function make_collection_stats_label( WP_Term $term ): string {
+    $stats = make_collection_stats( $term );
+    $designs = 1 === (int) $stats['design_count']
+        ? make_t( '1 diseño', '1 design' )
+        : sprintf( make_t( '%d diseños', '%d designs' ), (int) $stats['design_count'] );
+    $patterns = 1 === (int) $stats['pattern_count']
+        ? make_t( '1 patrón', '1 pattern' )
+        : sprintf( make_t( '%d patrones', '%d patterns' ), (int) $stats['pattern_count'] );
+
+    return $designs . ' · ' . $patterns;
+}
+
+function make_collection_stats_description( WP_Term $term ): string {
+    $stats = make_collection_stats( $term );
+    $design_count = (int) $stats['design_count'];
+    $pattern_count = (int) $stats['pattern_count'];
+    $technique_count = (int) $stats['technique_count'];
+    $palette_count = (int) $stats['palette_count'];
+
+    $designs = 1 === $design_count
+        ? make_t( '1 diseño', '1 design' )
+        : sprintf( make_t( '%d diseños distintos', '%d distinct designs' ), $design_count );
+    $patterns = 1 === $pattern_count
+        ? make_t( '1 patrón disponible', '1 pattern available' )
+        : sprintf( make_t( '%d patrones disponibles', '%d patterns available' ), $pattern_count );
+
+    $parts = array( $designs . ' · ' . $patterns . '.' );
+
+    if ( $technique_count > 0 ) {
+        if ( ! empty( $stats['every_design_has_every_technique'] ) ) {
+            $parts[] = 1 === $technique_count
+                ? make_t( 'Cada diseño está disponible en 1 técnica.', 'Each design is available in 1 technique.' )
+                : sprintf( make_t( 'Cada diseño está disponible en %d técnicas.', 'Each design is available in %d techniques.' ), $technique_count );
+        } else {
+            $parts[] = 1 === $technique_count
+                ? make_t( 'Los patrones están disponibles en 1 técnica.', 'Patterns are available in 1 technique.' )
+                : sprintf( make_t( 'Los patrones están disponibles en %d técnicas.', 'Patterns are available across %d techniques.' ), $technique_count );
+        }
+    }
+
+    if ( $palette_count > 0 ) {
+        $parts[] = 1 === $palette_count
+            ? make_t( 'Toda la colección comparte una paleta coordinada de 1 color.', 'The whole collection shares one coordinated colour.' )
+            : sprintf( make_t( 'Toda la colección comparte una paleta coordinada de %d colores.', 'The whole collection shares one coordinated %d-colour palette.' ), $palette_count );
+    }
+
+    return implode( ' ', $parts );
+}
+
 function make_collection_mosaic_columns( int $count ): int {
     if ( $count <= 0 ) { return 5; }
     return max( 4, min( 12, (int) ceil( sqrt( $count * 1.25 ) ) ) );
 }
 
-function make_render_palette_swatches( WP_Term $term ): void {
+function make_render_palette_swatches( WP_Term $term, bool $show_count = false ): void {
     $palette = make_collection_palette( $term );
     if ( empty( $palette ) ) { return; }
 
-    echo '<span class="drielo-palette" aria-label="' . esc_attr( make_t( 'Paleta compartida', 'Shared palette' ) ) . '">';
+    $count = count( $palette );
+    $count_label = 1 === $count
+        ? make_t( '1 color', '1 colour' )
+        : sprintf( make_t( '%d colores', '%d colours' ), $count );
+
+    echo '<span class="drielo-palette-block">';
+    echo '<span class="drielo-palette" aria-label="' . esc_attr( sprintf( make_t( 'Paleta compartida · %s', 'Shared palette · %s' ), $count_label ) ) . '">';
     foreach ( $palette as $colour ) {
         echo '<i style="--swatch:' . esc_attr( $colour ) . '"></i>';
+    }
+    echo '</span>';
+    if ( $show_count ) {
+        echo '<small class="drielo-palette-count">' . esc_html( $count_label ) . '</small>';
     }
     echo '</span>';
 }
@@ -973,7 +1082,7 @@ function make_render_collection_grid(): void {
 
         $records = make_collection_product_records( $term );
         $product_id = ! empty( $records ) ? (int) $records[0]['product_id'] : make_collection_cover_product_id( $term );
-        $design_count = make_collection_design_count( $records );
+        $stats = make_collection_stats( $term );
         $technique_counts = array_fill_keys( array_keys( $technique_config ), 0 );
 
         foreach ( $records as $record ) {
@@ -1003,7 +1112,7 @@ function make_render_collection_grid(): void {
 
             echo '<span class="drielo-collection-more" data-collection-more' . ( $initial_more > 0 ? '' : ' hidden' ) . '>';
             echo '<b data-collection-more-count>+' . esc_html( (string) $initial_more ) . '</b>';
-            echo '<small>' . esc_html( make_t( 'Ver diseños', 'View designs' ) ) . '</small>';
+            echo '<small>' . esc_html( make_t( 'Ver patrones', 'View patterns' ) ) . '</small>';
             echo '</span>';
 
             echo '</span>';
@@ -1023,21 +1132,15 @@ function make_render_collection_grid(): void {
         echo '</div>';
 
         echo '<div class="drielo-collection-copy">';
-        echo '<div class="drielo-collection-topline"><span>' . esc_html( sprintf( make_t( '%d diseños', '%d designs' ), $design_count > 0 ? $design_count : (int) $term->count ) ) . '</span>';
-        make_render_palette_swatches( $term );
+        echo '<div class="drielo-collection-topline"><span>' . esc_html( make_collection_stats_label( $term ) ) . '</span>';
+        make_render_palette_swatches( $term, true );
         echo '</div>';
 
         $display_name = make_collection_display_name( $term );
-        $display_description = make_collection_display_description( $term );
         echo '<h2><a href="' . esc_url( $url ) . '">' . esc_html( $display_name ) . '</a></h2>';
+        echo '<p>' . esc_html( make_collection_stats_description( $term ) ) . '</p>';
 
-        if ( '' !== $display_description ) {
-            echo '<p>' . esc_html( wp_trim_words( $display_description, 18 ) ) . '</p>';
-        } else {
-            echo '<p>' . esc_html( make_t( 'Una paleta compartida, varios diseños que puedes combinar.', 'One shared palette, several designs you can combine.' ) ) . '</p>';
-        }
-
-        echo '<div class="drielo-collection-footer"><span>' . wp_kses_post( sprintf( make_t( 'Desde %s por diseño', 'From %s per design' ), wc_price( make_store_price_from_usd( DRIELO_DEFAULT_PRODUCT_PRICE ) ) ) ) . '</span><strong>' . esc_html( make_t( 'Ver colección →', 'View collection →' ) ) . '</strong></div>';
+        echo '<div class="drielo-collection-footer"><span>' . wp_kses_post( sprintf( make_t( 'Desde %s por patrón', 'From %s per pattern' ), wc_price( make_store_price_from_usd( DRIELO_DEFAULT_PRODUCT_PRICE ) ) ) ) . '</span><strong>' . esc_html( make_t( 'Ver colección →', 'View collection →' ) ) . '</strong></div>';
         echo '</div></article>';
     }
     echo '</div>';
@@ -1107,7 +1210,7 @@ function make_render_collection_addons(): void {
         <div class="drielo-addon-head">
             <div>
                 <span class="section-kicker"><?php echo esc_html( make_t( 'Completa la colección', 'Build your collection' ) ); ?></span>
-                <h3 id="drielo-addon-title"><?php echo esc_html( sprintf( make_t( 'Añade más diseños de %s', 'Add more designs from %s' ), make_collection_display_name( $term ) ) ); ?></h3>
+                <h3 id="drielo-addon-title"><?php echo esc_html( sprintf( make_t( 'Añade más patrones de %s', 'Add more patterns from %s' ), make_collection_display_name( $term ) ) ); ?></h3>
             </div>
             <span class="drielo-addon-price"><?php echo wp_kses_post( sprintf( make_t( '+%s cada uno', '+%s each' ), wc_price( make_store_price_from_usd( DRIELO_COLLECTION_ADDON_PRICE ) ) ) ); ?></span>
         </div>
@@ -1129,7 +1232,7 @@ function make_render_collection_addons(): void {
                 </label>
             <?php endforeach; ?>
         </div>
-        <?php if ( ! is_wp_error( $collection_url ) ) : ?><a class="drielo-addon-collection-link" href="<?php echo esc_url( $collection_url ); ?>"><?php echo esc_html( make_t( 'Ver todos los diseños de la colección', 'See every design in the collection' ) ); ?> →</a><?php endif; ?>
+        <?php if ( ! is_wp_error( $collection_url ) ) : ?><a class="drielo-addon-collection-link" href="<?php echo esc_url( $collection_url ); ?>"><?php echo esc_html( make_t( 'Ver todos los patrones de la colección', 'See every pattern in the collection' ) ); ?> →</a><?php endif; ?>
     </section>
     <?php
 }
@@ -1229,8 +1332,20 @@ function make_collection_archive_note(): void {
     if ( ! is_tax( 'product_collection' ) ) { return; }
     $term = get_queried_object();
     if ( ! $term instanceof WP_Term ) { return; }
-    echo '<div class="drielo-collection-note"><div><span class="section-kicker">' . esc_html( make_t( 'Paleta compartida', 'Shared palette' ) ) . '</span>';
-    make_render_palette_swatches( $term );
+
+    $stats = make_collection_stats( $term );
+    $technique_count = (int) $stats['technique_count'];
+
+    echo '<div class="drielo-collection-note">';
+    echo '<div class="drielo-collection-note-stats"><span class="section-kicker">' . esc_html( make_t( 'En esta colección', 'In this collection' ) ) . '</span>';
+    echo '<strong>' . esc_html( make_collection_stats_label( $term ) ) . '</strong>';
+    if ( $technique_count > 0 ) {
+        echo '<small>' . esc_html( 1 === $technique_count ? make_t( '1 técnica', '1 technique' ) : sprintf( make_t( '%d técnicas', '%d techniques' ), $technique_count ) ) . '</small>';
+    }
+    echo '</div>';
+
+    echo '<div class="drielo-collection-note-palette"><span class="section-kicker">' . esc_html( make_t( 'Paleta compartida', 'Shared palette' ) ) . '</span>';
+    make_render_palette_swatches( $term, true );
     echo '</div></div>';
 }
 
