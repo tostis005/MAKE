@@ -1,0 +1,83 @@
+name: Verify live Etsy technique mapping 1.4.8
+
+on:
+  push:
+    branches:
+      - feature/etsy-technique-classification
+    paths:
+      - '.github/workflows/verify-live-etsy-technique-mapping-148.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/key
+          chmod 600 ~/.ssh/key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Apply and verify one listing per technique
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -d max_execution_time=0 -r '
+            require "/var/www/html/wp-load.php";
+            require_once ABSPATH."wp-admin/includes/plugin.php";
+            $data=get_plugin_data(WP_PLUGIN_DIR."/drielo-etsy-sync/drielo-etsy-sync.php",false,false);
+            echo "VERSION=".($data["Version"]??"").PHP_EOL;
+            if(version_compare((string)($data["Version"]??""),"1.4.8","<")) exit(2);
+
+            $sync=Drielo_Etsy_Sync::instance();
+            $ref=new ReflectionClass($sync);
+            $classify=$ref->getMethod("sync_technique_classification"); $classify->setAccessible(true);
+            $section=$ref->getMethod("sync_shop_section"); $section->setAccessible(true);
+            $req=$ref->getMethod("etsy_request"); $req->setAccessible(true);
+
+            $cases=array(
+              "CS"=>array("sku"=>"DRIELO-P0001-CS","taxonomy"=>87,"section"=>60539213,"craft"=>0),
+              "C2C"=>array("sku"=>"DRIELO-P0001-C2C","taxonomy"=>6343,"section"=>60541905,"craft"=>543),
+              "TC"=>array("sku"=>"DRIELO-P0001-TC","taxonomy"=>6343,"section"=>60542781,"craft"=>543),
+              "LH"=>array("sku"=>"DRIELO-P0001-LH","taxonomy"=>6343,"section"=>60542743,"craft"=>583)
+            );
+
+            foreach($cases as $code=>$case){
+              $id=wc_get_product_id_by_sku($case["sku"]);
+              $p=$id?wc_get_product($id):false;
+              if(!$p){fwrite(STDERR,"MISSING ".$case["sku"].PHP_EOL);exit(3);}
+              $listing=absint(get_post_meta($id,"_drielo_etsy_listing_id",true));
+              if(!$listing){fwrite(STDERR,"NO_LISTING ".$case["sku"].PHP_EOL);exit(4);}
+
+              $a=$classify->invoke($sync,$p,$listing);
+              if(is_wp_error($a)){fwrite(STDERR,"CLASSIFY_ERROR ".$case["sku"]." ".$a->get_error_message().PHP_EOL);exit(5);}
+              $b=$section->invoke($sync,$p,$listing);
+              if(is_wp_error($b)){fwrite(STDERR,"SECTION_ERROR ".$case["sku"]." ".$b->get_error_message().PHP_EOL);exit(6);}
+
+              $remote=$req->invoke($sync,"GET","/v3/application/listings/".$listing,array(),false);
+              if(is_wp_error($remote)){fwrite(STDERR,"REMOTE_ERROR ".$case["sku"]." ".$remote->get_error_message().PHP_EOL);exit(7);}
+              $taxonomy=absint($remote["taxonomy_id"]??0);
+              $shop_section=absint($remote["shop_section_id"]??0);
+              $craft=absint(get_post_meta($id,"_drielo_etsy_craft_type_value_id",true));
+              echo $case["sku"]." listing=".$listing." taxonomy=".$taxonomy." section=".$shop_section." craft=".$craft.PHP_EOL;
+
+              if($taxonomy!==$case["taxonomy"] || $shop_section!==$case["section"] || $craft!==$case["craft"]){
+                fwrite(STDERR,"VERIFY_FAIL ".$case["sku"].PHP_EOL);exit(8);
+              }
+            }
+            echo "ALL_TECHNIQUE_MAPPINGS_OK=yes".PHP_EOL;
+          '
+          REMOTE
