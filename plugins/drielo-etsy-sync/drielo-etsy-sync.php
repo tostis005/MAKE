@@ -587,6 +587,14 @@ final class Drielo_Etsy_Sync {
     }
 
     public function handle_sync_products() {
+        $this->handle_sync_products_mode( false );
+    }
+
+    public function handle_overwrite_products() {
+        $this->handle_sync_products_mode( true );
+    }
+
+    private function handle_sync_products_mode( bool $overwrite ) {
         $this->require_capability();
         check_admin_referer( 'drielo_etsy_products', 'drielo_nonce' );
 
@@ -602,37 +610,60 @@ final class Drielo_Etsy_Sync {
             update_post_meta( $id, self::META_TARGET_STATE, $target );
         }
 
-        $selected = get_posts( [
-            'post_type'      => 'product',
-            'post_status'    => [ 'publish', 'draft', 'private', 'pending' ],
-            'posts_per_page' => -1,
-            'fields'         => 'ids',
-            'meta_key'       => self::META_ENABLED,
-            'meta_value'     => 'yes',
-            'orderby'        => 'ID',
-            'order'          => 'ASC',
-        ] );
-        $selected = array_map( 'absint', (array) $selected );
-        $selected = array_filter( array_unique( $selected ) );
+        $row_selection = array_values( array_unique( array_filter( array_map( 'absint', (array) ( $_POST['selected_ids'] ?? [] ) ) ) ) );
+        if ( $overwrite && empty( $row_selection ) ) {
+            wp_safe_redirect( add_query_arg(
+                'drielo_notice',
+                rawurlencode( 'No se ha sobrescrito nada. Marca primero una o más filas: la sobrescritura nunca se aplica a todo el catálogo automáticamente.' ),
+                wp_get_referer() ?: admin_url( 'admin.php?page=drielo-etsy' )
+            ) );
+            exit;
+        }
+
+        if ( $row_selection ) {
+            $selected = $row_selection;
+        } else {
+            $selected = get_posts( [
+                'post_type'      => 'product',
+                'post_status'    => [ 'publish', 'draft', 'private', 'pending' ],
+                'posts_per_page' => -1,
+                'fields'         => 'ids',
+                'meta_key'       => self::META_ENABLED,
+                'meta_value'     => 'yes',
+                'orderby'        => 'ID',
+                'order'          => 'ASC',
+            ] );
+        }
+
+        $selected = array_values( array_unique( array_filter( array_map( 'absint', (array) $selected ) ) ) );
+        $selected = array_values( array_filter( $selected, static function( $product_id ) {
+            return 'yes' === get_post_meta( $product_id, self::META_ENABLED, true );
+        } ) );
+
         if ( empty( $selected ) ) {
-            wp_safe_redirect( add_query_arg( 'drielo_notice', rawurlencode( 'No hay productos con “Publicar en Etsy” activado.' ), wp_get_referer() ?: admin_url( 'admin.php?page=drielo-etsy' ) ) );
+            wp_safe_redirect( add_query_arg(
+                'drielo_notice',
+                rawurlencode( 'No hay productos activados para Etsy dentro de la selección.' ),
+                wp_get_referer() ?: admin_url( 'admin.php?page=drielo-etsy' )
+            ) );
             exit;
         }
 
         $ok = 0;
         $failed = 0;
         foreach ( $selected as $product_id ) {
-            if ( 'yes' !== get_post_meta( $product_id, self::META_ENABLED, true ) ) {
-                continue;
-            }
-            $result = $this->sync_product( $product_id );
+            $result = $this->sync_product( $product_id, $overwrite );
             if ( is_wp_error( $result ) ) {
                 $failed++;
             } else {
                 $ok++;
             }
         }
-        $message = sprintf( 'Sincronización terminada: %d correctos, %d con error.', $ok, $failed );
+
+        $message = $overwrite
+            ? sprintf( 'Sobrescritura terminada: %d actualizados desde Drielo, %d con error.', $ok, $failed )
+            : sprintf( 'Sincronización segura terminada: %d correctos, %d con error. Los listings existentes conservaron sus datos de Etsy.', $ok, $failed );
+
         wp_safe_redirect( add_query_arg( 'drielo_notice', rawurlencode( $message ), wp_get_referer() ?: admin_url( 'admin.php?page=drielo-etsy' ) ) );
         exit;
     }
@@ -903,26 +934,31 @@ final class Drielo_Etsy_Sync {
         return is_array( $data ) ? $data : [];
     }
 
-    private function sync_product( $product_id ) {
+    private function sync_product( $product_id, bool $overwrite = false ) {
         $product = wc_get_product( $product_id );
         if ( ! $product ) {
             return new WP_Error( 'invalid_product', 'Producto no válido.' );
         }
+
         $settings = $this->ensure_shop_identity();
         if ( empty( $settings['shop_id'] ) ) {
             return $this->record_error( $product_id, new WP_Error( 'shop_id', 'Falta el Shop ID de Etsy.' ) );
         }
+
         $taxonomy_id = $this->resolve_taxonomy_id( $product );
         if ( $taxonomy_id <= 0 ) {
             return $this->record_error( $product_id, new WP_Error( 'taxonomy_id', 'No se pudo resolver una categoría de Etsy para este producto.' ) );
         }
 
-        $listing_id = get_post_meta( $product_id, self::META_LISTING_ID, true );
-        $target = get_post_meta( $product_id, self::META_TARGET_STATE, true ) === 'active' ? 'active' : 'draft';
-        $payload = $this->listing_payload( $product, $taxonomy_id );
+        $listing_id  = absint( get_post_meta( $product_id, self::META_LISTING_ID, true ) );
+        $is_new      = ! $listing_id;
+        $target      = get_post_meta( $product_id, self::META_TARGET_STATE, true ) === 'active' ? 'active' : 'draft';
+        $payload     = $this->listing_payload( $product, $taxonomy_id );
+        $content_hash = $this->product_content_hash( $product );
+
         update_post_meta( $product_id, '_drielo_etsy_taxonomy_id', $taxonomy_id );
 
-        if ( ! $listing_id ) {
+        if ( $is_new ) {
             $create = $this->etsy_request( 'POST', '/v3/application/shops/' . rawurlencode( $settings['shop_id'] ) . '/listings', $payload );
             if ( is_wp_error( $create ) ) {
                 return $this->record_error( $product_id, $create );
@@ -931,25 +967,34 @@ final class Drielo_Etsy_Sync {
             if ( ! $listing_id ) {
                 return $this->record_error( $product_id, new WP_Error( 'missing_listing_id', 'Etsy creó la respuesta sin listing_id.' ) );
             }
+            $remote_state = sanitize_text_field( $create['state'] ?? 'draft' );
             update_post_meta( $product_id, self::META_LISTING_ID, $listing_id );
-            update_post_meta( $product_id, self::META_REMOTE_STATE, sanitize_text_field( $create['state'] ?? 'draft' ) );
-        } else {
+            update_post_meta( $product_id, self::META_REMOTE_STATE, $remote_state );
+        } elseif ( $overwrite ) {
             $update = $this->etsy_request( 'PATCH', '/v3/application/shops/' . rawurlencode( $settings['shop_id'] ) . '/listings/' . rawurlencode( $listing_id ), $payload );
             if ( is_wp_error( $update ) ) {
                 return $this->record_error( $product_id, $update );
             }
+            $remote_state = sanitize_text_field( $update['state'] ?? get_post_meta( $product_id, self::META_REMOTE_STATE, true ) ?: 'draft' );
+        } else {
+            // Safe mode deliberately reads Etsy but does not push managed
+            // listing fields back. Manual Etsy edits therefore survive.
+            $remote = $this->etsy_request( 'GET', '/v3/application/listings/' . rawurlencode( $listing_id ) );
+            if ( is_wp_error( $remote ) ) {
+                return $this->record_error( $product_id, $remote );
+            }
+            $remote_state = sanitize_text_field( $remote['state'] ?? get_post_meta( $product_id, self::META_REMOTE_STATE, true ) ?: 'draft' );
         }
 
-        if ( $product->get_sku() ) {
+        if ( ( $is_new || $overwrite ) && $product->get_sku() ) {
             $inventory_result = $this->sync_inventory( $product, $listing_id );
             if ( is_wp_error( $inventory_result ) ) {
                 return $this->record_error( $product_id, $inventory_result );
             }
         }
 
-        $asset_hash = $this->product_asset_hash( $product );
-        $saved_hash = get_post_meta( $product_id, self::META_ASSET_HASH, true );
-        if ( $asset_hash !== $saved_hash ) {
+        if ( $is_new || $overwrite ) {
+            $asset_hash = $this->product_asset_hash( $product );
             if ( ! empty( $settings['sync_images'] ) ) {
                 $image_result = $this->sync_images( $product, $listing_id );
                 if ( is_wp_error( $image_result ) ) {
@@ -963,25 +1008,21 @@ final class Drielo_Etsy_Sync {
                 }
             }
             update_post_meta( $product_id, self::META_ASSET_HASH, $asset_hash );
+            update_post_meta( $product_id, self::META_CONTENT_HASH, $content_hash );
         }
 
-        if ( 'active' === $target ) {
+        if ( 'active' === $target && 'active' !== $remote_state ) {
             $state_result = $this->etsy_request( 'PATCH', '/v3/application/shops/' . rawurlencode( $settings['shop_id'] ) . '/listings/' . rawurlencode( $listing_id ), [ 'state' => 'active', 'type' => 'download' ] );
             if ( is_wp_error( $state_result ) ) {
                 return $this->record_error( $product_id, $state_result );
             }
             $remote_state = sanitize_text_field( $state_result['state'] ?? 'active' );
-        } else {
-            $current_state = get_post_meta( $product_id, self::META_REMOTE_STATE, true );
-            if ( 'active' === $current_state ) {
-                $state_result = $this->etsy_request( 'PATCH', '/v3/application/shops/' . rawurlencode( $settings['shop_id'] ) . '/listings/' . rawurlencode( $listing_id ), [ 'state' => 'inactive', 'type' => 'download' ] );
-                if ( is_wp_error( $state_result ) ) {
-                    return $this->record_error( $product_id, $state_result );
-                }
-                $remote_state = sanitize_text_field( $state_result['state'] ?? 'inactive' );
-            } else {
-                $remote_state = $current_state ?: 'draft';
+        } elseif ( 'draft' === $target && 'active' === $remote_state ) {
+            $state_result = $this->etsy_request( 'PATCH', '/v3/application/shops/' . rawurlencode( $settings['shop_id'] ) . '/listings/' . rawurlencode( $listing_id ), [ 'state' => 'inactive', 'type' => 'download' ] );
+            if ( is_wp_error( $state_result ) ) {
+                return $this->record_error( $product_id, $state_result );
             }
+            $remote_state = sanitize_text_field( $state_result['state'] ?? 'inactive' );
         }
 
         update_post_meta( $product_id, self::META_REMOTE_STATE, $remote_state );
@@ -1259,6 +1300,26 @@ final class Drielo_Etsy_Sync {
             'sku_on_property'      => [],
         ];
         return $this->etsy_request_json( 'PUT', '/v3/application/listings/' . rawurlencode( $listing_id ) . '/inventory', $payload );
+    }
+
+    private function product_content_hash( WC_Product $product ): string {
+        $settings = $this->settings();
+        $data = [
+            'version'        => self::VERSION,
+            'sku'            => (string) $product->get_sku(),
+            'title'          => $this->etsy_title( $product ),
+            'description'    => $this->formatted_etsy_description( $product ),
+            'price_eur'      => number_format( $this->etsy_price_eur( $product ), 2, '.', '' ),
+            'tags'           => $this->etsy_tags( $product ),
+            'technique'      => $this->product_technique( $product ),
+            'quantity'       => (int) $settings['quantity'],
+            'language'       => $this->listing_language(),
+            'when_made'      => (string) $settings['when_made'],
+            'auto_renew'     => ! empty( $settings['auto_renew'] ),
+            'ai_disclosure'  => ! empty( $settings['ai_disclosure'] ),
+            'auto_taxonomy'  => ! empty( $settings['auto_taxonomy'] ),
+        ];
+        return hash( 'sha256', wp_json_encode( $data ) );
     }
 
     private function product_asset_hash( WC_Product $product ) {
