@@ -7,121 +7,109 @@
       "base_design_id": "F0001",
       "title_en": "Blue Daisy Pitcher",
       "slug": "blue-daisy-pitcher",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36043139389",
-      "last_error": null,
-      "published_at": "2026-09-24T18:46:23+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "F0002",
       "title_en": "Pink Peony",
       "slug": "pink-peony",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36043618992",
-      "last_error": null,
-      "published_at": "2026-09-24T18:50:17+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "F0003",
       "title_en": "Lavender Ribbon Bundle",
       "slug": "lavender-ribbon-bundle",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36044071242",
-      "last_error": null,
-      "published_at": "2026-09-24T18:54:35+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "F0004",
       "title_en": "Sunflower Stem",
       "slug": "sunflower-stem",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36044578300",
-      "last_error": null,
-      "published_at": "2026-09-24T18:58:27+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "F0005",
       "title_en": "Blue Hydrangea",
       "slug": "blue-hydrangea",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36044993113",
-      "last_error": null,
-      "published_at": "2026-09-24T19:02:42+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "F0006",
       "title_en": "Cherry Blossom Branch",
       "slug": "cherry-blossom-branch",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36045485723",
-      "last_error": null,
-      "published_at": "2026-09-24T19:06:29+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "F0007",
       "title_en": "Pink Floral Heart Wreath",
       "slug": "pink-floral-heart-wreath",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36045938101",
-      "last_error": null,
-      "published_at": "2026-09-24T19:10:35+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "F0008",
       "title_en": "Daisy Mason Jar",
       "slug": "daisy-mason-jar",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36046394315",
-      "last_error": null,
-      "published_at": "2026-09-24T19:14:43+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "F0009",
       "title_en": "Eucalyptus Ribbon Bundle",
       "slug": "eucalyptus-ribbon-bundle",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36046875748",
-      "last_error": null,
-      "published_at": "2026-09-24T19:18:54+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "F0010",
       "title_en": "Potted Strawberry Plant",
       "slug": "potted-strawberry-plant",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36047350180",
-      "last_error": null,
-      "published_at": "2026-09-24T19:24:16+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "F0011",
       "title_en": "Wrapped Wildflower Bouquet",
       "slug": "wrapped-wildflower-bouquet",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36047971824",
-      "last_error": null,
-      "published_at": "2026-09-24T19:28:28+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "F0012",
       "title_en": "Rose Teacup",
       "slug": "rose-teacup",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36048434452",
-      "last_error": null,
-      "published_at": "2026-09-24T19:32:29+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "F0013",
