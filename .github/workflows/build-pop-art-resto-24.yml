@@ -1,4 +1,5 @@
 name: Build remaining Pop Art 24 designs
+# retry after embedded matrix integrity fix
 
 on:
   push:
