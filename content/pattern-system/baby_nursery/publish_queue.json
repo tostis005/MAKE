@@ -1,6 +1,6 @@
 {
   "collection": "baby-nursery",
-  "mode": "paused-for-approved-pixel-master-rebuild",
+  "mode": "paused-after-v2-visual-review",
   "auto_continue": false,
   "max_attempts_per_design": 2,
   "notes": [
@@ -376,5 +376,5 @@
       "last_error": null
     }
   ],
-  "reference_policy": "Use the approved preview v2 per-design matrices exactly, with transparent background, exact approved palette, no forced outline, and no cleanup morphology. Publish CS/C2C/TC/LH plus four WooCommerce images, then advance one design at a time."
+  "reference_policy": "Paused. Do not publish any Baby & Nursery design until rebuilt from the original user reference sheets and a corrected nursery palette."
 }
