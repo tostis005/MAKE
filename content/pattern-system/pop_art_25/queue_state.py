@@ -69,6 +69,7 @@ def cmd_next(args):
         "title_en":item["title_en"] if item else "",
         "slug":item["slug"] if item else "",
         "attempt":str((item.get("attempts",0)+1) if item else 0),
+        "allow_protected":"true" if item and item.get("allow_protected") else "false",
     }
     if output:
         with open(output,"a",encoding="utf-8") as fh:
