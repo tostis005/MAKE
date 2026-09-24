@@ -1944,6 +1944,25 @@ final class Drielo_Etsy_Sync {
         if ( empty( $downloads ) ) {
             return new WP_Error( 'no_downloads', 'El producto no tiene archivos descargables asociados en WooCommerce.' );
         }
+
+        // Etsy rejects uploading the same digital file while the previous
+        // attachment is still linked to the listing. Remove old attachments
+        // first, then upload the current WooCommerce downloads.
+        if ( ! empty( $old_files['results'] ) ) {
+            foreach ( $old_files['results'] as $old_file ) {
+                $old_id = absint( $old_file['listing_file_id'] ?? 0 );
+                if ( $old_id ) {
+                    $deleted = $this->etsy_request(
+                        'DELETE',
+                        '/v3/application/shops/' . rawurlencode( $settings['shop_id'] ) . '/listings/' . rawurlencode( $listing_id ) . '/files/' . rawurlencode( $old_id )
+                    );
+                    if ( is_wp_error( $deleted ) ) {
+                        return $deleted;
+                    }
+                }
+            }
+        }
+
         $count = 0;
         foreach ( $downloads as $download ) {
             if ( $count >= 5 ) {
@@ -1996,14 +2015,6 @@ final class Drielo_Etsy_Sync {
         }
         if ( 0 === $count ) {
             return new WP_Error( 'no_valid_downloads', 'No se encontró ningún archivo válido para subir a Etsy.' );
-        }
-        if ( ! empty( $old_files['results'] ) ) {
-            foreach ( $old_files['results'] as $old_file ) {
-                $old_id = absint( $old_file['listing_file_id'] ?? 0 );
-                if ( $old_id ) {
-                    $this->etsy_request( 'DELETE', '/v3/application/shops/' . rawurlencode( $settings['shop_id'] ) . '/listings/' . rawurlencode( $listing_id ) . '/files/' . rawurlencode( $old_id ) );
-                }
-            }
         }
         return true;
     }
