@@ -9,17 +9,22 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: drielo-pop-art-price-update
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   update-prices:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: feature/pop-art-resto-24
+
       - name: Configure SSH
         env:
           VPS_HOST: ${{ secrets.VPS_HOST }}
@@ -124,8 +129,11 @@ jobs:
           set -euo pipefail
           if docker inspect make-wp >/dev/null 2>&1; then
             DOCKER=(docker)
-          else
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
             DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
           fi
           "${DOCKER[@]}" exec make-wp php -r '
             require "/var/www/html/wp-load.php";
@@ -149,8 +157,8 @@ jobs:
               if(!preg_match("/^DRIELO-P\\d{4}-(CS|C2C|TC|LH)$/",$sku,$m)) continue;
               $checked++;
               $suffix=$m[1];
-              $actual=(string)$p->get_price();
-              if(bccomp($actual,$expected[$suffix],2)!==0){
+              $actual=number_format((float)$p->get_price(),2,".","");
+              if($actual!==$expected[$suffix]){
                 echo "BAD ".$sku." actual=".$actual." expected=".$expected[$suffix].PHP_EOL;
                 $bad++;
               }
@@ -159,3 +167,26 @@ jobs:
             if($checked!==104 || $bad!==0) exit(4);
           '
           REMOTE
+
+      - name: Record successful live verification
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p content/products
+          cat > content/products/pop-art-price-live-verification.json <<JSON
+          {
+            "status": "verified",
+            "products_checked": 104,
+            "cross_stitch": 5.99,
+            "c2c_crochet": 4.99,
+            "tapestry_crochet": 4.49,
+            "latch_hook": 3.99,
+            "source_commit": "${GITHUB_SHA}",
+            "verified_at_utc": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          JSON
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/products/pop-art-price-live-verification.json
+          git commit -m "Verify live Pop Art prices [skip ci]"
+          git push origin HEAD:feature/pop-art-resto-24
