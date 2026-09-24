@@ -156,6 +156,23 @@
         "tapestry-crochet",
         "latch-hook"
       ]
+    },
+    {
+      "id": "iconic-destinations",
+      "name": "Iconic Destinations",
+      "slug": "iconic-destinations",
+      "name_en": "Iconic Destinations",
+      "name_es": "Destinos icónicos",
+      "description": "A premium collection of iconic cities, landmarks, heritage sites and natural destinations. Every design uses its own colour palette.",
+      "description_en": "A premium collection of iconic cities, landmarks, heritage sites and natural destinations. Every design uses its own colour palette.",
+      "description_es": "Colección premium de ciudades, monumentos, lugares históricos y destinos naturales emblemáticos. Cada diseño utiliza su propia paleta de color.",
+      "palette_mode": "per-design",
+      "show_collection_palette": false,
+      "palette_hex": [],
+      "thread_codes": [],
+      "techniques": [
+        "cross-stitch"
+      ]
     }
   ],
   "categories": [
