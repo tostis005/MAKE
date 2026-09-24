@@ -98,11 +98,12 @@
       "title_es": "Gatito atigrado",
       "slug": "tabby-kitten-bow",
       "source_asset": "collections/baby-nursery/source-designs/I0017-tabby-kitten-bow.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null,
-      "published_at": null
+      "status": "failed",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36066623622",
+      "last_error": "Automatic publish run failed; see GitHub Actions logs.",
+      "published_at": null,
+      "failed_at": "2026-09-24T22:22:23+00:00"
     },
     {
       "order": 7,
