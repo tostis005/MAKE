@@ -15,14 +15,14 @@
         "F0001-TC",
         "F0001-LH"
       ],
-      "artwork_status": "manual-cross-stitch-test-ready",
+      "artwork_status": "approved-pattern-source-ready",
       "source_asset": "collections/florals/source-designs/F0001-blue-daisy-pitcher.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-01.png",
         "cell": "r1c1"
       },
       "reference_asset": "collections/florals/source-designs/F0001-blue-daisy-pitcher.png",
-      "design_note": "Manual cross-stitch redesign from the high-resolution approved Blue Daisy Pitcher reference. The exact 100x120 stitch source is the canonical preview reference; compact reference-sheet derivatives are not used."
+      "design_note": "Approved high-quality 100x120 stitch source based on the regenerated Blue Daisy Pitcher. This source is authoritative for all four technique variants; do not rebuild it from compact reference sheets."
     },
     {
       "order": 2,
