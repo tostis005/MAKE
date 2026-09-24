@@ -68,17 +68,24 @@ jobs:
               echo "ACTION_SCHEDULER_API=missing".PHP_EOL;
             }
 
-            global $wpdb;
-            $ids=$wpdb->get_col("SELECT post_id FROM {$wpdb->postmeta} WHERE meta_key='_drielo_etsy_queue_state' AND meta_value<>''");
-            $counts=array();
-            foreach($ids as $id){
-              $state=(string)get_post_meta($id,"_drielo_etsy_queue_state",true);
-              $counts[$state]=($counts[$state]??0)+1;
+            $run_ids=array_values(array_filter(array_map("absint",(array)($run["product_ids"]??array()))));
+            $rows=array();
+            foreach($run_ids as $id){
+              $p=wc_get_product($id);
+              $rows[]=array(
+                "id"=>$id,
+                "sku"=>$p?$p->get_sku():"",
+                "queue_state"=>(string)get_post_meta($id,"_drielo_etsy_queue_state",true),
+                "batch_id"=>(string)get_post_meta($id,"_drielo_etsy_batch_id",true),
+                "batch_state"=>(string)get_post_meta($id,"_drielo_etsy_batch_state",true),
+                "batch_message"=>(string)get_post_meta($id,"_drielo_etsy_batch_message",true),
+                "listing_id"=>(string)get_post_meta($id,"_drielo_etsy_listing_id",true),
+                "last_error"=>(string)get_post_meta($id,"_drielo_etsy_last_error",true),
+                "last_warning"=>(string)get_post_meta($id,"_drielo_etsy_last_warning",true),
+                "last_sync"=>(string)get_post_meta($id,"_drielo_etsy_last_sync",true),
+              );
             }
-            echo "QUEUE_STATES=".wp_json_encode($counts).PHP_EOL;
-
-            $listing_ids=$wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->postmeta} WHERE meta_key='_drielo_etsy_listing_id' AND meta_value<>''");
-            echo "LOCAL_LISTING_IDS=".$listing_ids.PHP_EOL;
+            echo "RUN_PRODUCTS=".wp_json_encode($rows).PHP_EOL;
 
             echo "DISABLE_WP_CRON=".(defined("DISABLE_WP_CRON")&&DISABLE_WP_CRON?"yes":"no").PHP_EOL;
             echo "DOING_CRON=".(defined("DOING_CRON")&&DOING_CRON?"yes":"no").PHP_EOL;
