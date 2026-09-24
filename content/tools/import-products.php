@@ -178,12 +178,23 @@ foreach ( (array) ( $catalog['collections'] ?? array() ) as $collection ) {
     $term_id = $term instanceof WP_Term ? (int) $term->term_id : drielo_term( 'product_collection', $name, $slug );
     wp_update_term( $term_id, 'product_collection', array( 'name' => $name, 'slug' => $slug, 'description' => (string) ( $collection['description'] ?? '' ) ) );
 
+    $palette_mode = sanitize_key( (string) ( $collection['palette_mode'] ?? 'shared' ) );
+    if ( ! in_array( $palette_mode, array( 'shared', 'per-design' ), true ) ) {
+        $palette_mode = 'shared';
+    }
+    $show_collection_palette = array_key_exists( 'show_collection_palette', $collection )
+        ? (bool) $collection['show_collection_palette']
+        : ( 'shared' === $palette_mode );
+    $thread_codes = array_values( array_filter( array_map( 'sanitize_text_field', (array) ( $collection['thread_codes'] ?? array() ) ) ) );
+
     update_term_meta( $term_id, 'drielo_name_es', sanitize_text_field( (string) ( $collection['name_es'] ?? '' ) ) );
     update_term_meta( $term_id, 'drielo_name_en', sanitize_text_field( (string) ( $collection['name_en'] ?? $name ) ) );
     update_term_meta( $term_id, 'drielo_description_es', sanitize_text_field( (string) ( $collection['description_es'] ?? '' ) ) );
     update_term_meta( $term_id, 'drielo_description_en', sanitize_text_field( (string) ( $collection['description_en'] ?? ( $collection['description'] ?? '' ) ) ) );
+    update_term_meta( $term_id, 'drielo_palette_mode', $palette_mode );
+    update_term_meta( $term_id, 'drielo_show_collection_palette', $show_collection_palette ? '1' : '0' );
     update_term_meta( $term_id, 'drielo_palette_hex', implode( ', ', (array) ( $collection['palette_hex'] ?? array() ) ) );
-    update_term_meta( $term_id, 'drielo_thread_codes', 'DMC ' . implode( ', ', (array) ( $collection['thread_codes'] ?? array() ) ) );
+    update_term_meta( $term_id, 'drielo_thread_codes', empty( $thread_codes ) ? '' : 'DMC ' . implode( ', ', $thread_codes ) );
 
     foreach ( (array) ( $collection['previous_slugs'] ?? array() ) as $previous_slug ) {
         $legacy = get_term_by( 'slug', sanitize_title( (string) $previous_slug ), 'product_collection' );
