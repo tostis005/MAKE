@@ -197,7 +197,9 @@
       ],
       "artwork_status": "canonical-reference-ready",
       "reference_asset": "collections/animals/reference-masters/A0011-owl-floral-branch-reference.png",
-      "source_asset": "collections/animals/source-designs/A0011-owl-floral-branch.png"
+      "source_asset": "collections/animals/source-designs/A0011-owl-floral-branch.png",
+      "product_status": "ready",
+      "transparent_background": true
     },
     {
       "order": 12,
