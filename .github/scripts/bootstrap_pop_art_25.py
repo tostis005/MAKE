@@ -171,7 +171,7 @@ def row_for(base,suffix,data):
       'short_description':short,'short_description_en':short,'short_description_es':short_es,
       'description':desc,'description_en':desc,'description_es':desc_es,'categories':cats,'tags':tags,
       'etsy_tags_en':tags,'etsy_tags_es':tags,'gallery':[],'featured_image':f'assets/{code}-product.webp',
-      'download':f'files/Drielo_{code}.pdf','gallery_revision':2026092403,
+      'download':f'files/Drielo_{code}.pdf','gallery_revision':2026092404,
       'seo_title':f'{title_en} {display_en} Pattern PDF | Drielo','seo_title_en':f'{title_en} {display_en} Pattern PDF | Drielo',
       'seo_title_es':f'{title_es} - patrón {display_es} PDF | Drielo',
       'meta_description':f'{title_en} {display_en} PDF {code}: {w} × {h}, {colors} colours from a fixed 25-colour palette.',
