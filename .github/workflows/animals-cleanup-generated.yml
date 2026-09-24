@@ -10,9 +10,10 @@ on:
 
 permissions:
   contents: read
+  actions: write
 
 concurrency:
-  group: drielo-animals-branch-auto-publish
+  group: drielo-animals-cleanup
   cancel-in-progress: true
 
 jobs:
@@ -21,6 +22,20 @@ jobs:
     timeout-minutes: 20
 
     steps:
+      - name: Cancel active Animals publisher runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          runs="$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs?branch=feature%2Fanimals-auto-publish&per_page=50")"
+          echo "$runs" | jq -r '.workflow_runs[] | select(.name=="Animals Branch Auto Publish Queue" and (.status=="queued" or .status=="pending" or .status=="in_progress")) | .id' | while read -r run_id; do
+            [ -n "$run_id" ] || continue
+            echo "Cancelling Animals publisher run $run_id"
+            gh api --method POST "repos/${GITHUB_REPOSITORY}/actions/runs/${run_id}/cancel" || true
+          done
+          sleep 3
+
       - name: Configure SSH
         env:
           VPS_HOST: ${{ secrets.VPS_HOST }}
