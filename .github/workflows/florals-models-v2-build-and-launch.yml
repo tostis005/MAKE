@@ -1,0 +1,192 @@
+name: Florals Models V2 Build and Launch
+
+on:
+  push:
+    branches:
+      - feature/florals-models-v2-clean
+    paths:
+      - '.github/workflows/florals-models-v2-build-and-launch.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: drielo-florals-models-v2-build
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout clean Models V2 branch
+        uses: actions/checkout@v4
+        with:
+          ref: feature/florals-models-v2-clean
+          fetch-depth: 20
+
+      - name: Install source-builder dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow numpy
+
+      - name: Download the five approved Models V2 sheets
+        shell: bash
+        run: |
+          set -euo pipefail
+          D='content/pattern-system/collections/florals/model-sheets-v2'
+          mkdir -p "$D"
+
+          curl -fsSL --retry 3 'https://sdmntprwestcentralus.oaiusercontent.com/files/00000000-6034-81fb-a5ed-2f409273b567/raw?se=2026-09-24T19%3A51%3A24Z&sp=r&sv=2026-02-06&sr=b&scid=dd72ab5b-b093-5ed0-8bf7-f7fca09b99cc&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T19%3A37%3A32Z&ske=2026-09-25T19%3A37%3A32Z&sks=b&skv=2026-02-06&sig=iXacH059GmlANXB0WXJvR3M0gJinKQaZYyca1WkRjfk%3D' -o "$D/model1.png"
+          curl -fsSL --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-c464-820e-b671-2d9f93c5ac66/raw?se=2026-09-24T19%3A51%3A20Z&sp=r&sv=2026-02-06&sr=b&scid=90c68cb0-08df-544f-a08a-fe99348ca3b0&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T18%3A54%3A25Z&ske=2026-09-25T18%3A54%3A25Z&sks=b&skv=2026-02-06&sig=j9tvQGdk6gkMgsI2/uHmEd9GyjcIUD0H2wKz8kKS98M%3D' -o "$D/model2.png"
+          curl -fsSL --retry 3 'https://sdmntpreastus2.oaiusercontent.com/files/00000000-f198-81f6-ab78-b48958ba71cc/raw?se=2026-09-24T19%3A51%3A18Z&sp=r&sv=2026-02-06&sr=b&scid=dd6056c7-63e3-53fd-afa1-a49877657dd6&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T17%3A54%3A41Z&ske=2026-09-25T17%3A54%3A41Z&sks=b&skv=2026-02-06&sig=t%2Bvvwphfjt7SDiFfqTLwacwczVh1Wsn3ykcPOkEZJDQ%3D' -o "$D/model3.png"
+          curl -fsSL --retry 3 'https://sdmntprnortheu.oaiusercontent.com/files/00000000-e61c-81f4-8cb9-16aaf375a1e5/raw?se=2026-09-24T19%3A51%3A15Z&sp=r&sv=2026-02-06&sr=b&scid=694d6658-b9ee-502e-b9a7-8d93c213afdb&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T19%3A44%3A13Z&ske=2026-09-25T19%3A44%3A13Z&sks=b&skv=2026-02-06&sig=0MC7TfcOT1mN0TKww59R9zPKBsqG3x0O8ZDJlq4rFps%3D' -o "$D/model4.png"
+          curl -fsSL --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-5cc8-820e-aa0b-f282ac4e6347/raw?se=2026-09-24T19%3A51%3A10Z&sp=r&sv=2026-02-06&sr=b&scid=4fb05013-75a5-5c2d-b935-832c5f98b3cd&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T19%3A44%3A13Z&ske=2026-09-25T19%3A44%3A13Z&sks=b&skv=2026-02-06&sig=4C8EmXSDFV5VCJl3WuWtW7Qg7O%2BYNHJZ0RdhZSmApCA%3D' -o "$D/model5.png"
+
+      - name: Validate the five model sheets
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+
+          d=Path('content/pattern-system/collections/florals/model-sheets-v2')
+          for i in range(1,6):
+              p=d/f'model{i}.png'
+              im=Image.open(p).convert('RGBA')
+              if im.size != (1448,1086):
+                  raise SystemExit(f'{p.name}: unexpected dimensions {im.size}')
+              if im.getchannel('A').getbbox() is None:
+                  raise SystemExit(f'{p.name}: empty image')
+              print(p.name,p.stat().st_size,im.size)
+          print('FLORALS_MODELS_V2_SHEETS_VALID=5')
+          PY
+
+      - name: Build 30 clean canonical 100x120 sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/florals/build_from_model_sheets_v2.py
+
+      - name: Build all 120 pattern and product JSONs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/florals/build_collection.py
+
+      - name: Reset sequential publish queue
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('content/pattern-system/florals/publish_queue.json')
+          q=json.loads(p.read_text(encoding='utf-8'))
+          q['auto_continue']=True
+          q['max_attempts_per_design']=2
+          for item in q['items']:
+              item['status']='pending'
+              item['attempts']=0
+              item['last_run']=None
+              item['last_error']=None
+              item.pop('published_at',None)
+              item.pop('failed_at',None)
+          p.write_text(json.dumps(q,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+
+      - name: Validate Models V2 sources and 120 JSON pairs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+
+          root=Path('content/pattern-system')
+          col=json.loads((root/'collections/florals/collection.json').read_text(encoding='utf-8'))
+          designs=json.loads((root/'collections/florals/designs.json').read_text(encoding='utf-8'))['designs']
+          report=json.loads((root/'florals/models_v2_report.json').read_text(encoding='utf-8'))
+          q=json.loads((root/'florals/publish_queue.json').read_text(encoding='utf-8'))
+
+          palette={tuple(int(p['hex'][i:i+2],16) for i in (1,3,5)) for p in col['palette']}
+          dmc={str(p['dmc']) for p in col['palette']}
+          grids={'CS':(100,120),'C2C':(60,72),'TC':(80,96),'LH':(60,72)}
+
+          if len(designs)!=30 or report.get('design_count')!=30:
+              raise SystemExit('Expected exactly 30 Models V2 designs')
+          if not q.get('auto_continue') or len(q.get('items',[]))!=30:
+              raise SystemExit('Sequential queue was not initialized')
+          if any(x.get('status')!='pending' or x.get('attempts')!=0 for x in q['items']):
+              raise SystemExit('Queue must start fully pending')
+
+          total=0
+          for design in designs:
+              bid=design['base_design_id']
+              if design.get('artwork_status')!='approved-model-v2-source-ready':
+                  raise SystemExit(f'{bid}: wrong artwork status')
+              src=root/design['source_asset']
+              im=Image.open(src).convert('RGBA')
+              if im.size!=(100,120) or im.getchannel('A').getbbox() is None:
+                  raise SystemExit(f'{bid}: invalid canonical source')
+              colors={(r,g,b) for r,g,b,a in im.getdata() if a>=128}
+              if not colors.issubset(palette):
+                  raise SystemExit(f'{bid}: source contains non-palette colours')
+              if not (1 <= len(colors) <= 14):
+                  raise SystemExit(f'{bid}: source uses {len(colors)} colours')
+
+              for suffix,(w,h) in grids.items():
+                  code=f'{bid}-{suffix}'
+                  pp=root/'patterns'/code/'pattern.json'
+                  pr=root/'products'/code/'product.json'
+                  if not pp.is_file() or not pr.is_file():
+                      raise SystemExit(f'{code}: JSON pair missing')
+                  pat=json.loads(pp.read_text(encoding='utf-8'))
+                  prod=json.loads(pr.read_text(encoding='utf-8'))
+                  if pat.get('collection')!='florals' or prod.get('collection')!='florals':
+                      raise SystemExit(f'{code}: wrong collection')
+                  if (pat.get('stitch_width'),pat.get('stitch_height'))!=(w,h):
+                      raise SystemExit(f'{code}: wrong grid')
+                  if len(pat.get('matrix',[]))!=h or any(len(row)!=w for row in pat['matrix']):
+                      raise SystemExit(f'{code}: malformed matrix')
+                  if not pat.get('threads') or len(pat['threads'])>14:
+                      raise SystemExit(f'{code}: invalid colour count')
+                  if any(str(t.get('dmc')) not in dmc for t in pat['threads']):
+                      raise SystemExit(f'{code}: thread outside collection palette')
+                  total+=1
+
+          if total!=120:
+              raise SystemExit(f'Expected 120 patterns, got {total}')
+          print('FLORALS_MODELS_V2_PATTERN_SET_VALID=120')
+          PY
+
+      - name: Commit Models V2 source set and JSONs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add             content/pattern-system/collections/florals/model-sheets-v2             content/pattern-system/collections/florals/source-designs             content/pattern-system/collections/florals/designs.json             content/pattern-system/florals/models_v2_report.json             content/pattern-system/florals/generation_status.json             content/pattern-system/florals/publish_queue.json             content/pattern-system/patterns/F*             content/pattern-system/products/F*
+
+          if ! git diff --cached --quiet; then
+            git commit -m "Build clean Florals Models V2 30x4 source and JSON set [skip ci]"
+            git fetch --depth=20 origin feature/florals-models-v2-clean
+            git rebase origin/feature/florals-models-v2-clean
+            git push origin HEAD:feature/florals-models-v2-clean
+          fi
+
+      - name: Launch sequential Models V2 import
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api --method POST             "repos/${GITHUB_REPOSITORY}/actions/workflows/florals-models-v2-publish.yml/dispatches"             -f ref=feature/florals-models-v2-clean
+          echo "FLORALS_MODELS_V2_IMPORT_DISPATCHED"
