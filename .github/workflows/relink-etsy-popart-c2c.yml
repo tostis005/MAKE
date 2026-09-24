@@ -38,7 +38,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          OUT=$(ssh -i ~/.ssh/drielo_etsy_relink_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set +e
+          OUT=$(ssh -i ~/.ssh/drielo_etsy_relink_key "$VPS_USER@$VPS_HOST" 'bash -s' 2>&1 <<'REMOTE'
           set -euo pipefail
           if docker inspect make-wp >/dev/null 2>&1; then
             DOCKER=(docker)
@@ -329,9 +330,15 @@ jobs:
           '
           REMOTE
           )
+          RC=$?
+          set -e
           printf '%s\n' "$OUT"
 
-          REPORT=$(printf '%s\n' "$OUT" | grep -E '^(PREFLIGHT_OK|C2C_SECTION_ID|SUCCESS_COUNT|FAILED_COUNT|SUCCESS=|FAILED=)' || true)
+          if [ "$RC" -eq 0 ]; then
+            REPORT=$(printf '%s\n' "$OUT" | grep -E '^(PREFLIGHT_OK|C2C_SECTION_ID|SUCCESS_COUNT|FAILED_COUNT|SUCCESS=|FAILED=)' || true)
+          else
+            REPORT=$(printf '%s\n' "$OUT" | tail -n 80)
+          fi
           BODY=$(printf '### Etsy Pop Art C2C relink result\n\n```text\n%s\n```\n' "$REPORT")
           PAYLOAD=$(jq -n --arg body "$BODY" '{body:$body}')
           curl -fsS -X POST \
@@ -340,3 +347,4 @@ jobs:
             -H "X-GitHub-Api-Version: 2022-11-28" \
             "https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/${PR_NUMBER}/comments" \
             -d "$PAYLOAD" >/dev/null
+          exit "$RC"
