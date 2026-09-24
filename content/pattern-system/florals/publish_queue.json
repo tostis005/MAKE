@@ -8,9 +8,10 @@
       "title_en": "Blue Daisy Pitcher",
       "slug": "blue-daisy-pitcher",
       "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35989425729",
+      "last_error": "Automatic Florals publish run failed; see GitHub Actions logs.",
+      "failed_at": "2026-09-24T10:50:59+00:00"
     },
     {
       "base_design_id": "F0002",
