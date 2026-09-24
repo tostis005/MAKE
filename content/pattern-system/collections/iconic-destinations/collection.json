@@ -1,0 +1,94 @@
+{
+  "id": "iconic-destinations",
+  "name": "Iconic Destinations",
+  "name_en": "Iconic Destinations",
+  "name_es": "Destinos icónicos",
+  "slug": "iconic-destinations",
+  "code_prefix": "D",
+  "description": "A premium collection of iconic cities, landmarks, heritage sites and natural destinations. Each design uses its own colour palette so the artwork can preserve the character and atmosphere of the place.",
+  "description_en": "A premium collection of iconic cities, landmarks, heritage sites and natural destinations. Each design uses its own colour palette so the artwork can preserve the character and atmosphere of the place.",
+  "description_es": "Colección premium de ciudades, monumentos, lugares históricos y destinos naturales emblemáticos. Cada diseño utiliza su propia paleta para conservar el carácter y la atmósfera de cada lugar.",
+  "design_count": 60,
+  "techniques": [
+    "cross-stitch"
+  ],
+  "palette_mode": "per-design",
+  "show_collection_palette": false,
+  "palette": [],
+  "color_policy": {
+    "collection_restriction": false,
+    "design_palette_source": "pattern.threads",
+    "recommended_color_range": [
+      30,
+      50
+    ],
+    "hard_color_limit": null,
+    "dmc_mapping": "per-design"
+  },
+  "canvas_rules": {
+    "master_grid": {
+      "width": 100,
+      "height": 120,
+      "max_long_side_stitches": 120
+    },
+    "target_chart_pages": 4,
+    "composition": "compact-iconic-postcard",
+    "detail_policy": "Prefer one strong focal landmark and readable silhouettes over micro-detail."
+  },
+  "mockup_spec": {
+    "asset": null,
+    "technique_assets": {
+      "CS": null
+    },
+    "status": "awaiting-approved-page-1-image",
+    "generation": {
+      "purpose": "Reusable page-1 lifestyle/ambient image for the Iconic Destinations cross-stitch collection.",
+      "frame_requirement": "Leave the craft display area empty so the final vector pattern can be inserted by the renderer.",
+      "post_generation_measurement": "Record exact source dimensions and usable area geometry after approval."
+    },
+    "frame": {
+      "enabled": false,
+      "source_px": {
+        "width": 0,
+        "height": 0
+      },
+      "area_px": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "padding_ratio": 0.055,
+      "fabric": {
+        "color": "#F7F3EA",
+        "kind": "aida",
+        "count_visual_reference": 14
+      }
+    }
+  },
+  "preview_rules": {
+    "vector": true,
+    "transparent_pattern_background_on_cover": false,
+    "cross_margin_ratio": 0.02,
+    "stroke_width_ratio": 0.34,
+    "linecap": "round",
+    "fit": "contain",
+    "center": true,
+    "low_resolution_priority": false,
+    "fabric": {
+      "color": "#FBFAF6",
+      "dot": "#DDD8CF",
+      "dot_radius": 0.05
+    },
+    "palette_style": "per-design-dmc",
+    "palette_mode": "per-design",
+    "preserve_design_palette": true
+  },
+  "design_reference": {
+    "status": "concept-boards-approved",
+    "manifest": "collections/iconic-destinations/reference-boards.json",
+    "purpose": "Use the approved 10 six-panel concept boards as visual direction when creating the final individual source images.",
+    "final_source_requirement": "Create each destination as an individual full-size source before pattern conversion; do not crop the six-panel boards into production artwork.",
+    "target": "100x120 master-grid composition, four chart pages, palette chosen independently for each design."
+  }
+}
