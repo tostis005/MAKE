@@ -1,6 +1,6 @@
 name: Baby Nursery Sequential Rebuild
 # rollout-generation: ACTIVE-sequential-kawaii-v1-2026-09-24
-# strict one-design-per-run; no queue push triggers; no mid-publish cancellation
+# strict one-design-per-run; exact approved 11 only; active pattern templates are preserved
 # Pop Art-style featured + 3 gallery previews
 
 on:
@@ -88,54 +88,22 @@ jobs:
           python3 content/pattern-system/baby_nursery/queue_state.py summary
           echo "Selected: ${{ steps.select.outputs.design_id }}"
 
-      - name: Purge legacy Infantil files from this branch
-        if: steps.select.outputs.design_id == 'I0001'
+      - name: Verify active queue contains only approved 11
         shell: bash
         run: |
           set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          rm -rf content/pattern-system/collections/baby-nursery/source-designs/*
-          rm -rf content/pattern-system/collections/baby-nursery/reference-masters/*
-          rm -rf content/pattern-system/patterns/I????-CS content/pattern-system/patterns/I????-C2C content/pattern-system/patterns/I????-TC content/pattern-system/patterns/I????-LH
-          rm -rf content/pattern-system/products/I????-CS content/pattern-system/products/I????-C2C content/pattern-system/products/I????-TC content/pattern-system/products/I????-LH
-          rm -f content/products/assets/I????-CS-*.webp content/products/assets/I????-C2C-*.webp content/products/assets/I????-TC-*.webp content/products/assets/I????-LH-*.webp
-          rm -f content/products/files/Drielo_I????-CS.pdf content/products/files/Drielo_I????-C2C.pdf content/products/files/Drielo_I????-TC.pdf content/products/files/Drielo_I????-LH.pdf
-
-          find content/pattern-system/collections/baby-nursery/reference-library -maxdepth 1 -type f \
-            ! -name 'manifest.json' \
-            ! -name 'I0001-teddy-bear.json' \
-            ! -name 'direct-reference-bundle-v4.part00' \
-            ! -name 'direct-reference-bundle-v4.part01' \
-            ! -name 'direct-reference-bundle-v4.part02' \
-            ! -name 'direct-reference-bundle-v4.part03' \
-            ! -name 'direct-reference-bundle-v4.part04' \
-            ! -name 'direct-reference-bundle-v4.part05' \
-            -delete
-
-          rm -f .github/workflows/baby-nursery-auto-publish.yml
-          rm -f .github/workflows/baby-nursery-premium-edge-refinement.yml
-
-          git add -A \
-            content/pattern-system/collections/baby-nursery/source-designs \
-            content/pattern-system/collections/baby-nursery/reference-masters \
-            content/pattern-system/collections/baby-nursery/reference-library \
-            content/pattern-system/patterns \
-            content/pattern-system/products \
-            content/products/assets \
-            content/products/files \
-            .github/workflows/baby-nursery-auto-publish.yml \
-            .github/workflows/baby-nursery-premium-edge-refinement.yml 2>/dev/null || true
-
-          if git diff --cached --quiet; then
-            echo "No legacy Infantil repository files remain."
-          else
-            git commit -m "Remove legacy Infantil generated files [skip ci]"
-            git fetch origin feature/baby-nursery-sequential-rebuild
-            git rebase origin/feature/baby-nursery-sequential-rebuild
-            git push origin HEAD:feature/baby-nursery-sequential-rebuild
-          fi
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          q=json.loads(Path("content/pattern-system/baby_nursery/publish_queue.json").read_text(encoding="utf-8"))
+          ids=[x["base_design_id"] for x in q["items"]]
+          expected=[f"I{i:04d}" for i in range(1,12)]
+          if ids!=expected or len(q["items"])!=11:
+              raise SystemExit(f"Unexpected Infantil queue: {ids}")
+          if any(x.get("status") not in {"pending","published","failed"} for x in q["items"]):
+              raise SystemExit("Unexpected queue status")
+          print("QUEUE_APPROVED_11_OK",ids)
+          PY
 
       - name: Configure SSH for sequential publishing
         if: steps.select.outputs.design_id != ''
