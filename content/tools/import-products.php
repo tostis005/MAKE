@@ -305,7 +305,13 @@ foreach ( (array) ( $catalog['products'] ?? array() ) as $row ) {
     $product->set_sku( $sku );
     $product->set_status( 'publish' );
     $product->set_catalog_visibility( 'visible' );
-    $product->set_regular_price( number_format( (float) ( $row['price'] ?? 4.99 ), 2, '.', '' ) );
+    $catalogue_price = (float) ( $row['price'] ?? 4.99 );
+    $row_sku = (string) ( $row['sku'] ?? '' );
+    $row_technique = sanitize_key( (string) ( $row['filters']['technique'] ?? $row['technique'] ?? '' ) );
+    if ( 'cross-stitch' === $row_technique || preg_match( '/-CS$/', $row_sku ) ) {
+        $catalogue_price = 2.99;
+    }
+    $product->set_regular_price( number_format( $catalogue_price, 2, '.', '' ) );
     $product->set_virtual( true );
     $product->set_downloadable( true );
     $product->set_sold_individually( true );
