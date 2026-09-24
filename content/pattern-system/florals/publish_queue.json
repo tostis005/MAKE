@@ -118,9 +118,10 @@
       "title_en": "Rose Teacup",
       "slug": "rose-teacup",
       "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35981407020",
+      "last_error": "Automatic Florals publish job failed; see GitHub Actions logs.",
+      "failed_at": "2026-09-24T09:42:48+00:00"
     },
     {
       "base_design_id": "F0013",
