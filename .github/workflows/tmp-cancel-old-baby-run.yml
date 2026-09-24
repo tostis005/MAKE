@@ -1,0 +1,17 @@
+name: TEMP Cancel Old Baby Run
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tmp-cancel-old-baby-run.yml'
+permissions:
+  actions: write
+jobs:
+  cancel:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel old Baby Nursery run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/actions/runs/35981010191/cancel" || true
