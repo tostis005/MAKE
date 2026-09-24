@@ -1,6 +1,6 @@
 {
   "collection": "florals",
-  "auto_continue": false,
+  "auto_continue": true,
   "max_attempts_per_design": 2,
   "items": [
     {
@@ -16,7 +16,7 @@
       "base_design_id": "F0002",
       "title_en": "Pink Peony",
       "slug": "pink-peony",
-      "status": "pending",
+      "status": "awaiting-approved-source",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -25,7 +25,7 @@
       "base_design_id": "F0003",
       "title_en": "Lavender Ribbon Bundle",
       "slug": "lavender-ribbon-bundle",
-      "status": "pending",
+      "status": "awaiting-approved-source",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -34,7 +34,7 @@
       "base_design_id": "F0004",
       "title_en": "Sunflower Stem",
       "slug": "sunflower-stem",
-      "status": "pending",
+      "status": "awaiting-approved-source",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -43,7 +43,7 @@
       "base_design_id": "F0005",
       "title_en": "Blue Hydrangea",
       "slug": "blue-hydrangea",
-      "status": "pending",
+      "status": "awaiting-approved-source",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -52,7 +52,7 @@
       "base_design_id": "F0006",
       "title_en": "Cherry Blossom Branch",
       "slug": "cherry-blossom-branch",
-      "status": "pending",
+      "status": "awaiting-approved-source",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -61,7 +61,7 @@
       "base_design_id": "F0007",
       "title_en": "Pink Floral Heart Wreath",
       "slug": "pink-floral-heart-wreath",
-      "status": "pending",
+      "status": "awaiting-approved-source",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -70,7 +70,7 @@
       "base_design_id": "F0008",
       "title_en": "Daisy Mason Jar",
       "slug": "daisy-mason-jar",
-      "status": "pending",
+      "status": "awaiting-approved-source",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -79,7 +79,7 @@
       "base_design_id": "F0009",
       "title_en": "Eucalyptus Ribbon Bundle",
       "slug": "eucalyptus-ribbon-bundle",
-      "status": "pending",
+      "status": "awaiting-approved-source",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -88,7 +88,7 @@
       "base_design_id": "F0010",
       "title_en": "Potted Strawberry Plant",
       "slug": "potted-strawberry-plant",
-      "status": "pending",
+      "status": "awaiting-approved-source",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -97,7 +97,7 @@
       "base_design_id": "F0011",
       "title_en": "Wrapped Wildflower Bouquet",
       "slug": "wrapped-wildflower-bouquet",
-      "status": "pending",
+      "status": "awaiting-approved-source",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -106,7 +106,7 @@
       "base_design_id": "F0012",
       "title_en": "Rose Teacup",
       "slug": "rose-teacup",
-      "status": "pending",
+      "status": "awaiting-approved-source",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -115,7 +115,7 @@
       "base_design_id": "F0013",
       "title_en": "Rose Ribbon Bouquet",
       "slug": "rose-ribbon-bouquet",
-      "status": "pending",
+      "status": "awaiting-approved-source",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -124,7 +124,7 @@
       "base_design_id": "F0014",
       "title_en": "Tulip Bouquet",
       "slug": "tulip-bouquet",
-      "status": "pending",
+      "status": "awaiting-approved-source",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -133,7 +133,7 @@
       "base_design_id": "F0015",
       "title_en": "Succulent Pot Trio",
       "slug": "succulent-pot-trio",
-      "status": "pending",
+      "status": "awaiting-approved-source",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -142,7 +142,7 @@
       "base_design_id": "F0016",
       "title_en": "Daffodil Bouquet",
       "slug": "daffodil-bouquet",
-      "status": "pending",
+      "status": "awaiting-approved-source",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -151,7 +151,7 @@
       "base_design_id": "F0017",
       "title_en": "Lilac Twine Bouquet",
       "slug": "lilac-twine-bouquet",
-      "status": "pending",
+      "status": "awaiting-approved-source",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -160,7 +160,7 @@
       "base_design_id": "F0018",
       "title_en": "Potted Lavender",
       "slug": "potted-lavender",
-      "status": "pending",
+      "status": "awaiting-approved-source",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -169,7 +169,7 @@
       "base_design_id": "F0019",
       "title_en": "Chamomile Bundle",
       "slug": "chamomile-bundle",
-      "status": "pending",
+      "status": "awaiting-approved-source",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -178,7 +178,7 @@
       "base_design_id": "F0020",
       "title_en": "Floral Watering Can",
       "slug": "floral-watering-can",
-      "status": "pending",
+      "status": "awaiting-approved-source",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -187,7 +187,7 @@
       "base_design_id": "F0021",
       "title_en": "Hanging Pink Flower Basket",
       "slug": "hanging-pink-flower-basket",
-      "status": "pending",
+      "status": "awaiting-approved-source",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -196,7 +196,7 @@
       "base_design_id": "F0022",
       "title_en": "Bluebell Bouquet",
       "slug": "bluebell-bouquet",
-      "status": "pending",
+      "status": "awaiting-approved-source",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -205,7 +205,7 @@
       "base_design_id": "F0023",
       "title_en": "Magnolia Branch",
       "slug": "magnolia-branch",
-      "status": "pending",
+      "status": "awaiting-approved-source",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -214,7 +214,7 @@
       "base_design_id": "F0024",
       "title_en": "Enamel Herb Pot",
       "slug": "enamel-herb-pot",
-      "status": "pending",
+      "status": "awaiting-approved-source",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -223,7 +223,7 @@
       "base_design_id": "F0025",
       "title_en": "Daisy Wreath",
       "slug": "daisy-wreath",
-      "status": "pending",
+      "status": "awaiting-approved-source",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -232,7 +232,7 @@
       "base_design_id": "F0026",
       "title_en": "Spring Flower Basket",
       "slug": "spring-flower-basket",
-      "status": "pending",
+      "status": "awaiting-approved-source",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -241,7 +241,7 @@
       "base_design_id": "F0027",
       "title_en": "Baby's Breath Jar",
       "slug": "babys-breath-jar",
-      "status": "pending",
+      "status": "awaiting-approved-source",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -250,7 +250,7 @@
       "base_design_id": "F0028",
       "title_en": "Carnation Bouquet",
       "slug": "carnation-bouquet",
-      "status": "pending",
+      "status": "awaiting-approved-source",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -259,7 +259,7 @@
       "base_design_id": "F0029",
       "title_en": "Anemone Bouquet",
       "slug": "anemone-bouquet",
-      "status": "pending",
+      "status": "awaiting-approved-source",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -268,7 +268,7 @@
       "base_design_id": "F0030",
       "title_en": "Forget-Me-Not Bouquet",
       "slug": "forget-me-not-bouquet",
-      "status": "pending",
+      "status": "awaiting-approved-source",
       "attempts": 0,
       "last_run": null,
       "last_error": null
