@@ -10,6 +10,7 @@ on:
       - 'content/pattern-system/baby_nursery/generate_reference_master.py'
       - 'content/pattern-system/baby_nursery/publish_design.py'
       - 'content/pattern-system/collections/baby-nursery/collection.json'
+      - 'content/pattern-system/baby_nursery/publish_queue.json'
       - '.github/workflows/baby-nursery-premium-edge-refinement.yml'
 
 permissions:
@@ -20,9 +21,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  refine:
+  refine-and-preview:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 150
     steps:
       - name: Checkout refinement branch
         uses: actions/checkout@v4
@@ -33,6 +34,7 @@ jobs:
       - name: Capture baseline stitch counts
         shell: bash
         run: |
+          set -euo pipefail
           python3 - <<'PY'
           import json
           from pathlib import Path
@@ -65,7 +67,7 @@ jobs:
             python3 content/pattern-system/baby_nursery/publish_design.py "$DESIGN"
           done
 
-      - name: Premium edge and density QA
+      - name: Strict palette, edge and density QA
         shell: bash
         run: |
           set -euo pipefail
@@ -82,10 +84,21 @@ jobs:
 
           collection=json.loads((system/"collections"/"baby-nursery"/"collection.json").read_text(encoding="utf-8"))
           palette=collection["palette"]
+          if len(palette)!=24:
+              raise SystemExit(f"Expected exactly 24 approved colours, got {len(palette)}")
+          if not collection.get("palette_enforcement",{}).get("enabled"):
+              raise SystemExit("Strict palette enforcement is not enabled")
+
           alphabet=list("ABCDEFGHJKLMNPQRSTUVWXYZ23456789")
+          allowed_rgbs={
+              tuple(int(p["hex"].lstrip("#")[i:i+2],16) for i in (0,2,4))
+              for p in palette
+          }
+          allowed_hex={p["hex"].upper() for p in palette}
+          allowed_dmc={str(p["dmc"]) for p in palette}
+
           rule=collection["pattern_rules"]["premium_refinement"]
           baseline=json.loads(Path("/tmp/baby-nursery-baseline.json").read_text(encoding="utf-8"))
-
           min_stitches=int(rule["target_stitches_min"])
           max_stitches=int(rule["target_stitches_max"])
           tolerance=int(rule.get("target_tolerance_cells",240))
@@ -97,7 +110,9 @@ jobs:
           report={
               "version":3,
               "branch":"feature/baby-nursery-premium-edge-refinement",
-              "policy":"stitch-native palette-mask supersampling; transparent exterior; no raster paste",
+              "palette_mode":"exact-approved-24-colour-palette",
+              "palette":[{"dmc":str(p["dmc"]),"hex":p["hex"].upper(),"name":p["name"]} for p in palette],
+              "policy":"stitch-native palette-mask supersampling; transparent exterior; no raster paste; exact collection palette",
               "designs":[]
           }
 
@@ -110,27 +125,51 @@ jobs:
               matrix=pat["matrix"]
               if len(matrix)!=120 or any(len(row)!=100 for row in matrix):
                   raise SystemExit(f"{design}: malformed CS matrix")
+
+              for t in pat.get("threads",[]):
+                  if str(t.get("dmc")) not in allowed_dmc:
+                      raise SystemExit(f"{design}: unapproved DMC in pattern: {t.get('dmc')}")
+                  if str(t.get("color","")).upper() not in allowed_hex:
+                      raise SystemExit(f"{design}: unapproved thread colour: {t.get('color')}")
+
               rows=["".join("." if c is None else c for c in row) for row in matrix]
               quality=edge_quality(rows,palette,alphabet,white_distance=float(rule["source_edge_cleanup"]["white_distance"]))
               stitches=int(pat.get("total_stitches",0))
               if stitches < min_stitches-tolerance or stitches > max_stitches+tolerance:
                   raise SystemExit(f"{design}: stitch density {stitches} outside premium range")
               if quality["isolated_cells"] > max_isolated:
-                  raise SystemExit(f"{design}: isolated edge/detail cells {quality['isolated_cells']} > {max_isolated}")
+                  raise SystemExit(f"{design}: isolated cells {quality['isolated_cells']} > {max_isolated}")
+
               prem=pat.get("premium_refinement") or {}
               if not prem.get("enabled") or prem.get("version")!=3 or not prem.get("stitch_native"):
                   raise SystemExit(f"{design}: premium v3 metadata missing")
 
+              for kind,path in (
+                  ("source",system/"collections"/"baby-nursery"/"source-designs"/f"{design}-{meta['slug']}.png"),
+                  ("reference",system/"collections"/"baby-nursery"/"reference-masters"/f"{design}-{meta['slug']}-reference.png"),
+              ):
+                  im=Image.open(path).convert("RGBA")
+                  if im.size!=(800,960):
+                      raise SystemExit(f"{design}: {kind} master wrong size {im.size}")
+                  alpha=im.getchannel("A")
+                  amin,amax=alpha.getextrema()
+                  bbox=alpha.getbbox()
+                  if amin!=0 or amax!=255 or not bbox:
+                      raise SystemExit(f"{design}: invalid transparent {kind} master")
+                  if min(bbox[0],bbox[1],800-bbox[2],960-bbox[3]) < 32:
+                      raise SystemExit(f"{design}: insufficient safe transparent margin {bbox}")
+                  bad=set()
+                  for r,g,b,a in im.getdata():
+                      if a and (r,g,b) not in allowed_rgbs:
+                          bad.add((r,g,b))
+                          if len(bad)>=5:
+                              break
+                  if bad:
+                      raise SystemExit(f"{design}: {kind} master contains colours outside approved palette: {sorted(bad)}")
+
               ref=system/"collections"/"baby-nursery"/"reference-masters"/f"{design}-{meta['slug']}-reference.png"
               im=Image.open(ref).convert("RGBA")
-              alpha=im.getchannel("A")
-              amin,amax=alpha.getextrema()
-              bbox=alpha.getbbox()
-              if im.size!=(800,960) or amin!=0 or amax!=255 or not bbox:
-                  raise SystemExit(f"{design}: invalid transparent reference master")
-              if min(bbox[0],bbox[1],800-bbox[2],960-bbox[3]) < 32:
-                  raise SystemExit(f"{design}: insufficient safe transparent margin {bbox}")
-
+              bbox=im.getchannel("A").getbbox()
               old=int(baseline.get(design,0))
               target=int(rule["target_stitches_by_design"].get(design,rule["target_stitches_default"]))
               report["designs"].append({
@@ -142,6 +181,7 @@ jobs:
                   "increase":stitches-old,
                   "bbox":list(bbox),
                   "quality":quality,
+                  "palette_check":"PASS"
               })
 
               white=Image.new("RGB",im.size,(255,255,255))
@@ -151,8 +191,9 @@ jobs:
 
           qa_dir=system/"collections"/"baby-nursery"/"qa"
           qa_dir.mkdir(parents=True,exist_ok=True)
-          report_path=qa_dir/"premium-v3-quality-report.json"
-          report_path.write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          (qa_dir/"premium-v3-quality-report.json").write_text(
+              json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8"
+          )
 
           cell_w,cell_h=320,410
           sheet=Image.new("RGB",(cell_w*5,cell_h*2),(255,255,255))
@@ -168,14 +209,14 @@ jobs:
           print(json.dumps(report,ensure_ascii=False,indent=2))
           PY
 
-      - name: Commit refined patterns and visual QA to branch
+      - name: Commit refined outputs to review branch
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add             content/pattern-system/collections/baby-nursery/source-designs/I000*.png             content/pattern-system/collections/baby-nursery/reference-masters/I000*-reference.png             content/pattern-system/collections/baby-nursery/qa/             content/pattern-system/patterns/I000*-*/pattern.json             content/pattern-system/products/I000*-*/product.json             content/products/catalog.json             content/products/assets/I000*-product.webp             content/products/assets/I000*-gallery-*.webp
+          git add             content/pattern-system/collections/baby-nursery/source-designs/I000*.png             content/pattern-system/collections/baby-nursery/source-designs/I0010-*.png             content/pattern-system/collections/baby-nursery/reference-masters/I000*-reference.png             content/pattern-system/collections/baby-nursery/reference-masters/I0010-*-reference.png             content/pattern-system/collections/baby-nursery/qa/             content/pattern-system/patterns/I000*-*/pattern.json             content/pattern-system/patterns/I0010-*/pattern.json             content/pattern-system/products/I000*-*/product.json             content/pattern-system/products/I0010-*/product.json             content/products/catalog.json             content/products/assets/I000*-product.webp             content/products/assets/I0010-*-product.webp             content/products/assets/I000*-gallery-*.webp             content/products/assets/I0010-*-gallery-*.webp
 
           if git diff --cached --quiet; then
             echo "No generated changes to commit."
@@ -183,6 +224,131 @@ jobs:
             git commit -m "Regenerate Baby Nursery I0001-I0010 premium v3 [skip ci]"
             git push origin HEAD:feature/baby-nursery-premium-edge-refinement
           fi
+
+      - name: Build WooCommerce visual-review package
+        shell: bash
+        run: |
+          set -euo pipefail
+          STAGE="/tmp/drielo-baby-premium-v3"
+          rm -rf "$STAGE"
+          mkdir -p "$STAGE/content/products/assets" "$STAGE/content/products/files" "$STAGE/content/tools"
+
+          python3 - "$STAGE" <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          stage=Path(sys.argv[1])
+          d=json.loads(Path("content/products/catalog.json").read_text(encoding="utf-8"))
+          codes={f"I{i:04d}-{s}" for i in range(1,11) for s in ("CS","C2C","TC","LH")}
+          cats={
+            "cross-stitch-patterns","cross-stitch-baby-nursery",
+            "c2c-crochet-patterns","c2c-crochet-baby-nursery",
+            "tapestry-crochet-patterns","tapestry-crochet-baby-nursery",
+            "latch-hook-rug-patterns","latch-hook-rug-baby-nursery",
+          }
+          out=dict(d)
+          out["products"]=[p for p in d.get("products",[]) if p.get("code") in codes]
+          out["collections"]=[c for c in d.get("collections",[]) if c.get("slug")=="baby-nursery"]
+          out["categories"]=[c for c in d.get("categories",[]) if c.get("slug") in cats]
+          found={p.get("code") for p in out["products"]}
+          if found!=codes:
+              raise SystemExit(f"Visual-review catalog mismatch: missing={sorted(codes-found)} extra={sorted(found-codes)}")
+          (stage/"content/products/catalog.json").write_text(
+              json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8"
+          )
+          print("PACKAGE_PRODUCTS",len(found))
+          PY
+
+          for i in $(seq -w 1 10); do
+            DESIGN="I00${i}"
+            if [ "$i" = "10" ]; then DESIGN="I0010"; fi
+            for suffix in CS C2C TC LH; do
+              code="${DESIGN}-${suffix}"
+              cp "content/products/assets/${code}-product.webp" "$STAGE/content/products/assets/"
+              cp "content/products/assets/${code}-gallery-2.webp" "$STAGE/content/products/assets/"
+              cp "content/products/assets/${code}-gallery-3.webp" "$STAGE/content/products/assets/"
+              cp "content/products/assets/${code}-gallery-4.webp" "$STAGE/content/products/assets/"
+              cp "content/products/files/Drielo_${code}.pdf" "$STAGE/content/products/files/"
+            done
+          done
+          cp content/tools/import-products.php "$STAGE/content/tools/"
+          tar -czf "/tmp/drielo-baby-premium-v3.tgz" -C "$STAGE" content
+
+      - name: Configure SSH for WooCommerce preview
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_products_key
+          chmod 600 ~/.ssh/drielo_products_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Upload visual-review package
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          scp -i ~/.ssh/drielo_products_key "/tmp/drielo-baby-premium-v3.tgz"             "$VPS_USER@$VPS_HOST:/tmp/drielo-baby-premium-v3-${GITHUB_RUN_ID}.tgz"
+
+      - name: Publish premium patterns to WooCommerce and verify
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_products_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-baby-premium-v3-${GITHUB_RUN_ID}.tgz"
+          STAGE="/tmp/drielo-baby-premium-v3-${GITHUB_RUN_ID}"
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE"; }
+          trap cleanup EXIT
+
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            for ($i=1; $i<=10; $i++) {
+              $design=sprintf("I%04d",$i);
+              foreach (array("CS","C2C","TC","LH") as $suffix) {
+                $sku="DRIELO-".$design."-".$suffix;
+                $id=wc_get_product_id_by_sku($sku);
+                $p=$id ? wc_get_product($id) : false;
+                if (!$p) { fwrite(STDERR,"Missing ".$sku.PHP_EOL); exit(2); }
+                $cols=wp_get_object_terms($id,"product_collection",array("fields"=>"slugs"));
+                $downloads=count($p->get_downloads());
+                $image=$p->get_image_id();
+                $gallery=count($p->get_gallery_image_ids());
+                $url=get_permalink($id);
+                echo $sku." id=".$id." status=".$p->get_status()." image=".$image." gallery=".$gallery." downloads=".$downloads." collection=".implode(",",is_wp_error($cols)?array():$cols)." url=".$url.PHP_EOL;
+                if ($p->get_status()!=="publish" || !$image || $gallery<3 || $downloads<1 || !in_array("baby-nursery",is_wp_error($cols)?array():$cols,true)) {
+                  fwrite(STDERR,"Incomplete ".$sku.PHP_EOL); exit(3);
+                }
+              }
+            }
+          '
+
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
+          REMOTE
 
       - name: Archive corrected PDFs and QA
         uses: actions/upload-artifact@v4

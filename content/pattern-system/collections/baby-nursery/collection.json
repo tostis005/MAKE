@@ -350,5 +350,13 @@
     "notes": "Reference artwork defines the motif and palette. Premium v3 rebuilds the stitch geometry at higher density; do not reuse the former low-density sprite as the final pattern.",
     "approved_batch": "I0001-I0010",
     "matrix_standard": "100x120 stitch-native master grid; 4,500-8,000 actual coloured stitches according to motif complexity; exact approved 24-colour palette; transparent exterior"
+  },
+  "palette_enforcement": {
+    "enabled": true,
+    "mode": "exact-approved-24-colour-palette",
+    "allow_unlisted_master_colours": false,
+    "allow_unlisted_pattern_colours": false,
+    "alpha_background": "transparent",
+    "qa": "Every opaque master/source pixel and every pattern thread colour must match one of collection.palette exactly. Lifestyle/mockup photography is exempt; the inserted craft motif is not."
   }
 }

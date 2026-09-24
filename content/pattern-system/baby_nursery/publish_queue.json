@@ -1,6 +1,6 @@
 {
   "collection": "baby-nursery",
-  "mode": "premium-refinement-v3-branch-review",
+  "mode": "premium-refinement-v3-branch-woocommerce-preview",
   "auto_continue": false,
   "max_attempts_per_design": 2,
   "notes": [
@@ -394,7 +394,9 @@
   ],
   "reference_policy": "Paused. Do not publish any Baby & Nursery design until rebuilt from the original user reference sheets and a corrected nursery palette.",
   "branch": "feature/baby-nursery-premium-edge-refinement",
-  "refinement_reason": "Rebuild low-density/pixel-fringed Baby & Nursery motifs as premium stitch-native masters before any further publication.",
-  "publication_blocked": true,
-  "publication_block_reason": "Premium edge/density QA required; do not publish from this branch."
+  "refinement_reason": "Premium stitch-native rebuild with exact approved 24-colour palette and WooCommerce visual review.",
+  "publication_blocked": false,
+  "publication_block_reason": "Premium edge/density QA required; do not publish from this branch.",
+  "publication_target": "WooCommerce preview/live product records for visual review",
+  "publication_policy": "Publish only outputs generated from this review branch; do not merge or push generated code/assets to main."
 }
