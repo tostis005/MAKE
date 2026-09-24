@@ -1,7 +1,7 @@
 {
   "collection": "baby-nursery",
   "mode": "publish-one-design-per-run",
-  "auto_continue": false,
+  "auto_continue": true,
   "max_attempts_per_design": 10,
   "notes": [
     "I0001 is already approved and published.",
@@ -28,10 +28,10 @@
       "title_es": "Elefantito",
       "slug": "baby-elephant",
       "source_asset": "collections/baby-nursery/source-designs/I0002-baby-elephant.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": "Regenerate from complete reference master before continuing",
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35963381944",
+      "last_error": null,
       "failed_at": "2026-09-24T05:58:17+00:00",
       "published_at": "2026-09-24T06:01:47+00:00"
     },
