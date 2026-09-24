@@ -2,6 +2,10 @@ name: Audit Etsy listings for Pop Art relink
 # synchronize trigger
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/audit-etsy-popart-relink.yml'
   pull_request:
     branches: [main]
     paths:
@@ -10,6 +14,8 @@ on:
 
 permissions:
   contents: read
+  issues: write
+  pull-requests: write
 
 jobs:
   audit:
@@ -32,10 +38,12 @@ jobs:
         env:
           VPS_HOST: ${{ secrets.VPS_HOST }}
           VPS_USER: ${{ secrets.VPS_USER }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: "55"
         shell: bash
         run: |
           set -euo pipefail
-          ssh -i ~/.ssh/drielo_etsy_audit_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          OUT=$(ssh -i ~/.ssh/drielo_etsy_audit_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
           set -euo pipefail
           if docker inspect make-wp >/dev/null 2>&1; then
             DOCKER=(docker)
@@ -154,3 +162,14 @@ jobs:
             echo "ORPHANS=".wp_json_encode($orphans,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES).PHP_EOL;
           '
           REMOTE
+          )
+          printf '%s\n' "$OUT"
+          REPORT=$(printf '%s\n' "$OUT" | grep -E '^(POP_PRODUCTS|LOCAL_LINKED_COUNT|REMOTE_COUNT|ORPHAN_COUNT|ORPHANS)=' || true)
+          BODY=$(printf '### Etsy Pop Art relink audit\n\n```text\n%s\n```\n' "$REPORT")
+          PAYLOAD=$(jq -n --arg body "$BODY" '{body:$body}')
+          curl -fsS -X POST \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/${PR_NUMBER}/comments" \
+            -d "$PAYLOAD" >/dev/null
