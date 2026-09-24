@@ -235,6 +235,12 @@ def render_one(task):
                     lambda m:m.group(1)+json.dumps(assets,separators=(',',':'))+m.group(3),template,count=1,flags=re.S)
     out=OUTPUT/code; out.mkdir(parents=True,exist_ok=True)
     html=out/f'{code}.html'; pdf=out/f'Drielo_{code}.pdf'; img=out/f'{code}-product.webp'; png=out/'capture.png'
+    gallery_specs=[
+        (2,out/f'{code}-gallery-2.webp'),   # PDF page 03: preview + pattern facts
+        (7,out/f'{code}-gallery-3.webp'),   # PDF page 08: colour + symbols, section A1
+        (11,out/f'{code}-gallery-4.webp'),  # PDF page 12: black & white symbols, section A1
+    ]
+    gallery_pngs=[(idx,path,out/(path.stem+'.png')) for idx,path in gallery_specs]
     html.write_text(template,encoding='utf-8')
     with sync_playwright() as pw:
         browser=pw.chromium.launch()
@@ -242,6 +248,14 @@ def render_one(task):
         page.goto(html.resolve().as_uri(),wait_until='load',timeout=120000)
         page.wait_for_function("document.documentElement.getAttribute('data-drielo-ready') === '1'",timeout=120000)
         page.pdf(path=str(pdf),format='A4',print_background=True,prefer_css_page_size=True)
+
+        # Product-gallery previews taken directly from the generated PDF master:
+        # page 03 (design + facts), page 08 (A1 colour + symbols), page 12 (A1 B&W symbols).
+        pages=page.locator('#book > .page')
+        if pages.count() < 12:
+            raise RuntimeError(f'{code}: expected at least 12 rendered PDF pages, got {pages.count()}')
+        for page_index,webp_path,png_path in gallery_pngs:
+            pages.nth(page_index).screenshot(path=str(png_path),type='png')
 
         # Store image = exact ambient scene + final pattern, with none of the PDF
         # card/border/background. Clone only the cover stage into a clean capture
@@ -268,8 +282,22 @@ def render_one(task):
     # Clean edge-to-edge 4:5 ecommerce crop; no added canvas/padding/border.
     ImageOps.fit(im,(1200,1500),method=Image.Resampling.LANCZOS,centering=(.5,.5)).save(img,'WEBP',quality=92,method=6)
     png.unlink(missing_ok=True)
+
+    gallery=[]
+    for _,webp_path,png_path in gallery_pngs:
+        gim=Image.open(png_path).convert('RGB')
+        ImageOps.fit(gim,(1200,1697),method=Image.Resampling.LANCZOS,centering=(.5,.5)).save(webp_path,'WEBP',quality=90,method=6)
+        png_path.unlink(missing_ok=True)
+        if webp_path.stat().st_size < 30000:
+            raise RuntimeError(f'{code}: gallery image too small: {webp_path.name}')
+        gallery.append(str(webp_path))
+
     if pdf.stat().st_size<100000: raise RuntimeError(f'{code}: PDF too small')
-    return {'code':code,'pdf':str(pdf),'image':str(img),'pdf_bytes':pdf.stat().st_size,'image_bytes':img.stat().st_size}
+    return {
+        'code':code,'pdf':str(pdf),'image':str(img),'gallery':gallery,
+        'pdf_bytes':pdf.stat().st_size,'image_bytes':img.stat().st_size,
+        'gallery_bytes':[Path(x).stat().st_size for x in gallery]
+    }
 
 def safe_tag(s): return len(s)<=20
 
