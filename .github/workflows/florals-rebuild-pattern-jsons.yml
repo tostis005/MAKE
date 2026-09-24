@@ -110,6 +110,8 @@ jobs:
             echo "Florals JSONs already up to date."
           else
             git commit -m "Rebuild Florals 30x4 pattern JSON set [skip ci]"
+            git fetch origin feature/florals-pattern-generation
+            git rebase origin/feature/florals-pattern-generation
             git push origin HEAD:feature/florals-pattern-generation
           fi
 
