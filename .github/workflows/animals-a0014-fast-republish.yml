@@ -1,0 +1,426 @@
+name: Animals A0014 Fast Republish
+# Exact uploaded Animals PNG covers are active.
+# A0014 replacement queued.
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feature/animals-auto-publish
+    paths:
+      - '.github/workflows/animals-a0014-fast-republish.yml'
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  # Keep exactly one publisher running. Do not cancel the current run when it
+  # dispatches the next queued design; the next run waits for this one to finish.
+  group: drielo-animals-a0014-fast-republish
+  cancel-in-progress: true
+
+jobs:
+  publish-next:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout Animals feature branch
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+          ref: feature/animals-auto-publish
+
+      - name: Select next pending Animals design
+        id: select
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/animals_auto/queue_state.py next --github-output "$GITHUB_OUTPUT"
+
+      - name: Show queue state
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/animals_auto/queue_state.py summary
+          echo "Selected: ${{ steps.select.outputs.design_id }}"
+
+      - name: Install renderer dependencies
+        if: steps.select.outputs.design_id != ''
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow playwright
+          python3 -m playwright install --with-deps chromium
+
+      - name: Build exact canonical patterns and four products
+        if: steps.select.outputs.design_id != ''
+        env:
+          DRIELO_GALLERY_REVISION: ${{ github.run_id }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/animals_auto/publish_design.py "${{ steps.select.outputs.design_id }}"
+
+      - name: Validate generated Animals bundle
+        if: steps.select.outputs.design_id != ''
+        shell: bash
+        run: |
+          set -euo pipefail
+          DESIGN="${{ steps.select.outputs.design_id }}"
+          python3 - "$DESIGN" <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+          from PIL import Image, ImageChops
+
+          design=sys.argv[1]
+          root=Path('.')
+          system=root/'content'/'pattern-system'
+          collection=json.loads((system/'collections'/'animals'/'collection.json').read_text(encoding='utf-8'))
+          if len(collection.get('palette',[])) != 24:
+              raise SystemExit('Animals collection must have exactly 24 master colours')
+          palette={p['hex'].upper() for p in collection['palette']}
+
+          designs=json.loads((system/'collections'/'animals'/'designs.json').read_text(encoding='utf-8'))['designs']
+          meta=next(x for x in designs if x['base_design_id']==design)
+          src=system/meta['source_asset']
+          ref=system/meta['reference_asset']
+          if not src.is_file() or not ref.is_file():
+              raise SystemExit(f'{design}: canonical source/reference missing')
+          sim=Image.open(src).convert('RGBA')
+          rim=Image.open(ref).convert('RGBA')
+          if sim.size != (100,120) or rim.size != (800,960):
+              raise SystemExit(f'{design}: wrong canonical source/reference dimensions')
+          if ImageChops.difference(sim.resize((800,960),Image.Resampling.NEAREST),rim).getbbox() is not None:
+              raise SystemExit(f'{design}: reference master differs from exact canonical source')
+          bbox=sim.getchannel('A').getbbox()
+          if not bbox or bbox[0]<=0 or bbox[1]<=0 or bbox[2]>=100 or bbox[3]>=120:
+              raise SystemExit(f'{design}: invalid transparent safe margin: {bbox}')
+          used={f'#{r:02X}{g:02X}{b:02X}' for r,g,b,a in sim.getdata() if a>=128}
+          if not used.issubset(palette):
+              raise SystemExit(f'{design}: source uses out-of-palette colours: {sorted(used-palette)}')
+
+          covers=collection['mockup_spec']['technique_assets']
+          expected={
+              'CS':'mockups/animals-cover-cross-stitch.png',
+              'C2C':'mockups/animals-cover-c2c-crochet.png',
+              'TC':'mockups/animals-cover-tapestry-crochet.png',
+              'LH':'mockups/animals-cover-latch-hook.png',
+          }
+          if {k:covers[k] for k in expected} != expected:
+              raise SystemExit(f'Animals cover mapping changed unexpectedly: {covers}')
+
+          import hashlib
+          cover_hashes={
+              'CS':'3d0057ee0d3845b4baaddbe138f080c92c4bcd8f6a0447c9c60f444aa3d62f77',
+              'C2C':'734030ff2b8a1fbc77b9b00f59cbe27f9d01424819c683be15546caeed1dc254',
+              'TC':'631a7fe921d11ce128e8142fb9b6645e5b04a9ce5361f5bd6d40ae3f0b47d0b8',
+              'LH':'c32189d92f4ce27bd4c1cc78eef610c9960e1ef0e0267130728e43d5086125ef',
+          }
+          for suffix, rel in expected.items():
+              cover=(system/'collections'/'animals'/rel)
+              if not cover.is_file():
+                  raise SystemExit(f'{suffix}: approved Animals cover missing: {cover}')
+              cim=Image.open(cover)
+              if cim.size != (1536,1536):
+                  raise SystemExit(f'{suffix}: approved Animals cover must be 1536x1536, got {cim.size}')
+              actual=hashlib.sha256(cover.read_bytes()).hexdigest()
+              if actual != cover_hashes[suffix]:
+                  raise SystemExit(f'{suffix}: approved Animals cover hash mismatch: {actual}')
+
+          catalog=json.loads((root/'content/products/catalog.json').read_text(encoding='utf-8'))
+          rows={p.get('code'):p for p in catalog.get('products',[])}
+          grids={'CS':(100,120),'C2C':(60,72),'TC':(80,96),'LH':(60,72)}
+
+          for suffix in ('CS','C2C','TC','LH'):
+              code=f'{design}-{suffix}'
+              pat=json.loads((system/'patterns'/code/'pattern.json').read_text(encoding='utf-8'))
+              prod=json.loads((system/'products'/code/'product.json').read_text(encoding='utf-8'))
+              w,h=grids[suffix]
+              if (pat.get('stitch_width'),pat.get('stitch_height')) != (w,h):
+                  raise SystemExit(f'{code}: wrong grid')
+              if len(pat.get('matrix',[])) != h or any(len(r)!=w for r in pat['matrix']):
+                  raise SystemExit(f'{code}: malformed matrix')
+              if pat.get('total_stitches',0) <= 0 or not pat.get('threads'):
+                  raise SystemExit(f'{code}: empty pattern')
+              if len(pat['threads']) > 24:
+                  raise SystemExit(f'{code}: palette exceeds 24 colours')
+              for t in pat['threads']:
+                  if str(t.get('color','')).upper() not in palette:
+                      raise SystemExit(f'{code}: out-of-palette thread {t}')
+              if pat.get('source_asset') != meta['source_asset'] or pat.get('reference_asset') != meta['reference_asset']:
+                  raise SystemExit(f'{code}: canonical artwork route changed')
+              if prod.get('collection') != 'animals' or prod.get('page_1_asset') != expected[suffix]:
+                  raise SystemExit(f'{code}: invalid product metadata')
+              if not prod.get('transparent_source') or prod.get('palette_size') != 24:
+                  raise SystemExit(f'{code}: strict Animals source metadata missing')
+
+              pdf=root/'content/products/files'/f'Drielo_{code}.pdf'
+              image=root/'content/products/assets'/f'{code}-product.webp'
+              gallery=[root/'content/products/assets'/f'{code}-gallery-{i}.webp' for i in (2,3,4)]
+              if not pdf.is_file() or pdf.stat().st_size < 100000 or pdf.read_bytes()[:4] != b'%PDF':
+                  raise SystemExit(f'{code}: invalid PDF')
+              if not image.is_file() or image.stat().st_size < 50000:
+                  raise SystemExit(f'{code}: invalid product image')
+              for g in gallery:
+                  if not g.is_file() or g.stat().st_size < 30000:
+                      raise SystemExit(f'{code}: invalid gallery preview {g.name}')
+
+              row=rows.get(code)
+              if not row or row.get('collection') != 'animals' or not str(row.get('sku','')).startswith('DRIELO-A'):
+                  raise SystemExit(f'{code}: missing Animals catalogue row / A-prefix SKU')
+              if row.get('gallery') != [f'assets/{code}-gallery-{i}.webp' for i in (2,3,4)]:
+                  raise SystemExit(f'{code}: wrong gallery list')
+              if row.get('gallery_preview_pages') != {'facts':3,'colour_a1':8,'symbol_a1':12}:
+                  raise SystemExit(f'{code}: gallery page mapping missing')
+              print(code,'stitches',pat['total_stitches'],'colors',len(pat['threads']),
+                    'pdf',pdf.stat().st_size,'image',image.stat().st_size,
+                    'gallery',[g.stat().st_size for g in gallery])
+          print(design,'ANIMALS_BUNDLE_VALID','bbox',bbox)
+          PY
+
+      - name: Build four-product WooCommerce package
+        if: steps.select.outputs.design_id != ''
+        shell: bash
+        run: |
+          set -euo pipefail
+          DESIGN="${{ steps.select.outputs.design_id }}"
+          STAGE="/tmp/drielo-${DESIGN}"
+          rm -rf "$STAGE"
+          mkdir -p "$STAGE/content/products/assets" "$STAGE/content/products/files" "$STAGE/content/tools"
+
+          python3 - "$DESIGN" "$STAGE" <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          design=sys.argv[1]
+          stage=Path(sys.argv[2])
+          catalog=json.loads(Path('content/products/catalog.json').read_text(encoding='utf-8'))
+          codes={f'{design}-{s}' for s in ('CS','C2C','TC','LH')}
+          selected=[p for p in catalog.get('products',[]) if p.get('code') in codes]
+          found={p.get('code') for p in selected}
+          if found != codes:
+              raise SystemExit(f'Package catalogue mismatch: {found} != {codes}')
+          cats={slug for p in selected for slug in p.get('categories',[])}
+
+          base=dict(catalog)
+          base['collections']=[c for c in catalog.get('collections',[]) if c.get('slug')=='animals']
+          base['categories']=[c for c in catalog.get('categories',[]) if c.get('slug') in cats]
+          if len(base['collections']) != 1:
+              raise SystemExit('Animals collection definition missing')
+
+          out=dict(base)
+          out['products']=selected
+          (stage/'content/products/catalog.json').write_text(
+              json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8'
+          )
+
+          by_code={p['code']:p for p in selected}
+          for suffix in ('CS','C2C','TC','LH'):
+              one=dict(base)
+              one['products']=[by_code[f'{design}-{suffix}']]
+              (stage/f'content/products/catalog-{suffix}.json').write_text(
+                  json.dumps(one,ensure_ascii=False,indent=2)+'\n',encoding='utf-8'
+              )
+          PY
+
+          for suffix in CS C2C TC LH; do
+            code="${DESIGN}-${suffix}"
+            cp "content/products/assets/${code}-product.webp" "$STAGE/content/products/assets/"
+            cp "content/products/assets/${code}-gallery-2.webp" "$STAGE/content/products/assets/"
+            cp "content/products/assets/${code}-gallery-3.webp" "$STAGE/content/products/assets/"
+            cp "content/products/assets/${code}-gallery-4.webp" "$STAGE/content/products/assets/"
+            cp "content/products/files/Drielo_${code}.pdf" "$STAGE/content/products/files/"
+          done
+          cp content/tools/import-products.php "$STAGE/content/tools/"
+          tar -czf "/tmp/drielo-${DESIGN}.tgz" -C "$STAGE" content
+
+      - name: Configure SSH
+        if: steps.select.outputs.design_id != ''
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_animals_key
+          chmod 600 ~/.ssh/drielo_animals_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Upload package
+        if: steps.select.outputs.design_id != ''
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          DESIGN="${{ steps.select.outputs.design_id }}"
+          scp -i ~/.ssh/drielo_animals_key "/tmp/drielo-${DESIGN}.tgz"             "$VPS_USER@$VPS_HOST:/tmp/drielo-${DESIGN}-${GITHUB_RUN_ID}.tgz"
+
+      - name: Publish four Animals products to WooCommerce and verify
+        if: steps.select.outputs.design_id != ''
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          DESIGN="${{ steps.select.outputs.design_id }}"
+          ssh -i ~/.ssh/drielo_animals_key "$VPS_USER@$VPS_HOST"             "DESIGN='${DESIGN}' GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-${DESIGN}-${GITHUB_RUN_ID}.tgz"
+          STAGE="/tmp/drielo-${DESIGN}-${GITHUB_RUN_ID}"
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE"; }
+          trap cleanup EXIT
+
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+          CONTAINER_STAGE="/tmp/drielo-products-animals-${GITHUB_RUN_ID}"
+          CONTAINER_IMPORTER="/tmp/drielo-import-products-animals-${GITHUB_RUN_ID}.php"
+          "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '$CONTAINER_STAGE' '$CONTAINER_IMPORTER' && mkdir -p '$CONTAINER_STAGE'"
+          "${DOCKER[@]}" cp "$STAGE/content/products/." "make-wp:${CONTAINER_STAGE}/"
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" "make-wp:${CONTAINER_IMPORTER}"
+
+          for suffix in CS C2C TC LH; do
+            code="${DESIGN}-${suffix}"
+            "${DOCKER[@]}" exec make-wp sh -lc "
+              test -s '${CONTAINER_STAGE}/assets/${code}-product.webp' &&
+              test -s '${CONTAINER_STAGE}/assets/${code}-gallery-2.webp' &&
+              test -s '${CONTAINER_STAGE}/assets/${code}-gallery-3.webp' &&
+              test -s '${CONTAINER_STAGE}/assets/${code}-gallery-4.webp' &&
+              test -s '${CONTAINER_STAGE}/files/Drielo_${code}.pdf' &&
+              cp '${CONTAINER_STAGE}/catalog-${suffix}.json' '${CONTAINER_STAGE}/catalog.json'
+            "
+            ok=0
+            for attempt in 1 2 3; do
+              echo "Importing ${code} attempt ${attempt}/3"
+              if "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M -d max_execution_time=0 \
+                   "$CONTAINER_IMPORTER" /var/www/html "$CONTAINER_STAGE"; then
+                ok=1
+                break
+              fi
+              sleep 3
+            done
+            if [ "$ok" != "1" ]; then
+              echo "ERROR: failed to import ${code} after 3 attempts"
+              exit 4
+            fi
+          done
+
+          "${DOCKER[@]}" exec -e DESIGN="$DESIGN" make-wp php -d memory_limit=1024M -d max_execution_time=0 -r '
+            require "/var/www/html/wp-load.php";
+            $design=getenv("DESIGN");
+            foreach (array("CS","C2C","TC","LH") as $suffix) {
+              $sku="DRIELO-".$design."-".$suffix;
+              $id=wc_get_product_id_by_sku($sku);
+              $p=$id ? wc_get_product($id) : false;
+              if (!$p) { fwrite(STDERR,"Missing ".$sku.PHP_EOL); exit(2); }
+              $cols=wp_get_object_terms($id,"product_collection",array("fields"=>"slugs"));
+              $downloads=count($p->get_downloads());
+              $image=$p->get_image_id();
+              $gallery=count($p->get_gallery_image_ids());
+              echo $sku." id=".$id." status=".$p->get_status()." image=".$image.
+                   " gallery=".$gallery." downloads=".$downloads." collection=".
+                   implode(",",is_wp_error($cols)?array():$cols)." url=".get_permalink($id).PHP_EOL;
+              if ($p->get_status()!=="publish" || !$image || $gallery<3 || $downloads<1 ||
+                  !in_array("animals",is_wp_error($cols)?array():$cols,true)) {
+                fwrite(STDERR,"Incomplete ".$sku.PHP_EOL); exit(3);
+              }
+            }
+          '
+          "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '$CONTAINER_STAGE' '$CONTAINER_IMPORTER'"
+          REMOTE
+
+      - name: Mark Animals design published
+        if: success() && steps.select.outputs.design_id != ''
+        shell: bash
+        run: |
+          set -euo pipefail
+          DESIGN="${{ steps.select.outputs.design_id }}"
+          python3 content/pattern-system/animals_auto/queue_state.py success "$DESIGN"             --run-url "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+
+      - name: Commit generated Animals design and advance queue
+        if: success() && steps.select.outputs.design_id != ''
+        shell: bash
+        run: |
+          set -euo pipefail
+          DESIGN="${{ steps.select.outputs.design_id }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add content/pattern-system/animals_auto/publish_queue.json
+          git add content/pattern-system/collections/animals/designs.json
+          git add content/products/catalog.json
+          for suffix in CS C2C TC LH; do
+            code="${DESIGN}-${suffix}"
+            git add "content/pattern-system/patterns/${code}/pattern.json"
+            git add "content/pattern-system/products/${code}/product.json"
+            git add "content/products/assets/${code}-product.webp"
+            git add "content/products/assets/${code}-gallery-2.webp"
+            git add "content/products/assets/${code}-gallery-3.webp"
+            git add "content/products/assets/${code}-gallery-4.webp"
+            git add "content/products/files/Drielo_${code}.pdf"
+          done
+
+          git commit -m "Publish Animals ${DESIGN} in four techniques"
+          git fetch origin feature/animals-auto-publish
+          git rebase origin/feature/animals-auto-publish
+          git push origin HEAD:feature/animals-auto-publish
+
+      - name: Archive four Animals PDFs
+        if: success() && steps.select.outputs.design_id != ''
+        uses: actions/upload-artifact@v6
+        with:
+          name: animals-${{ steps.select.outputs.design_id }}-pdfs
+          path: |
+            content/products/files/Drielo_${{ steps.select.outputs.design_id }}-CS.pdf
+            content/products/files/Drielo_${{ steps.select.outputs.design_id }}-C2C.pdf
+            content/products/files/Drielo_${{ steps.select.outputs.design_id }}-TC.pdf
+            content/products/files/Drielo_${{ steps.select.outputs.design_id }}-LH.pdf
+          retention-days: 30
+
+      - name: Record failure and allow Animals queue to continue
+        if: failure() && steps.select.outputs.design_id != ''
+        shell: bash
+        run: |
+          set -euo pipefail
+          DESIGN="${{ steps.select.outputs.design_id }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin feature/animals-auto-publish
+          git reset --hard origin/feature/animals-auto-publish
+          python3 content/pattern-system/animals_auto/queue_state.py fail "$DESIGN"             --run-url "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"             --error "Automatic Animals publish run failed; see GitHub Actions logs."
+          git add content/pattern-system/animals_auto/publish_queue.json
+          git commit -m "Record Animals ${DESIGN} auto-publish result"
+          git push origin HEAD:feature/animals-auto-publish
+
+      - name: Dispatch next queued Animals design
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin feature/animals-auto-publish
+          git reset --hard origin/feature/animals-auto-publish
+          if [ "$(python3 content/pattern-system/animals_auto/queue_state.py has-work)" = "yes" ]; then
+            echo "Pending Animals designs remain; dispatching the next run."
+            gh api --method POST               "repos/${GITHUB_REPOSITORY}/actions/workflows/animals-auto-publish.yml/dispatches"               -f ref=feature/animals-auto-publish
+          else
+            echo "No pending Animals designs remain."
+            python3 content/pattern-system/animals_auto/queue_state.py summary
+          fi
