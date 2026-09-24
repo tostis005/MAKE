@@ -1,4 +1,4 @@
-name: TEMP Import Approved Florals Sources
+name: TEMP Import Florals Sources Batch 1
 
 on:
   push:
@@ -16,127 +16,44 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  import-and-build:
+  import:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
-
+    timeout-minutes: 15
     steps:
-      - name: Checkout Florals generation branch
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           ref: feature/florals-pattern-generation
           fetch-depth: 0
 
-      - name: Install pattern dependencies
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 -m pip install --disable-pip-version-check --quiet Pillow
-
-      - name: Download 30 approved 100x120 source PNGs
+      - name: Download approved sources F0001-F0005
         shell: bash
         run: |
           set -euo pipefail
           D='content/pattern-system/collections/florals/source-designs'
           mkdir -p "$D"
+          curl -fL --retry 2 'https://sdmntprseasia.oaiusercontent.com/files/00000000-4e3c-8207-92f2-a140f28349b0/raw?se=2026-09-24T14%3A15%3A51Z&sp=r&sv=2026-02-06&sr=b&scid=6dc48868-a488-58e2-8c29-ad9b79e82d30&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T11%3A29%3A48Z&ske=2026-09-25T11%3A29%3A48Z&sks=b&skv=2026-02-06&sig=oO4yhiLWPtLRluqpY1RPtlZXBu/Qft5NjGlbOXNlqEg%3D' -o "$D/F0001-blue-daisy-pitcher.png"
+          curl -fL --retry 2 'https://sdmntpreastus.oaiusercontent.com/files/00000000-a1a0-81f9-981d-4ac3c6bf8405/raw?se=2026-09-24T14%3A15%3A53Z&sp=r&sv=2026-02-06&sr=b&scid=f9415396-f270-50de-b50f-02b084953828&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T12%3A26%3A30Z&ske=2026-09-25T12%3A26%3A30Z&sks=b&skv=2026-02-06&sig=p8XdGyCtFyiJnIOr8ndMay7DkNT8JdBdJoHFcrnsIbU%3D' -o "$D/F0002-pink-peony.png"
+          curl -fL --retry 2 'https://sdmntprcacentral.oaiusercontent.com/files/00000000-cc04-820d-ba3f-332249939f58/raw?se=2026-09-24T14%3A15%3A59Z&sp=r&sv=2026-02-06&sr=b&scid=c0388738-a4fd-57c7-a078-8037f7d0e3fa&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T13%3A35%3A06Z&ske=2026-09-25T13%3A35%3A06Z&sks=b&skv=2026-02-06&sig=jaOGmlXFHwm/1pyfuswjpnNynbDexhatmFUWpTxl1kM%3D' -o "$D/F0003-lavender-ribbon-bundle.png"
+          curl -fL --retry 2 'https://sdmntprsoutheastus3.oaiusercontent.com/files/00000000-90ac-820c-80e7-f7a700253bd2/raw?se=2026-09-24T14%3A16%3A00Z&sp=r&sv=2026-02-06&sr=b&scid=dab35d95-f8a1-5023-91d8-03ae8cc359e9&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T12%3A21%3A06Z&ske=2026-09-25T12%3A21%3A06Z&sks=b&skv=2026-02-06&sig=f/8oMOfrBJ4QdWhCwDV0iD5JNxsgfuKUPGxuAORqdyg%3D' -o "$D/F0004-sunflower-stem.png"
+          curl -fL --retry 2 'https://sdmntprwestus3.oaiusercontent.com/files/00000000-e378-81fd-b203-2bc03c18d917/raw?se=2026-09-24T14%3A16%3A03Z&sp=r&sv=2026-02-06&sr=b&scid=1895ed08-6ce5-509f-8a2f-9753a89dec9e&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T06%3A41%3A53Z&ske=2026-09-25T06%3A41%3A53Z&sks=b&skv=2026-02-06&sig=tCEHldZILtW8t3POhpwPtBBZuUVQ64XHRqLlS6JMZps%3D' -o "$D/F0005-blue-hydrangea.png"
 
-          curl -fL --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-1638-820e-85cc-72ef186466d1/raw?se=2026-09-24T14%3A07%3A18Z&sp=r&sv=2026-02-06&sr=b&scid=70c4d5a6-78a7-5363-b95a-e7b5a9d0c9ad&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T12%3A15%3A36Z&ske=2026-09-25T12%3A15%3A36Z&sks=b&skv=2026-02-06&sig=3byh7u6z4oVnjxCSa7JBzLrRXntp05ohF30Xvp%2B2cow%3D' -o "$D/F0001-blue-daisy-pitcher.png"
-          curl -fL --retry 3 'https://sdmntprseasia.oaiusercontent.com/files/00000000-8fec-8207-a5e9-6ba21b2a74f2/raw?se=2026-09-24T14%3A07%3A22Z&sp=r&sv=2026-02-06&sr=b&scid=350614d3-3818-584a-bb5e-29193c97b10d&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T13%3A57%3A18Z&ske=2026-09-25T13%3A57%3A18Z&sks=b&skv=2026-02-06&sig=fLRTnXahkk3jIxiIg9gilgwClBK4otpNncUjy7SvCnM%3D' -o "$D/F0002-pink-peony.png"
-          curl -fL --retry 3 'https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-b3cc-81f7-825a-ff4bcd85e6ac/raw?se=2026-09-24T14%3A07%3A24Z&sp=r&sv=2026-02-06&sr=b&scid=98d8a36a-71a3-519a-944c-f8a096e3983a&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T11%3A44%3A15Z&ske=2026-09-25T11%3A44%3A15Z&sks=b&skv=2026-02-06&sig=1rVw2g8rPV/FQrhsBxYD4lkymAUZ3wvRVqkLsCBTekk%3D' -o "$D/F0003-lavender-ribbon-bundle.png"
-          curl -fL --retry 3 'https://sdmntprwestus.oaiusercontent.com/files/00000000-9078-8230-a3fa-cd0cb6e9af7d/raw?se=2026-09-24T14%3A07%3A26Z&sp=r&sv=2026-02-06&sr=b&scid=5d60304f-f28e-5517-94a4-c3b5681029f0&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T13%3A21%3A01Z&ske=2026-09-25T13%3A21%3A01Z&sks=b&skv=2026-02-06&sig=SI700wW%2BsophfywkDkB0oSoneReBhCk9G5PGT8DRIzY%3D' -o "$D/F0004-sunflower-stem.png"
-          curl -fL --retry 3 'https://sdmntprnortheu.oaiusercontent.com/files/00000000-d6f8-81f4-bbe5-2c1b9eb7f7ca/raw?se=2026-09-24T14%3A07%3A29Z&sp=r&sv=2026-02-06&sr=b&scid=03e3c736-3acc-5960-a035-603027a269dc&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T12%3A53%3A35Z&ske=2026-09-25T12%3A53%3A35Z&sks=b&skv=2026-02-06&sig=Vc5xOgriZ6DK49qwLCkO7AlqG5RAEhEIrjtT7NKNN%2Bw%3D' -o "$D/F0005-blue-hydrangea.png"
-          curl -fL --retry 3 'https://sdmntprnortheu.oaiusercontent.com/files/00000000-b568-81f4-8dac-4a198caa436f/raw?se=2026-09-24T14%3A07%3A31Z&sp=r&sv=2026-02-06&sr=b&scid=03cad799-b5e6-504c-b99e-e1444d5d6c8f&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T13%3A51%3A35Z&ske=2026-09-25T13%3A51%3A35Z&sks=b&skv=2026-02-06&sig=O3DKFKal2LeqZrSf/M5/Jqwn0VYxnpMkrFSM2yvmEWw%3D' -o "$D/F0006-cherry-blossom-branch.png"
-          curl -fL --retry 3 'https://sdmntpreastus2.oaiusercontent.com/files/00000000-bd4c-81f6-a1ad-60a8d3921412/raw?se=2026-09-24T14%3A07%3A34Z&sp=r&sv=2026-02-06&sr=b&scid=0599ee22-0be7-598b-97d3-c15b3c9c7174&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T12%3A53%3A40Z&ske=2026-09-25T12%3A53%3A40Z&sks=b&skv=2026-02-06&sig=lKdU9d7ySU1Jr2FA7wcS1ofjDXi73vbrWZR1OjF2pl8%3D' -o "$D/F0007-pink-floral-heart-wreath.png"
-          curl -fL --retry 3 'https://sdmntprcentralus.oaiusercontent.com/files/00000000-d27c-81f5-bdad-8ccb80d75819/raw?se=2026-09-24T14%3A07%3A36Z&sp=r&sv=2026-02-06&sr=b&scid=10cf48e7-0b9c-5559-9c6f-1c078b11d9c6&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T13%3A38%3A26Z&ske=2026-09-25T13%3A38%3A26Z&sks=b&skv=2026-02-06&sig=8pLckKT429D3VRL/8uroC8ovw/J8HsQpX62BD42MCyI%3D' -o "$D/F0008-daisy-mason-jar.png"
-          curl -fL --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-2a20-820e-9c9f-07e58fe5874b/raw?se=2026-09-24T14%3A07%3A38Z&sp=r&sv=2026-02-06&sr=b&scid=dab8b59b-2ce3-53f9-aa83-857d53fe2778&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T12%3A25%3A06Z&ske=2026-09-25T12%3A25%3A06Z&sks=b&skv=2026-02-06&sig=GvrhC2hhrtslcVjJqUlMoSnJjqklgD3E7IGDSn3ZYUA%3D' -o "$D/F0009-eucalyptus-ribbon-bundle.png"
-          curl -fL --retry 3 'https://sdmntprdenmarkeast.oaiusercontent.com/files/00000000-bc78-8210-98fc-c934cb33b6c3/raw?se=2026-09-24T14%3A07%3A41Z&sp=r&sv=2026-02-06&sr=b&scid=0b41f28e-71eb-54b1-a8ec-3b6bd4951ede&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T13%3A35%3A33Z&ske=2026-09-25T13%3A35%3A33Z&sks=b&skv=2026-02-06&sig=4h0JeBa%2BfmSnfnDQgD66K8XwWE9AIvqaGUQNpvL%2BNWQ%3D' -o "$D/F0010-potted-strawberry-plant.png"
-          curl -fL --retry 3 'https://sdmntprseasia.oaiusercontent.com/files/00000000-03e0-8207-b417-ef21a66f4bf6/raw?se=2026-09-24T14%3A07%3A45Z&sp=r&sv=2026-02-06&sr=b&scid=aad9c607-a846-57f3-9fc4-dfb357280bea&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T12%3A00%3A24Z&ske=2026-09-25T12%3A00%3A24Z&sks=b&skv=2026-02-06&sig=5ozdnHvfR/3dum0AgP8wGi8vktJIStxaCmL5b7Kw5wI%3D' -o "$D/F0011-wrapped-wildflower-bouquet.png"
-          curl -fL --retry 3 'https://sdmntprcacentral.oaiusercontent.com/files/00000000-0c5c-820d-a490-523908058190/raw?se=2026-09-24T14%3A07%3A47Z&sp=r&sv=2026-02-06&sr=b&scid=ea7b98aa-00fe-547f-a168-cc402a9b5b72&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T13%3A47%3A02Z&ske=2026-09-25T13%3A47%3A02Z&sks=b&skv=2026-02-06&sig=nuL/jpHYDrzJ68raAoVWazxcs2MTSQmmCOKjgGc6MSQ%3D' -o "$D/F0012-rose-teacup.png"
-          curl -fL --retry 3 'https://sdmntprnortheu.oaiusercontent.com/files/00000000-6c88-81f4-9446-228173dc5603/raw?se=2026-09-24T14%3A07%3A51Z&sp=r&sv=2026-02-06&sr=b&scid=22483993-d18b-58b3-a9fd-e672b0a08d7a&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T12%3A20%3A37Z&ske=2026-09-25T12%3A20%3A37Z&sks=b&skv=2026-02-06&sig=2jjMaP1ro0QDKO3iL1IeS9mZlNwFFxGRrm02LZNMfUo%3D' -o "$D/F0013-rose-ribbon-bouquet.png"
-          curl -fL --retry 3 'https://sdmntprnorthcentralus.oaiusercontent.com/files/00000000-3a40-822f-a61a-cccae84c7c97/raw?se=2026-09-24T14%3A07%3A55Z&sp=r&sv=2026-02-06&sr=b&scid=e10fd82a-2fd2-5dc3-b263-1b0db9f97549&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T13%3A15%3A58Z&ske=2026-09-25T13%3A15%3A58Z&sks=b&skv=2026-02-06&sig=gBYCS1CC4S9cWqqOwgY4KiH5jv%2B8XgL5YmaPeO0X1lo%3D' -o "$D/F0014-tulip-bouquet.png"
-          curl -fL --retry 3 'https://sdmntprwestcentralus.oaiusercontent.com/files/00000000-dcd0-81fb-95a9-4cac716be299/raw?se=2026-09-24T14%3A07%3A58Z&sp=r&sv=2026-02-06&sr=b&scid=a2f110c7-5716-5c5f-8222-fe5b355bb1f8&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T13%3A59%3A09Z&ske=2026-09-25T13%3A59%3A09Z&sks=b&skv=2026-02-06&sig=JZy2Sb5DXgW4PUNe6m/ggNSchLKVgqWF15gDmHMwBoc%3D' -o "$D/F0015-succulent-pot-trio.png"
-          curl -fL --retry 3 'https://sdmntprcentralus.oaiusercontent.com/files/00000000-7988-81f5-b1f1-69823f9e0071/raw?se=2026-09-24T14%3A08%3A00Z&sp=r&sv=2026-02-06&sr=b&scid=fa711440-520e-5baa-a1e8-7af2951276b5&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T13%3A46%3A10Z&ske=2026-09-25T13%3A46%3A10Z&sks=b&skv=2026-02-06&sig=nGSSvyKV7b1KB9kpTpY4LVYphO%2B8Bi91WWt8SMpZ3%2B8%3D' -o "$D/F0016-daffodil-bouquet.png"
-          curl -fL --retry 3 'https://sdmntprnznorth.oaiusercontent.com/files/00000000-cb30-820b-b773-a697c8734236/raw?se=2026-09-24T14%3A08%3A03Z&sp=r&sv=2026-02-06&sr=b&scid=d48a18bd-ec4b-5e22-952a-177d771da68d&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T12%3A26%3A24Z&ske=2026-09-25T12%3A26%3A24Z&sks=b&skv=2026-02-06&sig=lQ3p2c00m7V1QWhmD4cxssWjsjxvV/gfRo9MWOAj2Ys%3D' -o "$D/F0017-lilac-twine-bouquet.png"
-          curl -fL --retry 3 'https://sdmntpreastus.oaiusercontent.com/files/00000000-4a50-81f9-9951-ae4602aceb43/raw?se=2026-09-24T14%3A08%3A08Z&sp=r&sv=2026-02-06&sr=b&scid=22cb5a15-3020-5586-bf8e-56f985bd6e65&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T12%3A53%3A43Z&ske=2026-09-25T12%3A53%3A43Z&sks=b&skv=2026-02-06&sig=g2VR5RrotzcFzdXt0MBtwyZvZf5Mmm9vlxIyBOfg/9A%3D' -o "$D/F0018-potted-lavender.png"
-          curl -fL --retry 3 'https://sdmntprnortheu.oaiusercontent.com/files/00000000-2438-81f4-99a4-ce9795875cf2/raw?se=2026-09-24T14%3A08%3A10Z&sp=r&sv=2026-02-06&sr=b&scid=43880eec-286f-5a6d-8f0b-7c9a0dfb2ecd&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T13%3A20%3A32Z&ske=2026-09-25T13%3A20%3A32Z&sks=b&skv=2026-02-06&sig=ZmTPJ%2Br9SFdqSqYKZkYJZqvALAxEMVcowa3qymxGb2M%3D' -o "$D/F0019-chamomile-bundle.png"
-          curl -fL --retry 3 'https://sdmntpritalynorth.oaiusercontent.com/files/00000000-fbac-8246-b15a-f702a31bcd93/raw?se=2026-09-24T14%3A08%3A13Z&sp=r&sv=2026-02-06&sr=b&scid=d206c857-6742-5ceb-a55c-867a1c76fbf8&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T13%3A21%3A34Z&ske=2026-09-25T13%3A21%3A34Z&sks=b&skv=2026-02-06&sig=4yHghC7q3EeXnqq8sZ/RlHwcSwU3iGZRoezZJayKHn0%3D' -o "$D/F0020-floral-watering-can.png"
-          curl -fL --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-05a0-820e-b920-b6757c54151f/raw?se=2026-09-24T14%3A09%3A11Z&sp=r&sv=2026-02-06&sr=b&scid=55d93558-fe7e-5876-8fe0-d7bc0829eb2f&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T12%3A25%3A53Z&ske=2026-09-25T12%3A25%3A53Z&sks=b&skv=2026-02-06&sig=BSu3WvUWdH/dtfwKewpvwKVbV83/F5HsDjsSDltI%2Bek%3D' -o "$D/F0021-hanging-pink-flower-basket.png"
-          curl -fL --retry 3 'https://sdmntprcentralus.oaiusercontent.com/files/00000000-df9c-81f5-b8b6-65c492b366d7/raw?se=2026-09-24T14%3A09%3A13Z&sp=r&sv=2026-02-06&sr=b&scid=1b0a8173-c874-5e62-993f-bae1415f958f&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T13%3A54%3A55Z&ske=2026-09-25T13%3A54%3A55Z&sks=b&skv=2026-02-06&sig=MdGvqqgUAMLATMU9rwKjCGHA/tT/TdiqFBLvDYxY/G4%3D' -o "$D/F0022-bluebell-bouquet.png"
-          curl -fL --retry 3 'https://sdmntprindiasocentral.oaiusercontent.com/files/00000000-9020-8211-9575-2a7f425bfc10/raw?se=2026-09-24T14%3A09%3A17Z&sp=r&sv=2026-02-06&sr=b&scid=975cc37d-4c67-5c98-b377-9a7e0ce13cb9&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T12%3A55%3A20Z&ske=2026-09-25T12%3A55%3A20Z&sks=b&skv=2026-02-06&sig=kuNVl8UWZBtpKQLgUNWwOkQhgTQXLH92cymBt7wQ6gM%3D' -o "$D/F0023-magnolia-branch.png"
-          curl -fL --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-a78c-820e-b81a-c710efb7734d/raw?se=2026-09-24T14%3A09%3A17Z&sp=r&sv=2026-02-06&sr=b&scid=766d0b61-5df5-550b-89ea-e12566c9b9d9&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T13%3A11%3A43Z&ske=2026-09-25T13%3A11%3A43Z&sks=b&skv=2026-02-06&sig=MpHkuGs7TDnVoYl5fUrCyyvebqnJ6ehzhVVUhbs/Dwg%3D' -o "$D/F0024-enamel-herb-pot.png"
-          curl -fL --retry 3 'https://sdmntprindiasocentral.oaiusercontent.com/files/00000000-a740-8211-b8cb-cecc2934dddc/raw?se=2026-09-24T14%3A09%3A21Z&sp=r&sv=2026-02-06&sr=b&scid=b31edeae-2642-5f2a-af8e-34b407e5e591&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T13%3A14%3A53Z&ske=2026-09-25T13%3A14%3A53Z&sks=b&skv=2026-02-06&sig=k5XzBkkbaOV21n2Ns8JAG%2B7hbqDD3FJOsSQDxKJD730%3D' -o "$D/F0025-daisy-wreath.png"
-          curl -fL --retry 3 'https://sdmntpraustraliaeast.oaiusercontent.com/files/00000000-f230-81fa-82b1-05be8aa37022/raw?se=2026-09-24T14%3A09%3A24Z&sp=r&sv=2026-02-06&sr=b&scid=8a10373d-17f3-5291-bd94-bfb0c9f9587c&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T13%3A42%3A31Z&ske=2026-09-25T13%3A42%3A31Z&sks=b&skv=2026-02-06&sig=38kMWwHNuagyKhaxQWjYooKUj7vM0CFYgBdNwnv%2BRUY%3D' -o "$D/F0026-spring-flower-basket.png"
-          curl -fL --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-8730-820e-970e-7ea76b93084a/raw?se=2026-09-24T14%3A09%3A25Z&sp=r&sv=2026-02-06&sr=b&scid=bed84a84-3d6c-54bb-9e3e-ad1d8e155771&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T13%3A59%3A36Z&ske=2026-09-25T13%3A59%3A36Z&sks=b&skv=2026-02-06&sig=IlaDgP6WP6nCcktztjU%2B6bQS9OoRTzKmQ/RRfwWu18Y%3D' -o "$D/F0027-babys-breath-jar.png"
-          curl -fL --retry 3 'https://sdmntprwestus3.oaiusercontent.com/files/00000000-b8c8-81fd-bd9b-9d002a1bfe63/raw?se=2026-09-24T14%3A09%3A27Z&sp=r&sv=2026-02-06&sr=b&scid=9d0e3060-fdca-5f52-b383-71d97772c208&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T10%3A13%3A53Z&ske=2026-09-25T10%3A13%3A53Z&sks=b&skv=2026-02-06&sig=ka0//iwW/zDCMLDFdeWZHQH5Ti/FIOpDrDhAW3GP/3E%3D' -o "$D/F0028-carnation-bouquet.png"
-          curl -fL --retry 3 'https://sdmntprdenmarkeast.oaiusercontent.com/files/00000000-128c-8210-b18a-ce2628968311/raw?se=2026-09-24T14%3A09%3A29Z&sp=r&sv=2026-02-06&sr=b&scid=19ae9a33-9bec-58b3-805a-41e71ab3c7bb&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T13%3A29%3A14Z&ske=2026-09-25T13%3A29%3A14Z&sks=b&skv=2026-02-06&sig=rQAEnJLTXulzZw9canyehuLDofvZysSxu3bpoPSNRN8%3D' -o "$D/F0029-anemone-bouquet.png"
-          curl -fL --retry 3 'https://sdmntprnortheu.oaiusercontent.com/files/00000000-7d20-81f4-b0b5-f3e3fc7b418e/raw?se=2026-09-24T14%3A09%3A31Z&sp=r&sv=2026-02-06&sr=b&scid=bf6b589b-b5cf-57c5-a696-1b6d88e494a6&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T13%3A31%3A45Z&ske=2026-09-25T13%3A31%3A45Z&sks=b&skv=2026-02-06&sig=xtbTNg91iBPIA5w0ACIyn5LUYw7k7ujGDBC2uwES0Lk%3D' -o "$D/F0030-forget-me-not-bouquet.png"
-
-      - name: Verify imported canonical sources
+      - name: Verify and commit
         shell: bash
         run: |
           set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow
           python3 - <<'PY'
-          from pathlib import Path
           from PIL import Image
-          d=Path('content/pattern-system/collections/florals/source-designs')
-          files=sorted(d.glob('F????-*.png'))
-          ids={p.name[:5] for p in files}
-          expected={f'F{i:04d}' for i in range(1,31)}
-          if ids != expected:
-              raise SystemExit(f'Source ids mismatch: missing={sorted(expected-ids)} extra={sorted(ids-expected)}')
-          for p in files:
-              im=Image.open(p).convert('RGBA')
-              if im.size!=(100,120):
-                  raise SystemExit(f'{p.name}: {im.size} != (100,120)')
-              if im.getchannel('A').getbbox() is None:
-                  raise SystemExit(f'{p.name}: empty source')
-              print(p.name, p.stat().st_size)
-          print('APPROVED_FLORALS_SOURCES_VALID', len(files))
-          PY
-
-      - name: Generate 120 pattern/product JSONs
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 content/pattern-system/florals/build_collection.py
-
-      - name: Validate generated collection
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 - <<'PY'
-          import json
           from pathlib import Path
-          root=Path('content/pattern-system')
-          status=json.loads((root/'florals/generation_status.json').read_text(encoding='utf-8'))
-          if status.get('design_count') != 30 or status.get('pattern_count') != 120:
-              raise SystemExit(status)
-          grids={'CS':(100,120),'C2C':(60,72),'TC':(80,96),'LH':(60,72)}
-          for i in range(1,31):
-              base=f'F{i:04d}'
-              for suffix,(w,h) in grids.items():
-                  code=f'{base}-{suffix}'
-                  p=json.loads((root/'patterns'/code/'pattern.json').read_text(encoding='utf-8'))
-                  prod=json.loads((root/'products'/code/'product.json').read_text(encoding='utf-8'))
-                  if (p['stitch_width'],p['stitch_height'])!=(w,h):
-                      raise SystemExit(f'{code}: bad grid')
-                  if p['collection']!='florals' or prod['collection']!='florals':
-                      raise SystemExit(f'{code}: bad collection')
-                  if not p['threads'] or len(p['threads'])>14:
-                      raise SystemExit(f'{code}: bad colors')
-          print('FLORALS_30X4_VALID')
+          for i in range(1,6):
+              p=next(Path('content/pattern-system/collections/florals/source-designs').glob(f'F{i:04d}-*.png'))
+              im=Image.open(p).convert('RGBA')
+              if im.size!=(100,120) or im.getchannel('A').getbbox() is None:
+                  raise SystemExit(f'bad source {p}: {im.size}')
+              print(p.name,p.stat().st_size)
           PY
-
-      - name: Commit approved sources and generated pattern set
-        shell: bash
-        run: |
-          set -euo pipefail
-          rm -f .github/workflows/tmp-import-florals-sources.yml
-
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          git add -A             .github/workflows/tmp-import-florals-sources.yml             content/pattern-system/collections/florals/source-designs             content/pattern-system/collections/florals/designs.json             content/pattern-system/florals/generation_status.json             content/pattern-system/patterns/F*             content/pattern-system/products/F*
-
-          git commit -m "Import approved Florals sources and build 120 patterns [skip ci]"
+          git add content/pattern-system/collections/florals/source-designs/F000{1,2,3,4,5}-*.png
+          git commit -m "Import approved Florals sources F0001-F0005 [skip ci]"
           git push origin HEAD:feature/florals-pattern-generation
