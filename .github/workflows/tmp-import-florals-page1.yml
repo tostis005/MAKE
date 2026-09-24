@@ -1,0 +1,102 @@
+name: TEMP Import Florals Page-1 Assets
+
+on:
+  push:
+    branches:
+      - feature/florals-auto-publish
+    paths:
+      - '.github/workflows/tmp-import-florals-page1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-import-florals-page1
+  cancel-in-progress: true
+
+jobs:
+  import-assets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: feature/florals-auto-publish
+          fetch-depth: 0
+
+      - name: Download exact user-approved page-1 assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p content/pattern-system/collections/florals/assets
+
+          curl -fL --retry 3 --retry-delay 1 'https://sdmntprnortheu.oaiusercontent.com/files/00000000-c8d4-81f4-8896-e4be3aceb4f2/raw?se=2026-09-24T13%3A05%3A01Z&sp=r&sv=2026-02-06&sr=b&scid=5d8e451b-a888-5f45-8b0d-e89c8518d000&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T11%3A26%3A24Z&ske=2026-09-25T11%3A26%3A24Z&sks=b&skv=2026-02-06&sig=86TcDwftUogTN/1G81ce4%2BES%2B8YELki/4LivaViAmXQ%3D'             -o content/pattern-system/collections/florals/assets/page-1-cross-stitch.webp
+
+          curl -fL --retry 3 --retry-delay 1 'https://sdmntprnortheu.oaiusercontent.com/files/00000000-6474-81f4-a1ff-d502d29c71c1/raw?se=2026-09-24T13%3A05%3A35Z&sp=r&sv=2026-02-06&sr=b&scid=b5f183d6-11e4-51e8-aaf2-2df2b705b8da&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T11%3A54%3A28Z&ske=2026-09-25T11%3A54%3A28Z&sks=b&skv=2026-02-06&sig=vSAQxGt5syA3/QcqDsjHXXKM89TY3M8icZUR4nQd00U%3D'             -o content/pattern-system/collections/florals/assets/page-1-c2c-crochet.webp
+
+          curl -fL --retry 3 --retry-delay 1 'https://sdmntprnorthcentralus.oaiusercontent.com/files/00000000-406c-822f-b1d4-b4743f0a1b91/raw?se=2026-09-24T13%3A05%3A37Z&sp=r&sv=2026-02-06&sr=b&scid=c862941c-111d-549e-8675-e7344ce5c3df&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T11%3A41%3A17Z&ske=2026-09-25T11%3A41%3A17Z&sks=b&skv=2026-02-06&sig=HJf5ESqqv0eY8FKXw2sxPslxqsi/oUjqE0OUnq5Ue9I%3D'             -o content/pattern-system/collections/florals/assets/page-1-tapestry-crochet.webp
+
+          curl -fL --retry 3 --retry-delay 1 'https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-1358-81f7-9a6e-ffe2361cb930/raw?se=2026-09-24T13%3A05%3A40Z&sp=r&sv=2026-02-06&sr=b&scid=7b516b32-374a-58e9-8529-a4d94a326e74&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T12%3A25%3A55Z&ske=2026-09-25T12%3A25%3A55Z&sks=b&skv=2026-02-06&sig=OoHlLu1CzkPo3oVrG9Al%2Brstrqlh61XSPmteYK1POlQ%3D'             -o content/pattern-system/collections/florals/assets/page-1-latch-hook.webp
+
+      - name: Verify files and lock mapping
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, hashlib
+          from pathlib import Path
+          from PIL import Image
+
+          root=Path('content/pattern-system/collections/florals')
+          files={
+            'CS': root/'assets/page-1-cross-stitch.webp',
+            'C2C': root/'assets/page-1-c2c-crochet.webp',
+            'TC': root/'assets/page-1-tapestry-crochet.webp',
+            'LH': root/'assets/page-1-latch-hook.webp',
+          }
+          for tech,p in files.items():
+              if not p.is_file() or p.stat().st_size < 150000:
+                  raise SystemExit(f'{tech}: missing or suspiciously small asset: {p}')
+              im=Image.open(p)
+              if im.size != (1200,1200):
+                  raise SystemExit(f'{tech}: unexpected dimensions {im.size}')
+              print(tech, p.stat().st_size, hashlib.sha256(p.read_bytes()).hexdigest())
+
+          path=root/'collection.json'
+          d=json.loads(path.read_text(encoding='utf-8'))
+          m=d.setdefault('mockup_spec',{})
+          m['technique_assets']={
+            'CS':'assets/page-1-cross-stitch.webp',
+            'C2C':'assets/page-1-c2c-crochet.webp',
+            'TC':'assets/page-1-tapestry-crochet.webp',
+            'LH':'assets/page-1-latch-hook.webp',
+          }
+          m['status']='florals-specific-page-1-scenes-user-approved'
+          m['mapping_note']=(
+            'Strict one-to-one Florals mapping from the four user uploads: '
+            'CS = framed white Aida/cross-stitch canvas (114968); '
+            'C2C = cream blanket/panel on freestanding wooden rack (114966); '
+            'TC = cream crochet wall hanging on horizontal dowel (114967); '
+            'LH = plush tufted rug wall hanging on dowel (114969). '
+            'Do not swap these assets between techniques.'
+          )
+          m['source_files']={
+            'CS':'user-upload-114968',
+            'C2C':'user-upload-114966',
+            'TC':'user-upload-114967',
+            'LH':'user-upload-114969',
+          }
+          path.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+
+      - name: Commit imported page-1 assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add             content/pattern-system/collections/florals/assets/page-1-cross-stitch.webp             content/pattern-system/collections/florals/assets/page-1-c2c-crochet.webp             content/pattern-system/collections/florals/assets/page-1-tapestry-crochet.webp             content/pattern-system/collections/florals/assets/page-1-latch-hook.webp             content/pattern-system/collections/florals/collection.json
+          git commit -m "Replace Florals page-1 scenes with approved user uploads [skip ci]"
+          git push origin HEAD:feature/florals-auto-publish
