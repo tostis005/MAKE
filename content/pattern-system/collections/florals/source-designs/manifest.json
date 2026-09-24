@@ -126,10 +126,10 @@
     {
       "base_design_id": "F0013",
       "slug": "rose-ribbon-bouquet",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0013-rose-ribbon-bouquet.png",
       "reference_sheet": "reference-sheets/florals-sheet-03.png",
       "reference_cell": "r1c1",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "canonical-pattern-ready"
     },
     {
       "base_design_id": "F0014",

@@ -243,8 +243,8 @@
         "F0013-TC",
         "F0013-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "canonical-pattern-ready",
+      "source_asset": "collections/florals/source-designs/F0013-rose-ribbon-bouquet.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-03.png",
         "cell": "r1c1"
