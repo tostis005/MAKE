@@ -1,0 +1,169 @@
+name: Overwrite regenerated Einstein and Marilyn on Etsy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/overwrite-einstein-marilyn-etsy.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  overwrite:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_etsy_target_key
+          chmod 600 ~/.ssh/drielo_etsy_target_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Overwrite only P0001 and P0012 on Etsy
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_etsy_target_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M -d max_execution_time=0 -r '
+            require "/var/www/html/wp-load.php";
+
+            $run=get_option("drielo_etsy_sync_run",array());
+            if(in_array((string)($run["status"]??""),array("queued","running"),true)){
+              fwrite(STDERR,"Refusing targeted overwrite because another Etsy batch is active: ".wp_json_encode($run).PHP_EOL);
+              exit(2);
+            }
+
+            if(!class_exists("Drielo_Etsy_Sync")){
+              fwrite(STDERR,"Drielo Etsy Sync is not active".PHP_EOL);
+              exit(3);
+            }
+
+            $sync=Drielo_Etsy_Sync::instance();
+            $ref=new ReflectionClass($sync);
+            $sync_product=$ref->getMethod("sync_product");
+            $sync_product->setAccessible(true);
+            $request=$ref->getMethod("etsy_request");
+            $request->setAccessible(true);
+
+            $settings=get_option("drielo_etsy_settings",array());
+            $shop=preg_replace("/\D+/","",(string)($settings["shop_id"]??""));
+            if(!$shop){fwrite(STDERR,"Missing Etsy shop id".PHP_EOL);exit(4);}
+
+            $targets=array();
+            foreach(array("P0001","P0012") as $design){
+              foreach(array("CS","C2C","TC","LH") as $suffix){
+                $sku="DRIELO-".$design."-".$suffix;
+                $id=wc_get_product_id_by_sku($sku);
+                if(!$id){
+                  fwrite(STDERR,"Missing WooCommerce product ".$sku.PHP_EOL);
+                  exit(5);
+                }
+                $p=wc_get_product($id);
+                $featured=(int)$p->get_image_id();
+                $gallery=array_values(array_filter(array_map("intval",$p->get_gallery_image_ids())));
+                if(!$featured || count($gallery)!==3 || count($p->get_downloads())<1){
+                  fwrite(STDERR,"Regenerated WooCommerce bundle incomplete ".$sku." featured=".$featured." gallery=".count($gallery)." downloads=".count($p->get_downloads()).PHP_EOL);
+                  exit(6);
+                }
+                $targets[]=array("id"=>(int)$id,"sku"=>$sku);
+              }
+            }
+
+            echo "TARGET_COUNT=".count($targets).PHP_EOL;
+            echo "TARGET_SKUS=".wp_json_encode(array_column($targets,"sku")).PHP_EOL;
+
+            $failures=array();
+            $verified=array();
+
+            foreach($targets as $target){
+              $id=$target["id"];
+              $sku=$target["sku"];
+
+              update_post_meta($id,"_drielo_etsy_enabled","yes");
+              update_post_meta($id,"_drielo_etsy_target_state","active");
+              delete_post_meta($id,"_drielo_etsy_last_error");
+              delete_post_meta($id,"_drielo_etsy_last_warning");
+
+              echo "OVERWRITE_START ".$sku.PHP_EOL;
+              $result=$sync_product->invoke($sync,$id,true);
+              if(is_wp_error($result)){
+                $failures[]=array("sku"=>$sku,"stage"=>"sync","error"=>$result->get_error_message());
+                echo "OVERWRITE_FAIL ".$sku." ".$result->get_error_message().PHP_EOL;
+                continue;
+              }
+
+              $listing=absint(get_post_meta($id,"_drielo_etsy_listing_id",true));
+              if(!$listing){
+                $failures[]=array("sku"=>$sku,"stage"=>"listing_id","error"=>"No listing id after sync");
+                continue;
+              }
+
+              $remote=$request->invoke($sync,"GET","/v3/application/listings/".$listing,array());
+              $images=$request->invoke($sync,"GET","/v3/application/listings/".$listing."/images",array());
+              $files=$request->invoke($sync,"GET","/v3/application/shops/".$shop."/listings/".$listing."/files",array());
+
+              if(is_wp_error($remote) || is_wp_error($images) || is_wp_error($files)){
+                $err=is_wp_error($remote)?$remote:(is_wp_error($images)?$images:$files);
+                $failures[]=array("sku"=>$sku,"stage"=>"verify","error"=>$err->get_error_message());
+                continue;
+              }
+
+              $image_count=count((array)($images["results"]??array()));
+              $file_count=count((array)($files["results"]??array()));
+              $state=(string)($remote["state"]??"");
+              $taxonomy=absint($remote["taxonomy_id"]??0);
+              $section=absint($remote["shop_section_id"]??0);
+
+              echo "OVERWRITE_VERIFY ".$sku.
+                " listing=".$listing.
+                " state=".$state.
+                " images=".$image_count.
+                " files=".$file_count.
+                " taxonomy=".$taxonomy.
+                " section=".$section.PHP_EOL;
+
+              if($image_count!==4 || $file_count<1){
+                $failures[]=array(
+                  "sku"=>$sku,
+                  "stage"=>"asset_count",
+                  "error"=>"Expected exactly 4 images and >=1 file, got images=".$image_count." files=".$file_count
+                );
+                continue;
+              }
+
+              $verified[]=array(
+                "sku"=>$sku,
+                "listing_id"=>$listing,
+                "state"=>$state,
+                "images"=>$image_count,
+                "files"=>$file_count,
+                "taxonomy_id"=>$taxonomy,
+                "shop_section_id"=>$section
+              );
+            }
+
+            echo "VERIFIED=".wp_json_encode($verified).PHP_EOL;
+            echo "FAILURES=".wp_json_encode($failures).PHP_EOL;
+            echo "VERIFIED_COUNT=".count($verified).PHP_EOL;
+
+            if($failures || count($verified)!==8){
+              exit(7);
+            }
+
+            echo "ALL_REGENERATED_LISTINGS_OVERWRITTEN=yes".PHP_EOL;
+          '
+          REMOTE
