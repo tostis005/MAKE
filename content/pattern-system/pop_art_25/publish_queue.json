@@ -15,7 +15,8 @@
     "P0002 uses a design-specific colour master derived from the approved contact sheet; the shared 25-colour palette itself is unchanged.",
     "WooCommerce gallery revision is unique per run so updated product images cannot be skipped by stale attachment metadata.",
     "P0002 cleanup override removes background-white/gray edge noise and balances the viewer-right shoulder without changing the shared palette.",
-    "From P0003 onward, branch-generated sources automatically remove small exterior white/near-white artifacts before the four techniques are rendered; intentional white details remain. P0001 and P0012 stay protected."
+    "From P0003 onward, branch-generated sources automatically remove small exterior white/near-white artifacts before the four techniques are rendered; intentional white details remain. P0001 and P0012 stay protected.",
+    "P0010, P0016 and P0019 were explicitly requeued for stronger Pop Art colour treatments while keeping the shared 25-colour palette unchanged."
   ],
   "items": [
     {
@@ -122,12 +123,10 @@
       "title_en": "Girl with a Pearl Earring Sunglasses",
       "title_es": "La joven de la perla con gafas",
       "slug": "girl-pearl-earring-sunglasses",
-      "status": "published",
-      "attempts": 3,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35978330323",
-      "last_error": null,
-      "failed_at": "2026-09-24T08:30:06+00:00",
-      "published_at": "2026-09-24T09:01:37+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 10,
@@ -183,11 +182,10 @@
       "title_en": "Mona Lisa Portrait",
       "title_es": "Retrato de la Mona Lisa",
       "slug": "mona-lisa-portrait",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35977103424",
-      "last_error": null,
-      "published_at": "2026-09-24T08:48:55+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 15,
@@ -219,11 +217,10 @@
       "title_en": "Vincent van Gogh Portrait",
       "title_es": "Retrato de Vincent van Gogh",
       "slug": "vincent-van-gogh-portrait",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35979598436",
-      "last_error": null,
-      "published_at": "2026-09-24T09:14:05+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 18,
