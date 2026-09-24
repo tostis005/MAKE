@@ -107,10 +107,11 @@
       "base_design_id": "F0011",
       "title_en": "Wrapped Wildflower Bouquet",
       "slug": "wrapped-wildflower-bouquet",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36047971824",
+      "last_error": null,
+      "published_at": "2026-09-24T19:28:28+00:00"
     },
     {
       "base_design_id": "F0012",
