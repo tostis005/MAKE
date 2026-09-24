@@ -1,0 +1,192 @@
+{
+  "collection": "animals",
+  "source": "canonical matrix archive",
+  "master_grid": {
+    "width": 100,
+    "height": 120
+  },
+  "palette": "Animals 24-colour collection palette only",
+  "transparent_background": true,
+  "designs": [
+    {
+      "base_design_id": "A0001",
+      "slug": "sleeping-tabby-quilts",
+      "asset": "collections/animals/source-designs/A0001-sleeping-tabby-quilts.png",
+      "sha256": "db27482f4987d9233c2921eb0eadb7383a0db49a7d71da1839fc830900438c63"
+    },
+    {
+      "base_design_id": "A0002",
+      "slug": "black-cat-red-bow",
+      "asset": "collections/animals/source-designs/A0002-black-cat-red-bow.png",
+      "sha256": "40874844bdcea978aeac57522fc7aebc90e11b8f30c7cad90a27bf36516812ba"
+    },
+    {
+      "base_design_id": "A0003",
+      "slug": "puppy-heart",
+      "asset": "collections/animals/source-designs/A0003-puppy-heart.png",
+      "sha256": "5a927a0f8d7ffed3494388cbc8b6097e80ce74e28454d4e195b4d49dce716a48"
+    },
+    {
+      "base_design_id": "A0004",
+      "slug": "kitten-teacup",
+      "asset": "collections/animals/source-designs/A0004-kitten-teacup.png",
+      "sha256": "e8db457854fe1466b41a9b2d3e105b16565bdc87ea57f55c821842dfe5cabaf7"
+    },
+    {
+      "base_design_id": "A0005",
+      "slug": "lovebirds-branch",
+      "asset": "collections/animals/source-designs/A0005-lovebirds-branch.png",
+      "sha256": "8a179598007693780e0dec4ec0cd51efb6391547a817794476f8f866d5f956f2"
+    },
+    {
+      "base_design_id": "A0006",
+      "slug": "floral-bunny",
+      "asset": "collections/animals/source-designs/A0006-floral-bunny.png",
+      "sha256": "1a49d3e9296459f1b8a906c34a098bef04d904f08e59ec399d8d2af66d172a77"
+    },
+    {
+      "base_design_id": "A0007",
+      "slug": "hedgehog-flowers",
+      "asset": "collections/animals/source-designs/A0007-hedgehog-flowers.png",
+      "sha256": "04d1fedaff91b3e8fa25ec356388465a77bdba587969647ba8e81374f2faafac"
+    },
+    {
+      "base_design_id": "A0008",
+      "slug": "frog-mushroom",
+      "asset": "collections/animals/source-designs/A0008-frog-mushroom.png",
+      "sha256": "4fac838b2954cfcb113f621aa79f38710da18f4e22f4ec30dadfbd999505ade4"
+    },
+    {
+      "base_design_id": "A0009",
+      "slug": "fox-butterfly",
+      "asset": "collections/animals/source-designs/A0009-fox-butterfly.png",
+      "sha256": "02e9d063af2e6d886b07bf3e58e1107f8223729b6e29215173db188a5d0096f9"
+    },
+    {
+      "base_design_id": "A0010",
+      "slug": "penguin-red-scarf",
+      "asset": "collections/animals/source-designs/A0010-penguin-red-scarf.png",
+      "sha256": "2851f6a9a433bbb4e765d8cf1c13641c879d9a592ca952f5794c931160d692fd"
+    },
+    {
+      "base_design_id": "A0011",
+      "slug": "owl-floral-branch",
+      "asset": "collections/animals/source-designs/A0011-owl-floral-branch.png",
+      "sha256": "2bc2b91e681546dab89b768aaa06a17f11038052d913ae208e2b7be6a6b323f3"
+    },
+    {
+      "base_design_id": "A0012",
+      "slug": "raccoon-heart",
+      "asset": "collections/animals/source-designs/A0012-raccoon-heart.png",
+      "sha256": "93559eca2c384f7048fffe7f907e344a029c200e3ed405429f262c959f2ea5e5"
+    },
+    {
+      "base_design_id": "A0013",
+      "slug": "teddy-blue-bow",
+      "asset": "collections/animals/source-designs/A0013-teddy-blue-bow.png",
+      "sha256": "b03730d21c29974004948549d612133ec479e2028dff339b33121feae3f329df"
+    },
+    {
+      "base_design_id": "A0014",
+      "slug": "elephant-heart-balloon",
+      "asset": "collections/animals/source-designs/A0014-elephant-heart-balloon.png",
+      "sha256": "499c252d553cc7b684d32de340acf0b47458d0f338edb000cf4b389be70e22b8"
+    },
+    {
+      "base_design_id": "A0015",
+      "slug": "giraffe-daisies",
+      "asset": "collections/animals/source-designs/A0015-giraffe-daisies.png",
+      "sha256": "a7146269d63e6b5470e428522954d9b98e0dbf20ad7ce68d968f95ac3191d400"
+    },
+    {
+      "base_design_id": "A0016",
+      "slug": "lamb-flower-crown",
+      "asset": "collections/animals/source-designs/A0016-lamb-flower-crown.png",
+      "sha256": "ed1c5d06e7af88decbab52d5c9b97c348fd77f32bdd18512f71ea1ccaad46104"
+    },
+    {
+      "base_design_id": "A0017",
+      "slug": "koala-eucalyptus",
+      "asset": "collections/animals/source-designs/A0017-koala-eucalyptus.png",
+      "sha256": "89d97e82dbc17874fb6763add696e0be89e722b33a658d20870f6dd840647b46"
+    },
+    {
+      "base_design_id": "A0018",
+      "slug": "panda-bamboo",
+      "asset": "collections/animals/source-designs/A0018-panda-bamboo.png",
+      "sha256": "f4a9eba0a4364ba60937652a077244e547572c20cf13815b2343b01d6a3e0ac7"
+    },
+    {
+      "base_design_id": "A0019",
+      "slug": "fawn-red-scarf",
+      "asset": "collections/animals/source-designs/A0019-fawn-red-scarf.png",
+      "sha256": "15f548240bb9aaf12ced161d067e04a1be760966f6c234293d79f7af970a69ab"
+    },
+    {
+      "base_design_id": "A0020",
+      "slug": "squirrel-acorn",
+      "asset": "collections/animals/source-designs/A0020-squirrel-acorn.png",
+      "sha256": "c8cde882d27db71a9da7305b7a621065d4a5aaa7b61efa1dc4ec93589b6bde6e"
+    },
+    {
+      "base_design_id": "A0021",
+      "slug": "mouse-teacup",
+      "asset": "collections/animals/source-designs/A0021-mouse-teacup.png",
+      "sha256": "0d6a7a6be412271b9e7e5336ab255b568ff831059564ed7b56e2b41f0d11ba0d"
+    },
+    {
+      "base_design_id": "A0022",
+      "slug": "duckling-tulips",
+      "asset": "collections/animals/source-designs/A0022-duckling-tulips.png",
+      "sha256": "e9db33d2735080109bcad1b255be97ff3a968d3b20d32ffbde16f24faa7a9361"
+    },
+    {
+      "base_design_id": "A0023",
+      "slug": "calf-heart",
+      "asset": "collections/animals/source-designs/A0023-calf-heart.png",
+      "sha256": "f797c1902dc7706c703a13e20f2dfa445b2f64df7ee27561b42f1f58339ade78"
+    },
+    {
+      "base_design_id": "A0024",
+      "slug": "piglet-daisies",
+      "asset": "collections/animals/source-designs/A0024-piglet-daisies.png",
+      "sha256": "8ade4c2f706c25b26f2657fd7ec63e8863808aee25845ee4f18abe455643ca47"
+    },
+    {
+      "base_design_id": "A0025",
+      "slug": "red-panda-flowers",
+      "asset": "collections/animals/source-designs/A0025-red-panda-flowers.png",
+      "sha256": "635b6b57ee1ca41af79f5759d97e140f4586a4d950f6c144b5e6825f326117a5"
+    },
+    {
+      "base_design_id": "A0026",
+      "slug": "hamster-strawberry",
+      "asset": "collections/animals/source-designs/A0026-hamster-strawberry.png",
+      "sha256": "63739359733cdbcfb0761c68524b5554a308ff105854dc06f7a9807306e31d42"
+    },
+    {
+      "base_design_id": "A0027",
+      "slug": "chick-daisy",
+      "asset": "collections/animals/source-designs/A0027-chick-daisy.png",
+      "sha256": "98e5fc4a4af3107625b61df9ca508c8bc38bc8b9852175d4ded4703aaeefde1e"
+    },
+    {
+      "base_design_id": "A0028",
+      "slug": "baby-goat-flower-crown",
+      "asset": "collections/animals/source-designs/A0028-baby-goat-flower-crown.png",
+      "sha256": "96dae26779001033e4539faa52fcc2b103d7204e32fd8bdd1aab5139197b0db6"
+    },
+    {
+      "base_design_id": "A0029",
+      "slug": "polar-bear-blue-scarf",
+      "asset": "collections/animals/source-designs/A0029-polar-bear-blue-scarf.png",
+      "sha256": "44dbe40ba52ea6ace767179dc2e902bf605f0586e124cfda26eee1eeeb76fc66"
+    },
+    {
+      "base_design_id": "A0030",
+      "slug": "otter-seashell-heart",
+      "asset": "collections/animals/source-designs/A0030-otter-seashell-heart.png",
+      "sha256": "cda3048ca668ed17df3b3f273a343ea51061172a932cbcec2e589ffa627f06a3"
+    }
+  ]
+}

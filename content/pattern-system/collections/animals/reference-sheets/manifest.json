@@ -1,0 +1,73 @@
+{
+  "collection": "animals",
+  "layout": "3x2",
+  "sheet_count": 5,
+  "transparent_background": true,
+  "sheets": [
+    {
+      "sheet": 1,
+      "asset": "collections/animals/reference-sheets/animals-reference-sheet-01.png",
+      "design_ids": [
+        "A0001",
+        "A0002",
+        "A0003",
+        "A0004",
+        "A0005",
+        "A0006"
+      ],
+      "sha256": "05d23648b67ca5a10cbef06088f86af70187ca3747bc86f42a0651d29c2b30e6"
+    },
+    {
+      "sheet": 2,
+      "asset": "collections/animals/reference-sheets/animals-reference-sheet-02.png",
+      "design_ids": [
+        "A0007",
+        "A0008",
+        "A0009",
+        "A0010",
+        "A0011",
+        "A0012"
+      ],
+      "sha256": "d45162cfe56406307ec622a5456555fa47b78f56fb0399385d777bd09ad44ade"
+    },
+    {
+      "sheet": 3,
+      "asset": "collections/animals/reference-sheets/animals-reference-sheet-03.png",
+      "design_ids": [
+        "A0013",
+        "A0014",
+        "A0015",
+        "A0016",
+        "A0017",
+        "A0018"
+      ],
+      "sha256": "cd0933725781ec33e6ed00fabbd7a4a87dda30cc21a8446cb18b96d8f9f34631"
+    },
+    {
+      "sheet": 4,
+      "asset": "collections/animals/reference-sheets/animals-reference-sheet-04.png",
+      "design_ids": [
+        "A0019",
+        "A0020",
+        "A0021",
+        "A0022",
+        "A0023",
+        "A0024"
+      ],
+      "sha256": "178a9f66f743d3c799c6405000be0c0772310fe9c7c9808e5b85dd86faf742e2"
+    },
+    {
+      "sheet": 5,
+      "asset": "collections/animals/reference-sheets/animals-reference-sheet-05.png",
+      "design_ids": [
+        "A0025",
+        "A0026",
+        "A0027",
+        "A0028",
+        "A0029",
+        "A0030"
+      ],
+      "sha256": "1af1a12058f2f3ca6868160841f9512804ac78f6602516da79f7da83e3102e5a"
+    }
+  ]
+}
