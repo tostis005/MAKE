@@ -1,9 +1,9 @@
 {
   "collection": "baby-nursery",
-  "reference_policy": "User-approved kawaii images are canonical for the approved v4 batch. Reconstruct their extracted 100x120 stitch matrices verbatim; do not supersample, redraw or approximate them.",
+  "reference_policy": "Only Teddy Bear plus the 10 user-approved premium kawaii references are active. Legacy Infantil references are intentionally removed from the active branch.",
   "canonical_archive": null,
-  "archive_encoding": "concatenated base64(zlib(json))",
-  "decoded_sha256": "533a4d7ed0892fd142eed3406b4740a539f70cbfffeaf932813466800a97ad19",
+  "archive_encoding": null,
+  "decoded_sha256": null,
   "master_grid": {
     "width": 100,
     "height": 120
@@ -58,32 +58,11 @@
       "column": 3
     },
     {
-      "base_design_id": "I0007",
-      "slug": "rainbow-clouds",
-      "reference_sheet": 1,
-      "row": 3,
-      "column": 1
-    },
-    {
       "base_design_id": "I0008",
       "slug": "cute-dinosaur",
       "reference_sheet": 1,
       "row": 3,
       "column": 2
-    },
-    {
-      "base_design_id": "I0009",
-      "slug": "hot-air-balloon",
-      "reference_sheet": 1,
-      "row": 3,
-      "column": 3
-    },
-    {
-      "base_design_id": "I0010",
-      "slug": "toy-sailboat",
-      "reference_sheet": 1,
-      "row": 4,
-      "column": 1
     },
     {
       "base_design_id": "I0011",
@@ -93,66 +72,10 @@
       "column": 2
     },
     {
-      "base_design_id": "I0012",
-      "slug": "baby-bottle",
-      "reference_sheet": 1,
-      "row": 4,
-      "column": 3
-    },
-    {
-      "base_design_id": "I0013",
-      "slug": "pacifier",
-      "reference_sheet": 1,
-      "row": 5,
-      "column": 1
-    },
-    {
-      "base_design_id": "I0014",
-      "slug": "baby-stroller",
-      "reference_sheet": 1,
-      "row": 5,
-      "column": 2
-    },
-    {
-      "base_design_id": "I0015",
-      "slug": "rocking-horse",
-      "reference_sheet": 1,
-      "row": 5,
-      "column": 3
-    },
-    {
-      "base_design_id": "I0016",
-      "slug": "teddy-bear-onesie",
-      "reference_sheet": 2,
-      "row": 1,
-      "column": 1
-    },
-    {
       "base_design_id": "I0017",
       "slug": "rubber-duck",
       "reference_sheet": 2,
       "row": 1,
-      "column": 2
-    },
-    {
-      "base_design_id": "I0018",
-      "slug": "abc-blocks",
-      "reference_sheet": 2,
-      "row": 1,
-      "column": 3
-    },
-    {
-      "base_design_id": "I0019",
-      "slug": "nursery-mobile",
-      "reference_sheet": 2,
-      "row": 2,
-      "column": 1
-    },
-    {
-      "base_design_id": "I0020",
-      "slug": "smiling-star",
-      "reference_sheet": 2,
-      "row": 2,
       "column": 2
     },
     {
@@ -163,81 +86,14 @@
       "column": 3
     },
     {
-      "base_design_id": "I0022",
-      "slug": "floral-baby-bib",
-      "reference_sheet": 2,
-      "row": 3,
-      "column": 1
-    },
-    {
       "base_design_id": "I0023",
       "slug": "plush-lamb",
       "reference_sheet": 2,
       "row": 3,
       "column": 2
-    },
-    {
-      "base_design_id": "I0024",
-      "slug": "toy-train",
-      "reference_sheet": 2,
-      "row": 3,
-      "column": 3
-    },
-    {
-      "base_design_id": "I0025",
-      "slug": "stacking-rings",
-      "reference_sheet": 2,
-      "row": 4,
-      "column": 1
-    },
-    {
-      "base_design_id": "I0026",
-      "slug": "baby-crib",
-      "reference_sheet": 2,
-      "row": 4,
-      "column": 2
-    },
-    {
-      "base_design_id": "I0027",
-      "slug": "pink-floral-onesie",
-      "reference_sheet": 2,
-      "row": 4,
-      "column": 3
-    },
-    {
-      "base_design_id": "I0028",
-      "slug": "rocket",
-      "reference_sheet": 2,
-      "row": 5,
-      "column": 1
-    },
-    {
-      "base_design_id": "I0029",
-      "slug": "kite",
-      "reference_sheet": 2,
-      "row": 5,
-      "column": 2
-    },
-    {
-      "base_design_id": "I0030",
-      "slug": "fairytale-castle",
-      "reference_sheet": 2,
-      "row": 5,
-      "column": 3
     }
   ],
-  "canonical_archive_parts": [
-    "reference-matrices-v1.part00",
-    "reference-matrices-v1.part01",
-    "reference-matrices-v1.part02",
-    "reference-matrices-v1.part03",
-    "reference-matrices-v1.part04",
-    "reference-matrices-v1.part05",
-    "reference-matrices-v1.part06",
-    "reference-matrices-v1.part07",
-    "reference-matrices-v1.part08",
-    "reference-matrices-v1.part09"
-  ],
+  "canonical_archive_parts": [],
   "generation_order": [
     "canonical reference matrix",
     "800x960 transparent master/reference",
@@ -256,7 +112,7 @@
   ],
   "direct_reference_bundle_decoded_sha256": "b27b12cc29723c258ca48e96ba6694d2e9079a8f58998134c9aa07347dbc5817",
   "direct_reference_bundle_designs": 10,
-  "direct_reference_bundle_label": "user-approved-kawaii-v4",
+  "direct_reference_bundle_label": "user-approved-premium-10-only",
   "direct_reference_bundle_ids": [
     "I0002",
     "I0003",
@@ -268,5 +124,19 @@
     "I0017",
     "I0021",
     "I0023"
-  ]
+  ],
+  "active_reference_ids": [
+    "I0001",
+    "I0011",
+    "I0003",
+    "I0002",
+    "I0006",
+    "I0008",
+    "I0017",
+    "I0023",
+    "I0021",
+    "I0004",
+    "I0005"
+  ],
+  "legacy_archives_removed": true
 }
