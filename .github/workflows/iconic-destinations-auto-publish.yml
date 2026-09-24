@@ -14,7 +14,7 @@ permissions:
 
 concurrency:
   group: drielo-iconic-destinations-auto-publish
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   publish-next:
@@ -24,7 +24,7 @@ jobs:
       - name: Checkout main
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
       - name: Select next pending destination
         id: select
