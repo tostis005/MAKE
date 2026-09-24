@@ -1,5 +1,5 @@
 name: Baby Nursery Sequential Rebuild
-# rollout-generation: ACTIVE-sequential-kawaii-v1-2026-09-24
+# rollout-generation: ACTIVE-latest-chat-approved-11-v5-2026-09-24
 # strict one-design-per-run; exact approved 11 only; active pattern templates are preserved
 # Pop Art-style featured + 3 gallery previews
 
@@ -16,7 +16,7 @@ permissions:
 
 concurrency:
   group: drielo-baby-nursery-approved-11-v3
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   publish-next:
@@ -29,49 +29,52 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Preflight exact approved 11
+      - name: Preflight exact latest-chat approved 11
         shell: bash
         run: |
           set -euo pipefail
           python3 - <<'PY'
           import base64, hashlib, json, zlib
           from pathlib import Path
+
           system=Path("content/pattern-system")
-          cold=system/"collections"/"baby-nursery"
-          lib=cold/"reference-library"
-          designs=json.loads((cold/"designs.json").read_text(encoding="utf-8"))["designs"]
-          mapping=json.loads((system/"baby_nursery"/"sequential_reference_map.json").read_text(encoding="utf-8"))["mappings"]
-          expected=[f"I{i:04d}" for i in range(1,12)]
-          if [d["base_design_id"] for d in designs]!=expected or [m["target_id"] for m in mapping]!=expected:
-              raise SystemExit("Active Infantil queue must be exactly I0001-I0011")
-          manifest=json.loads((lib/"manifest.json").read_text(encoding="utf-8"))
-          encoded="".join((lib/p).read_text(encoding="ascii").strip() for p in manifest["direct_reference_bundle_parts"])
-          raw_bundle=zlib.decompress(base64.b64decode(encoded,validate=True))
-          if hashlib.sha256(raw_bundle).hexdigest()!=manifest["direct_reference_bundle_decoded_sha256"]:
-              raise SystemExit("Premium bundle SHA mismatch")
-          bundle=json.loads(raw_bundle.decode("utf-8"))["designs"]
-          hashes={}
-          by_id={d["base_design_id"]:d for d in designs}
-          for m in mapping:
-              target=m["target_id"]; d=by_id[target]
-              if d["slug"]!=m["target_slug"]: raise SystemExit(f"{target}: slug mismatch")
-              sid=m["approved_reference_id"]; sslug=m["approved_reference_slug"]
-              if m["bundle_only"]:
-                  ref=bundle.get(sid)
-              else:
-                  ref=json.loads((lib/f"{sid}-{sslug}.json").read_text(encoding="utf-8"))
-              if not ref or ref.get("base_design_id")!=sid or ref.get("slug")!=sslug:
-                  raise SystemExit(f"{target}: approved reference mismatch")
-              matrix=zlib.decompress(base64.b64decode(ref["matrix_zlib_base64"],validate=True))
-              digest=hashlib.sha256(matrix).hexdigest()
-              if digest!=ref["matrix_sha256"]: raise SystemExit(f"{target}: matrix SHA mismatch")
-              rows=matrix.decode("ascii").splitlines()
-              if len(rows)!=120 or any(len(r)!=100 for r in rows): raise SystemExit(f"{target}: matrix grid invalid")
-              if digest in hashes: raise SystemExit(f"Duplicate motif: {target} == {hashes[digest]}")
-              hashes[digest]=target
-              print("APPROVED",target,d["title_en"],digest)
-          if len(hashes)!=11: raise SystemExit("Expected 11 unique approved motifs")
-          print("APPROVED_11_PREFLIGHT_OK")
+          collection=system/"collections"/"baby-nursery"
+          designs=json.loads((collection/"designs.json").read_text(encoding="utf-8"))["designs"]
+          expected_ids=[f"I{i:04d}" for i in range(1,12)]
+          ids=[d["base_design_id"] for d in designs]
+          if ids != expected_ids or len(designs) != 11:
+              raise SystemExit(f"Active Infantil designs are not exactly the approved 11: {ids}")
+
+          seen={}
+          for d in designs:
+              did=d["base_design_id"]
+              if any(k in d for k in ("reference_source_id","reference_source_slug","reference_bundle_only")):
+                  raise SystemExit(f"{did}: legacy reference remapping field detected")
+              expected_rel=f"collections/baby-nursery/approved-latest-11/{did}.matrix.zlib.b64"
+              if d.get("approved_matrix_asset") != expected_rel:
+                  raise SystemExit(f"{did}: unexpected approved matrix path")
+              p=system/expected_rel
+              if not p.is_file():
+                  raise SystemExit(f"{did}: approved latest-chat matrix missing")
+              raw=zlib.decompress(base64.b64decode(p.read_text(encoding="ascii").strip(),validate=True))
+              digest=hashlib.sha256(raw).hexdigest()
+              if digest != d.get("approved_matrix_sha256"):
+                  raise SystemExit(f"{did}: approved latest-chat SHA mismatch {digest}")
+              rows=raw.decode("ascii").splitlines()
+              if len(rows)!=120 or any(len(row)!=100 for row in rows):
+                  raise SystemExit(f"{did}: matrix is not 100x120")
+              if digest in seen:
+                  raise SystemExit(f"{did}: duplicate matrix with {seen[digest]}")
+              seen[digest]=did
+              for suffix in ("CS","C2C","TC","LH"):
+                  template=system/"patterns"/f"{did}-{suffix}"/"pattern.json"
+                  if not template.is_file():
+                      raise SystemExit(f"{did}-{suffix}: structural template missing")
+              print("LATEST_CHAT_APPROVED",did,d["slug"],digest)
+
+          if len(seen)!=11:
+              raise SystemExit("Expected 11 unique latest-chat matrices")
+          print("LATEST_CHAT_APPROVED_11_OK")
           PY
 
       - name: Select next pending design
@@ -104,6 +107,66 @@ jobs:
               raise SystemExit("Unexpected queue status")
           print("QUEUE_APPROVED_11_OK",ids)
           PY
+
+      - name: Remove all legacy Infantil repository residues
+        if: steps.select.outputs.design_id == 'I0001'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          rm -rf content/pattern-system/collections/baby-nursery/reference-library
+          rm -rf content/pattern-system/collections/baby-nursery/source-designs
+          rm -rf content/pattern-system/collections/baby-nursery/reference-masters
+          mkdir -p content/pattern-system/collections/baby-nursery/source-designs
+          mkdir -p content/pattern-system/collections/baby-nursery/reference-masters
+
+          rm -f content/pattern-system/baby_nursery/sequential_reference_map.json
+          rm -f .github/workflows/baby-nursery-auto-publish.yml
+          rm -f .github/workflows/baby-nursery-premium-edge-refinement.yml
+          rm -f .github/workflows/tmp-install-baby-nursery-covers.yml
+
+          rm -f content/products/assets/I????-CS-*.webp
+          rm -f content/products/assets/I????-C2C-*.webp
+          rm -f content/products/assets/I????-TC-*.webp
+          rm -f content/products/assets/I????-LH-*.webp
+          rm -f content/products/files/Drielo_I????-CS.pdf
+          rm -f content/products/files/Drielo_I????-C2C.pdf
+          rm -f content/products/files/Drielo_I????-TC.pdf
+          rm -f content/products/files/Drielo_I????-LH.pdf
+
+          for n in $(seq 12 30); do
+            id=$(printf 'I%04d' "$n")
+            rm -rf "content/pattern-system/patterns/${id}-CS" \
+                   "content/pattern-system/patterns/${id}-C2C" \
+                   "content/pattern-system/patterns/${id}-TC" \
+                   "content/pattern-system/patterns/${id}-LH" \
+                   "content/pattern-system/products/${id}-CS" \
+                   "content/pattern-system/products/${id}-C2C" \
+                   "content/pattern-system/products/${id}-TC" \
+                   "content/pattern-system/products/${id}-LH"
+          done
+
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No legacy Infantil repository residues remain."
+          else
+            git commit -m "Remove all legacy Infantil residues [skip ci]"
+            git fetch origin feature/baby-nursery-sequential-rebuild
+            git rebase origin/feature/baby-nursery-sequential-rebuild
+            git push origin HEAD:feature/baby-nursery-sequential-rebuild
+          fi
+
+          for n in $(seq 1 11); do
+            id=$(printf 'I%04d' "$n")
+            for suffix in CS C2C TC LH; do
+              test -f "content/pattern-system/patterns/${id}-${suffix}/pattern.json" || {
+                echo "ERROR: active template disappeared: ${id}-${suffix}" >&2
+                exit 1
+              }
+            done
+          done
 
       - name: Configure SSH for sequential publishing
         if: steps.select.outputs.design_id != ''
@@ -151,6 +214,36 @@ jobs:
           '
           REMOTE
 
+      - name: Verify Infantil store is empty before rebuild
+        if: steps.select.outputs.design_id == 'I0001'
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_products_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker);
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then DOCKER=(sudo -n docker);
+          else echo "ERROR: make-wp container not found"; exit 1; fi
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $ids=get_posts(array(
+              "post_type"=>"product","post_status"=>"any","posts_per_page"=>-1,"fields"=>"ids",
+              "tax_query"=>array(array("taxonomy"=>"product_collection","field"=>"slug","terms"=>array("baby-nursery")))
+            ));
+            $sku_count=0;
+            $all=wc_get_products(array("limit"=>-1,"return"=>"ids","status"=>array("publish","draft","pending","private")));
+            foreach($all as $id){
+              $p=wc_get_product($id);
+              if($p && preg_match("/^DRIELO-I[0-9]{4}-(CS|C2C|TC|LH)$/",$p->get_sku())) $sku_count++;
+            }
+            echo "INFANTIL_EMPTY_CHECK taxonomy=".count($ids)." sku=".$sku_count.PHP_EOL;
+            if(count($ids)!==0 || $sku_count!==0) exit(7);
+          '
+          REMOTE
+
       - name: Install renderer dependencies
         if: steps.select.outputs.design_id != ''
         shell: bash
@@ -190,6 +283,8 @@ jobs:
           direct=load_design_reference(design,meta)
           if not direct:
               raise SystemExit(f"{design}: mapped approved reference missing")
+          if direct["source_sha256"] != meta.get("approved_matrix_sha256"):
+              raise SystemExit(f"{design}: generated reference did not come from latest-chat approved matrix")
           rows=direct["canonical"]["rows"]
           if len(rows)!=120 or any(len(r)!=100 for r in rows):
               raise SystemExit(f"{design}: approved matrix is not 100x120")
