@@ -17,7 +17,7 @@ concurrency:
   # Keep exactly one publisher running. Do not cancel the current run when it
   # dispatches the next queued design; the next run waits for this one to finish.
   group: drielo-animals-branch-auto-publish
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   publish-next:
