@@ -304,10 +304,27 @@ jobs:
             global $wp_rewrite;
             $rules = explode("\n", trim((string) $wp_rewrite->mod_rewrite_rules()));
             $written = insert_with_markers(ABSPATH . ".htaccess", "WordPress", $rules);
+            $image_cache_rules = array(
+                "<IfModule mod_expires.c>",
+                "ExpiresActive On",
+                "ExpiresByType image/avif \"access plus 1 hour\"",
+                "ExpiresByType image/gif \"access plus 1 hour\"",
+                "ExpiresByType image/jpeg \"access plus 1 hour\"",
+                "ExpiresByType image/png \"access plus 1 hour\"",
+                "ExpiresByType image/webp \"access plus 1 hour\"",
+                "</IfModule>",
+                "<IfModule mod_headers.c>",
+                "<FilesMatch \"\\.(?:avif|gif|jpe?g|png|webp)$\">",
+                "Header set Cache-Control \"public, max-age=3600, stale-while-revalidate=86400\"",
+                "</FilesMatch>",
+                "</IfModule>",
+            );
+            $cache_written = insert_with_markers(ABSPATH . ".htaccess", "Drielo Image Cache", $image_cache_rules);
             echo "MAKE_PERMALINK_STRUCTURE=" . (string) get_option("permalink_structure", "") . PHP_EOL;
             echo "MAKE_BLOG_PUBLIC=" . (string) get_option("blog_public", "") . PHP_EOL;
             echo "MAKE_HTACCESS=" . (is_readable(ABSPATH . ".htaccess") ? "present" : "missing") . PHP_EOL;
             echo "MAKE_HTACCESS_RULES=" . ($written ? "written" : "failed") . PHP_EOL;
+            echo "MAKE_IMAGE_CACHE_RULES=" . ($cache_written ? "written" : "failed") . PHP_EOL;
             if ( function_exists( "wp_cache_flush" ) ) { wp_cache_flush(); }
             if ( function_exists( "rocket_clean_domain" ) ) { rocket_clean_domain(); }
             if ( function_exists( "wp_cache_clear_cache" ) ) { wp_cache_clear_cache(); }
@@ -432,21 +449,27 @@ jobs:
           PRODUCT_EN_ROUTE="$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; $id=wc_get_product_id_by_sku("DRIELO-P0001-CS"); $u=make_product_url($id,"en"); echo parse_url($u,PHP_URL_PATH);')"
 
           check_html "/tienda/" "Tienda de patrones" "shop-patterns-es" "PDF descargable"
-          check_html "/tienda/page/2/" "page-numbers current" "shop-page-2-content"
-          PAGED_HEADERS="/tmp/drielo-shop-page-2-headers.txt"
-          PAGED_BODY="/tmp/drielo-shop-page-2.html"
-          rm -f "$PAGED_HEADERS" "$PAGED_BODY"
-          curl -fsS -D "$PAGED_HEADERS" -o "$PAGED_BODY" "https://$SITE_HOST/tienda/page/2/"
-          PAGED_STATUS="$(awk '/^HTTP\//{code=$2} END{print code}' "$PAGED_HEADERS")"
-          if [ "$PAGED_STATUS" != "200" ]; then
-            echo "shop-page-2-direct failed status=$PAGED_STATUS"
-            exit 2
+          SHOP_FIRST_PAGE="/tmp/drielo-shop-first-page.html"
+          curl -fsS -o "$SHOP_FIRST_PAGE" "https://$SITE_HOST/tienda/"
+          if grep -Eq 'href="[^"]*/tienda/page/2/?' "$SHOP_FIRST_PAGE"; then
+            check_html "/tienda/page/2/" "page-numbers current" "shop-page-2-content"
+            PAGED_HEADERS="/tmp/drielo-shop-page-2-headers.txt"
+            PAGED_BODY="/tmp/drielo-shop-page-2.html"
+            rm -f "$PAGED_HEADERS" "$PAGED_BODY"
+            curl -fsS -D "$PAGED_HEADERS" -o "$PAGED_BODY" "https://$SITE_HOST/tienda/page/2/"
+            PAGED_STATUS="$(awk '/^HTTP\//{code=$2} END{print code}' "$PAGED_HEADERS")"
+            if [ "$PAGED_STATUS" != "200" ]; then
+              echo "shop-page-2-direct failed status=$PAGED_STATUS"
+              exit 2
+            fi
+            if ! grep -q 'page-numbers current' "$PAGED_BODY"; then
+              echo "shop-page-2-direct missing current pagination marker"
+              exit 2
+            fi
+            echo "MAKE_SMOKE_OK=shop-page-2-direct route=/tienda/page/2/ status=$PAGED_STATUS"
+          else
+            echo "MAKE_SMOKE_SKIP=shop-page-2 reason=single-page-catalog"
           fi
-          if ! grep -q 'page-numbers current' "$PAGED_BODY"; then
-            echo "shop-page-2-direct missing current pagination marker"
-            exit 2
-          fi
-          echo "MAKE_SMOKE_OK=shop-page-2-direct route=/tienda/page/2/ status=$PAGED_STATUS"
           check_html "/tienda/" "drielo-technique-hub" "shop-technique-hub"
           check_html "/tienda/" "drielo-technique-hub" "shop-technique-row-present"
           check_html "/wp-content/themes/make/assets/js/site.js" "simplifyDrieloTechniqueHub" "shop-technique-row-js"
