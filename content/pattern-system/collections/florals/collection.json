@@ -1,0 +1,219 @@
+{
+  "id": "florals",
+  "name": "Florals",
+  "name_en": "Florals",
+  "name_es": "Florales",
+  "slug": "florals",
+  "code_prefix": "F",
+  "description": "A coordinated collection of 30 floral and botanical motifs designed from approved reference sheets to remain readable across cross stitch, C2C crochet, tapestry crochet and latch-hook/rug formats.",
+  "description_es": "Colección coordinada de 30 motivos florales y botánicos basados en láminas de referencia aprobadas y diseñados para conservar una buena lectura en punto de cruz, crochet C2C, tapestry crochet y alfombra/latch hook.",
+  "design_count": 30,
+  "techniques": [
+    "cross-stitch",
+    "c2c-crochet",
+    "tapestry-crochet",
+    "latch-hook"
+  ],
+  "palette": [
+    {
+      "dmc": "3865",
+      "name": "Winter White",
+      "hex": "#F5F1E8"
+    },
+    {
+      "dmc": "712",
+      "name": "Cream",
+      "hex": "#FFF1C8"
+    },
+    {
+      "dmc": "842",
+      "name": "Very Light Beige Brown",
+      "hex": "#D8C0A6"
+    },
+    {
+      "dmc": "437",
+      "name": "Light Tan",
+      "hex": "#C19671"
+    },
+    {
+      "dmc": "434",
+      "name": "Light Brown",
+      "hex": "#986C4B"
+    },
+    {
+      "dmc": "801",
+      "name": "Dark Coffee Brown",
+      "hex": "#664B37"
+    },
+    {
+      "dmc": "523",
+      "name": "Light Fern Green",
+      "hex": "#A5B79B"
+    },
+    {
+      "dmc": "522",
+      "name": "Fern Green",
+      "hex": "#829879"
+    },
+    {
+      "dmc": "3051",
+      "name": "Dark Green Gray",
+      "hex": "#627650"
+    },
+    {
+      "dmc": "3011",
+      "name": "Dark Khaki Green",
+      "hex": "#7C805B"
+    },
+    {
+      "dmc": "3813",
+      "name": "Light Blue Green",
+      "hex": "#A4BFB0"
+    },
+    {
+      "dmc": "3768",
+      "name": "Dark Gray Green",
+      "hex": "#657F75"
+    },
+    {
+      "dmc": "3753",
+      "name": "Very Light Antique Blue",
+      "hex": "#C7D8E8"
+    },
+    {
+      "dmc": "3325",
+      "name": "Light Baby Blue",
+      "hex": "#86B1D0"
+    },
+    {
+      "dmc": "3760",
+      "name": "Medium Wedgewood",
+      "hex": "#558EBD"
+    },
+    {
+      "dmc": "3747",
+      "name": "Very Light Blue Violet",
+      "hex": "#D3D7ED"
+    },
+    {
+      "dmc": "211",
+      "name": "Light Lavender",
+      "hex": "#C6A2C6"
+    },
+    {
+      "dmc": "208",
+      "name": "Very Dark Lavender",
+      "hex": "#835B8E"
+    },
+    {
+      "dmc": "744",
+      "name": "Pale Yellow",
+      "hex": "#F5CB79"
+    },
+    {
+      "dmc": "3820",
+      "name": "Dark Straw",
+      "hex": "#D9B04C"
+    },
+    {
+      "dmc": "3713",
+      "name": "Very Light Salmon",
+      "hex": "#FBB4B9"
+    },
+    {
+      "dmc": "761",
+      "name": "Light Salmon",
+      "hex": "#F58F8A"
+    },
+    {
+      "dmc": "3733",
+      "name": "Dusty Rose",
+      "hex": "#D16F81"
+    },
+    {
+      "dmc": "347",
+      "name": "Very Dark Salmon",
+      "hex": "#BF3F54"
+    }
+  ],
+  "palette_policy": {
+    "mode": "strict",
+    "max_colors": 24,
+    "transparent_background": true,
+    "rule": "Every canonical floral source and every derived technique matrix must use only this collection palette plus transparency. Do not add generated colors."
+  },
+  "canonical_artwork_policy": {
+    "authority": "reference-sheets/manifest.json",
+    "exact_motif_rule": "Each F#### design must reproduce the motif assigned to its exact reference sheet cell. Do not redesign, substitute, combine or invent motifs.",
+    "framing_rule": "Keep the complete motif visible with transparent breathing room; never crop petals, leaves, stems, vessels, bows or hanging elements.",
+    "extraction_rule": "Create one transparent canonical source per design before generating technique-specific matrices.",
+    "regeneration_rule": "If a generated canonical source materially differs from the approved reference cell, reject it and regenerate before any product/PDF build."
+  },
+  "grid_targets": {
+    "CS": {
+      "width": 100,
+      "height": 120
+    },
+    "C2C": {
+      "width": 60,
+      "height": 72
+    },
+    "TC": {
+      "width": 80,
+      "height": 96
+    },
+    "LH": {
+      "width": 60,
+      "height": 72
+    }
+  },
+  "mockup_spec": {
+    "asset": null,
+    "technique_assets": {
+      "CS": null,
+      "C2C": null,
+      "TC": null,
+      "LH": null
+    },
+    "status": "awaiting-approved-page-1-images",
+    "generation": {
+      "purpose": "Reusable page-1 lifestyle/ambient images for the Florals collection.",
+      "frame_requirement": "Leave the craft display area empty so the final vector pattern can be inserted by the renderer.",
+      "post_generation_measurement": "Record exact source dimensions and usable area geometry after approval."
+    },
+    "frame": {
+      "enabled": false,
+      "source_px": {
+        "width": 0,
+        "height": 0
+      },
+      "area_px": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "padding_ratio": 0.055,
+      "fabric": {
+        "color": "#F7F3EA",
+        "kind": "aida",
+        "count_visual_reference": 14
+      }
+    }
+  },
+  "preview_rules": {
+    "vector": true,
+    "transparent_pattern_background_on_cover": true,
+    "cross_margin_ratio": 0.02,
+    "stroke_width_ratio": 0.34,
+    "linecap": "round",
+    "fit": "contain",
+    "center": true,
+    "low_resolution_priority": true,
+    "fabric": {
+      "color": "#FBFAF6",
+      "dot": "#DDD8CF",
+      "dot_radius": 0.05
+    }
+  }
+}

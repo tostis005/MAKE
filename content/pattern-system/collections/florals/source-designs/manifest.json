@@ -1,0 +1,271 @@
+{
+  "collection": "florals",
+  "source": "five approved transparent floral reference sheets",
+  "palette": "Florals collection 24-color palette only",
+  "transparent_background": true,
+  "master_grid": {
+    "width": 100,
+    "height": 120
+  },
+  "techniques": {
+    "CS": {
+      "width": 100,
+      "height": 120
+    },
+    "C2C": {
+      "width": 60,
+      "height": 72
+    },
+    "TC": {
+      "width": 80,
+      "height": 96
+    },
+    "LH": {
+      "width": 60,
+      "height": 72
+    }
+  },
+  "status": "awaiting-canonical-source-extraction",
+  "designs": [
+    {
+      "base_design_id": "F0001",
+      "slug": "blue-daisy-pitcher",
+      "source_asset": null,
+      "reference_sheet": "reference-sheets/florals-sheet-01.png",
+      "reference_cell": "r1c1",
+      "status": "approved-reference-awaiting-canonical-extraction"
+    },
+    {
+      "base_design_id": "F0002",
+      "slug": "pink-peony",
+      "source_asset": null,
+      "reference_sheet": "reference-sheets/florals-sheet-01.png",
+      "reference_cell": "r1c2",
+      "status": "approved-reference-awaiting-canonical-extraction"
+    },
+    {
+      "base_design_id": "F0003",
+      "slug": "lavender-ribbon-bundle",
+      "source_asset": null,
+      "reference_sheet": "reference-sheets/florals-sheet-01.png",
+      "reference_cell": "r1c3",
+      "status": "approved-reference-awaiting-canonical-extraction"
+    },
+    {
+      "base_design_id": "F0004",
+      "slug": "sunflower-stem",
+      "source_asset": null,
+      "reference_sheet": "reference-sheets/florals-sheet-01.png",
+      "reference_cell": "r2c1",
+      "status": "approved-reference-awaiting-canonical-extraction"
+    },
+    {
+      "base_design_id": "F0005",
+      "slug": "blue-hydrangea",
+      "source_asset": null,
+      "reference_sheet": "reference-sheets/florals-sheet-01.png",
+      "reference_cell": "r2c2",
+      "status": "approved-reference-awaiting-canonical-extraction"
+    },
+    {
+      "base_design_id": "F0006",
+      "slug": "cherry-blossom-branch",
+      "source_asset": null,
+      "reference_sheet": "reference-sheets/florals-sheet-01.png",
+      "reference_cell": "r2c3",
+      "status": "approved-reference-awaiting-canonical-extraction"
+    },
+    {
+      "base_design_id": "F0007",
+      "slug": "pink-floral-heart-wreath",
+      "source_asset": null,
+      "reference_sheet": "reference-sheets/florals-sheet-02.png",
+      "reference_cell": "r1c1",
+      "status": "approved-reference-awaiting-canonical-extraction"
+    },
+    {
+      "base_design_id": "F0008",
+      "slug": "daisy-mason-jar",
+      "source_asset": null,
+      "reference_sheet": "reference-sheets/florals-sheet-02.png",
+      "reference_cell": "r1c2",
+      "status": "approved-reference-awaiting-canonical-extraction"
+    },
+    {
+      "base_design_id": "F0009",
+      "slug": "eucalyptus-ribbon-bundle",
+      "source_asset": null,
+      "reference_sheet": "reference-sheets/florals-sheet-02.png",
+      "reference_cell": "r1c3",
+      "status": "approved-reference-awaiting-canonical-extraction"
+    },
+    {
+      "base_design_id": "F0010",
+      "slug": "potted-strawberry-plant",
+      "source_asset": null,
+      "reference_sheet": "reference-sheets/florals-sheet-02.png",
+      "reference_cell": "r2c1",
+      "status": "approved-reference-awaiting-canonical-extraction"
+    },
+    {
+      "base_design_id": "F0011",
+      "slug": "wrapped-wildflower-bouquet",
+      "source_asset": null,
+      "reference_sheet": "reference-sheets/florals-sheet-02.png",
+      "reference_cell": "r2c2",
+      "status": "approved-reference-awaiting-canonical-extraction"
+    },
+    {
+      "base_design_id": "F0012",
+      "slug": "rose-teacup",
+      "source_asset": null,
+      "reference_sheet": "reference-sheets/florals-sheet-02.png",
+      "reference_cell": "r2c3",
+      "status": "approved-reference-awaiting-canonical-extraction"
+    },
+    {
+      "base_design_id": "F0013",
+      "slug": "rose-ribbon-bouquet",
+      "source_asset": null,
+      "reference_sheet": "reference-sheets/florals-sheet-03.png",
+      "reference_cell": "r1c1",
+      "status": "approved-reference-awaiting-canonical-extraction"
+    },
+    {
+      "base_design_id": "F0014",
+      "slug": "tulip-bouquet",
+      "source_asset": null,
+      "reference_sheet": "reference-sheets/florals-sheet-03.png",
+      "reference_cell": "r1c2",
+      "status": "approved-reference-awaiting-canonical-extraction"
+    },
+    {
+      "base_design_id": "F0015",
+      "slug": "succulent-pot-trio",
+      "source_asset": null,
+      "reference_sheet": "reference-sheets/florals-sheet-03.png",
+      "reference_cell": "r1c3",
+      "status": "approved-reference-awaiting-canonical-extraction"
+    },
+    {
+      "base_design_id": "F0016",
+      "slug": "daffodil-bouquet",
+      "source_asset": null,
+      "reference_sheet": "reference-sheets/florals-sheet-03.png",
+      "reference_cell": "r2c1",
+      "status": "approved-reference-awaiting-canonical-extraction"
+    },
+    {
+      "base_design_id": "F0017",
+      "slug": "lilac-twine-bouquet",
+      "source_asset": null,
+      "reference_sheet": "reference-sheets/florals-sheet-03.png",
+      "reference_cell": "r2c2",
+      "status": "approved-reference-awaiting-canonical-extraction"
+    },
+    {
+      "base_design_id": "F0018",
+      "slug": "potted-lavender",
+      "source_asset": null,
+      "reference_sheet": "reference-sheets/florals-sheet-03.png",
+      "reference_cell": "r2c3",
+      "status": "approved-reference-awaiting-canonical-extraction"
+    },
+    {
+      "base_design_id": "F0019",
+      "slug": "chamomile-bundle",
+      "source_asset": null,
+      "reference_sheet": "reference-sheets/florals-sheet-04.png",
+      "reference_cell": "r1c1",
+      "status": "approved-reference-awaiting-canonical-extraction"
+    },
+    {
+      "base_design_id": "F0020",
+      "slug": "floral-watering-can",
+      "source_asset": null,
+      "reference_sheet": "reference-sheets/florals-sheet-04.png",
+      "reference_cell": "r1c2",
+      "status": "approved-reference-awaiting-canonical-extraction"
+    },
+    {
+      "base_design_id": "F0021",
+      "slug": "hanging-pink-flower-basket",
+      "source_asset": null,
+      "reference_sheet": "reference-sheets/florals-sheet-04.png",
+      "reference_cell": "r1c3",
+      "status": "approved-reference-awaiting-canonical-extraction"
+    },
+    {
+      "base_design_id": "F0022",
+      "slug": "bluebell-bouquet",
+      "source_asset": null,
+      "reference_sheet": "reference-sheets/florals-sheet-04.png",
+      "reference_cell": "r2c1",
+      "status": "approved-reference-awaiting-canonical-extraction"
+    },
+    {
+      "base_design_id": "F0023",
+      "slug": "magnolia-branch",
+      "source_asset": null,
+      "reference_sheet": "reference-sheets/florals-sheet-04.png",
+      "reference_cell": "r2c2",
+      "status": "approved-reference-awaiting-canonical-extraction"
+    },
+    {
+      "base_design_id": "F0024",
+      "slug": "enamel-herb-pot",
+      "source_asset": null,
+      "reference_sheet": "reference-sheets/florals-sheet-04.png",
+      "reference_cell": "r2c3",
+      "status": "approved-reference-awaiting-canonical-extraction"
+    },
+    {
+      "base_design_id": "F0025",
+      "slug": "daisy-wreath",
+      "source_asset": null,
+      "reference_sheet": "reference-sheets/florals-sheet-05.png",
+      "reference_cell": "r1c1",
+      "status": "approved-reference-awaiting-canonical-extraction"
+    },
+    {
+      "base_design_id": "F0026",
+      "slug": "spring-flower-basket",
+      "source_asset": null,
+      "reference_sheet": "reference-sheets/florals-sheet-05.png",
+      "reference_cell": "r1c2",
+      "status": "approved-reference-awaiting-canonical-extraction"
+    },
+    {
+      "base_design_id": "F0027",
+      "slug": "babys-breath-jar",
+      "source_asset": null,
+      "reference_sheet": "reference-sheets/florals-sheet-05.png",
+      "reference_cell": "r1c3",
+      "status": "approved-reference-awaiting-canonical-extraction"
+    },
+    {
+      "base_design_id": "F0028",
+      "slug": "carnation-bouquet",
+      "source_asset": null,
+      "reference_sheet": "reference-sheets/florals-sheet-05.png",
+      "reference_cell": "r2c1",
+      "status": "approved-reference-awaiting-canonical-extraction"
+    },
+    {
+      "base_design_id": "F0029",
+      "slug": "anemone-bouquet",
+      "source_asset": null,
+      "reference_sheet": "reference-sheets/florals-sheet-05.png",
+      "reference_cell": "r2c2",
+      "status": "approved-reference-awaiting-canonical-extraction"
+    },
+    {
+      "base_design_id": "F0030",
+      "slug": "forget-me-not-bouquet",
+      "source_asset": null,
+      "reference_sheet": "reference-sheets/florals-sheet-05.png",
+      "reference_cell": "r2c3",
+      "status": "approved-reference-awaiting-canonical-extraction"
+    }
+  ]
+}
