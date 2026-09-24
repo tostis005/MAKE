@@ -8,6 +8,7 @@ on:
     paths:
       - '.github/workflows/pop-art-branch-auto-publish.yml'
       - 'content/pattern-system/pop_art_25/publish_queue.json'
+      - 'content/pattern-system/pop_art_25/protected_rebuilds.json'
 
 permissions:
   contents: write
@@ -355,6 +356,9 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           git add content/pattern-system/pop_art_25/publish_queue.json
+          if [ -f content/pattern-system/pop_art_25/protected_rebuilds.json ]; then
+            git add content/pattern-system/pop_art_25/protected_rebuilds.json
+          fi
           git add content/pattern-system/collections/pop-art-25/designs.json
           git add "content/pattern-system/collections/pop-art-25/sources/${DESIGN}.png"
           git add content/pattern-system/collections/pop-art-25/reference-masters/${DESIGN}-*-reference.png
@@ -399,6 +403,9 @@ jobs:
           git reset --hard origin/feature/pop-art-resto-24
           python3 content/pattern-system/pop_art_25/queue_state.py fail "$DESIGN"             --run-url "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"             --error "Automatic Pop Art publish run failed; see GitHub Actions logs."
           git add content/pattern-system/pop_art_25/publish_queue.json
+          if [ -f content/pattern-system/pop_art_25/protected_rebuilds.json ]; then
+            git add content/pattern-system/pop_art_25/protected_rebuilds.json
+          fi
           git commit -m "Record Pop Art ${DESIGN} auto-publish result"
           git push origin HEAD:feature/pop-art-resto-24
 
