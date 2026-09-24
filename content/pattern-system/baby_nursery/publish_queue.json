@@ -59,11 +59,11 @@
       "title_es": "Panda con estrella",
       "slug": "panda-star",
       "source_asset": "collections/baby-nursery/source-designs/I0014-panda-star.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36065393119",
       "last_error": null,
-      "published_at": null
+      "published_at": "2026-09-24T22:08:50+00:00"
     },
     {
       "order": 4,
