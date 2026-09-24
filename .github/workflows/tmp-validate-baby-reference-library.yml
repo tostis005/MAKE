@@ -1,0 +1,40 @@
+name: TEMP validate Baby Nursery canonical references
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tmp-validate-baby-reference-library.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Pillow
+        run: python3 -m pip install --disable-pip-version-check --quiet Pillow
+      - name: Validate archive and exact elephant master
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/baby_nursery/generate_reference_master.py I0002
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          p=Path('content/pattern-system/collections/baby-nursery/source-designs/I0002-baby-elephant.png')
+          r=Path('content/pattern-system/collections/baby-nursery/reference-masters/I0002-baby-elephant-reference.png')
+          a=Image.open(p).convert('RGBA')
+          b=Image.open(r).convert('RGBA')
+          if a.tobytes()!=b.tobytes():
+              raise SystemExit('source/reference mismatch')
+          bbox=a.getchannel('A').getbbox()
+          margins=(bbox[0],bbox[1],800-bbox[2],960-bbox[3])
+          if min(margins)<32:
+              raise SystemExit(f'unsafe margins {margins}')
+          print('CANONICAL_I0002_VALID',bbox,margins)
+          PY
