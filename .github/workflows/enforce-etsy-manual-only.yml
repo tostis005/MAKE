@@ -1,0 +1,148 @@
+name: Enforce Etsy manual-only mode
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/enforce-etsy-manual-only.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  enforce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_etsy_manual_key
+          chmod 600 ~/.ssh/drielo_etsy_manual_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Clear Etsy queues and verify hard write block
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_etsy_manual_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -d max_execution_time=0 -r '
+            require "/var/www/html/wp-load.php";
+            require_once ABSPATH."wp-admin/includes/plugin.php";
+
+            $plugin_file=WP_PLUGIN_DIR."/drielo-etsy-sync/drielo-etsy-sync.php";
+            $data=get_plugin_data($plugin_file,false,false);
+            $version=(string)($data["Version"]??"");
+            echo "PLUGIN_VERSION=".$version.PHP_EOL;
+            if(version_compare($version,"1.4.9","<")) exit(2);
+
+            $hook="drielo_etsy_sync_product_async";
+            $group="drielo-etsy";
+
+            $pending_before=0;
+            $running_before=0;
+            if(function_exists("as_get_scheduled_actions")){
+              $pending_ids=as_get_scheduled_actions(array(
+                "hook"=>$hook,
+                "group"=>$group,
+                "status"=>ActionScheduler_Store::STATUS_PENDING,
+                "per_page"=>500
+              ),"ids");
+              $running_ids=as_get_scheduled_actions(array(
+                "hook"=>$hook,
+                "group"=>$group,
+                "status"=>ActionScheduler_Store::STATUS_RUNNING,
+                "per_page"=>500
+              ),"ids");
+              $pending_before=count($pending_ids);
+              $running_before=count($running_ids);
+
+              if(class_exists("ActionScheduler")){
+                $store=ActionScheduler::store();
+                foreach((array)$pending_ids as $action_id){
+                  try{$store->cancel_action((int)$action_id);}catch(Throwable $e){}
+                }
+              }
+            }
+
+            $run=get_option("drielo_etsy_sync_run",array());
+            if(in_array((string)($run["status"]??""),array("queued","running"),true)){
+              foreach((array)($run["product_ids"]??array()) as $id){
+                $id=absint($id);
+                if(!$id) continue;
+                $state=(string)get_post_meta($id,"_drielo_etsy_batch_state",true);
+                if(in_array($state,array("queued","running"),true)){
+                  update_post_meta($id,"_drielo_etsy_batch_state","cancelled");
+                  update_post_meta($id,"_drielo_etsy_batch_message","Cancelado al activar Etsy en modo manual estricto.");
+                  update_post_meta($id,"_drielo_etsy_queue_state","cancelled");
+                  update_post_meta($id,"_drielo_etsy_batch_updated_at",current_time("mysql"));
+                }
+              }
+              $run["status"]="cancelled";
+              $run["completed_at"]=current_time("mysql");
+              $run["updated_at"]=current_time("mysql");
+              $run["cancel_reason"]="Manual-only mode enabled";
+              update_option("drielo_etsy_sync_run",$run,false);
+            }
+
+            update_option("drielo_etsy_manual_only",1,false);
+
+            $pending_after=0;
+            $running_after=0;
+            if(function_exists("as_get_scheduled_actions")){
+              $pending_after=count(as_get_scheduled_actions(array(
+                "hook"=>$hook,
+                "group"=>$group,
+                "status"=>ActionScheduler_Store::STATUS_PENDING,
+                "per_page"=>500
+              ),"ids"));
+              $running_after=count(as_get_scheduled_actions(array(
+                "hook"=>$hook,
+                "group"=>$group,
+                "status"=>ActionScheduler_Store::STATUS_RUNNING,
+                "per_page"=>500
+              ),"ids"));
+            }
+
+            if(!class_exists("Drielo_Etsy_Sync")) exit(3);
+            $sync=Drielo_Etsy_Sync::instance();
+            $ref=new ReflectionClass($sync);
+
+            $request=$ref->getMethod("etsy_request");
+            $request->setAccessible(true);
+            $blocked=$request->invoke($sync,"PATCH","/v3/application/listings/1",array("title"=>"SHOULD_NOT_WRITE"));
+            $request_blocked=is_wp_error($blocked) && $blocked->get_error_code()==="etsy_manual_only";
+
+            $ids=get_posts(array("post_type"=>"product","post_status"=>array("publish","draft","private","pending"),"posts_per_page"=>1,"fields"=>"ids"));
+            $sync_blocked=true;
+            if($ids){
+              $method=$ref->getMethod("sync_product");
+              $method->setAccessible(true);
+              $direct=$method->invoke($sync,(int)$ids[0],false);
+              $sync_blocked=is_wp_error($direct) && $direct->get_error_code()==="etsy_manual_only";
+            }
+
+            echo "PENDING_BEFORE=".$pending_before.PHP_EOL;
+            echo "RUNNING_BEFORE=".$running_before.PHP_EOL;
+            echo "PENDING_AFTER=".$pending_after.PHP_EOL;
+            echo "RUNNING_AFTER=".$running_after.PHP_EOL;
+            echo "EXTERNAL_PATCH_BLOCKED=".($request_blocked?"yes":"no").PHP_EOL;
+            echo "DIRECT_SYNC_BLOCKED=".($sync_blocked?"yes":"no").PHP_EOL;
+            echo "MANUAL_ONLY_OPTION=".get_option("drielo_etsy_manual_only",0).PHP_EOL;
+
+            if($pending_after!==0 || $running_after!==0 || !$request_blocked || !$sync_blocked) exit(4);
+            echo "ETSY_MANUAL_ONLY_CONFIRMED=yes".PHP_EOL;
+          '
+          REMOTE
