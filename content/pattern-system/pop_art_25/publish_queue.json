@@ -19,7 +19,8 @@
     "P0010, P0016 and P0019 were explicitly requeued for stronger Pop Art colour treatments while keeping the shared 25-colour palette unchanged.",
     "P0010, P0016 and P0019 were rebuilt from approved visual masters rather than heuristic recolouring; shared 25-colour palette remains unchanged.",
     "P0016 Mona Lisa explicitly requeued to force a fresh WooCommerce image/PDF rebuild from the approved exact visual master.",
-    "P0016 requeued after cache-busting importer fix so WooCommerce gets new image attachment URLs and a revisioned PDF URL."
+    "P0016 requeued after cache-busting importer fix so WooCommerce gets new image attachment URLs and a revisioned PDF URL.",
+    "Audrey P0003-P0005 and Marilyn P0011/P0013-P0015 requeued after exterior pale-pixel cleanup. P0012 was audited and already clean."
   ],
   "items": [
     {
@@ -40,11 +41,10 @@
       "title_en": "Audrey Hepburn Bubble Gum",
       "title_es": "Audrey Hepburn con chicle",
       "slug": "audrey-hepburn-bubble-gum",
-      "status": "published",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35983914996",
-      "last_error": null,
-      "published_at": "2026-09-24T09:56:29+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 3,
@@ -52,11 +52,10 @@
       "title_en": "Audrey Hepburn Profile",
       "title_es": "Audrey Hepburn de perfil",
       "slug": "audrey-hepburn-profile",
-      "status": "published",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35984782778",
-      "last_error": null,
-      "published_at": "2026-09-24T10:05:15+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 4,
@@ -64,11 +63,10 @@
       "title_en": "Audrey Hepburn Sunglasses",
       "title_es": "Audrey Hepburn con gafas",
       "slug": "audrey-hepburn-sunglasses",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35973205506",
-      "last_error": null,
-      "published_at": "2026-09-24T08:08:22+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 5,
@@ -138,11 +136,10 @@
       "title_en": "Marilyn Monroe Blowing Kiss",
       "title_es": "Marilyn Monroe lanzando un beso",
       "slug": "marilyn-monroe-blowing-kiss",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35975610795",
-      "last_error": null,
-      "published_at": "2026-09-24T08:33:06+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 11,
@@ -150,11 +147,10 @@
       "title_en": "Marilyn Monroe Sunglasses",
       "title_es": "Marilyn Monroe con gafas",
       "slug": "marilyn-monroe-sunglasses",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35975931153",
-      "last_error": null,
-      "published_at": "2026-09-24T08:37:06+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 12,
@@ -162,11 +158,10 @@
       "title_en": "Marilyn Monroe Surprise",
       "title_es": "Marilyn Monroe sorprendida",
       "slug": "marilyn-monroe-surprise",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35976327486",
-      "last_error": null,
-      "published_at": "2026-09-24T08:40:56+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 13,
@@ -174,11 +169,10 @@
       "title_en": "Marilyn Monroe Wink",
       "title_es": "Marilyn Monroe guiñando un ojo",
       "slug": "marilyn-monroe-wink",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35976697004",
-      "last_error": null,
-      "published_at": "2026-09-24T08:45:02+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 14,
