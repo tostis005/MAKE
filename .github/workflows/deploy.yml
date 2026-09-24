@@ -76,7 +76,7 @@ jobs:
           set -euo pipefail
           rm -rf /tmp/drielo-etsy-plugin /tmp/drielo-etsy-sync.zip /tmp/drielo-etsy-sync.tar.gz
           mkdir -p /tmp/drielo-etsy-plugin
-          base64 --decode plugins/drielo-etsy-sync-1.0.0.zip.b64 > /tmp/drielo-etsy-sync.zip
+          base64 --decode plugins/drielo-etsy-sync-1.0.3.zip.b64 > /tmp/drielo-etsy-sync.zip
           unzip -q /tmp/drielo-etsy-sync.zip -d /tmp/drielo-etsy-plugin
           test -s /tmp/drielo-etsy-plugin/drielo-etsy-sync/drielo-etsy-sync.php
           php -l /tmp/drielo-etsy-plugin/drielo-etsy-sync/drielo-etsy-sync.php
@@ -200,6 +200,13 @@ jobs:
                 fwrite(STDERR, "Drielo Etsy Sync verification failed" . PHP_EOL);
                 exit(2);
             }
+            $data = get_plugin_data(WP_PLUGIN_DIR . "/" . $plugin, false, false);
+            $version = isset($data["Version"]) ? (string) $data["Version"] : "";
+            if ("1.0.3" !== $version) {
+                fwrite(STDERR, "Unexpected Drielo Etsy Sync version: " . $version . PHP_EOL);
+                exit(2);
+            }
+            echo "DRIELO_ETSY_PLUGIN_VERSION=" . $version . PHP_EOL;
             echo "DRIELO_ETSY_PLUGIN_VERIFIED=yes" . PHP_EOL;
           '
 
