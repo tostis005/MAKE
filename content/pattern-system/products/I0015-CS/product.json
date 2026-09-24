@@ -1,0 +1,19 @@
+{
+  "code": "I0015-CS",
+  "base_design_id": "I0015",
+  "technique_code": "CS",
+  "collection": "baby-nursery",
+  "title": "Hedgehog with Flower",
+  "title_en": "Hedgehog with Flower",
+  "title_es": "Erizo con flor",
+  "design_slug": "hedgehog-flower",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/I0015-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "active",
+  "render_ready": true,
+  "source_artwork": "collections/baby-nursery/source-designs/I0015-hedgehog-flower.png",
+  "page_1_asset": "collections/baby-nursery/assets/cover-cross-stitch.jpg",
+  "reference_artwork": "collections/baby-nursery/reference-masters/I0015-hedgehog-flower-reference.png"
+}
