@@ -8,7 +8,6 @@ on:
       - feature/pop-art-resto-24
     paths:
       - '.github/workflows/pop-art-branch-auto-publish.yml'
-      - 'content/pattern-system/pop_art_25/publish_queue.json'
       - 'content/pattern-system/pop_art_25/protected_rebuilds.json'
 
 permissions:
