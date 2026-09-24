@@ -339,6 +339,26 @@ jobs:
               }
             }
             echo "DRIELO_CARD_DERIVATIVES=" . count($attachments) . PHP_EOL;
+            if (!empty($attachments)) {
+              $sample_id=(int)array_key_first($attachments);
+              foreach(array("make-store-card-small-context","make-store-card-context") as $sample_size){
+                $sample=wp_get_attachment_image_src($sample_id,$sample_size);
+                $meta=wp_get_attachment_metadata($sample_id);
+                $bytes=0;
+                if(is_array($meta) && isset($meta["sizes"][$sample_size]["file"])){
+                  $base=dirname((string)get_attached_file($sample_id));
+                  $file=$base . "/" . $meta["sizes"][$sample_size]["file"];
+                  if(is_file($file)){$bytes=(int)filesize($file);}
+                }
+                if(is_array($sample)){
+                  echo "DRIELO_CARD_SAMPLE size=" . $sample_size . " width=" . (int)$sample[1] . " height=" . (int)$sample[2] . " bytes=" . $bytes . " url=" . $sample[0] . PHP_EOL;
+                  $head=wp_remote_head($sample[0],array("timeout"=>15,"redirection"=>2));
+                  if(!is_wp_error($head)){
+                    echo "DRIELO_CARD_HEADERS size=" . $sample_size . " cache-control=" . (string)wp_remote_retrieve_header($head,"cache-control") . " content-length=" . (string)wp_remote_retrieve_header($head,"content-length") . " server=" . (string)wp_remote_retrieve_header($head,"server") . PHP_EOL;
+                  }
+                }
+              }
+            }
           '
           "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
             require "/var/www/html/wp-load.php";

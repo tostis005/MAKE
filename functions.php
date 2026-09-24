@@ -20,8 +20,9 @@ function make_theme_setup(): void {
     add_theme_support( 'woocommerce' );
     add_theme_support( 'wc-product-gallery-slider' );
     add_image_size( 'make-card', 760, 950, true );
-    // Lean storefront derivatives: large enough for retina cards without shipping medium_large assets.
+    // Responsive storefront derivatives: browsers can choose a lean 1x card or the retina/tablet version.
     add_image_size( 'make-store-card', 560, 560, true );
+    add_image_size( 'make-store-card-small-context', 320, 400, false );
     add_image_size( 'make-store-card-context', 560, 700, false );
     add_image_size( 'make-home-product-card', 560, 700, true );
     add_image_size( 'make-collection-preview', 240, 240, true );
@@ -32,8 +33,10 @@ function make_theme_setup(): void {
 }
 add_action( 'after_setup_theme', 'make_theme_setup' );
 
-// Product previews deliberately use WordPress' bounded medium_large derivative.
-// We output no srcset and never expose the original full-resolution asset.
+// Product previews deliberately use bounded derivatives and never expose the
+// original full-resolution asset. Store cards get a controlled two-candidate
+// srcset so a normal desktop card can load ~320px while retina/tablet/mobile
+// layouts can still select the 560px derivative.
 add_filter( 'single_product_archive_thumbnail_size', static function (): string {
     return 'make-store-card-context';
 }, 20 );
@@ -45,16 +48,38 @@ function make_static_attachment_image_html( int $attachment_id, string $size = '
     if ( ! is_array( $image ) || empty( $image[0] ) ) { return ''; }
 
     $alt = trim( (string) get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ) );
+    $responsive = '';
+
+    if ( 'make-store-card-context' === $size ) {
+        $small = wp_get_attachment_image_src( $attachment_id, 'make-store-card-small-context' );
+
+        if (
+            is_array( $small ) &&
+            ! empty( $small[0] ) &&
+            (int) $small[1] > 0 &&
+            (int) $small[1] < (int) $image[1] &&
+            $small[0] !== $image[0]
+        ) {
+            $responsive = sprintf(
+                ' srcset="%1$s %2$dw, %3$s %4$dw" sizes="(max-width: 560px) calc(100vw - 28px), (max-width: 1080px) calc((100vw - 43px) / 2), 290px"',
+                esc_url( $small[0] ),
+                (int) $small[1],
+                esc_url( $image[0] ),
+                (int) $image[1]
+            );
+        }
+    }
+
     return sprintf(
-        '<img src="%1$s" width="%2$d" height="%3$d" class="%4$s" alt="%5$s" loading="lazy" decoding="async">',
+        '<img src="%1$s" width="%2$d" height="%3$d" class="%4$s" alt="%5$s" loading="lazy" decoding="async"%6$s>',
         esc_url( $image[0] ),
         (int) $image[1],
         (int) $image[2],
         esc_attr( $class ),
-        esc_attr( $alt )
+        esc_attr( $alt ),
+        $responsive
     );
 }
-
 function make_loop_product_thumbnail(): void {
     global $product;
     if ( ! $product instanceof WC_Product ) { return; }
