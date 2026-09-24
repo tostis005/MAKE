@@ -122,11 +122,12 @@
       "title_en": "Girl with a Pearl Earring Sunglasses",
       "title_es": "La joven de la perla con gafas",
       "slug": "girl-pearl-earring-sunglasses",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35975518662",
-      "last_error": "Automatic Pop Art publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T08:30:06+00:00"
+      "status": "published",
+      "attempts": 3,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35978330323",
+      "last_error": null,
+      "failed_at": "2026-09-24T08:30:06+00:00",
+      "published_at": "2026-09-24T09:01:37+00:00"
     },
     {
       "order": 10,
