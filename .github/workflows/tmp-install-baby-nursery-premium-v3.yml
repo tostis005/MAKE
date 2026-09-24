@@ -8,7 +8,6 @@ on:
 
 permissions:
   contents: write
-  actions: write
 
 concurrency:
   group: drielo-baby-nursery-premium-v3-install
@@ -32,53 +31,33 @@ jobs:
           python3 - <<'PY'
           import base64, hashlib, json, zlib
           from pathlib import Path
-
           root=Path('.')
           raw=zlib.decompress(base64.b64decode(Path('/tmp/baby-premium-v3.b64').read_text().strip(), validate=True))
           payload=json.loads(raw.decode('utf-8'))
-          expected={
-            'I0001':7133,'I0002':6213,'I0003':6190,'I0004':5031,'I0005':5104,
-            'I0006':6786,'I0007':4855,'I0008':4515,'I0009':5336,'I0010':4987,
-          }
+          expected={'I0001':7133,'I0002':6213,'I0003':6190,'I0004':5031,'I0005':5104,'I0006':6786,'I0007':4855,'I0008':4515,'I0009':5336,'I0010':4987}
           if set(payload)!=set(expected):
               raise SystemExit(f'Unexpected approved-reference IDs: {sorted(payload)}')
-
           outdir=root/'content'/'pattern-system'/'collections'/'baby-nursery'/'reference-library'
           outdir.mkdir(parents=True,exist_ok=True)
           for design_id,d in payload.items():
               matrix_raw=zlib.decompress(base64.b64decode(d['matrix_zlib_base64'],validate=True))
               digest=hashlib.sha256(matrix_raw).hexdigest()
-              if digest!=d['matrix_sha256']:
-                  raise SystemExit(f'{design_id}: matrix digest mismatch')
               rows=matrix_raw.decode('ascii').splitlines()
-              if len(rows)!=120 or any(len(r)!=100 for r in rows):
-                  raise SystemExit(f'{design_id}: matrix is not 100x120')
               stitches=sum(ch!='.' for row in rows for ch in row)
-              if stitches!=expected[design_id] or stitches!=d['derived_stitches']:
-                  raise SystemExit(f'{design_id}: stitch count mismatch {stitches}')
+              if digest!=d['matrix_sha256'] or len(rows)!=120 or any(len(r)!=100 for r in rows) or stitches!=expected[design_id]:
+                  raise SystemExit(f'{design_id}: approved matrix validation failed')
               doc={
-                'version':1,
-                'base_design_id':design_id,
-                'slug':d['slug'],
-                'approved_preview_v2':True,
+                'version':1,'base_design_id':design_id,'slug':d['slug'],'approved_preview_v2':True,
                 'palette_policy':'exact Baby & Nursery approved 24-colour palette; reconstructed from approved premium reference motif',
-                'matrix_sha256':d['matrix_sha256'],
-                'matrix_zlib_base64':d['matrix_zlib_base64'],
-                'sprite_grid':d['sprite_grid'],
-                'placement':d['placement'],
-                'master_bbox':d['master_bbox'],
-                'background':'transparent',
-                'render_policy':'reconstruct verbatim; no outline or cleanup morphology',
-                'source_crop_bbox':d['source_crop_bbox'],
-                'source_crop_size':d['source_crop_size'],
-                'source_reference_filename':d['source_reference_filename'],
-                'derived_stitches':d['derived_stitches'],
+                'matrix_sha256':d['matrix_sha256'],'matrix_zlib_base64':d['matrix_zlib_base64'],
+                'sprite_grid':d['sprite_grid'],'placement':d['placement'],'master_bbox':d['master_bbox'],
+                'background':'transparent','render_policy':'reconstruct verbatim; no outline or cleanup morphology',
+                'source_crop_bbox':d['source_crop_bbox'],'source_crop_size':d['source_crop_size'],
+                'source_reference_filename':d['source_reference_filename'],'derived_stitches':d['derived_stitches'],
                 'derived_colours':d['derived_colours'],
                 'derivation':'premium approved motif -> 100x120 matrix; white background removed; >=4-cell safe margin; exact approved palette',
               }
-              (outdir/f"{design_id}-{d['slug']}.json").write_text(
-                  json.dumps(doc,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8'
-              )
+              (outdir/f"{design_id}-{d['slug']}.json").write_text(json.dumps(doc,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8')
               print(design_id,'APPROVED',stitches,'stitches',d['derived_colours'],'colours')
 
           qpath=root/'content'/'pattern-system'/'baby_nursery'/'publish_queue.json'
@@ -88,15 +67,11 @@ jobs:
           q['notes']=[
             'Approved premium Baby & Nursery rollout.',
             'I0001-I0010 were rebuilt from the user-approved premium motif references into exact 100x120 palette matrices.',
-            'Only I0001-I0010 are queued; I0011-I0030 remain blocked until their premium references are approved.',
+            'Only I0001-I0010 are queued; I0011-I0030 remain blocked until their premium references are approved.'
           ]
-          approved=set(expected)
           for item in q['items']:
               did=item['base_design_id']
-              if did in approved:
-                  item['status']='pending'
-              else:
-                  item['status']='reference_pending'
+              item['status']='pending' if did in expected else 'reference_pending'
               item['attempts']=0
               item['last_run']=None
               item['last_error']=None
@@ -111,26 +86,17 @@ jobs:
           c['design_reference']['approved_batch']='I0001-I0010'
           c['design_reference']['matrix_standard']='100x120 master grid; exact approved 24-colour palette; transparent exterior'
           cpath.write_text(json.dumps(c,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-
-          wpath=root/'.github'/'workflows'/'baby-nursery-auto-publish.yml'
-          s=wpath.read_text(encoding='utf-8')
-          old='# rollout-generation: PAUSED-quality-rebuild'
-          new='# rollout-generation: ACTIVE-premium-v3-2026-09-24'
-          if old in s:
-              s=s.replace(old,new,1)
-          elif new not in s:
-              raise SystemExit('Could not locate Baby Nursery rollout marker')
-          wpath.write_text(s,encoding='utf-8')
           PY
 
-      - name: Commit approved references and start queue
+      - name: Commit data changes
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf tmp/baby-nursery-premium-v3
-          rm -f .github/workflows/tmp-install-baby-nursery-premium-v3.yml
           git config user.name 'Drielo Automation'
           git config user.email 'actions@users.noreply.github.com'
-          git add -A
-          git commit -m 'Install approved Baby Nursery premium references I0001-I0010'
+          git add content/pattern-system/collections/baby-nursery/reference-library/I000{1,2,3,4,5,6,7,8,9}-*.json
+          git add content/pattern-system/collections/baby-nursery/reference-library/I0010-*.json
+          git add content/pattern-system/baby_nursery/publish_queue.json
+          git add content/pattern-system/collections/baby-nursery/collection.json
+          git commit -m 'Install approved Baby Nursery premium reference data I0001-I0010'
           git push origin HEAD:main
