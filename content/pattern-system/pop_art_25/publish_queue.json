@@ -190,11 +190,12 @@
       "title_en": "Mona Lisa Portrait",
       "title_es": "Retrato de la Mona Lisa",
       "slug": "mona-lisa-portrait",
-      "status": "pending",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36012578838",
-      "last_error": "Automatic Pop Art publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T14:33:39+00:00"
+      "status": "published",
+      "attempts": 2,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36014246586",
+      "last_error": null,
+      "failed_at": "2026-09-24T14:33:39+00:00",
+      "published_at": "2026-09-24T14:44:07+00:00"
     },
     {
       "order": 15,
