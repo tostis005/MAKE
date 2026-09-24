@@ -1,0 +1,148 @@
+name: Emergency stop Etsy global import
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/emergency-stop-etsy-global-import.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stop:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_etsy_stop_key
+          chmod 600 ~/.ssh/drielo_etsy_stop_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Stop Etsy queue and disable non Animals/Pop Art
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_etsy_stop_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -d max_execution_time=0 -r '
+            require "/var/www/html/wp-load.php";
+
+            $hook="drielo_etsy_sync_product_async";
+            $group="drielo-etsy";
+
+            $run=get_option("drielo_etsy_sync_run",array());
+            $batch=(string)($run["id"]??"");
+            $run_ids=array_values(array_unique(array_filter(array_map("absint",(array)($run["product_ids"]??array())))));
+
+            $pending_before=0;
+            if(function_exists("as_get_scheduled_actions")){
+              $ids=as_get_scheduled_actions(array(
+                "hook"=>$hook,
+                "group"=>$group,
+                "status"=>ActionScheduler_Store::STATUS_PENDING,
+                "per_page"=>500
+              ),"ids");
+              $pending_before=count($ids);
+            }
+
+            if(function_exists("as_unschedule_all_actions")){
+              as_unschedule_all_actions($hook,array(),$group);
+            }
+
+            $cancelled_meta=0;
+            foreach($run_ids as $id){
+              $state=(string)get_post_meta($id,"_drielo_etsy_batch_state",true);
+              if(in_array($state,array("queued","running"),true)){
+                update_post_meta($id,"_drielo_etsy_batch_state","cancelled");
+                update_post_meta($id,"_drielo_etsy_batch_message","Importación global detenida manualmente.");
+                update_post_meta($id,"_drielo_etsy_batch_updated_at",current_time("mysql"));
+                update_post_meta($id,"_drielo_etsy_queue_state","cancelled");
+                $cancelled_meta++;
+              }
+            }
+
+            if($batch){
+              $run["status"]="cancelled";
+              $run["completed_at"]=current_time("mysql");
+              $run["updated_at"]=current_time("mysql");
+              $run["cancel_reason"]="Emergency stop: only Animals and Pop Art may sync";
+              update_option("drielo_etsy_sync_run",$run,false);
+            }
+
+            $all=get_posts(array(
+              "post_type"=>"product",
+              "post_status"=>array("publish","draft","private","pending"),
+              "posts_per_page"=>-1,
+              "fields"=>"ids"
+            ));
+
+            $allowed=0;
+            $disabled=0;
+            $nonallowed_linked=0;
+            $nonallowed_linked_samples=array();
+            foreach($all as $id){
+              $p=wc_get_product($id);
+              if(!$p) continue;
+              $sku=(string)$p->get_sku();
+              $is_allowed=(bool)preg_match("/^DRIELO-(?:P|A)\d{4}-(?:CS|C2C|TC|LH)$/",$sku);
+
+              if($is_allowed){
+                update_post_meta($id,"_drielo_etsy_enabled","yes");
+                $allowed++;
+              }else{
+                if(get_post_meta($id,"_drielo_etsy_enabled",true)==="yes"){
+                  $disabled++;
+                }
+                update_post_meta($id,"_drielo_etsy_enabled","no");
+                update_post_meta($id,"_drielo_etsy_target_state","draft");
+
+                $lid=absint(get_post_meta($id,"_drielo_etsy_listing_id",true));
+                if($lid){
+                  $nonallowed_linked++;
+                  if(count($nonallowed_linked_samples)<40){
+                    $nonallowed_linked_samples[]=array("sku"=>$sku,"listing_id"=>$lid);
+                  }
+                }
+              }
+            }
+
+            $pending_after=0;
+            if(function_exists("as_get_scheduled_actions")){
+              $ids=as_get_scheduled_actions(array(
+                "hook"=>$hook,
+                "group"=>$group,
+                "status"=>ActionScheduler_Store::STATUS_PENDING,
+                "per_page"=>500
+              ),"ids");
+              $pending_after=count($ids);
+            }
+
+            echo "BATCH=".$batch.PHP_EOL;
+            echo "PENDING_BEFORE=".$pending_before.PHP_EOL;
+            echo "PENDING_AFTER=".$pending_after.PHP_EOL;
+            echo "BATCH_ITEMS_MARKED_CANCELLED=".$cancelled_meta.PHP_EOL;
+            echo "ALLOWED_ANIMALS_POP_ART=".$allowed.PHP_EOL;
+            echo "NON_ALLOWED_DISABLED=".$disabled.PHP_EOL;
+            echo "NON_ALLOWED_ALREADY_LINKED=".$nonallowed_linked.PHP_EOL;
+            echo "NON_ALLOWED_LINKED_SAMPLES=".wp_json_encode($nonallowed_linked_samples).PHP_EOL;
+
+            if($pending_after!==0){
+              fwrite(STDERR,"Pending Etsy actions remain after emergency stop".PHP_EOL);
+              exit(2);
+            }
+          '
+          REMOTE
