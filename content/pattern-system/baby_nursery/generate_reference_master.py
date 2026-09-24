@@ -65,44 +65,55 @@ def load_archive():
 
 
 def load_design_reference(base_id: str, meta: dict):
-    """Load ONLY the 11 matrices explicitly approved in the current chat.
+    """Load the exact approved stitch matrix configured for this design.
 
-    The active Infantil rebuild must never consult the legacy reference-library,
-    remap one target ID to another historical ID, or fall back to an old bundle.
+    Both the existing approved 11 and the new premium 9 are explicit immutable
+    matrix assets. Legacy reference remapping and archive fallback are forbidden.
     """
     base_id = base_id.strip().upper()
-    expected_asset = f"collections/baby-nursery/approved-latest-11/{base_id}.matrix.zlib.b64"
     configured_asset = str(meta.get("approved_matrix_asset") or "")
-    if configured_asset != expected_asset:
+    if not configured_asset.startswith("collections/baby-nursery/approved-"):
         raise RuntimeError(
-            f"{base_id}: approved matrix path mismatch: {configured_asset!r} != {expected_asset!r}"
+            f"{base_id}: approved matrix must live under an approved Baby & Nursery directory: "
+            f"{configured_asset!r}"
         )
+    if not configured_asset.endswith(f"/{base_id}.matrix.zlib.b64"):
+        raise RuntimeError(
+            f"{base_id}: approved matrix filename does not match design id: {configured_asset!r}"
+        )
+    if any(k in meta for k in ("reference_source_id", "reference_source_slug", "reference_bundle_only")):
+        raise RuntimeError(f"{base_id}: legacy reference remapping fields are forbidden")
 
     matrix_path = SYSTEM / configured_asset
     if not matrix_path.is_file():
-        raise RuntimeError(f"{base_id}: latest-chat approved matrix missing: {matrix_path}")
+        raise RuntimeError(f"{base_id}: approved matrix missing: {matrix_path}")
 
     try:
         encoded = matrix_path.read_text(encoding="ascii").strip()
         raw = zlib.decompress(base64.b64decode(encoded, validate=True))
     except Exception as exc:
-        raise RuntimeError(f"{base_id}: latest-chat matrix cannot be decoded: {exc}") from exc
+        raise RuntimeError(f"{base_id}: approved matrix cannot be decoded: {exc}") from exc
 
     digest = hashlib.sha256(raw).hexdigest()
     expected_digest = str(meta.get("approved_matrix_sha256") or "").lower()
     if not expected_digest or digest.lower() != expected_digest:
         raise RuntimeError(
-            f"{base_id}: latest-chat matrix SHA mismatch: {digest} != {expected_digest}"
+            f"{base_id}: approved matrix SHA mismatch: {digest} != {expected_digest}"
         )
 
     rows = raw.decode("ascii").splitlines()
     if len(rows) != 120 or any(len(row) != 100 for row in rows):
-        raise RuntimeError(f"{base_id}: latest-chat matrix is not 100x120")
+        raise RuntimeError(f"{base_id}: approved matrix is not 100x120")
 
     order = int(meta["order"])
+    source_kind = (
+        "new-premium-9-no-reindeer"
+        if "/approved-new-9/" in configured_asset
+        else "latest-chat-approved"
+    )
     manifest = {
         "version": 1,
-        "source": "latest-chat-approved-11",
+        "source": source_kind,
         "designs": [{
             "base_design_id": base_id,
             "slug": meta["slug"],
@@ -118,10 +129,8 @@ def load_design_reference(base_id: str, meta: dict):
         "approved_preview_v2": True,
         "background": "transparent",
         "matrix_sha256": digest,
-        "palette_policy": (
-            "exact Baby & Nursery approved 24-colour palette; "
-            "latest chat-approved motif only"
-        ),
+        "matrix_asset": configured_asset,
+        "palette_policy": "exact Baby & Nursery approved 24-colour palette",
         "source_crop_bbox": None,
         "source_crop_size": [100, 120],
     }
@@ -135,7 +144,7 @@ def load_design_reference(base_id: str, meta: dict):
             "rows": rows,
         },
         "alphabet": STANDARD_ALPHABET,
-        "source_kind": "latest-chat-approved-11",
+        "source_kind": source_kind,
         "source_sha256": digest,
         "direct_metadata": direct_metadata,
     }
