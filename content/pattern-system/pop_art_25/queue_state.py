@@ -9,6 +9,8 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[3]
 QUEUE=ROOT/"content"/"pattern-system"/"pop_art_25"/"publish_queue.json"
+CATALOG=ROOT/"content"/"products"/"catalog.json"
+PROTECTED={"P0001","P0012"}
 
 def load():
     return json.loads(QUEUE.read_text(encoding="utf-8"))
@@ -25,9 +27,35 @@ def get_item(doc,design_id):
             return item
     raise SystemExit(f"Unknown design id: {design_id}")
 
+
+def needs_gallery_backfill(base_id):
+    if base_id in PROTECTED or not CATALOG.is_file():
+        return False
+    catalog=json.loads(CATALOG.read_text(encoding="utf-8"))
+    rows={p.get("code"):p for p in catalog.get("products",[])}
+    for suffix in ("CS","C2C","TC","LH"):
+        row=rows.get(f"{base_id}-{suffix}")
+        if not row:
+            return True
+        gallery=row.get("gallery") or []
+        if gallery != [f"assets/{base_id}-{suffix}-gallery-{i}.webp" for i in (2,3,4)]:
+            return True
+    return False
+
+def gallery_backfill_item(doc):
+    for item in doc["items"]:
+        base=item["base_design_id"]
+        if item.get("status")=="published" and needs_gallery_backfill(base):
+            return item
+    return None
+
 def cmd_next(args):
     doc=load()
-    item=None if not doc.get("auto_continue",True) else next((x for x in doc["items"] if x.get("status")=="pending"),None)
+    item=None
+    if doc.get("auto_continue",True):
+        item=next((x for x in doc["items"] if x.get("status")=="pending"),None)
+        if item is None:
+            item=gallery_backfill_item(doc)
     output=args.github_output or os.environ.get("GITHUB_OUTPUT")
     values={
         "design_id":item["base_design_id"] if item else "",
@@ -68,7 +96,8 @@ def cmd_fail(args):
 def cmd_has_work(args):
     doc=load()
     pending=[x for x in doc["items"] if x.get("status")=="pending"]
-    print("yes" if doc.get("auto_continue",True) and pending else "no")
+    backfill=gallery_backfill_item(doc)
+    print("yes" if doc.get("auto_continue",True) and (pending or backfill) else "no")
 
 def cmd_summary(args):
     doc=load()
