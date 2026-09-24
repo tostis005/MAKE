@@ -26,6 +26,34 @@
       if (!ok) e.preventDefault();
     });
 
+    var syncPollTimer = null;
+
+    function scheduleSyncPoll(){
+      if (syncPollTimer) {
+        window.clearTimeout(syncPollTimer);
+        syncPollTimer = null;
+      }
+      var panel = $('#drielo-sync-run');
+      if (!panel.length || panel.attr('data-active') !== '1' || typeof DrieloEtsySync === 'undefined') return;
+      syncPollTimer = window.setTimeout(refreshSyncRun, parseInt(DrieloEtsySync.pollMs || 4000, 10));
+    }
+
+    function refreshSyncRun(){
+      if (typeof DrieloEtsySync === 'undefined') return;
+      $.post(DrieloEtsySync.ajaxUrl, {
+        action: 'drielo_etsy_sync_status',
+        nonce: DrieloEtsySync.nonce
+      }).done(function(response){
+        if (response && response.success && response.data && response.data.html) {
+          $('#drielo-sync-run').replaceWith(response.data.html);
+        }
+      }).always(function(){
+        scheduleSyncPoll();
+      });
+    }
+
+    scheduleSyncPoll();
+
     $('[data-copy]').on('click', function(){
       var selector = $(this).data('copy');
       var text = $(selector).text();
