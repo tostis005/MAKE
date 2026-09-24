@@ -1,0 +1,84 @@
+name: Drain current Etsy batch
+
+on:
+  push:
+    branches:
+      - feature/etsy-technique-classification
+    paths:
+      - '.github/workflows/drain-current-etsy-batch.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  drain:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/key
+          chmod 600 ~/.ssh/key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Drain Etsy queue and verify previous batch
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -d max_execution_time=0 -r '
+            require "/var/www/html/wp-load.php";
+            if(!class_exists("ActionScheduler_QueueRunner")) exit(2);
+
+            for($round=1;$round<=40;$round++){
+              $pending=function_exists("as_get_scheduled_actions")
+                ? count(as_get_scheduled_actions(array(
+                    "hook"=>"drielo_etsy_sync_product_async",
+                    "group"=>"drielo-etsy",
+                    "status"=>"pending",
+                    "per_page"=>500
+                  ),"ids"))
+                : 0;
+              echo "ROUND=".$round." PENDING_BEFORE=".$pending.PHP_EOL;
+              if($pending===0) break;
+              $processed=ActionScheduler_QueueRunner::instance()->run();
+              echo "ROUND=".$round." PROCESSED=".$processed.PHP_EOL;
+              if((int)$processed<=0) usleep(500000);
+            }
+
+            $run=get_option("drielo_etsy_sync_run",array());
+            $batch=(string)($run["id"]??"");
+            $ids=array_values(array_unique(array_filter(array_map("absint",(array)($run["product_ids"]??array())))));
+            $counts=array("queued"=>0,"running"=>0,"success"=>0,"failed"=>0,"skipped"=>0,"other"=>0);
+            $errors=array();
+            foreach($ids as $id){
+              $bid=(string)get_post_meta($id,"_drielo_etsy_batch_id",true);
+              $state=(string)get_post_meta($id,"_drielo_etsy_batch_state",true);
+              if(!$bid||!hash_equals($batch,$bid)){$counts["other"]++;continue;}
+              if(isset($counts[$state]))$counts[$state]++;else$counts["other"]++;
+              if($state==="failed") $errors[]=(string)get_post_meta($id,"_drielo_etsy_last_error",true);
+            }
+            echo "RUN_STATUS=".($run["status"]??"").PHP_EOL;
+            echo "COUNTS=".wp_json_encode($counts).PHP_EOL;
+            echo "ERRORS=".wp_json_encode(array_values(array_filter($errors))).PHP_EOL;
+
+            $remaining=count(as_get_scheduled_actions(array(
+              "hook"=>"drielo_etsy_sync_product_async",
+              "group"=>"drielo-etsy",
+              "status"=>"pending",
+              "per_page"=>500
+            ),"ids"));
+            echo "PENDING_FINAL=".$remaining.PHP_EOL;
+
+            if($counts["failed"]>0 || $remaining>0 || $counts["queued"]>0 || $counts["running"]>0) exit(3);
+          '
+          REMOTE
