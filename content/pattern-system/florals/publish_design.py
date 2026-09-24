@@ -528,7 +528,7 @@ def catalog_row(template: dict, base_id: str, design: dict, suffix: str, pattern
             "title_en": title_en,
             "title_es": title_es,
             "slug": slug,
-            "price": float(row.get("price") or 4.99),
+            "price": {"CS": 2.99, "C2C": 2.49, "TC": 2.49, "LH": 2.49}[suffix],
             "collection": "florals",
             "stitches": total,
             "grid": f"{w} × {h} {unit}",
