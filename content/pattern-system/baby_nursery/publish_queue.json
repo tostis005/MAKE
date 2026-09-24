@@ -1,6 +1,6 @@
 {
   "collection": "baby-nursery",
-  "mode": "paused-while-installing-approved-pixel-masters-v2",
+  "mode": "approved-preview-v2-ready-to-start",
   "auto_continue": false,
   "max_attempts_per_design": 2,
   "notes": [
@@ -18,12 +18,10 @@
       "title_es": "Osito de peluche",
       "slug": "teddy-bear",
       "source_asset": "collections/baby-nursery/source-designs/I0001-teddy-bear.png",
-      "status": "published",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35986102069",
-      "last_error": null,
-      "failed_at": "2026-09-24T10:14:49+00:00",
-      "published_at": "2026-09-24T10:19:08+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 2,
@@ -32,11 +30,10 @@
       "title_es": "Elefantito",
       "slug": "baby-elephant",
       "source_asset": "collections/baby-nursery/source-designs/I0002-baby-elephant.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35986526333",
-      "last_error": null,
-      "published_at": "2026-09-24T10:22:46+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 3,
@@ -45,11 +42,10 @@
       "title_es": "Jirafa",
       "slug": "giraffe",
       "source_asset": "collections/baby-nursery/source-designs/I0003-giraffe.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35986881539",
-      "last_error": null,
-      "published_at": "2026-09-24T10:26:18+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 4,
@@ -58,11 +54,10 @@
       "title_es": "Luna creciente",
       "slug": "crescent-moon",
       "source_asset": "collections/baby-nursery/source-designs/I0004-crescent-moon.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35987221202",
-      "last_error": null,
-      "published_at": "2026-09-24T10:29:40+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 5,
@@ -71,11 +66,10 @@
       "title_es": "Nube sonriente",
       "slug": "smiling-cloud",
       "source_asset": "collections/baby-nursery/source-designs/I0005-smiling-cloud.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35987549134",
-      "last_error": null,
-      "published_at": "2026-09-24T10:32:49+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 6,
@@ -84,12 +78,10 @@
       "title_es": "Conejito con corazón",
       "slug": "bunny-heart",
       "source_asset": "collections/baby-nursery/source-designs/I0006-bunny-heart.png",
-      "status": "published",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35988149032",
-      "last_error": null,
-      "failed_at": "2026-09-24T10:35:50+00:00",
-      "published_at": "2026-09-24T10:39:09+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 7,
@@ -98,11 +90,10 @@
       "title_es": "Arcoíris con nubes",
       "slug": "rainbow-clouds",
       "source_asset": "collections/baby-nursery/source-designs/I0007-rainbow-clouds.png",
-      "status": "failed",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35988704981",
-      "last_error": "Automatic publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T10:43:57+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 8,
@@ -111,11 +102,10 @@
       "title_es": "Dinosaurio infantil",
       "slug": "cute-dinosaur",
       "source_asset": "collections/baby-nursery/source-designs/I0008-cute-dinosaur.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35988929305",
-      "last_error": null,
-      "published_at": "2026-09-24T10:47:29+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 9,
@@ -125,10 +115,9 @@
       "slug": "hot-air-balloon",
       "source_asset": "collections/baby-nursery/source-designs/I0009-hot-air-balloon.png",
       "status": "pending",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35989273074",
-      "last_error": "Automatic publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T10:49:45+00:00"
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 10,
@@ -383,5 +372,5 @@
       "last_error": null
     }
   ],
-  "reference_policy": "Use exact user-approved Baby & Nursery references; preserve the approved soft collection palette; remove exterior dark outline cells and stray white/near-white flecks; do not force a black outline; publish CS/C2C/TC/LH with featured + 3 gallery images, then continue automatically."
+  "reference_policy": "Use the approved preview v2 per-design matrices exactly, with transparent background, exact approved palette, no forced outline, and no cleanup morphology. Publish CS/C2C/TC/LH plus four WooCommerce images, then advance one design at a time."
 }
