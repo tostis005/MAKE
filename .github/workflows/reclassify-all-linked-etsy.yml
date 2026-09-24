@@ -1,0 +1,97 @@
+name: Reclassify all linked Etsy products
+
+on:
+  push:
+    branches:
+      - feature/etsy-technique-classification
+    paths:
+      - '.github/workflows/reclassify-all-linked-etsy.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  reclassify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/key
+          chmod 600 ~/.ssh/key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Reclassify every linked craft listing
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -d max_execution_time=0 -r '
+            require "/var/www/html/wp-load.php";
+            require_once ABSPATH."wp-admin/includes/plugin.php";
+            $data=get_plugin_data(WP_PLUGIN_DIR."/drielo-etsy-sync/drielo-etsy-sync.php",false,false);
+            echo "VERSION=".($data["Version"]??"").PHP_EOL;
+            if(version_compare((string)($data["Version"]??""),"1.4.8","<")) exit(2);
+
+            $sync=Drielo_Etsy_Sync::instance();
+            $ref=new ReflectionClass($sync);
+            $classify=$ref->getMethod("sync_technique_classification"); $classify->setAccessible(true);
+            $section=$ref->getMethod("sync_shop_section"); $section->setAccessible(true);
+
+            $ids=get_posts(array(
+              "post_type"=>"product",
+              "post_status"=>array("publish","draft","private","pending"),
+              "posts_per_page"=>-1,
+              "fields"=>"ids",
+              "orderby"=>"ID",
+              "order"=>"ASC"
+            ));
+
+            $counts=array(
+              "CS"=>array("linked"=>0,"success"=>0,"failed"=>0),
+              "C2C"=>array("linked"=>0,"success"=>0,"failed"=>0),
+              "TC"=>array("linked"=>0,"success"=>0,"failed"=>0),
+              "LH"=>array("linked"=>0,"success"=>0,"failed"=>0)
+            );
+            $errors=array();
+
+            foreach($ids as $id){
+              $p=wc_get_product($id); if(!$p) continue;
+              $sku=(string)$p->get_sku();
+              if(!preg_match("/-(CS|C2C|TC|LH)$/",$sku,$m)) continue;
+              $code=$m[1];
+              $listing=absint(get_post_meta($id,"_drielo_etsy_listing_id",true));
+              if(!$listing) continue;
+              $counts[$code]["linked"]++;
+
+              $a=$classify->invoke($sync,$p,$listing);
+              if(is_wp_error($a)){
+                $counts[$code]["failed"]++;
+                $errors[]=array("sku"=>$sku,"stage"=>"classification","error"=>$a->get_error_message());
+                continue;
+              }
+              $b=$section->invoke($sync,$p,$listing);
+              if(is_wp_error($b)){
+                $counts[$code]["failed"]++;
+                $errors[]=array("sku"=>$sku,"stage"=>"section","error"=>$b->get_error_message());
+                continue;
+              }
+              $counts[$code]["success"]++;
+            }
+
+            echo "COUNTS=".wp_json_encode($counts).PHP_EOL;
+            echo "ERRORS=".wp_json_encode($errors).PHP_EOL;
+            $failed=array_sum(array_map(function($x){return (int)$x["failed"];},$counts));
+            if($failed>0) exit(3);
+            echo "ALL_LINKED_RECLASSIFIED=yes".PHP_EOL;
+          '
+          REMOTE
