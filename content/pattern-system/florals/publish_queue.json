@@ -27,11 +27,11 @@
       "base_design_id": "F0003",
       "title_en": "Lavender Ribbon Bundle",
       "slug": "lavender-ribbon-bundle",
-      "status": "pending",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35981407020",
-      "last_error": "Automatic Florals publish job failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T09:31:02+00:00"
+      "status": "failed",
+      "attempts": 2,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35982349960",
+      "last_error": "Automatic Florals publish run failed; see GitHub Actions logs.",
+      "failed_at": "2026-09-24T09:38:15+00:00"
     },
     {
       "base_design_id": "F0004",
