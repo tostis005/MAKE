@@ -1,87 +1,49 @@
-name: Florals Auto Publish Collection
+name: Florals Branch Auto Publish Queue
 
 on:
+  workflow_dispatch:
   push:
-    branches: [feature/florals-auto-publish]
+    branches:
+      - feature/florals-auto-publish
     paths:
       - '.github/workflows/florals-auto-publish.yml'
-  workflow_dispatch:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
-  group: drielo-florals-auto-publish
-  cancel-in-progress: false
+  group: drielo-florals-branch-auto-publish
+  cancel-in-progress: true
 
 jobs:
-  publish:
-    name: Publish ${{ matrix.design }}
+  publish-next:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
-    strategy:
-      fail-fast: false
-      max-parallel: 1
-      matrix:
-        design:
-          - F0001
-          - F0002
-          - F0003
-          - F0004
-          - F0005
-          - F0006
-          - F0007
-          - F0008
-          - F0009
-          - F0010
-          - F0011
-          - F0012
-          - F0013
-          - F0014
-          - F0015
-          - F0016
-          - F0017
-          - F0018
-          - F0019
-          - F0020
-          - F0021
-          - F0022
-          - F0023
-          - F0024
-          - F0025
-          - F0026
-          - F0027
-          - F0028
-          - F0029
-          - F0030
+    timeout-minutes: 60
 
     steps:
-      - name: Checkout Florals branch
+      - name: Checkout Florals feature branch
         uses: actions/checkout@v4
         with:
-          ref: feature/florals-auto-publish
           fetch-depth: 0
+          ref: feature/florals-auto-publish
 
-      - name: Check queue state
-        id: state
+      - name: Select next pending Florals design
+        id: select
         shell: bash
-        env:
-          DESIGN: ${{ matrix.design }}
         run: |
           set -euo pipefail
-          python3 - "$DESIGN" "$GITHUB_OUTPUT" <<'PY'
-          import json,sys
-          from pathlib import Path
-          design,out=sys.argv[1:]
-          q=json.loads(Path('content/pattern-system/florals/publish_queue.json').read_text(encoding='utf-8'))
-          item=next(x for x in q['items'] if x['base_design_id']==design)
-          with open(out,'a',encoding='utf-8') as fh:
-              fh.write('skip=' + ('true' if item.get('status')=='published' else 'false') + '\n')
-          print(design,item.get('status'),item.get('attempts',0))
-          PY
+          python3 content/pattern-system/florals/queue_state.py next --github-output "$GITHUB_OUTPUT"
+
+      - name: Show queue state
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/florals/queue_state.py summary
+          echo "Selected: ${{ steps.select.outputs.design_id }}"
 
       - name: Install renderer dependencies
-        if: steps.state.outputs.skip != 'true'
+        if: steps.select.outputs.design_id != ''
         shell: bash
         run: |
           set -euo pipefail
@@ -89,45 +51,51 @@ jobs:
           python3 -m playwright install --with-deps chromium
 
       - name: Generate canonical source, four patterns, PDFs and store images
-        if: steps.state.outputs.skip != 'true'
+        if: steps.select.outputs.design_id != ''
         env:
-          DESIGN: ${{ matrix.design }}
           DRIELO_GALLERY_REVISION: ${{ github.run_id }}
         shell: bash
         run: |
           set -euo pipefail
-          python3 content/pattern-system/florals/publish_design.py "$DESIGN"
+          python3 content/pattern-system/florals/publish_design.py "${{ steps.select.outputs.design_id }}"
 
       - name: Validate generated Florals bundle
-        if: steps.state.outputs.skip != 'true'
-        env:
-          DESIGN: ${{ matrix.design }}
+        if: steps.select.outputs.design_id != ''
         shell: bash
         run: |
           set -euo pipefail
+          DESIGN="${{ steps.select.outputs.design_id }}"
           python3 - "$DESIGN" <<'PY'
           import json,sys
           from pathlib import Path
-          from PIL import Image
+          from PIL import Image, ImageChops
 
           design=sys.argv[1]
           root=Path('.')
           system=root/'content'/'pattern-system'
           collection=json.loads((system/'collections/florals/collection.json').read_text(encoding='utf-8'))
-          allowed={str(x['dmc']) for x in collection['palette']}
+          if len(collection.get('palette',[])) != 24:
+              raise SystemExit('Florals collection must contain exactly 24 master colours')
+          allowed_dmc={str(x['dmc']) for x in collection['palette']}
           max_colors=int(collection.get('pattern_rules',{}).get('per_design_max_colors',14))
           designs=json.loads((system/'collections/florals/designs.json').read_text(encoding='utf-8'))['designs']
           meta=next(x for x in designs if x['base_design_id']==design)
 
           ref=system/f"collections/florals/reference-masters/{design}-{meta['slug']}-reference.png"
-          if not ref.is_file():
-              raise SystemExit(f'{design}: reference master missing')
+          src=system/f"collections/florals/source-designs/{design}-{meta['slug']}.png"
+          if not ref.is_file() or not src.is_file():
+              raise SystemExit(f'{design}: canonical source/reference missing')
           im=Image.open(ref).convert('RGBA')
+          sim=Image.open(src).convert('RGBA')
           bbox=im.getchannel('A').getbbox()
-          if im.size!=(800,960) or not bbox or im.getchannel('A').getextrema()[0]!=0:
-              raise SystemExit(f'{design}: invalid transparent canonical master')
-          if min(bbox[0],bbox[1],800-bbox[2],960-bbox[3])<24:
+          if im.size!=(800,960) or sim.size!=(800,960) or not bbox:
+              raise SystemExit(f'{design}: invalid canonical dimensions')
+          if im.getchannel('A').getextrema()[0] != 0:
+              raise SystemExit(f'{design}: canonical master must retain transparent background')
+          if min(bbox[0],bbox[1],800-bbox[2],960-bbox[3]) < 24:
               raise SystemExit(f'{design}: canonical artwork touches safety margin: {bbox}')
+          if ImageChops.difference(sim,im).getbbox() is not None:
+              raise SystemExit(f'{design}: source and reference master differ')
 
           grids={'CS':(100,120),'C2C':(60,72),'TC':(80,96),'LH':(60,72)}
           catalog=json.loads((root/'content/products/catalog.json').read_text(encoding='utf-8'))
@@ -144,10 +112,11 @@ jobs:
                   raise SystemExit(f'{code}: malformed matrix')
               if not pat.get('threads') or len(pat['threads'])>max_colors:
                   raise SystemExit(f'{code}: invalid colour count')
-              if any(str(t.get('dmc')) not in allowed for t in pat['threads']):
+              if any(str(t.get('dmc')) not in allowed_dmc for t in pat['threads']):
                   raise SystemExit(f'{code}: thread outside Florals palette')
               if (pat.get('outline_policy') or {}).get('enabled'):
                   raise SystemExit(f'{code}: Florals must not add an external outline')
+
               pdf=root/'content/products/files'/f'Drielo_{code}.pdf'
               image=root/'content/products/assets'/f'{code}-product.webp'
               gallery=[root/'content/products/assets'/f'{code}-gallery-{i}.webp' for i in (2,3,4)]
@@ -155,52 +124,68 @@ jobs:
                   raise SystemExit(f'{code}: invalid PDF')
               if not image.is_file() or image.stat().st_size<40000:
                   raise SystemExit(f'{code}: invalid product image')
-              if any((not g.is_file()) or g.stat().st_size<25000 for g in gallery):
-                  raise SystemExit(f'{code}: invalid gallery')
+              for g in gallery:
+                  if not g.is_file() or g.stat().st_size<25000:
+                      raise SystemExit(f'{code}: invalid gallery image {g.name}')
+
               row=rows.get(code)
-              if not row or row.get('collection')!='florals':
-                  raise SystemExit(f'{code}: missing catalog row')
+              if not row or row.get('collection')!='florals' or not str(row.get('sku','')).startswith('DRIELO-F'):
+                  raise SystemExit(f'{code}: missing Florals catalogue row / F-prefix SKU')
+              expected_gallery=[f'assets/{code}-gallery-{i}.webp' for i in (2,3,4)]
+              if row.get('gallery') != expected_gallery:
+                  raise SystemExit(f'{code}: wrong gallery list')
+              if row.get('gallery_preview_pages') != {'facts':3,'colour_a1':8,'symbol_a1':12}:
+                  raise SystemExit(f'{code}: gallery page mapping missing')
               print(code,'stitches',pat['total_stitches'],'colors',len(pat['threads']),
                     'pdf',pdf.stat().st_size,'image',image.stat().st_size)
           print(design,'FLORALS_BUNDLE_VALID','bbox',bbox)
           PY
 
-      - name: Build four-product WooCommerce package
-        if: steps.state.outputs.skip != 'true'
-        env:
-          DESIGN: ${{ matrix.design }}
+      - name: Build isolated WooCommerce package
+        if: steps.select.outputs.design_id != ''
         shell: bash
         run: |
           set -euo pipefail
-          STAGE="/tmp/drielo-${DESIGN}"
+          DESIGN="${{ steps.select.outputs.design_id }}"
+          STAGE="/tmp/drielo-${DESIGN}-${GITHUB_RUN_ID}"
           rm -rf "$STAGE"
           mkdir -p "$STAGE/content/products/assets" "$STAGE/content/products/files" "$STAGE/content/tools"
 
           python3 - "$DESIGN" "$STAGE" <<'PY'
           import json,sys
           from pathlib import Path
+
           design=sys.argv[1]
           stage=Path(sys.argv[2])
-          d=json.loads(Path('content/products/catalog.json').read_text(encoding='utf-8'))
+          catalog=json.loads(Path('content/products/catalog.json').read_text(encoding='utf-8'))
           codes={f'{design}-{s}' for s in ('CS','C2C','TC','LH')}
-          cats={
-            'cross-stitch-patterns','cross-stitch-florals',
-            'c2c-crochet-patterns','c2c-crochet-florals',
-            'tapestry-crochet-patterns','tapestry-crochet-florals',
-            'latch-hook-rug-patterns','latch-hook-rug-florals',
-          }
-          out=dict(d)
-          out['products']=[p for p in d.get('products',[]) if p.get('code') in codes]
-          out['collections']=[c for c in d.get('collections',[]) if c.get('slug')=='florals']
-          out['categories']=[c for c in d.get('categories',[]) if c.get('slug') in cats]
-          out['retired_products']=[]
-          out['retired_collections']=[]
-          found={p.get('code') for p in out['products']}
-          if found!=codes:
-              raise SystemExit(f'Package catalog mismatch: {found} != {codes}')
+          selected=[p for p in catalog.get('products',[]) if p.get('code') in codes]
+          found={p.get('code') for p in selected}
+          if found != codes:
+              raise SystemExit(f'Package catalogue mismatch: {found} != {codes}')
+
+          cats={slug for p in selected for slug in p.get('categories',[])}
+          base=dict(catalog)
+          base['collections']=[c for c in catalog.get('collections',[]) if c.get('slug')=='florals']
+          base['categories']=[c for c in catalog.get('categories',[]) if c.get('slug') in cats]
+          base['retired_products']=[]
+          base['retired_collections']=[]
+          if len(base['collections']) != 1:
+              raise SystemExit('Florals collection definition missing')
+
+          out=dict(base)
+          out['products']=selected
           (stage/'content/products/catalog.json').write_text(
               json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8'
           )
+
+          by_code={p['code']:p for p in selected}
+          for suffix in ('CS','C2C','TC','LH'):
+              one=dict(base)
+              one['products']=[by_code[f'{design}-{suffix}']]
+              (stage/f'content/products/catalog-{suffix}.json').write_text(
+                  json.dumps(one,ensure_ascii=False,indent=2)+'\n',encoding='utf-8'
+              )
           PY
 
           for suffix in CS C2C TC LH; do
@@ -212,10 +197,10 @@ jobs:
             cp "content/products/files/Drielo_${code}.pdf" "$STAGE/content/products/files/"
           done
           cp content/tools/import-products.php "$STAGE/content/tools/"
-          tar -czf "/tmp/drielo-${DESIGN}.tgz" -C "$STAGE" content
+          tar -czf "/tmp/drielo-${DESIGN}-${GITHUB_RUN_ID}.tgz" -C "$STAGE" content
 
       - name: Configure SSH
-        if: steps.state.outputs.skip != 'true'
+        if: steps.select.outputs.design_id != ''
         env:
           VPS_HOST: ${{ secrets.VPS_HOST }}
           VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
@@ -229,27 +214,29 @@ jobs:
           chmod 600 ~/.ssh/drielo_florals_key
           ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
 
-      - name: Upload product package
-        if: steps.state.outputs.skip != 'true'
+      - name: Upload package
+        if: steps.select.outputs.design_id != ''
         env:
-          DESIGN: ${{ matrix.design }}
+          DESIGN: ${{ steps.select.outputs.design_id }}
           VPS_HOST: ${{ secrets.VPS_HOST }}
           VPS_USER: ${{ secrets.VPS_USER }}
         shell: bash
         run: |
           set -euo pipefail
-          scp -i ~/.ssh/drielo_florals_key "/tmp/drielo-${DESIGN}.tgz" "$VPS_USER@$VPS_HOST:/tmp/drielo-${DESIGN}-${GITHUB_RUN_ID}.tgz"
+          scp -i ~/.ssh/drielo_florals_key "/tmp/drielo-${DESIGN}-${GITHUB_RUN_ID}.tgz" \
+            "$VPS_USER@$VPS_HOST:/tmp/drielo-${DESIGN}-${GITHUB_RUN_ID}.tgz"
 
-      - name: Publish four products to WooCommerce and verify
-        if: steps.state.outputs.skip != 'true'
+      - name: Publish four Florals products to WooCommerce and verify
+        if: steps.select.outputs.design_id != ''
         env:
-          DESIGN: ${{ matrix.design }}
+          DESIGN: ${{ steps.select.outputs.design_id }}
           VPS_HOST: ${{ secrets.VPS_HOST }}
           VPS_USER: ${{ secrets.VPS_USER }}
         shell: bash
         run: |
           set -euo pipefail
-          ssh -i ~/.ssh/drielo_florals_key "$VPS_USER@$VPS_HOST" "DESIGN='${DESIGN}' GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          ssh -i ~/.ssh/drielo_florals_key "$VPS_USER@$VPS_HOST" \
+            "DESIGN='${DESIGN}' GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
           set -euo pipefail
           ARCHIVE="/tmp/drielo-${DESIGN}-${GITHUB_RUN_ID}.tgz"
           STAGE="/tmp/drielo-${DESIGN}-${GITHUB_RUN_ID}"
@@ -267,11 +254,41 @@ jobs:
 
           rm -rf "$STAGE" && mkdir -p "$STAGE"
           tar -xzf "$ARCHIVE" -C "$STAGE"
-          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
-          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
-          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
 
-          "${DOCKER[@]}" exec -e DESIGN="$DESIGN" make-wp php -d memory_limit=768M -r '
+          CONTAINER_STAGE="/tmp/drielo-products-florals-${GITHUB_RUN_ID}"
+          CONTAINER_IMPORTER="/tmp/drielo-import-products-florals-${GITHUB_RUN_ID}.php"
+          "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '$CONTAINER_STAGE' '$CONTAINER_IMPORTER' && mkdir -p '$CONTAINER_STAGE'"
+          "${DOCKER[@]}" cp "$STAGE/content/products/." "make-wp:${CONTAINER_STAGE}/"
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" "make-wp:${CONTAINER_IMPORTER}"
+
+          for suffix in CS C2C TC LH; do
+            code="${DESIGN}-${suffix}"
+            "${DOCKER[@]}" exec make-wp sh -lc "
+              test -s '${CONTAINER_STAGE}/assets/${code}-product.webp' &&
+              test -s '${CONTAINER_STAGE}/assets/${code}-gallery-2.webp' &&
+              test -s '${CONTAINER_STAGE}/assets/${code}-gallery-3.webp' &&
+              test -s '${CONTAINER_STAGE}/assets/${code}-gallery-4.webp' &&
+              test -s '${CONTAINER_STAGE}/files/Drielo_${code}.pdf' &&
+              cp '${CONTAINER_STAGE}/catalog-${suffix}.json' '${CONTAINER_STAGE}/catalog.json'
+            "
+
+            ok=0
+            for attempt in 1 2 3; do
+              echo "Importing ${code} attempt ${attempt}/3"
+              if "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M -d max_execution_time=0 \
+                   "$CONTAINER_IMPORTER" /var/www/html "$CONTAINER_STAGE"; then
+                ok=1
+                break
+              fi
+              sleep 3
+            done
+            if [ "$ok" != "1" ]; then
+              echo "ERROR: failed to import ${code} after 3 attempts"
+              exit 4
+            fi
+          done
+
+          "${DOCKER[@]}" exec -e DESIGN="$DESIGN" make-wp php -d memory_limit=1024M -d max_execution_time=0 -r '
             require "/var/www/html/wp-load.php";
             $design=getenv("DESIGN");
             foreach(array("CS","C2C","TC","LH") as $suffix){
@@ -283,76 +300,106 @@ jobs:
               $downloads=count($p->get_downloads());
               $image=$p->get_image_id();
               $gallery=count($p->get_gallery_image_ids());
-              echo $sku." id=".$id." status=".$p->get_status()." image=".$image." gallery=".$gallery." downloads=".$downloads." collection=".implode(",",is_wp_error($terms)?array():$terms)." url=".get_permalink($id).PHP_EOL;
-              if($p->get_status()!=="publish" || !$image || $gallery<3 || $downloads<1 || !in_array("florals",is_wp_error($terms)?array():$terms,true)){exit(3);}
+              echo $sku." id=".$id." status=".$p->get_status()." image=".$image.
+                   " gallery=".$gallery." downloads=".$downloads." collection=".
+                   implode(",",is_wp_error($terms)?array():$terms)." url=".get_permalink($id).PHP_EOL;
+              if($p->get_status()!=="publish" || !$image || $gallery<3 || $downloads<1 ||
+                 !in_array("florals",is_wp_error($terms)?array():$terms,true)){
+                fwrite(STDERR,"Incomplete ".$sku.PHP_EOL);exit(3);
+              }
             }
           '
-          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
+          "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '$CONTAINER_STAGE' '$CONTAINER_IMPORTER'"
           REMOTE
 
-      - name: Commit generated Florals design to branch
-        if: steps.state.outputs.skip != 'true'
-        env:
-          DESIGN: ${{ matrix.design }}
+      - name: Mark Florals design published
+        if: success() && steps.select.outputs.design_id != ''
         shell: bash
         run: |
           set -euo pipefail
+          DESIGN="${{ steps.select.outputs.design_id }}"
+          python3 content/pattern-system/florals/queue_state.py success "$DESIGN" \
+            --run-url "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+
+      - name: Commit generated Florals design and advance queue
+        if: success() && steps.select.outputs.design_id != ''
+        shell: bash
+        run: |
+          set -euo pipefail
+          DESIGN="${{ steps.select.outputs.design_id }}"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add             content/pattern-system/collections/florals/designs.json             content/pattern-system/collections/florals/source-designs/manifest.json             content/pattern-system/collections/florals/source-designs/${DESIGN}-*.png             content/pattern-system/collections/florals/reference-masters/${DESIGN}-*-reference.png             content/pattern-system/patterns/${DESIGN}-CS/pattern.json             content/pattern-system/patterns/${DESIGN}-C2C/pattern.json             content/pattern-system/patterns/${DESIGN}-TC/pattern.json             content/pattern-system/patterns/${DESIGN}-LH/pattern.json             content/pattern-system/products/${DESIGN}-CS/product.json             content/pattern-system/products/${DESIGN}-C2C/product.json             content/pattern-system/products/${DESIGN}-TC/product.json             content/pattern-system/products/${DESIGN}-LH/product.json             content/products/catalog.json             content/products/assets/${DESIGN}-CS-product.webp             content/products/assets/${DESIGN}-CS-gallery-2.webp             content/products/assets/${DESIGN}-CS-gallery-3.webp             content/products/assets/${DESIGN}-CS-gallery-4.webp             content/products/assets/${DESIGN}-C2C-product.webp             content/products/assets/${DESIGN}-C2C-gallery-2.webp             content/products/assets/${DESIGN}-C2C-gallery-3.webp             content/products/assets/${DESIGN}-C2C-gallery-4.webp             content/products/assets/${DESIGN}-TC-product.webp             content/products/assets/${DESIGN}-TC-gallery-2.webp             content/products/assets/${DESIGN}-TC-gallery-3.webp             content/products/assets/${DESIGN}-TC-gallery-4.webp             content/products/assets/${DESIGN}-LH-product.webp             content/products/assets/${DESIGN}-LH-gallery-2.webp             content/products/assets/${DESIGN}-LH-gallery-3.webp             content/products/assets/${DESIGN}-LH-gallery-4.webp
+          git add content/pattern-system/florals/publish_queue.json
+          git add content/pattern-system/collections/florals/designs.json
+          git add content/pattern-system/collections/florals/source-designs/manifest.json
+          git add content/pattern-system/collections/florals/source-designs/${DESIGN}-*.png
+          git add content/pattern-system/collections/florals/reference-masters/${DESIGN}-*-reference.png
+          git add content/products/catalog.json
+          for suffix in CS C2C TC LH; do
+            code="${DESIGN}-${suffix}"
+            git add "content/pattern-system/patterns/${code}/pattern.json"
+            git add "content/pattern-system/products/${code}/product.json"
+            git add "content/products/assets/${code}-product.webp"
+            git add "content/products/assets/${code}-gallery-2.webp"
+            git add "content/products/assets/${code}-gallery-3.webp"
+            git add "content/products/assets/${code}-gallery-4.webp"
+            git add "content/products/files/Drielo_${code}.pdf"
+          done
 
           if git diff --cached --quiet; then
-            echo "Generated design already matches branch."
+            echo "No Florals files changed."
           else
-            git commit -m "Publish Florals ${DESIGN} in four techniques [skip ci]"
+            git commit -m "Publish Florals ${DESIGN} in four techniques"
             git fetch origin feature/florals-auto-publish
             git rebase origin/feature/florals-auto-publish
             git push origin HEAD:feature/florals-auto-publish
           fi
 
-      - name: Mark design published in queue
-        if: steps.state.outputs.skip != 'true'
-        env:
-          DESIGN: ${{ matrix.design }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin feature/florals-auto-publish
-          git reset --hard origin/feature/florals-auto-publish
-          python3 content/pattern-system/florals/queue_state.py success "$DESIGN" --run-url "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
-          git add content/pattern-system/florals/publish_queue.json
-          if ! git diff --cached --quiet; then
-            git commit -m "Mark Florals ${DESIGN} published [skip ci]"
-            git push origin HEAD:feature/florals-auto-publish
-          fi
-
-      - name: Archive PDFs for this design
-        if: success() && steps.state.outputs.skip != 'true'
+      - name: Archive four Florals PDFs
+        if: success() && steps.select.outputs.design_id != ''
         uses: actions/upload-artifact@v4
         with:
-          name: florals-${{ matrix.design }}-pdfs
+          name: florals-${{ steps.select.outputs.design_id }}-pdfs
           path: |
-            content/products/files/Drielo_${{ matrix.design }}-CS.pdf
-            content/products/files/Drielo_${{ matrix.design }}-C2C.pdf
-            content/products/files/Drielo_${{ matrix.design }}-TC.pdf
-            content/products/files/Drielo_${{ matrix.design }}-LH.pdf
+            content/products/files/Drielo_${{ steps.select.outputs.design_id }}-CS.pdf
+            content/products/files/Drielo_${{ steps.select.outputs.design_id }}-C2C.pdf
+            content/products/files/Drielo_${{ steps.select.outputs.design_id }}-TC.pdf
+            content/products/files/Drielo_${{ steps.select.outputs.design_id }}-LH.pdf
           retention-days: 30
 
-      - name: Record failure in queue
-        if: failure() && steps.state.outputs.skip != 'true'
-        env:
-          DESIGN: ${{ matrix.design }}
+      - name: Record failure and allow Florals queue to continue
+        if: failure() && steps.select.outputs.design_id != ''
         shell: bash
         run: |
           set -euo pipefail
+          DESIGN="${{ steps.select.outputs.design_id }}"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin feature/florals-auto-publish
           git reset --hard origin/feature/florals-auto-publish
-          python3 content/pattern-system/florals/queue_state.py fail "$DESIGN"             --run-url "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"             --error "Automatic Florals publish job failed; see GitHub Actions logs."
+          python3 content/pattern-system/florals/queue_state.py fail "$DESIGN" \
+            --run-url "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" \
+            --error "Automatic Florals publish run failed; see GitHub Actions logs."
           git add content/pattern-system/florals/publish_queue.json
-          git commit -m "Record Florals ${DESIGN} auto-publish failure [skip ci]"
+          git commit -m "Record Florals ${DESIGN} auto-publish result"
           git push origin HEAD:feature/florals-auto-publish
+
+      - name: Dispatch next queued Florals design
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin feature/florals-auto-publish
+          git reset --hard origin/feature/florals-auto-publish
+          if [ "$(python3 content/pattern-system/florals/queue_state.py has-work)" = "yes" ]; then
+            echo "Pending Florals designs remain; dispatching the next run."
+            gh api --method POST \
+              "repos/${GITHUB_REPOSITORY}/actions/workflows/florals-auto-publish.yml/dispatches" \
+              -f ref=feature/florals-auto-publish
+          else
+            echo "No pending Florals designs remain."
+            python3 content/pattern-system/florals/queue_state.py summary
+          fi
