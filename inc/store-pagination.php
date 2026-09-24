@@ -10,11 +10,17 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 function make_store_pagination_routes(): void {
     add_rewrite_rule( '^tienda/page/([0-9]+)/?$', 'index.php?post_type=product&make_lang=es&paged=$matches[1]', 'top' );
     add_rewrite_rule( '^en/shop/page/([0-9]+)/?$', 'index.php?post_type=product&make_lang=en&paged=$matches[1]', 'top' );
+
+    add_rewrite_rule( '^tienda/coleccion/([a-z0-9-]+)/page/([0-9]+)/?$', 'index.php?make_collection_local=$matches[1]&make_lang=es&paged=$matches[2]', 'top' );
+    add_rewrite_rule( '^en/shop/collection/([a-z0-9-]+)/page/([0-9]+)/?$', 'index.php?make_collection_local=$matches[1]&make_lang=en&paged=$matches[2]', 'top' );
+
+    add_rewrite_rule( '^tienda/categoria/([a-z0-9-]+)/page/([0-9]+)/?$', 'index.php?make_product_cat_local=$matches[1]&make_lang=es&paged=$matches[2]', 'top' );
+    add_rewrite_rule( '^en/shop/category/([a-z0-9-]+)/page/([0-9]+)/?$', 'index.php?make_product_cat_local=$matches[1]&make_lang=en&paged=$matches[2]', 'top' );
 }
 add_action( 'init', 'make_store_pagination_routes', 19 );
 
 function make_store_pagination_maybe_flush_rewrites(): void {
-    $version = '1';
+    $version = '2';
     if ( $version === (string) get_option( 'drielo_store_pagination_schema', '' ) ) { return; }
 
     flush_rewrite_rules( false );
@@ -32,7 +38,13 @@ function make_redirect_legacy_store_paths_paginated(): void {
         $target = make_product_url( get_queried_object_id(), make_current_language() );
     } elseif ( is_tax( array( 'product_collection','product_cat' ) ) ) {
         $term = get_queried_object();
-        if ( $term instanceof WP_Term ) { $target = make_store_term_url( $term, make_current_language() ); }
+        if ( $term instanceof WP_Term ) {
+            $target = make_store_term_url( $term, make_current_language() );
+            $page = max( 1, (int) get_query_var( 'paged' ) );
+            if ( $page > 1 ) {
+                $target = trailingslashit( $target ) . 'page/' . $page . '/';
+            }
+        }
     } elseif ( function_exists( 'is_shop' ) && is_shop() ) {
         $target = make_shop_view_url( make_store_view(), make_current_language() );
         $page = max( 1, (int) get_query_var( 'paged' ) );
