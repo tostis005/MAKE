@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Drielo Etsy Sync
  * Description: Centraliza la selección y sincronización de productos WooCommerce con Etsy, incluidos productos digitales, imágenes y PDFs.
- * Version: 1.4.6
+ * Version: 1.4.7
  * Author: Drielo
  * Requires Plugins: woocommerce
  * Requires PHP: 8.0
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 final class Drielo_Etsy_Sync {
-    const VERSION = '1.4.6';
+    const VERSION = '1.4.7';
     const OPTION_SETTINGS = 'drielo_etsy_settings';
     const OPTION_TOKENS   = 'drielo_etsy_tokens';
     const OPTION_SYNC_RUN = 'drielo_etsy_sync_run';
@@ -1735,7 +1735,7 @@ final class Drielo_Etsy_Sync {
             return $fallback;
         }
 
-        $cached_id = absint( get_transient( 'drielo_etsy_taxonomy_v4_' . $technique ) );
+        $cached_id = absint( get_transient( 'drielo_etsy_taxonomy_v5_' . $technique ) );
         if ( $cached_id > 0 ) {
             return $cached_id;
         }
@@ -1802,12 +1802,10 @@ final class Drielo_Etsy_Sync {
                 }
             }
             $exact_cross_stitch = 'cross-stitch' === $technique && in_array( $node_name, [ 'cross stitch', 'punto de cruz' ], true );
-            $exact_crochet = in_array( $technique, [ 'c2c-crochet', 'tapestry-crochet' ], true )
-                && in_array( $node_name, [ 'crochet', 'ganchillo' ], true );
-            if ( ! $has_pattern_context && ! $exact_cross_stitch && ! $exact_crochet ) {
+            if ( ! $has_pattern_context && ! $exact_cross_stitch ) {
                 continue;
             }
-            $anchor_score = ( $exact_cross_stitch || $exact_crochet ) ? 500 : 0;
+            $anchor_score = $exact_cross_stitch ? 500 : 0;
             foreach ( $profile['anchors'] as $anchor ) {
                 $normalized_anchor = $this->normalize_etsy_label( $anchor );
                 if ( false !== strpos( $node_path, $normalized_anchor ) ) {
@@ -1837,7 +1835,7 @@ final class Drielo_Etsy_Sync {
         }
 
         if ( $best_id > 0 ) {
-            set_transient( 'drielo_etsy_taxonomy_v4_' . $technique, $best_id, DAY_IN_SECONDS );
+            set_transient( 'drielo_etsy_taxonomy_v5_' . $technique, $best_id, DAY_IN_SECONDS );
             return $best_id;
         }
 
