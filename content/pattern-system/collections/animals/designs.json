@@ -287,7 +287,9 @@
       ],
       "artwork_status": "canonical-reference-ready",
       "reference_asset": "collections/animals/reference-masters/A0016-lamb-flower-crown-reference.png",
-      "source_asset": "collections/animals/source-designs/A0016-lamb-flower-crown.png"
+      "source_asset": "collections/animals/source-designs/A0016-lamb-flower-crown.png",
+      "product_status": "ready",
+      "transparent_background": true
     },
     {
       "order": 17,
