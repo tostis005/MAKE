@@ -92,7 +92,9 @@ def dmc_table():
             "dmc": code,
             "name": str(row.get("description") or f"DMC {code}"),
             "rgb": rgb,
-            "hex": "#" + str(row.get("hex") or ("%02X%02X%02X" % rgb)).lstrip("#").upper(),
+            # The upstream sheet contains a handful of spreadsheet-corrupted
+            # HEX cells. RGB is authoritative, so derive canonical HEX from it.
+            "hex": "#%02X%02X%02X" % rgb,
         })
         seen.add(code)
     if len(out) < 400:
