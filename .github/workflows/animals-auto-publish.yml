@@ -1,4 +1,5 @@
 name: Animals Branch Auto Publish Queue
+# Exact uploaded Animals PNG covers are active.
 
 on:
   workflow_dispatch:
