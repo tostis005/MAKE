@@ -249,6 +249,19 @@
         "TC",
         "LH"
       ]
+    },
+    "external_white_cleanup": {
+      "enabled": true,
+      "dmc": "3865",
+      "max_isolated_component_cells": 12,
+      "neighborhood": 8,
+      "policy": "Remove isolated exterior white flecks that do not touch any non-white pattern cell. Preserve all white cells that belong to the motif, including internal white fills, highlights, clouds, sails, unicorn bodies and other intentional white areas.",
+      "applies_to": [
+        "CS",
+        "C2C",
+        "TC",
+        "LH"
+      ]
     }
   }
 }
