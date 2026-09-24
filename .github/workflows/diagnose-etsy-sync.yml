@@ -1,0 +1,86 @@
+name: Diagnose Etsy sync queue
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/diagnose-etsy-sync.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_diag_key
+          chmod 600 ~/.ssh/drielo_diag_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Inspect live Etsy queue
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_diag_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"; exit 1
+          fi
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            echo "PLUGIN_VERSION=";
+            require_once ABSPATH."wp-admin/includes/plugin.php";
+            $data=get_plugin_data(WP_PLUGIN_DIR."/drielo-etsy-sync/drielo-etsy-sync.php",false,false);
+            echo ($data["Version"]??"unknown").PHP_EOL;
+
+            $run=get_option("drielo_etsy_sync_run",array());
+            echo "RUN=".wp_json_encode($run).PHP_EOL;
+
+            if(function_exists("as_get_scheduled_actions")){
+              foreach(array("pending","in-progress","failed","complete") as $status){
+                $actions=as_get_scheduled_actions(array(
+                  "hook"=>"drielo_etsy_sync_product_async",
+                  "group"=>"drielo-etsy",
+                  "status"=>$status,
+                  "per_page"=>200
+                ),"ids");
+                echo "AS_".strtoupper(str_replace("-","_",$status))."=".count($actions)." ".implode(",",array_slice($actions,0,30)).PHP_EOL;
+              }
+            } else {
+              echo "ACTION_SCHEDULER_API=missing".PHP_EOL;
+            }
+
+            global $wpdb;
+            $ids=$wpdb->get_col("SELECT post_id FROM {$wpdb->postmeta} WHERE meta_key='_drielo_etsy_queue_state' AND meta_value<>''");
+            $counts=array();
+            foreach($ids as $id){
+              $state=(string)get_post_meta($id,"_drielo_etsy_queue_state",true);
+              $counts[$state]=($counts[$state]??0)+1;
+            }
+            echo "QUEUE_STATES=".wp_json_encode($counts).PHP_EOL;
+
+            $listing_ids=$wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->postmeta} WHERE meta_key='_drielo_etsy_listing_id' AND meta_value<>''");
+            echo "LOCAL_LISTING_IDS=".$listing_ids.PHP_EOL;
+
+            echo "DISABLE_WP_CRON=".(defined("DISABLE_WP_CRON")&&DISABLE_WP_CRON?"yes":"no").PHP_EOL;
+            echo "DOING_CRON=".(defined("DOING_CRON")&&DOING_CRON?"yes":"no").PHP_EOL;
+          '
+          REMOTE
