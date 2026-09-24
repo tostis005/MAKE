@@ -48,8 +48,10 @@ jobs:
           python3 -m pip install --disable-pip-version-check --quiet Pillow playwright
           python3 -m playwright install --with-deps chromium
 
-      - name: Build master-derived patterns and render four techniques
+      - name: Build canonical master-derived patterns and render four techniques
         if: steps.select.outputs.design_id != ''
+        env:
+          DRIELO_GALLERY_REVISION: ${{ github.run_id }}
         shell: bash
         run: |
           set -euo pipefail
@@ -110,6 +112,11 @@ jobs:
                   raise SystemExit(f'{code}: malformed matrix')
               if pat.get('total_stitches',0)<=0 or not pat.get('threads'):
                   raise SystemExit(f'{code}: empty pattern')
+              expected_ref=f"collections/baby-nursery/reference-masters/{design}-{meta['slug']}-reference.png"
+              if pat.get('reference_asset')!=expected_ref:
+                  raise SystemExit(f'{code}: pattern does not use canonical reference {pat.get("reference_asset")}')
+              if prod.get('reference_artwork')!=expected_ref:
+                  raise SystemExit(f'{code}: product does not use canonical reference {prod.get("reference_artwork")}')
               if prod.get('page_1_asset')!=expected[suffix]:
                   raise SystemExit(f'{code}: wrong cover route {prod.get("page_1_asset")}')
               pdf=root/'content/products/files'/f'Drielo_{code}.pdf'
@@ -255,7 +262,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add content/pattern-system/patterns/${DESIGN}-CS/pattern.json content/pattern-system/patterns/${DESIGN}-C2C/pattern.json content/pattern-system/patterns/${DESIGN}-TC/pattern.json content/pattern-system/patterns/${DESIGN}-LH/pattern.json content/pattern-system/products/${DESIGN}-CS/product.json content/pattern-system/products/${DESIGN}-C2C/product.json content/pattern-system/products/${DESIGN}-TC/product.json content/pattern-system/products/${DESIGN}-LH/product.json content/products/catalog.json content/products/assets/${DESIGN}-CS-product.webp content/products/assets/${DESIGN}-C2C-product.webp content/products/assets/${DESIGN}-TC-product.webp content/products/assets/${DESIGN}-LH-product.webp
+          git add content/pattern-system/collections/baby-nursery/source-designs/${DESIGN}-*.png content/pattern-system/collections/baby-nursery/reference-masters/${DESIGN}-*-reference.png content/pattern-system/patterns/${DESIGN}-CS/pattern.json content/pattern-system/patterns/${DESIGN}-C2C/pattern.json content/pattern-system/patterns/${DESIGN}-TC/pattern.json content/pattern-system/patterns/${DESIGN}-LH/pattern.json content/pattern-system/products/${DESIGN}-CS/product.json content/pattern-system/products/${DESIGN}-C2C/product.json content/pattern-system/products/${DESIGN}-TC/product.json content/pattern-system/products/${DESIGN}-LH/product.json content/products/catalog.json content/products/assets/${DESIGN}-CS-product.webp content/products/assets/${DESIGN}-C2C-product.webp content/products/assets/${DESIGN}-TC-product.webp content/products/assets/${DESIGN}-LH-product.webp
 
           if git diff --cached --quiet; then
             echo "Generated design already matches main."
