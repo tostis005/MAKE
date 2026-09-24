@@ -431,7 +431,9 @@
       ],
       "artwork_status": "canonical-reference-ready",
       "reference_asset": "collections/animals/reference-masters/A0024-piglet-daisies-reference.png",
-      "source_asset": "collections/animals/source-designs/A0024-piglet-daisies.png"
+      "source_asset": "collections/animals/source-designs/A0024-piglet-daisies.png",
+      "product_status": "ready",
+      "transparent_background": true
     },
     {
       "order": 25,
