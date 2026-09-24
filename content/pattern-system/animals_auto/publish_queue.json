@@ -22,10 +22,11 @@
       "title_en": "Black Cat with Red Bow",
       "title_es": "Gato negro con lazo rojo",
       "slug": "black-cat-red-bow",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35983710324",
+      "last_error": null,
+      "published_at": "2026-09-24T09:54:07+00:00"
     },
     {
       "base_design_id": "A0003",

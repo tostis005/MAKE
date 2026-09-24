@@ -35,7 +35,9 @@
       ],
       "artwork_status": "canonical-reference-ready",
       "reference_asset": "collections/animals/reference-masters/A0002-black-cat-red-bow-reference.png",
-      "source_asset": "collections/animals/source-designs/A0002-black-cat-red-bow.png"
+      "source_asset": "collections/animals/source-designs/A0002-black-cat-red-bow.png",
+      "product_status": "ready",
+      "transparent_background": true
     },
     {
       "order": 3,
