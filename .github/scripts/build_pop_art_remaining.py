@@ -274,12 +274,13 @@ def build(workers: int):
 
     # Generate the 96 PDFs and ecommerce images on the feature branch.
     results = []
-    with ProcessPoolExecutor(max_workers=max(1, workers)) as ex:
-        futures = {ex.submit(bulk.render_one, task): task[0] for task in render_tasks}
-        for fut in as_completed(futures):
-            result = fut.result()
-            results.append(result)
-            print("BUILT", result["code"], result["pdf_bytes"], result["image_bytes"], flush=True)
+    # Render sequentially for reliability: render_one is loaded dynamically and
+    # Playwright starts its own Chromium instance per product, so process-pool
+    # pickling adds fragility without improving the branch deliverable.
+    for task in render_tasks:
+        result = bulk.render_one(task)
+        results.append(result)
+        print("BUILT", result["code"], result["pdf_bytes"], result["image_bytes"], flush=True)
 
     STORE_ASSETS.mkdir(parents=True, exist_ok=True)
     STORE_FILES.mkdir(parents=True, exist_ok=True)
