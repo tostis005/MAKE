@@ -267,24 +267,27 @@ jobs:
 
           rm -rf "$STAGE" && mkdir -p "$STAGE"
           tar -xzf "$ARCHIVE" -C "$STAGE"
-          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php && mkdir -p /tmp/drielo-products'
-          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
-          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          CONTAINER_STAGE="/tmp/drielo-products-animals-${GITHUB_RUN_ID}"
+          CONTAINER_IMPORTER="/tmp/drielo-import-products-animals-${GITHUB_RUN_ID}.php"
+          "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '$CONTAINER_STAGE' '$CONTAINER_IMPORTER' && mkdir -p '$CONTAINER_STAGE'"
+          "${DOCKER[@]}" cp "$STAGE/content/products/." "make-wp:${CONTAINER_STAGE}/"
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" "make-wp:${CONTAINER_IMPORTER}"
 
           for suffix in CS C2C TC LH; do
             code="${DESIGN}-${suffix}"
             "${DOCKER[@]}" exec make-wp sh -lc "
-              test -s /tmp/drielo-products/assets/${code}-product.webp &&
-              test -s /tmp/drielo-products/assets/${code}-gallery-2.webp &&
-              test -s /tmp/drielo-products/assets/${code}-gallery-3.webp &&
-              test -s /tmp/drielo-products/assets/${code}-gallery-4.webp &&
-              test -s /tmp/drielo-products/files/Drielo_${code}.pdf &&
-              cp /tmp/drielo-products/catalog-${suffix}.json /tmp/drielo-products/catalog.json
+              test -s '${CONTAINER_STAGE}/assets/${code}-product.webp' &&
+              test -s '${CONTAINER_STAGE}/assets/${code}-gallery-2.webp' &&
+              test -s '${CONTAINER_STAGE}/assets/${code}-gallery-3.webp' &&
+              test -s '${CONTAINER_STAGE}/assets/${code}-gallery-4.webp' &&
+              test -s '${CONTAINER_STAGE}/files/Drielo_${code}.pdf' &&
+              cp '${CONTAINER_STAGE}/catalog-${suffix}.json' '${CONTAINER_STAGE}/catalog.json'
             "
             ok=0
             for attempt in 1 2 3; do
               echo "Importing ${code} attempt ${attempt}/3"
-              if "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M -d max_execution_time=0                    /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products; then
+              if "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M -d max_execution_time=0 \
+                   "$CONTAINER_IMPORTER" /var/www/html "$CONTAINER_STAGE"; then
                 ok=1
                 break
               fi
