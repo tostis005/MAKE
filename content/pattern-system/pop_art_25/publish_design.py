@@ -99,6 +99,41 @@ def _load_encoded_matrix(base_id:str):
     raise RuntimeError(f"{base_id}: no encoded source matrix found")
 
 
+def _rows_from_existing_source(base_id:str,collection:dict):
+    src=SOURCE_DIR/f"{base_id}.png"
+    if not src.is_file():
+        raise RuntimeError(f"{base_id}: encoded source is invalid and fallback PNG is missing")
+    im=Image.open(src).convert("RGBA")
+    im=_fit_transparent_master(im,32) if im.size!=(800,960) else im
+    palette=collection["palette"]
+    palette_rgb=[rgb(p["hex"]) for p in palette]
+    exact={col:i for i,col in enumerate(palette_rgb)}
+    px=im.load()
+    rows=[]
+    for gy in range(120):
+        chars=[]
+        for gx in range(100):
+            samples=[]
+            for yy in range(gy*8,gy*8+8):
+                for xx in range(gx*8,gx*8+8):
+                    r,g,b,a=px[xx,yy]
+                    if a>=128:
+                        samples.append((r,g,b))
+            if len(samples)<8:
+                chars.append(".")
+                continue
+            col=Counter(samples).most_common(1)[0][0]
+            i=exact.get(col)
+            if i is None:
+                i=nearest_palette_index(col,palette_rgb)
+            chars.append(SYMBOLS[i])
+        rows.append("".join(chars))
+    if not any(ch!="." for row in rows for ch in row):
+        raise RuntimeError(f"{base_id}: fallback PNG produced an empty matrix")
+    print(f"SOURCE_FALLBACK_PNG {base_id} {src}")
+    return rows
+
+
 def _clean_exterior_white_noise(rows:list[str],collection:dict):
     """Remove only small exterior white/near-white artifacts.
 
@@ -187,7 +222,11 @@ def ensure_source_png(base_id:str,collection:dict):
     # Always rebuild branch-generated sources from the canonical matrix/override.
     # This guarantees that the exterior-white cleanup is applied consistently,
     # even when a previous run already left a derived PNG in sources/.
-    rows=_load_encoded_matrix(base_id)
+    try:
+        rows=_load_encoded_matrix(base_id)
+    except Exception as exc:
+        print(f"SOURCE_MATRIX_FALLBACK {base_id}: {type(exc).__name__}: {exc}")
+        rows=_rows_from_existing_source(base_id,collection)
     rows,removed=_clean_exterior_white_noise(rows,collection)
     if removed:
         print(f"EXTERIOR_WHITE_CLEANUP {base_id} removed={removed}")
