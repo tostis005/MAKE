@@ -1,0 +1,131 @@
+name: Cleanup Generated Animals Products
+
+on:
+  push:
+    branches:
+      - feature/animals-auto-publish
+    paths:
+      - '.github/workflows/animals-cleanup-generated.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: drielo-animals-branch-auto-publish
+  cancel-in-progress: true
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_animals_cleanup_key
+          chmod 600 ~/.ssh/drielo_animals_cleanup_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Delete generated Animals products and media
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_animals_cleanup_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M -d max_execution_time=0 -r '
+            require "/var/www/html/wp-load.php";
+
+            $ids = get_posts(array(
+              "post_type"      => "product",
+              "post_status"    => array("publish","draft","pending","private","trash"),
+              "posts_per_page" => -1,
+              "fields"         => "ids",
+              "meta_query"     => array(
+                array("key" => "_sku", "value" => "DRIELO-A", "compare" => "LIKE")
+              ),
+            ));
+
+            $deleted_products = 0;
+            $deleted_media = 0;
+            $media_ids = array();
+
+            foreach ($ids as $id) {
+              $product = wc_get_product($id);
+              if (!$product) { continue; }
+              $sku = (string) $product->get_sku();
+              if (!preg_match("/^DRIELO-A\\d{4}-(CS|C2C|TC|LH)$/", $sku)) { continue; }
+
+              $image_id = (int) $product->get_image_id();
+              if ($image_id) { $media_ids[$image_id] = true; }
+              foreach ((array) $product->get_gallery_image_ids() as $mid) {
+                $mid = (int) $mid;
+                if ($mid) { $media_ids[$mid] = true; }
+              }
+
+              echo "DELETE PRODUCT ".$sku." id=".$id.PHP_EOL;
+              wp_delete_post($id, true);
+              $deleted_products++;
+            }
+
+            foreach (array_keys($media_ids) as $mid) {
+              if (get_post($mid)) {
+                wp_delete_attachment((int) $mid, true);
+                $deleted_media++;
+              }
+            }
+
+            $uploads = wp_upload_dir();
+            $download_dir = trailingslashit($uploads["basedir"])."woocommerce_uploads/drielo";
+            $deleted_pdfs = 0;
+            foreach ((array) glob($download_dir."/Drielo_A[0-9][0-9][0-9][0-9]-*.pdf") as $file) {
+              if (is_file($file) && @unlink($file)) {
+                echo "DELETE PDF ".basename($file).PHP_EOL;
+                $deleted_pdfs++;
+              }
+            }
+
+            if (function_exists("wc_delete_product_transients")) {
+              wc_delete_product_transients();
+            }
+
+            echo "ANIMALS_CLEANUP products=".$deleted_products." media=".$deleted_media." pdfs=".$deleted_pdfs.PHP_EOL;
+
+            $remaining = get_posts(array(
+              "post_type"      => "product",
+              "post_status"    => "any",
+              "posts_per_page" => -1,
+              "fields"         => "ids",
+              "meta_query"     => array(
+                array("key" => "_sku", "value" => "DRIELO-A", "compare" => "LIKE")
+              ),
+            ));
+            foreach ($remaining as $rid) {
+              $rp = wc_get_product($rid);
+              if ($rp && preg_match("/^DRIELO-A\\d{4}-(CS|C2C|TC|LH)$/", (string) $rp->get_sku())) {
+                fwrite(STDERR, "Animals product still exists: ".$rp->get_sku()." id=".$rid.PHP_EOL);
+                exit(2);
+              }
+            }
+            echo "ANIMALS_CLEANUP_VERIFIED".PHP_EOL;
+          '
+          REMOTE
