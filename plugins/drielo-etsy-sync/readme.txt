@@ -3,7 +3,7 @@ Contributors: Drielo
 Requires at least: 6.4
 Requires PHP: 8.0
 Requires Plugins: woocommerce
-Stable tag: 1.4.8
+Stable tag: 1.4.9
 
 Panel central para seleccionar y sincronizar productos WooCommerce con Etsy mediante Etsy Open API v3.
 
@@ -37,6 +37,12 @@ Panel central para seleccionar y sincronizar productos WooCommerce con Etsy medi
 Etsy no permite devolver un listing ya publicado al estado draft. Si un listing activo se cambia al objetivo Borrador, el plugin lo deja inactive.
 
 == Changelog ==
+
+= 1.4.9 =
+* Activa modo manual estricto: Etsy solo puede modificarse mediante los botones Sincronizar/Sobrescribir del plugin.
+* Los lotes manuales llevan un token firmado; acciones antiguas o creadas fuera del plugin se bloquean.
+* Bloquea POST/PATCH/PUT/DELETE y subidas de imágenes/PDF fuera de un lote manual válido.
+* Crear, importar, editar o regenerar productos en Drielo no inicia ninguna sincronización Etsy.
 
 = 1.4.8 =
 * Clasifica explícitamente las cuatro técnicas de Drielo en Etsy.
