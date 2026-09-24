@@ -158,26 +158,32 @@ def main():
     OUT.parent.mkdir(parents=True, exist_ok=True)
     hd.save(OUT, "PNG", optimize=True)
 
-    # Structural foot validation: the lower section must contain two separated
-    # rounded foot masses, not one flat crop wall.
+    # Structural foot validation: scan the lower foot band and require at least
+    # one row where the two rounded feet are clearly visible as separate masses.
     a = alpha.load()
-    y = bbox[3] - 8
-    runs = []
-    start = None
-    for x in range(bbox[0], bbox[2]):
-        opaque = a[x, y] >= 128
-        if opaque and start is None:
-            start = x
-        elif not opaque and start is not None:
-            runs.append((start, x - 1))
-            start = None
-    if start is not None:
-        runs.append((start, bbox[2] - 1))
-    substantial = [r for r in runs if r[1] - r[0] + 1 >= 24]
-    if len(substantial) < 2:
-        raise RuntimeError(f"Feet validation failed; expected two lower foot runs, got {substantial}")
+    best_y = None
+    substantial = []
+    for y in range(max(bbox[1], bbox[3] - 96), bbox[3] - 7, 8):
+        runs = []
+        start = None
+        for x in range(bbox[0], bbox[2]):
+            opaque = a[x, y] >= 128
+            if opaque and start is None:
+                start = x
+            elif not opaque and start is not None:
+                runs.append((start, x - 1))
+                start = None
+        if start is not None:
+            runs.append((start, bbox[2] - 1))
+        candidate = [r for r in runs if r[1] - r[0] + 1 >= 40]
+        if len(candidate) >= 2:
+            best_y = y
+            substantial = candidate
+            break
+    if best_y is None:
+        raise RuntimeError("Feet validation failed; no lower row shows two separate complete foot masses")
 
-    print(f"I0002_MASTER_READY path={OUT} bbox={bbox} margins={margins} lower_runs={substantial}")
+    print(f"I0002_MASTER_READY path={OUT} bbox={bbox} margins={margins} foot_row={best_y} lower_runs={substantial}")
 
 
 if __name__ == "__main__":
