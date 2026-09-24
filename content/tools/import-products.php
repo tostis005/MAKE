@@ -216,6 +216,37 @@ $drielo_filter_term_names = array(
     'color-family' => array('neutral'=>'Neutral','warm'=>'Warm','cool'=>'Cool','green'=>'Green','blue'=>'Blue','pink'=>'Pink','multicolor'=>'Multicolor','dark'=>'Dark'),
 );
 
+$retired_product_skus = array_values( array_unique( array_filter( array_map( 'sanitize_text_field', (array) ( $catalog['retired_products'] ?? array() ) ) ) ) );
+foreach ( $retired_product_skus as $retired_sku ) {
+    $retired_id = wc_get_product_id_by_sku( $retired_sku );
+    if ( ! $retired_id ) { continue; }
+
+    if ( '1' !== (string) get_post_meta( $retired_id, '_drielo_managed_product', true ) ) {
+        echo 'SKIPPED RETIRE unmanaged sku=' . $retired_sku . ' product_id=' . $retired_id . PHP_EOL;
+        continue;
+    }
+
+    $retired_post = get_post( $retired_id );
+    if ( $retired_post instanceof WP_Post && 'trash' !== $retired_post->post_status ) {
+        wp_trash_post( $retired_id );
+        echo 'RETIRED PRODUCT sku=' . $retired_sku . ' product_id=' . $retired_id . PHP_EOL;
+    }
+}
+
+foreach ( array_values( array_unique( array_filter( array_map( 'sanitize_title', (array) ( $catalog['retired_collections'] ?? array() ) ) ) ) ) as $retired_collection_slug ) {
+    $retired_term = get_term_by( 'slug', $retired_collection_slug, 'product_collection' );
+    if ( ! $retired_term instanceof WP_Term ) { continue; }
+
+    clean_term_cache( $retired_term->term_id, 'product_collection' );
+    $retired_term = get_term( $retired_term->term_id, 'product_collection' );
+    if ( $retired_term instanceof WP_Term && 0 === (int) $retired_term->count ) {
+        $deleted = wp_delete_term( $retired_term->term_id, 'product_collection' );
+        if ( ! is_wp_error( $deleted ) ) {
+            echo 'RETIRED COLLECTION slug=' . $retired_collection_slug . PHP_EOL;
+        }
+    }
+}
+
 $created = 0;
 $updated = 0;
 $pending = 0;
