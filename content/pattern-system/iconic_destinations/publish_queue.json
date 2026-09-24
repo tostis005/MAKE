@@ -1,13 +1,13 @@
 {
   "collection": "iconic-destinations",
   "mode": "exact-pixel-cross-stitch-v1",
-  "auto_continue": false,
+  "auto_continue": true,
   "max_attempts_per_design": 2,
   "notes": [
     "First production batch contains D0001-D0010 only.",
     "Cross-stitch only: no C2C, tapestry crochet or latch-hook variants may be generated.",
     "Every source is exactly 100x120 cells. The publisher changes colour to the nearest DMC only; cell geometry is never resampled.",
-    "Queue remains paused until all ten exact pixel sources are committed."
+    "All ten exact pixel sources D0001-D0010 are committed; automatic publication is enabled."
   ],
   "items": [
     {
