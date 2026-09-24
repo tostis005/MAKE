@@ -1,5 +1,6 @@
 name: Audit Etsy listings for Pop Art relink
 # synchronize trigger
+# run audit 2026-09-24
 
 on:
   pull_request:
