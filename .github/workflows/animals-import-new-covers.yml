@@ -1,0 +1,48 @@
+name: Import New Animals Covers
+
+on:
+  push:
+    branches:
+      - feature/animals-auto-publish
+    paths:
+      - '.github/workflows/animals-import-new-covers.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: feature/animals-auto-publish
+          fetch-depth: 0
+
+      - name: Download exact approved Animals cover images
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p content/pattern-system/collections/animals/mockups
+
+          curl -fL --retry 3 --retry-delay 2 'https://sdmntprdenmarkeast.oaiusercontent.com/files/00000000-ba88-8210-9ea1-6476b3f22da6/raw?se=2026-09-24T11%3A56%3A31Z&sp=r&sv=2026-02-06&sr=b&scid=7f87ef9d-a8d0-5366-8db2-82b0d2d7ada9&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T11%3A24%3A20Z&ske=2026-09-25T11%3A24%3A20Z&sks=b&skv=2026-02-06&sig=4fH9doJgTiaqV8gWzjk5/m98uFwPUQ6N6s5nLPtP%2BP0%3D' -o content/pattern-system/collections/animals/mockups/animals-cover-cross-stitch.png
+          curl -fL --retry 3 --retry-delay 2 'https://sdmntprkoreacentral.oaiusercontent.com/files/00000000-c790-8206-bf53-dfe0d32fa0aa/raw?se=2026-09-24T11%3A56%3A25Z&sp=r&sv=2026-02-06&sr=b&scid=5a29a90f-4642-5819-9f73-9725c5795460&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T10%3A22%3A19Z&ske=2026-09-25T10%3A22%3A19Z&sks=b&skv=2026-02-06&sig=/OpyLRaWSoxZyWB/KuJXXQ/Dx8sFVsLeKsne%2BlQxZZc%3D' -o content/pattern-system/collections/animals/mockups/animals-cover-c2c-crochet.png
+          curl -fL --retry 3 --retry-delay 2 'https://sdmntprnortheu.oaiusercontent.com/files/00000000-30f4-81f4-a401-412a1e4c024f/raw?se=2026-09-24T11%3A56%3A34Z&sp=r&sv=2026-02-06&sr=b&scid=336cd94f-159a-5d2c-a34d-c7fc5d2386cb&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T11%3A05%3A06Z&ske=2026-09-25T11%3A05%3A06Z&sks=b&skv=2026-02-06&sig=mQH8RlLHl%2BLbkjeYT7jd2gNdcIPUs1co%2B4FSvc3bNbE%3D' -o content/pattern-system/collections/animals/mockups/animals-cover-tapestry-crochet.png
+          curl -fL --retry 3 --retry-delay 2 'https://sdmntprcentralus.oaiusercontent.com/files/00000000-8eec-81f5-8a4b-499d74c9887c/raw?se=2026-09-24T11%3A56%3A27Z&sp=r&sv=2026-02-06&sr=b&scid=37953e8c-8305-58cd-9859-5bbc7c9dc338&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T11%3A23%3A53Z&ske=2026-09-25T11%3A23%3A53Z&sks=b&skv=2026-02-06&sig=AYndIJ5uR2%2BMx1a30y7c5WYYbvHyzVs8QUR/Y787/iw%3D' -o content/pattern-system/collections/animals/mockups/animals-cover-latch-hook.png
+
+          echo '3d0057ee0d3845b4baaddbe138f080c92c4bcd8f6a0447c9c60f444aa3d62f77  content/pattern-system/collections/animals/mockups/animals-cover-cross-stitch.png' | sha256sum -c -
+          echo '734030ff2b8a1fbc77b9b00f59cbe27f9d01424819c683be15546caeed1dc254  content/pattern-system/collections/animals/mockups/animals-cover-c2c-crochet.png' | sha256sum -c -
+          echo '631a7fe921d11ce128e8142fb9b6645e5b04a9ce5361f5bd6d40ae3f0b47d0b8  content/pattern-system/collections/animals/mockups/animals-cover-tapestry-crochet.png' | sha256sum -c -
+          echo 'c32189d92f4ce27bd4c1cc78eef610c9960e1ef0e0267130728e43d5086125ef  content/pattern-system/collections/animals/mockups/animals-cover-latch-hook.png' | sha256sum -c -
+
+      - name: Commit approved Animals covers
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/pattern-system/collections/animals/mockups/*.png
+          git commit -m "Add approved Animals PDF cover mockups"
+          git pull --rebase origin feature/animals-auto-publish
+          git push origin HEAD:feature/animals-auto-publish
