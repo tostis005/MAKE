@@ -199,7 +199,7 @@ jobs:
             }
             $data = get_plugin_data(WP_PLUGIN_DIR . "/" . $plugin, false, false);
             $version = isset($data["Version"]) ? (string) $data["Version"] : "";
-            if ("1.4.8" !== $version) {
+            if ("1.4.9" !== $version) {
                 fwrite(STDERR, "Unexpected Drielo Etsy Sync version: " . $version . PHP_EOL);
                 exit(2);
             }
