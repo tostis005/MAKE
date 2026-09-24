@@ -1,0 +1,132 @@
+name: Extend active global Etsy batch
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/extend-active-global-etsy-batch.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  extend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_extend_batch_key
+          chmod 600 ~/.ssh/drielo_extend_batch_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Add missing craft products to active global batch
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_extend_batch_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -d max_execution_time=0 -r '
+            require "/var/www/html/wp-load.php";
+
+            $sync=Drielo_Etsy_Sync::instance();
+            $ref=new ReflectionClass($sync);
+            $set_state=$ref->getMethod("set_batch_product_state"); $set_state->setAccessible(true);
+            $refresh=$ref->getMethod("refresh_sync_run"); $refresh->setAccessible(true);
+
+            $run=get_option("drielo_etsy_sync_run",array());
+            $batch=(string)($run["id"]??"");
+            if(!$batch || !in_array((string)($run["status"]??""),array("queued","running"),true)){
+              fwrite(STDERR,"No active global batch".PHP_EOL); exit(2);
+            }
+
+            $existing=array_values(array_unique(array_filter(array_map("absint",(array)($run["product_ids"]??array())))));
+            $existing_lookup=array_fill_keys($existing,true);
+
+            $ids=get_posts(array(
+              "post_type"=>"product",
+              "post_status"=>array("publish","draft","private","pending"),
+              "posts_per_page"=>-1,
+              "fields"=>"ids",
+              "orderby"=>"ID",
+              "order"=>"ASC"
+            ));
+
+            $missing=array();
+            $missing_by_tech=array("CS"=>0,"C2C"=>0,"TC"=>0,"LH"=>0);
+            foreach($ids as $id){
+              $p=wc_get_product($id); if(!$p) continue;
+              $sku=(string)$p->get_sku();
+              if(!preg_match("/-(CS|C2C|TC|LH)$/",$sku,$m)) continue;
+
+              update_post_meta($id,"_drielo_etsy_enabled","yes");
+              update_post_meta($id,"_drielo_etsy_target_state","active");
+
+              if(isset($existing_lookup[$id])) continue;
+              $missing[]=(int)$id;
+              $missing_by_tech[$m[1]]++;
+            }
+
+            if($missing){
+              $run["product_ids"]=array_values(array_unique(array_merge($existing,$missing)));
+              $run["updated_at"]=current_time("mysql");
+              $run["global_import"]=1;
+              update_option("drielo_etsy_sync_run",$run,false);
+            }
+
+            $queued=0;$failed=0;
+            foreach($missing as $id){
+              $args=array((int)$id,0,$batch);
+              delete_post_meta($id,"_drielo_etsy_batch_id");
+              delete_post_meta($id,"_drielo_etsy_batch_state");
+              delete_post_meta($id,"_drielo_etsy_batch_message");
+              delete_post_meta($id,"_drielo_etsy_batch_updated_at");
+              $set_state->invoke($sync,(int)$id,$batch,"queued","Añadido a la importación global.");
+
+              $scheduled=false;
+              if(function_exists("as_enqueue_async_action")){
+                $action_id=as_enqueue_async_action("drielo_etsy_sync_product_async",$args,"drielo-etsy",true);
+                $scheduled=!empty($action_id);
+                if(!$scheduled && function_exists("as_has_scheduled_action")){
+                  $scheduled=(bool)as_has_scheduled_action("drielo_etsy_sync_product_async",$args,"drielo-etsy");
+                }
+              }else{
+                $scheduled=wp_schedule_single_event(time()+1,"drielo_etsy_sync_product_async",$args);
+              }
+
+              if($scheduled){
+                update_post_meta($id,"_drielo_etsy_queue_state","queued-safe");
+                $queued++;
+              }else{
+                update_post_meta($id,"_drielo_etsy_queue_state","failed");
+                update_post_meta($id,"_drielo_etsy_last_error","No se pudo añadir el producto a la cola global.");
+                $set_state->invoke($sync,(int)$id,$batch,"failed","No se pudo añadir el producto a la cola global.");
+                $failed++;
+              }
+            }
+
+            $refresh->invoke($sync,$batch);
+            $updated=get_option("drielo_etsy_sync_run",array());
+
+            echo "BATCH=".$batch.PHP_EOL;
+            echo "EXISTING_BEFORE=".count($existing).PHP_EOL;
+            echo "MISSING_ADDED=".count($missing).PHP_EOL;
+            echo "MISSING_BY_TECH=".wp_json_encode($missing_by_tech).PHP_EOL;
+            echo "QUEUED=".$queued.PHP_EOL;
+            echo "FAILED=".$failed.PHP_EOL;
+            echo "TOTAL_AFTER=".count((array)($updated["product_ids"]??array())).PHP_EOL;
+            if($failed>0) exit(3);
+          '
+          REMOTE
