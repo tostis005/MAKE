@@ -77,6 +77,130 @@ def nearest_palette_index(col, palette_rgb):
     )
 
 
+def threads_from_matrix(matrix, palette):
+    counts = Counter(v for row in matrix for v in row if v)
+    threads = []
+    for i, p in enumerate(palette):
+        sym = SYMBOLS[i]
+        if counts[sym]:
+            threads.append(
+                {
+                    "symbol": sym,
+                    "dmc": str(p["dmc"]),
+                    "color": p["hex"].upper(),
+                    "name": p.get("name", f"DMC {p['dmc']}"),
+                    "stitches": counts[sym],
+                }
+            )
+    return threads
+
+
+def _distance_to_transparency(matrix, y, x, max_depth=3):
+    if matrix[y][x] is None:
+        return 0
+    h, w = len(matrix), len(matrix[0])
+    for radius in range(1, max_depth + 1):
+        y0, y1 = max(0, y - radius), min(h - 1, y + radius)
+        x0, x1 = max(0, x - radius), min(w - 1, x + radius)
+        for yy in range(y0, y1 + 1):
+            for xx in range(x0, x1 + 1):
+                if max(abs(yy - y), abs(xx - x)) != radius:
+                    continue
+                if yy < 0 or yy >= h or xx < 0 or xx >= w:
+                    return radius
+                if matrix[yy][xx] is None:
+                    return radius
+        if y - radius < 0 or y + radius >= h or x - radius < 0 or x + radius >= w:
+            return radius
+    return max_depth + 1
+
+
+def _nearest_fill_symbol(matrix, y, x, outline_symbol, max_radius=6):
+    h, w = len(matrix), len(matrix[0])
+    candidates = []
+    for radius in range(1, max_radius + 1):
+        for yy in range(max(0, y - radius), min(h, y + radius + 1)):
+            for xx in range(max(0, x - radius), min(w, x + radius + 1)):
+                if max(abs(yy - y), abs(xx - x)) != radius:
+                    continue
+                v = matrix[yy][xx]
+                if v is not None and v != outline_symbol:
+                    candidates.append(v)
+        if candidates:
+            return Counter(candidates).most_common(1)[0][0]
+    return outline_symbol
+
+
+def normalize_external_outline(matrix, outline_symbol, cleanup_depth=2, neighborhood=8):
+    if not matrix or not matrix[0]:
+        return matrix, {"changed": 0, "boundary_cells": 0, "extra_outline_removed": 0}
+
+    original = [row[:] for row in matrix]
+    h, w = len(original), len(original[0])
+    occupied = [[original[y][x] is not None for x in range(w)] for y in range(h)]
+
+    if neighborhood == 4:
+        offsets = [(-1,0),(1,0),(0,-1),(0,1)]
+    else:
+        offsets = [(dy,dx) for dy in (-1,0,1) for dx in (-1,0,1) if not (dy == 0 and dx == 0)]
+
+    boundary = set()
+    for y in range(h):
+        for x in range(w):
+            if not occupied[y][x]:
+                continue
+            for dy, dx in offsets:
+                yy, xx = y + dy, x + dx
+                if yy < 0 or yy >= h or xx < 0 or xx >= w or not occupied[yy][xx]:
+                    boundary.add((y, x))
+                    break
+
+    cleaned = [row[:] for row in original]
+    removed = 0
+    for y in range(h):
+        for x in range(w):
+            if original[y][x] != outline_symbol:
+                continue
+            if (y, x) in boundary:
+                continue
+            dist = _distance_to_transparency(original, y, x, max_depth=max(3, cleanup_depth))
+            if dist <= cleanup_depth:
+                fill = _nearest_fill_symbol(original, y, x, outline_symbol)
+                if fill != outline_symbol:
+                    cleaned[y][x] = fill
+                    removed += 1
+
+    changed = removed
+    for y, x in boundary:
+        if cleaned[y][x] != outline_symbol:
+            cleaned[y][x] = outline_symbol
+            changed += 1
+
+    # Guardrail: every exterior cell must be outline, and a second outline layer
+    # adjacent to transparent space is not allowed.
+    for y, x in boundary:
+        if cleaned[y][x] != outline_symbol:
+            raise RuntimeError(f"External outline normalization failed at {x},{y}")
+
+    extras = 0
+    for y in range(h):
+        for x in range(w):
+            if cleaned[y][x] == outline_symbol and (y, x) not in boundary:
+                dist = _distance_to_transparency(cleaned, y, x, max_depth=max(3, cleanup_depth))
+                if dist <= cleanup_depth:
+                    extras += 1
+    if extras:
+        raise RuntimeError(f"External outline still has {extras} extra near-edge cells after normalization")
+
+    return cleaned, {
+        "changed": changed,
+        "boundary_cells": len(boundary),
+        "extra_outline_removed": removed,
+        "thickness_cells": 1,
+        "neighborhood": neighborhood,
+    }
+
+
 def design_record(base_id: str):
     designs = read_json(DESIGNS_PATH)["designs"]
     for item in designs:
@@ -173,30 +297,46 @@ def rebuild_from_master(base_id: str, design: dict, collection: dict):
     if not counts:
         raise RuntimeError(f"{base_id}: source master produced an empty pattern")
 
-    threads = []
-    for i, p in enumerate(palette):
-        sym = SYMBOLS[i]
-        if counts[sym]:
-            threads.append(
-                {
-                    "symbol": sym,
-                    "dmc": str(p["dmc"]),
-                    "color": p["hex"].upper(),
-                    "name": p.get("name", f"DMC {p['dmc']}"),
-                    "stitches": counts[sym],
-                }
-            )
+    outline_rule = collection.get("pattern_rules", {}).get("external_outline", {})
+    if outline_rule.get("enabled", False):
+        outline_dmc = str(outline_rule.get("dmc", "3799"))
+        try:
+            outline_index = next(i for i, p in enumerate(palette) if str(p["dmc"]) == outline_dmc)
+        except StopIteration:
+            raise RuntimeError(f"{base_id}: outline DMC {outline_dmc} not found in collection palette")
+        outline_symbol = SYMBOLS[outline_index]
+        matrix, outline_stats_cs = normalize_external_outline(
+            matrix,
+            outline_symbol,
+            cleanup_depth=int(outline_rule.get("cleanup_depth_cells", 2)),
+            neighborhood=int(outline_rule.get("neighborhood", 8)),
+        )
+    else:
+        outline_symbol = None
+        outline_stats_cs = {"changed": 0, "boundary_cells": 0, "extra_outline_removed": 0}
 
-    matrices = {"CS": (matrix, threads)}
+    threads = threads_from_matrix(matrix, palette)
+    matrices = {"CS": (matrix, threads, outline_stats_cs)}
+
     for suffix in ("C2C", "TC", "LH"):
         cfg = bg.TECHS[suffix]
-        matrices[suffix] = bg.downsample(matrix, threads, cfg["w"], cfg["h"])
+        m, _ = bg.downsample(matrix, threads, cfg["w"], cfg["h"])
+        if outline_symbol:
+            m, stats = normalize_external_outline(
+                m,
+                outline_symbol,
+                cleanup_depth=int(outline_rule.get("cleanup_depth_cells", 2)),
+                neighborhood=int(outline_rule.get("neighborhood", 8)),
+            )
+        else:
+            stats = {"changed": 0, "boundary_cells": 0, "extra_outline_removed": 0}
+        matrices[suffix] = (m, threads_from_matrix(m, palette), stats)
 
     page_assets = collection["mockup_spec"]["technique_assets"]
     for suffix in SUFFIXES:
         code = f"{base_id}-{suffix}"
         cfg = bg.TECHS[suffix]
-        mat, th = matrices[suffix]
+        mat, th, outline_stats = matrices[suffix]
         pattern_path = PATTERNS / code / "pattern.json"
         product_path = PRODUCTS / code / "product.json"
         pattern = read_json(pattern_path)
@@ -217,6 +357,13 @@ def rebuild_from_master(base_id: str, design: dict, collection: dict):
                 "total_stitches": sum(1 for r in mat for v in r if v),
                 "threads": th,
                 "matrix": mat,
+                "outline_policy": {
+                    "enabled": bool(outline_symbol),
+                    "dmc": str(outline_rule.get("dmc", "3799")) if outline_symbol else None,
+                    "thickness_cells": 1 if outline_symbol else None,
+                    "neighborhood": int(outline_rule.get("neighborhood", 8)) if outline_symbol else None,
+                    "stats": outline_stats,
+                },
             }
         )
         write_json(pattern_path, pattern)
@@ -427,7 +574,7 @@ def update_catalog(base_id: str, design: dict):
     rows = catalog.setdefault("products", [])
     by_code = {p.get("code"): p for p in rows}
     templates = {s: deepcopy(by_code[f"I0001-{s}"]) for s in SUFFIXES}
-    revision = int(os.environ.get("DRIELO_GALLERY_REVISION", 202609240000 + int(base_id[1:])))
+    revision = int(os.environ.get("DRIELO_GALLERY_REVISION", 202609242000 + int(base_id[1:])))
 
     for suffix in SUFFIXES:
         code = f"{base_id}-{suffix}"
