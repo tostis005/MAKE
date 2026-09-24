@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Drielo Etsy Sync
  * Description: Centraliza la selección y sincronización de productos WooCommerce con Etsy, incluidos productos digitales, imágenes y PDFs.
- * Version: 1.4.3
+ * Version: 1.4.4
  * Author: Drielo
  * Requires Plugins: woocommerce
  * Requires PHP: 8.0
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 final class Drielo_Etsy_Sync {
-    const VERSION = '1.4.3';
+    const VERSION = '1.4.4';
     const OPTION_SETTINGS = 'drielo_etsy_settings';
     const OPTION_TOKENS   = 'drielo_etsy_tokens';
     const OPTION_SYNC_RUN = 'drielo_etsy_sync_run';
@@ -1547,7 +1547,19 @@ final class Drielo_Etsy_Sync {
             $rate = 0.871743;
         }
 
-        return round( max( 0.01, $raw * $rate ), 2 );
+        // WooCommerce prices are the shopper-facing target in USD.
+        // Etsy adds buyer-side VAT/tax and applies its own display FX rate.
+        // Calibrate the base EUR listing price so the final Etsy price shown
+        // in our reference storefront stays close to the Drielo USD price.
+        // Default factor is based on the observed 5.99 USD -> 7.56 USD Etsy
+        // display relationship (7.56 / 5.99 = 1.262104). It is configurable
+        // so we can recalibrate without changing product prices.
+        $display_factor = (float) get_option( 'drielo_etsy_visible_price_factor', 1.262104 );
+        if ( $display_factor < 1.0 || $display_factor > 1.6 ) {
+            $display_factor = 1.262104;
+        }
+
+        return round( max( 0.01, ( $raw * $rate ) / $display_factor ), 2 );
     }
 
     private function product_technique( WC_Product $product ): string {
