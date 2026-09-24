@@ -15,7 +15,7 @@
       "dmc": "3865",
       "color": "#F8E7D7",
       "name": "Winter White",
-      "stitches": 96
+      "stitches": 94
     },
     {
       "symbol": "F",
@@ -29,7 +29,7 @@
       "dmc": "922",
       "color": "#B94D17",
       "name": "Light Copper",
-      "stitches": 267
+      "stitches": 273
     },
     {
       "symbol": "K",
@@ -43,7 +43,7 @@
       "dmc": "801",
       "color": "#8E3911",
       "name": "Dark Coffee Brown",
-      "stitches": 316
+      "stitches": 315
     },
     {
       "symbol": "M",
@@ -71,14 +71,14 @@
       "dmc": "754",
       "color": "#EF975B",
       "name": "Light Peach",
-      "stitches": 607
+      "stitches": 606
     },
     {
       "symbol": "T",
       "dmc": "434",
       "color": "#D67138",
       "name": "Light Brown",
-      "stitches": 221
+      "stitches": 220
     },
     {
       "symbol": "W",
@@ -92,7 +92,7 @@
       "dmc": "453",
       "color": "#C3A089",
       "name": "Shell Gray",
-      "stitches": 22
+      "stitches": 21
     }
   ],
   "matrix": [
@@ -868,7 +868,7 @@
       "H",
       "L",
       "L",
-      "S",
+      "H",
       "S",
       "S",
       "S",
@@ -930,7 +930,7 @@
       "T",
       "S",
       "S",
-      "S",
+      "H",
       "S",
       "S",
       "S",
@@ -2239,7 +2239,7 @@
       "L",
       "A",
       "N",
-      "A",
+      "H",
       "A",
       "A",
       "S",
@@ -2295,7 +2295,7 @@
       "N",
       "A",
       "A",
-      "A",
+      "H",
       "L",
       "H",
       "L",
@@ -2508,7 +2508,7 @@
       "M",
       "M",
       "S",
-      "T",
+      "H",
       "H",
       null,
       null,
@@ -2778,7 +2778,7 @@
       "L",
       null,
       null,
-      "L",
+      "H",
       "L",
       "S",
       "S",
@@ -2804,7 +2804,7 @@
       "H",
       "X",
       "X",
-      "X",
+      "S",
       "S",
       "S",
       "H",

@@ -15,7 +15,7 @@
       "dmc": "3865",
       "color": "#F8E7D7",
       "name": "Winter White",
-      "stitches": 204
+      "stitches": 201
     },
     {
       "symbol": "F",
@@ -29,7 +29,7 @@
       "dmc": "922",
       "color": "#B94D17",
       "name": "Light Copper",
-      "stitches": 371
+      "stitches": 378
     },
     {
       "symbol": "K",
@@ -43,7 +43,7 @@
       "dmc": "801",
       "color": "#8E3911",
       "name": "Dark Coffee Brown",
-      "stitches": 439
+      "stitches": 437
     },
     {
       "symbol": "M",
@@ -71,14 +71,14 @@
       "dmc": "754",
       "color": "#EF975B",
       "name": "Light Peach",
-      "stitches": 1129
+      "stitches": 1124
     },
     {
       "symbol": "T",
       "dmc": "434",
       "color": "#D67138",
       "name": "Light Brown",
-      "stitches": 412
+      "stitches": 413
     },
     {
       "symbol": "W",
@@ -92,7 +92,7 @@
       "dmc": "453",
       "color": "#C3A089",
       "name": "Shell Gray",
-      "stitches": 49
+      "stitches": 51
     }
   ],
   "matrix": [
@@ -1445,7 +1445,7 @@
       "L",
       "H",
       "L",
-      "S",
+      "H",
       "S",
       "S",
       "S",
@@ -1527,13 +1527,13 @@
       "S",
       "S",
       "S",
+      "H",
       "S",
       "S",
       "S",
       "S",
       "S",
-      "S",
-      "S",
+      "X",
       "S",
       "S",
       "S",
@@ -1922,7 +1922,7 @@
       null,
       "H",
       "S",
-      "S",
+      "X",
       "S",
       "S",
       "S",
@@ -2832,7 +2832,7 @@
       "S",
       "S",
       "S",
-      "S",
+      "H",
       "L",
       "S",
       "S",
@@ -3914,7 +3914,7 @@
       "N",
       "A",
       "N",
-      "A",
+      "H",
       "A",
       "A",
       "A",
@@ -3988,8 +3988,8 @@
       "N",
       "A",
       "A",
-      "A",
-      "A",
+      "H",
+      "T",
       "L",
       "H",
       "T",
@@ -4873,7 +4873,7 @@
       null,
       null,
       null,
-      "L",
+      "H",
       "L",
       "S",
       "S",
@@ -4923,7 +4923,7 @@
       "L",
       "L",
       "L",
-      "L",
+      "H",
       "L",
       null,
       null,
