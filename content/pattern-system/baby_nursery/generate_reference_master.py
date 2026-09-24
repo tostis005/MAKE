@@ -19,6 +19,7 @@ COLLECTION_PATH = COLLECTION_DIR / "collection.json"
 DESIGNS_PATH = COLLECTION_DIR / "designs.json"
 SOURCE_DIR = COLLECTION_DIR / "source-designs"
 REFERENCE_DIR = COLLECTION_DIR / "reference-masters"
+APPROVED_LATEST_DIR = COLLECTION_DIR / "approved-latest-11"
 
 EXPECTED_DECODED_SHA256 = "533a4d7ed0892fd142eed3406b4740a539f70cbfffeaf932813466800a97ad19"
 STANDARD_ALPHABET = list("ABCDEFGHJKLMNPQRSTUVWXYZ23456789")
@@ -64,78 +65,80 @@ def load_archive():
 
 
 def load_design_reference(base_id: str, meta: dict):
-    manifest = read_json(MANIFEST_PATH)
-    source_id = str(meta.get("reference_source_id") or base_id)
-    source_slug = str(meta.get("reference_source_slug") or meta["slug"])
-    bundle_only = bool(meta.get("reference_bundle_only", False))
-    direct = LIBRARY_DIR / f"{source_id}-{source_slug}.json"
-    source_kind = "direct-user-sheet-crop"
+    """Load ONLY the 11 matrices explicitly approved in the current chat.
 
-    if direct.is_file() and not bundle_only:
-        d = read_json(direct)
-    else:
-        parts = manifest.get("direct_reference_bundle_parts") or []
-        if not parts:
-            return None
-        encoded = "".join((LIBRARY_DIR / name).read_text(encoding="ascii").strip() for name in parts)
-        try:
-            bundle_raw = zlib.decompress(base64.b64decode(encoded, validate=True))
-        except Exception as exc:
-            raise RuntimeError(f"Direct reference bundle cannot be decoded: {exc}") from exc
-        bundle_digest = hashlib.sha256(bundle_raw).hexdigest()
-        expected_bundle = manifest.get("direct_reference_bundle_decoded_sha256")
-        if not expected_bundle or bundle_digest != expected_bundle:
-            raise RuntimeError(
-                f"Direct reference bundle digest mismatch: {bundle_digest} != {expected_bundle}"
-            )
-        bundle = json.loads(bundle_raw.decode("utf-8"))
-        if bundle.get("version") != 1:
-            raise RuntimeError(f"Unsupported direct reference bundle version: {bundle.get('version')}")
-        d = (bundle.get("designs") or {}).get(source_id)
-        if d is None:
-            return None
-        source_kind = "direct-user-sheet-bundle"
-
-    if d.get("version") != 1:
-        raise RuntimeError(f"{base_id}: unsupported direct reference version")
-    if d.get("base_design_id") != source_id or d.get("slug") != source_slug:
+    The active Infantil rebuild must never consult the legacy reference-library,
+    remap one target ID to another historical ID, or fall back to an old bundle.
+    """
+    base_id = base_id.strip().upper()
+    expected_asset = f"collections/baby-nursery/approved-latest-11/{base_id}.matrix.zlib.b64"
+    configured_asset = str(meta.get("approved_matrix_asset") or "")
+    if configured_asset != expected_asset:
         raise RuntimeError(
-            f"{base_id}: mapped direct reference identity mismatch: "
-            f"{d.get('base_design_id')}/{d.get('slug')} != {source_id}/{source_slug}"
+            f"{base_id}: approved matrix path mismatch: {configured_asset!r} != {expected_asset!r}"
         )
 
+    matrix_path = SYSTEM / configured_asset
+    if not matrix_path.is_file():
+        raise RuntimeError(f"{base_id}: latest-chat approved matrix missing: {matrix_path}")
+
     try:
-        raw = zlib.decompress(base64.b64decode(d["matrix_zlib_base64"], validate=True))
+        encoded = matrix_path.read_text(encoding="ascii").strip()
+        raw = zlib.decompress(base64.b64decode(encoded, validate=True))
     except Exception as exc:
-        raise RuntimeError(f"{base_id}: direct reference matrix cannot be decoded: {exc}") from exc
+        raise RuntimeError(f"{base_id}: latest-chat matrix cannot be decoded: {exc}") from exc
 
     digest = hashlib.sha256(raw).hexdigest()
-    if digest != d.get("matrix_sha256"):
-        raise RuntimeError(f"{base_id}: direct reference matrix digest mismatch: {digest}")
+    expected_digest = str(meta.get("approved_matrix_sha256") or "").lower()
+    if not expected_digest or digest.lower() != expected_digest:
+        raise RuntimeError(
+            f"{base_id}: latest-chat matrix SHA mismatch: {digest} != {expected_digest}"
+        )
 
     rows = raw.decode("ascii").splitlines()
     if len(rows) != 120 or any(len(row) != 100 for row in rows):
-        raise RuntimeError(f"{base_id}: direct reference matrix is not 100x120")
+        raise RuntimeError(f"{base_id}: latest-chat matrix is not 100x120")
 
-    manifest_row = next((x for x in manifest["designs"] if x["base_design_id"] == source_id), None)
-    if not manifest_row:
-        raise RuntimeError(f"{base_id}: missing from reference-library manifest")
-
+    order = int(meta["order"])
+    manifest = {
+        "version": 1,
+        "source": "latest-chat-approved-11",
+        "designs": [{
+            "base_design_id": base_id,
+            "slug": meta["slug"],
+            "reference_sheet": 1,
+            "row": order,
+            "column": 1,
+        }],
+    }
+    direct_metadata = {
+        "version": 1,
+        "base_design_id": base_id,
+        "slug": meta["slug"],
+        "approved_preview_v2": True,
+        "background": "transparent",
+        "matrix_sha256": digest,
+        "palette_policy": (
+            "exact Baby & Nursery approved 24-colour palette; "
+            "latest chat-approved motif only"
+        ),
+        "source_crop_bbox": None,
+        "source_crop_size": [100, 120],
+    }
     return {
         "manifest": manifest,
         "canonical": {
             "slug": meta["slug"],
-            "sheet": int(manifest_row["reference_sheet"]),
-            "row": int(manifest_row["row"]),
-            "column": int(manifest_row["column"]),
+            "sheet": 1,
+            "row": order,
+            "column": 1,
             "rows": rows,
         },
         "alphabet": STANDARD_ALPHABET,
-        "source_kind": source_kind,
+        "source_kind": "latest-chat-approved-11",
         "source_sha256": digest,
-        "direct_metadata": d,
+        "direct_metadata": direct_metadata,
     }
-
 
 def rows_from_master_image(image, palette, alphabet):
     image=image.convert("RGBA")
@@ -462,8 +465,10 @@ def generate_reference_master(base_id: str):
             f"{base_id}: canonical slug {canonical.get('slug')} != designs.json slug {meta.get('slug')}"
         )
 
-    mapped_source_id = str(meta.get("reference_source_id") or base_id)
-    mapped_source_slug = str(meta.get("reference_source_slug") or meta["slug"])
+    if "reference_source_id" in meta or "reference_source_slug" in meta or "reference_bundle_only" in meta:
+        raise RuntimeError(f"{base_id}: legacy reference remapping fields are forbidden")
+    mapped_source_id = base_id
+    mapped_source_slug = meta["slug"]
     manifest_row = next((x for x in manifest["designs"] if x["base_design_id"] == mapped_source_id), None)
     if not manifest_row:
         raise RuntimeError(
