@@ -22,7 +22,8 @@
     "P0016 requeued after cache-busting importer fix so WooCommerce gets new image attachment URLs and a revisioned PDF URL.",
     "Audrey P0003-P0005 and Marilyn P0011/P0013-P0015 requeued after exterior pale-pixel cleanup. P0012 was audited and already clean.",
     "Final correction pass: P0005 removes the remaining exposed white fringe cells; P0010 is rebuilt from the exact P0009 artwork with sunglasses only; P0016 uses a valid explicit source matrix and must not fall back to an older PNG.",
-    "Correction from user QA: P0010 sunglasses repositioned to the actual P0009 eye line; P0016 replaced from the newly supplied Mona Lisa pixel artwork. Both must receive fresh WooCommerce images and PDFs."
+    "Correction from user QA: P0010 sunglasses repositioned to the actual P0009 eye line; P0016 replaced from the newly supplied Mona Lisa pixel artwork. Both must receive fresh WooCommerce images and PDFs.",
+    "Temporary orchestration pause while duplicate correction runs are drained; P0010 and P0016 will be requeued once a single publisher remains."
   ],
   "items": [
     {
@@ -129,7 +130,7 @@
       "title_en": "Girl with a Pearl Earring Sunglasses",
       "title_es": "La joven de la perla con gafas",
       "slug": "girl-pearl-earring-sunglasses",
-      "status": "pending",
+      "status": "paused",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -188,7 +189,7 @@
       "title_en": "Mona Lisa Portrait",
       "title_es": "Retrato de la Mona Lisa",
       "slug": "mona-lisa-portrait",
-      "status": "pending",
+      "status": "paused",
       "attempts": 0,
       "last_run": null,
       "last_error": null
