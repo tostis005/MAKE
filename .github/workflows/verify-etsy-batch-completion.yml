@@ -1,0 +1,95 @@
+name: Verify Etsy batch completion
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/verify-etsy-batch-completion.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_verify_key
+          chmod 600 ~/.ssh/drielo_verify_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Watch current Etsy batch until complete
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 36); do
+            OUT=$(ssh -i ~/.ssh/drielo_verify_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $run=get_option("drielo_etsy_sync_run",array());
+            $batch=(string)($run["id"]??"");
+            $ids=array_values(array_filter(array_map("absint",(array)($run["product_ids"]??array()))));
+            $counts=array("queued"=>0,"running"=>0,"success"=>0,"failed"=>0,"skipped"=>0,"other"=>0);
+            foreach($ids as $id){
+              $bid=(string)get_post_meta($id,"_drielo_etsy_batch_id",true);
+              $state=(string)get_post_meta($id,"_drielo_etsy_batch_state",true);
+              if(!$bid||!hash_equals($batch,$bid)){$counts["other"]++;continue;}
+              if(isset($counts[$state]))$counts[$state]++;else $counts["other"]++;
+            }
+            echo "BATCH=".$batch.PHP_EOL;
+            echo "COUNTS=".wp_json_encode($counts).PHP_EOL;
+            $errors=array();
+            foreach($ids as $id){
+              if((string)get_post_meta($id,"_drielo_etsy_batch_state",true)==="failed"){
+                $p=wc_get_product($id);
+                $errors[]=array(
+                  "sku"=>$p?$p->get_sku():"",
+                  "error"=>(string)get_post_meta($id,"_drielo_etsy_last_error",true),
+                  "message"=>(string)get_post_meta($id,"_drielo_etsy_batch_message",true)
+                );
+              }
+            }
+            echo "ERRORS=".wp_json_encode($errors).PHP_EOL;
+          '
+          REMOTE
+          )
+            echo "ATTEMPT=$attempt"
+            echo "$OUT"
+
+            SUCCESS=$(echo "$OUT" | sed -n 's/.*"success":\([0-9][0-9]*\).*/\1/p' | tail -1)
+            FAILED=$(echo "$OUT" | sed -n 's/.*"failed":\([0-9][0-9]*\).*/\1/p' | tail -1)
+            QUEUED=$(echo "$OUT" | sed -n 's/.*"queued":\([0-9][0-9]*\).*/\1/p' | tail -1)
+            RUNNING=$(echo "$OUT" | sed -n 's/.*"running":\([0-9][0-9]*\).*/\1/p' | tail -1)
+
+            SUCCESS=${SUCCESS:-0}
+            FAILED=${FAILED:-0}
+            QUEUED=${QUEUED:-0}
+            RUNNING=${RUNNING:-0}
+
+            if [ "$FAILED" -gt 0 ]; then
+              echo "Batch has failures."
+              exit 2
+            fi
+            if [ "$SUCCESS" -eq 26 ] && [ "$QUEUED" -eq 0 ] && [ "$RUNNING" -eq 0 ]; then
+              echo "ALL_26_SUCCESS=yes"
+              exit 0
+            fi
+            sleep 15
+          done
+
+          echo "Batch did not complete within verification window."
+          exit 3
