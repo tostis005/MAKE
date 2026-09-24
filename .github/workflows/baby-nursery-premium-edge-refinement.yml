@@ -190,6 +190,7 @@ jobs:
           name: baby-nursery-premium-v3-review
           path: |
             content/products/files/Drielo_I000*-*.pdf
+            content/products/files/Drielo_I0010-*.pdf
             content/pattern-system/collections/baby-nursery/qa/premium-v3-quality-report.json
             content/pattern-system/collections/baby-nursery/qa/premium-v3-contact-sheet.webp
           retention-days: 30
