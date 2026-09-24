@@ -13,6 +13,19 @@
       });
     });
 
+    $('[data-confirm-overwrite]').on('click', function(e){
+      var selected = $('.drielo-row-select:checked').length;
+      if (!selected) {
+        e.preventDefault();
+        window.alert('Selecciona al menos un producto. La sobrescritura nunca se aplica a todo el catálogo automáticamente.');
+        return;
+      }
+      var ok = window.confirm(
+        'Vas a sobrescribir en Etsy la información de ' + selected + ' producto(s) seleccionado(s): título, descripción, precio, tags, categoría, imágenes y PDF.\n\nLos cambios manuales hechos directamente en Etsy pueden perderse. ¿Continuar?'
+      );
+      if (!ok) e.preventDefault();
+    });
+
     $('[data-copy]').on('click', function(){
       var selector = $(this).data('copy');
       var text = $(selector).text();
