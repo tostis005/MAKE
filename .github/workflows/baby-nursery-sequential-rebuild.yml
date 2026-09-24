@@ -27,7 +27,7 @@ jobs:
       - name: Checkout sequential rebuild branch
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 5
 
       - name: Preflight exact latest-chat approved 11
         shell: bash
