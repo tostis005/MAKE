@@ -1,0 +1,145 @@
+name: Repair deleted Etsy listings
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/repair-deleted-etsy-listings.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_etsy_repair_key
+          chmod 600 ~/.ssh/drielo_etsy_repair_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Reset stale Etsy references and recreate current batch
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_etsy_repair_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"; exit 1
+          fi
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -d max_execution_time=2400 -r '
+            require "/var/www/html/wp-load.php";
+            require_once ABSPATH."wp-admin/includes/plugin.php";
+
+            $plugin="drielo-etsy-sync/drielo-etsy-sync.php";
+            $data=get_plugin_data(WP_PLUGIN_DIR."/".$plugin,false,false);
+            $version=(string)($data["Version"]??"");
+            echo "PLUGIN_VERSION=".$version.PHP_EOL;
+            if($version!=="1.4.2" || !class_exists("Drielo_Etsy_Sync")){
+              fwrite(STDERR,"Expected active Etsy plugin 1.4.2".PHP_EOL); exit(2);
+            }
+
+            $previous=get_option("drielo_etsy_sync_run",array());
+            $current_ids=array_values(array_unique(array_filter(array_map("absint",(array)($previous["product_ids"]??array())))));
+            echo "CURRENT_BATCH_PRODUCTS=".count($current_ids).PHP_EOL;
+            if(!$current_ids){
+              fwrite(STDERR,"No current Etsy batch found to repair".PHP_EOL); exit(3);
+            }
+
+            $all_ids=get_posts(array(
+              "post_type"=>"product",
+              "post_status"=>array("publish","draft","private","pending"),
+              "posts_per_page"=>-1,
+              "fields"=>"ids",
+              "meta_key"=>"_drielo_etsy_listing_id"
+            ));
+            $reset_count=0;
+            $reset_keys=array(
+              "_drielo_etsy_listing_id",
+              "_drielo_etsy_remote_state",
+              "_drielo_etsy_asset_hash",
+              "_drielo_etsy_content_hash",
+              "_drielo_etsy_last_error",
+              "_drielo_etsy_last_warning",
+              "_drielo_etsy_queue_state",
+              "_drielo_etsy_batch_id",
+              "_drielo_etsy_batch_state",
+              "_drielo_etsy_batch_message",
+              "_drielo_etsy_batch_updated_at",
+              "_drielo_etsy_shop_section_id"
+            );
+            foreach($all_ids as $id){
+              foreach($reset_keys as $key){ delete_post_meta($id,$key); }
+              $reset_count++;
+            }
+            echo "STALE_LISTING_REFERENCES_RESET=".$reset_count.PHP_EOL;
+
+            $batch_id=wp_generate_uuid4();
+            $run=array(
+              "id"=>$batch_id,
+              "mode"=>"safe",
+              "product_ids"=>$current_ids,
+              "started_at"=>current_time("mysql"),
+              "started_by"=>1,
+              "status"=>"running",
+              "completed_at"=>"",
+              "updated_at"=>current_time("mysql")
+            );
+            update_option("drielo_etsy_sync_run",$run,false);
+
+            foreach($current_ids as $id){
+              update_post_meta($id,"_drielo_etsy_enabled","yes");
+              update_post_meta($id,"_drielo_etsy_batch_id",$batch_id);
+              update_post_meta($id,"_drielo_etsy_batch_state","queued");
+              update_post_meta($id,"_drielo_etsy_batch_message","Pendiente de recreación después de borrar listings en Etsy.");
+              update_post_meta($id,"_drielo_etsy_batch_updated_at",current_time("mysql"));
+              update_post_meta($id,"_drielo_etsy_queue_state","queued-safe");
+            }
+
+            $sync=Drielo_Etsy_Sync::instance();
+            $success=0; $failed=0; $skipped=0;
+            foreach($current_ids as $index=>$id){
+              $p=wc_get_product($id);
+              echo "PROCESS ".($index+1)."/".count($current_ids)." ".($p?$p->get_sku():"#".$id).PHP_EOL;
+              $sync->handle_async_sync_product($id,0,$batch_id);
+              $state=(string)get_post_meta($id,"_drielo_etsy_batch_state",true);
+              $listing=(string)get_post_meta($id,"_drielo_etsy_listing_id",true);
+              $error=(string)get_post_meta($id,"_drielo_etsy_last_error",true);
+              $warning=(string)get_post_meta($id,"_drielo_etsy_last_warning",true);
+              $tax=(string)get_post_meta($id,"_drielo_etsy_taxonomy_id",true);
+              echo "RESULT state=".$state." listing=".$listing." taxonomy=".$tax;
+              if($error!=="") echo " error=".str_replace(array("\n","\r")," ",$error);
+              if($warning!=="") echo " warning=".str_replace(array("\n","\r")," ",$warning);
+              echo PHP_EOL;
+              if($state==="success") $success++;
+              elseif($state==="failed") $failed++;
+              else $skipped++;
+            }
+
+            $run=get_option("drielo_etsy_sync_run",array());
+            $run["status"]=$failed>0?"completed_errors":"completed";
+            $run["completed_at"]=current_time("mysql");
+            $run["updated_at"]=current_time("mysql");
+            update_option("drielo_etsy_sync_run",$run,false);
+
+            echo "FINAL success=".$success." failed=".$failed." skipped=".$skipped.PHP_EOL;
+            if($failed>0) exit(4);
+          '
+          REMOTE
