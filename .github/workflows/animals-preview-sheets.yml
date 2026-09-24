@@ -1,0 +1,30 @@
+name: Export Animals Preview Sheets
+
+on:
+  push:
+    branches:
+      - feature/animals-auto-publish
+    paths:
+      - '.github/workflows/animals-preview-sheets.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: feature/animals-auto-publish
+      - name: Upload exact Animals preview sheets
+        uses: actions/upload-artifact@v6
+        with:
+          name: animals-preview-sheets
+          path: |
+            content/pattern-system/collections/animals/reference-sheets/animals-reference-sheet-01.png
+            content/pattern-system/collections/animals/reference-sheets/animals-reference-sheet-02.png
+            content/pattern-system/collections/animals/reference-sheets/animals-reference-sheet-03.png
+            content/pattern-system/collections/animals/reference-sheets/animals-reference-sheet-04.png
+          retention-days: 7
