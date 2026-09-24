@@ -25,7 +25,7 @@
       "height": 72
     }
   },
-  "status": "awaiting-canonical-source-extraction",
+  "status": "approved-references-awaiting-canonical-extraction",
   "designs": [
     {
       "base_design_id": "F0001",
@@ -126,10 +126,10 @@
     {
       "base_design_id": "F0013",
       "slug": "rose-ribbon-bouquet",
-      "source_asset": "collections/florals/source-designs/F0013-rose-ribbon-bouquet.png",
+      "source_asset": null,
       "reference_sheet": "reference-sheets/florals-sheet-03.png",
       "reference_cell": "r1c1",
-      "status": "canonical-pattern-ready"
+      "status": "approved-reference-awaiting-canonical-extraction"
     },
     {
       "base_design_id": "F0014",
