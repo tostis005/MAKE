@@ -6,6 +6,7 @@ on:
     paths:
       - 'content/products/**'
       - 'content/tools/import-products.php'
+      - 'content/tools/generate-etsy-preview-images.py'
       - '.github/workflows/import-products.yml'
   workflow_dispatch:
 
@@ -127,25 +128,25 @@ jobs:
               print(f'{filename}: {target.stat().st_size} bytes')
           PY
 
-      - name: Generate clean featured product images
+      - name: Generate clean featured and Etsy preview images
         shell: bash
         run: |
           set -euo pipefail
-          python3 -m pip install --disable-pip-version-check --quiet Pillow
+          python3 -m pip install --disable-pip-version-check --quiet Pillow PyMuPDF
           python3 content/tools/generate-featured-images.py
+          python3 content/tools/generate-etsy-preview-images.py
 
-      - name: Persist refreshed gallery assets
-        if: ${{ hashFiles('content/products/gallery-sources.json') != '' || hashFiles('content/products/gallery-bundle-source.json') != '' }}
+      - name: Persist generated product gallery assets
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add content/products/assets
+          git add content/products/assets content/products/catalog.json
           if git diff --cached --quiet; then
-            echo "No gallery asset changes to persist."
+            echo "No generated gallery asset changes to persist."
           else
-            git commit -m "Refresh product gallery assets [skip ci]"
+            git commit -m "Refresh generated product gallery assets [skip ci]"
             git push origin HEAD:main
           fi
 
