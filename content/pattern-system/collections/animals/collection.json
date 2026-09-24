@@ -169,14 +169,14 @@
     }
   },
   "mockup_spec": {
-    "asset": null,
+    "asset": "../../multitech/assets/cover-cross-stitch.webp",
     "technique_assets": {
-      "CS": null,
-      "C2C": null,
-      "TC": null,
-      "LH": null
+      "CS": "../../multitech/assets/cover-cross-stitch.webp",
+      "C2C": "../../multitech/assets/cover-crochet.webp",
+      "TC": "../../multitech/assets/cover-c2c-crochet.webp",
+      "LH": "../../multitech/assets/cover-rug.webp"
     },
-    "status": "pending-approved-page-1-images",
+    "status": "ready-generic-technique-covers",
     "frame": {
       "enabled": false
     },
