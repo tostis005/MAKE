@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       product_code:
-        description: 'Product code to build (for example P0021-CS or I0001-CS). Leave empty to build all render-ready products.'
+        description: 'Product code to build (for example P0021-CS, I0001-CS or D0001-CS). Leave empty to build all render-ready products.'
         required: false
         type: string
 
