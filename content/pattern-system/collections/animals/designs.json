@@ -467,7 +467,9 @@
       ],
       "artwork_status": "canonical-reference-ready",
       "reference_asset": "collections/animals/reference-masters/A0026-hamster-strawberry-reference.png",
-      "source_asset": "collections/animals/source-designs/A0026-hamster-strawberry.png"
+      "source_asset": "collections/animals/source-designs/A0026-hamster-strawberry.png",
+      "product_status": "ready",
+      "transparent_background": true
     },
     {
       "order": 27,

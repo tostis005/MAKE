@@ -286,10 +286,11 @@
       "title_en": "Hamster with Strawberry",
       "title_es": "Hámster con fresa",
       "slug": "hamster-strawberry",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36008119877",
+      "last_error": null,
+      "published_at": "2026-09-24T13:57:08+00:00"
     },
     {
       "base_design_id": "A0027",
