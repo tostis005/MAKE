@@ -1,0 +1,103 @@
+name: Install Approved Animals Covers
+
+on:
+  push:
+    branches:
+      - feature/animals-auto-publish
+    paths:
+      - '.github/workflows/animals-install-approved-covers.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-animals-install-covers
+  cancel-in-progress: true
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: feature/animals-auto-publish
+          fetch-depth: 0
+
+      - name: Rebuild approved technique covers
+        shell: bash
+        run: |
+          set -euo pipefail
+          SRC="content/pattern-system/collections/animals/assets-upload"
+          DEST="content/pattern-system/collections/animals/assets"
+          mkdir -p "$DEST"
+
+          cat "$SRC"/cs-*.b64 | tr -d '\n\r ' | base64 --decode > "$DEST/animals-cover-cross-stitch.webp"
+          cat "$SRC"/c2c-*.b64 | tr -d '\n\r ' | base64 --decode > "$DEST/animals-cover-c2c-crochet.webp"
+          cat "$SRC"/tc-*.b64 | tr -d '\n\r ' | base64 --decode > "$DEST/animals-cover-tapestry-crochet.webp"
+          cat "$SRC"/lh-*.b64 | tr -d '\n\r ' | base64 --decode > "$DEST/animals-cover-latch-hook.webp"
+
+          python3 -m pip install --disable-pip-version-check --quiet Pillow
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          expected = {
+              "animals-cover-cross-stitch.webp": "CS / 114976.png",
+              "animals-cover-c2c-crochet.webp": "C2C / 114974.png",
+              "animals-cover-tapestry-crochet.webp": "TC / 114975.png",
+              "animals-cover-latch-hook.webp": "LH / 114977.png",
+          }
+          root = Path("content/pattern-system/collections/animals/assets")
+          for name, source in expected.items():
+              p = root / name
+              im = Image.open(p)
+              im.verify()
+              im = Image.open(p)
+              if im.size != (512, 512):
+                  raise SystemExit(f"{name}: expected 512x512, got {im.size}")
+              if p.stat().st_size < 25000:
+                  raise SystemExit(f"{name}: unexpectedly small ({p.stat().st_size} bytes)")
+              print(name, source, im.size, p.stat().st_size)
+          PY
+
+      - name: Point Animals collection at approved covers
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path("content/pattern-system/collections/animals/collection.json")
+          doc = json.loads(p.read_text(encoding="utf-8"))
+          m = doc["mockup_spec"]
+          m["asset"] = "assets/animals-cover-cross-stitch.webp"
+          m["technique_assets"] = {
+              "CS": "assets/animals-cover-cross-stitch.webp",
+              "C2C": "assets/animals-cover-c2c-crochet.webp",
+              "TC": "assets/animals-cover-tapestry-crochet.webp",
+              "LH": "assets/animals-cover-latch-hook.webp",
+          }
+          m["status"] = "approved-animals-technique-covers"
+          m["source_uploads"] = {
+              "CS": "114976.png",
+              "C2C": "114974.png",
+              "TC": "114975.png",
+              "LH": "114977.png",
+          }
+          p.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          PY
+          rm -rf content/pattern-system/collections/animals/assets-upload
+
+      - name: Commit approved Animals cover assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/pattern-system/collections/animals/collection.json
+          git add content/pattern-system/collections/animals/assets
+          git add -A content/pattern-system/collections/animals/assets-upload
+          git commit -m "Install approved Animals PDF cover mockups"
+          git fetch origin feature/animals-auto-publish
+          git rebase origin/feature/animals-auto-publish
+          git push origin HEAD:feature/animals-auto-publish
