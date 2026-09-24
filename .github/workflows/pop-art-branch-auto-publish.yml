@@ -49,8 +49,9 @@ jobs:
         run: |
           set -euo pipefail
           DESIGN="${{ steps.select.outputs.design_id }}"
-          if [ "$DESIGN" = "P0001" ] || [ "$DESIGN" = "P0012" ]; then
-            echo "ERROR: protected approved design selected: $DESIGN"
+          ALLOW_PROTECTED="${{ steps.select.outputs.allow_protected }}"
+          if { [ "$DESIGN" = "P0001" ] || [ "$DESIGN" = "P0012" ]; } && [ "$ALLOW_PROTECTED" != "true" ]; then
+            echo "ERROR: protected approved design selected without explicit permission: $DESIGN"
             exit 1
           fi
 
@@ -66,6 +67,7 @@ jobs:
         if: steps.select.outputs.design_id != ''
         env:
           DRIELO_GALLERY_REVISION: ${{ github.run_id }}
+          DRIELO_ALLOW_PROTECTED: ${{ steps.select.outputs.allow_protected == 'true' && '1' || '0' }}
         shell: bash
         run: |
           set -euo pipefail
@@ -73,19 +75,22 @@ jobs:
 
       - name: Validate generated design bundle
         if: steps.select.outputs.design_id != ''
+        env:
+          DRIELO_ALLOW_PROTECTED: ${{ steps.select.outputs.allow_protected == 'true' && '1' || '0' }}
         shell: bash
         run: |
           set -euo pipefail
           DESIGN="${{ steps.select.outputs.design_id }}"
           python3 - "$DESIGN" <<'PY'
           import json
+          import os
           import sys
           from pathlib import Path
           from PIL import Image
 
           design=sys.argv[1]
-          if design in {'P0001','P0012'}:
-              raise SystemExit(f'Protected design must not be generated: {design}')
+          if design in {'P0001','P0012'} and os.environ.get('DRIELO_ALLOW_PROTECTED') != '1':
+              raise SystemExit(f'Protected design rebuild not explicitly authorized: {design}')
 
           root=Path('.')
           system=root/'content'/'pattern-system'
