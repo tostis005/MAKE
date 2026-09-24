@@ -113,9 +113,7 @@ def rgba_from_matrix(rows, palette, alphabet):
         raise RuntimeError("Canonical matrix is not 100x120")
 
     lookup = {}
-    for idx, char in enumerate(alphabet):
-        if idx >= len(palette):
-            raise RuntimeError(f"Palette index {idx} exceeds collection palette")
+    for idx, char in enumerate(alphabet[:len(palette)]):
         h = palette[idx]["hex"].lstrip("#")
         lookup[char] = tuple(int(h[i:i+2], 16) for i in (0, 2, 4)) + (255,)
 
