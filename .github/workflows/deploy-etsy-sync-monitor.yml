@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/deploy-etsy-sync-monitor.yml'
+      - 'plugins/drielo-etsy-sync/**'
   workflow_dispatch:
 
 permissions:
