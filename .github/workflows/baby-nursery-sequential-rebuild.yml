@@ -1,6 +1,6 @@
 name: Baby Nursery Sequential Rebuild
 # rollout-generation: ACTIVE-sequential-kawaii-v1-2026-09-24
-# one approved design per run; publish four techniques immediately to WooCommerce
+# strict one-design-per-run; no queue push triggers; no mid-publish cancellation
 # Pop Art-style featured + 3 gallery previews
 
 on:
@@ -8,11 +8,6 @@ on:
     branches: [feature/baby-nursery-sequential-rebuild]
     paths:
       - '.github/workflows/baby-nursery-sequential-rebuild.yml'
-      - 'content/pattern-system/baby_nursery/generate_reference_master.py'
-      - 'content/pattern-system/baby_nursery/publish_queue.json'
-      - 'content/pattern-system/collections/baby-nursery/designs.json'
-      - 'content/pattern-system/collections/baby-nursery/collection.json'
-      - 'content/pattern-system/collections/baby-nursery/reference-library/**'
   workflow_dispatch:
 
 permissions:
@@ -21,7 +16,7 @@ permissions:
 
 concurrency:
   group: drielo-baby-nursery-sequential-rebuild
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   publish-next:
@@ -33,6 +28,54 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Preflight immutable reference mapping
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, json, sys
+          from pathlib import Path
+
+          system=Path("content/pattern-system")
+          sys.path.insert(0,str((system/"baby_nursery").resolve()))
+          from generate_reference_master import load_design_reference
+
+          designs=json.loads((system/"collections"/"baby-nursery"/"designs.json").read_text(encoding="utf-8"))["designs"]
+          expected=json.loads((system/"baby_nursery"/"sequential_reference_map.json").read_text(encoding="utf-8"))["mappings"]
+          by_target={d["base_design_id"]:d for d in designs}
+          hashes={}
+          if [m["target_id"] for m in expected] != [d["base_design_id"] for d in designs]:
+              raise SystemExit("Sequential target order differs from immutable reference map")
+
+          for m in expected:
+              target=m["target_id"]
+              d=by_target[target]
+              checks={
+                  "slug":(d["slug"],m["target_slug"]),
+                  "reference_source_id":(str(d.get("reference_source_id")),m["reference_source_id"]),
+                  "reference_source_slug":(str(d.get("reference_source_slug")),m["reference_source_slug"]),
+                  "reference_bundle_only":(bool(d.get("reference_bundle_only")),bool(m["reference_bundle_only"])),
+              }
+              bad={k:v for k,v in checks.items() if v[0]!=v[1]}
+              if bad:
+                  raise SystemExit(f"{target}: mapping drift {bad}")
+
+              direct=load_design_reference(target,d)
+              if not direct:
+                  raise SystemExit(f"{target}: approved reference missing")
+              rows=direct["canonical"]["rows"]
+              raw=("\n".join(rows)+"\n").encode("ascii")
+              digest=hashlib.sha256(raw).hexdigest()
+              if digest in hashes:
+                  raise SystemExit(f"Duplicate approved matrix: {target} and {hashes[digest]} share {digest}")
+              hashes[digest]=target
+              print("REFERENCE_OK",target,"<-",m["reference_source_id"],m["reference_source_slug"],digest)
+
+          if len(hashes)!=len(expected):
+              raise SystemExit("Reference matrix uniqueness preflight failed")
+          print("REFERENCE_PREFLIGHT_OK",len(hashes))
+          PY
 
       - name: Select next pending design
         id: select
@@ -61,7 +104,7 @@ jobs:
           chmod 600 ~/.ssh/drielo_products_key
           ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
 
-      - name: Remove existing Baby Nursery products before I0001
+      - name: Hard reset Baby Nursery products and media before I0001
         if: steps.select.outputs.design_id == 'I0001'
         env:
           VPS_HOST: ${{ secrets.VPS_HOST }}
@@ -79,35 +122,52 @@ jobs:
             echo "ERROR: make-wp container not found"
             exit 1
           fi
+
           "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
             require "/var/www/html/wp-load.php";
-            $delete=array();
+
+            $products=array();
             $ids=get_posts(array(
-              "post_type"=>"product",
-              "post_status"=>"any",
-              "posts_per_page"=>-1,
-              "fields"=>"ids",
-              "tax_query"=>array(array(
-                "taxonomy"=>"product_collection",
-                "field"=>"slug",
-                "terms"=>array("baby-nursery"),
-              )),
+              "post_type"=>"product","post_status"=>"any","posts_per_page"=>-1,"fields"=>"ids",
+              "tax_query"=>array(array("taxonomy"=>"product_collection","field"=>"slug","terms"=>array("baby-nursery")))
             ));
-            foreach ($ids as $id) $delete[intval($id)]=true;
+            foreach($ids as $id) $products[intval($id)]=true;
+
             $all=wc_get_products(array("limit"=>-1,"return"=>"ids","status"=>array("publish","draft","pending","private")));
-            foreach ($all as $id) {
+            foreach($all as $id){
               $p=wc_get_product($id);
-              if ($p && preg_match("/^DRIELO-I[0-9]{4}-(CS|C2C|TC|LH)$/", $p->get_sku())) {
-                $delete[intval($id)]=true;
+              if($p && preg_match("/^DRIELO-I[0-9]{4}-(CS|C2C|TC|LH)$/",$p->get_sku())){
+                $products[intval($id)]=true;
               }
             }
-            $n=0;
-            foreach (array_keys($delete) as $id) {
-              wp_delete_post($id,true);
-              $n++;
+
+            $product_count=0;
+            foreach(array_keys($products) as $id){ wp_delete_post($id,true); $product_count++; }
+
+            $attachments=get_posts(array(
+              "post_type"=>"attachment","post_status"=>"inherit","posts_per_page"=>-1,"fields"=>"ids",
+              "meta_query"=>array(array("key"=>"_drielo_source_asset","compare"=>"EXISTS"))
+            ));
+            $media_count=0;
+            foreach($attachments as $aid){
+              $key=(string)get_post_meta($aid,"_drielo_source_asset",true);
+              if(preg_match("#^assets/I[0-9]{4}-(CS|C2C|TC|LH)-(product|gallery-[234])\\.webp$#",$key)){
+                wp_delete_attachment($aid,true);
+                $media_count++;
+              }
             }
+
+            $uploads=wp_upload_dir();
+            $pdf_dir=trailingslashit($uploads["basedir"])."woocommerce_uploads/drielo";
+            $pdf_count=0;
+            if(is_dir($pdf_dir)){
+              foreach(glob($pdf_dir."/Drielo_I[0-9][0-9][0-9][0-9]-*.pdf") ?: array() as $file){
+                if(is_file($file) && @unlink($file)) $pdf_count++;
+              }
+            }
+
             wc_delete_product_transients();
-            echo "BABY_NURSERY_RESET deleted=".$n.PHP_EOL;
+            echo "BABY_NURSERY_HARD_RESET products=".$product_count." media=".$media_count." pdfs=".$pdf_count.PHP_EOL;
           '
           REMOTE
 
@@ -314,10 +374,41 @@ jobs:
               $cols=wp_get_object_terms($id,"product_collection",array("fields"=>"slugs"));
               $downloads=count($p->get_downloads());
               $image=$p->get_image_id();
-              $gallery=count($p->get_gallery_image_ids());
-              echo $sku." id=".$id." status=".$p->get_status()." image=".$image." gallery=".$gallery." downloads=".$downloads." collection=".implode(",",is_wp_error($cols)?array():$cols)." url=".get_permalink($id).PHP_EOL;
-              if ($p->get_status()!=="publish" || !$image || $gallery<3 || $downloads<1 || !in_array("baby-nursery",is_wp_error($cols)?array():$cols,true)) {
+              $gallery_ids=$p->get_gallery_image_ids();
+              $gallery=count($gallery_ids);
+              $expected_feature="assets/".$design."-".$suffix."-product.webp";
+              $feature_source=(string)get_post_meta($image,"_drielo_source_asset",true);
+              $feature_hash=(string)get_post_meta($image,"_drielo_source_hash",true);
+              $feature_file="/tmp/drielo-products/".$expected_feature;
+              $expected_feature_hash=is_file($feature_file) ? md5_file($feature_file) : "";
+              $expected_gallery=array(
+                "assets/".$design."-".$suffix."-gallery-2.webp",
+                "assets/".$design."-".$suffix."-gallery-3.webp",
+                "assets/".$design."-".$suffix."-gallery-4.webp"
+              );
+              $actual_gallery_sources=array();
+              foreach($gallery_ids as $gid){
+                $src=(string)get_post_meta($gid,"_drielo_source_asset",true);
+                $hash=(string)get_post_meta($gid,"_drielo_source_hash",true);
+                $file="/tmp/drielo-products/".$src;
+                $expected_hash=is_file($file) ? md5_file($file) : "";
+                if(!$src || !$expected_hash || !hash_equals($expected_hash,$hash)){
+                  fwrite(STDERR,"Gallery media hash/source mismatch ".$sku." attachment=".$gid." source=".$src.PHP_EOL); exit(4);
+                }
+                $actual_gallery_sources[]=$src;
+              }
+              sort($actual_gallery_sources);
+              $sorted_expected=$expected_gallery; sort($sorted_expected);
+
+              echo $sku." id=".$id." status=".$p->get_status()." image=".$image." gallery=".$gallery." downloads=".$downloads." collection=".implode(",",is_wp_error($cols)?array():$cols)." feature_source=".$feature_source." url=".get_permalink($id).PHP_EOL;
+              if ($p->get_status()!=="publish" || !$image || $gallery!==3 || $downloads<1 || !in_array("baby-nursery",is_wp_error($cols)?array():$cols,true)) {
                 fwrite(STDERR,"Incomplete ".$sku.PHP_EOL); exit(3);
+              }
+              if($feature_source!==$expected_feature || !$expected_feature_hash || !hash_equals($expected_feature_hash,$feature_hash)){
+                fwrite(STDERR,"Featured media hash/source mismatch ".$sku." got=".$feature_source." expected=".$expected_feature.PHP_EOL); exit(4);
+              }
+              if($actual_gallery_sources!==$sorted_expected){
+                fwrite(STDERR,"Gallery source mismatch ".$sku." got=".implode(",",$actual_gallery_sources)." expected=".implode(",",$sorted_expected).PHP_EOL); exit(4);
               }
             }
           '
@@ -399,8 +490,8 @@ jobs:
         run: |
           set -euo pipefail
           if [ "$(python3 content/pattern-system/baby_nursery/queue_state.py has-work)" = "yes" ]; then
-            echo "Pending Baby & Nursery designs remain; dispatching the next run."
-            gh api --method POST               "repos/${GITHUB_REPOSITORY}/actions/workflows/baby-nursery-sequential-rebuild.yml/dispatches"               -f ref=feature/baby-nursery-sequential-rebuild
+            echo "Exactly one next Baby & Nursery design will be dispatched."
+            gh api --method POST "repos/${GITHUB_REPOSITORY}/actions/workflows/baby-nursery-sequential-rebuild.yml/dispatches" -f ref=feature/baby-nursery-sequential-rebuild
           else
             echo "No pending Baby & Nursery designs remain."
             python3 content/pattern-system/baby_nursery/queue_state.py summary

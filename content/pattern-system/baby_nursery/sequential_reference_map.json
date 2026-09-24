@@ -1,0 +1,106 @@
+{
+  "version": 2,
+  "collection": "baby-nursery",
+  "policy": "Immutable sequential target-code -> approved reference mapping. One target must map to exactly one unique approved stitch matrix.",
+  "mappings": [
+    {
+      "order": 1,
+      "target_id": "I0001",
+      "title_en": "Teddy Bear",
+      "target_slug": "teddy-bear",
+      "reference_source_id": "I0001",
+      "reference_source_slug": "teddy-bear",
+      "reference_bundle_only": false
+    },
+    {
+      "order": 2,
+      "target_id": "I0002",
+      "title_en": "Unicorn",
+      "target_slug": "unicorn",
+      "reference_source_id": "I0011",
+      "reference_source_slug": "unicorn",
+      "reference_bundle_only": true
+    },
+    {
+      "order": 3,
+      "target_id": "I0003",
+      "title_en": "Giraffe",
+      "target_slug": "giraffe",
+      "reference_source_id": "I0003",
+      "reference_source_slug": "giraffe",
+      "reference_bundle_only": true
+    },
+    {
+      "order": 4,
+      "target_id": "I0004",
+      "title_en": "Baby Elephant",
+      "target_slug": "baby-elephant",
+      "reference_source_id": "I0002",
+      "reference_source_slug": "baby-elephant",
+      "reference_bundle_only": true
+    },
+    {
+      "order": 5,
+      "target_id": "I0005",
+      "title_en": "Bunny with Heart",
+      "target_slug": "bunny-heart",
+      "reference_source_id": "I0006",
+      "reference_source_slug": "bunny-heart",
+      "reference_bundle_only": true
+    },
+    {
+      "order": 6,
+      "target_id": "I0006",
+      "title_en": "Cute Dinosaur",
+      "target_slug": "cute-dinosaur",
+      "reference_source_id": "I0008",
+      "reference_source_slug": "cute-dinosaur",
+      "reference_bundle_only": true
+    },
+    {
+      "order": 7,
+      "target_id": "I0007",
+      "title_en": "Rubber Duck",
+      "target_slug": "rubber-duck",
+      "reference_source_id": "I0017",
+      "reference_source_slug": "rubber-duck",
+      "reference_bundle_only": true
+    },
+    {
+      "order": 8,
+      "target_id": "I0008",
+      "title_en": "Plush Lamb",
+      "target_slug": "plush-lamb",
+      "reference_source_id": "I0023",
+      "reference_source_slug": "plush-lamb",
+      "reference_bundle_only": true
+    },
+    {
+      "order": 9,
+      "target_id": "I0009",
+      "title_en": "Sleeping Owl",
+      "target_slug": "sleeping-owl",
+      "reference_source_id": "I0021",
+      "reference_source_slug": "sleeping-owl",
+      "reference_bundle_only": true
+    },
+    {
+      "order": 10,
+      "target_id": "I0010",
+      "title_en": "Crescent Moon",
+      "target_slug": "crescent-moon",
+      "reference_source_id": "I0004",
+      "reference_source_slug": "crescent-moon",
+      "reference_bundle_only": true
+    },
+    {
+      "order": 11,
+      "target_id": "I0011",
+      "title_en": "Smiling Cloud",
+      "target_slug": "smiling-cloud",
+      "reference_source_id": "I0005",
+      "reference_source_slug": "smiling-cloud",
+      "reference_bundle_only": true
+    }
+  ]
+}
