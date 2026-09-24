@@ -3,7 +3,7 @@ Contributors: Drielo
 Requires at least: 6.4
 Requires PHP: 8.0
 Requires Plugins: woocommerce
-Stable tag: 1.4.3
+Stable tag: 1.4.4
 
 Panel central para seleccionar y sincronizar productos WooCommerce con Etsy mediante Etsy Open API v3.
 
@@ -37,6 +37,11 @@ Panel central para seleccionar y sincronizar productos WooCommerce con Etsy medi
 Etsy no permite devolver un listing ya publicado al estado draft. Si un listing activo se cambia al objetivo Borrador, el plugin lo deja inactive.
 
 == Changelog ==
+
+= 1.4.4 =
+* Usa el precio de Drielo como objetivo visible en Etsy y reduce automáticamente el precio base enviado para compensar IVA/impuestos y la conversión que Etsy muestra al comprador.
+* Añade un factor de calibración configurable (drielo_etsy_visible_price_factor), calibrado con la relación observada 5,99 USD -> 7,56 USD.
+* Mantiene el tipo USD/EUR dinámico de Drielo como base del cálculo.
 
 = 1.4.3 =
 * Prioriza el nodo exacto Cross Stitch de Etsy (taxonomy_id 87).
