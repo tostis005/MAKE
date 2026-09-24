@@ -1,6 +1,6 @@
 {
   "collection": "animals",
-  "reference_policy": "The user-approved generated animal designs are canonical. The matrix archive is the deterministic source of truth. Do not redraw, substitute, approximate, or regenerate these motifs with AI when creating sellable patterns.",
+  "reference_policy": "The user-approved generated animal designs are canonical. The corrected matrix archive is the deterministic source of truth. Do not redraw, substitute, approximate, or regenerate these motifs with AI when creating sellable patterns.",
   "canonical_archive": null,
   "archive_encoding": "concatenated base64(zlib(json))",
   "decoded_sha256": "58daa1afb0c88326dd8671a5ad765ad912647b2f758e31bdb281a342ae236be8",
@@ -452,9 +452,9 @@
     "reference-matrices-v1.part00",
     "reference-matrices-v1.part01",
     "reference-matrices-v1.part02",
-    "reference-matrices-v1.part03",
+    "reference-matrices-v1.part03-fixed",
     "reference-matrices-v1.part04",
-    "reference-matrices-v1.part05",
+    "reference-matrices-v1.part05-fixed",
     "reference-matrices-v1.part06",
     "reference-matrices-v1.part07",
     "reference-matrices-v1.part08"
