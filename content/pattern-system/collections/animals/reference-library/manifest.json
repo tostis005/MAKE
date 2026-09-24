@@ -1,1 +1,462 @@
-{"collection":"animals","reference_policy":"The user-approved generated animal designs are canonical. The matrix archive is the deterministic source of truth. Do not redraw, substitute, approximate, or regenerate these motifs with AI when creating sellable patterns.","canonical_archive":null,"archive_encoding":"concatenated base64(zlib(json))","decoded_sha256":"58daa1afb0c88326dd8671a5ad765ad912647b2f758e31bdb281a342ae236be8","palette_size":24,"master_grid":{"width":100,"height":120},"transparent_background":true,"source_reference_sheets":[{"sheet":1,"original_generation_file":"a_transparent_background_png_style_image_with_six_1.png","original_sha256":"d6be4670029ebffd2f9af42cc1957f1f59747807aca9abf0860454e5d4c40f0f","design_ids":["A0001","A0002","A0003","A0004","A0005","A0006"]},{"sheet":2,"original_generation_file":"a_transparent_background_pixel_cross_stitch_style_2_batch_1.png","original_sha256":"c8544a51232bcda2c0170bd2d921e9db8beea033aa2af48fe2ee375e65066dc0","design_ids":["A0007","A0008","A0009","A0010","A0011","A0012"]},{"sheet":3,"original_generation_file":"a_clean_transparent_background_image_png_style_n_3_batch_2.png","original_sha256":"f9c389f76a7133eafc2a3c95e68ecec11b42b1e3955a6b4b1f919a6b9073a1b3","design_ids":["A0013","A0014","A0015","A0016","A0017","A0018"]},{"sheet":4,"original_generation_file":"a_clean_transparent_background_checkerboard_trans_4_batch_3.png","original_sha256":"1ac19061241cf24457a1f39d93695c5ceb6ecaf1e92627aa6da0e648a472e01e","design_ids":["A0019","A0020","A0021","A0022","A0023","A0024"]},{"sheet":5,"original_generation_file":"a_clean_transparent_background_png_style_illustrat_5_batch_4.png","original_sha256":"780cc371ae7323a90c96a0fa8491faf20216a3fd184a843d2ec002aacc276663","design_ids":["A0025","A0026","A0027","A0028","A0029","A0030"]}],"designs":[{"order":1,"base_design_id":"A0001","slug":"sleeping-tabby-quilts","title_en":"Sleeping Tabby on Quilts","title_es":"Gato atigrado dormido sobre mantas","sheet":1,"row":1,"column":1,"canonical_master":"../reference-masters/A0001-sleeping-tabby-quilts-reference.png","canonical_source":"../source-designs/A0001-sleeping-tabby-quilts.png"},{"order":2,"base_design_id":"A0002","slug":"black-cat-red-bow","title_en":"Black Cat with Red Bow","title_es":"Gato negro con lazo rojo","sheet":1,"row":1,"column":2,"canonical_master":"../reference-masters/A0002-black-cat-red-bow-reference.png","canonical_source":"../source-designs/A0002-black-cat-red-bow.png"},{"order":3,"base_design_id":"A0003","slug":"puppy-heart","title_en":"Puppy with Heart","title_es":"Perrito con corazón","sheet":1,"row":1,"column":3,"canonical_master":"../reference-masters/A0003-puppy-heart-reference.png","canonical_source":"../source-designs/A0003-puppy-heart.png"},{"order":4,"base_design_id":"A0004","slug":"kitten-teacup","title_en":"Kitten in Teacup","title_es":"Gatito en taza","sheet":1,"row":2,"column":1,"canonical_master":"../reference-masters/A0004-kitten-teacup-reference.png","canonical_source":"../source-designs/A0004-kitten-teacup.png"},{"order":5,"base_design_id":"A0005","slug":"lovebirds-branch","title_en":"Lovebirds on Branch","title_es":"Agapornis en rama","sheet":1,"row":2,"column":2,"canonical_master":"../reference-masters/A0005-lovebirds-branch-reference.png","canonical_source":"../source-designs/A0005-lovebirds-branch.png"},{"order":6,"base_design_id":"A0006","slug":"floral-bunny","title_en":"Floral Bunny","title_es":"Conejito floral","sheet":1,"row":2,"column":3,"canonical_master":"../reference-masters/A0006-floral-bunny-reference.png","canonical_source":"../source-designs/A0006-floral-bunny.png"},{"order":7,"base_design_id":"A0007","slug":"hedgehog-flowers","title_en":"Hedgehog with Flowers","title_es":"Erizo con flores","sheet":2,"row":1,"column":1,"canonical_master":"../reference-masters/A0007-hedgehog-flowers-reference.png","canonical_source":"../source-designs/A0007-hedgehog-flowers.png"},{"order":8,"base_design_id":"A0008","slug":"frog-mushroom","title_en":"Frog on Mushroom","title_es":"Rana sobre seta","sheet":2,"row":1,"column":2,"canonical_master":"../reference-masters/A0008-frog-mushroom-reference.png","canonical_source":"../source-designs/A0008-frog-mushroom.png"},{"order":9,"base_design_id":"A0009","slug":"fox-butterfly","title_en":"Fox with Butterfly","title_es":"Zorro con mariposa","sheet":2,"row":1,"column":3,"canonical_master":"../reference-masters/A0009-fox-butterfly-reference.png","canonical_source":"../source-designs/A0009-fox-butterfly.png"},{"order":10,"base_design_id":"A0010","slug":"penguin-red-scarf","title_en":"Penguin with Red Scarf","title_es":"Pingüino con bufanda roja","sheet":2,"row":2,"column":1,"canonical_master":"../reference-masters/A0010-penguin-red-scarf-reference.png","canonical_source":"../source-designs/A0010-penguin-red-scarf.png"},{"order":11,"base_design_id":"A0011","slug":"owl-floral-branch","title_en":"Owl on Floral Branch","title_es":"Búho en rama floral","sheet":2,"row":2,"column":2,"canonical_master":"../reference-masters/A0011-owl-floral-branch-reference.png","canonical_source":"../source-designs/A0011-owl-floral-branch.png"},{"order":12,"base_design_id":"A0012","slug":"raccoon-heart","title_en":"Raccoon with Heart","title_es":"Mapache con corazón","sheet":2,"row":2,"column":3,"canonical_master":"../reference-masters/A0012-raccoon-heart-reference.png","canonical_source":"../source-designs/A0012-raccoon-heart.png"},{"order":13,"base_design_id":"A0013","slug":"teddy-blue-bow","title_en":"Teddy Bear with Blue Bow","title_es":"Osito con lazo azul","sheet":3,"row":1,"column":1,"canonical_master":"../reference-masters/A0013-teddy-blue-bow-reference.png","canonical_source":"../source-designs/A0013-teddy-blue-bow.png"},{"order":14,"base_design_id":"A0014","slug":"elephant-heart-balloon","title_en":"Elephant with Heart Balloon","title_es":"Elefante con globo corazón","sheet":3,"row":1,"column":2,"canonical_master":"../reference-masters/A0014-elephant-heart-balloon-reference.png","canonical_source":"../source-designs/A0014-elephant-heart-balloon.png"},{"order":15,"base_design_id":"A0015","slug":"giraffe-daisies","title_en":"Giraffe with Daisies","title_es":"Jirafa con margaritas","sheet":3,"row":1,"column":3,"canonical_master":"../reference-masters/A0015-giraffe-daisies-reference.png","canonical_source":"../source-designs/A0015-giraffe-daisies.png"},{"order":16,"base_design_id":"A0016","slug":"lamb-flower-crown","title_en":"Lamb with Flower Crown","title_es":"Corderito con corona de flores","sheet":3,"row":2,"column":1,"canonical_master":"../reference-masters/A0016-lamb-flower-crown-reference.png","canonical_source":"../source-designs/A0016-lamb-flower-crown.png"},{"order":17,"base_design_id":"A0017","slug":"koala-eucalyptus","title_en":"Koala with Eucalyptus","title_es":"Koala con eucalipto","sheet":3,"row":2,"column":2,"canonical_master":"../reference-masters/A0017-koala-eucalyptus-reference.png","canonical_source":"../source-designs/A0017-koala-eucalyptus.png"},{"order":18,"base_design_id":"A0018","slug":"panda-bamboo","title_en":"Panda with Bamboo","title_es":"Panda con bambú","sheet":3,"row":2,"column":3,"canonical_master":"../reference-masters/A0018-panda-bamboo-reference.png","canonical_source":"../source-designs/A0018-panda-bamboo.png"},{"order":19,"base_design_id":"A0019","slug":"fawn-red-scarf","title_en":"Fawn with Red Scarf","title_es":"Cervatillo con bufanda roja","sheet":4,"row":1,"column":1,"canonical_master":"../reference-masters/A0019-fawn-red-scarf-reference.png","canonical_source":"../source-designs/A0019-fawn-red-scarf.png"},{"order":20,"base_design_id":"A0020","slug":"squirrel-acorn","title_en":"Squirrel with Acorn","title_es":"Ardilla con bellota","sheet":4,"row":1,"column":2,"canonical_master":"../reference-masters/A0020-squirrel-acorn-reference.png","canonical_source":"../source-designs/A0020-squirrel-acorn.png"},{"order":21,"base_design_id":"A0021","slug":"mouse-teacup","title_en":"Mouse in Teacup","title_es":"Ratón en taza","sheet":4,"row":1,"column":3,"canonical_master":"../reference-masters/A0021-mouse-teacup-reference.png","canonical_source":"../source-designs/A0021-mouse-teacup.png"},{"order":22,"base_design_id":"A0022","slug":"duckling-tulips","title_en":"Duckling with Tulips","title_es":"Patito con tulipanes","sheet":4,"row":2,"column":1,"canonical_master":"../reference-masters/A0022-duckling-tulips-reference.png","canonical_source":"../source-designs/A0022-duckling-tulips.png"},{"order":23,"base_design_id":"A0023","slug":"calf-heart","title_en":"Calf with Heart","title_es":"Ternerito con corazón","sheet":4,"row":2,"column":2,"canonical_master":"../reference-masters/A0023-calf-heart-reference.png","canonical_source":"../source-designs/A0023-calf-heart.png"},{"order":24,"base_design_id":"A0024","slug":"piglet-daisies","title_en":"Piglet with Daisies","title_es":"Cerdito con margaritas","sheet":4,"row":2,"column":3,"canonical_master":"../reference-masters/A0024-piglet-daisies-reference.png","canonical_source":"../source-designs/A0024-piglet-daisies.png"},{"order":25,"base_design_id":"A0025","slug":"red-panda-flowers","title_en":"Red Panda with Flowers","title_es":"Panda rojo con flores","sheet":5,"row":1,"column":1,"canonical_master":"../reference-masters/A0025-red-panda-flowers-reference.png","canonical_source":"../source-designs/A0025-red-panda-flowers.png"},{"order":26,"base_design_id":"A0026","slug":"hamster-strawberry","title_en":"Hamster with Strawberry","title_es":"Hámster con fresa","sheet":5,"row":1,"column":2,"canonical_master":"../reference-masters/A0026-hamster-strawberry-reference.png","canonical_source":"../source-designs/A0026-hamster-strawberry.png"},{"order":27,"base_design_id":"A0027","slug":"chick-daisy","title_en":"Chick with Daisy","title_es":"Pollito con margarita","sheet":5,"row":1,"column":3,"canonical_master":"../reference-masters/A0027-chick-daisy-reference.png","canonical_source":"../source-designs/A0027-chick-daisy.png"},{"order":28,"base_design_id":"A0028","slug":"baby-goat-flower-crown","title_en":"Baby Goat with Flower Crown","title_es":"Cabritillo con corona de flores","sheet":5,"row":2,"column":1,"canonical_master":"../reference-masters/A0028-baby-goat-flower-crown-reference.png","canonical_source":"../source-designs/A0028-baby-goat-flower-crown.png"},{"order":29,"base_design_id":"A0029","slug":"polar-bear-blue-scarf","title_en":"Polar Bear with Blue Scarf","title_es":"Oso polar con bufanda azul","sheet":5,"row":2,"column":2,"canonical_master":"../reference-masters/A0029-polar-bear-blue-scarf-reference.png","canonical_source":"../source-designs/A0029-polar-bear-blue-scarf.png"},{"order":30,"base_design_id":"A0030","slug":"otter-seashell-heart","title_en":"Otter with Seashell Heart","title_es":"Nutria con concha corazón","sheet":5,"row":2,"column":3,"canonical_master":"../reference-masters/A0030-otter-seashell-heart-reference.png","canonical_source":"../source-designs/A0030-otter-seashell-heart.png"}],"generation_order":["canonical matrix archive","100x120 transparent source design","800x960 transparent reference master","safe-margin validation","CS/C2C/TC/LH pattern JSON","PDFs and product images","WooCommerce"],"canonical_archive_parts":["reference-matrices-v1.part00","reference-matrices-v1.part01","reference-matrices-v1.part02","reference-matrices-v1.part03","reference-matrices-v1.part04","reference-matrices-v1.part05","reference-matrices-v1.part06","reference-matrices-v1.part07","reference-matrices-v1.part08","reference-matrices-v1.part09","reference-matrices-v1.part10","reference-matrices-v1.part11","reference-matrices-v1.part12","reference-matrices-v1.part13","reference-matrices-v1.part14"]}
+{
+  "collection": "animals",
+  "reference_policy": "The user-approved generated animal designs are canonical. The matrix archive is the deterministic source of truth. Do not redraw, substitute, approximate, or regenerate these motifs with AI when creating sellable patterns.",
+  "canonical_archive": null,
+  "archive_encoding": "concatenated base64(zlib(json))",
+  "decoded_sha256": "58daa1afb0c88326dd8671a5ad765ad912647b2f758e31bdb281a342ae236be8",
+  "palette_size": 24,
+  "master_grid": {
+    "width": 100,
+    "height": 120
+  },
+  "transparent_background": true,
+  "source_reference_sheets": [
+    {
+      "sheet": 1,
+      "original_generation_file": "a_transparent_background_png_style_image_with_six_1.png",
+      "original_sha256": "d6be4670029ebffd2f9af42cc1957f1f59747807aca9abf0860454e5d4c40f0f",
+      "design_ids": [
+        "A0001",
+        "A0002",
+        "A0003",
+        "A0004",
+        "A0005",
+        "A0006"
+      ]
+    },
+    {
+      "sheet": 2,
+      "original_generation_file": "a_transparent_background_pixel_cross_stitch_style_2_batch_1.png",
+      "original_sha256": "c8544a51232bcda2c0170bd2d921e9db8beea033aa2af48fe2ee375e65066dc0",
+      "design_ids": [
+        "A0007",
+        "A0008",
+        "A0009",
+        "A0010",
+        "A0011",
+        "A0012"
+      ]
+    },
+    {
+      "sheet": 3,
+      "original_generation_file": "a_clean_transparent_background_image_png_style_n_3_batch_2.png",
+      "original_sha256": "f9c389f76a7133eafc2a3c95e68ecec11b42b1e3955a6b4b1f919a6b9073a1b3",
+      "design_ids": [
+        "A0013",
+        "A0014",
+        "A0015",
+        "A0016",
+        "A0017",
+        "A0018"
+      ]
+    },
+    {
+      "sheet": 4,
+      "original_generation_file": "a_clean_transparent_background_checkerboard_trans_4_batch_3.png",
+      "original_sha256": "1ac19061241cf24457a1f39d93695c5ceb6ecaf1e92627aa6da0e648a472e01e",
+      "design_ids": [
+        "A0019",
+        "A0020",
+        "A0021",
+        "A0022",
+        "A0023",
+        "A0024"
+      ]
+    },
+    {
+      "sheet": 5,
+      "original_generation_file": "a_clean_transparent_background_png_style_illustrat_5_batch_4.png",
+      "original_sha256": "780cc371ae7323a90c96a0fa8491faf20216a3fd184a843d2ec002aacc276663",
+      "design_ids": [
+        "A0025",
+        "A0026",
+        "A0027",
+        "A0028",
+        "A0029",
+        "A0030"
+      ]
+    }
+  ],
+  "designs": [
+    {
+      "order": 1,
+      "base_design_id": "A0001",
+      "slug": "sleeping-tabby-quilts",
+      "title_en": "Sleeping Tabby on Quilts",
+      "title_es": "Gato atigrado dormido sobre mantas",
+      "sheet": 1,
+      "row": 1,
+      "column": 1,
+      "canonical_master": "../reference-masters/A0001-sleeping-tabby-quilts-reference.png",
+      "canonical_source": "../source-designs/A0001-sleeping-tabby-quilts.png"
+    },
+    {
+      "order": 2,
+      "base_design_id": "A0002",
+      "slug": "black-cat-red-bow",
+      "title_en": "Black Cat with Red Bow",
+      "title_es": "Gato negro con lazo rojo",
+      "sheet": 1,
+      "row": 1,
+      "column": 2,
+      "canonical_master": "../reference-masters/A0002-black-cat-red-bow-reference.png",
+      "canonical_source": "../source-designs/A0002-black-cat-red-bow.png"
+    },
+    {
+      "order": 3,
+      "base_design_id": "A0003",
+      "slug": "puppy-heart",
+      "title_en": "Puppy with Heart",
+      "title_es": "Perrito con corazón",
+      "sheet": 1,
+      "row": 1,
+      "column": 3,
+      "canonical_master": "../reference-masters/A0003-puppy-heart-reference.png",
+      "canonical_source": "../source-designs/A0003-puppy-heart.png"
+    },
+    {
+      "order": 4,
+      "base_design_id": "A0004",
+      "slug": "kitten-teacup",
+      "title_en": "Kitten in Teacup",
+      "title_es": "Gatito en taza",
+      "sheet": 1,
+      "row": 2,
+      "column": 1,
+      "canonical_master": "../reference-masters/A0004-kitten-teacup-reference.png",
+      "canonical_source": "../source-designs/A0004-kitten-teacup.png"
+    },
+    {
+      "order": 5,
+      "base_design_id": "A0005",
+      "slug": "lovebirds-branch",
+      "title_en": "Lovebirds on Branch",
+      "title_es": "Agapornis en rama",
+      "sheet": 1,
+      "row": 2,
+      "column": 2,
+      "canonical_master": "../reference-masters/A0005-lovebirds-branch-reference.png",
+      "canonical_source": "../source-designs/A0005-lovebirds-branch.png"
+    },
+    {
+      "order": 6,
+      "base_design_id": "A0006",
+      "slug": "floral-bunny",
+      "title_en": "Floral Bunny",
+      "title_es": "Conejito floral",
+      "sheet": 1,
+      "row": 2,
+      "column": 3,
+      "canonical_master": "../reference-masters/A0006-floral-bunny-reference.png",
+      "canonical_source": "../source-designs/A0006-floral-bunny.png"
+    },
+    {
+      "order": 7,
+      "base_design_id": "A0007",
+      "slug": "hedgehog-flowers",
+      "title_en": "Hedgehog with Flowers",
+      "title_es": "Erizo con flores",
+      "sheet": 2,
+      "row": 1,
+      "column": 1,
+      "canonical_master": "../reference-masters/A0007-hedgehog-flowers-reference.png",
+      "canonical_source": "../source-designs/A0007-hedgehog-flowers.png"
+    },
+    {
+      "order": 8,
+      "base_design_id": "A0008",
+      "slug": "frog-mushroom",
+      "title_en": "Frog on Mushroom",
+      "title_es": "Rana sobre seta",
+      "sheet": 2,
+      "row": 1,
+      "column": 2,
+      "canonical_master": "../reference-masters/A0008-frog-mushroom-reference.png",
+      "canonical_source": "../source-designs/A0008-frog-mushroom.png"
+    },
+    {
+      "order": 9,
+      "base_design_id": "A0009",
+      "slug": "fox-butterfly",
+      "title_en": "Fox with Butterfly",
+      "title_es": "Zorro con mariposa",
+      "sheet": 2,
+      "row": 1,
+      "column": 3,
+      "canonical_master": "../reference-masters/A0009-fox-butterfly-reference.png",
+      "canonical_source": "../source-designs/A0009-fox-butterfly.png"
+    },
+    {
+      "order": 10,
+      "base_design_id": "A0010",
+      "slug": "penguin-red-scarf",
+      "title_en": "Penguin with Red Scarf",
+      "title_es": "Pingüino con bufanda roja",
+      "sheet": 2,
+      "row": 2,
+      "column": 1,
+      "canonical_master": "../reference-masters/A0010-penguin-red-scarf-reference.png",
+      "canonical_source": "../source-designs/A0010-penguin-red-scarf.png"
+    },
+    {
+      "order": 11,
+      "base_design_id": "A0011",
+      "slug": "owl-floral-branch",
+      "title_en": "Owl on Floral Branch",
+      "title_es": "Búho en rama floral",
+      "sheet": 2,
+      "row": 2,
+      "column": 2,
+      "canonical_master": "../reference-masters/A0011-owl-floral-branch-reference.png",
+      "canonical_source": "../source-designs/A0011-owl-floral-branch.png"
+    },
+    {
+      "order": 12,
+      "base_design_id": "A0012",
+      "slug": "raccoon-heart",
+      "title_en": "Raccoon with Heart",
+      "title_es": "Mapache con corazón",
+      "sheet": 2,
+      "row": 2,
+      "column": 3,
+      "canonical_master": "../reference-masters/A0012-raccoon-heart-reference.png",
+      "canonical_source": "../source-designs/A0012-raccoon-heart.png"
+    },
+    {
+      "order": 13,
+      "base_design_id": "A0013",
+      "slug": "teddy-blue-bow",
+      "title_en": "Teddy Bear with Blue Bow",
+      "title_es": "Osito con lazo azul",
+      "sheet": 3,
+      "row": 1,
+      "column": 1,
+      "canonical_master": "../reference-masters/A0013-teddy-blue-bow-reference.png",
+      "canonical_source": "../source-designs/A0013-teddy-blue-bow.png"
+    },
+    {
+      "order": 14,
+      "base_design_id": "A0014",
+      "slug": "elephant-heart-balloon",
+      "title_en": "Elephant with Heart Balloon",
+      "title_es": "Elefante con globo corazón",
+      "sheet": 3,
+      "row": 1,
+      "column": 2,
+      "canonical_master": "../reference-masters/A0014-elephant-heart-balloon-reference.png",
+      "canonical_source": "../source-designs/A0014-elephant-heart-balloon.png"
+    },
+    {
+      "order": 15,
+      "base_design_id": "A0015",
+      "slug": "giraffe-daisies",
+      "title_en": "Giraffe with Daisies",
+      "title_es": "Jirafa con margaritas",
+      "sheet": 3,
+      "row": 1,
+      "column": 3,
+      "canonical_master": "../reference-masters/A0015-giraffe-daisies-reference.png",
+      "canonical_source": "../source-designs/A0015-giraffe-daisies.png"
+    },
+    {
+      "order": 16,
+      "base_design_id": "A0016",
+      "slug": "lamb-flower-crown",
+      "title_en": "Lamb with Flower Crown",
+      "title_es": "Corderito con corona de flores",
+      "sheet": 3,
+      "row": 2,
+      "column": 1,
+      "canonical_master": "../reference-masters/A0016-lamb-flower-crown-reference.png",
+      "canonical_source": "../source-designs/A0016-lamb-flower-crown.png"
+    },
+    {
+      "order": 17,
+      "base_design_id": "A0017",
+      "slug": "koala-eucalyptus",
+      "title_en": "Koala with Eucalyptus",
+      "title_es": "Koala con eucalipto",
+      "sheet": 3,
+      "row": 2,
+      "column": 2,
+      "canonical_master": "../reference-masters/A0017-koala-eucalyptus-reference.png",
+      "canonical_source": "../source-designs/A0017-koala-eucalyptus.png"
+    },
+    {
+      "order": 18,
+      "base_design_id": "A0018",
+      "slug": "panda-bamboo",
+      "title_en": "Panda with Bamboo",
+      "title_es": "Panda con bambú",
+      "sheet": 3,
+      "row": 2,
+      "column": 3,
+      "canonical_master": "../reference-masters/A0018-panda-bamboo-reference.png",
+      "canonical_source": "../source-designs/A0018-panda-bamboo.png"
+    },
+    {
+      "order": 19,
+      "base_design_id": "A0019",
+      "slug": "fawn-red-scarf",
+      "title_en": "Fawn with Red Scarf",
+      "title_es": "Cervatillo con bufanda roja",
+      "sheet": 4,
+      "row": 1,
+      "column": 1,
+      "canonical_master": "../reference-masters/A0019-fawn-red-scarf-reference.png",
+      "canonical_source": "../source-designs/A0019-fawn-red-scarf.png"
+    },
+    {
+      "order": 20,
+      "base_design_id": "A0020",
+      "slug": "squirrel-acorn",
+      "title_en": "Squirrel with Acorn",
+      "title_es": "Ardilla con bellota",
+      "sheet": 4,
+      "row": 1,
+      "column": 2,
+      "canonical_master": "../reference-masters/A0020-squirrel-acorn-reference.png",
+      "canonical_source": "../source-designs/A0020-squirrel-acorn.png"
+    },
+    {
+      "order": 21,
+      "base_design_id": "A0021",
+      "slug": "mouse-teacup",
+      "title_en": "Mouse in Teacup",
+      "title_es": "Ratón en taza",
+      "sheet": 4,
+      "row": 1,
+      "column": 3,
+      "canonical_master": "../reference-masters/A0021-mouse-teacup-reference.png",
+      "canonical_source": "../source-designs/A0021-mouse-teacup.png"
+    },
+    {
+      "order": 22,
+      "base_design_id": "A0022",
+      "slug": "duckling-tulips",
+      "title_en": "Duckling with Tulips",
+      "title_es": "Patito con tulipanes",
+      "sheet": 4,
+      "row": 2,
+      "column": 1,
+      "canonical_master": "../reference-masters/A0022-duckling-tulips-reference.png",
+      "canonical_source": "../source-designs/A0022-duckling-tulips.png"
+    },
+    {
+      "order": 23,
+      "base_design_id": "A0023",
+      "slug": "calf-heart",
+      "title_en": "Calf with Heart",
+      "title_es": "Ternerito con corazón",
+      "sheet": 4,
+      "row": 2,
+      "column": 2,
+      "canonical_master": "../reference-masters/A0023-calf-heart-reference.png",
+      "canonical_source": "../source-designs/A0023-calf-heart.png"
+    },
+    {
+      "order": 24,
+      "base_design_id": "A0024",
+      "slug": "piglet-daisies",
+      "title_en": "Piglet with Daisies",
+      "title_es": "Cerdito con margaritas",
+      "sheet": 4,
+      "row": 2,
+      "column": 3,
+      "canonical_master": "../reference-masters/A0024-piglet-daisies-reference.png",
+      "canonical_source": "../source-designs/A0024-piglet-daisies.png"
+    },
+    {
+      "order": 25,
+      "base_design_id": "A0025",
+      "slug": "red-panda-flowers",
+      "title_en": "Red Panda with Flowers",
+      "title_es": "Panda rojo con flores",
+      "sheet": 5,
+      "row": 1,
+      "column": 1,
+      "canonical_master": "../reference-masters/A0025-red-panda-flowers-reference.png",
+      "canonical_source": "../source-designs/A0025-red-panda-flowers.png"
+    },
+    {
+      "order": 26,
+      "base_design_id": "A0026",
+      "slug": "hamster-strawberry",
+      "title_en": "Hamster with Strawberry",
+      "title_es": "Hámster con fresa",
+      "sheet": 5,
+      "row": 1,
+      "column": 2,
+      "canonical_master": "../reference-masters/A0026-hamster-strawberry-reference.png",
+      "canonical_source": "../source-designs/A0026-hamster-strawberry.png"
+    },
+    {
+      "order": 27,
+      "base_design_id": "A0027",
+      "slug": "chick-daisy",
+      "title_en": "Chick with Daisy",
+      "title_es": "Pollito con margarita",
+      "sheet": 5,
+      "row": 1,
+      "column": 3,
+      "canonical_master": "../reference-masters/A0027-chick-daisy-reference.png",
+      "canonical_source": "../source-designs/A0027-chick-daisy.png"
+    },
+    {
+      "order": 28,
+      "base_design_id": "A0028",
+      "slug": "baby-goat-flower-crown",
+      "title_en": "Baby Goat with Flower Crown",
+      "title_es": "Cabritillo con corona de flores",
+      "sheet": 5,
+      "row": 2,
+      "column": 1,
+      "canonical_master": "../reference-masters/A0028-baby-goat-flower-crown-reference.png",
+      "canonical_source": "../source-designs/A0028-baby-goat-flower-crown.png"
+    },
+    {
+      "order": 29,
+      "base_design_id": "A0029",
+      "slug": "polar-bear-blue-scarf",
+      "title_en": "Polar Bear with Blue Scarf",
+      "title_es": "Oso polar con bufanda azul",
+      "sheet": 5,
+      "row": 2,
+      "column": 2,
+      "canonical_master": "../reference-masters/A0029-polar-bear-blue-scarf-reference.png",
+      "canonical_source": "../source-designs/A0029-polar-bear-blue-scarf.png"
+    },
+    {
+      "order": 30,
+      "base_design_id": "A0030",
+      "slug": "otter-seashell-heart",
+      "title_en": "Otter with Seashell Heart",
+      "title_es": "Nutria con concha corazón",
+      "sheet": 5,
+      "row": 2,
+      "column": 3,
+      "canonical_master": "../reference-masters/A0030-otter-seashell-heart-reference.png",
+      "canonical_source": "../source-designs/A0030-otter-seashell-heart.png"
+    }
+  ],
+  "generation_order": [
+    "canonical matrix archive",
+    "100x120 transparent source design",
+    "800x960 transparent reference master",
+    "safe-margin validation",
+    "CS/C2C/TC/LH pattern JSON",
+    "PDFs and product images",
+    "WooCommerce"
+  ],
+  "canonical_archive_parts": [
+    "reference-matrices-v1.part00",
+    "reference-matrices-v1.part01",
+    "reference-matrices-v1.part02",
+    "reference-matrices-v1.part03",
+    "reference-matrices-v1.part04",
+    "reference-matrices-v1.part05",
+    "reference-matrices-v1.part06",
+    "reference-matrices-v1.part07",
+    "reference-matrices-v1.part08"
+  ]
+}
