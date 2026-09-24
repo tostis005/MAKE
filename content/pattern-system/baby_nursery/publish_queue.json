@@ -1,14 +1,12 @@
 {
   "collection": "baby-nursery",
-  "mode": "paused-after-v2-visual-review",
+  "mode": "paused-quality-review",
   "auto_continue": false,
   "max_attempts_per_design": 2,
   "notes": [
-    "All previous Baby Nursery WooCommerce products were deleted before this rebuild.",
-    "No forced black/dark exterior outline is allowed; DMC 310 is reserved for internal details such as eyes, mouths, lettering and small accents.",
-    "Detached or weakly attached white/near-white edge remnants are removed before JSON generation and checked again after technique downsampling.",
-    "Each product publishes with four WooCommerce images: featured mockup + facts preview + colour A1 preview + symbol A1 preview.",
-    "Process I0001 through I0030 sequentially, publishing CS/C2C/TC/LH before advancing."
+    "Paused by quality review: current generated Baby Nursery motifs are not approved.",
+    "Do not publish any further Baby Nursery design until the canonical preview sprites and palette are rebuilt and approved.",
+    "Next rollout must start from clean products and exact approved preview sprites."
   ],
   "items": [
     {
