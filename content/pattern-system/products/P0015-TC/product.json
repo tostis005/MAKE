@@ -11,12 +11,13 @@
   "pattern_file": "patterns/P0015-TC/pattern.json",
   "template": "crochet.html",
   "website": "www.drielo.com",
-  "status": "ready",
+  "status": "active",
   "render_ready": true,
   "renderer": "multitech",
   "source_artwork": "collections/pop-art-25/sources/P0015.png",
-  "page_1_asset": "multitech/assets/cover-c2c-crochet.webp",
+  "page_1_asset": "../../multitech/assets/cover-c2c-crochet.webp",
   "palette_mode": "strict",
   "palette_size": 25,
-  "transparent_source": true
+  "transparent_source": true,
+  "reference_artwork": "collections/pop-art-25/reference-masters/P0015-marilyn-monroe-wink-reference.png"
 }
