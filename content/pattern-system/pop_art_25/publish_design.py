@@ -475,7 +475,7 @@ def update_catalog(base_id:str,design:dict):
         row.update({
             "code":code,"sku":f"DRIELO-{code}","base_design_id":base_id,"design_id":code,
             "technique_code":suffix,"technique":cfg["technique"],"title":title_en,"title_en":title_en,
-            "title_es":title_es,"slug":f"{design['slug']}-{cfg['technique']}-pattern","price":4.99,
+            "title_es":title_es,"slug":f"{design['slug']}-{cfg['technique']}-pattern","price":{"CS":5.99,"C2C":4.99,"TC":4.49,"LH":3.99}[suffix],
             "collection":"pop-art-25","stitches":total,"grid":f"{cfg['w']} × {cfg['h']} {cfg['unit_label']}",
             "colours":colors,"color_count":colors,"grid_width":cfg["w"],"grid_height":cfg["h"],
             "skill":"Beginner friendly","skill_en":"Beginner friendly","skill_es":"Apto para principiantes",
