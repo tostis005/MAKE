@@ -80,7 +80,11 @@ def _load_encoded_matrix(base_id:str):
     if override_path.is_file():
         override=read_json(override_path).get(base_id)
         if override:
-            rows=list(override)
+            if isinstance(override,dict) and override.get("zlib_b64"):
+                raw=zlib.decompress(base64.b64decode(override["zlib_b64"])).decode("utf-8")
+                rows=raw.splitlines()
+            else:
+                rows=list(override)
             if len(rows)!=120 or any(len(row)!=100 for row in rows):
                 raise RuntimeError(f"{base_id}: malformed source override in {override_path}")
             print(f"SOURCE_OVERRIDE {base_id} {override_path}")
