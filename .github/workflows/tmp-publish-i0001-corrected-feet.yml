@@ -252,3 +252,5 @@ jobs:
 # rerun after valid master reconstruction
 
 # rerun with chunked master staging
+
+# rerun after decode syntax fix
