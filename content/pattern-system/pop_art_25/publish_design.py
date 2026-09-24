@@ -223,6 +223,12 @@ def ensure_source_png(base_id:str,collection:dict):
         if not src.is_file():
             raise RuntimeError(f"{base_id}: approved protected source PNG is missing")
         approved=Image.open(src).convert("RGBA")
+        if approved.size != (800,960):
+            if approved.width*6 != approved.height*5:
+                raise RuntimeError(f"{base_id}: protected source has unexpected aspect ratio {approved.size}")
+            approved=approved.resize((800,960),Image.Resampling.NEAREST)
+            approved.save(src,"PNG",optimize=True)
+            print(f"PROTECTED_SOURCE_NORMALIZED {base_id} -> {approved.size}")
         bbox,margins=validate_master(base_id,approved)
         print(f"PROTECTED_SOURCE_REUSED {base_id} {src} bbox={bbox} margins={margins}")
         return src
