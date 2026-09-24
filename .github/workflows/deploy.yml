@@ -510,7 +510,7 @@ jobs:
           check_html "/wp-content/themes/make/assets/js/site.js" "initDrieloCollectionTechniqueCards" "collection-technique-js"
           check_html "/wp-content/themes/make/assets/js/site.js" "todos los patrones" "technique-default-tile-removal-js"
           check_html "/wp-content/themes/make/style.css" "Collection technique mosaic controls" "collection-technique-css"
-          check_html "/tienda/colecciones/" "Explora cada patrón por separado o descubre colecciones que comparten una misma paleta de color." "shop-collections-intro-es"
+          check_html "/tienda/colecciones/" "Explora cada patrón por separado o descubre colecciones temáticas creadas para reunir diseños relacionados." "shop-collections-intro-es"
           check_html "/en/shop/collections/" "Pattern collections" "shop-collections-en" "Downloadable PDF"
           check_html "$PRODUCT_ES_ROUTE" "drielo-shop-views" "single-product-shop-switch"
           check_html "$PRODUCT_ES_ROUTE" "Albert Einstein" "product-copy-es"
