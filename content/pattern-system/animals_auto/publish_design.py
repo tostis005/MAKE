@@ -370,7 +370,7 @@ def update_catalog(base_id: str, design: dict, collection: dict):
             "title_en": title_en,
             "title_es": title_es,
             "slug": f"{design['slug']}-{cfg['technique']}-pattern",
-            "price": {"CS": 2.99, "C2C": 4.99, "TC": 4.49, "LH": 3.99}[suffix],
+            "price": {"CS": 2.99, "C2C": 2.49, "TC": 2.49, "LH": 2.49}[suffix],
             "collection": "animals",
             "stitches": total,
             "grid": f"{cfg['w']} × {cfg['h']} {cfg['unit_label']}",
