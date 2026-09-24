@@ -1,7 +1,7 @@
 {
   "collection": "baby-nursery",
-  "mode": "publish-one-design-per-run-soft-palette-no-outline",
-  "auto_continue": true,
+  "mode": "paused-while-installing-approved-pixel-masters-v2",
+  "auto_continue": false,
   "max_attempts_per_design": 2,
   "notes": [
     "All previous Baby Nursery WooCommerce products were deleted before this rebuild.",
