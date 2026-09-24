@@ -1328,6 +1328,16 @@ function make_remove_linked_collection_addons( string $removed_cart_item_key, $c
 }
 add_action( 'woocommerce_cart_item_removed', 'make_remove_linked_collection_addons', 20, 2 );
 
+function make_hide_native_collection_archive_description(): void {
+    if ( ! is_tax( 'product_collection' ) ) { return; }
+
+    // The collection hero already renders live design/pattern/palette stats.
+    // Hiding WooCommerce's stored taxonomy description avoids stale manual
+    // numbers such as "26 designs" appearing a second time below the hero.
+    remove_action( 'woocommerce_archive_description', 'woocommerce_taxonomy_archive_description', 10 );
+}
+add_action( 'wp', 'make_hide_native_collection_archive_description', 20 );
+
 function make_collection_archive_note(): void {
     if ( ! is_tax( 'product_collection' ) ) { return; }
     $term = get_queried_object();
