@@ -1,6 +1,6 @@
 {
   "collection": "baby-nursery",
-  "mode": "approved-premium-11-clean-relaunch-v4",
+  "mode": "latest-chat-approved-11-clean-v5",
   "branch": "feature/baby-nursery-sequential-rebuild",
   "auto_continue": true,
   "publish_strategy": "strict-one-design-per-run-stop-on-failure",
@@ -20,11 +20,11 @@
     "I0011"
   ],
   "notes": [
-    "ONLY Teddy Bear plus the 10 user-approved premium kawaii designs are active.",
-    "Before I0001, WooCommerce Infantil products, linked/managed I-code media and I-code PDFs are hard-deleted.",
-    "One design publishes all four techniques and passes source/hash verification before the next design.",
-    "Any failure stops the queue; it never skips to another design.",
-    "2026-09-24 v4: removed destructive repository purge that deleted active I0001-I0011 pattern templates. Queue reset to the exact approved 11 and relaunched."
+    "ONLY the 11 latest user-approved images from this chat are active.",
+    "All active motifs are read from collections/baby-nursery/approved-latest-11; no legacy reference-library lookup or ID remapping is permitted.",
+    "Before I0001, all Infantil WooCommerce products, managed media and I-code PDFs are hard-deleted and verified absent.",
+    "Legacy reference-library/source/reference-master residues are removed from this feature branch, while I0001-I0011 structural pattern templates are preserved.",
+    "One design publishes all four techniques and passes exact matrix/media verification before the next design. Any failure stops the queue."
   ],
   "items": [
     {
@@ -34,11 +34,11 @@
       "title_es": "Osito de peluche",
       "slug": "teddy-bear",
       "source_asset": "collections/baby-nursery/source-designs/I0001-teddy-bear.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36046000723",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
       "last_error": null,
-      "published_at": "2026-09-24T19:12:01+00:00"
+      "published_at": null
     },
     {
       "order": 2,
@@ -47,11 +47,11 @@
       "title_es": "Unicornio",
       "slug": "unicorn",
       "source_asset": "collections/baby-nursery/source-designs/I0002-unicorn.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36046516422",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
       "last_error": null,
-      "published_at": "2026-09-24T19:26:50+00:00"
+      "published_at": null
     },
     {
       "order": 3,
@@ -60,11 +60,11 @@
       "title_es": "Jirafa",
       "slug": "giraffe",
       "source_asset": "collections/baby-nursery/source-designs/I0003-giraffe.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36048210738",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
       "last_error": null,
-      "published_at": "2026-09-24T19:30:43+00:00"
+      "published_at": null
     },
     {
       "order": 4,
