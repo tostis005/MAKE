@@ -25,6 +25,71 @@ jobs:
         with:
           fetch-depth: 1
           ref: fix/pop-art-einstein-marilyn-gallery
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /.github/workflows/regenerate-einstein-marilyn-gallery.yml
+            /content/pattern-system/pop_art_25/
+            /content/pattern-system/collections/pop-art-25/
+            /content/pattern-system/multitech/
+            /content/pattern-system/patterns/P0001-CS/
+            /content/pattern-system/products/P0001-CS/
+            /content/pattern-system/patterns/P0001-C2C/
+            /content/pattern-system/products/P0001-C2C/
+            /content/pattern-system/patterns/P0001-TC/
+            /content/pattern-system/products/P0001-TC/
+            /content/pattern-system/patterns/P0001-LH/
+            /content/pattern-system/products/P0001-LH/
+            /content/pattern-system/patterns/P0012-CS/
+            /content/pattern-system/products/P0012-CS/
+            /content/pattern-system/patterns/P0012-C2C/
+            /content/pattern-system/products/P0012-C2C/
+            /content/pattern-system/patterns/P0012-TC/
+            /content/pattern-system/products/P0012-TC/
+            /content/pattern-system/patterns/P0012-LH/
+            /content/pattern-system/products/P0012-LH/
+            /content/products/catalog.json
+            /content/products/assets/P0001-CS-product.webp
+            /content/products/assets/P0001-CS-gallery-2.webp
+            /content/products/assets/P0001-CS-gallery-3.webp
+            /content/products/assets/P0001-CS-gallery-4.webp
+            /content/products/files/Drielo_P0001-CS.pdf
+            /content/products/assets/P0001-C2C-product.webp
+            /content/products/assets/P0001-C2C-gallery-2.webp
+            /content/products/assets/P0001-C2C-gallery-3.webp
+            /content/products/assets/P0001-C2C-gallery-4.webp
+            /content/products/files/Drielo_P0001-C2C.pdf
+            /content/products/assets/P0001-TC-product.webp
+            /content/products/assets/P0001-TC-gallery-2.webp
+            /content/products/assets/P0001-TC-gallery-3.webp
+            /content/products/assets/P0001-TC-gallery-4.webp
+            /content/products/files/Drielo_P0001-TC.pdf
+            /content/products/assets/P0001-LH-product.webp
+            /content/products/assets/P0001-LH-gallery-2.webp
+            /content/products/assets/P0001-LH-gallery-3.webp
+            /content/products/assets/P0001-LH-gallery-4.webp
+            /content/products/files/Drielo_P0001-LH.pdf
+            /content/products/assets/P0012-CS-product.webp
+            /content/products/assets/P0012-CS-gallery-2.webp
+            /content/products/assets/P0012-CS-gallery-3.webp
+            /content/products/assets/P0012-CS-gallery-4.webp
+            /content/products/files/Drielo_P0012-CS.pdf
+            /content/products/assets/P0012-C2C-product.webp
+            /content/products/assets/P0012-C2C-gallery-2.webp
+            /content/products/assets/P0012-C2C-gallery-3.webp
+            /content/products/assets/P0012-C2C-gallery-4.webp
+            /content/products/files/Drielo_P0012-C2C.pdf
+            /content/products/assets/P0012-TC-product.webp
+            /content/products/assets/P0012-TC-gallery-2.webp
+            /content/products/assets/P0012-TC-gallery-3.webp
+            /content/products/assets/P0012-TC-gallery-4.webp
+            /content/products/files/Drielo_P0012-TC.pdf
+            /content/products/assets/P0012-LH-product.webp
+            /content/products/assets/P0012-LH-gallery-2.webp
+            /content/products/assets/P0012-LH-gallery-3.webp
+            /content/products/assets/P0012-LH-gallery-4.webp
+            /content/products/files/Drielo_P0012-LH.pdf
+            /content/tools/import-products.php
 
       - name: Install renderer dependencies
         shell: bash
