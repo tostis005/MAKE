@@ -27,10 +27,11 @@
       "base_design_id": "F0003",
       "title_en": "Lavender Ribbon Bundle",
       "slug": "lavender-ribbon-bundle",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36019958504",
+      "last_error": null,
+      "published_at": "2026-09-24T15:28:18+00:00"
     },
     {
       "base_design_id": "F0004",
