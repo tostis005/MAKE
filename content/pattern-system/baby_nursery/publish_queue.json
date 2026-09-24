@@ -34,11 +34,12 @@
       "title_es": "Osito de peluche",
       "slug": "teddy-bear",
       "source_asset": "collections/baby-nursery/source-designs/I0001-teddy-bear.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36042896444",
-      "last_error": null,
-      "published_at": "2026-09-24T18:46:14+00:00"
+      "status": "failed",
+      "attempts": 2,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36043073402",
+      "last_error": "Automatic publish run failed; see GitHub Actions logs.",
+      "published_at": "2026-09-24T18:46:14+00:00",
+      "failed_at": "2026-09-24T18:54:53+00:00"
     },
     {
       "order": 2,
