@@ -42,11 +42,11 @@
       "title_es": "Jirafa",
       "slug": "giraffe",
       "source_asset": "collections/baby-nursery/source-designs/I0003-giraffe.png",
-      "status": "pending",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35966988297",
+      "status": "failed",
+      "attempts": 2,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35967197867",
       "last_error": "Automatic publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T06:59:10+00:00"
+      "failed_at": "2026-09-24T07:00:01+00:00"
     },
     {
       "order": 4,
