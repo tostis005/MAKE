@@ -11,6 +11,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: drielo-pop-art-branch-auto-publish
@@ -142,15 +143,25 @@ jobs:
 
               pdf=root/'content/products/files'/f'Drielo_{code}.pdf'
               image=root/'content/products/assets'/f'{code}-product.webp'
+              gallery=[root/'content/products/assets'/f'{code}-gallery-{i}.webp' for i in (2,3,4)]
               if not pdf.is_file() or pdf.stat().st_size < 100000 or pdf.read_bytes()[:4] != b'%PDF':
                   raise SystemExit(f'{code}: invalid PDF')
               if not image.is_file() or image.stat().st_size < 50000:
                   raise SystemExit(f'{code}: invalid product image')
+              for g in gallery:
+                  if not g.is_file() or g.stat().st_size < 30000:
+                      raise SystemExit(f'{code}: invalid gallery preview {g.name}')
               row=rows.get(code)
               if not row or row.get('collection') != 'pop-art-25':
                   raise SystemExit(f'{code}: missing Pop Art catalogue row')
+              expected_gallery=[f'assets/{code}-gallery-{i}.webp' for i in (2,3,4)]
+              if row.get('gallery') != expected_gallery:
+                  raise SystemExit(f'{code}: wrong gallery list {row.get("gallery")}')
+              if row.get('gallery_preview_pages') != {'facts':3,'colour_a1':8,'symbol_a1':12}:
+                  raise SystemExit(f'{code}: gallery preview page mapping missing')
               print(code,'stitches',pat['total_stitches'],'colors',len(pat['threads']),
-                    'pdf',pdf.stat().st_size,'image',image.stat().st_size)
+                    'pdf',pdf.stat().st_size,'image',image.stat().st_size,
+                    'gallery',[g.stat().st_size for g in gallery])
 
           print(design,'BUNDLE_VALID','bbox',bbox,'margins',margins)
           PY
@@ -194,6 +205,9 @@ jobs:
           for suffix in CS C2C TC LH; do
             code="${DESIGN}-${suffix}"
             cp "content/products/assets/${code}-product.webp" "$STAGE/content/products/assets/"
+            cp "content/products/assets/${code}-gallery-2.webp" "$STAGE/content/products/assets/"
+            cp "content/products/assets/${code}-gallery-3.webp" "$STAGE/content/products/assets/"
+            cp "content/products/assets/${code}-gallery-4.webp" "$STAGE/content/products/assets/"
             cp "content/products/files/Drielo_${code}.pdf" "$STAGE/content/products/files/"
           done
           cp content/tools/import-products.php "$STAGE/content/tools/"
@@ -265,10 +279,11 @@ jobs:
               $cols=wp_get_object_terms($id,"product_collection",array("fields"=>"slugs"));
               $downloads=count($p->get_downloads());
               $image=$p->get_image_id();
+              $gallery=count($p->get_gallery_image_ids());
               echo $sku." id=".$id." status=".$p->get_status()." image=".$image.
-                   " downloads=".$downloads." collection=".
+                   " gallery=".$gallery." downloads=".$downloads." collection=".
                    implode(",",is_wp_error($cols)?array():$cols)." url=".get_permalink($id).PHP_EOL;
-              if ($p->get_status()!=="publish" || !$image || $downloads<1 ||
+              if ($p->get_status()!=="publish" || !$image || $gallery<3 || $downloads<1 ||
                   !in_array("pop-art-25",is_wp_error($cols)?array():$cols,true)) {
                 fwrite(STDERR,"Incomplete ".$sku.PHP_EOL); exit(3);
               }
@@ -304,6 +319,9 @@ jobs:
             git add "content/pattern-system/patterns/${code}/pattern.json"
             git add "content/pattern-system/products/${code}/product.json"
             git add "content/products/assets/${code}-product.webp"
+            git add "content/products/assets/${code}-gallery-2.webp"
+            git add "content/products/assets/${code}-gallery-3.webp"
+            git add "content/products/assets/${code}-gallery-4.webp"
             git add "content/products/files/Drielo_${code}.pdf"
           done
 
