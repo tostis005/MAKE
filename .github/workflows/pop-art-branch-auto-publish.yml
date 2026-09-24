@@ -62,6 +62,8 @@ jobs:
 
       - name: Build source, patterns and four techniques
         if: steps.select.outputs.design_id != ''
+        env:
+          DRIELO_GALLERY_REVISION: ${{ github.run_id }}
         shell: bash
         run: |
           set -euo pipefail
