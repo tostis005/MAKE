@@ -1,9 +1,9 @@
 {
   "collection": "animals",
-  "reference_policy": "The user-approved generated animal designs are canonical. The corrected matrix archive is the deterministic source of truth. Do not redraw, substitute, approximate, or regenerate these motifs with AI when creating sellable patterns.",
+  "reference_policy": "The five approved 1200x960 Animals reference sheets are canonical. Their 100x120 per-design matrices are losslessly reversible to those exact sheets under 4x nearest-neighbour reconstruction. Do not redraw, substitute, approximate, or regenerate these motifs with AI.",
   "canonical_archive": null,
   "archive_encoding": "concatenated base64(zlib(json))",
-  "decoded_sha256": "58daa1afb0c88326dd8671a5ad765ad912647b2f758e31bdb281a342ae236be8",
+  "decoded_sha256": "7ef2db4da5c568a5bfe13586063f8d82e065a9b1ed122f0b20fbabecd5e055c9",
   "palette_size": 24,
   "master_grid": {
     "width": 100,
@@ -13,8 +13,8 @@
   "source_reference_sheets": [
     {
       "sheet": 1,
-      "original_generation_file": "a_transparent_background_png_style_image_with_six_1.png",
-      "original_sha256": "d6be4670029ebffd2f9af42cc1957f1f59747807aca9abf0860454e5d4c40f0f",
+      "asset": "collections/animals/reference-sheets/animals-reference-sheet-01.png",
+      "sha256": "05d23648b67ca5a10cbef06088f86af70187ca3747bc86f42a0651d29c2b30e6",
       "design_ids": [
         "A0001",
         "A0002",
@@ -26,8 +26,8 @@
     },
     {
       "sheet": 2,
-      "original_generation_file": "a_transparent_background_pixel_cross_stitch_style_2_batch_1.png",
-      "original_sha256": "c8544a51232bcda2c0170bd2d921e9db8beea033aa2af48fe2ee375e65066dc0",
+      "asset": "collections/animals/reference-sheets/animals-reference-sheet-02.png",
+      "sha256": "d45162cfe56406307ec622a5456555fa47b78f56fb0399385d777bd09ad44ade",
       "design_ids": [
         "A0007",
         "A0008",
@@ -39,8 +39,8 @@
     },
     {
       "sheet": 3,
-      "original_generation_file": "a_clean_transparent_background_image_png_style_n_3_batch_2.png",
-      "original_sha256": "f9c389f76a7133eafc2a3c95e68ecec11b42b1e3955a6b4b1f919a6b9073a1b3",
+      "asset": "collections/animals/reference-sheets/animals-reference-sheet-03.png",
+      "sha256": "cd0933725781ec33e6ed00fabbd7a4a87dda30cc21a8446cb18b96d8f9f34631",
       "design_ids": [
         "A0013",
         "A0014",
@@ -52,8 +52,8 @@
     },
     {
       "sheet": 4,
-      "original_generation_file": "a_clean_transparent_background_checkerboard_trans_4_batch_3.png",
-      "original_sha256": "1ac19061241cf24457a1f39d93695c5ceb6ecaf1e92627aa6da0e648a472e01e",
+      "asset": "collections/animals/reference-sheets/animals-reference-sheet-04.png",
+      "sha256": "178a9f66f743d3c799c6405000be0c0772310fe9c7c9808e5b85dd86faf742e2",
       "design_ids": [
         "A0019",
         "A0020",
@@ -65,8 +65,8 @@
     },
     {
       "sheet": 5,
-      "original_generation_file": "a_clean_transparent_background_png_style_illustrat_5_batch_4.png",
-      "original_sha256": "780cc371ae7323a90c96a0fa8491faf20216a3fd184a843d2ec002aacc276663",
+      "asset": "collections/animals/reference-sheets/animals-reference-sheet-05.png",
+      "sha256": "1af1a12058f2f3ca6868160841f9512804ac78f6602516da79f7da83e3102e5a",
       "design_ids": [
         "A0025",
         "A0026",
@@ -440,23 +440,31 @@
     }
   ],
   "generation_order": [
-    "canonical matrix archive",
+    "canonical reference matrix archive v2",
     "100x120 transparent source design",
     "800x960 transparent reference master",
-    "safe-margin validation",
-    "CS/C2C/TC/LH pattern JSON",
+    "five 1200x960 3x2 exact reference sheets",
+    "validated safe margins",
+    "CS/C2C/TC/LH JSON",
     "PDFs and product images",
     "WooCommerce"
   ],
   "canonical_archive_parts": [
-    "reference-matrices-v1.part00",
-    "reference-matrices-v1.part01",
-    "reference-matrices-v1.part02",
-    "reference-matrices-v1.part03-fixed",
-    "reference-matrices-v1.part04",
-    "reference-matrices-v1.part05-fixed",
-    "reference-matrices-v1.part06",
-    "reference-matrices-v1.part07",
-    "reference-matrices-v1.part08"
-  ]
+    "reference-matrices-v2.part00",
+    "reference-matrices-v2.part01",
+    "reference-matrices-v2.part02",
+    "reference-matrices-v2.part03",
+    "reference-matrices-v2.part04",
+    "reference-matrices-v2.part05",
+    "reference-matrices-v2.part06",
+    "reference-matrices-v2.part07",
+    "reference-matrices-v2.part08",
+    "reference-matrices-v2.part09",
+    "reference-matrices-v2.part10",
+    "reference-matrices-v2.part11",
+    "reference-matrices-v2.part12",
+    "reference-matrices-v2.part13",
+    "reference-matrices-v2.part14"
+  ],
+  "archive_version": 2
 }
