@@ -1,0 +1,156 @@
+name: Audit Etsy listings for Pop Art relink
+# synchronize trigger
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/audit-etsy-popart-relink.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_etsy_audit_key
+          chmod 600 ~/.ssh/drielo_etsy_audit_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Read local mapping and Etsy inventory
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_etsy_audit_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"; exit 1
+          fi
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -d max_execution_time=0 -r '
+            require "/var/www/html/wp-load.php";
+            require_once ABSPATH."wp-admin/includes/plugin.php";
+            $plugin=WP_PLUGIN_DIR."/drielo-etsy-sync/drielo-etsy-sync.php";
+            $data=get_plugin_data($plugin,false,false);
+            echo "PLUGIN_VERSION=".($data["Version"]??"unknown").PHP_EOL;
+            if(!class_exists("Drielo_Etsy_Sync")){fwrite(STDERR,"Plugin class unavailable\n");exit(2);}
+
+            $sync=Drielo_Etsy_Sync::instance();
+            $ref=new ReflectionClass($sync);
+            $request=$ref->getMethod("etsy_request"); $request->setAccessible(true);
+            $settings_m=$ref->getMethod("settings"); $settings_m->setAccessible(true);
+            $settings=$settings_m->invoke($sync);
+            $shop=(string)($settings["shop_id"]??"");
+            echo "SHOP_ID_PRESENT=".($shop!==""?"yes":"no").PHP_EOL;
+            if($shop===""){fwrite(STDERR,"Shop ID missing\n");exit(3);}
+
+            $ids=get_posts(array(
+              "post_type"=>"product",
+              "post_status"=>array("publish","draft","private","pending"),
+              "posts_per_page"=>-1,
+              "fields"=>"ids",
+              "orderby"=>"ID",
+              "order"=>"ASC"
+            ));
+
+            $linked=array();
+            $pop=array();
+            $collections=array();
+            foreach($ids as $id){
+              $p=wc_get_product($id);
+              if(!$p) continue;
+              $sku=(string)$p->get_sku();
+              $title=(string)$p->get_name();
+              $listing=(string)get_post_meta($id,"_drielo_etsy_listing_id",true);
+
+              $collection_terms=taxonomy_exists("product_collection") ? wp_get_post_terms($id,"product_collection") : array();
+              $technique_terms=taxonomy_exists("pa_technique") ? wp_get_post_terms($id,"pa_technique") : array();
+              $c=array(); $t=array(); $is_pop=false;
+              if(!is_wp_error($collection_terms)){
+                foreach($collection_terms as $term){
+                  $c[]=$term->slug;
+                  $collections[$term->slug]=$term->name;
+                  if(stripos($term->slug,"pop")!==false || stripos($term->name,"pop")!==false) $is_pop=true;
+                }
+              }
+              if(!is_wp_error($technique_terms)){
+                foreach($technique_terms as $term){$t[]=$term->slug;}
+              }
+
+              $row=array(
+                "id"=>(int)$id,
+                "sku"=>$sku,
+                "title"=>$title,
+                "listing_id"=>$listing,
+                "enabled"=>(string)get_post_meta($id,"_drielo_etsy_enabled",true),
+                "target_state"=>(string)get_post_meta($id,"_drielo_etsy_target_state",true),
+                "remote_state"=>(string)get_post_meta($id,"_drielo_etsy_remote_state",true),
+                "collections"=>$c,
+                "techniques"=>$t
+              );
+              if($listing!=="") $linked[$listing]=$row;
+              if($is_pop) $pop[]=$row;
+            }
+            echo "COLLECTIONS=".wp_json_encode($collections,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES).PHP_EOL;
+            echo "POP_PRODUCTS=".wp_json_encode($pop,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES).PHP_EOL;
+            echo "LOCAL_LINKED_COUNT=".count($linked).PHP_EOL;
+
+            $remote=array();
+            $states=array("active","inactive","sold_out","draft","expired");
+            foreach($states as $state){
+              for($offset=0;$offset<1000;$offset+=100){
+                $path="/v3/application/shops/".rawurlencode($shop)."/listings?state=".rawurlencode($state)."&limit=100&offset=".$offset;
+                $res=$request->invoke($sync,"GET",$path,array(),true);
+                if(is_wp_error($res)){
+                  echo "REMOTE_FETCH_ERROR state=".$state." offset=".$offset." error=".$res->get_error_message().PHP_EOL;
+                  break;
+                }
+                $rows=(array)($res["results"]??array());
+                foreach($rows as $r){
+                  $lid=(string)($r["listing_id"]??"");
+                  if($lid==="") continue;
+                  $remote[$lid]=array(
+                    "listing_id"=>$lid,
+                    "title"=>(string)($r["title"]??""),
+                    "state"=>(string)($r["state"]??$state),
+                    "taxonomy_id"=>(int)($r["taxonomy_id"]??0),
+                    "shop_section_id"=>(int)($r["shop_section_id"]??0),
+                    "created_timestamp"=>(int)($r["creation_timestamp"]??0),
+                    "updated_timestamp"=>(int)($r["updated_timestamp"]??0),
+                    "linked_sku"=>isset($linked[$lid])?(string)$linked[$lid]["sku"]:"",
+                    "linked_product_id"=>isset($linked[$lid])?(int)$linked[$lid]["id"]:0
+                  );
+                }
+                if(count($rows)<100) break;
+              }
+            }
+
+            ksort($remote,SORT_NATURAL);
+            $orphans=array();
+            foreach($remote as $lid=>$row){
+              if(!isset($linked[$lid])) $orphans[]=$row;
+            }
+            echo "REMOTE_COUNT=".count($remote).PHP_EOL;
+            echo "REMOTE_LISTINGS=".wp_json_encode(array_values($remote),JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES).PHP_EOL;
+            echo "ORPHAN_COUNT=".count($orphans).PHP_EOL;
+            echo "ORPHANS=".wp_json_encode($orphans,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES).PHP_EOL;
+          '
+          REMOTE
