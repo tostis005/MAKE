@@ -1530,3 +1530,138 @@ a.drielo-store-technique:hover{
     grid-template-rows:repeat(6,minmax(0,1fr))!important
   }
 }
+
+
+/* ========================================================================
+   Collection semantics + responsive shared palettes — v1.0
+   Designs are unique motifs; patterns are purchasable technique variants.
+   ======================================================================== */
+.drielo-collection-topline{
+  align-items:flex-start
+}
+.drielo-collection-topline>span:first-child{
+  min-width:0;
+  flex:1 1 auto
+}
+.drielo-palette-block{
+  min-width:0;
+  max-width:min(62%,320px);
+  display:flex;
+  flex:0 1 auto;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:4px
+}
+.drielo-palette{
+  min-width:0;
+  max-width:100%;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  align-items:center;
+  gap:3px
+}
+.drielo-palette i,
+.drielo-palette i:first-child{
+  width:18px;
+  height:18px;
+  flex:0 0 18px;
+  margin:0!important
+}
+.drielo-palette-count{
+  display:block;
+  color:#9a878e;
+  font-size:8px;
+  font-weight:850;
+  line-height:1.15;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  white-space:nowrap
+}
+.drielo-collection-note{
+  justify-content:space-between;
+  min-width:0
+}
+.drielo-collection-note>div{
+  min-width:0
+}
+.drielo-collection-note-stats{
+  display:flex!important;
+  flex-direction:column;
+  align-items:flex-start!important;
+  gap:3px!important
+}
+.drielo-collection-note-stats strong{
+  color:var(--mk-ink);
+  font-size:13px;
+  line-height:1.2
+}
+.drielo-collection-note-stats small{
+  color:var(--mk-muted);
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.04em;
+  text-transform:uppercase
+}
+.drielo-collection-note-palette{
+  display:flex!important;
+  flex-direction:column;
+  align-items:flex-end!important;
+  gap:6px!important;
+  max-width:60%
+}
+.drielo-collection-note-palette .drielo-palette-block{
+  max-width:100%;
+  align-items:flex-end
+}
+.drielo-single-collection .drielo-palette-block{
+  max-width:48%;
+  flex:0 1 auto;
+  align-items:flex-end
+}
+
+@media(max-width:640px){
+  .drielo-collection-topline{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:9px
+  }
+  .drielo-collection-topline .drielo-palette-block{
+    width:100%;
+    max-width:100%;
+    align-items:flex-start
+  }
+  .drielo-collection-topline .drielo-palette{
+    justify-content:flex-start
+  }
+  .drielo-collection-note{
+    width:100%;
+    box-sizing:border-box;
+    align-items:stretch!important
+  }
+  .drielo-collection-note-palette{
+    width:100%;
+    max-width:100%;
+    align-items:flex-start!important
+  }
+  .drielo-collection-note-palette .drielo-palette-block{
+    width:100%;
+    max-width:100%;
+    align-items:flex-start
+  }
+  .drielo-collection-note-palette .drielo-palette{
+    justify-content:flex-start
+  }
+  .drielo-palette i,
+  .drielo-palette i:first-child{
+    width:16px;
+    height:16px;
+    flex-basis:16px
+  }
+  .drielo-single-collection{
+    align-items:flex-start
+  }
+  .drielo-single-collection .drielo-palette-block{
+    max-width:42%
+  }
+}
