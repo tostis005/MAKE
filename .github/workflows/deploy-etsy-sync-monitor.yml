@@ -1,0 +1,92 @@
+name: Deploy Etsy sync monitor
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/deploy-etsy-sync-monitor.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: drielo-etsy-sync-monitor-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy-etsy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate plugin
+        shell: bash
+        run: |
+          set -euo pipefail
+          php -l plugins/drielo-etsy-sync/drielo-etsy-sync.php
+          grep -q "Version: 1.4.0" plugins/drielo-etsy-sync/drielo-etsy-sync.php
+          grep -q "OPTION_SYNC_RUN" plugins/drielo-etsy-sync/drielo-etsy-sync.php
+          grep -q "drielo_etsy_sync_status" plugins/drielo-etsy-sync/drielo-etsy-sync.php
+          tar -C plugins -czf /tmp/drielo-etsy-sync.tar.gz drielo-etsy-sync
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_etsy_key
+          chmod 600 ~/.ssh/drielo_etsy_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Upload plugin
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: scp -i ~/.ssh/drielo_etsy_key /tmp/drielo-etsy-sync.tar.gz "$VPS_USER@$VPS_HOST:/tmp/drielo-etsy-sync-monitor-${GITHUB_RUN_ID}.tar.gz"
+
+      - name: Install and verify live plugin
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_etsy_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-etsy-sync-monitor-${GITHUB_RUN_ID}.tar.gz"
+          STAGE="/tmp/drielo-etsy-sync-monitor-${GITHUB_RUN_ID}"
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+          TARGET="/var/www/html/wp-content/plugins/drielo-etsy-sync"
+          "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '$TARGET' && mkdir -p '$TARGET'"
+          "${DOCKER[@]}" cp "$STAGE/drielo-etsy-sync/." "make-wp:$TARGET/"
+          "${DOCKER[@]}" exec make-wp sh -lc "chown -R www-data:www-data '$TARGET' && php -l '$TARGET/drielo-etsy-sync.php' && grep -q 'OPTION_SYNC_RUN' '$TARGET/drielo-etsy-sync.php'"
+          "${DOCKER[@]}" exec make-wp php -r '
+            require "/var/www/html/wp-load.php";
+            require_once ABSPATH."wp-admin/includes/plugin.php";
+            $plugin="drielo-etsy-sync/drielo-etsy-sync.php";
+            if(!is_plugin_active($plugin)){
+              $r=activate_plugin($plugin);
+              if(is_wp_error($r)){fwrite(STDERR,$r->get_error_message().PHP_EOL);exit(2);}
+            }
+            $data=get_plugin_data(WP_PLUGIN_DIR."/".$plugin,false,false);
+            $version=(string)($data["Version"]??"");
+            echo "DRIELO_ETSY_VERSION=".$version.PHP_EOL;
+            echo "DRIELO_ETSY_ACTIVE=".(is_plugin_active($plugin)?"yes":"no").PHP_EOL;
+            if($version!=="1.4.0" || !class_exists("Drielo_Etsy_Sync")) exit(3);
+          '
+          rm -rf "$ARCHIVE" "$STAGE"
+          REMOTE
