@@ -377,7 +377,9 @@
       ],
       "artwork_status": "canonical-reference-ready",
       "reference_asset": "collections/animals/reference-masters/A0021-mouse-teacup-reference.png",
-      "source_asset": "collections/animals/source-designs/A0021-mouse-teacup.png"
+      "source_asset": "collections/animals/source-designs/A0021-mouse-teacup.png",
+      "product_status": "ready",
+      "transparent_background": true
     },
     {
       "order": 22,
