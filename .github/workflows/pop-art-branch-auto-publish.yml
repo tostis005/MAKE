@@ -1,0 +1,324 @@
+name: Pop Art Branch Auto Publish
+
+on:
+  push:
+    branches:
+      - feature/pop-art-resto-24
+    paths:
+      - 'content/pattern-system/collections/pop-art-25/sources/P*.png'
+      - 'content/pattern-system/pop_art_25/publish_design.py'
+      - '.github/workflows/pop-art-branch-auto-publish.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-pop-art-branch-auto-publish
+  cancel-in-progress: false
+
+jobs:
+  publish-changed-designs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout feature branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect changed Pop Art source designs
+        id: detect
+        shell: bash
+        run: |
+          set -euo pipefail
+          BEFORE="\${{ github.event.before }}"
+          AFTER="\${{ github.sha }}"
+          if [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
+            FILES="$(git show --pretty='' --name-only "$AFTER")"
+          else
+            FILES="$(git diff --name-only "$BEFORE" "$AFTER")"
+          fi
+          printf '%s\n' "$FILES"
+
+          DESIGNS="$(printf '%s\n' "$FILES" \
+            | sed -n 's#^content/pattern-system/collections/pop-art-25/sources/\(P[0-9][0-9][0-9][0-9]\)\.png$#\1#p' \
+            | sort -u | tr '\n' ' ' | sed 's/[[:space:]]*$//')"
+
+          echo "designs=$DESIGNS" >> "$GITHUB_OUTPUT"
+          if [ -n "$DESIGNS" ]; then
+            echo "has_designs=yes" >> "$GITHUB_OUTPUT"
+            echo "Will publish: $DESIGNS"
+          else
+            echo "has_designs=no" >> "$GITHUB_OUTPUT"
+            echo "No source design changed; workflow configuration only."
+          fi
+
+      - name: Install renderer dependencies
+        if: steps.detect.outputs.has_designs == 'yes'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow playwright
+          python3 -m playwright install --with-deps chromium
+
+      - name: Build four techniques for each changed design
+        if: steps.detect.outputs.has_designs == 'yes'
+        env:
+          DESIGNS: \${{ steps.detect.outputs.designs }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          for DESIGN in $DESIGNS; do
+            echo "=== Building $DESIGN ==="
+            python3 content/pattern-system/pop_art_25/publish_design.py "$DESIGN"
+          done
+
+      - name: Validate generated Pop Art bundles
+        if: steps.detect.outputs.has_designs == 'yes'
+        env:
+          DESIGNS: \${{ steps.detect.outputs.designs }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - "$DESIGNS" <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+          from PIL import Image
+
+          designs=sys.argv[1].split()
+          root=Path('.')
+          system=root/'content'/'pattern-system'
+          collection=json.loads((system/'collections'/'pop-art-25'/'collection.json').read_text(encoding='utf-8'))
+          covers=collection['mockup_spec']['technique_assets']
+          expected={
+              'CS':'../../multitech/assets/cover-cross-stitch.webp',
+              'C2C':'../../multitech/assets/cover-crochet.webp',
+              'TC':'../../multitech/assets/cover-c2c-crochet.webp',
+              'LH':'../../multitech/assets/cover-rug.webp',
+          }
+          if {k:covers[k] for k in expected} != expected:
+              raise SystemExit(f'Pop Art cover mapping changed unexpectedly: {covers}')
+          if len(collection.get('palette',[])) != 25:
+              raise SystemExit('Pop Art palette must contain exactly 25 colours')
+
+          catalog=json.loads((root/'content/products/catalog.json').read_text(encoding='utf-8'))
+          rows={p.get('code'):p for p in catalog.get('products',[])}
+          grids={'CS':(100,120),'C2C':(60,72),'TC':(80,96),'LH':(60,72)}
+
+          for design in designs:
+              src=system/'collections'/'pop-art-25'/'sources'/f'{design}.png'
+              im=Image.open(src).convert('RGBA')
+              if im.size != (800,960):
+                  raise SystemExit(f'{design}: source is not 800x960')
+              amin,amax=im.getchannel('A').getextrema()
+              bbox=im.getchannel('A').getbbox()
+              if amin != 0 or amax == 0 or not bbox:
+                  raise SystemExit(f'{design}: source is not truly transparent')
+              if min(bbox[0],bbox[1],800-bbox[2],960-bbox[3]) < 24:
+                  raise SystemExit(f'{design}: source artwork too close to edge: {bbox}')
+
+              for suffix in ('CS','C2C','TC','LH'):
+                  code=f'{design}-{suffix}'
+                  pat=json.loads((system/'patterns'/code/'pattern.json').read_text(encoding='utf-8'))
+                  prod=json.loads((system/'products'/code/'product.json').read_text(encoding='utf-8'))
+                  w,h=grids[suffix]
+                  if (pat.get('stitch_width'),pat.get('stitch_height')) != (w,h):
+                      raise SystemExit(f'{code}: wrong grid')
+                  if len(pat.get('matrix',[])) != h or any(len(r)!=w for r in pat['matrix']):
+                      raise SystemExit(f'{code}: malformed matrix')
+                  if pat.get('total_stitches',0) <= 0 or not pat.get('threads'):
+                      raise SystemExit(f'{code}: empty pattern')
+                  if len(pat['threads']) > 25:
+                      raise SystemExit(f'{code}: more than 25 colours')
+                  if prod.get('collection') != 'pop-art-25':
+                      raise SystemExit(f'{code}: wrong collection')
+                  if prod.get('page_1_asset') != covers[suffix]:
+                      raise SystemExit(f'{code}: wrong cover route {prod.get("page_1_asset")}')
+                  if not prod.get('transparent_source'):
+                      raise SystemExit(f'{code}: transparent source flag missing')
+
+                  pdf=root/'content/products/files'/f'Drielo_{code}.pdf'
+                  image=root/'content/products/assets'/f'{code}-product.webp'
+                  if not pdf.is_file() or pdf.stat().st_size < 100000 or pdf.read_bytes()[:4] != b'%PDF':
+                      raise SystemExit(f'{code}: invalid PDF')
+                  if not image.is_file() or image.stat().st_size < 50000:
+                      raise SystemExit(f'{code}: invalid product image')
+                  row=rows.get(code)
+                  if not row or row.get('collection') != 'pop-art-25':
+                      raise SystemExit(f'{code}: missing Pop Art catalogue row')
+                  print(code,'stitches',pat['total_stitches'],'colors',len(pat['threads']),
+                        'pdf',pdf.stat().st_size,'image',image.stat().st_size)
+              print(design,'BUNDLE_VALID')
+          PY
+
+      - name: Build WooCommerce package for changed designs
+        if: steps.detect.outputs.has_designs == 'yes'
+        env:
+          DESIGNS: \${{ steps.detect.outputs.designs }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          STAGE="/tmp/drielo-pop-art-branch"
+          rm -rf "$STAGE"
+          mkdir -p "$STAGE/content/products/assets" "$STAGE/content/products/files" "$STAGE/content/tools"
+
+          python3 - "$DESIGNS" "$STAGE" <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          designs=sys.argv[1].split()
+          stage=Path(sys.argv[2])
+          catalog=json.loads(Path('content/products/catalog.json').read_text(encoding='utf-8'))
+          codes={f'{d}-{s}' for d in designs for s in ('CS','C2C','TC','LH')}
+          selected=[p for p in catalog.get('products',[]) if p.get('code') in codes]
+          found={p.get('code') for p in selected}
+          if found != codes:
+              raise SystemExit(f'Package catalogue mismatch: missing={sorted(codes-found)} extra={sorted(found-codes)}')
+
+          category_slugs={slug for p in selected for slug in p.get('categories',[])}
+          out=dict(catalog)
+          out['products']=selected
+          out['collections']=[c for c in catalog.get('collections',[]) if c.get('slug')=='pop-art-25']
+          out['categories']=[c for c in catalog.get('categories',[]) if c.get('slug') in category_slugs]
+          if len(out['collections']) != 1:
+              raise SystemExit('Pop Art collection definition missing from package')
+          (stage/'content/products/catalog.json').write_text(
+              json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8'
+          )
+          PY
+
+          for DESIGN in $DESIGNS; do
+            for suffix in CS C2C TC LH; do
+              code="\${DESIGN}-\${suffix}"
+              cp "content/products/assets/\${code}-product.webp" "$STAGE/content/products/assets/"
+              cp "content/products/files/Drielo_\${code}.pdf" "$STAGE/content/products/files/"
+            done
+          done
+          cp content/tools/import-products.php "$STAGE/content/tools/"
+          tar -czf "/tmp/drielo-pop-art-branch.tgz" -C "$STAGE" content
+
+      - name: Configure SSH
+        if: steps.detect.outputs.has_designs == 'yes'
+        env:
+          VPS_HOST: \${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: \${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_pop_art_branch_key
+          chmod 600 ~/.ssh/drielo_pop_art_branch_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Upload WooCommerce package
+        if: steps.detect.outputs.has_designs == 'yes'
+        env:
+          VPS_HOST: \${{ secrets.VPS_HOST }}
+          VPS_USER: \${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          scp -i ~/.ssh/drielo_pop_art_branch_key /tmp/drielo-pop-art-branch.tgz \
+            "$VPS_USER@$VPS_HOST:/tmp/drielo-pop-art-branch-\${GITHUB_RUN_ID}.tgz"
+
+      - name: Publish changed designs to WooCommerce and verify
+        if: steps.detect.outputs.has_designs == 'yes'
+        env:
+          VPS_HOST: \${{ secrets.VPS_HOST }}
+          VPS_USER: \${{ secrets.VPS_USER }}
+          DESIGNS: \${{ steps.detect.outputs.designs }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_pop_art_branch_key "$VPS_USER@$VPS_HOST" \
+            "DESIGNS='\${DESIGNS}' GITHUB_RUN_ID='\${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-pop-art-branch-\${GITHUB_RUN_ID}.tgz"
+          STAGE="/tmp/drielo-pop-art-branch-\${GITHUB_RUN_ID}"
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE"; }
+          trap cleanup EXIT
+
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+          "\${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
+          "\${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          "\${DOCKER[@]}" exec make-wp php -d memory_limit=768M \
+            /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
+
+          "\${DOCKER[@]}" exec -e DESIGNS="$DESIGNS" make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $designs=preg_split("/\\s+/",trim(getenv("DESIGNS")));
+            foreach ($designs as $design) {
+              if (!$design) continue;
+              foreach (array("CS","C2C","TC","LH") as $suffix) {
+                $sku="DRIELO-".$design."-".$suffix;
+                $id=wc_get_product_id_by_sku($sku);
+                $p=$id ? wc_get_product($id) : false;
+                if (!$p) { fwrite(STDERR,"Missing ".$sku.PHP_EOL); exit(2); }
+                $cols=wp_get_object_terms($id,"product_collection",array("fields"=>"slugs"));
+                $downloads=count($p->get_downloads());
+                $image=$p->get_image_id();
+                echo $sku." id=".$id." status=".$p->get_status()." image=".$image.
+                     " downloads=".$downloads." collection=".
+                     implode(",",is_wp_error($cols)?array():$cols)." url=".get_permalink($id).PHP_EOL;
+                if ($p->get_status()!=="publish" || !$image || $downloads<1 ||
+                    !in_array("pop-art-25",is_wp_error($cols)?array():$cols,true)) {
+                  fwrite(STDERR,"Incomplete ".$sku.PHP_EOL); exit(3);
+                }
+              }
+            }
+          '
+
+          "\${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
+          REMOTE
+
+      - name: Commit generated files back to feature branch
+        if: steps.detect.outputs.has_designs == 'yes'
+        env:
+          DESIGNS: \${{ steps.detect.outputs.designs }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add content/products/catalog.json content/pattern-system/collections/pop-art-25/designs.json
+          for DESIGN in $DESIGNS; do
+            git add content/pattern-system/collections/pop-art-25/reference-masters/\${DESIGN}-*-reference.png
+            for suffix in CS C2C TC LH; do
+              code="\${DESIGN}-\${suffix}"
+              git add "content/pattern-system/patterns/\${code}/pattern.json"
+              git add "content/pattern-system/products/\${code}/product.json"
+              git add "content/products/assets/\${code}-product.webp"
+              git add "content/products/files/Drielo_\${code}.pdf"
+            done
+          done
+
+          if git diff --cached --quiet; then
+            echo "Generated designs already match branch."
+          else
+            git commit -m "Publish Pop Art \${DESIGNS} in four techniques [skip ci]"
+            git fetch origin feature/pop-art-resto-24
+            git rebase origin/feature/pop-art-resto-24
+            git push origin HEAD:feature/pop-art-resto-24
+          fi
+
+      - name: Archive generated PDFs
+        if: success() && steps.detect.outputs.has_designs == 'yes'
+        uses: actions/upload-artifact@v4
+        with:
+          name: pop-art-branch-\${{ github.run_id }}-pdfs
+          path: content/products/files/Drielo_P0*.pdf
+          retention-days: 30
