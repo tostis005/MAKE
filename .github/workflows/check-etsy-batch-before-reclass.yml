@@ -1,0 +1,54 @@
+name: Check Etsy batch before reclassification
+
+on:
+  push:
+    branches:
+      - feature/etsy-technique-classification
+    paths:
+      - '.github/workflows/check-etsy-batch-before-reclass.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/key
+          chmod 600 ~/.ssh/key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+      - name: Check current batch
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $run=get_option("drielo_etsy_sync_run",array());
+            $ids=array_values(array_unique(array_filter(array_map("absint",(array)($run["product_ids"]??array())))));
+            $counts=array("queued"=>0,"running"=>0,"success"=>0,"failed"=>0,"skipped"=>0,"other"=>0);
+            foreach($ids as $id){
+              $state=(string)get_post_meta($id,"_drielo_etsy_batch_state",true);
+              if(isset($counts[$state])) $counts[$state]++; else $counts["other"]++;
+            }
+            echo "RUN=".wp_json_encode(array(
+              "id"=>$run["id"]??"",
+              "status"=>$run["status"]??"",
+              "total"=>count($ids),
+              "updated_at"=>$run["updated_at"]??""
+            )).PHP_EOL;
+            echo "COUNTS=".wp_json_encode($counts).PHP_EOL;
+          '
+          REMOTE
