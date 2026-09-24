@@ -124,3 +124,5 @@ jobs:
           git fetch --depth=20 origin feature/florals-pattern-generation
           git rebase origin/feature/florals-pattern-generation
           git push origin HEAD:feature/florals-pattern-generation
+
+# rerun-after-palette-snap-fix-2026-09-24
