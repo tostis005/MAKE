@@ -1,7 +1,7 @@
 {
   "collection": "animals",
   "branch": "feature/animals-auto-publish",
-  "auto_continue": false,
+  "auto_continue": true,
   "max_attempts_per_design": 2,
   "recovery_attempts_per_design": 4,
   "created_from": "canonical Animals A0001-A0030 references",
@@ -11,12 +11,10 @@
       "title_en": "Sleeping Tabby on Quilts",
       "title_es": "Gato atigrado dormido sobre mantas",
       "slug": "sleeping-tabby-quilts",
-      "status": "published",
-      "attempts": 3,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35995304466",
-      "last_error": null,
-      "failed_at": "2026-09-24T11:49:34+00:00",
-      "published_at": "2026-09-24T11:53:32+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "A0002",
@@ -309,8 +307,8 @@
       "last_error": null
     }
   ],
-  "restarted_at": "2026-09-24T11:46:35Z",
-  "restart_reason": "Restarted with approved Animals technique-specific PDF cover mockups from uploads 114976 (CS), 114974 (C2C), 114975 (TC), and 114977 (LH).",
+  "restarted_at": "2026-09-24T11:57:30Z",
+  "restart_reason": "Restart from A0001 using the exact four approved uploaded Animals PNG cover backgrounds.",
   "restart_from": "A0001",
-  "paused_reason": "Paused while switching Animals PDF covers to the exact four uploaded PNGs."
+  "paused_reason": null
 }
