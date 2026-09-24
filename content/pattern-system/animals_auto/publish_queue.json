@@ -77,10 +77,11 @@
       "title_en": "Hedgehog with Flowers",
       "title_es": "Erizo con flores",
       "slug": "hedgehog-flowers",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35999077611",
+      "last_error": null,
+      "published_at": "2026-09-24T12:30:19+00:00"
     },
     {
       "base_design_id": "A0008",
