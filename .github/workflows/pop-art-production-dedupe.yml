@@ -184,8 +184,8 @@ jobs:
 
       - name: Configure SSH
         env:
-          VPS_HOST: \${{ secrets.VPS_HOST }}
-          VPS_SSH_KEY: \${{ secrets.VPS_SSH_KEY }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
         shell: bash
         run: |
           set -euo pipefail
@@ -196,8 +196,8 @@ jobs:
 
       - name: Audit and remove duplicate Pop Art products
         env:
-          VPS_HOST: \${{ secrets.VPS_HOST }}
-          VPS_USER: \${{ secrets.VPS_USER }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
         shell: bash
         run: |
           set -euo pipefail
@@ -213,9 +213,9 @@ jobs:
             echo "ERROR: make-wp container not found"
             exit 1
           fi
-          "\${DOCKER[@]}" cp /tmp/pop-art-canonical.json make-wp:/tmp/pop-art-canonical.json
-          "\${DOCKER[@]}" cp /tmp/pop-art-dedupe.php make-wp:/tmp/pop-art-dedupe.php
-          "\${DOCKER[@]}" exec make-wp php -d memory_limit=1024M -d max_execution_time=0 /tmp/pop-art-dedupe.php
-          "\${DOCKER[@]}" exec make-wp rm -f /tmp/pop-art-canonical.json /tmp/pop-art-dedupe.php
+          "${DOCKER[@]}" cp /tmp/pop-art-canonical.json make-wp:/tmp/pop-art-canonical.json
+          "${DOCKER[@]}" cp /tmp/pop-art-dedupe.php make-wp:/tmp/pop-art-dedupe.php
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M -d max_execution_time=0 /tmp/pop-art-dedupe.php
+          "${DOCKER[@]}" exec make-wp rm -f /tmp/pop-art-canonical.json /tmp/pop-art-dedupe.php
           rm -f /tmp/pop-art-canonical.json /tmp/pop-art-dedupe.php
           REMOTE
