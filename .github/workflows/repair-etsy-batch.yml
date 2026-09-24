@@ -1,0 +1,183 @@
+name: Repair and restart Etsy batch
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/repair-etsy-batch.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_repair_key
+          chmod 600 ~/.ssh/drielo_repair_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Reset stale Etsy references and requeue current batch
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_repair_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"; exit 1
+          fi
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            require_once ABSPATH."wp-admin/includes/plugin.php";
+
+            $plugin="drielo-etsy-sync/drielo-etsy-sync.php";
+            $data=get_plugin_data(WP_PLUGIN_DIR."/".$plugin,false,false);
+            $version=(string)($data["Version"]??"");
+            echo "PLUGIN_VERSION=".$version.PHP_EOL;
+            if($version!=="1.4.2" || !class_exists("Drielo_Etsy_Sync")) exit(2);
+
+            $old_run=get_option("drielo_etsy_sync_run",array());
+            $ids=array_values(array_unique(array_filter(array_map("absint",(array)($old_run["product_ids"]??array())))));
+            if(count($ids)!==26){
+              fwrite(STDERR,"Expected current stuck batch of 26 products, found ".count($ids).PHP_EOL);
+              exit(3);
+            }
+
+            if(function_exists("as_unschedule_all_actions")){
+              as_unschedule_all_actions("drielo_etsy_sync_product_async",array(),"drielo-etsy");
+            }
+
+            $batch_id=wp_generate_uuid4();
+            $now=current_time("mysql");
+            $queued=0;
+            foreach($ids as $id){
+              $p=wc_get_product($id);
+              if(!$p) continue;
+
+              foreach(array(
+                "_drielo_etsy_listing_id",
+                "_drielo_etsy_remote_state",
+                "_drielo_etsy_asset_hash",
+                "_drielo_etsy_content_hash",
+                "_drielo_etsy_last_error",
+                "_drielo_etsy_last_warning",
+                "_drielo_etsy_shop_section_id",
+                "_drielo_etsy_queue_state",
+                "_drielo_etsy_batch_id",
+                "_drielo_etsy_batch_state",
+                "_drielo_etsy_batch_message",
+                "_drielo_etsy_batch_updated_at"
+              ) as $key){
+                delete_post_meta($id,$key);
+              }
+
+              update_post_meta($id,"_drielo_etsy_batch_id",$batch_id);
+              update_post_meta($id,"_drielo_etsy_batch_state","queued");
+              update_post_meta($id,"_drielo_etsy_batch_message","Recreación limpia tras eliminar los listings anteriores de Etsy.");
+              update_post_meta($id,"_drielo_etsy_batch_updated_at",$now);
+              update_post_meta($id,"_drielo_etsy_queue_state","queued-safe");
+
+              $args=array((int)$id,0,$batch_id);
+              $scheduled=false;
+              if(function_exists("as_enqueue_async_action")){
+                $action_id=as_enqueue_async_action("drielo_etsy_sync_product_async",$args,"drielo-etsy",true);
+                $scheduled=!empty($action_id);
+              } else {
+                $scheduled=wp_schedule_single_event(time()+max(1,$queued*3),"drielo_etsy_sync_product_async",$args);
+              }
+              if(!$scheduled){
+                update_post_meta($id,"_drielo_etsy_queue_state","failed");
+                update_post_meta($id,"_drielo_etsy_batch_state","failed");
+                update_post_meta($id,"_drielo_etsy_batch_message","No se pudo volver a encolar.");
+              } else {
+                $queued++;
+              }
+            }
+
+            $run=array(
+              "id"=>$batch_id,
+              "mode"=>"safe",
+              "product_ids"=>$ids,
+              "started_at"=>$now,
+              "started_by"=>1,
+              "status"=>"queued",
+              "completed_at"=>"",
+              "updated_at"=>$now,
+              "repair_reason"=>"Reset local references after remote Etsy listings were deleted."
+            );
+            update_option("drielo_etsy_sync_run",$run,false);
+
+            echo "REPAIRED=".count($ids)." QUEUED=".$queued." BATCH=".$batch_id.PHP_EOL;
+            if($queued!==26) exit(4);
+
+            if(function_exists("spawn_cron")){
+              spawn_cron();
+            }
+          '
+
+          # Give Action Scheduler a request to process the async queue.
+          curl -fsS --max-time 30 "https://drielo.com/wp-cron.php?doing_wp_cron=$(date +%s)" >/dev/null || true
+          REMOTE
+
+      - name: Verify the repaired batch is moving
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          sleep 12
+          ssh -i ~/.ssh/drielo_repair_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $run=get_option("drielo_etsy_sync_run",array());
+            $batch=(string)($run["id"]??"");
+            $ids=array_values(array_filter(array_map("absint",(array)($run["product_ids"]??array()))));
+            $counts=array("queued"=>0,"running"=>0,"success"=>0,"failed"=>0,"skipped"=>0,"other"=>0);
+            foreach($ids as $id){
+              $bid=(string)get_post_meta($id,"_drielo_etsy_batch_id",true);
+              $state=(string)get_post_meta($id,"_drielo_etsy_batch_state",true);
+              if(!$bid || !hash_equals($batch,$bid)){$counts["other"]++;continue;}
+              if(isset($counts[$state]))$counts[$state]++;else $counts["other"]++;
+            }
+            echo "BATCH=".$batch.PHP_EOL;
+            echo "COUNTS=".wp_json_encode($counts).PHP_EOL;
+
+            $pending=0;
+            if(function_exists("as_get_scheduled_actions")){
+              $pending=count(as_get_scheduled_actions(array(
+                "hook"=>"drielo_etsy_sync_product_async",
+                "group"=>"drielo-etsy",
+                "status"=>"pending",
+                "per_page"=>200
+              ),"ids"));
+            }
+            echo "AS_PENDING=".$pending.PHP_EOL;
+
+            if($counts["success"]+$counts["failed"]+$counts["running"]===0 && $pending===0){
+              fwrite(STDERR,"Batch is still not moving after repair.".PHP_EOL);
+              exit(5);
+            }
+          '
+          REMOTE
