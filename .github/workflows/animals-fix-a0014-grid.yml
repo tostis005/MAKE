@@ -1,0 +1,163 @@
+name: Fix Animals A0014 Grid Artifact
+
+on:
+  push:
+    branches:
+      - feature/animals-auto-publish
+    paths:
+      - '.github/workflows/animals-fix-a0014-grid.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: feature/animals-auto-publish
+          fetch-depth: 0
+
+      - name: Install clean approved A0014 source
+        shell: bash
+        run: |
+          set -euo pipefail
+          TARGET="content/pattern-system/collections/animals/source-designs/A0014-elephant-heart-balloon.png"
+          curl -fL --retry 3 --retry-delay 2 'https://sdmntprindiasocentral.oaiusercontent.com/files/00000000-70b4-8211-a779-dab344cc43f9/raw?se=2026-09-24T15%3A14%3A34Z&sp=r&sv=2026-02-06&sr=b&scid=6c28efa3-a4cb-5d33-8ed6-d31f0b04e9fe&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-24T13%3A43%3A53Z&ske=2026-09-25T13%3A43%3A53Z&sks=b&skv=2026-02-06&sig=rLU0By4Y2NoLrc5ZXCmkgxNNLTfBF87dus1TLBFInLc%3D' -o "$TARGET"
+          echo '6523a4b63805b56ac399769d5c415d1d69b69530c53a523bc250dfe4018c7b4b  '"$TARGET" | sha256sum -c -
+
+      - name: Rebuild canonical A0014 references and requeue
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib, json
+          from PIL import Image
+
+          root=Path('.')
+          system=root/'content'/'pattern-system'
+          col=system/'collections'/'animals'
+          source_path=col/'source-designs'/'A0014-elephant-heart-balloon.png'
+          master_path=col/'reference-masters'/'A0014-elephant-heart-balloon-reference.png'
+          sheet_path=col/'reference-sheets'/'animals-reference-sheet-03.png'
+          designs_path=col/'designs.json'
+          manifest_path=col/'reference-library'/'manifest.json'
+          queue_path=system/'animals_auto'/'publish_queue.json'
+
+          palette_hex=[
+              '#000000','#404040','#8C8C8C','#FFFFFF','#F5ECDF','#FEE7DA',
+              '#E4BB8E','#CB9051','#985B3B','#653919','#1E1916','#C72B3B',
+              '#E96A67','#F78B2D','#DFB65B','#FFD600','#BDBF9F','#829879',
+              '#627650','#8EB8BC','#86B1D0','#FC9F8B','#E996B8','#FFD7E2'
+          ]
+          allowed={tuple(int(h[i:i+2],16) for i in (1,3,5)) for h in palette_hex}
+
+          src=Image.open(source_path).convert('RGBA')
+          if src.size != (100,120):
+              raise SystemExit(f'A0014 source must be 100x120, got {src.size}')
+          bbox=src.getchannel('A').getbbox()
+          if not bbox or bbox[0] < 6 or bbox[1] < 6 or bbox[2] > 94 or bbox[3] > 114:
+              raise SystemExit(f'A0014 safe margin invalid: {bbox}')
+          used={(r,g,b) for r,g,b,a in src.getdata() if a >= 128}
+          if not used.issubset(allowed):
+              raise SystemExit(f'A0014 uses out-of-palette colours: {sorted(used-allowed)}')
+          if len(used) > 24:
+              raise SystemExit('A0014 exceeds Animals palette')
+
+          # Build exact nearest-neighbour master used by the publisher validator.
+          master=src.resize((800,960),Image.Resampling.NEAREST)
+          master.save(master_path,optimize=True)
+
+          # Rebuild sheet 3 from its six canonical 100x120 sources.
+          names=[
+              'A0013-teddy-blue-bow.png',
+              'A0014-elephant-heart-balloon.png',
+              'A0015-giraffe-daisies.png',
+              'A0016-lamb-flower-crown.png',
+              'A0017-koala-eucalyptus.png',
+              'A0018-panda-bamboo.png',
+          ]
+          sheet=Image.new('RGBA',(1200,960),(0,0,0,0))
+          for i,name in enumerate(names):
+              im=Image.open(col/'source-designs'/name).convert('RGBA')
+              if im.size != (100,120):
+                  raise SystemExit(f'{name}: wrong source size {im.size}')
+              cell=im.resize((400,480),Image.Resampling.NEAREST)
+              sheet.alpha_composite(cell,((i%3)*400,(i//3)*480))
+          sheet.save(sheet_path,optimize=True)
+
+          def sha(path):
+              return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+          designs=json.loads(designs_path.read_text(encoding='utf-8'))
+          d=next(x for x in designs['designs'] if x['base_design_id']=='A0014')
+          d['artwork_status']='canonical-approved-clean-gridless'
+          d['product_status']='needs-regeneration'
+          d['artwork_revision']='2026-09-24-elephant-clean-gridless'
+          d['approved_palette_compliance']='100%'
+          designs_path.write_text(json.dumps(designs,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+          manifest=json.loads(manifest_path.read_text(encoding='utf-8'))
+          for s in manifest.get('source_reference_sheets',[]):
+              if s.get('sheet') == 3:
+                  s['sha256']=sha(sheet_path)
+          overrides=manifest.setdefault('approved_overrides',{})
+          overrides['A0014']={
+              'revision':'2026-09-24-elephant-clean-gridless',
+              'source_sha256':sha(source_path),
+              'master_sha256':sha(master_path),
+              'palette_compliance':'100%',
+              'source_grid':'100x120',
+              'safe_bbox':list(bbox),
+              'visible_colors':len(used),
+              'reason':'Approved palette-compliant elephant cleaned so decorative preview grid lines are not interpreted as stitches.'
+          }
+          manifest_path.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+          queue=json.loads(queue_path.read_text(encoding='utf-8'))
+          q=next(x for x in queue['items'] if x['base_design_id']=='A0014')
+          q['status']='pending'
+          q['attempts']=0
+          q['last_run']=None
+          q['last_error']=None
+          q.pop('published_at',None)
+          q.pop('failed_at',None)
+          queue['auto_continue']=True
+          queue['a0014_replacement_reason']='Regenerate A0014 from clean palette-compliant source without preview-grid artifacts.'
+          queue_path.write_text(json.dumps(queue,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+          print('A0014_SOURCE_SHA256',sha(source_path))
+          print('A0014_MASTER_SHA256',sha(master_path))
+          print('SHEET3_SHA256',sha(sheet_path))
+          print('A0014_BBOX',bbox,'VISIBLE_COLORS',len(used))
+          PY
+
+      - name: Commit clean A0014 source and queue state
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/pattern-system/collections/animals/source-designs/A0014-elephant-heart-balloon.png
+          git add content/pattern-system/collections/animals/reference-masters/A0014-elephant-heart-balloon-reference.png
+          git add content/pattern-system/collections/animals/reference-sheets/animals-reference-sheet-03.png
+          git add content/pattern-system/collections/animals/designs.json
+          git add content/pattern-system/collections/animals/reference-library/manifest.json
+          git add content/pattern-system/animals_auto/publish_queue.json
+          git commit -m "Fix Animals A0014 grid artifact"
+          git fetch origin feature/animals-auto-publish
+          git rebase origin/feature/animals-auto-publish
+          git push origin HEAD:feature/animals-auto-publish
+
+      - name: Regenerate and republish A0014
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api --method POST             "repos/${GITHUB_REPOSITORY}/actions/workflows/animals-auto-publish.yml/dispatches"             -f ref=feature/animals-auto-publish
