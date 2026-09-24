@@ -18,8 +18,17 @@ def lab(v):
 def nearest(h,pal):
  a=lab(h); return min(pal,key=lambda p:sum((x-y)**2 for x,y in zip(a,lab(p['hex']))))
 def validate_fix(pattern,collection,fix):
+ mode=collection.get('palette_mode','shared')
  pal=collection.get('palette') or []; by={str(p['dmc']):p for p in pal}; changes=[]
- if not pal: raise ValueError('Collection palette is empty')
+ if mode=='per-design':
+  for t in pattern.get('threads',[]):
+   d=str(t.get('dmc','')).strip(); color=str(t.get('color','')).strip()
+   if not d: raise ValueError(f'Missing DMC code for symbol {t.get("symbol")!r}')
+   if not color: raise ValueError(f'Missing HEX colour for DMC {d}')
+   hex_rgb(color)
+   t['color']='#'+color.strip().lstrip('#').upper()
+  return changes
+ if not pal: raise ValueError('Shared collection palette is empty')
  for t in pattern.get('threads',[]):
   d=str(t.get('dmc','')); p=by.get(d)
   if p:
