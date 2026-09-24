@@ -60,12 +60,12 @@
       "title_es": "Elefantito",
       "slug": "baby-elephant",
       "source_asset": "collections/baby-nursery/source-designs/I0004-baby-elephant.png",
-      "status": "pending",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36031880207",
+      "status": "failed",
+      "attempts": 2,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36032416499",
       "last_error": "Automatic publish run failed; see GitHub Actions logs.",
       "published_at": null,
-      "failed_at": "2026-09-24T17:10:11+00:00"
+      "failed_at": "2026-09-24T17:11:46+00:00"
     },
     {
       "order": 5,
