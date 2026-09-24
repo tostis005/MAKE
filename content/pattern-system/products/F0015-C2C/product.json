@@ -1,0 +1,16 @@
+{
+  "code": "F0015-C2C",
+  "base_design_id": "F0015",
+  "technique_code": "C2C",
+  "collection": "florals",
+  "title": "Succulent Pot Trio",
+  "pattern_file": "patterns/F0015-C2C/pattern.json",
+  "website": "www.drielo.com",
+  "technique": "c2c-crochet",
+  "template": "c2c-crochet.html",
+  "source_artwork": "collections/florals/source-designs/F0015-succulent-pot-trio.png",
+  "reference_artwork": "collections/florals/source-designs/F0015-succulent-pot-trio.png",
+  "page_1_asset": "collections/florals/assets/page-1-c2c-crochet.webp",
+  "render_ready": true,
+  "status": "active"
+}

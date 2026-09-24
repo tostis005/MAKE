@@ -1,0 +1,1308 @@
+{
+  "collection": "florals",
+  "branch_purpose": "pattern-generation",
+  "generated_at_utc": "2026-09-24T14:32:10+00:00",
+  "source_policy": "30 approved PNGs; 100x120; one opaque pixel equals one cross",
+  "master_palette_colors": 24,
+  "design_count": 30,
+  "pattern_count": 120,
+  "patterns_by_technique": {
+    "CS": 30,
+    "C2C": 30,
+    "TC": 30,
+    "LH": 30
+  },
+  "production_publish": false,
+  "designs": [
+    {
+      "base_design_id": "F0001",
+      "slug": "blue-daisy-pitcher",
+      "source_asset": "collections/florals/source-designs/F0001-blue-daisy-pitcher.png",
+      "techniques": {
+        "CS": {
+          "code": "F0001-CS",
+          "grid": [
+            100,
+            120
+          ],
+          "filled_cells": 6965,
+          "colors": 14
+        },
+        "C2C": {
+          "code": "F0001-C2C",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 2601,
+          "colors": 14
+        },
+        "TC": {
+          "code": "F0001-TC",
+          "grid": [
+            80,
+            96
+          ],
+          "filled_cells": 4534,
+          "colors": 14
+        },
+        "LH": {
+          "code": "F0001-LH",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 2601,
+          "colors": 14
+        }
+      }
+    },
+    {
+      "base_design_id": "F0002",
+      "slug": "pink-peony",
+      "source_asset": "collections/florals/source-designs/F0002-pink-peony.png",
+      "techniques": {
+        "CS": {
+          "code": "F0002-CS",
+          "grid": [
+            100,
+            120
+          ],
+          "filled_cells": 4998,
+          "colors": 14
+        },
+        "C2C": {
+          "code": "F0002-C2C",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1921,
+          "colors": 14
+        },
+        "TC": {
+          "code": "F0002-TC",
+          "grid": [
+            80,
+            96
+          ],
+          "filled_cells": 3271,
+          "colors": 14
+        },
+        "LH": {
+          "code": "F0002-LH",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1921,
+          "colors": 14
+        }
+      }
+    },
+    {
+      "base_design_id": "F0003",
+      "slug": "lavender-ribbon-bundle",
+      "source_asset": "collections/florals/source-designs/F0003-lavender-ribbon-bundle.png",
+      "techniques": {
+        "CS": {
+          "code": "F0003-CS",
+          "grid": [
+            100,
+            120
+          ],
+          "filled_cells": 4329,
+          "colors": 14
+        },
+        "C2C": {
+          "code": "F0003-C2C",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1732,
+          "colors": 14
+        },
+        "TC": {
+          "code": "F0003-TC",
+          "grid": [
+            80,
+            96
+          ],
+          "filled_cells": 2886,
+          "colors": 14
+        },
+        "LH": {
+          "code": "F0003-LH",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1732,
+          "colors": 14
+        }
+      }
+    },
+    {
+      "base_design_id": "F0004",
+      "slug": "sunflower-stem",
+      "source_asset": "collections/florals/source-designs/F0004-sunflower-stem.png",
+      "techniques": {
+        "CS": {
+          "code": "F0004-CS",
+          "grid": [
+            100,
+            120
+          ],
+          "filled_cells": 5429,
+          "colors": 14
+        },
+        "C2C": {
+          "code": "F0004-C2C",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 2061,
+          "colors": 14
+        },
+        "TC": {
+          "code": "F0004-TC",
+          "grid": [
+            80,
+            96
+          ],
+          "filled_cells": 3555,
+          "colors": 14
+        },
+        "LH": {
+          "code": "F0004-LH",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 2061,
+          "colors": 14
+        }
+      }
+    },
+    {
+      "base_design_id": "F0005",
+      "slug": "blue-hydrangea",
+      "source_asset": "collections/florals/source-designs/F0005-blue-hydrangea.png",
+      "techniques": {
+        "CS": {
+          "code": "F0005-CS",
+          "grid": [
+            100,
+            120
+          ],
+          "filled_cells": 4762,
+          "colors": 14
+        },
+        "C2C": {
+          "code": "F0005-C2C",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1807,
+          "colors": 14
+        },
+        "TC": {
+          "code": "F0005-TC",
+          "grid": [
+            80,
+            96
+          ],
+          "filled_cells": 3109,
+          "colors": 14
+        },
+        "LH": {
+          "code": "F0005-LH",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1807,
+          "colors": 14
+        }
+      }
+    },
+    {
+      "base_design_id": "F0006",
+      "slug": "cherry-blossom-branch",
+      "source_asset": "collections/florals/source-designs/F0006-cherry-blossom-branch.png",
+      "techniques": {
+        "CS": {
+          "code": "F0006-CS",
+          "grid": [
+            100,
+            120
+          ],
+          "filled_cells": 3521,
+          "colors": 14
+        },
+        "C2C": {
+          "code": "F0006-C2C",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1432,
+          "colors": 14
+        },
+        "TC": {
+          "code": "F0006-TC",
+          "grid": [
+            80,
+            96
+          ],
+          "filled_cells": 2388,
+          "colors": 14
+        },
+        "LH": {
+          "code": "F0006-LH",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1432,
+          "colors": 14
+        }
+      }
+    },
+    {
+      "base_design_id": "F0007",
+      "slug": "pink-floral-heart-wreath",
+      "source_asset": "collections/florals/source-designs/F0007-pink-floral-heart-wreath.png",
+      "techniques": {
+        "CS": {
+          "code": "F0007-CS",
+          "grid": [
+            100,
+            120
+          ],
+          "filled_cells": 3726,
+          "colors": 14
+        },
+        "C2C": {
+          "code": "F0007-C2C",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1532,
+          "colors": 14
+        },
+        "TC": {
+          "code": "F0007-TC",
+          "grid": [
+            80,
+            96
+          ],
+          "filled_cells": 2515,
+          "colors": 14
+        },
+        "LH": {
+          "code": "F0007-LH",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1532,
+          "colors": 14
+        }
+      }
+    },
+    {
+      "base_design_id": "F0008",
+      "slug": "daisy-mason-jar",
+      "source_asset": "collections/florals/source-designs/F0008-daisy-mason-jar.png",
+      "techniques": {
+        "CS": {
+          "code": "F0008-CS",
+          "grid": [
+            100,
+            120
+          ],
+          "filled_cells": 3598,
+          "colors": 14
+        },
+        "C2C": {
+          "code": "F0008-C2C",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1449,
+          "colors": 14
+        },
+        "TC": {
+          "code": "F0008-TC",
+          "grid": [
+            80,
+            96
+          ],
+          "filled_cells": 2422,
+          "colors": 14
+        },
+        "LH": {
+          "code": "F0008-LH",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1449,
+          "colors": 14
+        }
+      }
+    },
+    {
+      "base_design_id": "F0009",
+      "slug": "eucalyptus-ribbon-bundle",
+      "source_asset": "collections/florals/source-designs/F0009-eucalyptus-ribbon-bundle.png",
+      "techniques": {
+        "CS": {
+          "code": "F0009-CS",
+          "grid": [
+            100,
+            120
+          ],
+          "filled_cells": 4144,
+          "colors": 14
+        },
+        "C2C": {
+          "code": "F0009-C2C",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1715,
+          "colors": 14
+        },
+        "TC": {
+          "code": "F0009-TC",
+          "grid": [
+            80,
+            96
+          ],
+          "filled_cells": 2778,
+          "colors": 14
+        },
+        "LH": {
+          "code": "F0009-LH",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1715,
+          "colors": 14
+        }
+      }
+    },
+    {
+      "base_design_id": "F0010",
+      "slug": "potted-strawberry-plant",
+      "source_asset": "collections/florals/source-designs/F0010-potted-strawberry-plant.png",
+      "techniques": {
+        "CS": {
+          "code": "F0010-CS",
+          "grid": [
+            100,
+            120
+          ],
+          "filled_cells": 5573,
+          "colors": 14
+        },
+        "C2C": {
+          "code": "F0010-C2C",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 2115,
+          "colors": 14
+        },
+        "TC": {
+          "code": "F0010-TC",
+          "grid": [
+            80,
+            96
+          ],
+          "filled_cells": 3622,
+          "colors": 14
+        },
+        "LH": {
+          "code": "F0010-LH",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 2115,
+          "colors": 14
+        }
+      }
+    },
+    {
+      "base_design_id": "F0011",
+      "slug": "wrapped-wildflower-bouquet",
+      "source_asset": "collections/florals/source-designs/F0011-wrapped-wildflower-bouquet.png",
+      "techniques": {
+        "CS": {
+          "code": "F0011-CS",
+          "grid": [
+            100,
+            120
+          ],
+          "filled_cells": 4558,
+          "colors": 14
+        },
+        "C2C": {
+          "code": "F0011-C2C",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1777,
+          "colors": 14
+        },
+        "TC": {
+          "code": "F0011-TC",
+          "grid": [
+            80,
+            96
+          ],
+          "filled_cells": 2993,
+          "colors": 14
+        },
+        "LH": {
+          "code": "F0011-LH",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1777,
+          "colors": 14
+        }
+      }
+    },
+    {
+      "base_design_id": "F0012",
+      "slug": "rose-teacup",
+      "source_asset": "collections/florals/source-designs/F0012-rose-teacup.png",
+      "techniques": {
+        "CS": {
+          "code": "F0012-CS",
+          "grid": [
+            100,
+            120
+          ],
+          "filled_cells": 4862,
+          "colors": 14
+        },
+        "C2C": {
+          "code": "F0012-C2C",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1873,
+          "colors": 14
+        },
+        "TC": {
+          "code": "F0012-TC",
+          "grid": [
+            80,
+            96
+          ],
+          "filled_cells": 3204,
+          "colors": 14
+        },
+        "LH": {
+          "code": "F0012-LH",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1873,
+          "colors": 14
+        }
+      }
+    },
+    {
+      "base_design_id": "F0013",
+      "slug": "rose-ribbon-bouquet",
+      "source_asset": "collections/florals/source-designs/F0013-rose-ribbon-bouquet.png",
+      "techniques": {
+        "CS": {
+          "code": "F0013-CS",
+          "grid": [
+            100,
+            120
+          ],
+          "filled_cells": 4864,
+          "colors": 14
+        },
+        "C2C": {
+          "code": "F0013-C2C",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1881,
+          "colors": 14
+        },
+        "TC": {
+          "code": "F0013-TC",
+          "grid": [
+            80,
+            96
+          ],
+          "filled_cells": 3195,
+          "colors": 14
+        },
+        "LH": {
+          "code": "F0013-LH",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1881,
+          "colors": 14
+        }
+      }
+    },
+    {
+      "base_design_id": "F0014",
+      "slug": "tulip-bouquet",
+      "source_asset": "collections/florals/source-designs/F0014-tulip-bouquet.png",
+      "techniques": {
+        "CS": {
+          "code": "F0014-CS",
+          "grid": [
+            100,
+            120
+          ],
+          "filled_cells": 4594,
+          "colors": 14
+        },
+        "C2C": {
+          "code": "F0014-C2C",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1793,
+          "colors": 14
+        },
+        "TC": {
+          "code": "F0014-TC",
+          "grid": [
+            80,
+            96
+          ],
+          "filled_cells": 3026,
+          "colors": 14
+        },
+        "LH": {
+          "code": "F0014-LH",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1793,
+          "colors": 14
+        }
+      }
+    },
+    {
+      "base_design_id": "F0015",
+      "slug": "succulent-pot-trio",
+      "source_asset": "collections/florals/source-designs/F0015-succulent-pot-trio.png",
+      "techniques": {
+        "CS": {
+          "code": "F0015-CS",
+          "grid": [
+            100,
+            120
+          ],
+          "filled_cells": 2959,
+          "colors": 14
+        },
+        "C2C": {
+          "code": "F0015-C2C",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1161,
+          "colors": 14
+        },
+        "TC": {
+          "code": "F0015-TC",
+          "grid": [
+            80,
+            96
+          ],
+          "filled_cells": 1950,
+          "colors": 14
+        },
+        "LH": {
+          "code": "F0015-LH",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1161,
+          "colors": 14
+        }
+      }
+    },
+    {
+      "base_design_id": "F0016",
+      "slug": "daffodil-bouquet",
+      "source_asset": "collections/florals/source-designs/F0016-daffodil-bouquet.png",
+      "techniques": {
+        "CS": {
+          "code": "F0016-CS",
+          "grid": [
+            100,
+            120
+          ],
+          "filled_cells": 4507,
+          "colors": 14
+        },
+        "C2C": {
+          "code": "F0016-C2C",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1789,
+          "colors": 14
+        },
+        "TC": {
+          "code": "F0016-TC",
+          "grid": [
+            80,
+            96
+          ],
+          "filled_cells": 2979,
+          "colors": 14
+        },
+        "LH": {
+          "code": "F0016-LH",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1789,
+          "colors": 14
+        }
+      }
+    },
+    {
+      "base_design_id": "F0017",
+      "slug": "lilac-twine-bouquet",
+      "source_asset": "collections/florals/source-designs/F0017-lilac-twine-bouquet.png",
+      "techniques": {
+        "CS": {
+          "code": "F0017-CS",
+          "grid": [
+            100,
+            120
+          ],
+          "filled_cells": 4271,
+          "colors": 14
+        },
+        "C2C": {
+          "code": "F0017-C2C",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1665,
+          "colors": 14
+        },
+        "TC": {
+          "code": "F0017-TC",
+          "grid": [
+            80,
+            96
+          ],
+          "filled_cells": 2813,
+          "colors": 14
+        },
+        "LH": {
+          "code": "F0017-LH",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1665,
+          "colors": 14
+        }
+      }
+    },
+    {
+      "base_design_id": "F0018",
+      "slug": "potted-lavender",
+      "source_asset": "collections/florals/source-designs/F0018-potted-lavender.png",
+      "techniques": {
+        "CS": {
+          "code": "F0018-CS",
+          "grid": [
+            100,
+            120
+          ],
+          "filled_cells": 4407,
+          "colors": 14
+        },
+        "C2C": {
+          "code": "F0018-C2C",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1792,
+          "colors": 14
+        },
+        "TC": {
+          "code": "F0018-TC",
+          "grid": [
+            80,
+            96
+          ],
+          "filled_cells": 2965,
+          "colors": 14
+        },
+        "LH": {
+          "code": "F0018-LH",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1792,
+          "colors": 14
+        }
+      }
+    },
+    {
+      "base_design_id": "F0019",
+      "slug": "chamomile-bundle",
+      "source_asset": "collections/florals/source-designs/F0019-chamomile-bundle.png",
+      "techniques": {
+        "CS": {
+          "code": "F0019-CS",
+          "grid": [
+            100,
+            120
+          ],
+          "filled_cells": 4545,
+          "colors": 14
+        },
+        "C2C": {
+          "code": "F0019-C2C",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1818,
+          "colors": 14
+        },
+        "TC": {
+          "code": "F0019-TC",
+          "grid": [
+            80,
+            96
+          ],
+          "filled_cells": 3011,
+          "colors": 14
+        },
+        "LH": {
+          "code": "F0019-LH",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1818,
+          "colors": 14
+        }
+      }
+    },
+    {
+      "base_design_id": "F0020",
+      "slug": "floral-watering-can",
+      "source_asset": "collections/florals/source-designs/F0020-floral-watering-can.png",
+      "techniques": {
+        "CS": {
+          "code": "F0020-CS",
+          "grid": [
+            100,
+            120
+          ],
+          "filled_cells": 4308,
+          "colors": 14
+        },
+        "C2C": {
+          "code": "F0020-C2C",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1695,
+          "colors": 14
+        },
+        "TC": {
+          "code": "F0020-TC",
+          "grid": [
+            80,
+            96
+          ],
+          "filled_cells": 2862,
+          "colors": 14
+        },
+        "LH": {
+          "code": "F0020-LH",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1695,
+          "colors": 14
+        }
+      }
+    },
+    {
+      "base_design_id": "F0021",
+      "slug": "hanging-pink-flower-basket",
+      "source_asset": "collections/florals/source-designs/F0021-hanging-pink-flower-basket.png",
+      "techniques": {
+        "CS": {
+          "code": "F0021-CS",
+          "grid": [
+            100,
+            120
+          ],
+          "filled_cells": 4172,
+          "colors": 14
+        },
+        "C2C": {
+          "code": "F0021-C2C",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1676,
+          "colors": 14
+        },
+        "TC": {
+          "code": "F0021-TC",
+          "grid": [
+            80,
+            96
+          ],
+          "filled_cells": 2772,
+          "colors": 14
+        },
+        "LH": {
+          "code": "F0021-LH",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1676,
+          "colors": 14
+        }
+      }
+    },
+    {
+      "base_design_id": "F0022",
+      "slug": "bluebell-bouquet",
+      "source_asset": "collections/florals/source-designs/F0022-bluebell-bouquet.png",
+      "techniques": {
+        "CS": {
+          "code": "F0022-CS",
+          "grid": [
+            100,
+            120
+          ],
+          "filled_cells": 3928,
+          "colors": 14
+        },
+        "C2C": {
+          "code": "F0022-C2C",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1668,
+          "colors": 14
+        },
+        "TC": {
+          "code": "F0022-TC",
+          "grid": [
+            80,
+            96
+          ],
+          "filled_cells": 2660,
+          "colors": 14
+        },
+        "LH": {
+          "code": "F0022-LH",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1668,
+          "colors": 14
+        }
+      }
+    },
+    {
+      "base_design_id": "F0023",
+      "slug": "magnolia-branch",
+      "source_asset": "collections/florals/source-designs/F0023-magnolia-branch.png",
+      "techniques": {
+        "CS": {
+          "code": "F0023-CS",
+          "grid": [
+            100,
+            120
+          ],
+          "filled_cells": 4960,
+          "colors": 14
+        },
+        "C2C": {
+          "code": "F0023-C2C",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1934,
+          "colors": 14
+        },
+        "TC": {
+          "code": "F0023-TC",
+          "grid": [
+            80,
+            96
+          ],
+          "filled_cells": 3263,
+          "colors": 14
+        },
+        "LH": {
+          "code": "F0023-LH",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1934,
+          "colors": 14
+        }
+      }
+    },
+    {
+      "base_design_id": "F0024",
+      "slug": "enamel-herb-pot",
+      "source_asset": "collections/florals/source-designs/F0024-enamel-herb-pot.png",
+      "techniques": {
+        "CS": {
+          "code": "F0024-CS",
+          "grid": [
+            100,
+            120
+          ],
+          "filled_cells": 5455,
+          "colors": 14
+        },
+        "C2C": {
+          "code": "F0024-C2C",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 2138,
+          "colors": 14
+        },
+        "TC": {
+          "code": "F0024-TC",
+          "grid": [
+            80,
+            96
+          ],
+          "filled_cells": 3606,
+          "colors": 14
+        },
+        "LH": {
+          "code": "F0024-LH",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 2138,
+          "colors": 14
+        }
+      }
+    },
+    {
+      "base_design_id": "F0025",
+      "slug": "daisy-wreath",
+      "source_asset": "collections/florals/source-designs/F0025-daisy-wreath.png",
+      "techniques": {
+        "CS": {
+          "code": "F0025-CS",
+          "grid": [
+            100,
+            120
+          ],
+          "filled_cells": 3613,
+          "colors": 14
+        },
+        "C2C": {
+          "code": "F0025-C2C",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1487,
+          "colors": 14
+        },
+        "TC": {
+          "code": "F0025-TC",
+          "grid": [
+            80,
+            96
+          ],
+          "filled_cells": 2418,
+          "colors": 14
+        },
+        "LH": {
+          "code": "F0025-LH",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1487,
+          "colors": 14
+        }
+      }
+    },
+    {
+      "base_design_id": "F0026",
+      "slug": "spring-flower-basket",
+      "source_asset": "collections/florals/source-designs/F0026-spring-flower-basket.png",
+      "techniques": {
+        "CS": {
+          "code": "F0026-CS",
+          "grid": [
+            100,
+            120
+          ],
+          "filled_cells": 4507,
+          "colors": 14
+        },
+        "C2C": {
+          "code": "F0026-C2C",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1745,
+          "colors": 14
+        },
+        "TC": {
+          "code": "F0026-TC",
+          "grid": [
+            80,
+            96
+          ],
+          "filled_cells": 2960,
+          "colors": 14
+        },
+        "LH": {
+          "code": "F0026-LH",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1745,
+          "colors": 14
+        }
+      }
+    },
+    {
+      "base_design_id": "F0027",
+      "slug": "babys-breath-jar",
+      "source_asset": "collections/florals/source-designs/F0027-babys-breath-jar.png",
+      "techniques": {
+        "CS": {
+          "code": "F0027-CS",
+          "grid": [
+            100,
+            120
+          ],
+          "filled_cells": 3615,
+          "colors": 14
+        },
+        "C2C": {
+          "code": "F0027-C2C",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1433,
+          "colors": 14
+        },
+        "TC": {
+          "code": "F0027-TC",
+          "grid": [
+            80,
+            96
+          ],
+          "filled_cells": 2392,
+          "colors": 14
+        },
+        "LH": {
+          "code": "F0027-LH",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1433,
+          "colors": 14
+        }
+      }
+    },
+    {
+      "base_design_id": "F0028",
+      "slug": "carnation-bouquet",
+      "source_asset": "collections/florals/source-designs/F0028-carnation-bouquet.png",
+      "techniques": {
+        "CS": {
+          "code": "F0028-CS",
+          "grid": [
+            100,
+            120
+          ],
+          "filled_cells": 4387,
+          "colors": 14
+        },
+        "C2C": {
+          "code": "F0028-C2C",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1753,
+          "colors": 14
+        },
+        "TC": {
+          "code": "F0028-TC",
+          "grid": [
+            80,
+            96
+          ],
+          "filled_cells": 2938,
+          "colors": 14
+        },
+        "LH": {
+          "code": "F0028-LH",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1753,
+          "colors": 14
+        }
+      }
+    },
+    {
+      "base_design_id": "F0029",
+      "slug": "anemone-bouquet",
+      "source_asset": "collections/florals/source-designs/F0029-anemone-bouquet.png",
+      "techniques": {
+        "CS": {
+          "code": "F0029-CS",
+          "grid": [
+            100,
+            120
+          ],
+          "filled_cells": 4093,
+          "colors": 14
+        },
+        "C2C": {
+          "code": "F0029-C2C",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1642,
+          "colors": 14
+        },
+        "TC": {
+          "code": "F0029-TC",
+          "grid": [
+            80,
+            96
+          ],
+          "filled_cells": 2725,
+          "colors": 14
+        },
+        "LH": {
+          "code": "F0029-LH",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1642,
+          "colors": 14
+        }
+      }
+    },
+    {
+      "base_design_id": "F0030",
+      "slug": "forget-me-not-bouquet",
+      "source_asset": "collections/florals/source-designs/F0030-forget-me-not-bouquet.png",
+      "techniques": {
+        "CS": {
+          "code": "F0030-CS",
+          "grid": [
+            100,
+            120
+          ],
+          "filled_cells": 3603,
+          "colors": 14
+        },
+        "C2C": {
+          "code": "F0030-C2C",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1496,
+          "colors": 14
+        },
+        "TC": {
+          "code": "F0030-TC",
+          "grid": [
+            80,
+            96
+          ],
+          "filled_cells": 2443,
+          "colors": 14
+        },
+        "LH": {
+          "code": "F0030-LH",
+          "grid": [
+            60,
+            72
+          ],
+          "filled_cells": 1496,
+          "colors": 14
+        }
+      }
+    }
+  ]
+}

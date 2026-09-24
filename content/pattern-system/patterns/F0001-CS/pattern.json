@@ -7,6 +7,7 @@
   "status": "ready",
   "source_asset": "collections/florals/source-designs/F0001-blue-daisy-pitcher.png",
   "reference_asset": "collections/florals/source-designs/F0001-blue-daisy-pitcher.png",
+  "source_policy": "approved-100x120-one-pixel-one-cross",
   "stitch_width": 100,
   "stitch_height": 120,
   "total_stitches": 6965,
@@ -12357,6 +12358,5 @@
   },
   "external_white_cleanup": {
     "enabled": false
-  },
-  "source_policy": "manual-redesign-from-high-resolution-approved-reference"
+  }
 }

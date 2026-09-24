@@ -22,7 +22,8 @@
         "cell": "r1c1"
       },
       "reference_asset": "collections/florals/source-designs/F0001-blue-daisy-pitcher.png",
-      "design_note": "Approved high-quality 100x120 stitch source based on the regenerated Blue Daisy Pitcher. This source is authoritative for all four technique variants; do not rebuild it from compact reference sheets."
+      "design_note": "Approved high-quality 100x120 stitch source based on the regenerated Blue Daisy Pitcher. This source is authoritative for all four technique variants; do not rebuild it from compact reference sheets.",
+      "pattern_source_policy": "100x120 one-pixel-one-cross approved preview"
     },
     {
       "order": 2,
@@ -36,12 +37,14 @@
         "F0002-TC",
         "F0002-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "approved-pattern-source-ready",
+      "source_asset": "collections/florals/source-designs/F0002-pink-peony.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-01.png",
         "cell": "r1c2"
-      }
+      },
+      "reference_asset": "collections/florals/source-designs/F0002-pink-peony.png",
+      "pattern_source_policy": "100x120 one-pixel-one-cross approved preview"
     },
     {
       "order": 3,
@@ -55,12 +58,14 @@
         "F0003-TC",
         "F0003-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "approved-pattern-source-ready",
+      "source_asset": "collections/florals/source-designs/F0003-lavender-ribbon-bundle.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-01.png",
         "cell": "r1c3"
-      }
+      },
+      "reference_asset": "collections/florals/source-designs/F0003-lavender-ribbon-bundle.png",
+      "pattern_source_policy": "100x120 one-pixel-one-cross approved preview"
     },
     {
       "order": 4,
@@ -74,12 +79,14 @@
         "F0004-TC",
         "F0004-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "approved-pattern-source-ready",
+      "source_asset": "collections/florals/source-designs/F0004-sunflower-stem.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-01.png",
         "cell": "r2c1"
-      }
+      },
+      "reference_asset": "collections/florals/source-designs/F0004-sunflower-stem.png",
+      "pattern_source_policy": "100x120 one-pixel-one-cross approved preview"
     },
     {
       "order": 5,
@@ -93,12 +100,14 @@
         "F0005-TC",
         "F0005-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "approved-pattern-source-ready",
+      "source_asset": "collections/florals/source-designs/F0005-blue-hydrangea.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-01.png",
         "cell": "r2c2"
-      }
+      },
+      "reference_asset": "collections/florals/source-designs/F0005-blue-hydrangea.png",
+      "pattern_source_policy": "100x120 one-pixel-one-cross approved preview"
     },
     {
       "order": 6,
@@ -112,12 +121,14 @@
         "F0006-TC",
         "F0006-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "approved-pattern-source-ready",
+      "source_asset": "collections/florals/source-designs/F0006-cherry-blossom-branch.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-01.png",
         "cell": "r2c3"
-      }
+      },
+      "reference_asset": "collections/florals/source-designs/F0006-cherry-blossom-branch.png",
+      "pattern_source_policy": "100x120 one-pixel-one-cross approved preview"
     },
     {
       "order": 7,
@@ -131,12 +142,14 @@
         "F0007-TC",
         "F0007-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "approved-pattern-source-ready",
+      "source_asset": "collections/florals/source-designs/F0007-pink-floral-heart-wreath.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-02.png",
         "cell": "r1c1"
-      }
+      },
+      "reference_asset": "collections/florals/source-designs/F0007-pink-floral-heart-wreath.png",
+      "pattern_source_policy": "100x120 one-pixel-one-cross approved preview"
     },
     {
       "order": 8,
@@ -150,12 +163,14 @@
         "F0008-TC",
         "F0008-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "approved-pattern-source-ready",
+      "source_asset": "collections/florals/source-designs/F0008-daisy-mason-jar.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-02.png",
         "cell": "r1c2"
-      }
+      },
+      "reference_asset": "collections/florals/source-designs/F0008-daisy-mason-jar.png",
+      "pattern_source_policy": "100x120 one-pixel-one-cross approved preview"
     },
     {
       "order": 9,
@@ -169,12 +184,14 @@
         "F0009-TC",
         "F0009-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "approved-pattern-source-ready",
+      "source_asset": "collections/florals/source-designs/F0009-eucalyptus-ribbon-bundle.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-02.png",
         "cell": "r1c3"
-      }
+      },
+      "reference_asset": "collections/florals/source-designs/F0009-eucalyptus-ribbon-bundle.png",
+      "pattern_source_policy": "100x120 one-pixel-one-cross approved preview"
     },
     {
       "order": 10,
@@ -188,12 +205,14 @@
         "F0010-TC",
         "F0010-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "approved-pattern-source-ready",
+      "source_asset": "collections/florals/source-designs/F0010-potted-strawberry-plant.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-02.png",
         "cell": "r2c1"
-      }
+      },
+      "reference_asset": "collections/florals/source-designs/F0010-potted-strawberry-plant.png",
+      "pattern_source_policy": "100x120 one-pixel-one-cross approved preview"
     },
     {
       "order": 11,
@@ -207,12 +226,14 @@
         "F0011-TC",
         "F0011-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "approved-pattern-source-ready",
+      "source_asset": "collections/florals/source-designs/F0011-wrapped-wildflower-bouquet.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-02.png",
         "cell": "r2c2"
-      }
+      },
+      "reference_asset": "collections/florals/source-designs/F0011-wrapped-wildflower-bouquet.png",
+      "pattern_source_policy": "100x120 one-pixel-one-cross approved preview"
     },
     {
       "order": 12,
@@ -226,12 +247,14 @@
         "F0012-TC",
         "F0012-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "approved-pattern-source-ready",
+      "source_asset": "collections/florals/source-designs/F0012-rose-teacup.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-02.png",
         "cell": "r2c3"
-      }
+      },
+      "reference_asset": "collections/florals/source-designs/F0012-rose-teacup.png",
+      "pattern_source_policy": "100x120 one-pixel-one-cross approved preview"
     },
     {
       "order": 13,
@@ -245,12 +268,14 @@
         "F0013-TC",
         "F0013-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "approved-pattern-source-ready",
+      "source_asset": "collections/florals/source-designs/F0013-rose-ribbon-bouquet.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-03.png",
         "cell": "r1c1"
-      }
+      },
+      "reference_asset": "collections/florals/source-designs/F0013-rose-ribbon-bouquet.png",
+      "pattern_source_policy": "100x120 one-pixel-one-cross approved preview"
     },
     {
       "order": 14,
@@ -264,12 +289,14 @@
         "F0014-TC",
         "F0014-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "approved-pattern-source-ready",
+      "source_asset": "collections/florals/source-designs/F0014-tulip-bouquet.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-03.png",
         "cell": "r1c2"
-      }
+      },
+      "reference_asset": "collections/florals/source-designs/F0014-tulip-bouquet.png",
+      "pattern_source_policy": "100x120 one-pixel-one-cross approved preview"
     },
     {
       "order": 15,
@@ -283,12 +310,14 @@
         "F0015-TC",
         "F0015-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "approved-pattern-source-ready",
+      "source_asset": "collections/florals/source-designs/F0015-succulent-pot-trio.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-03.png",
         "cell": "r1c3"
-      }
+      },
+      "reference_asset": "collections/florals/source-designs/F0015-succulent-pot-trio.png",
+      "pattern_source_policy": "100x120 one-pixel-one-cross approved preview"
     },
     {
       "order": 16,
@@ -302,12 +331,14 @@
         "F0016-TC",
         "F0016-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "approved-pattern-source-ready",
+      "source_asset": "collections/florals/source-designs/F0016-daffodil-bouquet.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-03.png",
         "cell": "r2c1"
-      }
+      },
+      "reference_asset": "collections/florals/source-designs/F0016-daffodil-bouquet.png",
+      "pattern_source_policy": "100x120 one-pixel-one-cross approved preview"
     },
     {
       "order": 17,
@@ -321,12 +352,14 @@
         "F0017-TC",
         "F0017-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "approved-pattern-source-ready",
+      "source_asset": "collections/florals/source-designs/F0017-lilac-twine-bouquet.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-03.png",
         "cell": "r2c2"
-      }
+      },
+      "reference_asset": "collections/florals/source-designs/F0017-lilac-twine-bouquet.png",
+      "pattern_source_policy": "100x120 one-pixel-one-cross approved preview"
     },
     {
       "order": 18,
@@ -340,12 +373,14 @@
         "F0018-TC",
         "F0018-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "approved-pattern-source-ready",
+      "source_asset": "collections/florals/source-designs/F0018-potted-lavender.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-03.png",
         "cell": "r2c3"
-      }
+      },
+      "reference_asset": "collections/florals/source-designs/F0018-potted-lavender.png",
+      "pattern_source_policy": "100x120 one-pixel-one-cross approved preview"
     },
     {
       "order": 19,
@@ -359,12 +394,14 @@
         "F0019-TC",
         "F0019-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "approved-pattern-source-ready",
+      "source_asset": "collections/florals/source-designs/F0019-chamomile-bundle.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-04.png",
         "cell": "r1c1"
-      }
+      },
+      "reference_asset": "collections/florals/source-designs/F0019-chamomile-bundle.png",
+      "pattern_source_policy": "100x120 one-pixel-one-cross approved preview"
     },
     {
       "order": 20,
@@ -378,12 +415,14 @@
         "F0020-TC",
         "F0020-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "approved-pattern-source-ready",
+      "source_asset": "collections/florals/source-designs/F0020-floral-watering-can.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-04.png",
         "cell": "r1c2"
-      }
+      },
+      "reference_asset": "collections/florals/source-designs/F0020-floral-watering-can.png",
+      "pattern_source_policy": "100x120 one-pixel-one-cross approved preview"
     },
     {
       "order": 21,
@@ -397,12 +436,14 @@
         "F0021-TC",
         "F0021-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "approved-pattern-source-ready",
+      "source_asset": "collections/florals/source-designs/F0021-hanging-pink-flower-basket.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-04.png",
         "cell": "r1c3"
-      }
+      },
+      "reference_asset": "collections/florals/source-designs/F0021-hanging-pink-flower-basket.png",
+      "pattern_source_policy": "100x120 one-pixel-one-cross approved preview"
     },
     {
       "order": 22,
@@ -416,12 +457,14 @@
         "F0022-TC",
         "F0022-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "approved-pattern-source-ready",
+      "source_asset": "collections/florals/source-designs/F0022-bluebell-bouquet.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-04.png",
         "cell": "r2c1"
-      }
+      },
+      "reference_asset": "collections/florals/source-designs/F0022-bluebell-bouquet.png",
+      "pattern_source_policy": "100x120 one-pixel-one-cross approved preview"
     },
     {
       "order": 23,
@@ -435,12 +478,14 @@
         "F0023-TC",
         "F0023-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "approved-pattern-source-ready",
+      "source_asset": "collections/florals/source-designs/F0023-magnolia-branch.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-04.png",
         "cell": "r2c2"
-      }
+      },
+      "reference_asset": "collections/florals/source-designs/F0023-magnolia-branch.png",
+      "pattern_source_policy": "100x120 one-pixel-one-cross approved preview"
     },
     {
       "order": 24,
@@ -454,12 +499,14 @@
         "F0024-TC",
         "F0024-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "approved-pattern-source-ready",
+      "source_asset": "collections/florals/source-designs/F0024-enamel-herb-pot.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-04.png",
         "cell": "r2c3"
-      }
+      },
+      "reference_asset": "collections/florals/source-designs/F0024-enamel-herb-pot.png",
+      "pattern_source_policy": "100x120 one-pixel-one-cross approved preview"
     },
     {
       "order": 25,
@@ -473,12 +520,14 @@
         "F0025-TC",
         "F0025-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "approved-pattern-source-ready",
+      "source_asset": "collections/florals/source-designs/F0025-daisy-wreath.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-05.png",
         "cell": "r1c1"
-      }
+      },
+      "reference_asset": "collections/florals/source-designs/F0025-daisy-wreath.png",
+      "pattern_source_policy": "100x120 one-pixel-one-cross approved preview"
     },
     {
       "order": 26,
@@ -492,12 +541,14 @@
         "F0026-TC",
         "F0026-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "approved-pattern-source-ready",
+      "source_asset": "collections/florals/source-designs/F0026-spring-flower-basket.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-05.png",
         "cell": "r1c2"
-      }
+      },
+      "reference_asset": "collections/florals/source-designs/F0026-spring-flower-basket.png",
+      "pattern_source_policy": "100x120 one-pixel-one-cross approved preview"
     },
     {
       "order": 27,
@@ -511,12 +562,14 @@
         "F0027-TC",
         "F0027-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "approved-pattern-source-ready",
+      "source_asset": "collections/florals/source-designs/F0027-babys-breath-jar.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-05.png",
         "cell": "r1c3"
-      }
+      },
+      "reference_asset": "collections/florals/source-designs/F0027-babys-breath-jar.png",
+      "pattern_source_policy": "100x120 one-pixel-one-cross approved preview"
     },
     {
       "order": 28,
@@ -530,12 +583,14 @@
         "F0028-TC",
         "F0028-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "approved-pattern-source-ready",
+      "source_asset": "collections/florals/source-designs/F0028-carnation-bouquet.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-05.png",
         "cell": "r2c1"
-      }
+      },
+      "reference_asset": "collections/florals/source-designs/F0028-carnation-bouquet.png",
+      "pattern_source_policy": "100x120 one-pixel-one-cross approved preview"
     },
     {
       "order": 29,
@@ -549,12 +604,14 @@
         "F0029-TC",
         "F0029-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "approved-pattern-source-ready",
+      "source_asset": "collections/florals/source-designs/F0029-anemone-bouquet.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-05.png",
         "cell": "r2c2"
-      }
+      },
+      "reference_asset": "collections/florals/source-designs/F0029-anemone-bouquet.png",
+      "pattern_source_policy": "100x120 one-pixel-one-cross approved preview"
     },
     {
       "order": 30,
@@ -568,12 +625,14 @@
         "F0030-TC",
         "F0030-LH"
       ],
-      "artwork_status": "approved-reference-awaiting-canonical-extraction",
-      "source_asset": null,
+      "artwork_status": "approved-pattern-source-ready",
+      "source_asset": "collections/florals/source-designs/F0030-forget-me-not-bouquet.png",
       "canonical_reference": {
         "sheet": "reference-sheets/florals-sheet-05.png",
         "cell": "r2c3"
-      }
+      },
+      "reference_asset": "collections/florals/source-designs/F0030-forget-me-not-bouquet.png",
+      "pattern_source_policy": "100x120 one-pixel-one-cross approved preview"
     }
   ]
 }

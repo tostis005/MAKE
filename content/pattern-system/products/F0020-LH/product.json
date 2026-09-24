@@ -1,0 +1,16 @@
+{
+  "code": "F0020-LH",
+  "base_design_id": "F0020",
+  "technique_code": "LH",
+  "collection": "florals",
+  "title": "Floral Watering Can",
+  "pattern_file": "patterns/F0020-LH/pattern.json",
+  "website": "www.drielo.com",
+  "technique": "latch-hook",
+  "template": "rug.html",
+  "source_artwork": "collections/florals/source-designs/F0020-floral-watering-can.png",
+  "reference_artwork": "collections/florals/source-designs/F0020-floral-watering-can.png",
+  "page_1_asset": "collections/florals/assets/page-1-latch-hook.webp",
+  "render_ready": true,
+  "status": "active"
+}

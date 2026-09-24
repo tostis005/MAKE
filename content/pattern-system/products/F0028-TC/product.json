@@ -1,0 +1,16 @@
+{
+  "code": "F0028-TC",
+  "base_design_id": "F0028",
+  "technique_code": "TC",
+  "collection": "florals",
+  "title": "Carnation Bouquet",
+  "pattern_file": "patterns/F0028-TC/pattern.json",
+  "website": "www.drielo.com",
+  "technique": "tapestry-crochet",
+  "template": "crochet.html",
+  "source_artwork": "collections/florals/source-designs/F0028-carnation-bouquet.png",
+  "reference_artwork": "collections/florals/source-designs/F0028-carnation-bouquet.png",
+  "page_1_asset": "collections/florals/assets/page-1-tapestry-crochet.webp",
+  "render_ready": true,
+  "status": "active"
+}

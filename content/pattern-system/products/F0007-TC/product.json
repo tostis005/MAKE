@@ -1,0 +1,16 @@
+{
+  "code": "F0007-TC",
+  "base_design_id": "F0007",
+  "technique_code": "TC",
+  "collection": "florals",
+  "title": "Pink Floral Heart Wreath",
+  "pattern_file": "patterns/F0007-TC/pattern.json",
+  "website": "www.drielo.com",
+  "technique": "tapestry-crochet",
+  "template": "crochet.html",
+  "source_artwork": "collections/florals/source-designs/F0007-pink-floral-heart-wreath.png",
+  "reference_artwork": "collections/florals/source-designs/F0007-pink-floral-heart-wreath.png",
+  "page_1_asset": "collections/florals/assets/page-1-tapestry-crochet.webp",
+  "render_ready": true,
+  "status": "active"
+}

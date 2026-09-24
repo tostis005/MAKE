@@ -1,0 +1,16 @@
+{
+  "code": "F0025-CS",
+  "base_design_id": "F0025",
+  "technique_code": "CS",
+  "collection": "florals",
+  "title": "Daisy Wreath",
+  "pattern_file": "patterns/F0025-CS/pattern.json",
+  "website": "www.drielo.com",
+  "technique": "cross-stitch",
+  "template": "cross-stitch.html",
+  "source_artwork": "collections/florals/source-designs/F0025-daisy-wreath.png",
+  "reference_artwork": "collections/florals/source-designs/F0025-daisy-wreath.png",
+  "page_1_asset": "collections/florals/assets/page-1-cross-stitch.webp",
+  "render_ready": true,
+  "status": "active"
+}

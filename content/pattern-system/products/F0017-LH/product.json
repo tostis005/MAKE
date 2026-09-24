@@ -1,0 +1,16 @@
+{
+  "code": "F0017-LH",
+  "base_design_id": "F0017",
+  "technique_code": "LH",
+  "collection": "florals",
+  "title": "Lilac Twine Bouquet",
+  "pattern_file": "patterns/F0017-LH/pattern.json",
+  "website": "www.drielo.com",
+  "technique": "latch-hook",
+  "template": "rug.html",
+  "source_artwork": "collections/florals/source-designs/F0017-lilac-twine-bouquet.png",
+  "reference_artwork": "collections/florals/source-designs/F0017-lilac-twine-bouquet.png",
+  "page_1_asset": "collections/florals/assets/page-1-latch-hook.webp",
+  "render_ready": true,
+  "status": "active"
+}

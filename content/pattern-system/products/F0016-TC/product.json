@@ -1,0 +1,16 @@
+{
+  "code": "F0016-TC",
+  "base_design_id": "F0016",
+  "technique_code": "TC",
+  "collection": "florals",
+  "title": "Daffodil Bouquet",
+  "pattern_file": "patterns/F0016-TC/pattern.json",
+  "website": "www.drielo.com",
+  "technique": "tapestry-crochet",
+  "template": "crochet.html",
+  "source_artwork": "collections/florals/source-designs/F0016-daffodil-bouquet.png",
+  "reference_artwork": "collections/florals/source-designs/F0016-daffodil-bouquet.png",
+  "page_1_asset": "collections/florals/assets/page-1-tapestry-crochet.webp",
+  "render_ready": true,
+  "status": "active"
+}

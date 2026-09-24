@@ -1,0 +1,16 @@
+{
+  "code": "F0018-C2C",
+  "base_design_id": "F0018",
+  "technique_code": "C2C",
+  "collection": "florals",
+  "title": "Potted Lavender",
+  "pattern_file": "patterns/F0018-C2C/pattern.json",
+  "website": "www.drielo.com",
+  "technique": "c2c-crochet",
+  "template": "c2c-crochet.html",
+  "source_artwork": "collections/florals/source-designs/F0018-potted-lavender.png",
+  "reference_artwork": "collections/florals/source-designs/F0018-potted-lavender.png",
+  "page_1_asset": "collections/florals/assets/page-1-c2c-crochet.webp",
+  "render_ready": true,
+  "status": "active"
+}

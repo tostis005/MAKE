@@ -1,0 +1,16 @@
+{
+  "code": "F0013-LH",
+  "base_design_id": "F0013",
+  "technique_code": "LH",
+  "collection": "florals",
+  "title": "Rose Ribbon Bouquet",
+  "pattern_file": "patterns/F0013-LH/pattern.json",
+  "website": "www.drielo.com",
+  "technique": "latch-hook",
+  "template": "rug.html",
+  "source_artwork": "collections/florals/source-designs/F0013-rose-ribbon-bouquet.png",
+  "reference_artwork": "collections/florals/source-designs/F0013-rose-ribbon-bouquet.png",
+  "page_1_asset": "collections/florals/assets/page-1-latch-hook.webp",
+  "render_ready": true,
+  "status": "active"
+}

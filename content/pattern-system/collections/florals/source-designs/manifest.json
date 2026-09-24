@@ -1,11 +1,12 @@
 {
   "collection": "florals",
-  "source": "five approved transparent floral reference sheets",
+  "source": "approved 100x120 pixel/cross previews",
   "palette": "Florals collection 24-color palette only",
   "transparent_background": true,
   "master_grid": {
     "width": 100,
-    "height": 120
+    "height": 120,
+    "unit": "cross-stitch cells"
   },
   "techniques": {
     "CS": {
@@ -25,7 +26,7 @@
       "height": 72
     }
   },
-  "status": "f0001-approved-other-designs-awaiting-high-quality-sources",
+  "status": "all-30-approved-pattern-sources-ready",
   "designs": [
     {
       "base_design_id": "F0001",
@@ -38,234 +39,234 @@
     {
       "base_design_id": "F0002",
       "slug": "pink-peony",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0002-pink-peony.png",
       "reference_sheet": "reference-sheets/florals-sheet-01.png",
       "reference_cell": "r1c2",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "approved-pattern-source-ready"
     },
     {
       "base_design_id": "F0003",
       "slug": "lavender-ribbon-bundle",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0003-lavender-ribbon-bundle.png",
       "reference_sheet": "reference-sheets/florals-sheet-01.png",
       "reference_cell": "r1c3",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "approved-pattern-source-ready"
     },
     {
       "base_design_id": "F0004",
       "slug": "sunflower-stem",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0004-sunflower-stem.png",
       "reference_sheet": "reference-sheets/florals-sheet-01.png",
       "reference_cell": "r2c1",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "approved-pattern-source-ready"
     },
     {
       "base_design_id": "F0005",
       "slug": "blue-hydrangea",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0005-blue-hydrangea.png",
       "reference_sheet": "reference-sheets/florals-sheet-01.png",
       "reference_cell": "r2c2",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "approved-pattern-source-ready"
     },
     {
       "base_design_id": "F0006",
       "slug": "cherry-blossom-branch",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0006-cherry-blossom-branch.png",
       "reference_sheet": "reference-sheets/florals-sheet-01.png",
       "reference_cell": "r2c3",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "approved-pattern-source-ready"
     },
     {
       "base_design_id": "F0007",
       "slug": "pink-floral-heart-wreath",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0007-pink-floral-heart-wreath.png",
       "reference_sheet": "reference-sheets/florals-sheet-02.png",
       "reference_cell": "r1c1",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "approved-pattern-source-ready"
     },
     {
       "base_design_id": "F0008",
       "slug": "daisy-mason-jar",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0008-daisy-mason-jar.png",
       "reference_sheet": "reference-sheets/florals-sheet-02.png",
       "reference_cell": "r1c2",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "approved-pattern-source-ready"
     },
     {
       "base_design_id": "F0009",
       "slug": "eucalyptus-ribbon-bundle",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0009-eucalyptus-ribbon-bundle.png",
       "reference_sheet": "reference-sheets/florals-sheet-02.png",
       "reference_cell": "r1c3",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "approved-pattern-source-ready"
     },
     {
       "base_design_id": "F0010",
       "slug": "potted-strawberry-plant",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0010-potted-strawberry-plant.png",
       "reference_sheet": "reference-sheets/florals-sheet-02.png",
       "reference_cell": "r2c1",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "approved-pattern-source-ready"
     },
     {
       "base_design_id": "F0011",
       "slug": "wrapped-wildflower-bouquet",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0011-wrapped-wildflower-bouquet.png",
       "reference_sheet": "reference-sheets/florals-sheet-02.png",
       "reference_cell": "r2c2",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "approved-pattern-source-ready"
     },
     {
       "base_design_id": "F0012",
       "slug": "rose-teacup",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0012-rose-teacup.png",
       "reference_sheet": "reference-sheets/florals-sheet-02.png",
       "reference_cell": "r2c3",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "approved-pattern-source-ready"
     },
     {
       "base_design_id": "F0013",
       "slug": "rose-ribbon-bouquet",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0013-rose-ribbon-bouquet.png",
       "reference_sheet": "reference-sheets/florals-sheet-03.png",
       "reference_cell": "r1c1",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "approved-pattern-source-ready"
     },
     {
       "base_design_id": "F0014",
       "slug": "tulip-bouquet",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0014-tulip-bouquet.png",
       "reference_sheet": "reference-sheets/florals-sheet-03.png",
       "reference_cell": "r1c2",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "approved-pattern-source-ready"
     },
     {
       "base_design_id": "F0015",
       "slug": "succulent-pot-trio",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0015-succulent-pot-trio.png",
       "reference_sheet": "reference-sheets/florals-sheet-03.png",
       "reference_cell": "r1c3",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "approved-pattern-source-ready"
     },
     {
       "base_design_id": "F0016",
       "slug": "daffodil-bouquet",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0016-daffodil-bouquet.png",
       "reference_sheet": "reference-sheets/florals-sheet-03.png",
       "reference_cell": "r2c1",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "approved-pattern-source-ready"
     },
     {
       "base_design_id": "F0017",
       "slug": "lilac-twine-bouquet",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0017-lilac-twine-bouquet.png",
       "reference_sheet": "reference-sheets/florals-sheet-03.png",
       "reference_cell": "r2c2",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "approved-pattern-source-ready"
     },
     {
       "base_design_id": "F0018",
       "slug": "potted-lavender",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0018-potted-lavender.png",
       "reference_sheet": "reference-sheets/florals-sheet-03.png",
       "reference_cell": "r2c3",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "approved-pattern-source-ready"
     },
     {
       "base_design_id": "F0019",
       "slug": "chamomile-bundle",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0019-chamomile-bundle.png",
       "reference_sheet": "reference-sheets/florals-sheet-04.png",
       "reference_cell": "r1c1",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "approved-pattern-source-ready"
     },
     {
       "base_design_id": "F0020",
       "slug": "floral-watering-can",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0020-floral-watering-can.png",
       "reference_sheet": "reference-sheets/florals-sheet-04.png",
       "reference_cell": "r1c2",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "approved-pattern-source-ready"
     },
     {
       "base_design_id": "F0021",
       "slug": "hanging-pink-flower-basket",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0021-hanging-pink-flower-basket.png",
       "reference_sheet": "reference-sheets/florals-sheet-04.png",
       "reference_cell": "r1c3",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "approved-pattern-source-ready"
     },
     {
       "base_design_id": "F0022",
       "slug": "bluebell-bouquet",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0022-bluebell-bouquet.png",
       "reference_sheet": "reference-sheets/florals-sheet-04.png",
       "reference_cell": "r2c1",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "approved-pattern-source-ready"
     },
     {
       "base_design_id": "F0023",
       "slug": "magnolia-branch",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0023-magnolia-branch.png",
       "reference_sheet": "reference-sheets/florals-sheet-04.png",
       "reference_cell": "r2c2",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "approved-pattern-source-ready"
     },
     {
       "base_design_id": "F0024",
       "slug": "enamel-herb-pot",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0024-enamel-herb-pot.png",
       "reference_sheet": "reference-sheets/florals-sheet-04.png",
       "reference_cell": "r2c3",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "approved-pattern-source-ready"
     },
     {
       "base_design_id": "F0025",
       "slug": "daisy-wreath",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0025-daisy-wreath.png",
       "reference_sheet": "reference-sheets/florals-sheet-05.png",
       "reference_cell": "r1c1",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "approved-pattern-source-ready"
     },
     {
       "base_design_id": "F0026",
       "slug": "spring-flower-basket",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0026-spring-flower-basket.png",
       "reference_sheet": "reference-sheets/florals-sheet-05.png",
       "reference_cell": "r1c2",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "approved-pattern-source-ready"
     },
     {
       "base_design_id": "F0027",
       "slug": "babys-breath-jar",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0027-babys-breath-jar.png",
       "reference_sheet": "reference-sheets/florals-sheet-05.png",
       "reference_cell": "r1c3",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "approved-pattern-source-ready"
     },
     {
       "base_design_id": "F0028",
       "slug": "carnation-bouquet",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0028-carnation-bouquet.png",
       "reference_sheet": "reference-sheets/florals-sheet-05.png",
       "reference_cell": "r2c1",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "approved-pattern-source-ready"
     },
     {
       "base_design_id": "F0029",
       "slug": "anemone-bouquet",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0029-anemone-bouquet.png",
       "reference_sheet": "reference-sheets/florals-sheet-05.png",
       "reference_cell": "r2c2",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "approved-pattern-source-ready"
     },
     {
       "base_design_id": "F0030",
       "slug": "forget-me-not-bouquet",
-      "source_asset": null,
+      "source_asset": "collections/florals/source-designs/F0030-forget-me-not-bouquet.png",
       "reference_sheet": "reference-sheets/florals-sheet-05.png",
       "reference_cell": "r2c3",
-      "status": "approved-reference-awaiting-canonical-extraction"
+      "status": "approved-pattern-source-ready"
     }
   ]
 }

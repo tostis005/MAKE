@@ -1,0 +1,16 @@
+{
+  "code": "F0011-TC",
+  "base_design_id": "F0011",
+  "technique_code": "TC",
+  "collection": "florals",
+  "title": "Wrapped Wildflower Bouquet",
+  "pattern_file": "patterns/F0011-TC/pattern.json",
+  "website": "www.drielo.com",
+  "technique": "tapestry-crochet",
+  "template": "crochet.html",
+  "source_artwork": "collections/florals/source-designs/F0011-wrapped-wildflower-bouquet.png",
+  "reference_artwork": "collections/florals/source-designs/F0011-wrapped-wildflower-bouquet.png",
+  "page_1_asset": "collections/florals/assets/page-1-tapestry-crochet.webp",
+  "render_ready": true,
+  "status": "active"
+}

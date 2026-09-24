@@ -1,0 +1,16 @@
+{
+  "code": "F0030-TC",
+  "base_design_id": "F0030",
+  "technique_code": "TC",
+  "collection": "florals",
+  "title": "Forget-Me-Not Bouquet",
+  "pattern_file": "patterns/F0030-TC/pattern.json",
+  "website": "www.drielo.com",
+  "technique": "tapestry-crochet",
+  "template": "crochet.html",
+  "source_artwork": "collections/florals/source-designs/F0030-forget-me-not-bouquet.png",
+  "reference_artwork": "collections/florals/source-designs/F0030-forget-me-not-bouquet.png",
+  "page_1_asset": "collections/florals/assets/page-1-tapestry-crochet.webp",
+  "render_ready": true,
+  "status": "active"
+}

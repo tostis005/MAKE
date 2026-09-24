@@ -1,0 +1,16 @@
+{
+  "code": "F0004-TC",
+  "base_design_id": "F0004",
+  "technique_code": "TC",
+  "collection": "florals",
+  "title": "Sunflower Stem",
+  "pattern_file": "patterns/F0004-TC/pattern.json",
+  "website": "www.drielo.com",
+  "technique": "tapestry-crochet",
+  "template": "crochet.html",
+  "source_artwork": "collections/florals/source-designs/F0004-sunflower-stem.png",
+  "reference_artwork": "collections/florals/source-designs/F0004-sunflower-stem.png",
+  "page_1_asset": "collections/florals/assets/page-1-tapestry-crochet.webp",
+  "render_ready": true,
+  "status": "active"
+}
