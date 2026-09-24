@@ -1,0 +1,25 @@
+name: Cancel Stale Pop Art Emergency Runs
+
+on:
+  push:
+    branches:
+      - feature/pop-art-resto-24
+    paths:
+      - '.github/workflows/cancel-pop-art-emergency.yml'
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  cancel-stale:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel stale emergency runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          for run in 36011550162 36012162469; do
+            gh api --method POST "repos/${GITHUB_REPOSITORY}/actions/runs/${run}/cancel" || true
+          done
