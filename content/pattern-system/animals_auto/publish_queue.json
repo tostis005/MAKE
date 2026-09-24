@@ -11,11 +11,11 @@
       "title_en": "Sleeping Tabby on Quilts",
       "title_es": "Gato atigrado dormido sobre mantas",
       "slug": "sleeping-tabby-quilts",
-      "status": "pending",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35995022385",
+      "status": "failed",
+      "attempts": 2,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35995156819",
       "last_error": "Automatic Animals publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T11:48:08+00:00"
+      "failed_at": "2026-09-24T11:49:34+00:00"
     },
     {
       "base_design_id": "A0002",
