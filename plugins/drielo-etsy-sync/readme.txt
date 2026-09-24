@@ -3,7 +3,7 @@ Contributors: Drielo
 Requires at least: 6.4
 Requires PHP: 8.0
 Requires Plugins: woocommerce
-Stable tag: 1.4.1
+Stable tag: 1.4.2
 
 Panel central para seleccionar y sincronizar productos WooCommerce con Etsy mediante Etsy Open API v3.
 
@@ -37,6 +37,12 @@ Panel central para seleccionar y sincronizar productos WooCommerce con Etsy medi
 Etsy no permite devolver un listing ya publicado al estado draft. Si un listing activo se cambia al objetivo Borrador, el plugin lo deja inactive.
 
 == Changelog ==
+
+= 1.4.2 =
+* Corrige el estado de lotes para que una ejecución nueva no herede el batch_id de una anterior.
+* Detecta listings eliminados/removidos en Etsy y los vuelve a crear automáticamente.
+* Al sobrescribir archivos digitales, elimina primero los adjuntos antiguos y después sube los actuales para evitar el error “file already attached”.
+* Usa el campo shop_section_id al actualizar la sección de tienda del listing.
 
 = 1.4.1 =
 * Prioriza la taxonomía específica de Cross Stitch / Punto de cruz al resolver la categoría de Etsy.
