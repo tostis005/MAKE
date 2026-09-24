@@ -1,6 +1,7 @@
 name: Animals A0014 Fast Republish
 # Exact uploaded Animals PNG covers are active.
 # A0014 replacement queued.
+# Exterior white contour cleanup republish
 
 on:
   workflow_dispatch:
@@ -408,19 +409,8 @@ jobs:
           git commit -m "Record Animals ${DESIGN} auto-publish result"
           git push origin HEAD:feature/animals-auto-publish
 
-      - name: Dispatch next queued Animals design
+      - name: Finish A0014 fast republish
         if: always()
-        env:
-          GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
-          set -euo pipefail
-          git fetch origin feature/animals-auto-publish
-          git reset --hard origin/feature/animals-auto-publish
-          if [ "$(python3 content/pattern-system/animals_auto/queue_state.py has-work)" = "yes" ]; then
-            echo "Pending Animals designs remain; dispatching the next run."
-            gh api --method POST               "repos/${GITHUB_REPOSITORY}/actions/workflows/animals-auto-publish.yml/dispatches"               -f ref=feature/animals-auto-publish
-          else
-            echo "No pending Animals designs remain."
-            python3 content/pattern-system/animals_auto/queue_state.py summary
-          fi
+          echo "A0014 fast republish complete; no chained dispatch."
