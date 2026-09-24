@@ -1,0 +1,250 @@
+name: TEMP publish I0001 corrected feet
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tmp-publish-i0001-corrected-feet.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-i0001-corrected-feet
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow playwright
+          python3 -m playwright install --with-deps chromium
+
+      - name: Rebuild I0001 JSONs from clean full-feet master
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/baby_nursery/rebuild_i0001_clean_fullfeet.py
+
+      - name: Validate clean source visually by geometry
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+
+          root=Path('.')
+          system=root/'content'/'pattern-system'
+          src=system/'collections'/'baby-nursery'/'source-designs'/'I0001-teddy-bear.png'
+          im=Image.open(src).convert('RGBA')
+          bbox=im.getchannel('A').getbbox()
+          print('SOURCE_SIZE',im.size,'BBOX',bbox,'BOTTOM_MARGIN',im.height-bbox[3])
+          if im.size!=(800,960) or bbox!=(32,96,768,864):
+              raise SystemExit('I0001 source geometry is not the corrected full-feet master')
+          # The lowest occupied row must contain both paws and the body, but nothing below it.
+          alpha=im.getchannel('A')
+          row=863
+          left=sum(1 for x in range(0,400) if alpha.getpixel((x,row))>127)
+          right=sum(1 for x in range(400,800) if alpha.getpixel((x,row))>127)
+          if left < 20 or right < 20:
+              raise SystemExit(f'Feet not complete on lowest occupied row: left={left}, right={right}')
+          for y in range(864,960):
+              if alpha.crop((0,y,800,y+1)).getbbox():
+                  raise SystemExit(f'Unexpected pixels below feet at row {y}')
+
+          expected={
+            'CS':('collections/baby-nursery/assets/cover-cross-stitch.jpg',100,120),
+            'C2C':('collections/baby-nursery/assets/cover-crochet.jpg',60,72),
+            'TC':('collections/baby-nursery/assets/cover-c2c-crochet.jpg',80,96),
+            'LH':('collections/baby-nursery/assets/cover-rug.jpg',60,72),
+          }
+          for suffix,(cover,w,h) in expected.items():
+              code=f'I0001-{suffix}'
+              p=json.loads((system/'patterns'/code/'pattern.json').read_text(encoding='utf-8'))
+              q=json.loads((system/'products'/code/'product.json').read_text(encoding='utf-8'))
+              if (p.get('stitch_width'),p.get('stitch_height')) != (w,h):
+                  raise SystemExit(f'{code}: wrong grid')
+              if q.get('page_1_asset') != cover:
+                  raise SystemExit(f'{code}: wrong cover')
+              if len(p.get('matrix',[])) != h or any(len(r)!=w for r in p['matrix']):
+                  raise SystemExit(f'{code}: malformed matrix')
+              if p.get('total_stitches',0) <= 0 or len(p.get('threads',[])) < 5:
+                  raise SystemExit(f'{code}: empty pattern')
+              print(code,'stitches',p['total_stitches'],'colors',len(p['threads']),'cover',cover)
+          print('I0001_FULL_FEET_JSONS_OK')
+          PY
+
+      - name: Generate PDFs and product images
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/baby_nursery/publish_i0001.py
+
+      - name: Validate PDFs and images
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('.')
+          cat=json.loads((root/'content/products/catalog.json').read_text(encoding='utf-8'))
+          rows={p.get('code'):p for p in cat.get('products',[])}
+          for suffix in ('CS','C2C','TC','LH'):
+              code=f'I0001-{suffix}'
+              pdf=root/'content/products/files'/f'Drielo_{code}.pdf'
+              img=root/'content/products/assets'/f'{code}-product.webp'
+              if not pdf.is_file() or pdf.stat().st_size<100000 or pdf.read_bytes()[:4]!=b'%PDF':
+                  raise SystemExit(f'{code}: invalid PDF')
+              if not img.is_file() or img.stat().st_size<50000:
+                  raise SystemExit(f'{code}: invalid image')
+              if str(rows[code].get('gallery_revision'))!='2026092406':
+                  raise SystemExit(f'{code}: stale gallery revision')
+              print(code,'pdf',pdf.stat().st_size,'image',img.stat().st_size)
+          print('I0001_RENDER_OUTPUT_OK')
+          PY
+
+      - name: Build I0001 package
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/drielo-i0001-corrected
+          mkdir -p /tmp/drielo-i0001-corrected/content/products/assets
+          mkdir -p /tmp/drielo-i0001-corrected/content/products/files
+          mkdir -p /tmp/drielo-i0001-corrected/content/tools
+
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('content/products/catalog.json').read_text(encoding='utf-8'))
+          codes={'I0001-CS','I0001-C2C','I0001-TC','I0001-LH'}
+          cats={
+            'cross-stitch-patterns','cross-stitch-baby-nursery',
+            'c2c-crochet-patterns','c2c-crochet-baby-nursery',
+            'tapestry-crochet-patterns','tapestry-crochet-baby-nursery',
+            'latch-hook-rug-patterns','latch-hook-rug-baby-nursery',
+          }
+          out=dict(d)
+          out['products']=[p for p in d.get('products',[]) if p.get('code') in codes]
+          out['collections']=[c for c in d.get('collections',[]) if c.get('slug')=='baby-nursery']
+          out['categories']=[c for c in d.get('categories',[]) if c.get('slug') in cats]
+          Path('/tmp/drielo-i0001-corrected/content/products/catalog.json').write_text(
+              json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8'
+          )
+          PY
+
+          for code in I0001-CS I0001-C2C I0001-TC I0001-LH; do
+            cp "content/products/assets/${code}-product.webp" /tmp/drielo-i0001-corrected/content/products/assets/
+            cp "content/products/files/Drielo_${code}.pdf" /tmp/drielo-i0001-corrected/content/products/files/
+          done
+          cp content/tools/import-products.php /tmp/drielo-i0001-corrected/content/tools/
+          tar -czf /tmp/drielo-i0001-corrected.tgz -C /tmp/drielo-i0001-corrected content
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_products_key
+          chmod 600 ~/.ssh/drielo_products_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Upload package
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          scp -i ~/.ssh/drielo_products_key /tmp/drielo-i0001-corrected.tgz "$VPS_USER@$VPS_HOST:/tmp/drielo-i0001-corrected-${GITHUB_RUN_ID}.tgz"
+
+      - name: Import to WooCommerce and verify
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_products_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-i0001-corrected-${GITHUB_RUN_ID}.tgz"
+          STAGE="/tmp/drielo-i0001-corrected-${GITHUB_RUN_ID}"
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE"; }
+          trap cleanup EXIT
+
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $codes=array("DRIELO-I0001-CS","DRIELO-I0001-C2C","DRIELO-I0001-TC","DRIELO-I0001-LH");
+            foreach ($codes as $sku) {
+              $id=wc_get_product_id_by_sku($sku);
+              $p=$id ? wc_get_product($id) : false;
+              if (!$p) { fwrite(STDERR,"Missing ".$sku.PHP_EOL); exit(2); }
+              $cols=wp_get_object_terms($id,"product_collection",array("fields"=>"slugs"));
+              echo $sku." id=".$id." status=".$p->get_status()." image=".$p->get_image_id()." downloads=".count($p->get_downloads())." collection=".implode(",",is_wp_error($cols)?array():$cols)." url=".get_permalink($id).PHP_EOL;
+              if ($p->get_status()!=="publish" || !$p->get_image_id() || count($p->get_downloads())<1 || !in_array("baby-nursery",is_wp_error($cols)?array():$cols,true)) {
+                fwrite(STDERR,"Incomplete ".$sku.PHP_EOL); exit(3);
+              }
+            }
+          '
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
+          REMOTE
+
+      - name: Persist corrected JSONs, images and catalog
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add             content/pattern-system/patterns/I0001-CS/pattern.json             content/pattern-system/patterns/I0001-C2C/pattern.json             content/pattern-system/patterns/I0001-TC/pattern.json             content/pattern-system/patterns/I0001-LH/pattern.json             content/pattern-system/products/I0001-CS/product.json             content/pattern-system/products/I0001-C2C/product.json             content/pattern-system/products/I0001-TC/product.json             content/pattern-system/products/I0001-LH/product.json             content/products/catalog.json             content/products/assets/I0001-CS-product.webp             content/products/assets/I0001-C2C-product.webp             content/products/assets/I0001-TC-product.webp             content/products/assets/I0001-LH-product.webp
+          if git diff --cached --quiet; then
+            echo "No generated changes."
+          else
+            git commit -m "Publish corrected I0001 feet in all techniques [skip ci]"
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
+          fi
+
+      - name: Archive corrected PDFs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: baby-nursery-I0001-corrected-feet-pdfs
+          path: |
+            content/products/files/Drielo_I0001-CS.pdf
+            content/products/files/Drielo_I0001-C2C.pdf
+            content/products/files/Drielo_I0001-TC.pdf
+            content/products/files/Drielo_I0001-LH.pdf
+          retention-days: 30
