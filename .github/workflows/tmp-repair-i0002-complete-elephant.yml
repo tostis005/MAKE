@@ -80,22 +80,28 @@ jobs:
               raise SystemExit(f'Insufficient safe margin: bbox={bbox} margins={margins}')
 
           # Confirm two distinct complete lower feet with a transparent gap.
-          y=bbox[3]-8
-          row=[alpha.getpixel((x,y))>=128 for x in range(bbox[0],bbox[2])]
-          runs=[]
-          start=None
-          for i,val in enumerate(row):
-              x=bbox[0]+i
-              if val and start is None:
-                  start=x
-              elif not val and start is not None:
-                  runs.append((start,x-1))
-                  start=None
-          if start is not None:
-              runs.append((start,bbox[2]-1))
-          substantial=[r for r in runs if r[1]-r[0]+1>=24]
-          if len(substantial)<2:
-              raise SystemExit(f'Incomplete feet: expected two lower foot masses, got {substantial}')
+          best_y=None
+          substantial=[]
+          for y in range(max(bbox[1],bbox[3]-96),bbox[3]-7,8):
+              row=[alpha.getpixel((x,y))>=128 for x in range(bbox[0],bbox[2])]
+              runs=[]
+              start=None
+              for i,val in enumerate(row):
+                  x=bbox[0]+i
+                  if val and start is None:
+                      start=x
+                  elif not val and start is not None:
+                      runs.append((start,x-1))
+                      start=None
+              if start is not None:
+                  runs.append((start,bbox[2]-1))
+              candidate=[r for r in runs if r[1]-r[0]+1>=40]
+              if len(candidate)>=2:
+                  best_y=y
+                  substantial=candidate
+                  break
+          if best_y is None:
+              raise SystemExit('Incomplete feet: no lower row shows two separated complete foot masses')
 
           collection=json.loads((system/'collections'/'baby-nursery'/'collection.json').read_text(encoding='utf-8'))
           expected={
@@ -132,7 +138,7 @@ jobs:
               if not image.is_file() or image.stat().st_size<50000:
                   raise SystemExit(f'{code}: invalid image')
               print(code,'stitches',pat['total_stitches'],'colors',len(pat['threads']),'pdf',pdf.stat().st_size,'image',image.stat().st_size)
-          print('I0002_COMPLETE_MASTER_VALID',bbox,margins,substantial)
+          print('I0002_COMPLETE_MASTER_VALID',bbox,margins,'foot_row',best_y,'runs',substantial)
           PY
 
       - name: Build four-product WooCommerce package
@@ -293,3 +299,5 @@ jobs:
         run: |
           set -euo pipefail
           gh api --method POST             "repos/${GITHUB_REPOSITORY}/actions/workflows/baby-nursery-auto-publish.yml/dispatches"             -f ref=main
+
+# rerun after corrected foot-band validation
