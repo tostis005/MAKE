@@ -1,12 +1,6 @@
 name: Build Drielo pattern PDFs
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'content/pattern-system/**'
-      - 'content/products/catalog.json'
-      - '.github/workflows/build-pattern-pdf.yml'
   workflow_dispatch:
     inputs:
       product_code:
@@ -19,7 +13,7 @@ permissions:
 
 concurrency:
   group: drielo-pattern-pdf-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
