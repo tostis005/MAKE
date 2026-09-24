@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Drielo Etsy Sync
  * Description: Centraliza la selección y sincronización de productos WooCommerce con Etsy, incluidos productos digitales, imágenes y PDFs.
- * Version: 1.4.2
+ * Version: 1.4.3
  * Author: Drielo
  * Requires Plugins: woocommerce
  * Requires PHP: 8.0
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 final class Drielo_Etsy_Sync {
-    const VERSION = '1.4.2';
+    const VERSION = '1.4.3';
     const OPTION_SETTINGS = 'drielo_etsy_settings';
     const OPTION_TOKENS   = 'drielo_etsy_tokens';
     const OPTION_SYNC_RUN = 'drielo_etsy_sync_run';
@@ -266,10 +266,6 @@ final class Drielo_Etsy_Sync {
 
             <?php if ( $notice ) : ?>
                 <div class="notice notice-success is-dismissible"><p><?php echo esc_html( $notice ); ?></p></div>
-            <?php endif; ?>
-
-            <?php if ( $this->is_connected() && ! $this->has_etsy_scope( 'shops_r' ) ) : ?>
-                <div class="notice notice-warning"><p><strong>Falta el permiso shops_r.</strong> Es necesario para localizar automáticamente la sección de tienda “Cross Stitch”. Ve a <a href="<?php echo esc_url( admin_url( 'admin.php?page=drielo-etsy-settings' ) ); ?>">Configuración</a> y pulsa “Actualizar permisos Etsy”.</p></div>
             <?php endif; ?>
 
             <?php echo $this->sync_run_panel_html( $this->sync_run_snapshot() ); ?>
@@ -548,9 +544,6 @@ final class Drielo_Etsy_Sync {
                             <div><strong>Conectado</strong><p><?php echo esc_html( $settings['shop_name'] ? $settings['shop_name'] . ' · ' : '' ); ?>Shop ID: <?php echo esc_html( $settings['shop_id'] ?: '—' ); ?></p><p>Permisos: <?php echo esc_html( $tokens['scope'] ?: 'listings_r listings_w shops_r' ); ?></p></div>
                         </div>
                         <p>El token de acceso se renueva automáticamente usando el refresh token.</p>
-                        <?php if ( ! $this->has_etsy_scope( 'shops_r' ) ) : ?>
-                            <div class="notice notice-warning inline"><p>Para asignar automáticamente la sección de tienda “Cross Stitch”, autoriza el permiso adicional <code>shops_r</code>.</p></div>
-                        <?php endif; ?>
                         <div class="drielo-connected-actions">
                             <form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
                                 <?php wp_nonce_field( 'drielo_etsy_connect', 'drielo_nonce' ); ?>
@@ -1379,10 +1372,6 @@ final class Drielo_Etsy_Sync {
             $remote_state = sanitize_text_field( $remote['state'] ?? ( get_post_meta( $product_id, self::META_REMOTE_STATE, true ) ?: 'draft' ) );
         }
 
-        $section_result = $this->sync_shop_section( $product, $listing_id );
-        // Shop-section assignment is intentionally non-fatal: a missing Etsy
-        // permission or section should not prevent the listing itself syncing.
-
         if ( ( $is_new || $overwrite ) && $product->get_sku() ) {
             $inventory_result = $this->sync_inventory( $product, $listing_id );
             if ( is_wp_error( $inventory_result ) ) {
@@ -1421,6 +1410,10 @@ final class Drielo_Etsy_Sync {
             }
             $remote_state = sanitize_text_field( $state_result['state'] ?? 'inactive' );
         }
+
+        // Assign the shop section only after the listing has inventory/assets
+        // and its final state, because Etsy may reject section updates too early.
+        $this->sync_shop_section( $product, $listing_id );
 
         update_post_meta( $product_id, self::META_REMOTE_STATE, $remote_state );
         update_post_meta( $product_id, self::META_LAST_SYNC, current_time( 'mysql' ) );
@@ -1585,17 +1578,13 @@ final class Drielo_Etsy_Sync {
         if ( ! $shop_id ) {
             return new WP_Error( 'etsy_shop_id', 'No se puede asignar la sección Cross Stitch porque falta el Shop ID de Etsy.' );
         }
-        if ( ! $this->has_etsy_scope( 'shops_r' ) ) {
-            return new WP_Error( 'etsy_shops_scope', 'Falta el permiso shops_r. En Drielo > Configuración, pulsa “Actualizar permisos Etsy” para poder localizar la sección Cross Stitch.' );
-        }
-
         $cache_key = 'drielo_etsy_shop_section_cross_stitch_' . $shop_id;
         $cached = absint( get_transient( $cache_key ) );
         if ( $cached > 0 ) {
             return $cached;
         }
 
-        $response = $this->etsy_request( 'GET', '/v3/application/shops/' . rawurlencode( $shop_id ) . '/sections' );
+        $response = $this->etsy_request( 'GET', '/v3/application/shops/' . rawurlencode( $shop_id ) . '/sections', [], false );
         if ( is_wp_error( $response ) ) {
             return $response;
         }
@@ -1672,7 +1661,7 @@ final class Drielo_Etsy_Sync {
             return $fallback;
         }
 
-        $cached_id = absint( get_transient( 'drielo_etsy_taxonomy_v2_' . $technique ) );
+        $cached_id = absint( get_transient( 'drielo_etsy_taxonomy_v3_' . $technique ) );
         if ( $cached_id > 0 ) {
             return $cached_id;
         }
@@ -1738,10 +1727,11 @@ final class Drielo_Etsy_Sync {
                     break;
                 }
             }
-            if ( ! $has_pattern_context ) {
+            $exact_cross_stitch = 'cross-stitch' === $technique && in_array( $node_name, [ 'cross stitch', 'punto de cruz' ], true );
+            if ( ! $has_pattern_context && ! $exact_cross_stitch ) {
                 continue;
             }
-            $anchor_score = 0;
+            $anchor_score = $exact_cross_stitch ? 500 : 0;
             foreach ( $profile['anchors'] as $anchor ) {
                 $normalized_anchor = $this->normalize_etsy_label( $anchor );
                 if ( false !== strpos( $node_path, $normalized_anchor ) ) {
@@ -1771,7 +1761,7 @@ final class Drielo_Etsy_Sync {
         }
 
         if ( $best_id > 0 ) {
-            set_transient( 'drielo_etsy_taxonomy_v2_' . $technique, $best_id, DAY_IN_SECONDS );
+            set_transient( 'drielo_etsy_taxonomy_v3_' . $technique, $best_id, DAY_IN_SECONDS );
             return $best_id;
         }
 
