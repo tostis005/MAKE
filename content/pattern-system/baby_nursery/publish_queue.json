@@ -1,7 +1,7 @@
 {
   "collection": "baby-nursery",
-  "mode": "publish-approved-preview-v2-one-design-per-run",
-  "auto_continue": true,
+  "mode": "paused-for-approved-pixel-master-rebuild",
+  "auto_continue": false,
   "max_attempts_per_design": 2,
   "notes": [
     "All previous Baby Nursery WooCommerce products were deleted before this rebuild.",
@@ -18,9 +18,9 @@
       "title_es": "Osito de peluche",
       "slug": "teddy-bear",
       "source_asset": "collections/baby-nursery/source-designs/I0001-teddy-bear.png",
-      "status": "published",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35991543558",
+      "status": "reference_pending",
+      "attempts": 0,
+      "last_run": null,
       "last_error": null,
       "failed_at": "2026-09-24T11:11:06+00:00",
       "published_at": "2026-09-24T11:14:52+00:00"
@@ -32,9 +32,9 @@
       "title_es": "Elefantito",
       "slug": "baby-elephant",
       "source_asset": "collections/baby-nursery/source-designs/I0002-baby-elephant.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35991909131",
+      "status": "reference_pending",
+      "attempts": 0,
+      "last_run": null,
       "last_error": null,
       "published_at": "2026-09-24T11:19:58+00:00"
     },
@@ -45,9 +45,9 @@
       "title_es": "Jirafa",
       "slug": "giraffe",
       "source_asset": "collections/baby-nursery/source-designs/I0003-giraffe.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35992411870",
+      "status": "reference_pending",
+      "attempts": 0,
+      "last_run": null,
       "last_error": null,
       "published_at": "2026-09-24T11:23:55+00:00"
     },
@@ -58,7 +58,7 @@
       "title_es": "Luna creciente",
       "slug": "crescent-moon",
       "source_asset": "collections/baby-nursery/source-designs/I0004-crescent-moon.png",
-      "status": "pending",
+      "status": "reference_pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -70,7 +70,7 @@
       "title_es": "Nube sonriente",
       "slug": "smiling-cloud",
       "source_asset": "collections/baby-nursery/source-designs/I0005-smiling-cloud.png",
-      "status": "pending",
+      "status": "reference_pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -82,7 +82,7 @@
       "title_es": "Conejito con corazón",
       "slug": "bunny-heart",
       "source_asset": "collections/baby-nursery/source-designs/I0006-bunny-heart.png",
-      "status": "pending",
+      "status": "reference_pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -94,7 +94,7 @@
       "title_es": "Arcoíris con nubes",
       "slug": "rainbow-clouds",
       "source_asset": "collections/baby-nursery/source-designs/I0007-rainbow-clouds.png",
-      "status": "pending",
+      "status": "reference_pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -106,7 +106,7 @@
       "title_es": "Dinosaurio infantil",
       "slug": "cute-dinosaur",
       "source_asset": "collections/baby-nursery/source-designs/I0008-cute-dinosaur.png",
-      "status": "pending",
+      "status": "reference_pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -118,7 +118,7 @@
       "title_es": "Globo aerostático",
       "slug": "hot-air-balloon",
       "source_asset": "collections/baby-nursery/source-designs/I0009-hot-air-balloon.png",
-      "status": "pending",
+      "status": "reference_pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -130,7 +130,7 @@
       "title_es": "Velero infantil",
       "slug": "toy-sailboat",
       "source_asset": "collections/baby-nursery/source-designs/I0010-toy-sailboat.png",
-      "status": "pending",
+      "status": "reference_pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -142,7 +142,7 @@
       "title_es": "Unicornio",
       "slug": "unicorn",
       "source_asset": "collections/baby-nursery/source-designs/I0011-unicorn.png",
-      "status": "pending",
+      "status": "reference_pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -154,7 +154,7 @@
       "title_es": "Biberón",
       "slug": "baby-bottle",
       "source_asset": "collections/baby-nursery/source-designs/I0012-baby-bottle.png",
-      "status": "pending",
+      "status": "reference_pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -166,7 +166,7 @@
       "title_es": "Chupete",
       "slug": "pacifier",
       "source_asset": "collections/baby-nursery/source-designs/I0013-pacifier.png",
-      "status": "pending",
+      "status": "reference_pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -178,7 +178,7 @@
       "title_es": "Cochecito de bebé",
       "slug": "baby-stroller",
       "source_asset": "collections/baby-nursery/source-designs/I0014-baby-stroller.png",
-      "status": "pending",
+      "status": "reference_pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -190,7 +190,7 @@
       "title_es": "Caballito balancín",
       "slug": "rocking-horse",
       "source_asset": "collections/baby-nursery/source-designs/I0015-rocking-horse.png",
-      "status": "pending",
+      "status": "reference_pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -202,7 +202,7 @@
       "title_es": "Body de bebé con osito",
       "slug": "teddy-bear-onesie",
       "source_asset": "collections/baby-nursery/source-designs/I0016-teddy-bear-onesie.png",
-      "status": "pending",
+      "status": "reference_pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -214,7 +214,7 @@
       "title_es": "Patito de goma",
       "slug": "rubber-duck",
       "source_asset": "collections/baby-nursery/source-designs/I0017-rubber-duck.png",
-      "status": "pending",
+      "status": "reference_pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -226,7 +226,7 @@
       "title_es": "Bloques ABC",
       "slug": "abc-blocks",
       "source_asset": "collections/baby-nursery/source-designs/I0018-abc-blocks.png",
-      "status": "pending",
+      "status": "reference_pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -238,7 +238,7 @@
       "title_es": "Móvil de cuna",
       "slug": "nursery-mobile",
       "source_asset": "collections/baby-nursery/source-designs/I0019-nursery-mobile.png",
-      "status": "pending",
+      "status": "reference_pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -250,7 +250,7 @@
       "title_es": "Estrella sonriente",
       "slug": "smiling-star",
       "source_asset": "collections/baby-nursery/source-designs/I0020-smiling-star.png",
-      "status": "pending",
+      "status": "reference_pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -262,7 +262,7 @@
       "title_es": "Búho dormido",
       "slug": "sleeping-owl",
       "source_asset": "collections/baby-nursery/source-designs/I0021-sleeping-owl.png",
-      "status": "pending",
+      "status": "reference_pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -274,7 +274,7 @@
       "title_es": "Babero floral",
       "slug": "floral-baby-bib",
       "source_asset": "collections/baby-nursery/source-designs/I0022-floral-baby-bib.png",
-      "status": "pending",
+      "status": "reference_pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -286,7 +286,7 @@
       "title_es": "Corderito de peluche",
       "slug": "plush-lamb",
       "source_asset": "collections/baby-nursery/source-designs/I0023-plush-lamb.png",
-      "status": "pending",
+      "status": "reference_pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -298,7 +298,7 @@
       "title_es": "Tren de juguete",
       "slug": "toy-train",
       "source_asset": "collections/baby-nursery/source-designs/I0024-toy-train.png",
-      "status": "pending",
+      "status": "reference_pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -310,7 +310,7 @@
       "title_es": "Anillas apilables",
       "slug": "stacking-rings",
       "source_asset": "collections/baby-nursery/source-designs/I0025-stacking-rings.png",
-      "status": "pending",
+      "status": "reference_pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -322,7 +322,7 @@
       "title_es": "Cuna de bebé",
       "slug": "baby-crib",
       "source_asset": "collections/baby-nursery/source-designs/I0026-baby-crib.png",
-      "status": "pending",
+      "status": "reference_pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -334,7 +334,7 @@
       "title_es": "Body rosa floral de bebé",
       "slug": "pink-floral-onesie",
       "source_asset": "collections/baby-nursery/source-designs/I0027-pink-floral-onesie.png",
-      "status": "pending",
+      "status": "reference_pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -346,7 +346,7 @@
       "title_es": "Cohete",
       "slug": "rocket",
       "source_asset": "collections/baby-nursery/source-designs/I0028-rocket.png",
-      "status": "pending",
+      "status": "reference_pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -358,7 +358,7 @@
       "title_es": "Cometa",
       "slug": "kite",
       "source_asset": "collections/baby-nursery/source-designs/I0029-kite.png",
-      "status": "pending",
+      "status": "reference_pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -370,7 +370,7 @@
       "title_es": "Castillo de cuento",
       "slug": "fairytale-castle",
       "source_asset": "collections/baby-nursery/source-designs/I0030-fairytale-castle.png",
-      "status": "pending",
+      "status": "reference_pending",
       "attempts": 0,
       "last_run": null,
       "last_error": null
