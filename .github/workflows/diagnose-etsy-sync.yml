@@ -1,4 +1,5 @@
 name: Diagnose Etsy sync queue
+# follow-up after queue repair
 # progress probe 2
 
 on:
