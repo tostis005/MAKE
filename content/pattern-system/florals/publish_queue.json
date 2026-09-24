@@ -97,10 +97,11 @@
       "base_design_id": "F0010",
       "title_en": "Potted Strawberry Plant",
       "slug": "potted-strawberry-plant",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36047350180",
+      "last_error": null,
+      "published_at": "2026-09-24T19:24:16+00:00"
     },
     {
       "base_design_id": "F0011",
