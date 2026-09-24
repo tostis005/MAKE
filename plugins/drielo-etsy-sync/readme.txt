@@ -3,7 +3,7 @@ Contributors: Drielo
 Requires at least: 6.4
 Requires PHP: 8.0
 Requires Plugins: woocommerce
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 
 Panel central para seleccionar y sincronizar productos WooCommerce con Etsy mediante Etsy Open API v3.
 
@@ -37,6 +37,12 @@ Panel central para seleccionar y sincronizar productos WooCommerce con Etsy medi
 Etsy no permite devolver un listing ya publicado al estado draft. Si un listing activo se cambia al objetivo Borrador, el plugin lo deja inactive.
 
 == Changelog ==
+
+= 1.4.1 =
+* Prioriza la taxonomía específica de Cross Stitch / Punto de cruz al resolver la categoría de Etsy.
+* Busca la sección de tienda “Cross Stitch” y la asigna automáticamente a los listings de punto de cruz.
+* Solicita el permiso shops_r y añade un botón para actualizar permisos de Etsy sin desconectar primero.
+* Muestra un aviso no bloqueante si no puede localizar o asignar la sección de tienda.
 
 = 1.4.0 =
 * Añade un panel persistente para saber si una sincronización está en cola, en curso, terminada, terminada con errores o sin actividad.
