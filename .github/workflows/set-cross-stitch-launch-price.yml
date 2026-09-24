@@ -46,10 +46,15 @@ jobs:
               echo (string)($d["Version"]??"");
             ')
             echo "ETSY_PLUGIN_VERSION=$VERSION"
-            if php -r 'exit(version_compare($argv[1],"1.4.4",">=")?0:1);' "$VERSION"; then break; fi
+            case "$VERSION" in
+              1.4.4|1.4.5|1.4.6|1.4.7|1.4.8|1.4.9|1.5.*|1.6.*|1.7.*|1.8.*|1.9.*|2.*) break ;;
+            esac
             sleep 5
           done
-          php -r 'exit(version_compare($argv[1],"1.4.4",">=")?0:1);' "$VERSION"
+          case "$VERSION" in
+            1.4.4|1.4.5|1.4.6|1.4.7|1.4.8|1.4.9|1.5.*|1.6.*|1.7.*|1.8.*|1.9.*|2.*) ;;
+            *) echo "Etsy plugin 1.4.4+ not active"; exit 2 ;;
+          esac
 
           "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -d max_execution_time=0 -r '
             require "/var/www/html/wp-load.php";
