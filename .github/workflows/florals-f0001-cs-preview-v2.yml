@@ -1,0 +1,168 @@
+name: Florals F0001 Cross Stitch Preview v2
+
+on:
+  push:
+    branches:
+      - feature/florals-auto-publish
+    paths:
+      - '.github/workflows/florals-f0001-cs-preview-v2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-florals-f0001-cs-preview-v2
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout Florals branch
+        uses: actions/checkout@v4
+        with:
+          ref: feature/florals-auto-publish
+          fetch-depth: 0
+
+      - name: Install renderer dependencies
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow playwright
+          python3 -m playwright install --with-deps chromium
+
+      - name: Build redesigned F0001-CS only
+        env:
+          DRIELO_GALLERY_REVISION: ${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/florals/f0001_cs_preview.py
+
+      - name: Validate single Florals preview
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+          root=Path('.')
+          src=Image.open(root/'content/pattern-system/collections/florals/source-designs/F0001-blue-daisy-pitcher.png').convert('RGBA')
+          if src.size != (100,120) or src.getchannel('A').getbbox() is None:
+              raise SystemExit('Invalid F0001 stitch source')
+          pat=json.loads((root/'content/pattern-system/patterns/F0001-CS/pattern.json').read_text(encoding='utf-8'))
+          if pat['code']!='F0001-CS' or pat['collection']!='florals' or len(pat['threads'])>14:
+              raise SystemExit('Invalid F0001 pattern metadata')
+          catalog=json.loads((root/'content/products/catalog.json').read_text(encoding='utf-8'))
+          florals=[p for p in catalog['products'] if p.get('collection')=='florals']
+          if [p['code'] for p in florals] != ['F0001-CS']:
+              raise SystemExit(f'Florals preview must contain only F0001-CS: {[p.get("code") for p in florals]}')
+          for p in [
+              root/'content/products/files/Drielo_F0001-CS.pdf',
+              root/'content/products/assets/F0001-CS-product.webp',
+              root/'content/products/assets/F0001-CS-gallery-2.webp',
+              root/'content/products/assets/F0001-CS-gallery-3.webp',
+              root/'content/products/assets/F0001-CS-gallery-4.webp',
+          ]:
+              if not p.is_file() or p.stat().st_size < 25000:
+                  raise SystemExit(f'Missing/invalid generated file: {p}')
+          print('VALID',pat['total_stitches'],len(pat['threads']))
+          PY
+
+      - name: Build isolated package
+        run: |
+          set -euo pipefail
+          STAGE="/tmp/drielo-F0001-CS-${GITHUB_RUN_ID}"
+          rm -rf "$STAGE"
+          mkdir -p "$STAGE/content/products/assets" "$STAGE/content/products/files" "$STAGE/content/tools"
+          python3 - "$STAGE" <<'PY'
+          import json,sys
+          from pathlib import Path
+          stage=Path(sys.argv[1])
+          d=json.loads(Path('content/products/catalog.json').read_text(encoding='utf-8'))
+          product=next(p for p in d['products'] if p.get('code')=='F0001-CS')
+          cats=set(product.get('categories',[]))
+          out=dict(d)
+          out['products']=[product]
+          out['collections']=[c for c in d.get('collections',[]) if c.get('slug')=='florals']
+          out['categories']=[c for c in d.get('categories',[]) if c.get('slug') in cats or c.get('slug')=='cross-stitch-patterns']
+          out['retired_products']=[]
+          out['retired_collections']=[]
+          (stage/'content/products/catalog.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+          cp content/products/assets/F0001-CS-product.webp "$STAGE/content/products/assets/"
+          cp content/products/assets/F0001-CS-gallery-2.webp "$STAGE/content/products/assets/"
+          cp content/products/assets/F0001-CS-gallery-3.webp "$STAGE/content/products/assets/"
+          cp content/products/assets/F0001-CS-gallery-4.webp "$STAGE/content/products/assets/"
+          cp content/products/files/Drielo_F0001-CS.pdf "$STAGE/content/products/files/"
+          cp content/tools/import-products.php "$STAGE/content/tools/"
+          tar -czf "/tmp/drielo-F0001-CS-${GITHUB_RUN_ID}.tgz" -C "$STAGE" content
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_f0001_v2_key
+          chmod 600 ~/.ssh/drielo_f0001_v2_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Upload isolated package
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          scp -i ~/.ssh/drielo_f0001_v2_key "/tmp/drielo-F0001-CS-${GITHUB_RUN_ID}.tgz"             "$VPS_USER@$VPS_HOST:/tmp/drielo-F0001-CS-${GITHUB_RUN_ID}.tgz"
+
+      - name: Publish and verify only F0001-CS
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_f0001_v2_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-F0001-CS-${GITHUB_RUN_ID}.tgz"
+          STAGE="/tmp/drielo-F0001-CS-${GITHUB_RUN_ID}"
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE"; }
+          trap cleanup EXIT
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker);
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then DOCKER=(sudo -n docker);
+          else exit 1; fi
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+          C="/tmp/drielo-products-florals-f0001-v2-${GITHUB_RUN_ID}"
+          I="/tmp/drielo-import-florals-f0001-v2-${GITHUB_RUN_ID}.php"
+          "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '$C' '$I' && mkdir -p '$C'"
+          "${DOCKER[@]}" cp "$STAGE/content/products/." "make-wp:${C}/"
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" "make-wp:${I}"
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M -d max_execution_time=0 "$I" /var/www/html "$C"
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M -r '
+            require "/var/www/html/wp-load.php";
+            $id=wc_get_product_id_by_sku("DRIELO-F0001-CS");
+            $p=$id?wc_get_product($id):false;
+            if(!$p){exit(2);}
+            $cols=wp_get_object_terms($id,"product_collection",array("fields"=>"slugs"));
+            echo "PRODUCT_URL=".get_permalink($id).PHP_EOL;
+            echo "PRODUCT_ID=".$id." IMAGE=".$p->get_image_id()." GALLERY=".count($p->get_gallery_image_ids())." DOWNLOADS=".count($p->get_downloads()).PHP_EOL;
+            if($p->get_status()!=="publish" || !$p->get_image_id() || count($p->get_gallery_image_ids())<3 || count($p->get_downloads())<1 || !in_array("florals",$cols,true)){exit(3);}
+            global $wpdb;
+            $others=$wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->postmeta} WHERE meta_key=\"_sku\" AND meta_value LIKE \"DRIELO-F%\" AND meta_value<>\"DRIELO-F0001-CS\"");
+            if((int)$others!==0){exit(4);}
+          '
+          "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '$C' '$I'"
+          REMOTE
+
+      - name: Commit preview artifacts
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add             content/pattern-system/patterns/F0001-CS/pattern.json             content/pattern-system/products/F0001-CS/product.json             content/products/catalog.json             content/products/assets/F0001-CS-product.webp             content/products/assets/F0001-CS-gallery-2.webp             content/products/assets/F0001-CS-gallery-3.webp             content/products/assets/F0001-CS-gallery-4.webp             content/products/files/Drielo_F0001-CS.pdf
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish redesigned F0001 cross-stitch preview [skip ci]"
+            git push origin HEAD:feature/florals-auto-publish
+          fi
