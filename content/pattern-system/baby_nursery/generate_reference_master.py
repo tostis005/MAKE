@@ -9,6 +9,7 @@ import zlib
 from pathlib import Path
 
 from PIL import Image
+from premium_refinement import refine_rows
 
 ROOT = Path(__file__).resolve().parents[3]
 SYSTEM = ROOT / "content" / "pattern-system"
@@ -470,6 +471,23 @@ def generate_reference_master(base_id: str):
     palette = collection["palette"]
     rows = canonical["rows"]
 
+    premium_rule = collection.get("pattern_rules", {}).get("premium_refinement", {})
+    if premium_rule.get("enabled", False):
+        rows, premium_stats = refine_rows(
+            rows,
+            palette,
+            alphabet,
+            base_id,
+            premium_rule,
+        )
+    else:
+        premium_stats = {
+            "enabled": False,
+            "version": None,
+            "source_stitches": sum(c != "." for row in rows for c in row),
+            "result_stitches": sum(c != "." for row in rows for c in row),
+        }
+
     dark_rule = collection.get("pattern_rules", {}).get("external_dark_cleanup", {})
     if dark_rule.get("enabled", False):
         rows, dark_stats = remove_exterior_dark_rows(
@@ -534,6 +552,7 @@ def generate_reference_master(base_id: str):
         "reference_sha256": source_digest,
         "exterior_dark_cleanup": dark_stats,
         "near_white_cleanup": near_white_stats,
+        "premium_refinement": premium_stats,
     }
     if direct_metadata:
         result["source_crop_bbox"] = direct_metadata.get("source_crop_bbox")

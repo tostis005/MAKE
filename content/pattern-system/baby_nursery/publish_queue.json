@@ -1,7 +1,7 @@
 {
   "collection": "baby-nursery",
-  "mode": "active-approved-premium-v3",
-  "auto_continue": true,
+  "mode": "premium-refinement-v3-branch-review",
+  "auto_continue": false,
   "max_attempts_per_design": 2,
   "notes": [
     "Approved premium Baby & Nursery rollout.",
@@ -16,11 +16,12 @@
       "title_es": "Osito de peluche",
       "slug": "teddy-bear",
       "source_asset": "collections/baby-nursery/source-designs/I0001-teddy-bear.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36005000914",
+      "status": "refinement_pending",
+      "attempts": 0,
+      "last_run": null,
       "last_error": null,
-      "published_at": "2026-09-24T13:25:04+00:00"
+      "published_at": null,
+      "refinement_version": 3
     },
     {
       "order": 2,
@@ -29,11 +30,12 @@
       "title_es": "Elefantito",
       "slug": "baby-elephant",
       "source_asset": "collections/baby-nursery/source-designs/I0002-baby-elephant.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36005527321",
+      "status": "refinement_pending",
+      "attempts": 0,
+      "last_run": null,
       "last_error": null,
-      "published_at": "2026-09-24T13:31:08+00:00"
+      "published_at": null,
+      "refinement_version": 3
     },
     {
       "order": 3,
@@ -42,11 +44,12 @@
       "title_es": "Jirafa",
       "slug": "giraffe",
       "source_asset": "collections/baby-nursery/source-designs/I0003-giraffe.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36006226240",
+      "status": "refinement_pending",
+      "attempts": 0,
+      "last_run": null,
       "last_error": null,
-      "published_at": "2026-09-24T13:35:10+00:00"
+      "published_at": null,
+      "refinement_version": 3
     },
     {
       "order": 4,
@@ -55,11 +58,12 @@
       "title_es": "Luna creciente",
       "slug": "crescent-moon",
       "source_asset": "collections/baby-nursery/source-designs/I0004-crescent-moon.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36006676091",
+      "status": "refinement_pending",
+      "attempts": 0,
+      "last_run": null,
       "last_error": null,
-      "published_at": "2026-09-24T13:39:08+00:00"
+      "published_at": null,
+      "refinement_version": 3
     },
     {
       "order": 5,
@@ -68,11 +72,12 @@
       "title_es": "Nube sonriente",
       "slug": "smiling-cloud",
       "source_asset": "collections/baby-nursery/source-designs/I0005-smiling-cloud.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36007132550",
+      "status": "refinement_pending",
+      "attempts": 0,
+      "last_run": null,
       "last_error": null,
-      "published_at": "2026-09-24T13:42:48+00:00"
+      "published_at": null,
+      "refinement_version": 3
     },
     {
       "order": 6,
@@ -81,12 +86,13 @@
       "title_es": "Conejito con corazón",
       "slug": "bunny-heart",
       "source_asset": "collections/baby-nursery/source-designs/I0006-bunny-heart.png",
-      "status": "published",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36007915388",
+      "status": "refinement_pending",
+      "attempts": 0,
+      "last_run": null,
       "last_error": null,
       "failed_at": "2026-09-24T13:45:49+00:00",
-      "published_at": "2026-09-24T13:49:24+00:00"
+      "published_at": null,
+      "refinement_version": 3
     },
     {
       "order": 7,
@@ -95,11 +101,13 @@
       "title_es": "Arcoíris con nubes",
       "slug": "rainbow-clouds",
       "source_asset": "collections/baby-nursery/source-designs/I0007-rainbow-clouds.png",
-      "status": "pending",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36008345598",
-      "last_error": "Automatic publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-24T13:51:41+00:00"
+      "status": "refinement_pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null,
+      "failed_at": "2026-09-24T13:51:41+00:00",
+      "published_at": null,
+      "refinement_version": 3
     },
     {
       "order": 8,
@@ -108,10 +116,12 @@
       "title_es": "Dinosaurio infantil",
       "slug": "cute-dinosaur",
       "source_asset": "collections/baby-nursery/source-designs/I0008-cute-dinosaur.png",
-      "status": "pending",
+      "status": "refinement_pending",
       "attempts": 0,
       "last_run": null,
-      "last_error": null
+      "last_error": null,
+      "published_at": null,
+      "refinement_version": 3
     },
     {
       "order": 9,
@@ -120,10 +130,12 @@
       "title_es": "Globo aerostático",
       "slug": "hot-air-balloon",
       "source_asset": "collections/baby-nursery/source-designs/I0009-hot-air-balloon.png",
-      "status": "pending",
+      "status": "refinement_pending",
       "attempts": 0,
       "last_run": null,
-      "last_error": null
+      "last_error": null,
+      "published_at": null,
+      "refinement_version": 3
     },
     {
       "order": 10,
@@ -132,10 +144,12 @@
       "title_es": "Velero infantil",
       "slug": "toy-sailboat",
       "source_asset": "collections/baby-nursery/source-designs/I0010-toy-sailboat.png",
-      "status": "pending",
+      "status": "refinement_pending",
       "attempts": 0,
       "last_run": null,
-      "last_error": null
+      "last_error": null,
+      "published_at": null,
+      "refinement_version": 3
     },
     {
       "order": 11,
@@ -378,5 +392,9 @@
       "last_error": null
     }
   ],
-  "reference_policy": "Paused. Do not publish any Baby & Nursery design until rebuilt from the original user reference sheets and a corrected nursery palette."
+  "reference_policy": "Paused. Do not publish any Baby & Nursery design until rebuilt from the original user reference sheets and a corrected nursery palette.",
+  "branch": "feature/baby-nursery-premium-edge-refinement",
+  "refinement_reason": "Rebuild low-density/pixel-fringed Baby & Nursery motifs as premium stitch-native masters before any further publication.",
+  "publication_blocked": true,
+  "publication_block_reason": "Premium edge/density QA required; do not publish from this branch."
 }

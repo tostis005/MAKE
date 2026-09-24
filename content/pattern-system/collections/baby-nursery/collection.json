@@ -5,8 +5,8 @@
   "name_es": "Bebé e Infantil",
   "slug": "baby-nursery",
   "code_prefix": "I",
-  "description": "A premium coordinated collection of baby and nursery motifs, rebuilt at higher stitch density for crisp, polished results across four grid-based craft techniques.",
-  "description_es": "Colección premium coordinada de motivos infantiles y de bebé, reconstruidos con mayor densidad de puntadas para lograr resultados nítidos y cuidados en cuatro técnicas artesanales basadas en cuadrícula.",
+  "description": "A premium coordinated collection of baby and nursery motifs rebuilt from stitch-native masters, with refined curves, clean transparent edges and technique-specific grids.",
+  "description_es": "Colección premium coordinada de motivos infantiles y de bebé reconstruidos desde masters nativos de puntadas, con curvas refinadas, bordes transparentes limpios y cuadrículas específicas por técnica.",
   "design_count": 30,
   "techniques": [
     "cross-stitch",
@@ -226,7 +226,7 @@
     "linecap": "round",
     "fit": "contain",
     "center": true,
-    "low_resolution_priority": true,
+    "low_resolution_priority": false,
     "fabric": {
       "color": "#FBFAF6",
       "dot": "#DDD8CF",
@@ -236,8 +236,9 @@
     "forced_external_outline": false,
     "palette_style": "approved-preview-v2",
     "avoid_neon_or_electric_substitutions": false,
-    "canonical_master_source": "reference-library/Ixxxx-slug.json",
-    "reconstruct_verbatim": true
+    "canonical_master_source": "reference-library/Ixxxx-slug.json -> premium stitch-native refinement v3",
+    "reconstruct_verbatim": false,
+    "edge_finish": "stitch-native supersampled refinement; no raster halo; no white fringe"
   },
   "pattern_rules": {
     "external_outline": {
@@ -253,7 +254,7 @@
     },
     "external_white_cleanup": {
       "enabled": false,
-      "policy": "Approved preview v2 matrices are already cleaned. Do not delete, add or recolor cells during publication.",
+      "policy": "White-fringe cleanup is performed before premium v3 supersampling from palette-cell components, preserving large intentional pale shapes.",
       "applies_to": [
         "master",
         "CS",
@@ -264,7 +265,7 @@
     },
     "external_dark_cleanup": {
       "enabled": false,
-      "policy": "Approved preview v2 matrices are already final. Preserve all stored dark internal details and do not run exterior morphology.",
+      "policy": "Do not delete dark contour/detail cells globally. Premium v3 refines geometry without a forced exterior outline.",
       "applies_to": [
         "master",
         "CS",
@@ -275,18 +276,70 @@
     },
     "approved_master_policy": {
       "enabled": true,
-      "version": 2,
+      "version": 3,
       "source": "collections/baby-nursery/reference-library/Ixxxx-slug.json",
-      "reconstruct_verbatim": true,
+      "reconstruct_verbatim": false,
       "background": "transparent",
-      "apply_morphology": false,
+      "apply_morphology": true,
       "apply_forced_outline": false,
-      "exact_palette": true
+      "exact_palette": true,
+      "refinement": "palette-mask Lanczos supersampling at stitch-cell level; no photo/raster paste"
+    },
+    "premium_refinement": {
+      "enabled": true,
+      "version": 3,
+      "policy": "Rebuild the approved motif as a stitch-native 100x120 master using per-palette masks, high-quality supersampling and strict transparent-edge QA. Never paste or resize a raster preview onto the canvas.",
+      "target_stitches_min": 4500,
+      "target_stitches_max": 8000,
+      "target_stitches_default": 5800,
+      "target_stitches_by_design": {
+        "I0001": 5800,
+        "I0002": 5600,
+        "I0003": 6500,
+        "I0004": 4600,
+        "I0005": 4500,
+        "I0006": 5600,
+        "I0007": 6000,
+        "I0008": 6200,
+        "I0009": 6000,
+        "I0010": 5200
+      },
+      "safe_margin_cells_x": 5,
+      "safe_margin_cells_y": 6,
+      "alpha_threshold": 132,
+      "color_threshold": 48,
+      "target_tolerance_cells": 240,
+      "max_orphan_component_cells": 2,
+      "max_isolated_cells": 8,
+      "max_weak_exterior_near_white_cells": 9999,
+      "source_edge_cleanup": {
+        "white_distance": 72,
+        "max_isolated_component_cells": 24,
+        "max_fringe_component_cells": 48,
+        "fringe_boundary_fraction": 0.7
+      },
+      "qa_views": [
+        "transparent master",
+        "white-canvas preview",
+        "400-percent edge inspection"
+      ],
+      "approved_batch": [
+        "I0001",
+        "I0002",
+        "I0003",
+        "I0004",
+        "I0005",
+        "I0006",
+        "I0007",
+        "I0008",
+        "I0009",
+        "I0010"
+      ]
     }
   },
   "design_reference": {
     "asset": "collections/baby-nursery/assets/design-reference-master.avif",
-    "status": "approved",
+    "status": "approved-for-premium-v3-refinement",
     "purpose": "Canonical visual reference for Baby & Nursery redesign and pattern regeneration.",
     "source_dimensions_px": {
       "width": 1536,
@@ -294,8 +347,8 @@
     },
     "background": "white",
     "target_cross_stitch_actual_stitches": "4500-8000 depending on motif complexity",
-    "notes": "Use the approved visual language and fine stitch density; do not force every motif to the same stitch count.",
+    "notes": "Reference artwork defines the motif and palette. Premium v3 rebuilds the stitch geometry at higher density; do not reuse the former low-density sprite as the final pattern.",
     "approved_batch": "I0001-I0010",
-    "matrix_standard": "100x120 master grid; exact approved 24-colour palette; transparent exterior"
+    "matrix_standard": "100x120 stitch-native master grid; 4,500-8,000 actual coloured stitches according to motif complexity; exact approved 24-colour palette; transparent exterior"
   }
 }

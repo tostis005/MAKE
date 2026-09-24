@@ -1,0 +1,195 @@
+name: Baby Nursery Premium Edge Refinement
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feature/baby-nursery-premium-edge-refinement
+    paths:
+      - 'content/pattern-system/baby_nursery/premium_refinement.py'
+      - 'content/pattern-system/baby_nursery/generate_reference_master.py'
+      - 'content/pattern-system/baby_nursery/publish_design.py'
+      - 'content/pattern-system/collections/baby-nursery/collection.json'
+      - '.github/workflows/baby-nursery-premium-edge-refinement.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: baby-nursery-premium-edge-refinement
+  cancel-in-progress: true
+
+jobs:
+  refine:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Checkout refinement branch
+        uses: actions/checkout@v4
+        with:
+          ref: feature/baby-nursery-premium-edge-refinement
+          fetch-depth: 0
+
+      - name: Capture baseline stitch counts
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          out={}
+          for i in range(1,11):
+              design=f"I{i:04d}"
+              p=Path("content/pattern-system/patterns")/f"{design}-CS"/"pattern.json"
+              if p.is_file():
+                  d=json.loads(p.read_text(encoding="utf-8"))
+                  out[design]=int(d.get("total_stitches",0))
+          Path("/tmp/baby-nursery-baseline.json").write_text(json.dumps(out),encoding="utf-8")
+          print("BASELINE",out)
+          PY
+
+      - name: Install renderer dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow playwright
+          python3 -m playwright install --with-deps chromium
+
+      - name: Regenerate premium stitch-native masters, patterns and PDFs
+        env:
+          DRIELO_GALLERY_REVISION: premium-v3-${{ github.run_id }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          for DESIGN in I0001 I0002 I0003 I0004 I0005 I0006 I0007 I0008 I0009 I0010; do
+            echo "===== PREMIUM V3 $DESIGN ====="
+            python3 content/pattern-system/baby_nursery/publish_design.py "$DESIGN"
+          done
+
+      - name: Premium edge and density QA
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+          from PIL import Image, ImageDraw
+
+          root=Path(".")
+          system=root/"content"/"pattern-system"
+          sys.path.insert(0,str((system/"baby_nursery").resolve()))
+          from premium_refinement import edge_quality
+
+          collection=json.loads((system/"collections"/"baby-nursery"/"collection.json").read_text(encoding="utf-8"))
+          palette=collection["palette"]
+          alphabet=list("ABCDEFGHJKLMNPQRSTUVWXYZ23456789")
+          rule=collection["pattern_rules"]["premium_refinement"]
+          baseline=json.loads(Path("/tmp/baby-nursery-baseline.json").read_text(encoding="utf-8"))
+
+          min_stitches=int(rule["target_stitches_min"])
+          max_stitches=int(rule["target_stitches_max"])
+          tolerance=int(rule.get("target_tolerance_cells",240))
+          max_isolated=int(rule.get("max_isolated_cells",8))
+
+          designs=json.loads((system/"collections"/"baby-nursery"/"designs.json").read_text(encoding="utf-8"))["designs"]
+          by_id={x["base_design_id"]:x for x in designs}
+
+          report={
+              "version":3,
+              "branch":"feature/baby-nursery-premium-edge-refinement",
+              "policy":"stitch-native palette-mask supersampling; transparent exterior; no raster paste",
+              "designs":[]
+          }
+
+          thumbs=[]
+          for n in range(1,11):
+              design=f"I{n:04d}"
+              meta=by_id[design]
+              pat_path=system/"patterns"/f"{design}-CS"/"pattern.json"
+              pat=json.loads(pat_path.read_text(encoding="utf-8"))
+              matrix=pat["matrix"]
+              if len(matrix)!=120 or any(len(row)!=100 for row in matrix):
+                  raise SystemExit(f"{design}: malformed CS matrix")
+              rows=["".join("." if c is None else c for c in row) for row in matrix]
+              quality=edge_quality(rows,palette,alphabet,white_distance=float(rule["source_edge_cleanup"]["white_distance"]))
+              stitches=int(pat.get("total_stitches",0))
+              if stitches < min_stitches-tolerance or stitches > max_stitches+tolerance:
+                  raise SystemExit(f"{design}: stitch density {stitches} outside premium range")
+              if quality["isolated_cells"] > max_isolated:
+                  raise SystemExit(f"{design}: isolated edge/detail cells {quality['isolated_cells']} > {max_isolated}")
+              prem=pat.get("premium_refinement") or {}
+              if not prem.get("enabled") or prem.get("version")!=3 or not prem.get("stitch_native"):
+                  raise SystemExit(f"{design}: premium v3 metadata missing")
+
+              ref=system/"collections"/"baby-nursery"/"reference-masters"/f"{design}-{meta['slug']}-reference.png"
+              im=Image.open(ref).convert("RGBA")
+              alpha=im.getchannel("A")
+              amin,amax=alpha.getextrema()
+              bbox=alpha.getbbox()
+              if im.size!=(800,960) or amin!=0 or amax!=255 or not bbox:
+                  raise SystemExit(f"{design}: invalid transparent reference master")
+              if min(bbox[0],bbox[1],800-bbox[2],960-bbox[3]) < 32:
+                  raise SystemExit(f"{design}: insufficient safe transparent margin {bbox}")
+
+              old=int(baseline.get(design,0))
+              target=int(rule["target_stitches_by_design"].get(design,rule["target_stitches_default"]))
+              report["designs"].append({
+                  "design_id":design,
+                  "slug":meta["slug"],
+                  "baseline_stitches":old,
+                  "premium_v3_stitches":stitches,
+                  "target_stitches":target,
+                  "increase":stitches-old,
+                  "bbox":list(bbox),
+                  "quality":quality,
+              })
+
+              white=Image.new("RGB",im.size,(255,255,255))
+              white.paste(im,mask=im.getchannel("A"))
+              white.thumbnail((300,360),Image.Resampling.LANCZOS)
+              thumbs.append((design,meta["title_en"],white.copy()))
+
+          qa_dir=system/"collections"/"baby-nursery"/"qa"
+          qa_dir.mkdir(parents=True,exist_ok=True)
+          report_path=qa_dir/"premium-v3-quality-report.json"
+          report_path.write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+
+          cell_w,cell_h=320,410
+          sheet=Image.new("RGB",(cell_w*5,cell_h*2),(255,255,255))
+          draw=ImageDraw.Draw(sheet)
+          for idx,(design,title,thumb) in enumerate(thumbs):
+              col=idx%5; row=idx//5
+              x=col*cell_w+(cell_w-thumb.width)//2
+              y=row*cell_h+24
+              sheet.paste(thumb,(x,y))
+              draw.text((col*cell_w+10,row*cell_h+5),f"{design} {title}",fill=(0,0,0))
+          sheet.save(qa_dir/"premium-v3-contact-sheet.webp","WEBP",quality=94,method=6)
+
+          print(json.dumps(report,ensure_ascii=False,indent=2))
+          PY
+
+      - name: Commit refined patterns and visual QA to branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add             content/pattern-system/collections/baby-nursery/source-designs/I000*.png             content/pattern-system/collections/baby-nursery/reference-masters/I000*-reference.png             content/pattern-system/collections/baby-nursery/qa/             content/pattern-system/patterns/I000*-*/pattern.json             content/pattern-system/products/I000*-*/product.json             content/products/catalog.json             content/products/assets/I000*-product.webp             content/products/assets/I000*-gallery-*.webp
+
+          if git diff --cached --quiet; then
+            echo "No generated changes to commit."
+          else
+            git commit -m "Regenerate Baby Nursery I0001-I0010 premium v3 [skip ci]"
+            git push origin HEAD:feature/baby-nursery-premium-edge-refinement
+          fi
+
+      - name: Archive corrected PDFs and QA
+        uses: actions/upload-artifact@v4
+        with:
+          name: baby-nursery-premium-v3-review
+          path: |
+            content/products/files/Drielo_I000*-*.pdf
+            content/pattern-system/collections/baby-nursery/qa/premium-v3-quality-report.json
+            content/pattern-system/collections/baby-nursery/qa/premium-v3-contact-sheet.webp
+          retention-days: 30

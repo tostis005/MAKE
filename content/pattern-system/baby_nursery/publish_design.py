@@ -459,6 +459,18 @@ def rebuild_from_master(base_id: str, design: dict, collection: dict):
     if not counts:
         raise RuntimeError(f"{base_id}: source master produced an empty pattern")
 
+    premium_rule = collection.get("pattern_rules", {}).get("premium_refinement", {})
+    if premium_rule.get("enabled", False):
+        total_cells = sum(counts.values())
+        min_cells = int(premium_rule.get("target_stitches_min", 4500))
+        max_cells = int(premium_rule.get("target_stitches_max", 8000))
+        tolerance = int(premium_rule.get("target_tolerance_cells", 240))
+        if total_cells < min_cells - tolerance or total_cells > max_cells + tolerance:
+            raise RuntimeError(
+                f"{base_id}: premium v3 CS density {total_cells} outside "
+                f"{min_cells - tolerance}..{max_cells + tolerance}"
+            )
+
     dark_rule = collection.get("pattern_rules", {}).get("external_dark_cleanup", {})
     dark_symbol = None
     if dark_rule.get("enabled", False):
@@ -571,6 +583,14 @@ def rebuild_from_master(base_id: str, design: dict, collection: dict):
                 "total_stitches": sum(1 for r in mat for v in r if v),
                 "threads": th,
                 "matrix": mat,
+                "premium_refinement": {
+                    "enabled": bool(premium_rule.get("enabled", False)),
+                    "version": premium_rule.get("version") if premium_rule.get("enabled", False) else None,
+                    "stitch_native": bool(premium_rule.get("enabled", False)),
+                    "target_stitches_min": int(premium_rule.get("target_stitches_min", 4500)) if premium_rule.get("enabled", False) else None,
+                    "target_stitches_max": int(premium_rule.get("target_stitches_max", 8000)) if premium_rule.get("enabled", False) else None,
+                    "edge_finish": "transparent-no-raster-halo" if premium_rule.get("enabled", False) else None,
+                },
                 "outline_policy": {
                     "enabled": bool(outline_symbol),
                     "dmc": str(outline_rule.get("dmc", "310")) if outline_symbol else None,
