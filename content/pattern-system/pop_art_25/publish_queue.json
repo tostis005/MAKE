@@ -18,7 +18,8 @@
     "From P0003 onward, branch-generated sources automatically remove small exterior white/near-white artifacts before the four techniques are rendered; intentional white details remain. P0001 and P0012 stay protected.",
     "P0010, P0016 and P0019 were explicitly requeued for stronger Pop Art colour treatments while keeping the shared 25-colour palette unchanged.",
     "P0010, P0016 and P0019 were rebuilt from approved visual masters rather than heuristic recolouring; shared 25-colour palette remains unchanged.",
-    "P0016 Mona Lisa explicitly requeued to force a fresh WooCommerce image/PDF rebuild from the approved exact visual master."
+    "P0016 Mona Lisa explicitly requeued to force a fresh WooCommerce image/PDF rebuild from the approved exact visual master.",
+    "P0016 requeued after cache-busting importer fix so WooCommerce gets new image attachment URLs and a revisioned PDF URL."
   ],
   "items": [
     {
@@ -185,11 +186,10 @@
       "title_en": "Mona Lisa Portrait",
       "title_es": "Retrato de la Mona Lisa",
       "slug": "mona-lisa-portrait",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/35993000817",
-      "last_error": null,
-      "published_at": "2026-09-24T11:30:15+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "order": 15,
