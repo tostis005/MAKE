@@ -52,7 +52,7 @@ jobs:
             $data=get_plugin_data(WP_PLUGIN_DIR."/".$plugin,false,false);
             $version=(string)($data["Version"]??"");
             echo "PLUGIN_VERSION=".$version.PHP_EOL;
-            if($version!=="1.4.2" || !class_exists("Drielo_Etsy_Sync")) exit(2);
+            if(version_compare($version,"1.4.2","<") || !class_exists("Drielo_Etsy_Sync")) exit(2);
 
             $old_run=get_option("drielo_etsy_sync_run",array());
             $ids=array_values(array_unique(array_filter(array_map("absint",(array)($old_run["product_ids"]??array())))));
