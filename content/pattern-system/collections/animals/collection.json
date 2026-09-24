@@ -142,7 +142,8 @@
     "strict_palette": true,
     "palette_size": 24,
     "transparent_background": true,
-    "archive_parts": 9
+    "archive_parts": 9,
+    "reference_assets_workflow": ".github/workflows/animals-reference-assets.yml"
   },
   "grid_profiles": {
     "master": {
