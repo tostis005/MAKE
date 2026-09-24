@@ -66,3 +66,19 @@ This image is the only item in the product gallery unless a future project rule 
 ## Staged products
 
 Products that are structurally created but do not yet have approved canonical artwork/page-1 assets must set `render_ready: false`. GitHub Actions must skip those products until their real stitch matrix and approved collection mockup are ready.
+
+## Exact pixel-by-pixel importer
+
+When the user asks to use the pixel-by-pixel importer, use `content/pattern-system/pixel_importer/import_pixel_sheet.py`.
+
+This mode is deliberately different from normal image-to-pattern conversion:
+
+1. It is cross-stitch only.
+2. The user supplies the source sheet plus tile width, tile height, row count and column count. Origin/gaps are zero unless explicitly supplied.
+3. One source pixel is exactly one full cross stitch. Never resize, resample, interpolate, smooth, clean, infer or reinterpret the artwork.
+4. Preserve the exact RGB/HEX value of every source pixel. Do not quantize or map colours to DMC in this mode.
+5. Split tiles strictly by the supplied geometry in row-major order. If the sheet dimensions do not match the geometry exactly, fail instead of guessing.
+6. The importer must run its pixel round-trip validation before a PDF is considered valid.
+7. Exact-pixel runs live under `content/pattern-system/pixel_importer/output/<run-id>/` and are staging/build outputs, not canonical collection products until a separate publish step is explicitly requested.
+8. If a tile contains more exact colours than the supported chart-symbol set, fail. Never silently merge colours.
+
