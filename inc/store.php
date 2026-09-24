@@ -3,7 +3,8 @@
  * Drielo storefront extensions.
  *
  * Every pattern is an individual WooCommerce downloadable product.
- * product_collection groups interchangeable designs that share a thread palette.
+ * product_collection groups related designs. Collections may use one shared
+ * thread palette or let each design define its own palette.
  * USD is the default checkout currency; shoppers can switch to EUR.
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
@@ -647,6 +648,20 @@ function make_collection_palette( WP_Term $term ): array {
     return array_values( array_filter( array_map( 'sanitize_hex_color', array_map( 'trim', explode( ',', $raw ) ) ) ) );
 }
 
+function make_collection_palette_mode( WP_Term $term ): string {
+    $mode = sanitize_key( (string) get_term_meta( $term->term_id, 'drielo_palette_mode', true ) );
+    return 'per-design' === $mode ? 'per-design' : 'shared';
+}
+
+function make_collection_shows_shared_palette( WP_Term $term ): bool {
+    if ( 'shared' !== make_collection_palette_mode( $term ) ) { return false; }
+
+    $setting = (string) get_term_meta( $term->term_id, 'drielo_show_collection_palette', true );
+    if ( '' !== $setting ) { return '1' === $setting; }
+
+    return ! empty( make_collection_palette( $term ) );
+}
+
 function make_collection_display_name( WP_Term $term ): string {
     $lang = function_exists( 'make_current_language' ) ? make_current_language() : 'en';
     $key  = 'es' === $lang ? 'drielo_name_es' : 'drielo_name_en';
@@ -1020,7 +1035,7 @@ function make_collection_stats_description( WP_Term $term ): string {
         }
     }
 
-    if ( $palette_count > 0 ) {
+    if ( $palette_count > 0 && make_collection_shows_shared_palette( $term ) ) {
         $parts[] = 1 === $palette_count
             ? make_t( 'Toda la colección comparte una paleta coordinada de 1 color.', 'The whole collection shares one coordinated colour.' )
             : sprintf( make_t( 'Toda la colección comparte una paleta coordinada de %d colores.', 'The whole collection shares one coordinated %d-colour palette.' ), $palette_count );
@@ -1035,6 +1050,7 @@ function make_collection_mosaic_columns( int $count ): int {
 }
 
 function make_render_palette_swatches( WP_Term $term, bool $show_count = false ): void {
+    if ( ! make_collection_shows_shared_palette( $term ) ) { return; }
     $palette = make_collection_palette( $term );
     if ( empty( $palette ) ) { return; }
 
@@ -1354,9 +1370,12 @@ function make_collection_archive_note(): void {
     }
     echo '</div>';
 
-    echo '<div class="drielo-collection-note-palette"><span class="section-kicker">' . esc_html( make_t( 'Paleta compartida', 'Shared palette' ) ) . '</span>';
-    make_render_palette_swatches( $term, true );
-    echo '</div></div>';
+    if ( make_collection_shows_shared_palette( $term ) && ! empty( make_collection_palette( $term ) ) ) {
+        echo '<div class="drielo-collection-note-palette"><span class="section-kicker">' . esc_html( make_t( 'Paleta compartida', 'Shared palette' ) ) . '</span>';
+        make_render_palette_swatches( $term, true );
+        echo '</div>';
+    }
+    echo '</div>';
 }
 
 
@@ -1386,10 +1405,11 @@ add_action( 'woocommerce_single_product_summary', 'make_pending_download_notice'
  * Make product reference codes searchable from the site-wide search.
  *
  * Product codes are stored twice on managed products:
- * - WooCommerce SKU: DRIELO-P0004
- * - Drielo code meta: P0004
+ * - WooCommerce SKU: DRIELO-P0004 / DRIELO-I0001 / DRIELO-D0001
+ * - Drielo code meta: P0004 / I0001 / D0001
  *
- * Visitors can therefore search P0004, P-0004 or DRIELO-P0004.
+ * Visitors can search the prefixed code directly; plain numbers keep the
+ * historical P-prefix fallback.
  */
 function make_product_code_search_sql( string $search, WP_Query $query ): string {
     if ( is_admin() || ! $query->is_search() || ! $query->is_main_query() ) {
@@ -1404,10 +1424,10 @@ function make_product_code_search_sql( string $search, WP_Query $query ): string
     $normalized = strtoupper( preg_replace( '/[^A-Z0-9]/i', '', $raw ) );
     $code = '';
 
-    if ( preg_match( '/^DRIELOP(\d{1,8})$/', $normalized, $matches ) ) {
-        $code = 'P' . str_pad( $matches[1], 4, '0', STR_PAD_LEFT );
-    } elseif ( preg_match( '/^P(\d{1,8})$/', $normalized, $matches ) ) {
-        $code = 'P' . str_pad( $matches[1], 4, '0', STR_PAD_LEFT );
+    if ( preg_match( '/^DRIELO([PID])(\d{1,8})$/', $normalized, $matches ) ) {
+        $code = strtoupper( $matches[1] ) . str_pad( $matches[2], 4, '0', STR_PAD_LEFT );
+    } elseif ( preg_match( '/^([PID])(\d{1,8})$/', $normalized, $matches ) ) {
+        $code = strtoupper( $matches[1] ) . str_pad( $matches[2], 4, '0', STR_PAD_LEFT );
     } elseif ( preg_match( '/^(\d{1,8})$/', $normalized, $matches ) ) {
         $code = 'P' . str_pad( $matches[1], 4, '0', STR_PAD_LEFT );
     }
@@ -1419,7 +1439,7 @@ function make_product_code_search_sql( string $search, WP_Query $query ): string
     global $wpdb;
 
     $sku       = 'DRIELO-' . $code;
-    $pdf_code  = 'P-' . substr( $code, 1 );
+    $pdf_code  = substr( $code, 0, 1 ) . '-' . substr( $code, 1 );
     $needle_a  = '%' . $wpdb->esc_like( $code ) . '%';
     $needle_b  = '%' . $wpdb->esc_like( $sku ) . '%';
     $needle_c  = '%' . $wpdb->esc_like( $pdf_code ) . '%';
@@ -1458,8 +1478,8 @@ function make_product_reference_code( int $product_id ): string {
     }
 
     $sku = (string) get_post_meta( $product_id, '_sku', true );
-    if ( preg_match( '/P-?(\d+)$/i', $sku, $matches ) ) {
-        return 'P' . str_pad( $matches[1], 4, '0', STR_PAD_LEFT );
+    if ( preg_match( '/([PID])-?(\d+)$/i', $sku, $matches ) ) {
+        return strtoupper( $matches[1] ) . str_pad( $matches[2], 4, '0', STR_PAD_LEFT );
     }
 
     return '';
