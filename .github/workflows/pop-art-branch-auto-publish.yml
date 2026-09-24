@@ -191,15 +191,25 @@ jobs:
               raise SystemExit(f'Package catalogue mismatch: {found} != {codes}')
           cats={slug for p in selected for slug in p.get('categories',[])}
 
-          out=dict(catalog)
-          out['products']=selected
-          out['collections']=[c for c in catalog.get('collections',[]) if c.get('slug')=='pop-art-25']
-          out['categories']=[c for c in catalog.get('categories',[]) if c.get('slug') in cats]
-          if len(out['collections']) != 1:
+          base=dict(catalog)
+          base['collections']=[c for c in catalog.get('collections',[]) if c.get('slug')=='pop-art-25']
+          base['categories']=[c for c in catalog.get('categories',[]) if c.get('slug') in cats]
+          if len(base['collections']) != 1:
               raise SystemExit('Pop Art collection definition missing')
+
+          out=dict(base)
+          out['products']=selected
           (stage/'content/products/catalog.json').write_text(
               json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8'
           )
+
+          by_code={p['code']:p for p in selected}
+          for suffix in ('CS','C2C','TC','LH'):
+              one=dict(base)
+              one['products']=[by_code[f'{design}-{suffix}']]
+              (stage/f'content/products/catalog-{suffix}.json').write_text(
+                  json.dumps(one,ensure_ascii=False,indent=2)+'\n',encoding='utf-8'
+              )
           PY
 
           for suffix in CS C2C TC LH; do
@@ -264,11 +274,41 @@ jobs:
 
           rm -rf "$STAGE" && mkdir -p "$STAGE"
           tar -xzf "$ARCHIVE" -C "$STAGE"
+
+          # Start from a clean staging directory in the WordPress container.
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php && mkdir -p /tmp/drielo-products'
           "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
           "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
-          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M             /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
 
-          "${DOCKER[@]}" exec -e DESIGN="$DESIGN" make-wp php -d memory_limit=768M -r '
+          # Import one technique at a time. This prevents a late media/download
+          # failure from leaving the last products half-created.
+          for suffix in CS C2C TC LH; do
+            code="${DESIGN}-${suffix}"
+            "${DOCKER[@]}" exec make-wp sh -lc "
+              test -s /tmp/drielo-products/assets/${code}-product.webp &&
+              test -s /tmp/drielo-products/assets/${code}-gallery-2.webp &&
+              test -s /tmp/drielo-products/assets/${code}-gallery-3.webp &&
+              test -s /tmp/drielo-products/assets/${code}-gallery-4.webp &&
+              test -s /tmp/drielo-products/files/Drielo_${code}.pdf &&
+              cp /tmp/drielo-products/catalog-${suffix}.json /tmp/drielo-products/catalog.json
+            "
+
+            ok=0
+            for attempt in 1 2 3; do
+              echo "Importing ${code} attempt ${attempt}/3"
+              if "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M -d max_execution_time=0                    /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products; then
+                ok=1
+                break
+              fi
+              sleep 3
+            done
+            if [ "$ok" != "1" ]; then
+              echo "ERROR: failed to import ${code} after 3 attempts"
+              exit 4
+            fi
+          done
+
+          "${DOCKER[@]}" exec -e DESIGN="$DESIGN" make-wp php -d memory_limit=1024M -d max_execution_time=0 -r '
             require "/var/www/html/wp-load.php";
             $design=getenv("DESIGN");
             foreach (array("CS","C2C","TC","LH") as $suffix) {
