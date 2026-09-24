@@ -413,7 +413,9 @@
       ],
       "artwork_status": "canonical-reference-ready",
       "reference_asset": "collections/animals/reference-masters/A0023-calf-heart-reference.png",
-      "source_asset": "collections/animals/source-designs/A0023-calf-heart.png"
+      "source_asset": "collections/animals/source-designs/A0023-calf-heart.png",
+      "product_status": "ready",
+      "transparent_background": true
     },
     {
       "order": 24,
