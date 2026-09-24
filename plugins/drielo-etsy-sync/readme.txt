@@ -3,7 +3,7 @@ Contributors: Drielo
 Requires at least: 6.4
 Requires PHP: 8.0
 Requires Plugins: woocommerce
-Stable tag: 1.4.5
+Stable tag: 1.4.6
 
 Panel central para seleccionar y sincronizar productos WooCommerce con Etsy mediante Etsy Open API v3.
 
@@ -37,6 +37,9 @@ Panel central para seleccionar y sincronizar productos WooCommerce con Etsy medi
 Etsy no permite devolver un listing ya publicado al estado draft. Si un listing activo se cambia al objetivo Borrador, el plugin lo deja inactive.
 
 == Changelog ==
+
+= 1.4.6 =
+* Envía tanto value_ids como values al atributo Craft type de Etsy, requerido para guardar Crochet/Ganchillo correctamente.
 
 = 1.4.5 =
 * C2C Crochet y Tapestry Crochet priorizan la categoría Etsy Crochet/Ganchillo.
