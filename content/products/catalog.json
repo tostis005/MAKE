@@ -163,9 +163,9 @@
       "slug": "florals",
       "name_en": "Florals",
       "name_es": "Florales",
-      "description": "Floral and botanical patterns in one coordinated 24-colour palette for cross stitch, C2C crochet, tapestry crochet and latch-hook rugs.",
-      "description_en": "Floral and botanical patterns in one coordinated 24-colour palette for cross stitch, C2C crochet, tapestry crochet and latch-hook rugs.",
-      "description_es": "Patrones florales y botánicos con una paleta coordinada de 24 colores para punto de cruz, crochet C2C, tapestry crochet y alfombra latch hook.",
+      "description": "Floral and botanical downloadable patterns in a coordinated 24-colour palette.",
+      "description_en": "Floral and botanical downloadable patterns in a coordinated 24-colour palette.",
+      "description_es": "Patrones florales y botánicos descargables con una paleta coordinada de 24 colores.",
       "palette_hex": [
         "#F5F1E8",
         "#FFF1C8",
@@ -220,10 +220,7 @@
       ],
       "cover_asset": "assets/F0001-CS-product.webp",
       "techniques": [
-        "cross-stitch",
-        "c2c-crochet",
-        "tapestry-crochet",
-        "latch-hook"
+        "cross-stitch"
       ]
     }
   ],
@@ -370,6 +367,119 @@
     }
   ],
   "products": [
+    {
+      "code": "F0001-CS",
+      "sku": "DRIELO-F0001-CS",
+      "title": "Blue Daisy Pitcher Cross Stitch Pattern PDF",
+      "title_en": "Blue Daisy Pitcher Cross Stitch Pattern PDF",
+      "title_es": "Patrón PDF de punto de cruz: Jarra azul con margaritas",
+      "slug": "blue-daisy-pitcher-cross-stitch-pattern",
+      "price": 4.99,
+      "collection": "florals",
+      "stitches": 6135,
+      "grid": "100 × 120 stitches",
+      "colours": 12,
+      "color_count": 12,
+      "grid_width": 100,
+      "grid_height": 120,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Counted cross stitch",
+      "stitch_type_en": "Counted cross stitch",
+      "stitch_type_es": "Punto de cruz contado",
+      "short_description": "Downloadable Blue Daisy Pitcher cross stitch pattern PDF. 100 × 120 stitches; 6,135 stitches; 12 DMC colours. Pattern code: F0001-CS.",
+      "short_description_en": "Downloadable Blue Daisy Pitcher cross stitch pattern PDF. 100 × 120 stitches; 6,135 stitches; 12 DMC colours. Pattern code: F0001-CS.",
+      "short_description_es": "Patrón PDF descargable de punto de cruz de una jarra azul con margaritas. 100 × 120 puntos; 6,135 puntos; 12 colores DMC. Código: F0001-CS.",
+      "description": "<p><strong>Blue Daisy Pitcher Cross Stitch Pattern PDF</strong> is a redesigned, clean pixel-by-pixel floral pattern from Drielo's Florals collection.</p><p><strong>Digital product only:</strong> no finished item or physical materials are included.</p><h3>Pattern details</h3><ul><li>Pattern code: F0001-CS</li><li>Grid: 100 × 120 stitches</li><li>Total stitches: 6,135</li><li>Colours: 12 DMC colours</li><li>Technique: Counted cross stitch</li><li>Skill level: Beginner friendly</li></ul><h3>What you receive</h3><ul><li>PDF pattern</li><li>Finished-design preview</li><li>Colour key</li><li>Full-colour chart</li><li>Black-and-white symbol chart</li><li>Enlarged chart sections</li></ul><p>Personal use only.</p>",
+      "description_en": "<p><strong>Blue Daisy Pitcher Cross Stitch Pattern PDF</strong> is a redesigned, clean pixel-by-pixel floral pattern from Drielo's Florals collection.</p><p><strong>Digital product only:</strong> no finished item or physical materials are included.</p><h3>Pattern details</h3><ul><li>Pattern code: F0001-CS</li><li>Grid: 100 × 120 stitches</li><li>Total stitches: 6,135</li><li>Colours: 12 DMC colours</li><li>Technique: Counted cross stitch</li><li>Skill level: Beginner friendly</li></ul><h3>What you receive</h3><ul><li>PDF pattern</li><li>Finished-design preview</li><li>Colour key</li><li>Full-colour chart</li><li>Black-and-white symbol chart</li><li>Enlarged chart sections</li></ul><p>Personal use only.</p>",
+      "description_es": "<p><strong>Patrón PDF de punto de cruz: Jarra azul con margaritas</strong>.</p><p><strong>Solo producto digital:</strong> no incluye pieza terminada ni materiales físicos.</p><h3>Detalles</h3><ul><li>Código: F0001-CS</li><li>Cuadrícula: 100 × 120 puntos</li><li>Total: 6,135 puntos</li><li>Colores: 12 colores DMC</li><li>Técnica: punto de cruz contado</li><li>Nivel: apto para principiantes</li></ul><p>Solo para uso personal.</p>",
+      "categories": [
+        "cross-stitch-patterns",
+        "cross-stitch-florals"
+      ],
+      "tags": [
+        "blue daisy pitcher",
+        "cross stitch pdf",
+        "floral cross stitch",
+        "daisy pattern",
+        "cottagecore",
+        "digital pattern",
+        "beginner pattern"
+      ],
+      "gallery": [
+        "assets/F0001-CS-gallery-2.webp",
+        "assets/F0001-CS-gallery-3.webp",
+        "assets/F0001-CS-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_F0001-CS.pdf",
+      "featured_image": "assets/F0001-CS-product.webp",
+      "gallery_revision": 35985510540,
+      "seo_title": "Blue Daisy Pitcher Cross Stitch Pattern PDF | Drielo",
+      "seo_title_en": "Blue Daisy Pitcher Cross Stitch Pattern PDF | Drielo",
+      "seo_title_es": "Patrón de punto de cruz Jarra azul con margaritas | Drielo",
+      "meta_description": "Downloadable Blue Daisy Pitcher cross stitch pattern PDF. 100 × 120 stitches; 6,135 stitches; 12 DMC colours. Pattern code: F0001-CS.",
+      "meta_description_en": "Downloadable Blue Daisy Pitcher cross stitch pattern PDF. 100 × 120 stitches; 6,135 stitches; 12 DMC colours. Pattern code: F0001-CS.",
+      "meta_description_es": "Patrón PDF descargable de punto de cruz de una jarra azul con margaritas. 100 × 120 puntos; 6,135 puntos; 12 colores DMC. Código: F0001-CS.",
+      "etsy_title_en": "Blue Daisy Pitcher Cross Stitch Pattern PDF",
+      "etsy_title_es": "Patrón punto de cruz jarra azul con margaritas PDF",
+      "etsy_description_en": "Downloadable Blue Daisy Pitcher cross stitch pattern PDF. 100 × 120 stitches; 6,135 stitches; 12 DMC colours. Pattern code: F0001-CS.",
+      "etsy_description_es": "Patrón PDF descargable de punto de cruz de una jarra azul con margaritas. 100 × 120 puntos; 6,135 puntos; 12 colores DMC. Código: F0001-CS.",
+      "etsy_tags_en": [
+        "daisy cross stitch",
+        "floral pattern",
+        "cross stitch pdf",
+        "blue pitcher",
+        "cottagecore",
+        "beginner pattern"
+      ],
+      "etsy_tags_es": [
+        "punto de cruz",
+        "margaritas",
+        "patrón floral",
+        "jarra azul",
+        "patrón pdf"
+      ],
+      "design_id": "F0001-CS",
+      "base_design_id": "F0001",
+      "technique_code": "CS",
+      "technique": "cross-stitch",
+      "size_attribute_label": "Pattern size",
+      "colour_attribute_label": "DMC colours",
+      "type_attribute_label": "Technique",
+      "count_attribute_label": "Total stitches",
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "flowers-botanicals"
+        ],
+        "style": [
+          "cottagecore"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "blue"
+        ],
+        "season": [
+          "spring"
+        ]
+      }
+    },
     {
       "code": "I0001-C2C",
       "sku": "DRIELO-I0001-C2C",
