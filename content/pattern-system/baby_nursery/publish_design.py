@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import os
 import shutil
 import sys
 from collections import Counter
@@ -467,7 +468,7 @@ def update_catalog(base_id: str, design: dict):
     rows = catalog.setdefault("products", [])
     by_code = {p.get("code"): p for p in rows}
     templates = {s: deepcopy(by_code[f"I0001-{s}"]) for s in SUFFIXES}
-    revision = 202609240000 + int(base_id[1:])
+    revision = int(os.environ.get("DRIELO_GALLERY_REVISION", 202609240000 + int(base_id[1:])))
 
     for suffix in SUFFIXES:
         code = f"{base_id}-{suffix}"
