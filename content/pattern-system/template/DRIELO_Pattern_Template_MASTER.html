@@ -289,7 +289,7 @@ function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, transparent=false) {
 
         if (!grouped.has(symbol)) grouped.set(symbol,{
           base:[],top:[],left:[],right:[],bottom:[],
-          diagDark:[],diagLight:[],ridgeA:[],ridgeB:[],
+          diagDark:[[],[],[],[]],diagLight:[[],[],[],[]],ridgeA:[[],[],[]],ridgeB:[[],[],[]],
           topEdge:[[],[],[]],leftEdge:[[],[],[]],rightSeam:[[],[],[]],bottomSeam:[[],[],[]],center:[],contact:[[],[],[]]
         });
         const g=grouped.get(symbol);
@@ -326,20 +326,54 @@ function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, transparent=false) {
           `M${(lx+.025).toFixed(3)} ${(ly+.975).toFixed(3)} L${cx.toFixed(3)} ${cy.toFixed(3)} L${(lx+.975).toFixed(3)} ${(ly+.975).toFixed(3)} Z`
         );
 
-        // Two broad floss passes. They are deliberately subtle at normal size:
-        // the stitch reads as a pixel from afar and as crossed thread on zoom.
-        g.diagDark.push(
-          `M${(lx+.07).toFixed(3)} ${(ly+.07).toFixed(3)} Q${cx.toFixed(3)} ${(cy+.015).toFixed(3)} ${(lx+.93).toFixed(3)} ${(ly+.93).toFixed(3)}`
+        // Organic floss passes. In real cross stitch the two diagonals do not
+        // repeat as identical graphic Xs: tension, entry point, curvature and
+        // which strand visually dominates vary slightly from stitch to stitch.
+        const underBucket=Math.min(3,Math.floor(r3*4));
+        const overBucket=Math.min(3,Math.floor(r4*4));
+        const ridgeBucket=Math.min(2,Math.floor(r5*3));
+
+        const mA=.050+r0*.055, mB=.050+r1*.055;
+        const mC=.050+r2*.055, mD=.050+r3*.055;
+        const a0x=lx+mA, a0y=ly+mB;
+        const a1x=lx+1-mC, a1y=ly+1-mD;
+        const b0x=lx+1-(.050+r4*.055), b0y=ly+(.050+r5*.055);
+        const b1x=lx+(.050+r1*.055), b1y=ly+1-(.050+r0*.055);
+
+        const crossX=cx+(r2-.5)*.065;
+        const crossY=cy+(r5-.5)*.060;
+        const bendAX=crossX+(r4-.5)*.070;
+        const bendAY=crossY+(r3-.5)*.065;
+        const bendBX=crossX+(r0-.5)*.070;
+        const bendBY=crossY+(r2-.5)*.065;
+
+        // Under-pass is often partly swallowed by the upper thread and relief.
+        if (r5>.08) {
+          g.diagDark[underBucket].push(
+            `M${a0x.toFixed(3)} ${a0y.toFixed(3)} Q${bendAX.toFixed(3)} ${bendAY.toFixed(3)} ${a1x.toFixed(3)} ${a1y.toFixed(3)}`
+          );
+        }
+
+        // Upper-pass remains the most legible strand, but not with identical
+        // endpoints, width or centre in every cell.
+        g.diagLight[overBucket].push(
+          `M${b0x.toFixed(3)} ${b0y.toFixed(3)} Q${bendBX.toFixed(3)} ${bendBY.toFixed(3)} ${b1x.toFixed(3)} ${b1y.toFixed(3)}`
         );
-        g.diagLight.push(
-          `M${(lx+.93).toFixed(3)} ${(ly+.07).toFixed(3)} Q${cx.toFixed(3)} ${(cy-.015).toFixed(3)} ${(lx+.07).toFixed(3)} ${(ly+.93).toFixed(3)}`
-        );
-        g.ridgeA.push(
-          `M${(lx+.14).toFixed(3)} ${(ly+.10).toFixed(3)} L${(lx+.90).toFixed(3)} ${(ly+.86).toFixed(3)}`
-        );
-        g.ridgeB.push(
-          `M${(lx+.86).toFixed(3)} ${(ly+.10).toFixed(3)} L${(lx+.10).toFixed(3)} ${(ly+.86).toFixed(3)}`
-        );
+
+        // Fine cotton ridges appear only on some stitches and are offset from
+        // the mathematical diagonal so they read as fibres, not an outlined X.
+        if (r2>.31) {
+          const off=.022+(r4-.5)*.018;
+          g.ridgeA[ridgeBucket].push(
+            `M${(a0x+off).toFixed(3)} ${(a0y-off).toFixed(3)} Q${(bendAX+off*.35).toFixed(3)} ${(bendAY-off*.35).toFixed(3)} ${(a1x+off).toFixed(3)} ${(a1y-off).toFixed(3)}`
+          );
+        }
+        if (r3>.24) {
+          const off=.020+(r5-.5)*.018;
+          g.ridgeB[ridgeBucket].push(
+            `M${(b0x-off).toFixed(3)} ${(b0y-off).toFixed(3)} Q${(bendBX-off*.30).toFixed(3)} ${(bendBY-off*.30).toFixed(3)} ${(b1x-off).toFixed(3)} ${(b1y-off).toFixed(3)}`
+          );
+        }
 
         // Thread-edge light/shadow is intentionally irregular. Real floss does
         // not produce ruler-straight seams of identical width in every cell.
@@ -427,9 +461,19 @@ function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, transparent=false) {
       paths.push(`<path d="${g.right.join(" ")}" fill="${right}" opacity=".34"/>`);
       paths.push(`<path d="${g.bottom.join(" ")}" fill="${bottom}" opacity=".43"/>`);
 
-      paths.push(`<path d="${g.diagDark.join(" ")}" fill="none" stroke="${mid}" stroke-width=".245" stroke-linecap="round" stroke-linejoin="round" opacity=".48"/>`);
-      paths.push(`<path d="${g.diagLight.join(" ")}" fill="none" stroke="${shadeHex(color,.055)}" stroke-width=".225" stroke-linecap="round" stroke-linejoin="round" opacity=".58"/>`);
-      paths.push(`<path d="${g.ridgeA.join(" ")} ${g.ridgeB.join(" ")}" fill="none" stroke="${hi2}" stroke-width=".044" stroke-linecap="round" opacity=".22"/>`);
+      // Per-stitch buckets prevent the diagonals from reading as one repeated
+      // vector symbol. Width/opacity variation is deliberately modest.
+      const underW=[.155,.180,.205,.225], underO=[.16,.21,.26,.31];
+      const overW=[.165,.190,.215,.235], overO=[.24,.30,.36,.42];
+      const ridgeW=[.018,.024,.030], ridgeO=[.08,.12,.16];
+      for (let i=0;i<4;i++) {
+        if (g.diagDark[i].length) paths.push(`<path d="${g.diagDark[i].join(" ")}" fill="none" stroke="${mid}" stroke-width="${underW[i]}" stroke-linecap="round" stroke-linejoin="round" opacity="${underO[i]}"/>`);
+        if (g.diagLight[i].length) paths.push(`<path d="${g.diagLight[i].join(" ")}" fill="none" stroke="${shadeHex(color,.045)}" stroke-width="${overW[i]}" stroke-linecap="round" stroke-linejoin="round" opacity="${overO[i]}"/>`);
+      }
+      for (let i=0;i<3;i++) {
+        const cmds=[...g.ridgeA[i],...g.ridgeB[i]];
+        if (cmds.length) paths.push(`<path d="${cmds.join(" ")}" fill="none" stroke="${hi2}" stroke-width="${ridgeW[i]}" stroke-linecap="round" opacity="${ridgeO[i]}"/>`);
+      }
 
       const topW=[.020,.027,.034], topO=[.12,.17,.23];
       const leftW=[.018,.024,.031], leftO=[.08,.13,.18];
@@ -443,7 +487,7 @@ function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, transparent=false) {
         if (g.bottomSeam[i].length) paths.push(`<path d="${g.bottomSeam[i].join(" ")}" fill="none" stroke="${deep}" stroke-width="${bottomW[i]}" stroke-linecap="round" opacity="${bottomO[i]}"/>`);
         if (g.contact[i].length) paths.push(`<path d="${g.contact[i].join(" ")}" fill="none" stroke="#1f1713" stroke-width="${contactW[i]}" stroke-linecap="round" opacity="${contactO[i]}"/>`);
       }
-      paths.push(`<path d="${g.center.join(" ")}" fill="${hi2}" opacity=".11"/>`);
+      paths.push(`<path d="${g.center.join(" ")}" fill="${hi2}" opacity=".055"/>`);
     }
 
     return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${vw} ${vh}" preserveAspectRatio="xMidYMid meet">${bg}${paths.join("")}</svg>`;
