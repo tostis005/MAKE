@@ -251,6 +251,8 @@ function realisticStitchRules() {
     horizontal_widths:Array.isArray(r.horizontal_widths)?r.horizontal_widths:[0.050,0.061,0.072]
   };
 }
+document.documentElement.setAttribute("data-drielo-stitch-renderer",realisticStitchRules().renderer_version);
+
 function verticalSeamColour(base, neighbour, aida) {
   const reflected=mixColour(base,neighbour || base,.45);
   const muted=desaturateColour(reflected,.76);
