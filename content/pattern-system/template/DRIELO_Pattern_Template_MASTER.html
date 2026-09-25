@@ -290,6 +290,10 @@ function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, transparent=false) {
 
         if (!grouped.has(symbol)) grouped.set(symbol,{
           cells:[],
+          facetTop:[[],[],[]],
+          facetLeft:[[],[],[]],
+          facetRight:[[],[],[]],
+          facetBottom:[[],[],[],[]],
           underShadow:[[],[],[]],
           underBody:[[],[],[],[]],
           underFiber:[[],[],[]],
@@ -319,6 +323,38 @@ function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, transparent=false) {
 
         const crossX=lx+.5+(r0-.5)*.070;
         const crossY=ly+.5+(r1-.5)*.060;
+
+        /*
+          Volumetric stitch body. This restores the relief from the validated
+          handmade-relief branch: the stitch itself behaves like a small padded
+          four-faced mound. The lower face is deliberately the darkest/largest
+          lighting cue. Its centre and strength vary slightly per stitch, so the
+          relief never becomes a tiled bevel effect.
+        */
+        const facetTopBucket=Math.min(2,Math.floor(r2*3));
+        const facetLeftBucket=Math.min(2,Math.floor(r3*3));
+        const facetRightBucket=Math.min(2,Math.floor(r4*3));
+        const facetBottomBucket=Math.min(3,Math.floor(r5*4));
+
+        const ex0=lx+.012+r4*.018;
+        const ex1=lx+.988-r5*.018;
+        const ey0=ly+.012+r2*.018;
+        const ey1=ly+.988-r3*.018;
+        const fx=crossX+(r4-.5)*.040;
+        const fy=crossY+(r5-.5)*.035;
+
+        g.facetTop[facetTopBucket].push(
+          `M${ex0.toFixed(3)} ${ey0.toFixed(3)} L${ex1.toFixed(3)} ${ey0.toFixed(3)} L${fx.toFixed(3)} ${fy.toFixed(3)} Z`
+        );
+        g.facetLeft[facetLeftBucket].push(
+          `M${ex0.toFixed(3)} ${ey0.toFixed(3)} L${fx.toFixed(3)} ${fy.toFixed(3)} L${ex0.toFixed(3)} ${ey1.toFixed(3)} Z`
+        );
+        g.facetRight[facetRightBucket].push(
+          `M${ex1.toFixed(3)} ${ey0.toFixed(3)} L${ex1.toFixed(3)} ${ey1.toFixed(3)} L${fx.toFixed(3)} ${fy.toFixed(3)} Z`
+        );
+        g.facetBottom[facetBottomBucket].push(
+          `M${ex0.toFixed(3)} ${ey1.toFixed(3)} L${fx.toFixed(3)} ${fy.toFixed(3)} L${ex1.toFixed(3)} ${ey1.toFixed(3)} Z`
+        );
 
         /*
           Two physical floss bundles, not a graphic X.
@@ -458,6 +494,27 @@ function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, transparent=false) {
 
       paths.push(`<path d="${g.cells.join(" ")}" fill="${base}"/>`);
 
+      // Four-face relief from the validated renderer, now made slightly organic.
+      // Bottom/right are stronger than top/left so the cell reads as raised.
+      const facetTopCol=shadeHex(color,0.16);
+      const facetLeftCol=shadeHex(color,0.075);
+      const facetRightCol=shadeHex(color,-0.105);
+      const facetBottomCol=shadeHex(color,-0.255);
+
+      const facetTopO=[.30,.38,.46];
+      const facetLeftO=[.18,.24,.31];
+      const facetRightO=[.25,.32,.39];
+      const facetBottomO=[.42,.50,.58,.66];
+
+      for (let i=0;i<3;i++) {
+        if (g.facetTop[i].length) paths.push(`<path d="${g.facetTop[i].join(" ")}" fill="${facetTopCol}" opacity="${facetTopO[i]}"/>`);
+        if (g.facetLeft[i].length) paths.push(`<path d="${g.facetLeft[i].join(" ")}" fill="${facetLeftCol}" opacity="${facetLeftO[i]}"/>`);
+        if (g.facetRight[i].length) paths.push(`<path d="${g.facetRight[i].join(" ")}" fill="${facetRightCol}" opacity="${facetRightO[i]}"/>`);
+      }
+      for (let i=0;i<4;i++) {
+        if (g.facetBottom[i].length) paths.push(`<path d="${g.facetBottom[i].join(" ")}" fill="${facetBottomCol}" opacity="${facetBottomO[i]}"/>`);
+      }
+
       /*
         Render thread in physical order. Crucially, neither bundle uses a neutral
         grey stroke: every layer is derived from the DMC colour itself.
@@ -490,9 +547,9 @@ function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, transparent=false) {
       }
 
       const ridgeW=[.038,.047,.055], ridgeO=[.14,.22,.28];
-      const lightW=[.032,.040,.047], lightO=[.17,.24,.31];
-      const bottomW=[.046,.056,.067], bottomO=[.24,.33,.42];
-      const rightW=[.038,.047,.056], rightO=[.16,.24,.31];
+      const lightW=[.025,.032,.040], lightO=[.10,.15,.21];
+      const bottomW=[.034,.043,.053], bottomO=[.16,.23,.31];
+      const rightW=[.030,.039,.048], rightO=[.11,.17,.24];
       const centerO=[.045,.070,.095];
 
       for (let i=0;i<3;i++) {
@@ -506,8 +563,8 @@ function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, transparent=false) {
 
     // Keep only a faint structural seam. Relief now comes from the thread itself,
     // not from a uniform printed grid.
-    const texture=`<path d="${cellEdges.join(" ")}" fill="none" stroke="#24161c" stroke-width="0.020" opacity="${rules.gridOpacity*.30}"/>`;
-    const textureLight=`<path d="${cellEdges.join(" ")}" fill="none" stroke="#ffffff" stroke-width="0.010" opacity="0.028" transform="translate(0.018 0.018)"/>`;
+    const texture=`<path d="${cellEdges.join(" ")}" fill="none" stroke="#24161c" stroke-width="0.014" opacity="${rules.gridOpacity*.16}"/>`;
+    const textureLight=`<path d="${cellEdges.join(" ")}" fill="none" stroke="#ffffff" stroke-width="0.008" opacity="0.018" transform="translate(0.018 0.018)"/>`;
     return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${vw} ${vh}" preserveAspectRatio="xMidYMid meet">${bg}${paths.join("")}${texture}${textureLight}</svg>`;
   }
 
