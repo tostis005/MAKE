@@ -89,6 +89,7 @@ function make_sitemap_urls( string $language ): array {
         $items = get_posts( $args );
         foreach ( $items as $item ) {
             if ( ! $item instanceof WP_Post ) { continue; }
+            if ( 'product' === $post_type && function_exists( 'make_store_product_in_hidden_collection' ) && make_store_product_in_hidden_collection( (int) $item->ID ) ) { continue; }
 
             $loc = 'product' === $post_type && function_exists( 'make_product_url' )
                 ? make_product_url( $item, $language )
@@ -110,7 +111,9 @@ function make_sitemap_urls( string $language ): array {
             $terms = get_terms( array( 'taxonomy' => $taxonomy, 'hide_empty' => true ) );
             if ( is_wp_error( $terms ) ) { continue; }
             foreach ( $terms as $term ) {
-                if ( $term instanceof WP_Term ) { $add( $urls, make_store_term_url( $term, $language ) ); }
+                if ( ! $term instanceof WP_Term ) { continue; }
+                if ( 'product_collection' === $taxonomy && function_exists( 'make_collection_is_visible' ) && ! make_collection_is_visible( $term ) ) { continue; }
+                $add( $urls, make_store_term_url( $term, $language ) );
             }
         }
     }
