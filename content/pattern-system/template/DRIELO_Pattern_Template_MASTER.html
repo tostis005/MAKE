@@ -181,7 +181,11 @@ function stitchRules() {
     style: String(r.stitch_style || "classic").toLowerCase(),
     margin: Number.isFinite(Number(r.cross_margin_ratio)) ? Number(r.cross_margin_ratio) : 0.02,
     stroke: Number.isFinite(Number(r.stroke_width_ratio)) ? Number(r.stroke_width_ratio) : 0.34,
-    fill: Number.isFinite(Number(r.cross_fill_ratio)) ? Number(r.cross_fill_ratio) : 0.42,
+    fill: Number.isFinite(Number(r.cross_fill_ratio)) ? Number(r.cross_fill_ratio) : 0.46,
+    highlightOpacity: Number.isFinite(Number(r.highlight_opacity)) ? Number(r.highlight_opacity) : 0.24,
+    shadowOpacity: Number.isFinite(Number(r.shadow_opacity)) ? Number(r.shadow_opacity) : 0.28,
+    gridOpacity: Number.isFinite(Number(r.grid_opacity)) ? Number(r.grid_opacity) : 0.16,
+    ridgeOpacity: Number.isFinite(Number(r.thread_ridge_opacity)) ? Number(r.thread_ridge_opacity) : 0.22,
     linecap: r.linecap || "round",
     fabric: r.fabric || { color: "#fbfaf6", dot: "#ddd8cf", dot_radius: 0.05 }
   };
@@ -210,26 +214,41 @@ function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, transparent=false) {
         const symbol=matrix[y]?.[x];
         if (!symbol) continue;
         const lx=x-x0, ly=y-y0;
-        if (!grouped.has(symbol)) grouped.set(symbol,{cells:[],dark:[],light:[]});
+        if (!grouped.has(symbol)) grouped.set(symbol,{cells:[],dark:[],light:[],ridgeA:[],ridgeB:[],edgeLight:[],edgeDark:[],centers:[]});
         const g=grouped.get(symbol);
         // Fill the whole stitch cell so it reads like dense embroidery at normal viewing size.
         g.cells.push(`M${lx} ${ly}H${lx+1}V${ly+1}H${lx}Z`);
         // Two subtle diagonal strands preserve the visual language of a real full cross stitch.
         g.dark.push(`M${(lx+.06).toFixed(3)} ${(ly+.06).toFixed(3)}L${(lx+.94).toFixed(3)} ${(ly+.94).toFixed(3)}`);
         g.light.push(`M${(lx+.94).toFixed(3)} ${(ly+.06).toFixed(3)}L${(lx+.06).toFixed(3)} ${(ly+.94).toFixed(3)}`);
+        g.ridgeA.push(`M${(lx+.12).toFixed(3)} ${(ly+.08).toFixed(3)}L${(lx+.92).toFixed(3)} ${(ly+.88).toFixed(3)}`);
+        g.ridgeB.push(`M${(lx+.88).toFixed(3)} ${(ly+.08).toFixed(3)}L${(lx+.08).toFixed(3)} ${(ly+.88).toFixed(3)}`);
+        g.edgeLight.push(`M${(lx+.04).toFixed(3)} ${(ly+.055).toFixed(3)}H${(lx+.945).toFixed(3)} M${(lx+.055).toFixed(3)} ${(ly+.04).toFixed(3)}V${(ly+.945).toFixed(3)}`);
+        g.edgeDark.push(`M${(lx+.055).toFixed(3)} ${(ly+.945).toFixed(3)}H${(lx+.945).toFixed(3)} M${(lx+.945).toFixed(3)} ${(ly+.055).toFixed(3)}V${(ly+.945).toFixed(3)}`);
+        g.centers.push(`M${(lx+.50).toFixed(3)} ${(ly+.40).toFixed(3)}L${(lx+.60).toFixed(3)} ${(ly+.50).toFixed(3)}L${(lx+.50).toFixed(3)} ${(ly+.60).toFixed(3)}L${(lx+.40).toFixed(3)} ${(ly+.50).toFixed(3)}Z`);
         cellEdges.push(`M${lx} ${ly}H${lx+1}V${ly+1}H${lx}Z`);
       }
     }
     const paths=[];
     for (const [symbol,g] of grouped.entries()) {
       const color=threadColor(symbol);
-      paths.push(`<path d="${g.cells.join(" ")}" fill="${color}"/>`);
-      paths.push(`<path d="${g.dark.join(" ")}" fill="none" stroke="${shadeHex(color,-0.26)}" stroke-width="0.105" stroke-linecap="round" opacity="0.42"/>`);
-      paths.push(`<path d="${g.light.join(" ")}" fill="none" stroke="${shadeHex(color,0.34)}" stroke-width="0.090" stroke-linecap="round" opacity="0.42"/>`);
+      const base=shadeHex(color,-0.045);
+      const deep=shadeHex(color,-0.34);
+      const mid=shadeHex(color,-0.18);
+      const hi=shadeHex(color,0.34);
+      const hi2=shadeHex(color,0.48);
+      paths.push(`<path d="${g.cells.join(" ")}" fill="${base}"/>`);
+      paths.push(`<path d="${g.dark.join(" ")}" fill="none" stroke="${mid}" stroke-width="0.285" stroke-linecap="round" opacity="0.90"/>`);
+      paths.push(`<path d="${g.light.join(" ")}" fill="none" stroke="${color}" stroke-width="0.255" stroke-linecap="round" opacity="0.97"/>`);
+      paths.push(`<path d="${g.ridgeA.join(" ")} ${g.ridgeB.join(" ")}" fill="none" stroke="${hi2}" stroke-width="0.050" stroke-linecap="round" opacity="${rules.ridgeOpacity}"/>`);
+      paths.push(`<path d="${g.edgeLight.join(" ")}" fill="none" stroke="${hi}" stroke-width="0.040" stroke-linecap="round" opacity="${rules.highlightOpacity}"/>`);
+      paths.push(`<path d="${g.edgeDark.join(" ")}" fill="none" stroke="${deep}" stroke-width="0.052" stroke-linecap="round" opacity="${rules.shadowOpacity}"/>`);
+      paths.push(`<path d="${g.centers.join(" ")}" fill="${hi2}" opacity="0.16"/>`);
     }
     // Very fine cell seams mimic the compact woven texture in stitched reference photos.
-    const texture=`<path d="${cellEdges.join(" ")}" fill="none" stroke="#24161c" stroke-width="0.026" opacity="0.10"/>`;
-    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${vw} ${vh}" preserveAspectRatio="xMidYMid meet">${bg}${paths.join("")}${texture}</svg>`;
+    const texture=`<path d="${cellEdges.join(" ")}" fill="none" stroke="#24161c" stroke-width="0.030" opacity="${rules.gridOpacity}"/>`;
+    const textureLight=`<path d="${cellEdges.join(" ")}" fill="none" stroke="#ffffff" stroke-width="0.012" opacity="0.08" transform="translate(0.018 0.018)"/>`;
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${vw} ${vh}" preserveAspectRatio="xMidYMid meet">${bg}${paths.join("")}${texture}${textureLight}</svg>`;
   }
 
   const margin = Math.max(0, Math.min(0.2, rules.margin));
