@@ -5,7 +5,7 @@ on:
     branches: [main]
     paths:
       - 'content/pattern-system/iconic_destinations/mosaic-upload/**'
-      - 'content/pattern-system/collections/iconic-destinations/assets/iconic-mosaic-grid-source.png'
+      - 'content/pattern-system/collections/iconic-destinations/assets/iconic-mosaic-grid-source.webp'
       - '.github/scripts/import_iconic_mosaic.py'
       - '.github/workflows/rebuild-iconic-from-mosaic.yml'
   workflow_dispatch:
@@ -61,7 +61,7 @@ jobs:
           parts=sorted(pack.glob('part-*.txt'))
           if parts:
               raw=base64.b64decode(''.join(p.read_text(encoding='ascii').strip() for p in parts), validate=True)
-              out=Path('content/pattern-system/collections/iconic-destinations/assets/iconic-mosaic-grid-source.png')
+              out=Path('content/pattern-system/collections/iconic-destinations/assets/iconic-mosaic-grid-source.webp')
               out.parent.mkdir(parents=True, exist_ok=True)
               out.write_bytes(raw)
               print(f'DECODED_MOSAIC bytes={len(raw)} source={out}')
