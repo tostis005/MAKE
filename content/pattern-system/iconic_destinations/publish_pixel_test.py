@@ -16,6 +16,7 @@ SYSTEM = ROOT / "content" / "pattern-system"
 COLLECTION_ID = "iconic-destinations"
 COL_DIR = SYSTEM / "collections" / COLLECTION_ID
 COLLECTION_PATH = COL_DIR / "collection.json"
+RAW_SOURCE = COL_DIR / "source-designs" / "D0001-paris-eiffel-tower.png"
 SOURCE = COL_DIR / "approved-pixel-designs" / "D0001-paris-eiffel-tower.png"
 PATTERN_PATH = SYSTEM / "patterns" / "D0001-CS" / "pattern.json"
 PRODUCT_PATH = SYSTEM / "products" / "D0001-CS" / "product.json"
@@ -70,11 +71,33 @@ def ensure_exact_d0001_source():
     digest = hashlib.sha256(raw).hexdigest()
     if digest != D0001_RAW_SHA256:
         raise RuntimeError(f"D0001 exact source checksum mismatch: {digest}")
+
+    # Keep the literal first 100x120 tile from the supplied 1000x720 mosaic for auditability.
+    RAW_SOURCE.parent.mkdir(parents=True, exist_ok=True)
+    raw_image = Image.new("RGB", (100, 120))
+    raw_image.putdata(pixels)
+    raw_image.save(RAW_SOURCE, format="PNG", optimize=False)
+
+    # The supplied mosaic itself has two rows of the following tile bleeding into the bottom
+    # of D0001 (rows 118-119). The user's intended Paris artwork ends at row 117.
+    # Preserve the 100x120 stitch geometry by repeating the last valid artwork row twice.
+    collection = read_json(COLLECTION_PATH)
+    cleanup = ((collection.get("pixel_importer") or {}).get("source_cleanup") or {})
+    bleed = int(cleanup.get("bottom_bleed_rows", 0))
+    repair = cleanup.get("repair")
+    if bleed != 2 or repair != "repeat-last-valid-row":
+        raise RuntimeError(f"Unexpected D0001 cleanup rule: {cleanup}")
+
+    approved = raw_image.copy()
+    last_valid_y = approved.height - bleed - 1
+    last_valid = [approved.getpixel((x, last_valid_y)) for x in range(approved.width)]
+    for y in range(approved.height - bleed, approved.height):
+        for x, rgb in enumerate(last_valid):
+            approved.putpixel((x, y), rgb)
+
     SOURCE.parent.mkdir(parents=True, exist_ok=True)
-    image = Image.new("RGB", (100, 120))
-    image.putdata(pixels)
-    image.save(SOURCE, format="PNG", optimize=False)
-    return image
+    approved.save(SOURCE, format="PNG", optimize=False)
+    return approved
 
 
 def build_exact_d0001():
@@ -102,7 +125,13 @@ def build_exact_d0001():
             "tile_size": [100, 120],
             "tile_row": 0,
             "tile_col": 0,
-            "extraction": "exact-crop-no-resize"
+            "extraction": "exact-crop-no-resize",
+            "raw_source_asset": "collections/iconic-destinations/source-designs/D0001-paris-eiffel-tower.png",
+            "source_cleanup": {
+                "bottom_bleed_rows": 2,
+                "repair": "repeat-last-valid-row",
+                "reason": "The supplied mosaic contains two rows of the following tile at the bottom of D0001."
+            }
         },
     })
     write_json(PATTERN_PATH, pattern)
