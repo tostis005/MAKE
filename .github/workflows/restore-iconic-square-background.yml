@@ -22,7 +22,7 @@ jobs:
       - name: Checkout main
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
       - name: Install Pillow
         run: python3 -m pip install --disable-pip-version-check --quiet Pillow
