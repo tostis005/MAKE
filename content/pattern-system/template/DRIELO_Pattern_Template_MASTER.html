@@ -439,13 +439,7 @@ function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, transparent=false) {
 
         // The tiny centre highlight from the validated renderer remains, but varies
         // in size/intensity so it doesn't become a stamped diamond pattern.
-        if (r0>.66) {
-          const centerBucket=Math.min(2,Math.floor(r0*3));
-          const cr=.040+r3*.025;
-          g.centers[centerBucket].push(
-            `M${crossX.toFixed(3)} ${(crossY-cr).toFixed(3)} L${(crossX+cr).toFixed(3)} ${crossY.toFixed(3)} L${crossX.toFixed(3)} ${(crossY+cr).toFixed(3)} L${(crossX-cr).toFixed(3)} ${crossY.toFixed(3)} Z`
-          );
-        }
+        // No stamped centre highlight: the crossing is defined only by thread overlap.
 
         cellEdges.push(`M${lx} ${ly}H${lx+1}V${ly+1}H${lx}Z`);
       }
@@ -468,20 +462,20 @@ function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, transparent=false) {
         Render thread in physical order. Crucially, neither bundle uses a neutral
         grey stroke: every layer is derived from the DMC colour itself.
       */
-      const underShadowW=[.315,.345,.375], underShadowO=[.08,.11,.14];
-      const underW=[.300,.325,.350,.375], underO=[.66,.72,.78,.84];
-      const overShadowW=[.335,.365,.395], overShadowO=[.09,.12,.15];
-      const overW=[.325,.350,.375,.400], overO=[.72,.78,.84,.90];
-      const fiberW=[.018,.024,.030], fiberO=[.08,.12,.16];
+      const underShadowW=[.315,.345,.375], underShadowO=[.045,.065,.085];
+      const underW=[.300,.325,.350,.375], underO=[.28,.34,.40,.46];
+      const overShadowW=[.335,.365,.395], overShadowO=[.050,.072,.095];
+      const overW=[.325,.350,.375,.400], overO=[.34,.41,.48,.55];
+      const fiberW=[.016,.021,.027], fiberO=[.045,.070,.100];
 
       for (let i=0;i<3;i++) {
         if (g.underShadow[i].length) paths.push(`<path d="${g.underShadow[i].join(" ")}" fill="none" stroke="${deep}" stroke-width="${underShadowW[i]}" stroke-linecap="round" stroke-linejoin="round" opacity="${underShadowO[i]}"/>`);
       }
       for (let i=0;i<4;i++) {
-        if (g.underBody[i].length) paths.push(`<path d="${g.underBody[i].join(" ")}" fill="none" stroke="${shadeHex(color,-0.035)}" stroke-width="${underW[i]}" stroke-linecap="round" stroke-linejoin="round" opacity="${underO[i]}"/>`);
+        if (g.underBody[i].length) paths.push(`<path d="${g.underBody[i].join(" ")}" fill="none" stroke="${shadeHex(color,-0.010)}" stroke-width="${underW[i]}" stroke-linecap="round" stroke-linejoin="round" opacity="${underO[i]}"/>`);
       }
       for (let i=0;i<3;i++) {
-        if (g.underFiber[i].length) paths.push(`<path d="${g.underFiber[i].join(" ")}" fill="none" stroke="${shadeHex(color,0.20)}" stroke-width="${fiberW[i]}" stroke-linecap="round" opacity="${fiberO[i]}"/>`);
+        if (g.underFiber[i].length) paths.push(`<path d="${g.underFiber[i].join(" ")}" fill="none" stroke="${shadeHex(color,0.14)}" stroke-width="${fiberW[i]}" stroke-linecap="round" opacity="${fiberO[i]}"/>`);
       }
 
       // The upper pass is drawn last and therefore hides the lower bundle in the centre.
@@ -489,16 +483,16 @@ function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, transparent=false) {
         if (g.overShadow[i].length) paths.push(`<path d="${g.overShadow[i].join(" ")}" fill="none" stroke="${shadeHex(color,-0.24)}" stroke-width="${overShadowW[i]}" stroke-linecap="round" stroke-linejoin="round" opacity="${overShadowO[i]}"/>`);
       }
       for (let i=0;i<4;i++) {
-        if (g.overBody[i].length) paths.push(`<path d="${g.overBody[i].join(" ")}" fill="none" stroke="${shadeHex(color,0.015)}" stroke-width="${overW[i]}" stroke-linecap="round" stroke-linejoin="round" opacity="${overO[i]}"/>`);
+        if (g.overBody[i].length) paths.push(`<path d="${g.overBody[i].join(" ")}" fill="none" stroke="${shadeHex(color,0.018)}" stroke-width="${overW[i]}" stroke-linecap="round" stroke-linejoin="round" opacity="${overO[i]}"/>`);
       }
       for (let i=0;i<3;i++) {
-        if (g.overFiber[i].length) paths.push(`<path d="${g.overFiber[i].join(" ")}" fill="none" stroke="${shadeHex(color,0.24)}" stroke-width="${fiberW[i]}" stroke-linecap="round" opacity="${fiberO[i]*1.08}"/>`);
+        if (g.overFiber[i].length) paths.push(`<path d="${g.overFiber[i].join(" ")}" fill="none" stroke="${shadeHex(color,0.17)}" stroke-width="${fiberW[i]}" stroke-linecap="round" opacity="${fiberO[i]*1.08}"/>`);
       }
 
       const ridgeW=[.038,.047,.055], ridgeO=[.14,.22,.28];
       const lightW=[.032,.040,.047], lightO=[.17,.24,.31];
-      const bottomW=[.044,.053,.062], bottomO=[.20,.28,.36];
-      const rightW=[.037,.046,.054], rightO=[.14,.22,.29];
+      const bottomW=[.046,.056,.067], bottomO=[.24,.33,.42];
+      const rightW=[.038,.047,.056], rightO=[.16,.24,.31];
       const centerO=[.045,.070,.095];
 
       for (let i=0;i<3;i++) {
@@ -506,7 +500,7 @@ function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, transparent=false) {
         if (g.leftLight[i].length) paths.push(`<path d="${g.leftLight[i].join(" ")}" fill="none" stroke="${hi}" stroke-width="${lightW[i]*.90}" stroke-linecap="round" opacity="${lightO[i]*.82}"/>`);
         if (g.bottomShadow[i].length) paths.push(`<path d="${g.bottomShadow[i].join(" ")}" fill="none" stroke="${deep}" stroke-width="${bottomW[i]}" stroke-linecap="round" opacity="${bottomO[i]}"/>`);
         if (g.rightShadow[i].length) paths.push(`<path d="${g.rightShadow[i].join(" ")}" fill="none" stroke="${deep}" stroke-width="${rightW[i]}" stroke-linecap="round" opacity="${rightO[i]}"/>`);
-        if (g.centers[i].length) paths.push(`<path d="${g.centers[i].join(" ")}" fill="${hi2}" opacity="${centerO[i]}"/>`);
+        if (g.centers[i].length) paths.push(`<path d="${g.centers[i].join(" ")}" fill="${hi2}" opacity="${centerO[i]*.35}"/>`);
       }
     }
 
