@@ -9,7 +9,7 @@ on:
       - 'content/pattern-system/iconic_destinations/publish_pixel_test.py'
       - 'content/pattern-system/renderer/render.py'
       - 'content/pattern-system/template/DRIELO_Pattern_Template_MASTER.html'
-      - 'content/pattern-system/collections/iconic-destinations/assets/iconic-room.jpg.b64'
+      - 'content/pattern-system/collections/iconic-destinations/assets/iconic-room.jpg.b64.part*'
       - '.github/workflows/iconic-destinations-pixel-test.yml'
 
 permissions:
@@ -40,9 +40,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          B64='content/pattern-system/collections/iconic-destinations/assets/iconic-room.jpg.b64'
+          PARTS='content/pattern-system/collections/iconic-destinations/assets/iconic-room.jpg.b64.part*'
           OUT='content/pattern-system/collections/iconic-destinations/assets/iconic-room.jpg'
-          base64 -d "$B64" > "$OUT"
+          cat $PARTS | tr -d '\n\r' | base64 -d > "$OUT"
           test -s "$OUT"
 
       - name: Install renderer dependencies
@@ -219,7 +219,7 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git rm content/pattern-system/collections/iconic-destinations/assets/iconic-room.jpg.b64
+          git rm content/pattern-system/collections/iconic-destinations/assets/iconic-room.jpg.b64.part*
           git add \
             content/pattern-system/collections/iconic-destinations/assets/iconic-room.jpg \
             content/pattern-system/collections/iconic-destinations/collection.json \
