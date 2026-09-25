@@ -91,17 +91,6 @@ jobs:
               encoding='utf-8'
           )
 
-          wf = root / '.github/workflows/iconic-destinations-auto-publish.yml'
-          text = wf.read_text(encoding='utf-8')
-          old = "background=system/'collections'/'iconic-destinations'/'assets'/'cover-cross-stitch.jpg'"
-          new = (
-              "collection_doc=json.loads((system/'collections'/'iconic-destinations'/'collection.json').read_text(encoding='utf-8'))\n"
-              "          background=system/'collections'/'iconic-destinations'/collection_doc['mockup_spec']['asset']"
-          )
-          if old not in text:
-              raise SystemExit('Could not find hard-coded Iconic background validation')
-          wf.write_text(text.replace(old, new, 1), encoding='utf-8')
-
           print('RESTORED_ICONIC_BACKGROUND', out, out.stat().st_size)
           print('FRAME_BOX', frame['area_px'])
           PY
