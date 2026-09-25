@@ -17,7 +17,7 @@ QUEUE_PATH = SYSTEM / "iconic_destinations" / "publish_queue.json"
 PIXEL_DIR = COL_DIR / "pixel-sources"
 SOURCE_DIR = COL_DIR / "source-designs"
 ASSET_DIR = COL_DIR / "assets"
-SOURCE_MOSAIC = COL_DIR / "assets" / "iconic-mosaic-grid-source.png"
+SOURCE_MOSAIC = COL_DIR / "assets" / "iconic-mosaic-grid-source.webp"
 
 WIDTH = 100
 HEIGHT = 120
