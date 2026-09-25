@@ -1,0 +1,201 @@
+name: Publish P1000 Einstein renderer comparison
+
+on:
+  push:
+    branches:
+      - 'test/p1000-einstein-organic-renderer-20260925'
+    paths:
+      - 'tmp/p1000-einstein-test-trigger.txt'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: p1000-einstein-renderer-test
+  cancel-in-progress: false
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout test branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install renderer dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install playwright pillow
+          python -m playwright install --with-deps chromium
+
+      - name: Render P1000 with current canonical cross-stitch algorithm
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/renderer/render.py --product P1000-CS --fix-palette
+          test -s content/pattern-system/output/P1000-CS/Drielo_P1000-CS.pdf
+          test -s content/pattern-system/output/P1000-CS/P1000-CS-product.webp
+          mkdir -p content/products/files content/products/assets
+          cp content/pattern-system/output/P1000-CS/Drielo_P1000-CS.pdf content/products/files/
+          cp content/pattern-system/output/P1000-CS/P1000-CS-product.webp content/products/assets/
+
+      - name: Add isolated P1000 catalogue row
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import copy, json
+          from pathlib import Path
+
+          p=Path('content/products/catalog.json')
+          cat=json.loads(p.read_text(encoding='utf-8'))
+          source=next(x for x in cat['products'] if x.get('code')=='P0001-CS')
+
+          def repl(v):
+              if isinstance(v, str):
+                  return v.replace('P0001-CS','P1000-CS').replace('P0001','P1000')
+              if isinstance(v, list):
+                  return [repl(x) for x in v]
+              if isinstance(v, dict):
+                  return {k:repl(x) for k,x in v.items()}
+              return v
+
+          row=repl(copy.deepcopy(source))
+          row['code']='P1000-CS'
+          row['sku']='DRIELO-P1000-CS'
+          row['base_design_id']='P1000'
+          row['design_id']='P1000-CS'
+          row['technique_code']='CS'
+          row['technique']='cross-stitch'
+          row['slug']='albert-einstein-tongue-out-cross-stitch-pattern-p1000-test'
+          row['featured_image']='assets/P1000-CS-product.webp'
+          row['download']='files/Drielo_P1000-CS.pdf'
+          row['gallery']=[]
+          row['title']=source['title']
+          row['title_en']=source.get('title_en',source['title'])
+          row['title_es']=source.get('title_es',source['title'])
+          row.pop('previous_skus',None)
+          row['renderer_test']=True
+          row['renderer_test_source']='P0001-CS'
+
+          cat['products']=[x for x in cat['products'] if x.get('code')!='P1000-CS']
+          cat['products'].append(row)
+          cat['products'].sort(key=lambda x:(x.get('base_design_id',x.get('code','')), x.get('technique_code','')))
+          p.write_text(json.dumps(cat,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+          mini=copy.deepcopy(cat)
+          mini['products']=[row]
+          mini['retired_products']=[]
+          mini['retired_collections']=[]
+          stage=Path('/tmp/p1000-package/content/products')
+          (stage/'assets').mkdir(parents=True,exist_ok=True)
+          (stage/'files').mkdir(parents=True,exist_ok=True)
+          (stage/'catalog.json').write_text(json.dumps(mini,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print(json.dumps({'code':row['code'],'sku':row['sku'],'download':row['download'],'image':row['featured_image']},indent=2))
+          PY
+          cp content/products/assets/P1000-CS-product.webp /tmp/p1000-package/content/products/assets/
+          cp content/products/files/Drielo_P1000-CS.pdf /tmp/p1000-package/content/products/files/
+          mkdir -p /tmp/p1000-package/content/tools
+          cp content/tools/import-products.php /tmp/p1000-package/content/tools/
+
+      - name: Persist generated P1000 assets on test branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add \
+            content/pattern-system/patterns/P1000-CS/pattern.json \
+            content/products/catalog.json \
+            content/products/assets/P1000-CS-product.webp \
+            content/products/files/Drielo_P1000-CS.pdf
+          if ! git diff --cached --quiet; then
+            git commit -m 'Render P1000 Einstein comparison product [skip ci]'
+            git push origin HEAD:test/p1000-einstein-organic-renderer-20260925
+          fi
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_p1000_key
+          chmod 600 ~/.ssh/drielo_p1000_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Upload isolated P1000 package
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          tar -czf /tmp/drielo-p1000.tgz -C /tmp/p1000-package .
+          scp -i ~/.ssh/drielo_p1000_key /tmp/drielo-p1000.tgz "$VPS_USER@$VPS_HOST:/tmp/drielo-p1000-${GITHUB_RUN_ID}.tgz"
+
+      - name: Import only P1000 into WooCommerce and verify
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_p1000_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-p1000-${GITHUB_RUN_ID}.tgz"
+          STAGE="/tmp/drielo-p1000-${GITHUB_RUN_ID}"
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE"; }
+          trap cleanup EXIT
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"; exit 1
+          fi
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-p1000-products /tmp/drielo-p1000-import.php'
+          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-p1000-products/
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-p1000-import.php
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-p1000-import.php /var/www/html /tmp/drielo-p1000-products
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $sku="DRIELO-P1000-CS";
+            $id=wc_get_product_id_by_sku($sku);
+            if(!$id){fwrite(STDERR,"MISSING ".$sku.PHP_EOL);exit(2);}
+            $p=wc_get_product($id);
+            $terms=wp_get_object_terms($id,"product_collection",array("fields"=>"slugs"));
+            $downloads=$p->get_downloads();
+            $url=get_permalink($id);
+            echo "P1000_ID=".$id.PHP_EOL;
+            echo "P1000_STATUS=".$p->get_status().PHP_EOL;
+            echo "P1000_IMAGE_ID=".$p->get_image_id().PHP_EOL;
+            echo "P1000_DOWNLOADS=".count($downloads).PHP_EOL;
+            echo "P1000_COLLECTION=".implode(",",is_wp_error($terms)?array():$terms).PHP_EOL;
+            echo "P1000_URL=".$url.PHP_EOL;
+            if($p->get_status()!=="publish" || !$p->get_image_id() || count($downloads)<1 || is_wp_error($terms) || !in_array("pop-art-25",$terms,true)){exit(3);}
+          '
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-p1000-products /tmp/drielo-p1000-import.php'
+          REMOTE
+
+      - name: Upload P1000 build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: p1000-einstein-organic-renderer
+          path: |
+            content/products/files/Drielo_P1000-CS.pdf
+            content/products/assets/P1000-CS-product.webp
+          retention-days: 30
