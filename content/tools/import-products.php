@@ -194,8 +194,12 @@ foreach ( (array) ( $catalog['collections'] ?? array() ) as $collection ) {
     update_term_meta( $term_id, 'drielo_description_en', sanitize_text_field( (string) ( $collection['description_en'] ?? ( $collection['description'] ?? '' ) ) ) );
     update_term_meta( $term_id, 'drielo_palette_mode', $palette_mode );
     update_term_meta( $term_id, 'drielo_show_collection_palette', $show_collection_palette ? '1' : '0' );
-    if ( '' === (string) get_term_meta( $term_id, 'drielo_visible', true ) ) {
+    $force_visibility_sync = ! empty( $collection['force_visibility_sync'] );
+    if ( $force_visibility_sync || '' === (string) get_term_meta( $term_id, 'drielo_visible', true ) ) {
         update_term_meta( $term_id, 'drielo_visible', $collection_visible ? '1' : '0' );
+        if ( $force_visibility_sync ) {
+            echo 'COLLECTION VISIBILITY slug=' . $slug . ' visible=' . ( $collection_visible ? '1' : '0' ) . PHP_EOL;
+        }
     }
     update_term_meta( $term_id, 'drielo_palette_hex', implode( ', ', (array) ( $collection['palette_hex'] ?? array() ) ) );
     update_term_meta( $term_id, 'drielo_thread_codes', empty( $thread_codes ) ? '' : 'DMC ' . implode( ', ', $thread_codes ) );
