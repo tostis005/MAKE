@@ -241,8 +241,11 @@ def render_design(base_id: str, design: dict, built: dict):
         shutil.copy2(src, STORE_ASSETS / f"{code}-gallery-{n}.webp")
 
     exact_preview = STORE_ASSETS / f"{code}-design.webp"
-    im = Image.open(built["final_path"]).convert("RGB").resize((1000, 1200), Image.Resampling.NEAREST)
-    im.save(exact_preview, "WEBP", quality=96, method=6)
+    # Use the exact organic stitch renderer for the pixel-by-pixel gallery image.
+    # The source matrix remains 100 x 120 with one pixel = one stitch, but the
+    # customer-facing preview now matches the same thread relief/grid model as
+    # the PDF and product render instead of showing flat nearest-neighbour blocks.
+    shutil.copy2(result["design_preview"], exact_preview)
 
     return result
 

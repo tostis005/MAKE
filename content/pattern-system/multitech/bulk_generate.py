@@ -235,6 +235,7 @@ def render_one(task):
                     lambda m:m.group(1)+json.dumps(assets,separators=(',',':'))+m.group(3),template,count=1,flags=re.S)
     out=OUTPUT/code; out.mkdir(parents=True,exist_ok=True)
     html=out/f'{code}.html'; pdf=out/f'Drielo_{code}.pdf'; img=out/f'{code}-product.webp'; png=out/'capture.png'
+    design=out/f'{code}-design.webp'; design_png=out/'design-capture.png'
     gallery_specs=[
         (2,out/f'{code}-gallery-2.webp'),   # PDF page 03: preview + pattern facts
         (7,out/f'{code}-gallery-3.webp'),   # PDF page 08: colour + symbols, section A1
@@ -256,6 +257,29 @@ def render_one(task):
             raise RuntimeError(f'{code}: expected at least 12 rendered PDF pages, got {pages.count()}')
         for page_index,webp_path,png_path in gallery_pngs:
             pages.nth(page_index).screenshot(path=str(png_path),type='png')
+
+        # Standalone finished-design preview. This is the exact stitch renderer,
+        # not a nearest-neighbour enlargement of the source pixels. Keeping this
+        # capture inside the same Chromium render guarantees the pixel-by-pixel
+        # gallery preview uses the identical organic stitch geometry as the PDF.
+        page.evaluate("""() => {
+          const src=document.querySelector('#finished-design');
+          if(!src) throw new Error('Missing #finished-design');
+          const clone=src.cloneNode(true);
+          clone.id='drielo-design-capture';
+          Object.assign(clone.style,{
+            position:'fixed',left:'0',top:'0',width:'1000px',height:'1200px',
+            maxWidth:'none',maxHeight:'none',margin:'0',padding:'0',
+            border:'0',boxShadow:'none',background:'#fbfaf6',
+            objectFit:'contain',objectPosition:'center center',
+            zIndex:'2147483647',transform:'none'
+          });
+          document.body.appendChild(clone);
+        }""")
+        dloc=page.locator('#drielo-design-capture')
+        if dloc.count()!=1: raise RuntimeError(f'{code}: clean design capture missing')
+        dloc.screenshot(path=str(design_png),type='png')
+        page.evaluate("""() => document.querySelector('#drielo-design-capture')?.remove()""")
 
         # Store image = exact ambient scene + final pattern, with none of the PDF
         # card/border/background. Clone only the cover stage into a clean capture
@@ -283,6 +307,10 @@ def render_one(task):
     ImageOps.fit(im,(1200,1500),method=Image.Resampling.LANCZOS,centering=(.5,.5)).save(img,'WEBP',quality=92,method=6)
     png.unlink(missing_ok=True)
 
+    dim=Image.open(design_png).convert('RGB')
+    ImageOps.fit(dim,(1000,1200),method=Image.Resampling.LANCZOS,centering=(.5,.5)).save(design,'WEBP',quality=94,method=6)
+    design_png.unlink(missing_ok=True)
+
     gallery=[]
     for _,webp_path,png_path in gallery_pngs:
         gim=Image.open(png_path).convert('RGB')
@@ -293,9 +321,11 @@ def render_one(task):
         gallery.append(str(webp_path))
 
     if pdf.stat().st_size<100000: raise RuntimeError(f'{code}: PDF too small')
+    if not design.is_file() or design.stat().st_size<30000: raise RuntimeError(f'{code}: design preview too small')
     return {
-        'code':code,'pdf':str(pdf),'image':str(img),'gallery':gallery,
+        'code':code,'pdf':str(pdf),'image':str(img),'design_preview':str(design),'gallery':gallery,
         'pdf_bytes':pdf.stat().st_size,'image_bytes':img.stat().st_size,
+        'design_preview_bytes':design.stat().st_size,
         'gallery_bytes':[Path(x).stat().st_size for x in gallery]
     }
 
