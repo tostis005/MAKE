@@ -216,42 +216,56 @@ function shadeHex(hex, amount) {
   without moving the actual stitch-hole coordinates.
 */
 function aidaPattern(f) {
-  const base=esc(f.color || "#EFE6D7");
-  const light=esc(f.light || "#FFF8EC");
-  const mid=esc(f.mid || "#DED2BF");
-  const shadow=esc(f.shadow || "#C7B9A4");
-  const hole=esc(f.hole || "#9E907C");
+  const base=esc(f.color || "#EEE5D6");
+  const light=esc(f.light || "#FFF9EE");
+  const mid=esc(f.mid || "#E1D5C2");
+  const shadow=esc(f.shadow || "#C9BBA6");
+  const hole=esc(f.hole || "#9D8E79");
   const parts=[
     '<pattern id="fabric" width="2" height="2" patternUnits="userSpaceOnUse">',
     '<rect width="2" height="2" fill="'+base+'"/>'
   ];
   const variants=[
-    {dx:-.006,dy:.004,o:1.00},
-    {dx:.005,dy:-.003,o:.96},
-    {dx:.003,dy:.006,o:.98},
-    {dx:-.004,dy:-.005,o:.94}
+    {jx:-.008,jy:.006,o:1.00},
+    {jx:.006,jy:-.005,o:.97},
+    {jx:.004,jy:.008,o:.98},
+    {jx:-.006,jy:-.006,o:.95}
   ];
   for (let py=0; py<2; py++) {
     for (let px=0; px<2; px++) {
-      const v=variants[py*2+px], ox=px+v.dx, oy=py+v.dy;
-      // Four visible cotton filaments in each bundle.
-      const ys=[.365,.435,.505,.575];
-      const xs=[.365,.435,.505,.575];
-      ys.forEach((yy,i)=>{
-        const col=(i===0||i===1)?light:(i===2?mid:shadow);
-        const op=(i===0?.62:i===1?.52:i===2?.46:.30)*v.o;
-        parts.push('<path d="M'+px+' '+(oy+yy-py).toFixed(3)+' C'+(px+.28)+' '+(oy+yy-py-.010).toFixed(3)+' '+(px+.72)+' '+(oy+yy-py+.010).toFixed(3)+' '+(px+1)+' '+(oy+yy-py).toFixed(3)+'" fill="none" stroke="'+col+'" stroke-width="'+(i<2?.054:.038)+'" stroke-linecap="round" opacity="'+op.toFixed(3)+'"/>');
+      const v=variants[py*2+px];
+      const cx=px+.5+v.jx, cy=py+.5+v.jy;
+
+      // Broad grouped cotton yarns form the characteristic block weave.
+      parts.push('<path d="M'+px+' '+cy.toFixed(3)+' H'+(px+1)+'" fill="none" stroke="'+mid+'" stroke-width=".50" stroke-linecap="butt" opacity="'+(.70*v.o).toFixed(3)+'"/>');
+      parts.push('<path d="M'+cx.toFixed(3)+' '+py+' V'+(py+1)+'" fill="none" stroke="'+mid+'" stroke-width=".50" stroke-linecap="butt" opacity="'+(.66*v.o).toFixed(3)+'"/>');
+
+      // Individual cotton filaments on top of each bundle.
+      const offsets=[-.180,-.120,-.060,0,.060,.120,.180];
+      offsets.forEach((off,i)=>{
+        const hcol=i<3?light:(i===3?mid:shadow);
+        const hop=(i<2?.54:i<4?.46:.30)*v.o;
+        const hy=cy+off;
+        const hx1=px+.045, hx2=px+.955;
+        parts.push('<path d="M'+hx1.toFixed(3)+' '+hy.toFixed(3)+' C'+(px+.28).toFixed(3)+' '+(hy-.010).toFixed(3)+' '+(px+.72).toFixed(3)+' '+(hy+.010).toFixed(3)+' '+hx2.toFixed(3)+' '+hy.toFixed(3)+'" fill="none" stroke="'+hcol+'" stroke-width="'+(i===3?".042":".034")+'" stroke-linecap="round" opacity="'+hop.toFixed(3)+'"/>');
+
+        const vcol=i<3?light:(i===3?mid:shadow);
+        const vop=(i<2?.50:i<4?.42:.27)*v.o;
+        const vx=cx+off;
+        const vy1=py+.045, vy2=py+.955;
+        parts.push('<path d="M'+vx.toFixed(3)+' '+vy1.toFixed(3)+' C'+(vx-.010).toFixed(3)+' '+(py+.28).toFixed(3)+' '+(vx+.010).toFixed(3)+' '+(py+.72).toFixed(3)+' '+vx.toFixed(3)+' '+vy2.toFixed(3)+'" fill="none" stroke="'+vcol+'" stroke-width="'+(i===3?".040":".032")+'" stroke-linecap="round" opacity="'+vop.toFixed(3)+'"/>');
       });
-      xs.forEach((xx,i)=>{
-        const col=(i===0||i===1)?light:(i===2?mid:shadow);
-        const op=(i===0?.56:i===1?.48:i===2?.40:.27)*v.o;
-        parts.push('<path d="M'+(ox+xx-px).toFixed(3)+' '+py+' C'+(ox+xx-px-.010).toFixed(3)+' '+(py+.28)+' '+(ox+xx-px+.010).toFixed(3)+' '+(py+.72)+' '+(ox+xx-px).toFixed(3)+' '+(py+1)+'" fill="none" stroke="'+col+'" stroke-width="'+(i<2?.052:.036)+'" stroke-linecap="round" opacity="'+op.toFixed(3)+'"/>');
-      });
-      // The opening is square-ish and recessed, as in macro photos of Aida.
-      parts.push('<rect x="'+(px-.078).toFixed(3)+'" y="'+(py-.078).toFixed(3)+'" width=".156" height=".156" rx=".028" fill="'+shadow+'" opacity=".48"/>');
-      parts.push('<rect x="'+(px-.052).toFixed(3)+'" y="'+(py-.052).toFixed(3)+'" width=".104" height=".104" rx=".020" fill="'+hole+'" opacity=".46"/>');
-      parts.push('<path d="M'+(px-.050)+' '+(py-.061)+' H'+(px+.036)+' M'+(px-.061)+' '+(py-.050)+' V'+(py+.036)+'" stroke="'+light+'" stroke-width=".018" stroke-linecap="round" opacity=".50"/>');
-      parts.push('<path d="M'+(px-.034)+' '+(py+.060)+' H'+(px+.055)+' M'+(px+.060)+' '+(py-.034)+' V'+(py+.055)+'" stroke="#746A5E" stroke-width=".015" stroke-linecap="round" opacity=".13"/>');
+
+      // Subtle over/under interlace in the centre of each woven block.
+      parts.push('<path d="M'+(px+.29).toFixed(3)+' '+(cy-.035).toFixed(3)+' H'+(px+.71).toFixed(3)+'" stroke="'+light+'" stroke-width=".055" stroke-linecap="round" opacity="'+(.30*v.o).toFixed(3)+'"/>');
+      parts.push('<path d="M'+(cx+.035).toFixed(3)+' '+(py+.29).toFixed(3)+' V'+(py+.71).toFixed(3)+'" stroke="'+shadow+'" stroke-width=".045" stroke-linecap="round" opacity="'+(.18*v.o).toFixed(3)+'"/>');
+
+      // Small recessed square opening at the needle intersection.
+      parts.push('<rect x="'+(px-.074).toFixed(3)+'" y="'+(py-.074).toFixed(3)+'" width=".148" height=".148" rx=".018" fill="'+shadow+'" opacity=".48"/>');
+      parts.push('<rect x="'+(px-.050).toFixed(3)+'" y="'+(py-.050).toFixed(3)+'" width=".100" height=".100" rx=".012" fill="'+hole+'" opacity=".48"/>');
+      parts.push('<rect x="'+(px-.031).toFixed(3)+'" y="'+(py-.031).toFixed(3)+'" width=".062" height=".062" rx=".008" fill="#6F6559" opacity=".16"/>');
+      parts.push('<path d="M'+(px-.048)+' '+(py-.061)+' H'+(px+.034)+' M'+(px-.061)+' '+(py-.048)+' V'+(py+.034)+'" stroke="'+light+'" stroke-width=".018" stroke-linecap="round" opacity=".54"/>');
+      parts.push('<path d="M'+(px-.032)+' '+(py+.059)+' H'+(px+.052)+' M'+(px+.059)+' '+(py-.032)+' V'+(py+.052)+'" stroke="#74695D" stroke-width=".015" stroke-linecap="round" opacity=".14"/>');
     }
   }
   parts.push('</pattern>');
