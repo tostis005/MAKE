@@ -2,6 +2,7 @@
   "id": "pop-art-portraits",
   "name": "Pop Art Portraits",
   "slug": "pop-art-portraits",
+  "visible": true,
   "palette": [
     {
       "dmc": "948",
