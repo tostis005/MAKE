@@ -248,6 +248,7 @@ def render_one(task):
         page=browser.new_page(viewport={'width':1600,'height':2000},device_scale_factor=1.5)
         page.goto(html.resolve().as_uri(),wait_until='load',timeout=120000)
         page.wait_for_function("document.documentElement.getAttribute('data-drielo-ready') === '1'",timeout=120000)
+        page.wait_for_function("document.documentElement.getAttribute('data-drielo-stitch-renderer') === 'aida-relief-v4'",timeout=120000)
         page.pdf(path=str(pdf),format='A4',print_background=True,prefer_css_page_size=True)
 
         # Product-gallery previews taken directly from the generated PDF master:
