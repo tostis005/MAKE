@@ -93,6 +93,13 @@ jobs:
           if not row or row.get('collection')!='iconic-destinations' or row.get('technique')!='cross-stitch': raise SystemExit(f'{code}: wrong catalog routing')
           storefront=root/'content'/'products'/row['featured_image']
           if not storefront.is_file() or storefront.stat().st_size<30000: raise SystemExit(f'{code}: missing versioned storefront image')
+          background=system/'collections'/'iconic-destinations'/'assets'/'cover-cross-stitch.jpg'
+          if not background.is_file(): raise SystemExit(f'{code}: missing full storefront background')
+          with Image.open(background) as bg_im, Image.open(storefront) as hero_im:
+              if hero_im.size != bg_im.size:
+                  raise SystemExit(f'{code}: storefront image cropped/resized {hero_im.size}, expected full background {bg_im.size}')
+              if hero_im.size == (1200,1500):
+                  raise SystemExit(f'{code}: legacy 4:5 storefront crop detected')
           if row.get('gallery') != []: raise SystemExit(f'{code}: Iconic storefront must expose only the featured image')
           print(code,'EXACT_1_TO_1','colors',len(pat['threads']),'pdf',pdf.stat().st_size)
           PY
