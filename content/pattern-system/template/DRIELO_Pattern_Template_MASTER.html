@@ -281,43 +281,177 @@ function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, transparent=false) {
   if (rules.style === "full-thread" || rules.style === "filled-cross") {
     const grouped=new Map();
     const cellEdges=[];
+
     for (let y=y0; y<y1; y++) {
       for (let x=x0; x<x1; x++) {
         const symbol=matrix[y]?.[x];
         if (!symbol) continue;
         const lx=x-x0, ly=y-y0;
-        if (!grouped.has(symbol)) grouped.set(symbol,{cells:[],dark:[],light:[],ridgeA:[],ridgeB:[],edgeLight:[],edgeDark:[],centers:[]});
+
+        if (!grouped.has(symbol)) grouped.set(symbol,{
+          cells:[],
+          dark:[[],[],[],[]],
+          light:[[],[],[],[]],
+          ridgeA:[[],[],[]],
+          ridgeB:[[],[],[]],
+          topLight:[[],[],[]],
+          leftLight:[[],[],[]],
+          bottomShadow:[[],[],[]],
+          rightShadow:[[],[],[]],
+          centers:[[],[],[]]
+        });
         const g=grouped.get(symbol);
-        // Exact validated relief model from pixel-handmade-relief-paris.
+
+        // Exact validated full-thread relief foundation.
         g.cells.push(`M${lx} ${ly}H${lx+1}V${ly+1}H${lx}Z`);
-        g.dark.push(`M${(lx+.06).toFixed(3)} ${(ly+.06).toFixed(3)}L${(lx+.94).toFixed(3)} ${(ly+.94).toFixed(3)}`);
-        g.light.push(`M${(lx+.94).toFixed(3)} ${(ly+.06).toFixed(3)}L${(lx+.06).toFixed(3)} ${(ly+.94).toFixed(3)}`);
-        g.ridgeA.push(`M${(lx+.12).toFixed(3)} ${(ly+.08).toFixed(3)}L${(lx+.92).toFixed(3)} ${(ly+.88).toFixed(3)}`);
-        g.ridgeB.push(`M${(lx+.88).toFixed(3)} ${(ly+.08).toFixed(3)}L${(lx+.08).toFixed(3)} ${(ly+.88).toFixed(3)}`);
-        g.edgeLight.push(`M${(lx+.04).toFixed(3)} ${(ly+.055).toFixed(3)}H${(lx+.945).toFixed(3)} M${(lx+.055).toFixed(3)} ${(ly+.04).toFixed(3)}V${(ly+.945).toFixed(3)}`);
-        g.edgeDark.push(`M${(lx+.055).toFixed(3)} ${(ly+.945).toFixed(3)}H${(lx+.945).toFixed(3)} M${(lx+.945).toFixed(3)} ${(ly+.055).toFixed(3)}V${(ly+.945).toFixed(3)}`);
-        g.centers.push(`M${(lx+.50).toFixed(3)} ${(ly+.40).toFixed(3)}L${(lx+.60).toFixed(3)} ${(ly+.50).toFixed(3)}L${(lx+.50).toFixed(3)} ${(ly+.60).toFixed(3)}L${(lx+.40).toFixed(3)} ${(ly+.50).toFixed(3)}Z`);
+
+        // Deterministic per-stitch variation: reproducible, but never mechanically identical.
+        const seed=((x+1)*73856093 ^ (y+1)*19349663 ^ 0xA53A9E17) >>> 0;
+        const seed2=Math.imul((seed ^ 0x9E3779B9)>>>0,2246822519)>>>0;
+        const r0=(seed & 1023)/1023;
+        const r1=((seed>>>10)&1023)/1023;
+        const r2=((seed>>>20)&4095)/4095;
+        const r3=(seed2 & 1023)/1023;
+        const r4=((seed2>>>10)&1023)/1023;
+        const r5=((seed2>>>20)&4095)/4095;
+
+        const crossX=lx+.5+(r0-.5)*.070;
+        const crossY=ly+.5+(r1-.5)*.060;
+
+        // Under-pass: broad, slightly curved, sometimes partly visually swallowed.
+        const mA=.045+r2*.065, mB=.045+r3*.065;
+        const mC=.045+r4*.065, mD=.045+r5*.065;
+        const a0x=lx+mA, a0y=ly+mB;
+        const a1x=lx+1-mC, a1y=ly+1-mD;
+        const aqx=crossX+(r4-.5)*.075, aqy=crossY+(r5-.5)*.070;
+        const underBucket=Math.min(3,Math.floor(r2*4));
+        if (r5>.055) {
+          g.dark[underBucket].push(
+            `M${a0x.toFixed(3)} ${a0y.toFixed(3)} Q${aqx.toFixed(3)} ${aqy.toFixed(3)} ${a1x.toFixed(3)} ${a1y.toFixed(3)}`
+          );
+        }
+
+        // Upper-pass: dominant strand, but its tension and centre vary per stitch.
+        const b0x=lx+1-(.045+r0*.065), b0y=ly+(.045+r4*.065);
+        const b1x=lx+(.045+r5*.065), b1y=ly+1-(.045+r1*.065);
+        const bqx=crossX+(r3-.5)*.075, bqy=crossY+(r2-.5)*.070;
+        const overBucket=Math.min(3,Math.floor(r4*4));
+        g.light[overBucket].push(
+          `M${b0x.toFixed(3)} ${b0y.toFixed(3)} Q${bqx.toFixed(3)} ${bqy.toFixed(3)} ${b1x.toFixed(3)} ${b1y.toFixed(3)}`
+        );
+
+        // Fine cotton ridges appear irregularly rather than as an outlined X.
+        const ridgeBucket=Math.min(2,Math.floor(r3*3));
+        if (r2>.24) {
+          const off=.018+(r0-.5)*.016;
+          g.ridgeA[ridgeBucket].push(
+            `M${(a0x+off).toFixed(3)} ${(a0y-off).toFixed(3)} Q${(aqx+off*.3).toFixed(3)} ${(aqy-off*.3).toFixed(3)} ${(a1x+off).toFixed(3)} ${(a1y-off).toFixed(3)}`
+          );
+        }
+        if (r3>.20) {
+          const off=.018+(r1-.5)*.016;
+          g.ridgeB[ridgeBucket].push(
+            `M${(b0x-off).toFixed(3)} ${(b0y-off).toFixed(3)} Q${(bqx-off*.3).toFixed(3)} ${(bqy-off*.3).toFixed(3)} ${(b1x-off).toFixed(3)} ${(b1y-off).toFixed(3)}`
+          );
+        }
+
+        // Preserve the validated relief: top/left catch light; bottom/right fall into shadow.
+        // Unlike the old implementation, these edges are not ruler-straight or identical.
+        const lightBucket=Math.min(2,Math.floor(r4*3));
+        const shadowBucket=Math.min(2,Math.floor(r5*3));
+
+        const topY=ly+.048+(r1-.5)*.020;
+        const topX0=lx+.045+r2*.070, topX1=lx+.955-r3*.070;
+        g.topLight[lightBucket].push(
+          `M${topX0.toFixed(3)} ${topY.toFixed(3)} Q${(lx+.5+(r5-.5)*.035).toFixed(3)} ${(topY+(r0-.5)*.018).toFixed(3)} ${topX1.toFixed(3)} ${(topY+(r4-.5)*.010).toFixed(3)}`
+        );
+
+        const leftX=lx+.048+(r2-.5)*.020;
+        const leftY0=ly+.045+r3*.075, leftY1=ly+.955-r4*.075;
+        g.leftLight[lightBucket].push(
+          `M${leftX.toFixed(3)} ${leftY0.toFixed(3)} Q${(leftX+(r5-.5)*.025).toFixed(3)} ${(ly+.5).toFixed(3)} ${(leftX+(r0-.5)*.010).toFixed(3)} ${leftY1.toFixed(3)}`
+        );
+
+        // Bottom shadow remains the strongest cue to the "raised/pyramidal" stitch.
+        const bottomY=ly+.948+(r0-.5)*.028;
+        const bottomX0=lx+.050+r1*.100, bottomX1=lx+.950-r2*.100;
+        const bottomQY=bottomY+(r4-.5)*.026;
+        if (r3>.10) {
+          if (r5>.82) {
+            const gap=.025+r2*.045;
+            const mid=lx+.5+(r4-.5)*.040;
+            g.bottomShadow[shadowBucket].push(
+              `M${bottomX0.toFixed(3)} ${bottomY.toFixed(3)} Q${((bottomX0+mid-gap)/2).toFixed(3)} ${bottomQY.toFixed(3)} ${(mid-gap).toFixed(3)} ${(bottomY+(r1-.5)*.012).toFixed(3)}`+
+              ` M${(mid+gap).toFixed(3)} ${(bottomY+(r0-.5)*.010).toFixed(3)} Q${((mid+gap+bottomX1)/2).toFixed(3)} ${(bottomQY+(r3-.5)*.010).toFixed(3)} ${bottomX1.toFixed(3)} ${(bottomY+(r2-.5)*.012).toFixed(3)}`
+            );
+          } else {
+            g.bottomShadow[shadowBucket].push(
+              `M${bottomX0.toFixed(3)} ${bottomY.toFixed(3)} Q${(lx+.5+(r5-.5)*.040).toFixed(3)} ${bottomQY.toFixed(3)} ${bottomX1.toFixed(3)} ${(bottomY+(r2-.5)*.012).toFixed(3)}`
+            );
+          }
+        }
+
+        const rightX=lx+.950+(r1-.5)*.024;
+        const rightY0=ly+.060+r4*.095, rightY1=ly+.940-r5*.095;
+        if (r2>.16) {
+          g.rightShadow[shadowBucket].push(
+            `M${rightX.toFixed(3)} ${rightY0.toFixed(3)} Q${(rightX+(r3-.5)*.022).toFixed(3)} ${(ly+.5).toFixed(3)} ${(rightX+(r0-.5)*.010).toFixed(3)} ${rightY1.toFixed(3)}`
+          );
+        }
+
+        // The tiny centre highlight from the validated renderer remains, but varies
+        // in size/intensity so it doesn't become a stamped diamond pattern.
+        const centerBucket=Math.min(2,Math.floor(r0*3));
+        const cr=.070+r3*.035;
+        g.centers[centerBucket].push(
+          `M${crossX.toFixed(3)} ${(crossY-cr).toFixed(3)} L${(crossX+cr).toFixed(3)} ${crossY.toFixed(3)} L${crossX.toFixed(3)} ${(crossY+cr).toFixed(3)} L${(crossX-cr).toFixed(3)} ${crossY.toFixed(3)} Z`
+        );
+
         cellEdges.push(`M${lx} ${ly}H${lx+1}V${ly+1}H${lx}Z`);
       }
     }
+
     const paths=[];
     for (const [symbol,g] of grouped.entries()) {
       const color=threadColor(symbol);
+
+      // These are the exact validated relief colours from 2a082b.
       const base=shadeHex(color,-0.045);
       const deep=shadeHex(color,-0.34);
       const mid=shadeHex(color,-0.18);
       const hi=shadeHex(color,0.34);
       const hi2=shadeHex(color,0.48);
+
       paths.push(`<path d="${g.cells.join(" ")}" fill="${base}"/>`);
-      paths.push(`<path d="${g.dark.join(" ")}" fill="none" stroke="${mid}" stroke-width="0.285" stroke-linecap="round" opacity="0.90"/>`);
-      paths.push(`<path d="${g.light.join(" ")}" fill="none" stroke="${color}" stroke-width="0.255" stroke-linecap="round" opacity="0.97"/>`);
-      paths.push(`<path d="${g.ridgeA.join(" ")} ${g.ridgeB.join(" ")}" fill="none" stroke="${hi2}" stroke-width="0.050" stroke-linecap="round" opacity="${rules.ridgeOpacity}"/>`);
-      paths.push(`<path d="${g.edgeLight.join(" ")}" fill="none" stroke="${hi}" stroke-width="0.040" stroke-linecap="round" opacity="${rules.highlightOpacity}"/>`);
-      paths.push(`<path d="${g.edgeDark.join(" ")}" fill="none" stroke="${deep}" stroke-width="0.052" stroke-linecap="round" opacity="${rules.shadowOpacity}"/>`);
-      paths.push(`<path d="${g.centers.join(" ")}" fill="${hi2}" opacity="0.16"/>`);
+
+      const underW=[.245,.265,.285,.305], underO=[.62,.72,.82,.90];
+      const overW=[.220,.238,.255,.272], overO=[.76,.84,.91,.97];
+      for (let i=0;i<4;i++) {
+        if (g.dark[i].length) paths.push(`<path d="${g.dark[i].join(" ")}" fill="none" stroke="${mid}" stroke-width="${underW[i]}" stroke-linecap="round" stroke-linejoin="round" opacity="${underO[i]}"/>`);
+        if (g.light[i].length) paths.push(`<path d="${g.light[i].join(" ")}" fill="none" stroke="${color}" stroke-width="${overW[i]}" stroke-linecap="round" stroke-linejoin="round" opacity="${overO[i]}"/>`);
+      }
+
+      const ridgeW=[.038,.047,.055], ridgeO=[.14,.22,.28];
+      const lightW=[.032,.040,.047], lightO=[.17,.24,.31];
+      const bottomW=[.044,.053,.062], bottomO=[.20,.28,.36];
+      const rightW=[.037,.046,.054], rightO=[.14,.22,.29];
+      const centerO=[.10,.15,.19];
+
+      for (let i=0;i<3;i++) {
+        const ridges=[...g.ridgeA[i],...g.ridgeB[i]];
+        if (ridges.length) paths.push(`<path d="${ridges.join(" ")}" fill="none" stroke="${hi2}" stroke-width="${ridgeW[i]}" stroke-linecap="round" opacity="${ridgeO[i]}"/>`);
+        if (g.topLight[i].length) paths.push(`<path d="${g.topLight[i].join(" ")}" fill="none" stroke="${hi}" stroke-width="${lightW[i]}" stroke-linecap="round" opacity="${lightO[i]}"/>`);
+        if (g.leftLight[i].length) paths.push(`<path d="${g.leftLight[i].join(" ")}" fill="none" stroke="${hi}" stroke-width="${lightW[i]*.90}" stroke-linecap="round" opacity="${lightO[i]*.82}"/>`);
+        if (g.bottomShadow[i].length) paths.push(`<path d="${g.bottomShadow[i].join(" ")}" fill="none" stroke="${deep}" stroke-width="${bottomW[i]}" stroke-linecap="round" opacity="${bottomO[i]}"/>`);
+        if (g.rightShadow[i].length) paths.push(`<path d="${g.rightShadow[i].join(" ")}" fill="none" stroke="${deep}" stroke-width="${rightW[i]}" stroke-linecap="round" opacity="${rightO[i]}"/>`);
+        if (g.centers[i].length) paths.push(`<path d="${g.centers[i].join(" ")}" fill="${hi2}" opacity="${centerO[i]}"/>`);
+      }
     }
-    const texture=`<path d="${cellEdges.join(" ")}" fill="none" stroke="#24161c" stroke-width="0.030" opacity="${rules.gridOpacity}"/>`;
-    const textureLight=`<path d="${cellEdges.join(" ")}" fill="none" stroke="#ffffff" stroke-width="0.012" opacity="0.08" transform="translate(0.018 0.018)"/>`;
+
+    // Keep only a faint structural seam. Relief now comes from the thread itself,
+    // not from a uniform printed grid.
+    const texture=`<path d="${cellEdges.join(" ")}" fill="none" stroke="#24161c" stroke-width="0.020" opacity="${rules.gridOpacity*.30}"/>`;
+    const textureLight=`<path d="${cellEdges.join(" ")}" fill="none" stroke="#ffffff" stroke-width="0.010" opacity="0.028" transform="translate(0.018 0.018)"/>`;
     return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${vw} ${vh}" preserveAspectRatio="xMidYMid meet">${bg}${paths.join("")}${texture}${textureLight}</svg>`;
   }
 
