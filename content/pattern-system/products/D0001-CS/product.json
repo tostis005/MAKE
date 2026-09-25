@@ -13,8 +13,9 @@
   "website": "www.drielo.com",
   "status": "ready",
   "render_ready": true,
-  "renderer": "multitech",
-  "source_artwork": "collections/iconic-destinations/source-designs/D0001-paris-eiffel-tower.png",
+  "renderer": "standard",
+  "source_artwork": "collections/iconic-destinations/approved-pixel-designs/D0001-paris-eiffel-tower.png",
   "page_1_asset": "../../multitech/assets/cover-cross-stitch.webp",
-  "palette_mode": "per-design"
+  "palette_mode": "per-design",
+  "source_mode": "pixel-exact"
 }

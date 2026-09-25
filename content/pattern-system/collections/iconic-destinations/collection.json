@@ -36,29 +36,31 @@
     "detail_policy": "Prefer one strong focal landmark and readable silhouettes over micro-detail."
   },
   "mockup_spec": {
-    "asset": null,
+    "asset": "assets/iconic-room.jpg",
     "technique_assets": {
-      "CS": null
+      "CS": "assets/iconic-room.jpg"
     },
-    "status": "awaiting-approved-page-1-image",
+    "status": "pixel-test-positioning",
     "generation": {
-      "purpose": "Reusable page-1 lifestyle/ambient image for the Iconic Destinations cross-stitch collection.",
-      "frame_requirement": "Leave the craft display area empty so the final vector pattern can be inserted by the renderer.",
-      "post_generation_measurement": "Record exact source dimensions and usable area geometry after approval."
+      "purpose": "Iconic Destinations reusable cross-stitch lifestyle mockup.",
+      "frame_requirement": "Keep the central wooden frame empty; renderer inserts the exact vector stitch pattern.",
+      "post_generation_measurement": "First positioning test; artwork shifted about 2 mm upward for review."
     },
     "frame": {
-      "enabled": false,
+      "enabled": true,
       "source_px": {
-        "width": 0,
-        "height": 0
+        "width": 256,
+        "height": 256
       },
       "area_px": {
-        "x": 0,
-        "y": 0,
-        "width": 0,
-        "height": 0
+        "x": 70,
+        "y": 29,
+        "width": 119,
+        "height": 143
       },
-      "padding_ratio": 0.055,
+      "padding_ratio": 0.01,
+      "stitch_offset_x_ratio": 0.0,
+      "stitch_offset_y_ratio": -0.014,
       "fabric": {
         "color": "#F7F3EA",
         "kind": "aida",
