@@ -185,6 +185,7 @@ foreach ( (array) ( $catalog['collections'] ?? array() ) as $collection ) {
     $show_collection_palette = array_key_exists( 'show_collection_palette', $collection )
         ? (bool) $collection['show_collection_palette']
         : ( 'shared' === $palette_mode );
+    $collection_visible = array_key_exists( 'visible', $collection ) ? (bool) $collection['visible'] : true;
     $thread_codes = array_values( array_filter( array_map( 'sanitize_text_field', (array) ( $collection['thread_codes'] ?? array() ) ) ) );
 
     update_term_meta( $term_id, 'drielo_name_es', sanitize_text_field( (string) ( $collection['name_es'] ?? '' ) ) );
@@ -193,6 +194,9 @@ foreach ( (array) ( $catalog['collections'] ?? array() ) as $collection ) {
     update_term_meta( $term_id, 'drielo_description_en', sanitize_text_field( (string) ( $collection['description_en'] ?? ( $collection['description'] ?? '' ) ) ) );
     update_term_meta( $term_id, 'drielo_palette_mode', $palette_mode );
     update_term_meta( $term_id, 'drielo_show_collection_palette', $show_collection_palette ? '1' : '0' );
+    if ( '' === (string) get_term_meta( $term_id, 'drielo_visible', true ) ) {
+        update_term_meta( $term_id, 'drielo_visible', $collection_visible ? '1' : '0' );
+    }
     update_term_meta( $term_id, 'drielo_palette_hex', implode( ', ', (array) ( $collection['palette_hex'] ?? array() ) ) );
     update_term_meta( $term_id, 'drielo_thread_codes', empty( $thread_codes ) ? '' : 'DMC ' . implode( ', ', $thread_codes ) );
 
