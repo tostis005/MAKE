@@ -178,16 +178,58 @@ function symbolInk(hex) { return luminance(hex) < .38 ? "#ffffff" : "#2e1d27"; }
 function stitchRules() {
   const r = data.preview_rules || {};
   return {
+    style: String(r.stitch_style || "classic").toLowerCase(),
     margin: Number.isFinite(Number(r.cross_margin_ratio)) ? Number(r.cross_margin_ratio) : 0.02,
     stroke: Number.isFinite(Number(r.stroke_width_ratio)) ? Number(r.stroke_width_ratio) : 0.34,
+    fill: Number.isFinite(Number(r.cross_fill_ratio)) ? Number(r.cross_fill_ratio) : 0.42,
     linecap: r.linecap || "round",
     fabric: r.fabric || { color: "#fbfaf6", dot: "#ddd8cf", dot_radius: 0.05 }
   };
 }
 
+function shadeHex(hex, amount) {
+  let h=String(hex || "#ffffff").replace("#","");
+  if (h.length===3) h=h.split("").map(v=>v+v).join("");
+  const rgb=[0,2,4].map(i=>parseInt(h.slice(i,i+2),16));
+  const target=amount>=0 ? 255 : 0;
+  const a=Math.min(1,Math.abs(Number(amount)||0));
+  return "#"+rgb.map(v=>Math.round(v+(target-v)*a).toString(16).padStart(2,"0")).join("");
+}
+
 function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, transparent=false) {
   const vw = x1-x0, vh = y1-y0;
   const rules = stitchRules();
+  const f = rules.fabric || {};
+  const bg = transparent ? "" : `<defs><pattern id="fabric" width="1" height="1" patternUnits="userSpaceOnUse"><rect width="1" height="1" fill="${esc(f.color || "#fbfaf6")}"/><circle cx="0" cy="0" r="${Number(f.dot_radius || .05)}" fill="${esc(f.dot || "#ddd8cf")}"/></pattern></defs><rect width="${vw}" height="${vh}" fill="url(#fabric)"/>`;
+
+  if (rules.style === "full-thread" || rules.style === "filled-cross") {
+    const h=Math.max(0.30,Math.min(0.48,rules.fill));
+    const grouped=new Map();
+    const cellEdges=[];
+    for (let y=y0; y<y1; y++) {
+      for (let x=x0; x<x1; x++) {
+        const symbol=matrix[y]?.[x];
+        if (!symbol) continue;
+        const lx=x-x0, ly=y-y0;
+        if (!grouped.has(symbol)) grouped.set(symbol,{a:[],b:[],diag:[]});
+        const g=grouped.get(symbol);
+        g.a.push(`M${lx} ${(ly+h).toFixed(3)}L${(lx+h).toFixed(3)} ${ly}L${lx+1} ${(ly+1-h).toFixed(3)}L${(lx+1-h).toFixed(3)} ${ly+1}Z`);
+        g.b.push(`M${(lx+1-h).toFixed(3)} ${ly}L${lx+1} ${(ly+h).toFixed(3)}L${(lx+h).toFixed(3)} ${ly+1}L${lx} ${(ly+1-h).toFixed(3)}Z`);
+        g.diag.push(`M${(lx+.08).toFixed(3)} ${(ly+.08).toFixed(3)}L${(lx+.92).toFixed(3)} ${(ly+.92).toFixed(3)} M${(lx+.92).toFixed(3)} ${(ly+.08).toFixed(3)}L${(lx+.08).toFixed(3)} ${(ly+.92).toFixed(3)}`);
+        cellEdges.push(`M${lx} ${ly}H${lx+1}V${ly+1}H${lx}Z`);
+      }
+    }
+    const paths=[];
+    for (const [symbol,g] of grouped.entries()) {
+      const color=threadColor(symbol);
+      paths.push(`<path d="${g.a.join(" ")}" fill="${shadeHex(color,-0.07)}"/>`);
+      paths.push(`<path d="${g.b.join(" ")}" fill="${color}"/>`);
+      paths.push(`<path d="${g.diag.join(" ")}" fill="none" stroke="${shadeHex(color,0.28)}" stroke-width="0.055" stroke-linecap="round" opacity="0.34"/>`);
+    }
+    const texture=`<path d="${cellEdges.join(" ")}" fill="none" stroke="#2b1a20" stroke-width="0.028" opacity="0.12"/>`;
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${vw} ${vh}" preserveAspectRatio="xMidYMid meet">${bg}${paths.join("")}${texture}</svg>`;
+  }
+
   const margin = Math.max(0, Math.min(0.2, rules.margin));
   const end = 1-margin;
   const grouped = new Map();
@@ -205,8 +247,6 @@ function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, transparent=false) {
   for (const [symbol, commands] of grouped.entries()) {
     paths.push(`<path d="${commands.join(" ")}" fill="none" stroke="${threadColor(symbol)}" stroke-width="${rules.stroke}" stroke-linecap="${esc(rules.linecap)}" stroke-linejoin="round"/>`);
   }
-  const f = rules.fabric || {};
-  const bg = transparent ? "" : `<defs><pattern id="fabric" width="1" height="1" patternUnits="userSpaceOnUse"><rect width="1" height="1" fill="${esc(f.color || "#fbfaf6")}"/><circle cx="0" cy="0" r="${Number(f.dot_radius || .05)}" fill="${esc(f.dot || "#ddd8cf")}"/></pattern></defs><rect width="${vw}" height="${vh}" fill="url(#fabric)"/>`;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${vw} ${vh}" preserveAspectRatio="xMidYMid meet">${bg}${paths.join("")}</svg>`;
 }
 
