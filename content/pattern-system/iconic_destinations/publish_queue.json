@@ -235,10 +235,11 @@
       "title_es": "Chichén Itzá",
       "slug": "chichen-itza",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0019.pixz",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36195595589",
+      "last_error": null,
+      "published_at": "2026-09-25T22:14:31+00:00"
     },
     {
       "base_design_id": "D0020",
