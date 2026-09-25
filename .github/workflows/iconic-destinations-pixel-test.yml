@@ -9,7 +9,9 @@ on:
       - 'content/pattern-system/iconic_destinations/publish_pixel_test.py'
       - 'content/pattern-system/renderer/render.py'
       - 'content/pattern-system/template/DRIELO_Pattern_Template_MASTER.html'
-      - 'content/pattern-system/collections/iconic-destinations/assets/iconic-room.jpg.b64.part*'
+      - 'content/pattern-system/collections/iconic-destinations/assets/iconic-room.jpg'
+      - 'content/pattern-system/collections/iconic-destinations/approved-pixel-designs/D0001-paris-eiffel-tower.png'
+      - 'content/pattern-system/iconic_destinations/PUBLISH_PIXEL_TEST'
       - '.github/workflows/iconic-destinations-pixel-test.yml'
 
 permissions:
@@ -36,20 +38,18 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Decode collection mockup
+      - name: Validate collection mockup
         shell: bash
         run: |
           set -euo pipefail
-          PARTS='content/pattern-system/collections/iconic-destinations/assets/iconic-room.jpg.b64.part*'
           OUT='content/pattern-system/collections/iconic-destinations/assets/iconic-room.jpg'
-          cat $PARTS | tr -d '\n\r' | base64 -d > "$OUT"
           test -s "$OUT"
 
       - name: Install renderer dependencies
         shell: bash
         run: |
           set -euo pipefail
-          python -m pip install --disable-pip-version-check --quiet Pillow playwright
+          python -m pip install --disable-pip-version-check --quiet Pillow playwright pymupdf
           python -m playwright install --with-deps chromium
 
       - name: Test pixel importer
@@ -100,7 +100,24 @@ jobs:
           print('D0001-CS EXACT_1_TO_1 colours=',len(pattern['threads']),'pdf=',pdf.stat().st_size,'image=',image.stat().st_size)
           PY
 
+      - name: Render first PDF page for visual QA
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p content/pattern-system/collections/iconic-destinations/qa
+          python3 - <<'PY'
+          import fitz
+          from pathlib import Path
+          pdf=Path('content/products/files/Drielo_D0001-CS.pdf')
+          out=Path('content/pattern-system/collections/iconic-destinations/qa/D0001-CS-page1.png')
+          doc=fitz.open(pdf)
+          pix=doc[0].get_pixmap(matrix=fitz.Matrix(1.5,1.5), alpha=False)
+          pix.save(out)
+          print(out, out.stat().st_size)
+          PY
+
       - name: Build one-product WooCommerce package
+        if: hashFiles('content/pattern-system/iconic_destinations/PUBLISH_PIXEL_TEST') != ''
         shell: bash
         run: |
           set -euo pipefail
@@ -129,6 +146,7 @@ jobs:
           tar -czf /tmp/drielo-iconic-pixel-test.tgz -C "$STAGE" content
 
       - name: Configure SSH
+        if: hashFiles('content/pattern-system/iconic_destinations/PUBLISH_PIXEL_TEST') != ''
         env:
           VPS_HOST: ${{ secrets.VPS_HOST }}
           VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
@@ -141,6 +159,7 @@ jobs:
           ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
 
       - name: Upload test product package
+        if: hashFiles('content/pattern-system/iconic_destinations/PUBLISH_PIXEL_TEST') != ''
         env:
           VPS_HOST: ${{ secrets.VPS_HOST }}
           VPS_USER: ${{ secrets.VPS_USER }}
@@ -149,6 +168,7 @@ jobs:
             "$VPS_USER@$VPS_HOST:/tmp/drielo-iconic-pixel-test-${GITHUB_RUN_ID}.tgz"
 
       - name: Replace Iconic Destinations live products with D0001
+        if: hashFiles('content/pattern-system/iconic_destinations/PUBLISH_PIXEL_TEST') != ''
         env:
           VPS_HOST: ${{ secrets.VPS_HOST }}
           VPS_USER: ${{ secrets.VPS_USER }}
@@ -175,6 +195,26 @@ jobs:
           tar -xzf "$ARCHIVE" -C "$STAGE"
           "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
           "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          # Purge every old Iconic Destinations product image/gallery and product before the clean test import.
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $term=get_term_by("slug","iconic-destinations","product_collection");
+            if($term){
+              $ids=get_posts(array("post_type"=>"product","post_status"=>"any","posts_per_page"=>-1,"fields"=>"ids",
+                "tax_query"=>array(array("taxonomy"=>"product_collection","field"=>"term_id","terms"=>array((int)$term->term_id)))));
+              $media=array();
+              foreach($ids as $id){
+                $p=wc_get_product($id);
+                if($p){
+                  if($p->get_image_id()) $media[]=(int)$p->get_image_id();
+                  foreach($p->get_gallery_image_ids() as $mid) $media[]=(int)$mid;
+                }
+                wp_delete_post($id,true);
+              }
+              foreach(array_unique($media) as $mid){ if($mid) wp_delete_attachment($mid,true); }
+              echo "PURGED_ICONIC_PRODUCTS=".count($ids)." MEDIA=".count(array_unique($media)).PHP_EOL;
+            }
+          '
           "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
 
           "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
@@ -219,16 +259,20 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git rm content/pattern-system/collections/iconic-destinations/assets/iconic-room.jpg.b64.part*
           git add \
             content/pattern-system/collections/iconic-destinations/assets/iconic-room.jpg \
             content/pattern-system/collections/iconic-destinations/collection.json \
+            content/pattern-system/collections/iconic-destinations/qa/D0001-CS-page1.png \
             content/pattern-system/patterns/D0001-CS/pattern.json \
             content/pattern-system/products/D0001-CS/product.json \
             content/products/catalog.json \
             content/products/assets/D0001-CS-product.webp
-          git commit -m 'Publish first Iconic Destinations pixel test [skip ci]'
-          git push origin HEAD:collection/iconic-destinations-pixel-test
+          if git diff --cached --quiet; then
+            echo 'No generated changes to persist.'
+          else
+            git commit -m 'Build first Iconic Destinations pixel QA [skip ci]'
+            git push origin HEAD:collection/iconic-destinations-pixel-test
+          fi
 
       - name: Archive test PDF
         uses: actions/upload-artifact@v4
