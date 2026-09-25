@@ -473,6 +473,7 @@ def product_catalog_row(base_id: str, design: dict, built: dict):
 
 def update_catalog(base_id: str, design: dict, built: dict):
     catalog = read_json(CATALOG_PATH)
+    collection = read_json(COLLECTION_PATH)
     rows = catalog.setdefault("products", [])
     new_row = product_catalog_row(base_id, design, built)
     idx = next((i for i, p in enumerate(rows) if p.get("code") == new_row["code"]), None)
@@ -485,6 +486,7 @@ def update_catalog(base_id: str, design: dict, built: dict):
     if coll is None:
         raise RuntimeError("Iconic Destinations collection missing from catalog")
     coll["palette_mode"] = "per-design"
+    coll["visible"] = bool(collection.get("visible", True))
     coll["show_collection_palette"] = False
     coll["palette_hex"] = []
     coll["thread_codes"] = []
