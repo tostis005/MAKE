@@ -11,7 +11,6 @@ on:
       - 'content/pattern-system/template/DRIELO_Pattern_Template_MASTER.html'
       - 'content/pattern-system/collections/iconic-destinations/assets/iconic-room.jpg'
       - 'content/pattern-system/collections/iconic-destinations/approved-pixel-designs/D0001-paris-eiffel-tower.png'
-      - 'content/pattern-system/collections/iconic-destinations/approved-pixel-designs/D0001-paris-eiffel-tower.png.b64.part*'
       - 'content/pattern-system/iconic_destinations/PUBLISH_PIXEL_TEST'
       - '.github/workflows/iconic-destinations-pixel-test.yml'
 
@@ -46,13 +45,17 @@ jobs:
           OUT='content/pattern-system/collections/iconic-destinations/assets/iconic-room.jpg'
           test -s "$OUT"
 
-      - name: Decode exact D0001 mosaic tile
+      - name: Install renderer dependencies
         shell: bash
         run: |
           set -euo pipefail
-          PARTS='content/pattern-system/collections/iconic-destinations/approved-pixel-designs/D0001-paris-eiffel-tower.png.b64.part*'
-          OUT='content/pattern-system/collections/iconic-destinations/approved-pixel-designs/D0001-paris-eiffel-tower.png'
-          cat $PARTS | tr -d '\n\r' | base64 -d > "$OUT"
+          python -m pip install --disable-pip-version-check --quiet Pillow playwright pymupdf
+          python -m playwright install --with-deps chromium
+
+      - name: Validate exact D0001 mosaic tile
+        shell: bash
+        run: |
+          set -euo pipefail
           python3 - <<'PY'
           from PIL import Image
           p='content/pattern-system/collections/iconic-destinations/approved-pixel-designs/D0001-paris-eiffel-tower.png'
@@ -61,13 +64,6 @@ jobs:
           assert len(set(im.getdata()))==50, len(set(im.getdata()))
           print('D0001 exact source',im.size,'colors',len(set(im.getdata())))
           PY
-
-      - name: Install renderer dependencies
-        shell: bash
-        run: |
-          set -euo pipefail
-          python -m pip install --disable-pip-version-check --quiet Pillow playwright pymupdf
-          python -m playwright install --with-deps chromium
 
       - name: Test pixel importer
         run: python3 content/pattern-system/pixel_importer/test_pixel_importer.py
@@ -276,7 +272,6 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git rm content/pattern-system/collections/iconic-destinations/approved-pixel-designs/D0001-paris-eiffel-tower.png.b64.part*
           git add \
             content/pattern-system/collections/iconic-destinations/approved-pixel-designs/D0001-paris-eiffel-tower.png \
             content/pattern-system/collections/iconic-destinations/assets/iconic-room.jpg \
