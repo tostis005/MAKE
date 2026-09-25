@@ -5,6 +5,7 @@ on:
     branches:
       - collection/iconic-destinations-pixel-test
       - feature/pixel-filled-cross-paris
+      - feature/pixel-handmade-relief-paris
     paths:
       - 'content/pattern-system/pixel_importer/**'
       - 'content/pattern-system/iconic_destinations/publish_pixel_test.py'
@@ -74,8 +75,18 @@ jobs:
           root=Path('.')
           system=root/'content'/'pattern-system'
           source=Image.open(system/'collections'/'iconic-destinations'/'approved-pixel-designs'/'D0001-paris-eiffel-tower.png').convert('RGB')
-          if source.size != (100,120):
-              raise SystemExit(f'wrong exact source size {source.size}')
+          raw_source=Image.open(system/'collections'/'iconic-destinations'/'source-designs'/'D0001-paris-eiffel-tower.png').convert('RGB')
+          if source.size != (100,120) or raw_source.size != (100,120):
+              raise SystemExit(f'wrong exact source size source={source.size} raw={raw_source.size}')
+          # The raw mosaic contains two rows of the next tile at the bottom of Paris.
+          # The approved source must repair them by repeating row 117, while keeping 100x120.
+          row117=[source.getpixel((x,117)) for x in range(100)]
+          if any([source.getpixel((x,118)) for x in range(100)] != row117 for _ in [0]):
+              raise SystemExit('approved source row 118 was not repaired')
+          if any([source.getpixel((x,119)) for x in range(100)] != row117 for _ in [0]):
+              raise SystemExit('approved source row 119 was not repaired')
+          if [raw_source.getpixel((x,119)) for x in range(100)] == row117:
+              raise SystemExit('raw source unexpectedly lacks the original mosaic bleed')
           pattern=json.loads((system/'patterns'/'D0001-CS'/'pattern.json').read_text(encoding='utf-8'))
           if pattern.get('source_mode')!='pixel-exact':
               raise SystemExit('D0001 is not pixel-exact')
@@ -264,6 +275,7 @@ jobs:
           git rm -f content/pattern-system/collections/iconic-destinations/approved-pixel-designs/D0001-paris-eiffel-tower.png.b64.part* 2>/dev/null || true
           git add \
             content/pattern-system/collections/iconic-destinations/approved-pixel-designs/D0001-paris-eiffel-tower.png \
+            content/pattern-system/collections/iconic-destinations/source-designs/D0001-paris-eiffel-tower.png \
             content/pattern-system/collections/iconic-destinations/assets/iconic-room.jpg \
             content/pattern-system/collections/iconic-destinations/collection.json \
             content/pattern-system/collections/iconic-destinations/qa/D0001-CS-page1.png \
