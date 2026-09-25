@@ -61,11 +61,17 @@ function drielo_media_from_file( string $path, string $source_key, string $title
     if ( $existing ) {
         $attachment_id = (int) $existing[0];
         $known_revision = (string) get_post_meta( $attachment_id, '_drielo_source_revision', true );
-        if ( '' !== $source_revision && hash_equals( $known_revision, $source_revision ) ) {
+        $known_hash = (string) get_post_meta( $attachment_id, '_drielo_source_hash', true );
+
+        // The file hash is the source of truth. A matching revision alone is
+        // not enough because a regenerated asset can keep the same revision.
+        if ( $source_hash && $known_hash && hash_equals( $known_hash, $source_hash ) ) {
+            if ( '' !== $source_revision && ! hash_equals( $known_revision, $source_revision ) ) {
+                update_post_meta( $attachment_id, '_drielo_source_revision', $source_revision );
+            }
             return $attachment_id;
         }
-        $known_hash = (string) get_post_meta( $attachment_id, '_drielo_source_hash', true );
-        if ( '' === $source_revision && $source_hash && hash_equals( $known_hash, $source_hash ) ) {
+        if ( ! $source_hash && '' !== $source_revision && hash_equals( $known_revision, $source_revision ) ) {
             return $attachment_id;
         }
 
