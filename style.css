@@ -1132,23 +1132,45 @@ body{background:var(--mk-cream);color:var(--mk-ink)}
 .woocommerce-product-gallery__trigger{display:none!important}
 .woocommerce-shell--single .woocommerce-product-gallery img{cursor:default!important}
 
-/* Single product gallery: no fixed crop box; the source image fills the gallery width naturally. */
-.woocommerce-shell--single .woocommerce-product-gallery,
+/* Single product gallery: show the complete artwork without letting portrait previews dominate the page. */
+.woocommerce-shell--single .woocommerce-product-gallery{
+  width:100%!important;
+  max-width:520px!important;
+  justify-self:center!important;
+  height:auto!important;min-height:0!important
+}
 .woocommerce-shell--single .woocommerce-product-gallery__wrapper,
 .woocommerce-shell--single .woocommerce-product-gallery__image{
+  width:100%!important;
   height:auto!important;min-height:0!important;max-height:none!important;
   aspect-ratio:auto!important
 }
 .woocommerce-shell--single .woocommerce-product-gallery__image img,
 .woocommerce-shell--single img.drielo-single-product-image{
   display:block!important;
-  width:100%!important;max-width:none!important;height:auto!important;
+  width:100%!important;max-width:520px!important;height:auto!important;
   min-height:0!important;max-height:none!important;
-  aspect-ratio:auto!important;object-fit:initial!important;object-position:initial!important;
-  margin:0!important;padding:0!important;transform:none!important
+  aspect-ratio:auto!important;object-fit:contain!important;object-position:center center!important;
+  margin:0 auto!important;padding:0!important;transform:none!important
 }
 .woocommerce-shell--single .woocommerce-product-gallery__wrapper{
-  background:transparent!important;overflow:visible!important
+  background:transparent!important;overflow:hidden!important
+}
+@media(max-width:1040px){
+  .woocommerce-shell--single .woocommerce-product-gallery{
+    max-width:560px!important
+  }
+  .woocommerce-shell--single .woocommerce-product-gallery__image img,
+  .woocommerce-shell--single img.drielo-single-product-image{
+    max-width:560px!important
+  }
+}
+@media(max-width:640px){
+  .woocommerce-shell--single .woocommerce-product-gallery,
+  .woocommerce-shell--single .woocommerce-product-gallery__image img,
+  .woocommerce-shell--single img.drielo-single-product-image{
+    max-width:100%!important
+  }
 }
 
 
@@ -1381,19 +1403,21 @@ a.journal-craft-card:hover{transform:translateY(-4px);box-shadow:var(--mk-shadow
   display:none!important
 }
 
-/* Product cards: render the uploaded image at full card width and natural height. */
+/* Product cards: stable 4:5 frame, complete artwork, no centre crop or zoom. */
 .woocommerce ul.products li.product a img.drielo-store-product-image,
 .woocommerce ul.products li.product a img.attachment-full,
-.woocommerce ul.products li.product a img.size-full{
+.woocommerce ul.products li.product a img.size-full,
+.woocommerce ul.products li.product a img.attachment-make-store-card-context,
+.woocommerce ul.products li.product a img.size-make-store-card-context{
   display:block!important;
-  width:100%!important;max-width:none!important;height:auto!important;
-  min-height:0!important;aspect-ratio:auto!important;
-  object-fit:initial!important;object-position:initial!important;
+  width:100%!important;max-width:100%!important;
+  height:auto!important;aspect-ratio:4/5!important;
+  object-fit:contain!important;object-position:center center!important;
   padding:0!important;margin:0 0 14px!important;box-sizing:border-box!important;
-  background:transparent!important;transform:none!important
+  background:#f3e9e8!important;transform:none!important
 }
 .woocommerce ul.products li.product a.woocommerce-LoopProduct-link{
-  display:block!important;overflow:visible!important
+  display:block!important;overflow:hidden!important
 }
 
 /* Collection mosaics use uncropped derivatives and retain the complete scene. */
