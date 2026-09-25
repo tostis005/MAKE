@@ -1,0 +1,120 @@
+name: Preview D0001 Iconic Destination
+
+on:
+  push:
+    branches:
+      - feature/iconic-d0001-first-tile
+    paths:
+      - 'content/pattern-system/collections/iconic-destinations/pixel-sources/D0001.pixz'
+      - '.github/workflows/preview-iconic-d0001.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: preview-iconic-d0001
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout preview branch
+        uses: actions/checkout@v4
+        with:
+          ref: feature/iconic-d0001-first-tile
+          fetch-depth: 1
+
+      - name: Install renderer dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow playwright
+          python3 -m playwright install --with-deps chromium
+
+      - name: Build exact 100x120 D0001 pattern
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import importlib.util, json
+          from pathlib import Path
+          path=Path('content/pattern-system/iconic_destinations/publish_design.py')
+          spec=importlib.util.spec_from_file_location('drielo_iconic_publish', path)
+          mod=importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(mod)
+          design, doc = mod.design_record('D0001')
+          built = mod.build_exact_pattern('D0001', design)
+          mod.update_pattern_and_product('D0001', design, built)
+          mod.update_catalog('D0001', design, built)
+          mod.update_design_manifest('D0001', doc, built)
+
+          # Current storefront rule: one public product image only.
+          catalog_path=Path('content/products/catalog.json')
+          catalog=json.loads(catalog_path.read_text(encoding='utf-8'))
+          row=next(p for p in catalog['products'] if p.get('code')=='D0001-CS')
+          row['gallery']=[]
+          row.pop('gallery_preview_pages', None)
+          catalog_path.write_text(json.dumps(catalog,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+          product_path=Path('content/pattern-system/products/D0001-CS/product.json')
+          product=json.loads(product_path.read_text(encoding='utf-8'))
+          product['page_1_asset']='collections/iconic-destinations/assets/cover-cross-stitch.jpg'
+          product_path.write_text(json.dumps(product,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print('D0001 prepared', built['source_colour_count'], 'source colours ->', built['dmc_colour_count'], 'DMC colours')
+          PY
+
+      - name: Render with canonical page-1 generator from main
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/renderer/render.py --product D0001-CS
+          cp content/pattern-system/output/D0001-CS/Drielo_D0001-CS.pdf content/products/files/Drielo_D0001-CS.pdf
+          cp content/pattern-system/output/D0001-CS/D0001-CS-product.webp content/products/assets/D0001-CS-product.webp
+
+      - name: Validate result
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+          pat=json.loads(Path('content/pattern-system/patterns/D0001-CS/pattern.json').read_text(encoding='utf-8'))
+          prod=json.loads(Path('content/pattern-system/products/D0001-CS/product.json').read_text(encoding='utf-8'))
+          assert (pat['stitch_width'],pat['stitch_height'])==(100,120)
+          assert len(pat['matrix'])==120 and all(len(r)==100 for r in pat['matrix'])
+          assert pat['total_stitches']==12000
+          assert prod['collection']=='iconic-destinations' and prod['render_ready'] is True
+          assert prod['page_1_asset']=='collections/iconic-destinations/assets/cover-cross-stitch.jpg'
+          assert Image.open('content/pattern-system/collections/iconic-destinations/approved-pixel-designs/D0001-paris-eiffel-tower.png').size==(100,120)
+          pdf=Path('content/products/files/Drielo_D0001-CS.pdf')
+          image=Path('content/products/assets/D0001-CS-product.webp')
+          assert pdf.is_file() and pdf.stat().st_size>10000 and pdf.read_bytes()[:4]==b'%PDF'
+          assert image.is_file() and image.stat().st_size>10000
+          print('VALID D0001-CS', len(pat['threads']), 'DMC colours', pdf.stat().st_size, image.stat().st_size)
+          PY
+
+      - name: Commit generated preview product to branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add             content/pattern-system/collections/iconic-destinations/approved-pixel-designs/D0001-paris-eiffel-tower.png             content/pattern-system/collections/iconic-destinations/source-designs/D0001-paris-eiffel-tower.png             content/pattern-system/collections/iconic-destinations/designs.json             content/pattern-system/patterns/D0001-CS/pattern.json             content/pattern-system/products/D0001-CS/product.json             content/products/catalog.json             content/products/assets/D0001-CS-product.webp             content/products/files/Drielo_D0001-CS.pdf
+          if git diff --cached --quiet; then
+            echo "No generated changes to commit."
+          else
+            git commit -m "Build D0001 Iconic Destinations preview [skip ci]"
+            git push origin HEAD:feature/iconic-d0001-first-tile
+          fi
+
+      - name: Upload preview artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: D0001-CS-preview
+          path: |
+            content/products/assets/D0001-CS-product.webp
+            content/products/files/Drielo_D0001-CS.pdf
+          retention-days: 30
