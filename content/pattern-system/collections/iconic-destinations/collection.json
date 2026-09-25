@@ -85,7 +85,9 @@
     },
     "palette_style": "per-design-dmc",
     "palette_mode": "per-design",
-    "preserve_design_palette": true
+    "preserve_design_palette": true,
+    "stitch_style": "full-thread",
+    "cross_fill_ratio": 0.42
   },
   "design_reference": {
     "status": "concept-boards-approved",
