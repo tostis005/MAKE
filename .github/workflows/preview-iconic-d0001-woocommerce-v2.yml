@@ -7,7 +7,7 @@ on:
     paths:
       - 'content/pattern-system/collections/iconic-destinations/pixel-sources/D0001.pixz'
       - 'content/pattern-system/collections/iconic-destinations/collection.json'
-      - 'content/pattern-system/collections/iconic-destinations/assets/cover-cross-stitch-v2.jpg'
+      - 'content/pattern-system/collections/iconic-destinations/assets/cover-cross-stitch-v3.png'
       - '.github/workflows/preview-iconic-d0001-woocommerce-v2.yml'
 
 permissions:
@@ -32,7 +32,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$(sha256sum content/pattern-system/collections/iconic-destinations/assets/cover-cross-stitch-v2.jpg | awk '{print $1}')" = "9a2731b4f44e059839d8f999edc4d4fdec24bb7ab169b7919937424256e0c453"
+          test "$(sha256sum content/pattern-system/collections/iconic-destinations/assets/cover-cross-stitch-v2.jpg | awk '{print $1}')" = "46b69dd6c4d939f9664019fd8445ac8b3c7053a25935adcf6ae12e2e0f6e98a7"
 
       - name: Install renderer dependencies
         shell: bash
