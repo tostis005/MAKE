@@ -8,7 +8,8 @@
     "Cross-stitch only: no C2C, tapestry crochet or latch-hook variants may be generated.",
     "Every source is exactly 100x120 cells. The publisher changes colour to the nearest DMC only; cell geometry is never resampled.",
     "All ten exact pixel sources D0001-D0010 are committed; automatic publication is enabled.",
-    "DMC HEX is canonicalized from RGB; D0001 retry counter reset after fixing the upstream HEX corruption."
+    "DMC HEX is canonicalized from RGB; D0001 retry counter reset after fixing the upstream HEX corruption.",
+    "D0001-D0005 reset to pending after switching storefront generation to full-background direct compositing; PDF generation remains separate."
   ],
   "items": [
     {
@@ -17,11 +18,10 @@
       "title_es": "Monte Rushmore",
       "slug": "mount-rushmore",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0001.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36187435693",
-      "last_error": null,
-      "published_at": "2026-09-25T20:44:35+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0002",
@@ -29,11 +29,10 @@
       "title_es": "Letrero de Hollywood",
       "slug": "hollywood-sign",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0002.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36187582979",
-      "last_error": null,
-      "published_at": "2026-09-25T20:46:02+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0003",
@@ -41,11 +40,10 @@
       "title_es": "Times Square de Nueva York",
       "slug": "times-square-new-york",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0003.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36187728830",
-      "last_error": null,
-      "published_at": "2026-09-25T20:47:30+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0004",
@@ -53,11 +51,10 @@
       "title_es": "Puerta de Brandeburgo de Berlín",
       "slug": "brandenburg-gate-berlin",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0004.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36187870461",
-      "last_error": null,
-      "published_at": "2026-09-25T20:49:01+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0005",
@@ -65,11 +62,10 @@
       "title_es": "Castillo de Osaka",
       "slug": "osaka-castle",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0005.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36188019550",
-      "last_error": null,
-      "published_at": "2026-09-25T20:50:32+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0006",
