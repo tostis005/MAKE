@@ -1,0 +1,116 @@
+name: Restore Iconic Square Background
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/restore-iconic-square-background.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-restore-iconic-square-background
+  cancel-in-progress: true
+
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Pillow
+        run: python3 -m pip install --disable-pip-version-check --quiet Pillow
+
+      - name: Rebuild exact 1536x1536 lifestyle background
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import base64, json
+          from pathlib import Path
+          from PIL import Image, ImageChops
+
+          root = Path('.')
+          col = root / 'content/pattern-system/collections/iconic-destinations'
+          assets = col / 'assets'
+          current = assets / 'cover-cross-stitch.jpg'
+          out = assets / 'cover-cross-stitch-square.webp'
+
+          encoded = ''.join(
+              (assets / f'.square-bottom.b64.{i}').read_text(encoding='utf-8').strip()
+              for i in range(6)
+          )
+          strip_path = Path('/tmp/iconic-bottom58.webp')
+          strip_path.write_bytes(base64.b64decode(encoded, validate=True))
+
+          with Image.open(current) as im:
+              top = im.convert('RGB')
+          with Image.open(strip_path) as im:
+              bottom = im.convert('RGB')
+
+          if top.size != (1536, 1478):
+              raise SystemExit(f'Unexpected current background size: {top.size}')
+          if bottom.size != (1536, 58):
+              raise SystemExit(f'Unexpected restored strip size: {bottom.size}')
+
+          square = Image.new('RGB', (1536, 1536))
+          square.paste(top, (0, 0))
+          square.paste(bottom, (0, 1478))
+          square.save(out, 'WEBP', lossless=True, method=6)
+
+          with Image.open(out) as verify:
+              if verify.size != (1536, 1536):
+                  raise SystemExit(f'Restored background has wrong size: {verify.size}')
+              verify_rgb = verify.convert('RGB')
+          if ImageChops.difference(verify_rgb.crop((0, 0, 1536, 1478)), top).getbbox():
+              raise SystemExit('Top 1478 rows changed during lossless restoration')
+          if ImageChops.difference(verify_rgb.crop((0, 1478, 1536, 1536)), bottom).getbbox():
+              raise SystemExit('Restored bottom strip does not match source')
+
+          collection_path = col / 'collection.json'
+          doc = json.loads(collection_path.read_text(encoding='utf-8'))
+          mockup = doc['mockup_spec']
+          mockup['asset'] = 'assets/cover-cross-stitch-square.webp'
+          mockup.setdefault('technique_assets', {})['CS'] = 'assets/cover-cross-stitch-square.webp'
+          mockup['status'] = 'approved-square-page-1-image'
+          frame = mockup['frame']
+          frame['source_px'] = {'width': 1536, 'height': 1536}
+          # The missing 58 px were below the existing crop, so the measured
+          # frame opening remains in exactly the same source coordinates.
+          collection_path.write_text(
+              json.dumps(doc, ensure_ascii=False, indent=2) + '\n',
+              encoding='utf-8'
+          )
+
+          wf = root / '.github/workflows/iconic-destinations-auto-publish.yml'
+          text = wf.read_text(encoding='utf-8')
+          old = "background=system/'collections'/'iconic-destinations'/'assets'/'cover-cross-stitch.jpg'"
+          new = (
+              "collection_doc=json.loads((system/'collections'/'iconic-destinations'/'collection.json').read_text(encoding='utf-8'))\n"
+              "          background=system/'collections'/'iconic-destinations'/collection_doc['mockup_spec']['asset']"
+          )
+          if old not in text:
+              raise SystemExit('Could not find hard-coded Iconic background validation')
+          wf.write_text(text.replace(old, new, 1), encoding='utf-8')
+
+          print('RESTORED_ICONIC_BACKGROUND', out, out.stat().st_size)
+          print('FRAME_BOX', frame['area_px'])
+          PY
+
+      - name: Commit restored background and geometry
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add             content/pattern-system/collections/iconic-destinations/assets/cover-cross-stitch-square.webp             content/pattern-system/collections/iconic-destinations/collection.json             .github/workflows/iconic-destinations-auto-publish.yml
+          git commit -m "Restore full square Iconic Destinations background"
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
