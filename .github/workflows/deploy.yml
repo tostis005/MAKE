@@ -538,11 +538,11 @@ jobs:
             wp_set_current_user((int)$admins[0]);
             $iconic=get_term_by("slug","iconic-destinations","product_collection");
             $baby=get_term_by("slug","baby-nursery","product_collection");
-            if (!make_store_admin_can_view_hidden_collections() || !$iconic instanceof WP_Term || !$baby instanceof WP_Term || make_collection_is_visible($iconic) || make_collection_is_visible($baby)) {
+            if (!make_store_admin_can_view_hidden_collections() || !$iconic instanceof WP_Term || !$baby instanceof WP_Term || !make_collection_is_visible($iconic) || make_collection_is_visible($baby)) {
                 fwrite(STDERR,"Administrator hidden collection preview verification failed".PHP_EOL);
                 exit(2);
             }
-            echo "DRIELO_HIDDEN_COLLECTION_ADMIN_PREVIEW_OK=yes".PHP_EOL;
+            echo "DRIELO_COLLECTION_VISIBILITY_ADMIN_PREVIEW_OK=yes".PHP_EOL;
           '
 
           check_html "$PRODUCT_ES_ROUTE" "drielo-shop-views" "single-product-shop-switch"
