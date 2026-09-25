@@ -478,6 +478,11 @@ def update_catalog(base_id: str, design: dict, built: dict):
     collection = read_json(COLLECTION_PATH)
     rows = catalog.setdefault("products", [])
     new_row = product_catalog_row(base_id, design, built)
+    # A design being republished must no longer remain in the retired SKU list;
+    # otherwise the full WooCommerce importer can trash it again after this
+    # workflow has just recreated it.
+    retired = catalog.setdefault("retired_products", [])
+    catalog["retired_products"] = [sku for sku in retired if sku != new_row["sku"]]
     idx = next((i for i, p in enumerate(rows) if p.get("code") == new_row["code"]), None)
     if idx is None:
         rows.append(new_row)
