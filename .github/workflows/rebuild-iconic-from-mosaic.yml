@@ -5,7 +5,6 @@ on:
     branches: [main]
     paths:
       - 'content/pattern-system/collections/iconic-destinations/assets/iconic-mosaic-grid-source.webp'
-      - 'content/pattern-system/collections/iconic-destinations/assets/iconic-mosaic-grid-source.webp'
       - '.github/scripts/import_iconic_mosaic.py'
       - '.github/workflows/rebuild-iconic-from-mosaic.yml'
   workflow_dispatch:
@@ -50,25 +49,6 @@ jobs:
           done
           sleep 5
 
-      - name: Decode committed mosaic upload
-        shell: bash
-        run: |
-          set -euo pipefail
-          python - <<'PY'
-          import base64
-          from pathlib import Path
-          pack=Path('content/pattern-system/iconic_destinations/mosaic-upload')
-          parts=sorted(pack.glob('part-*.txt'))
-          if parts:
-              raw=base64.b64decode(''.join(p.read_text(encoding='ascii').strip() for p in parts), validate=True)
-              out=Path('content/pattern-system/collections/iconic-destinations/assets/iconic-mosaic-grid-source.webp')
-              out.parent.mkdir(parents=True, exist_ok=True)
-              out.write_bytes(raw)
-              print(f'DECODED_MOSAIC bytes={len(raw)} source={out}')
-          else:
-              print('No upload parts; using committed source mosaic.')
-          PY
-
       - name: Split mosaic into 60 exact sources
         run: python .github/scripts/import_iconic_mosaic.py
 
@@ -111,7 +91,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add -A             content/pattern-system/iconic_destinations/mosaic-upload             content/pattern-system/iconic_destinations/publish_queue.json             content/pattern-system/collections/iconic-destinations/designs.json             content/pattern-system/collections/iconic-destinations/assets/iconic-mosaic-grid-1000x720.png             content/pattern-system/collections/iconic-destinations/source-designs             content/pattern-system/collections/iconic-destinations/pixel-sources
+          git add -A             content/pattern-system/iconic_destinations/publish_queue.json             content/pattern-system/collections/iconic-destinations/designs.json             content/pattern-system/collections/iconic-destinations/assets/iconic-mosaic-grid-1000x720.png             content/pattern-system/collections/iconic-destinations/source-designs             content/pattern-system/collections/iconic-destinations/pixel-sources
 
           git commit -m "Rebuild 60 Iconic Destinations from exact mosaic [skip ci]"
           git pull --rebase origin main
