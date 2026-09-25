@@ -33,10 +33,10 @@ function make_theme_setup(): void {
 }
 add_action( 'after_setup_theme', 'make_theme_setup' );
 
-// Store cards use an uncropped proportional derivative; CSS controls only
-// the display box, so the complete source composition is preserved.
+// Store cards use the exact uploaded source image. This avoids any generated
+// WooCommerce/WordPress derivative becoming the visible storefront asset.
 add_filter( 'single_product_archive_thumbnail_size', static function (): string {
-    return 'make-store-card-context';
+    return 'full';
 }, 20 );
 
 function make_static_attachment_image_html( int $attachment_id, string $size = 'medium_large', string $class = '' ): string {
@@ -61,7 +61,7 @@ function make_loop_product_thumbnail(): void {
 
     $image_id = $product->get_image_id();
     if ( $image_id ) {
-        echo wp_kses_post( make_static_attachment_image_html( $image_id, 'make-store-card-context', 'attachment-make-store-card-context size-make-store-card-context drielo-store-product-image' ) );
+        echo wp_kses_post( make_static_attachment_image_html( $image_id, 'full', 'attachment-full size-full drielo-store-product-image' ) );
         return;
     }
 
