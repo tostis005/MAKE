@@ -290,15 +290,22 @@ function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, transparent=false) {
         if (!grouped.has(symbol)) grouped.set(symbol,{
           base:[],top:[],left:[],right:[],bottom:[],
           diagDark:[],diagLight:[],ridgeA:[],ridgeB:[],
-          topEdge:[],leftEdge:[],rightSeam:[],bottomSeam:[],center:[],contact:[]
+          topEdge:[[],[],[]],leftEdge:[[],[],[]],rightSeam:[[],[],[]],bottomSeam:[[],[],[]],center:[],contact:[[],[],[]]
         });
         const g=grouped.get(symbol);
 
         // Tiny deterministic centre displacement keeps neighbouring stitches from
         // looking machine-perfect while preserving an exact 1-cell footprint.
         const seed=((x+1)*73856093 ^ (y+1)*19349663) >>> 0;
-        const jx=(((seed & 255)/255)-.5)*.024;
-        const jy=((((seed>>>8)&255)/255)-.5)*.020;
+        const seed2=Math.imul((seed ^ 0x9E3779B9)>>>0,2246822519)>>>0;
+        const r0=(seed & 1023)/1023;
+        const r1=((seed>>>10)&1023)/1023;
+        const r2=((seed>>>20)&4095)/4095;
+        const r3=(seed2 & 1023)/1023;
+        const r4=((seed2>>>10)&1023)/1023;
+        const r5=((seed2>>>20)&4095)/4095;
+        const jx=(r0-.5)*.024;
+        const jy=(r1-.5)*.020;
         const cx=lx+.5+jx, cy=ly+.50+jy;
 
         // Dense full coverage: no fabric gap between adjacent coloured stitches.
@@ -334,19 +341,70 @@ function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, transparent=false) {
           `M${(lx+.86).toFixed(3)} ${(ly+.10).toFixed(3)} L${(lx+.10).toFixed(3)} ${(ly+.86).toFixed(3)}`
         );
 
-        // Reference-like lighting: bottom seam dominates; vertical seam is finer.
-        g.topEdge.push(`M${(lx+.035).toFixed(3)} ${(ly+.045).toFixed(3)} H${(lx+.965).toFixed(3)}`);
-        g.leftEdge.push(`M${(lx+.045).toFixed(3)} ${(ly+.035).toFixed(3)} V${(ly+.965).toFixed(3)}`);
-        g.rightSeam.push(`M${(lx+.965).toFixed(3)} ${(ly+.055).toFixed(3)} V${(ly+.945).toFixed(3)}`);
-        g.bottomSeam.push(`M${(lx+.055).toFixed(3)} ${(ly+.955).toFixed(3)} H${(lx+.945).toFixed(3)}`);
+        // Thread-edge light/shadow is intentionally irregular. Real floss does
+        // not produce ruler-straight seams of identical width in every cell.
+        const topBucket=Math.min(2,Math.floor(r3*3));
+        const leftBucket=Math.min(2,Math.floor(r4*3));
+        const rightBucket=Math.min(2,Math.floor(r5*3));
+        const bottomBucket=Math.min(2,Math.floor(r2*3));
+        const contactBucket=Math.min(2,Math.floor(r1*3));
 
-        // Small raised centre and a very soft lower/right contact shadow.
+        if (r0>.11) {
+          const yy=ly+.040+(r1-.5)*.022;
+          const sx=lx+.045+r2*.075, ex=lx+.955-r3*.075;
+          const qy=yy+(r4-.5)*.020;
+          g.topEdge[topBucket].push(
+            `M${sx.toFixed(3)} ${yy.toFixed(3)} Q${(lx+.5).toFixed(3)} ${qy.toFixed(3)} ${ex.toFixed(3)} ${(yy+(r5-.5)*.010).toFixed(3)}`
+          );
+        }
+
+        if (r1>.15) {
+          const xx=lx+.041+(r2-.5)*.020;
+          const sy=ly+.045+r3*.080, ey=ly+.955-r4*.080;
+          const qx=xx+(r5-.5)*.020;
+          g.leftEdge[leftBucket].push(
+            `M${xx.toFixed(3)} ${sy.toFixed(3)} Q${qx.toFixed(3)} ${(ly+.5).toFixed(3)} ${(xx+(r0-.5)*.010).toFixed(3)} ${ey.toFixed(3)}`
+          );
+        }
+
+        if (r2>.23) {
+          const xx=lx+.960+(r0-.5)*.026;
+          const sy=ly+.070+r4*.105, ey=ly+.930-r5*.115;
+          const qx=xx+(r3-.5)*.022;
+          g.rightSeam[rightBucket].push(
+            `M${xx.toFixed(3)} ${sy.toFixed(3)} Q${qx.toFixed(3)} ${(ly+.5).toFixed(3)} ${(xx+(r1-.5)*.010).toFixed(3)} ${ey.toFixed(3)}`
+          );
+        }
+
+        if (r3>.14) {
+          const yy=ly+.954+(r0-.5)*.030;
+          const sx=lx+.050+r1*.125, ex=lx+.950-r2*.125;
+          const qy=yy+(r5-.5)*.026;
+          if (r4>.78) {
+            const gap=.030+r5*.050;
+            const mid=lx+.50+(r2-.5)*.045;
+            g.bottomSeam[bottomBucket].push(
+              `M${sx.toFixed(3)} ${yy.toFixed(3)} Q${((sx+mid-gap)/2).toFixed(3)} ${qy.toFixed(3)} ${(mid-gap).toFixed(3)} ${(yy+(r1-.5)*.012).toFixed(3)}`+
+              ` M${(mid+gap).toFixed(3)} ${(yy+(r0-.5)*.010).toFixed(3)} Q${((mid+gap+ex)/2).toFixed(3)} ${(qy+(r3-.5)*.010).toFixed(3)} ${ex.toFixed(3)} ${(yy+(r2-.5)*.012).toFixed(3)}`
+            );
+          } else {
+            g.bottomSeam[bottomBucket].push(
+              `M${sx.toFixed(3)} ${yy.toFixed(3)} Q${(lx+.5+(r4-.5)*.035).toFixed(3)} ${qy.toFixed(3)} ${ex.toFixed(3)} ${(yy+(r2-.5)*.012).toFixed(3)}`
+            );
+          }
+        }
+
+        // Small raised centre and occasional, very soft contact shadow.
         g.center.push(
           `M${cx.toFixed(3)} ${(cy-.085).toFixed(3)} L${(cx+.085).toFixed(3)} ${cy.toFixed(3)} L${cx.toFixed(3)} ${(cy+.085).toFixed(3)} L${(cx-.085).toFixed(3)} ${cy.toFixed(3)} Z`
         );
-        g.contact.push(
-          `M${(lx+.10).toFixed(3)} ${(ly+.982).toFixed(3)} H${(lx+.91).toFixed(3)} M${(lx+.982).toFixed(3)} ${(ly+.10).toFixed(3)} V${(ly+.91).toFixed(3)}`
-        );
+        if (r5>.47) {
+          const yy=ly+.984+(r3-.5)*.014;
+          const sx=lx+.13+r0*.12, ex=lx+.87-r1*.10;
+          g.contact[contactBucket].push(
+            `M${sx.toFixed(3)} ${yy.toFixed(3)} Q${(lx+.5).toFixed(3)} ${(yy+(r2-.5)*.012).toFixed(3)} ${ex.toFixed(3)} ${(yy+(r4-.5)*.010).toFixed(3)}`
+          );
+        }
       }
     }
 
@@ -354,31 +412,38 @@ function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, transparent=false) {
     for (const [symbol,g] of grouped.entries()) {
       const color=threadColor(symbol);
       const base=shadeHex(color,-0.035);
-      const top=shadeHex(color,0.17);
-      const left=shadeHex(color,0.08);
-      const right=shadeHex(color,-0.10);
-      const bottom=shadeHex(color,-0.22);
-      const deep=shadeHex(color,-0.42);
+      const top=shadeHex(color,0.13);
+      const left=shadeHex(color,0.06);
+      const right=shadeHex(color,-0.07);
+      const bottom=shadeHex(color,-0.16);
+      const deep=shadeHex(color,-0.36);
       const mid=shadeHex(color,-0.17);
       const hi=shadeHex(color,0.30);
       const hi2=shadeHex(color,0.46);
 
       paths.push(`<path d="${g.base.join(" ")}" fill="${base}"/>`);
-      paths.push(`<path d="${g.top.join(" ")}" fill="${top}" opacity=".78"/>`);
-      paths.push(`<path d="${g.left.join(" ")}" fill="${left}" opacity=".54"/>`);
-      paths.push(`<path d="${g.right.join(" ")}" fill="${right}" opacity=".46"/>`);
-      paths.push(`<path d="${g.bottom.join(" ")}" fill="${bottom}" opacity=".60"/>`);
+      paths.push(`<path d="${g.top.join(" ")}" fill="${top}" opacity=".64"/>`);
+      paths.push(`<path d="${g.left.join(" ")}" fill="${left}" opacity=".44"/>`);
+      paths.push(`<path d="${g.right.join(" ")}" fill="${right}" opacity=".34"/>`);
+      paths.push(`<path d="${g.bottom.join(" ")}" fill="${bottom}" opacity=".43"/>`);
 
       paths.push(`<path d="${g.diagDark.join(" ")}" fill="none" stroke="${mid}" stroke-width=".245" stroke-linecap="round" stroke-linejoin="round" opacity=".48"/>`);
       paths.push(`<path d="${g.diagLight.join(" ")}" fill="none" stroke="${shadeHex(color,.055)}" stroke-width=".225" stroke-linecap="round" stroke-linejoin="round" opacity=".58"/>`);
       paths.push(`<path d="${g.ridgeA.join(" ")} ${g.ridgeB.join(" ")}" fill="none" stroke="${hi2}" stroke-width=".044" stroke-linecap="round" opacity=".22"/>`);
 
-      paths.push(`<path d="${g.topEdge.join(" ")}" fill="none" stroke="${hi}" stroke-width=".042" stroke-linecap="round" opacity=".34"/>`);
-      paths.push(`<path d="${g.leftEdge.join(" ")}" fill="none" stroke="${hi}" stroke-width=".036" stroke-linecap="round" opacity=".22"/>`);
-      paths.push(`<path d="${g.rightSeam.join(" ")}" fill="none" stroke="${deep}" stroke-width=".045" stroke-linecap="round" opacity=".24"/>`);
-      paths.push(`<path d="${g.bottomSeam.join(" ")}" fill="none" stroke="${deep}" stroke-width=".066" stroke-linecap="round" opacity=".44"/>`);
-      paths.push(`<path d="${g.contact.join(" ")}" fill="none" stroke="#1f1713" stroke-width=".026" stroke-linecap="round" opacity=".14"/>`);
-      paths.push(`<path d="${g.center.join(" ")}" fill="${hi2}" opacity=".13"/>`);
+      const topW=[.020,.027,.034], topO=[.12,.17,.23];
+      const leftW=[.018,.024,.031], leftO=[.08,.13,.18];
+      const rightW=[.019,.027,.035], rightO=[.08,.14,.20];
+      const bottomW=[.030,.041,.053], bottomO=[.15,.22,.30];
+      const contactW=[.013,.018,.023], contactO=[.05,.08,.11];
+      for (let i=0;i<3;i++) {
+        if (g.topEdge[i].length) paths.push(`<path d="${g.topEdge[i].join(" ")}" fill="none" stroke="${hi}" stroke-width="${topW[i]}" stroke-linecap="round" opacity="${topO[i]}"/>`);
+        if (g.leftEdge[i].length) paths.push(`<path d="${g.leftEdge[i].join(" ")}" fill="none" stroke="${hi}" stroke-width="${leftW[i]}" stroke-linecap="round" opacity="${leftO[i]}"/>`);
+        if (g.rightSeam[i].length) paths.push(`<path d="${g.rightSeam[i].join(" ")}" fill="none" stroke="${deep}" stroke-width="${rightW[i]}" stroke-linecap="round" opacity="${rightO[i]}"/>`);
+        if (g.bottomSeam[i].length) paths.push(`<path d="${g.bottomSeam[i].join(" ")}" fill="none" stroke="${deep}" stroke-width="${bottomW[i]}" stroke-linecap="round" opacity="${bottomO[i]}"/>`);
+        if (g.contact[i].length) paths.push(`<path d="${g.contact[i].join(" ")}" fill="none" stroke="#1f1713" stroke-width="${contactW[i]}" stroke-linecap="round" opacity="${contactO[i]}"/>`);
+      }
+      paths.push(`<path d="${g.center.join(" ")}" fill="${hi2}" opacity=".11"/>`);
     }
 
     return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${vw} ${vh}" preserveAspectRatio="xMidYMid meet">${bg}${paths.join("")}</svg>`;
