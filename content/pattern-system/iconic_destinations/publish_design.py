@@ -103,9 +103,19 @@ def collection_mockup_config():
     if cover_asset is not None and not cover_asset.is_file():
         raise RuntimeError(f"Iconic Destinations cover asset not found: {cover_asset}")
 
+    frame_box = None
+    if frame.get("enabled") and aw > 0 and ah > 0:
+        frame_box = (
+            int(round(ax)),
+            int(round(ay)),
+            int(round(aw)),
+            int(round(ah)),
+        )
+
     return {
         "overlay": overlay,
         "cover_asset": cover_asset,
+        "frame_box": frame_box,
     }
 
 
@@ -255,6 +265,48 @@ def build_exact_pattern(base_id: str, design: dict):
     }
 
 
+def build_storefront_image(background_path: Path, design_preview_path: Path, frame_box, target: Path):
+    """Build the WooCommerce hero directly from the full lifestyle background.
+
+    This deliberately does not use the PDF page, #cover-stage screenshot or any
+    ecommerce aspect-ratio crop. The complete source background is preserved at
+    its native dimensions and only the Aida opening is replaced by the rendered
+    stitched design.
+    """
+    if background_path is None or not background_path.is_file():
+        raise RuntimeError("Iconic Destinations storefront background is missing")
+    if not frame_box:
+        raise RuntimeError("Iconic Destinations storefront frame box is missing")
+
+    x, y, width, height = frame_box
+    with Image.open(background_path) as source:
+        background = source.convert("RGB")
+
+    if x < 0 or y < 0 or width <= 0 or height <= 0:
+        raise RuntimeError(f"Invalid storefront frame box: {frame_box}")
+    if x + width > background.width or y + height > background.height:
+        raise RuntimeError(
+            f"Storefront frame box {frame_box} exceeds background {background.size}"
+        )
+
+    with Image.open(design_preview_path) as source:
+        design_preview = source.convert("RGB")
+
+    # 1000x1200 design preview and the measured frame opening are both 5:6.
+    # Resize only; never ImageOps.fit/crop.
+    rendered = design_preview.resize((width, height), Image.Resampling.LANCZOS)
+    background.paste(rendered, (x, y))
+
+    target.parent.mkdir(parents=True, exist_ok=True)
+    background.save(target, "WEBP", quality=94, method=6)
+    return {
+        "path": str(target),
+        "width": background.width,
+        "height": background.height,
+        "frame_box": frame_box,
+    }
+
+
 def render_design(base_id: str, design: dict, built: dict):
     code = f"{base_id}-CS"
     cfg = bg.TECHS["CS"]
@@ -300,11 +352,22 @@ def render_design(base_id: str, design: dict, built: dict):
 
     STORE_ASSETS.mkdir(parents=True, exist_ok=True)
     STORE_FILES.mkdir(parents=True, exist_ok=True)
-    # Keep the stable renderer output for internal validation, and also write a
-    # slug-versioned storefront image so WordPress/CDN caches can never keep a
-    # previous landmark (for example the old Eiffel image on D0001).
-    shutil.copy2(result["image"], STORE_ASSETS / f"{code}-product.webp")
-    shutil.copy2(result["image"], STORE_ASSETS / f"{code}-{design['slug']}-product.webp")
+
+    # WooCommerce hero is generated independently from the PDF renderer:
+    # full lifestyle background + exact stitched design in the measured frame.
+    # No square #cover-stage screenshot and no 4:5 ImageOps.fit crop.
+    stable_storefront = STORE_ASSETS / f"{code}-product.webp"
+    versioned_storefront = STORE_ASSETS / f"{code}-{design['slug']}-product.webp"
+    storefront = build_storefront_image(
+        mockup["cover_asset"],
+        Path(result["design_preview"]),
+        mockup["frame_box"],
+        stable_storefront,
+    )
+    shutil.copy2(stable_storefront, versioned_storefront)
+    result["storefront_image"] = storefront
+    result["image"] = str(stable_storefront)
+
     shutil.copy2(result["pdf"], STORE_FILES / f"Drielo_{code}.pdf")
     for n, src in enumerate(result["gallery"], start=2):
         shutil.copy2(src, STORE_ASSETS / f"{code}-gallery-{n}.webp")
