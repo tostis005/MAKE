@@ -1,0 +1,78 @@
+name: Preview exact approved organic P1000
+
+on:
+  push:
+    branches:
+      - 'test/p1000-exact-approved-organic-20260925'
+    paths:
+      - 'tmp/exact-approved-organic-trigger.txt'
+
+permissions:
+  contents: read
+
+jobs:
+  render-preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout exact approved branch
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install renderer dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install playwright pillow
+          python -m playwright install --with-deps chromium
+
+      - name: Render P1000 locally only
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/renderer/render.py --product P1000-CS --fix-palette
+          test -s content/pattern-system/output/P1000-CS/P1000-CS.html
+
+      - name: Capture exact approved finished design and zoom
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+          from PIL import Image
+
+          out=Path("content/pattern-system/output/P1000-CS")
+          html=out/"P1000-CS.html"
+          full=out/"P1000-CS-exact-approved-organic.png"
+
+          with sync_playwright() as pw:
+              browser=pw.chromium.launch()
+              page=browser.new_page(viewport={"width":1800,"height":2400},device_scale_factor=4)
+              page.goto(html.resolve().as_uri(),wait_until="load",timeout=120000)
+              page.wait_for_function("document.documentElement.getAttribute('data-drielo-ready') === '1'",timeout=120000)
+              page.locator("#finished-design").screenshot(path=str(full),type="png")
+              browser.close()
+
+          im=Image.open(full).convert("RGB")
+          w,h=im.size
+          # Central portrait crop enlarged without interpolation to inspect per-stitch relief.
+          crop=im.crop((int(w*.28),int(h*.18),int(w*.72),int(h*.58)))
+          crop=crop.resize((crop.width*2,crop.height*2),Image.Resampling.NEAREST)
+          crop.save(out/"P1000-CS-exact-approved-organic-zoom.png","PNG")
+          print(full, im.size)
+          PY
+
+      - name: Upload exact approved preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: p1000-exact-approved-organic
+          path: |
+            content/pattern-system/output/P1000-CS/P1000-CS-exact-approved-organic.png
+            content/pattern-system/output/P1000-CS/P1000-CS-exact-approved-organic-zoom.png
+          retention-days: 30
