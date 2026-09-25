@@ -404,24 +404,32 @@ function applyHeroFrame() {
   const image = document.getElementById('cover-image');
   if (!hero || !image) return;
   const render = () => {
-    const source = cfg.source_px || {};
-    const sw = Number(source.width || image.naturalWidth || 0);
-    const sh = Number(source.height || image.naturalHeight || 0);
-    const a = cfg.area_px || {};
-    if (!(sw>0 && sh>0 && Number(a.width)>0 && Number(a.height)>0)) return;
     const cw=hero.clientWidth, ch=hero.clientHeight;
-    const scale=Math.max(cw/sw,ch/sh); // matches object-fit: cover
-    const ox=(cw-sw*scale)/2, oy=(ch-sh*scale)/2;
     let layer=hero.querySelector('.hero-frame-layer');
     if (!layer) {
       layer=document.createElement('div'); layer.className='hero-frame-layer';
       layer.innerHTML='<div class="hero-frame-fabric"></div><div class="hero-frame-stitches"></div>';
       hero.appendChild(layer);
     }
-    layer.style.left=`${ox+Number(a.x)*scale}px`;
-    layer.style.top=`${oy+Number(a.y)*scale}px`;
-    layer.style.width=`${Number(a.width)*scale}px`;
-    layer.style.height=`${Number(a.height)*scale}px`;
+    const pct = cfg.area_pct || {};
+    if (Number(pct.width)>0 && Number(pct.height)>0) {
+      layer.style.left=`${cw*Number(pct.x||0)/100}px`;
+      layer.style.top=`${ch*Number(pct.y||0)/100}px`;
+      layer.style.width=`${cw*Number(pct.width)/100}px`;
+      layer.style.height=`${ch*Number(pct.height)/100}px`;
+    } else {
+      const source = cfg.source_px || {};
+      const sw = Number(source.width || image.naturalWidth || 0);
+      const sh = Number(source.height || image.naturalHeight || 0);
+      const a = cfg.area_px || {};
+      if (!(sw>0 && sh>0 && Number(a.width)>0 && Number(a.height)>0)) return;
+      const scale=Math.max(cw/sw,ch/sh); // matches object-fit: cover
+      const ox=(cw-sw*scale)/2, oy=(ch-sh*scale)/2;
+      layer.style.left=`${ox+Number(a.x)*scale}px`;
+      layer.style.top=`${oy+Number(a.y)*scale}px`;
+      layer.style.width=`${Number(a.width)*scale}px`;
+      layer.style.height=`${Number(a.height)*scale}px`;
+    }
     const fabric=cfg.fabric || {};
     const fabricEl=layer.querySelector('.hero-frame-fabric');
     fabricEl.style.backgroundColor=fabric.color || '#f7f3ea';
