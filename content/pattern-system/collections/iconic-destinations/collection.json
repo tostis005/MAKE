@@ -44,7 +44,7 @@
     "generation": {
       "purpose": "Iconic Destinations reusable cross-stitch lifestyle mockup.",
       "frame_requirement": "Keep the central wooden frame empty; renderer inserts the exact vector stitch pattern.",
-      "post_generation_measurement": "Calibrated from the 256x256 room mockup opening; artwork fills the opening with no white padding and is centered."
+      "post_generation_measurement": "Calibrated to the detected 256×256 central frame opening: x=75, y=27, width=122, height=149. Zero padding; centered; cover fit so no white border remains."
     },
     "frame": {
       "enabled": true,
@@ -55,12 +55,12 @@
       "area_px": {
         "x": 75,
         "y": 27,
-        "width": 121,
+        "width": 122,
         "height": 149
       },
-      "padding_ratio": 0.0,
-      "stitch_offset_x_ratio": 0.0,
-      "stitch_offset_y_ratio": 0.0,
+      "padding_ratio": 0,
+      "stitch_offset_x_ratio": 0,
+      "stitch_offset_y_ratio": 0,
       "stitch_fit": "cover",
       "fabric": {
         "color": "#F7F3EA",
@@ -93,5 +93,20 @@
     "purpose": "Use the approved 10 six-panel concept boards as visual direction when creating the final individual source images.",
     "final_source_requirement": "Create each destination as an individual full-size source before pattern conversion; do not crop the six-panel boards into production artwork.",
     "target": "100x120 master-grid composition, four chart pages, palette chosen independently for each design."
+  },
+  "pixel_importer": {
+    "mode": "pixel-exact",
+    "sheet_grid": {
+      "columns": 10,
+      "rows": 6
+    },
+    "tile_size_px": {
+      "width": 100,
+      "height": 120
+    },
+    "ordering": "row-major",
+    "pixel_to_stitch": "1:1",
+    "colour_policy": "exact-rgb-no-quantization",
+    "test_source": "approved-pixel-designs/D0001-paris-eiffel-tower.png"
   }
 }
