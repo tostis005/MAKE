@@ -194,6 +194,7 @@ function make_store_find_product_by_local_slug( string $slug, string $language )
         'meta_key' => '_drielo_managed_product',
         'meta_value' => '1',
         'no_found_rows' => true,
+        'make_visibility_lookup' => true,
     ) );
     foreach ( $ids as $id ) {
         if ( $slug === make_product_local_slug( (int) $id, $language ) ) {
@@ -674,6 +675,7 @@ function make_store_product_in_hidden_collection( int $product_id ): bool {
 }
 
 function make_store_exclude_hidden_collection_products( WP_Query $query ): void {
+    if ( $query->get( 'make_visibility_lookup' ) ) { return; }
     if ( PHP_SAPI === 'cli' ) { return; }
     if ( function_exists( 'wp_doing_cron' ) && wp_doing_cron() ) { return; }
     if ( is_admin() && ! wp_doing_ajax() ) { return; }
@@ -686,6 +688,20 @@ function make_store_exclude_hidden_collection_products( WP_Query $query ): void 
     $query->set( 'post__not_in', array_values( array_unique( array_merge( $excluded, $hidden_ids ) ) ) );
 }
 add_action( 'pre_get_posts', 'make_store_exclude_hidden_collection_products', 5 );
+
+function make_store_guard_hidden_product_request(): void {
+    if ( make_store_admin_can_view_hidden_collections() ) { return; }
+
+    $requested_id = absint( get_query_var( 'p' ) );
+    if ( ! $requested_id || ! make_store_product_in_hidden_collection( $requested_id ) ) { return; }
+
+    global $wp_query;
+    if ( $wp_query instanceof WP_Query ) { $wp_query->set_404(); }
+    status_header( 404 );
+    nocache_headers();
+    remove_action( 'template_redirect', 'redirect_canonical' );
+}
+add_action( 'template_redirect', 'make_store_guard_hidden_product_request', 1 );
 
 function make_store_guard_hidden_collection_archive(): void {
     if ( make_store_admin_can_view_hidden_collections() || ! is_tax( 'product_collection' ) ) { return; }
