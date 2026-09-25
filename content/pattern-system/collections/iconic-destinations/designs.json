@@ -9,15 +9,15 @@
       "title_en": "Mount Rushmore",
       "title_es": "Monte Rushmore",
       "slug": "mount-rushmore",
-      "reference_board": "north-america-icons",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0001-CS"
       ],
-      "artwork_status": "production-ready-exact-100x120",
+      "artwork_status": "exact-100x120-source-ready",
       "source_asset": "collections/iconic-destinations/source-designs/D0001-mount-rushmore.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0001-mount-rushmore.png",
       "palette_mode": "per-design",
-      "palette_status": "mapped-to-per-design-dmc",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -25,333 +25,343 @@
       },
       "target_chart_pages": 4,
       "source_colour_count": 50,
-      "dmc_colour_count": 33
+      "dmc_colour_count": null
     },
     {
       "order": 2,
       "base_design_id": "D0002",
-      "title_en": "Venice Grand Canal",
-      "title_es": "Venecia — Gran Canal",
-      "slug": "venice-grand-canal",
-      "reference_board": "europe-icons",
+      "title_en": "Hollywood Sign",
+      "title_es": "Letrero de Hollywood",
+      "slug": "hollywood-sign",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0002-CS"
       ],
-      "artwork_status": "production-ready-exact-100x120",
-      "source_asset": "collections/iconic-destinations/source-designs/D0002-venice-grand-canal.png",
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0002-venice-grand-canal.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0002-hollywood-sign.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0002-hollywood-sign.png",
       "palette_mode": "per-design",
-      "palette_status": "mapped-to-per-design-dmc",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
       "target_chart_pages": 4,
-      "source_colour_count": 48,
-      "dmc_colour_count": 35
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 3,
       "base_design_id": "D0003",
-      "title_en": "London Westminster",
-      "title_es": "Londres — Big Ben y Westminster",
-      "slug": "london-westminster",
-      "reference_board": "europe-icons",
+      "title_en": "Times Square New York",
+      "title_es": "Times Square de Nueva York",
+      "slug": "times-square-new-york",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0003-CS"
       ],
-      "artwork_status": "production-ready-exact-100x120",
-      "source_asset": "collections/iconic-destinations/source-designs/D0003-london-westminster.png",
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0003-london-westminster.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0003-times-square-new-york.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0003-times-square-new-york.png",
       "palette_mode": "per-design",
-      "palette_status": "mapped-to-per-design-dmc",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
       "target_chart_pages": 4,
-      "source_colour_count": 48,
-      "dmc_colour_count": 37
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 4,
       "base_design_id": "D0004",
-      "title_en": "Rome Colosseum",
-      "title_es": "Roma — Coliseo",
-      "slug": "rome-colosseum",
-      "reference_board": "europe-icons",
+      "title_en": "Brandenburg Gate Berlin",
+      "title_es": "Puerta de Brandeburgo de Berlín",
+      "slug": "brandenburg-gate-berlin",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0004-CS"
       ],
-      "artwork_status": "production-ready-exact-100x120",
-      "source_asset": "collections/iconic-destinations/source-designs/D0004-rome-colosseum.png",
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0004-rome-colosseum.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0004-brandenburg-gate-berlin.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0004-brandenburg-gate-berlin.png",
       "palette_mode": "per-design",
-      "palette_status": "mapped-to-per-design-dmc",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
       "target_chart_pages": 4,
-      "source_colour_count": 48,
-      "dmc_colour_count": 40
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 5,
       "base_design_id": "D0005",
-      "title_en": "Prague Charles Bridge",
-      "title_es": "Praga — Puente de Carlos",
-      "slug": "prague-charles-bridge",
-      "reference_board": "europe-icons",
+      "title_en": "Osaka Castle",
+      "title_es": "Castillo de Osaka",
+      "slug": "osaka-castle",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0005-CS"
       ],
-      "artwork_status": "production-ready-exact-100x120",
-      "source_asset": "collections/iconic-destinations/source-designs/D0005-prague-charles-bridge.png",
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0005-prague-charles-bridge.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0005-osaka-castle.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0005-osaka-castle.png",
       "palette_mode": "per-design",
-      "palette_status": "mapped-to-per-design-dmc",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
       "target_chart_pages": 4,
-      "source_colour_count": 48,
-      "dmc_colour_count": 38
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 6,
       "base_design_id": "D0006",
-      "title_en": "Amsterdam Canals",
-      "title_es": "Ámsterdam — Canales",
-      "slug": "amsterdam-canals",
-      "reference_board": "europe-icons",
+      "title_en": "Toronto CN Tower",
+      "title_es": "Torre CN de Toronto",
+      "slug": "toronto-cn-tower",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0006-CS"
       ],
-      "artwork_status": "production-ready-exact-100x120",
-      "source_asset": "collections/iconic-destinations/source-designs/D0006-amsterdam-canals.png",
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0006-amsterdam-canals.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0006-toronto-cn-tower.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0006-toronto-cn-tower.png",
       "palette_mode": "per-design",
-      "palette_status": "mapped-to-per-design-dmc",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
       "target_chart_pages": 4,
-      "source_colour_count": 48,
-      "dmc_colour_count": 36
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 7,
       "base_design_id": "D0007",
-      "title_en": "Santorini Blue Domes",
-      "title_es": "Santorini — Cúpulas azules",
-      "slug": "santorini-blue-domes",
-      "reference_board": "mediterranean-icons",
+      "title_en": "Quebec City Chateau Frontenac",
+      "title_es": "Château Frontenac de Quebec",
+      "slug": "quebec-chateau-frontenac",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0007-CS"
       ],
-      "artwork_status": "production-ready-exact-100x120",
-      "source_asset": "collections/iconic-destinations/source-designs/D0007-santorini-blue-domes.png",
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0007-santorini-blue-domes.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0007-quebec-chateau-frontenac.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0007-quebec-chateau-frontenac.png",
       "palette_mode": "per-design",
-      "palette_status": "mapped-to-per-design-dmc",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
       "target_chart_pages": 4,
-      "source_colour_count": 48,
-      "dmc_colour_count": 40
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 8,
       "base_design_id": "D0008",
-      "title_en": "Positano Amalfi Coast",
-      "title_es": "Positano — Costa Amalfitana",
-      "slug": "positano-amalfi-coast",
-      "reference_board": "mediterranean-icons",
+      "title_en": "Hallstatt Lakeside Village",
+      "title_es": "Hallstatt junto al lago",
+      "slug": "hallstatt-lakeside-village",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0008-CS"
       ],
-      "artwork_status": "production-ready-exact-100x120",
-      "source_asset": "collections/iconic-destinations/source-designs/D0008-positano-amalfi-coast.png",
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0008-positano-amalfi-coast.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0008-hallstatt-lakeside-village.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0008-hallstatt-lakeside-village.png",
       "palette_mode": "per-design",
-      "palette_status": "mapped-to-per-design-dmc",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
       "target_chart_pages": 4,
-      "source_colour_count": 48,
-      "dmc_colour_count": 38
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 9,
       "base_design_id": "D0009",
-      "title_en": "Cinque Terre Village",
-      "title_es": "Cinque Terre — Pueblo costero",
-      "slug": "cinque-terre-village",
-      "reference_board": "mediterranean-icons",
+      "title_en": "Dubrovnik Old Town",
+      "title_es": "Casco antiguo de Dubrovnik",
+      "slug": "dubrovnik-old-town",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0009-CS"
       ],
-      "artwork_status": "production-ready-exact-100x120",
-      "source_asset": "collections/iconic-destinations/source-designs/D0009-cinque-terre-village.png",
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0009-cinque-terre-village.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0009-dubrovnik-old-town.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0009-dubrovnik-old-town.png",
       "palette_mode": "per-design",
-      "palette_status": "mapped-to-per-design-dmc",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
       "target_chart_pages": 4,
-      "source_colour_count": 48,
-      "dmc_colour_count": 37
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 10,
       "base_design_id": "D0010",
-      "title_en": "Mykonos Windmills",
-      "title_es": "Mykonos — Molinos",
-      "slug": "mykonos-windmills",
-      "reference_board": "mediterranean-icons",
+      "title_en": "Capri Faraglioni",
+      "title_es": "Faraglioni de Capri",
+      "slug": "capri-faraglioni",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0010-CS"
       ],
-      "artwork_status": "production-ready-exact-100x120",
-      "source_asset": "collections/iconic-destinations/source-designs/D0010-mykonos-windmills.png",
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0010-mykonos-windmills.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0010-capri-faraglioni.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0010-capri-faraglioni.png",
       "palette_mode": "per-design",
-      "palette_status": "mapped-to-per-design-dmc",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
       "target_chart_pages": 4,
-      "source_colour_count": 48,
-      "dmc_colour_count": 36
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 11,
       "base_design_id": "D0011",
-      "title_en": "Dubrovnik Old Town",
-      "title_es": "Dubrovnik — Ciudad amurallada",
-      "slug": "dubrovnik-old-town",
-      "reference_board": "mediterranean-icons",
+      "title_en": "Golden Gate Bridge",
+      "title_es": "Puente Golden Gate",
+      "slug": "golden-gate-bridge",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0011-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0011-dubrovnik-old-town.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0011-golden-gate-bridge.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0011-golden-gate-bridge.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 12,
       "base_design_id": "D0012",
-      "title_en": "Istanbul Bosphorus",
-      "title_es": "Estambul — Bósforo",
-      "slug": "istanbul-bosphorus",
-      "reference_board": "mediterranean-icons",
+      "title_en": "London Tower Bridge",
+      "title_es": "Tower Bridge de Londres",
+      "slug": "london-tower-bridge",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0012-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0012-istanbul-bosphorus.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0012-london-tower-bridge.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0012-london-tower-bridge.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 13,
       "base_design_id": "D0013",
-      "title_en": "Mount Fuji and Pagoda",
-      "title_es": "Monte Fuji y pagoda",
-      "slug": "mount-fuji-pagoda",
-      "reference_board": "asia-icons",
+      "title_en": "Mont Saint-Michel",
+      "title_es": "Mont Saint-Michel",
+      "slug": "mont-saint-michel",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0013-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0013-mount-fuji-pagoda.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0013-mont-saint-michel.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0013-mont-saint-michel.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 14,
       "base_design_id": "D0014",
-      "title_en": "Taj Mahal",
-      "title_es": "Taj Mahal",
-      "slug": "taj-mahal",
-      "reference_board": "asia-icons",
+      "title_en": "Neuschwanstein Castle",
+      "title_es": "Castillo de Neuschwanstein",
+      "slug": "neuschwanstein-castle",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0014-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0014-taj-mahal.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0014-neuschwanstein-castle.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0014-neuschwanstein-castle.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 15,
       "base_design_id": "D0015",
-      "title_en": "Great Wall of China",
-      "title_es": "Gran Muralla China",
-      "slug": "great-wall-china",
-      "reference_board": "asia-icons",
+      "title_en": "Athens Acropolis",
+      "title_es": "Acrópolis de Atenas",
+      "slug": "athens-acropolis",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0015-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0015-great-wall-china.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0015-athens-acropolis.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0015-athens-acropolis.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 16,
@@ -359,989 +369,1079 @@
       "title_en": "Angkor Wat",
       "title_es": "Angkor Wat",
       "slug": "angkor-wat",
-      "reference_board": "asia-icons",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0016-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0016-angkor-wat.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0016-angkor-wat.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 17,
       "base_design_id": "D0017",
-      "title_en": "Singapore Marina Bay",
-      "title_es": "Singapur — Marina Bay",
-      "slug": "singapore-marina-bay",
-      "reference_board": "asia-icons",
+      "title_en": "Ha Long Bay",
+      "title_es": "Bahía de Ha Long",
+      "slug": "ha-long-bay",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0017-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0017-singapore-marina-bay.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0017-ha-long-bay.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0017-ha-long-bay.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 18,
       "base_design_id": "D0018",
       "title_en": "Cappadocia Balloons",
-      "title_es": "Capadocia — Globos",
+      "title_es": "Globos de Capadocia",
       "slug": "cappadocia-balloons",
-      "reference_board": "asia-icons",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0018-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0018-cappadocia-balloons.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0018-cappadocia-balloons.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 19,
       "base_design_id": "D0019",
-      "title_en": "New York Statue of Liberty",
-      "title_es": "Nueva York — Estatua de la Libertad",
-      "slug": "new-york-statue-liberty",
-      "reference_board": "americas-icons",
+      "title_en": "Chichen Itza",
+      "title_es": "Chichén Itzá",
+      "slug": "chichen-itza",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0019-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0019-new-york-statue-liberty.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0019-chichen-itza.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0019-chichen-itza.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 20,
       "base_design_id": "D0020",
-      "title_en": "Golden Gate Bridge",
-      "title_es": "San Francisco — Golden Gate",
-      "slug": "golden-gate-bridge",
-      "reference_board": "americas-icons",
+      "title_en": "Istanbul Blue Mosque",
+      "title_es": "Mezquita Azul de Estambul",
+      "slug": "istanbul-blue-mosque",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0020-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0020-golden-gate-bridge.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0020-istanbul-blue-mosque.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0020-istanbul-blue-mosque.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 21,
       "base_design_id": "D0021",
-      "title_en": "Rio Christ the Redeemer",
-      "title_es": "Río — Cristo Redentor",
-      "slug": "rio-christ-redeemer",
-      "reference_board": "americas-icons",
+      "title_en": "Barcelona Sagrada Familia",
+      "title_es": "Sagrada Familia de Barcelona",
+      "slug": "barcelona-sagrada-familia",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0021-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0021-rio-christ-redeemer.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0021-barcelona-sagrada-familia.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0021-barcelona-sagrada-familia.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 22,
       "base_design_id": "D0022",
-      "title_en": "Machu Picchu",
-      "title_es": "Machu Picchu",
-      "slug": "machu-picchu",
-      "reference_board": "americas-icons",
+      "title_en": "Prague Castle",
+      "title_es": "Castillo de Praga",
+      "slug": "prague-castle",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0022-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0022-machu-picchu.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0022-prague-castle.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0022-prague-castle.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 23,
       "base_design_id": "D0023",
-      "title_en": "Chichen Itza",
-      "title_es": "Chichén Itzá",
-      "slug": "chichen-itza",
-      "reference_board": "americas-icons",
+      "title_en": "Niagara Falls",
+      "title_es": "Cataratas del Niágara",
+      "slug": "niagara-falls",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0023-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0023-chichen-itza.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0023-niagara-falls.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0023-niagara-falls.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 24,
       "base_design_id": "D0024",
-      "title_en": "Havana Vintage Street",
-      "title_es": "La Habana — Calle colonial y coche clásico",
-      "slug": "havana-vintage-street",
-      "reference_board": "americas-icons",
+      "title_en": "Mount Fuji",
+      "title_es": "Monte Fuji",
+      "slug": "mount-fuji",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0024-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0024-havana-vintage-street.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0024-mount-fuji.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0024-mount-fuji.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 25,
       "base_design_id": "D0025",
-      "title_en": "Pyramids of Giza",
-      "title_es": "Pirámides de Guiza",
-      "slug": "pyramids-giza",
-      "reference_board": "ancient-wonders",
+      "title_en": "Machu Picchu",
+      "title_es": "Machu Picchu",
+      "slug": "machu-picchu",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0025-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0025-pyramids-giza.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0025-machu-picchu.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0025-machu-picchu.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 26,
       "base_design_id": "D0026",
       "title_en": "Petra Treasury",
-      "title_es": "Petra — El Tesoro",
+      "title_es": "El Tesoro de Petra",
       "slug": "petra-treasury",
-      "reference_board": "ancient-wonders",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0026-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0026-petra-treasury.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0026-petra-treasury.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 27,
       "base_design_id": "D0027",
-      "title_en": "Athens Acropolis",
-      "title_es": "Atenas — Acrópolis",
-      "slug": "athens-acropolis",
-      "reference_board": "ancient-wonders",
+      "title_en": "Dubai Burj Khalifa",
+      "title_es": "Burj Khalifa de Dubái",
+      "slug": "dubai-burj-khalifa",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0027-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0027-athens-acropolis.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0027-dubai-burj-khalifa.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0027-dubai-burj-khalifa.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 28,
       "base_design_id": "D0028",
-      "title_en": "Abu Simbel",
-      "title_es": "Abu Simbel",
-      "slug": "abu-simbel",
-      "reference_board": "ancient-wonders",
+      "title_en": "Venice Grand Canal",
+      "title_es": "Gran Canal de Venecia",
+      "slug": "venice-grand-canal",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0028-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0028-abu-simbel.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0028-venice-grand-canal.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0028-venice-grand-canal.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 29,
       "base_design_id": "D0029",
-      "title_en": "Bagan Temples and Balloons",
-      "title_es": "Bagan — Templos y globos",
-      "slug": "bagan-temples-balloons",
-      "reference_board": "ancient-wonders",
+      "title_en": "Prague Charles Bridge",
+      "title_es": "Puente de Carlos de Praga",
+      "slug": "prague-charles-bridge",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0029-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0029-bagan-temples-balloons.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0029-prague-charles-bridge.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0029-prague-charles-bridge.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 30,
       "base_design_id": "D0030",
-      "title_en": "Easter Island Moai",
-      "title_es": "Isla de Pascua — Moáis",
-      "slug": "easter-island-moai",
-      "reference_board": "ancient-wonders",
+      "title_en": "Amsterdam Canals",
+      "title_es": "Canales de Ámsterdam",
+      "slug": "amsterdam-canals",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0030-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0030-easter-island-moai.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0030-amsterdam-canals.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0030-amsterdam-canals.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 31,
       "base_design_id": "D0031",
-      "title_en": "Neuschwanstein Castle",
-      "title_es": "Castillo de Neuschwanstein",
-      "slug": "neuschwanstein-castle",
-      "reference_board": "fairytale-europe",
+      "title_en": "Paris Eiffel Tower",
+      "title_es": "Torre Eiffel de París",
+      "slug": "paris-eiffel-tower",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0031-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0031-neuschwanstein-castle.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0031-paris-eiffel-tower.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0031-paris-eiffel-tower.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 32,
       "base_design_id": "D0032",
-      "title_en": "Mont Saint-Michel",
-      "title_es": "Mont Saint-Michel",
-      "slug": "mont-saint-michel",
-      "reference_board": "fairytale-europe",
+      "title_en": "London Big Ben",
+      "title_es": "Big Ben de Londres",
+      "slug": "london-big-ben",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0032-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0032-mont-saint-michel.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0032-london-big-ben.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0032-london-big-ben.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 33,
       "base_design_id": "D0033",
-      "title_en": "Hallstatt Lakeside Village",
-      "title_es": "Hallstatt — Pueblo junto al lago",
-      "slug": "hallstatt-lakeside",
-      "reference_board": "fairytale-europe",
+      "title_en": "Rome Colosseum",
+      "title_es": "Coliseo de Roma",
+      "slug": "rome-colosseum",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0033-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0033-hallstatt-lakeside.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0033-rome-colosseum.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0033-rome-colosseum.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 34,
       "base_design_id": "D0034",
-      "title_en": "Bruges Medieval Canal",
-      "title_es": "Brujas — Canal medieval",
-      "slug": "bruges-medieval-canal",
-      "reference_board": "fairytale-europe",
+      "title_en": "New York Statue of Liberty",
+      "title_es": "Estatua de la Libertad de Nueva York",
+      "slug": "new-york-statue-liberty",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0034-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0034-bruges-medieval-canal.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0034-new-york-statue-liberty.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0034-new-york-statue-liberty.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 35,
       "base_design_id": "D0035",
-      "title_en": "Pena Palace Sintra",
-      "title_es": "Sintra — Palacio da Pena",
-      "slug": "pena-palace-sintra",
-      "reference_board": "fairytale-europe",
+      "title_en": "Taj Mahal",
+      "title_es": "Taj Mahal",
+      "slug": "taj-mahal",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0035-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0035-pena-palace-sintra.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0035-taj-mahal.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0035-taj-mahal.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 36,
       "base_design_id": "D0036",
-      "title_en": "Edinburgh Castle",
-      "title_es": "Edimburgo — Castillo",
-      "slug": "edinburgh-castle",
-      "reference_board": "fairytale-europe",
+      "title_en": "Great Wall of China",
+      "title_es": "Gran Muralla China",
+      "slug": "great-wall-china",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0036-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0036-edinburgh-castle.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0036-great-wall-china.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0036-great-wall-china.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 37,
       "base_design_id": "D0037",
-      "title_en": "Sydney Harbour",
-      "title_es": "Sídney — Ópera y Harbour Bridge",
-      "slug": "sydney-harbour",
-      "reference_board": "coastal-icons",
+      "title_en": "Rio Christ the Redeemer",
+      "title_es": "Cristo Redentor de Río",
+      "slug": "rio-christ-redeemer",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0037-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0037-sydney-harbour.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0037-rio-christ-redeemer.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0037-rio-christ-redeemer.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 38,
       "base_design_id": "D0038",
-      "title_en": "Cape Town Table Mountain",
-      "title_es": "Ciudad del Cabo — Table Mountain",
-      "slug": "cape-town-table-mountain",
-      "reference_board": "coastal-icons",
+      "title_en": "Pyramids of Giza",
+      "title_es": "Pirámides de Guiza",
+      "slug": "pyramids-giza",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0038-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0038-cape-town-table-mountain.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0038-pyramids-giza.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0038-pyramids-giza.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 39,
       "base_design_id": "D0039",
-      "title_en": "Bora Bora Lagoon",
-      "title_es": "Bora Bora — Laguna",
-      "slug": "bora-bora-lagoon",
-      "reference_board": "coastal-icons",
+      "title_en": "Sydney Opera House",
+      "title_es": "Ópera de Sídney",
+      "slug": "sydney-opera-house",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0039-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0039-bora-bora-lagoon.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0039-sydney-opera-house.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0039-sydney-opera-house.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 40,
       "base_design_id": "D0040",
-      "title_en": "Hawaii Diamond Head",
-      "title_es": "Hawái — Diamond Head",
-      "slug": "hawaii-diamond-head",
-      "reference_board": "coastal-icons",
+      "title_en": "Santorini Blue Domes",
+      "title_es": "Cúpulas azules de Santorini",
+      "slug": "santorini-blue-domes",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0040-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0040-hawaii-diamond-head.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0040-santorini-blue-domes.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0040-santorini-blue-domes.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 41,
       "base_design_id": "D0041",
-      "title_en": "Seychelles Granite Beach",
-      "title_es": "Seychelles — Playa de granito",
-      "slug": "seychelles-granite-beach",
-      "reference_board": "coastal-icons",
+      "title_en": "Cartagena Colorful Streets",
+      "title_es": "Calles coloridas de Cartagena",
+      "slug": "cartagena-colorful-streets",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0041-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0041-seychelles-granite-beach.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0041-cartagena-colorful-streets.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0041-cartagena-colorful-streets.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 42,
       "base_design_id": "D0042",
-      "title_en": "Maldives Overwater Villas",
-      "title_es": "Maldivas — Villas sobre el agua",
-      "slug": "maldives-overwater-villas",
-      "reference_board": "coastal-icons",
+      "title_en": "Havana Capitol",
+      "title_es": "Capitolio de La Habana",
+      "slug": "havana-capitol",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0042-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0042-maldives-overwater-villas.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0042-havana-capitol.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0042-havana-capitol.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 43,
       "base_design_id": "D0043",
-      "title_en": "Swiss Alps Chalet",
-      "title_es": "Alpes suizos — Chalet junto al lago",
-      "slug": "swiss-alps-chalet",
-      "reference_board": "natural-icons",
+      "title_en": "Easter Island Moai",
+      "title_es": "Moáis de la Isla de Pascua",
+      "slug": "easter-island-moai",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0043-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0043-swiss-alps-chalet.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0043-easter-island-moai.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0043-easter-island-moai.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 44,
       "base_design_id": "D0044",
-      "title_en": "Norwegian Fjord Village",
-      "title_es": "Fiordo noruego — Pueblo costero",
-      "slug": "norwegian-fjord-village",
-      "reference_board": "natural-icons",
+      "title_en": "Bali Temple Gate",
+      "title_es": "Puerta de templo de Bali",
+      "slug": "bali-temple-gate",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0044-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0044-norwegian-fjord-village.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0044-bali-temple-gate.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0044-bali-temple-gate.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 45,
       "base_design_id": "D0045",
-      "title_en": "Northern Lights Alpine Lake",
-      "title_es": "Aurora boreal sobre lago alpino",
-      "slug": "northern-lights-alpine-lake",
-      "reference_board": "natural-icons",
+      "title_en": "Mykonos Windmills",
+      "title_es": "Molinos de Mykonos",
+      "slug": "mykonos-windmills",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0045-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0045-northern-lights-alpine-lake.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0045-mykonos-windmills.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0045-mykonos-windmills.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 46,
       "base_design_id": "D0046",
-      "title_en": "Provence Lavender Fields",
-      "title_es": "Provenza — Campos de lavanda",
-      "slug": "provence-lavender-fields",
-      "reference_board": "natural-icons",
+      "title_en": "Cape Town Table Mountain",
+      "title_es": "Montaña de la Mesa de Ciudad del Cabo",
+      "slug": "cape-town-table-mountain",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0046-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0046-provence-lavender-fields.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0046-cape-town-table-mountain.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0046-cape-town-table-mountain.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 47,
       "base_design_id": "D0047",
-      "title_en": "Monument Valley",
-      "title_es": "Monument Valley",
-      "slug": "monument-valley",
-      "reference_board": "natural-icons",
+      "title_en": "Vatican St Peter Basilica",
+      "title_es": "Basílica de San Pedro del Vaticano",
+      "slug": "vatican-st-peter-basilica",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0047-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0047-monument-valley.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0047-vatican-st-peter-basilica.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0047-vatican-st-peter-basilica.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 48,
       "base_design_id": "D0048",
-      "title_en": "Banff Turquoise Lake",
-      "title_es": "Banff — Lago turquesa",
-      "slug": "banff-turquoise-lake",
-      "reference_board": "natural-icons",
+      "title_en": "Leaning Tower of Pisa",
+      "title_es": "Torre inclinada de Pisa",
+      "slug": "leaning-tower-pisa",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0048-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0048-banff-turquoise-lake.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0048-leaning-tower-pisa.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0048-leaning-tower-pisa.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 49,
       "base_design_id": "D0049",
-      "title_en": "Florence Ponte Vecchio and Duomo",
-      "title_es": "Florencia — Ponte Vecchio y Duomo",
-      "slug": "florence-ponte-vecchio-duomo",
-      "reference_board": "historic-cities",
+      "title_en": "Stonehenge",
+      "title_es": "Stonehenge",
+      "slug": "stonehenge",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0049-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0049-florence-ponte-vecchio-duomo.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0049-stonehenge.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0049-stonehenge.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 50,
       "base_design_id": "D0050",
-      "title_en": "Seville Plaza de Espana",
-      "title_es": "Sevilla — Plaza de España",
-      "slug": "seville-plaza-espana",
-      "reference_board": "historic-cities",
+      "title_en": "Moscow Saint Basil Cathedral",
+      "title_es": "Catedral de San Basilio de Moscú",
+      "slug": "moscow-saint-basil-cathedral",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0050-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0050-seville-plaza-espana.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0050-moscow-saint-basil-cathedral.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0050-moscow-saint-basil-cathedral.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 51,
       "base_design_id": "D0051",
-      "title_en": "Vienna Schonbrunn Gardens",
-      "title_es": "Viena — Schönbrunn",
-      "slug": "vienna-schonbrunn",
-      "reference_board": "historic-cities",
+      "title_en": "Positano Amalfi Coast",
+      "title_es": "Positano en la Costa Amalfitana",
+      "slug": "positano-amalfi-coast",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0051-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0051-vienna-schonbrunn.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0051-positano-amalfi-coast.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0051-positano-amalfi-coast.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 52,
       "base_design_id": "D0052",
-      "title_en": "Kyoto Old Town and Pagoda",
-      "title_es": "Kioto — Calle tradicional y pagoda",
-      "slug": "kyoto-old-town-pagoda",
-      "reference_board": "historic-cities",
+      "title_en": "Cinque Terre Village",
+      "title_es": "Pueblo de Cinque Terre",
+      "slug": "cinque-terre-village",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0052-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0052-kyoto-old-town-pagoda.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0052-cinque-terre-village.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0052-cinque-terre-village.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 53,
       "base_design_id": "D0053",
-      "title_en": "Quebec City Chateau Frontenac",
-      "title_es": "Quebec — Château Frontenac",
-      "slug": "quebec-chateau-frontenac",
-      "reference_board": "historic-cities",
+      "title_en": "Tokyo Tower and Fuji",
+      "title_es": "Torre de Tokio y Monte Fuji",
+      "slug": "tokyo-tower-fuji",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0053-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0053-quebec-chateau-frontenac.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0053-tokyo-tower-fuji.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0053-tokyo-tower-fuji.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 54,
       "base_design_id": "D0054",
-      "title_en": "Bruges Market Canal",
-      "title_es": "Brujas — Canal y centro histórico",
-      "slug": "bruges-market-canal",
-      "reference_board": "historic-cities",
+      "title_en": "Singapore Marina Bay",
+      "title_es": "Marina Bay de Singapur",
+      "slug": "singapore-marina-bay",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0054-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0054-bruges-market-canal.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0054-singapore-marina-bay.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0054-singapore-marina-bay.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 55,
       "base_design_id": "D0055",
-      "title_en": "Dubai Burj Khalifa",
-      "title_es": "Dubái — Burj Khalifa",
-      "slug": "dubai-burj-khalifa",
-      "reference_board": "world-skylines",
+      "title_en": "Hong Kong Victoria Harbour",
+      "title_es": "Victoria Harbour de Hong Kong",
+      "slug": "hong-kong-victoria-harbour",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0055-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0055-dubai-burj-khalifa.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0055-hong-kong-victoria-harbour.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0055-hong-kong-victoria-harbour.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 56,
       "base_design_id": "D0056",
-      "title_en": "Hong Kong Victoria Harbour",
-      "title_es": "Hong Kong — Victoria Harbour",
-      "slug": "hong-kong-victoria-harbour",
-      "reference_board": "world-skylines",
+      "title_en": "Shanghai Pudong Skyline",
+      "title_es": "Skyline de Pudong en Shanghái",
+      "slug": "shanghai-pudong-skyline",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0056-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0056-hong-kong-victoria-harbour.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0056-shanghai-pudong-skyline.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0056-shanghai-pudong-skyline.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 57,
       "base_design_id": "D0057",
-      "title_en": "Shanghai Pudong Skyline",
-      "title_es": "Shanghái — Pudong",
-      "slug": "shanghai-pudong-skyline",
-      "reference_board": "world-skylines",
+      "title_en": "Seoul Gyeongbokgung Palace",
+      "title_es": "Palacio Gyeongbokgung de Seúl",
+      "slug": "seoul-gyeongbokgung-palace",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0057-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0057-shanghai-pudong-skyline.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0057-seoul-gyeongbokgung-palace.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0057-seoul-gyeongbokgung-palace.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 58,
       "base_design_id": "D0058",
-      "title_en": "Tokyo Tower and Fuji",
-      "title_es": "Tokio — Tokyo Tower y Fuji",
-      "slug": "tokyo-tower-fuji",
-      "reference_board": "world-skylines",
+      "title_en": "Chefchaouen Blue City",
+      "title_es": "Ciudad azul de Chefchaouen",
+      "slug": "chefchaouen-blue-city",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0058-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0058-tokyo-tower-fuji.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0058-chefchaouen-blue-city.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0058-chefchaouen-blue-city.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 59,
       "base_design_id": "D0059",
-      "title_en": "Bangkok Wat Arun",
-      "title_es": "Bangkok — Wat Arun",
-      "slug": "bangkok-wat-arun",
-      "reference_board": "world-skylines",
+      "title_en": "Marrakech Koutoubia Mosque",
+      "title_es": "Mezquita Koutoubia de Marrakech",
+      "slug": "marrakech-koutoubia-mosque",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0059-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0059-bangkok-wat-arun.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0059-marrakech-koutoubia-mosque.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0059-marrakech-koutoubia-mosque.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     },
     {
       "order": 60,
       "base_design_id": "D0060",
-      "title_en": "Chicago River Skyline",
-      "title_es": "Chicago — Skyline del río",
-      "slug": "chicago-river-skyline",
-      "reference_board": "world-skylines",
+      "title_en": "Bagan Temples and Balloons",
+      "title_es": "Templos y globos de Bagan",
+      "slug": "bagan-temples-balloons",
+      "reference_board": "mosaic-row-major",
       "variants": [
         "D0060-CS"
       ],
-      "artwork_status": "approved-concept-awaiting-final-individual-source",
-      "source_asset": null,
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0060-chicago-river-skyline.png",
+      "artwork_status": "exact-100x120-source-ready",
+      "source_asset": "collections/iconic-destinations/source-designs/D0060-bagan-temples-balloons.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0060-bagan-temples-balloons.png",
       "palette_mode": "per-design",
-      "palette_status": "derive-from-final-artwork",
+      "palette_status": "awaiting-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
-      "target_chart_pages": 4
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null
     }
   ]
 }
