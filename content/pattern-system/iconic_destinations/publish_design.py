@@ -67,7 +67,7 @@ def decode_pixel_source(base_id: str):
     n = raw[0]
     palette_end = 1 + n * 3
     expected = palette_end + CELL_COUNT
-    if n < 1 or n > 48 or len(raw) != expected:
+    if n < 1 or n > 255 or len(raw) != expected:
         raise RuntimeError(f"{base_id}: malformed source palette={n} bytes={len(raw)} expected={expected}")
     palette = [tuple(raw[1+i*3:1+i*3+3]) for i in range(n)]
     indexes = list(raw[palette_end:])
