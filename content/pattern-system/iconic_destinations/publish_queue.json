@@ -271,10 +271,11 @@
       "title_es": "Castillo de Praga",
       "slug": "prague-castle",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0022.pixz",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36191794767",
+      "last_error": null,
+      "published_at": "2026-09-25T21:30:36+00:00"
     },
     {
       "base_design_id": "D0023",
