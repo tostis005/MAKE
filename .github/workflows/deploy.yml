@@ -513,16 +513,16 @@ jobs:
           check_html "/wp-content/themes/make/style.css" "Collection technique mosaic controls" "collection-technique-css"
           check_html "/tienda/colecciones/" "Explora cada patrón por separado o descubre colecciones temáticas creadas para reunir diseños relacionados." "shop-collections-intro-es"
           check_html "/en/shop/collections/" "Pattern collections" "shop-collections-en" "Downloadable PDF"
-          check_html "/tienda/colecciones/" "Colecciones de patrones" "hidden-iconic-not-listed-es" "Destinos icónicos"
+          check_html "/tienda/colecciones/" "Destinos icónicos" "visible-iconic-listed-es"
           check_html "/tienda/colecciones/" "Colecciones de patrones" "hidden-baby-not-listed-es" "Bebé e Infantil"
-          check_html "/en/shop/collections/" "Pattern collections" "hidden-iconic-not-listed-en" "Iconic Destinations"
+          check_html "/en/shop/collections/" "Iconic Destinations" "visible-iconic-listed-en"
           check_html "/en/shop/collections/" "Pattern collections" "hidden-baby-not-listed-en" "Baby & Nursery"
 
           HIDDEN_ICONIC_COLLECTION_ROUTE="$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; $t=get_term_by("slug","iconic-destinations","product_collection"); $u=$t instanceof WP_Term ? make_store_term_url($t,"es") : ""; echo $u ? parse_url($u,PHP_URL_PATH) : "";')"
           HIDDEN_BABY_COLLECTION_ROUTE="$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; $t=get_term_by("slug","baby-nursery","product_collection"); $u=$t instanceof WP_Term ? make_store_term_url($t,"es") : ""; echo $u ? parse_url($u,PHP_URL_PATH) : "";')"
           HIDDEN_ICONIC_PRODUCT_ROUTE="$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; $id=wc_get_product_id_by_sku("DRIELO-D0001-CS"); $u=$id ? make_product_url($id,"es") : ""; echo $u ? parse_url($u,PHP_URL_PATH) : "";')"
           HIDDEN_BABY_PRODUCT_ROUTE="$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; $id=wc_get_product_id_by_sku("DRIELO-I0001-CS"); $u=$id ? make_product_url($id,"es") : ""; echo $u ? parse_url($u,PHP_URL_PATH) : "";')"
-          for HIDDEN_ROUTE_SPEC in "hidden-iconic-collection|$HIDDEN_ICONIC_COLLECTION_ROUTE" "hidden-baby-collection|$HIDDEN_BABY_COLLECTION_ROUTE" "hidden-iconic-product|$HIDDEN_ICONIC_PRODUCT_ROUTE" "hidden-baby-product|$HIDDEN_BABY_PRODUCT_ROUTE"; do
+          for HIDDEN_ROUTE_SPEC in "hidden-baby-collection|$HIDDEN_BABY_COLLECTION_ROUTE" "hidden-baby-product|$HIDDEN_BABY_PRODUCT_ROUTE"; do
             HIDDEN_LABEL="${HIDDEN_ROUTE_SPEC%%|*}"
             HIDDEN_ROUTE="${HIDDEN_ROUTE_SPEC#*|}"
             if [ -z "$HIDDEN_ROUTE" ]; then echo "$HIDDEN_LABEL route resolution failed"; exit 2; fi
