@@ -692,10 +692,11 @@
       "title_es": "Palacio Gyeongbokgung de Seúl",
       "slug": "seoul-gyeongbokgung-palace",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0057.pixz",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36200225089",
+      "last_error": null,
+      "published_at": "2026-09-25T23:16:14+00:00"
     },
     {
       "base_design_id": "D0058",
