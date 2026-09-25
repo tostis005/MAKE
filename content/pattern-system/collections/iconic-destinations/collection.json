@@ -40,7 +40,7 @@
     "technique_assets": {
       "CS": "assets/cover-cross-stitch-v3.png"
     },
-    "status": "approved-page-1-image-v3-adjusted",
+    "status": "approved-page-1-image-v2-alignment-2",
     "generation": {
       "purpose": "Reusable page-1 lifestyle/ambient image for the Iconic Destinations cross-stitch collection.",
       "frame_requirement": "Leave the craft display area empty so the final vector pattern can be inserted by the renderer.",
@@ -49,14 +49,14 @@
     "frame": {
       "enabled": true,
       "source_px": {
-        "width": 1254,
-        "height": 1254
+        "width": 1536,
+        "height": 1478
       },
       "area_px": {
-        "x": 368,
-        "y": 183,
-        "width": 536,
-        "height": 648
+        "x": 444,
+        "y": 217,
+        "width": 668,
+        "height": 804
       },
       "padding_ratio": 0,
       "fabric": {
