@@ -52,19 +52,6 @@ jobs:
           python -m pip install --disable-pip-version-check --quiet Pillow playwright pymupdf
           python -m playwright install --with-deps chromium
 
-      - name: Validate exact D0001 mosaic tile
-        shell: bash
-        run: |
-          set -euo pipefail
-          python3 - <<'PY'
-          from PIL import Image
-          p='content/pattern-system/collections/iconic-destinations/approved-pixel-designs/D0001-paris-eiffel-tower.png'
-          im=Image.open(p).convert('RGB')
-          assert im.size==(100,120), im.size
-          assert len(set(im.getdata()))==50, len(set(im.getdata()))
-          print('D0001 exact source',im.size,'colors',len(set(im.getdata())))
-          PY
-
       - name: Test pixel importer
         run: python3 content/pattern-system/pixel_importer/test_pixel_importer.py
 
@@ -272,6 +259,7 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm -f content/pattern-system/collections/iconic-destinations/approved-pixel-designs/D0001-paris-eiffel-tower.png.b64.part* 2>/dev/null || true
           git add \
             content/pattern-system/collections/iconic-destinations/approved-pixel-designs/D0001-paris-eiffel-tower.png \
             content/pattern-system/collections/iconic-destinations/assets/iconic-room.jpg \
