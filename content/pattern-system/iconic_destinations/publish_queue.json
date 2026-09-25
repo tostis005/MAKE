@@ -417,9 +417,10 @@
       "slug": "new-york-statue-liberty",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0034.pixz",
       "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36197385993",
+      "last_error": "Automatic Iconic Destinations publish run failed; see GitHub Actions logs.",
+      "failed_at": "2026-09-25T22:35:49+00:00"
     },
     {
       "base_design_id": "D0035",
