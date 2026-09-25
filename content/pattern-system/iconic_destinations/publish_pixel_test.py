@@ -49,37 +49,17 @@ def configure_collection_mockup():
         raise FileNotFoundError(f"Missing collection mockup: {MOCKUP}")
 
     collection = read_json(COLLECTION_PATH)
-    collection["mockup_spec"] = {
-        "asset": "assets/iconic-room.jpg",
-        "technique_assets": {"CS": "assets/iconic-room.jpg"},
-        "status": "pixel-test-positioning",
-        "generation": {
-            "purpose": "Iconic Destinations reusable cross-stitch lifestyle mockup.",
-            "frame_requirement": "Keep the central wooden frame empty; renderer inserts the exact vector stitch pattern.",
-            "post_generation_measurement": "Calibrated from the 256x256 room mockup opening; artwork fills the opening with no white padding and is centered."
-        },
-        "frame": {
-            "enabled": True,
-            "source_px": {"width": 256, "height": 256},
-            "area_px": {
-                "x": 75,
-                "y": 27,
-                "width": 121,
-                "height": 149
-            },
-            "padding_ratio": 0.0,
-            "stitch_offset_x_ratio": 0.0,
-            "stitch_offset_y_ratio": 0.0,
-            "stitch_fit": "cover",
-            "fabric": {
-                "color": "#F7F3EA",
-                "kind": "aida",
-                "count_visual_reference": 14
-            }
-        }
-    }
-    write_json(COLLECTION_PATH, collection)
-
+    spec = collection.get("mockup_spec") or {}
+    frame = spec.get("frame") or {}
+    area = frame.get("area_px") or {}
+    required = ("x", "y", "width", "height")
+    if not frame.get("enabled") or any(k not in area for k in required):
+        raise RuntimeError("Iconic Destinations calibrated mockup frame is missing from collection.json")
+    if float(frame.get("padding_ratio", 0)) != 0:
+        raise RuntimeError("Iconic Destinations pixel mockup must keep padding_ratio=0")
+    if str(frame.get("stitch_fit", "")).lower() != "cover":
+        raise RuntimeError("Iconic Destinations pixel mockup must use stitch_fit=cover")
+    return collection
 
 def ensure_exact_d0001_source():
     indices = zlib.decompress(base64.b64decode(D0001_INDEX_ZLIB_B64))
