@@ -44,7 +44,7 @@
     "generation": {
       "purpose": "Iconic Destinations reusable cross-stitch lifestyle mockup.",
       "frame_requirement": "Keep the central wooden frame empty; renderer inserts the exact vector stitch pattern.",
-      "post_generation_measurement": "First positioning test; artwork shifted about 2 mm upward for review."
+      "post_generation_measurement": "Calibrated from the 256x256 room mockup opening; artwork fills the opening with no white padding and is centered."
     },
     "frame": {
       "enabled": true,
@@ -53,14 +53,15 @@
         "height": 256
       },
       "area_px": {
-        "x": 70,
-        "y": 29,
-        "width": 119,
-        "height": 143
+        "x": 75,
+        "y": 27,
+        "width": 121,
+        "height": 149
       },
-      "padding_ratio": 0.01,
+      "padding_ratio": 0.0,
       "stitch_offset_x_ratio": 0.0,
-      "stitch_offset_y_ratio": -0.014,
+      "stitch_offset_y_ratio": 0.0,
+      "stitch_fit": "cover",
       "fabric": {
         "color": "#F7F3EA",
         "kind": "aida",
