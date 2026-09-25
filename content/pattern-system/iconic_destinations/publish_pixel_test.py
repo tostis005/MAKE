@@ -47,20 +47,21 @@ def configure_collection_mockup():
         "generation": {
             "purpose": "Iconic Destinations reusable cross-stitch lifestyle mockup.",
             "frame_requirement": "Keep the central wooden frame empty; renderer inserts the exact vector stitch pattern.",
-            "post_generation_measurement": "First positioning test; artwork shifted about 2 mm upward for review."
+            "post_generation_measurement": "Calibrated from the 256x256 room mockup opening; artwork fills the opening with no white padding and is centered."
         },
         "frame": {
             "enabled": True,
             "source_px": {"width": 256, "height": 256},
             "area_px": {
-                "x": 70,
-                "y": 29,
-                "width": 119,
-                "height": 143
+                "x": 75,
+                "y": 27,
+                "width": 121,
+                "height": 149
             },
-            "padding_ratio": 0.010,
+            "padding_ratio": 0.0,
             "stitch_offset_x_ratio": 0.0,
-            "stitch_offset_y_ratio": -0.014,
+            "stitch_offset_y_ratio": 0.0,
+            "stitch_fit": "cover",
             "fabric": {
                 "color": "#F7F3EA",
                 "kind": "aida",
@@ -91,6 +92,15 @@ def build_exact_d0001():
         "source_asset": "collections/iconic-destinations/approved-pixel-designs/D0001-paris-eiffel-tower.png",
         "pixel_to_stitch": "1:1",
         "colour_mapping": "exact-rgb-no-quantization",
+        "mosaic_source": {
+            "sheet_size": [1000, 720],
+            "rows": 6,
+            "cols": 10,
+            "tile_size": [100, 120],
+            "tile_row": 0,
+            "tile_col": 0,
+            "extraction": "exact-crop-no-resize"
+        },
     })
     write_json(PATTERN_PATH, pattern)
 
@@ -272,9 +282,12 @@ def main():
         "retire_from_live_collection": retired,
         "mockup": str(MOCKUP),
         "frame_test": {
-            "area_px": [70, 29, 119, 143],
-            "stitch_offset_y_ratio": -0.014,
-            "intent": "approximately 2 mm upward"
+            "area_px": [75, 27, 121, 149],
+            "padding_ratio": 0.0,
+            "stitch_offset_x_ratio": 0.0,
+            "stitch_offset_y_ratio": 0.0,
+            "stitch_fit": "cover",
+            "intent": "fill the detected frame opening, no white padding, centered"
         },
         "pdf": str(pdf),
         "featured_image": str(image),
