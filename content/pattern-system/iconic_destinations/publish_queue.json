@@ -151,10 +151,11 @@
       "title_es": "Tower Bridge de Londres",
       "slug": "london-tower-bridge",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0012.pixz",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36194599450",
+      "last_error": null,
+      "published_at": "2026-09-25T22:02:34+00:00"
     },
     {
       "base_design_id": "D0013",
