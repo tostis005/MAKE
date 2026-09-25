@@ -89,10 +89,11 @@
       "title_es": "Château Frontenac de Quebec",
       "slug": "quebec-chateau-frontenac",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0007.pixz",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36188381278",
+      "last_error": null,
+      "published_at": "2026-09-25T20:54:14+00:00"
     },
     {
       "base_design_id": "D0008",
