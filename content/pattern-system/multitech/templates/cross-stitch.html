@@ -258,7 +258,8 @@ function horizontalSeamColour(base, neighbour, neutral) {
   return out;
 }
 
-function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, transparent=false) {
+function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, includeBackground=true) {
+  const transparent=!includeBackground;
   const vw=x1-x0, vh=y1-y0;
   const rules=realisticStitchRules();
   const baseGroups=new Map();
