@@ -1,0 +1,81 @@
+name: Load 60 Iconic Destinations from mosaic
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/pattern-system/iconic_destinations/source-pack/**'
+      - '.github/scripts/import_iconic_mosaic_pack.py'
+      - '.github/workflows/load-iconic-mosaic-60.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: drielo-iconic-mosaic-bootstrap
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Decode exact mosaic sources
+        run: python .github/scripts/import_iconic_mosaic_pack.py
+
+      - name: Rebuild 60 draft pattern/product stubs
+        run: python .github/scripts/bootstrap_iconic_destinations.py
+
+      - name: Validate prepared structure
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('content/pattern-system')
+          designs=json.loads((root/'collections/iconic-destinations/designs.json').read_text(encoding='utf-8'))['designs']
+          queue=json.loads((root/'iconic_destinations/publish_queue.json').read_text(encoding='utf-8'))
+          assert len(designs)==60
+          assert len(queue['items'])==60
+          assert all(x['status']=='pending' for x in queue['items'])
+          for i,d in enumerate(designs,1):
+              base=f'D{i:04d}'
+              assert d['base_design_id']==base
+              assert (root/'collections/iconic-destinations'/'pixel-sources'/f'{base}.pixz').is_file()
+              assert (root/'products'/f'{base}-CS'/'product.json').is_file()
+              assert (root/'patterns'/f'{base}-CS'/'pattern.json').is_file()
+          print('READY_60_EXACT_ICONIC_SOURCES')
+          PY
+
+      - name: Persist sources and queue
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -rf content/pattern-system/iconic_destinations/source-pack
+          git add -A             content/pattern-system/iconic_destinations/source-pack             content/pattern-system/iconic_destinations/publish_queue.json             content/pattern-system/collections/iconic-destinations/designs.json             content/pattern-system/collections/iconic-destinations/pixel-sources             content/pattern-system/collections/iconic-destinations/approved-pixel-designs             content/pattern-system/collections/iconic-destinations/source-designs             content/pattern-system/products/D*-CS             content/pattern-system/patterns/D*-CS
+          git commit -m "Load 60 Iconic Destinations mosaic sources [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Start sequential publication
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/actions/workflows/iconic-destinations-auto-publish.yml/dispatches" -f ref=main
+          echo "Started Iconic Destinations publication queue."
