@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
     paths:
+      - 'content/pattern-system/iconic_destinations/mosaic-upload/**'
       - 'content/pattern-system/collections/iconic-destinations/assets/iconic-mosaic-grid-source.png'
       - '.github/scripts/import_iconic_mosaic.py'
       - '.github/workflows/rebuild-iconic-from-mosaic.yml'
@@ -48,6 +49,25 @@ jobs:
               done
           done
           sleep 5
+
+      - name: Decode committed mosaic upload
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import base64
+          from pathlib import Path
+          pack=Path('content/pattern-system/iconic_destinations/mosaic-upload')
+          parts=sorted(pack.glob('part-*.txt'))
+          if parts:
+              raw=base64.b64decode(''.join(p.read_text(encoding='ascii').strip() for p in parts), validate=True)
+              out=Path('content/pattern-system/collections/iconic-destinations/assets/iconic-mosaic-grid-source.png')
+              out.parent.mkdir(parents=True, exist_ok=True)
+              out.write_bytes(raw)
+              print(f'DECODED_MOSAIC bytes={len(raw)} source={out}')
+          else:
+              print('No upload parts; using committed source mosaic.')
+          PY
 
       - name: Split mosaic into 60 exact sources
         run: python .github/scripts/import_iconic_mosaic.py
