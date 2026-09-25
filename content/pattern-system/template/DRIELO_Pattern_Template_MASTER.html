@@ -242,6 +242,9 @@ function applyHeroFrame() {
     const pad=Math.max(0,Math.min(.25,Number(cfg.padding_ratio ?? .05)));
     const stitches=layer.querySelector('.hero-frame-stitches');
     stitches.style.inset=`${pad*100}%`;
+    const offsetX=Number(cfg.stitch_offset_x_ratio || 0);
+    const offsetY=Number(cfg.stitch_offset_y_ratio || 0);
+    stitches.style.transform=`translate(${offsetX*100}%,${offsetY*100}%)`;
     stitches.innerHTML=stitchedSvg(MATRIX,0,0,W,H,true);
   };
   if (image.complete) render(); else image.addEventListener('load', render, {once:true});
