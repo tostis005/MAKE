@@ -168,6 +168,23 @@
     "palette_mode": "strict",
     "allowed_palette_size": 25,
     "gradients": false,
-    "extra_colours": false
+    "extra_colours": false,
+    "vector": true,
+    "stitch_style": "full-thread",
+    "cross_margin_ratio": 0.02,
+    "stroke_width_ratio": 0.34,
+    "cross_fill_ratio": 0.46,
+    "highlight_opacity": 0.24,
+    "shadow_opacity": 0.28,
+    "grid_opacity": 0.16,
+    "thread_ridge_opacity": 0.22,
+    "linecap": "round",
+    "fabric": {
+      "color": "#EFE6D7",
+      "light": "#FFF8EC",
+      "mid": "#DED2BF",
+      "shadow": "#C7B9A4",
+      "hole": "#9E907C"
+    }
   }
 }
