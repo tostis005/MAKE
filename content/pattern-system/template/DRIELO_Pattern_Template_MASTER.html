@@ -397,6 +397,45 @@ function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, transparent=false) {
 }
 
 
+function applyHeroFrame() {
+  const cfg = assets.frame || {};
+  if (!cfg.enabled) return;
+  const hero = document.querySelector('.hero-photo');
+  const image = document.getElementById('cover-image');
+  if (!hero || !image) return;
+  const render = () => {
+    const source = cfg.source_px || {};
+    const sw = Number(source.width || image.naturalWidth || 0);
+    const sh = Number(source.height || image.naturalHeight || 0);
+    const a = cfg.area_px || {};
+    if (!(sw>0 && sh>0 && Number(a.width)>0 && Number(a.height)>0)) return;
+    const cw=hero.clientWidth, ch=hero.clientHeight;
+    const scale=Math.max(cw/sw,ch/sh); // matches object-fit: cover
+    const ox=(cw-sw*scale)/2, oy=(ch-sh*scale)/2;
+    let layer=hero.querySelector('.hero-frame-layer');
+    if (!layer) {
+      layer=document.createElement('div'); layer.className='hero-frame-layer';
+      layer.innerHTML='<div class="hero-frame-fabric"></div><div class="hero-frame-stitches"></div>';
+      hero.appendChild(layer);
+    }
+    layer.style.left=`${ox+Number(a.x)*scale}px`;
+    layer.style.top=`${oy+Number(a.y)*scale}px`;
+    layer.style.width=`${Number(a.width)*scale}px`;
+    layer.style.height=`${Number(a.height)*scale}px`;
+    const fabric=cfg.fabric || {};
+    const fabricEl=layer.querySelector('.hero-frame-fabric');
+    fabricEl.style.backgroundColor=fabric.color || '#f7f3ea';
+    if (fabric.texture_css) fabricEl.style.backgroundImage=fabric.texture_css;
+    const pad=Math.max(0,Math.min(.25,Number(cfg.padding_ratio ?? .05)));
+    const stitches=layer.querySelector('.hero-frame-stitches');
+    stitches.style.inset=`${pad*100}%`;
+    stitches.innerHTML=stitchedSvg(MATRIX,0,0,W,H,true);
+  };
+  if (image.complete) render(); else image.addEventListener('load', render, {once:true});
+  window.addEventListener('resize',render);
+}
+
+
 function colourOverviewSvg() {
   let out=[`<svg xmlns="http://www.w3.org/2000/svg" viewBox="-5 -5 ${W+10} ${H+10}" preserveAspectRatio="xMidYMid meet"><rect x="0" y="0" width="${W}" height="${H}" fill="#fff"/>`];
   for(let y=0;y<H;y++) for(let x=0;x<W;x++) {
