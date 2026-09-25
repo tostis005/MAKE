@@ -33,12 +33,11 @@ function make_theme_setup(): void {
 }
 add_action( 'after_setup_theme', 'make_theme_setup' );
 
-// Product previews deliberately use bounded derivatives and never expose the
-// original full-resolution asset. Store cards get a controlled two-candidate
-// srcset so a normal desktop card can load ~320px while retina/tablet/mobile
-// layouts can still select the 560px derivative.
+// Storefront product photography should preserve the exact source composition.
+// Use the uploaded product image itself so WordPress does not substitute a
+// smaller/cropped derivative before CSS lays the image out.
 add_filter( 'single_product_archive_thumbnail_size', static function (): string {
-    return 'make-store-card-context';
+    return 'full';
 }, 20 );
 
 function make_static_attachment_image_html( int $attachment_id, string $size = 'medium_large', string $class = '' ): string {
@@ -48,36 +47,13 @@ function make_static_attachment_image_html( int $attachment_id, string $size = '
     if ( ! is_array( $image ) || empty( $image[0] ) ) { return ''; }
 
     $alt = trim( (string) get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ) );
-    $responsive = '';
-
-    if ( 'make-store-card-context' === $size ) {
-        $small = wp_get_attachment_image_src( $attachment_id, 'make-store-card-small-context' );
-
-        if (
-            is_array( $small ) &&
-            ! empty( $small[0] ) &&
-            (int) $small[1] > 0 &&
-            (int) $small[1] < (int) $image[1] &&
-            $small[0] !== $image[0]
-        ) {
-            $responsive = sprintf(
-                ' srcset="%1$s %2$dw, %3$s %4$dw" sizes="(max-width: 560px) calc(100vw - 28px), (max-width: 1080px) calc((100vw - 43px) / 2), 290px"',
-                esc_url( $small[0] ),
-                (int) $small[1],
-                esc_url( $image[0] ),
-                (int) $image[1]
-            );
-        }
-    }
-
     return sprintf(
-        '<img src="%1$s" width="%2$d" height="%3$d" class="%4$s" alt="%5$s" loading="lazy" decoding="async"%6$s>',
+        '<img src="%1$s" width="%2$d" height="%3$d" class="%4$s" alt="%5$s" loading="lazy" decoding="async">',
         esc_url( $image[0] ),
         (int) $image[1],
         (int) $image[2],
         esc_attr( $class ),
-        esc_attr( $alt ),
-        $responsive
+        esc_attr( $alt )
     );
 }
 function make_loop_product_thumbnail(): void {
@@ -86,7 +62,7 @@ function make_loop_product_thumbnail(): void {
 
     $image_id = $product->get_image_id();
     if ( $image_id ) {
-        echo wp_kses_post( make_static_attachment_image_html( $image_id, 'make-store-card-context', 'attachment-make-store-card-context size-make-store-card-context' ) );
+        echo wp_kses_post( make_static_attachment_image_html( $image_id, 'full', 'attachment-full size-full drielo-store-product-image' ) );
         return;
     }
 
@@ -98,7 +74,7 @@ add_action( 'woocommerce_before_shop_loop_item_title', 'make_loop_product_thumbn
 function make_protected_single_product_image_html( string $html, int $attachment_id ): string {
     if ( $attachment_id <= 0 ) { return $html; }
 
-    $image = wp_get_attachment_image_src( $attachment_id, 'medium_large' );
+    $image = wp_get_attachment_image_src( $attachment_id, 'full' );
     if ( ! is_array( $image ) || empty( $image[0] ) ) { return $html; }
 
     $thumb = wp_get_attachment_image_src( $attachment_id, 'thumbnail' );
@@ -107,7 +83,7 @@ function make_protected_single_product_image_html( string $html, int $attachment
 
     global $product;
     $classes = 'woocommerce-product-gallery__image';
-    $img_class = 'attachment-medium_large size-medium_large';
+    $img_class = 'attachment-full size-full drielo-single-product-image';
     if ( $product instanceof WC_Product && (int) $product->get_image_id() === $attachment_id ) {
         $img_class .= ' wp-post-image';
     }
