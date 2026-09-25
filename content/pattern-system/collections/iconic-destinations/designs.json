@@ -301,11 +301,11 @@
       "variants": [
         "D0013-CS"
       ],
-      "artwork_status": "exact-100x120-source-ready",
+      "artwork_status": "production-ready-exact-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0013-mont-saint-michel.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0013-mont-saint-michel.png",
       "palette_mode": "per-design",
-      "palette_status": "awaiting-dmc-map",
+      "palette_status": "mapped-to-per-design-dmc",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -313,7 +313,7 @@
       },
       "target_chart_pages": 4,
       "source_colour_count": 50,
-      "dmc_colour_count": null
+      "dmc_colour_count": 38
     },
     {
       "order": 14,
