@@ -246,6 +246,14 @@ function applyHeroFrame() {
     const offsetY=Number(cfg.stitch_offset_y_ratio || 0);
     stitches.style.transform=`translate(${offsetX*100}%,${offsetY*100}%)`;
     stitches.innerHTML=stitchedSvg(MATRIX,0,0,W,H,true);
+    const stitchFit=String(cfg.stitch_fit || 'contain').toLowerCase();
+    const stitchSvg=stitches.querySelector('svg');
+    if (stitchSvg) {
+      stitchSvg.style.width='100%';
+      stitchSvg.style.height='100%';
+      if (stitchFit === 'cover') stitchSvg.setAttribute('preserveAspectRatio','xMidYMid slice');
+      else stitchSvg.setAttribute('preserveAspectRatio','xMidYMid meet');
+    }
   };
   if (image.complete) render(); else image.addEventListener('load', render, {once:true});
   window.addEventListener('resize',render);
