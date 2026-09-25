@@ -1,0 +1,239 @@
+name: Iconic Destinations pixel test
+
+on:
+  push:
+    branches:
+      - collection/iconic-destinations-pixel-test
+    paths:
+      - 'content/pattern-system/pixel_importer/**'
+      - 'content/pattern-system/iconic_destinations/publish_pixel_test.py'
+      - 'content/pattern-system/renderer/render.py'
+      - 'content/pattern-system/template/DRIELO_Pattern_Template_MASTER.html'
+      - 'content/pattern-system/collections/iconic-destinations/assets/iconic-room.jpg.b64'
+      - '.github/workflows/iconic-destinations-pixel-test.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-iconic-destinations-pixel-test
+  cancel-in-progress: true
+
+jobs:
+  publish-first-test:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout test branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Decode collection mockup
+        shell: bash
+        run: |
+          set -euo pipefail
+          B64='content/pattern-system/collections/iconic-destinations/assets/iconic-room.jpg.b64'
+          OUT='content/pattern-system/collections/iconic-destinations/assets/iconic-room.jpg'
+          base64 -d "$B64" > "$OUT"
+          test -s "$OUT"
+
+      - name: Install renderer dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --quiet Pillow playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Test pixel importer
+        run: python3 content/pattern-system/pixel_importer/test_pixel_importer.py
+
+      - name: Build exact first destination
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/iconic_destinations/publish_pixel_test.py
+
+      - name: Validate exact PDF bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+          root=Path('.')
+          system=root/'content'/'pattern-system'
+          source=Image.open(system/'collections'/'iconic-destinations'/'approved-pixel-designs'/'D0001-paris-eiffel-tower.png').convert('RGB')
+          if source.size != (100,120):
+              raise SystemExit(f'wrong exact source size {source.size}')
+          pattern=json.loads((system/'patterns'/'D0001-CS'/'pattern.json').read_text(encoding='utf-8'))
+          if pattern.get('source_mode')!='pixel-exact':
+              raise SystemExit('D0001 is not pixel-exact')
+          if (pattern['stitch_width'],pattern['stitch_height']) != (100,120):
+              raise SystemExit('wrong pattern dimensions')
+          if pattern['total_stitches'] != 12000:
+              raise SystemExit('wrong stitch count')
+          if len(pattern['matrix']) != 120 or any(len(r)!=100 for r in pattern['matrix']):
+              raise SystemExit('malformed matrix')
+          colours={t['symbol']:tuple(int(t['color'][i:i+2],16) for i in (1,3,5)) for t in pattern['threads']}
+          rebuilt=[colours[v] for row in pattern['matrix'] for v in row]
+          if rebuilt != list(source.getdata()):
+              raise SystemExit('pixel round-trip mismatch')
+          cat=json.loads((root/'content'/'products'/'catalog.json').read_text(encoding='utf-8'))
+          iconic=[p for p in cat['products'] if p.get('collection')=='iconic-destinations']
+          if [p.get('code') for p in iconic] != ['D0001-CS']:
+              raise SystemExit(f'catalog should contain only D0001-CS for Iconic Destinations, got {[p.get("code") for p in iconic]}')
+          pdf=root/'content'/'products'/'files'/'Drielo_D0001-CS.pdf'
+          image=root/'content'/'products'/'assets'/'D0001-CS-product.webp'
+          if not pdf.is_file() or pdf.stat().st_size<10000 or pdf.read_bytes()[:4]!=b'%PDF':
+              raise SystemExit('invalid PDF')
+          if not image.is_file() or image.stat().st_size<10000:
+              raise SystemExit('invalid featured image')
+          print('D0001-CS EXACT_1_TO_1 colours=',len(pattern['threads']),'pdf=',pdf.stat().st_size,'image=',image.stat().st_size)
+          PY
+
+      - name: Build one-product WooCommerce package
+        shell: bash
+        run: |
+          set -euo pipefail
+          STAGE='/tmp/drielo-iconic-pixel-test'
+          rm -rf "$STAGE"
+          mkdir -p "$STAGE/content/products/assets" "$STAGE/content/products/files" "$STAGE/content/tools"
+          python3 - "$STAGE" <<'PY'
+          import json,sys
+          from pathlib import Path
+          stage=Path(sys.argv[1])
+          src=json.loads(Path('content/products/catalog.json').read_text(encoding='utf-8'))
+          row=next(p for p in src['products'] if p.get('code')=='D0001-CS')
+          collection=next(c for c in src['collections'] if c.get('slug')=='iconic-destinations')
+          out=dict(src)
+          out['products']=[row]
+          out['collections']=[collection]
+          out['retired_products']=[f'DRIELO-D{i:04d}-CS' for i in range(1,11)]
+          out['retired_collections']=[]
+          (stage/'content/products/catalog.json').write_text(
+              json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8'
+          )
+          PY
+          cp content/products/assets/D0001-CS-product.webp "$STAGE/content/products/assets/"
+          cp content/products/files/Drielo_D0001-CS.pdf "$STAGE/content/products/files/"
+          cp content/tools/import-products.php "$STAGE/content/tools/"
+          tar -czf /tmp/drielo-iconic-pixel-test.tgz -C "$STAGE" content
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_products_key
+          chmod 600 ~/.ssh/drielo_products_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Upload test product package
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          scp -i ~/.ssh/drielo_products_key /tmp/drielo-iconic-pixel-test.tgz \
+            "$VPS_USER@$VPS_HOST:/tmp/drielo-iconic-pixel-test-${GITHUB_RUN_ID}.tgz"
+
+      - name: Replace Iconic Destinations live products with D0001
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_products_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-iconic-pixel-test-${GITHUB_RUN_ID}.tgz"
+          STAGE="/tmp/drielo-iconic-pixel-test-${GITHUB_RUN_ID}"
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE"; }
+          trap cleanup EXIT
+
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $term=get_term_by("slug","iconic-destinations","product_collection");
+            if(!$term){fwrite(STDERR,"Missing Iconic Destinations term\n");exit(2);}
+            $ids=get_posts(array(
+              "post_type"=>"product",
+              "post_status"=>"publish",
+              "posts_per_page"=>-1,
+              "fields"=>"ids",
+              "tax_query"=>array(array(
+                "taxonomy"=>"product_collection",
+                "field"=>"term_id",
+                "terms"=>array((int)$term->term_id)
+              ))
+            ));
+            $rows=array();
+            foreach($ids as $id){
+              $p=wc_get_product($id);
+              if(!$p) continue;
+              $rows[]=array(
+                "id"=>$id,
+                "sku"=>$p->get_sku(),
+                "image"=>$p->get_image_id(),
+                "downloads"=>count($p->get_downloads()),
+                "url"=>get_permalink($id)
+              );
+            }
+            echo "ICONIC_LIVE=".json_encode($rows).PHP_EOL;
+            if(count($rows)!==1){fwrite(STDERR,"Expected exactly one published Iconic Destinations product\n");exit(3);}
+            if($rows[0]["sku"]!=="DRIELO-D0001-CS" || !$rows[0]["image"] || $rows[0]["downloads"]<1){
+              fwrite(STDERR,"D0001 live product is incomplete\n");exit(4);
+            }
+          '
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
+          REMOTE
+
+      - name: Persist test branch assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm content/pattern-system/collections/iconic-destinations/assets/iconic-room.jpg.b64
+          git add \
+            content/pattern-system/collections/iconic-destinations/assets/iconic-room.jpg \
+            content/pattern-system/collections/iconic-destinations/collection.json \
+            content/pattern-system/patterns/D0001-CS/pattern.json \
+            content/pattern-system/products/D0001-CS/product.json \
+            content/products/catalog.json \
+            content/products/assets/D0001-CS-product.webp
+          git commit -m 'Publish first Iconic Destinations pixel test [skip ci]'
+          git push origin HEAD:collection/iconic-destinations-pixel-test
+
+      - name: Archive test PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: iconic-destinations-D0001-pixel-test
+          path: content/products/files/Drielo_D0001-CS.pdf
+          if-no-files-found: error
+          retention-days: 30
