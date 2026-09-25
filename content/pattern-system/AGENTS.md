@@ -28,15 +28,22 @@ The frame geometry is stored in source-image pixels (`source_px`, `area_px`). It
 
 ## Stitch preview geometry
 
+The protected cross-stitch renderer is **aida-relief-v4**. Both the master/PDF renderer and the pixel-by-pixel finished-design preview must use this same model.
+
 Use proportional rules, never a fixed millimetre stitch size:
 - Render full cross stitch as a dense coloured stitch cell with layered diagonal thread relief, not as a flat X floating on a white square.
 - Use rounded thread strokes, subtle highlight/shadow layers and soft lower/right occlusion so the stitch reads as raised floss.
-- The visible grid must behave like real Aida/fabric: vertical gaps are pale, desaturated and slightly fabric-reflective; horizontal gaps are darker recessed shadows.
+- Empty cells must render as real Aida-style fabric, aligned one-for-one with the stitch grid: one fabric square equals exactly one pattern cell.
+- Aida holes sit exactly on integer stitch-grid corners. Between them, use multiple vertical and horizontal micro-thread bundles with alternating light/dark shading so the cloth reads as woven and slightly raised rather than as a flat white fill.
+- The Aida base is warm neutral, not pure white. Hole centres are recessed/darker and their rims are slightly lighter to create depth.
+- Stitched regions cast a subtle deterministic lower/right shadow onto the fabric while the thread itself keeps the layered diagonal relief/highlight model.
+- The visible grid inside stitched regions must behave like real Aida/fabric: vertical gaps are pale, desaturated and slightly fabric-reflective; horizontal gaps are darker recessed shadows.
 - Never paint the vertical grid as a pure white line or as the unchanged thread colour.
 - The grid must be organically irregular: vary seam position, width, curvature, interruption and occlusion per cell.
 - All irregularity must be deterministic from product code + stitch coordinates so the same design always renders identically.
 - Horizontal shadow visually dominates at grid intersections; vertical fabric glimpses should be pinched/broken by the stitch geometry.
 - Preserve the canonical vector stitch model in customer-facing PDF/product rendering; do not rasterize the stitch layer.
+- Build pipelines must fail if the cross-stitch template does not expose renderer version `aida-relief-v4`.
 - The geometry scales with the pattern grid and available frame dimensions.
 - Preserve aspect ratio and center the pattern within the usable frame area.
 

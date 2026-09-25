@@ -67,6 +67,7 @@ def export_outputs(html_path, pdf_path, product_image_path):
   page=browser.new_page(viewport={'width':1400,'height':2000},device_scale_factor=2)
   page.goto(html_path.resolve().as_uri(),wait_until='load',timeout=120000)
   page.wait_for_function("document.documentElement.getAttribute('data-drielo-ready') === '1'",timeout=120000)
+  page.wait_for_function("document.documentElement.getAttribute('data-drielo-stitch-renderer') === 'aida-relief-v4'",timeout=120000)
   selector='[data-product-image]'
   if page.locator(selector).count()!=1: raise RuntimeError('Template must expose exactly one [data-product-image] element')
   page.eval_on_selector(selector,"el=>{el.style.border='0';el.style.boxShadow='none';}")
