@@ -6,26 +6,25 @@
     {
       "order": 1,
       "base_design_id": "D0001",
-      "title_en": "Paris Eiffel Tower",
-      "title_es": "París — Torre Eiffel",
-      "slug": "paris-eiffel-tower",
-      "reference_board": "europe-icons",
+      "title_en": "Mount Rushmore",
+      "title_es": "Monte Rushmore",
+      "slug": "mount-rushmore",
+      "reference_board": "north-america-icons",
       "variants": [
         "D0001-CS"
       ],
-      "artwork_status": "production-ready-exact-100x120",
-      "source_asset": "collections/iconic-destinations/source-designs/D0001-paris-eiffel-tower.png",
-      "planned_source_asset": "collections/iconic-destinations/source-designs/D0001-paris-eiffel-tower.png",
+      "artwork_status": "uploaded-exact-100x120",
+      "source_asset": "collections/iconic-destinations/source-designs/D0001-mount-rushmore.png",
+      "planned_source_asset": "collections/iconic-destinations/source-designs/D0001-mount-rushmore.png",
       "palette_mode": "per-design",
-      "palette_status": "mapped-to-per-design-dmc",
+      "palette_status": "pending-per-design-dmc",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
       "target_chart_pages": 4,
-      "source_colour_count": 48,
-      "dmc_colour_count": 37
+      "source_colour_count": 50
     },
     {
       "order": 2,

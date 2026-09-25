@@ -1,0 +1,199 @@
+name: Preview Iconic D0001 WooCommerce V2
+
+on:
+  push:
+    branches:
+      - feature/iconic-d0001-woocommerce-preview-v2
+    paths:
+      - 'content/pattern-system/collections/iconic-destinations/pixel-sources/D0001.pixz'
+      - 'content/pattern-system/collections/iconic-destinations/collection.json'
+      - 'content/pattern-system/collections/iconic-destinations/assets/cover-cross-stitch-v2.jpg'
+      - '.github/workflows/preview-iconic-d0001-woocommerce-v2.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: preview-iconic-d0001-woocommerce-v2
+  cancel-in-progress: true
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Checkout preview branch
+        uses: actions/checkout@v4
+        with:
+          ref: feature/iconic-d0001-woocommerce-preview-v2
+          fetch-depth: 1
+
+      - name: Verify exact background asset
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(sha256sum content/pattern-system/collections/iconic-destinations/assets/cover-cross-stitch-v2.jpg | awk '{print $1}')" = "9a2731b4f44e059839d8f999edc4d4fdec24bb7ab169b7919937424256e0c453"
+
+      - name: Install renderer dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow playwright
+          python3 -m playwright install --with-deps chromium
+
+      - name: Build exact first 100x120 tile
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import importlib.util, json
+          from pathlib import Path
+          p=Path('content/pattern-system/iconic_destinations/publish_design.py')
+          spec=importlib.util.spec_from_file_location('drielo_iconic_publish',p)
+          mod=importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
+          design,doc=mod.design_record('D0001')
+          built=mod.build_exact_pattern('D0001',design)
+          mod.update_pattern_and_product('D0001',design,built)
+          mod.update_catalog('D0001',design,built)
+          mod.update_design_manifest('D0001',doc,built)
+
+          catalog_path=Path('content/products/catalog.json')
+          catalog=json.loads(catalog_path.read_text(encoding='utf-8'))
+          row=next(x for x in catalog['products'] if x.get('code')=='D0001-CS')
+          row['gallery']=[]
+          row.pop('gallery_preview_pages',None)
+          row['gallery_revision']=int(__import__('os').environ.get('GITHUB_RUN_ID','0') or 0)
+          catalog_path.write_text(json.dumps(catalog,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print('SOURCE',built['source_colour_count'],'DMC',built['dmc_colour_count'])
+          PY
+
+      - name: Render product image and PDF with collection background
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/renderer/render.py --product D0001-CS
+          cp content/pattern-system/output/D0001-CS/D0001-CS-product.webp content/products/assets/D0001-CS-product.webp
+          cp content/pattern-system/output/D0001-CS/Drielo_D0001-CS.pdf content/products/files/Drielo_D0001-CS.pdf
+
+      - name: Validate generated product
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+          pat=json.loads(Path('content/pattern-system/patterns/D0001-CS/pattern.json').read_text(encoding='utf-8'))
+          prod=json.loads(Path('content/pattern-system/products/D0001-CS/product.json').read_text(encoding='utf-8'))
+          designs=json.loads(Path('content/pattern-system/collections/iconic-destinations/designs.json').read_text(encoding='utf-8'))['designs']
+          d=next(x for x in designs if x['base_design_id']=='D0001')
+          assert d['slug']=='mount-rushmore'
+          assert d['source_colour_count']==50
+          assert (pat['stitch_width'],pat['stitch_height'])==(100,120)
+          assert len(pat['matrix'])==120 and all(len(r)==100 for r in pat['matrix'])
+          assert pat['total_stitches']==12000
+          assert 1 <= len(pat['threads']) <= 48
+          assert prod['collection']=='iconic-destinations' and prod['render_ready'] is True
+          src=Path('content/pattern-system/collections/iconic-destinations/source-designs/D0001-mount-rushmore.png')
+          assert src.is_file() and Image.open(src).size==(100,120)
+          pdf=Path('content/products/files/Drielo_D0001-CS.pdf')
+          hero=Path('content/products/assets/D0001-CS-product.webp')
+          assert pdf.is_file() and pdf.stat().st_size>10000 and pdf.read_bytes()[:4]==b'%PDF'
+          assert hero.is_file() and hero.stat().st_size>10000
+          print('VALID',len(pat['threads']),'DMC',hero.stat().st_size,pdf.stat().st_size)
+          PY
+
+      - name: Commit generated preview files to branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add             content/pattern-system/collections/iconic-destinations/designs.json             content/pattern-system/collections/iconic-destinations/approved-pixel-designs/D0001-mount-rushmore.png             content/pattern-system/collections/iconic-destinations/source-designs/D0001-mount-rushmore.png             content/pattern-system/patterns/D0001-CS/pattern.json             content/pattern-system/products/D0001-CS/product.json             content/products/catalog.json             content/products/assets/D0001-CS-product.webp             content/products/files/Drielo_D0001-CS.pdf
+          if git diff --cached --quiet; then
+            echo "No generated changes to commit."
+          else
+            git commit -m "Build D0001 Mount Rushmore WooCommerce preview [skip ci]"
+            git push origin HEAD:feature/iconic-d0001-woocommerce-preview-v2
+          fi
+
+      - name: Build one-product WooCommerce package
+        shell: bash
+        run: |
+          set -euo pipefail
+          CODE="D0001-CS"; STAGE="/tmp/drielo-${CODE}"
+          rm -rf "$STAGE"; mkdir -p "$STAGE/content/products/assets" "$STAGE/content/products/files" "$STAGE/content/tools"
+          python3 - "$CODE" "$STAGE" <<'PY'
+          import json,sys
+          from pathlib import Path
+          code=sys.argv[1]; stage=Path(sys.argv[2])
+          src=json.loads(Path('content/products/catalog.json').read_text(encoding='utf-8'))
+          row=next(p for p in src['products'] if p.get('code')==code)
+          collection=next(c for c in src['collections'] if c.get('slug')=='iconic-destinations')
+          cats=[c for c in src['categories'] if c.get('slug')=='cross-stitch-patterns']
+          out=dict(src); out['products']=[row]; out['collections']=[collection]; out['categories']=cats; out['retired_products']=[]; out['retired_collections']=[]
+          (stage/'content/products/catalog.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+          cp "content/products/assets/${CODE}-product.webp" "$STAGE/content/products/assets/"
+          cp "content/products/files/Drielo_${CODE}.pdf" "$STAGE/content/products/files/"
+          cp content/tools/import-products.php "$STAGE/content/tools/"
+          tar -czf "/tmp/drielo-${CODE}.tgz" -C "$STAGE" content
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_products_key
+          chmod 600 ~/.ssh/drielo_products_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Upload package
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          scp -i ~/.ssh/drielo_products_key "/tmp/drielo-D0001-CS.tgz" "$VPS_USER@$VPS_HOST:/tmp/drielo-D0001-CS-${GITHUB_RUN_ID}.tgz"
+
+      - name: Publish D0001-CS to WooCommerce
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_products_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          CODE="D0001-CS"; ARCHIVE="/tmp/drielo-${CODE}-${GITHUB_RUN_ID}.tgz"; STAGE="/tmp/drielo-${CODE}-${GITHUB_RUN_ID}"
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE"; }; trap cleanup EXIT
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); elif sudo -n docker inspect make-wp >/dev/null 2>&1; then DOCKER=(sudo -n docker); else echo "ERROR: make-wp container not found"; exit 1; fi
+          rm -rf "$STAGE" && mkdir -p "$STAGE"; tar -xzf "$ARCHIVE" -C "$STAGE"
+          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
+          "${DOCKER[@]}" exec -e CODE="$CODE" make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $code=getenv("CODE"); $sku="DRIELO-".$code; $id=wc_get_product_id_by_sku($sku); $p=$id?wc_get_product($id):false;
+            if(!$p){fwrite(STDERR,"Missing ".$sku.PHP_EOL);exit(2);}
+            $p->set_status("publish"); $p->save();
+            $cols=wp_get_object_terms($id,"product_collection",array("fields"=>"slugs"));
+            $url=get_permalink($id);
+            echo $sku." id=".$id." status=".$p->get_status()." image=".$p->get_image_id()." downloads=".count($p->get_downloads())." collection=".implode(",",is_wp_error($cols)?array():$cols)." url=".$url.PHP_EOL;
+            if($p->get_status()!=="publish"||!$p->get_image_id()||count($p->get_downloads())<1||!in_array("iconic-destinations",is_wp_error($cols)?array():$cols,true)){fwrite(STDERR,"Incomplete ".$sku.PHP_EOL);exit(3);}
+          '
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
+          REMOTE
+
+      - name: Upload preview artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: D0001-CS-mount-rushmore-preview-v2
+          path: |
+            content/products/assets/D0001-CS-product.webp
+            content/products/files/Drielo_D0001-CS.pdf
+          retention-days: 30

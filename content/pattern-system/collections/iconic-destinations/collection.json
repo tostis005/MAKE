@@ -36,11 +36,11 @@
     "detail_policy": "Prefer one strong focal landmark and readable silhouettes over micro-detail."
   },
   "mockup_spec": {
-    "asset": "assets/cover-cross-stitch.jpg",
+    "asset": "assets/cover-cross-stitch-v2.jpg",
     "technique_assets": {
-      "CS": "assets/cover-cross-stitch.jpg"
+      "CS": "assets/cover-cross-stitch-v2.jpg"
     },
-    "status": "approved-page-1-image",
+    "status": "approved-page-1-image-v2",
     "generation": {
       "purpose": "Reusable page-1 lifestyle/ambient image for the Iconic Destinations cross-stitch collection.",
       "frame_requirement": "Leave the craft display area empty so the final vector pattern can be inserted by the renderer.",
@@ -53,9 +53,9 @@
         "height": 1478
       },
       "area_px": {
-        "x": 438,
-        "y": 218,
-        "width": 689,
+        "x": 444,
+        "y": 217,
+        "width": 676,
         "height": 814
       },
       "padding_ratio": 0,
