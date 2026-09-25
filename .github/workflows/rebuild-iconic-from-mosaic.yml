@@ -1,0 +1,127 @@
+name: Rebuild 60 Iconic Destinations from mosaic
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/pattern-system/collections/iconic-destinations/assets/iconic-mosaic-grid-source.webp'
+      - 'content/pattern-system/collections/iconic-destinations/assets/iconic-mosaic-grid-source.webp'
+      - '.github/scripts/import_iconic_mosaic.py'
+      - '.github/workflows/rebuild-iconic-from-mosaic.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: drielo-iconic-mosaic-rebuild
+  cancel-in-progress: false
+
+jobs:
+  prepare-and-start:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Pillow
+        run: python -m pip install --quiet Pillow
+
+      - name: Stop previous Iconic publisher
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          for STATE in queued in_progress; do
+            gh run list               --workflow iconic-destinations-auto-publish.yml               --status "$STATE"               --limit 20               --json databaseId               --jq '.[].databaseId' | while read -r RUN; do
+                [ -z "$RUN" ] || gh run cancel "$RUN" || true
+              done
+          done
+          sleep 5
+
+      - name: Decode committed mosaic upload
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import base64
+          from pathlib import Path
+          pack=Path('content/pattern-system/iconic_destinations/mosaic-upload')
+          parts=sorted(pack.glob('part-*.txt'))
+          if parts:
+              raw=base64.b64decode(''.join(p.read_text(encoding='ascii').strip() for p in parts), validate=True)
+              out=Path('content/pattern-system/collections/iconic-destinations/assets/iconic-mosaic-grid-source.webp')
+              out.parent.mkdir(parents=True, exist_ok=True)
+              out.write_bytes(raw)
+              print(f'DECODED_MOSAIC bytes={len(raw)} source={out}')
+          else:
+              print('No upload parts; using committed source mosaic.')
+          PY
+
+      - name: Split mosaic into 60 exact sources
+        run: python .github/scripts/import_iconic_mosaic.py
+
+      - name: Validate 60 exact tiles
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import base64, json, zlib
+          from pathlib import Path
+          from PIL import Image
+
+          root = Path('content/pattern-system')
+          col = root / 'collections' / 'iconic-destinations'
+          designs = json.loads((col / 'designs.json').read_text(encoding='utf-8'))['designs']
+          queue = json.loads((root / 'iconic_destinations' / 'publish_queue.json').read_text(encoding='utf-8'))
+          assert len(designs) == 60
+          assert len(queue['items']) == 60
+          assert all(x['status'] == 'pending' for x in queue['items'])
+
+          for i, d in enumerate(designs, 1):
+              base = f'D{i:04d}'
+              assert d['base_design_id'] == base
+              image = col / d['source_asset'].split('collections/iconic-destinations/', 1)[1]
+              assert Image.open(image).size == (100, 120)
+              packed = (col / 'pixel-sources' / f'{base}.pixz').read_text().strip()
+              raw = zlib.decompress(base64.b64decode(packed))
+              n = raw[0]
+              assert 1 <= n <= 50
+              assert len(raw) == 1 + n * 3 + 12000
+
+          assert Image.open(col / 'assets' / 'iconic-mosaic-grid-1000x720.png').size == (1000, 720)
+          print('VALID_60_TILES exact=100x120')
+          PY
+
+      - name: Commit rebuilt exact sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add -A             content/pattern-system/iconic_destinations/mosaic-upload             content/pattern-system/iconic_destinations/publish_queue.json             content/pattern-system/collections/iconic-destinations/designs.json             content/pattern-system/collections/iconic-destinations/assets/iconic-mosaic-grid-1000x720.png             content/pattern-system/collections/iconic-destinations/source-designs             content/pattern-system/collections/iconic-destinations/pixel-sources
+
+          git commit -m "Rebuild 60 Iconic Destinations from exact mosaic [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Start 60-product PDF and WooCommerce flow
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api --method POST             "repos/${GITHUB_REPOSITORY}/actions/workflows/iconic-destinations-auto-publish.yml/dispatches"             -f ref=main
+          echo "Started sequential D0001-D0060 publication."

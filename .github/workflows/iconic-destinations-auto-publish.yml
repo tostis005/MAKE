@@ -14,7 +14,7 @@ permissions:
 
 concurrency:
   group: drielo-iconic-destinations-auto-publish
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   publish-next:
@@ -221,16 +221,3 @@ jobs:
           python3 content/pattern-system/iconic_destinations/queue_state.py fail "$DESIGN" --run-url "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" --error "Automatic Iconic Destinations publish run failed; see GitHub Actions logs."
           git add content/pattern-system/iconic_destinations/publish_queue.json
           git commit -m "Record Iconic Destinations ${DESIGN} publish failure [skip ci]"; git push origin HEAD:main
-
-      - name: Dispatch next destination
-        if: always()
-        env:
-          GH_TOKEN: ${{ github.token }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          if [ "$(python3 content/pattern-system/iconic_destinations/queue_state.py has-work)" = "yes" ]; then
-            gh api --method POST "repos/${GITHUB_REPOSITORY}/actions/workflows/iconic-destinations-auto-publish.yml/dispatches" -f ref=main
-          else
-            python3 content/pattern-system/iconic_destinations/queue_state.py summary
-          fi
