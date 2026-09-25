@@ -319,11 +319,11 @@
       "title_es": "El Tesoro de Petra",
       "slug": "petra-treasury",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0026.pixz",
-      "status": "pending",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36192397038",
+      "status": "failed",
+      "attempts": 2,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36192487459",
       "last_error": "Automatic Iconic Destinations publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-25T21:36:45+00:00"
+      "failed_at": "2026-09-25T21:38:01+00:00"
     },
     {
       "base_design_id": "D0027",
