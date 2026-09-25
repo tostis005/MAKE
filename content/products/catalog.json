@@ -84,7 +84,8 @@
         "c2c-crochet",
         "tapestry-crochet",
         "latch-hook"
-      ]
+      ],
+      "visible": false
     },
     {
       "id": "pop-art-25",
@@ -155,7 +156,8 @@
         "c2c-crochet",
         "tapestry-crochet",
         "latch-hook"
-      ]
+      ],
+      "visible": true
     },
     {
       "id": "iconic-destinations",
@@ -173,7 +175,8 @@
       "techniques": [
         "cross-stitch"
       ],
-      "cover_asset": "assets/D0001-CS-product.webp"
+      "cover_asset": "assets/D0001-CS-product.webp",
+      "visible": false
     }
   ],
   "categories": [
