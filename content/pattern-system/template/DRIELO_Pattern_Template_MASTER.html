@@ -304,26 +304,30 @@ function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, transparent=false) {
         const r3=(seed2 & 1023)/1023;
         const r4=((seed2>>>10)&1023)/1023;
         const r5=((seed2>>>20)&4095)/4095;
-        const jx=(r0-.5)*.024;
-        const jy=(r1-.5)*.020;
+        const jx=(r0-.5)*.060;
+        const jy=(r1-.5)*.052;
         const cx=lx+.5+jx, cy=ly+.50+jy;
+        const insetTop=.012+r2*.026;
+        const insetLeft=.012+r3*.026;
+        const insetRight=.012+r4*.026;
+        const insetBottom=.012+r5*.026;
 
         // Dense full coverage: no fabric gap between adjacent coloured stitches.
         g.base.push(`M${lx} ${ly}H${lx+1}V${ly+1}H${lx}Z`);
 
-        // Four facets form the soft "pyramid/cushion" visible in the references.
-        // Top/left catch light; bottom/right fall progressively into shadow.
+        // Very soft relief facets. Their centre and edge inset vary per stitch,
+        // so they suggest volume without drawing the same diamond/X repeatedly.
         g.top.push(
-          `M${(lx+.025).toFixed(3)} ${(ly+.025).toFixed(3)} H${(lx+.975).toFixed(3)} L${cx.toFixed(3)} ${cy.toFixed(3)} Z`
+          `M${(lx+insetLeft).toFixed(3)} ${(ly+insetTop).toFixed(3)} H${(lx+1-insetRight).toFixed(3)} L${cx.toFixed(3)} ${cy.toFixed(3)} Z`
         );
         g.left.push(
-          `M${(lx+.025).toFixed(3)} ${(ly+.025).toFixed(3)} L${cx.toFixed(3)} ${cy.toFixed(3)} L${(lx+.025).toFixed(3)} ${(ly+.975).toFixed(3)} Z`
+          `M${(lx+insetLeft).toFixed(3)} ${(ly+insetTop).toFixed(3)} L${cx.toFixed(3)} ${cy.toFixed(3)} L${(lx+insetLeft).toFixed(3)} ${(ly+1-insetBottom).toFixed(3)} Z`
         );
         g.right.push(
-          `M${(lx+.975).toFixed(3)} ${(ly+.025).toFixed(3)} L${(lx+.975).toFixed(3)} ${(ly+.975).toFixed(3)} L${cx.toFixed(3)} ${cy.toFixed(3)} Z`
+          `M${(lx+1-insetRight).toFixed(3)} ${(ly+insetTop).toFixed(3)} L${(lx+1-insetRight).toFixed(3)} ${(ly+1-insetBottom).toFixed(3)} L${cx.toFixed(3)} ${cy.toFixed(3)} Z`
         );
         g.bottom.push(
-          `M${(lx+.025).toFixed(3)} ${(ly+.975).toFixed(3)} L${cx.toFixed(3)} ${cy.toFixed(3)} L${(lx+.975).toFixed(3)} ${(ly+.975).toFixed(3)} Z`
+          `M${(lx+insetLeft).toFixed(3)} ${(ly+1-insetBottom).toFixed(3)} L${cx.toFixed(3)} ${cy.toFixed(3)} L${(lx+1-insetRight).toFixed(3)} ${(ly+1-insetBottom).toFixed(3)} Z`
         );
 
         // Organic floss passes. In real cross stitch the two diagonals do not
@@ -429,9 +433,12 @@ function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, transparent=false) {
         }
 
         // Small raised centre and occasional, very soft contact shadow.
-        g.center.push(
-          `M${cx.toFixed(3)} ${(cy-.085).toFixed(3)} L${(cx+.085).toFixed(3)} ${cy.toFixed(3)} L${cx.toFixed(3)} ${(cy+.085).toFixed(3)} L${(cx-.085).toFixed(3)} ${cy.toFixed(3)} Z`
-        );
+        if (r4>.58) {
+          const cr=.048+r5*.030;
+          g.center.push(
+            `M${cx.toFixed(3)} ${(cy-cr).toFixed(3)} L${(cx+cr).toFixed(3)} ${cy.toFixed(3)} L${cx.toFixed(3)} ${(cy+cr).toFixed(3)} L${(cx-cr).toFixed(3)} ${cy.toFixed(3)} Z`
+          );
+        }
         if (r5>.47) {
           const yy=ly+.984+(r3-.5)*.014;
           const sx=lx+.13+r0*.12, ex=lx+.87-r1*.10;
@@ -446,26 +453,26 @@ function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, transparent=false) {
     for (const [symbol,g] of grouped.entries()) {
       const color=threadColor(symbol);
       const base=shadeHex(color,-0.035);
-      const top=shadeHex(color,0.13);
-      const left=shadeHex(color,0.06);
-      const right=shadeHex(color,-0.07);
-      const bottom=shadeHex(color,-0.16);
-      const deep=shadeHex(color,-0.36);
-      const mid=shadeHex(color,-0.17);
-      const hi=shadeHex(color,0.30);
-      const hi2=shadeHex(color,0.46);
+      const top=shadeHex(color,0.075);
+      const left=shadeHex(color,0.028);
+      const right=shadeHex(color,-0.038);
+      const bottom=shadeHex(color,-0.095);
+      const deep=shadeHex(color,-0.31);
+      const mid=shadeHex(color,-0.11);
+      const hi=shadeHex(color,0.22);
+      const hi2=shadeHex(color,0.34);
 
       paths.push(`<path d="${g.base.join(" ")}" fill="${base}"/>`);
-      paths.push(`<path d="${g.top.join(" ")}" fill="${top}" opacity=".64"/>`);
-      paths.push(`<path d="${g.left.join(" ")}" fill="${left}" opacity=".44"/>`);
-      paths.push(`<path d="${g.right.join(" ")}" fill="${right}" opacity=".34"/>`);
-      paths.push(`<path d="${g.bottom.join(" ")}" fill="${bottom}" opacity=".43"/>`);
+      paths.push(`<path d="${g.top.join(" ")}" fill="${top}" opacity=".34"/>`);
+      paths.push(`<path d="${g.left.join(" ")}" fill="${left}" opacity=".21"/>`);
+      paths.push(`<path d="${g.right.join(" ")}" fill="${right}" opacity=".18"/>`);
+      paths.push(`<path d="${g.bottom.join(" ")}" fill="${bottom}" opacity=".29"/>`);
 
       // Per-stitch buckets prevent the diagonals from reading as one repeated
       // vector symbol. Width/opacity variation is deliberately modest.
-      const underW=[.155,.180,.205,.225], underO=[.16,.21,.26,.31];
-      const overW=[.165,.190,.215,.235], overO=[.24,.30,.36,.42];
-      const ridgeW=[.018,.024,.030], ridgeO=[.08,.12,.16];
+      const underW=[.220,.245,.270,.295], underO=[.075,.105,.135,.165];
+      const overW=[.245,.275,.305,.335], overO=[.13,.17,.21,.25];
+      const ridgeW=[.014,.019,.024], ridgeO=[.045,.070,.095];
       for (let i=0;i<4;i++) {
         if (g.diagDark[i].length) paths.push(`<path d="${g.diagDark[i].join(" ")}" fill="none" stroke="${mid}" stroke-width="${underW[i]}" stroke-linecap="round" stroke-linejoin="round" opacity="${underO[i]}"/>`);
         if (g.diagLight[i].length) paths.push(`<path d="${g.diagLight[i].join(" ")}" fill="none" stroke="${shadeHex(color,.045)}" stroke-width="${overW[i]}" stroke-linecap="round" stroke-linejoin="round" opacity="${overO[i]}"/>`);
@@ -487,7 +494,7 @@ function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, transparent=false) {
         if (g.bottomSeam[i].length) paths.push(`<path d="${g.bottomSeam[i].join(" ")}" fill="none" stroke="${deep}" stroke-width="${bottomW[i]}" stroke-linecap="round" opacity="${bottomO[i]}"/>`);
         if (g.contact[i].length) paths.push(`<path d="${g.contact[i].join(" ")}" fill="none" stroke="#1f1713" stroke-width="${contactW[i]}" stroke-linecap="round" opacity="${contactO[i]}"/>`);
       }
-      paths.push(`<path d="${g.center.join(" ")}" fill="${hi2}" opacity=".055"/>`);
+      if (g.center.length) paths.push(`<path d="${g.center.join(" ")}" fill="${hi2}" opacity=".032"/>`);
     }
 
     return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${vw} ${vh}" preserveAspectRatio="xMidYMid meet">${bg}${paths.join("")}</svg>`;
