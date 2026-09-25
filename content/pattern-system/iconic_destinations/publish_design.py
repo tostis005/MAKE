@@ -48,6 +48,67 @@ def write_json(path: Path, data):
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
+def collection_mockup_config():
+    """Return the collection-specific cover image and stage-aligned overlay box.
+
+    frame.area_px is stored in source-image pixels. The cover background is
+    rendered with CSS object-fit: cover inside a square stage, so source
+    coordinates must be projected through that crop before becoming CSS
+    percentages. This keeps the 100x120 pattern centered in the actual Aida
+    opening instead of inheriting the generic cross-stitch placement.
+    """
+    doc = read_json(COLLECTION_PATH)
+    spec = doc.get("mockup_spec") or {}
+    frame = spec.get("frame") or {}
+    source = frame.get("source_px") or {}
+    area = frame.get("area_px") or {}
+
+    sw = float(source.get("width") or 0)
+    sh = float(source.get("height") or 0)
+    ax = float(area.get("x") or 0)
+    ay = float(area.get("y") or 0)
+    aw = float(area.get("width") or 0)
+    ah = float(area.get("height") or 0)
+
+    overlay = None
+    if frame.get("enabled") and sw > 0 and sh > 0 and aw > 0 and ah > 0:
+        # cover-stage is square. Mirror CSS object-fit: cover mathematically.
+        if sw >= sh:
+            scaled_w = sw / sh
+            crop_left = (scaled_w - 1.0) / 2.0
+            left = (ax / sh - crop_left) * 100.0
+            top = (ay / sh) * 100.0
+            width = (aw / sh) * 100.0
+            height = (ah / sh) * 100.0
+        else:
+            scaled_h = sh / sw
+            crop_top = (scaled_h - 1.0) / 2.0
+            left = (ax / sw) * 100.0
+            top = (ay / sw - crop_top) * 100.0
+            width = (aw / sw) * 100.0
+            height = (ah / sw) * 100.0
+
+        overlay = {
+            "left": round(left, 4),
+            "top": round(top, 4),
+            "width": round(width, 4),
+            "height": round(height, 4),
+            "opacity": 0.96,
+            "safe_inset_pct": float(frame.get("padding_ratio") or 0) * 100.0,
+        }
+
+    tech_assets = spec.get("technique_assets") or {}
+    asset_rel = tech_assets.get("CS") or spec.get("asset")
+    cover_asset = (COL_DIR / asset_rel).resolve() if asset_rel else None
+    if cover_asset is not None and not cover_asset.is_file():
+        raise RuntimeError(f"Iconic Destinations cover asset not found: {cover_asset}")
+
+    return {
+        "overlay": overlay,
+        "cover_asset": cover_asset,
+    }
+
+
 def design_record(base_id: str):
     doc = read_json(DESIGNS_PATH)
     for item in doc["designs"]:
@@ -197,6 +258,7 @@ def build_exact_pattern(base_id: str, design: dict):
 def render_design(base_id: str, design: dict, built: dict):
     code = f"{base_id}-CS"
     cfg = bg.TECHS["CS"]
+    mockup = collection_mockup_config()
     data = {
         "product_code": code,
         "collection": "Iconic Destinations",
@@ -226,11 +288,14 @@ def render_design(base_id: str, design: dict, built: dict):
         "facts_title": "Pattern facts",
         "facts_subtitle": "Everything you need before you start stitching",
         "preview_label": "Finished cross-stitch preview",
-        "cover_overlay": cfg["cover_overlay"],
+        "cover_overlay": mockup["overlay"] or cfg["cover_overlay"],
         "cover_stage_scale": cfg["cover_stage_scale"],
         "colour_page_title": "Thread colours",
         "colour_page_subtitle": "Per-design DMC colour key and stitch counts",
     }
+    if mockup["cover_asset"] is not None:
+        data["cover_image_path"] = str(mockup["cover_asset"])
+
     result = bg.render_one((code, "CS", data))
 
     STORE_ASSETS.mkdir(parents=True, exist_ok=True)
