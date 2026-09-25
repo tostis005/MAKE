@@ -11,6 +11,7 @@ on:
       - 'content/pattern-system/template/DRIELO_Pattern_Template_MASTER.html'
       - 'content/pattern-system/collections/iconic-destinations/assets/iconic-room.jpg'
       - 'content/pattern-system/collections/iconic-destinations/approved-pixel-designs/D0001-paris-eiffel-tower.png'
+      - 'content/pattern-system/collections/iconic-destinations/collection.json'
       - 'content/pattern-system/iconic_destinations/PUBLISH_PIXEL_TEST'
       - '.github/workflows/iconic-destinations-pixel-test.yml'
 
