@@ -175,78 +175,227 @@ function luminance(hex) {
 }
 function symbolInk(hex) { return luminance(hex) < .38 ? "#ffffff" : "#2e1d27"; }
 
-function stitchRules() {
-  const r = data.preview_rules || {};
+
+function stitchSeed() {
+  let h = 2166136261 >>> 0;
+  const s = String(CODE || "DRIELO");
+  for (let i=0; i<s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619) >>> 0;
+  }
+  return h >>> 0;
+}
+const STITCH_SEED = stitchSeed();
+
+function stitchHash(x,y,salt=0) {
+  let h = (
+    STITCH_SEED ^
+    Math.imul((x+1)|0, 374761393) ^
+    Math.imul((y+1)|0, 668265263) ^
+    Math.imul((salt+1)|0, 1442695041)
+  ) >>> 0;
+  h ^= h >>> 13;
+  h = Math.imul(h, 1274126177) >>> 0;
+  h ^= h >>> 16;
+  return (h >>> 0) / 4294967295;
+}
+
+function parseHexColour(hex) {
+  let h=String(hex || "#ffffff").replace("#","");
+  if (h.length===3) h=h.split("").map(c=>c+c).join("");
+  if (!/^[0-9a-fA-F]{6}$/.test(h)) h="ffffff";
+  return [0,2,4].map(i=>parseInt(h.slice(i,i+2),16));
+}
+function rgbHexColour(rgb) {
+  return "#" + rgb.map(v=>Math.max(0,Math.min(255,Math.round(v))).toString(16).padStart(2,"0")).join("").toUpperCase();
+}
+function mixColour(a,b,t) {
+  const aa=parseHexColour(a), bb=parseHexColour(b), k=Math.max(0,Math.min(1,Number(t)||0));
+  return rgbHexColour(aa.map((v,i)=>v+(bb[i]-v)*k));
+}
+function desaturateColour(hex,amount) {
+  const c=parseHexColour(hex), k=Math.max(0,Math.min(1,Number(amount)||0));
+  const g=.2126*c[0]+.7152*c[1]+.0722*c[2];
+  return rgbHexColour(c.map(v=>v+(g-v)*k));
+}
+function darkenColour(hex,amount) {
+  const c=parseHexColour(hex), k=1-Math.max(0,Math.min(1,Number(amount)||0));
+  return rgbHexColour(c.map(v=>v*k));
+}
+function lightenColour(hex,amount) {
+  return mixColour(hex,"#FFFFFF",Math.max(0,Math.min(1,Number(amount)||0)));
+}
+function colourLum255(hex) {
+  const c=parseHexColour(hex);
+  return .2126*c[0]+.7152*c[1]+.0722*c[2];
+}
+function pushGrouped(map,key,cmd) {
+  if (!map.has(key)) map.set(key,[]);
+  map.get(key).push(cmd);
+}
+function realisticStitchRules() {
+  const root=data.preview_rules || {};
+  const r=root.realistic_stitch || {};
+  const n=(v,d)=>Number.isFinite(Number(v))?Number(v):d;
   return {
-    margin: Number.isFinite(Number(r.cross_margin_ratio)) ? Number(r.cross_margin_ratio) : 0.02,
-    stroke: Number.isFinite(Number(r.stroke_width_ratio)) ? Number(r.stroke_width_ratio) : 0.34,
-    linecap: r.linecap || "round",
-    fabric: r.fabric || { color: "#fbfaf6", dot: "#ddd8cf", dot_radius: 0.05 }
+    fabric: root.fabric || {color:"#FBFAF6",dot:"#DDD8CF",dot_radius:.05},
+    cross_margin:n(r.cross_margin,0.065),
+    shadow_stroke:n(r.shadow_stroke,0.38),
+    lower_stroke:n(r.lower_stroke,0.305),
+    upper_stroke:n(r.upper_stroke,0.315),
+    highlight_stroke:n(r.highlight_stroke,0.060),
+    vertical_aida:r.vertical_aida || "#D1D1C9",
+    horizontal_neutral:r.horizontal_neutral || "#3F3F3B",
+    vertical_widths:Array.isArray(r.vertical_widths)?r.vertical_widths:[0.032,0.041,0.050],
+    horizontal_widths:Array.isArray(r.horizontal_widths)?r.horizontal_widths:[0.050,0.061,0.072]
   };
+}
+function verticalSeamColour(base, neighbour, aida) {
+  const reflected=mixColour(base,neighbour || base,.45);
+  const muted=desaturateColour(reflected,.76);
+  let out=mixColour(muted,aida,.43);
+  const target=Math.min(216,colourLum255(reflected)+12);
+  const current=colourLum255(out);
+  if (current<target) out=lightenColour(out,Math.min(.14,(target-current)/140));
+  return out;
+}
+function horizontalSeamColour(base, neighbour, neutral) {
+  const reflected=mixColour(base,neighbour || base,.42);
+  let out=desaturateColour(reflected,.19);
+  out=darkenColour(out,.40);
+  out=mixColour(out,neutral,.07);
+  return out;
 }
 
 function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, transparent=false) {
-  const vw = x1-x0, vh = y1-y0;
-  const rules = stitchRules();
-  const margin = Math.max(0, Math.min(0.2, rules.margin));
-  const end = 1-margin;
-  const grouped = new Map();
+  const vw=x1-x0, vh=y1-y0;
+  const rules=realisticStitchRules();
+  const baseGroups=new Map();
+  const shadowGroups=new Map();
+  const lowerGroups=new Map();
+  const upperGroups=new Map();
+  const highlightGroups=new Map();
+  const verticalGroups=new Map();
+  const horizontalGroups=new Map();
+
   for (let y=y0; y<y1; y++) {
     for (let x=x0; x<x1; x++) {
-      const symbol = matrix[y]?.[x];
+      const symbol=matrix[y]?.[x];
       if (!symbol) continue;
+      const base=threadColor(symbol);
       const lx=x-x0, ly=y-y0;
-      const cmd = `M${(lx+margin).toFixed(3)} ${(ly+margin).toFixed(3)}L${(lx+end).toFixed(3)} ${(ly+end).toFixed(3)} M${(lx+end).toFixed(3)} ${(ly+margin).toFixed(3)}L${(lx+margin).toFixed(3)} ${(ly+end).toFixed(3)}`;
-      if (!grouped.has(symbol)) grouped.set(symbol, []);
-      grouped.get(symbol).push(cmd);
+
+      pushGrouped(baseGroups,symbol,"M"+lx+" "+ly+"h1v1h-1Z");
+
+      const h0=stitchHash(x,y,0), h1=stitchHash(x,y,1), h2=stitchHash(x,y,2), h3=stitchHash(x,y,3);
+      const m=Math.max(.038,Math.min(.095,rules.cross_margin+(h0-.5)*.028));
+      const e=1-m;
+      const ja=(h1-.5)*.032, jb=(h2-.5)*.032, jc=(h3-.5)*.026;
+
+      const a1x=lx+m, a1y=ly+m+ja, a2x=lx+e, a2y=ly+e+jb;
+      const b1x=lx+e, b1y=ly+m+jc, b2x=lx+m, b2y=ly+e-ja;
+      const shadowOff=.015+(h2*.012);
+
+      pushGrouped(shadowGroups,symbol,
+        "M"+a1x.toFixed(3)+" "+(a1y+shadowOff).toFixed(3)+"L"+a2x.toFixed(3)+" "+(a2y+shadowOff).toFixed(3)+
+        " M"+b1x.toFixed(3)+" "+(b1y+shadowOff).toFixed(3)+"L"+b2x.toFixed(3)+" "+(b2y+shadowOff).toFixed(3)
+      );
+      pushGrouped(lowerGroups,symbol,
+        "M"+a1x.toFixed(3)+" "+a1y.toFixed(3)+"L"+a2x.toFixed(3)+" "+a2y.toFixed(3)
+      );
+      pushGrouped(upperGroups,symbol,
+        "M"+b1x.toFixed(3)+" "+b1y.toFixed(3)+"L"+b2x.toFixed(3)+" "+b2y.toFixed(3)
+      );
+      pushGrouped(highlightGroups,symbol,
+        "M"+b1x.toFixed(3)+" "+b1y.toFixed(3)+"L"+b2x.toFixed(3)+" "+b2y.toFixed(3)
+      );
+
+      const leftSymbol=matrix[y]?.[x-1] || symbol;
+      const aboveSymbol=matrix[y-1]?.[x] || symbol;
+      const vBucket=Math.min(2,Math.floor(stitchHash(x,y,4)*3));
+      const hBucket=Math.min(2,Math.floor(stitchHash(x,y,5)*3));
+      const vColour=verticalSeamColour(base,threadColor(leftSymbol),rules.vertical_aida);
+      const hColour=horizontalSeamColour(base,threadColor(aboveSymbol),rules.horizontal_neutral);
+
+      const vx=lx+(stitchHash(x,y,6)-.5)*.026;
+      const bend1=(stitchHash(x,y,7)-.5)*.036;
+      const bend2=(stitchHash(x,y,8)-.5)*.036;
+      const yStart=ly+.115+stitchHash(x,y,9)*.035;
+      const yMid1=ly+.405+(stitchHash(x,y,10)-.5)*.045;
+      const yMid2=ly+.585+(stitchHash(x,y,11)-.5)*.045;
+      const yEnd=ly+.885-stitchHash(x,y,12)*.035;
+      const vCmd=
+        "M"+vx.toFixed(3)+" "+yStart.toFixed(3)+
+        "C"+(vx+bend1).toFixed(3)+" "+(yStart+.10).toFixed(3)+
+        " "+(vx+bend2).toFixed(3)+" "+(yMid1-.08).toFixed(3)+
+        " "+(vx+(bend1*.35)).toFixed(3)+" "+yMid1.toFixed(3)+
+        " M"+(vx-(bend2*.30)).toFixed(3)+" "+yMid2.toFixed(3)+
+        "C"+(vx-bend1).toFixed(3)+" "+(yMid2+.08).toFixed(3)+
+        " "+(vx+bend2*.45).toFixed(3)+" "+(yEnd-.10).toFixed(3)+
+        " "+vx.toFixed(3)+" "+yEnd.toFixed(3);
+      pushGrouped(verticalGroups,symbol+"|"+vBucket+"|"+vColour,vCmd);
+
+      const hy=ly+(stitchHash(x,y,13)-.5)*.024;
+      const xStart=lx+.018+stitchHash(x,y,14)*.025;
+      const xEnd=lx+.982-stitchHash(x,y,15)*.025;
+      const q1=ly+(stitchHash(x,y,16)-.5)*.022;
+      const q2=ly+(stitchHash(x,y,17)-.5)*.022;
+      let hCmd;
+      if (stitchHash(x,y,18)>.86) {
+        const gap=.045+stitchHash(x,y,19)*.045;
+        hCmd=
+          "M"+xStart.toFixed(3)+" "+hy.toFixed(3)+
+          "C"+(lx+.22).toFixed(3)+" "+q1.toFixed(3)+" "+(lx+.38).toFixed(3)+" "+q2.toFixed(3)+" "+(lx+.50-gap).toFixed(3)+" "+hy.toFixed(3)+
+          " M"+(lx+.50+gap).toFixed(3)+" "+hy.toFixed(3)+
+          "C"+(lx+.64).toFixed(3)+" "+q2.toFixed(3)+" "+(lx+.80).toFixed(3)+" "+q1.toFixed(3)+" "+xEnd.toFixed(3)+" "+hy.toFixed(3);
+      } else {
+        hCmd=
+          "M"+xStart.toFixed(3)+" "+hy.toFixed(3)+
+          "C"+(lx+.30).toFixed(3)+" "+q1.toFixed(3)+" "+(lx+.68).toFixed(3)+" "+q2.toFixed(3)+" "+xEnd.toFixed(3)+" "+hy.toFixed(3);
+      }
+      pushGrouped(horizontalGroups,symbol+"|"+hBucket+"|"+hColour,hCmd);
     }
   }
-  const paths=[];
-  for (const [symbol, commands] of grouped.entries()) {
-    paths.push(`<path d="${commands.join(" ")}" fill="none" stroke="${threadColor(symbol)}" stroke-width="${rules.stroke}" stroke-linecap="${esc(rules.linecap)}" stroke-linejoin="round"/>`);
+
+  const out=[];
+  const f=rules.fabric || {};
+  if (!transparent) {
+    out.push(
+      '<defs><pattern id="fabric" width="1" height="1" patternUnits="userSpaceOnUse">'+
+      '<rect width="1" height="1" fill="'+esc(f.color || "#FBFAF6")+'"/>'+
+      '<circle cx="0" cy="0" r="'+Number(f.dot_radius || .05)+'" fill="'+esc(f.dot || "#DDD8CF")+'" opacity=".78"/>'+
+      '<circle cx="1" cy="1" r="'+Number(f.dot_radius || .05)+'" fill="'+esc(f.dot || "#DDD8CF")+'" opacity=".54"/>'+
+      '</pattern></defs><rect width="'+vw+'" height="'+vh+'" fill="url(#fabric)"/>'
+    );
   }
-  const f = rules.fabric || {};
-  const bg = transparent ? "" : `<defs><pattern id="fabric" width="1" height="1" patternUnits="userSpaceOnUse"><rect width="1" height="1" fill="${esc(f.color || "#fbfaf6")}"/><circle cx="0" cy="0" r="${Number(f.dot_radius || .05)}" fill="${esc(f.dot || "#ddd8cf")}"/></pattern></defs><rect width="${vw}" height="${vh}" fill="url(#fabric)"/>`;
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${vw} ${vh}" preserveAspectRatio="xMidYMid meet">${bg}${paths.join("")}</svg>`;
+
+  for (const [symbol,commands] of baseGroups.entries()) {
+    out.push('<path d="'+commands.join(" ")+'" fill="'+threadColor(symbol)+'"/>');
+  }
+  for (const [symbol,commands] of shadowGroups.entries()) {
+    out.push('<path d="'+commands.join(" ")+'" fill="none" stroke="'+darkenColour(threadColor(symbol),.28)+'" stroke-width="'+rules.shadow_stroke+'" stroke-linecap="round" stroke-linejoin="round" opacity=".34"/>');
+  }
+  for (const [symbol,commands] of lowerGroups.entries()) {
+    out.push('<path d="'+commands.join(" ")+'" fill="none" stroke="'+darkenColour(threadColor(symbol),.035)+'" stroke-width="'+rules.lower_stroke+'" stroke-linecap="round" stroke-linejoin="round" opacity=".96"/>');
+  }
+  for (const [symbol,commands] of upperGroups.entries()) {
+    out.push('<path d="'+commands.join(" ")+'" fill="none" stroke="'+lightenColour(threadColor(symbol),.035)+'" stroke-width="'+rules.upper_stroke+'" stroke-linecap="round" stroke-linejoin="round" opacity=".98"/>');
+  }
+  for (const [symbol,commands] of highlightGroups.entries()) {
+    out.push('<path d="'+commands.join(" ")+'" fill="none" stroke="'+lightenColour(threadColor(symbol),.18)+'" stroke-width="'+rules.highlight_stroke+'" stroke-linecap="round" opacity=".24"/>');
+  }
+  for (const [key,commands] of verticalGroups.entries()) {
+    const parts=key.split("|"), bucket=Number(parts[1]), colour=parts[2];
+    out.push('<path d="'+commands.join(" ")+'" fill="none" stroke="'+colour+'" stroke-width="'+rules.vertical_widths[bucket]+'" stroke-linecap="round" opacity=".56"/>');
+  }
+  for (const [key,commands] of horizontalGroups.entries()) {
+    const parts=key.split("|"), bucket=Number(parts[1]), colour=parts[2];
+    out.push('<path d="'+commands.join(" ")+'" fill="none" stroke="'+colour+'" stroke-width="'+rules.horizontal_widths[bucket]+'" stroke-linecap="round" opacity=".58"/>');
+  }
+
+  return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+vw+' '+vh+'" preserveAspectRatio="xMidYMid meet">'+out.join("")+'</svg>';
 }
 
-function applyHeroFrame() {
-  const cfg = assets.frame || {};
-  if (!cfg.enabled) return;
-  const hero = document.querySelector('.hero-photo');
-  const image = document.getElementById('cover-image');
-  if (!hero || !image) return;
-  const render = () => {
-    const source = cfg.source_px || {};
-    const sw = Number(source.width || image.naturalWidth || 0);
-    const sh = Number(source.height || image.naturalHeight || 0);
-    const a = cfg.area_px || {};
-    if (!(sw>0 && sh>0 && Number(a.width)>0 && Number(a.height)>0)) return;
-    const cw=hero.clientWidth, ch=hero.clientHeight;
-    const scale=Math.max(cw/sw,ch/sh); // matches object-fit: cover
-    const ox=(cw-sw*scale)/2, oy=(ch-sh*scale)/2;
-    let layer=hero.querySelector('.hero-frame-layer');
-    if (!layer) {
-      layer=document.createElement('div'); layer.className='hero-frame-layer';
-      layer.innerHTML='<div class="hero-frame-fabric"></div><div class="hero-frame-stitches"></div>';
-      hero.appendChild(layer);
-    }
-    layer.style.left=`${ox+Number(a.x)*scale}px`;
-    layer.style.top=`${oy+Number(a.y)*scale}px`;
-    layer.style.width=`${Number(a.width)*scale}px`;
-    layer.style.height=`${Number(a.height)*scale}px`;
-    const fabric=cfg.fabric || {};
-    const fabricEl=layer.querySelector('.hero-frame-fabric');
-    fabricEl.style.backgroundColor=fabric.color || '#f7f3ea';
-    if (fabric.texture_css) fabricEl.style.backgroundImage=fabric.texture_css;
-    const pad=Math.max(0,Math.min(.25,Number(cfg.padding_ratio ?? .05)));
-    const stitches=layer.querySelector('.hero-frame-stitches');
-    stitches.style.inset=`${pad*100}%`;
-    stitches.innerHTML=stitchedSvg(MATRIX,0,0,W,H,true);
-  };
-  if (image.complete) render(); else image.addEventListener('load', render, {once:true});
-  window.addEventListener('resize',render);
-}
 
 function colourOverviewSvg() {
   let out=[`<svg xmlns="http://www.w3.org/2000/svg" viewBox="-5 -5 ${W+10} ${H+10}" preserveAspectRatio="xMidYMid meet"><rect x="0" y="0" width="${W}" height="${H}" fill="#fff"/>`];
