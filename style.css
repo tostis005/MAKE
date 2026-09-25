@@ -1403,21 +1403,24 @@ a.journal-craft-card:hover{transform:translateY(-4px);box-shadow:var(--mk-shadow
   display:none!important
 }
 
-/* Product cards: stable 4:5 frame, complete artwork, no centre crop or zoom. */
+/* Product cards: exact source ratio, full width, and never clip the artwork. */
+.woocommerce ul.products li.product{
+  overflow:visible!important
+}
 .woocommerce ul.products li.product a img.drielo-store-product-image,
 .woocommerce ul.products li.product a img.attachment-full,
-.woocommerce ul.products li.product a img.size-full,
-.woocommerce ul.products li.product a img.attachment-make-store-card-context,
-.woocommerce ul.products li.product a img.size-make-store-card-context{
+.woocommerce ul.products li.product a img.size-full{
   display:block!important;
   width:100%!important;max-width:100%!important;
-  height:auto!important;aspect-ratio:4/5!important;
+  height:auto!important;max-height:none!important;
+  aspect-ratio:auto!important;
   object-fit:contain!important;object-position:center center!important;
   padding:0!important;margin:0 0 14px!important;box-sizing:border-box!important;
-  background:#f3e9e8!important;transform:none!important
+  background:transparent!important;transform:none!important;
+  border-radius:21px 21px 0 0
 }
 .woocommerce ul.products li.product a.woocommerce-LoopProduct-link{
-  display:block!important;overflow:hidden!important
+  display:block!important;overflow:visible!important
 }
 
 /* Collection mosaics use uncropped derivatives and retain the complete scene. */
