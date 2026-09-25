@@ -300,7 +300,11 @@ def render_design(base_id: str, design: dict, built: dict):
 
     STORE_ASSETS.mkdir(parents=True, exist_ok=True)
     STORE_FILES.mkdir(parents=True, exist_ok=True)
+    # Keep the stable renderer output for internal validation, and also write a
+    # slug-versioned storefront image so WordPress/CDN caches can never keep a
+    # previous landmark (for example the old Eiffel image on D0001).
     shutil.copy2(result["image"], STORE_ASSETS / f"{code}-product.webp")
+    shutil.copy2(result["image"], STORE_ASSETS / f"{code}-{design['slug']}-product.webp")
     shutil.copy2(result["pdf"], STORE_FILES / f"Drielo_{code}.pdf")
     for n, src in enumerate(result["gallery"], start=2):
         shutil.copy2(src, STORE_ASSETS / f"{code}-gallery-{n}.webp")
@@ -427,15 +431,13 @@ def product_catalog_row(base_id: str, design: dict, built: dict):
         "description": desc_en,
         "description_en": desc_en,
         "description_es": desc_es,
-        "gallery": [
-            f"assets/{code}-design.webp",
-            f"assets/{code}-gallery-2.webp",
-            f"assets/{code}-gallery-3.webp",
-            f"assets/{code}-gallery-4.webp",
-        ],
-        "gallery_preview_pages": {"facts": 3, "colour_a1": 8, "symbol_a1": 12},
+        # Iconic Destinations intentionally shows one clean storefront image.
+        # Technical/chart previews remain in the generated PDF but are not
+        # exposed as WooCommerce gallery images.
+        "gallery": [],
+        "gallery_preview_pages": {},
         "download": f"files/Drielo_{code}.pdf",
-        "featured_image": f"assets/{code}-product.webp",
+        "featured_image": f"assets/{code}-{design['slug']}-product.webp",
         "gallery_revision": int(os.environ.get("GITHUB_RUN_ID", "20260924")),
         "seo_title": f"{title_en} | Drielo",
         "seo_title_en": f"{title_en} | Drielo",
@@ -476,6 +478,11 @@ def update_catalog(base_id: str, design: dict, built: dict):
     collection = read_json(COLLECTION_PATH)
     rows = catalog.setdefault("products", [])
     new_row = product_catalog_row(base_id, design, built)
+    # A design being republished must no longer remain in the retired SKU list;
+    # otherwise the full WooCommerce importer can trash it again after this
+    # workflow has just recreated it.
+    retired = catalog.setdefault("retired_products", [])
+    catalog["retired_products"] = [sku for sku in retired if sku != new_row["sku"]]
     idx = next((i for i, p in enumerate(rows) if p.get("code") == new_row["code"]), None)
     if idx is None:
         rows.append(new_row)
@@ -492,7 +499,7 @@ def update_catalog(base_id: str, design: dict, built: dict):
     coll["thread_codes"] = []
     coll["techniques"] = ["cross-stitch"]
     if base_id == "D0001" or not coll.get("cover_asset"):
-        coll["cover_asset"] = "assets/D0001-CS-product.webp"
+        coll["cover_asset"] = f"assets/D0001-CS-{design['slug']}-product.webp"
 
     write_json(CATALOG_PATH, catalog)
 
@@ -512,7 +519,7 @@ def update_design_manifest(base_id: str, doc: dict, built: dict):
     write_json(DESIGNS_PATH, doc)
 
 
-def validate_outputs(base_id: str, built: dict):
+def validate_outputs(base_id: str, design: dict, built: dict):
     code = f"{base_id}-CS"
     pat = read_json(PATTERNS / code / "pattern.json")
     if (pat.get("stitch_width"), pat.get("stitch_height")) != (WIDTH, HEIGHT):
@@ -525,10 +532,13 @@ def validate_outputs(base_id: str, built: dict):
         raise RuntimeError(f"{code}: unexpected DMC colour count {len(pat.get('threads', []))}")
     pdf = STORE_FILES / f"Drielo_{code}.pdf"
     image = STORE_ASSETS / f"{code}-product.webp"
+    storefront = STORE_ASSETS / f"{code}-{design['slug']}-product.webp"
     if not pdf.is_file() or pdf.stat().st_size < 100000 or pdf.read_bytes()[:4] != b"%PDF":
         raise RuntimeError(f"{code}: invalid PDF")
     if not image.is_file() or image.stat().st_size < 30000:
         raise RuntimeError(f"{code}: invalid product image")
+    if not storefront.is_file() or storefront.stat().st_size < 30000:
+        raise RuntimeError(f"{code}: invalid versioned storefront image")
     for suffix in ("design", "gallery-2", "gallery-3", "gallery-4"):
         p = STORE_ASSETS / f"{code}-{suffix}.webp"
         if not p.is_file() or p.stat().st_size < 5000:
@@ -552,7 +562,7 @@ def main():
     render_design(base_id, design, built)
     update_catalog(base_id, design, built)
     update_design_manifest(base_id, doc, built)
-    validate_outputs(base_id, built)
+    validate_outputs(base_id, design, built)
 
 
 if __name__ == "__main__":

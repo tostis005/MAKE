@@ -91,6 +91,9 @@ jobs:
           cat=json.loads((root/'content'/'products'/'catalog.json').read_text(encoding='utf-8'))
           row=next((p for p in cat.get('products',[]) if p.get('code')==code),None)
           if not row or row.get('collection')!='iconic-destinations' or row.get('technique')!='cross-stitch': raise SystemExit(f'{code}: wrong catalog routing')
+          storefront=root/'content'/'products'/row['featured_image']
+          if not storefront.is_file() or storefront.stat().st_size<30000: raise SystemExit(f'{code}: missing versioned storefront image')
+          if row.get('gallery') != []: raise SystemExit(f'{code}: Iconic storefront must expose only the featured image')
           print(code,'EXACT_1_TO_1','colors',len(pat['threads']),'pdf',pdf.stat().st_size)
           PY
 
@@ -112,6 +115,7 @@ jobs:
           (stage/'content/products/catalog.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
           PY
           cp "content/products/assets/${CODE}-product.webp" "$STAGE/content/products/assets/"
+          cp "content/products/assets/${CODE}-${{ steps.select.outputs.slug }}-product.webp" "$STAGE/content/products/assets/"
           cp "content/products/assets/${CODE}-design.webp" "$STAGE/content/products/assets/"
           cp "content/products/assets/${CODE}-gallery-2.webp" "$STAGE/content/products/assets/"
           cp "content/products/assets/${CODE}-gallery-3.webp" "$STAGE/content/products/assets/"
@@ -186,7 +190,7 @@ jobs:
           set -euo pipefail
           DESIGN="${{ steps.select.outputs.design_id }}"; CODE="${DESIGN}-CS"; SLUG="${{ steps.select.outputs.slug }}"
           git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add content/pattern-system/iconic_destinations/publish_queue.json content/pattern-system/collections/iconic-destinations/designs.json             "content/pattern-system/collections/iconic-destinations/approved-pixel-designs/${DESIGN}-${SLUG}.png"             "content/pattern-system/collections/iconic-destinations/source-designs/${DESIGN}-${SLUG}.png"             "content/pattern-system/patterns/${CODE}/pattern.json" "content/pattern-system/products/${CODE}/product.json" content/products/catalog.json             "content/products/assets/${CODE}-product.webp" "content/products/assets/${CODE}-design.webp"             "content/products/assets/${CODE}-gallery-2.webp" "content/products/assets/${CODE}-gallery-3.webp" "content/products/assets/${CODE}-gallery-4.webp"
+          git add content/pattern-system/iconic_destinations/publish_queue.json content/pattern-system/collections/iconic-destinations/designs.json             "content/pattern-system/collections/iconic-destinations/approved-pixel-designs/${DESIGN}-${SLUG}.png"             "content/pattern-system/collections/iconic-destinations/source-designs/${DESIGN}-${SLUG}.png"             "content/pattern-system/patterns/${CODE}/pattern.json" "content/pattern-system/products/${CODE}/product.json" content/products/catalog.json             "content/products/assets/${CODE}-product.webp" "content/products/assets/${CODE}-${SLUG}-product.webp" "content/products/assets/${CODE}-design.webp"             "content/products/assets/${CODE}-gallery-2.webp" "content/products/assets/${CODE}-gallery-3.webp" "content/products/assets/${CODE}-gallery-4.webp"
           git commit -m "Publish Iconic Destinations ${DESIGN} cross stitch [skip ci]"
           git fetch origin main; git rebase origin/main; git push origin HEAD:main
 
