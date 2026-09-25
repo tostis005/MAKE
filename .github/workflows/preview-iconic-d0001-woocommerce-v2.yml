@@ -32,7 +32,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$(sha256sum content/pattern-system/collections/iconic-destinations/assets/cover-cross-stitch-v2.jpg | awk '{print $1}')" = "46b69dd6c4d939f9664019fd8445ac8b3c7053a25935adcf6ae12e2e0f6e98a7"
+          test "$(sha256sum content/pattern-system/collections/iconic-destinations/assets/cover-cross-stitch-v3.png | awk '{print $1}')" = "46b69dd6c4d939f9664019fd8445ac8b3c7053a25935adcf6ae12e2e0f6e98a7"
 
       - name: Install renderer dependencies
         shell: bash
