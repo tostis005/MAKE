@@ -280,45 +280,108 @@ function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, transparent=false) {
 
   if (rules.style === "full-thread" || rules.style === "filled-cross") {
     const grouped=new Map();
-    const cellEdges=[];
+
     for (let y=y0; y<y1; y++) {
       for (let x=x0; x<x1; x++) {
         const symbol=matrix[y]?.[x];
         if (!symbol) continue;
         const lx=x-x0, ly=y-y0;
-        if (!grouped.has(symbol)) grouped.set(symbol,{cells:[],dark:[],light:[],ridgeA:[],ridgeB:[],edgeLight:[],edgeDark:[],centers:[]});
+
+        if (!grouped.has(symbol)) grouped.set(symbol,{
+          base:[],top:[],left:[],right:[],bottom:[],
+          diagDark:[],diagLight:[],ridgeA:[],ridgeB:[],
+          topEdge:[],leftEdge:[],rightSeam:[],bottomSeam:[],center:[],contact:[]
+        });
         const g=grouped.get(symbol);
-        // Exact validated relief model from pixel-handmade-relief-paris.
-        g.cells.push(`M${lx} ${ly}H${lx+1}V${ly+1}H${lx}Z`);
-        g.dark.push(`M${(lx+.06).toFixed(3)} ${(ly+.06).toFixed(3)}L${(lx+.94).toFixed(3)} ${(ly+.94).toFixed(3)}`);
-        g.light.push(`M${(lx+.94).toFixed(3)} ${(ly+.06).toFixed(3)}L${(lx+.06).toFixed(3)} ${(ly+.94).toFixed(3)}`);
-        g.ridgeA.push(`M${(lx+.12).toFixed(3)} ${(ly+.08).toFixed(3)}L${(lx+.92).toFixed(3)} ${(ly+.88).toFixed(3)}`);
-        g.ridgeB.push(`M${(lx+.88).toFixed(3)} ${(ly+.08).toFixed(3)}L${(lx+.08).toFixed(3)} ${(ly+.88).toFixed(3)}`);
-        g.edgeLight.push(`M${(lx+.04).toFixed(3)} ${(ly+.055).toFixed(3)}H${(lx+.945).toFixed(3)} M${(lx+.055).toFixed(3)} ${(ly+.04).toFixed(3)}V${(ly+.945).toFixed(3)}`);
-        g.edgeDark.push(`M${(lx+.055).toFixed(3)} ${(ly+.945).toFixed(3)}H${(lx+.945).toFixed(3)} M${(lx+.945).toFixed(3)} ${(ly+.055).toFixed(3)}V${(ly+.945).toFixed(3)}`);
-        g.centers.push(`M${(lx+.50).toFixed(3)} ${(ly+.40).toFixed(3)}L${(lx+.60).toFixed(3)} ${(ly+.50).toFixed(3)}L${(lx+.50).toFixed(3)} ${(ly+.60).toFixed(3)}L${(lx+.40).toFixed(3)} ${(ly+.50).toFixed(3)}Z`);
-        cellEdges.push(`M${lx} ${ly}H${lx+1}V${ly+1}H${lx}Z`);
+
+        // Tiny deterministic centre displacement keeps neighbouring stitches from
+        // looking machine-perfect while preserving an exact 1-cell footprint.
+        const seed=((x+1)*73856093 ^ (y+1)*19349663) >>> 0;
+        const jx=(((seed & 255)/255)-.5)*.024;
+        const jy=((((seed>>>8)&255)/255)-.5)*.020;
+        const cx=lx+.5+jx, cy=ly+.50+jy;
+
+        // Dense full coverage: no fabric gap between adjacent coloured stitches.
+        g.base.push(`M${lx} ${ly}H${lx+1}V${ly+1}H${lx}Z`);
+
+        // Four facets form the soft "pyramid/cushion" visible in the references.
+        // Top/left catch light; bottom/right fall progressively into shadow.
+        g.top.push(
+          `M${(lx+.025).toFixed(3)} ${(ly+.025).toFixed(3)} H${(lx+.975).toFixed(3)} L${cx.toFixed(3)} ${cy.toFixed(3)} Z`
+        );
+        g.left.push(
+          `M${(lx+.025).toFixed(3)} ${(ly+.025).toFixed(3)} L${cx.toFixed(3)} ${cy.toFixed(3)} L${(lx+.025).toFixed(3)} ${(ly+.975).toFixed(3)} Z`
+        );
+        g.right.push(
+          `M${(lx+.975).toFixed(3)} ${(ly+.025).toFixed(3)} L${(lx+.975).toFixed(3)} ${(ly+.975).toFixed(3)} L${cx.toFixed(3)} ${cy.toFixed(3)} Z`
+        );
+        g.bottom.push(
+          `M${(lx+.025).toFixed(3)} ${(ly+.975).toFixed(3)} L${cx.toFixed(3)} ${cy.toFixed(3)} L${(lx+.975).toFixed(3)} ${(ly+.975).toFixed(3)} Z`
+        );
+
+        // Two broad floss passes. They are deliberately subtle at normal size:
+        // the stitch reads as a pixel from afar and as crossed thread on zoom.
+        g.diagDark.push(
+          `M${(lx+.07).toFixed(3)} ${(ly+.07).toFixed(3)} Q${cx.toFixed(3)} ${(cy+.015).toFixed(3)} ${(lx+.93).toFixed(3)} ${(ly+.93).toFixed(3)}`
+        );
+        g.diagLight.push(
+          `M${(lx+.93).toFixed(3)} ${(ly+.07).toFixed(3)} Q${cx.toFixed(3)} ${(cy-.015).toFixed(3)} ${(lx+.07).toFixed(3)} ${(ly+.93).toFixed(3)}`
+        );
+        g.ridgeA.push(
+          `M${(lx+.14).toFixed(3)} ${(ly+.10).toFixed(3)} L${(lx+.90).toFixed(3)} ${(ly+.86).toFixed(3)}`
+        );
+        g.ridgeB.push(
+          `M${(lx+.86).toFixed(3)} ${(ly+.10).toFixed(3)} L${(lx+.10).toFixed(3)} ${(ly+.86).toFixed(3)}`
+        );
+
+        // Reference-like lighting: bottom seam dominates; vertical seam is finer.
+        g.topEdge.push(`M${(lx+.035).toFixed(3)} ${(ly+.045).toFixed(3)} H${(lx+.965).toFixed(3)}`);
+        g.leftEdge.push(`M${(lx+.045).toFixed(3)} ${(ly+.035).toFixed(3)} V${(ly+.965).toFixed(3)}`);
+        g.rightSeam.push(`M${(lx+.965).toFixed(3)} ${(ly+.055).toFixed(3)} V${(ly+.945).toFixed(3)}`);
+        g.bottomSeam.push(`M${(lx+.055).toFixed(3)} ${(ly+.955).toFixed(3)} H${(lx+.945).toFixed(3)}`);
+
+        // Small raised centre and a very soft lower/right contact shadow.
+        g.center.push(
+          `M${cx.toFixed(3)} ${(cy-.085).toFixed(3)} L${(cx+.085).toFixed(3)} ${cy.toFixed(3)} L${cx.toFixed(3)} ${(cy+.085).toFixed(3)} L${(cx-.085).toFixed(3)} ${cy.toFixed(3)} Z`
+        );
+        g.contact.push(
+          `M${(lx+.10).toFixed(3)} ${(ly+.982).toFixed(3)} H${(lx+.91).toFixed(3)} M${(lx+.982).toFixed(3)} ${(ly+.10).toFixed(3)} V${(ly+.91).toFixed(3)}`
+        );
       }
     }
+
     const paths=[];
     for (const [symbol,g] of grouped.entries()) {
       const color=threadColor(symbol);
-      const base=shadeHex(color,-0.045);
-      const deep=shadeHex(color,-0.34);
-      const mid=shadeHex(color,-0.18);
-      const hi=shadeHex(color,0.34);
-      const hi2=shadeHex(color,0.48);
-      paths.push(`<path d="${g.cells.join(" ")}" fill="${base}"/>`);
-      paths.push(`<path d="${g.dark.join(" ")}" fill="none" stroke="${mid}" stroke-width="0.285" stroke-linecap="round" opacity="0.90"/>`);
-      paths.push(`<path d="${g.light.join(" ")}" fill="none" stroke="${color}" stroke-width="0.255" stroke-linecap="round" opacity="0.97"/>`);
-      paths.push(`<path d="${g.ridgeA.join(" ")} ${g.ridgeB.join(" ")}" fill="none" stroke="${hi2}" stroke-width="0.050" stroke-linecap="round" opacity="${rules.ridgeOpacity}"/>`);
-      paths.push(`<path d="${g.edgeLight.join(" ")}" fill="none" stroke="${hi}" stroke-width="0.040" stroke-linecap="round" opacity="${rules.highlightOpacity}"/>`);
-      paths.push(`<path d="${g.edgeDark.join(" ")}" fill="none" stroke="${deep}" stroke-width="0.052" stroke-linecap="round" opacity="${rules.shadowOpacity}"/>`);
-      paths.push(`<path d="${g.centers.join(" ")}" fill="${hi2}" opacity="0.16"/>`);
+      const base=shadeHex(color,-0.035);
+      const top=shadeHex(color,0.17);
+      const left=shadeHex(color,0.08);
+      const right=shadeHex(color,-0.10);
+      const bottom=shadeHex(color,-0.22);
+      const deep=shadeHex(color,-0.42);
+      const mid=shadeHex(color,-0.17);
+      const hi=shadeHex(color,0.30);
+      const hi2=shadeHex(color,0.46);
+
+      paths.push(`<path d="${g.base.join(" ")}" fill="${base}"/>`);
+      paths.push(`<path d="${g.top.join(" ")}" fill="${top}" opacity=".78"/>`);
+      paths.push(`<path d="${g.left.join(" ")}" fill="${left}" opacity=".54"/>`);
+      paths.push(`<path d="${g.right.join(" ")}" fill="${right}" opacity=".46"/>`);
+      paths.push(`<path d="${g.bottom.join(" ")}" fill="${bottom}" opacity=".60"/>`);
+
+      paths.push(`<path d="${g.diagDark.join(" ")}" fill="none" stroke="${mid}" stroke-width=".245" stroke-linecap="round" stroke-linejoin="round" opacity=".48"/>`);
+      paths.push(`<path d="${g.diagLight.join(" ")}" fill="none" stroke="${shadeHex(color,.055)}" stroke-width=".225" stroke-linecap="round" stroke-linejoin="round" opacity=".58"/>`);
+      paths.push(`<path d="${g.ridgeA.join(" ")} ${g.ridgeB.join(" ")}" fill="none" stroke="${hi2}" stroke-width=".044" stroke-linecap="round" opacity=".22"/>`);
+
+      paths.push(`<path d="${g.topEdge.join(" ")}" fill="none" stroke="${hi}" stroke-width=".042" stroke-linecap="round" opacity=".34"/>`);
+      paths.push(`<path d="${g.leftEdge.join(" ")}" fill="none" stroke="${hi}" stroke-width=".036" stroke-linecap="round" opacity=".22"/>`);
+      paths.push(`<path d="${g.rightSeam.join(" ")}" fill="none" stroke="${deep}" stroke-width=".045" stroke-linecap="round" opacity=".24"/>`);
+      paths.push(`<path d="${g.bottomSeam.join(" ")}" fill="none" stroke="${deep}" stroke-width=".066" stroke-linecap="round" opacity=".44"/>`);
+      paths.push(`<path d="${g.contact.join(" ")}" fill="none" stroke="#1f1713" stroke-width=".026" stroke-linecap="round" opacity=".14"/>`);
+      paths.push(`<path d="${g.center.join(" ")}" fill="${hi2}" opacity=".13"/>`);
     }
-    const texture=`<path d="${cellEdges.join(" ")}" fill="none" stroke="#24161c" stroke-width="0.030" opacity="${rules.gridOpacity}"/>`;
-    const textureLight=`<path d="${cellEdges.join(" ")}" fill="none" stroke="#ffffff" stroke-width="0.012" opacity="0.08" transform="translate(0.018 0.018)"/>`;
-    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${vw} ${vh}" preserveAspectRatio="xMidYMid meet">${bg}${paths.join("")}${texture}${textureLight}</svg>`;
+
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${vw} ${vh}" preserveAspectRatio="xMidYMid meet">${bg}${paths.join("")}</svg>`;
   }
 
   const margin = Math.max(0, Math.min(0.2, rules.margin));
