@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import base64
 import json
+import lzma
 import re
 import zlib
 from pathlib import Path
@@ -96,24 +97,24 @@ if not parts:
     raise SystemExit(f"No source-pack parts found in {PACK_DIR}")
 
 encoded = "".join(p.read_text(encoding="ascii").strip() for p in parts)
-payload = json.loads(zlib.decompress(base64.b64decode(encoded)).decode("utf-8"))
-
-expected = {f"D{i:04d}.pixz" for i in range(1, 61)}
-if set(payload) != expected:
-    missing = sorted(expected - set(payload))
-    extra = sorted(set(payload) - expected)
-    raise SystemExit(f"Source pack mismatch missing={missing} extra={extra}")
+packed = lzma.decompress(base64.b64decode(encoded, validate=True))
+record_size = 1 + 50 * 3 + 100 * 120
+expected_size = record_size * 60
+if len(packed) != expected_size:
+    raise SystemExit(f"Source pack has {len(packed)} bytes; expected {expected_size}")
 
 PIXEL_DIR.mkdir(parents=True, exist_ok=True)
 for i in range(1, 61):
     name = f"D{i:04d}.pixz"
-    value = payload[name].strip()
-    raw = zlib.decompress(base64.b64decode(value, validate=True))
+    start = (i - 1) * record_size
+    raw = packed[start:start + record_size]
     if not raw or raw[0] != 50:
         raise SystemExit(f"{name}: expected 50-colour source, got {raw[0] if raw else 'empty'}")
     palette_end = 1 + 50 * 3
-    if len(raw) != palette_end + 100 * 120:
+    indexes = raw[palette_end:]
+    if len(indexes) != 100 * 120 or max(indexes) >= 50:
         raise SystemExit(f"{name}: malformed exact 100x120 pixel source")
+    value = base64.b64encode(zlib.compress(raw, 9)).decode("ascii")
     (PIXEL_DIR / name).write_text(value + "\n", encoding="ascii")
 
 designs_doc = load_json(DESIGNS_PATH)
