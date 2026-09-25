@@ -29,11 +29,15 @@ The frame geometry is stored in source-image pixels (`source_px`, `area_px`). It
 ## Stitch preview geometry
 
 Use proportional rules, never a fixed millimetre stitch size:
-- X endpoint margin defaults to 0.02 of one stitch cell.
-- Stroke width defaults to 0.34 of one stitch cell.
-- Rounded line caps and joins.
+- Render full cross stitch as a dense coloured stitch cell with layered diagonal thread relief, not as a flat X floating on a white square.
+- Use rounded thread strokes, subtle highlight/shadow layers and soft lower/right occlusion so the stitch reads as raised floss.
+- The visible grid must behave like real Aida/fabric: vertical gaps are pale, desaturated and slightly fabric-reflective; horizontal gaps are darker recessed shadows.
+- Never paint the vertical grid as a pure white line or as the unchanged thread colour.
+- The grid must be organically irregular: vary seam position, width, curvature, interruption and occlusion per cell.
+- All irregularity must be deterministic from product code + stitch coordinates so the same design always renders identically.
+- Horizontal shadow visually dominates at grid intersections; vertical fabric glimpses should be pinched/broken by the stitch geometry.
+- Preserve the canonical vector stitch model in customer-facing PDF/product rendering; do not rasterize the stitch layer.
 - The geometry scales with the pattern grid and available frame dimensions.
-- Aim for dense, realistic full-cross-stitch coverage with minimal visible fabric gaps between adjacent stitches.
 - Preserve aspect ratio and center the pattern within the usable frame area.
 
 ## Required files for a new pattern
