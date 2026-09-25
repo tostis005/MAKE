@@ -833,6 +833,7 @@ def update_catalog(base_id: str, design: dict):
         "palette_hex":[p["hex"] for p in palette],
         "thread_codes":[str(p["dmc"]) for p in palette],
         "cover_asset":f"assets/{base_id}-CS-product.webp",
+        "visible":bool(collection.get("visible", True)),
         "techniques":["cross-stitch","c2c-crochet","tapestry-crochet","latch-hook"],
     })
 

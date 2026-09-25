@@ -587,8 +587,147 @@ function make_downloadables_sold_individually( bool $sold_individually, $product
 }
 add_filter( 'woocommerce_is_sold_individually', 'make_downloadables_sold_individually', 20, 2 );
 
+/**
+ * Collection publication state.
+ *
+ * Administrators can preview hidden collections and products on the frontend.
+ * Everyone else only sees collections whose drielo_visible flag is enabled.
+ * When the term has no explicit override yet, collection.json is the fallback
+ * source of truth so repository changes take effect as soon as the theme deploys.
+ */
+function make_store_admin_can_view_hidden_collections(): bool {
+    return is_user_logged_in() && current_user_can( 'manage_options' );
+}
+
+function make_collection_source_visibility( string $slug ): ?bool {
+    static $cache = array();
+
+    $slug = sanitize_title( $slug );
+    if ( array_key_exists( $slug, $cache ) ) { return $cache[ $slug ]; }
+
+    $path = trailingslashit( get_template_directory() ) . 'content/pattern-system/collections/' . $slug . '/collection.json';
+    if ( ! is_readable( $path ) ) {
+        $cache[ $slug ] = null;
+        return null;
+    }
+
+    $data = json_decode( (string) file_get_contents( $path ), true );
+    if ( ! is_array( $data ) || ! array_key_exists( 'visible', $data ) ) {
+        $cache[ $slug ] = null;
+        return null;
+    }
+
+    $cache[ $slug ] = (bool) $data['visible'];
+    return $cache[ $slug ];
+}
+
+function make_collection_is_visible( WP_Term $term ): bool {
+    $setting = (string) get_term_meta( $term->term_id, 'drielo_visible', true );
+    if ( '' !== $setting ) { return '1' === $setting; }
+
+    $source = make_collection_source_visibility( (string) $term->slug );
+    return null === $source ? true : $source;
+}
+
+function make_hidden_collection_term_ids(): array {
+    static $cache = null;
+    if ( null !== $cache ) { return $cache; }
+
+    $cache = array();
+    $terms = get_terms(
+        array(
+            'taxonomy'   => 'product_collection',
+            'hide_empty' => false,
+        )
+    );
+    if ( is_wp_error( $terms ) ) { return $cache; }
+
+    foreach ( $terms as $term ) {
+        if ( $term instanceof WP_Term && ! make_collection_is_visible( $term ) ) {
+            $cache[] = (int) $term->term_id;
+        }
+    }
+
+    return $cache;
+}
+
+function make_hidden_collection_product_ids(): array {
+    static $cache = null;
+    if ( null !== $cache ) { return $cache; }
+
+    $term_ids = make_hidden_collection_term_ids();
+    if ( empty( $term_ids ) ) {
+        $cache = array();
+        return $cache;
+    }
+
+    $ids = get_objects_in_term( $term_ids, 'product_collection' );
+    $cache = is_wp_error( $ids )
+        ? array()
+        : array_values( array_unique( array_map( 'intval', $ids ) ) );
+
+    return $cache;
+}
+
+function make_store_product_in_hidden_collection( int $product_id ): bool {
+    return $product_id > 0 && in_array( $product_id, make_hidden_collection_product_ids(), true );
+}
+
+function make_store_exclude_hidden_collection_products( WP_Query $query ): void {
+    if ( PHP_SAPI === 'cli' ) { return; }
+    if ( function_exists( 'wp_doing_cron' ) && wp_doing_cron() ) { return; }
+    if ( is_admin() && ! wp_doing_ajax() ) { return; }
+    if ( make_store_admin_can_view_hidden_collections() ) { return; }
+
+    $hidden_ids = make_hidden_collection_product_ids();
+    if ( empty( $hidden_ids ) ) { return; }
+
+    $excluded = array_map( 'intval', (array) $query->get( 'post__not_in' ) );
+    $query->set( 'post__not_in', array_values( array_unique( array_merge( $excluded, $hidden_ids ) ) ) );
+}
+add_action( 'pre_get_posts', 'make_store_exclude_hidden_collection_products', 5 );
+
+function make_store_guard_hidden_collection_archive(): void {
+    if ( make_store_admin_can_view_hidden_collections() || ! is_tax( 'product_collection' ) ) { return; }
+
+    $term = get_queried_object();
+    if ( ! $term instanceof WP_Term || make_collection_is_visible( $term ) ) { return; }
+
+    global $wp_query;
+    if ( $wp_query instanceof WP_Query ) { $wp_query->set_404(); }
+    status_header( 404 );
+    nocache_headers();
+}
+add_action( 'template_redirect', 'make_store_guard_hidden_collection_archive', 2 );
+
+function make_store_filter_hidden_product_visibility( bool $visible, int $product_id ): bool {
+    if ( make_store_admin_can_view_hidden_collections() ) { return $visible; }
+    return make_store_product_in_hidden_collection( $product_id ) ? false : $visible;
+}
+add_filter( 'woocommerce_product_is_visible', 'make_store_filter_hidden_product_visibility', 20, 2 );
+
+function make_store_filter_hidden_product_purchasable( bool $purchasable, $product ): bool {
+    if ( make_store_admin_can_view_hidden_collections() ) { return $purchasable; }
+    if ( $product instanceof WC_Product && make_store_product_in_hidden_collection( $product->get_id() ) ) { return false; }
+    return $purchasable;
+}
+add_filter( 'woocommerce_is_purchasable', 'make_store_filter_hidden_product_purchasable', 20, 2 );
+
+function make_store_filter_hidden_related_products( array $related_posts ): array {
+    if ( make_store_admin_can_view_hidden_collections() ) { return $related_posts; }
+    $hidden = make_hidden_collection_product_ids();
+    if ( empty( $hidden ) ) { return $related_posts; }
+    return array_values( array_diff( array_map( 'intval', $related_posts ), $hidden ) );
+}
+add_filter( 'woocommerce_related_products', 'make_store_filter_hidden_related_products', 20 );
+
 function make_collection_meta_fields_add(): void {
     ?>
+    <div class="form-field">
+        <input type="hidden" name="drielo_visibility_present" value="1">
+        <label><input type="checkbox" name="drielo_visible" value="1" checked> <?php esc_html_e( 'Visible on website', 'make' ); ?></label>
+        <p><?php esc_html_e( 'Hidden collections and their products are only visible to administrators.', 'make' ); ?></p>
+    </div>
     <div class="form-field">
         <label for="drielo_palette_mode"><?php esc_html_e( 'Palette mode', 'make' ); ?></label>
         <select name="drielo_palette_mode" id="drielo_palette_mode">
@@ -615,8 +754,17 @@ function make_collection_meta_fields_edit( WP_Term $term ): void {
     $palette = (string) get_term_meta( $term->term_id, 'drielo_palette_hex', true );
     $threads = (string) get_term_meta( $term->term_id, 'drielo_thread_codes', true );
     $mode = sanitize_key( (string) get_term_meta( $term->term_id, 'drielo_palette_mode', true ) );
+    $visible = make_collection_is_visible( $term );
     if ( ! in_array( $mode, array( 'shared', 'per-design' ), true ) ) { $mode = 'shared'; }
     ?>
+    <tr class="form-field">
+        <th scope="row"><?php esc_html_e( 'Website visibility', 'make' ); ?></th>
+        <td>
+            <input type="hidden" name="drielo_visibility_present" value="1">
+            <label><input type="checkbox" name="drielo_visible" value="1" <?php checked( $visible ); ?>> <?php esc_html_e( 'Visible on website', 'make' ); ?></label>
+            <p class="description"><?php esc_html_e( 'When hidden, only administrators can see this collection and its products on the website.', 'make' ); ?></p>
+        </td>
+    </tr>
     <tr class="form-field">
         <th scope="row"><label for="drielo_palette_mode"><?php esc_html_e( 'Palette mode', 'make' ); ?></label></th>
         <td>
@@ -652,6 +800,9 @@ function make_sanitize_palette_hex( string $value ): string {
 }
 
 function make_save_collection_meta( int $term_id ): void {
+    if ( isset( $_POST['drielo_visibility_present'] ) ) {
+        update_term_meta( $term_id, 'drielo_visible', isset( $_POST['drielo_visible'] ) ? '1' : '0' );
+    }
     if ( isset( $_POST['drielo_palette_mode'] ) ) {
         $mode = sanitize_key( wp_unslash( $_POST['drielo_palette_mode'] ) );
         if ( ! in_array( $mode, array( 'shared', 'per-design' ), true ) ) { $mode = 'shared'; }
@@ -667,6 +818,22 @@ function make_save_collection_meta( int $term_id ): void {
 }
 add_action( 'created_product_collection', 'make_save_collection_meta' );
 add_action( 'edited_product_collection', 'make_save_collection_meta' );
+
+function make_collection_visibility_column( array $columns ): array {
+    $columns['drielo_visibility'] = __( 'Visibility', 'make' );
+    return $columns;
+}
+add_filter( 'manage_edit-product_collection_columns', 'make_collection_visibility_column' );
+
+function make_collection_visibility_column_value( string $content, string $column, int $term_id ): string {
+    if ( 'drielo_visibility' !== $column ) { return $content; }
+    $term = get_term( $term_id, 'product_collection' );
+    if ( ! $term instanceof WP_Term ) { return $content; }
+    return make_collection_is_visible( $term )
+        ? esc_html__( 'Visible', 'make' )
+        : esc_html__( 'Hidden', 'make' );
+}
+add_filter( 'manage_product_collection_custom_column', 'make_collection_visibility_column_value', 10, 3 );
 
 function make_collection_palette( WP_Term $term ): array {
     $raw = (string) get_term_meta( $term->term_id, 'drielo_palette_hex', true );
@@ -1118,6 +1285,7 @@ function make_render_collection_grid(): void {
     echo '<div class="drielo-collection-grid">';
     foreach ( $terms as $term ) {
         if ( ! $term instanceof WP_Term ) { continue; }
+        if ( ! make_store_admin_can_view_hidden_collections() && ! make_collection_is_visible( $term ) ) { continue; }
 
         $url = get_term_link( $term );
         if ( is_wp_error( $url ) ) { continue; }
