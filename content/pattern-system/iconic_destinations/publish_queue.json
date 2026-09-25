@@ -669,9 +669,10 @@
       "slug": "hong-kong-victoria-harbour",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0055.pixz",
       "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36199975143",
+      "last_error": "Automatic Iconic Destinations publish run failed; see GitHub Actions logs.",
+      "failed_at": "2026-09-25T23:11:57+00:00"
     },
     {
       "base_design_id": "D0056",
