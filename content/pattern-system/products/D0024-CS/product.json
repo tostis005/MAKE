@@ -11,10 +11,10 @@
   "pattern_file": "patterns/D0024-CS/pattern.json",
   "template": "cross-stitch.html",
   "website": "www.drielo.com",
-  "status": "draft",
-  "render_ready": false,
+  "status": "ready",
+  "render_ready": true,
   "renderer": "multitech",
-  "source_artwork": null,
-  "page_1_asset": null,
+  "source_artwork": "collections/iconic-destinations/source-designs/D0024-mount-fuji.png",
+  "page_1_asset": "../../multitech/assets/cover-cross-stitch.webp",
   "palette_mode": "per-design"
 }
