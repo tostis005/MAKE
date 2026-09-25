@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-import base64
-import io
 import json
 import shutil
 import zlib
@@ -18,7 +16,7 @@ QUEUE_PATH = SYSTEM / "iconic_destinations" / "publish_queue.json"
 PIXEL_DIR = COL_DIR / "pixel-sources"
 SOURCE_DIR = COL_DIR / "source-designs"
 ASSET_DIR = COL_DIR / "assets"
-PACK_DIR = SYSTEM / "iconic_destinations" / "mosaic-upload"
+SOURCE_MOSAIC = COL_DIR / "assets" / "iconic-mosaic-grid-source.png"
 
 WIDTH = 100
 HEIGHT = 120
@@ -33,17 +31,6 @@ def load_json(path: Path):
 
 def save_json(path: Path, data):
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-
-
-def decode_upload() -> bytes:
-    parts = sorted(PACK_DIR.glob("part-*.txt"))
-    if not parts:
-        raise SystemExit(f"No mosaic upload parts found in {PACK_DIR}")
-    encoded = "".join(p.read_text(encoding="ascii").strip() for p in parts)
-    try:
-        return base64.b64decode(encoded, validate=True)
-    except Exception as exc:
-        raise SystemExit(f"Invalid mosaic upload: {exc}") from exc
 
 
 def quantize_pixz(tile: Image.Image) -> tuple[str, int]:
@@ -76,11 +63,12 @@ def main():
     if len(designs) != COUNT:
         raise SystemExit(f"Expected {COUNT} designs, got {len(designs)}")
 
-    source_bytes = decode_upload()
+    if not SOURCE_MOSAIC.is_file():
+        raise SystemExit(f"Missing source mosaic: {SOURCE_MOSAIC}")
     try:
-        mosaic = Image.open(io.BytesIO(source_bytes)).convert("RGB")
+        mosaic = Image.open(SOURCE_MOSAIC).convert("RGB")
     except Exception as exc:
-        raise SystemExit(f"Cannot decode mosaic image: {exc}") from exc
+        raise SystemExit(f"Cannot decode source mosaic: {exc}") from exc
 
     # Normalize the uploaded inspection image to the exact production grid.
     mosaic = mosaic.resize((COLS * WIDTH, ROWS * HEIGHT), Image.Resampling.LANCZOS)
