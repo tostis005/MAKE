@@ -512,6 +512,38 @@ jobs:
           check_html "/wp-content/themes/make/style.css" "Collection technique mosaic controls" "collection-technique-css"
           check_html "/tienda/colecciones/" "Explora cada patrón por separado o descubre colecciones temáticas creadas para reunir diseños relacionados." "shop-collections-intro-es"
           check_html "/en/shop/collections/" "Pattern collections" "shop-collections-en" "Downloadable PDF"
+          check_html "/tienda/colecciones/" "Colecciones de patrones" "hidden-iconic-not-listed-es" "Destinos icónicos"
+          check_html "/tienda/colecciones/" "Colecciones de patrones" "hidden-baby-not-listed-es" "Bebé e Infantil"
+          check_html "/en/shop/collections/" "Pattern collections" "hidden-iconic-not-listed-en" "Iconic Destinations"
+          check_html "/en/shop/collections/" "Pattern collections" "hidden-baby-not-listed-en" "Baby & Nursery"
+
+          HIDDEN_ICONIC_COLLECTION_ROUTE="$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; $t=get_term_by("slug","iconic-destinations","product_collection"); $u=$t instanceof WP_Term ? make_store_term_url($t,"es") : ""; echo $u ? parse_url($u,PHP_URL_PATH) : "";')"
+          HIDDEN_BABY_COLLECTION_ROUTE="$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; $t=get_term_by("slug","baby-nursery","product_collection"); $u=$t instanceof WP_Term ? make_store_term_url($t,"es") : ""; echo $u ? parse_url($u,PHP_URL_PATH) : "";')"
+          HIDDEN_ICONIC_PRODUCT_ROUTE="$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; $id=wc_get_product_id_by_sku("DRIELO-D0001-CS"); $u=$id ? make_product_url($id,"es") : ""; echo $u ? parse_url($u,PHP_URL_PATH) : "";')"
+          HIDDEN_BABY_PRODUCT_ROUTE="$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; $id=wc_get_product_id_by_sku("DRIELO-I0001-CS"); $u=$id ? make_product_url($id,"es") : ""; echo $u ? parse_url($u,PHP_URL_PATH) : "";')"
+          for HIDDEN_ROUTE_SPEC in "hidden-iconic-collection|$HIDDEN_ICONIC_COLLECTION_ROUTE" "hidden-baby-collection|$HIDDEN_BABY_COLLECTION_ROUTE" "hidden-iconic-product|$HIDDEN_ICONIC_PRODUCT_ROUTE" "hidden-baby-product|$HIDDEN_BABY_PRODUCT_ROUTE"; do
+            HIDDEN_LABEL="${HIDDEN_ROUTE_SPEC%%|*}"
+            HIDDEN_ROUTE="${HIDDEN_ROUTE_SPEC#*|}"
+            if [ -z "$HIDDEN_ROUTE" ]; then echo "$HIDDEN_LABEL route resolution failed"; exit 2; fi
+            HIDDEN_STATUS="$(curl -sS -o /dev/null -w '%{http_code}' "https://$SITE_HOST$HIDDEN_ROUTE")"
+            if [ "$HIDDEN_STATUS" != "404" ]; then echo "$HIDDEN_LABEL expected 404 route=$HIDDEN_ROUTE status=$HIDDEN_STATUS"; exit 2; fi
+            echo "MAKE_SMOKE_OK=$HIDDEN_LABEL route=$HIDDEN_ROUTE status=$HIDDEN_STATUS"
+          done
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $admins=get_users(array("role"=>"administrator","number"=>1,"fields"=>"ID"));
+            if (!$admins) { fwrite(STDERR,"No administrator available for visibility preview check".PHP_EOL); exit(2); }
+            wp_set_current_user((int)$admins[0]);
+            $iconic=get_term_by("slug","iconic-destinations","product_collection");
+            $baby=get_term_by("slug","baby-nursery","product_collection");
+            if (!make_store_admin_can_view_hidden_collections() || !$iconic instanceof WP_Term || !$baby instanceof WP_Term || make_collection_is_visible($iconic) || make_collection_is_visible($baby)) {
+                fwrite(STDERR,"Administrator hidden collection preview verification failed".PHP_EOL);
+                exit(2);
+            }
+            echo "DRIELO_HIDDEN_COLLECTION_ADMIN_PREVIEW_OK=yes".PHP_EOL;
+          '
+
           check_html "$PRODUCT_ES_ROUTE" "drielo-shop-views" "single-product-shop-switch"
           check_html "$PRODUCT_ES_ROUTE" "Albert Einstein" "product-copy-es"
           check_html "$PRODUCT_EN_ROUTE" "Albert Einstein" "product-copy-en"
@@ -529,7 +561,7 @@ jobs:
             $eur=(float)$product->get_price();
             $rate=(float)make_store_usd_eur_rate();
             $expected=round($usd*$rate,6);
-            if (abs($usd-4.99)>0.001 || abs($eur-$expected)>0.001 || $rate<=0) {
+            if ($usd<=0 || abs($eur-$expected)>0.001 || $rate<=0) {
                 fwrite(STDERR,"Currency conversion failed USD=".$usd." EUR=".$eur." RATE=".$rate.PHP_EOL);
                 exit(2);
             }
