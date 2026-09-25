@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - collection/iconic-destinations-pixel-test
+      - feature/pixel-filled-cross-paris
     paths:
       - 'content/pattern-system/pixel_importer/**'
       - 'content/pattern-system/iconic_destinations/publish_pixel_test.py'
@@ -274,7 +275,7 @@ jobs:
             echo 'No generated changes to persist.'
           else
             git commit -m 'Build first Iconic Destinations pixel QA [skip ci]'
-            git push origin HEAD:collection/iconic-destinations-pixel-test
+            git push origin HEAD:"$GITHUB_REF_NAME"
           fi
 
       - name: Archive test PDF
