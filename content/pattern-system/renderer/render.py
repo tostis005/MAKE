@@ -87,8 +87,20 @@ def render(code,fix=False):
  if not rel: raise ValueError(f"Collection {coll['id']} has no approved mockup asset yet")
  hero=(cp.parent/rel).resolve()
  if not hero.is_file(): raise FileNotFoundError(hero)
- data={'product_code':product['code'],'collection':coll.get('name',coll['id']),'title':product['title'],'subtitle':product.get('subtitle','A modern cross-stitch pattern'),'stitch_width':pattern['stitch_width'],'stitch_height':pattern['stitch_height'],'total_stitches':pattern['total_stitches'],'threads':pattern['threads'],'matrix':pattern['matrix'],'skill_level':product.get('skill_level','Beginner friendly'),'stitch_type':product.get('stitch_type','Full cross stitch'),'website':product.get('website','www.drielo.com'),'materials':product.get('materials',['DMC embroidery floss','14-count Aida or preferred fabric','Tapestry needle size 24/26','6-inch hoop (optional)']),'fabric_counts':product.get('fabric_counts',[14,16,18]),'preview_rules':coll.get('preview_rules',{})}
+ data={'product_code':product['code'],'collection':coll.get('name',coll['id']),'title':product['title'],'subtitle':product.get('subtitle','A modern cross-stitch pattern'),'stitch_width':pattern['stitch_width'],'stitch_height':pattern['stitch_height'],'total_stitches':pattern['total_stitches'],'threads':pattern['threads'],'matrix':pattern['matrix'],'skill_level':product.get('skill_level','Beginner friendly'),'stitch_type':product.get('stitch_type','Full cross stitch'),'website':product.get('website','www.drielo.com'),'materials':product.get('materials',['DMC embroidery floss','14-count Aida or preferred fabric','Tapestry needle size 24/26','6-inch hoop (optional)']),'fabric_counts':product.get('fabric_counts',[14,16,18]),'preview_rules':coll.get('preview_rules',{}),'source_mode':pattern.get('source_mode','')}
  html=TEMPLATE.read_text(encoding='utf-8').replace('__DRIELO_PATTERN_JSON__',json.dumps(data,ensure_ascii=False,separators=(',',':')),1)
+
+ if data.get('source_mode')=='pixel-exact':
+  replacements={
+   '<th>DMC</th>':'<th>Colour code</th>',
+   '${threadCount} DMC colours':'${threadCount} exact colours',
+   'Each chart symbol corresponds to one DMC colour.':'Each chart symbol corresponds to one exact source colour.',
+   'Use this overview together with the enlarged symbol sections and the DMC colour key.':'Use this overview together with the enlarged symbol sections and the exact colour key.',
+   'Keep the DMC key nearby':'Keep the colour key nearby',
+   'Every symbol maps to the same DMC number shown on the thread-colour page.':'Every symbol maps to the same exact source colour shown on the thread-colour page.',
+   'Use the DMC colour key on page 4 together with the colour and symbol charts throughout this booklet.':'Use the exact colour key on page 4 together with the colour and symbol charts throughout this booklet.',
+  }
+  for old,new in replacements.items(): html=html.replace(old,new)
  m=re.search(r'<script id="template-assets" type="application/json">(.*?)</script>',html,re.S)
  if not m: raise ValueError('Template assets block missing')
  a=json.loads(m.group(1)); a.update({'cover_image':data_uri(hero),'frame':mock.get('frame',{})}); html=html[:m.start(1)]+json.dumps(a,ensure_ascii=False,separators=(',',':'))+html[m.end(1):]
