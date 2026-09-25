@@ -39,6 +39,20 @@ add_filter( 'single_product_archive_thumbnail_size', static function (): string 
     return 'full';
 }, 20 );
 
+function make_attachment_cache_busted_url( int $attachment_id, string $url ): string {
+    if ( $attachment_id <= 0 || '' === $url ) { return $url; }
+
+    $hash = trim( (string) get_post_meta( $attachment_id, '_drielo_source_hash', true ) );
+    if ( '' === $hash ) {
+        $file = get_attached_file( $attachment_id );
+        if ( $file && is_file( $file ) ) {
+            $hash = md5_file( $file ) ?: '';
+        }
+    }
+
+    return '' !== $hash ? add_query_arg( 'v', substr( $hash, 0, 12 ), $url ) : $url;
+}
+
 function make_static_attachment_image_html( int $attachment_id, string $size = 'medium_large', string $class = '' ): string {
     if ( $attachment_id <= 0 ) { return ''; }
 
@@ -48,7 +62,7 @@ function make_static_attachment_image_html( int $attachment_id, string $size = '
     $alt = trim( (string) get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ) );
     return sprintf(
         '<img src="%1$s" width="%2$d" height="%3$d" class="%4$s" alt="%5$s" loading="lazy" decoding="async">',
-        esc_url( $image[0] ),
+        esc_url( make_attachment_cache_busted_url( $attachment_id, $image[0] ) ),
         (int) $image[1],
         (int) $image[2],
         esc_attr( $class ),
@@ -92,7 +106,7 @@ function make_protected_single_product_image_html( string $html, int $attachment
         esc_url( $thumb_url ),
         esc_attr( $alt ),
         esc_attr( $classes ),
-        esc_url( $image[0] ),
+        esc_url( make_attachment_cache_busted_url( $attachment_id, $image[0] ) ),
         (int) $image[1],
         (int) $image[2],
         esc_attr( $img_class )
