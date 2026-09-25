@@ -110,6 +110,84 @@ jobs:
             git push origin HEAD:feature/iconic-d0001-first-tile
           fi
 
+      - name: Build one-product web package
+        shell: bash
+        run: |
+          set -euo pipefail
+          CODE="D0001-CS"; STAGE="/tmp/drielo-${CODE}"
+          rm -rf "$STAGE"; mkdir -p "$STAGE/content/products/assets" "$STAGE/content/products/files" "$STAGE/content/tools"
+          python3 - "$CODE" "$STAGE" <<'PY'
+          import json,sys
+          from pathlib import Path
+          code=sys.argv[1]; stage=Path(sys.argv[2]); src=json.loads(Path('content/products/catalog.json').read_text(encoding='utf-8'))
+          row=next(p for p in src['products'] if p.get('code')==code)
+          collection=next(c for c in src['collections'] if c.get('slug')=='iconic-destinations')
+          cats=[c for c in src['categories'] if c.get('slug')=='cross-stitch-patterns']
+          out=dict(src); out['products']=[row]; out['collections']=[collection]; out['categories']=cats; out['retired_products']=[]; out['retired_collections']=[]
+          (stage/'content/products/catalog.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+          cp "content/products/assets/${CODE}-product.webp" "$STAGE/content/products/assets/"
+          cp "content/products/files/Drielo_${CODE}.pdf" "$STAGE/content/products/files/"
+          cp content/tools/import-products.php "$STAGE/content/tools/"
+          tar -czf "/tmp/drielo-${CODE}.tgz" -C "$STAGE" content
+
+      - name: Configure SSH for web preview
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_products_key
+          chmod 600 ~/.ssh/drielo_products_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Upload web preview package
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          scp -i ~/.ssh/drielo_products_key "/tmp/drielo-D0001-CS.tgz" "$VPS_USER@$VPS_HOST:/tmp/drielo-D0001-CS-${GITHUB_RUN_ID}.tgz"
+
+      - name: Publish only D0001-CS to WooCommerce
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_products_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          CODE="D0001-CS"; ARCHIVE="/tmp/drielo-${CODE}-${GITHUB_RUN_ID}.tgz"; STAGE="/tmp/drielo-${CODE}-${GITHUB_RUN_ID}"
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE"; }; trap cleanup EXIT
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); elif sudo -n docker inspect make-wp >/dev/null 2>&1; then DOCKER=(sudo -n docker); else echo "ERROR: make-wp container not found"; exit 1; fi
+          rm -rf "$STAGE" && mkdir -p "$STAGE"; tar -xzf "$ARCHIVE" -C "$STAGE"
+          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
+          "${DOCKER[@]}" exec -e CODE="$CODE" make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $code=getenv("CODE"); $keepSku="DRIELO-".$code;
+            $ids=get_posts(array("post_type"=>"product","post_status"=>"any","numberposts"=>-1,"fields"=>"ids","tax_query"=>array(array("taxonomy"=>"product_collection","field"=>"slug","terms"=>array("iconic-destinations")))));
+            foreach($ids as $pid){$p=wc_get_product($pid); if($p && $p->get_sku()!==$keepSku){wp_delete_post($pid,true);}}
+            $id=wc_get_product_id_by_sku($keepSku); $p=$id?wc_get_product($id):false;
+            if(!$p){fwrite(STDERR,"Missing ".$keepSku.PHP_EOL);exit(2);}
+            $p->set_status("publish"); $p->save();
+            $cols=wp_get_object_terms($id,"product_collection",array("fields"=>"slugs"));
+            $url=get_permalink($id);
+            echo $keepSku." id=".$id." status=".$p->get_status()." image=".$p->get_image_id()." downloads=".count($p->get_downloads())." collection=".implode(",",is_wp_error($cols)?array():$cols)." url=".$url.PHP_EOL;
+            if($p->get_status()!=="publish"||!$p->get_image_id()||count($p->get_downloads())<1||!in_array("iconic-destinations",is_wp_error($cols)?array():$cols,true)){fwrite(STDERR,"Incomplete ".$keepSku.PHP_EOL);exit(3);}
+            file_put_contents("/tmp/drielo-d0001-url.txt",$url);
+          '
+          URL=$("${DOCKER[@]}" exec make-wp cat /tmp/drielo-d0001-url.txt)
+          curl -fsSL -o /dev/null "$URL"
+          echo "PUBLIC_URL=$URL"
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php /tmp/drielo-d0001-url.txt'
+          REMOTE
+
       - name: Upload preview artifact
         uses: actions/upload-artifact@v4
         with:
