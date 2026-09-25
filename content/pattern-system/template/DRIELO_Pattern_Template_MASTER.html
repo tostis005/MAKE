@@ -238,7 +238,7 @@ function realisticStitchRules() {
   const r=root.realistic_stitch || {};
   const n=(v,d)=>Number.isFinite(Number(v))?Number(v):d;
   return {
-    fabric: root.fabric || {color:"#FBFAF6",dot:"#DDD8CF",dot_radius:.05},
+    fabric: root.fabric || {color:"#F3EBDD",light:"#FFF9EE",mid:"#E5DAC8",shadow:"#CFC1AD",hole:"#AA9D8A"},
     cross_margin:n(r.cross_margin,0.065),
     shadow_stroke:n(r.shadow_stroke,0.38),
     lower_stroke:n(r.lower_stroke,0.305),
@@ -360,11 +360,26 @@ function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, transparent=false) {
   const out=[];
   const f=rules.fabric || {};
   if (!transparent) {
+    const fabricBase=esc(f.color || "#F3EBDD");
+    const fabricLight=esc(f.light || "#FFF9EE");
+    const fabricMid=esc(f.mid || "#E5DAC8");
+    const fabricShadow=esc(f.shadow || "#CFC1AD");
+    const fabricHole=esc(f.hole || "#AA9D8A");
     out.push(
       '<defs><pattern id="fabric" width="1" height="1" patternUnits="userSpaceOnUse">'+
-      '<rect width="1" height="1" fill="'+esc(f.color || "#FBFAF6")+'"/>'+
-      '<circle cx="0" cy="0" r="'+Number(f.dot_radius || .05)+'" fill="'+esc(f.dot || "#DDD8CF")+'" opacity=".78"/>'+
-      '<circle cx="1" cy="1" r="'+Number(f.dot_radius || .05)+'" fill="'+esc(f.dot || "#DDD8CF")+'" opacity=".54"/>'+
+      '<rect width="1" height="1" fill="'+fabricBase+'"/>'+
+      // Four softly rounded cotton bundles in each direction. They continue
+      // seamlessly across cell boundaries, so empty regions read as one cloth.
+      '<path d="M0 .165 C.28 .154 .72 .176 1 .165 M0 .285 C.30 .274 .70 .296 1 .285 M0 .715 C.28 .704 .72 .726 1 .715 M0 .835 C.30 .824 .70 .846 1 .835" fill="none" stroke="'+fabricLight+'" stroke-width=".072" stroke-linecap="round" opacity=".54"/>'+
+      '<path d="M0 .205 C.28 .198 .72 .212 1 .205 M0 .325 C.28 .318 .72 .332 1 .325 M0 .755 C.28 .748 .72 .762 1 .755 M0 .875 C.28 .868 .72 .882 1 .875" fill="none" stroke="'+fabricMid+'" stroke-width=".032" stroke-linecap="round" opacity=".46"/>'+
+      '<path d="M.165 0 C.154 .28 .176 .72 .165 1 M.285 0 C.274 .30 .296 .70 .285 1 M.715 0 C.704 .28 .726 .72 .715 1 M.835 0 C.824 .30 .846 .70 .835 1" fill="none" stroke="'+fabricLight+'" stroke-width=".068" stroke-linecap="round" opacity=".48"/>'+
+      '<path d="M.205 0 C.198 .28 .212 .72 .205 1 M.325 0 C.318 .28 .332 .72 .325 1 M.755 0 C.748 .28 .762 .72 .755 1 M.875 0 C.868 .28 .882 .72 .875 1" fill="none" stroke="'+fabricShadow+'" stroke-width=".030" stroke-linecap="round" opacity=".34"/>'+
+      // Recessed Aida hole at each stitch intersection. Warm and low contrast.
+      '<circle cx="0" cy="0" r=".095" fill="'+fabricShadow+'" opacity=".44"/>'+
+      '<circle cx="0" cy="0" r=".060" fill="'+fabricHole+'" opacity=".42"/>'+
+      '<circle cx="0" cy="0" r=".026" fill="#766E63" opacity=".12"/>'+
+      // Tiny edge highlights keep the hole dimensional without looking drawn.
+      '<path d="M.060 .018 Q.105 .040 .135 .088 M.018 .060 Q.040 .105 .088 .135" fill="none" stroke="'+fabricLight+'" stroke-width=".020" stroke-linecap="round" opacity=".48"/>'+
       '</pattern></defs><rect width="'+vw+'" height="'+vh+'" fill="url(#fabric)"/>'
     );
   }
@@ -430,14 +445,12 @@ function applyHeroFrame() {
       layer.style.width=`${Number(a.width)*scale}px`;
       layer.style.height=`${Number(a.height)*scale}px`;
     }
-    const fabric=cfg.fabric || {};
     const fabricEl=layer.querySelector('.hero-frame-fabric');
-    fabricEl.style.backgroundColor=fabric.color || '#f7f3ea';
-    if (fabric.texture_css) fabricEl.style.backgroundImage=fabric.texture_css;
+    fabricEl.style.display='none';
     const pad=Math.max(0,Math.min(.25,Number(cfg.padding_ratio ?? .05)));
     const stitches=layer.querySelector('.hero-frame-stitches');
     stitches.style.inset=`${pad*100}%`;
-    stitches.innerHTML=stitchedSvg(MATRIX,0,0,W,H,true);
+    stitches.innerHTML=stitchedSvg(MATRIX,0,0,W,H,false);
   };
   if (image.complete) render(); else image.addEventListener('load', render, {once:true});
   window.addEventListener('resize',render);
