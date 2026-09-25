@@ -9,7 +9,8 @@
     "Every source is exactly 100x120 cells. The publisher changes colour to the nearest DMC only; cell geometry is never resampled.",
     "All ten exact pixel sources D0001-D0010 are committed; automatic publication is enabled.",
     "DMC HEX is canonicalized from RGB; D0001 retry counter reset after fixing the upstream HEX corruption.",
-    "D0001-D0005 reset to pending after switching storefront generation to full-background direct compositing; PDF generation remains separate."
+    "D0001-D0005 reset to pending after switching storefront generation to full-background direct compositing; PDF generation remains separate.",
+    "Reset 26 previously published destinations to regenerate WooCommerce heroes from the restored 1536x1536 square lifestyle background."
   ],
   "items": [
     {
@@ -18,11 +19,10 @@
       "title_es": "Monte Rushmore",
       "slug": "mount-rushmore",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0001.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36188818609",
-      "last_error": null,
-      "published_at": "2026-09-25T20:58:49+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0002",
@@ -30,11 +30,10 @@
       "title_es": "Letrero de Hollywood",
       "slug": "hollywood-sign",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0002.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36188947482",
-      "last_error": null,
-      "published_at": "2026-09-25T21:00:15+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0003",
@@ -42,11 +41,10 @@
       "title_es": "Times Square de Nueva York",
       "slug": "times-square-new-york",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0003.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36189080970",
-      "last_error": null,
-      "published_at": "2026-09-25T21:01:46+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0004",
@@ -54,11 +52,10 @@
       "title_es": "Puerta de Brandeburgo de Berlín",
       "slug": "brandenburg-gate-berlin",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0004.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36189240619",
-      "last_error": null,
-      "published_at": "2026-09-25T21:03:27+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0005",
@@ -66,11 +63,10 @@
       "title_es": "Castillo de Osaka",
       "slug": "osaka-castle",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0005.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36189403280",
-      "last_error": null,
-      "published_at": "2026-09-25T21:04:55+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0006",
@@ -90,11 +86,10 @@
       "title_es": "Château Frontenac de Quebec",
       "slug": "quebec-chateau-frontenac",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0007.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36188381278",
-      "last_error": null,
-      "published_at": "2026-09-25T20:54:14+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0008",
@@ -102,11 +97,10 @@
       "title_es": "Hallstatt junto al lago",
       "slug": "hallstatt-lakeside-village",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0008.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36188517444",
-      "last_error": null,
-      "published_at": "2026-09-25T20:55:56+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0009",
@@ -114,11 +108,10 @@
       "title_es": "Casco antiguo de Dubrovnik",
       "slug": "dubrovnik-old-town",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0009.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36189548736",
-      "last_error": null,
-      "published_at": "2026-09-25T21:07:15+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0010",
@@ -126,11 +119,10 @@
       "title_es": "Faraglioni de Capri",
       "slug": "capri-faraglioni",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0010.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36189769147",
-      "last_error": null,
-      "published_at": "2026-09-25T21:08:54+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0011",
@@ -138,11 +130,10 @@
       "title_es": "Puente Golden Gate",
       "slug": "golden-gate-bridge",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0011.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36189925616",
-      "last_error": null,
-      "published_at": "2026-09-25T21:10:29+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0012",
@@ -150,11 +141,10 @@
       "title_es": "Tower Bridge de Londres",
       "slug": "london-tower-bridge",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0012.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36190073911",
-      "last_error": null,
-      "published_at": "2026-09-25T21:12:07+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0013",
@@ -162,11 +152,10 @@
       "title_es": "Mont Saint-Michel",
       "slug": "mont-saint-michel",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0013.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36190228307",
-      "last_error": null,
-      "published_at": "2026-09-25T21:13:41+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0014",
@@ -174,11 +163,10 @@
       "title_es": "Castillo de Neuschwanstein",
       "slug": "neuschwanstein-castle",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0014.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36190374625",
-      "last_error": null,
-      "published_at": "2026-09-25T21:15:11+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0015",
@@ -186,11 +174,10 @@
       "title_es": "Acrópolis de Atenas",
       "slug": "athens-acropolis",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0015.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36190521190",
-      "last_error": null,
-      "published_at": "2026-09-25T21:16:48+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0016",
@@ -198,11 +185,10 @@
       "title_es": "Angkor Wat",
       "slug": "angkor-wat",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0016.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36190673381",
-      "last_error": null,
-      "published_at": "2026-09-25T21:18:37+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0017",
@@ -210,11 +196,10 @@
       "title_es": "Bahía de Ha Long",
       "slug": "ha-long-bay",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0017.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36190840182",
-      "last_error": null,
-      "published_at": "2026-09-25T21:20:30+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0018",
@@ -222,11 +207,10 @@
       "title_es": "Globos de Capadocia",
       "slug": "cappadocia-balloons",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0018.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36191018819",
-      "last_error": null,
-      "published_at": "2026-09-25T21:22:15+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0019",
@@ -234,11 +218,10 @@
       "title_es": "Chichén Itzá",
       "slug": "chichen-itza",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0019.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36191177847",
-      "last_error": null,
-      "published_at": "2026-09-25T21:23:47+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0020",
@@ -246,11 +229,10 @@
       "title_es": "Mezquita Azul de Estambul",
       "slug": "istanbul-blue-mosque",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0020.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36191325690",
-      "last_error": null,
-      "published_at": "2026-09-25T21:25:53+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0021",
@@ -258,12 +240,11 @@
       "title_es": "Sagrada Familia de Barcelona",
       "slug": "barcelona-sagrada-familia",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0021.pixz",
-      "status": "published",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36191667378",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
       "last_error": null,
-      "failed_at": "2026-09-25T21:27:37+00:00",
-      "published_at": "2026-09-25T21:28:57+00:00"
+      "failed_at": "2026-09-25T21:27:37+00:00"
     },
     {
       "base_design_id": "D0022",
@@ -271,11 +252,10 @@
       "title_es": "Castillo de Praga",
       "slug": "prague-castle",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0022.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36191794767",
-      "last_error": null,
-      "published_at": "2026-09-25T21:30:36+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0023",
@@ -295,11 +275,10 @@
       "title_es": "Monte Fuji",
       "slug": "mount-fuji",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0024.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36192126326",
-      "last_error": null,
-      "published_at": "2026-09-25T21:34:14+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0025",
@@ -307,11 +286,10 @@
       "title_es": "Machu Picchu",
       "slug": "machu-picchu",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0025.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36192270852",
-      "last_error": null,
-      "published_at": "2026-09-25T21:35:39+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0026",
@@ -331,11 +309,10 @@
       "title_es": "Burj Khalifa de Dubái",
       "slug": "dubai-burj-khalifa",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0027.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36192599296",
-      "last_error": null,
-      "published_at": "2026-09-25T21:39:26+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0028",
@@ -343,11 +320,10 @@
       "title_es": "Gran Canal de Venecia",
       "slug": "venice-grand-canal",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0028.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36192730248",
-      "last_error": null,
-      "published_at": "2026-09-25T21:40:55+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0029",
@@ -355,11 +331,10 @@
       "title_es": "Puente de Carlos de Praga",
       "slug": "prague-charles-bridge",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0029.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36192861301",
-      "last_error": null,
-      "published_at": "2026-09-25T21:42:41+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0030",
