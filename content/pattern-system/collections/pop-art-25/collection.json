@@ -151,7 +151,17 @@
       "LH": "../../multitech/assets/cover-rug.webp"
     },
     "frame": {
-      "enabled": false
+      "enabled": true,
+      "area_pct": {
+        "x": 23.3,
+        "y": 10.8,
+        "width": 62.8,
+        "height": 57.8
+      },
+      "padding_ratio": 0.012,
+      "fabric": {
+        "color": "#f7f3ea"
+      }
     }
   },
   "preview_rules": {
