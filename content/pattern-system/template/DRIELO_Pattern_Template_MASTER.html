@@ -176,226 +176,156 @@ function luminance(hex) {
 function symbolInk(hex) { return luminance(hex) < .38 ? "#ffffff" : "#2e1d27"; }
 
 
-function stitchSeed() {
-  let h = 2166136261 >>> 0;
-  const s = String(CODE || "DRIELO");
-  for (let i=0; i<s.length; i++) {
-    h ^= s.charCodeAt(i);
-    h = Math.imul(h, 16777619) >>> 0;
-  }
-  return h >>> 0;
-}
-const STITCH_SEED = stitchSeed();
-
-function stitchHash(x,y,salt=0) {
-  let h = (
-    STITCH_SEED ^
-    Math.imul((x+1)|0, 374761393) ^
-    Math.imul((y+1)|0, 668265263) ^
-    Math.imul((salt+1)|0, 1442695041)
-  ) >>> 0;
-  h ^= h >>> 13;
-  h = Math.imul(h, 1274126177) >>> 0;
-  h ^= h >>> 16;
-  return (h >>> 0) / 4294967295;
-}
-
-function parseHexColour(hex) {
-  let h=String(hex || "#ffffff").replace("#","");
-  if (h.length===3) h=h.split("").map(c=>c+c).join("");
-  if (!/^[0-9a-fA-F]{6}$/.test(h)) h="ffffff";
-  return [0,2,4].map(i=>parseInt(h.slice(i,i+2),16));
-}
-function rgbHexColour(rgb) {
-  return "#" + rgb.map(v=>Math.max(0,Math.min(255,Math.round(v))).toString(16).padStart(2,"0")).join("").toUpperCase();
-}
-function mixColour(a,b,t) {
-  const aa=parseHexColour(a), bb=parseHexColour(b), k=Math.max(0,Math.min(1,Number(t)||0));
-  return rgbHexColour(aa.map((v,i)=>v+(bb[i]-v)*k));
-}
-function desaturateColour(hex,amount) {
-  const c=parseHexColour(hex), k=Math.max(0,Math.min(1,Number(amount)||0));
-  const g=.2126*c[0]+.7152*c[1]+.0722*c[2];
-  return rgbHexColour(c.map(v=>v+(g-v)*k));
-}
-function darkenColour(hex,amount) {
-  const c=parseHexColour(hex), k=1-Math.max(0,Math.min(1,Number(amount)||0));
-  return rgbHexColour(c.map(v=>v*k));
-}
-function lightenColour(hex,amount) {
-  return mixColour(hex,"#FFFFFF",Math.max(0,Math.min(1,Number(amount)||0)));
-}
-function colourLum255(hex) {
-  const c=parseHexColour(hex);
-  return .2126*c[0]+.7152*c[1]+.0722*c[2];
-}
-function pushGrouped(map,key,cmd) {
-  if (!map.has(key)) map.set(key,[]);
-  map.get(key).push(cmd);
-}
-function realisticStitchRules() {
-  const root=data.preview_rules || {};
-  const r=root.realistic_stitch || {};
-  const n=(v,d)=>Number.isFinite(Number(v))?Number(v):d;
+function stitchRules() {
+  const r = data.preview_rules || {};
   return {
-    fabric: root.fabric || {color:"#FBFAF6",dot:"#DDD8CF",dot_radius:.05},
-    cross_margin:n(r.cross_margin,0.065),
-    shadow_stroke:n(r.shadow_stroke,0.38),
-    lower_stroke:n(r.lower_stroke,0.305),
-    upper_stroke:n(r.upper_stroke,0.315),
-    highlight_stroke:n(r.highlight_stroke,0.060),
-    vertical_aida:r.vertical_aida || "#D1D1C9",
-    horizontal_neutral:r.horizontal_neutral || "#3F3F3B",
-    vertical_widths:Array.isArray(r.vertical_widths)?r.vertical_widths:[0.032,0.041,0.050],
-    horizontal_widths:Array.isArray(r.horizontal_widths)?r.horizontal_widths:[0.050,0.061,0.072]
+    style: String(r.stitch_style || "classic").toLowerCase(),
+    margin: Number.isFinite(Number(r.cross_margin_ratio)) ? Number(r.cross_margin_ratio) : 0.02,
+    stroke: Number.isFinite(Number(r.stroke_width_ratio)) ? Number(r.stroke_width_ratio) : 0.34,
+    fill: Number.isFinite(Number(r.cross_fill_ratio)) ? Number(r.cross_fill_ratio) : 0.46,
+    highlightOpacity: Number.isFinite(Number(r.highlight_opacity)) ? Number(r.highlight_opacity) : 0.24,
+    shadowOpacity: Number.isFinite(Number(r.shadow_opacity)) ? Number(r.shadow_opacity) : 0.28,
+    gridOpacity: Number.isFinite(Number(r.grid_opacity)) ? Number(r.grid_opacity) : 0.16,
+    ridgeOpacity: Number.isFinite(Number(r.thread_ridge_opacity)) ? Number(r.thread_ridge_opacity) : 0.22,
+    linecap: r.linecap || "round",
+    fabric: r.fabric || {
+      color:"#EFE6D7",
+      light:"#FFF8EC",
+      mid:"#DED2BF",
+      shadow:"#C7B9A4",
+      hole:"#9E907C"
+    }
   };
 }
-function verticalSeamColour(base, neighbour, aida) {
-  const reflected=mixColour(base,neighbour || base,.45);
-  const muted=desaturateColour(reflected,.76);
-  let out=mixColour(muted,aida,.43);
-  const target=Math.min(216,colourLum255(reflected)+12);
-  const current=colourLum255(out);
-  if (current<target) out=lightenColour(out,Math.min(.14,(target-current)/140));
-  return out;
+
+function shadeHex(hex, amount) {
+  let h=String(hex || "#ffffff").replace("#","");
+  if (h.length===3) h=h.split("").map(v=>v+v).join("");
+  const rgb=[0,2,4].map(i=>parseInt(h.slice(i,i+2),16));
+  const target=amount>=0 ? 255 : 0;
+  const a=Math.min(1,Math.abs(Number(amount)||0));
+  return "#"+rgb.map(v=>Math.round(v+(target-v)*a).toString(16).padStart(2,"0")).join("");
 }
-function horizontalSeamColour(base, neighbour, neutral) {
-  const reflected=mixColour(base,neighbour || base,.42);
-  let out=desaturateColour(reflected,.19);
-  out=darkenColour(out,.40);
-  out=mixColour(out,neutral,.07);
-  return out;
+
+/*
+  Aida reference model:
+  one SVG unit = one stitch square / one Aida count interval.
+  The cloth is built from grouped cotton yarns around regularly spaced holes,
+  matching the block-thread square weave used by real Aida rather than a flat
+  white grid. A 2x2 tile introduces tiny repeatable variations in the bundles
+  without moving the actual stitch-hole coordinates.
+*/
+function aidaPattern(f) {
+  const base=esc(f.color || "#EFE6D7");
+  const light=esc(f.light || "#FFF8EC");
+  const mid=esc(f.mid || "#DED2BF");
+  const shadow=esc(f.shadow || "#C7B9A4");
+  const hole=esc(f.hole || "#9E907C");
+  const parts=[
+    '<pattern id="fabric" width="2" height="2" patternUnits="userSpaceOnUse">',
+    '<rect width="2" height="2" fill="'+base+'"/>'
+  ];
+  const variants=[
+    {dx:-.006,dy:.004,o:1.00},
+    {dx:.005,dy:-.003,o:.96},
+    {dx:.003,dy:.006,o:.98},
+    {dx:-.004,dy:-.005,o:.94}
+  ];
+  for (let py=0; py<2; py++) {
+    for (let px=0; px<2; px++) {
+      const v=variants[py*2+px], ox=px+v.dx, oy=py+v.dy;
+      // Four visible cotton filaments in each bundle.
+      const ys=[.365,.435,.505,.575];
+      const xs=[.365,.435,.505,.575];
+      ys.forEach((yy,i)=>{
+        const col=(i===0||i===1)?light:(i===2?mid:shadow);
+        const op=(i===0?.62:i===1?.52:i===2?.46:.30)*v.o;
+        parts.push('<path d="M'+px+' '+(oy+yy-py).toFixed(3)+' C'+(px+.28)+' '+(oy+yy-py-.010).toFixed(3)+' '+(px+.72)+' '+(oy+yy-py+.010).toFixed(3)+' '+(px+1)+' '+(oy+yy-py).toFixed(3)+'" fill="none" stroke="'+col+'" stroke-width="'+(i<2?.054:.038)+'" stroke-linecap="round" opacity="'+op.toFixed(3)+'"/>');
+      });
+      xs.forEach((xx,i)=>{
+        const col=(i===0||i===1)?light:(i===2?mid:shadow);
+        const op=(i===0?.56:i===1?.48:i===2?.40:.27)*v.o;
+        parts.push('<path d="M'+(ox+xx-px).toFixed(3)+' '+py+' C'+(ox+xx-px-.010).toFixed(3)+' '+(py+.28)+' '+(ox+xx-px+.010).toFixed(3)+' '+(py+.72)+' '+(ox+xx-px).toFixed(3)+' '+(py+1)+'" fill="none" stroke="'+col+'" stroke-width="'+(i<2?.052:.036)+'" stroke-linecap="round" opacity="'+op.toFixed(3)+'"/>');
+      });
+      // The opening is square-ish and recessed, as in macro photos of Aida.
+      parts.push('<rect x="'+(px-.078).toFixed(3)+'" y="'+(py-.078).toFixed(3)+'" width=".156" height=".156" rx=".028" fill="'+shadow+'" opacity=".48"/>');
+      parts.push('<rect x="'+(px-.052).toFixed(3)+'" y="'+(py-.052).toFixed(3)+'" width=".104" height=".104" rx=".020" fill="'+hole+'" opacity=".46"/>');
+      parts.push('<path d="M'+(px-.050)+' '+(py-.061)+' H'+(px+.036)+' M'+(px-.061)+' '+(py-.050)+' V'+(py+.036)+'" stroke="'+light+'" stroke-width=".018" stroke-linecap="round" opacity=".50"/>');
+      parts.push('<path d="M'+(px-.034)+' '+(py+.060)+' H'+(px+.055)+' M'+(px+.060)+' '+(py-.034)+' V'+(py+.055)+'" stroke="#746A5E" stroke-width=".015" stroke-linecap="round" opacity=".13"/>');
+    }
+  }
+  parts.push('</pattern>');
+  return parts.join("");
 }
 
 function stitchedSvg(matrix=MATRIX, x0=0, y0=0, x1=W, y1=H, transparent=false) {
-  const vw=x1-x0, vh=y1-y0;
-  const rules=realisticStitchRules();
-  const baseGroups=new Map();
-  const shadowGroups=new Map();
-  const lowerGroups=new Map();
-  const upperGroups=new Map();
-  const highlightGroups=new Map();
-  const verticalGroups=new Map();
-  const horizontalGroups=new Map();
+  const vw = x1-x0, vh = y1-y0;
+  const rules = stitchRules();
+  const f = rules.fabric || {};
+  const bg = transparent ? "" : '<defs>'+aidaPattern(f)+'</defs><rect width="'+vw+'" height="'+vh+'" fill="url(#fabric)"/>';
 
+  if (rules.style === "full-thread" || rules.style === "filled-cross") {
+    const grouped=new Map();
+    const cellEdges=[];
+    for (let y=y0; y<y1; y++) {
+      for (let x=x0; x<x1; x++) {
+        const symbol=matrix[y]?.[x];
+        if (!symbol) continue;
+        const lx=x-x0, ly=y-y0;
+        if (!grouped.has(symbol)) grouped.set(symbol,{cells:[],dark:[],light:[],ridgeA:[],ridgeB:[],edgeLight:[],edgeDark:[],centers:[]});
+        const g=grouped.get(symbol);
+        // Exact validated relief model from pixel-handmade-relief-paris.
+        g.cells.push(`M${lx} ${ly}H${lx+1}V${ly+1}H${lx}Z`);
+        g.dark.push(`M${(lx+.06).toFixed(3)} ${(ly+.06).toFixed(3)}L${(lx+.94).toFixed(3)} ${(ly+.94).toFixed(3)}`);
+        g.light.push(`M${(lx+.94).toFixed(3)} ${(ly+.06).toFixed(3)}L${(lx+.06).toFixed(3)} ${(ly+.94).toFixed(3)}`);
+        g.ridgeA.push(`M${(lx+.12).toFixed(3)} ${(ly+.08).toFixed(3)}L${(lx+.92).toFixed(3)} ${(ly+.88).toFixed(3)}`);
+        g.ridgeB.push(`M${(lx+.88).toFixed(3)} ${(ly+.08).toFixed(3)}L${(lx+.08).toFixed(3)} ${(ly+.88).toFixed(3)}`);
+        g.edgeLight.push(`M${(lx+.04).toFixed(3)} ${(ly+.055).toFixed(3)}H${(lx+.945).toFixed(3)} M${(lx+.055).toFixed(3)} ${(ly+.04).toFixed(3)}V${(ly+.945).toFixed(3)}`);
+        g.edgeDark.push(`M${(lx+.055).toFixed(3)} ${(ly+.945).toFixed(3)}H${(lx+.945).toFixed(3)} M${(lx+.945).toFixed(3)} ${(ly+.055).toFixed(3)}V${(ly+.945).toFixed(3)}`);
+        g.centers.push(`M${(lx+.50).toFixed(3)} ${(ly+.40).toFixed(3)}L${(lx+.60).toFixed(3)} ${(ly+.50).toFixed(3)}L${(lx+.50).toFixed(3)} ${(ly+.60).toFixed(3)}L${(lx+.40).toFixed(3)} ${(ly+.50).toFixed(3)}Z`);
+        cellEdges.push(`M${lx} ${ly}H${lx+1}V${ly+1}H${lx}Z`);
+      }
+    }
+    const paths=[];
+    for (const [symbol,g] of grouped.entries()) {
+      const color=threadColor(symbol);
+      const base=shadeHex(color,-0.045);
+      const deep=shadeHex(color,-0.34);
+      const mid=shadeHex(color,-0.18);
+      const hi=shadeHex(color,0.34);
+      const hi2=shadeHex(color,0.48);
+      paths.push(`<path d="${g.cells.join(" ")}" fill="${base}"/>`);
+      paths.push(`<path d="${g.dark.join(" ")}" fill="none" stroke="${mid}" stroke-width="0.285" stroke-linecap="round" opacity="0.90"/>`);
+      paths.push(`<path d="${g.light.join(" ")}" fill="none" stroke="${color}" stroke-width="0.255" stroke-linecap="round" opacity="0.97"/>`);
+      paths.push(`<path d="${g.ridgeA.join(" ")} ${g.ridgeB.join(" ")}" fill="none" stroke="${hi2}" stroke-width="0.050" stroke-linecap="round" opacity="${rules.ridgeOpacity}"/>`);
+      paths.push(`<path d="${g.edgeLight.join(" ")}" fill="none" stroke="${hi}" stroke-width="0.040" stroke-linecap="round" opacity="${rules.highlightOpacity}"/>`);
+      paths.push(`<path d="${g.edgeDark.join(" ")}" fill="none" stroke="${deep}" stroke-width="0.052" stroke-linecap="round" opacity="${rules.shadowOpacity}"/>`);
+      paths.push(`<path d="${g.centers.join(" ")}" fill="${hi2}" opacity="0.16"/>`);
+    }
+    const texture=`<path d="${cellEdges.join(" ")}" fill="none" stroke="#24161c" stroke-width="0.030" opacity="${rules.gridOpacity}"/>`;
+    const textureLight=`<path d="${cellEdges.join(" ")}" fill="none" stroke="#ffffff" stroke-width="0.012" opacity="0.08" transform="translate(0.018 0.018)"/>`;
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${vw} ${vh}" preserveAspectRatio="xMidYMid meet">${bg}${paths.join("")}${texture}${textureLight}</svg>`;
+  }
+
+  const margin = Math.max(0, Math.min(0.2, rules.margin));
+  const end = 1-margin;
+  const grouped = new Map();
   for (let y=y0; y<y1; y++) {
     for (let x=x0; x<x1; x++) {
-      const symbol=matrix[y]?.[x];
+      const symbol = matrix[y]?.[x];
       if (!symbol) continue;
-      const base=threadColor(symbol);
       const lx=x-x0, ly=y-y0;
-
-      pushGrouped(baseGroups,symbol,"M"+lx+" "+ly+"h1v1h-1Z");
-
-      const h0=stitchHash(x,y,0), h1=stitchHash(x,y,1), h2=stitchHash(x,y,2), h3=stitchHash(x,y,3);
-      const m=Math.max(.038,Math.min(.095,rules.cross_margin+(h0-.5)*.028));
-      const e=1-m;
-      const ja=(h1-.5)*.032, jb=(h2-.5)*.032, jc=(h3-.5)*.026;
-
-      const a1x=lx+m, a1y=ly+m+ja, a2x=lx+e, a2y=ly+e+jb;
-      const b1x=lx+e, b1y=ly+m+jc, b2x=lx+m, b2y=ly+e-ja;
-      const shadowOff=.015+(h2*.012);
-
-      pushGrouped(shadowGroups,symbol,
-        "M"+a1x.toFixed(3)+" "+(a1y+shadowOff).toFixed(3)+"L"+a2x.toFixed(3)+" "+(a2y+shadowOff).toFixed(3)+
-        " M"+b1x.toFixed(3)+" "+(b1y+shadowOff).toFixed(3)+"L"+b2x.toFixed(3)+" "+(b2y+shadowOff).toFixed(3)
-      );
-      pushGrouped(lowerGroups,symbol,
-        "M"+a1x.toFixed(3)+" "+a1y.toFixed(3)+"L"+a2x.toFixed(3)+" "+a2y.toFixed(3)
-      );
-      pushGrouped(upperGroups,symbol,
-        "M"+b1x.toFixed(3)+" "+b1y.toFixed(3)+"L"+b2x.toFixed(3)+" "+b2y.toFixed(3)
-      );
-      pushGrouped(highlightGroups,symbol,
-        "M"+b1x.toFixed(3)+" "+b1y.toFixed(3)+"L"+b2x.toFixed(3)+" "+b2y.toFixed(3)
-      );
-
-      const leftSymbol=matrix[y]?.[x-1] || symbol;
-      const aboveSymbol=matrix[y-1]?.[x] || symbol;
-      const vBucket=Math.min(2,Math.floor(stitchHash(x,y,4)*3));
-      const hBucket=Math.min(2,Math.floor(stitchHash(x,y,5)*3));
-      const vColour=verticalSeamColour(base,threadColor(leftSymbol),rules.vertical_aida);
-      const hColour=horizontalSeamColour(base,threadColor(aboveSymbol),rules.horizontal_neutral);
-
-      const vx=lx+(stitchHash(x,y,6)-.5)*.026;
-      const bend1=(stitchHash(x,y,7)-.5)*.036;
-      const bend2=(stitchHash(x,y,8)-.5)*.036;
-      const yStart=ly+.115+stitchHash(x,y,9)*.035;
-      const yMid1=ly+.405+(stitchHash(x,y,10)-.5)*.045;
-      const yMid2=ly+.585+(stitchHash(x,y,11)-.5)*.045;
-      const yEnd=ly+.885-stitchHash(x,y,12)*.035;
-      const vCmd=
-        "M"+vx.toFixed(3)+" "+yStart.toFixed(3)+
-        "C"+(vx+bend1).toFixed(3)+" "+(yStart+.10).toFixed(3)+
-        " "+(vx+bend2).toFixed(3)+" "+(yMid1-.08).toFixed(3)+
-        " "+(vx+(bend1*.35)).toFixed(3)+" "+yMid1.toFixed(3)+
-        " M"+(vx-(bend2*.30)).toFixed(3)+" "+yMid2.toFixed(3)+
-        "C"+(vx-bend1).toFixed(3)+" "+(yMid2+.08).toFixed(3)+
-        " "+(vx+bend2*.45).toFixed(3)+" "+(yEnd-.10).toFixed(3)+
-        " "+vx.toFixed(3)+" "+yEnd.toFixed(3);
-      pushGrouped(verticalGroups,symbol+"|"+vBucket+"|"+vColour,vCmd);
-
-      const hy=ly+(stitchHash(x,y,13)-.5)*.024;
-      const xStart=lx+.018+stitchHash(x,y,14)*.025;
-      const xEnd=lx+.982-stitchHash(x,y,15)*.025;
-      const q1=ly+(stitchHash(x,y,16)-.5)*.022;
-      const q2=ly+(stitchHash(x,y,17)-.5)*.022;
-      let hCmd;
-      if (stitchHash(x,y,18)>.86) {
-        const gap=.045+stitchHash(x,y,19)*.045;
-        hCmd=
-          "M"+xStart.toFixed(3)+" "+hy.toFixed(3)+
-          "C"+(lx+.22).toFixed(3)+" "+q1.toFixed(3)+" "+(lx+.38).toFixed(3)+" "+q2.toFixed(3)+" "+(lx+.50-gap).toFixed(3)+" "+hy.toFixed(3)+
-          " M"+(lx+.50+gap).toFixed(3)+" "+hy.toFixed(3)+
-          "C"+(lx+.64).toFixed(3)+" "+q2.toFixed(3)+" "+(lx+.80).toFixed(3)+" "+q1.toFixed(3)+" "+xEnd.toFixed(3)+" "+hy.toFixed(3);
-      } else {
-        hCmd=
-          "M"+xStart.toFixed(3)+" "+hy.toFixed(3)+
-          "C"+(lx+.30).toFixed(3)+" "+q1.toFixed(3)+" "+(lx+.68).toFixed(3)+" "+q2.toFixed(3)+" "+xEnd.toFixed(3)+" "+hy.toFixed(3);
-      }
-      pushGrouped(horizontalGroups,symbol+"|"+hBucket+"|"+hColour,hCmd);
+      const cmd = `M${(lx+margin).toFixed(3)} ${(ly+margin).toFixed(3)}L${(lx+end).toFixed(3)} ${(ly+end).toFixed(3)} M${(lx+end).toFixed(3)} ${(ly+margin).toFixed(3)}L${(lx+margin).toFixed(3)} ${(ly+end).toFixed(3)}`;
+      if (!grouped.has(symbol)) grouped.set(symbol, []);
+      grouped.get(symbol).push(cmd);
     }
   }
-
-  const out=[];
-  const f=rules.fabric || {};
-  if (!transparent) {
-    out.push(
-      '<defs><pattern id="fabric" width="1" height="1" patternUnits="userSpaceOnUse">'+
-      '<rect width="1" height="1" fill="'+esc(f.color || "#FBFAF6")+'"/>'+
-      '<circle cx="0" cy="0" r="'+Number(f.dot_radius || .05)+'" fill="'+esc(f.dot || "#DDD8CF")+'" opacity=".78"/>'+
-      '<circle cx="1" cy="1" r="'+Number(f.dot_radius || .05)+'" fill="'+esc(f.dot || "#DDD8CF")+'" opacity=".54"/>'+
-      '</pattern></defs><rect width="'+vw+'" height="'+vh+'" fill="url(#fabric)"/>'
-    );
+  const paths=[];
+  for (const [symbol, commands] of grouped.entries()) {
+    paths.push(`<path d="${commands.join(" ")}" fill="none" stroke="${threadColor(symbol)}" stroke-width="${rules.stroke}" stroke-linecap="${esc(rules.linecap)}" stroke-linejoin="round"/>`);
   }
-
-  for (const [symbol,commands] of baseGroups.entries()) {
-    out.push('<path d="'+commands.join(" ")+'" fill="'+threadColor(symbol)+'"/>');
-  }
-  for (const [symbol,commands] of shadowGroups.entries()) {
-    out.push('<path d="'+commands.join(" ")+'" fill="none" stroke="'+darkenColour(threadColor(symbol),.28)+'" stroke-width="'+rules.shadow_stroke+'" stroke-linecap="round" stroke-linejoin="round" opacity=".34"/>');
-  }
-  for (const [symbol,commands] of lowerGroups.entries()) {
-    out.push('<path d="'+commands.join(" ")+'" fill="none" stroke="'+darkenColour(threadColor(symbol),.035)+'" stroke-width="'+rules.lower_stroke+'" stroke-linecap="round" stroke-linejoin="round" opacity=".96"/>');
-  }
-  for (const [symbol,commands] of upperGroups.entries()) {
-    out.push('<path d="'+commands.join(" ")+'" fill="none" stroke="'+lightenColour(threadColor(symbol),.035)+'" stroke-width="'+rules.upper_stroke+'" stroke-linecap="round" stroke-linejoin="round" opacity=".98"/>');
-  }
-  for (const [symbol,commands] of highlightGroups.entries()) {
-    out.push('<path d="'+commands.join(" ")+'" fill="none" stroke="'+lightenColour(threadColor(symbol),.18)+'" stroke-width="'+rules.highlight_stroke+'" stroke-linecap="round" opacity=".24"/>');
-  }
-  for (const [key,commands] of verticalGroups.entries()) {
-    const parts=key.split("|"), bucket=Number(parts[1]), colour=parts[2];
-    out.push('<path d="'+commands.join(" ")+'" fill="none" stroke="'+colour+'" stroke-width="'+rules.vertical_widths[bucket]+'" stroke-linecap="round" opacity=".56"/>');
-  }
-  for (const [key,commands] of horizontalGroups.entries()) {
-    const parts=key.split("|"), bucket=Number(parts[1]), colour=parts[2];
-    out.push('<path d="'+commands.join(" ")+'" fill="none" stroke="'+colour+'" stroke-width="'+rules.horizontal_widths[bucket]+'" stroke-linecap="round" opacity=".58"/>');
-  }
-
-  return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+vw+' '+vh+'" preserveAspectRatio="xMidYMid meet">'+out.join("")+'</svg>';
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${vw} ${vh}" preserveAspectRatio="xMidYMid meet">${bg}${paths.join("")}</svg>`;
 }
-
 
 function applyHeroFrame() {
   const cfg = assets.frame || {};
