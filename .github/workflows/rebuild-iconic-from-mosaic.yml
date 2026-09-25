@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'content/pattern-system/iconic_destinations/mosaic-upload/**'
+      - 'content/pattern-system/collections/iconic-destinations/assets/iconic-mosaic-grid-source.webp'
       - 'content/pattern-system/collections/iconic-destinations/assets/iconic-mosaic-grid-source.webp'
       - '.github/scripts/import_iconic_mosaic.py'
       - '.github/workflows/rebuild-iconic-from-mosaic.yml'
@@ -110,8 +110,6 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          rm -rf content/pattern-system/iconic_destinations/mosaic-upload
 
           git add -A             content/pattern-system/iconic_destinations/mosaic-upload             content/pattern-system/iconic_destinations/publish_queue.json             content/pattern-system/collections/iconic-destinations/designs.json             content/pattern-system/collections/iconic-destinations/assets/iconic-mosaic-grid-1000x720.png             content/pattern-system/collections/iconic-destinations/source-designs             content/pattern-system/collections/iconic-destinations/pixel-sources
 
