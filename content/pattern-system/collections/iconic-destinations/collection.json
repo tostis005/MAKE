@@ -44,7 +44,7 @@
     "generation": {
       "purpose": "Iconic Destinations reusable cross-stitch lifestyle mockup.",
       "frame_requirement": "Keep the central wooden frame empty; renderer inserts the exact vector stitch pattern.",
-      "post_generation_measurement": "Calibrated to the detected 256×256 central frame opening: x=75, y=27, width=122, height=149. Zero padding; centered; cover fit so no white border remains."
+      "post_generation_measurement": "Handmade-relief test: frame overlay shifted +2 px right and +2 px down from the previous calibration. Zero padding; cover fit."
     },
     "frame": {
       "enabled": true,
@@ -53,8 +53,8 @@
         "height": 256
       },
       "area_px": {
-        "x": 75,
-        "y": 27,
+        "x": 77,
+        "y": 29,
         "width": 122,
         "height": 149
       },
@@ -79,15 +79,19 @@
     "center": true,
     "low_resolution_priority": false,
     "fabric": {
-      "color": "#FBFAF6",
-      "dot": "#DDD8CF",
+      "color": "#F7F5F0",
+      "dot": "#D8D0C5",
       "dot_radius": 0.05
     },
     "palette_style": "per-design-dmc",
     "palette_mode": "per-design",
     "preserve_design_palette": true,
     "stitch_style": "full-thread",
-    "cross_fill_ratio": 0.47
+    "cross_fill_ratio": 0.46,
+    "highlight_opacity": 0.24,
+    "shadow_opacity": 0.28,
+    "grid_opacity": 0.16,
+    "thread_ridge_opacity": 0.22
   },
   "design_reference": {
     "status": "concept-boards-approved",
@@ -109,6 +113,15 @@
     "ordering": "row-major",
     "pixel_to_stitch": "1:1",
     "colour_policy": "exact-rgb-no-quantization",
-    "test_source": "approved-pixel-designs/D0001-paris-eiffel-tower.png"
+    "test_source": "approved-pixel-designs/D0001-paris-eiffel-tower.png",
+    "source_cleanup": {
+      "reason": "The supplied exact 1000x720 mosaic contains two rows of the following tile at the bottom of D0001.",
+      "bottom_bleed_rows": 2,
+      "repair": "repeat-last-valid-row",
+      "output_size_px": {
+        "width": 100,
+        "height": 120
+      }
+    }
   }
 }
