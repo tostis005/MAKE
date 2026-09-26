@@ -403,6 +403,8 @@ def render_design(base_id: str, design: dict, built: dict):
     # No square #cover-stage screenshot and no 4:5 ImageOps.fit crop.
     stable_storefront = STORE_ASSETS / f"{code}-product.webp"
     asset_revision = str(os.environ.get("GITHUB_RUN_ID") or "local")
+    for stale in STORE_ASSETS.glob(f"{code}-{design['slug']}-product-r*.webp"):
+        stale.unlink()
     versioned_storefront = STORE_ASSETS / f"{code}-{design['slug']}-product-r{asset_revision}.webp"
     storefront = build_storefront_image(
         mockup["cover_asset"],
