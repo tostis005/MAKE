@@ -31,7 +31,7 @@ def item(doc, design_id):
 
 
 def source_mode_enabled(doc):
-    return str(doc.get("mode", "")) == "direct-approved-zip-60-pngs-100x120-v2"
+    return str(doc.get("mode", "")) == "direct-zip-png-only-60x100x120-v3"
 
 
 def cmd_next(args):
