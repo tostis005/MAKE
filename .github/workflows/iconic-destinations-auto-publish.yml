@@ -265,7 +265,7 @@ jobs:
           "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
           "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
           "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
-          "${DOCKER[@]}" exec -e CODE="$CODE" make-wp php -d memory_limit=768M -r '
+          "${DOCKER[@]}" exec -e CODE="$CODE" -e EXPECTED_ASSET="$EXPECTED_ASSET" make-wp php -d memory_limit=768M -r '
             require "/var/www/html/wp-load.php";
             $code=getenv("CODE"); $expected=getenv("EXPECTED_ASSET"); $sku="DRIELO-".$code; $id=wc_get_product_id_by_sku($sku); $p=$id?wc_get_product($id):false;
             if(!$p){fwrite(STDERR,"Missing ".$sku.PHP_EOL);exit(2);}
