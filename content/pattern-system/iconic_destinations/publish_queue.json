@@ -1,14 +1,13 @@
 {
   "collection": "iconic-destinations",
-  "mode": "direct-zip-png-only-60x100x120-v3",
+  "mode": "blocked-awaiting-pdf-source",
   "auto_continue": false,
   "max_attempts_per_design": 3,
   "notes": [
-    "The approved ZIP is the only artwork container for D0001-D0060.",
-    "Each product reads its matching extracted input_png directly; there is no mosaic, board crop, or .pixz source path.",
-    "Every PNG must be exactly 100x120 and contain no more than 50 colours.",
-    "The publisher validates the extracted PNG against the corresponding ZIP member before generating PDF or WooCommerce assets.",
-    "STOPPED 2026-09-26: source ZIP individual PNGs contain legacy mosaic/crop contamination; do not publish until clean individual PNGs are supplied/regenerated."
+    "PAUSED: the uploaded 60-PNG ZIP contains mosaic-derived contamination and is forbidden as a production source.",
+    "The next valid import must come from content/pattern-system/collections/iconic-destinations/assets/iconic-60-source.pdf.",
+    "The approved PDF must contain exactly 60 pages, one independent destination design per page.",
+    "No mosaic, mosaic crop, reference board, legacy ZIP, or ZIP-extracted PNG may be used for publication."
   ],
   "items": [
     {
