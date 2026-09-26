@@ -58,7 +58,7 @@ jobs:
           set -euo pipefail
           python3 .github/scripts/import_iconic_zip.py
 
-      - name: Validate approved ZIP and all 60 PNG sources
+      - name: Verify ZIP-only sources are exact and product-ready
         shell: bash
         run: |
           set -euo pipefail
@@ -134,7 +134,7 @@ jobs:
                   if len(raw) != 1 + n * 3 + 12000:
                       raise SystemExit(f'{base}: malformed 100x120 pixz')
 
-          print('APPROVED_ZIP_VALID pngs=60 each=100x120 max_colours=50')
+          print('ZIP_ONLY_SOURCES_VALID pngs=60 each=100x120 max_colours=50')
           PY
 
       - name: Configure SSH
@@ -199,7 +199,7 @@ jobs:
           '
           REMOTE
 
-      - name: Enable approved PNG queue and persist ZIP plus 60 sources
+      - name: Enable ZIP-only queue and persist extracted 60 sources
         shell: bash
         run: |
           set -euo pipefail
@@ -212,7 +212,7 @@ jobs:
               raise SystemExit('Refusing to enable queue without 60 valid items')
           queue['auto_continue']=True
           qpath.write_text(json.dumps(queue,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-          print('APPROVED_Q50_QUEUE_ENABLED pending=60')
+          print('ZIP_ONLY_QUEUE_ENABLED pending=60')
           PY
 
           git config user.name "github-actions[bot]"
