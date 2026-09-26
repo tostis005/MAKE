@@ -4,6 +4,7 @@
   "auto_continue": false,
   "max_attempts_per_design": 3,
   "notes": [
+    "PAUSED: rebuilding strictly from the committed 60-PNG ZIP; mosaic is not a product source.",
     "PAUSED: switching to direct ZIP-only source; mosaic is not used.",
     "The batch source is the approved 1000x720 white-grid mosaic.",
     "It is split mathematically into 60 cells of exactly 100x120.",
