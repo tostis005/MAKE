@@ -1,9 +1,10 @@
 {
   "collection": "iconic-destinations",
   "mode": "direct-approved-zip-60-pngs-100x120-v2",
-  "auto_continue": true,
+  "auto_continue": false,
   "max_attempts_per_design": 3,
   "notes": [
+    "PAUSED: next import must come only from the 60-design PDF source; mosaic/ZIP modes are blocked.",
     "The ZIP is the only artwork source for D0001-D0060.",
     "The mosaic is not read, cropped, resized, cleaned, or used for product generation.",
     "Each product is generated from its matching PNG inside the ZIP in row-major order.",
