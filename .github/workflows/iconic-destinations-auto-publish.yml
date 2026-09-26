@@ -1,5 +1,5 @@
 name: Iconic Destinations Auto Publish
-# trigger: uploaded-zip-reset-2026-09-26
+# source-policy: hardened-individual-zip-png-only-v3
 
 on:
   push:
@@ -55,55 +55,136 @@ jobs:
           set -euo pipefail
           python3 content/pattern-system/iconic_destinations/publish_design.py "${{ steps.select.outputs.design_id }}"
 
-      - name: Validate one-to-one cross-stitch bundle
+      - name: Validate ZIP-PNG provenance and one-to-one cross-stitch bundle
         if: steps.select.outputs.design_id != ''
         shell: bash
         run: |
           set -euo pipefail
           DESIGN="${{ steps.select.outputs.design_id }}"
           python3 - "$DESIGN" <<'PY'
-          import json,sys
+          import json,sys,zipfile
           from pathlib import Path
           from PIL import Image
-          base=sys.argv[1]; code=base+'-CS'; root=Path('.'); system=root/'content'/'pattern-system'
-          designs=json.loads((system/'collections'/'iconic-destinations'/'designs.json').read_text(encoding='utf-8'))['designs']
+
+          base=sys.argv[1]
+          code=base+'-CS'
+          root=Path('.')
+          system=root/'content'/'pattern-system'
+          col=system/'collections'/'iconic-destinations'
+          queue=json.loads((system/'iconic_destinations'/'publish_queue.json').read_text(encoding='utf-8'))
+          designs=json.loads((col/'designs.json').read_text(encoding='utf-8'))['designs']
+
+          if queue.get('mode')!='direct-zip-png-only-60x100x120-v3':
+              raise SystemExit(f"{base}: wrong hardened queue mode {queue.get('mode')}")
+          if 'preview_mosaic' in queue:
+              raise SystemExit(f'{base}: preview_mosaic is forbidden')
+
           d=next(x for x in designs if x['base_design_id']==base)
-          if d.get('variants') != [code]: raise SystemExit(f'{base}: non-CS variant detected')
-          src=system/d['source_asset']; im=Image.open(src).convert('RGB')
-          if im.size!=(100,120): raise SystemExit(f'{base}: final source is not exactly 100x120')
+          q=next(x for x in queue['items'] if x['base_design_id']==base)
+          if d.get('variants') != [code]:
+              raise SystemExit(f'{base}: non-CS variant detected')
+          for key in ('reference_board','planned_source_asset','preview_mosaic','mosaic_source','mosaic_crop','board_source'):
+              if key in d:
+                  raise SystemExit(f'{base}: forbidden legacy source field {key}')
+
+          input_rel=q.get('input_png')
+          if not input_rel or d.get('input_png')!=input_rel or d.get('source_asset')!=input_rel:
+              raise SystemExit(f'{base}: input/source provenance mismatch')
+          src=system/input_rel
+          if not src.is_file():
+              raise SystemExit(f'{base}: individual input PNG missing: {src}')
+
+          zip_path=col/'assets'/'iconic-60-pngs-q50.zip'
+          with zipfile.ZipFile(zip_path,'r') as zf:
+              raw=zf.read(Path(input_rel).name)
+          if src.read_bytes()!=raw:
+              raise SystemExit(f'{base}: extracted PNG differs byte-for-byte from ZIP member')
+
+          with Image.open(src) as im:
+              source_rgb=im.convert('RGB')
+              if source_rgb.size!=(100,120):
+                  raise SystemExit(f'{base}: source PNG is not exactly 100x120')
+              if len(set(source_rgb.getdata()))>50:
+                  raise SystemExit(f'{base}: source PNG exceeds 50 colours')
+
+          approved=col/'approved-pixel-designs'/f"{base}-{d['slug']}.png"
+          if not approved.is_file() or approved.read_bytes()!=src.read_bytes():
+              raise SystemExit(f'{base}: approved audit copy is not byte-identical to ZIP PNG')
+
+          mapped_rel=d.get('dmc_mapped_asset')
+          mapped=system/mapped_rel if mapped_rel else None
+          if mapped is None or not mapped.is_file():
+              raise SystemExit(f'{base}: missing DMC-mapped derivative')
+
           pat=json.loads((system/'patterns'/code/'pattern.json').read_text(encoding='utf-8'))
           prod=json.loads((system/'products'/code/'product.json').read_text(encoding='utf-8'))
-          if (pat.get('stitch_width'),pat.get('stitch_height'))!=(100,120): raise SystemExit(f'{code}: wrong grid')
-          if len(pat.get('matrix',[]))!=120 or any(len(r)!=100 for r in pat['matrix']): raise SystemExit(f'{code}: malformed matrix')
-          if any(v in (None,'') for row in pat['matrix'] for v in row): raise SystemExit(f'{code}: every source pixel must map to a stitch')
-          if pat.get('total_stitches')!=12000: raise SystemExit(f'{code}: exact grid must contain 12000 stitches')
-          if not (1<=len(pat.get('threads',[]))<=50): raise SystemExit(f'{code}: unexpected palette size')
-          if prod.get('render_ready') is not True or prod.get('technique')!='cross-stitch': raise SystemExit(f'{code}: product is not render-ready CS')
+          if pat.get('source_asset')!=input_rel or prod.get('source_artwork')!=input_rel:
+              raise SystemExit(f'{code}: generated metadata does not point to individual ZIP PNG')
+          if pat.get('mapped_asset')!=mapped_rel or prod.get('mapped_artwork')!=mapped_rel:
+              raise SystemExit(f'{code}: mapped derivative metadata mismatch')
+          if (pat.get('stitch_width'),pat.get('stitch_height'))!=(100,120):
+              raise SystemExit(f'{code}: wrong grid')
+          if len(pat.get('matrix',[]))!=120 or any(len(r)!=100 for r in pat['matrix']):
+              raise SystemExit(f'{code}: malformed matrix')
+          if any(v in (None,'') for row in pat['matrix'] for v in row):
+              raise SystemExit(f'{code}: every source pixel must map to a stitch')
+          if pat.get('total_stitches')!=12000:
+              raise SystemExit(f'{code}: exact grid must contain 12000 stitches')
+          if not (1<=len(pat.get('threads',[]))<=50):
+              raise SystemExit(f'{code}: unexpected DMC palette size')
+          if prod.get('render_ready') is not True or prod.get('technique')!='cross-stitch':
+              raise SystemExit(f'{code}: product is not render-ready CS')
+
           colours={t['symbol']:tuple(int(t['color'][i:i+2],16) for i in (1,3,5)) for t in pat['threads']}
-          for n,pixel in enumerate(im.getdata()):
-              y,x=divmod(n,100)
-              if colours[pat['matrix'][y][x]]!=pixel: raise SystemExit(f'{code}: one-to-one mismatch at {x},{y}')
+          with Image.open(mapped) as mapped_im:
+              mapped_rgb=mapped_im.convert('RGB')
+              if mapped_rgb.size!=(100,120):
+                  raise SystemExit(f'{code}: mapped derivative has wrong size')
+              for n,pixel in enumerate(mapped_rgb.getdata()):
+                  y,x=divmod(n,100)
+                  if colours[pat['matrix'][y][x]]!=pixel:
+                      raise SystemExit(f'{code}: matrix/mapped-image mismatch at {x},{y}')
+
+          forbidden=[
+              col/'assets'/'iconic-60-pngs-q50-mosaic.png',
+              col/'assets'/'iconic-mosaic-grid-1000x720.png',
+              col/'assets'/'iconic-mosaic-grid-source.webp',
+              col/'reference-boards.json',
+          ]
+          if any(p.exists() for p in forbidden):
+              raise SystemExit(f'{base}: obsolete mosaic/reference artifacts still exist')
+
           pdf=root/'content'/'products'/'files'/f'Drielo_{code}.pdf'
           featured=root/'content'/'products'/'assets'/f'{code}-product.webp'
-          gallery=[root/'content'/'products'/'assets'/f'{code}-design.webp',root/'content'/'products'/'assets'/f'{code}-gallery-2.webp',root/'content'/'products'/'assets'/f'{code}-gallery-3.webp',root/'content'/'products'/'assets'/f'{code}-gallery-4.webp']
-          if not pdf.is_file() or pdf.stat().st_size<100000 or pdf.read_bytes()[:4]!=b'%PDF': raise SystemExit(f'{code}: invalid PDF')
-          if not featured.is_file() or featured.stat().st_size<30000: raise SystemExit(f'{code}: invalid product image')
-          if any(not p.is_file() or p.stat().st_size<5000 for p in gallery): raise SystemExit(f'{code}: invalid gallery')
+          gallery=[
+              root/'content'/'products'/'assets'/f'{code}-design.webp',
+              root/'content'/'products'/'assets'/f'{code}-gallery-2.webp',
+              root/'content'/'products'/'assets'/f'{code}-gallery-3.webp',
+              root/'content'/'products'/'assets'/f'{code}-gallery-4.webp',
+          ]
+          if not pdf.is_file() or pdf.stat().st_size<100000 or pdf.read_bytes()[:4]!=b'%PDF':
+              raise SystemExit(f'{code}: invalid PDF')
+          if not featured.is_file() or featured.stat().st_size<30000:
+              raise SystemExit(f'{code}: invalid product image')
+          if any(not p.is_file() or p.stat().st_size<5000 for p in gallery):
+              raise SystemExit(f'{code}: invalid gallery')
+
           cat=json.loads((root/'content'/'products'/'catalog.json').read_text(encoding='utf-8'))
           row=next((p for p in cat.get('products',[]) if p.get('code')==code),None)
-          if not row or row.get('collection')!='iconic-destinations' or row.get('technique')!='cross-stitch': raise SystemExit(f'{code}: wrong catalog routing')
+          if not row or row.get('collection')!='iconic-destinations' or row.get('technique')!='cross-stitch':
+              raise SystemExit(f'{code}: wrong catalog routing')
           storefront=root/'content'/'products'/row['featured_image']
-          if not storefront.is_file() or storefront.stat().st_size<30000: raise SystemExit(f'{code}: missing versioned storefront image')
-          collection_doc=json.loads((system/'collections'/'iconic-destinations'/'collection.json').read_text(encoding='utf-8'))
-          background=system/'collections'/'iconic-destinations'/collection_doc['mockup_spec']['asset']
-          if not background.is_file(): raise SystemExit(f'{code}: missing full storefront background')
+          collection_doc=json.loads((col/'collection.json').read_text(encoding='utf-8'))
+          background=col/collection_doc['mockup_spec']['asset']
+          if not background.is_file():
+              raise SystemExit(f'{code}: missing storefront background')
           with Image.open(background) as bg_im, Image.open(storefront) as hero_im:
               if hero_im.size != bg_im.size:
-                  raise SystemExit(f'{code}: storefront image cropped/resized {hero_im.size}, expected full background {bg_im.size}')
-              if hero_im.size == (1200,1500):
-                  raise SystemExit(f'{code}: legacy 4:5 storefront crop detected')
-          if row.get('gallery') != []: raise SystemExit(f'{code}: Iconic storefront must expose only the featured image')
-          print(code,'EXACT_1_TO_1','colors',len(pat['threads']),'pdf',pdf.stat().st_size)
+                  raise SystemExit(f'{code}: storefront image cropped/resized {hero_im.size}, expected {bg_im.size}')
+          if row.get('gallery') != []:
+              raise SystemExit(f'{code}: Iconic storefront must expose only the featured image')
+
+          print(code,'ZIP_PNG_ONLY_VALID','source',input_rel,'colors',len(pat['threads']),'pdf',pdf.stat().st_size)
           PY
 
       - name: Build one-product WooCommerce package
