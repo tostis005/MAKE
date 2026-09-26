@@ -11,10 +11,10 @@
   "pattern_file": "patterns/D0025-CS/pattern.json",
   "template": "cross-stitch.html",
   "website": "www.drielo.com",
-  "status": "ready",
-  "render_ready": true,
+  "status": "draft",
+  "render_ready": false,
   "renderer": "multitech",
-  "source_artwork": "collections/iconic-destinations/source-designs/D0025-machu-picchu.png",
-  "page_1_asset": "../../multitech/assets/cover-cross-stitch.webp",
+  "source_artwork": null,
+  "page_1_asset": null,
   "palette_mode": "per-design"
 }
