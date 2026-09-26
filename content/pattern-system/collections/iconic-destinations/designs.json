@@ -711,10 +711,10 @@
       "variants": [
         "D0031-CS"
       ],
-      "artwork_status": "approved-conceptual-realistic-zip-png-100x120",
+      "artwork_status": "production-ready-from-approved-clean-zip",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_01.png",
       "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
+      "palette_status": "mapped-directly-from-zip-png-to-dmc",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -722,7 +722,7 @@
       },
       "target_chart_pages": 4,
       "source_colour_count": 50,
-      "dmc_colour_count": 27,
+      "dmc_colour_count": 28,
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_01.png",
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
       "source_zip_member": "D0031-paris-eiffel-tower.png",
