@@ -221,3 +221,19 @@ jobs:
           python3 content/pattern-system/iconic_destinations/queue_state.py fail "$DESIGN" --run-url "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" --error "Automatic Iconic Destinations publish run failed; see GitHub Actions logs."
           git add content/pattern-system/iconic_destinations/publish_queue.json
           git commit -m "Record Iconic Destinations ${DESIGN} publish failure [skip ci]"; git push origin HEAD:main
+
+      - name: Continue Iconic publication queue
+        if: always() && steps.select.outputs.design_id != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git reset --hard origin/main
+          if [ "$(python3 content/pattern-system/iconic_destinations/queue_state.py has-work)" = "yes" ]; then
+            gh api --method POST "repos/${GITHUB_REPOSITORY}/actions/workflows/iconic-destinations-auto-publish.yml/dispatches" -f ref=main
+            echo "NEXT_ICONIC_RUN_DISPATCHED"
+          else
+            echo "ICONIC_QUEUE_COMPLETE"
+          fi
