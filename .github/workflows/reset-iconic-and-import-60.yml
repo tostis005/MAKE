@@ -1,5 +1,5 @@
 name: Reset Iconic Destinations from uploaded ZIP
-# trigger: user-upload-reprocess-2026-09-26-2017
+# trigger: hardened-zip-png-only-reset-2026-09-26
 
 on:
   push:
@@ -65,11 +65,9 @@ jobs:
         run: |
           set -euo pipefail
           python3 - <<'PY'
-          import base64
           import io
           import json
           import zipfile
-          import zlib
           from pathlib import Path
           from PIL import Image
 
@@ -79,7 +77,7 @@ jobs:
           queue = json.loads((root / 'iconic_destinations' / 'publish_queue.json').read_text(encoding='utf-8'))
           designs = json.loads((col / 'designs.json').read_text(encoding='utf-8'))['designs']
 
-          if queue.get('mode') != 'direct-approved-zip-60-pngs-100x120-v2':
+          if queue.get('mode') != 'direct-zip-png-only-60x100x120-v3':
               raise SystemExit(f"Wrong queue mode: {queue.get('mode')}")
           if queue.get('auto_continue') is not False:
               raise SystemExit('Queue must remain paused until WooCommerce reset is complete')
@@ -267,13 +265,13 @@ jobs:
           from pathlib import Path
           qpath=Path('content/pattern-system/iconic_destinations/publish_queue.json')
           queue=json.loads(qpath.read_text(encoding='utf-8'))
-          if queue.get('mode') != 'direct-approved-zip-60-pngs-100x120-v2':
-              raise SystemExit('Refusing to enable non-ZIP Iconic queue')
+          if queue.get('mode') != 'direct-zip-png-only-60x100x120-v3':
+              raise SystemExit('Refusing to enable anything except hardened individual-ZIP-PNG queue')
           if len(queue.get('items', [])) != 60:
               raise SystemExit('Refusing to enable queue without 60 valid ZIP designs')
           queue['auto_continue']=True
           qpath.write_text(json.dumps(queue,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-          print('UPLOADED_ZIP_QUEUE_ENABLED pending=60')
+          print('ZIP_PNG_ONLY_QUEUE_ENABLED pending=60')
           PY
 
           git config user.name "github-actions[bot]"
@@ -299,4 +297,4 @@ jobs:
           gh api --method POST \
             "repos/${GITHUB_REPOSITORY}/actions/workflows/iconic-destinations-auto-publish.yml/dispatches" \
             -f ref=main
-          echo "UPLOADED_ZIP_ICONIC_IMPORT_STARTED D0001-D0060"
+          echo "ZIP_PNG_ONLY_ICONIC_IMPORT_STARTED D0001-D0060"
