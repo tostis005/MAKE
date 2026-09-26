@@ -109,21 +109,33 @@ jobs:
                       if not (1 <= colours <= 50):
                           raise SystemExit(f'{base}: ZIP PNG has {colours} colours, expected <=50')
 
-                  input_path = root / item['input_png']
+                  input_rel = item['input_png']
+                  input_path = root / input_rel
                   if not input_path.is_file():
                       raise SystemExit(f'{base}: extracted input PNG missing')
                   if input_path.read_bytes() != raw_png:
-                      raise SystemExit(f'{base}: extracted PNG differs from ZIP bytes')
+                      raise SystemExit(f'{base}: extracted PNG differs byte-for-byte from ZIP bytes')
 
-                  pixz = col / 'pixel-sources' / f'{base}.pixz'
-                  raw = zlib.decompress(base64.b64decode(pixz.read_text().strip()))
-                  n = raw[0]
-                  if not (1 <= n <= 50):
-                      raise SystemExit(f'{base}: invalid pixz palette {n}')
-                  if len(raw) != 1 + n * 3 + 12000:
-                      raise SystemExit(f'{base}: malformed 100x120 pixz')
+                  design = next(d for d in designs if d['base_design_id'] == base)
+                  if design.get('input_png') != input_rel or design.get('source_asset') != input_rel:
+                      raise SystemExit(f'{base}: design source is not its individual ZIP PNG')
+                  for key in ('reference_board','planned_source_asset','preview_mosaic','mosaic_source','mosaic_crop','board_source'):
+                      if key in design:
+                          raise SystemExit(f'{base}: forbidden legacy source field {key}')
 
-          print('UPLOADED_ZIP_SOURCE_VALID designs=60 each=100x120 max_colours=50')
+          forbidden = [
+              col / 'assets' / 'iconic-60-pngs-q50-mosaic.png',
+              col / 'assets' / 'iconic-mosaic-grid-1000x720.png',
+              col / 'assets' / 'iconic-mosaic-grid-source.webp',
+              col / 'reference-boards.json',
+          ]
+          if any(path.exists() for path in forbidden):
+              raise SystemExit('Obsolete mosaic/reference artifacts still exist')
+          pixel_dir = col / 'pixel-sources'
+          if pixel_dir.exists() and any(pixel_dir.iterdir()):
+              raise SystemExit('Legacy .pixz sources still exist')
+
+          print('ZIP_PNG_ONLY_SOURCE_VALID designs=60 each=100x120 max_colours=50 no_mosaic=1 no_pixz=1')
           PY
 
       - name: Configure SSH
@@ -277,14 +289,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add \
+          git add -A \
             content/pattern-system/iconic_destinations/publish_queue.json \
-            content/pattern-system/collections/iconic-destinations/designs.json \
-            content/pattern-system/collections/iconic-destinations/input-pngs-q50 \
-            content/pattern-system/collections/iconic-destinations/pixel-sources \
-            content/pattern-system/collections/iconic-destinations/assets/iconic-60-pngs-q50-mosaic.png
+            content/pattern-system/collections/iconic-destinations
 
-          git commit -m "Import 60 Iconic products from uploaded ZIP [skip ci]"
+          git commit -m "Reset Iconic to 60 individual ZIP PNG sources [skip ci]"
           git pull --rebase origin main
           git push origin HEAD:main
 
