@@ -5,6 +5,7 @@ import json
 import os
 import shutil
 import sys
+import zipfile
 from collections import Counter
 from pathlib import Path
 
@@ -127,40 +128,45 @@ def design_record(base_id: str):
 
 
 def load_input_png_source(base_id: str, design: dict):
-    """Load one design extracted directly from the approved 60-page PDF.
-
-    The PDF-derived PNG is the only allowed production artwork source for
-    Iconic Destinations. ZIP/mosaic/board/crop sources are explicitly blocked.
-    """
+    """Load one exact 100x120 PNG whose bytes are anchored to an approved ZIP member."""
     input_rel = str(design.get("input_png") or "")
-    prefix = "collections/iconic-destinations/pdf-pngs-q50/"
+    prefix = "collections/iconic-destinations/input-pngs-q50/"
     if not input_rel.startswith(prefix) or not input_rel.lower().endswith(".png"):
-        raise RuntimeError(f"{base_id}: invalid PDF-derived PNG source path: {input_rel!r}")
+        raise RuntimeError(f"{base_id}: invalid ZIP-derived PNG source path: {input_rel!r}")
 
     input_path = SYSTEM / input_rel
     if not input_path.is_file():
-        raise FileNotFoundError(f"{base_id}: missing PDF-derived PNG: {input_path}")
-    if not PDF_PATH.is_file():
-        raise FileNotFoundError(f"{base_id}: approved 60-page PDF source is missing: {PDF_PATH}")
+        raise FileNotFoundError(f"{base_id}: missing ZIP-derived PNG: {input_path}")
 
     queue = read_json(QUEUE_PATH)
-    if queue.get("mode") != "pdf-source-60-designs-q50-v1":
-        raise RuntimeError(f"{base_id}: Iconic queue is not in PDF-only source mode")
+    if not str(queue.get("mode", "")).startswith("direct-zip-png-"):
+        raise RuntimeError(f"{base_id}: Iconic queue is not in direct ZIP source mode")
     qitem = next((x for x in queue.get("items", []) if x.get("base_design_id") == base_id), None)
     if not qitem or qitem.get("input_png") != input_rel:
-        raise RuntimeError(f"{base_id}: design/queue PDF input_png mismatch")
+        raise RuntimeError(f"{base_id}: design/queue ZIP input_png mismatch")
 
-    source_pdf = str(design.get("source_pdf") or "")
-    page = int(design.get("source_pdf_page") or 0)
-    if source_pdf != "collections/iconic-destinations/assets/iconic-60-source.pdf":
-        raise RuntimeError(f"{base_id}: design is not tied to the approved PDF source")
-    if qitem.get("source_pdf_page") != page or not (1 <= page <= 60):
-        raise RuntimeError(f"{base_id}: invalid PDF page provenance")
+    zip_rel = str(qitem.get("source_zip") or design.get("source_zip") or "")
+    member = str(qitem.get("source_zip_member") or design.get("source_zip_member") or "")
+    if not zip_rel.startswith("collections/iconic-destinations/assets/") or not zip_rel.lower().endswith(".zip"):
+        raise RuntimeError(f"{base_id}: missing approved ZIP provenance")
+    if design.get("source_zip") != zip_rel or design.get("source_zip_member") != member:
+        raise RuntimeError(f"{base_id}: design/queue ZIP provenance mismatch")
+
+    zip_path = SYSTEM / zip_rel
+    if not zip_path.is_file():
+        raise FileNotFoundError(f"{base_id}: approved ZIP source is missing: {zip_path}")
+    try:
+        with zipfile.ZipFile(zip_path, "r") as zf:
+            raw = zf.read(member)
+    except (KeyError, zipfile.BadZipFile) as exc:
+        raise RuntimeError(f"{base_id}: invalid ZIP member provenance: {member!r}") from exc
+    if raw != input_path.read_bytes():
+        raise RuntimeError(f"{base_id}: extracted PNG bytes differ from approved ZIP member")
 
     with Image.open(input_path) as im:
         rgb = im.convert("RGB")
         if rgb.size != (WIDTH, HEIGHT):
-            raise RuntimeError(f"{base_id}: PDF-derived PNG is {rgb.size}, expected {(WIDTH, HEIGHT)}")
+            raise RuntimeError(f"{base_id}: ZIP-derived PNG is {rgb.size}, expected {(WIDTH, HEIGHT)}")
         pixels = list(rgb.getdata())
 
     palette = []
@@ -169,14 +175,13 @@ def load_input_png_source(base_id: str, design: dict):
     for pixel in pixels:
         if pixel not in colour_to_index:
             if len(palette) >= 50:
-                raise RuntimeError(f"{base_id}: PDF-derived PNG exceeds 50 source colours")
+                raise RuntimeError(f"{base_id}: ZIP-derived PNG exceeds 50 source colours")
             colour_to_index[pixel] = len(palette)
             palette.append(pixel)
         indexes.append(colour_to_index[pixel])
 
     if len(indexes) != CELL_COUNT:
-        raise RuntimeError(f"{base_id}: PDF-derived PNG has wrong pixel count")
-
+        raise RuntimeError(f"{base_id}: ZIP-derived PNG has wrong pixel count")
     return palette, indexes, input_path, input_rel
 
 def dmc_table():
@@ -616,8 +621,8 @@ def update_design_manifest(base_id: str, doc: dict, built: dict):
             continue
         item["source_asset"] = built["input_rel"]
         item["dmc_mapped_asset"] = built["final_rel"]
-        item["artwork_status"] = "production-ready-from-approved-60-page-pdf"
-        item["palette_status"] = "mapped-directly-from-pdf-derived-png-to-dmc"
+        item["artwork_status"] = "production-ready-from-approved-clean-zip"
+        item["palette_status"] = "mapped-directly-from-zip-png-to-dmc"
         item.pop("reference_board", None)
         item.pop("planned_source_asset", None)
         item.pop("preview_mosaic", None)
@@ -635,7 +640,7 @@ def validate_outputs(base_id: str, design: dict, built: dict):
     # Provenance guardrail: the production source and approved audit copy must
     # remain the exact bytes extracted from the approved ZIP member.
     if built["approved_path"].read_bytes() != built["input_path"].read_bytes():
-        raise RuntimeError(f"{code}: approved PNG is not byte-identical to PDF-derived input")
+        raise RuntimeError(f"{code}: approved PNG is not byte-identical to ZIP-derived input")
     if design.get("source_asset") != built["input_rel"]:
         raise RuntimeError(f"{code}: design source_asset drifted away from input_png")
     if any(k in design for k in ("reference_board", "planned_source_asset", "preview_mosaic")):
@@ -643,7 +648,7 @@ def validate_outputs(base_id: str, design: dict, built: dict):
 
     pat = read_json(PATTERNS / code / "pattern.json")
     if pat.get("source_asset") != built["input_rel"]:
-        raise RuntimeError(f"{code}: pattern source is not the PDF-derived PNG")
+        raise RuntimeError(f"{code}: pattern source is not the ZIP-derived PNG")
     if (pat.get("stitch_width"), pat.get("stitch_height")) != (WIDTH, HEIGHT):
         raise RuntimeError(f"{code}: wrong dimensions")
     if len(pat.get("matrix", [])) != HEIGHT or any(len(r) != WIDTH for r in pat["matrix"]):
@@ -665,7 +670,7 @@ def validate_outputs(base_id: str, design: dict, built: dict):
         p = STORE_ASSETS / f"{code}-{suffix}.webp"
         if not p.is_file() or p.stat().st_size < 5000:
             raise RuntimeError(f"{code}: missing gallery asset {p.name}")
-    print(f"{code} VALID_PDF_SOURCE_ONLY source={built['input_rel']} colours={len(pat['threads'])} stitches={pat['total_stitches']} pdf={pdf.stat().st_size}")
+    print(f"{code} VALID_ZIP_SOURCE_ONLY source={built['input_rel']} colours={len(pat['threads'])} stitches={pat['total_stitches']} pdf={pdf.stat().st_size}")
 
 
 def main():
