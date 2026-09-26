@@ -48,19 +48,21 @@ jobs:
           done
           sleep 8
 
-      - name: Rebuild 60 strict 100x120 sources before deleting shop products
+      - name: Build approved ZIP with 60 q50 PNG sources
         shell: bash
         run: |
           set -euo pipefail
           python3 .github/scripts/import_iconic_mosaic.py
 
-      - name: Validate all 60 strict sources
+      - name: Validate approved ZIP and all 60 PNG sources
         shell: bash
         run: |
           set -euo pipefail
           python3 - <<'PY'
           import base64
+          import io
           import json
+          import zipfile
           import zlib
           from pathlib import Path
           from PIL import Image
@@ -69,6 +71,8 @@ jobs:
           col = root / 'collections' / 'iconic-destinations'
           queue = json.loads((root / 'iconic_destinations' / 'publish_queue.json').read_text(encoding='utf-8'))
           designs = json.loads((col / 'designs.json').read_text(encoding='utf-8'))['designs']
+          zip_path = col / 'assets' / 'iconic-60-pngs-q50.zip'
+          preview = col / 'assets' / 'iconic-60-pngs-q50-mosaic.png'
 
           if len(designs) != 60:
               raise SystemExit(f'Expected 60 designs, got {len(designs)}')
@@ -76,30 +80,57 @@ jobs:
               raise SystemExit(f"Expected 60 queue items, got {len(queue.get('items', []))}")
           if queue.get('auto_continue') is not False:
               raise SystemExit('Queue must remain paused until shop reset finishes')
+          if not zip_path.is_file():
+              raise SystemExit('Approved 60-PNG ZIP was not generated')
+
+          with Image.open(preview) as im:
+              if im.size != (1000, 720):
+                  raise SystemExit(f'Preview mosaic is {im.size}, expected 1000x720')
 
           expected_ids = [f'D{i:04d}' for i in range(1, 61)]
           if [x['base_design_id'] for x in queue['items']] != expected_ids:
               raise SystemExit('Queue order is not D0001-D0060')
 
-          for item in queue['items']:
-              base = item['base_design_id']
-              design = next(x for x in designs if x['base_design_id'] == base)
-              source = root / design['source_asset']
-              if not source.is_file():
-                  raise SystemExit(f'{base}: source image missing')
-              with Image.open(source) as im:
-                  if im.size != (100, 120):
-                      raise SystemExit(f'{base}: source size {im.size}, expected 100x120')
+          with zipfile.ZipFile(zip_path, 'r') as zf:
+              names = zf.namelist()
+              png_names = [n for n in names if n.lower().endswith('.png')]
+              if len(png_names) != 60 or len(set(png_names)) != 60:
+                  raise SystemExit(f'ZIP must contain exactly 60 unique PNGs, got {len(png_names)}')
 
-              pixz = col / 'pixel-sources' / f'{base}.pixz'
-              raw = zlib.decompress(base64.b64decode(pixz.read_text().strip()))
-              n = raw[0]
-              if not (1 <= n <= 50):
-                  raise SystemExit(f'{base}: invalid source palette {n}')
-              if len(raw) != 1 + n * 3 + 12000:
-                  raise SystemExit(f'{base}: malformed 100x120 pixz')
+              for index, item in enumerate(queue['items']):
+                  base = item['base_design_id']
+                  design = next(x for x in designs if x['base_design_id'] == base)
+                  row, colnum = divmod(index, 10)
+                  expected_name = f'destino_{row+1:02d}_{colnum+1:02d}.png'
+                  if expected_name not in names:
+                      raise SystemExit(f'{base}: {expected_name} missing from ZIP')
 
-          print('STRICT_60_VALID exact=100x120')
+                  input_path = root / item['input_png']
+                  if not input_path.is_file():
+                      raise SystemExit(f'{base}: input PNG missing')
+
+                  disk_bytes = input_path.read_bytes()
+                  zip_bytes = zf.read(expected_name)
+                  if disk_bytes != zip_bytes:
+                      raise SystemExit(f'{base}: ZIP PNG differs from product input PNG')
+
+                  with Image.open(io.BytesIO(zip_bytes)) as im:
+                      rgb = im.convert('RGB')
+                      if rgb.size != (100, 120):
+                          raise SystemExit(f'{base}: PNG size {rgb.size}, expected 100x120')
+                      colours = len(set(rgb.getdata()))
+                      if not (1 <= colours <= 50):
+                          raise SystemExit(f'{base}: PNG has {colours} colours, expected <= 50')
+
+                  pixz = col / 'pixel-sources' / f'{base}.pixz'
+                  raw = zlib.decompress(base64.b64decode(pixz.read_text().strip()))
+                  n = raw[0]
+                  if not (1 <= n <= 50):
+                      raise SystemExit(f'{base}: invalid pixz palette {n}')
+                  if len(raw) != 1 + n * 3 + 12000:
+                      raise SystemExit(f'{base}: malformed 100x120 pixz')
+
+          print('APPROVED_ZIP_VALID pngs=60 each=100x120 max_colours=50')
           PY
 
       - name: Configure SSH
@@ -164,7 +195,7 @@ jobs:
           '
           REMOTE
 
-      - name: Enable strict queue and persist all 60 sources
+      - name: Enable approved PNG queue and persist ZIP plus 60 sources
         shell: bash
         run: |
           set -euo pipefail
@@ -177,7 +208,7 @@ jobs:
               raise SystemExit('Refusing to enable queue without 60 valid items')
           queue['auto_continue']=True
           qpath.write_text(json.dumps(queue,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-          print('STRICT_QUEUE_ENABLED pending=60')
+          print('APPROVED_Q50_QUEUE_ENABLED pending=60')
           PY
 
           git config user.name "github-actions[bot]"
@@ -186,10 +217,12 @@ jobs:
           git add \
             content/pattern-system/iconic_destinations/publish_queue.json \
             content/pattern-system/collections/iconic-destinations/designs.json \
-            content/pattern-system/collections/iconic-destinations/source-designs \
-            content/pattern-system/collections/iconic-destinations/pixel-sources
+            content/pattern-system/collections/iconic-destinations/input-pngs-q50 \
+            content/pattern-system/collections/iconic-destinations/pixel-sources \
+            content/pattern-system/collections/iconic-destinations/assets/iconic-60-pngs-q50.zip \
+            content/pattern-system/collections/iconic-destinations/assets/iconic-60-pngs-q50-mosaic.png
 
-          git commit -m "Rebuild 60 strict Iconic sources [skip ci]"
+          git commit -m "Import approved 60-PNG q50 Iconic source pack [skip ci]"
           git pull --rebase origin main
           git push origin HEAD:main
 
@@ -202,4 +235,4 @@ jobs:
           gh api --method POST \
             "repos/${GITHUB_REPOSITORY}/actions/workflows/iconic-destinations-auto-publish.yml/dispatches" \
             -f ref=main
-          echo "STRICT_ICONIC_IMPORT_STARTED D0001-D0060"
+          echo "APPROVED_Q50_ICONIC_IMPORT_STARTED D0001-D0060"
