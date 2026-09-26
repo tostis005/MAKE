@@ -291,10 +291,11 @@
       "slug": "prague-castle",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_02.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0022.pixz",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36243992727",
+      "last_error": null,
+      "published_at": "2026-09-26T13:06:50+00:00"
     },
     {
       "base_design_id": "D0023",
