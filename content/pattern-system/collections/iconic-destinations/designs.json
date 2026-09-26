@@ -711,10 +711,10 @@
       "variants": [
         "D0031-CS"
       ],
-      "artwork_status": "production-ready-from-approved-clean-zip",
+      "artwork_status": "approved-conceptual-realistic-zip-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_01.png",
       "palette_mode": "per-design",
-      "palette_status": "mapped-directly-from-zip-png-to-dmc",
+      "palette_status": "ready-for-direct-png-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -726,7 +726,8 @@
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_01.png",
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
       "source_zip_member": "D0031-paris-eiffel-tower.png",
-      "dmc_mapped_asset": "collections/iconic-destinations/source-designs/D0031-paris-eiffel-tower.png"
+      "dmc_mapped_asset": "collections/iconic-destinations/source-designs/D0031-paris-eiffel-tower.png",
+      "source_style": "conceptual-realistic-illustration"
     },
     {
       "order": 32,
@@ -737,22 +738,23 @@
       "variants": [
         "D0032-CS"
       ],
-      "artwork_status": "production-ready-from-approved-clean-zip",
+      "artwork_status": "approved-conceptual-realistic-zip-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_02.png",
       "palette_mode": "per-design",
-      "palette_status": "mapped-directly-from-zip-png-to-dmc",
+      "palette_status": "ready-for-direct-png-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
       "target_chart_pages": 4,
-      "source_colour_count": 50,
+      "source_colour_count": 49,
       "dmc_colour_count": 29,
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_02.png",
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
       "source_zip_member": "D0032-london-big-ben.png",
-      "dmc_mapped_asset": "collections/iconic-destinations/source-designs/D0032-london-big-ben.png"
+      "dmc_mapped_asset": "collections/iconic-destinations/source-designs/D0032-london-big-ben.png",
+      "source_style": "conceptual-realistic-illustration"
     },
     {
       "order": 33,
@@ -763,10 +765,10 @@
       "variants": [
         "D0033-CS"
       ],
-      "artwork_status": "production-ready-from-approved-clean-zip",
+      "artwork_status": "approved-conceptual-realistic-zip-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_03.png",
       "palette_mode": "per-design",
-      "palette_status": "mapped-directly-from-zip-png-to-dmc",
+      "palette_status": "ready-for-direct-png-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -778,7 +780,8 @@
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_03.png",
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
       "source_zip_member": "D0033-rome-colosseum.png",
-      "dmc_mapped_asset": "collections/iconic-destinations/source-designs/D0033-rome-colosseum.png"
+      "dmc_mapped_asset": "collections/iconic-destinations/source-designs/D0033-rome-colosseum.png",
+      "source_style": "conceptual-realistic-illustration"
     },
     {
       "order": 34,
@@ -789,22 +792,23 @@
       "variants": [
         "D0034-CS"
       ],
-      "artwork_status": "production-ready-from-approved-clean-zip",
+      "artwork_status": "approved-conceptual-realistic-zip-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_04.png",
       "palette_mode": "per-design",
-      "palette_status": "mapped-directly-from-zip-png-to-dmc",
+      "palette_status": "ready-for-direct-png-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
       "target_chart_pages": 4,
-      "source_colour_count": 50,
+      "source_colour_count": 49,
       "dmc_colour_count": 23,
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_04.png",
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
       "source_zip_member": "D0034-new-york-statue-liberty.png",
-      "dmc_mapped_asset": "collections/iconic-destinations/source-designs/D0034-new-york-statue-liberty.png"
+      "dmc_mapped_asset": "collections/iconic-destinations/source-designs/D0034-new-york-statue-liberty.png",
+      "source_style": "conceptual-realistic-illustration"
     },
     {
       "order": 35,
@@ -815,22 +819,23 @@
       "variants": [
         "D0035-CS"
       ],
-      "artwork_status": "production-ready-from-approved-clean-zip",
+      "artwork_status": "approved-conceptual-realistic-zip-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_05.png",
       "palette_mode": "per-design",
-      "palette_status": "mapped-directly-from-zip-png-to-dmc",
+      "palette_status": "ready-for-direct-png-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
       "target_chart_pages": 4,
-      "source_colour_count": 50,
+      "source_colour_count": 49,
       "dmc_colour_count": 18,
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_05.png",
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
       "source_zip_member": "D0035-taj-mahal.png",
-      "dmc_mapped_asset": "collections/iconic-destinations/source-designs/D0035-taj-mahal.png"
+      "dmc_mapped_asset": "collections/iconic-destinations/source-designs/D0035-taj-mahal.png",
+      "source_style": "conceptual-realistic-illustration"
     },
     {
       "order": 36,
@@ -841,7 +846,7 @@
       "variants": [
         "D0036-CS"
       ],
-      "artwork_status": "approved-clean-zip-individual-png-100x120",
+      "artwork_status": "approved-conceptual-realistic-zip-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_06.png",
       "palette_mode": "per-design",
       "palette_status": "ready-for-direct-png-dmc-map",
@@ -855,7 +860,8 @@
       "dmc_colour_count": null,
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_06.png",
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
-      "source_zip_member": "D0036-great-wall-china.png"
+      "source_zip_member": "D0036-great-wall-china.png",
+      "source_style": "conceptual-realistic-illustration"
     },
     {
       "order": 37,
@@ -866,7 +872,7 @@
       "variants": [
         "D0037-CS"
       ],
-      "artwork_status": "approved-clean-zip-individual-png-100x120",
+      "artwork_status": "approved-conceptual-realistic-zip-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_07.png",
       "palette_mode": "per-design",
       "palette_status": "ready-for-direct-png-dmc-map",
@@ -876,11 +882,12 @@
         "max_long_side_stitches": 120
       },
       "target_chart_pages": 4,
-      "source_colour_count": 50,
+      "source_colour_count": 49,
       "dmc_colour_count": null,
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_07.png",
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
-      "source_zip_member": "D0037-rio-christ-redeemer.png"
+      "source_zip_member": "D0037-rio-christ-redeemer.png",
+      "source_style": "conceptual-realistic-illustration"
     },
     {
       "order": 38,
@@ -891,7 +898,7 @@
       "variants": [
         "D0038-CS"
       ],
-      "artwork_status": "approved-clean-zip-individual-png-100x120",
+      "artwork_status": "approved-conceptual-realistic-zip-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_08.png",
       "palette_mode": "per-design",
       "palette_status": "ready-for-direct-png-dmc-map",
@@ -901,11 +908,12 @@
         "max_long_side_stitches": 120
       },
       "target_chart_pages": 4,
-      "source_colour_count": 50,
+      "source_colour_count": 49,
       "dmc_colour_count": null,
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_08.png",
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
-      "source_zip_member": "D0038-pyramids-giza.png"
+      "source_zip_member": "D0038-pyramids-giza.png",
+      "source_style": "conceptual-realistic-illustration"
     },
     {
       "order": 39,
@@ -916,7 +924,7 @@
       "variants": [
         "D0039-CS"
       ],
-      "artwork_status": "approved-clean-zip-individual-png-100x120",
+      "artwork_status": "approved-conceptual-realistic-zip-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_09.png",
       "palette_mode": "per-design",
       "palette_status": "ready-for-direct-png-dmc-map",
@@ -926,11 +934,12 @@
         "max_long_side_stitches": 120
       },
       "target_chart_pages": 4,
-      "source_colour_count": 50,
+      "source_colour_count": 49,
       "dmc_colour_count": null,
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_09.png",
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
-      "source_zip_member": "D0039-sydney-opera-house.png"
+      "source_zip_member": "D0039-sydney-opera-house.png",
+      "source_style": "conceptual-realistic-illustration"
     },
     {
       "order": 40,
@@ -1079,7 +1088,7 @@
       "variants": [
         "D0046-CS"
       ],
-      "artwork_status": "approved-clean-zip-individual-png-100x120",
+      "artwork_status": "approved-conceptual-realistic-zip-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_06.png",
       "palette_mode": "per-design",
       "palette_status": "ready-for-direct-png-dmc-map",
@@ -1089,11 +1098,12 @@
         "max_long_side_stitches": 120
       },
       "target_chart_pages": 4,
-      "source_colour_count": 50,
+      "source_colour_count": 48,
       "dmc_colour_count": null,
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_06.png",
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
-      "source_zip_member": "D0046-cape-town-table-mountain.png"
+      "source_zip_member": "D0046-cape-town-table-mountain.png",
+      "source_style": "conceptual-realistic-illustration"
     },
     {
       "order": 47,
