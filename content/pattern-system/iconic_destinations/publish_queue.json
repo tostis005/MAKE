@@ -196,10 +196,11 @@
       "title_es": "Angkor Wat",
       "slug": "angkor-wat",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0016.pixz",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36236808105",
+      "last_error": null,
+      "published_at": "2026-09-26T10:48:15+00:00"
     },
     {
       "base_design_id": "D0017",
