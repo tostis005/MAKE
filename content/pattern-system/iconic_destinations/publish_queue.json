@@ -18,11 +18,10 @@
       "slug": "mount-rushmore",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_01.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0001.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36247168900",
-      "last_error": null,
-      "published_at": "2026-09-26T14:04:21+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0002",
@@ -31,11 +30,10 @@
       "slug": "hollywood-sign",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_02.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0002.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36247261762",
-      "last_error": null,
-      "published_at": "2026-09-26T14:06:07+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0003",
@@ -44,11 +42,10 @@
       "slug": "times-square-new-york",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_03.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0003.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36247363417",
-      "last_error": null,
-      "published_at": "2026-09-26T14:07:47+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0004",
@@ -57,11 +54,10 @@
       "slug": "brandenburg-gate-berlin",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_04.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0004.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36247453030",
-      "last_error": null,
-      "published_at": "2026-09-26T14:09:29+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0005",
@@ -70,11 +66,10 @@
       "slug": "osaka-castle",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_05.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0005.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36247550861",
-      "last_error": null,
-      "published_at": "2026-09-26T14:11:52+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0006",
@@ -83,11 +78,10 @@
       "slug": "toronto-cn-tower",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_06.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0006.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36247688939",
-      "last_error": null,
-      "published_at": "2026-09-26T14:13:34+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0007",
@@ -96,11 +90,10 @@
       "slug": "quebec-chateau-frontenac",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_07.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0007.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36247784119",
-      "last_error": null,
-      "published_at": "2026-09-26T14:15:08+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0008",
@@ -109,11 +102,10 @@
       "slug": "hallstatt-lakeside-village",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_08.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0008.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36247875459",
-      "last_error": null,
-      "published_at": "2026-09-26T14:16:53+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0009",
@@ -122,11 +114,10 @@
       "slug": "dubrovnik-old-town",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_09.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0009.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36247977149",
-      "last_error": null,
-      "published_at": "2026-09-26T14:18:37+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0010",
@@ -135,11 +126,10 @@
       "slug": "capri-faraglioni",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_10.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0010.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36248074766",
-      "last_error": null,
-      "published_at": "2026-09-26T14:20:20+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0011",
@@ -148,11 +138,10 @@
       "slug": "golden-gate-bridge",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_02_01.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0011.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36248169453",
-      "last_error": null,
-      "published_at": "2026-09-26T14:22:01+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0012",
@@ -161,11 +150,10 @@
       "slug": "london-tower-bridge",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_02_02.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0012.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36248265189",
-      "last_error": null,
-      "published_at": "2026-09-26T14:24:13+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0013",
@@ -174,11 +162,10 @@
       "slug": "mont-saint-michel",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_02_03.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0013.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36248388547",
-      "last_error": null,
-      "published_at": "2026-09-26T14:25:55+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0014",
@@ -187,11 +174,10 @@
       "slug": "neuschwanstein-castle",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_02_04.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0014.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36248482940",
-      "last_error": null,
-      "published_at": "2026-09-26T14:27:32+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0015",
@@ -200,11 +186,10 @@
       "slug": "athens-acropolis",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_02_05.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0015.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36248576218",
-      "last_error": null,
-      "published_at": "2026-09-26T14:29:05+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0016",
@@ -213,11 +198,10 @@
       "slug": "angkor-wat",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_02_06.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0016.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36248660521",
-      "last_error": null,
-      "published_at": "2026-09-26T14:30:49+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0017",
@@ -226,11 +210,10 @@
       "slug": "ha-long-bay",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_02_07.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0017.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36248766898",
-      "last_error": null,
-      "published_at": "2026-09-26T14:32:33+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0018",
@@ -239,11 +222,10 @@
       "slug": "cappadocia-balloons",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_02_08.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0018.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36248868507",
-      "last_error": null,
-      "published_at": "2026-09-26T14:34:18+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0019",
@@ -252,11 +234,10 @@
       "slug": "chichen-itza",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_02_09.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0019.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36248964617",
-      "last_error": null,
-      "published_at": "2026-09-26T14:36:02+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0020",
@@ -265,11 +246,10 @@
       "slug": "istanbul-blue-mosque",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_02_10.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0020.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36249063608",
-      "last_error": null,
-      "published_at": "2026-09-26T14:37:54+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0021",
@@ -278,11 +258,10 @@
       "slug": "barcelona-sagrada-familia",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_01.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0021.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36249165647",
-      "last_error": null,
-      "published_at": "2026-09-26T14:39:40+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0022",
@@ -291,11 +270,10 @@
       "slug": "prague-castle",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_02.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0022.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36249265533",
-      "last_error": null,
-      "published_at": "2026-09-26T14:41:20+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0023",
@@ -304,11 +282,10 @@
       "slug": "niagara-falls",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_03.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0023.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36249362714",
-      "last_error": null,
-      "published_at": "2026-09-26T14:43:07+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0024",
@@ -317,11 +294,10 @@
       "slug": "mount-fuji",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_04.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0024.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36249463013",
-      "last_error": null,
-      "published_at": "2026-09-26T14:44:48+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0025",
@@ -330,11 +306,10 @@
       "slug": "machu-picchu",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_05.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0025.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36249554478",
-      "last_error": null,
-      "published_at": "2026-09-26T14:46:28+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0026",
@@ -343,11 +318,10 @@
       "slug": "petra-treasury",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_06.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0026.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36249649730",
-      "last_error": null,
-      "published_at": "2026-09-26T14:48:10+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0027",
@@ -356,11 +330,10 @@
       "slug": "dubai-burj-khalifa",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_07.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0027.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36249747853",
-      "last_error": null,
-      "published_at": "2026-09-26T14:49:42+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0028",
@@ -369,11 +342,10 @@
       "slug": "venice-grand-canal",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_08.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0028.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36249834962",
-      "last_error": null,
-      "published_at": "2026-09-26T14:51:18+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0029",
@@ -382,11 +354,10 @@
       "slug": "prague-charles-bridge",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_09.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0029.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36249928694",
-      "last_error": null,
-      "published_at": "2026-09-26T14:52:57+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0030",
@@ -395,11 +366,10 @@
       "slug": "amsterdam-canals",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_10.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0030.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36250023731",
-      "last_error": null,
-      "published_at": "2026-09-26T14:54:35+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0031",
@@ -408,11 +378,10 @@
       "slug": "paris-eiffel-tower",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_01.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0031.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36250108561",
-      "last_error": null,
-      "published_at": "2026-09-26T14:56:08+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0032",
@@ -421,11 +390,10 @@
       "slug": "london-big-ben",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_02.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0032.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36250193856",
-      "last_error": null,
-      "published_at": "2026-09-26T14:57:42+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0033",
@@ -434,11 +402,10 @@
       "slug": "rome-colosseum",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_03.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0033.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36250277612",
-      "last_error": null,
-      "published_at": "2026-09-26T14:59:21+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0034",
@@ -447,11 +414,10 @@
       "slug": "new-york-statue-liberty",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_04.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0034.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36250365207",
-      "last_error": null,
-      "published_at": "2026-09-26T15:01:05+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0035",
@@ -460,11 +426,10 @@
       "slug": "taj-mahal",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_05.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0035.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36250473312",
-      "last_error": null,
-      "published_at": "2026-09-26T15:02:48+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0036",
@@ -473,11 +438,10 @@
       "slug": "great-wall-china",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_06.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0036.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36250573484",
-      "last_error": null,
-      "published_at": "2026-09-26T15:04:24+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0037",
@@ -486,11 +450,10 @@
       "slug": "rio-christ-redeemer",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_07.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0037.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36250666029",
-      "last_error": null,
-      "published_at": "2026-09-26T15:06:04+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0038",
@@ -499,11 +462,10 @@
       "slug": "pyramids-giza",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_08.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0038.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36250758266",
-      "last_error": null,
-      "published_at": "2026-09-26T15:07:32+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0039",
@@ -512,11 +474,10 @@
       "slug": "sydney-opera-house",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_09.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0039.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36250845109",
-      "last_error": null,
-      "published_at": "2026-09-26T15:09:05+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0040",
@@ -525,11 +486,10 @@
       "slug": "santorini-blue-domes",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_10.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0040.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36250930400",
-      "last_error": null,
-      "published_at": "2026-09-26T15:10:57+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0041",
@@ -538,11 +498,10 @@
       "slug": "cartagena-colorful-streets",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_01.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0041.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36251043797",
-      "last_error": null,
-      "published_at": "2026-09-26T15:12:43+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0042",
@@ -551,11 +510,10 @@
       "slug": "havana-capitol",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_02.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0042.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36251145538",
-      "last_error": null,
-      "published_at": "2026-09-26T15:14:24+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0043",
@@ -564,11 +522,10 @@
       "slug": "easter-island-moai",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_03.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0043.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36251242577",
-      "last_error": null,
-      "published_at": "2026-09-26T15:16:11+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0044",
@@ -577,11 +534,10 @@
       "slug": "bali-temple-gate",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_04.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0044.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36251351406",
-      "last_error": null,
-      "published_at": "2026-09-26T15:18:10+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0045",
@@ -590,11 +546,10 @@
       "slug": "mykonos-windmills",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_05.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0045.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36251464565",
-      "last_error": null,
-      "published_at": "2026-09-26T15:19:50+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0046",
@@ -603,11 +558,10 @@
       "slug": "cape-town-table-mountain",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_06.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0046.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36251560706",
-      "last_error": null,
-      "published_at": "2026-09-26T15:21:25+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0047",
@@ -616,11 +570,10 @@
       "slug": "vatican-st-peter-basilica",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_07.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0047.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36251654436",
-      "last_error": null,
-      "published_at": "2026-09-26T15:22:59+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0048",
@@ -629,11 +582,10 @@
       "slug": "leaning-tower-pisa",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_08.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0048.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36251745642",
-      "last_error": null,
-      "published_at": "2026-09-26T15:24:36+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0049",
@@ -642,11 +594,10 @@
       "slug": "stonehenge",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_09.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0049.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36251839085",
-      "last_error": null,
-      "published_at": "2026-09-26T15:26:14+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0050",
@@ -655,11 +606,10 @@
       "slug": "moscow-saint-basil-cathedral",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_10.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0050.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36251933753",
-      "last_error": null,
-      "published_at": "2026-09-26T15:28:06+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0051",
@@ -668,11 +618,10 @@
       "slug": "positano-amalfi-coast",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_01.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0051.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36252042609",
-      "last_error": null,
-      "published_at": "2026-09-26T15:29:46+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0052",
@@ -681,11 +630,10 @@
       "slug": "cinque-terre-village",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_02.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0052.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36252135849",
-      "last_error": null,
-      "published_at": "2026-09-26T15:31:19+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0053",
@@ -694,11 +642,10 @@
       "slug": "tokyo-tower-fuji",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_03.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0053.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36252229362",
-      "last_error": null,
-      "published_at": "2026-09-26T15:32:54+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0054",
@@ -707,11 +654,10 @@
       "slug": "singapore-marina-bay",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_04.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0054.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36252327369",
-      "last_error": null,
-      "published_at": "2026-09-26T15:34:24+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0055",
@@ -720,11 +666,10 @@
       "slug": "hong-kong-victoria-harbour",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_05.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0055.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36252412277",
-      "last_error": null,
-      "published_at": "2026-09-26T15:36:02+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0056",
@@ -733,11 +678,10 @@
       "slug": "shanghai-pudong-skyline",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_06.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0056.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36252508004",
-      "last_error": null,
-      "published_at": "2026-09-26T15:37:37+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0057",
@@ -746,11 +690,10 @@
       "slug": "seoul-gyeongbokgung-palace",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_07.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0057.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36252596119",
-      "last_error": null,
-      "published_at": "2026-09-26T15:39:08+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0058",
@@ -759,11 +702,10 @@
       "slug": "chefchaouen-blue-city",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_08.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0058.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36252682822",
-      "last_error": null,
-      "published_at": "2026-09-26T15:40:46+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0059",
@@ -772,11 +714,10 @@
       "slug": "marrakech-koutoubia-mosque",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_09.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0059.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36252779285",
-      "last_error": null,
-      "published_at": "2026-09-26T15:42:17+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0060",
@@ -785,11 +726,10 @@
       "slug": "bagan-temples-balloons",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_10.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0060.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36252867118",
-      "last_error": null,
-      "published_at": "2026-09-26T15:43:49+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     }
   ],
   "source_zip": "collections/iconic-destinations/assets/iconic-60-pngs-q50.zip",
