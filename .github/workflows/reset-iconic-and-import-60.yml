@@ -52,11 +52,11 @@ jobs:
           done
           sleep 8
 
-      - name: Build approved ZIP with 60 q50 PNG sources
+      - name: Extract 60 q50 PNG sources directly from approved ZIP
         shell: bash
         run: |
           set -euo pipefail
-          python3 .github/scripts/import_iconic_mosaic.py
+          python3 .github/scripts/import_iconic_zip.py
 
       - name: Validate approved ZIP and all 60 PNG sources
         shell: bash
@@ -226,7 +226,7 @@ jobs:
             content/pattern-system/collections/iconic-destinations/assets/iconic-60-pngs-q50.zip \
             content/pattern-system/collections/iconic-destinations/assets/iconic-60-pngs-q50-mosaic.png
 
-          git commit -m "Import approved 60-PNG q50 Iconic source pack [skip ci]"
+          git commit -m "Import 60 Iconic products directly from approved ZIP [skip ci]"
           git pull --rebase origin main
           git push origin HEAD:main
 
@@ -239,4 +239,4 @@ jobs:
           gh api --method POST \
             "repos/${GITHUB_REPOSITORY}/actions/workflows/iconic-destinations-auto-publish.yml/dispatches" \
             -f ref=main
-          echo "APPROVED_Q50_ICONIC_IMPORT_STARTED D0001-D0060"
+          echo "ZIP_ONLY_ICONIC_IMPORT_STARTED D0001-D0060"
