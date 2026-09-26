@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
-      - name: Checkout main
+      - name: Checkout branch
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
@@ -265,7 +265,7 @@ jobs:
           git add content/pattern-system/iconic_destinations/publish_queue.json content/pattern-system/collections/iconic-destinations/designs.json             "content/pattern-system/collections/iconic-destinations/approved-pixel-designs/${DESIGN}-${SLUG}.png"             "content/pattern-system/collections/iconic-destinations/source-designs/${DESIGN}-${SLUG}.png"             "content/pattern-system/patterns/${CODE}/pattern.json" "content/pattern-system/products/${CODE}/product.json" content/products/catalog.json             "content/products/assets/${CODE}-product.webp" "$FEATURED" "content/products/assets/${CODE}-design.webp"             "content/products/assets/${CODE}-gallery-2.webp" "content/products/assets/${CODE}-gallery-3.webp" "content/products/assets/${CODE}-gallery-4.webp"
           git add -A -- ":(glob)content/products/assets/${CODE}-${SLUG}-product-r*.webp"
           git commit -m "Publish Iconic Destinations ${DESIGN} cross stitch [skip ci]"
-          git fetch origin main; git rebase origin/main; git push origin HEAD:main
+          git fetch origin iconic-batch01-conceptual-v2; git rebase origin/iconic-batch01-conceptual-v2; git push origin HEAD:iconic-batch01-conceptual-v2
 
       - name: Archive generated PDF
         if: success() && steps.select.outputs.design_id != ''
@@ -282,10 +282,10 @@ jobs:
           set -euo pipefail
           DESIGN="${{ steps.select.outputs.design_id }}"
           git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin main; git reset --hard origin/main
+          git fetch origin iconic-batch01-conceptual-v2; git reset --hard origin/iconic-batch01-conceptual-v2
           python3 content/pattern-system/iconic_destinations/queue_state.py fail "$DESIGN" --run-url "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" --error "Automatic Iconic Destinations publish run failed; see GitHub Actions logs."
           git add content/pattern-system/iconic_destinations/publish_queue.json
-          git commit -m "Record Iconic Destinations ${DESIGN} publish failure [skip ci]"; git push origin HEAD:main
+          git commit -m "Record Iconic Destinations ${DESIGN} publish failure [skip ci]"; git push origin HEAD:iconic-batch01-conceptual-v2
 
       - name: Continue Iconic publication queue
         if: always() && !cancelled() && steps.select.outputs.design_id != ''
@@ -294,10 +294,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          git fetch origin main
+          git fetch origin iconic-batch01-conceptual-v2
           git reset --hard origin/main
           if [ "$(python3 content/pattern-system/iconic_destinations/queue_state.py has-work)" = "yes" ]; then
-            gh api --method POST "repos/${GITHUB_REPOSITORY}/actions/workflows/iconic-destinations-auto-publish.yml/dispatches" -f ref=main
+            gh api --method POST "repos/${GITHUB_REPOSITORY}/actions/workflows/iconic-destinations-auto-publish.yml/dispatches" -f ref=iconic-batch01-conceptual-v2
             echo "NEXT_ICONIC_RUN_DISPATCHED"
           else
             echo "ICONIC_QUEUE_COMPLETE"
