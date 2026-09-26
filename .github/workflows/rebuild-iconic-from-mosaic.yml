@@ -1,12 +1,6 @@
 name: Rebuild 60 Iconic Destinations from mosaic
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'content/pattern-system/collections/iconic-destinations/assets/iconic-mosaic-grid-source.webp'
-      - '.github/scripts/import_iconic_mosaic.py'
-      - '.github/workflows/rebuild-iconic-from-mosaic.yml'
   workflow_dispatch:
 
 permissions:
