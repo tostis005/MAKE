@@ -1,9 +1,10 @@
 {
   "collection": "iconic-destinations",
   "mode": "strict-fixed-grid-clean-border-100x120-v4",
-  "auto_continue": true,
+  "auto_continue": false,
   "max_attempts_per_design": 3,
   "notes": [
+    "PAUSED for approved 60-PNG q50 ZIP reimport.",
     "The 1000x720 source mosaic is split only on the mathematical 10x6 grid: x=0,100,...,1000 and y=0,120,...,720.",
     "No separator-search heuristic is used, so white architecture/clouds can never shift a crop into a neighbouring image.",
     "The outer 2px border of each 100x120 cell is cleaned in-place using pixels from that same cell; there is no resize/resample.",
