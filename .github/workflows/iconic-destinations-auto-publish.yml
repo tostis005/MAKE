@@ -2,11 +2,6 @@ name: Iconic Destinations Auto Publish
 # source-policy: hardened-individual-zip-png-only-v3
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'content/pattern-system/iconic_destinations/publish_queue.json'
-      - '.github/workflows/iconic-destinations-auto-publish.yml'
   workflow_dispatch:
 
 permissions:
