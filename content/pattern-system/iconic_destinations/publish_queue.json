@@ -1,13 +1,13 @@
 {
   "collection": "iconic-destinations",
-  "mode": "blocked-awaiting-pdf-source",
-  "auto_continue": false,
+  "mode": "direct-zip-png-clean-batches-v4",
+  "auto_continue": true,
   "max_attempts_per_design": 3,
   "notes": [
-    "PAUSED: the uploaded 60-PNG ZIP contains mosaic-derived contamination and is forbidden as a production source.",
-    "The next valid import must come from content/pattern-system/collections/iconic-destinations/assets/iconic-60-source.pdf.",
-    "The approved PDF must contain exactly 60 pages, one independent destination design per page.",
-    "No mosaic, mosaic crop, reference board, legacy ZIP, or ZIP-extracted PNG may be used for publication."
+    "Production artwork is sourced only from approved clean batch ZIP files.",
+    "Each selected PNG is exactly 100x120 pixels and uses exactly 50 RGB colours.",
+    "The publisher verifies byte identity between ZIP member and extracted input PNG before rendering.",
+    "Mosaic, board-crop and PDF artwork sources are forbidden."
   ],
   "items": [
     {
@@ -16,7 +16,7 @@
       "title_es": "Monte Rushmore",
       "slug": "mount-rushmore",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_01.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -27,7 +27,7 @@
       "title_es": "Letrero de Hollywood",
       "slug": "hollywood-sign",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_02.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -38,7 +38,7 @@
       "title_es": "Times Square de Nueva York",
       "slug": "times-square-new-york",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_03.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -49,7 +49,7 @@
       "title_es": "Puerta de Brandeburgo de Berlín",
       "slug": "brandenburg-gate-berlin",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_04.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -60,7 +60,7 @@
       "title_es": "Castillo de Osaka",
       "slug": "osaka-castle",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_05.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -71,7 +71,7 @@
       "title_es": "Torre CN de Toronto",
       "slug": "toronto-cn-tower",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_06.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -82,7 +82,7 @@
       "title_es": "Château Frontenac de Quebec",
       "slug": "quebec-chateau-frontenac",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_07.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -93,7 +93,7 @@
       "title_es": "Hallstatt junto al lago",
       "slug": "hallstatt-lakeside-village",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_08.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -104,7 +104,7 @@
       "title_es": "Casco antiguo de Dubrovnik",
       "slug": "dubrovnik-old-town",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_09.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -115,7 +115,7 @@
       "title_es": "Faraglioni de Capri",
       "slug": "capri-faraglioni",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_10.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -126,7 +126,7 @@
       "title_es": "Puente Golden Gate",
       "slug": "golden-gate-bridge",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_02_01.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -137,7 +137,7 @@
       "title_es": "Tower Bridge de Londres",
       "slug": "london-tower-bridge",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_02_02.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -148,7 +148,7 @@
       "title_es": "Mont Saint-Michel",
       "slug": "mont-saint-michel",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_02_03.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -159,7 +159,7 @@
       "title_es": "Castillo de Neuschwanstein",
       "slug": "neuschwanstein-castle",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_02_04.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -170,7 +170,7 @@
       "title_es": "Acrópolis de Atenas",
       "slug": "athens-acropolis",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_02_05.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -181,7 +181,7 @@
       "title_es": "Angkor Wat",
       "slug": "angkor-wat",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_02_06.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -192,7 +192,7 @@
       "title_es": "Bahía de Ha Long",
       "slug": "ha-long-bay",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_02_07.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -203,7 +203,7 @@
       "title_es": "Globos de Capadocia",
       "slug": "cappadocia-balloons",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_02_08.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -214,7 +214,7 @@
       "title_es": "Chichén Itzá",
       "slug": "chichen-itza",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_02_09.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -225,7 +225,7 @@
       "title_es": "Mezquita Azul de Estambul",
       "slug": "istanbul-blue-mosque",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_02_10.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -236,7 +236,7 @@
       "title_es": "Sagrada Familia de Barcelona",
       "slug": "barcelona-sagrada-familia",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_01.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -247,7 +247,7 @@
       "title_es": "Castillo de Praga",
       "slug": "prague-castle",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_02.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -258,7 +258,7 @@
       "title_es": "Cataratas del Niágara",
       "slug": "niagara-falls",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_03.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -269,7 +269,7 @@
       "title_es": "Monte Fuji",
       "slug": "mount-fuji",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_04.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -280,7 +280,7 @@
       "title_es": "Machu Picchu",
       "slug": "machu-picchu",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_05.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -291,7 +291,7 @@
       "title_es": "El Tesoro de Petra",
       "slug": "petra-treasury",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_06.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -302,7 +302,7 @@
       "title_es": "Burj Khalifa de Dubái",
       "slug": "dubai-burj-khalifa",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_07.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -313,7 +313,7 @@
       "title_es": "Gran Canal de Venecia",
       "slug": "venice-grand-canal",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_08.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -324,7 +324,7 @@
       "title_es": "Puente de Carlos de Praga",
       "slug": "prague-charles-bridge",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_09.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -335,7 +335,7 @@
       "title_es": "Canales de Ámsterdam",
       "slug": "amsterdam-canals",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_10.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -349,7 +349,9 @@
       "status": "pending",
       "attempts": 0,
       "last_run": null,
-      "last_error": null
+      "last_error": null,
+      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
+      "source_zip_member": "D0031-paris-eiffel-tower.png"
     },
     {
       "base_design_id": "D0032",
@@ -360,7 +362,9 @@
       "status": "pending",
       "attempts": 0,
       "last_run": null,
-      "last_error": null
+      "last_error": null,
+      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
+      "source_zip_member": "D0032-london-big-ben.png"
     },
     {
       "base_design_id": "D0033",
@@ -371,7 +375,9 @@
       "status": "pending",
       "attempts": 0,
       "last_run": null,
-      "last_error": null
+      "last_error": null,
+      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
+      "source_zip_member": "D0033-rome-colosseum.png"
     },
     {
       "base_design_id": "D0034",
@@ -382,7 +388,9 @@
       "status": "pending",
       "attempts": 0,
       "last_run": null,
-      "last_error": null
+      "last_error": null,
+      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
+      "source_zip_member": "D0034-new-york-statue-liberty.png"
     },
     {
       "base_design_id": "D0035",
@@ -393,7 +401,9 @@
       "status": "pending",
       "attempts": 0,
       "last_run": null,
-      "last_error": null
+      "last_error": null,
+      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
+      "source_zip_member": "D0035-taj-mahal.png"
     },
     {
       "base_design_id": "D0036",
@@ -404,7 +414,9 @@
       "status": "pending",
       "attempts": 0,
       "last_run": null,
-      "last_error": null
+      "last_error": null,
+      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
+      "source_zip_member": "D0036-great-wall-china.png"
     },
     {
       "base_design_id": "D0037",
@@ -415,7 +427,9 @@
       "status": "pending",
       "attempts": 0,
       "last_run": null,
-      "last_error": null
+      "last_error": null,
+      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
+      "source_zip_member": "D0037-rio-christ-redeemer.png"
     },
     {
       "base_design_id": "D0038",
@@ -426,7 +440,9 @@
       "status": "pending",
       "attempts": 0,
       "last_run": null,
-      "last_error": null
+      "last_error": null,
+      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
+      "source_zip_member": "D0038-pyramids-giza.png"
     },
     {
       "base_design_id": "D0039",
@@ -437,7 +453,9 @@
       "status": "pending",
       "attempts": 0,
       "last_run": null,
-      "last_error": null
+      "last_error": null,
+      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
+      "source_zip_member": "D0039-sydney-opera-house.png"
     },
     {
       "base_design_id": "D0040",
@@ -445,7 +463,7 @@
       "title_es": "Cúpulas azules de Santorini",
       "slug": "santorini-blue-domes",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_10.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -456,7 +474,7 @@
       "title_es": "Calles coloridas de Cartagena",
       "slug": "cartagena-colorful-streets",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_01.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -467,7 +485,7 @@
       "title_es": "Capitolio de La Habana",
       "slug": "havana-capitol",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_02.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -478,7 +496,7 @@
       "title_es": "Moáis de la Isla de Pascua",
       "slug": "easter-island-moai",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_03.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -489,7 +507,7 @@
       "title_es": "Puerta de templo de Bali",
       "slug": "bali-temple-gate",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_04.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -500,7 +518,7 @@
       "title_es": "Molinos de Mykonos",
       "slug": "mykonos-windmills",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_05.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -514,7 +532,9 @@
       "status": "pending",
       "attempts": 0,
       "last_run": null,
-      "last_error": null
+      "last_error": null,
+      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
+      "source_zip_member": "D0046-cape-town-table-mountain.png"
     },
     {
       "base_design_id": "D0047",
@@ -522,7 +542,7 @@
       "title_es": "Basílica de San Pedro del Vaticano",
       "slug": "vatican-st-peter-basilica",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_07.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -533,7 +553,7 @@
       "title_es": "Torre inclinada de Pisa",
       "slug": "leaning-tower-pisa",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_08.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -544,7 +564,7 @@
       "title_es": "Stonehenge",
       "slug": "stonehenge",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_09.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -555,7 +575,7 @@
       "title_es": "Catedral de San Basilio de Moscú",
       "slug": "moscow-saint-basil-cathedral",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_10.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -566,7 +586,7 @@
       "title_es": "Positano en la Costa Amalfitana",
       "slug": "positano-amalfi-coast",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_01.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -577,7 +597,7 @@
       "title_es": "Pueblo de Cinque Terre",
       "slug": "cinque-terre-village",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_02.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -588,7 +608,7 @@
       "title_es": "Torre de Tokio y Monte Fuji",
       "slug": "tokyo-tower-fuji",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_03.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -599,7 +619,7 @@
       "title_es": "Marina Bay de Singapur",
       "slug": "singapore-marina-bay",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_04.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -610,7 +630,7 @@
       "title_es": "Victoria Harbour de Hong Kong",
       "slug": "hong-kong-victoria-harbour",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_05.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -621,7 +641,7 @@
       "title_es": "Skyline de Pudong en Shanghái",
       "slug": "shanghai-pudong-skyline",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_06.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -632,7 +652,7 @@
       "title_es": "Palacio Gyeongbokgung de Seúl",
       "slug": "seoul-gyeongbokgung-palace",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_07.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -643,7 +663,7 @@
       "title_es": "Ciudad azul de Chefchaouen",
       "slug": "chefchaouen-blue-city",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_08.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -654,7 +674,7 @@
       "title_es": "Mezquita Koutoubia de Marrakech",
       "slug": "marrakech-koutoubia-mosque",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_09.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
@@ -665,11 +685,12 @@
       "title_es": "Templos y globos de Bagan",
       "slug": "bagan-temples-balloons",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_10.png",
-      "status": "pending",
+      "status": "held",
       "attempts": 0,
       "last_run": null,
       "last_error": null
     }
   ],
-  "source_zip": "collections/iconic-destinations/assets/iconic-60-pngs-q50.zip"
+  "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
+  "active_batch": "batch-01"
 }
