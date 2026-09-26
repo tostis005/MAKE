@@ -11,10 +11,11 @@
   "pattern_file": "patterns/D0005-CS/pattern.json",
   "template": "cross-stitch.html",
   "website": "www.drielo.com",
-  "status": "draft",
-  "render_ready": false,
+  "status": "ready",
+  "render_ready": true,
   "renderer": "multitech",
-  "source_artwork": null,
-  "page_1_asset": null,
-  "palette_mode": "per-design"
+  "source_artwork": "collections/iconic-destinations/input-pngs-q50/destino_01_05.png",
+  "page_1_asset": "../../multitech/assets/cover-cross-stitch.webp",
+  "palette_mode": "per-design",
+  "mapped_artwork": "collections/iconic-destinations/source-designs/D0005-osaka-castle.png"
 }

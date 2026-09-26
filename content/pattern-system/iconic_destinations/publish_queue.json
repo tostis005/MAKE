@@ -64,10 +64,11 @@
       "title_es": "Castillo de Osaka",
       "slug": "osaka-castle",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_05.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36266494036",
+      "last_error": null,
+      "published_at": "2026-09-26T19:35:29+00:00"
     },
     {
       "base_design_id": "D0006",
