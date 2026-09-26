@@ -36,7 +36,7 @@ jobs:
 
       - name: Stop previous Iconic publisher runs
         env:
-          GH_TOKEN: \${{ github.token }}
+          GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
@@ -108,8 +108,8 @@ jobs:
 
       - name: Configure SSH
         env:
-          VPS_HOST: \${{ secrets.VPS_HOST }}
-          VPS_SSH_KEY: \${{ secrets.VPS_SSH_KEY }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
         shell: bash
         run: |
           set -euo pipefail
@@ -120,8 +120,8 @@ jobs:
 
       - name: Permanently delete all existing Iconic Destinations products
         env:
-          VPS_HOST: \${{ secrets.VPS_HOST }}
-          VPS_USER: \${{ secrets.VPS_USER }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
         shell: bash
         run: |
           set -euo pipefail
@@ -136,7 +136,7 @@ jobs:
             exit 1
           fi
 
-          "\${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
             require "/var/www/html/wp-load.php";
             $term=get_term_by("slug","iconic-destinations","product_collection");
             if(!$term instanceof WP_Term){echo "ICONIC_COLLECTION_NOT_FOUND".PHP_EOL;exit(0);}
@@ -199,11 +199,11 @@ jobs:
 
       - name: Start sequential generation of 60 PDFs and WooCommerce products
         env:
-          GH_TOKEN: \${{ github.token }}
+          GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
           gh api --method POST \
-            "repos/\${GITHUB_REPOSITORY}/actions/workflows/iconic-destinations-auto-publish.yml/dispatches" \
+            "repos/${GITHUB_REPOSITORY}/actions/workflows/iconic-destinations-auto-publish.yml/dispatches" \
             -f ref=main
           echo "STRICT_ICONIC_IMPORT_STARTED D0001-D0060"
