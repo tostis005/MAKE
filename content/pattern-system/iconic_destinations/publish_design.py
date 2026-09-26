@@ -402,7 +402,8 @@ def render_design(base_id: str, design: dict, built: dict):
     # full lifestyle background + exact stitched design in the measured frame.
     # No square #cover-stage screenshot and no 4:5 ImageOps.fit crop.
     stable_storefront = STORE_ASSETS / f"{code}-product.webp"
-    versioned_storefront = STORE_ASSETS / f"{code}-{design['slug']}-product.webp"
+    asset_revision = str(os.environ.get("GITHUB_RUN_ID") or "local")
+    versioned_storefront = STORE_ASSETS / f"{code}-{design['slug']}-product-r{asset_revision}.webp"
     storefront = build_storefront_image(
         mockup["cover_asset"],
         Path(result["design_preview"]),
@@ -547,8 +548,8 @@ def product_catalog_row(base_id: str, design: dict, built: dict):
         "gallery": [],
         "gallery_preview_pages": {},
         "download": f"files/Drielo_{code}.pdf",
-        "featured_image": f"assets/{code}-{design['slug']}-product.webp",
-        "gallery_revision": int(os.environ.get("GITHUB_RUN_ID", "20260924")),
+        "featured_image": f"assets/{code}-{design['slug']}-product-r{os.environ.get('GITHUB_RUN_ID', 'local')}.webp",
+        "gallery_revision": str(os.environ.get("GITHUB_RUN_ID", "local")),
         "seo_title": f"{title_en} | Drielo",
         "seo_title_en": f"{title_en} | Drielo",
         "seo_title_es": f"{title_es} | Drielo",
