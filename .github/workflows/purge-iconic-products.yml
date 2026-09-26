@@ -1,0 +1,125 @@
+name: Purge Iconic Destinations products
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/purge-iconic-products.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: drielo-iconic-products-purge
+  cancel-in-progress: false
+
+jobs:
+  purge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Stop Iconic auto-publisher runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          for STATE in queued in_progress; do
+            gh run list \
+              --repo "${GITHUB_REPOSITORY}" \
+              --workflow iconic-destinations-auto-publish.yml \
+              --status "$STATE" \
+              --limit 50 \
+              --json databaseId \
+              --jq '.[].databaseId' | while read -r RUN; do
+                [ -z "$RUN" ] || gh run cancel --repo "${GITHUB_REPOSITORY}" "$RUN" || true
+              done
+          done
+          sleep 8
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_products_key
+          chmod 600 ~/.ssh/drielo_products_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Permanently delete every product in Iconic Destinations
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_products_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+
+            $term = get_term_by("slug", "iconic-destinations", "product_collection");
+            if (!$term instanceof WP_Term) {
+              echo "ICONIC_COLLECTION_NOT_FOUND".PHP_EOL;
+              exit(2);
+            }
+
+            $args = array(
+              "post_type" => "product",
+              "post_status" => array("publish","draft","pending","private","future","trash"),
+              "posts_per_page" => -1,
+              "fields" => "ids",
+              "no_found_rows" => true,
+              "tax_query" => array(array(
+                "taxonomy" => "product_collection",
+                "field" => "term_id",
+                "terms" => array((int)$term->term_id)
+              ))
+            );
+
+            $ids = array_map("intval", get_posts($args));
+            echo "ICONIC_PRODUCTS_FOUND=".count($ids).PHP_EOL;
+
+            $deleted = 0;
+            foreach ($ids as $id) {
+              $p = wc_get_product($id);
+              $sku = $p instanceof WC_Product ? (string)$p->get_sku() : "";
+              $result = wp_delete_post($id, true);
+              if (!$result) {
+                echo "ERROR_DELETE_FAILED product_id=".$id." sku=".$sku.PHP_EOL;
+                exit(3);
+              }
+              echo "DELETED_ICONIC product_id=".$id." sku=".$sku.PHP_EOL;
+              $deleted++;
+            }
+
+            clean_term_cache((int)$term->term_id, "product_collection");
+            wc_delete_product_transients();
+
+            $remaining = array_map("intval", get_posts($args));
+            echo "ICONIC_PRODUCTS_DELETED=".$deleted.PHP_EOL;
+            echo "ICONIC_PRODUCTS_REMAINING=".count($remaining).PHP_EOL;
+
+            if ($remaining) {
+              echo "ERROR_REMAINING_ICONIC_IDS=".implode(",", $remaining).PHP_EOL;
+              exit(4);
+            }
+
+            echo "ICONIC_PRODUCTS_PURGE_COMPLETE".PHP_EOL;
+          '
+          REMOTE
