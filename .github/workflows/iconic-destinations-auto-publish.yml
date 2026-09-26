@@ -62,7 +62,7 @@ jobs:
           set -euo pipefail
           DESIGN="${{ steps.select.outputs.design_id }}"
           python3 - "$DESIGN" <<'PY'
-          import json,sys,zipfile
+          import json,os,sys,zipfile
           from pathlib import Path
           from PIL import Image
 
@@ -173,6 +173,9 @@ jobs:
           row=next((p for p in cat.get('products',[]) if p.get('code')==code),None)
           if not row or row.get('collection')!='iconic-destinations' or row.get('technique')!='cross-stitch':
               raise SystemExit(f'{code}: wrong catalog routing')
+          expected_suffix=f"-r{os.environ['GITHUB_RUN_ID']}.webp"
+          if not str(row.get('featured_image','')).endswith(expected_suffix):
+              raise SystemExit(f"{code}: featured image is not revisioned for this run: {row.get('featured_image')}")
           storefront=root/'content'/'products'/row['featured_image']
           collection_doc=json.loads((col/'collection.json').read_text(encoding='utf-8'))
           background=col/collection_doc['mockup_spec']['asset']
@@ -195,7 +198,7 @@ jobs:
           DESIGN="${{ steps.select.outputs.design_id }}"; CODE="${DESIGN}-CS"; STAGE="/tmp/drielo-${CODE}"
           rm -rf "$STAGE"; mkdir -p "$STAGE/content/products/assets" "$STAGE/content/products/files" "$STAGE/content/tools"
           python3 - "$CODE" "$STAGE" <<'PY'
-          import json,sys
+          import json,shutil,sys
           from pathlib import Path
           code=sys.argv[1]; stage=Path(sys.argv[2]); src=json.loads(Path('content/products/catalog.json').read_text(encoding='utf-8'))
           row=next(p for p in src['products'] if p.get('code')==code)
@@ -203,9 +206,14 @@ jobs:
           cats=[c for c in src['categories'] if c.get('slug')=='cross-stitch-patterns']
           out=dict(src); out['products']=[row]; out['collections']=[collection]; out['categories']=cats; out['retired_products']=[]; out['retired_collections']=[]
           (stage/'content/products/catalog.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          featured=Path('content/products')/row['featured_image']
+          if not featured.is_file():
+              raise SystemExit(f'Missing featured image {featured}')
+          target=stage/'content/products'/row['featured_image']
+          target.parent.mkdir(parents=True,exist_ok=True)
+          shutil.copy2(featured,target)
           PY
           cp "content/products/assets/${CODE}-product.webp" "$STAGE/content/products/assets/"
-          cp "content/products/assets/${CODE}-${{ steps.select.outputs.slug }}-product.webp" "$STAGE/content/products/assets/"
           cp "content/products/assets/${CODE}-design.webp" "$STAGE/content/products/assets/"
           cp "content/products/assets/${CODE}-gallery-2.webp" "$STAGE/content/products/assets/"
           cp "content/products/assets/${CODE}-gallery-3.webp" "$STAGE/content/products/assets/"
@@ -246,8 +254,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          DESIGN="${{ steps.select.outputs.design_id }}"; CODE="${DESIGN}-CS"
-          ssh -i ~/.ssh/drielo_products_key "$VPS_USER@$VPS_HOST" "CODE='${CODE}' GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          DESIGN="${{ steps.select.outputs.design_id }}"; CODE="${DESIGN}-CS"; SLUG="${{ steps.select.outputs.slug }}"
+          EXPECTED_ASSET="assets/${CODE}-${SLUG}-product-r${GITHUB_RUN_ID}.webp"
+          ssh -i ~/.ssh/drielo_products_key "$VPS_USER@$VPS_HOST" "CODE='${CODE}' EXPECTED_ASSET='${EXPECTED_ASSET}' GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
           set -euo pipefail
           ARCHIVE="/tmp/drielo-${CODE}-${GITHUB_RUN_ID}.tgz"; STAGE="/tmp/drielo-${CODE}-${GITHUB_RUN_ID}"
           cleanup(){ rm -rf "$ARCHIVE" "$STAGE"; }; trap cleanup EXIT
@@ -258,11 +267,19 @@ jobs:
           "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
           "${DOCKER[@]}" exec -e CODE="$CODE" make-wp php -d memory_limit=768M -r '
             require "/var/www/html/wp-load.php";
-            $code=getenv("CODE"); $sku="DRIELO-".$code; $id=wc_get_product_id_by_sku($sku); $p=$id?wc_get_product($id):false;
+            $code=getenv("CODE"); $expected=getenv("EXPECTED_ASSET"); $sku="DRIELO-".$code; $id=wc_get_product_id_by_sku($sku); $p=$id?wc_get_product($id):false;
             if(!$p){fwrite(STDERR,"Missing ".$sku.PHP_EOL);exit(2);}
             $cols=wp_get_object_terms($id,"product_collection",array("fields"=>"slugs"));
-            echo $sku." id=".$id." status=".$p->get_status()." image=".$p->get_image_id()." gallery=".count($p->get_gallery_image_ids())." downloads=".count($p->get_downloads())." collection=".implode(",",is_wp_error($cols)?array():$cols)." url=".get_permalink($id).PHP_EOL;
-            if($p->get_status()!=="publish"||!$p->get_image_id()||count($p->get_downloads())<1||!in_array("iconic-destinations",is_wp_error($cols)?array():$cols,true)){fwrite(STDERR,"Incomplete ".$sku.PHP_EOL);exit(3);}
+            $image_id=(int)$p->get_image_id();
+            $source=$image_id?(string)get_post_meta($image_id,"_drielo_source_asset",true):"";
+            $known_hash=$image_id?(string)get_post_meta($image_id,"_drielo_source_hash",true):"";
+            $attached=$image_id?(string)get_attached_file($image_id):"";
+            $actual_hash=$attached&&is_file($attached)?(string)md5_file($attached):"";
+            $url=$image_id?(string)wp_get_attachment_url($image_id):"";
+            echo $sku." id=".$id." status=".$p->get_status()." image=".$image_id." source=".$source." image_url=".$url." hash=".$actual_hash." gallery=".count($p->get_gallery_image_ids())." downloads=".count($p->get_downloads())." collection=".implode(",",is_wp_error($cols)?array():$cols)." url=".get_permalink($id).PHP_EOL;
+            if($p->get_status()!=="publish"||!$image_id||count($p->get_downloads())<1||!in_array("iconic-destinations",is_wp_error($cols)?array():$cols,true)){fwrite(STDERR,"Incomplete ".$sku.PHP_EOL);exit(3);}
+            if($source!==$expected){fwrite(STDERR,"Wrong featured source ".$source." expected ".$expected.PHP_EOL);exit(4);}
+            if(!$known_hash||!$actual_hash||!hash_equals($known_hash,$actual_hash)){fwrite(STDERR,"Featured image hash mismatch".PHP_EOL);exit(5);}
           '
           "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
           REMOTE
@@ -279,8 +296,10 @@ jobs:
         run: |
           set -euo pipefail
           DESIGN="${{ steps.select.outputs.design_id }}"; CODE="${DESIGN}-CS"; SLUG="${{ steps.select.outputs.slug }}"
+          FEATURED="content/products/assets/${CODE}-${SLUG}-product-r${GITHUB_RUN_ID}.webp"
           git config user.name "github-actions[bot]"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add content/pattern-system/iconic_destinations/publish_queue.json content/pattern-system/collections/iconic-destinations/designs.json             "content/pattern-system/collections/iconic-destinations/approved-pixel-designs/${DESIGN}-${SLUG}.png"             "content/pattern-system/collections/iconic-destinations/source-designs/${DESIGN}-${SLUG}.png"             "content/pattern-system/patterns/${CODE}/pattern.json" "content/pattern-system/products/${CODE}/product.json" content/products/catalog.json             "content/products/assets/${CODE}-product.webp" "content/products/assets/${CODE}-${SLUG}-product.webp" "content/products/assets/${CODE}-design.webp"             "content/products/assets/${CODE}-gallery-2.webp" "content/products/assets/${CODE}-gallery-3.webp" "content/products/assets/${CODE}-gallery-4.webp"
+          git add content/pattern-system/iconic_destinations/publish_queue.json content/pattern-system/collections/iconic-destinations/designs.json             "content/pattern-system/collections/iconic-destinations/approved-pixel-designs/${DESIGN}-${SLUG}.png"             "content/pattern-system/collections/iconic-destinations/source-designs/${DESIGN}-${SLUG}.png"             "content/pattern-system/patterns/${CODE}/pattern.json" "content/pattern-system/products/${CODE}/product.json" content/products/catalog.json             "content/products/assets/${CODE}-product.webp" "$FEATURED" "content/products/assets/${CODE}-design.webp"             "content/products/assets/${CODE}-gallery-2.webp" "content/products/assets/${CODE}-gallery-3.webp" "content/products/assets/${CODE}-gallery-4.webp"
+          git add -A -- ":(glob)content/products/assets/${CODE}-${SLUG}-product-r*.webp"
           git commit -m "Publish Iconic Destinations ${DESIGN} cross stitch [skip ci]"
           git fetch origin main; git rebase origin/main; git push origin HEAD:main
 
