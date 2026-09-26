@@ -1,9 +1,10 @@
 {
   "collection": "iconic-destinations",
   "mode": "direct-zip-png-clean-batches-v4",
-  "auto_continue": true,
+  "auto_continue": false,
   "max_attempts_per_design": 3,
   "notes": [
+    "Publication paused while batch 01 is replaced by photoreal photographic sources.",
     "Production artwork is sourced only from approved clean batch ZIP files.",
     "Each selected PNG is exactly 100x120 pixels and uses exactly 50 RGB colours.",
     "The publisher verifies byte identity between ZIP member and extracted input PNG before rendering.",
