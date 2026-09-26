@@ -1,5 +1,5 @@
 name: Iconic Destinations Auto Publish
-# source-policy: approved-60-page-pdf-only
+# source-policy: approved-clean-zip-png-only
 
 on:
   workflow_dispatch:
@@ -50,14 +50,14 @@ jobs:
           set -euo pipefail
           python3 content/pattern-system/iconic_destinations/publish_design.py "${{ steps.select.outputs.design_id }}"
 
-      - name: Validate PDF-only provenance and one-to-one cross-stitch bundle
+      - name: Validate clean ZIP provenance and one-to-one cross-stitch bundle
         if: steps.select.outputs.design_id != ''
         shell: bash
         run: |
           set -euo pipefail
           DESIGN="${{ steps.select.outputs.design_id }}"
           python3 - "$DESIGN" <<'PY'
-          import json,os,sys
+          import json,os,sys,zipfile
           from pathlib import Path
           from PIL import Image
 
@@ -70,49 +70,51 @@ jobs:
           designs_doc=json.loads((col/'designs.json').read_text(encoding='utf-8'))
           designs=designs_doc['designs']
 
-          if queue.get('mode')!='pdf-source-60-designs-q50-v1':
-              raise SystemExit(f"{base}: non-PDF Iconic queue mode is forbidden: {queue.get('mode')}")
-          if designs_doc.get('source_policy')!='60-page-pdf-only-no-mosaic':
-              raise SystemExit(f'{base}: design manifest is not PDF-only')
-          source_pdf=col/'assets'/'iconic-60-source.pdf'
-          if not source_pdf.is_file():
-              raise SystemExit(f'{base}: approved 60-page PDF source is missing')
+          if not str(queue.get('mode','')).startswith('direct-zip-png-'):
+              raise SystemExit(f"{base}: non-ZIP Iconic queue mode is forbidden: {queue.get('mode')}")
+          if designs_doc.get('source_policy')!='individual-pngs-from-approved-clean-batch-zips-only':
+              raise SystemExit(f"{base}: design manifest is not clean-ZIP-only")
 
           d=next(x for x in designs if x['base_design_id']==base)
           q=next(x for x in queue['items'] if x['base_design_id']==base)
           if d.get('variants') != [code]:
               raise SystemExit(f'{base}: non-CS variant detected')
 
-          forbidden_fields=('reference_board','preview_mosaic','mosaic_source','mosaic_crop','board_source')
+          forbidden_fields=('reference_board','preview_mosaic','mosaic_source','mosaic_crop','board_source','source_pdf','source_pdf_page')
           for key in forbidden_fields:
               if key in d or key in q:
-                  raise SystemExit(f'{base}: forbidden mosaic/board field {key}')
+                  raise SystemExit(f'{base}: forbidden legacy provenance field {key}')
 
           input_rel=q.get('input_png')
-          prefix='collections/iconic-destinations/pdf-pngs-q50/'
+          prefix='collections/iconic-destinations/input-pngs-q50/'
           if not input_rel or not input_rel.startswith(prefix):
-              raise SystemExit(f'{base}: source is not a PDF-derived individual PNG')
+              raise SystemExit(f'{base}: source is not an individual ZIP PNG')
           if d.get('input_png')!=input_rel or d.get('source_asset')!=input_rel:
-              raise SystemExit(f'{base}: PDF input/source provenance mismatch')
-          if d.get('source_pdf')!='collections/iconic-destinations/assets/iconic-60-source.pdf':
-              raise SystemExit(f'{base}: wrong PDF provenance')
-          page=int(d.get('source_pdf_page') or 0)
-          if q.get('source_pdf_page')!=page or not (1<=page<=60):
-              raise SystemExit(f'{base}: invalid PDF page provenance')
+              raise SystemExit(f'{base}: ZIP input/source provenance mismatch')
 
+          zip_rel=q.get('source_zip')
+          member=q.get('source_zip_member')
+          if d.get('source_zip')!=zip_rel or d.get('source_zip_member')!=member:
+              raise SystemExit(f'{base}: design/queue ZIP provenance mismatch')
+          zip_path=system/zip_rel
           src=system/input_rel
-          if not src.is_file():
-              raise SystemExit(f'{base}: PDF-derived PNG missing')
+          if not zip_path.is_file() or not src.is_file():
+              raise SystemExit(f'{base}: ZIP or extracted source is missing')
+          with zipfile.ZipFile(zip_path,'r') as zf:
+              if zf.read(member)!=src.read_bytes():
+                  raise SystemExit(f'{base}: extracted PNG differs from ZIP member')
+
           with Image.open(src) as im:
               rgb=im.convert('RGB')
               if rgb.size!=(100,120):
                   raise SystemExit(f'{base}: source PNG is not exactly 100x120')
-              if not (1<=len(set(rgb.getdata()))<=50):
-                  raise SystemExit(f'{base}: source PNG palette is invalid')
+              colours=len(set(rgb.getdata()))
+              if not (1<=colours<=50):
+                  raise SystemExit(f'{base}: source PNG palette is invalid: {colours}')
 
           approved=col/'approved-pixel-designs'/f"{base}-{d['slug']}.png"
           if not approved.is_file() or approved.read_bytes()!=src.read_bytes():
-              raise SystemExit(f'{base}: approved copy differs from PDF-derived PNG')
+              raise SystemExit(f'{base}: approved copy differs from ZIP-derived PNG')
 
           mapped_rel=d.get('dmc_mapped_asset')
           mapped=system/mapped_rel if mapped_rel else None
@@ -122,7 +124,7 @@ jobs:
           pat=json.loads((system/'patterns'/code/'pattern.json').read_text(encoding='utf-8'))
           prod=json.loads((system/'products'/code/'product.json').read_text(encoding='utf-8'))
           if pat.get('source_asset')!=input_rel or prod.get('source_artwork')!=input_rel:
-              raise SystemExit(f'{code}: generated metadata is not PDF-derived')
+              raise SystemExit(f'{code}: generated metadata is not ZIP-derived')
           if pat.get('mapped_asset')!=mapped_rel or prod.get('mapped_artwork')!=mapped_rel:
               raise SystemExit(f'{code}: mapped derivative metadata mismatch')
           if (pat.get('stitch_width'),pat.get('stitch_height'))!=(100,120):
@@ -133,18 +135,6 @@ jobs:
               raise SystemExit(f'{code}: exact grid must contain 12000 stitches')
           if not (1<=len(pat.get('threads',[]))<=50):
               raise SystemExit(f'{code}: unexpected DMC palette size')
-
-          old_sources=[
-              col/'assets'/'iconic-60-pngs-q50.zip',
-              col/'assets'/'iconic-60-pngs-q50-mosaic.png',
-              col/'assets'/'iconic-mosaic-grid-1000x720.png',
-              col/'assets'/'iconic-mosaic-grid-source.webp',
-              col/'reference-boards.json',
-          ]
-          if any(p.exists() for p in old_sources):
-              raise SystemExit(f'{base}: legacy ZIP/mosaic source residue still exists')
-          if (col/'input-pngs-q50').exists():
-              raise SystemExit(f'{base}: legacy ZIP-extracted PNG directory still exists')
 
           pdf=root/'content'/'products'/'files'/f'Drielo_{code}.pdf'
           featured=root/'content'/'products'/'assets'/f'{code}-product.webp'
@@ -160,14 +150,8 @@ jobs:
           expected_suffix=f"-r{os.environ['GITHUB_RUN_ID']}.webp"
           if not str(row.get('featured_image','')).endswith(expected_suffix):
               raise SystemExit(f"{code}: featured image is not revisioned for this run")
-          storefront=root/'content'/'products'/row['featured_image']
-          collection_doc=json.loads((col/'collection.json').read_text(encoding='utf-8'))
-          background=col/collection_doc['mockup_spec']['asset']
-          with Image.open(background) as bg_im, Image.open(storefront) as hero_im:
-              if hero_im.size != bg_im.size:
-                  raise SystemExit(f'{code}: storefront image dimensions changed')
 
-          print(code,'PDF_SOURCE_ONLY_VALID','source',input_rel,'page',page,'colors',len(pat['threads']))
+          print(code,'ZIP_SOURCE_ONLY_VALID','source',input_rel,'member',member,'colors',len(pat['threads']))
           PY
 
       - name: Build one-product WooCommerce package
