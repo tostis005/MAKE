@@ -1,4 +1,5 @@
 name: Iconic Destinations Auto Publish
+# trigger: uploaded-zip-reset-2026-09-26
 
 on:
   push:
