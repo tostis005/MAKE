@@ -1,0 +1,67 @@
+name: Review Iconic clean ZIP candidate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/scripts/review_iconic_clean_candidate.py'
+      - '.github/workflows/review-iconic-clean-candidate.yml'
+      - 'content/pattern-system/collections/iconic-destinations/assets/iconic-60-pngs-q50.zip'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-iconic-clean-review
+  cancel-in-progress: true
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Pillow
+        run: python -m pip install --quiet Pillow
+
+      - name: Build and review candidate
+        run: python .github/scripts/review_iconic_clean_candidate.py
+
+      - name: Assert candidate stays quarantined
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q 'STATUS: REJECTED' content/pattern-system/collections/iconic-destinations/review/REVIEW.md
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          q=json.loads(Path('content/pattern-system/iconic_destinations/publish_queue.json').read_text())
+          assert q.get('mode') == 'blocked-awaiting-pdf-source'
+          assert q.get('auto_continue') is False
+          print('QUEUE_REMAINS_BLOCKED')
+          PY
+
+      - name: Commit review package
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A content/pattern-system/collections/iconic-destinations/review
+          if git diff --cached --quiet; then
+            echo "Review package unchanged"
+            exit 0
+          fi
+          git commit -m "Review Iconic clean ZIP candidate as rejected [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
