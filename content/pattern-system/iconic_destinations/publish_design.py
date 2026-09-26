@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-import base64
+import io
 import json
 import os
 import shutil
 import sys
-import zlib
+import zipfile
 from collections import Counter
 from pathlib import Path
 
@@ -18,7 +18,8 @@ COLLECTION_ID = "iconic-destinations"
 COL_DIR = SYSTEM / "collections" / COLLECTION_ID
 DESIGNS_PATH = COL_DIR / "designs.json"
 COLLECTION_PATH = COL_DIR / "collection.json"
-PIXEL_DIR = COL_DIR / "pixel-sources"
+QUEUE_PATH = SYSTEM / "iconic_destinations" / "publish_queue.json"
+ZIP_PATH = COL_DIR / "assets" / "iconic-60-pngs-q50.zip"
 APPROVED_DIR = COL_DIR / "approved-pixel-designs"
 SOURCE_DIR = COL_DIR / "source-designs"
 DMC_PATH = SYSTEM / "data" / "dmc-colors.json"
@@ -127,25 +128,63 @@ def design_record(base_id: str):
     raise RuntimeError(f"Unknown Iconic Destinations design: {base_id}")
 
 
-def decode_pixel_source(base_id: str):
-    path = PIXEL_DIR / f"{base_id}.pixz"
-    if not path.is_file():
-        raise FileNotFoundError(f"Missing exact pixel source: {path}")
-    packed = base64.b64decode(path.read_text(encoding="utf-8").strip(), validate=True)
-    raw = zlib.decompress(packed)
-    if not raw:
-        raise RuntimeError(f"{base_id}: empty pixel source")
-    n = raw[0]
-    palette_end = 1 + n * 3
-    expected = palette_end + CELL_COUNT
-    if n < 1 or n > 64 or len(raw) != expected:
-        raise RuntimeError(f"{base_id}: malformed source palette={n} bytes={len(raw)} expected={expected}")
-    palette = [tuple(raw[1+i*3:1+i*3+3]) for i in range(n)]
-    indexes = list(raw[palette_end:])
-    if max(indexes) >= n:
-        raise RuntimeError(f"{base_id}: source contains invalid palette index")
-    return palette, indexes
+def load_input_png_source(base_id: str, design: dict):
+    """Load the exact individual PNG from the approved ZIP.
 
+    Iconic Destinations has exactly one production artwork source: the PNG
+    referenced by input_png. No mosaic, reference board, crop, .pixz, or other
+    intermediate is allowed to provide pixels to the pattern generator.
+    """
+    input_rel = str(design.get("input_png") or "")
+    prefix = "collections/iconic-destinations/input-pngs-q50/"
+    if not input_rel.startswith(prefix) or not input_rel.lower().endswith(".png"):
+        raise RuntimeError(f"{base_id}: invalid ZIP PNG source path: {input_rel!r}")
+
+    input_path = SYSTEM / input_rel
+    if not input_path.is_file():
+        raise FileNotFoundError(f"{base_id}: missing extracted ZIP PNG: {input_path}")
+    if not ZIP_PATH.is_file():
+        raise FileNotFoundError(f"{base_id}: approved ZIP is missing: {ZIP_PATH}")
+
+    queue = read_json(QUEUE_PATH)
+    if queue.get("mode") != "direct-zip-png-only-60x100x120-v3":
+        raise RuntimeError(f"{base_id}: Iconic queue is not in hardened PNG-only mode")
+    qitem = next((x for x in queue.get("items", []) if x.get("base_design_id") == base_id), None)
+    if not qitem or qitem.get("input_png") != input_rel:
+        raise RuntimeError(f"{base_id}: design/queue input_png mismatch")
+
+    member_name = Path(input_rel).name
+    with zipfile.ZipFile(ZIP_PATH, "r") as zf:
+        try:
+            raw = zf.read(member_name)
+        except KeyError as exc:
+            raise RuntimeError(f"{base_id}: {member_name} missing from approved ZIP") from exc
+
+    persisted = input_path.read_bytes()
+    if persisted != raw:
+        raise RuntimeError(f"{base_id}: extracted input_png bytes differ from approved ZIP member {member_name}")
+
+    with Image.open(io.BytesIO(raw)) as im:
+        rgb = im.convert("RGB")
+        if rgb.size != (WIDTH, HEIGHT):
+            raise RuntimeError(f"{base_id}: ZIP PNG is {rgb.size}, expected {(WIDTH, HEIGHT)}")
+        pixels = list(rgb.getdata())
+
+    palette = []
+    colour_to_index = {}
+    indexes = []
+    for pixel in pixels:
+        if pixel not in colour_to_index:
+            if len(palette) >= 50:
+                raise RuntimeError(f"{base_id}: ZIP PNG exceeds 50 source colours")
+            colour_to_index[pixel] = len(palette)
+            palette.append(pixel)
+        indexes.append(colour_to_index[pixel])
+
+    if len(indexes) != CELL_COUNT:
+        raise RuntimeError(f"{base_id}: ZIP PNG has wrong pixel count")
+
+    return palette, indexes, input_path, input_rel
 
 def dmc_table():
     rows = read_json(DMC_PATH)
@@ -193,10 +232,14 @@ def save_rgb_image(path: Path, pixels):
 
 
 def build_exact_pattern(base_id: str, design: dict):
-    source_palette, indexes = decode_pixel_source(base_id)
+    source_palette, indexes, input_path, input_rel = load_input_png_source(base_id, design)
 
+    # Preserve a byte-identical audit copy of the individual ZIP PNG.
     approved_path = APPROVED_DIR / f"{base_id}-{design['slug']}.png"
-    save_rgb_image(approved_path, [source_palette[i] for i in indexes])
+    approved_path.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(input_path, approved_path)
+    if approved_path.read_bytes() != input_path.read_bytes():
+        raise RuntimeError(f"{base_id}: approved PNG copy differs from ZIP input")
 
     table = dmc_table()
     source_to_dmc = [nearest_dmc(c, table) for c in source_palette]
@@ -255,6 +298,8 @@ def build_exact_pattern(base_id: str, design: dict):
 
     return {
         "approved_path": approved_path,
+        "input_path": input_path,
+        "input_rel": input_rel,
         "final_path": final_path,
         "final_rel": final_rel,
         "matrix": matrix,
@@ -395,7 +440,8 @@ def update_pattern_and_product(base_id: str, design: dict, built: dict):
         "collection": COLLECTION_ID,
         "palette_mode": "per-design",
         "status": "ready",
-        "source_asset": built["final_rel"],
+        "source_asset": built["input_rel"],
+        "mapped_asset": built["final_rel"],
         "stitch_width": WIDTH,
         "stitch_height": HEIGHT,
         "total_stitches": CELL_COUNT,
@@ -421,7 +467,8 @@ def update_pattern_and_product(base_id: str, design: dict, built: dict):
         "status": "ready",
         "render_ready": True,
         "renderer": "multitech",
-        "source_artwork": built["final_rel"],
+        "source_artwork": built["input_rel"],
+        "mapped_artwork": built["final_rel"],
         "page_1_asset": "../../multitech/assets/cover-cross-stitch.webp",
         "palette_mode": "per-design",
     })
@@ -571,9 +618,13 @@ def update_design_manifest(base_id: str, doc: dict, built: dict):
     for item in doc["designs"]:
         if item["base_design_id"] != base_id:
             continue
-        item["source_asset"] = built["final_rel"]
-        item["artwork_status"] = "production-ready-exact-100x120"
-        item["palette_status"] = "mapped-to-per-design-dmc"
+        item["source_asset"] = built["input_rel"]
+        item["dmc_mapped_asset"] = built["final_rel"]
+        item["artwork_status"] = "production-ready-from-approved-zip-individual-png"
+        item["palette_status"] = "mapped-directly-from-input-png-to-dmc"
+        item.pop("reference_board", None)
+        item.pop("planned_source_asset", None)
+        item.pop("preview_mosaic", None)
         item["source_colour_count"] = built["source_colour_count"]
         item["dmc_colour_count"] = built["dmc_colour_count"]
         item["target_master_grid"] = {"width": WIDTH, "height": HEIGHT, "max_long_side_stitches": HEIGHT}
@@ -584,7 +635,19 @@ def update_design_manifest(base_id: str, doc: dict, built: dict):
 
 def validate_outputs(base_id: str, design: dict, built: dict):
     code = f"{base_id}-CS"
+
+    # Provenance guardrail: the production source and approved audit copy must
+    # remain the exact bytes extracted from the approved ZIP member.
+    if built["approved_path"].read_bytes() != built["input_path"].read_bytes():
+        raise RuntimeError(f"{code}: approved PNG is not byte-identical to ZIP input")
+    if design.get("source_asset") != built["input_rel"]:
+        raise RuntimeError(f"{code}: design source_asset drifted away from input_png")
+    if any(k in design for k in ("reference_board", "planned_source_asset", "preview_mosaic")):
+        raise RuntimeError(f"{code}: legacy mosaic/board provenance is still present")
+
     pat = read_json(PATTERNS / code / "pattern.json")
+    if pat.get("source_asset") != built["input_rel"]:
+        raise RuntimeError(f"{code}: pattern source is not the individual ZIP PNG")
     if (pat.get("stitch_width"), pat.get("stitch_height")) != (WIDTH, HEIGHT):
         raise RuntimeError(f"{code}: wrong dimensions")
     if len(pat.get("matrix", [])) != HEIGHT or any(len(r) != WIDTH for r in pat["matrix"]):
@@ -606,7 +669,7 @@ def validate_outputs(base_id: str, design: dict, built: dict):
         p = STORE_ASSETS / f"{code}-{suffix}.webp"
         if not p.is_file() or p.stat().st_size < 5000:
             raise RuntimeError(f"{code}: missing gallery asset {p.name}")
-    print(f"{code} VALID colours={len(pat['threads'])} stitches={pat['total_stitches']} pdf={pdf.stat().st_size}")
+    print(f"{code} VALID_ZIP_PNG_ONLY source={built['input_rel']} colours={len(pat['threads'])} stitches={pat['total_stitches']} pdf={pdf.stat().st_size}")
 
 
 def main():
