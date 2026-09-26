@@ -1,9 +1,10 @@
 {
   "collection": "iconic-destinations",
   "mode": "approved-q50-png-pack-100x120-v1",
-  "auto_continue": true,
+  "auto_continue": false,
   "max_attempts_per_design": 3,
   "notes": [
+    "PAUSED: switching to direct ZIP-only source; mosaic is not used.",
     "The batch source is the approved 1000x720 white-grid mosaic.",
     "It is split mathematically into 60 cells of exactly 100x120.",
     "Only the outer 2px separator halo is cleaned, using pixels from the same cell.",
