@@ -3,7 +3,7 @@ name: Rebuild Iconic batch 01 conceptual realistic
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    branches: [iconic-batch01-conceptual-v2]
     paths:
       - '.github/scripts/generate_iconic_batch01_conceptual.py'
       - '.github/workflows/rebuild-iconic-batch01-conceptual.yml'
@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
-      - name: Checkout main
+      - name: Checkout branch
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -81,8 +81,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add             content/pattern-system/collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip             content/pattern-system/collections/iconic-destinations/input-pngs-q50             content/pattern-system/collections/iconic-destinations/designs.json             content/pattern-system/iconic_destinations/publish_queue.json
           git commit -m "Replace Iconic batch 01 with conceptual realistic sources [skip ci]"
-          git pull --rebase origin main
-          git push origin HEAD:main
+          git pull --rebase origin iconic-batch01-conceptual-v2
+          git push origin HEAD:iconic-batch01-conceptual-v2
 
       - name: Start WooCommerce republish queue
         env:
@@ -90,5 +90,5 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          gh api --method POST             "repos/${GITHUB_REPOSITORY}/actions/workflows/iconic-destinations-auto-publish.yml/dispatches"             -f ref=main
+          gh api --method POST             "repos/${GITHUB_REPOSITORY}/actions/workflows/iconic-destinations-auto-publish.yml/dispatches"             -f ref=iconic-batch01-conceptual-v2
           echo "CONCEPTUAL_ICONIC_BATCH01_REPUBLISH_STARTED"
