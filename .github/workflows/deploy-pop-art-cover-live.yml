@@ -1,0 +1,89 @@
+name: Deploy Pop Art collection cover live
+
+on:
+  push:
+    paths:
+      - ".github/tmp/deploy-pop-art-cover-live.trigger"
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    if: github.event.head_commit.message == 'Deploy Pop Art cover live'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_pop_art_key
+          chmod 600 ~/.ssh/drielo_pop_art_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Upload cover to production host
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          scp -i ~/.ssh/drielo_pop_art_key             content/products/assets/pop-art-25-collection-cover.webp             "$VPS_USER@$VPS_HOST:/tmp/pop-art-25-collection-cover-${GITHUB_RUN_ID}.webp"
+
+      - name: Apply cover in WooCommerce
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_pop_art_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          HOST_FILE="/tmp/pop-art-25-collection-cover-${GITHUB_RUN_ID}.webp"
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          "${DOCKER[@]}" cp "$HOST_FILE" make-wp:/tmp/pop-art-25-collection-cover.webp
+          "${DOCKER[@]}" exec make-wp php -r '
+            require "/var/www/html/wp-load.php";
+            $term = get_term_by("slug", "pop-art-25", "product_collection");
+            if (!($term instanceof WP_Term)) { fwrite(STDERR, "Pop Art collection term not found\n"); exit(2); }
+            $src = "/tmp/pop-art-25-collection-cover.webp";
+            if (!is_file($src) || filesize($src) < 1000) { fwrite(STDERR, "Cover source missing or empty\n"); exit(3); }
+            $uploads = wp_upload_dir();
+            if (!empty($uploads["error"])) { fwrite(STDERR, $uploads["error"] . "\n"); exit(4); }
+            $filename = "pop-art-25-collection-cover-" . gmdate("YmdHis") . ".webp";
+            $dest = trailingslashit($uploads["path"]) . $filename;
+            if (!copy($src, $dest)) { fwrite(STDERR, "Could not copy cover into uploads\n"); exit(5); }
+            $filetype = wp_check_filetype($filename, null);
+            $attachment = array(
+              "post_mime_type" => !empty($filetype["type"]) ? $filetype["type"] : "image/webp",
+              "post_title" => "Pop Art collection cover",
+              "post_content" => "",
+              "post_status" => "inherit"
+            );
+            $id = wp_insert_attachment($attachment, $dest);
+            if (is_wp_error($id)) { fwrite(STDERR, $id->get_error_message() . "\n"); exit(6); }
+            require_once ABSPATH . "wp-admin/includes/image.php";
+            $meta = wp_generate_attachment_metadata($id, $dest);
+            if (is_array($meta)) { wp_update_attachment_metadata($id, $meta); }
+            update_term_meta($term->term_id, "drielo_collection_cover_id", (int) $id);
+            clean_term_cache($term->term_id, "product_collection");
+            echo "POP_ART_TERM_ID=" . $term->term_id . "\n";
+            echo "COVER_ATTACHMENT_ID=" . $id . "\n";
+            echo "COVER_URL=" . wp_get_attachment_url($id) . "\n";
+            echo "COVER_META=" . get_term_meta($term->term_id, "drielo_collection_cover_id", true) . "\n";
+          '
+          "${DOCKER[@]}" exec make-wp rm -f /tmp/pop-art-25-collection-cover.webp
+          rm -f "$HOST_FILE"
+          REMOTE
