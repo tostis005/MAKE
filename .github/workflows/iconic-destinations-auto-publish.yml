@@ -9,7 +9,7 @@ permissions:
   actions: write
 
 concurrency:
-  group: drielo-iconic-destinations-auto-publish
+  group: drielo-iconic-conceptual-v2-publish
   cancel-in-progress: false
 
 jobs:
