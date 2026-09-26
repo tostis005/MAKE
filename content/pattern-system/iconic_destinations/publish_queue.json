@@ -15,10 +15,11 @@
       "title_es": "Monte Rushmore",
       "slug": "mount-rushmore",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0001.pixz",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36223882268",
+      "last_error": null,
+      "published_at": "2026-09-26T06:30:40+00:00"
     },
     {
       "base_design_id": "D0002",
