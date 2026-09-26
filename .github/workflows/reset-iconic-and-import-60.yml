@@ -1,5 +1,5 @@
 name: Reset Iconic Destinations from uploaded ZIP
-# trigger: cache-safe-final-reset-2026-09-26-1945
+# trigger: cache-safe-verified-reset-2026-09-26-1948
 
 on:
   push:
