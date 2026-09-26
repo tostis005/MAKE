@@ -46,13 +46,42 @@ jobs:
             gh run list \
               --workflow iconic-destinations-auto-publish.yml \
               --status "$STATE" \
-              --limit 30 \
+              --limit 50 \
               --json databaseId \
               --jq '.[].databaseId' | while read -r RUN; do
                 [ -z "$RUN" ] || gh run cancel "$RUN" || true
               done
           done
-          sleep 8
+
+          # Cancellation is asynchronous. Wait until every old publisher is
+          # actually terminal before resetting the queue or deleting products.
+          for N in $(seq 1 60); do
+            ACTIVE="$(
+              { gh run list --workflow iconic-destinations-auto-publish.yml --status queued --limit 50 --json databaseId --jq 'length';
+                gh run list --workflow iconic-destinations-auto-publish.yml --status in_progress --limit 50 --json databaseId --jq 'length'; } |
+              awk '{s+=$1} END {print s+0}'
+            )"
+            if [ "$ACTIVE" = "0" ]; then
+              break
+            fi
+            echo "WAITING_FOR_ICONIC_PUBLISHERS active=$ACTIVE attempt=$N"
+            sleep 2
+          done
+
+          ACTIVE="$(
+            { gh run list --workflow iconic-destinations-auto-publish.yml --status queued --limit 50 --json databaseId --jq 'length';
+              gh run list --workflow iconic-destinations-auto-publish.yml --status in_progress --limit 50 --json databaseId --jq 'length'; } |
+            awk '{s+=$1} END {print s+0}'
+          )"
+          if [ "$ACTIVE" != "0" ]; then
+            echo "ERROR: Iconic publishers did not stop cleanly"
+            exit 1
+          fi
+
+          # A cancelled publisher may have pushed just before becoming terminal.
+          # Always reset this checkout to the latest main before rebuilding.
+          git fetch origin main
+          git reset --hard origin/main
 
       - name: Extract and validate all 60 PNGs from uploaded ZIP
         shell: bash
