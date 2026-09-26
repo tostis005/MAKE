@@ -1,31 +1,52 @@
 # Iconic Destinations / Destinos icónicos
 
-This collection groups cities, landmarks, heritage sites and natural destinations under one travel-focused theme.
+This collection contains 60 cross-stitch products generated from one approved ZIP of 60 individual PNG files.
 
-## Colour policy
+## Production source policy
 
-This is the first Drielo collection using `palette_mode: "per-design"`.
+The only production artwork source is:
 
-- There is no collection-wide colour restriction.
-- Every final design owns its DMC/HEX palette in its pattern JSON.
-- The storefront must not render a shared-palette block for this collection.
-- The current visual target is roughly 30–50 colours when useful, but there is no hard collection colour limit.
+`assets/iconic-60-pngs-q50.zip`
+
+The ZIP must contain exactly:
+
+- `destino_01_01.png` through `destino_06_10.png`
+- 60 unique PNG files
+- each file exactly 100 × 120 pixels
+- each file with no more than 50 source colours
+
+The import step extracts those files byte-for-byte to `input-pngs-q50/`. Each product then reads its own `input_png` directly.
+
+Forbidden production sources:
+
+- mosaics
+- reference boards
+- board crops
+- collage crops
+- `.pixz` intermediates
+- any generated image used as replacement source artwork
+
+Derived DMC-mapped images, PDF previews and WooCommerce mockups may be generated only after the individual ZIP PNG has passed byte and dimension validation.
 
 ## Pattern format
 
-The initial release is cross-stitch only (`D####-CS`).
-
-- Master composition target: **100 × 120 stitches**
-- Long-side ceiling for the current compact format: **120 stitches**
+- Technique: cross stitch only (`D####-CS`)
+- Master grid: **100 × 120 stitches**
+- Total cells: **12,000**
 - Chart target: **4 grid pages**
-- Favour one recognisable focal landmark, strong silhouette and atmospheric colour over tiny micro-detail.
+- Palette: selected independently per design and mapped to DMC
 
-## Source artwork
+## Storefront
 
-The 10 approved six-panel boards are catalogued in `reference-boards.json`. They are concept references only.
+The WooCommerce hero is a lifestyle mockup generated from the validated pattern matrix. It is not an artwork source and cannot feed back into pattern generation.
 
-Before a design becomes render-ready, create a dedicated individual source image at full working size and place it under `source-designs/`. Do not crop a panel out of the concept-board collage and use it as the final production source.
+## Guardrails
 
-## Status
+The importer and publisher fail if:
 
-60 concepts are staged as `approved-concept-awaiting-final-individual-source`. No product should be published until its individual source, DMC mapping, stitch matrix, preview and downloadable PDF pass validation.
+- the queue is not in hardened ZIP-PNG-only mode
+- a product's `input_png` does not match its queue record
+- the extracted PNG differs byte-for-byte from its ZIP member
+- a legacy mosaic/reference-board field is present
+- the source image is not exactly 100 × 120
+- the source image exceeds 50 colours
