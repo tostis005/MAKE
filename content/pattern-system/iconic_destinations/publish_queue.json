@@ -1,7 +1,7 @@
 {
   "collection": "iconic-destinations",
   "mode": "direct-zip-png-only-60x100x120-v3",
-  "auto_continue": true,
+  "auto_continue": false,
   "max_attempts_per_design": 3,
   "notes": [
     "The approved ZIP is the only artwork container for D0001-D0060.",
