@@ -19,7 +19,6 @@ QUEUE_PATH = SYSTEM / "iconic_destinations" / "publish_queue.json"
 PDF_PATH = COL_DIR / "assets" / "iconic-60-source.pdf"
 INPUT_DIR = COL_DIR / "pdf-pngs-q50"
 PIXEL_DIR = COL_DIR / "pixel-sources"
-PREVIEW_PATH = COL_DIR / "assets" / "iconic-60-pdf-preview.png"
 ZIP_PATH = COL_DIR / "assets" / "iconic-60-pdf-pngs-q50.zip"
 
 WIDTH = 100
@@ -152,7 +151,6 @@ def main():
     for p in INPUT_DIR.glob("*.png"):
         p.unlink()
 
-    preview = Image.new("RGB", (1000, 720), (255, 255, 255))
     queue_items = []
     png_paths = []
 
@@ -185,12 +183,8 @@ def main():
         (PIXEL_DIR / f"{base}.pixz").write_text(packed + "\n", encoding="ascii")
         png_paths.append(png_path)
 
-        row, col = divmod(idx, 10)
-        preview.paste(tile, (col * WIDTH, row * HEIGHT))
-
         rel = f"collections/iconic-destinations/pdf-pngs-q50/{png_name}"
         design["source_asset"] = rel
-        design["planned_source_asset"] = rel
         design["input_png"] = rel
         design["source_pdf"] = "collections/iconic-destinations/assets/iconic-60-source.pdf"
         design["source_pdf_page"] = page_number
@@ -221,8 +215,6 @@ def main():
         })
         print(f"PDF_DESIGN_READY {base} page={page_number} size=100x120 colours={saved_colours}")
 
-    preview.save(PREVIEW_PATH, "PNG", optimize=True)
-
     with zipfile.ZipFile(ZIP_PATH, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
         for p in png_paths:
             zf.write(p, arcname=p.name)
@@ -233,6 +225,7 @@ def main():
             raise SystemExit("PDF-derived ZIP does not contain exactly 60 unique PNGs")
 
     designs_doc["count"] = COUNT
+    designs_doc["source_policy"] = "60-page-pdf-only-no-mosaic"
     designs_doc["designs"] = designs
     save_json(DESIGNS_PATH, designs_doc)
 
@@ -242,13 +235,13 @@ def main():
     queue["max_attempts_per_design"] = 3
     queue["source_pdf"] = "collections/iconic-destinations/assets/iconic-60-source.pdf"
     queue["source_zip"] = "collections/iconic-destinations/assets/iconic-60-pdf-pngs-q50.zip"
-    queue["preview_mosaic"] = "collections/iconic-destinations/assets/iconic-60-pdf-preview.png"
     queue["notes"] = [
         "The PDF is the only design source. No mosaic or previous PNG pack is used.",
         "The PDF must contain exactly 60 pages, one destination design per page.",
         "For each page the largest embedded artwork image is used; if unavailable, that page is rendered directly.",
         "Outer white page margins are removed, then the complete design is normalized to exactly 100x120 and quantized to at most 50 colours without dithering.",
-        "The exact saved 100x120 PNG drives the corresponding .pixz, PDF pattern, storefront image, and WooCommerce product.",
+        "The exact saved 100x120 PNG drives the PDF pattern, storefront image, and WooCommerce product.",
+        "No mosaic, preview mosaic, board crop, or ZIP-derived artwork is used as a production source.",
     ]
     queue["items"] = queue_items
     queue.pop("invalid_items", None)
