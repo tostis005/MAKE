@@ -1,9 +1,10 @@
 {
   "collection": "iconic-destinations",
   "mode": "exact-pixel-cross-stitch-v1-clean-reimport-60",
-  "auto_continue": true,
+  "auto_continue": false,
   "max_attempts_per_design": 3,
   "notes": [
+    "Publication paused while strict 100x120 white-border extraction is rebuilt.",
     "D0001-D0060 are rebuilt from the single 1000x720 grid mosaic.",
     "The workflow removes the white separator pixels and restores every tile to exactly 100x120.",
     "Each exact tile is quantized to at most 50 source colours, then the publisher maps it to DMC and generates PDF/storefront assets."
