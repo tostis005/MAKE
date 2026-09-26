@@ -13,11 +13,11 @@
       "variants": [
         "D0001-CS"
       ],
-      "artwork_status": "production-ready-exact-100x120",
-      "source_asset": "collections/iconic-destinations/source-designs/D0001-mount-rushmore.png",
+      "artwork_status": "approved-zip-q50-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_01.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_01.png",
       "palette_mode": "per-design",
-      "palette_status": "mapped-to-per-design-dmc",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -25,7 +25,7 @@
       },
       "target_chart_pages": 4,
       "source_colour_count": 50,
-      "dmc_colour_count": 38,
+      "dmc_colour_count": null,
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_01.png"
     },
     {
@@ -38,11 +38,11 @@
       "variants": [
         "D0002-CS"
       ],
-      "artwork_status": "production-ready-exact-100x120",
-      "source_asset": "collections/iconic-destinations/source-designs/D0002-hollywood-sign.png",
+      "artwork_status": "approved-zip-q50-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_02.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_02.png",
       "palette_mode": "per-design",
-      "palette_status": "mapped-to-per-design-dmc",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -50,7 +50,7 @@
       },
       "target_chart_pages": 4,
       "source_colour_count": 50,
-      "dmc_colour_count": 30,
+      "dmc_colour_count": null,
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_02.png"
     },
     {
@@ -63,11 +63,11 @@
       "variants": [
         "D0003-CS"
       ],
-      "artwork_status": "production-ready-exact-100x120",
-      "source_asset": "collections/iconic-destinations/source-designs/D0003-times-square-new-york.png",
+      "artwork_status": "approved-zip-q50-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_03.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_03.png",
       "palette_mode": "per-design",
-      "palette_status": "mapped-to-per-design-dmc",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -75,7 +75,7 @@
       },
       "target_chart_pages": 4,
       "source_colour_count": 50,
-      "dmc_colour_count": 34,
+      "dmc_colour_count": null,
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_03.png"
     },
     {
@@ -88,11 +88,11 @@
       "variants": [
         "D0004-CS"
       ],
-      "artwork_status": "production-ready-exact-100x120",
-      "source_asset": "collections/iconic-destinations/source-designs/D0004-brandenburg-gate-berlin.png",
+      "artwork_status": "approved-zip-q50-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_04.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_04.png",
       "palette_mode": "per-design",
-      "palette_status": "mapped-to-per-design-dmc",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -100,7 +100,7 @@
       },
       "target_chart_pages": 4,
       "source_colour_count": 50,
-      "dmc_colour_count": 42,
+      "dmc_colour_count": null,
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_04.png"
     },
     {
@@ -113,11 +113,11 @@
       "variants": [
         "D0005-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_05.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_05.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -138,11 +138,11 @@
       "variants": [
         "D0006-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_06.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_06.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -163,11 +163,11 @@
       "variants": [
         "D0007-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_07.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_07.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -188,11 +188,11 @@
       "variants": [
         "D0008-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_08.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_08.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -213,11 +213,11 @@
       "variants": [
         "D0009-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_09.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_09.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -238,11 +238,11 @@
       "variants": [
         "D0010-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_10.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_10.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -263,11 +263,11 @@
       "variants": [
         "D0011-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_02_01.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_02_01.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -288,11 +288,11 @@
       "variants": [
         "D0012-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_02_02.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_02_02.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -313,11 +313,11 @@
       "variants": [
         "D0013-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_02_03.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_02_03.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -338,11 +338,11 @@
       "variants": [
         "D0014-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_02_04.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_02_04.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -363,11 +363,11 @@
       "variants": [
         "D0015-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_02_05.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_02_05.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -388,11 +388,11 @@
       "variants": [
         "D0016-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_02_06.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_02_06.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -413,11 +413,11 @@
       "variants": [
         "D0017-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_02_07.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_02_07.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -438,11 +438,11 @@
       "variants": [
         "D0018-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_02_08.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_02_08.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -463,11 +463,11 @@
       "variants": [
         "D0019-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_02_09.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_02_09.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -488,11 +488,11 @@
       "variants": [
         "D0020-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_02_10.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_02_10.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -513,11 +513,11 @@
       "variants": [
         "D0021-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_03_01.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_03_01.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -538,11 +538,11 @@
       "variants": [
         "D0022-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_03_02.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_03_02.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -563,11 +563,11 @@
       "variants": [
         "D0023-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_03_03.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_03_03.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -588,11 +588,11 @@
       "variants": [
         "D0024-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_03_04.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_03_04.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -613,11 +613,11 @@
       "variants": [
         "D0025-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_03_05.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_03_05.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -638,11 +638,11 @@
       "variants": [
         "D0026-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_03_06.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_03_06.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -663,11 +663,11 @@
       "variants": [
         "D0027-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_03_07.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_03_07.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -688,11 +688,11 @@
       "variants": [
         "D0028-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_03_08.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_03_08.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -713,11 +713,11 @@
       "variants": [
         "D0029-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_03_09.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_03_09.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -738,11 +738,11 @@
       "variants": [
         "D0030-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_03_10.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_03_10.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -763,11 +763,11 @@
       "variants": [
         "D0031-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_01.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_01.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -788,11 +788,11 @@
       "variants": [
         "D0032-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_02.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_02.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -813,11 +813,11 @@
       "variants": [
         "D0033-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_03.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_03.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -838,11 +838,11 @@
       "variants": [
         "D0034-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_04.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_04.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -863,11 +863,11 @@
       "variants": [
         "D0035-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_05.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_05.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -888,11 +888,11 @@
       "variants": [
         "D0036-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_06.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_06.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -913,11 +913,11 @@
       "variants": [
         "D0037-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_07.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_07.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -938,11 +938,11 @@
       "variants": [
         "D0038-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_08.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_08.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -963,11 +963,11 @@
       "variants": [
         "D0039-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_09.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_09.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -988,11 +988,11 @@
       "variants": [
         "D0040-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_10.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_10.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -1013,11 +1013,11 @@
       "variants": [
         "D0041-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_01.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_01.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -1038,11 +1038,11 @@
       "variants": [
         "D0042-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_02.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_02.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -1063,11 +1063,11 @@
       "variants": [
         "D0043-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_03.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_03.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -1088,11 +1088,11 @@
       "variants": [
         "D0044-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_04.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_04.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -1113,11 +1113,11 @@
       "variants": [
         "D0045-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_05.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_05.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -1138,11 +1138,11 @@
       "variants": [
         "D0046-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_06.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_06.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -1163,11 +1163,11 @@
       "variants": [
         "D0047-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_07.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_07.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -1188,11 +1188,11 @@
       "variants": [
         "D0048-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_08.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_08.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -1213,11 +1213,11 @@
       "variants": [
         "D0049-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_09.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_09.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -1238,11 +1238,11 @@
       "variants": [
         "D0050-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_10.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_10.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -1263,11 +1263,11 @@
       "variants": [
         "D0051-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_06_01.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_06_01.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -1288,11 +1288,11 @@
       "variants": [
         "D0052-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_06_02.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_06_02.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -1313,11 +1313,11 @@
       "variants": [
         "D0053-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_06_03.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_06_03.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -1338,11 +1338,11 @@
       "variants": [
         "D0054-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_06_04.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_06_04.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -1363,11 +1363,11 @@
       "variants": [
         "D0055-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_06_05.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_06_05.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -1388,11 +1388,11 @@
       "variants": [
         "D0056-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_06_06.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_06_06.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -1413,11 +1413,11 @@
       "variants": [
         "D0057-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_06_07.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_06_07.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -1438,11 +1438,11 @@
       "variants": [
         "D0058-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_06_08.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_06_08.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -1463,11 +1463,11 @@
       "variants": [
         "D0059-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_06_09.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_06_09.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -1488,11 +1488,11 @@
       "variants": [
         "D0060-CS"
       ],
-      "artwork_status": "approved-q50-png-100x120",
+      "artwork_status": "approved-zip-q50-png-100x120",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_06_10.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_06_10.png",
       "palette_mode": "per-design",
-      "palette_status": "q50-source-ready-for-dmc-map",
+      "palette_status": "zip-source-ready-for-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,

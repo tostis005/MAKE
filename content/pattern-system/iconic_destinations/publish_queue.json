@@ -1,17 +1,14 @@
 {
   "collection": "iconic-destinations",
-  "mode": "approved-q50-png-pack-100x120-v1",
-  "auto_continue": false,
+  "mode": "direct-approved-zip-60-pngs-100x120-v2",
+  "auto_continue": true,
   "max_attempts_per_design": 3,
   "notes": [
-    "PAUSED: rebuilding strictly from the committed 60-PNG ZIP; mosaic is not a product source.",
-    "PAUSED: switching to direct ZIP-only source; mosaic is not used.",
-    "The batch source is the approved 1000x720 white-grid mosaic.",
-    "It is split mathematically into 60 cells of exactly 100x120.",
-    "Only the outer 2px separator halo is cleaned, using pixels from the same cell.",
-    "Each individual PNG is quantized to at most 50 colours with no dithering.",
-    "The exact saved PNG is encoded into the corresponding .pixz and drives the WooCommerce/PDF product.",
-    "The ZIP contains exactly those 60 individual PNGs."
+    "The ZIP is the only artwork source for D0001-D0060.",
+    "The mosaic is not read, cropped, resized, cleaned, or used for product generation.",
+    "Each product is generated from its matching PNG inside the ZIP in row-major order.",
+    "Every ZIP PNG must already be exactly 100x120 and contain no more than 50 colours.",
+    "The exact PNG bytes are extracted, validated, converted to .pixz, and then used for PDF/WooCommerce generation."
   ],
   "items": [
     {
@@ -21,11 +18,10 @@
       "slug": "mount-rushmore",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_01.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0001.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36240690334",
-      "last_error": null,
-      "published_at": "2026-09-26T12:04:23+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0002",
@@ -34,11 +30,10 @@
       "slug": "hollywood-sign",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_02.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0002.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36240784419",
-      "last_error": null,
-      "published_at": "2026-09-26T12:05:53+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0003",
@@ -47,11 +42,10 @@
       "slug": "times-square-new-york",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_03.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0003.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36240861688",
-      "last_error": null,
-      "published_at": "2026-09-26T12:07:25+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0004",
@@ -60,11 +54,10 @@
       "slug": "brandenburg-gate-berlin",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_04.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0004.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36240941138",
-      "last_error": null,
-      "published_at": "2026-09-26T12:08:55+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0005",
