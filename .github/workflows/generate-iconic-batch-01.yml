@@ -1,0 +1,96 @@
+name: Generate and import Iconic clean batch 01
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/generate-iconic-batch-01.yml'
+      - '.github/scripts/generate_iconic_batch01_clean.py'
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: drielo-iconic-clean-batch-01
+  cancel-in-progress: false
+
+jobs:
+  generate-and-queue:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install image dependency
+        run: python3 -m pip install --disable-pip-version-check --quiet Pillow
+
+      - name: Generate clean 10-image ZIP and queue
+        run: python3 .github/scripts/generate_iconic_batch01_clean.py
+
+      - name: Validate exact PNG contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,zipfile
+          from pathlib import Path
+          from PIL import Image
+
+          root=Path('content/pattern-system')
+          col=root/'collections'/'iconic-destinations'
+          zpath=col/'assets'/'iconic-batch-01-clean-q50.zip'
+          queue=json.loads((root/'iconic_destinations'/'publish_queue.json').read_text(encoding='utf-8'))
+          selected=[x for x in queue['items'] if x.get('status')=='pending']
+          if len(selected)!=10:
+              raise SystemExit(f'Expected exactly 10 pending batch items, got {len(selected)}')
+          if queue.get('mode')!='direct-zip-png-clean-batches-v4':
+              raise SystemExit('Wrong ZIP-only queue mode')
+          with zipfile.ZipFile(zpath,'r') as zf:
+              names=zf.namelist()
+              if len(names)!=10 or len(set(names))!=10:
+                  raise SystemExit('Batch ZIP must contain exactly 10 unique PNGs')
+              for item in selected:
+                  member=item['source_zip_member']
+                  raw=zf.read(member)
+                  src=root/item['input_png']
+                  if src.read_bytes()!=raw:
+                      raise SystemExit(f"{item['base_design_id']}: input differs from ZIP member")
+                  with Image.open(src) as im:
+                      rgb=im.convert('RGB')
+                      colours=len(set(rgb.getdata()))
+                      if rgb.size!=(100,120):
+                          raise SystemExit(f"{item['base_design_id']}: wrong size {rgb.size}")
+                      if colours!=50:
+                          raise SystemExit(f"{item['base_design_id']}: expected exactly 50 colours, got {colours}")
+          print('BATCH01_CONTRACT_VALID count=10 each=100x120 colours=50')
+          PY
+
+      - name: Persist clean ZIP sources to main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A             content/pattern-system/collections/iconic-destinations/assets             content/pattern-system/collections/iconic-destinations/input-pngs-q50             content/pattern-system/collections/iconic-destinations/designs.json             content/pattern-system/iconic_destinations/publish_queue.json
+          git commit -m "Generate clean Iconic batch 01 sources [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Start WooCommerce publication queue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api --method POST             "repos/${GITHUB_REPOSITORY}/actions/workflows/iconic-destinations-auto-publish.yml/dispatches"             -f ref=main
+          echo "ICONIC_BATCH01_PUBLICATION_STARTED count=10"
