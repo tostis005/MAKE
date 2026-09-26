@@ -7,7 +7,8 @@
     "The approved ZIP is the only artwork container for D0001-D0060.",
     "Each product reads its matching extracted input_png directly; there is no mosaic, board crop, or .pixz source path.",
     "Every PNG must be exactly 100x120 and contain no more than 50 colours.",
-    "The publisher validates the extracted PNG against the corresponding ZIP member before generating PDF or WooCommerce assets."
+    "The publisher validates the extracted PNG against the corresponding ZIP member before generating PDF or WooCommerce assets.",
+    "STOPPED 2026-09-26: source ZIP individual PNGs contain legacy mosaic/crop contamination; do not publish until clean individual PNGs are supplied/regenerated."
   ],
   "items": [
     {
