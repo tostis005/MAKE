@@ -16,11 +16,10 @@
       "title_es": "Monte Rushmore",
       "slug": "mount-rushmore",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_01.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36266136471",
-      "last_error": null,
-      "published_at": "2026-09-26T19:29:09+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0002",
@@ -28,11 +27,10 @@
       "title_es": "Letrero de Hollywood",
       "slug": "hollywood-sign",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_02.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36266216789",
-      "last_error": null,
-      "published_at": "2026-09-26T19:30:44+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0003",
@@ -40,11 +38,10 @@
       "title_es": "Times Square de Nueva York",
       "slug": "times-square-new-york",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_03.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36266309516",
-      "last_error": null,
-      "published_at": "2026-09-26T19:32:14+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0004",
@@ -52,11 +49,10 @@
       "title_es": "Puerta de Brandeburgo de Berlín",
       "slug": "brandenburg-gate-berlin",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_04.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36266399403",
-      "last_error": null,
-      "published_at": "2026-09-26T19:33:52+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0005",
@@ -64,11 +60,10 @@
       "title_es": "Castillo de Osaka",
       "slug": "osaka-castle",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_05.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36266494036",
-      "last_error": null,
-      "published_at": "2026-09-26T19:35:29+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0006",
@@ -76,11 +71,10 @@
       "title_es": "Torre CN de Toronto",
       "slug": "toronto-cn-tower",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_06.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36266588679",
-      "last_error": null,
-      "published_at": "2026-09-26T19:37:15+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0007",
@@ -88,11 +82,10 @@
       "title_es": "Château Frontenac de Quebec",
       "slug": "quebec-chateau-frontenac",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_07.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36266687387",
-      "last_error": null,
-      "published_at": "2026-09-26T19:38:59+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0008",
@@ -100,11 +93,10 @@
       "title_es": "Hallstatt junto al lago",
       "slug": "hallstatt-lakeside-village",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_08.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36266783746",
-      "last_error": null,
-      "published_at": "2026-09-26T19:40:46+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0009",
@@ -112,11 +104,10 @@
       "title_es": "Casco antiguo de Dubrovnik",
       "slug": "dubrovnik-old-town",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_09.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36266979938",
-      "last_error": null,
-      "published_at": "2026-09-26T19:43:46+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0010",
