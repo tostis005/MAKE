@@ -4,6 +4,7 @@
   "auto_continue": false,
   "max_attempts_per_design": 3,
   "notes": [
+    "PAUSED before strict mosaic re-import; only exact 100x120 cleaned tiles may publish.",
     "Publication paused while strict 100x120 white-border extraction is rebuilt.",
     "D0001-D0060 are rebuilt from the single 1000x720 grid mosaic.",
     "The workflow removes the white separator pixels and restores every tile to exactly 100x120.",
