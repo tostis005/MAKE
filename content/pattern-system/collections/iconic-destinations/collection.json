@@ -86,11 +86,10 @@
     "palette_mode": "per-design",
     "preserve_design_palette": true
   },
-  "design_reference": {
-    "status": "concept-boards-approved",
-    "manifest": "collections/iconic-destinations/reference-boards.json",
-    "purpose": "Use the approved 10 six-panel concept boards as visual direction when creating the final individual source images.",
-    "final_source_requirement": "Create each destination as an individual full-size source before pattern conversion; do not crop the six-panel boards into production artwork.",
-    "target": "100x120 master-grid composition, four chart pages, palette chosen independently for each design."
+  "source_policy": {
+    "mode": "approved-zip-individual-png-only",
+    "zip": "assets/iconic-60-pngs-q50.zip",
+    "extracted_dir": "input-pngs-q50",
+    "rule": "Each D0001-D0060 product must read its own extracted 100x120 PNG directly. Mosaic, board, crop, and .pixz sources are forbidden."
   }
 }
