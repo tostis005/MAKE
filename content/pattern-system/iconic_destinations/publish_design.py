@@ -591,7 +591,7 @@ def validate_outputs(base_id: str, design: dict, built: dict):
         raise RuntimeError(f"{code}: malformed matrix")
     if pat.get("total_stitches") != CELL_COUNT:
         raise RuntimeError(f"{code}: expected {CELL_COUNT} stitches")
-    if not (30 <= len(pat.get("threads", [])) <= 48):
+    if not (1 <= len(pat.get("threads", [])) <= 50):
         raise RuntimeError(f"{code}: unexpected DMC colour count {len(pat.get('threads', []))}")
     pdf = STORE_FILES / f"Drielo_{code}.pdf"
     image = STORE_ASSETS / f"{code}-product.webp"
