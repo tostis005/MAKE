@@ -1,0 +1,111 @@
+name: Reset Iconic Destinations and import 60
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/reset-iconic-and-import-60.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-iconic-full-reset
+  cancel-in-progress: false
+
+jobs:
+  reset:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_products_key
+          chmod 600 ~/.ssh/drielo_products_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Permanently delete existing Iconic Destinations products
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_products_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $term=get_term_by("slug","iconic-destinations","product_collection");
+            if(!$term instanceof WP_Term){echo "ICONIC_COLLECTION_NOT_FOUND".PHP_EOL;exit(0);}
+            $ids=get_posts(array("post_type"=>"product","post_status"=>array("publish","draft","pending","private","future","trash"),"posts_per_page"=>-1,"fields"=>"ids","no_found_rows"=>true,"tax_query"=>array(array("taxonomy"=>"product_collection","field"=>"term_id","terms"=>array((int)$term->term_id)))));
+            $deleted=0;
+            foreach(array_map("intval",$ids) as $id){
+              if("1"!==(string)get_post_meta($id,"_drielo_managed_product",true)){continue;}
+              $p=wc_get_product($id); $sku=$p instanceof WC_Product ? $p->get_sku() : "";
+              wp_delete_post($id,true); echo "DELETED_ICONIC sku=".$sku." product_id=".$id.PHP_EOL; $deleted++;
+            }
+            echo "DELETED_ICONIC_TOTAL=".$deleted.PHP_EOL;
+          '
+          REMOTE
+
+      - name: Reset all 60 Iconic queue items
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          qpath=Path('content/pattern-system/iconic_destinations/publish_queue.json')
+          dpath=Path('content/pattern-system/collections/iconic-destinations/designs.json')
+          queue=json.loads(qpath.read_text(encoding='utf-8'))
+          designs=json.loads(dpath.read_text(encoding='utf-8')).get('designs',[])
+          assert len(designs)==60, len(designs)
+          assert len(queue.get('items',[]))==60, len(queue.get('items',[]))
+          ids=[f'D{i:04d}' for i in range(1,61)]
+          by_id={x['base_design_id']:x for x in queue['items']}
+          assert set(by_id)==set(ids)
+          queue['auto_continue']=True
+          queue['max_attempts_per_design']=3
+          queue['mode']='exact-pixel-cross-stitch-v1-clean-reimport-60'
+          for base in ids:
+              item=by_id[base]; item['status']='pending'; item['attempts']=0; item['last_run']=None; item['last_error']=None
+              item.pop('published_at',None); item.pop('failed_at',None)
+          queue['items']=[by_id[x] for x in ids]
+          qpath.write_text(json.dumps(queue,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print('RESET_QUEUE_60 pending=60')
+          PY
+
+      - name: Commit reset queue
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/pattern-system/iconic_destinations/publish_queue.json
+          git commit -m "Reset 60 Iconic Destinations for clean import [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Confirm
+        run: echo "Clean Iconic reset complete; auto publisher starts from D0001."
