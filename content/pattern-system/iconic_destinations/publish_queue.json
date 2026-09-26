@@ -1,14 +1,13 @@
 {
   "collection": "iconic-destinations",
-  "mode": "exact-pixel-cross-stitch-v1-clean-reimport-60",
-  "auto_continue": false,
+  "mode": "strict-fixed-grid-clean-border-100x120-v4",
+  "auto_continue": true,
   "max_attempts_per_design": 3,
   "notes": [
-    "PAUSED before strict mosaic re-import; only exact 100x120 cleaned tiles may publish.",
-    "Publication paused while strict 100x120 white-border extraction is rebuilt.",
-    "D0001-D0060 are rebuilt from the single 1000x720 grid mosaic.",
-    "The workflow removes the white separator pixels and restores every tile to exactly 100x120.",
-    "Each exact tile is quantized to at most 50 source colours, then the publisher maps it to DMC and generates PDF/storefront assets."
+    "The 1000x720 source mosaic is split only on the mathematical 10x6 grid: x=0,100,...,1000 and y=0,120,...,720.",
+    "No separator-search heuristic is used, so white architecture/clouds can never shift a crop into a neighbouring image.",
+    "The outer 2px border of each 100x120 cell is cleaned in-place using pixels from that same cell; there is no resize/resample.",
+    "Every saved source is validated at exactly 100x120 before the WooCommerce reset is allowed to run."
   ],
   "items": [
     {
@@ -17,11 +16,10 @@
       "title_es": "Monte Rushmore",
       "slug": "mount-rushmore",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0001.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36223882268",
-      "last_error": null,
-      "published_at": "2026-09-26T06:30:40+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0002",
@@ -29,11 +27,10 @@
       "title_es": "Letrero de Hollywood",
       "slug": "hollywood-sign",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0002.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36223972770",
-      "last_error": null,
-      "published_at": "2026-09-26T06:32:18+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0003",
@@ -41,11 +38,10 @@
       "title_es": "Times Square de Nueva York",
       "slug": "times-square-new-york",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0003.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36224058093",
-      "last_error": null,
-      "published_at": "2026-09-26T06:34:07+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0004",
@@ -53,11 +49,10 @@
       "title_es": "Puerta de Brandeburgo de Berlín",
       "slug": "brandenburg-gate-berlin",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0004.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36224151760",
-      "last_error": null,
-      "published_at": "2026-09-26T06:35:40+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0005",
@@ -65,11 +60,10 @@
       "title_es": "Castillo de Osaka",
       "slug": "osaka-castle",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0005.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36224230585",
-      "last_error": null,
-      "published_at": "2026-09-26T06:37:20+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0006",
@@ -77,11 +71,10 @@
       "title_es": "Torre CN de Toronto",
       "slug": "toronto-cn-tower",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0006.pixz",
-      "status": "failed",
-      "attempts": 3,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36224463302",
-      "last_error": "Automatic Iconic Destinations publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-26T06:41:38+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0007",
@@ -89,11 +82,10 @@
       "title_es": "Château Frontenac de Quebec",
       "slug": "quebec-chateau-frontenac",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0007.pixz",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36224524140",
-      "last_error": null,
-      "published_at": "2026-09-26T06:43:19+00:00"
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
+      "last_error": null
     },
     {
       "base_design_id": "D0008",

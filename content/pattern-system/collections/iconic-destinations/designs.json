@@ -13,11 +13,11 @@
       "variants": [
         "D0001-CS"
       ],
-      "artwork_status": "production-ready-exact-100x120",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0001-mount-rushmore.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0001-mount-rushmore.png",
       "palette_mode": "per-design",
-      "palette_status": "mapped-to-per-design-dmc",
+      "palette_status": "source-mapped-on-publish",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -25,7 +25,7 @@
       },
       "target_chart_pages": 4,
       "source_colour_count": 50,
-      "dmc_colour_count": 36
+      "dmc_colour_count": null
     },
     {
       "order": 2,
@@ -37,11 +37,11 @@
       "variants": [
         "D0002-CS"
       ],
-      "artwork_status": "production-ready-exact-100x120",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0002-hollywood-sign.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0002-hollywood-sign.png",
       "palette_mode": "per-design",
-      "palette_status": "mapped-to-per-design-dmc",
+      "palette_status": "source-mapped-on-publish",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -49,7 +49,7 @@
       },
       "target_chart_pages": 4,
       "source_colour_count": 50,
-      "dmc_colour_count": 33
+      "dmc_colour_count": null
     },
     {
       "order": 3,
@@ -61,11 +61,11 @@
       "variants": [
         "D0003-CS"
       ],
-      "artwork_status": "production-ready-exact-100x120",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0003-times-square-new-york.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0003-times-square-new-york.png",
       "palette_mode": "per-design",
-      "palette_status": "mapped-to-per-design-dmc",
+      "palette_status": "source-mapped-on-publish",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -73,7 +73,7 @@
       },
       "target_chart_pages": 4,
       "source_colour_count": 50,
-      "dmc_colour_count": 35
+      "dmc_colour_count": null
     },
     {
       "order": 4,
@@ -85,11 +85,11 @@
       "variants": [
         "D0004-CS"
       ],
-      "artwork_status": "production-ready-exact-100x120",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0004-brandenburg-gate-berlin.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0004-brandenburg-gate-berlin.png",
       "palette_mode": "per-design",
-      "palette_status": "mapped-to-per-design-dmc",
+      "palette_status": "source-mapped-on-publish",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -97,7 +97,7 @@
       },
       "target_chart_pages": 4,
       "source_colour_count": 50,
-      "dmc_colour_count": 42
+      "dmc_colour_count": null
     },
     {
       "order": 5,
@@ -109,11 +109,11 @@
       "variants": [
         "D0005-CS"
       ],
-      "artwork_status": "production-ready-exact-100x120",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0005-osaka-castle.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0005-osaka-castle.png",
       "palette_mode": "per-design",
-      "palette_status": "mapped-to-per-design-dmc",
+      "palette_status": "source-mapped-on-publish",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -121,7 +121,7 @@
       },
       "target_chart_pages": 4,
       "source_colour_count": 50,
-      "dmc_colour_count": 39
+      "dmc_colour_count": null
     },
     {
       "order": 6,
@@ -133,7 +133,7 @@
       "variants": [
         "D0006-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0006-toronto-cn-tower.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0006-toronto-cn-tower.png",
       "palette_mode": "per-design",
@@ -157,11 +157,11 @@
       "variants": [
         "D0007-CS"
       ],
-      "artwork_status": "production-ready-exact-100x120",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0007-quebec-chateau-frontenac.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0007-quebec-chateau-frontenac.png",
       "palette_mode": "per-design",
-      "palette_status": "mapped-to-per-design-dmc",
+      "palette_status": "source-mapped-on-publish",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -169,7 +169,7 @@
       },
       "target_chart_pages": 4,
       "source_colour_count": 50,
-      "dmc_colour_count": 37
+      "dmc_colour_count": null
     },
     {
       "order": 8,
@@ -181,7 +181,7 @@
       "variants": [
         "D0008-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0008-hallstatt-lakeside-village.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0008-hallstatt-lakeside-village.png",
       "palette_mode": "per-design",
@@ -205,7 +205,7 @@
       "variants": [
         "D0009-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0009-dubrovnik-old-town.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0009-dubrovnik-old-town.png",
       "palette_mode": "per-design",
@@ -229,7 +229,7 @@
       "variants": [
         "D0010-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0010-capri-faraglioni.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0010-capri-faraglioni.png",
       "palette_mode": "per-design",
@@ -253,7 +253,7 @@
       "variants": [
         "D0011-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0011-golden-gate-bridge.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0011-golden-gate-bridge.png",
       "palette_mode": "per-design",
@@ -277,7 +277,7 @@
       "variants": [
         "D0012-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0012-london-tower-bridge.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0012-london-tower-bridge.png",
       "palette_mode": "per-design",
@@ -301,7 +301,7 @@
       "variants": [
         "D0013-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0013-mont-saint-michel.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0013-mont-saint-michel.png",
       "palette_mode": "per-design",
@@ -325,7 +325,7 @@
       "variants": [
         "D0014-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0014-neuschwanstein-castle.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0014-neuschwanstein-castle.png",
       "palette_mode": "per-design",
@@ -349,7 +349,7 @@
       "variants": [
         "D0015-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0015-athens-acropolis.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0015-athens-acropolis.png",
       "palette_mode": "per-design",
@@ -373,7 +373,7 @@
       "variants": [
         "D0016-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0016-angkor-wat.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0016-angkor-wat.png",
       "palette_mode": "per-design",
@@ -397,7 +397,7 @@
       "variants": [
         "D0017-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0017-ha-long-bay.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0017-ha-long-bay.png",
       "palette_mode": "per-design",
@@ -421,7 +421,7 @@
       "variants": [
         "D0018-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0018-cappadocia-balloons.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0018-cappadocia-balloons.png",
       "palette_mode": "per-design",
@@ -445,7 +445,7 @@
       "variants": [
         "D0019-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0019-chichen-itza.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0019-chichen-itza.png",
       "palette_mode": "per-design",
@@ -469,7 +469,7 @@
       "variants": [
         "D0020-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0020-istanbul-blue-mosque.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0020-istanbul-blue-mosque.png",
       "palette_mode": "per-design",
@@ -493,7 +493,7 @@
       "variants": [
         "D0021-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0021-barcelona-sagrada-familia.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0021-barcelona-sagrada-familia.png",
       "palette_mode": "per-design",
@@ -517,7 +517,7 @@
       "variants": [
         "D0022-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0022-prague-castle.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0022-prague-castle.png",
       "palette_mode": "per-design",
@@ -541,7 +541,7 @@
       "variants": [
         "D0023-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0023-niagara-falls.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0023-niagara-falls.png",
       "palette_mode": "per-design",
@@ -565,7 +565,7 @@
       "variants": [
         "D0024-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0024-mount-fuji.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0024-mount-fuji.png",
       "palette_mode": "per-design",
@@ -589,7 +589,7 @@
       "variants": [
         "D0025-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0025-machu-picchu.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0025-machu-picchu.png",
       "palette_mode": "per-design",
@@ -613,7 +613,7 @@
       "variants": [
         "D0026-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0026-petra-treasury.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0026-petra-treasury.png",
       "palette_mode": "per-design",
@@ -637,7 +637,7 @@
       "variants": [
         "D0027-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0027-dubai-burj-khalifa.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0027-dubai-burj-khalifa.png",
       "palette_mode": "per-design",
@@ -661,7 +661,7 @@
       "variants": [
         "D0028-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0028-venice-grand-canal.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0028-venice-grand-canal.png",
       "palette_mode": "per-design",
@@ -685,7 +685,7 @@
       "variants": [
         "D0029-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0029-prague-charles-bridge.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0029-prague-charles-bridge.png",
       "palette_mode": "per-design",
@@ -709,7 +709,7 @@
       "variants": [
         "D0030-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0030-amsterdam-canals.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0030-amsterdam-canals.png",
       "palette_mode": "per-design",
@@ -733,7 +733,7 @@
       "variants": [
         "D0031-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0031-paris-eiffel-tower.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0031-paris-eiffel-tower.png",
       "palette_mode": "per-design",
@@ -757,7 +757,7 @@
       "variants": [
         "D0032-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0032-london-big-ben.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0032-london-big-ben.png",
       "palette_mode": "per-design",
@@ -781,7 +781,7 @@
       "variants": [
         "D0033-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0033-rome-colosseum.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0033-rome-colosseum.png",
       "palette_mode": "per-design",
@@ -805,7 +805,7 @@
       "variants": [
         "D0034-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0034-new-york-statue-liberty.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0034-new-york-statue-liberty.png",
       "palette_mode": "per-design",
@@ -829,7 +829,7 @@
       "variants": [
         "D0035-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0035-taj-mahal.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0035-taj-mahal.png",
       "palette_mode": "per-design",
@@ -853,7 +853,7 @@
       "variants": [
         "D0036-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0036-great-wall-china.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0036-great-wall-china.png",
       "palette_mode": "per-design",
@@ -877,7 +877,7 @@
       "variants": [
         "D0037-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0037-rio-christ-redeemer.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0037-rio-christ-redeemer.png",
       "palette_mode": "per-design",
@@ -901,7 +901,7 @@
       "variants": [
         "D0038-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0038-pyramids-giza.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0038-pyramids-giza.png",
       "palette_mode": "per-design",
@@ -925,7 +925,7 @@
       "variants": [
         "D0039-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0039-sydney-opera-house.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0039-sydney-opera-house.png",
       "palette_mode": "per-design",
@@ -949,7 +949,7 @@
       "variants": [
         "D0040-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0040-santorini-blue-domes.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0040-santorini-blue-domes.png",
       "palette_mode": "per-design",
@@ -973,7 +973,7 @@
       "variants": [
         "D0041-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0041-cartagena-colorful-streets.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0041-cartagena-colorful-streets.png",
       "palette_mode": "per-design",
@@ -997,7 +997,7 @@
       "variants": [
         "D0042-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0042-havana-capitol.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0042-havana-capitol.png",
       "palette_mode": "per-design",
@@ -1021,7 +1021,7 @@
       "variants": [
         "D0043-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0043-easter-island-moai.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0043-easter-island-moai.png",
       "palette_mode": "per-design",
@@ -1045,7 +1045,7 @@
       "variants": [
         "D0044-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0044-bali-temple-gate.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0044-bali-temple-gate.png",
       "palette_mode": "per-design",
@@ -1069,7 +1069,7 @@
       "variants": [
         "D0045-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0045-mykonos-windmills.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0045-mykonos-windmills.png",
       "palette_mode": "per-design",
@@ -1093,7 +1093,7 @@
       "variants": [
         "D0046-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0046-cape-town-table-mountain.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0046-cape-town-table-mountain.png",
       "palette_mode": "per-design",
@@ -1117,7 +1117,7 @@
       "variants": [
         "D0047-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0047-vatican-st-peter-basilica.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0047-vatican-st-peter-basilica.png",
       "palette_mode": "per-design",
@@ -1141,7 +1141,7 @@
       "variants": [
         "D0048-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0048-leaning-tower-pisa.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0048-leaning-tower-pisa.png",
       "palette_mode": "per-design",
@@ -1165,7 +1165,7 @@
       "variants": [
         "D0049-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0049-stonehenge.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0049-stonehenge.png",
       "palette_mode": "per-design",
@@ -1189,7 +1189,7 @@
       "variants": [
         "D0050-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0050-moscow-saint-basil-cathedral.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0050-moscow-saint-basil-cathedral.png",
       "palette_mode": "per-design",
@@ -1213,7 +1213,7 @@
       "variants": [
         "D0051-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0051-positano-amalfi-coast.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0051-positano-amalfi-coast.png",
       "palette_mode": "per-design",
@@ -1237,7 +1237,7 @@
       "variants": [
         "D0052-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0052-cinque-terre-village.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0052-cinque-terre-village.png",
       "palette_mode": "per-design",
@@ -1261,7 +1261,7 @@
       "variants": [
         "D0053-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0053-tokyo-tower-fuji.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0053-tokyo-tower-fuji.png",
       "palette_mode": "per-design",
@@ -1285,7 +1285,7 @@
       "variants": [
         "D0054-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0054-singapore-marina-bay.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0054-singapore-marina-bay.png",
       "palette_mode": "per-design",
@@ -1309,7 +1309,7 @@
       "variants": [
         "D0055-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0055-hong-kong-victoria-harbour.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0055-hong-kong-victoria-harbour.png",
       "palette_mode": "per-design",
@@ -1333,7 +1333,7 @@
       "variants": [
         "D0056-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0056-shanghai-pudong-skyline.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0056-shanghai-pudong-skyline.png",
       "palette_mode": "per-design",
@@ -1357,7 +1357,7 @@
       "variants": [
         "D0057-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0057-seoul-gyeongbokgung-palace.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0057-seoul-gyeongbokgung-palace.png",
       "palette_mode": "per-design",
@@ -1381,7 +1381,7 @@
       "variants": [
         "D0058-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0058-chefchaouen-blue-city.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0058-chefchaouen-blue-city.png",
       "palette_mode": "per-design",
@@ -1405,7 +1405,7 @@
       "variants": [
         "D0059-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0059-marrakech-koutoubia-mosque.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0059-marrakech-koutoubia-mosque.png",
       "palette_mode": "per-design",
@@ -1429,7 +1429,7 @@
       "variants": [
         "D0060-CS"
       ],
-      "artwork_status": "production-ready-from-grid-mosaic",
+      "artwork_status": "strict-fixed-grid-clean-border-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0060-bagan-temples-balloons.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0060-bagan-temples-balloons.png",
       "palette_mode": "per-design",
