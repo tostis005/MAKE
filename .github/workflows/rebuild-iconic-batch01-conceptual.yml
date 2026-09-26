@@ -1,0 +1,94 @@
+name: Rebuild Iconic batch 01 conceptual realistic
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/scripts/generate_iconic_batch01_conceptual.py'
+      - '.github/workflows/rebuild-iconic-batch01-conceptual.yml'
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: drielo-iconic-destinations-auto-publish
+  cancel-in-progress: false
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Pillow
+        run: python3 -m pip install --disable-pip-version-check --quiet Pillow
+
+      - name: Generate conceptual realistic sources
+        run: python3 .github/scripts/generate_iconic_batch01_conceptual.py
+
+      - name: Validate exact stitch-source contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,zipfile
+          from pathlib import Path
+          from PIL import Image
+          root=Path('content/pattern-system')
+          col=root/'collections'/'iconic-destinations'
+          zpath=col/'assets'/'iconic-batch-01-clean-q50.zip'
+          queue=json.loads((root/'iconic_destinations'/'publish_queue.json').read_text())
+          designs=json.loads((col/'designs.json').read_text())['designs']
+          pending=[x for x in queue['items'] if x.get('status')=='pending']
+          if len(pending)!=10:
+              raise SystemExit(f'Expected 10 conceptual pending items, got {len(pending)}')
+          with zipfile.ZipFile(zpath,'r') as zf:
+              if len(zf.namelist())!=10 or len(set(zf.namelist()))!=10:
+                  raise SystemExit('Conceptual ZIP must contain exactly 10 unique PNGs')
+              for row in pending:
+                  d=next(x for x in designs if x['base_design_id']==row['base_design_id'])
+                  if d.get('source_style')!='conceptual-realistic-illustration':
+                      raise SystemExit(f"{row['base_design_id']}: wrong source style")
+                  raw=zf.read(row['source_zip_member'])
+                  src=root/row['input_png']
+                  if raw!=src.read_bytes():
+                      raise SystemExit(f"{row['base_design_id']}: ZIP/input byte mismatch")
+                  with Image.open(src) as im:
+                      rgb=im.convert('RGB'); colours=len(set(rgb.getdata()))
+                      if rgb.size!=(100,120):
+                          raise SystemExit(f"{row['base_design_id']}: wrong dimensions {rgb.size}")
+                      if not (45<=colours<=50):
+                          raise SystemExit(f"{row['base_design_id']}: wrong palette size {colours}")
+          print('CONCEPTUAL_BATCH01_VALID count=10 grid=100x120 palette=45..50')
+          PY
+
+      - name: Persist conceptual ZIP sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add             content/pattern-system/collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip             content/pattern-system/collections/iconic-destinations/input-pngs-q50             content/pattern-system/collections/iconic-destinations/designs.json             content/pattern-system/iconic_destinations/publish_queue.json
+          git commit -m "Replace Iconic batch 01 with conceptual realistic sources [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Start WooCommerce republish queue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api --method POST             "repos/${GITHUB_REPOSITORY}/actions/workflows/iconic-destinations-auto-publish.yml/dispatches"             -f ref=main
+          echo "CONCEPTUAL_ICONIC_BATCH01_REPUBLISH_STARTED"
