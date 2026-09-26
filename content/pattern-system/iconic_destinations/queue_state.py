@@ -30,13 +30,13 @@ def item(doc, design_id):
     raise SystemExit(f"Unknown design: {design_id}")
 
 
-def pdf_mode_enabled(doc):
-    return str(doc.get("mode", "")).startswith("pdf-source-")
+def source_mode_enabled(doc):
+    return str(doc.get("mode", "")) == "direct-approved-zip-60-pngs-100x120-v2"
 
 
 def cmd_next(args):
     doc = load()
-    row = None if (not doc.get("auto_continue", False) or not pdf_mode_enabled(doc)) else next((x for x in doc["items"] if x.get("status") == "pending"), None)
+    row = None if (not doc.get("auto_continue", False) or not source_mode_enabled(doc)) else next((x for x in doc["items"] if x.get("status") == "pending"), None)
     values = {
         "design_id": row["base_design_id"] if row else "",
         "title_en": row["title_en"] if row else "",
@@ -79,7 +79,7 @@ def cmd_fail(args):
 def cmd_has_work(args):
     doc = load()
     pending = any(x.get("status") == "pending" for x in doc["items"])
-    print("yes" if doc.get("auto_continue", False) and pdf_mode_enabled(doc) and pending else "no")
+    print("yes" if doc.get("auto_continue", False) and source_mode_enabled(doc) and pending else "no")
 
 
 def cmd_summary(args):
