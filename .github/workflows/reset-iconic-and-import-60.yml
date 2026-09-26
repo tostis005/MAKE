@@ -1,6 +1,10 @@
 name: Reset Iconic Destinations and import 60
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/reset-iconic-and-import-60.yml'
   workflow_dispatch:
 
 permissions:
