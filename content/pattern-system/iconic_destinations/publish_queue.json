@@ -100,10 +100,11 @@
       "title_es": "Hallstatt junto al lago",
       "slug": "hallstatt-lakeside-village",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0008.pixz",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36236053445",
+      "last_error": null,
+      "published_at": "2026-09-26T10:33:00+00:00"
     },
     {
       "base_design_id": "D0009",
