@@ -469,11 +469,11 @@
       "variants": [
         "D0020-CS"
       ],
-      "artwork_status": "strict-fixed-grid-clean-border-100x120",
+      "artwork_status": "production-ready-exact-100x120",
       "source_asset": "collections/iconic-destinations/source-designs/D0020-istanbul-blue-mosque.png",
       "planned_source_asset": "collections/iconic-destinations/source-designs/D0020-istanbul-blue-mosque.png",
       "palette_mode": "per-design",
-      "palette_status": "source-mapped-on-publish",
+      "palette_status": "mapped-to-per-design-dmc",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -481,7 +481,7 @@
       },
       "target_chart_pages": 4,
       "source_colour_count": 50,
-      "dmc_colour_count": null
+      "dmc_colour_count": 37
     },
     {
       "order": 21,
