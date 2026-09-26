@@ -156,10 +156,10 @@
       "variants": [
         "D0007-CS"
       ],
-      "artwork_status": "approved-zip-individual-png-100x120",
+      "artwork_status": "production-ready-from-approved-zip-individual-png",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_07.png",
       "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
+      "palette_status": "mapped-directly-from-input-png-to-dmc",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -167,8 +167,9 @@
       },
       "target_chart_pages": 4,
       "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_07.png"
+      "dmc_colour_count": 36,
+      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_07.png",
+      "dmc_mapped_asset": "collections/iconic-destinations/source-designs/D0007-quebec-chateau-frontenac.png"
     },
     {
       "order": 8,
