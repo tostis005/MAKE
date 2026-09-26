@@ -746,10 +746,11 @@
       "slug": "seoul-gyeongbokgung-palace",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_07.png",
       "pixel_source": "collections/iconic-destinations/pixel-sources/D0057.pixz",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36252596119",
+      "last_error": null,
+      "published_at": "2026-09-26T15:39:08+00:00"
     },
     {
       "base_design_id": "D0058",
