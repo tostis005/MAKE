@@ -863,11 +863,11 @@
       "variants": [
         "D0035-CS"
       ],
-      "artwork_status": "approved-zip-q50-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_05.png",
+      "artwork_status": "production-ready-exact-100x120",
+      "source_asset": "collections/iconic-destinations/source-designs/D0035-taj-mahal.png",
       "planned_source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_05.png",
       "palette_mode": "per-design",
-      "palette_status": "zip-source-ready-for-dmc-map",
+      "palette_status": "mapped-to-per-design-dmc",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -875,7 +875,7 @@
       },
       "target_chart_pages": 4,
       "source_colour_count": 50,
-      "dmc_colour_count": null,
+      "dmc_colour_count": 38,
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_05.png"
     },
     {
