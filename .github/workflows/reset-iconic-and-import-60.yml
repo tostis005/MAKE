@@ -78,7 +78,6 @@ jobs:
           designs = json.loads((col / 'designs.json').read_text(encoding='utf-8'))['designs']
           png_dir = col / 'pdf-pngs-q50'
           zip_path = col / 'assets' / 'iconic-60-pdf-pngs-q50.zip'
-          preview = col / 'assets' / 'iconic-60-pdf-preview.png'
 
           if not pdf.is_file():
               raise SystemExit('Missing PDF source')
@@ -88,6 +87,15 @@ jobs:
 
           if queue.get('mode') != 'pdf-source-60-designs-q50-v1':
               raise SystemExit(f"Wrong queue mode: {queue.get('mode')}")
+          legacy = [
+              col / 'assets' / 'iconic-60-pngs-q50.zip',
+              col / 'assets' / 'iconic-60-pngs-q50-mosaic.png',
+              col / 'assets' / 'iconic-mosaic-grid-1000x720.png',
+              col / 'assets' / 'iconic-mosaic-grid-source.webp',
+              col / 'reference-boards.json',
+          ]
+          if any(p.exists() for p in legacy) or (col / 'input-pngs-q50').exists():
+              raise SystemExit('Legacy ZIP/mosaic sources still exist')
           if queue.get('auto_continue') is not False:
               raise SystemExit('Queue must remain paused until WooCommerce reset is complete')
           if len(queue.get('items', [])) != 60 or len(designs) != 60:
@@ -121,10 +129,6 @@ jobs:
                   raise SystemExit(f'{base}: invalid pixz palette {n}')
               if len(raw) != 1 + n * 3 + 12000:
                   raise SystemExit(f'{base}: malformed 100x120 pixz')
-
-          with Image.open(preview) as im:
-              if im.size != (1000, 720):
-                  raise SystemExit(f'Preview is {im.size}, expected 1000x720')
 
           with zipfile.ZipFile(zip_path, 'r') as zf:
               names = [n for n in zf.namelist() if n.lower().endswith('.png')]
@@ -222,8 +226,7 @@ jobs:
             content/pattern-system/collections/iconic-destinations/designs.json \
             content/pattern-system/collections/iconic-destinations/pdf-pngs-q50 \
             content/pattern-system/collections/iconic-destinations/pixel-sources \
-            content/pattern-system/collections/iconic-destinations/assets/iconic-60-pdf-pngs-q50.zip \
-            content/pattern-system/collections/iconic-destinations/assets/iconic-60-pdf-preview.png
+            content/pattern-system/collections/iconic-destinations/assets/iconic-60-pdf-pngs-q50.zip
 
           git commit -m "Import 60 Iconic products from approved PDF [skip ci]"
           git pull --rebase origin main
