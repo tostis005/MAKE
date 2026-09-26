@@ -4,6 +4,7 @@ from __future__ import annotations
 import base64
 import io
 import json
+import shutil
 import zipfile
 import zlib
 from pathlib import Path
@@ -20,6 +21,15 @@ PDF_PATH = COL_DIR / "assets" / "iconic-60-source.pdf"
 INPUT_DIR = COL_DIR / "pdf-pngs-q50"
 PIXEL_DIR = COL_DIR / "pixel-sources"
 ZIP_PATH = COL_DIR / "assets" / "iconic-60-pdf-pngs-q50.zip"
+OLD_INPUT_DIR = COL_DIR / "input-pngs-q50"
+OBSOLETE = (
+    COL_DIR / "assets" / "iconic-60-pngs-q50.zip",
+    COL_DIR / "assets" / "iconic-60-pngs-q50-mosaic.png",
+    COL_DIR / "assets" / "iconic-mosaic-grid-1000x720.png",
+    COL_DIR / "assets" / "iconic-mosaic-grid-source.webp",
+    COL_DIR / "assets" / "iconic-60-pdf-preview.png",
+    COL_DIR / "reference-boards.json",
+)
 
 WIDTH = 100
 HEIGHT = 120
@@ -136,6 +146,12 @@ def main():
         raise SystemExit(
             f"Missing PDF source: {PDF_PATH}. This importer will not fall back to a mosaic or ZIP."
         )
+
+    # Remove every legacy ZIP/mosaic source before doing any PDF extraction.
+    if OLD_INPUT_DIR.exists():
+        shutil.rmtree(OLD_INPUT_DIR)
+    for path in OBSOLETE:
+        path.unlink(missing_ok=True)
 
     designs_doc = load_json(DESIGNS_PATH)
     designs = sorted(designs_doc.get("designs", []), key=lambda x: int(x["order"]))
