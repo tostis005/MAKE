@@ -2,11 +2,6 @@ name: Import and publish Iconic vivid final batch
 
 on:
   workflow_dispatch:
-  push:
-    branches: [iconic-batch01-conceptual-v2]
-    paths:
-      - 'content/pattern-system/collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip'
-      - '.github/vivid2/part04.b64'
 
 permissions:
   contents: write
