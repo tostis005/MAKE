@@ -1,0 +1,59 @@
+name: Temporary import Pop Art cover from Gmail
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/tmp-import-pop-art-cover-from-gmail.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  import-cover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Download Gmail attachment
+        shell: bash
+        env:
+          SOURCE_URL_B64: "aHR0cHM6Ly9zZG1udHByYnJhemlsc291dGgub2FpdXNlcmNvbnRlbnQuY29tL2ZpbGVzLzAwMDAwMDAwLWZjOWMtODIwZS1iOTI3LTExYzQ4MzYyZWM0Zi9yYXc/c2U9MjAyNi0wOS0yN1QxNyUzQTI4JTNBNDZaJnNwPXImc3Y9MjAyNi0wMi0wNiZzcj1iJnNjaWQ9NTRhZDE5MjAtNGM2Yy01Y2IwLTlmMWQtMmMyN2U4NGUyMTYzJnNrb2lkPTRhNDMxY2QyLWVhZmQtNDljNy05MGJlLWJiYjRkNDVlNjk2ZCZza3RpZD1hNDhjY2E1Ni1lNmRhLTQ4NGUtYTgxNC05Yzg0OTY1MmJjYjMmc2t0PTIwMjYtMDktMjdUMTMlM0E0NCUzQTExWiZza2U9MjAyNi0wOS0yOFQxMyUzQTQ0JTNBMTFaJnNrcz1iJnNrdj0yMDI2LTAyLTA2JnNpZz1NSVEySnpGNTZKOWJwMW9hamU2a0FQdjEyTy93WWtxdDNsclBENUNjZ0lNJTNE"
+        run: |
+          set -euo pipefail
+          SOURCE_URL="$(printf '%s' "$SOURCE_URL_B64" | base64 -d)"
+          curl -fL --retry 3 --retry-delay 2 "$SOURCE_URL" -o /tmp/pop-art-cover.png
+          python -m pip install --disable-pip-version-check --quiet Pillow
+          python - <<'PY'
+          from PIL import Image
+          src="/tmp/pop-art-cover.png"
+          dst="content/products/assets/pop-art-25-collection-cover.webp"
+          im=Image.open(src).convert("RGB")
+          print("SOURCE_SIZE", im.size)
+          if im.size != (1254, 1254):
+              raise SystemExit(f"Unexpected Gmail image size: {im.size}")
+          im.save(dst, "WEBP", quality=92, method=6)
+          check=Image.open(dst)
+          if check.size != (1254, 1254):
+              raise SystemExit(f"Unexpected WEBP size: {check.size}")
+          print("WEBP_OK", check.size)
+          PY
+
+      - name: Commit new cover
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/products/assets/pop-art-25-collection-cover.webp
+          if git diff --cached --quiet; then
+            echo "Cover already matches."
+            exit 0
+          fi
+          git commit -m "Update Pop Art collection cover from Gmail [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
