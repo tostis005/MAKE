@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "collection_id": "animals",
+  "product_size_px": [
+    100,
+    120
+  ],
+  "product_format": "png",
+  "background_mode": "single",
+  "background_directory": "background",
+  "product_directory": "products",
+  "filename_examples": [
+    "<stable-code>-design-name.png"
+  ],
+  "legacy_background_fallbacks": [
+    "content/products/assets/animals-collection-cover.png"
+  ],
+  "notes": "Animals currently has a production cover asset even though it is not present in the current products catalogue collections array."
+}
