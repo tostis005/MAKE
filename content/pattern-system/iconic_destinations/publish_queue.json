@@ -1437,12 +1437,13 @@
       "title_es": "Jeju Seongsan Ilchulbong",
       "slug": "batch02-0113-jeju-seongsan-ilchulbong",
       "input_png": "collections/iconic-destinations/input-pngs-q50/batch-02/iconic_053.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36318546496",
       "last_error": null,
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-02-90-q50.zip",
-      "source_zip_member": "iconic_053.png"
+      "source_zip_member": "iconic_053.png",
+      "published_at": "2026-09-27T12:20:03+00:00"
     },
     {
       "base_design_id": "D0114",
