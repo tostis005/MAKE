@@ -18,6 +18,7 @@ CID = "pop-art-25"
 SYSTEM = ROOT / "content" / "pattern-system"
 CDIR = SYSTEM / "collections" / CID
 ZIP_PATH = ROOT / "tmp" / "pop-art-60-upload" / "pop_art_60_png_100x120_exact30.zip"
+SOURCE_GMAIL_MESSAGE_ID = "1a0e2264a0410f68"
 REWORK = CDIR / "rework-60"
 INPUT = REWORK / "input"
 MARKER = REWORK / "processed.json"
@@ -432,7 +433,7 @@ def main() -> None:
 
     write_json(MARKER, {
         "zip_sha256": digest,
-        "gmail_message_id": "1a0e2264a0410f68",
+        "gmail_message_id": SOURCE_GMAIL_MESSAGE_ID,
         "github_source": "tmp/pop-art-60-upload/pop_art_60_png_100x120_exact30.zip",
         "processed_at": datetime.now(timezone.utc).isoformat(),
         "design_count": 60,
