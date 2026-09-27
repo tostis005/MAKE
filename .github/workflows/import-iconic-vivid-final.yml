@@ -33,7 +33,8 @@ jobs:
           if [ -d .github/vivid-b64 ]; then
             cat .github/vivid-b64/part*.b64 | tr -d '\n\r' | base64 -d > content/pattern-system/collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip
             test -s content/pattern-system/collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip
-            echo "VIVID_ZIP_RECONSTRUCTED"
+            echo "acd9129a3fc0bf5790a362d0508ad973c4acf783bf2d82e487ea7474c70b696e  content/pattern-system/collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip" | sha256sum -c -
+            echo "VIVID_ZIP_RECONSTRUCTED_AND_SHA256_OK"
           fi
 
       - name: Stop existing Iconic publisher runs
