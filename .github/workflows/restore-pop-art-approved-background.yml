@@ -1,0 +1,50 @@
+name: Restore approved Pop Art background
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/restore-pop-art-approved-background.yml"
+      - "content/products/assets/pop-art-25-collection-cover.webp"
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    if: github.event.head_commit.message == 'Restore approved Pop Art background'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Restore exact last approved Pop Art background
+        shell: bash
+        run: |
+          set -euo pipefail
+          SOURCE_COMMIT="0037e012802505f3366ebe50255071f63bb8b23a"
+          ASSET="content/products/assets/pop-art-25-collection-cover.webp"
+          git cat-file -e "$SOURCE_COMMIT:$ASSET"
+          git checkout "$SOURCE_COMMIT" -- "$ASSET"
+          EXPECTED="$(git rev-parse "$SOURCE_COMMIT:$ASSET")"
+          ACTUAL="$(git hash-object "$ASSET")"
+          echo "expected_blob=$EXPECTED"
+          echo "actual_blob=$ACTUAL"
+          test "$EXPECTED" = "$ACTUAL"
+
+      - name: Commit restored background
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/products/assets/pop-art-25-collection-cover.webp
+          if git diff --cached --quiet; then
+            echo "Approved background already restored."
+          else
+            git commit -m "Restore approved Pop Art background asset"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
