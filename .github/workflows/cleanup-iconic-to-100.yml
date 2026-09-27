@@ -1,0 +1,170 @@
+name: Cleanup Iconic Destinations to 100 products
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/cleanup-iconic-to-100.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: drielo-iconic-products-cleanup-100
+  cancel-in-progress: false
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Stop Iconic auto-publisher runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          for STATE in queued in_progress; do
+            gh run list               --repo "${GITHUB_REPOSITORY}"               --workflow iconic-destinations-auto-publish.yml               --status "$STATE"               --limit 100               --json databaseId               --jq '.[].databaseId' | while read -r RUN; do
+                [ -z "$RUN" ] || gh run cancel --repo "${GITHUB_REPOSITORY}" "$RUN" || true
+              done
+          done
+          sleep 5
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_products_key
+          chmod 600 ~/.ssh/drielo_products_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Remove legacy and duplicate Iconic products
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_products_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+
+            $term = get_term_by("slug", "iconic-destinations", "product_collection");
+            if (!$term instanceof WP_Term) {
+              echo "ICONIC_COLLECTION_NOT_FOUND".PHP_EOL;
+              exit(2);
+            }
+
+            $keep = array();
+            for ($n = 31; $n <= 39; $n++) {
+              $keep[sprintf("DRIELO-D%04d-CS", $n)] = true;
+            }
+            $keep["DRIELO-D0046-CS"] = true;
+            for ($n = 61; $n <= 150; $n++) {
+              $keep[sprintf("DRIELO-D%04d-CS", $n)] = true;
+            }
+
+            $args = array(
+              "post_type" => "product",
+              "post_status" => array("publish","draft","pending","private","future","trash"),
+              "posts_per_page" => -1,
+              "orderby" => "ID",
+              "order" => "ASC",
+              "fields" => "ids",
+              "no_found_rows" => true,
+              "tax_query" => array(array(
+                "taxonomy" => "product_collection",
+                "field" => "term_id",
+                "terms" => array((int)$term->term_id)
+              ))
+            );
+
+            $ids = array_map("intval", get_posts($args));
+            echo "BEFORE_COUNT=".count($ids).PHP_EOL;
+
+            // For any kept SKU that appears more than once, keep only the newest product ID.
+            $by_sku = array();
+            foreach ($ids as $id) {
+              $p = wc_get_product($id);
+              if (!$p instanceof WC_Product) continue;
+              $sku = (string)$p->get_sku();
+              if (!isset($by_sku[$sku])) $by_sku[$sku] = array();
+              $by_sku[$sku][] = $id;
+            }
+
+            $keep_id_for_sku = array();
+            foreach ($by_sku as $sku => $sku_ids) {
+              sort($sku_ids, SORT_NUMERIC);
+              $keep_id_for_sku[$sku] = max($sku_ids);
+            }
+
+            $deleted = 0;
+            foreach ($ids as $id) {
+              $p = wc_get_product($id);
+              if (!$p instanceof WC_Product) continue;
+              $sku = (string)$p->get_sku();
+
+              $should_keep = isset($keep[$sku]);
+              if ($should_keep && isset($keep_id_for_sku[$sku]) && $id !== $keep_id_for_sku[$sku]) {
+                $should_keep = false;
+              }
+
+              if (!$should_keep) {
+                $title = get_the_title($id);
+                $result = wp_delete_post($id, true);
+                if (!$result) {
+                  echo "ERROR_DELETE_FAILED|id=".$id."|sku=".$sku.PHP_EOL;
+                  exit(3);
+                }
+                echo "DELETED|id=".$id."|sku=".$sku."|title=".str_replace(array("\n","\r","|")," ",$title).PHP_EOL;
+                $deleted++;
+              }
+            }
+
+            clean_term_cache((int)$term->term_id, "product_collection");
+            wc_delete_product_transients();
+
+            $remaining = array_map("intval", get_posts($args));
+            $remaining_skus = array();
+            foreach ($remaining as $id) {
+              $p = wc_get_product($id);
+              if ($p instanceof WC_Product) {
+                $sku = (string)$p->get_sku();
+                $remaining_skus[$sku] = isset($remaining_skus[$sku]) ? $remaining_skus[$sku] + 1 : 1;
+              }
+            }
+
+            echo "DELETED_COUNT=".$deleted.PHP_EOL;
+            echo "AFTER_COUNT=".count($remaining).PHP_EOL;
+            echo "AFTER_UNIQUE_SKUS=".count($remaining_skus).PHP_EOL;
+
+            $bad = array();
+            foreach ($remaining_skus as $sku => $n) {
+              if ($n !== 1 || !isset($keep[$sku])) $bad[] = $sku.":".$n;
+            }
+
+            if (count($remaining) !== 100 || count($remaining_skus) !== 100 || $bad) {
+              echo "ERROR_FINAL_STATE|count=".count($remaining)."|unique=".count($remaining_skus)."|bad=".implode(",", $bad).PHP_EOL;
+              exit(4);
+            }
+
+            echo "ICONIC_CLEANUP_TO_100_COMPLETE".PHP_EOL;
+          '
+          REMOTE
