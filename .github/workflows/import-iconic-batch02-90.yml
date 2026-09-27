@@ -1,0 +1,132 @@
+name: Import Iconic batch 02 - 90 approved PNGs
+
+on:
+  push:
+    branches:
+      - iconic-batch01-conceptual-v2
+    paths:
+      - 'content/pattern-system/collections/iconic-destinations/assets/iconic-batch-02-90-q50.zip'
+      - '.github/workflows/import-iconic-batch02-90.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: drielo-iconic-batch02-90-import
+  cancel-in-progress: false
+
+jobs:
+  import-and-start:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Pillow
+        run: python3 -m pip install --disable-pip-version-check --quiet Pillow
+
+      - name: Validate approved Gmail ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import io,zipfile
+          from pathlib import Path
+          from PIL import Image
+
+          p=Path('content/pattern-system/collections/iconic-destinations/assets/iconic-batch-02-90-q50.zip')
+          expected=[f'iconic_{i:03d}.png' for i in range(1,91)]
+          with zipfile.ZipFile(p,'r') as z:
+              pngs=[n for n in z.namelist() if n.lower().endswith('.png')]
+              if pngs!=expected:
+                  raise SystemExit(f'Expected 90 ordered PNGs, got {len(pngs)}')
+              for name in expected:
+                  raw=z.read(name)
+                  with Image.open(io.BytesIO(raw)) as im:
+                      rgb=im.convert('RGB')
+                      colours=len(set(rgb.getdata()))
+                      if im.format!='PNG' or rgb.size!=(100,120) or colours!=50:
+                          raise SystemExit(f'{name}: format={im.format} size={rgb.size} colours={colours}')
+              print('BATCH02_ZIP_VALID png=90 size=100x120 colours=50')
+          PY
+
+      - name: Import 90 exact PNGs
+        run: python3 .github/scripts/import_iconic_batch02_90.py
+
+      - name: Validate imported manifest and queue
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import io,json,zipfile
+          from pathlib import Path
+          from PIL import Image
+
+          root=Path('content/pattern-system')
+          col=root/'collections'/'iconic-destinations'
+          designs=json.loads((col/'designs.json').read_text())
+          queue=json.loads((root/'iconic_destinations'/'publish_queue.json').read_text())
+          if designs.get('count')!=150 or len(designs.get('designs',[]))!=150:
+              raise SystemExit('Expected 150 total designs')
+          if designs.get('source_policy')!='individual-pngs-from-approved-clean-batch-zips-only':
+              raise SystemExit('Wrong source policy')
+          counts={}
+          for x in queue['items']:
+              counts[x.get('status')]=counts.get(x.get('status'),0)+1
+          if counts.get('pending')!=90:
+              raise SystemExit(f'Expected 90 pending, got {counts}')
+          if counts.get('published')!=10 or counts.get('held')!=50:
+              raise SystemExit(f'Expected 10 published / 50 held, got {counts}')
+          if queue.get('active_batch')!='batch-02-90-approved' or not queue.get('auto_continue'):
+              raise SystemExit('Batch 02 queue not active')
+          zip_path=root/'collections'/'iconic-destinations'/'assets'/'iconic-batch-02-90-q50.zip'
+          with zipfile.ZipFile(zip_path,'r') as z:
+              for n in range(61,151):
+                  d=next(x for x in designs['designs'] if x['base_design_id']==f'D{n:04d}')
+                  q=next(x for x in queue['items'] if x['base_design_id']==f'D{n:04d}')
+                  src=root/d['input_png']
+                  raw=z.read(d['source_zip_member'])
+                  if raw!=src.read_bytes():
+                      raise SystemExit(f"{d['base_design_id']}: ZIP/input mismatch")
+                  with Image.open(src) as im:
+                      rgb=im.convert('RGB')
+                      if rgb.size!=(100,120) or len(set(rgb.getdata()))!=50:
+                          raise SystemExit(f"{d['base_design_id']}: invalid PNG")
+                  if d['source_zip']!=q['source_zip'] or d['source_zip_member']!=q['source_zip_member']:
+                      raise SystemExit(f"{d['base_design_id']}: provenance mismatch")
+          print('BATCH02_IMPORT_VALID total=150 pending=90 published=10 held=50')
+          PY
+
+      - name: Commit imported sources and manifests
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add             content/pattern-system/collections/iconic-destinations/input-pngs-q50/batch-02             content/pattern-system/collections/iconic-destinations/designs.json             content/pattern-system/iconic_destinations/publish_queue.json             content/pattern-system/patterns             content/pattern-system/products
+          if git diff --cached --quiet; then
+            echo "No batch02 import changes"
+          else
+            git commit -m "Import 90 approved Iconic destinations [skip ci]"
+            git pull --rebase origin iconic-batch01-conceptual-v2
+            git push origin HEAD:iconic-batch01-conceptual-v2
+          fi
+
+      - name: Start WooCommerce publication queue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api --method POST             "repos/${GITHUB_REPOSITORY}/actions/workflows/iconic-destinations-auto-publish.yml/dispatches"             -f ref=iconic-batch01-conceptual-v2
+          echo "BATCH02_90_PUBLICATION_STARTED"
