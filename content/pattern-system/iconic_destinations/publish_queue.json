@@ -1731,12 +1731,13 @@
       "title_es": "Bergen Bryggen",
       "slug": "batch02-0134-bergen-bryggen",
       "input_png": "collections/iconic-destinations/input-pngs-q50/batch-02/iconic_074.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36320763402",
       "last_error": null,
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-02-90-q50.zip",
-      "source_zip_member": "iconic_074.png"
+      "source_zip_member": "iconic_074.png",
+      "published_at": "2026-09-27T13:00:08+00:00"
     },
     {
       "base_design_id": "D0135",
