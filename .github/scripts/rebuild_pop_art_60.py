@@ -141,8 +141,10 @@ def needs_rebuild() -> bool:
         marker = json.loads(MARKER.read_text(encoding="utf-8"))
     except Exception:
         return True
-    if not bool(marker.get("deployed", False)):
-        return True
+    # A matching source ZIP plus a complete generated catalogue is enough to
+    # reuse the already-rendered assets on deployment retries. The deployed flag
+    # is updated only after WooCommerce verification and must not force an
+    # expensive 60-product re-render on every retry.
     return marker.get("zip_sha256") != digest or not catalogue_has_current_generation()
 
 def write_json(path: Path, data) -> None:
