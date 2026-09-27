@@ -1,0 +1,55 @@
+name: Unpack Pop Art 100x120 30-colour sources
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "tmp/pop-art-rework-30-upload/pop_art_26_png_100x120_30colores_CORRECTO.zip"
+      - ".github/workflows/unpack-pop-art-rework-30.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  unpack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Unpack staged sources
+        run: |
+          set -euo pipefail
+          DEST="content/pattern-system/collections/pop-art-25/rework-30/sources"
+          rm -rf "$DEST"
+          mkdir -p "$DEST"
+          unzip -o "tmp/pop-art-rework-30-upload/pop_art_26_png_100x120_30colores_CORRECTO.zip" -d "$DEST"
+
+      - name: Verify dimensions and global palette
+        run: |
+          python -m pip install --disable-pip-version-check pillow
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          dest=Path("content/pattern-system/collections/pop-art-25/rework-30/sources")
+          pngs=sorted(dest.glob("P*.png"))
+          assert len(pngs)==26, f"Expected 26 PNGs, got {len(pngs)}"
+          colors=set()
+          for p in pngs:
+              im=Image.open(p).convert("RGB")
+              assert im.size==(100,120), f"{p}: {im.size}"
+              colors.update(im.getdata())
+          assert len(colors)==30, f"Expected 30 shared RGB colors, got {len(colors)}"
+          print(f"Verified {len(pngs)} PNGs at 100x120 and {len(colors)} global colours")
+          PY
+
+      - name: Commit staged sources
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/pattern-system/collections/pop-art-25/rework-30/sources
+          git diff --cached --quiet && exit 0
+          git commit -m "Add Pop Art 100x120 30-colour source PNGs"
+          git push
