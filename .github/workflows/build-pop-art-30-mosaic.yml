@@ -16,6 +16,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Install image dependencies
+        run: python -m pip install --disable-pip-version-check pillow numpy
+
       - name: Build exact 100x120 designs and shared 30-colour mosaic
         shell: python
         run: |
