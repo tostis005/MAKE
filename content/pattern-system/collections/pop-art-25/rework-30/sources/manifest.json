@@ -1,0 +1,397 @@
+{
+  "collection": "pop-art-25",
+  "design_count": 26,
+  "tile_size": [
+    100,
+    120
+  ],
+  "shared_palette_size": 30,
+  "palette_rgb": [
+    [
+      1,
+      0,
+      1
+    ],
+    [
+      1,
+      157,
+      224
+    ],
+    [
+      3,
+      2,
+      10
+    ],
+    [
+      5,
+      62,
+      141
+    ],
+    [
+      7,
+      1,
+      1
+    ],
+    [
+      7,
+      7,
+      18
+    ],
+    [
+      9,
+      6,
+      4
+    ],
+    [
+      13,
+      19,
+      36
+    ],
+    [
+      24,
+      199,
+      230
+    ],
+    [
+      47,
+      25,
+      23
+    ],
+    [
+      64,
+      147,
+      179
+    ],
+    [
+      81,
+      68,
+      62
+    ],
+    [
+      109,
+      25,
+      68
+    ],
+    [
+      140,
+      79,
+      51
+    ],
+    [
+      200,
+      123,
+      59
+    ],
+    [
+      204,
+      160,
+      89
+    ],
+    [
+      226,
+      88,
+      91
+    ],
+    [
+      228,
+      207,
+      124
+    ],
+    [
+      233,
+      18,
+      78
+    ],
+    [
+      243,
+      54,
+      150
+    ],
+    [
+      245,
+      29,
+      171
+    ],
+    [
+      247,
+      129,
+      55
+    ],
+    [
+      249,
+      155,
+      73
+    ],
+    [
+      250,
+      173,
+      63
+    ],
+    [
+      250,
+      176,
+      129
+    ],
+    [
+      252,
+      191,
+      62
+    ],
+    [
+      252,
+      192,
+      148
+    ],
+    [
+      252,
+      203,
+      94
+    ],
+    [
+      253,
+      218,
+      8
+    ],
+    [
+      253,
+      222,
+      142
+    ]
+  ],
+  "designs": [
+    {
+      "code": "P0001",
+      "name": "Albert Einstein sacando la lengua",
+      "file": "P0001.png",
+      "size": [
+        100,
+        120
+      ]
+    },
+    {
+      "code": "P0002",
+      "name": "Retrato del hombre de la manzana",
+      "file": "P0002.png",
+      "size": [
+        100,
+        120
+      ]
+    },
+    {
+      "code": "P0003",
+      "name": "Audrey Hepburn con chicle",
+      "file": "P0003.png",
+      "size": [
+        100,
+        120
+      ]
+    },
+    {
+      "code": "P0004",
+      "name": "Audrey Hepburn de perfil",
+      "file": "P0004.png",
+      "size": [
+        100,
+        120
+      ]
+    },
+    {
+      "code": "P0005",
+      "name": "Audrey Hepburn con gafas",
+      "file": "P0005.png",
+      "size": [
+        100,
+        120
+      ]
+    },
+    {
+      "code": "P0006",
+      "name": "Retrato de Charlie Chaplin",
+      "file": "P0006.png",
+      "size": [
+        100,
+        120
+      ]
+    },
+    {
+      "code": "P0021",
+      "name": "Retrato de David Bowie",
+      "file": "P0021.png",
+      "size": [
+        100,
+        120
+      ]
+    },
+    {
+      "code": "P0026",
+      "name": "Retrato de Freddie Mercury",
+      "file": "P0026.png",
+      "size": [
+        100,
+        120
+      ]
+    },
+    {
+      "code": "P0007",
+      "name": "Frida Kahlo con corona floral",
+      "file": "P0007.png",
+      "size": [
+        100,
+        120
+      ]
+    },
+    {
+      "code": "P0008",
+      "name": "La joven de la perla con chicle",
+      "file": "P0008.png",
+      "size": [
+        100,
+        120
+      ]
+    },
+    {
+      "code": "P0009",
+      "name": "La joven de la perla",
+      "file": "P0009.png",
+      "size": [
+        100,
+        120
+      ]
+    },
+    {
+      "code": "P0010",
+      "name": "La joven de la perla con gafas",
+      "file": "P0010.png",
+      "size": [
+        100,
+        120
+      ]
+    },
+    {
+      "code": "P0020",
+      "name": "Retrato de James Dean",
+      "file": "P0020.png",
+      "size": [
+        100,
+        120
+      ]
+    },
+    {
+      "code": "P0011",
+      "name": "Marilyn Monroe lanzando un beso",
+      "file": "P0011.png",
+      "size": [
+        100,
+        120
+      ]
+    },
+    {
+      "code": "P0012",
+      "name": "Marilyn Monroe con chicle",
+      "file": "P0012.png",
+      "size": [
+        100,
+        120
+      ]
+    },
+    {
+      "code": "P0013",
+      "name": "Marilyn Monroe con gafas",
+      "file": "P0013.png",
+      "size": [
+        100,
+        120
+      ]
+    },
+    {
+      "code": "P0014",
+      "name": "Marilyn Monroe sorprendida",
+      "file": "P0014.png",
+      "size": [
+        100,
+        120
+      ]
+    },
+    {
+      "code": "P0015",
+      "name": "Marilyn Monroe guiñando un ojo",
+      "file": "P0015.png",
+      "size": [
+        100,
+        120
+      ]
+    },
+    {
+      "code": "P0024",
+      "name": "Retrato de Michael Jackson",
+      "file": "P0024.png",
+      "size": [
+        100,
+        120
+      ]
+    },
+    {
+      "code": "P0016",
+      "name": "Retrato de la Mona Lisa",
+      "file": "P0016.png",
+      "size": [
+        100,
+        120
+      ]
+    },
+    {
+      "code": "P0025",
+      "name": "Retrato de Nelson Mandela",
+      "file": "P0025.png",
+      "size": [
+        100,
+        120
+      ]
+    },
+    {
+      "code": "P0022",
+      "name": "Princesa Diana con chicle",
+      "file": "P0022.png",
+      "size": [
+        100,
+        120
+      ]
+    },
+    {
+      "code": "P0023",
+      "name": "Retrato de la princesa Diana",
+      "file": "P0023.png",
+      "size": [
+        100,
+        120
+      ]
+    },
+    {
+      "code": "P0017",
+      "name": "Retrato de Salvador Dalí",
+      "file": "P0017.png",
+      "size": [
+        100,
+        120
+      ]
+    },
+    {
+      "code": "P0018",
+      "name": "Van Gogh con girasol",
+      "file": "P0018.png",
+      "size": [
+        100,
+        120
+      ]
+    },
+    {
+      "code": "P0019",
+      "name": "Retrato de Vincent van Gogh",
+      "file": "P0019.png",
+      "size": [
+        100,
+        120
+      ]
+    }
+  ]
+}
