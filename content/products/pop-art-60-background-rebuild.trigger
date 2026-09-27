@@ -1,3 +1,3 @@
-approved_background_source_commit=0037e012802505f3366ebe50255071f63bb8b23a
-restored_background_commit=87acc345cdfd195046be21a2b69a7b5dfdccd802
-reason=Regenerate all 60 Pop Art products with the latest approved no-reflection background.
+approved_background_source_commit=4824cebf6db8999975f7ff56212741345500854e
+gmail_message_id=1a0e3e0a72279a45
+reason=Regenerate all 60 Pop Art products with the newly approved pixel-aligned background uploaded through Gmail.
