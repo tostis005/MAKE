@@ -346,13 +346,12 @@
       "title_es": "Torre Eiffel de París",
       "slug": "paris-eiffel-tower",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_01.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36302862418",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
       "last_error": null,
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
-      "source_zip_member": "D0031-paris-eiffel-tower.png",
-      "published_at": "2026-09-27T07:23:09+00:00"
+      "source_zip_member": "D0031-paris-eiffel-tower.png"
     },
     {
       "base_design_id": "D0032",
@@ -360,13 +359,12 @@
       "title_es": "Big Ben de Londres",
       "slug": "london-big-ben",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_02.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36302937986",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
       "last_error": null,
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
-      "source_zip_member": "D0032-london-big-ben.png",
-      "published_at": "2026-09-27T07:24:42+00:00"
+      "source_zip_member": "D0032-london-big-ben.png"
     },
     {
       "base_design_id": "D0033",
@@ -374,13 +372,12 @@
       "title_es": "Coliseo de Roma",
       "slug": "rome-colosseum",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_03.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36303017852",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
       "last_error": null,
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
-      "source_zip_member": "D0033-rome-colosseum.png",
-      "published_at": "2026-09-27T07:26:22+00:00"
+      "source_zip_member": "D0033-rome-colosseum.png"
     },
     {
       "base_design_id": "D0034",
@@ -388,13 +385,12 @@
       "title_es": "Estatua de la Libertad de Nueva York",
       "slug": "new-york-statue-liberty",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_04.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36303103406",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
       "last_error": null,
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
-      "source_zip_member": "D0034-new-york-statue-liberty.png",
-      "published_at": "2026-09-27T07:27:59+00:00"
+      "source_zip_member": "D0034-new-york-statue-liberty.png"
     },
     {
       "base_design_id": "D0035",
@@ -402,13 +398,12 @@
       "title_es": "Taj Mahal",
       "slug": "taj-mahal",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_05.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36303186007",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
       "last_error": null,
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
-      "source_zip_member": "D0035-taj-mahal.png",
-      "published_at": "2026-09-27T07:29:52+00:00"
+      "source_zip_member": "D0035-taj-mahal.png"
     },
     {
       "base_design_id": "D0036",
@@ -416,13 +411,12 @@
       "title_es": "Gran Muralla China",
       "slug": "great-wall-china",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_06.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36303279425",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
       "last_error": null,
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
-      "source_zip_member": "D0036-great-wall-china.png",
-      "published_at": "2026-09-27T07:31:36+00:00"
+      "source_zip_member": "D0036-great-wall-china.png"
     },
     {
       "base_design_id": "D0037",
@@ -430,13 +424,12 @@
       "title_es": "Cristo Redentor de Río",
       "slug": "rio-christ-redeemer",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_07.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36303376743",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
       "last_error": null,
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
-      "source_zip_member": "D0037-rio-christ-redeemer.png",
-      "published_at": "2026-09-27T07:33:08+00:00"
+      "source_zip_member": "D0037-rio-christ-redeemer.png"
     },
     {
       "base_design_id": "D0038",
@@ -444,13 +437,12 @@
       "title_es": "Pirámides de Guiza",
       "slug": "pyramids-giza",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_08.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36303454919",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
       "last_error": null,
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
-      "source_zip_member": "D0038-pyramids-giza.png",
-      "published_at": "2026-09-27T07:34:48+00:00"
+      "source_zip_member": "D0038-pyramids-giza.png"
     },
     {
       "base_design_id": "D0039",
@@ -458,13 +450,12 @@
       "title_es": "Ópera de Sídney",
       "slug": "sydney-opera-house",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_09.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36303543344",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
       "last_error": null,
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
-      "source_zip_member": "D0039-sydney-opera-house.png",
-      "published_at": "2026-09-27T07:36:29+00:00"
+      "source_zip_member": "D0039-sydney-opera-house.png"
     },
     {
       "base_design_id": "D0040",
@@ -538,13 +529,12 @@
       "title_es": "Montaña de la Mesa de Ciudad del Cabo",
       "slug": "cape-town-table-mountain",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_06.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36303629733",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
       "last_error": null,
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
-      "source_zip_member": "D0046-cape-town-table-mountain.png",
-      "published_at": "2026-09-27T07:38:07+00:00"
+      "source_zip_member": "D0046-cape-town-table-mountain.png"
     },
     {
       "base_design_id": "D0047",
