@@ -46,6 +46,16 @@ function drielo_term( string $taxonomy, string $name, string $slug, int $parent 
 function drielo_media_from_file( string $path, string $source_key, string $title, string $source_revision = '' ): int {
     if ( ! is_file( $path ) ) { return 0; }
 
+    // Pop Art 60 contains hundreds of generated WEBP gallery assets. Building
+    // every WordPress intermediate thumbnail synchronously makes deployment take
+    // close to an hour. WooCommerce can safely use the original WEBP when no
+    // intermediate sizes are present, so keep only lightweight base metadata for
+    // this generated family and let normal uploads retain full WP processing.
+    $fast_generated_media = (bool) preg_match(
+        '#^assets/P10(?:0[1-9]|[1-5][0-9]|60)-CS-(?:product|design|gallery-[234])\\.webp$#',
+        $source_key
+    ) || 'assets/pop-art-25-collection-cover.webp' === $source_key;
+
     $source_hash = md5_file( $path ) ?: '';
     $existing = get_posts(
         array(
@@ -81,9 +91,24 @@ function drielo_media_from_file( string $path, string $source_key, string $title
             if ( ! copy( $path, $attached_file ) ) {
                 throw new RuntimeException( 'Could not refresh existing product image: ' . $source_key );
             }
-            $metadata = wp_generate_attachment_metadata( $attachment_id, $attached_file );
-            if ( is_array( $metadata ) ) {
-                wp_update_attachment_metadata( $attachment_id, $metadata );
+            if ( $fast_generated_media ) {
+                $dims = @getimagesize( $attached_file );
+                if ( is_array( $dims ) ) {
+                    wp_update_attachment_metadata(
+                        $attachment_id,
+                        array(
+                            'width'  => (int) $dims[0],
+                            'height' => (int) $dims[1],
+                            'file'   => _wp_relative_upload_path( $attached_file ),
+                            'sizes'  => array(),
+                        )
+                    );
+                }
+            } else {
+                $metadata = wp_generate_attachment_metadata( $attachment_id, $attached_file );
+                if ( is_array( $metadata ) ) {
+                    wp_update_attachment_metadata( $attachment_id, $metadata );
+                }
             }
             wp_update_post(
                 array(
@@ -112,8 +137,23 @@ function drielo_media_from_file( string $path, string $source_key, string $title
     );
     if ( is_wp_error( $attachment_id ) ) { throw new RuntimeException( $attachment_id->get_error_message() ); }
 
-    $metadata = wp_generate_attachment_metadata( $attachment_id, $bits['file'] );
-    if ( is_array( $metadata ) ) { wp_update_attachment_metadata( $attachment_id, $metadata ); }
+    if ( $fast_generated_media ) {
+        $dims = @getimagesize( $bits['file'] );
+        if ( is_array( $dims ) ) {
+            wp_update_attachment_metadata(
+                $attachment_id,
+                array(
+                    'width'  => (int) $dims[0],
+                    'height' => (int) $dims[1],
+                    'file'   => _wp_relative_upload_path( $bits['file'] ),
+                    'sizes'  => array(),
+                )
+            );
+        }
+    } else {
+        $metadata = wp_generate_attachment_metadata( $attachment_id, $bits['file'] );
+        if ( is_array( $metadata ) ) { wp_update_attachment_metadata( $attachment_id, $metadata ); }
+    }
     update_post_meta( $attachment_id, '_drielo_source_asset', $source_key );
     update_post_meta( $attachment_id, '_drielo_source_hash', $source_hash );
     if ( '' !== $source_revision ) { update_post_meta( $attachment_id, '_drielo_source_revision', $source_revision ); }
