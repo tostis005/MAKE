@@ -8,6 +8,8 @@ on:
       - 'content/tools/import-products.php'
       - 'tmp/pop-art-60-upload/pop_art_60_png_100x120_exact30.zip'
       - '.github/scripts/rebuild_pop_art_60.py'
+      - '.github/scripts/render_pop_art_60_pdfs.py'
+      - 'content/tools/repair-pop-art-60.php'
       - '.github/workflows/import-products.yml'
   workflow_dispatch:
 
@@ -219,6 +221,28 @@ jobs:
           print(f"Validated {len(products)} products")
           PY
 
+      - name: Ensure all 60 Pop Art PDFs
+        shell: bash
+        run: |
+          set -euo pipefail
+          if python3 - <<'PY'
+          from pathlib import Path
+          missing=[]
+          for i in range(1,61):
+              p=Path('content/products/files')/f'Drielo_P{1000+i:04d}-CS.pdf'
+              if not p.is_file() or p.stat().st_size < 100000:
+                  missing.append(p.name)
+          print('MISSING_POP_ART_PDFS=' + str(len(missing)))
+          raise SystemExit(0 if not missing else 1)
+          PY
+          then
+            echo "All Pop Art PDFs are already staged."
+          else
+            python3 -m pip install --disable-pip-version-check --quiet Pillow playwright
+            python3 -m playwright install --with-deps chromium
+            python3 .github/scripts/render_pop_art_60_pdfs.py
+          fi
+
       - name: Configure SSH
         env:
           VPS_HOST: ${{ secrets.VPS_HOST }}
@@ -233,7 +257,7 @@ jobs:
       - name: Package products
         run: |
           set -euo pipefail
-          tar -czf /tmp/drielo-products.tgz content/products content/tools/import-products.php content/tools/generate-featured-images.py
+          tar -czf /tmp/drielo-products.tgz content/products content/tools/import-products.php content/tools/repair-pop-art-60.php content/tools/generate-featured-images.py
 
       - name: Upload product package
         env:
@@ -268,7 +292,9 @@ jobs:
 
           "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
           "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          "${DOCKER[@]}" cp "$STAGE/content/tools/repair-pop-art-60.php" make-wp:/tmp/drielo-repair-pop-art-60.php
           "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-repair-pop-art-60.php /var/www/html /tmp/drielo-products
 
           "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
             require "/var/www/html/wp-load.php";
@@ -302,7 +328,7 @@ jobs:
             if (!is_wp_error($terms)) foreach($terms as $t) echo "COLLECTION=" . $t->slug . " count=" . $t->count . " url=" . get_term_link($t) . PHP_EOL;
           '
 
-          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php /tmp/drielo-repair-pop-art-60.php'
           REMOTE
 
       - name: Verify public shop
