@@ -6,7 +6,7 @@ import json
 import re
 import shutil
 from collections import Counter
-from concurrent.futures import ProcessPoolExecutor, as_completed
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from PIL import Image
@@ -424,7 +424,7 @@ def main():
     bulk.OUTPUT.mkdir(parents=True, exist_ok=True)
 
     results = []
-    with ProcessPoolExecutor(max_workers=4) as ex:
+    with ThreadPoolExecutor(max_workers=4) as ex:
         futures = {ex.submit(bulk.render_one, task):task[0] for task in tasks}
         for future in as_completed(futures):
             result = future.result()
