@@ -1045,12 +1045,13 @@
       "title_es": "Dubrovnik Old Town",
       "slug": "batch02-0085-dubrovnik-old-town",
       "input_png": "collections/iconic-destinations/input-pngs-q50/batch-02/iconic_025.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36315815947",
       "last_error": null,
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-02-90-q50.zip",
-      "source_zip_member": "iconic_025.png"
+      "source_zip_member": "iconic_025.png",
+      "published_at": "2026-09-27T11:29:30+00:00"
     },
     {
       "base_design_id": "D0086",
