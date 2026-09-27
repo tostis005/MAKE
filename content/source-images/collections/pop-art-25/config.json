@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "collection_id": "pop-art-25",
+  "product_size_px": [
+    100,
+    120
+  ],
+  "product_format": "png",
+  "background_mode": "single",
+  "background_directory": "background",
+  "product_directory": "products",
+  "filename_examples": [
+    "P1001-glam-blonde-icon.png"
+  ],
+  "legacy_background_fallbacks": [
+    "content/products/assets/pop-art-25-collection-cover.webp"
+  ],
+  "notes": "The canonical folder replaces the temporary ZIP/Gmail bridge for future approved Pop Art sources."
+}
