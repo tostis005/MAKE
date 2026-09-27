@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "default_product_size_px": [
+    100,
+    120
+  ],
+  "collections": [
+    {
+      "id": "baby-nursery",
+      "config": "baby-nursery/config.json",
+      "catalogued": true
+    },
+    {
+      "id": "iconic-destinations",
+      "config": "iconic-destinations/config.json",
+      "catalogued": true
+    },
+    {
+      "id": "pop-art-25",
+      "config": "pop-art-25/config.json",
+      "catalogued": true
+    },
+    {
+      "id": "animals",
+      "config": "animals/config.json",
+      "catalogued": false
+    }
+  ]
+}
