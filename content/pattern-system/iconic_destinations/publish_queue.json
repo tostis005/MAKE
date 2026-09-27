@@ -1689,12 +1689,13 @@
       "title_es": "Positano Amalfi Coast",
       "slug": "batch02-0131-positano-amalfi-coast",
       "input_png": "collections/iconic-destinations/input-pngs-q50/batch-02/iconic_071.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36320460636",
       "last_error": null,
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-02-90-q50.zip",
-      "source_zip_member": "iconic_071.png"
+      "source_zip_member": "iconic_071.png",
+      "published_at": "2026-09-27T12:54:25+00:00"
     },
     {
       "base_design_id": "D0132",
