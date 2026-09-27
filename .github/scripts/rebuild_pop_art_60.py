@@ -140,6 +140,8 @@ def needs_rebuild() -> bool:
         marker = json.loads(MARKER.read_text(encoding="utf-8"))
     except Exception:
         return True
+    if not bool(marker.get("deployed", False)):
+        return True
     return marker.get("zip_sha256") != digest or not catalogue_has_current_generation()
 
 def write_json(path: Path, data) -> None:
@@ -437,6 +439,7 @@ def main() -> None:
         "product_count": 60,
         "tile_size": [100, 120],
         "shared_palette_size": 30,
+        "deployed": False,
         "codes": sorted(EXPECTED_CODES),
     })
 
