@@ -1927,12 +1927,13 @@
       "title_es": "Alhambra Granada",
       "slug": "batch02-0148-alhambra-granada",
       "input_png": "collections/iconic-destinations/input-pngs-q50/batch-02/iconic_088.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36322337199",
       "last_error": null,
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-02-90-q50.zip",
-      "source_zip_member": "iconic_088.png"
+      "source_zip_member": "iconic_088.png",
+      "published_at": "2026-09-27T13:27:08+00:00"
     },
     {
       "base_design_id": "D0149",
