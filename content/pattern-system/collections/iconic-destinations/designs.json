@@ -1092,10 +1092,10 @@
       "variants": [
         "D0046-CS"
       ],
-      "artwork_status": "approved-vivid-premium-zip-png-100x120-q50",
+      "artwork_status": "production-ready-from-approved-clean-zip",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_06.png",
       "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
+      "palette_status": "mapped-directly-from-zip-png-to-dmc",
       "target_master_grid": {
         "width": 100,
         "height": 120,
