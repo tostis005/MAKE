@@ -1,0 +1,19 @@
+name: Cancel obsolete Iconic import
+on:
+  push:
+    branches: [iconic-batch01-conceptual-v2]
+    paths:
+      - '.github/workflows/cancel-obsolete-iconic-import.yml'
+permissions:
+  actions: write
+  contents: read
+jobs:
+  cancel:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel obsolete run only
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run cancel 36310299599 --repo "${GITHUB_REPOSITORY}" || true
+          echo "OBSOLETE_ICONIC_RUN_CANCEL_REQUESTED"
