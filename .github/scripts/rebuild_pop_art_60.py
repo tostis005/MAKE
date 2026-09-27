@@ -29,7 +29,7 @@ CATALOG = ROOT / "content" / "products" / "catalog.json"
 STORE_ASSETS = ROOT / "content" / "products" / "assets"
 STORE_FILES = ROOT / "content" / "products" / "files"
 APPROVED_BACKGROUND = STORE_ASSETS / "pop-art-25-collection-cover.webp"
-APPROVED_BACKGROUND_SOURCE_COMMIT = "0037e012802505f3366ebe50255071f63bb8b23a"
+APPROVED_BACKGROUND_SOURCE_COMMIT = "58e89fb2e14a02eca6ee7a3700a17cc099d21fed"
 
 DESIGN_TITLES = [
     ("Glam Blonde Icon", "Icono rubia glam"),
@@ -384,7 +384,7 @@ def main() -> None:
         tasks.append((f"{code}-CS", "CS", data))
 
         row = base.row_for(code, en, es, slug, "CS", data)
-        row["gallery_revision"] = 2026092703
+        row["gallery_revision"] = 2026092704
         new_rows.append(row)
 
     if {r["code"] for r in new_rows} != EXPECTED_CODES:
