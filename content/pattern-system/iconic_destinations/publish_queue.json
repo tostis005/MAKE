@@ -1,13 +1,13 @@
 {
   "collection": "iconic-destinations",
-  "mode": "direct-zip-png-clean-batches-v4",
+  "mode": "direct-zip-png-vivid-batch-v5",
   "auto_continue": true,
   "max_attempts_per_design": 3,
   "notes": [
-    "Batch 01 uses original conceptual realistic illustrations, not photographs.",
-    "Each final PNG is exactly 100x120 and uses approximately 50 discrete colours.",
-    "The ZIP member is the authoritative source and is byte-checked before product generation.",
-    "Mosaic, PDF-page, board-crop and external-photo sources are forbidden."
+    "Batch 01 source is the approved vivid premium ZIP committed to GitHub.",
+    "Every source PNG is exactly 100x120 pixels and uses exactly 50 colours.",
+    "ZIP member and extracted input PNG are byte-identical.",
+    "These files replace all prior conceptual/procedural batch-01 artwork."
   ],
   "items": [
     {
@@ -346,13 +346,12 @@
       "title_es": "Torre Eiffel de París",
       "slug": "paris-eiffel-tower",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_01.png",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36276471485",
+      "status": "pending",
+      "attempts": 0,
+      "last_run": null,
       "last_error": null,
-      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
-      "source_zip_member": "D0031-paris-eiffel-tower.png",
-      "published_at": "2026-09-26T22:31:26+00:00"
+      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
+      "source_zip_member": "D0031-paris-eiffel-tower.png"
     },
     {
       "base_design_id": "D0032",
@@ -364,9 +363,8 @@
       "attempts": 0,
       "last_run": null,
       "last_error": null,
-      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
-      "source_zip_member": "D0032-london-big-ben.png",
-      "published_at": "2026-09-26T22:13:34+00:00"
+      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
+      "source_zip_member": "D0032-london-big-ben.png"
     },
     {
       "base_design_id": "D0033",
@@ -378,9 +376,8 @@
       "attempts": 0,
       "last_run": null,
       "last_error": null,
-      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
-      "source_zip_member": "D0033-rome-colosseum.png",
-      "published_at": "2026-09-26T22:15:28+00:00"
+      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
+      "source_zip_member": "D0033-rome-colosseum.png"
     },
     {
       "base_design_id": "D0034",
@@ -392,9 +389,8 @@
       "attempts": 0,
       "last_run": null,
       "last_error": null,
-      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
-      "source_zip_member": "D0034-new-york-statue-liberty.png",
-      "published_at": "2026-09-26T22:17:00+00:00"
+      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
+      "source_zip_member": "D0034-new-york-statue-liberty.png"
     },
     {
       "base_design_id": "D0035",
@@ -406,9 +402,8 @@
       "attempts": 0,
       "last_run": null,
       "last_error": null,
-      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
-      "source_zip_member": "D0035-taj-mahal.png",
-      "published_at": "2026-09-26T22:18:54+00:00"
+      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
+      "source_zip_member": "D0035-taj-mahal.png"
     },
     {
       "base_design_id": "D0036",
@@ -420,7 +415,7 @@
       "attempts": 0,
       "last_run": null,
       "last_error": null,
-      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
+      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
       "source_zip_member": "D0036-great-wall-china.png"
     },
     {
@@ -433,7 +428,7 @@
       "attempts": 0,
       "last_run": null,
       "last_error": null,
-      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
+      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
       "source_zip_member": "D0037-rio-christ-redeemer.png"
     },
     {
@@ -446,7 +441,7 @@
       "attempts": 0,
       "last_run": null,
       "last_error": null,
-      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
+      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
       "source_zip_member": "D0038-pyramids-giza.png"
     },
     {
@@ -459,7 +454,7 @@
       "attempts": 0,
       "last_run": null,
       "last_error": null,
-      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
+      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
       "source_zip_member": "D0039-sydney-opera-house.png"
     },
     {
@@ -538,7 +533,7 @@
       "attempts": 0,
       "last_run": null,
       "last_error": null,
-      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
+      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
       "source_zip_member": "D0046-cape-town-table-mountain.png"
     },
     {
@@ -696,6 +691,6 @@
       "last_error": null
     }
   ],
-  "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
-  "active_batch": "batch-01-conceptual-realistic"
+  "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
+  "active_batch": "batch-01-vivid-premium"
 }
