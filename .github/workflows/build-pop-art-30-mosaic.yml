@@ -3,8 +3,6 @@ name: Build Pop Art 30-colour mosaic
 on:
   push:
     branches: [main]
-    paths:
-      - ".github/workflows/build-pop-art-30-mosaic.yml"
   workflow_dispatch:
 
 permissions:
