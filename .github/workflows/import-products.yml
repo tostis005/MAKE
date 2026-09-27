@@ -159,7 +159,7 @@ jobs:
           git add content/pattern-system/collections/pop-art-25
           git add content/pattern-system/products/P1*-CS content/pattern-system/patterns/P1*-CS 2>/dev/null || true
           git add -u content/pattern-system/products content/pattern-system/patterns
-          git add -u content/products/files
+          git add -u -- content/products/files 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "No generated gallery asset changes to persist."
           else
