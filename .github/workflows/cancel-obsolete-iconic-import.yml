@@ -11,9 +11,10 @@ jobs:
   cancel:
     runs-on: ubuntu-latest
     steps:
-      - name: Cancel obsolete run only
+      - name: Cancel obsolete runs only
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh run cancel 36310299599 --repo "${GITHUB_REPOSITORY}" || true
-          echo "OBSOLETE_ICONIC_RUN_CANCEL_REQUESTED"
+          gh run cancel 36310379514 --repo "${GITHUB_REPOSITORY}" || true
+          echo "OBSOLETE_ICONIC_RUNS_CANCEL_REQUESTED"
