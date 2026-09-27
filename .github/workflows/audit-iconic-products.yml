@@ -1,0 +1,91 @@
+name: Audit Iconic Destinations products
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/audit-iconic-products.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_products_key
+          chmod 600 ~/.ssh/drielo_products_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Audit Iconic Destinations products
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_products_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $term = get_term_by("slug", "iconic-destinations", "product_collection");
+            if (!$term instanceof WP_Term) {
+              echo "ICONIC_COLLECTION_NOT_FOUND".PHP_EOL;
+              exit(2);
+            }
+            $args = array(
+              "post_type" => "product",
+              "post_status" => array("publish","draft","pending","private","future","trash"),
+              "posts_per_page" => -1,
+              "orderby" => "ID",
+              "order" => "ASC",
+              "fields" => "ids",
+              "no_found_rows" => true,
+              "tax_query" => array(array(
+                "taxonomy" => "product_collection",
+                "field" => "term_id",
+                "terms" => array((int)$term->term_id)
+              ))
+            );
+            $ids = array_map("intval", get_posts($args));
+            echo "ICONIC_PRODUCTS_FOUND=".count($ids).PHP_EOL;
+            $sku_counts = array();
+            $published = 0;
+            foreach ($ids as $id) {
+              $p = wc_get_product($id);
+              if (!$p instanceof WC_Product) continue;
+              $sku = (string)$p->get_sku();
+              $title = get_the_title($id);
+              $status = get_post_status($id);
+              $date = get_post_field("post_date_gmt", $id);
+              $sku_counts[$sku] = isset($sku_counts[$sku]) ? $sku_counts[$sku] + 1 : 1;
+              if ($status === "publish") $published++;
+              echo "PRODUCT|id=".$id."|status=".$status."|sku=".$sku."|date=".$date."|title=".str_replace(array("\n","\r","|")," ",$title).PHP_EOL;
+            }
+            $dupes = array_filter($sku_counts, fn($n) => $n > 1);
+            ksort($dupes);
+            echo "ICONIC_PUBLISHED=".$published.PHP_EOL;
+            echo "ICONIC_UNIQUE_SKUS=".count($sku_counts).PHP_EOL;
+            echo "ICONIC_DUPLICATE_SKUS=".count($dupes).PHP_EOL;
+            foreach ($dupes as $sku => $n) echo "DUPLICATE_SKU|sku=".$sku."|count=".$n.PHP_EOL;
+          '
+          REMOTE
