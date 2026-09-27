@@ -1,4 +1,5 @@
 name: Purge Iconic Destinations products
+# trigger: purge-before-vivid-batch01-2026-09-27
 # trigger: purge-old-production-before-conceptual-v2-2026-09-27
 # trigger: stop-contaminated-zip-publish-2026-09-26
 # trigger: purge-stale-media-urls-2026-09-26-1942
