@@ -2,7 +2,7 @@
   "zip_sha256": "869feb22cdc3696494cd09da3d475565eafaf2a57ad72bb58d23f9359087cd50",
   "gmail_message_id": "1a0e2264a0410f68",
   "github_source": "tmp/pop-art-60-upload/pop_art_60_png_100x120_exact30.zip",
-  "processed_at": "2026-09-27T09:33:17.617430+00:00",
+  "processed_at": "2026-09-27T10:02:16.095285+00:00",
   "design_count": 60,
   "product_count": 60,
   "tile_size": [
@@ -10,6 +10,7 @@
     120
   ],
   "shared_palette_size": 30,
+  "deployed": false,
   "codes": [
     "P1001-CS",
     "P1002-CS",
