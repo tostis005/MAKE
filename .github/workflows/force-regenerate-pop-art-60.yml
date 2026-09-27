@@ -1,0 +1,129 @@
+name: Force regenerate Pop Art 60 and redeploy
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-pop-art-60-full-regeneration
+  cancel-in-progress: false
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install rendering dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check --quiet Pillow playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Force a complete Pop Art 60 rebuild
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f content/pattern-system/collections/pop-art-25/rework-60/processed.json
+          python .github/scripts/rebuild_pop_art_60.py
+
+      - name: Validate all regenerated Pop Art content
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+
+          root = Path.cwd()
+          cid = "pop-art-25"
+          collection_path = root / "content/pattern-system/collections/pop-art-25/collection.json"
+          catalog_path = root / "content/products/catalog.json"
+          cover_path = root / "content/products/assets/pop-art-25-collection-cover.webp"
+
+          collection = json.loads(collection_path.read_text(encoding="utf-8"))
+          assert collection["design_count"] == 60
+          assert collection["mockup_spec"]["asset"].endswith("pop-art-25-collection-cover.webp")
+          assert collection["mockup_spec"]["approved_background_source_commit"] == "58e89fb2e14a02eca6ee7a3700a17cc099d21fed"
+
+          with Image.open(cover_path) as cover:
+              assert cover.size == (1536, 1478), cover.size
+
+          sources = sorted((root / "content/pattern-system/collections/pop-art-25/sources").glob("P10*.png"))
+          assert len(sources) == 60, len(sources)
+          colours = set()
+          for p in sources:
+              with Image.open(p) as im:
+                  rgb = im.convert("RGB")
+                  assert rgb.size == (100, 120), (p.name, rgb.size)
+                  colours.update(rgb.getdata())
+          assert len(colours) == 30, len(colours)
+
+          catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
+          rows = [p for p in catalog["products"] if p.get("collection") == cid]
+          expected = {f"P{1000+i:04d}-CS" for i in range(1, 61)}
+          assert len(rows) == 60, len(rows)
+          assert {p["code"] for p in rows} == expected
+
+          for row in rows:
+              code = row["code"]
+              featured = root / "content/products" / row["featured_image"]
+              pdf = root / "content/products" / row["download"]
+              assert featured.is_file() and featured.stat().st_size > 1000, code
+              assert pdf.is_file() and pdf.stat().st_size > 100000, code
+              assert len(row.get("gallery", [])) == 4, code
+              for rel in row["gallery"]:
+                  asset = root / "content/products" / rel
+                  assert asset.is_file() and asset.stat().st_size > 1000, (code, rel)
+
+          marker = json.loads((root / "content/pattern-system/collections/pop-art-25/rework-60/processed.json").read_text(encoding="utf-8"))
+          assert marker["product_count"] == 60
+          assert marker["background_source_commit"] == "58e89fb2e14a02eca6ee7a3700a17cc099d21fed"
+          print("Validated 60 Pop Art products, 60 PDFs, 300 product images and the approved 1536x1478 background.")
+          PY
+
+      - name: Commit complete regenerated product set
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add -A content/pattern-system/collections/pop-art-25
+          git add -A content/pattern-system/products
+          git add -A content/pattern-system/patterns
+          git add -A content/products/catalog.json
+          git add -A content/products/assets
+          git add -A content/products/files
+
+          if git diff --cached --quiet; then
+            echo "Regeneration produced no repository changes."
+            exit 0
+          fi
+
+          git commit -m "Regenerate all Pop Art 60 products with approved background"
+
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              echo "Regenerated Pop Art content pushed. The existing Import Drielo products workflow will deploy it to WooCommerce."
+              exit 0
+            fi
+            if [ "$attempt" = "3" ]; then
+              exit 1
+            fi
+            sleep 10
+          done
