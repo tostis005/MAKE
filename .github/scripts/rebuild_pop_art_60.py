@@ -28,6 +28,8 @@ PATTERNS_DIR = SYSTEM / "patterns"
 CATALOG = ROOT / "content" / "products" / "catalog.json"
 STORE_ASSETS = ROOT / "content" / "products" / "assets"
 STORE_FILES = ROOT / "content" / "products" / "files"
+APPROVED_BACKGROUND = STORE_ASSETS / "pop-art-25-collection-cover.webp"
+APPROVED_BACKGROUND_SOURCE_COMMIT = "0037e012802505f3366ebe50255071f63bb8b23a"
 
 DESIGN_TITLES = [
     ("Glam Blonde Icon", "Icono rubia glam"),
@@ -113,6 +115,15 @@ def zip_sha() -> str:
             h.update(chunk)
     return h.hexdigest()
 
+def background_sha() -> str:
+    if not APPROVED_BACKGROUND.is_file():
+        raise SystemExit(f"Missing approved Pop Art background: {APPROVED_BACKGROUND}")
+    h = hashlib.sha256()
+    with APPROVED_BACKGROUND.open("rb") as fh:
+        for chunk in iter(lambda: fh.read(1024 * 1024), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
 def catalogue_has_current_generation() -> bool:
     if not CATALOG.is_file():
         return False
@@ -141,11 +152,14 @@ def needs_rebuild() -> bool:
         marker = json.loads(MARKER.read_text(encoding="utf-8"))
     except Exception:
         return True
-    # A matching source ZIP plus a complete generated catalogue is enough to
-    # reuse the already-rendered assets on deployment retries. The deployed flag
-    # is updated only after WooCommerce verification and must not force an
-    # expensive 60-product re-render on every retry.
-    return marker.get("zip_sha256") != digest or not catalogue_has_current_generation()
+    # Rebuild whenever either the 60-design source ZIP or the approved Pop Art
+    # room/background image changes. This prevents product renders from silently
+    # reusing an older generic background.
+    return (
+        marker.get("zip_sha256") != digest
+        or marker.get("background_sha256") != background_sha()
+        or not catalogue_has_current_generation()
+    )
 
 def write_json(path: Path, data) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -286,9 +300,10 @@ def main() -> None:
         "design_count": 60,
         "techniques": ["cross-stitch"],
         "mockup_spec": {
-            "asset": "../../multitech/assets/cover-cross-stitch.webp",
-            "technique_assets": {"CS": "../../multitech/assets/cover-cross-stitch.webp"},
+            "asset": "../../../products/assets/pop-art-25-collection-cover.webp",
+            "technique_assets": {"CS": "../../../products/assets/pop-art-25-collection-cover.webp"},
             "frame": {"enabled": False},
+            "approved_background_source_commit": APPROVED_BACKGROUND_SOURCE_COMMIT,
         },
         "preview_rules": {
             "palette_mode": "strict",
@@ -363,25 +378,23 @@ def main() -> None:
         data = bulk.pattern_data(f"{code}-CS", en, "CS", matrix, threads)
         data["collection"] = "Pop Art"
         data["collection_id"] = CID
+        # Use the last explicitly approved Pop Art room/background image for
+        # every product/PDF cover instead of the generic multitech cover.
+        data["cover_image_path"] = str(APPROVED_BACKGROUND)
         tasks.append((f"{code}-CS", "CS", data))
 
         row = base.row_for(code, en, es, slug, "CS", data)
-        row["gallery_revision"] = 2026092702
+        row["gallery_revision"] = 2026092703
         new_rows.append(row)
 
     if {r["code"] for r in new_rows} != EXPECTED_CODES:
         raise RuntimeError("Did not prepare exactly 60 new Pop Art cross-stitch products")
 
-    # Build a collection cover from the same exact 60 source images.
-    mosaic = INPUT / "pop_art_60_mosaico_1000x720_exact30.png"
-    if not mosaic.is_file():
-        mosaic = REWORK / "derived-mosaic.png"
-        sheet = Image.new("RGB", (1000, 720))
-        for i, (code, *_rest) in enumerate(DESIGNS):
-            tile = Image.open(SOURCES / f"{code}.png").convert("RGB")
-            sheet.paste(tile, ((i % 10) * 100, (i // 10) * 120))
-        sheet.save(mosaic, "PNG")
-    make_cover(mosaic)
+    # Keep the approved Pop Art background untouched. The previous rebuild
+    # incorrectly replaced it with the 60-design mosaic; the mosaic is only a
+    # validation artefact and must never become the product background.
+    if not APPROVED_BACKGROUND.is_file():
+        raise RuntimeError(f"Approved Pop Art background missing: {APPROVED_BACKGROUND}")
 
     bulk.OUTPUT.mkdir(parents=True, exist_ok=True)
     results = []
@@ -435,6 +448,9 @@ def main() -> None:
 
     write_json(MARKER, {
         "zip_sha256": digest,
+        "background_sha256": background_sha(),
+        "background_source_commit": APPROVED_BACKGROUND_SOURCE_COMMIT,
+        "background_asset": "content/products/assets/pop-art-25-collection-cover.webp",
         "gmail_message_id": SOURCE_GMAIL_MESSAGE_ID,
         "github_source": "tmp/pop-art-60-upload/pop_art_60_png_100x120_exact30.zip",
         "processed_at": datetime.now(timezone.utc).isoformat(),
