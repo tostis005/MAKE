@@ -1,0 +1,22 @@
+{
+  "code": "P1046-CS",
+  "base_design_id": "P1046",
+  "technique_code": "CS",
+  "collection": "pop-art-25",
+  "title": "Comic Superhero",
+  "title_en": "Comic Superhero",
+  "title_es": "Superhéroe comic",
+  "design_slug": "pop-art-46-comic-superhero",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/P1046-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "ready",
+  "render_ready": true,
+  "renderer": "multitech",
+  "source_artwork": "collections/pop-art-25/sources/P1046.png",
+  "page_1_asset": "multitech/assets/cover-cross-stitch.webp",
+  "palette_mode": "strict",
+  "palette_size": 30,
+  "transparent_source": false
+}

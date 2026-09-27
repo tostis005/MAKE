@@ -4,393 +4,723 @@
   "transparent_background": false,
   "designs": [
     {
-      "code": "P0001",
-      "title_en": "Albert Einstein Tongue Out",
-      "title_es": "Albert Einstein sacando la lengua",
-      "slug": "albert-einstein-tongue-out",
+      "code": "P1001",
+      "title_en": "Glam Blonde Icon",
+      "title_es": "Icono rubia glam",
+      "slug": "pop-art-01-glam-blonde-icon",
       "status": "ready",
-      "source_artwork": "sources/P0001.png",
+      "source_artwork": "sources/P1001.png",
       "transparent_background": false,
       "variants": [
-        "P0001-CS",
-        "P0001-C2C",
-        "P0001-TC",
-        "P0001-LH"
+        "P1001-CS"
       ]
     },
     {
-      "code": "P0002",
-      "title_en": "Apple Man Portrait",
-      "title_es": "Retrato del hombre de la manzana",
-      "slug": "apple-man-portrait",
+      "code": "P1002",
+      "title_en": "Elegant Bubble Gum Brunette",
+      "title_es": "Morena elegante con chicle",
+      "slug": "pop-art-02-elegant-bubble-gum-brunette",
       "status": "ready",
-      "source_artwork": "sources/P0002.png",
+      "source_artwork": "sources/P1002.png",
       "transparent_background": false,
       "variants": [
-        "P0002-CS",
-        "P0002-C2C",
-        "P0002-TC",
-        "P0002-LH"
+        "P1002-CS"
       ]
     },
     {
-      "code": "P0003",
-      "title_en": "Audrey Hepburn Bubble Gum",
-      "title_es": "Audrey Hepburn con chicle",
-      "slug": "audrey-hepburn-bubble-gum",
+      "code": "P1003",
+      "title_en": "Rockabilly Singer Portrait",
+      "title_es": "Retrato de cantante rockabilly",
+      "slug": "pop-art-03-rockabilly-singer-portrait",
       "status": "ready",
-      "source_artwork": "sources/P0003.png",
+      "source_artwork": "sources/P1003.png",
       "transparent_background": false,
       "variants": [
-        "P0003-CS",
-        "P0003-C2C",
-        "P0003-TC",
-        "P0003-LH"
+        "P1003-CS"
       ]
     },
     {
-      "code": "P0004",
-      "title_en": "Audrey Hepburn Profile",
-      "title_es": "Audrey Hepburn de perfil",
-      "slug": "audrey-hepburn-profile",
+      "code": "P1004",
+      "title_en": "Floral Crown Artist",
+      "title_es": "Artista con corona floral",
+      "slug": "pop-art-04-floral-crown-artist",
       "status": "ready",
-      "source_artwork": "sources/P0004.png",
+      "source_artwork": "sources/P1004.png",
       "transparent_background": false,
       "variants": [
-        "P0004-CS",
-        "P0004-C2C",
-        "P0004-TC",
-        "P0004-LH"
+        "P1004-CS"
       ]
     },
     {
-      "code": "P0005",
-      "title_en": "Audrey Hepburn Sunglasses",
-      "title_es": "Audrey Hepburn con gafas",
-      "slug": "audrey-hepburn-sunglasses",
+      "code": "P1005",
+      "title_en": "Wild-Haired Scientist",
+      "title_es": "Científico de cabello alborotado",
+      "slug": "pop-art-05-wild-haired-scientist",
       "status": "ready",
-      "source_artwork": "sources/P0005.png",
+      "source_artwork": "sources/P1005.png",
       "transparent_background": false,
       "variants": [
-        "P0005-CS",
-        "P0005-C2C",
-        "P0005-TC",
-        "P0005-LH"
+        "P1005-CS"
       ]
     },
     {
-      "code": "P0006",
-      "title_en": "Charlie Chaplin Portrait",
-      "title_es": "Retrato de Charlie Chaplin",
-      "slug": "charlie-chaplin-portrait",
+      "code": "P1006",
+      "title_en": "Crowned Royal Portrait",
+      "title_es": "Retrato real con corona",
+      "slug": "pop-art-06-crowned-royal-portrait",
       "status": "ready",
-      "source_artwork": "sources/P0006.png",
+      "source_artwork": "sources/P1006.png",
       "transparent_background": false,
       "variants": [
-        "P0006-CS",
-        "P0006-C2C",
-        "P0006-TC",
-        "P0006-LH"
+        "P1006-CS"
       ]
     },
     {
-      "code": "P0007",
-      "title_en": "Frida Kahlo Floral Crown",
-      "title_es": "Frida Kahlo con corona floral",
-      "slug": "frida-kahlo-floral-crown",
+      "code": "P1007",
+      "title_en": "Lightning Glam Rocker",
+      "title_es": "Rocker glam con rayo",
+      "slug": "pop-art-07-lightning-glam-rocker",
       "status": "ready",
-      "source_artwork": "sources/P0007.png",
+      "source_artwork": "sources/P1007.png",
       "transparent_background": false,
       "variants": [
-        "P0007-CS",
-        "P0007-C2C",
-        "P0007-TC",
-        "P0007-LH"
+        "P1007-CS"
       ]
     },
     {
-      "code": "P0008",
-      "title_en": "Girl with a Pearl Earring Bubble Gum",
-      "title_es": "La joven de la perla con chicle",
-      "slug": "girl-pearl-earring-bubble-gum",
+      "code": "P1008",
+      "title_en": "Round Glasses Musician",
+      "title_es": "Músico con gafas redondas",
+      "slug": "pop-art-08-round-glasses-musician",
       "status": "ready",
-      "source_artwork": "sources/P0008.png",
+      "source_artwork": "sources/P1008.png",
       "transparent_background": false,
       "variants": [
-        "P0008-CS",
-        "P0008-C2C",
-        "P0008-TC",
-        "P0008-LH"
+        "P1008-CS"
       ]
     },
     {
-      "code": "P0009",
-      "title_en": "Girl with a Pearl Earring",
-      "title_es": "La joven de la perla",
-      "slug": "girl-with-a-pearl-earring",
+      "code": "P1009",
+      "title_en": "Moustached Stage Singer",
+      "title_es": "Cantante de escenario con bigote",
+      "slug": "pop-art-09-moustached-stage-singer",
       "status": "ready",
-      "source_artwork": "sources/P0009.png",
+      "source_artwork": "sources/P1009.png",
       "transparent_background": false,
       "variants": [
-        "P0009-CS",
-        "P0009-C2C",
-        "P0009-TC",
-        "P0009-LH"
+        "P1009-CS"
       ]
     },
     {
-      "code": "P0010",
-      "title_en": "Girl with a Pearl Earring Sunglasses",
-      "title_es": "La joven de la perla con gafas",
-      "slug": "girl-pearl-earring-sunglasses",
+      "code": "P1010",
+      "title_en": "Curly-Haired Pop Performer",
+      "title_es": "Artista pop de cabello rizado",
+      "slug": "pop-art-10-curly-haired-pop-performer",
       "status": "ready",
-      "source_artwork": "sources/P0010.png",
+      "source_artwork": "sources/P1010.png",
       "transparent_background": false,
       "variants": [
-        "P0010-CS",
-        "P0010-C2C",
-        "P0010-TC",
-        "P0010-LH"
+        "P1010-CS"
       ]
     },
     {
-      "code": "P0011",
-      "title_en": "Marilyn Monroe Blowing Kiss",
-      "title_es": "Marilyn Monroe lanzando un beso",
-      "slug": "marilyn-monroe-blowing-kiss",
+      "code": "P1011",
+      "title_en": "Bowler Hat Comedian",
+      "title_es": "Comediante con bombín",
+      "slug": "pop-art-11-bowler-hat-comedian",
       "status": "ready",
-      "source_artwork": "sources/P0011.png",
+      "source_artwork": "sources/P1011.png",
       "transparent_background": false,
       "variants": [
-        "P0011-CS",
-        "P0011-C2C",
-        "P0011-TC",
-        "P0011-LH"
+        "P1011-CS"
       ]
     },
     {
-      "code": "P0012",
-      "title_en": "Marilyn Monroe Bubble Gum",
-      "title_es": "Marilyn Monroe con chicle",
-      "slug": "marilyn-monroe-bubble-gum",
+      "code": "P1012",
+      "title_en": "Classic Renaissance Lady",
+      "title_es": "Dama clásica renacentista",
+      "slug": "pop-art-12-classic-renaissance-lady",
       "status": "ready",
-      "source_artwork": "sources/P0012.png",
+      "source_artwork": "sources/P1012.png",
       "transparent_background": false,
       "variants": [
-        "P0012-CS",
-        "P0012-C2C",
-        "P0012-TC",
-        "P0012-LH"
+        "P1012-CS"
       ]
     },
     {
-      "code": "P0013",
-      "title_en": "Marilyn Monroe Sunglasses",
-      "title_es": "Marilyn Monroe con gafas",
-      "slug": "marilyn-monroe-sunglasses",
+      "code": "P1013",
+      "title_en": "Elegant Sunglasses Lady",
+      "title_es": "Dama elegante con gafas",
+      "slug": "pop-art-13-elegant-sunglasses-lady",
       "status": "ready",
-      "source_artwork": "sources/P0013.png",
+      "source_artwork": "sources/P1013.png",
       "transparent_background": false,
       "variants": [
-        "P0013-CS",
-        "P0013-C2C",
-        "P0013-TC",
-        "P0013-LH"
+        "P1013-CS"
       ]
     },
     {
-      "code": "P0014",
-      "title_en": "Marilyn Monroe Surprise",
-      "title_es": "Marilyn Monroe sorprendida",
-      "slug": "marilyn-monroe-surprise",
+      "code": "P1014",
+      "title_en": "Rebel Movie Star",
+      "title_es": "Estrella rebelde de cine",
+      "slug": "pop-art-14-rebel-movie-star",
       "status": "ready",
-      "source_artwork": "sources/P0014.png",
+      "source_artwork": "sources/P1014.png",
       "transparent_background": false,
       "variants": [
-        "P0014-CS",
-        "P0014-C2C",
-        "P0014-TC",
-        "P0014-LH"
+        "P1014-CS"
       ]
     },
     {
-      "code": "P0015",
-      "title_en": "Marilyn Monroe Wink",
-      "title_es": "Marilyn Monroe guiñando un ojo",
-      "slug": "marilyn-monroe-wink",
+      "code": "P1015",
+      "title_en": "Heart Glasses Blonde",
+      "title_es": "Rubia con gafas de corazón",
+      "slug": "pop-art-15-heart-glasses-blonde",
       "status": "ready",
-      "source_artwork": "sources/P0015.png",
+      "source_artwork": "sources/P1015.png",
       "transparent_background": false,
       "variants": [
-        "P0015-CS",
-        "P0015-C2C",
-        "P0015-TC",
-        "P0015-LH"
+        "P1015-CS"
       ]
     },
     {
-      "code": "P0016",
-      "title_en": "Mona Lisa Portrait",
-      "title_es": "Retrato de la Mona Lisa",
-      "slug": "mona-lisa-portrait",
+      "code": "P1016",
+      "title_en": "Pearl Earring Girl",
+      "title_es": "Joven con pendiente de perla",
+      "slug": "pop-art-16-pearl-earring-girl",
       "status": "ready",
-      "source_artwork": "sources/P0016.png",
+      "source_artwork": "sources/P1016.png",
       "transparent_background": false,
       "variants": [
-        "P0016-CS",
-        "P0016-C2C",
-        "P0016-TC",
-        "P0016-LH"
+        "P1016-CS"
       ]
     },
     {
-      "code": "P0017",
-      "title_en": "Salvador Dalí Portrait",
-      "title_es": "Retrato de Salvador Dalí",
-      "slug": "salvador-dali-portrait",
+      "code": "P1017",
+      "title_en": "Bubble Gum Blonde",
+      "title_es": "Rubia con chicle",
+      "slug": "pop-art-17-bubble-gum-blonde",
       "status": "ready",
-      "source_artwork": "sources/P0017.png",
+      "source_artwork": "sources/P1017.png",
       "transparent_background": false,
       "variants": [
-        "P0017-CS",
-        "P0017-C2C",
-        "P0017-TC",
-        "P0017-LH"
+        "P1017-CS"
       ]
     },
     {
-      "code": "P0018",
-      "title_en": "Van Gogh with Sunflower",
-      "title_es": "Van Gogh con girasol",
-      "slug": "van-gogh-sunflower",
+      "code": "P1018",
+      "title_en": "Surreal Moustache Artist",
+      "title_es": "Artista surrealista con bigote",
+      "slug": "pop-art-18-surreal-moustache-artist",
       "status": "ready",
-      "source_artwork": "sources/P0018.png",
+      "source_artwork": "sources/P1018.png",
       "transparent_background": false,
       "variants": [
-        "P0018-CS",
-        "P0018-C2C",
-        "P0018-TC",
-        "P0018-LH"
+        "P1018-CS"
       ]
     },
     {
-      "code": "P0019",
-      "title_en": "Vincent van Gogh Portrait",
-      "title_es": "Retrato de Vincent van Gogh",
-      "slug": "vincent-van-gogh-portrait",
+      "code": "P1019",
+      "title_en": "Royal Tiara Lady",
+      "title_es": "Dama real con tiara",
+      "slug": "pop-art-19-royal-tiara-lady",
       "status": "ready",
-      "source_artwork": "sources/P0019.png",
+      "source_artwork": "sources/P1019.png",
       "transparent_background": false,
       "variants": [
-        "P0019-CS",
-        "P0019-C2C",
-        "P0019-TC",
-        "P0019-LH"
+        "P1019-CS"
       ]
     },
     {
-      "code": "P0020",
-      "title_en": "James Dean Portrait",
-      "title_es": "Retrato de James Dean",
-      "slug": "james-dean-portrait",
+      "code": "P1020",
+      "title_en": "Smiling Elder Statesman",
+      "title_es": "Estadista sonriente",
+      "slug": "pop-art-20-smiling-elder-statesman",
       "status": "ready",
-      "source_artwork": "sources/P0020.png",
+      "source_artwork": "sources/P1020.png",
       "transparent_background": false,
       "variants": [
-        "P0020-CS",
-        "P0020-C2C",
-        "P0020-TC",
-        "P0020-LH"
+        "P1020-CS"
       ]
     },
     {
-      "code": "P0021",
-      "title_en": "David Bowie Portrait",
-      "title_es": "Retrato de David Bowie",
-      "slug": "david-bowie-portrait",
+      "code": "P1021",
+      "title_en": "Floral Crown Profile",
+      "title_es": "Perfil con corona floral",
+      "slug": "pop-art-21-floral-crown-profile",
       "status": "ready",
-      "source_artwork": "sources/P0021.png",
+      "source_artwork": "sources/P1021.png",
       "transparent_background": false,
       "variants": [
-        "P0021-CS",
-        "P0021-C2C",
-        "P0021-TC",
-        "P0021-LH"
+        "P1021-CS"
       ]
     },
     {
-      "code": "P0022",
-      "title_en": "Princess Diana Bubble Gum",
-      "title_es": "Princesa Diana con chicle",
-      "slug": "princess-diana-bubble-gum",
+      "code": "P1022",
+      "title_en": "Riveter Heroine",
+      "title_es": "Heroína obrera",
+      "slug": "pop-art-22-riveter-heroine",
       "status": "ready",
-      "source_artwork": "sources/P0022.png",
+      "source_artwork": "sources/P1022.png",
       "transparent_background": false,
       "variants": [
-        "P0022-CS",
-        "P0022-C2C",
-        "P0022-TC",
-        "P0022-LH"
+        "P1022-CS"
       ]
     },
     {
-      "code": "P0023",
-      "title_en": "Princess Diana Portrait",
-      "title_es": "Retrato de la princesa Diana",
-      "slug": "princess-diana-portrait",
+      "code": "P1023",
+      "title_en": "Reggae Singer",
+      "title_es": "Cantante de reggae",
+      "slug": "pop-art-23-reggae-singer",
       "status": "ready",
-      "source_artwork": "sources/P0023.png",
+      "source_artwork": "sources/P1023.png",
       "transparent_background": false,
       "variants": [
-        "P0023-CS",
-        "P0023-C2C",
-        "P0023-TC",
-        "P0023-LH"
+        "P1023-CS"
       ]
     },
     {
-      "code": "P0024",
-      "title_en": "Michael Jackson Portrait",
-      "title_es": "Retrato de Michael Jackson",
-      "slug": "michael-jackson-portrait",
+      "code": "P1024",
+      "title_en": "Surprised Blonde",
+      "title_es": "Rubia sorprendida",
+      "slug": "pop-art-24-surprised-blonde",
       "status": "ready",
-      "source_artwork": "sources/P0024.png",
+      "source_artwork": "sources/P1024.png",
       "transparent_background": false,
       "variants": [
-        "P0024-CS",
-        "P0024-C2C",
-        "P0024-TC",
-        "P0024-LH"
+        "P1024-CS"
       ]
     },
     {
-      "code": "P0025",
-      "title_en": "Nelson Mandela Portrait",
-      "title_es": "Retrato de Nelson Mandela",
-      "slug": "nelson-mandela-portrait",
+      "code": "P1025",
+      "title_en": "Headscarf Sunglasses Lady",
+      "title_es": "Dama con pañuelo y gafas",
+      "slug": "pop-art-25-headscarf-sunglasses-lady",
       "status": "ready",
-      "source_artwork": "sources/P0025.png",
+      "source_artwork": "sources/P1025.png",
       "transparent_background": false,
       "variants": [
-        "P0025-CS",
-        "P0025-C2C",
-        "P0025-TC",
-        "P0025-LH"
+        "P1025-CS"
       ]
     },
     {
-      "code": "P0026",
-      "title_en": "Freddie Mercury Portrait",
-      "title_es": "Retrato de Freddie Mercury",
-      "slug": "freddie-mercury-portrait",
+      "code": "P1026",
+      "title_en": "White-Haired Pop Artist",
+      "title_es": "Artista pop de cabello blanco",
+      "slug": "pop-art-26-white-haired-pop-artist",
       "status": "ready",
-      "source_artwork": "sources/P0026.png",
+      "source_artwork": "sources/P1026.png",
       "transparent_background": false,
       "variants": [
-        "P0026-CS",
-        "P0026-C2C",
-        "P0026-TC",
-        "P0026-LH"
+        "P1026-CS"
+      ]
+    },
+    {
+      "code": "P1027",
+      "title_en": "Rockabilly Profile",
+      "title_es": "Perfil rockabilly",
+      "slug": "pop-art-27-rockabilly-profile",
+      "status": "ready",
+      "source_artwork": "sources/P1027.png",
+      "transparent_background": false,
+      "variants": [
+        "P1027-CS"
+      ]
+    },
+    {
+      "code": "P1028",
+      "title_en": "Blue-Haired Comic Lady",
+      "title_es": "Dama comic de cabello azul",
+      "slug": "pop-art-28-blue-haired-comic-lady",
+      "status": "ready",
+      "source_artwork": "sources/P1028.png",
+      "transparent_background": false,
+      "variants": [
+        "P1028-CS"
+      ]
+    },
+    {
+      "code": "P1029",
+      "title_en": "Apple Face Surreal Gentleman",
+      "title_es": "Caballero surrealista de la manzana",
+      "slug": "pop-art-29-apple-face-surreal-gentleman",
+      "status": "ready",
+      "source_artwork": "sources/P1029.png",
+      "transparent_background": false,
+      "variants": [
+        "P1029-CS"
+      ]
+    },
+    {
+      "code": "P1030",
+      "title_en": "Dark-Haired Glamour Lady",
+      "title_es": "Dama glam de cabello oscuro",
+      "slug": "pop-art-30-dark-haired-glamour-lady",
+      "status": "ready",
+      "source_artwork": "sources/P1030.png",
+      "transparent_background": false,
+      "variants": [
+        "P1030-CS"
+      ]
+    },
+    {
+      "code": "P1031",
+      "title_en": "Liberty Pop Icon",
+      "title_es": "Icono pop de la libertad",
+      "slug": "pop-art-31-liberty-pop-icon",
+      "status": "ready",
+      "source_artwork": "sources/P1031.png",
+      "transparent_background": false,
+      "variants": [
+        "P1031-CS"
+      ]
+    },
+    {
+      "code": "P1032",
+      "title_en": "Heart Glasses Cat",
+      "title_es": "Gato con gafas de corazón",
+      "slug": "pop-art-32-heart-glasses-cat",
+      "status": "ready",
+      "source_artwork": "sources/P1032.png",
+      "transparent_background": false,
+      "variants": [
+        "P1032-CS"
+      ]
+    },
+    {
+      "code": "P1033",
+      "title_en": "Shh Bob Hair Lady",
+      "title_es": "Dama bob haciendo silencio",
+      "slug": "pop-art-33-shh-bob-hair-lady",
+      "status": "ready",
+      "source_artwork": "sources/P1033.png",
+      "transparent_background": false,
+      "variants": [
+        "P1033-CS"
+      ]
+    },
+    {
+      "code": "P1034",
+      "title_en": "Red-Bearded Painter with Sunflowers",
+      "title_es": "Pintor pelirrojo con girasoles",
+      "slug": "pop-art-34-red-bearded-painter-with-sunflowers",
+      "status": "ready",
+      "source_artwork": "sources/P1034.png",
+      "transparent_background": false,
+      "variants": [
+        "P1034-CS"
+      ]
+    },
+    {
+      "code": "P1035",
+      "title_en": "Crying Blonde Comic",
+      "title_es": "Rubia comic llorando",
+      "slug": "pop-art-35-crying-blonde-comic",
+      "status": "ready",
+      "source_artwork": "sources/P1035.png",
+      "transparent_background": false,
+      "variants": [
+        "P1035-CS"
+      ]
+    },
+    {
+      "code": "P1036",
+      "title_en": "Elegant Profile Lady",
+      "title_es": "Dama elegante de perfil",
+      "slug": "pop-art-36-elegant-profile-lady",
+      "status": "ready",
+      "source_artwork": "sources/P1036.png",
+      "transparent_background": false,
+      "variants": [
+        "P1036-CS"
+      ]
+    },
+    {
+      "code": "P1037",
+      "title_en": "Bubble Gum Blonde Portrait",
+      "title_es": "Retrato de rubia con chicle",
+      "slug": "pop-art-37-bubble-gum-blonde-portrait",
+      "status": "ready",
+      "source_artwork": "sources/P1037.png",
+      "transparent_background": false,
+      "variants": [
+        "P1037-CS"
+      ]
+    },
+    {
+      "code": "P1038",
+      "title_en": "Sunglasses Rebel Man",
+      "title_es": "Hombre rebelde con gafas",
+      "slug": "pop-art-38-sunglasses-rebel-man",
+      "status": "ready",
+      "source_artwork": "sources/P1038.png",
+      "transparent_background": false,
+      "variants": [
+        "P1038-CS"
+      ]
+    },
+    {
+      "code": "P1039",
+      "title_en": "Egyptian Queen",
+      "title_es": "Reina egipcia",
+      "slug": "pop-art-39-egyptian-queen",
+      "status": "ready",
+      "source_artwork": "sources/P1039.png",
+      "transparent_background": false,
+      "variants": [
+        "P1039-CS"
+      ]
+    },
+    {
+      "code": "P1040",
+      "title_en": "Western Cowboy",
+      "title_es": "Vaquero del oeste",
+      "slug": "pop-art-40-western-cowboy",
+      "status": "ready",
+      "source_artwork": "sources/P1040.png",
+      "transparent_background": false,
+      "variants": [
+        "P1040-CS"
+      ]
+    },
+    {
+      "code": "P1041",
+      "title_en": "Heart Sunglasses Glam Blonde",
+      "title_es": "Rubia glam con gafas de corazón",
+      "slug": "pop-art-41-heart-sunglasses-glam-blonde",
+      "status": "ready",
+      "source_artwork": "sources/P1041.png",
+      "transparent_background": false,
+      "variants": [
+        "P1041-CS"
+      ]
+    },
+    {
+      "code": "P1042",
+      "title_en": "Round Glasses Rocker",
+      "title_es": "Rocker con gafas redondas",
+      "slug": "pop-art-42-round-glasses-rocker",
+      "status": "ready",
+      "source_artwork": "sources/P1042.png",
+      "transparent_background": false,
+      "variants": [
+        "P1042-CS"
+      ]
+    },
+    {
+      "code": "P1043",
+      "title_en": "Sunglasses Bulldog",
+      "title_es": "Bulldog con gafas",
+      "slug": "pop-art-43-sunglasses-bulldog",
+      "status": "ready",
+      "source_artwork": "sources/P1043.png",
+      "transparent_background": false,
+      "variants": [
+        "P1043-CS"
+      ]
+    },
+    {
+      "code": "P1044",
+      "title_en": "Winking Blonde",
+      "title_es": "Rubia guiñando un ojo",
+      "slug": "pop-art-44-winking-blonde",
+      "status": "ready",
+      "source_artwork": "sources/P1044.png",
+      "transparent_background": false,
+      "variants": [
+        "P1044-CS"
+      ]
+    },
+    {
+      "code": "P1045",
+      "title_en": "Polka Scarf Cat-Eye Lady",
+      "title_es": "Dama con pañuelo de lunares",
+      "slug": "pop-art-45-polka-scarf-cat-eye-lady",
+      "status": "ready",
+      "source_artwork": "sources/P1045.png",
+      "transparent_background": false,
+      "variants": [
+        "P1045-CS"
+      ]
+    },
+    {
+      "code": "P1046",
+      "title_en": "Comic Superhero",
+      "title_es": "Superhéroe comic",
+      "slug": "pop-art-46-comic-superhero",
+      "status": "ready",
+      "source_artwork": "sources/P1046.png",
+      "transparent_background": false,
+      "variants": [
+        "P1046-CS"
+      ]
+    },
+    {
+      "code": "P1047",
+      "title_en": "Warrior Heroine",
+      "title_es": "Heroína guerrera",
+      "slug": "pop-art-47-warrior-heroine",
+      "status": "ready",
+      "source_artwork": "sources/P1047.png",
+      "transparent_background": false,
+      "variants": [
+        "P1047-CS"
+      ]
+    },
+    {
+      "code": "P1048",
+      "title_en": "Young Rockabilly Man",
+      "title_es": "Joven rockabilly",
+      "slug": "pop-art-48-young-rockabilly-man",
+      "status": "ready",
+      "source_artwork": "sources/P1048.png",
+      "transparent_background": false,
+      "variants": [
+        "P1048-CS"
+      ]
+    },
+    {
+      "code": "P1049",
+      "title_en": "Hibiscus Glamour Lady",
+      "title_es": "Dama glam con hibisco",
+      "slug": "pop-art-49-hibiscus-glamour-lady",
+      "status": "ready",
+      "source_artwork": "sources/P1049.png",
+      "transparent_background": false,
+      "variants": [
+        "P1049-CS"
+      ]
+    },
+    {
+      "code": "P1050",
+      "title_en": "Oversized Sunglasses Fashion Lady",
+      "title_es": "Dama fashion con gafas grandes",
+      "slug": "pop-art-50-oversized-sunglasses-fashion-lady",
+      "status": "ready",
+      "source_artwork": "sources/P1050.png",
+      "transparent_background": false,
+      "variants": [
+        "P1050-CS"
+      ]
+    },
+    {
+      "code": "P1051",
+      "title_en": "Red-Haired Crying Comic",
+      "title_es": "Pelirroja comic llorando",
+      "slug": "pop-art-51-red-haired-crying-comic",
+      "status": "ready",
+      "source_artwork": "sources/P1051.png",
+      "transparent_background": false,
+      "variants": [
+        "P1051-CS"
+      ]
+    },
+    {
+      "code": "P1052",
+      "title_en": "Bubble Gum Blonde Profile",
+      "title_es": "Perfil rubio con chicle",
+      "slug": "pop-art-52-bubble-gum-blonde-profile",
+      "status": "ready",
+      "source_artwork": "sources/P1052.png",
+      "transparent_background": false,
+      "variants": [
+        "P1052-CS"
+      ]
+    },
+    {
+      "code": "P1053",
+      "title_en": "Afro Sunglasses Lady",
+      "title_es": "Dama afro con gafas",
+      "slug": "pop-art-53-afro-sunglasses-lady",
+      "status": "ready",
+      "source_artwork": "sources/P1053.png",
+      "transparent_background": false,
+      "variants": [
+        "P1053-CS"
+      ]
+    },
+    {
+      "code": "P1054",
+      "title_en": "Punk Rocker",
+      "title_es": "Rocker punk",
+      "slug": "pop-art-54-punk-rocker",
+      "status": "ready",
+      "source_artwork": "sources/P1054.png",
+      "transparent_background": false,
+      "variants": [
+        "P1054-CS"
+      ]
+    },
+    {
+      "code": "P1055",
+      "title_en": "Royal Blonde with Tiara",
+      "title_es": "Rubia real con tiara",
+      "slug": "pop-art-55-royal-blonde-with-tiara",
+      "status": "ready",
+      "source_artwork": "sources/P1055.png",
+      "transparent_background": false,
+      "variants": [
+        "P1055-CS"
+      ]
+    },
+    {
+      "code": "P1056",
+      "title_en": "Bearded Hat and Glasses Man",
+      "title_es": "Hombre barbudo con sombrero y gafas",
+      "slug": "pop-art-56-bearded-hat-and-glasses-man",
+      "status": "ready",
+      "source_artwork": "sources/P1056.png",
+      "transparent_background": false,
+      "variants": [
+        "P1056-CS"
+      ]
+    },
+    {
+      "code": "P1057",
+      "title_en": "POP Comic Burst",
+      "title_es": "Explosión comic POP",
+      "slug": "pop-art-57-pop-comic-burst",
+      "status": "ready",
+      "source_artwork": "sources/P1057.png",
+      "transparent_background": false,
+      "variants": [
+        "P1057-CS"
+      ]
+    },
+    {
+      "code": "P1058",
+      "title_en": "Tropical Flower Glamour Lady",
+      "title_es": "Dama glam con flor tropical",
+      "slug": "pop-art-58-tropical-flower-glamour-lady",
+      "status": "ready",
+      "source_artwork": "sources/P1058.png",
+      "transparent_background": false,
+      "variants": [
+        "P1058-CS"
+      ]
+    },
+    {
+      "code": "P1059",
+      "title_en": "Pop Art Tiger",
+      "title_es": "Tigre Pop Art",
+      "slug": "pop-art-59-pop-art-tiger",
+      "status": "ready",
+      "source_artwork": "sources/P1059.png",
+      "transparent_background": false,
+      "variants": [
+        "P1059-CS"
+      ]
+    },
+    {
+      "code": "P1060",
+      "title_en": "Pink Pop Lips",
+      "title_es": "Labios pop rosas",
+      "slug": "pop-art-60-pink-pop-lips",
+      "status": "ready",
+      "source_artwork": "sources/P1060.png",
+      "transparent_background": false,
+      "variants": [
+        "P1060-CS"
       ]
     }
   ]

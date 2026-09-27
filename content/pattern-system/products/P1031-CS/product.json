@@ -1,0 +1,22 @@
+{
+  "code": "P1031-CS",
+  "base_design_id": "P1031",
+  "technique_code": "CS",
+  "collection": "pop-art-25",
+  "title": "Liberty Pop Icon",
+  "title_en": "Liberty Pop Icon",
+  "title_es": "Icono pop de la libertad",
+  "design_slug": "pop-art-31-liberty-pop-icon",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/P1031-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "ready",
+  "render_ready": true,
+  "renderer": "multitech",
+  "source_artwork": "collections/pop-art-25/sources/P1031.png",
+  "page_1_asset": "multitech/assets/cover-cross-stitch.webp",
+  "palette_mode": "strict",
+  "palette_size": 30,
+  "transparent_source": false
+}

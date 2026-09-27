@@ -1,0 +1,22 @@
+{
+  "code": "P1006-CS",
+  "base_design_id": "P1006",
+  "technique_code": "CS",
+  "collection": "pop-art-25",
+  "title": "Crowned Royal Portrait",
+  "title_en": "Crowned Royal Portrait",
+  "title_es": "Retrato real con corona",
+  "design_slug": "pop-art-06-crowned-royal-portrait",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/P1006-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "ready",
+  "render_ready": true,
+  "renderer": "multitech",
+  "source_artwork": "collections/pop-art-25/sources/P1006.png",
+  "page_1_asset": "multitech/assets/cover-cross-stitch.webp",
+  "palette_mode": "strict",
+  "palette_size": 30,
+  "transparent_source": false
+}

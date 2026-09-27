@@ -1,0 +1,22 @@
+{
+  "code": "P1060-CS",
+  "base_design_id": "P1060",
+  "technique_code": "CS",
+  "collection": "pop-art-25",
+  "title": "Pink Pop Lips",
+  "title_en": "Pink Pop Lips",
+  "title_es": "Labios pop rosas",
+  "design_slug": "pop-art-60-pink-pop-lips",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/P1060-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "ready",
+  "render_ready": true,
+  "renderer": "multitech",
+  "source_artwork": "collections/pop-art-25/sources/P1060.png",
+  "page_1_asset": "multitech/assets/cover-cross-stitch.webp",
+  "palette_mode": "strict",
+  "palette_size": 30,
+  "transparent_source": false
+}

@@ -1,0 +1,22 @@
+{
+  "code": "P1027-CS",
+  "base_design_id": "P1027",
+  "technique_code": "CS",
+  "collection": "pop-art-25",
+  "title": "Rockabilly Profile",
+  "title_en": "Rockabilly Profile",
+  "title_es": "Perfil rockabilly",
+  "design_slug": "pop-art-27-rockabilly-profile",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/P1027-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "ready",
+  "render_ready": true,
+  "renderer": "multitech",
+  "source_artwork": "collections/pop-art-25/sources/P1027.png",
+  "page_1_asset": "multitech/assets/cover-cross-stitch.webp",
+  "palette_mode": "strict",
+  "palette_size": 30,
+  "transparent_source": false
+}

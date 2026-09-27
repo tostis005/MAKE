@@ -1,0 +1,22 @@
+{
+  "code": "P1035-CS",
+  "base_design_id": "P1035",
+  "technique_code": "CS",
+  "collection": "pop-art-25",
+  "title": "Crying Blonde Comic",
+  "title_en": "Crying Blonde Comic",
+  "title_es": "Rubia comic llorando",
+  "design_slug": "pop-art-35-crying-blonde-comic",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/P1035-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "ready",
+  "render_ready": true,
+  "renderer": "multitech",
+  "source_artwork": "collections/pop-art-25/sources/P1035.png",
+  "page_1_asset": "multitech/assets/cover-cross-stitch.webp",
+  "palette_mode": "strict",
+  "palette_size": 30,
+  "transparent_source": false
+}

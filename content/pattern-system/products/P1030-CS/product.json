@@ -1,0 +1,22 @@
+{
+  "code": "P1030-CS",
+  "base_design_id": "P1030",
+  "technique_code": "CS",
+  "collection": "pop-art-25",
+  "title": "Dark-Haired Glamour Lady",
+  "title_en": "Dark-Haired Glamour Lady",
+  "title_es": "Dama glam de cabello oscuro",
+  "design_slug": "pop-art-30-dark-haired-glamour-lady",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/P1030-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "ready",
+  "render_ready": true,
+  "renderer": "multitech",
+  "source_artwork": "collections/pop-art-25/sources/P1030.png",
+  "page_1_asset": "multitech/assets/cover-cross-stitch.webp",
+  "palette_mode": "strict",
+  "palette_size": 30,
+  "transparent_source": false
+}
