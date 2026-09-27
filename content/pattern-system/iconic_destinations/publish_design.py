@@ -659,7 +659,7 @@ def validate_outputs(base_id: str, design: dict, built: dict):
         raise RuntimeError(f"{code}: unexpected DMC colour count {len(pat.get('threads', []))}")
     pdf = STORE_FILES / f"Drielo_{code}.pdf"
     image = STORE_ASSETS / f"{code}-product.webp"
-    storefront = STORE_ASSETS / f"{code}-{design['slug']}-product.webp"
+    storefront = STORE_ASSETS / f"{code}-{design['slug']}-product-r{os.environ.get('GITHUB_RUN_ID', 'local')}.webp"
     if not pdf.is_file() or pdf.stat().st_size < 100000 or pdf.read_bytes()[:4] != b"%PDF":
         raise RuntimeError(f"{code}: invalid PDF")
     if not image.is_file() or image.stat().st_size < 30000:
