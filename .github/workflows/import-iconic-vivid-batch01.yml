@@ -5,7 +5,9 @@ on:
     branches:
       - iconic-batch01-conceptual-v2
     paths:
-      - 'content/pattern-system/collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip'
+      - '.github/vivid-batch01/*.png.b64'
+      - '.github/scripts/import_iconic_vivid_batch01.py'
+      - '.github/workflows/import-iconic-vivid-batch01.yml'
   workflow_dispatch:
 
 permissions:
@@ -19,7 +21,7 @@ concurrency:
 jobs:
   import-and-publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - name: Checkout vivid branch
         uses: actions/checkout@v4
@@ -34,10 +36,69 @@ jobs:
       - name: Install Pillow
         run: python3 -m pip install --disable-pip-version-check --quiet Pillow
 
+      - name: Decode exact vivid PNGs and build authoritative ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import base64, io, zipfile
+          from pathlib import Path
+          from PIL import Image
+
+          root = Path("content/pattern-system")
+          staged = Path(".github/vivid-batch01")
+          zpath = root / "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip"
+          zpath.parent.mkdir(parents=True, exist_ok=True)
+
+          mapping = [
+              ("01_torre_eiffel.png.b64",       "D0031-paris-eiffel-tower.png"),
+              ("02_big_ben.png.b64",            "D0032-london-big-ben.png"),
+              ("03_coliseo_roma.png.b64",       "D0033-rome-colosseum.png"),
+              ("04_estatua_libertad.png.b64",   "D0034-new-york-statue-liberty.png"),
+              ("05_taj_mahal.png.b64",          "D0035-taj-mahal.png"),
+              ("06_gran_muralla_china.png.b64", "D0036-great-wall-china.png"),
+              ("07_cristo_redentor.png.b64",    "D0037-rio-christ-redeemer.png"),
+              ("08_piramides_guiza.png.b64",    "D0038-pyramids-giza.png"),
+              ("09_opera_sidney.png.b64",       "D0039-sydney-opera-house.png"),
+              ("10_table_mountain.png.b64",     "D0046-cape-town-table-mountain.png"),
+          ]
+
+          decoded = []
+          for source_name, member_name in mapping:
+              source = staged / source_name
+              if not source.exists():
+                  raise SystemExit(f"Missing staged source: {source}")
+              raw = base64.b64decode(source.read_text(encoding="utf-8").strip(), validate=True)
+              with Image.open(io.BytesIO(raw)) as im:
+                  rgb = im.convert("RGB")
+                  colours = len(set(rgb.getdata()))
+                  if rgb.size != (100, 120):
+                      raise SystemExit(f"{member_name}: expected 100x120, got {rgb.size}")
+                  if colours != 50:
+                      raise SystemExit(f"{member_name}: expected exactly 50 colours, got {colours}")
+                  if im.format != "PNG":
+                      raise SystemExit(f"{member_name}: expected PNG, got {im.format}")
+              decoded.append((member_name, raw))
+              print(f"STAGED_VIVID_OK {member_name} size=100x120 colours=50")
+
+          with zipfile.ZipFile(zpath, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
+              for member_name, raw in decoded:
+                  zf.writestr(member_name, raw)
+
+          with zipfile.ZipFile(zpath, "r") as zf:
+              if zf.namelist() != [m for _, m in mapping]:
+                  raise SystemExit("Authoritative ZIP member order/set mismatch")
+              for member_name, raw in decoded:
+                  if zf.read(member_name) != raw:
+                      raise SystemExit(f"{member_name}: ZIP bytes differ from staged PNG")
+
+          print(f"VIVID_ZIP_READY path={zpath} members=10")
+          PY
+
       - name: Import exact vivid ZIP sources
         run: python3 .github/scripts/import_iconic_vivid_batch01.py
 
-      - name: Validate and persist vivid inputs
+      - name: Validate exact vivid source contract
         shell: bash
         run: |
           set -euo pipefail
@@ -45,29 +106,49 @@ jobs:
           import json, zipfile
           from pathlib import Path
           from PIL import Image
-          root=Path('content/pattern-system')
-          q=json.loads((root/'iconic_destinations'/'publish_queue.json').read_text())
-          pending=[x for x in q['items'] if x.get('status')=='pending']
-          if len(pending)!=10:
-              raise SystemExit(f'Expected 10 pending vivid items, got {len(pending)}')
-          zpath=root/q['source_zip']
-          with zipfile.ZipFile(zpath,'r') as zf:
+
+          root = Path("content/pattern-system")
+          queue = json.loads((root/"iconic_destinations"/"publish_queue.json").read_text())
+          designs = json.loads((root/"collections"/"iconic-destinations"/"designs.json").read_text())["designs"]
+          pending = [x for x in queue["items"] if x.get("status") == "pending"]
+
+          if queue.get("active_batch") != "batch-01-vivid-premium":
+              raise SystemExit(f"Wrong active batch: {queue.get('active_batch')}")
+          if queue.get("mode") != "direct-zip-png-vivid-batch-v5":
+              raise SystemExit(f"Wrong queue mode: {queue.get('mode')}")
+          if len(pending) != 10:
+              raise SystemExit(f"Expected 10 pending vivid items, got {len(pending)}")
+
+          zpath = root / queue["source_zip"]
+          with zipfile.ZipFile(zpath, "r") as zf:
               for row in pending:
-                  raw=zf.read(row['source_zip_member'])
-                  src=root/row['input_png']
+                  raw = zf.read(row["source_zip_member"])
+                  src = root / row["input_png"]
                   if raw != src.read_bytes():
-                      raise SystemExit(f"{row['base_design_id']}: ZIP/input mismatch")
+                      raise SystemExit(f"{row['base_design_id']}: ZIP/input byte mismatch")
                   with Image.open(src) as im:
-                      rgb=im.convert('RGB')
-                      if rgb.size!=(100,120):
-                          raise SystemExit(f"{row['base_design_id']}: wrong size")
-                      if len(set(rgb.getdata()))!=50:
-                          raise SystemExit(f"{row['base_design_id']}: palette is not exactly 50")
-          print('VIVID_BATCH01_VALID count=10 size=100x120 colours=50')
+                      rgb = im.convert("RGB")
+                      colours = len(set(rgb.getdata()))
+                      if rgb.size != (100,120):
+                          raise SystemExit(f"{row['base_design_id']}: wrong size {rgb.size}")
+                      if colours != 50:
+                          raise SystemExit(f"{row['base_design_id']}: expected 50 colours, got {colours}")
+                  design = next(d for d in designs if d["base_design_id"] == row["base_design_id"])
+                  if design.get("source_zip") != queue["source_zip"]:
+                      raise SystemExit(f"{row['base_design_id']}: design ZIP provenance mismatch")
+                  if design.get("source_style") != "vivid-premium-realistic-cross-stitch":
+                      raise SystemExit(f"{row['base_design_id']}: wrong source style")
+
+          print("VIVID_BATCH01_VALID count=10 size=100x120 colours=50")
           PY
+
+      - name: Persist vivid ZIP, PNGs and queue
+        shell: bash
+        run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add             content/pattern-system/collections/iconic-destinations/input-pngs-q50             content/pattern-system/collections/iconic-destinations/designs.json             content/pattern-system/iconic_destinations/publish_queue.json
+          git add             content/pattern-system/collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip             content/pattern-system/collections/iconic-destinations/input-pngs-q50             content/pattern-system/collections/iconic-destinations/designs.json             content/pattern-system/iconic_destinations/publish_queue.json
           git commit -m "Import vivid Iconic batch 01 sources [skip ci]"
           git pull --rebase origin iconic-batch01-conceptual-v2
           git push origin HEAD:iconic-batch01-conceptual-v2
