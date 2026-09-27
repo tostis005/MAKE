@@ -1325,12 +1325,13 @@
       "title_es": "Zanzibar Stone Town",
       "slug": "batch02-0105-zanzibar-stone-town",
       "input_png": "collections/iconic-destinations/input-pngs-q50/batch-02/iconic_045.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36317727433",
       "last_error": null,
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-02-90-q50.zip",
-      "source_zip_member": "iconic_045.png"
+      "source_zip_member": "iconic_045.png",
+      "published_at": "2026-09-27T12:04:57+00:00"
     },
     {
       "base_design_id": "D0106",
