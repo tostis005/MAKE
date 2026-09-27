@@ -1,0 +1,47 @@
+name: Replace Pop Art cover asset
+
+on:
+  push:
+    paths:
+      - ".github/workflows/replace-pop-art-cover.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  replace:
+    if: github.event.head_commit.message == 'Replace Pop Art cover asset'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download approved cover
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 --retry-delay 2 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-c76c-820e-8707-c75bd5f30a5e/raw?se=2026-09-27T06%3A35%3A00Z&sp=r&sv=2026-02-06&sr=b&scid=7f159acb-677b-56ba-a03f-585b778335e3&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-26T23%3A49%3A01Z&ske=2026-09-27T23%3A49%3A01Z&sks=b&skv=2026-02-06&sig=GKW59HDsaJtOGGRkQIOeGnHUnraK7%2BreGeYGcNwsDNo%3D'             -o content/products/assets/pop-art-25-collection-cover.webp
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path("content/products/assets/pop-art-25-collection-cover.webp")
+          b=p.read_bytes()
+          if len(b) < 300000:
+              raise SystemExit("Downloaded cover is unexpectedly small")
+          if not (b[:4] == b"RIFF" and b[8:12] == b"WEBP"):
+              raise SystemExit("Downloaded file is not WebP")
+          print("cover_bytes", len(b))
+          PY
+
+      - name: Commit replacement and clean workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/replace-pop-art-cover.yml
+          git add content/products/assets/pop-art-25-collection-cover.webp
+          git commit -m "Replace Pop Art cover without table reflection [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
