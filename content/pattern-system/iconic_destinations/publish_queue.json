@@ -431,12 +431,13 @@
       "title_es": "Cristo Redentor de Río",
       "slug": "rio-christ-redeemer",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_07.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36311010849",
       "last_error": null,
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
-      "source_zip_member": "D0037-rio-christ-redeemer.png"
+      "source_zip_member": "D0037-rio-christ-redeemer.png",
+      "published_at": "2026-09-27T09:59:11+00:00"
     },
     {
       "base_design_id": "D0038",
