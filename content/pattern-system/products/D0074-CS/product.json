@@ -1,0 +1,20 @@
+{
+  "code": "D0074-CS",
+  "base_design_id": "D0074",
+  "technique_code": "CS",
+  "collection": "iconic-destinations",
+  "title": "Kotor Bay",
+  "title_en": "Kotor Bay",
+  "title_es": "Kotor Bay",
+  "design_slug": "batch02-0074-kotor-bay",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/D0074-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "renderer": "multitech",
+  "source_artwork": null,
+  "page_1_asset": null,
+  "palette_mode": "per-design"
+}

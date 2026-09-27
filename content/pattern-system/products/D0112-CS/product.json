@@ -1,0 +1,20 @@
+{
+  "code": "D0112-CS",
+  "base_design_id": "D0112",
+  "technique_code": "CS",
+  "collection": "iconic-destinations",
+  "title": "Himeji Castle",
+  "title_en": "Himeji Castle",
+  "title_es": "Himeji Castle",
+  "design_slug": "batch02-0112-himeji-castle",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/D0112-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "renderer": "multitech",
+  "source_artwork": null,
+  "page_1_asset": null,
+  "palette_mode": "per-design"
+}

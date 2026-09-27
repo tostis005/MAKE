@@ -1,0 +1,20 @@
+{
+  "code": "D0123-CS",
+  "base_design_id": "D0123",
+  "technique_code": "CS",
+  "collection": "iconic-destinations",
+  "title": "Sedona Red Rocks",
+  "title_en": "Sedona Red Rocks",
+  "title_es": "Sedona Red Rocks",
+  "design_slug": "batch02-0123-sedona-red-rocks",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/D0123-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "renderer": "multitech",
+  "source_artwork": null,
+  "page_1_asset": null,
+  "palette_mode": "per-design"
+}

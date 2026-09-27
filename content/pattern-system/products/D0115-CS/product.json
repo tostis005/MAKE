@@ -1,0 +1,20 @@
+{
+  "code": "D0115-CS",
+  "base_design_id": "D0115",
+  "technique_code": "CS",
+  "collection": "iconic-destinations",
+  "title": "Luang Prabang Temple",
+  "title_en": "Luang Prabang Temple",
+  "title_es": "Luang Prabang Temple",
+  "design_slug": "batch02-0115-luang-prabang-temple",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/D0115-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "renderer": "multitech",
+  "source_artwork": null,
+  "page_1_asset": null,
+  "palette_mode": "per-design"
+}
