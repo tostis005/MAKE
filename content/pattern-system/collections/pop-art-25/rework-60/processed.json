@@ -1,8 +1,11 @@
 {
   "zip_sha256": "869feb22cdc3696494cd09da3d475565eafaf2a57ad72bb58d23f9359087cd50",
+  "background_sha256": "755a935d42e1afd7016e8d53c9c9dee02e270cebe52016866b41c5369d25bc43",
+  "background_source_commit": "0037e012802505f3366ebe50255071f63bb8b23a",
+  "background_asset": "content/products/assets/pop-art-25-collection-cover.webp",
   "gmail_message_id": "1a0e2264a0410f68",
   "github_source": "tmp/pop-art-60-upload/pop_art_60_png_100x120_exact30.zip",
-  "processed_at": "2026-09-27T10:02:16.095285+00:00",
+  "processed_at": "2026-09-27T11:29:04.166350+00:00",
   "design_count": 60,
   "product_count": 60,
   "tile_size": [

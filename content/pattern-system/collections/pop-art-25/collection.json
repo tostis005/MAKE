@@ -167,13 +167,14 @@
     "cross-stitch"
   ],
   "mockup_spec": {
-    "asset": "../../multitech/assets/cover-cross-stitch.webp",
+    "asset": "../../../products/assets/pop-art-25-collection-cover.webp",
     "technique_assets": {
-      "CS": "../../multitech/assets/cover-cross-stitch.webp"
+      "CS": "../../../products/assets/pop-art-25-collection-cover.webp"
     },
     "frame": {
       "enabled": false
-    }
+    },
+    "approved_background_source_commit": "0037e012802505f3366ebe50255071f63bb8b23a"
   },
   "preview_rules": {
     "palette_mode": "strict",
