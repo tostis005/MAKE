@@ -1,0 +1,93 @@
+name: Rebuild Pop Art 30-colour collection
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/rebuild-pop-art-30.yml"
+      - ".github/scripts/rebuild_pop_art_30.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-pop-art-30-rebuild
+  cancel-in-progress: false
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install rendering dependencies
+        run: |
+          python -m pip install --disable-pip-version-check --quiet Pillow playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Rebuild all Pop Art products
+        run: python .github/scripts/rebuild_pop_art_30.py
+
+      - name: Validate outputs
+        run: |
+          python content/pattern-system/renderer/validate_all.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+          root=Path("content/pattern-system")
+          collection=json.loads((root/"collections/pop-art-25/collection.json").read_text())
+          assert len(collection["palette"]) == 30
+          src=root/"collections/pop-art-25/sources"
+          pngs=sorted(src.glob("P*.png"))
+          assert len(pngs)==26
+          colours=set()
+          for p in pngs:
+              im=Image.open(p).convert("RGB")
+              assert im.size==(100,120)
+              colours.update(im.getdata())
+          assert len(colours)==30
+          cat=json.loads(Path("content/products/catalog.json").read_text())
+          rows=[p for p in cat["products"] if p.get("collection")=="pop-art-25"]
+          assert len(rows)==104
+          assert len({p["code"] for p in rows})==104
+          for p in rows:
+              assert (Path("content/products")/p["featured_image"]).is_file()
+              assert (Path("content/products")/p["download"]).is_file()
+              assert len(p.get("gallery",[]))==4
+          print("Validated 26 sources, 30 shared colours and 104 products.")
+          PY
+
+      - name: Commit regenerated collection
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/pattern-system/collections/pop-art-25
+          git add content/pattern-system/products/P0*-CS content/pattern-system/products/P0*-C2C content/pattern-system/products/P0*-TC content/pattern-system/products/P0*-LH
+          git add content/pattern-system/patterns/P0*-CS content/pattern-system/patterns/P0*-C2C content/pattern-system/patterns/P0*-TC content/pattern-system/patterns/P0*-LH
+          git add content/products/catalog.json
+          git add content/products/assets/P0*-product.webp content/products/assets/P0*-design.webp content/products/assets/P0*-gallery-2.webp content/products/assets/P0*-gallery-3.webp content/products/assets/P0*-gallery-4.webp
+          git add content/products/files/Drielo_P0*.pdf
+          if git diff --cached --quiet; then
+            echo "No generated changes."
+            exit 0
+          fi
+          git commit -m "Regenerate Pop Art from 100x120 30-colour sources [skip ci]"
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              exit 0
+            fi
+            if [ "$attempt" = "3" ]; then
+              exit 1
+            fi
+            sleep 8
+          done
