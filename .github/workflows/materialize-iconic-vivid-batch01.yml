@@ -1,0 +1,87 @@
+name: Materialize vivid Iconic batch 01 ZIP
+
+on:
+  push:
+    branches:
+      - iconic-batch01-conceptual-v2
+    paths:
+      - '.github/vivid-upload/part_09'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: drielo-iconic-vivid-materialize
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout vivid branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Pillow
+        run: python3 -m pip install --disable-pip-version-check --quiet Pillow
+
+      - name: Reconstruct exact ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(find .github/vivid-upload -maxdepth 1 -type f -name 'part_*' | wc -l)" -eq 10
+          cat .github/vivid-upload/part_* > /tmp/iconic-vivid.b64
+          base64 -d /tmp/iconic-vivid.b64 > content/pattern-system/collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip
+          python3 - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile
+          from PIL import Image
+          import io
+          p=Path('content/pattern-system/collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip')
+          expected=[
+            'D0031-paris-eiffel-tower.png',
+            'D0032-london-big-ben.png',
+            'D0033-rome-colosseum.png',
+            'D0034-new-york-statue-liberty.png',
+            'D0035-taj-mahal.png',
+            'D0036-great-wall-china.png',
+            'D0037-rio-christ-redeemer.png',
+            'D0038-pyramids-giza.png',
+            'D0039-sydney-opera-house.png',
+            'D0046-cape-town-table-mountain.png',
+          ]
+          with ZipFile(p) as z:
+              if z.namelist()!=expected:
+                  raise SystemExit(f'ZIP member mismatch: {z.namelist()}')
+              for name in expected:
+                  raw=z.read(name)
+                  with Image.open(io.BytesIO(raw)) as im:
+                      rgb=im.convert('RGB')
+                      colors=len(set(rgb.getdata()))
+                      if rgb.size!=(100,120) or colors!=50:
+                          raise SystemExit(f'{name}: size={rgb.size} colors={colors}')
+                      print(f'VALID {name} 100x120 50-colours')
+          print(f'ZIP_OK bytes={p.stat().st_size}')
+          PY
+
+      - name: Commit exact vivid ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf .github/vivid-upload
+          rm -f .github/vivid-batch01/01_torre_eiffel.png.b64
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A             content/pattern-system/collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip             .github/vivid-upload             .github/vivid-batch01 || true
+          git commit -m "Add approved vivid Iconic batch 01 ZIP [skip ci]"
+          git pull --rebase origin iconic-batch01-conceptual-v2
+          git push origin HEAD:iconic-batch01-conceptual-v2
