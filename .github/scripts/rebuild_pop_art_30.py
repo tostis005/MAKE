@@ -360,6 +360,9 @@ def main():
     spec.loader.exec_module(bulk)
 
     catalog = json.loads(CATALOG.read_text(encoding="utf-8"))
+    retired = set(catalog.get("retired_products", []))
+    retired.update({"DRIELO-P0001","DRIELO-P0012"})
+    catalog["retired_products"] = sorted(retired)
     new_rows = []
     tasks = []
 
