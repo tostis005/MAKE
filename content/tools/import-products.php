@@ -160,6 +160,24 @@ function drielo_media_from_file( string $path, string $source_key, string $title
     return (int) $attachment_id;
 }
 
+function drielo_existing_download( string $filename ): array {
+    if ( '' === $filename ) { return array(); }
+
+    $uploads = wp_upload_dir();
+    if ( ! empty( $uploads['error'] ) ) { return array(); }
+
+    $relative = 'woocommerce_uploads/drielo';
+    $destination = trailingslashit( $uploads['basedir'] ) . $relative . '/' . $filename;
+    if ( ! is_file( $destination ) || filesize( $destination ) < 1000 ) { return array(); }
+
+    $url = trailingslashit( $uploads['baseurl'] ) . $relative . '/' . rawurlencode( $filename );
+    $download = new WC_Product_Download();
+    $download->set_id( md5( $destination ) );
+    $download->set_name( $filename );
+    $download->set_file( $url );
+    return array( $download );
+}
+
 function drielo_install_download( string $source_path, string $filename ): array {
     if ( ! is_file( $source_path ) || filesize( $source_path ) < 1000 ) { return array(); }
 
@@ -270,6 +288,43 @@ foreach ( (array) ( $catalog['collections'] ?? array() ) as $collection ) {
     $collections[ $slug ] = $term_id;
 }
 
+$active_catalog_skus = array();
+foreach ( (array) ( $catalog['products'] ?? array() ) as $active_row ) {
+    $active_sku = sanitize_text_field( (string) ( $active_row['sku'] ?? '' ) );
+    if ( '' !== $active_sku ) { $active_catalog_skus[ $active_sku ] = true; }
+}
+
+// Pop Art is rebuilt as a replace-all collection. Remove any managed residue
+// assigned to the collection but absent from the current catalogue (for example
+// the legacy P1000 product), while leaving unmanaged/manual products untouched.
+if ( isset( $collections['pop-art-25'] ) ) {
+    $pop_art_ids = get_posts(
+        array(
+            'post_type'      => 'product',
+            'post_status'    => array( 'publish', 'draft', 'pending', 'private', 'future' ),
+            'posts_per_page' => -1,
+            'fields'         => 'ids',
+            'no_found_rows'  => true,
+            'tax_query'      => array(
+                array(
+                    'taxonomy' => 'product_collection',
+                    'field'    => 'term_id',
+                    'terms'    => array( (int) $collections['pop-art-25'] ),
+                ),
+            ),
+        )
+    );
+    foreach ( array_map( 'intval', $pop_art_ids ) as $pop_art_id ) {
+        if ( '1' !== (string) get_post_meta( $pop_art_id, '_drielo_managed_product', true ) ) { continue; }
+        $pop_art_product = wc_get_product( $pop_art_id );
+        $pop_art_sku = $pop_art_product instanceof WC_Product ? sanitize_text_field( (string) $pop_art_product->get_sku() ) : '';
+        if ( '' !== $pop_art_sku && ! isset( $active_catalog_skus[ $pop_art_sku ] ) ) {
+            wp_trash_post( $pop_art_id );
+            echo 'RETIRED STALE POP ART sku=' . $pop_art_sku . ' product_id=' . $pop_art_id . PHP_EOL;
+        }
+    }
+}
+
 $drielo_filter_term_names = array(
     'technique' => array('cross-stitch'=>'Cross Stitch','c2c-crochet'=>'C2C Crochet','tapestry-crochet'=>'Tapestry Crochet','latch-hook'=>'Latch Hook'),
     'theme' => array('people-portraits'=>'People & Portraits','animals'=>'Animals','flowers-botanicals'=>'Flowers & Botanicals','nature-landscapes'=>'Nature & Landscapes','architecture-places'=>'Architecture & Places','fantasy-surreal'=>'Fantasy & Surreal','kids'=>'Kids','food-drink'=>'Food & Drink','abstract-geometric'=>'Abstract & Geometric','holidays-seasons'=>'Holidays & Seasons'),
@@ -282,6 +337,12 @@ $drielo_filter_term_names = array(
 );
 
 $retired_product_skus = array_values( array_unique( array_filter( array_map( 'sanitize_text_field', (array) ( $catalog['retired_products'] ?? array() ) ) ) ) );
+$retired_product_skus = array_values(
+    array_filter(
+        $retired_product_skus,
+        static fn( $retired_sku ) => ! isset( $active_catalog_skus[ $retired_sku ] )
+    )
+);
 foreach ( $retired_product_skus as $retired_sku ) {
     $retired_id = wc_get_product_id_by_sku( $retired_sku );
     if ( ! $retired_id ) { continue; }
@@ -513,13 +574,19 @@ foreach ( (array) ( $catalog['products'] ?? array() ) as $row ) {
         $prepared_downloads = drielo_install_download( $download_abs, wp_basename( $download_abs ) );
         $product->set_stock_status( 'instock' );
     } else {
-        $existing_downloads = $existing_id ? $product->get_downloads() : array();
-        if ( ! empty( $existing_downloads ) ) {
-            $prepared_downloads = $existing_downloads;
+        $existing_protected = $download_rel ? drielo_existing_download( wp_basename( $download_rel ) ) : array();
+        if ( ! empty( $existing_protected ) ) {
+            $prepared_downloads = $existing_protected;
             $product->set_stock_status( 'instock' );
         } else {
-            $product->set_stock_status( 'outofstock' );
-            $pending++;
+            $existing_downloads = $existing_id ? $product->get_downloads() : array();
+            if ( ! empty( $existing_downloads ) ) {
+                $prepared_downloads = $existing_downloads;
+                $product->set_stock_status( 'instock' );
+            } else {
+                $product->set_stock_status( 'outofstock' );
+                $pending++;
+            }
         }
     }
 
