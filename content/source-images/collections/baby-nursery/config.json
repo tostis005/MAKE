@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "collection_id": "baby-nursery",
+  "product_size_px": [
+    100,
+    120
+  ],
+  "product_format": "png",
+  "background_mode": "single",
+  "background_directory": "background",
+  "product_directory": "products",
+  "filename_examples": [
+    "I0001-design-name.png"
+  ],
+  "legacy_background_fallbacks": [
+    "content/pattern-system/collections/baby-nursery/assets/cover-cross-stitch.jpg",
+    "content/pattern-system/collections/baby-nursery/assets/cover-c2c-crochet.jpg",
+    "content/pattern-system/collections/baby-nursery/assets/cover-crochet.jpg",
+    "content/pattern-system/collections/baby-nursery/assets/cover-rug.jpg"
+  ],
+  "notes": "New approved sources go here first. Legacy technique-specific backgrounds remain fallback until the collection is migrated to one canonical page-1 background."
+}
