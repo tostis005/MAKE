@@ -1,11 +1,11 @@
 {
   "zip_sha256": "869feb22cdc3696494cd09da3d475565eafaf2a57ad72bb58d23f9359087cd50",
-  "background_sha256": "030ddf87b8f243344efeaaf24bb3f5d5f74cc89138f9b21cd67a7196dc605bf7",
-  "background_source_commit": "0037e012802505f3366ebe50255071f63bb8b23a",
+  "background_sha256": "457be073d8103b73aacc602918c951344fdf2912380c8856f6761c111469772f",
+  "background_source_commit": "58e89fb2e14a02eca6ee7a3700a17cc099d21fed",
   "background_asset": "content/products/assets/pop-art-25-collection-cover.webp",
   "gmail_message_id": "1a0e2264a0410f68",
   "github_source": "tmp/pop-art-60-upload/pop_art_60_png_100x120_exact30.zip",
-  "processed_at": "2026-09-27T17:33:47.955530+00:00",
+  "processed_at": "2026-09-27T19:10:53.190221+00:00",
   "design_count": 60,
   "product_count": 60,
   "tile_size": [
@@ -13,7 +13,7 @@
     120
   ],
   "shared_palette_size": 30,
-  "deployed": true,
+  "deployed": false,
   "codes": [
     "P1001-CS",
     "P1002-CS",
