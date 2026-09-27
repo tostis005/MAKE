@@ -1,0 +1,55 @@
+name: Flush Drielo store cache once
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/flush-store-cache-once.yml'
+permissions:
+  contents: read
+jobs:
+  flush:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_cache_key
+          chmod 600 ~/.ssh/drielo_cache_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Flush WordPress and WooCommerce caches
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_cache_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=512M -r '
+            require "/var/www/html/wp-load.php";
+            if (function_exists("wc_delete_product_transients")) wc_delete_product_transients();
+            delete_transient("wc_products_onsale");
+            delete_transient("wc_featured_products");
+            wp_cache_flush();
+            if (function_exists("rocket_clean_domain")) rocket_clean_domain();
+            if (function_exists("w3tc_flush_all")) w3tc_flush_all();
+            if (function_exists("sg_cachepress_purge_cache")) sg_cachepress_purge_cache();
+            do_action("litespeed_purge_all");
+            echo "STORE_CACHE_FLUSHED".PHP_EOL;
+          '
+          REMOTE
