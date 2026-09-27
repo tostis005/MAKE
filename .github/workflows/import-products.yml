@@ -6,6 +6,8 @@ on:
     paths:
       - 'content/products/**'
       - 'content/tools/import-products.php'
+      - 'tmp/pop-art-60-upload/pop_art_60_png_100x120_exact30.zip'
+      - '.github/scripts/rebuild_pop_art_60.py'
       - '.github/workflows/import-products.yml'
   workflow_dispatch:
 
@@ -22,6 +24,19 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Rebuild Pop Art 60 from exact Gmail/GitHub source
+        shell: bash
+        run: |
+          set -euo pipefail
+          if python3 .github/scripts/rebuild_pop_art_60.py --needs-rebuild; then
+            echo "New Pop Art 60 source detected; rebuilding 60 exact 100x120 cross-stitch products."
+            python3 -m pip install --disable-pip-version-check --quiet Pillow playwright
+            python3 -m playwright install --with-deps chromium
+            python3 .github/scripts/rebuild_pop_art_60.py
+          else
+            echo "Pop Art 60 source already processed; keeping the current generated catalogue."
+          fi
 
       - name: Fetch private product PDFs
         shell: bash
@@ -141,6 +156,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add content/products/assets content/products/catalog.json
+          git add content/pattern-system/collections/pop-art-25
+          git add content/pattern-system/products/P1*-CS content/pattern-system/patterns/P1*-CS 2>/dev/null || true
+          git add -u content/pattern-system/products content/pattern-system/patterns
+          git add -u content/products/files
           if git diff --cached --quiet; then
             echo "No generated gallery asset changes to persist."
           else
@@ -284,7 +303,7 @@ jobs:
               raise SystemExit('Drielo shop template is not being rendered')
           if product_links < 1:
               raise SystemExit('Public shop contains no product links')
-          if 'P0001-CS-product' not in html:
-              raise SystemExit('Current P0001 product image is not rendered in the public shop')
+          if 'P1001-CS-product' not in html:
+              raise SystemExit('Current P1001 Pop Art product image is not rendered in the public shop')
           PY
 
