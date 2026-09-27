@@ -538,12 +538,13 @@
       "title_es": "Montaña de la Mesa de Ciudad del Cabo",
       "slug": "cape-town-table-mountain",
       "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_06.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36303629733",
       "last_error": null,
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
-      "source_zip_member": "D0046-cape-town-table-mountain.png"
+      "source_zip_member": "D0046-cape-town-table-mountain.png",
+      "published_at": "2026-09-27T07:38:07+00:00"
     },
     {
       "base_design_id": "D0047",
