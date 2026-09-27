@@ -1,0 +1,246 @@
+name: Import and publish Iconic vivid final batch
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [iconic-batch01-conceptual-v2]
+    paths:
+      - 'content/pattern-system/collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip'
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: drielo-iconic-vivid-final-import
+  cancel-in-progress: false
+
+jobs:
+  import-purge-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout vivid branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Stop existing Iconic publisher runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          for STATE in queued in_progress; do
+            gh run list               --repo "${GITHUB_REPOSITORY}"               --workflow iconic-destinations-auto-publish.yml               --status "$STATE"               --limit 50               --json databaseId               --jq '.[].databaseId' | while read -r RUN; do
+                [ -z "$RUN" ] || gh run cancel --repo "${GITHUB_REPOSITORY}" "$RUN" || true
+              done
+          done
+          sleep 6
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_products_key
+          chmod 600 ~/.ssh/drielo_products_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Purge old Iconic Destinations products
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_products_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $term = get_term_by("slug", "iconic-destinations", "product_collection");
+            if (!$term instanceof WP_Term) {
+              echo "ICONIC_COLLECTION_NOT_FOUND".PHP_EOL;
+              exit(2);
+            }
+            $args = array(
+              "post_type" => "product",
+              "post_status" => array("publish","draft","pending","private","future","trash"),
+              "posts_per_page" => -1,
+              "fields" => "ids",
+              "no_found_rows" => true,
+              "tax_query" => array(array(
+                "taxonomy" => "product_collection",
+                "field" => "term_id",
+                "terms" => array((int)$term->term_id)
+              ))
+            );
+            $ids = array_map("intval", get_posts($args));
+            echo "ICONIC_PRODUCTS_FOUND=".count($ids).PHP_EOL;
+            $deleted = 0;
+            foreach ($ids as $id) {
+              $p = wc_get_product($id);
+              $sku = $p instanceof WC_Product ? (string)$p->get_sku() : "";
+              if (!wp_delete_post($id, true)) {
+                echo "ERROR_DELETE_FAILED product_id=".$id." sku=".$sku.PHP_EOL;
+                exit(3);
+              }
+              echo "DELETED_ICONIC product_id=".$id." sku=".$sku.PHP_EOL;
+              $deleted++;
+            }
+            clean_term_cache((int)$term->term_id, "product_collection");
+            wc_delete_product_transients();
+            $remaining = array_map("intval", get_posts($args));
+            echo "ICONIC_PRODUCTS_DELETED=".$deleted.PHP_EOL;
+            echo "ICONIC_PRODUCTS_REMAINING=".count($remaining).PHP_EOL;
+            if ($remaining) exit(4);
+            echo "ICONIC_PRODUCTS_PURGE_COMPLETE".PHP_EOL;
+          '
+          REMOTE
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Pillow
+        run: python3 -m pip install --disable-pip-version-check --quiet Pillow
+
+      - name: Import exact vivid PNGs from ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import io, json, zipfile
+          from PIL import Image
+
+          root = Path("content/pattern-system")
+          col = root / "collections" / "iconic-destinations"
+          assets = col / "assets"
+          inputs = col / "input-pngs-q50"
+          designs_path = col / "designs.json"
+          queue_path = root / "iconic_destinations" / "publish_queue.json"
+          zip_rel = "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip"
+          zip_path = root / zip_rel
+
+          mapping = [
+            ("D0031","01_torre_eiffel.png","destino_04_01.png"),
+            ("D0032","02_big_ben.png","destino_04_02.png"),
+            ("D0033","03_coliseo_roma.png","destino_04_03.png"),
+            ("D0034","04_estatua_libertad.png","destino_04_04.png"),
+            ("D0035","05_taj_mahal.png","destino_04_05.png"),
+            ("D0036","06_gran_muralla_china.png","destino_04_06.png"),
+            ("D0037","07_cristo_redentor.png","destino_04_07.png"),
+            ("D0038","08_piramides_guiza.png","destino_04_08.png"),
+            ("D0039","09_opera_sidney.png","destino_04_09.png"),
+            ("D0046","10_table_mountain.png","destino_05_06.png"),
+          ]
+          inputs.mkdir(parents=True, exist_ok=True)
+
+          with zipfile.ZipFile(zip_path, "r") as zf:
+            names = set(zf.namelist())
+            expected = {m for _,m,_ in mapping}
+            missing = expected - names
+            if missing:
+              raise SystemExit(f"Missing ZIP members: {sorted(missing)}")
+            for design_id, member, input_name in mapping:
+              raw = zf.read(member)
+              with Image.open(io.BytesIO(raw)) as im:
+                rgb = im.convert("RGB")
+                colours = len(set(rgb.getdata()))
+                if rgb.size != (100,120):
+                  raise SystemExit(f"{design_id}: wrong size {rgb.size}")
+                if colours != 50:
+                  raise SystemExit(f"{design_id}: expected exactly 50 colours, got {colours}")
+              target = inputs / input_name
+              target.write_bytes(raw)
+              if target.read_bytes() != raw:
+                raise SystemExit(f"{design_id}: extracted bytes differ from ZIP member")
+              print(f"VIVID_SOURCE_OK {design_id} 100x120 colours=50 member={member}")
+
+          designs = json.loads(designs_path.read_text(encoding="utf-8"))
+          designs["source_policy"] = "individual-pngs-from-approved-clean-batch-zips-only"
+          by_id = {x["base_design_id"]: x for x in designs["designs"]}
+          for design_id, member, input_name in mapping:
+            rel = f"collections/iconic-destinations/input-pngs-q50/{input_name}"
+            d = by_id[design_id]
+            d.update({
+              "input_png": rel,
+              "source_asset": rel,
+              "source_zip": zip_rel,
+              "source_zip_member": member,
+              "artwork_status": "approved-vivid-commercial-zip-png-100x120-q50",
+              "source_style": "conceptual-vivid-commercial-cross-stitch",
+              "source_colour_count": 50,
+              "palette_mode": "per-design",
+              "palette_status": "ready-for-direct-png-dmc-map",
+              "target_master_grid": {"width":100,"height":120,"max_long_side_stitches":120},
+              "target_chart_pages": 4
+            })
+            for key in ("source_reference_file","source_reference_license","source_pdf","source_pdf_page",
+                        "reference_board","planned_source_asset","preview_mosaic","mosaic_source",
+                        "mosaic_crop","board_source"):
+              d.pop(key, None)
+          designs_path.write_text(json.dumps(designs, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
+
+          queue = json.loads(queue_path.read_text(encoding="utf-8"))
+          active = {x[0] for x in mapping}
+          queue["mode"] = "direct-zip-png-vivid-final-v5"
+          queue["auto_continue"] = True
+          queue["active_batch"] = "batch-01-vivid-final"
+          queue["source_zip"] = zip_rel
+          queue["notes"] = [
+            "Authoritative source is the uploaded vivid ZIP; images are not regenerated.",
+            "Each PNG is exactly 100x120 and exactly 50 colours.",
+            "ZIP member bytes must equal the extracted input PNG bytes.",
+            "All old Iconic Destinations products are purged before republishing."
+          ]
+          for row in queue["items"]:
+            if row["base_design_id"] in active:
+              design_id, member, input_name = next(x for x in mapping if x[0] == row["base_design_id"])
+              row.update({
+                "input_png": f"collections/iconic-destinations/input-pngs-q50/{input_name}",
+                "source_zip": zip_rel,
+                "source_zip_member": member,
+                "status": "pending",
+                "attempts": 0,
+                "last_run": None,
+                "last_error": None,
+              })
+            else:
+              row["status"] = "held"
+          queue_path.write_text(json.dumps(queue, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
+          print("VIVID_BATCH_READY pending=10 held=50")
+          PY
+
+      - name: Persist exact vivid sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add             content/pattern-system/collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip             content/pattern-system/collections/iconic-destinations/input-pngs-q50             content/pattern-system/collections/iconic-destinations/designs.json             content/pattern-system/iconic_destinations/publish_queue.json
+          git commit -m "Import exact vivid Iconic batch 01 [skip ci]" || true
+          git pull --rebase origin iconic-batch01-conceptual-v2
+          git push origin HEAD:iconic-batch01-conceptual-v2
+
+      - name: Start WooCommerce publication queue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api --method POST             "repos/${GITHUB_REPOSITORY}/actions/workflows/iconic-destinations-auto-publish.yml/dispatches"             -f ref=iconic-batch01-conceptual-v2
+          echo "VIVID_ICONIC_PUBLICATION_STARTED"
