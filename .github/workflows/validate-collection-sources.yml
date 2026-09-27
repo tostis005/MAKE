@@ -1,0 +1,51 @@
+name: Validate collection image sources
+
+on:
+  workflow_dispatch:
+    inputs:
+      collection:
+        description: Collection source folder
+        required: true
+        type: choice
+        options:
+          - baby-nursery
+          - iconic-destinations
+          - pop-art-25
+          - animals
+      product:
+        description: Optional base code or filename stem; blank validates the whole collection
+        required: false
+        type: string
+      require_background:
+        description: Require the canonical background to be present already
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install image validator
+        run: python3 -m pip install --disable-pip-version-check --quiet Pillow
+
+      - name: Validate selected canonical sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          args=(
+            --collection "${{ inputs.collection }}"
+          )
+          if [ -n "${{ inputs.product }}" ]; then
+            args+=(--product "${{ inputs.product }}")
+          fi
+          if [ "${{ inputs.require_background }}" = "true" ]; then
+            args+=(--require-background)
+          fi
+          python3 .github/scripts/validate_collection_sources.py "${args[@]}"
