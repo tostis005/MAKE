@@ -5,7 +5,7 @@ on:
     branches:
       - iconic-batch01-conceptual-v2
     paths:
-      - '.github/vivid-upload/part_09'
+      - '.github/vivid-upload22/part_04'
   workflow_dispatch:
 
 permissions:
@@ -38,8 +38,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test "$(find .github/vivid-upload -maxdepth 1 -type f -name 'part_*' | wc -l)" -eq 10
-          cat .github/vivid-upload/part_* > /tmp/iconic-vivid.b64
+          test "$(find .github/vivid-upload2 -maxdepth 1 -type f -name 'part_*' | wc -l)" -eq 5
+          cat .github/vivid-upload2/part_* > /tmp/iconic-vivid.b64
           base64 -d /tmp/iconic-vivid.b64 > content/pattern-system/collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip
           python3 - <<'PY'
           from pathlib import Path
@@ -98,7 +98,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf .github/vivid-upload
+          rm -rf .github/vivid-upload2
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A             content/pattern-system/collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip             content/pattern-system/collections/iconic-destinations/input-pngs-q50             content/pattern-system/collections/iconic-destinations/designs.json             content/pattern-system/iconic_destinations/publish_queue.json             .github/vivid-upload
