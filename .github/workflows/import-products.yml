@@ -274,14 +274,30 @@ jobs:
             require "/var/www/html/wp-load.php";
             $ids=get_posts(array("post_type"=>"product","post_status"=>"publish","posts_per_page"=>-1,"fields"=>"ids","meta_key"=>"_drielo_managed_product","meta_value"=>"1"));
             echo "DRIELO_PRODUCTS=" . count($ids) . PHP_EOL;
+            $pop=array();
             foreach ($ids as $id) {
               $p=wc_get_product($id);
+              if (!$p) { continue; }
+              $sku=(string)$p->get_sku();
               $theme=wp_get_object_terms($id,"pa_theme",array("fields"=>"slugs"));
               $style=wp_get_object_terms($id,"pa_style",array("fields"=>"slugs"));
               $color=wp_get_object_terms($id,"pa_color-family",array("fields"=>"slugs"));
-              echo $p->get_sku() . " id=" . $id . " status=" . $p->get_status() . " stock=" . $p->get_stock_status() . " images=" . (1+count($p->get_gallery_image_ids())) . " downloads=" . count($p->get_downloads()) . " theme=" . implode(",",is_wp_error($theme)?array():$theme) . " style=" . implode(",",is_wp_error($style)?array():$style) . " color=" . implode(",",is_wp_error($color)?array():$color) . " url=" . get_permalink($id) . PHP_EOL;
+              $images=1+count($p->get_gallery_image_ids());
+              $downloads=count($p->get_downloads());
+              echo $sku . " id=" . $id . " status=" . $p->get_status() . " stock=" . $p->get_stock_status() . " images=" . $images . " downloads=" . $downloads . " theme=" . implode(",",is_wp_error($theme)?array():$theme) . " style=" . implode(",",is_wp_error($style)?array():$style) . " color=" . implode(",",is_wp_error($color)?array():$color) . " url=" . get_permalink($id) . PHP_EOL;
               if (is_wp_error($theme) || empty($theme) || is_wp_error($style) || empty($style) || is_wp_error($color) || empty($color)) { fwrite(STDERR,"Missing Drielo filter taxonomy for product " . $id . PHP_EOL); exit(2); }
+              if (preg_match("/^DRIELO-P10(?:0[1-9]|[1-5][0-9]|60)-CS$/",$sku)) {
+                $pop[$sku]=true;
+                if ("instock" !== $p->get_stock_status()) { fwrite(STDERR,"Pop Art out of stock: ".$sku.PHP_EOL); exit(3); }
+                if ($downloads < 1) { fwrite(STDERR,"Pop Art missing PDF: ".$sku.PHP_EOL); exit(4); }
+                if ($images < 5) { fwrite(STDERR,"Pop Art missing gallery images: ".$sku." images=".$images.PHP_EOL); exit(5); }
+              }
+              if ("DRIELO-P1000-CS" === $sku) { fwrite(STDERR,"Legacy Pop Art P1000 residue still published".PHP_EOL); exit(6); }
             }
+            if (count($pop)!==60) { fwrite(STDERR,"Expected exactly 60 Pop Art products, got ".count($pop).PHP_EOL); exit(7); }
+            $popterm=get_term_by("slug","pop-art-25","product_collection");
+            if (!$popterm || (int)$popterm->count!==60) { fwrite(STDERR,"Expected Pop Art collection count 60".PHP_EOL); exit(8); }
+            echo "POP_ART_VERIFIED=60" . PHP_EOL;
             $terms=get_terms(array("taxonomy"=>"product_collection","hide_empty"=>false));
             if (!is_wp_error($terms)) foreach($terms as $t) echo "COLLECTION=" . $t->slug . " count=" . $t->count . " url=" . get_term_link($t) . PHP_EOL;
           '
@@ -295,20 +311,22 @@ jobs:
           set -euo pipefail
           python3 - <<'PY'
           import re, urllib.request
-          url = 'https://drielo.com/tienda/?drielo_check=1'
-          req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-          with urllib.request.urlopen(req, timeout=60) as r:
-              html = r.read().decode('utf-8', 'replace')
-          product_links = len(set(re.findall(r'/(?:producto|tienda)/[a-z0-9-]+/?', html)))
-          print('SHOP_PRODUCT_LINKS=' + str(product_links))
-          if 'wp-block-woocommerce-coming-soon' in html:
-              raise SystemExit('WooCommerce storefront is still in Coming Soon mode')
-          if 'shop-hero' not in html or 'drielo-shop-views' not in html:
-              raise SystemExit('Drielo shop template is not being rendered')
-          if product_links < 1:
-              raise SystemExit('Public shop contains no product links')
-          if 'P1001-CS-product' not in html:
-              raise SystemExit('Current P1001 Pop Art product image is not rendered in the public shop')
+          shop_url = 'https://drielo.com/tienda/?drielo_check=1'
+          pop_url = 'https://drielo.com/tienda/coleccion/pop-art/?drielo_check=1'
+          for label,url in [('SHOP',shop_url),('POP_ART',pop_url)]:
+              req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+              with urllib.request.urlopen(req, timeout=60) as r:
+                  html = r.read().decode('utf-8', 'replace')
+              product_links = len(set(re.findall(r'/(?:producto|tienda)/[a-z0-9-]+/?', html)))
+              print(label + '_PRODUCT_LINKS=' + str(product_links))
+              if 'wp-block-woocommerce-coming-soon' in html:
+                  raise SystemExit(label + ': WooCommerce storefront is still in Coming Soon mode')
+              if product_links < 1:
+                  raise SystemExit(label + ': public page contains no product links')
+              if label == 'SHOP' and ('shop-hero' not in html or 'drielo-shop-views' not in html):
+                  raise SystemExit('Drielo shop template is not being rendered')
+              if label == 'POP_ART' and 'Pop Art' not in html:
+                  raise SystemExit('Pop Art collection page is not being rendered')
           PY
 
 
