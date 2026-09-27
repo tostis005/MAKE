@@ -1,0 +1,133 @@
+name: Stage and deploy Baby Nursery cover
+
+on:
+  push:
+    paths:
+      - ".github/workflows/stage-baby-nursery-cover.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    if: github.event.head_commit.message == 'Stage Baby Nursery cover bridge'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download Gmail attachment and update catalogue
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p content/products/assets
+          curl --fail --location --retry 3 --retry-delay 2 \
+            'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-5734-820e-869a-38d0eba31c97/raw?se=2026-09-27T06%3A27%3A46Z&sp=r&sv=2026-02-06&sr=b&scid=d816733f-abc1-5f60-bf83-5523f97b037d&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-26T13%3A23%3A40Z&ske=2026-09-27T13%3A23%3A40Z&sks=b&skv=2026-02-06&sig=pxsxtjXARl/Ta0GIwh4wgA0jwZzB4UqJ7iHR6uVZ0VA%3D' \
+            -o content/products/assets/baby-nursery-collection-cover.png
+          test -s content/products/assets/baby-nursery-collection-cover.png
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          p = Path("content/products/assets/baby-nursery-collection-cover.png")
+          if p.read_bytes()[:8] != b"\x89PNG\r\n\x1a\n":
+              raise SystemExit("Downloaded file is not a PNG")
+          if p.stat().st_size < 1000000:
+              raise SystemExit("Downloaded PNG is unexpectedly small")
+          catalog = Path("content/products/catalog.json")
+          data = json.loads(catalog.read_text(encoding="utf-8"))
+          for c in data.get("collections", []):
+              if c.get("slug") == "baby-nursery":
+                  c["cover_asset"] = "assets/baby-nursery-collection-cover.png"
+                  break
+          else:
+              raise SystemExit("Baby & Nursery collection not found")
+          catalog.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+          PY
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_baby_cover_key
+          chmod 600 ~/.ssh/drielo_baby_cover_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Upload cover to production host
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          scp -i ~/.ssh/drielo_baby_cover_key \
+            content/products/assets/baby-nursery-collection-cover.png \
+            "$VPS_USER@$VPS_HOST:/tmp/baby-nursery-collection-cover-${GITHUB_RUN_ID}.png"
+
+      - name: Apply cover in WooCommerce
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_baby_cover_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          HOST_FILE="/tmp/baby-nursery-collection-cover-${GITHUB_RUN_ID}.png"
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          "${DOCKER[@]}" cp "$HOST_FILE" make-wp:/tmp/baby-nursery-collection-cover.png
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $term = get_term_by("slug", "baby-nursery", "product_collection");
+            if (!($term instanceof WP_Term)) { fwrite(STDERR, "Baby & Nursery collection term not found\n"); exit(2); }
+            $src = "/tmp/baby-nursery-collection-cover.png";
+            if (!is_file($src) || filesize($src) < 1000000) { fwrite(STDERR, "Cover source missing or too small\n"); exit(3); }
+            $uploads = wp_upload_dir();
+            if (!empty($uploads["error"])) { fwrite(STDERR, $uploads["error"] . "\n"); exit(4); }
+            $filename = "baby-nursery-collection-cover-" . gmdate("YmdHis") . ".png";
+            $dest = trailingslashit($uploads["path"]) . $filename;
+            if (!copy($src, $dest)) { fwrite(STDERR, "Could not copy cover into uploads\n"); exit(5); }
+            $filetype = wp_check_filetype($filename, null);
+            $attachment = array(
+              "post_mime_type" => !empty($filetype["type"]) ? $filetype["type"] : "image/png",
+              "post_title" => "Baby & Nursery collection cover",
+              "post_content" => "",
+              "post_status" => "inherit"
+            );
+            $id = wp_insert_attachment($attachment, $dest);
+            if (is_wp_error($id)) { fwrite(STDERR, $id->get_error_message() . "\n"); exit(6); }
+            require_once ABSPATH . "wp-admin/includes/image.php";
+            $meta = wp_generate_attachment_metadata($id, $dest);
+            if (is_array($meta)) { wp_update_attachment_metadata($id, $meta); }
+            update_term_meta($term->term_id, "drielo_collection_cover_id", (int) $id);
+            clean_term_cache($term->term_id, "product_collection");
+            echo "BABY_TERM_ID=" . $term->term_id . "\n";
+            echo "COVER_ATTACHMENT_ID=" . $id . "\n";
+            echo "COVER_URL=" . wp_get_attachment_url($id) . "\n";
+            echo "COVER_META=" . get_term_meta($term->term_id, "drielo_collection_cover_id", true) . "\n";
+          '
+          "${DOCKER[@]}" exec make-wp rm -f /tmp/baby-nursery-collection-cover.png
+          rm -f "$HOST_FILE"
+          REMOTE
+
+      - name: Commit permanent GitHub asset and clean bridge
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/stage-baby-nursery-cover.yml
+          git add content/products/assets/baby-nursery-collection-cover.png content/products/catalog.json
+          git commit -m "Update Baby Nursery collection cover [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
