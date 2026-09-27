@@ -24,7 +24,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          SOURCE_COMMIT="17d542824efea616cd20d84444d5ba4f3580df78"
+          SOURCE_COMMIT="58e89fb2e14a02eca6ee7a3700a17cc099d21fed"
           ASSET="content/products/assets/pop-art-25-collection-cover.webp"
           git cat-file -e "$SOURCE_COMMIT:$ASSET"
           git checkout "$SOURCE_COMMIT" -- "$ASSET"
