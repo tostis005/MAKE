@@ -1,0 +1,180 @@
+name: Build Pop Art 30-colour mosaic
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/build-pop-art-30-mosaic.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build exact 100x120 designs and shared 30-colour mosaic
+        shell: python
+        run: |
+          from pathlib import Path
+          from PIL import Image
+          import numpy as np
+          import colorsys, json, shutil
+
+          ROOT = Path.cwd()
+          ASSETS = ROOT / "content" / "products" / "assets"
+          OUT = ROOT / "tmp" / "pop-art-rework-30"
+          PATTERNS = OUT / "patterns"
+          if OUT.exists():
+              shutil.rmtree(OUT)
+          PATTERNS.mkdir(parents=True, exist_ok=True)
+
+          sources = []
+          for i in range(1, 21):
+              p = ASSETS / f"P{i:04d}-gallery-2.webp"
+              if not p.exists():
+                  raise SystemExit(f"Missing existing collection image: {p}")
+              sources.append(p)
+
+          def fit_aspect(box, maxw, maxh, target=100/120):
+              x0,y0,x1,y1 = map(float, box)
+              cx,cy=(x0+x1)/2,(y0+y1)/2
+              w,h=x1-x0,y1-y0
+              w*=1.03; h*=1.03
+              if w/h > target:
+                  h=w/target
+              else:
+                  w=h*target
+              x0=max(0,cx-w/2); x1=min(maxw,cx+w/2)
+              y0=max(0,cy-h/2); y1=min(maxh,cy+h/2)
+              # Re-expand after clamping while preserving target as much as possible.
+              w=x1-x0; h=y1-y0
+              if w/h > target:
+                  need=w/target
+                  extra=need-h
+                  y0=max(0,y0-extra/2); y1=min(maxh,y1+extra/2)
+              else:
+                  need=h*target
+                  extra=need-w
+                  x0=max(0,x0-extra/2); x1=min(maxw,x1+extra/2)
+              return tuple(map(int,(round(x0),round(y0),round(x1),round(y1))))
+
+          def extract_design(path):
+              im=Image.open(path).convert("RGB")
+              w,h=im.size
+              # Existing finished-design pages all place the real pattern in this central white panel.
+              panel=im.crop((round(w*0.09), round(h*0.19), round(w*0.91), round(h*0.855)))
+              a=np.asarray(panel).astype(np.int16)
+              ph,pw=a.shape[:2]
+
+              # Estimate the white fabric/background from panel corners.
+              s=max(4,min(ph,pw)//16)
+              corners=np.concatenate([
+                  a[:s,:s].reshape(-1,3), a[:s,-s:].reshape(-1,3),
+                  a[-s:,:s].reshape(-1,3), a[-s:,-s:].reshape(-1,3)
+              ],axis=0)
+              bg=np.median(corners,axis=0)
+              diff=np.sqrt(((a-bg)**2).sum(axis=2))
+              chroma=a.max(axis=2)-a.min(axis=2)
+              dark=a.mean(axis=2) < 238
+              mask=(diff>18) | (chroma>14) | dark
+
+              # Ignore tiny isolated page/grid noise by requiring meaningful occupancy per row/column.
+              col=mask.sum(axis=0)
+              row=mask.sum(axis=1)
+              xs=np.where(col >= max(3, int(ph*0.008)))[0]
+              ys=np.where(row >= max(3, int(pw*0.008)))[0]
+              if len(xs)<10 or len(ys)<10:
+                  # Conservative fallback: center crop of the panel.
+                  box=(int(pw*0.10), int(ph*0.05), int(pw*0.90), int(ph*0.95))
+              else:
+                  box=(xs[0],ys[0],xs[-1]+1,ys[-1]+1)
+
+              box=fit_aspect(box,pw,ph)
+              art=panel.crop(box)
+              # Exact stitch-image dimensions requested.
+              return art.resize((100,120), Image.Resampling.BOX)
+
+          tiles=[extract_design(p) for p in sources]
+
+          # One global image -> one indexed quantisation -> one shared palette for every tile.
+          strip=Image.new("RGB",(100*len(tiles),120),"white")
+          for i,t in enumerate(tiles):
+              strip.paste(t,(i*100,0))
+          indexed=strip.quantize(colors=30, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE)
+          used=sorted(set(indexed.getdata()))
+          if len(used) != 30:
+              raise SystemExit(f"Expected exactly 30 global colour indexes, got {len(used)}")
+
+          oldpal=indexed.getpalette()
+          oldcols={idx:tuple(oldpal[idx*3:idx*3+3]) for idx in used}
+
+          # Fixed vivid Pop Art master palette, arranged from darkest to lightest.
+          vivid_hex=[
+            "#050505","#1B1036","#001B44","#3B0A57","#0A4D40","#64213A",
+            "#732600","#2C3E8F","#7A1FA2","#B0004B","#006F8E","#C2185B",
+            "#D84315","#0F8A5F","#5C6BDE","#FF1744","#FF2DAA","#FF6D00",
+            "#00A7B7","#7C4DFF","#00C853","#2979FF","#FF9100","#E040FB",
+            "#00E5FF","#76FF03","#FFD600","#FF80AB","#FFE082","#FFFFFF"
+          ]
+          def rgb(h): return tuple(int(h[i:i+2],16) for i in (1,3,5))
+          vivid=[rgb(x) for x in vivid_hex]
+
+          # Map original palette by luminance rank to preserve all portrait shading while
+          # distributing the collection across the full vivid 30-colour master palette.
+          def lum(c): return 0.2126*c[0]+0.7152*c[1]+0.0722*c[2]
+          orig_sorted=sorted(used,key=lambda i:lum(oldcols[i]))
+          vivid_sorted=sorted(vivid,key=lum)
+          mapping={idx:vivid_sorted[pos] for pos,idx in enumerate(orig_sorted)}
+
+          newpal=oldpal[:]
+          for idx,c in mapping.items():
+              newpal[idx*3:idx*3+3]=list(c)
+          indexed.putpalette(newpal)
+
+          # Verify exactly 30 distinct RGB colours across the output.
+          rgb_strip=indexed.convert("RGB")
+          unique=set(rgb_strip.getdata())
+          if len(unique) != 30:
+              raise SystemExit(f"Output has {len(unique)} colours, expected exactly 30")
+
+          # Split 20 exact 100x120 PNGs.
+          for i,p in enumerate(sources):
+              code=p.name.split("-")[0]
+              tile=indexed.crop((i*100,0,(i+1)*100,120))
+              tile.save(PATTERNS/f"{code}.png", optimize=False)
+
+          # 5 columns x 4 rows, no gaps: 500 x 480 px.
+          mosaic=Image.new("P",(500,480))
+          mosaic.putpalette(newpal)
+          for i in range(20):
+              tile=indexed.crop((i*100,0,(i+1)*100,120))
+              x=(i%5)*100; y=(i//5)*120
+              mosaic.paste(tile,(x,y))
+          mosaic.save(OUT/"pop-art-existing-designs-30-colours-mosaic.png", optimize=False)
+
+          meta={
+              "source":"existing content/products/assets/P0001..P0020-gallery-2.webp",
+              "design_count":20,
+              "tile_size":[100,120],
+              "mosaic_size":[500,480],
+              "shared_palette_size":30,
+              "palette_hex":vivid_hex,
+              "global_unique_colours_verified":len(unique)
+          }
+          (OUT/"manifest.json").write_text(json.dumps(meta,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps(meta,indent=2))
+
+      - name: Commit generated preview
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tmp/pop-art-rework-30
+          git diff --cached --quiet && exit 0
+          git commit -m "Build Pop Art 30-colour mosaic from existing designs"
+          git push
