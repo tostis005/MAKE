@@ -1031,12 +1031,13 @@
       "title_es": "Rila Monastery",
       "slug": "batch02-0084-rila-monastery",
       "input_png": "collections/iconic-destinations/input-pngs-q50/batch-02/iconic_024.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36315721461",
       "last_error": null,
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-02-90-q50.zip",
-      "source_zip_member": "iconic_024.png"
+      "source_zip_member": "iconic_024.png",
+      "published_at": "2026-09-27T11:27:49+00:00"
     },
     {
       "base_design_id": "D0085",
