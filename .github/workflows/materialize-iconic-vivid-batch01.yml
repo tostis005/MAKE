@@ -1,4 +1,4 @@
-name: Materialize vivid Iconic batch 01 ZIP
+name: Materialize and publish vivid Iconic batch 01
 
 on:
   push:
@@ -17,9 +17,9 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  materialize:
+  materialize-import-publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - name: Checkout vivid branch
         uses: actions/checkout@v4
@@ -34,7 +34,7 @@ jobs:
       - name: Install Pillow
         run: python3 -m pip install --disable-pip-version-check --quiet Pillow
 
-      - name: Reconstruct exact ZIP
+      - name: Reconstruct and validate exact ZIP
         shell: bash
         run: |
           set -euo pipefail
@@ -67,21 +67,50 @@ jobs:
                   with Image.open(io.BytesIO(raw)) as im:
                       rgb=im.convert('RGB')
                       colors=len(set(rgb.getdata()))
-                      if rgb.size!=(100,120) or colors!=50:
-                          raise SystemExit(f'{name}: size={rgb.size} colors={colors}')
-                      print(f'VALID {name} 100x120 50-colours')
+                      if rgb.size!=(100,120) or colors!=50 or im.format!='PNG':
+                          raise SystemExit(f'{name}: format={im.format} size={rgb.size} colors={colors}')
+                      print(f'VALID {name} PNG 100x120 50-colours')
           print(f'ZIP_OK bytes={p.stat().st_size}')
           PY
 
-      - name: Commit exact vivid ZIP
+      - name: Import exact vivid sources
+        run: python3 .github/scripts/import_iconic_vivid_batch01.py
+
+      - name: Validate queue reset
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          q=json.loads(Path('content/pattern-system/iconic_destinations/publish_queue.json').read_text())
+          pending=[x for x in q['items'] if x.get('status')=='pending']
+          held=[x for x in q['items'] if x.get('status')=='held']
+          assert q.get('active_batch')=='batch-01-vivid-premium'
+          assert q.get('mode')=='direct-zip-png-vivid-batch-v5'
+          assert q.get('auto_continue') is True
+          assert len(pending)==10, len(pending)
+          assert len(held)==50, len(held)
+          print('QUEUE_OK pending=10 held=50')
+          PY
+
+      - name: Persist ZIP, PNGs and queue
         shell: bash
         run: |
           set -euo pipefail
           rm -rf .github/vivid-upload
-          rm -f .github/vivid-batch01/01_torre_eiffel.png.b64
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A             content/pattern-system/collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip             .github/vivid-upload             .github/vivid-batch01 || true
-          git commit -m "Add approved vivid Iconic batch 01 ZIP [skip ci]"
+          git add -A             content/pattern-system/collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip             content/pattern-system/collections/iconic-destinations/input-pngs-q50             content/pattern-system/collections/iconic-destinations/designs.json             content/pattern-system/iconic_destinations/publish_queue.json             .github/vivid-upload
+          git commit -m "Import approved 100x120 q50 Iconic batch [skip ci]"
           git pull --rebase origin iconic-batch01-conceptual-v2
           git push origin HEAD:iconic-batch01-conceptual-v2
+
+      - name: Start WooCommerce publication queue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api --method POST             "repos/${GITHUB_REPOSITORY}/actions/workflows/iconic-destinations-auto-publish.yml/dispatches"             -f ref=iconic-batch01-conceptual-v2
+          echo "ICONIC_LATEST_100X120_Q50_PUBLICATION_STARTED"
