@@ -6,6 +6,7 @@ on:
     branches: [iconic-batch01-conceptual-v2]
     paths:
       - 'content/pattern-system/collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip'
+      - '.github/vivid-b64/part08.b64'
 
 permissions:
   contents: write
@@ -24,6 +25,16 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Reconstruct exact uploaded vivid ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -d .github/vivid-b64 ]; then
+            cat .github/vivid-b64/part*.b64 | tr -d '\n\r' | base64 -d > content/pattern-system/collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip
+            test -s content/pattern-system/collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip
+            echo "VIVID_ZIP_RECONSTRUCTED"
+          fi
 
       - name: Stop existing Iconic publisher runs
         env:
