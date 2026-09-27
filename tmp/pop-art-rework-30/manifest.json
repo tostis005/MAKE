@@ -1,0 +1,46 @@
+{
+  "source": "existing content/products/assets/P0001..P0020-gallery-2.webp",
+  "design_count": 20,
+  "tile_size": [
+    100,
+    120
+  ],
+  "mosaic_size": [
+    500,
+    480
+  ],
+  "shared_palette_size": 30,
+  "palette_hex": [
+    "#050505",
+    "#1B1036",
+    "#001B44",
+    "#3B0A57",
+    "#0A4D40",
+    "#64213A",
+    "#732600",
+    "#2C3E8F",
+    "#7A1FA2",
+    "#B0004B",
+    "#006F8E",
+    "#C2185B",
+    "#D84315",
+    "#0F8A5F",
+    "#5C6BDE",
+    "#FF1744",
+    "#FF2DAA",
+    "#FF6D00",
+    "#00A7B7",
+    "#7C4DFF",
+    "#00C853",
+    "#2979FF",
+    "#FF9100",
+    "#E040FB",
+    "#00E5FF",
+    "#76FF03",
+    "#FFD600",
+    "#FF80AB",
+    "#FFE082",
+    "#FFFFFF"
+  ],
+  "global_unique_colours_verified": 30
+}
