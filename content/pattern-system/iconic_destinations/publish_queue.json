@@ -1,13 +1,13 @@
 {
   "collection": "iconic-destinations",
-  "mode": "direct-zip-png-vivid-final-v5",
+  "mode": "direct-zip-png-vivid-batch-v5",
   "auto_continue": true,
   "max_attempts_per_design": 3,
   "notes": [
-    "Authoritative source is the uploaded vivid ZIP; images are not regenerated.",
-    "Each PNG is exactly 100x120 and exactly 50 colours.",
-    "ZIP member bytes must equal the extracted input PNG bytes.",
-    "All old Iconic Destinations products are purged before republishing."
+    "Batch 01 source is the approved vivid premium ZIP committed to GitHub.",
+    "Every source PNG is exactly 100x120 pixels and uses exactly 50 colours.",
+    "ZIP member and extracted input PNG are byte-identical.",
+    "These files replace all prior conceptual/procedural batch-01 artwork."
   ],
   "items": [
     {
@@ -351,8 +351,7 @@
       "last_run": null,
       "last_error": null,
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
-      "source_zip_member": "01_torre_eiffel.png",
-      "published_at": "2026-09-27T08:54:33+00:00"
+      "source_zip_member": "D0031-paris-eiffel-tower.png"
     },
     {
       "base_design_id": "D0032",
@@ -365,8 +364,7 @@
       "last_run": null,
       "last_error": null,
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
-      "source_zip_member": "02_big_ben.png",
-      "published_at": "2026-09-27T08:56:05+00:00"
+      "source_zip_member": "D0032-london-big-ben.png"
     },
     {
       "base_design_id": "D0033",
@@ -379,7 +377,7 @@
       "last_run": null,
       "last_error": null,
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
-      "source_zip_member": "03_coliseo_roma.png",
+      "source_zip_member": "D0033-rome-colosseum.png",
       "failed_at": "2026-09-27T08:57:48+00:00"
     },
     {
@@ -393,7 +391,7 @@
       "last_run": null,
       "last_error": null,
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
-      "source_zip_member": "04_estatua_libertad.png"
+      "source_zip_member": "D0034-new-york-statue-liberty.png"
     },
     {
       "base_design_id": "D0035",
@@ -406,7 +404,7 @@
       "last_run": null,
       "last_error": null,
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
-      "source_zip_member": "05_taj_mahal.png"
+      "source_zip_member": "D0035-taj-mahal.png"
     },
     {
       "base_design_id": "D0036",
@@ -419,7 +417,7 @@
       "last_run": null,
       "last_error": null,
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
-      "source_zip_member": "06_gran_muralla_china.png"
+      "source_zip_member": "D0036-great-wall-china.png"
     },
     {
       "base_design_id": "D0037",
@@ -432,7 +430,7 @@
       "last_run": null,
       "last_error": null,
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
-      "source_zip_member": "07_cristo_redentor.png"
+      "source_zip_member": "D0037-rio-christ-redeemer.png"
     },
     {
       "base_design_id": "D0038",
@@ -445,7 +443,7 @@
       "last_run": null,
       "last_error": null,
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
-      "source_zip_member": "08_piramides_guiza.png"
+      "source_zip_member": "D0038-pyramids-giza.png"
     },
     {
       "base_design_id": "D0039",
@@ -458,7 +456,7 @@
       "last_run": null,
       "last_error": null,
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
-      "source_zip_member": "09_opera_sidney.png"
+      "source_zip_member": "D0039-sydney-opera-house.png"
     },
     {
       "base_design_id": "D0040",
@@ -537,7 +535,7 @@
       "last_run": null,
       "last_error": null,
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
-      "source_zip_member": "10_table_mountain.png"
+      "source_zip_member": "D0046-cape-town-table-mountain.png"
     },
     {
       "base_design_id": "D0047",
@@ -695,5 +693,5 @@
     }
   ],
   "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip",
-  "active_batch": "batch-01-vivid-final"
+  "active_batch": "batch-01-vivid-premium"
 }
