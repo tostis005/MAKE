@@ -290,9 +290,25 @@ jobs:
           rm -rf "$STAGE" && mkdir -p "$STAGE"
           tar -xzf "$ARCHIVE" -C "$STAGE"
 
+          # Always start with a clean container staging directory. Previous failed
+          # imports could leave a nested/stale /tmp/drielo-products tree, causing
+          # the next docker cp to put fresh assets in the wrong level.
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php /tmp/drielo-repair-pop-art-60.php && mkdir -p /tmp/drielo-products'
           "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
           "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
           "${DOCKER[@]}" cp "$STAGE/content/tools/repair-pop-art-60.php" make-wp:/tmp/drielo-repair-pop-art-60.php
+
+          # Verify both ends of the Pop Art 60 family are physically present in
+          # the container before WordPress touches anything.
+          "${DOCKER[@]}" exec make-wp sh -lc '
+            test -s /tmp/drielo-products/assets/P1001-CS-product.webp &&
+            test -s /tmp/drielo-products/assets/P1060-CS-product.webp &&
+            test -s /tmp/drielo-products/assets/P1001-CS-design.webp &&
+            test -s /tmp/drielo-products/assets/P1060-CS-gallery-4.webp &&
+            test -s /tmp/drielo-products/files/Drielo_P1001-CS.pdf &&
+            test -s /tmp/drielo-products/files/Drielo_P1060-CS.pdf
+          '
+
           "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
           "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-repair-pop-art-60.php /var/www/html /tmp/drielo-products
 
