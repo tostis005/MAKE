@@ -1857,12 +1857,13 @@
       "title_es": "Jerusalem Old City",
       "slug": "batch02-0143-jerusalem-old-city",
       "input_png": "collections/iconic-destinations/input-pngs-q50/batch-02/iconic_083.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36321785499",
       "last_error": null,
       "source_zip": "collections/iconic-destinations/assets/iconic-batch-02-90-q50.zip",
-      "source_zip_member": "iconic_083.png"
+      "source_zip_member": "iconic_083.png",
+      "published_at": "2026-09-27T13:17:53+00:00"
     },
     {
       "base_design_id": "D0144",
