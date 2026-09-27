@@ -295,7 +295,7 @@ jobs:
         run: |
           set -euo pipefail
           git fetch origin iconic-batch01-conceptual-v2
-          git reset --hard origin/main
+          git reset --hard origin/iconic-batch01-conceptual-v2
           if [ "$(python3 content/pattern-system/iconic_destinations/queue_state.py has-work)" = "yes" ]; then
             gh api --method POST "repos/${GITHUB_REPOSITORY}/actions/workflows/iconic-destinations-auto-publish.yml/dispatches" -f ref=iconic-batch01-conceptual-v2
             echo "NEXT_ICONIC_RUN_DISPATCHED"
