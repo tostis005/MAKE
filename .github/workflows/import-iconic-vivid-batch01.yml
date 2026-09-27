@@ -6,7 +6,7 @@ on:
     branches:
       - iconic-batch01-conceptual-v2
     paths:
-      - '.github/vivid-batch01/*.png.b64'
+      - '.github/vivid-batch01/READY'
       - '.github/scripts/import_iconic_vivid_batch01.py'
       - '.github/workflows/import-iconic-vivid-batch01.yml'
   workflow_dispatch:
