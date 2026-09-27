@@ -41,9 +41,10 @@ def main():
 
     expected_members = [m for _,m,_ in BATCH]
     with zipfile.ZipFile(ZIP_PATH, "r") as zf:
-        names = zf.namelist()
+        all_names = zf.namelist()
+        names = [n for n in all_names if n.lower().endswith(".png")]
         if names != expected_members:
-            raise SystemExit(f"ZIP members mismatch: {names}")
+            raise SystemExit(f"ZIP PNG members mismatch: {names}")
         for base, member, input_name in BATCH:
             raw = zf.read(member)
             target = INPUT / input_name
