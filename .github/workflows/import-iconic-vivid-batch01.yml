@@ -1,0 +1,82 @@
+name: Import vivid Iconic batch 01
+
+on:
+  push:
+    branches:
+      - iconic-batch01-conceptual-v2
+    paths:
+      - 'content/pattern-system/collections/iconic-destinations/assets/iconic-batch-01-vivid-q50.zip'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: drielo-iconic-vivid-batch01-import
+  cancel-in-progress: false
+
+jobs:
+  import-and-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout vivid branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Pillow
+        run: python3 -m pip install --disable-pip-version-check --quiet Pillow
+
+      - name: Import exact vivid ZIP sources
+        run: python3 .github/scripts/import_iconic_vivid_batch01.py
+
+      - name: Validate and persist vivid inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, zipfile
+          from pathlib import Path
+          from PIL import Image
+          root=Path('content/pattern-system')
+          q=json.loads((root/'iconic_destinations'/'publish_queue.json').read_text())
+          pending=[x for x in q['items'] if x.get('status')=='pending']
+          if len(pending)!=10:
+              raise SystemExit(f'Expected 10 pending vivid items, got {len(pending)}')
+          zpath=root/q['source_zip']
+          with zipfile.ZipFile(zpath,'r') as zf:
+              for row in pending:
+                  raw=zf.read(row['source_zip_member'])
+                  src=root/row['input_png']
+                  if raw != src.read_bytes():
+                      raise SystemExit(f"{row['base_design_id']}: ZIP/input mismatch")
+                  with Image.open(src) as im:
+                      rgb=im.convert('RGB')
+                      if rgb.size!=(100,120):
+                          raise SystemExit(f"{row['base_design_id']}: wrong size")
+                      if len(set(rgb.getdata()))!=50:
+                          raise SystemExit(f"{row['base_design_id']}: palette is not exactly 50")
+          print('VIVID_BATCH01_VALID count=10 size=100x120 colours=50')
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add             content/pattern-system/collections/iconic-destinations/input-pngs-q50             content/pattern-system/collections/iconic-destinations/designs.json             content/pattern-system/iconic_destinations/publish_queue.json
+          git commit -m "Import vivid Iconic batch 01 sources [skip ci]"
+          git pull --rebase origin iconic-batch01-conceptual-v2
+          git push origin HEAD:iconic-batch01-conceptual-v2
+
+      - name: Start WooCommerce publication queue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api --method POST             "repos/${GITHUB_REPOSITORY}/actions/workflows/iconic-destinations-auto-publish.yml/dispatches"             -f ref=iconic-batch01-conceptual-v2
+          echo "VIVID_ICONIC_BATCH01_PUBLICATION_STARTED"
