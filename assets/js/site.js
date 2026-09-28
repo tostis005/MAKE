@@ -280,26 +280,50 @@
       return Array.prototype.slice.call(gallery.querySelectorAll('.woocommerce-product-gallery__wrapper > .woocommerce-product-gallery__image'));
     }
 
+    function captureGallerySources(gallery){
+      var slides=gallerySlides(gallery);
+      var sources=[];
+      for(var i=0;i<slides.length;i++){
+        var img=slides[i].querySelector('img');
+        sources.push(img ? {
+          src:img.currentSrc||img.getAttribute('src')||'',
+          alt:img.getAttribute('alt')||'',
+          width:img.getAttribute('width')||'',
+          height:img.getAttribute('height')||''
+        } : null);
+      }
+      gallery._drieloGallerySources=sources;
+      return sources;
+    }
+
     function selectGalleryImage(gallery,index){
       var slides=gallerySlides(gallery);
       if(index<0||index>=slides.length)return;
 
-      if(window.jQuery){
-        var $wrapper=window.jQuery(gallery).find('.woocommerce-product-gallery__wrapper');
-        var flex=$wrapper.data('flexslider');
-        if(flex&&typeof flex.flexAnimate==='function'){
-          flex.flexAnimate(index,true);
-          return;
-        }
-      }
+      var sources=gallery._drieloGallerySources||captureGallerySources(gallery);
+      var source=sources[index];
+      var primary=slides[0]&&slides[0].querySelector('img');
+      if(!source||!source.src||!primary)return;
 
-      for(var i=0;i<slides.length;i++){
-        slides[i].classList.toggle('drielo-gallery-fallback-active',i===index);
+      gallery.classList.add('drielo-gallery-direct');
+      gallery.classList.remove('drielo-gallery-fallback');
+
+      primary.src=source.src;
+      primary.removeAttribute('srcset');
+      primary.removeAttribute('sizes');
+      primary.alt=source.alt||'';
+      if(source.width)primary.setAttribute('width',source.width);
+      if(source.height)primary.setAttribute('height',source.height);
+
+      var thumbs=Array.prototype.slice.call(gallery.querySelectorAll('.flex-control-thumbs img'));
+      for(var t=0;t<thumbs.length;t++){
+        thumbs[t].classList.toggle('flex-active',t===index);
+        thumbs[t].setAttribute('aria-current',t===index?'true':'false');
       }
-      gallery.classList.add('drielo-gallery-fallback');
     }
 
     for(var g=0;g<galleries.length;g++){
+      captureGallerySources(galleries[g]);
       var images=galleries[g].querySelectorAll('.woocommerce-product-gallery__image img');
       for(var x=0;x<images.length;x++){
         images[x].setAttribute('tabindex','0');
@@ -323,7 +347,9 @@
           var thumbs=Array.prototype.slice.call(gallery.querySelectorAll('.flex-control-thumbs img'));
           var index=thumbs.indexOf(thumb);
           if(index>=0){
-            window.setTimeout(function(){selectGalleryImage(gallery,index);},0);
+            e.preventDefault();
+            e.stopPropagation();
+            selectGalleryImage(gallery,index);
           }
         }
         return;
