@@ -1189,14 +1189,15 @@
       "product_title_es": "Patrón de punto de cruz: Borobudur, Indonesia",
       "slug": "borobudur-temple",
       "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0116-borobudur-temple.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36470325685",
       "last_error": null,
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_manifest_item": "D0116",
       "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
-      "source_zip_member": "D0116-borobudur-temple.png"
+      "source_zip_member": "D0116-borobudur-temple.png",
+      "published_at": "2026-09-28T19:12:14+00:00"
     },
     {
       "base_design_id": "D0117",
