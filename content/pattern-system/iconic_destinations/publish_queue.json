@@ -1153,14 +1153,15 @@
       "product_title_es": "Patrón de punto de cruz: Plaza Durbar, Katmandú",
       "slug": "kathmandu-durbar-square",
       "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0114-kathmandu-durbar-square.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36469493019",
       "last_error": null,
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_manifest_item": "D0114",
       "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
-      "source_zip_member": "D0114-kathmandu-durbar-square.png"
+      "source_zip_member": "D0114-kathmandu-durbar-square.png",
+      "published_at": "2026-09-28T19:07:45+00:00"
     },
     {
       "base_design_id": "D0115",

@@ -1971,11 +1971,11 @@
       "variants": [
         "D0114-CS"
       ],
-      "artwork_status": "approved-manifest-individual-png-100x120",
+      "artwork_status": "production-ready-from-approved-clean-zip",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0114-kathmandu-durbar-square.png",
       "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0114-kathmandu-durbar-square.png",
       "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
+      "palette_status": "mapped-directly-from-zip-png-to-dmc",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -1983,12 +1983,13 @@
       },
       "target_chart_pages": 4,
       "source_colour_count": 50,
-      "dmc_colour_count": null,
+      "dmc_colour_count": 41,
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_manifest_item": "D0114",
       "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
       "source_zip_member": "D0114-kathmandu-durbar-square.png",
-      "source_style": "audited-vivid-premium-cross-stitch"
+      "source_style": "audited-vivid-premium-cross-stitch",
+      "dmc_mapped_asset": "collections/iconic-destinations/source-designs/D0114-kathmandu-durbar-square.png"
     },
     {
       "order": 65,
