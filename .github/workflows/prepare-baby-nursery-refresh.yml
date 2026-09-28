@@ -1,0 +1,201 @@
+name: One-time Baby Nursery source refresh and WooCommerce purge
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tmp/baby-nursery-upload/READY'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-baby-nursery-source-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh-and-purge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Reconstruct approved ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat tmp/baby-nursery-upload/part-*.b64 | base64 --decode > /tmp/baby-nursery.zip
+          unzip -t /tmp/baby-nursery.zip
+
+      - name: Replace canonical Baby Nursery source images
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, re, zipfile
+          from pathlib import Path
+          from PIL import Image
+          import io
+
+          zpath = Path('/tmp/baby-nursery.zip')
+          dest = Path('content/source-images/collections/baby-nursery/products')
+          dest.mkdir(parents=True, exist_ok=True)
+          for p in dest.glob('*.png'):
+              p.unlink()
+
+          rows = []
+          with zipfile.ZipFile(zpath) as z:
+              pngs = sorted(
+                  n for n in z.namelist()
+                  if n.startswith('coleccion_infantil/pngs/') and n.lower().endswith('.png')
+              )
+              if len(pngs) != 60:
+                  raise SystemExit(f'Expected 60 PNG files, found {len(pngs)}')
+              for pos, member in enumerate(pngs, start=1):
+                  src_name = Path(member).name
+                  m = re.fullmatch(r'infantil_(\d{3})_(.+)\.png', src_name)
+                  if not m:
+                      raise SystemExit(f'Unexpected filename: {src_name}')
+                  idx = int(m.group(1))
+                  if idx != pos:
+                      raise SystemExit(f'Unexpected sequence: {src_name}, expected {pos:03d}')
+                  slug = re.sub(r'[^a-z0-9]+', '-', m.group(2).lower()).strip('-')
+                  out_name = f'I{idx:04d}-{slug}.png'
+                  raw = z.read(member)
+                  with Image.open(io.BytesIO(raw)) as im:
+                      im.load()
+                      if im.size != (100, 120):
+                          raise SystemExit(f'{src_name}: expected 100x120, got {im.size}')
+                      if im.format != 'PNG':
+                          raise SystemExit(f'{src_name}: not PNG')
+                  (dest / out_name).write_bytes(raw)
+                  rows.append({
+                      'id': f'I{idx:04d}',
+                      'slug': slug,
+                      'filename': out_name,
+                      'width': 100,
+                      'height': 120,
+                      'background': 'transparent',
+                  })
+
+          manifest = {
+              'schema_version': '1.0',
+              'collection_id': 'baby-nursery',
+              'source': 'approved-final-60-design-zip',
+              'count': len(rows),
+              'products': rows,
+          }
+          Path('content/source-images/collections/baby-nursery/source-manifest.json').write_text(
+              json.dumps(manifest, ensure_ascii=False, indent=2) + '\n',
+              encoding='utf-8'
+          )
+          PY
+
+      - name: Validate canonical source structure
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow
+          python3 .github/scripts/validate_collection_sources.py --collection baby-nursery
+
+      - name: Commit source refresh and remove upload staging
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -rf tmp/baby-nursery-upload
+          git add -A content/source-images/collections/baby-nursery tmp/baby-nursery-upload
+          git commit -m "Refresh Baby Nursery canonical 60 source designs [skip ci]"
+          git push origin HEAD:main
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_products_key
+          chmod 600 ~/.ssh/drielo_products_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Permanently delete all Baby Nursery WooCommerce products
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_products_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $taxonomy = "product_collection";
+            $slug = "baby-nursery";
+            $term = get_term_by("slug", $slug, $taxonomy);
+            if (!$term || is_wp_error($term)) {
+              echo "No baby-nursery collection term found; nothing to delete.".PHP_EOL;
+              exit(0);
+            }
+            $ids = get_posts(array(
+              "post_type" => "product",
+              "post_status" => array("publish","draft","pending","private","future","trash"),
+              "posts_per_page" => -1,
+              "fields" => "ids",
+              "tax_query" => array(array(
+                "taxonomy" => $taxonomy,
+                "field" => "slug",
+                "terms" => array($slug),
+              )),
+            ));
+            echo "Found ".count($ids)." Baby Nursery products.".PHP_EOL;
+            foreach ($ids as $id) {
+              $sku = get_post_meta($id, "_sku", true);
+              echo "Deleting product ID ".$id." SKU ".$sku.PHP_EOL;
+              wp_delete_post($id, true);
+            }
+            $remaining = get_posts(array(
+              "post_type" => "product",
+              "post_status" => array("publish","draft","pending","private","future","trash"),
+              "posts_per_page" => -1,
+              "fields" => "ids",
+              "tax_query" => array(array(
+                "taxonomy" => $taxonomy,
+                "field" => "slug",
+                "terms" => array($slug),
+              )),
+            ));
+            echo "Remaining Baby Nursery products: ".count($remaining).PHP_EOL;
+            if (count($remaining) !== 0) {
+              fwrite(STDERR, "ERROR: Baby Nursery products remain.".PHP_EOL);
+              exit(2);
+            }
+          '
+          REMOTE
+
+      - name: Remove one-time workflow after success
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git reset --hard origin/main
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/prepare-baby-nursery-refresh.yml
+          git commit -m "Remove one-time Baby Nursery refresh workflow [skip ci]"
+          git push origin HEAD:main
