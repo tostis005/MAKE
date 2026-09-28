@@ -1,0 +1,54 @@
+name: Rebuild final Pop Art portraits pack
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/rebuild-pop-art-portraits-pack.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sparse checkout only required current files
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          sparse-checkout: |
+            .github/scripts/build_pop_art_portrait_pack.py
+            .github/workflows/rebuild-pop-art-portraits-pack.yml
+            content/pattern-system/collections/pop-art-25/sources
+            content/pattern-system/collections/pop-art-25/designs.json
+            exports
+          sparse-checkout-cone-mode: false
+
+      - name: Download six approved legacy portrait sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p tmp/pop-art-legacy
+          base="https://raw.githubusercontent.com/tostis005/MAKE/ecdabb6f62722ac3533c31f375f0053e46cbac75/content/pattern-system/collections/pop-art-25/sources"
+          for code in P0003 P0004 P0008 P0011 P0019 P0022; do
+            curl --fail --location --retry 3 "$base/$code.png" --output "tmp/pop-art-legacy/$code.png"
+          done
+
+      - name: Install Pillow
+        run: python -m pip install --disable-pip-version-check pillow
+
+      - name: Rebuild and validate portrait pack
+        run: python .github/scripts/build_pop_art_portrait_pack.py
+
+      - name: Commit final export and remove one-shot workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add exports/pop-art-portraits-final exports/pop-art-portraits-60-100x120.zip exports/pop-art-portraits-60-preview.png
+          git rm .github/workflows/rebuild-pop-art-portraits-pack.yml
+          git commit -m "Refine final Pop Art portrait backgrounds [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
