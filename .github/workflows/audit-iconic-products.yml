@@ -79,13 +79,30 @@ jobs:
               $date = get_post_field("post_date_gmt", $id);
               $sku_counts[$sku] = isset($sku_counts[$sku]) ? $sku_counts[$sku] + 1 : 1;
               if ($status === "publish") $published++;
-              echo "PRODUCT|id=".$id."|status=".$status."|sku=".$sku."|date=".$date."|title=".str_replace(array("\n","\r","|")," ",$title).PHP_EOL;
+              $gallery_count = count($p->get_gallery_image_ids());
+              $image_id = (int)$p->get_image_id();
+              $download_count = count($p->get_downloads());
+              echo "PRODUCT|id=".$id."|status=".$status."|sku=".$sku."|image=".$image_id."|gallery=".$gallery_count."|downloads=".$download_count."|date=".$date."|title=".str_replace(array("\n","\r","|")," ",$title).PHP_EOL;
             }
             $dupes = array_filter($sku_counts, fn($n) => $n > 1);
             ksort($dupes);
             echo "ICONIC_PUBLISHED=".$published.PHP_EOL;
             echo "ICONIC_UNIQUE_SKUS=".count($sku_counts).PHP_EOL;
             echo "ICONIC_DUPLICATE_SKUS=".count($dupes).PHP_EOL;
+            $canonical = array();
+            for ($n=31; $n<=39; $n++) $canonical["DRIELO-".sprintf("D%04d-CS",$n)] = true;
+            $canonical["DRIELO-D0046-CS"] = true;
+            for ($n=61; $n<=150; $n++) $canonical["DRIELO-".sprintf("D%04d-CS",$n)] = true;
+            $canonical_present = 0; $canonical_four_images = 0;
+            foreach ($canonical as $sku => $_) {
+              if (isset($sku_counts[$sku])) {
+                $canonical_present++;
+                $pid=wc_get_product_id_by_sku($sku); $pp=$pid?wc_get_product($pid):false;
+                if ($pp instanceof WC_Product && (int)$pp->get_image_id()>0 && count($pp->get_gallery_image_ids())===3) $canonical_four_images++;
+              }
+            }
+            echo "ICONIC_CANONICAL_PRESENT=".$canonical_present.PHP_EOL;
+            echo "ICONIC_CANONICAL_WITH_4_IMAGES=".$canonical_four_images.PHP_EOL;
             foreach ($dupes as $sku => $n) echo "DUPLICATE_SKU|sku=".$sku."|count=".$n.PHP_EOL;
           '
           REMOTE
