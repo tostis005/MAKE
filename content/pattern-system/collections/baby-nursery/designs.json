@@ -381,7 +381,7 @@
       "input_png": "../source-images/collections/baby-nursery/products/I0021-whale.png",
       "palette_mode": "exact-dmc50-source-no-requantization",
       "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
-      "source_colour_count": 21
+      "source_colour_count": 8
     },
     {
       "order": 22,
@@ -453,7 +453,7 @@
       "input_png": "../source-images/collections/baby-nursery/products/I0025-seahorse.png",
       "palette_mode": "exact-dmc50-source-no-requantization",
       "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
-      "source_colour_count": 32
+      "source_colour_count": 7
     },
     {
       "order": 26,
@@ -471,7 +471,7 @@
       "input_png": "../source-images/collections/baby-nursery/products/I0026-long-neck-dinosaur.png",
       "palette_mode": "exact-dmc50-source-no-requantization",
       "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
-      "source_colour_count": 23
+      "source_colour_count": 8
     },
     {
       "order": 27,
@@ -489,7 +489,7 @@
       "input_png": "../source-images/collections/baby-nursery/products/I0027-triceratops.png",
       "palette_mode": "exact-dmc50-source-no-requantization",
       "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
-      "source_colour_count": 27
+      "source_colour_count": 10
     },
     {
       "order": 28,
@@ -525,7 +525,7 @@
       "input_png": "../source-images/collections/baby-nursery/products/I0029-stegosaurus.png",
       "palette_mode": "exact-dmc50-source-no-requantization",
       "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
-      "source_colour_count": 36
+      "source_colour_count": 10
     },
     {
       "order": 30,
@@ -777,7 +777,7 @@
       "input_png": "../source-images/collections/baby-nursery/products/I0043-rainbow-clouds.png",
       "palette_mode": "exact-dmc50-source-no-requantization",
       "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
-      "source_colour_count": 37
+      "source_colour_count": 10
     },
     {
       "order": 44,
@@ -795,7 +795,7 @@
       "input_png": "../source-images/collections/baby-nursery/products/I0044-sun.png",
       "palette_mode": "exact-dmc50-source-no-requantization",
       "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
-      "source_colour_count": 25
+      "source_colour_count": 9
     },
     {
       "order": 45,
@@ -1029,7 +1029,7 @@
       "input_png": "../source-images/collections/baby-nursery/products/I0057-rattle.png",
       "palette_mode": "exact-dmc50-source-no-requantization",
       "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
-      "source_colour_count": 34
+      "source_colour_count": 10
     },
     {
       "order": 58,
