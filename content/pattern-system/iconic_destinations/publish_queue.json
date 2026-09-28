@@ -775,14 +775,15 @@
       "product_title_es": "Patrón de punto de cruz: Monument Valley, EE. UU.",
       "slug": "monument-valley",
       "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0093-monument-valley.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36462478630",
       "last_error": null,
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_manifest_item": "D0093",
       "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
-      "source_zip_member": "D0093-monument-valley.png"
+      "source_zip_member": "D0093-monument-valley.png",
+      "published_at": "2026-09-28T18:06:54+00:00"
     },
     {
       "base_design_id": "D0094",
