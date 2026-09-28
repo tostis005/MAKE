@@ -1,0 +1,423 @@
+name: Install New Baby Nursery Artwork and Rebuild Eight
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'content/pattern-system/baby_nursery/new-baby-sources-2026-09-28.zip'
+      - '.github/workflows/install-new-baby-artwork.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-baby-clean-five
+  cancel-in-progress: true
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout required paths
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/install-new-baby-artwork.yml
+            content/pattern-system/baby_nursery/
+            content/pattern-system/multitech/
+            content/pattern-system/collections/baby-nursery/collection.json
+            content/pattern-system/collections/baby-nursery/designs.json
+            content/pattern-system/collections/baby-nursery/assets/
+            content/pattern-system/collections/baby-nursery/mapped-designs/
+            content/pattern-system/patterns/I0021-CS/
+            content/pattern-system/patterns/I0025-CS/
+            content/pattern-system/patterns/I0026-CS/
+            content/pattern-system/patterns/I0027-CS/
+            content/pattern-system/patterns/I0029-CS/
+            content/pattern-system/patterns/I0043-CS/
+            content/pattern-system/patterns/I0044-CS/
+            content/pattern-system/patterns/I0057-CS/
+            content/pattern-system/products/I0021-CS/
+            content/pattern-system/products/I0025-CS/
+            content/pattern-system/products/I0026-CS/
+            content/pattern-system/products/I0027-CS/
+            content/pattern-system/products/I0029-CS/
+            content/pattern-system/products/I0043-CS/
+            content/pattern-system/products/I0044-CS/
+            content/pattern-system/products/I0057-CS/
+            content/source-images/collections/baby-nursery/
+            content/products/catalog.json
+            content/products/assets/baby-nursery-collection-cover-v2.jpg
+            content/products/assets/I0021-CS-*
+            content/products/assets/I0025-CS-*
+            content/products/assets/I0026-CS-*
+            content/products/assets/I0027-CS-*
+            content/products/assets/I0029-CS-*
+            content/products/assets/I0043-CS-*
+            content/products/assets/I0044-CS-*
+            content/products/assets/I0057-CS-*
+            content/tools/import-products.php
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install renderer dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow playwright
+          python3 -m playwright install --with-deps chromium
+
+      - name: Install the eight newly generated source PNGs
+        shell: bash
+        run: |
+          set -euo pipefail
+          ZIP="content/pattern-system/baby_nursery/new-baby-sources-2026-09-28.zip"
+          DEST="content/source-images/collections/baby-nursery/products"
+          test -f "$ZIP"
+          rm -rf /tmp/new-baby-eight
+          mkdir -p /tmp/new-baby-eight
+          unzip -q "$ZIP" -d /tmp/new-baby-eight
+          for file in             I0021-whale.png             I0025-seahorse.png             I0026-long-neck-dinosaur.png             I0027-triceratops.png             I0029-stegosaurus.png             I0043-rainbow-clouds.png             I0044-sun.png             I0057-rattle.png; do
+            test -f "/tmp/new-baby-eight/$file"
+            cp "/tmp/new-baby-eight/$file" "$DEST/$file"
+          done
+
+      - name: Validate sources and refresh metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+
+          root=Path('.')
+          source=root/'content/source-images/collections/baby-nursery'
+          products=source/'products'
+          palette=json.loads((source/'palette50_dmc.json').read_text())
+          manifest=json.loads((source/'source-manifest.json').read_text())
+          qa=json.loads((source/'qa_report.json').read_text())
+          designs_path=root/'content/pattern-system/collections/baby-nursery/designs.json'
+          designs=json.loads(designs_path.read_text())
+
+          ids={
+            'I0021':'I0021-whale.png',
+            'I0025':'I0025-seahorse.png',
+            'I0026':'I0026-long-neck-dinosaur.png',
+            'I0027':'I0027-triceratops.png',
+            'I0029':'I0029-stegosaurus.png',
+            'I0043':'I0043-rainbow-clouds.png',
+            'I0044':'I0044-sun.png',
+            'I0057':'I0057-rattle.png',
+          }
+          rgb_to_dmc={tuple(x['rgb']):str(x['dmc']) for x in palette['colors']}
+          by_manifest={x['id']:x for x in manifest['products']}
+          by_design={x['base_design_id']:x for x in designs['designs']}
+
+          report=[]
+          for base,file in ids.items():
+              p=products/file
+              with Image.open(p) as im:
+                  rgba=im.convert('RGBA')
+              if rgba.size!=(100,120):
+                  raise SystemExit(f'{base}: source size {rgba.size}')
+              pix=list(rgba.getdata())
+              semis=sum(1 for r,g,b,a in pix if a not in (0,255))
+              if semis:
+                  raise SystemExit(f'{base}: semi-transparent pixels {semis}')
+              colors={(r,g,b) for r,g,b,a in pix if a==255}
+              unknown=colors-set(rgb_to_dmc)
+              if unknown:
+                  raise SystemExit(f'{base}: colors outside DMC50 {sorted(unknown)[:8]}')
+              bbox=rgba.getchannel('A').getbbox()
+              if not bbox:
+                  raise SystemExit(f'{base}: empty')
+              l,t,r,b=bbox
+              m={'left':l,'top':t,'right':100-r,'bottom':120-b}
+              if min(m.values())<10:
+                  raise SystemExit(f'{base}: unsafe margin {m}')
+              codes=sorted({rgb_to_dmc[c] for c in colors},key=lambda x:(len(x),x))
+              by_manifest[base]['color_count']=len(colors)
+              by_manifest[base]['dmc_codes']=codes
+              by_design[base]['source_colour_count']=len(colors)
+              qrow=qa['files'][int(base[1:])-1]
+              qrow['colors_used']=len(colors)
+              qrow['margins']=m
+              report.append({'id':base,'file':file,'bbox':list(bbox),'margins':m,'color_count':len(colors),'dmc_codes':codes})
+              print('NEW_SOURCE_OK',base,m,len(colors))
+
+          qa['minimum_canvas_margin_px']=min(min(x['margins'].values()) for x in qa['files'])
+          (source/'source-manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
+          (source/'qa_report.json').write_text(json.dumps(qa,ensure_ascii=False,indent=2)+'\n')
+          designs_path.write_text(json.dumps(designs,ensure_ascii=False,indent=2)+'\n')
+          report_path=root/'content/pattern-system/collections/baby-nursery/new-artwork-install-2026-09-28.json'
+          report_path.write_text(json.dumps({'source':'new image generation','items':report},ensure_ascii=False,indent=2)+'\n')
+          PY
+
+      - name: Regenerate eight products from the new sources
+        env:
+          DRIELO_GALLERY_REVISION: new-artwork-${{ github.run_id }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp content/products/catalog.json /tmp/catalog-before-new-artwork.json
+          rm -rf /tmp/new-artwork-rows
+          mkdir -p /tmp/new-artwork-rows
+          for id in I0021 I0025 I0026 I0027 I0029 I0043 I0044 I0057; do
+            echo "Regenerating $id"
+            python3 content/pattern-system/baby_nursery/publish_cs_exact_dmc.py "$id"
+            python3 -c 'import json,sys; from pathlib import Path; base=sys.argv[1]; code=f"{base}-CS"; c=json.loads(Path("content/products/catalog.json").read_text()); row=next((p for p in c.get("products",[]) if p.get("code")==code),None); row is not None or (_ for _ in ()).throw(SystemExit("missing "+code)); Path(f"/tmp/new-artwork-rows/{base}.json").write_text(json.dumps(row,ensure_ascii=False,indent=2))' "$id"
+          done
+
+      - name: Validate all regenerated bundles
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+          ids=('I0021','I0025','I0026','I0027','I0029','I0043','I0044','I0057')
+          for base in ids:
+              code=f'{base}-CS'
+              row=json.loads((Path('/tmp/new-artwork-rows')/f'{base}.json').read_text())
+              if row.get('code')!=code:
+                  raise SystemExit(f'{code}: wrong catalog row')
+              pat=json.loads((Path('content/pattern-system/patterns')/code/'pattern.json').read_text())
+              if (pat.get('stitch_width'),pat.get('stitch_height'))!=(100,120):
+                  raise SystemExit(f'{code}: wrong grid')
+              hero=Path('content/products/assets')/f'{code}-product.webp'
+              with Image.open(hero) as im:
+                  if im.size!=(1536,1536):
+                      raise SystemExit(f'{code}: wrong hero size {im.size}')
+              for n in (2,3,4):
+                  g=Path('content/products/assets')/f'{code}-gallery-{n}.webp'
+                  if not g.is_file() or g.stat().st_size<10000:
+                      raise SystemExit(f'{code}: gallery {n} invalid')
+              pdf=Path('content/products/files')/f'Drielo_{code}.pdf'
+              if not pdf.is_file() or pdf.stat().st_size<100000:
+                  raise SystemExit(f'{code}: PDF invalid')
+              print('BUNDLE_OK',code,hero.stat().st_size,pdf.stat().st_size)
+          PY
+
+      - name: Build eight-product WooCommerce package
+        env:
+          REVISION: new-artwork-${{ github.run_id }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          STAGE=/tmp/drielo-new-baby-eight
+          rm -rf "$STAGE"
+          mkdir -p "$STAGE/content/products/assets" "$STAGE/content/products/files" "$STAGE/content/tools"
+          python3 - "$STAGE" <<'PY'
+          import json,os,sys
+          from pathlib import Path
+          stage=Path(sys.argv[1])
+          ids=('I0021','I0025','I0026','I0027','I0029','I0043','I0044','I0057')
+          rows=[json.loads((Path('/tmp/new-artwork-rows')/f'{x}.json').read_text()) for x in ids]
+          base=json.loads(Path('/tmp/catalog-before-new-artwork.json').read_text())
+          rev=os.environ['REVISION']
+          for row in rows:
+              row['gallery_revision']=rev
+          coll=next(c for c in base.get('collections',[]) if c.get('slug')=='baby-nursery')
+          cats=[c for c in base.get('categories',[]) if c.get('slug') in {'cross-stitch-patterns','cross-stitch-baby-nursery'}]
+          out=dict(base)
+          out['products']=rows
+          out['collections']=[coll]
+          out['categories']=cats
+          out['retired_products']=[]
+          out['retired_collections']=[]
+          (stage/'content/products/catalog.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
+          PY
+          for base in I0021 I0025 I0026 I0027 I0029 I0043 I0044 I0057; do
+            code="${base}-CS"
+            cp "content/products/assets/${code}-product.webp" "$STAGE/content/products/assets/"
+            cp "content/products/assets/${code}-gallery-2.webp" "$STAGE/content/products/assets/"
+            cp "content/products/assets/${code}-gallery-3.webp" "$STAGE/content/products/assets/"
+            cp "content/products/assets/${code}-gallery-4.webp" "$STAGE/content/products/assets/"
+            cp "content/products/files/Drielo_${code}.pdf" "$STAGE/content/products/files/"
+          done
+          cp content/products/assets/baby-nursery-collection-cover-v2.jpg "$STAGE/content/products/assets/"
+          cp content/tools/import-products.php "$STAGE/content/tools/"
+          tar -czf /tmp/drielo-new-baby-eight.tgz -C "$STAGE" content
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_new_baby_key
+          chmod 600 ~/.ssh/drielo_new_baby_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Upload package
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          scp -i ~/.ssh/drielo_new_baby_key /tmp/drielo-new-baby-eight.tgz "$VPS_USER@$VPS_HOST:/tmp/drielo-new-baby-eight-${GITHUB_RUN_ID}.tgz"
+
+      - name: Update exactly eight existing products with fresh media URLs
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_new_baby_key "$VPS_USER@$VPS_HOST" "RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-new-baby-eight-${RUN_ID}.tgz"
+          HOST_STAGE="/tmp/drielo-new-baby-eight-${RUN_ID}"
+          CONTAINER_STAGE="/tmp/drielo-products-newbaby-${RUN_ID}"
+          IMPORTER="/tmp/drielo-import-newbaby-${RUN_ID}.php"
+          rm -rf "$HOST_STAGE"
+          mkdir -p "$HOST_STAGE"
+          tar -xzf "$ARCHIVE" -C "$HOST_STAGE"
+
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+
+          PRE_JSON=$("${DOCKER[@]}" exec make-wp php -d memory_limit=1024M -r '
+            require "/var/www/html/wp-load.php";
+            $o=array();
+            foreach(array("I0021","I0025","I0026","I0027","I0029","I0043","I0044","I0057") as $b){
+              $o[$b]=(int)wc_get_product_id_by_sku("DRIELO-".$b."-CS");
+            }
+            echo json_encode($o);
+          ')
+          echo "PRE_IDS=$PRE_JSON"
+
+          "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '$CONTAINER_STAGE' '$IMPORTER' && mkdir -p '$CONTAINER_STAGE'"
+          "${DOCKER[@]}" cp "$HOST_STAGE/content/products/." "make-wp:$CONTAINER_STAGE"
+          "${DOCKER[@]}" cp "$HOST_STAGE/content/tools/import-products.php" "make-wp:$IMPORTER"
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M "$IMPORTER" /var/www/html "$CONTAINER_STAGE"
+
+          "${DOCKER[@]}" exec -e RUN_ID="$RUN_ID" -e PRE_JSON="$PRE_JSON" make-wp php -d memory_limit=1024M -r '
+            require "/var/www/html/wp-load.php";
+            require_once ABSPATH."wp-admin/includes/file.php";
+            require_once ABSPATH."wp-admin/includes/image.php";
+            require_once ABSPATH."wp-admin/includes/media.php";
+            $run=preg_replace("/[^0-9A-Za-z_-]/","",getenv("RUN_ID"));
+            $pre=json_decode(getenv("PRE_JSON"),true);
+            $bases=array("I0021","I0025","I0026","I0027","I0029","I0043","I0044","I0057");
+
+            function newbaby_media($src,$key,$title,$run){
+              if(!is_file($src)){throw new RuntimeException("missing ".$src);}
+              $stem=pathinfo(basename($key),PATHINFO_FILENAME);
+              $ext=pathinfo(basename($key),PATHINFO_EXTENSION);
+              $filename=$stem."-new".$run.".".$ext;
+              $bits=wp_upload_bits($filename,null,(string)file_get_contents($src));
+              if(!empty($bits["error"])){throw new RuntimeException($bits["error"]);}
+              $type=wp_check_filetype($filename,null);
+              $id=wp_insert_attachment(array(
+                "post_mime_type"=>$type["type"]?:"image/webp",
+                "post_title"=>$title,
+                "post_status"=>"inherit",
+              ),$bits["file"]);
+              if(is_wp_error($id)){throw new RuntimeException($id->get_error_message());}
+              $meta=wp_generate_attachment_metadata($id,$bits["file"]);
+              if(is_array($meta)){wp_update_attachment_metadata($id,$meta);}
+              update_post_meta($id,"_drielo_source_asset",$key);
+              update_post_meta($id,"_drielo_source_hash",md5_file($src)?:"");
+              update_post_meta($id,"_drielo_source_revision","new-artwork-".$run);
+              return (int)$id;
+            }
+
+            foreach($bases as $base){
+              $sku="DRIELO-".$base."-CS";
+              $pid=(int)wc_get_product_id_by_sku($sku);
+              if($pid<=0 || $pid!==(int)$pre[$base]){
+                throw new RuntimeException("product ID mismatch ".$sku);
+              }
+              $p=wc_get_product($pid);
+              $old=array_merge(array((int)$p->get_image_id()),array_map("intval",$p->get_gallery_image_ids()));
+              $root="/tmp/drielo-products-newbaby-".$run."/assets/";
+              $hero=newbaby_media($root.$base."-CS-product.webp","assets/".$base."-CS-product.webp",$p->get_name()." new featured",$run);
+              $gallery=array();
+              foreach(array(2,3,4) as $n){
+                $gallery[]=newbaby_media($root.$base."-CS-gallery-".$n.".webp","assets/".$base."-CS-gallery-".$n.".webp",$p->get_name()." new gallery ".$n,$run);
+              }
+              $p->set_image_id($hero);
+              $p->set_gallery_image_ids($gallery);
+              $p->save();
+              foreach($old as $oid){
+                if($oid>0){
+                  delete_post_meta($oid,"_drielo_source_asset");
+                  delete_post_meta($oid,"_drielo_source_hash");
+                  delete_post_meta($oid,"_drielo_source_revision");
+                }
+              }
+              $url=wp_get_attachment_url($hero);
+              if(strpos((string)$url,"-new".$run.".webp")===false){
+                throw new RuntimeException("fresh URL missing ".$sku);
+              }
+              echo "UPDATED_NEW ".$sku." product_id=".$pid." hero=".$hero." url=".$url.PHP_EOL;
+            }
+
+            wp_cache_flush();
+            $ids=get_posts(array(
+              "post_type"=>"product",
+              "post_status"=>"publish",
+              "posts_per_page"=>-1,
+              "fields"=>"ids",
+              "tax_query"=>array(array(
+                "taxonomy"=>"product_collection",
+                "field"=>"slug",
+                "terms"=>array("baby-nursery")
+              ))
+            ));
+            echo "BABY_PUBLISHED_COUNT=".count($ids).PHP_EOL;
+            if(count($ids)!==60){throw new RuntimeException("Expected 60 Baby Nursery products");}
+          '
+
+          "${DOCKER[@]}" exec make-wp sh -lc 'if [ -d /var/www/html/wp-content/cache ]; then find /var/www/html/wp-content/cache -mindepth 1 -maxdepth 1 -exec rm -rf {} + || true; fi'
+          "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '$CONTAINER_STAGE' '$IMPORTER'"
+          rm -rf "$ARCHIVE" "$HOST_STAGE"
+          REMOTE
+
+      - name: Verify public hero bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          for base in I0021 I0025 I0026 I0027 I0029 I0043 I0044 I0057; do
+            public="https://drielo.com/wp-content/uploads/2026/09/${base}-CS-product-new${GITHUB_RUN_ID}.webp"
+            curl -fL --retry 5 --retry-delay 2 -H 'Cache-Control: no-cache' "$public" -o "/tmp/${base}-public.webp"
+            local_hash=$(sha256sum "content/products/assets/${base}-CS-product.webp" | awk '{print $1}')
+            live_hash=$(sha256sum "/tmp/${base}-public.webp" | awk '{print $1}')
+            echo "${base} local=${local_hash} live=${live_hash}"
+            [ "$local_hash" = "$live_hash" ] || exit 2
+          done
+
+      - name: Commit new sources and regenerated assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp /tmp/catalog-before-new-artwork.json content/products/catalog.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add --sparse             content/source-images/collections/baby-nursery/products/I0021-whale.png             content/source-images/collections/baby-nursery/products/I0025-seahorse.png             content/source-images/collections/baby-nursery/products/I0026-long-neck-dinosaur.png             content/source-images/collections/baby-nursery/products/I0027-triceratops.png             content/source-images/collections/baby-nursery/products/I0029-stegosaurus.png             content/source-images/collections/baby-nursery/products/I0043-rainbow-clouds.png             content/source-images/collections/baby-nursery/products/I0044-sun.png             content/source-images/collections/baby-nursery/products/I0057-rattle.png             content/source-images/collections/baby-nursery/source-manifest.json             content/source-images/collections/baby-nursery/qa_report.json             content/pattern-system/collections/baby-nursery/designs.json             content/pattern-system/collections/baby-nursery/new-artwork-install-2026-09-28.json
+
+          for base in I0021 I0025 I0026 I0027 I0029 I0043 I0044 I0057; do
+            code="${base}-CS"
+            git add --sparse               "content/pattern-system/collections/baby-nursery/mapped-designs/${base}-"*"-dmc.png"               "content/pattern-system/patterns/${code}/pattern.json"               "content/pattern-system/products/${code}/product.json"               "content/products/assets/${code}-product.webp"               "content/products/assets/${code}-gallery-2.webp"               "content/products/assets/${code}-gallery-3.webp"               "content/products/assets/${code}-gallery-4.webp"
+          done
+
+          if git diff --cached --quiet; then
+            echo "No source/artifact changes to commit"
+          else
+            git commit -m "Install regenerated Baby Nursery artwork and rebuild eight [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
