@@ -18,6 +18,6 @@
   "renderer": "multitech",
   "source_artwork": "../source-images/collections/baby-nursery/products/I0001-teddy-bear.png",
   "page_1_asset": "collections/baby-nursery/assets/cover-cross-stitch.jpg",
-  "palette_mode": "shared-30-source-colours-to-dmc",
+  "palette_mode": "exact-dmc50-source-no-requantization",
   "mapped_artwork": "collections/baby-nursery/mapped-designs/I0001-teddy-bear-dmc.png"
 }

@@ -1,8 +1,10 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "2.0",
   "collection_id": "baby-nursery",
-  "source": "approved-final-60-design-zip",
+  "source": "approved-dmc50-adaptive-60-zip",
   "count": 60,
+  "palette_file": "palette50_dmc.json",
+  "palette_mode": "exact-dmc50-no-requantization",
   "products": [
     {
       "id": "I0001",
@@ -10,7 +12,21 @@
       "filename": "I0001-teddy-bear.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 10,
+      "dmc_codes": [
+        "322",
+        "3371",
+        "3706",
+        "3755",
+        "434",
+        "435",
+        "646",
+        "738",
+        "801",
+        "898"
+      ]
     },
     {
       "id": "I0002",
@@ -18,7 +34,18 @@
       "filename": "I0002-bunny.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 7,
+      "dmc_codes": [
+        "310",
+        "3706",
+        "3770",
+        "605",
+        "738",
+        "801",
+        "869"
+      ]
     },
     {
       "id": "I0003",
@@ -26,7 +53,18 @@
       "filename": "I0003-elephant.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 7,
+      "dmc_codes": [
+        "310",
+        "322",
+        "3755",
+        "605",
+        "739",
+        "803",
+        "893"
+      ]
     },
     {
       "id": "I0004",
@@ -34,7 +72,23 @@
       "filename": "I0004-giraffe.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 12,
+      "dmc_codes": [
+        "3371",
+        "3806",
+        "434",
+        "725",
+        "729",
+        "739",
+        "741",
+        "743",
+        "779",
+        "898",
+        "922",
+        "938"
+      ]
     },
     {
       "id": "I0005",
@@ -42,7 +96,19 @@
       "filename": "I0005-lion.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 8,
+      "dmc_codes": [
+        "3371",
+        "738",
+        "739",
+        "743",
+        "801",
+        "893",
+        "919",
+        "922"
+      ]
     },
     {
       "id": "I0006",
@@ -50,7 +116,17 @@
       "filename": "I0006-zebra.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 6,
+      "dmc_codes": [
+        "318",
+        "3371",
+        "3706",
+        "3770",
+        "3799",
+        "646"
+      ]
     },
     {
       "id": "I0007",
@@ -58,7 +134,17 @@
       "filename": "I0007-hippo.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 6,
+      "dmc_codes": [
+        "209",
+        "210",
+        "310",
+        "3706",
+        "605",
+        "939"
+      ]
     },
     {
       "id": "I0008",
@@ -66,7 +152,17 @@
       "filename": "I0008-panda.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 6,
+      "dmc_codes": [
+        "310",
+        "318",
+        "3706",
+        "3770",
+        "3799",
+        "739"
+      ]
     },
     {
       "id": "I0009",
@@ -74,7 +170,20 @@
       "filename": "I0009-koala.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 9,
+      "dmc_codes": [
+        "318",
+        "3345",
+        "3706",
+        "3799",
+        "434",
+        "646",
+        "703",
+        "801",
+        "898"
+      ]
     },
     {
       "id": "I0010",
@@ -82,7 +191,21 @@
       "filename": "I0010-fox.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 10,
+      "dmc_codes": [
+        "310",
+        "605",
+        "738",
+        "739",
+        "779",
+        "801",
+        "869",
+        "919",
+        "922",
+        "938"
+      ]
     },
     {
       "id": "I0011",
@@ -90,7 +213,26 @@
       "filename": "I0011-cottage.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 15,
+      "dmc_codes": [
+        "318",
+        "3345",
+        "351",
+        "3713",
+        "3752",
+        "3777",
+        "435",
+        "738",
+        "739",
+        "869",
+        "890",
+        "893",
+        "898",
+        "905",
+        "938"
+      ]
     },
     {
       "id": "I0012",
@@ -98,7 +240,20 @@
       "filename": "I0012-swing-tree.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 9,
+      "dmc_codes": [
+        "3345",
+        "3706",
+        "3770",
+        "434",
+        "869",
+        "890",
+        "905",
+        "934",
+        "938"
+      ]
     },
     {
       "id": "I0013",
@@ -106,7 +261,26 @@
       "filename": "I0013-flower-bouquet.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 15,
+      "dmc_codes": [
+        "3345",
+        "351",
+        "3770",
+        "646",
+        "725",
+        "738",
+        "739",
+        "743",
+        "779",
+        "890",
+        "893",
+        "902",
+        "905",
+        "934",
+        "938"
+      ]
     },
     {
       "id": "I0014",
@@ -114,7 +288,18 @@
       "filename": "I0014-sunflower.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 7,
+      "dmc_codes": [
+        "434",
+        "725",
+        "741",
+        "801",
+        "905",
+        "934",
+        "938"
+      ]
     },
     {
       "id": "I0015",
@@ -122,7 +307,20 @@
       "filename": "I0015-mushroom.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 9,
+      "dmc_codes": [
+        "3371",
+        "350",
+        "3770",
+        "738",
+        "739",
+        "869",
+        "890",
+        "893",
+        "905"
+      ]
     },
     {
       "id": "I0016",
@@ -130,7 +328,17 @@
       "filename": "I0016-ladybug.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 6,
+      "dmc_codes": [
+        "3371",
+        "350",
+        "3706",
+        "3777",
+        "3799",
+        "739"
+      ]
     },
     {
       "id": "I0017",
@@ -138,7 +346,21 @@
       "filename": "I0017-bee.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 10,
+      "dmc_codes": [
+        "310",
+        "3371",
+        "3706",
+        "3755",
+        "725",
+        "762",
+        "803",
+        "869",
+        "898",
+        "938"
+      ]
     },
     {
       "id": "I0018",
@@ -146,7 +368,17 @@
       "filename": "I0018-butterfly.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 6,
+      "dmc_codes": [
+        "209",
+        "310",
+        "605",
+        "762",
+        "893",
+        "939"
+      ]
     },
     {
       "id": "I0019",
@@ -154,7 +386,19 @@
       "filename": "I0019-snail.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 8,
+      "dmc_codes": [
+        "310",
+        "3706",
+        "435",
+        "646",
+        "739",
+        "743",
+        "801",
+        "938"
+      ]
     },
     {
       "id": "I0020",
@@ -162,7 +406,25 @@
       "filename": "I0020-castle.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 14,
+      "dmc_codes": [
+        "322",
+        "3345",
+        "3371",
+        "351",
+        "3713",
+        "646",
+        "725",
+        "738",
+        "739",
+        "890",
+        "893",
+        "902",
+        "905",
+        "938"
+      ]
     },
     {
       "id": "I0021",
@@ -170,7 +432,17 @@
       "filename": "I0021-whale.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 6,
+      "dmc_codes": [
+        "310",
+        "322",
+        "3706",
+        "3755",
+        "3770",
+        "939"
+      ]
     },
     {
       "id": "I0022",
@@ -178,7 +450,18 @@
       "filename": "I0022-dolphin.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 7,
+      "dmc_codes": [
+        "310",
+        "322",
+        "3706",
+        "3755",
+        "3770",
+        "803",
+        "939"
+      ]
     },
     {
       "id": "I0023",
@@ -186,7 +469,17 @@
       "filename": "I0023-octopus.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 6,
+      "dmc_codes": [
+        "209",
+        "210",
+        "310",
+        "3706",
+        "605",
+        "939"
+      ]
     },
     {
       "id": "I0024",
@@ -194,7 +487,20 @@
       "filename": "I0024-clownfish.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 9,
+      "dmc_codes": [
+        "310",
+        "3371",
+        "3706",
+        "3777",
+        "646",
+        "762",
+        "898",
+        "919",
+        "922"
+      ]
     },
     {
       "id": "I0025",
@@ -202,7 +508,21 @@
       "filename": "I0025-seahorse.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 10,
+      "dmc_codes": [
+        "310",
+        "725",
+        "738",
+        "741",
+        "743",
+        "801",
+        "893",
+        "898",
+        "919",
+        "922"
+      ]
     },
     {
       "id": "I0026",
@@ -210,7 +530,18 @@
       "filename": "I0026-long-neck-dinosaur.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 7,
+      "dmc_codes": [
+        "310",
+        "3706",
+        "470",
+        "738",
+        "890",
+        "905",
+        "934"
+      ]
     },
     {
       "id": "I0027",
@@ -218,7 +549,23 @@
       "filename": "I0027-triceratops.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 12,
+      "dmc_codes": [
+        "310",
+        "3706",
+        "3776",
+        "3854",
+        "738",
+        "741",
+        "801",
+        "898",
+        "919",
+        "922",
+        "934",
+        "938"
+      ]
     },
     {
       "id": "I0028",
@@ -226,7 +573,19 @@
       "filename": "I0028-t-rex.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 8,
+      "dmc_codes": [
+        "310",
+        "3706",
+        "470",
+        "646",
+        "738",
+        "890",
+        "905",
+        "934"
+      ]
     },
     {
       "id": "I0029",
@@ -234,7 +593,21 @@
       "filename": "I0029-stegosaurus.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 10,
+      "dmc_codes": [
+        "310",
+        "318",
+        "322",
+        "3706",
+        "3755",
+        "738",
+        "803",
+        "922",
+        "938",
+        "939"
+      ]
     },
     {
       "id": "I0030",
@@ -242,7 +615,22 @@
       "filename": "I0030-baby-dragon.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 11,
+      "dmc_codes": [
+        "310",
+        "350",
+        "3755",
+        "3776",
+        "3777",
+        "3854",
+        "608",
+        "743",
+        "801",
+        "893",
+        "938"
+      ]
     },
     {
       "id": "I0031",
@@ -250,7 +638,27 @@
       "filename": "I0031-deer.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 16,
+      "dmc_codes": [
+        "310",
+        "3345",
+        "3776",
+        "3799",
+        "3854",
+        "434",
+        "605",
+        "646",
+        "738",
+        "739",
+        "762",
+        "801",
+        "890",
+        "893",
+        "905",
+        "938"
+      ]
     },
     {
       "id": "I0032",
@@ -258,7 +666,21 @@
       "filename": "I0032-squirrel.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 10,
+      "dmc_codes": [
+        "310",
+        "3706",
+        "3776",
+        "3854",
+        "434",
+        "738",
+        "739",
+        "869",
+        "898",
+        "938"
+      ]
     },
     {
       "id": "I0033",
@@ -266,7 +688,24 @@
       "filename": "I0033-hedgehog.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 13,
+      "dmc_codes": [
+        "310",
+        "3345",
+        "3706",
+        "3713",
+        "434",
+        "738",
+        "739",
+        "762",
+        "801",
+        "869",
+        "893",
+        "905",
+        "938"
+      ]
     },
     {
       "id": "I0034",
@@ -274,7 +713,17 @@
       "filename": "I0034-raccoon.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 6,
+      "dmc_codes": [
+        "318",
+        "3371",
+        "3706",
+        "3799",
+        "646",
+        "739"
+      ]
     },
     {
       "id": "I0035",
@@ -282,7 +731,24 @@
       "filename": "I0035-owl.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 13,
+      "dmc_codes": [
+        "310",
+        "3345",
+        "3706",
+        "3776",
+        "435",
+        "738",
+        "739",
+        "741",
+        "801",
+        "890",
+        "905",
+        "934",
+        "938"
+      ]
     },
     {
       "id": "I0036",
@@ -290,7 +756,19 @@
       "filename": "I0036-penguin.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 8,
+      "dmc_codes": [
+        "310",
+        "3770",
+        "3799",
+        "434",
+        "605",
+        "646",
+        "741",
+        "938"
+      ]
     },
     {
       "id": "I0037",
@@ -298,7 +776,17 @@
       "filename": "I0037-seal.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 6,
+      "dmc_codes": [
+        "310",
+        "3706",
+        "3752",
+        "3799",
+        "762",
+        "794"
+      ]
     },
     {
       "id": "I0038",
@@ -306,7 +794,21 @@
       "filename": "I0038-frog-prince.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 10,
+      "dmc_codes": [
+        "310",
+        "3706",
+        "470",
+        "703",
+        "725",
+        "738",
+        "739",
+        "890",
+        "898",
+        "934"
+      ]
     },
     {
       "id": "I0039",
@@ -314,7 +816,16 @@
       "filename": "I0039-axolotl.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 5,
+      "dmc_codes": [
+        "310",
+        "3706",
+        "3713",
+        "3806",
+        "902"
+      ]
     },
     {
       "id": "I0040",
@@ -322,7 +833,21 @@
       "filename": "I0040-turtle.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 10,
+      "dmc_codes": [
+        "310",
+        "3345",
+        "3806",
+        "470",
+        "703",
+        "738",
+        "739",
+        "743",
+        "905",
+        "934"
+      ]
     },
     {
       "id": "I0041",
@@ -330,7 +855,29 @@
       "filename": "I0041-unicorn.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 18,
+      "dmc_codes": [
+        "209",
+        "210",
+        "310",
+        "322",
+        "3371",
+        "3706",
+        "3752",
+        "3755",
+        "3770",
+        "3806",
+        "646",
+        "726",
+        "739",
+        "741",
+        "779",
+        "902",
+        "938",
+        "939"
+      ]
     },
     {
       "id": "I0042",
@@ -338,7 +885,31 @@
       "filename": "I0042-floral-unicorn.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 20,
+      "dmc_codes": [
+        "209",
+        "210",
+        "310",
+        "318",
+        "322",
+        "3345",
+        "3706",
+        "3755",
+        "3770",
+        "3806",
+        "646",
+        "729",
+        "739",
+        "779",
+        "794",
+        "803",
+        "890",
+        "893",
+        "902",
+        "905"
+      ]
     },
     {
       "id": "I0043",
@@ -346,7 +917,24 @@
       "filename": "I0043-rainbow-clouds.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 13,
+      "dmc_codes": [
+        "209",
+        "310",
+        "3371",
+        "3706",
+        "3755",
+        "3770",
+        "3806",
+        "3854",
+        "646",
+        "739",
+        "743",
+        "779",
+        "955"
+      ]
     },
     {
       "id": "I0044",
@@ -354,7 +942,19 @@
       "filename": "I0044-sun.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 8,
+      "dmc_codes": [
+        "310",
+        "3770",
+        "434",
+        "741",
+        "743",
+        "893",
+        "898",
+        "922"
+      ]
     },
     {
       "id": "I0045",
@@ -362,7 +962,23 @@
       "filename": "I0045-moon.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 12,
+      "dmc_codes": [
+        "310",
+        "322",
+        "3371",
+        "3706",
+        "3752",
+        "3755",
+        "726",
+        "729",
+        "743",
+        "762",
+        "801",
+        "939"
+      ]
     },
     {
       "id": "I0046",
@@ -370,7 +986,18 @@
       "filename": "I0046-star.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 7,
+      "dmc_codes": [
+        "310",
+        "3371",
+        "3806",
+        "434",
+        "726",
+        "729",
+        "762"
+      ]
     },
     {
       "id": "I0047",
@@ -378,7 +1005,21 @@
       "filename": "I0047-hanging-cloud.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 10,
+      "dmc_codes": [
+        "210",
+        "310",
+        "3706",
+        "3755",
+        "3770",
+        "3806",
+        "646",
+        "869",
+        "938",
+        "939"
+      ]
     },
     {
       "id": "I0048",
@@ -386,7 +1027,28 @@
       "filename": "I0048-hot-air-balloon.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 17,
+      "dmc_codes": [
+        "209",
+        "210",
+        "310",
+        "3755",
+        "3770",
+        "3776",
+        "3806",
+        "3854",
+        "434",
+        "605",
+        "738",
+        "743",
+        "794",
+        "801",
+        "902",
+        "938",
+        "939"
+      ]
     },
     {
       "id": "I0049",
@@ -394,7 +1056,28 @@
       "filename": "I0049-kite.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 17,
+      "dmc_codes": [
+        "209",
+        "310",
+        "318",
+        "322",
+        "3371",
+        "351",
+        "3755",
+        "3776",
+        "3806",
+        "729",
+        "738",
+        "743",
+        "803",
+        "869",
+        "898",
+        "902",
+        "939"
+      ]
     },
     {
       "id": "I0050",
@@ -402,7 +1085,25 @@
       "filename": "I0050-rocket.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 14,
+      "dmc_codes": [
+        "310",
+        "318",
+        "322",
+        "350",
+        "3706",
+        "3752",
+        "3770",
+        "3799",
+        "726",
+        "741",
+        "902",
+        "919",
+        "922",
+        "939"
+      ]
     },
     {
       "id": "I0051",
@@ -410,7 +1111,23 @@
       "filename": "I0051-airplane.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 12,
+      "dmc_codes": [
+        "322",
+        "3371",
+        "3706",
+        "3752",
+        "3755",
+        "3799",
+        "725",
+        "739",
+        "779",
+        "803",
+        "938",
+        "939"
+      ]
     },
     {
       "id": "I0052",
@@ -418,7 +1135,25 @@
       "filename": "I0052-train.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 14,
+      "dmc_codes": [
+        "318",
+        "322",
+        "3371",
+        "350",
+        "351",
+        "3755",
+        "3777",
+        "435",
+        "725",
+        "726",
+        "869",
+        "893",
+        "922",
+        "938"
+      ]
     },
     {
       "id": "I0053",
@@ -426,7 +1161,21 @@
       "filename": "I0053-car.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 10,
+      "dmc_codes": [
+        "318",
+        "3371",
+        "3752",
+        "3755",
+        "3770",
+        "743",
+        "779",
+        "803",
+        "893",
+        "939"
+      ]
     },
     {
       "id": "I0054",
@@ -434,7 +1183,21 @@
       "filename": "I0054-sailboat.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 10,
+      "dmc_codes": [
+        "310",
+        "351",
+        "3755",
+        "3770",
+        "3854",
+        "435",
+        "646",
+        "801",
+        "893",
+        "938"
+      ]
     },
     {
       "id": "I0055",
@@ -442,7 +1205,26 @@
       "filename": "I0055-baby-blocks.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 15,
+      "dmc_codes": [
+        "322",
+        "3371",
+        "351",
+        "3706",
+        "3713",
+        "3755",
+        "703",
+        "725",
+        "739",
+        "762",
+        "893",
+        "905",
+        "938",
+        "939",
+        "955"
+      ]
     },
     {
       "id": "I0056",
@@ -450,7 +1232,23 @@
       "filename": "I0056-rocking-horse.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 12,
+      "dmc_codes": [
+        "310",
+        "322",
+        "3706",
+        "3752",
+        "434",
+        "435",
+        "646",
+        "726",
+        "738",
+        "739",
+        "898",
+        "938"
+      ]
     },
     {
       "id": "I0057",
@@ -458,7 +1256,20 @@
       "filename": "I0057-rattle.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 9,
+      "dmc_codes": [
+        "3371",
+        "3706",
+        "3755",
+        "434",
+        "726",
+        "739",
+        "779",
+        "893",
+        "938"
+      ]
     },
     {
       "id": "I0058",
@@ -466,7 +1277,19 @@
       "filename": "I0058-rubber-duck.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 8,
+      "dmc_codes": [
+        "310",
+        "726",
+        "741",
+        "743",
+        "801",
+        "893",
+        "922",
+        "938"
+      ]
     },
     {
       "id": "I0059",
@@ -474,7 +1297,20 @@
       "filename": "I0059-baby-bottle.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 9,
+      "dmc_codes": [
+        "310",
+        "322",
+        "3706",
+        "3755",
+        "3770",
+        "434",
+        "646",
+        "743",
+        "938"
+      ]
     },
     {
       "id": "I0060",
@@ -482,7 +1318,19 @@
       "filename": "I0060-crown.png",
       "width": 100,
       "height": 120,
-      "background": "transparent"
+      "background": "transparent",
+      "palette_mode": "exact-dmc50",
+      "color_count": 8,
+      "dmc_codes": [
+        "350",
+        "351",
+        "435",
+        "726",
+        "741",
+        "743",
+        "801",
+        "938"
+      ]
     }
   ]
 }

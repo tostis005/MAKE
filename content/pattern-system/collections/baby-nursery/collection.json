@@ -296,7 +296,7 @@
     "approved_batch": "I0001-I0010",
     "matrix_standard": "100x120 master grid; exact approved 24-colour palette; transparent exterior"
   },
-  "source_palette": "palette30.json",
-  "source_palette_mode": "shared-30-colours",
+  "source_palette": "../source-images/collections/baby-nursery/palette50_dmc.json",
+  "source_palette_mode": "exact-dmc50-adaptive-per-design",
   "transparent_pixels_are_stitches": false
 }

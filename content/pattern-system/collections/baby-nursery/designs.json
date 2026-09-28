@@ -2,7 +2,7 @@
   "collection": "baby-nursery",
   "code_prefix": "I",
   "count": 60,
-  "source_policy": "canonical-100x120-transparent-pngs",
+  "source_policy": "canonical-exact-dmc50-transparent-pngs",
   "technique_policy": "cross-stitch-only",
   "designs": [
     {
@@ -16,11 +16,12 @@
       "variants": [
         "I0001-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0001-teddy-bear.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0001-teddy-bear.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 10
     },
     {
       "order": 2,
@@ -33,11 +34,12 @@
       "variants": [
         "I0002-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0002-bunny.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0002-bunny.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 7
     },
     {
       "order": 3,
@@ -50,11 +52,12 @@
       "variants": [
         "I0003-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0003-elephant.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0003-elephant.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 7
     },
     {
       "order": 4,
@@ -67,11 +70,12 @@
       "variants": [
         "I0004-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0004-giraffe.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0004-giraffe.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 12
     },
     {
       "order": 5,
@@ -84,11 +88,12 @@
       "variants": [
         "I0005-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0005-lion.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0005-lion.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 8
     },
     {
       "order": 6,
@@ -101,11 +106,12 @@
       "variants": [
         "I0006-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0006-zebra.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0006-zebra.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 6
     },
     {
       "order": 7,
@@ -118,11 +124,12 @@
       "variants": [
         "I0007-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0007-hippo.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0007-hippo.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 6
     },
     {
       "order": 8,
@@ -135,11 +142,12 @@
       "variants": [
         "I0008-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0008-panda.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0008-panda.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 6
     },
     {
       "order": 9,
@@ -152,11 +160,12 @@
       "variants": [
         "I0009-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0009-koala.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0009-koala.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 9
     },
     {
       "order": 10,
@@ -169,11 +178,12 @@
       "variants": [
         "I0010-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0010-fox.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0010-fox.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 10
     },
     {
       "order": 11,
@@ -186,11 +196,12 @@
       "variants": [
         "I0011-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0011-cottage.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0011-cottage.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 15
     },
     {
       "order": 12,
@@ -203,11 +214,12 @@
       "variants": [
         "I0012-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0012-swing-tree.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0012-swing-tree.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 9
     },
     {
       "order": 13,
@@ -220,11 +232,12 @@
       "variants": [
         "I0013-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0013-flower-bouquet.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0013-flower-bouquet.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 15
     },
     {
       "order": 14,
@@ -237,11 +250,12 @@
       "variants": [
         "I0014-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0014-sunflower.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0014-sunflower.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 7
     },
     {
       "order": 15,
@@ -254,11 +268,12 @@
       "variants": [
         "I0015-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0015-mushroom.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0015-mushroom.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 9
     },
     {
       "order": 16,
@@ -271,11 +286,12 @@
       "variants": [
         "I0016-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0016-ladybug.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0016-ladybug.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 6
     },
     {
       "order": 17,
@@ -288,11 +304,12 @@
       "variants": [
         "I0017-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0017-bee.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0017-bee.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 10
     },
     {
       "order": 18,
@@ -305,11 +322,12 @@
       "variants": [
         "I0018-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0018-butterfly.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0018-butterfly.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 6
     },
     {
       "order": 19,
@@ -322,11 +340,12 @@
       "variants": [
         "I0019-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0019-snail.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0019-snail.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 8
     },
     {
       "order": 20,
@@ -339,11 +358,12 @@
       "variants": [
         "I0020-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0020-castle.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0020-castle.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 14
     },
     {
       "order": 21,
@@ -356,11 +376,12 @@
       "variants": [
         "I0021-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0021-whale.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0021-whale.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 6
     },
     {
       "order": 22,
@@ -373,11 +394,12 @@
       "variants": [
         "I0022-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0022-dolphin.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0022-dolphin.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 7
     },
     {
       "order": 23,
@@ -390,11 +412,12 @@
       "variants": [
         "I0023-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0023-octopus.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0023-octopus.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 6
     },
     {
       "order": 24,
@@ -407,11 +430,12 @@
       "variants": [
         "I0024-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0024-clownfish.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0024-clownfish.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 9
     },
     {
       "order": 25,
@@ -424,11 +448,12 @@
       "variants": [
         "I0025-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0025-seahorse.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0025-seahorse.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 10
     },
     {
       "order": 26,
@@ -441,11 +466,12 @@
       "variants": [
         "I0026-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0026-long-neck-dinosaur.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0026-long-neck-dinosaur.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 7
     },
     {
       "order": 27,
@@ -458,11 +484,12 @@
       "variants": [
         "I0027-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0027-triceratops.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0027-triceratops.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 12
     },
     {
       "order": 28,
@@ -475,11 +502,12 @@
       "variants": [
         "I0028-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0028-t-rex.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0028-t-rex.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 8
     },
     {
       "order": 29,
@@ -492,11 +520,12 @@
       "variants": [
         "I0029-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0029-stegosaurus.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0029-stegosaurus.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 10
     },
     {
       "order": 30,
@@ -509,11 +538,12 @@
       "variants": [
         "I0030-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0030-baby-dragon.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0030-baby-dragon.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 11
     },
     {
       "order": 31,
@@ -526,11 +556,12 @@
       "variants": [
         "I0031-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0031-deer.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0031-deer.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 16
     },
     {
       "order": 32,
@@ -543,11 +574,12 @@
       "variants": [
         "I0032-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0032-squirrel.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0032-squirrel.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 10
     },
     {
       "order": 33,
@@ -560,11 +592,12 @@
       "variants": [
         "I0033-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0033-hedgehog.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0033-hedgehog.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 13
     },
     {
       "order": 34,
@@ -577,11 +610,12 @@
       "variants": [
         "I0034-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0034-raccoon.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0034-raccoon.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 6
     },
     {
       "order": 35,
@@ -594,11 +628,12 @@
       "variants": [
         "I0035-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0035-owl.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0035-owl.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 13
     },
     {
       "order": 36,
@@ -611,11 +646,12 @@
       "variants": [
         "I0036-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0036-penguin.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0036-penguin.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 8
     },
     {
       "order": 37,
@@ -628,11 +664,12 @@
       "variants": [
         "I0037-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0037-seal.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0037-seal.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 6
     },
     {
       "order": 38,
@@ -645,11 +682,12 @@
       "variants": [
         "I0038-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0038-frog-prince.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0038-frog-prince.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 10
     },
     {
       "order": 39,
@@ -662,11 +700,12 @@
       "variants": [
         "I0039-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0039-axolotl.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0039-axolotl.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 5
     },
     {
       "order": 40,
@@ -679,11 +718,12 @@
       "variants": [
         "I0040-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0040-turtle.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0040-turtle.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 10
     },
     {
       "order": 41,
@@ -696,11 +736,12 @@
       "variants": [
         "I0041-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0041-unicorn.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0041-unicorn.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 18
     },
     {
       "order": 42,
@@ -713,11 +754,12 @@
       "variants": [
         "I0042-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0042-floral-unicorn.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0042-floral-unicorn.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 20
     },
     {
       "order": 43,
@@ -730,11 +772,12 @@
       "variants": [
         "I0043-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0043-rainbow-clouds.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0043-rainbow-clouds.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 13
     },
     {
       "order": 44,
@@ -747,11 +790,12 @@
       "variants": [
         "I0044-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0044-sun.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0044-sun.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 8
     },
     {
       "order": 45,
@@ -764,11 +808,12 @@
       "variants": [
         "I0045-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0045-moon.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0045-moon.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 12
     },
     {
       "order": 46,
@@ -781,11 +826,12 @@
       "variants": [
         "I0046-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0046-star.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0046-star.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 7
     },
     {
       "order": 47,
@@ -798,11 +844,12 @@
       "variants": [
         "I0047-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0047-hanging-cloud.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0047-hanging-cloud.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 10
     },
     {
       "order": 48,
@@ -815,11 +862,12 @@
       "variants": [
         "I0048-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0048-hot-air-balloon.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0048-hot-air-balloon.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 17
     },
     {
       "order": 49,
@@ -832,11 +880,12 @@
       "variants": [
         "I0049-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0049-kite.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0049-kite.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 17
     },
     {
       "order": 50,
@@ -849,11 +898,12 @@
       "variants": [
         "I0050-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0050-rocket.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0050-rocket.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 14
     },
     {
       "order": 51,
@@ -866,11 +916,12 @@
       "variants": [
         "I0051-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0051-airplane.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0051-airplane.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 12
     },
     {
       "order": 52,
@@ -883,11 +934,12 @@
       "variants": [
         "I0052-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0052-train.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0052-train.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 14
     },
     {
       "order": 53,
@@ -900,11 +952,12 @@
       "variants": [
         "I0053-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0053-car.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0053-car.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 10
     },
     {
       "order": 54,
@@ -917,11 +970,12 @@
       "variants": [
         "I0054-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0054-sailboat.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0054-sailboat.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 10
     },
     {
       "order": 55,
@@ -934,11 +988,12 @@
       "variants": [
         "I0055-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0055-baby-blocks.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0055-baby-blocks.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 15
     },
     {
       "order": 56,
@@ -951,11 +1006,12 @@
       "variants": [
         "I0056-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0056-rocking-horse.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0056-rocking-horse.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 12
     },
     {
       "order": 57,
@@ -968,11 +1024,12 @@
       "variants": [
         "I0057-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0057-rattle.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0057-rattle.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 9
     },
     {
       "order": 58,
@@ -985,11 +1042,12 @@
       "variants": [
         "I0058-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0058-rubber-duck.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0058-rubber-duck.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 8
     },
     {
       "order": 59,
@@ -1002,11 +1060,12 @@
       "variants": [
         "I0059-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0059-baby-bottle.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0059-baby-bottle.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 9
     },
     {
       "order": 60,
@@ -1019,11 +1078,12 @@
       "variants": [
         "I0060-CS"
       ],
-      "artwork_status": "approved-source-png-100x120",
+      "artwork_status": "approved-exact-dmc50-png-100x120",
       "source_asset": "../source-images/collections/baby-nursery/products/I0060-crown.png",
       "input_png": "../source-images/collections/baby-nursery/products/I0060-crown.png",
-      "palette_mode": "shared-30-source-colours-to-dmc",
-      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+      "palette_mode": "exact-dmc50-source-no-requantization",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json",
+      "source_colour_count": 8
     }
   ]
 }

@@ -1,0 +1,613 @@
+{
+  "files_checked": 60,
+  "global_palette_colors": 50,
+  "global_palette_colors_used": 50,
+  "per_design_color_min": 5,
+  "per_design_color_max": 20,
+  "per_design_color_average": 10.1,
+  "minimum_canvas_margin_px": 5,
+  "semi_transparent_pixels": 0,
+  "opaque_pure_white_pixels": 0,
+  "files": [
+    {
+      "filename": "infantil_001_teddy_bear.png",
+      "colors_used": 10,
+      "margins": {
+        "left": 6,
+        "top": 11,
+        "right": 6,
+        "bottom": 13
+      }
+    },
+    {
+      "filename": "infantil_002_bunny.png",
+      "colors_used": 7,
+      "margins": {
+        "left": 15,
+        "top": 6,
+        "right": 16,
+        "bottom": 7
+      }
+    },
+    {
+      "filename": "infantil_003_elephant.png",
+      "colors_used": 7,
+      "margins": {
+        "left": 6,
+        "top": 21,
+        "right": 6,
+        "bottom": 24
+      }
+    },
+    {
+      "filename": "infantil_004_giraffe.png",
+      "colors_used": 12,
+      "margins": {
+        "left": 13,
+        "top": 6,
+        "right": 13,
+        "bottom": 8
+      }
+    },
+    {
+      "filename": "infantil_005_lion.png",
+      "colors_used": 8,
+      "margins": {
+        "left": 6,
+        "top": 10,
+        "right": 6,
+        "bottom": 12
+      }
+    },
+    {
+      "filename": "infantil_006_zebra.png",
+      "colors_used": 6,
+      "margins": {
+        "left": 7,
+        "top": 6,
+        "right": 7,
+        "bottom": 8
+      }
+    },
+    {
+      "filename": "infantil_007_hippo.png",
+      "colors_used": 6,
+      "margins": {
+        "left": 7,
+        "top": 12,
+        "right": 6,
+        "bottom": 14
+      }
+    },
+    {
+      "filename": "infantil_008_panda.png",
+      "colors_used": 6,
+      "margins": {
+        "left": 7,
+        "top": 9,
+        "right": 7,
+        "bottom": 11
+      }
+    },
+    {
+      "filename": "infantil_009_koala.png",
+      "colors_used": 9,
+      "margins": {
+        "left": 5,
+        "top": 18,
+        "right": 6,
+        "bottom": 20
+      }
+    },
+    {
+      "filename": "infantil_010_fox.png",
+      "colors_used": 10,
+      "margins": {
+        "left": 8,
+        "top": 8,
+        "right": 6,
+        "bottom": 10
+      }
+    },
+    {
+      "filename": "infantil_011_cottage.png",
+      "colors_used": 15,
+      "margins": {
+        "left": 6,
+        "top": 18,
+        "right": 6,
+        "bottom": 18
+      }
+    },
+    {
+      "filename": "infantil_012_swing_tree.png",
+      "colors_used": 9,
+      "margins": {
+        "left": 7,
+        "top": 11,
+        "right": 5,
+        "bottom": 14
+      }
+    },
+    {
+      "filename": "infantil_013_flower_bouquet.png",
+      "colors_used": 15,
+      "margins": {
+        "left": 15,
+        "top": 13,
+        "right": 7,
+        "bottom": 13
+      }
+    },
+    {
+      "filename": "infantil_014_sunflower.png",
+      "colors_used": 7,
+      "margins": {
+        "left": 10,
+        "top": 5,
+        "right": 11,
+        "bottom": 6
+      }
+    },
+    {
+      "filename": "infantil_015_mushroom.png",
+      "colors_used": 9,
+      "margins": {
+        "left": 7,
+        "top": 16,
+        "right": 6,
+        "bottom": 15
+      }
+    },
+    {
+      "filename": "infantil_016_ladybug.png",
+      "colors_used": 6,
+      "margins": {
+        "left": 7,
+        "top": 27,
+        "right": 7,
+        "bottom": 29
+      }
+    },
+    {
+      "filename": "infantil_017_bee.png",
+      "colors_used": 10,
+      "margins": {
+        "left": 7,
+        "top": 19,
+        "right": 7,
+        "bottom": 21
+      }
+    },
+    {
+      "filename": "infantil_018_butterfly.png",
+      "colors_used": 6,
+      "margins": {
+        "left": 8,
+        "top": 25,
+        "right": 8,
+        "bottom": 23
+      }
+    },
+    {
+      "filename": "infantil_019_snail.png",
+      "colors_used": 8,
+      "margins": {
+        "left": 8,
+        "top": 25,
+        "right": 7,
+        "bottom": 26
+      }
+    },
+    {
+      "filename": "infantil_020_castle.png",
+      "colors_used": 14,
+      "margins": {
+        "left": 6,
+        "top": 19,
+        "right": 6,
+        "bottom": 15
+      }
+    },
+    {
+      "filename": "infantil_021_whale.png",
+      "colors_used": 6,
+      "margins": {
+        "left": 7,
+        "top": 20,
+        "right": 6,
+        "bottom": 21
+      }
+    },
+    {
+      "filename": "infantil_022_dolphin.png",
+      "colors_used": 7,
+      "margins": {
+        "left": 5,
+        "top": 23,
+        "right": 6,
+        "bottom": 24
+      }
+    },
+    {
+      "filename": "infantil_023_octopus.png",
+      "colors_used": 6,
+      "margins": {
+        "left": 9,
+        "top": 20,
+        "right": 6,
+        "bottom": 22
+      }
+    },
+    {
+      "filename": "infantil_024_clownfish.png",
+      "colors_used": 9,
+      "margins": {
+        "left": 7,
+        "top": 41,
+        "right": 6,
+        "bottom": 14
+      }
+    },
+    {
+      "filename": "infantil_025_seahorse.png",
+      "colors_used": 10,
+      "margins": {
+        "left": 19,
+        "top": 6,
+        "right": 10,
+        "bottom": 7
+      }
+    },
+    {
+      "filename": "infantil_026_long_neck_dinosaur.png",
+      "colors_used": 7,
+      "margins": {
+        "left": 7,
+        "top": 18,
+        "right": 5,
+        "bottom": 20
+      }
+    },
+    {
+      "filename": "infantil_027_triceratops.png",
+      "colors_used": 12,
+      "margins": {
+        "left": 5,
+        "top": 24,
+        "right": 5,
+        "bottom": 25
+      }
+    },
+    {
+      "filename": "infantil_028_t_rex.png",
+      "colors_used": 8,
+      "margins": {
+        "left": 6,
+        "top": 12,
+        "right": 6,
+        "bottom": 12
+      }
+    },
+    {
+      "filename": "infantil_029_stegosaurus.png",
+      "colors_used": 10,
+      "margins": {
+        "left": 6,
+        "top": 25,
+        "right": 7,
+        "bottom": 26
+      }
+    },
+    {
+      "filename": "infantil_030_baby_dragon.png",
+      "colors_used": 11,
+      "margins": {
+        "left": 5,
+        "top": 17,
+        "right": 6,
+        "bottom": 21
+      }
+    },
+    {
+      "filename": "infantil_031_deer.png",
+      "colors_used": 16,
+      "margins": {
+        "left": 8,
+        "top": 9,
+        "right": 7,
+        "bottom": 10
+      }
+    },
+    {
+      "filename": "infantil_032_squirrel.png",
+      "colors_used": 10,
+      "margins": {
+        "left": 7,
+        "top": 16,
+        "right": 7,
+        "bottom": 16
+      }
+    },
+    {
+      "filename": "infantil_033_hedgehog.png",
+      "colors_used": 13,
+      "margins": {
+        "left": 10,
+        "top": 18,
+        "right": 6,
+        "bottom": 12
+      }
+    },
+    {
+      "filename": "infantil_034_raccoon.png",
+      "colors_used": 6,
+      "margins": {
+        "left": 8,
+        "top": 18,
+        "right": 7,
+        "bottom": 21
+      }
+    },
+    {
+      "filename": "infantil_035_owl.png",
+      "colors_used": 13,
+      "margins": {
+        "left": 6,
+        "top": 12,
+        "right": 6,
+        "bottom": 11
+      }
+    },
+    {
+      "filename": "infantil_036_penguin.png",
+      "colors_used": 8,
+      "margins": {
+        "left": 8,
+        "top": 17,
+        "right": 6,
+        "bottom": 18
+      }
+    },
+    {
+      "filename": "infantil_037_seal.png",
+      "colors_used": 6,
+      "margins": {
+        "left": 7,
+        "top": 27,
+        "right": 7,
+        "bottom": 28
+      }
+    },
+    {
+      "filename": "infantil_038_frog_prince.png",
+      "colors_used": 10,
+      "margins": {
+        "left": 10,
+        "top": 14,
+        "right": 7,
+        "bottom": 16
+      }
+    },
+    {
+      "filename": "infantil_039_axolotl.png",
+      "colors_used": 5,
+      "margins": {
+        "left": 7,
+        "top": 26,
+        "right": 6,
+        "bottom": 28
+      }
+    },
+    {
+      "filename": "infantil_040_turtle.png",
+      "colors_used": 10,
+      "margins": {
+        "left": 8,
+        "top": 22,
+        "right": 6,
+        "bottom": 24
+      }
+    },
+    {
+      "filename": "infantil_041_unicorn.png",
+      "colors_used": 18,
+      "margins": {
+        "left": 7,
+        "top": 7,
+        "right": 8,
+        "bottom": 8
+      }
+    },
+    {
+      "filename": "infantil_042_floral_unicorn.png",
+      "colors_used": 20,
+      "margins": {
+        "left": 7,
+        "top": 8,
+        "right": 8,
+        "bottom": 11
+      }
+    },
+    {
+      "filename": "infantil_043_rainbow_clouds.png",
+      "colors_used": 13,
+      "margins": {
+        "left": 7,
+        "top": 25,
+        "right": 5,
+        "bottom": 26
+      }
+    },
+    {
+      "filename": "infantil_044_sun.png",
+      "colors_used": 8,
+      "margins": {
+        "left": 5,
+        "top": 21,
+        "right": 6,
+        "bottom": 22
+      }
+    },
+    {
+      "filename": "infantil_045_moon.png",
+      "colors_used": 12,
+      "margins": {
+        "left": 7,
+        "top": 9,
+        "right": 8,
+        "bottom": 10
+      }
+    },
+    {
+      "filename": "infantil_046_star.png",
+      "colors_used": 7,
+      "margins": {
+        "left": 8,
+        "top": 19,
+        "right": 9,
+        "bottom": 21
+      }
+    },
+    {
+      "filename": "infantil_047_hanging_cloud.png",
+      "colors_used": 10,
+      "margins": {
+        "left": 7,
+        "top": 16,
+        "right": 6,
+        "bottom": 16
+      }
+    },
+    {
+      "filename": "infantil_048_hot_air_balloon.png",
+      "colors_used": 17,
+      "margins": {
+        "left": 7,
+        "top": 9,
+        "right": 8,
+        "bottom": 7
+      }
+    },
+    {
+      "filename": "infantil_049_kite.png",
+      "colors_used": 17,
+      "margins": {
+        "left": 8,
+        "top": 8,
+        "right": 7,
+        "bottom": 8
+      }
+    },
+    {
+      "filename": "infantil_050_rocket.png",
+      "colors_used": 14,
+      "margins": {
+        "left": 6,
+        "top": 10,
+        "right": 6,
+        "bottom": 10
+      }
+    },
+    {
+      "filename": "infantil_051_airplane.png",
+      "colors_used": 12,
+      "margins": {
+        "left": 7,
+        "top": 28,
+        "right": 8,
+        "bottom": 30
+      }
+    },
+    {
+      "filename": "infantil_052_train.png",
+      "colors_used": 14,
+      "margins": {
+        "left": 7,
+        "top": 21,
+        "right": 7,
+        "bottom": 23
+      }
+    },
+    {
+      "filename": "infantil_053_car.png",
+      "colors_used": 10,
+      "margins": {
+        "left": 6,
+        "top": 32,
+        "right": 7,
+        "bottom": 18
+      }
+    },
+    {
+      "filename": "infantil_054_sailboat.png",
+      "colors_used": 10,
+      "margins": {
+        "left": 8,
+        "top": 8,
+        "right": 6,
+        "bottom": 9
+      }
+    },
+    {
+      "filename": "infantil_055_baby_blocks.png",
+      "colors_used": 15,
+      "margins": {
+        "left": 8,
+        "top": 20,
+        "right": 6,
+        "bottom": 19
+      }
+    },
+    {
+      "filename": "infantil_056_rocking_horse.png",
+      "colors_used": 12,
+      "margins": {
+        "left": 7,
+        "top": 19,
+        "right": 6,
+        "bottom": 21
+      }
+    },
+    {
+      "filename": "infantil_057_rattle.png",
+      "colors_used": 9,
+      "margins": {
+        "left": 26,
+        "top": 6,
+        "right": 11,
+        "bottom": 8
+      }
+    },
+    {
+      "filename": "infantil_058_rubber_duck.png",
+      "colors_used": 8,
+      "margins": {
+        "left": 8,
+        "top": 20,
+        "right": 7,
+        "bottom": 19
+      }
+    },
+    {
+      "filename": "infantil_059_baby_bottle.png",
+      "colors_used": 9,
+      "margins": {
+        "left": 23,
+        "top": 7,
+        "right": 14,
+        "bottom": 7
+      }
+    },
+    {
+      "filename": "infantil_060_crown.png",
+      "colors_used": 8,
+      "margins": {
+        "left": 8,
+        "top": 25,
+        "right": 8,
+        "bottom": 25
+      }
+    }
+  ]
+}
