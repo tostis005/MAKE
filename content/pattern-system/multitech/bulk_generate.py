@@ -295,6 +295,13 @@ def render_one(task):
           const clone=src.cloneNode(true);
           clone.id='drielo-product-capture';
           clone.removeAttribute('data-product-image');
+          // Product image only: replace the transparent stitch overlay with
+          // the identical vector including Aida-relief-v4 in empty cells.
+          // PDF/page screenshots are already captured above and stay unchanged.
+          const productOverlay=clone.querySelector('#cover-overlay');
+          if(productOverlay && window.__drieloProductCoverVectorWithAida){
+            productOverlay.src=window.__drieloProductCoverVectorWithAida;
+          }
           Object.assign(clone.style,{
             position:'fixed',left:'0',top:'0',width:'1200px',height:'1200px',
             aspectRatio:'1 / 1',maxWidth:'none',margin:'0',padding:'0',
