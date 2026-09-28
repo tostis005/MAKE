@@ -148,6 +148,7 @@ jobs:
           cp "content/products/assets/${CODE}-gallery-2.webp" "$STAGE/content/products/assets/"
           cp "content/products/assets/${CODE}-gallery-3.webp" "$STAGE/content/products/assets/"
           cp "content/products/assets/${CODE}-gallery-4.webp" "$STAGE/content/products/assets/"
+          cp "content/products/assets/baby-nursery-collection-cover-v2.jpg" "$STAGE/content/products/assets/"
           cp "content/products/files/Drielo_${CODE}.pdf" "$STAGE/content/products/files/"
           cp content/tools/import-products.php "$STAGE/content/tools/"
           tar -czf "/tmp/drielo-${CODE}.tgz" -C "$STAGE" content
@@ -245,13 +246,19 @@ jobs:
               ." downloads=".count($p->get_downloads())
               ." url=".get_permalink($id)
               .PHP_EOL;
+            $term=get_term_by("slug","baby-nursery","product_collection");
+            $cover_id=$term instanceof WP_Term ? (int)get_term_meta($term->term_id,"drielo_collection_cover_id",true) : 0;
             echo "Baby Nursery product count: ".count($baby).PHP_EOL;
+            echo "Baby Nursery collection cover id: ".$cover_id.PHP_EOL;
 
             if($p->get_status()!=="publish" || !$p->get_image_id() || count($p->get_gallery_image_ids())<3 || count($p->get_downloads())<1){
               fwrite(STDERR,"Incomplete I0001-CS product".PHP_EOL);exit(3);
             }
             if(count($baby)!==1 || (int)$baby[0]!==$id){
               fwrite(STDERR,"Expected exactly one Baby Nursery product".PHP_EOL);exit(7);
+            }
+            if($cover_id<=0){
+              fwrite(STDERR,"Missing Baby Nursery collection cover".PHP_EOL);exit(10);
             }
           '
 
@@ -274,10 +281,9 @@ jobs:
             content/products/assets/I0001-CS-gallery-4.webp \
             content/products/files/Drielo_I0001-CS.pdf \
             content/pattern-system/patterns/I0001-CS/pattern.json \
-            content/pattern-system/products/I0001-CS/product.json \
-            content/products/catalog.json || true
+            content/pattern-system/products/I0001-CS/product.json || true
 
-          git add content/products/assets/I0001-CS-product.webp
+          git add             content/products/assets/I0001-CS-product.webp             content/products/assets/baby-nursery-collection-cover-v2.jpg             content/products/catalog.json
 
           if git diff --cached --quiet; then
             echo "No repository artefact changes to commit."
