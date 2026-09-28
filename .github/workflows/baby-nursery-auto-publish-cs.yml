@@ -179,7 +179,9 @@ jobs:
           cp "content/products/assets/baby-nursery-collection-cover-v2.jpg" "$STAGE/content/products/assets/"
           cp "content/products/files/Drielo_${CODE}.pdf" "$STAGE/content/products/files/"
           cp content/tools/import-products.php "$STAGE/content/tools/"
+          test -f "$STAGE/content/products/catalog.json"
           tar -czf "/tmp/drielo-${CODE}.tgz" -C "$STAGE" content
+          tar -tzf "/tmp/drielo-${CODE}.tgz" | grep -qx 'content/products/catalog.json'
 
       - name: Configure SSH
         if: steps.select.outputs.design_id != ''
@@ -240,9 +242,10 @@ jobs:
 
           rm -rf "$STAGE" && mkdir -p "$STAGE"
           tar -xzf "$ARCHIVE" -C "$STAGE"
-          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
-          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php && mkdir -p /tmp/drielo-products'
+          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products
           "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          "${DOCKER[@]}" exec make-wp sh -lc 'test -f /tmp/drielo-products/catalog.json && ls -l /tmp/drielo-products/catalog.json'
           "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
 
           "${DOCKER[@]}" exec -e CODE="$CODE" -e EXPECTED_COUNT="$EXPECTED_COUNT" make-wp php -d memory_limit=768M -r '
@@ -349,3 +352,5 @@ jobs:
           fi
 
 # serialization-reset-1
+
+# docker-copy-fix-1
