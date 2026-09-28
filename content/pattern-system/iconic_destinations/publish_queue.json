@@ -973,14 +973,15 @@
       "product_title_es": "Patrón de punto de cruz: Iglesias excavadas de Lalibela, Etiopía",
       "slug": "lalibela-rock-churches",
       "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0104-lalibela-rock-churches.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36465758056",
       "last_error": null,
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_manifest_item": "D0104",
       "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
-      "source_zip_member": "D0104-lalibela-rock-churches.png"
+      "source_zip_member": "D0104-lalibela-rock-churches.png",
+      "published_at": "2026-09-28T18:33:26+00:00"
     },
     {
       "base_design_id": "D0105",
