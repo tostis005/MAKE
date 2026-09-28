@@ -53,18 +53,7 @@ jobs:
           for id in I0021 I0022 I0026 I0027 I0028 I0030 I0044; do
             echo "Regenerating $id"
             python3 content/pattern-system/baby_nursery/publish_cs_exact_dmc.py "$id"
-            python3 - "$id" <<'PYROW'
-import json,sys
-from pathlib import Path
-base=sys.argv[1]
-code=f"{base}-CS"
-catalog=json.loads(Path("content/products/catalog.json").read_text(encoding="utf-8"))
-row=next((p for p in catalog.get("products",[]) if p.get("code")==code),None)
-if not row:
-    raise SystemExit(f"{code}: publisher did not emit catalog row")
-Path(f"/tmp/baby-repair-rows/{base}.json").write_text(json.dumps(row,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-print("CAPTURED_ROW",code)
-PYROW
+            python3 -c 'import json,sys; from pathlib import Path; base=sys.argv[1]; code=f"{base}-CS"; catalog=json.loads(Path("content/products/catalog.json").read_text(encoding="utf-8")); row=next((p for p in catalog.get("products",[]) if p.get("code")==code),None); row is not None or (_ for _ in ()).throw(SystemExit(f"{code}: publisher did not emit catalog row")); Path(f"/tmp/baby-repair-rows/{base}.json").write_text(json.dumps(row,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8"); print("CAPTURED_ROW",code)' "$id"
           done
 
           # Force fresh bytes for the two user-reported cases whose source artwork
