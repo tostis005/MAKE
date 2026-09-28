@@ -52,7 +52,7 @@ jobs:
           print('VERIFIED_FINAL', check.format, check.size)
           PY
 
-      - name: Install cover and update repository references
+      - name: Install cover and update manifest
         shell: bash
         run: |
           set -euo pipefail
@@ -85,20 +85,6 @@ jobs:
           else:
               raise SystemExit('Animals collection entry not found in collection-covers.json')
           manifest.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-
-          sync = Path('.github/workflows/tmp-sync-collection-covers-live.yml')
-          text = sync.read_text(encoding='utf-8')
-          for old in (
-              'content/products/assets/animals-collection-cover-v2.jpg',
-              'content/products/assets/animals-collection-cover-v3.webp',
-          ):
-              text = text.replace(old, 'content/products/assets/animals-collection-cover-v3.jpg')
-          for old in (
-              'assets/animals-collection-cover-v2.jpg',
-              'assets/animals-collection-cover-v3.webp',
-          ):
-              text = text.replace(old, 'assets/animals-collection-cover-v3.jpg')
-          sync.write_text(text, encoding='utf-8')
           PY
 
       - name: Commit installed cover
@@ -109,9 +95,7 @@ jobs:
           git config user.email 'actions@users.noreply.github.com'
           git add content/products/assets/animals-collection-cover-v3.jpg
           git add content/products/collection-covers.json
-          git add .github/workflows/tmp-sync-collection-covers-live.yml
           git rm -r tmp/animals-cover
-          git rm .github/workflows/tmp-install-animals-cover.yml
           git commit -m 'Update Animals collection cover [skip ci]'
           git pull --rebase origin main
           git push origin HEAD:main
