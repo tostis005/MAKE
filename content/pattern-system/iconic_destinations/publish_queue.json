@@ -1748,14 +1748,15 @@
       "product_title_es": "Patrón de punto de cruz: Catedral de San Basilio, Moscú",
       "slug": "saint-basil-cathedral",
       "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0147-saint-basil-cathedral.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36479527392",
       "last_error": null,
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_manifest_item": "D0147",
       "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
-      "source_zip_member": "D0147-saint-basil-cathedral.png"
+      "source_zip_member": "D0147-saint-basil-cathedral.png",
+      "published_at": "2026-09-28T20:31:22+00:00"
     },
     {
       "base_design_id": "D0148",
