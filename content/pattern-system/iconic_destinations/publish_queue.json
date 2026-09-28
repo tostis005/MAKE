@@ -324,15 +324,15 @@
       "product_title_es": "Patrón de punto de cruz: Cinque Terre, Italia",
       "slug": "cinque-terre-village",
       "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0068-cinque-terre-village.png",
-      "status": "pending",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36448278078",
+      "status": "failed",
+      "attempts": 3,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36448510430",
       "last_error": "Automatic Iconic Destinations publish run failed; see GitHub Actions logs.",
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_manifest_item": "D0068",
       "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
       "source_zip_member": "D0068-cinque-terre-village.png",
-      "failed_at": "2026-09-28T16:05:36+00:00"
+      "failed_at": "2026-09-28T16:06:57+00:00"
     },
     {
       "base_design_id": "D0069",
