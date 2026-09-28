@@ -1127,10 +1127,11 @@ body{background:var(--mk-cream);color:var(--mk-ink)}
 /* Protected storefront previews: fixed-resolution derivatives only, no zoom affordance. */
 .product-card:hover .product-media img,
 .drielo-collection-card:hover .drielo-collection-media img{transform:none!important}
-.woocommerce-product-gallery__image{cursor:default!important}
-.woocommerce-product-gallery__image a{pointer-events:none!important;cursor:default!important}
+.woocommerce-product-gallery__image{cursor:zoom-in!important}
+.woocommerce-product-gallery__image a{pointer-events:none!important;cursor:zoom-in!important}
 .woocommerce-product-gallery__trigger{display:none!important}
-.woocommerce-shell--single .woocommerce-product-gallery img{cursor:default!important}
+.woocommerce-shell--single .woocommerce-product-gallery__image img{cursor:zoom-in!important}
+.woocommerce-shell--single .flex-control-thumbs img{cursor:pointer!important}
 
 /* Single product gallery: show the complete artwork without letting portrait previews dominate the page. */
 .woocommerce-shell--single .woocommerce-product-gallery{
@@ -1764,4 +1765,47 @@ a.drielo-store-technique:hover{
 @media (max-width:560px){
   .info-hero{padding:30px 22px}
   .info-card{padding:22px 18px}
+}
+
+
+/* Drielo product gallery lightbox */
+body.drielo-gallery-lightbox-open{overflow:hidden!important}
+.drielo-gallery-lightbox{
+  position:fixed;z-index:100000;inset:0;
+  display:none;align-items:center;justify-content:center;
+  padding:28px;
+}
+.drielo-gallery-lightbox.is-open{display:flex}
+.drielo-gallery-lightbox__backdrop{
+  position:absolute;inset:0;background:rgba(20,17,16,.88);
+  backdrop-filter:blur(5px)
+}
+.drielo-gallery-lightbox__dialog{
+  position:relative;z-index:1;
+  width:min(92vw,1120px);height:min(92vh,1120px);
+  display:flex;align-items:center;justify-content:center
+}
+.drielo-gallery-lightbox__image{
+  display:block;max-width:100%;max-height:100%;
+  width:auto;height:auto;object-fit:contain;
+  border-radius:16px;box-shadow:0 28px 80px rgba(0,0,0,.38)
+}
+.drielo-gallery-lightbox__close{
+  position:absolute;z-index:2;right:0;top:0;
+  width:44px;height:44px;border:0;border-radius:50%;
+  display:grid;place-items:center;
+  background:#fff;color:#211c1a;
+  font:400 30px/1 Arial,sans-serif;cursor:pointer;
+  box-shadow:0 8px 24px rgba(0,0,0,.24)
+}
+.woocommerce-product-gallery.drielo-gallery-fallback .woocommerce-product-gallery__image{
+  display:none!important
+}
+.woocommerce-product-gallery.drielo-gallery-fallback .woocommerce-product-gallery__image.drielo-gallery-fallback-active{
+  display:block!important
+}
+@media(max-width:640px){
+  .drielo-gallery-lightbox{padding:14px}
+  .drielo-gallery-lightbox__dialog{width:96vw;height:88vh}
+  .drielo-gallery-lightbox__close{right:2px;top:2px}
 }
