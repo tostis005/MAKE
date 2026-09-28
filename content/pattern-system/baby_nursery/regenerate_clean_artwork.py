@@ -149,7 +149,7 @@ def rainbow():
         d.arc(box,180,360,fill=C[code],width=width)
     # clouds left/right, complete and symmetric
     cloud=C["762"]; shadow=C["3752"]
-    for x in (14,62):
+    for x in (14,52):
         d.ellipse((x+6,64,x+26,81),fill=navy)
         d.ellipse((x,70,x+18,85),fill=navy)
         d.ellipse((x+15,70,x+34,85),fill=navy)
@@ -169,6 +169,18 @@ def bbox_margins(im):
     l,t,r,b=bbox
     return list(bbox),{"left":l,"top":t,"right":100-r,"bottom":120-b}
 
+def center_artwork(im):
+    bbox=im.getchannel("A").getbbox()
+    if not bbox: raise RuntimeError("empty image")
+    l,t,r,b=bbox
+    w,h=r-l,b-t
+    crop=im.crop(bbox)
+    out=blank()
+    x=(100-w)//2
+    y=(120-h)//2
+    out.alpha_composite(crop,(x,y))
+    return out
+
 def main():
     palette=json.loads(PALETTE.read_text(encoding="utf-8"))
     rgb_to_dmc={tuple(x["rgb"]):str(x["dmc"]) for x in palette["colors"]}
@@ -180,7 +192,7 @@ def main():
 
     rows=[]
     for base,filename in TARGETS.items():
-        im=DRAWERS[base]()
+        im=center_artwork(DRAWERS[base]())
         bbox,m=bbox_margins(im)
         if min(m.values())<10:
             raise SystemExit(f"{base}: unsafe margin {m}")
