@@ -1,0 +1,249 @@
+name: Temporary sync collection covers live
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tmp-sync-collection-covers-live.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout: |
+            content/products/assets/animals-collection-cover-v2.jpg
+            content/products/assets/baby-nursery-collection-cover-v2.jpg
+            content/products/assets/iconic-destinations-collection-cover.png
+            content/products/assets/retratos-pop-art-collection-cover.png
+          sparse-checkout-cone-mode: false
+
+      - name: Build collection-only update package
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/drielo-live-covers
+          mkdir -p /tmp/drielo-live-covers/assets
+          cp content/products/assets/animals-collection-cover-v2.jpg /tmp/drielo-live-covers/assets/
+          cp content/products/assets/baby-nursery-collection-cover-v2.jpg /tmp/drielo-live-covers/assets/
+          cp content/products/assets/iconic-destinations-collection-cover.png /tmp/drielo-live-covers/assets/
+          cp content/products/assets/retratos-pop-art-collection-cover.png /tmp/drielo-live-covers/assets/
+          cat > /tmp/drielo-live-covers/update-collections.php <<'PHP'
+          <?php
+          declare(strict_types=1);
+          require '/var/www/html/wp-load.php';
+          require_once ABSPATH . 'wp-admin/includes/file.php';
+          require_once ABSPATH . 'wp-admin/includes/image.php';
+          require_once ABSPATH . 'wp-admin/includes/media.php';
+
+          function drielo_cover_media(string $path, string $source_key, string $title): int {
+              if (!is_file($path) || filesize($path) < 100000) {
+                  throw new RuntimeException('Missing or invalid cover file: ' . $path);
+              }
+              $source_hash = md5_file($path) ?: '';
+              $existing = get_posts(array(
+                  'post_type' => 'attachment',
+                  'post_status' => 'inherit',
+                  'posts_per_page' => 1,
+                  'fields' => 'ids',
+                  'meta_key' => '_drielo_source_asset',
+                  'meta_value' => $source_key,
+              ));
+              if ($existing) {
+                  $attachment_id = (int) $existing[0];
+                  $attached_file = get_attached_file($attachment_id);
+                  if ($attached_file) {
+                      wp_mkdir_p(dirname($attached_file));
+                      if (!copy($path, $attached_file)) {
+                          throw new RuntimeException('Could not refresh cover: ' . $source_key);
+                      }
+                      $metadata = wp_generate_attachment_metadata($attachment_id, $attached_file);
+                      if (is_array($metadata)) {
+                          wp_update_attachment_metadata($attachment_id, $metadata);
+                      }
+                  }
+                  wp_update_post(array('ID' => $attachment_id, 'post_title' => $title));
+                  update_post_meta($attachment_id, '_drielo_source_hash', $source_hash);
+                  return $attachment_id;
+              }
+
+              $filename = wp_basename($path);
+              $bits = wp_upload_bits($filename, null, (string) file_get_contents($path));
+              if (!empty($bits['error'])) {
+                  throw new RuntimeException((string) $bits['error']);
+              }
+              $type = wp_check_filetype($filename, null);
+              $attachment_id = wp_insert_attachment(array(
+                  'post_mime_type' => $type['type'] ?: 'image/jpeg',
+                  'post_title' => $title,
+                  'post_status' => 'inherit',
+              ), $bits['file']);
+              if (is_wp_error($attachment_id)) {
+                  throw new RuntimeException($attachment_id->get_error_message());
+              }
+              $metadata = wp_generate_attachment_metadata((int) $attachment_id, $bits['file']);
+              if (is_array($metadata)) {
+                  wp_update_attachment_metadata((int) $attachment_id, $metadata);
+              }
+              update_post_meta((int) $attachment_id, '_drielo_source_asset', $source_key);
+              update_post_meta((int) $attachment_id, '_drielo_source_hash', $source_hash);
+              return (int) $attachment_id;
+          }
+
+          $base = '/tmp/drielo-live-covers/assets';
+          $collections = array(
+              array(
+                  'slug' => 'baby-nursery',
+                  'name' => 'Baby & Nursery',
+                  'name_es' => 'Bebé e Infantil',
+                  'name_en' => 'Baby & Nursery',
+                  'description' => 'Bright baby and nursery motifs in a vivid coordinated palette.',
+                  'description_es' => 'Motivos infantiles y de bebé con una paleta viva y coordinada.',
+                  'description_en' => 'Bright baby and nursery motifs in a vivid coordinated palette.',
+                  'asset' => 'assets/baby-nursery-collection-cover-v2.jpg',
+              ),
+              array(
+                  'slug' => 'animals',
+                  'name' => 'Animals',
+                  'name_es' => 'Animales',
+                  'name_en' => 'Animals',
+                  'description' => 'Animal-inspired digital pattern collection.',
+                  'description_es' => 'Colección de patrones digitales inspirados en animales.',
+                  'description_en' => 'Animal-inspired digital pattern collection.',
+                  'asset' => 'assets/animals-collection-cover-v2.jpg',
+              ),
+              array(
+                  'slug' => 'iconic-destinations',
+                  'name' => 'Iconic Destinations',
+                  'name_es' => 'Destinos icónicos',
+                  'name_en' => 'Iconic Destinations',
+                  'description' => 'A premium collection of iconic cities, landmarks, heritage sites and natural destinations.',
+                  'description_es' => 'Colección premium de ciudades, monumentos, lugares históricos y destinos naturales emblemáticos.',
+                  'description_en' => 'A premium collection of iconic cities, landmarks, heritage sites and natural destinations.',
+                  'asset' => 'assets/iconic-destinations-collection-cover.png',
+              ),
+              array(
+                  'slug' => 'pop-art-25',
+                  'name' => 'Retratos Pop Art',
+                  'name_es' => 'Retratos Pop Art',
+                  'name_en' => 'Pop Art Portraits',
+                  'description' => '60 vivid Pop Art portrait designs built from one verified shared palette of exactly 30 colours.',
+                  'description_es' => '60 retratos Pop Art vibrantes construidos con una única paleta compartida verificada de exactamente 30 colores.',
+                  'description_en' => '60 vivid Pop Art portrait designs built from one verified shared palette of exactly 30 colours.',
+                  'asset' => 'assets/retratos-pop-art-collection-cover.png',
+              ),
+          );
+
+          foreach ($collections as $c) {
+              $term = get_term_by('slug', $c['slug'], 'product_collection');
+              if (!$term instanceof WP_Term) {
+                  $created = wp_insert_term($c['name'], 'product_collection', array(
+                      'slug' => $c['slug'],
+                      'description' => $c['description'],
+                  ));
+                  if (is_wp_error($created)) {
+                      throw new RuntimeException($created->get_error_message());
+                  }
+                  $term = get_term((int) $created['term_id'], 'product_collection');
+              }
+              if (!$term instanceof WP_Term) {
+                  throw new RuntimeException('Could not resolve collection ' . $c['slug']);
+              }
+              $updated = wp_update_term($term->term_id, 'product_collection', array(
+                  'name' => $c['name'],
+                  'slug' => $c['slug'],
+                  'description' => $c['description'],
+              ));
+              if (is_wp_error($updated)) {
+                  throw new RuntimeException($updated->get_error_message());
+              }
+              update_term_meta($term->term_id, 'drielo_name_es', $c['name_es']);
+              update_term_meta($term->term_id, 'drielo_name_en', $c['name_en']);
+              update_term_meta($term->term_id, 'drielo_description_es', $c['description_es']);
+              update_term_meta($term->term_id, 'drielo_description_en', $c['description_en']);
+
+              $filename = wp_basename($c['asset']);
+              $image_id = drielo_cover_media(
+                  $base . '/' . $filename,
+                  $c['asset'],
+                  $c['name'] . ' collection'
+              );
+              update_term_meta($term->term_id, 'drielo_collection_cover_id', $image_id);
+              clean_term_cache($term->term_id, 'product_collection');
+              echo 'UPDATED_COLLECTION slug=' . $c['slug'] . ' term_id=' . $term->term_id . ' cover_id=' . $image_id . PHP_EOL;
+          }
+          PHP
+          tar -C /tmp -czf /tmp/drielo-live-covers.tgz drielo-live-covers
+
+      - name: Configure SSH
+        shell: bash
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_collection_key
+          chmod 600 ~/.ssh/drielo_collection_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Upload collection-only package
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          scp -i ~/.ssh/drielo_collection_key /tmp/drielo-live-covers.tgz "$VPS_USER@$VPS_HOST:/tmp/drielo-live-covers-${GITHUB_RUN_ID}.tgz"
+
+      - name: Update WooCommerce collections and verify
+        shell: bash
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_collection_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-live-covers-${GITHUB_RUN_ID}.tgz"
+          STAGE="/tmp/drielo-live-covers-${GITHUB_RUN_ID}"
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE"; }
+          trap cleanup EXIT
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"; exit 1
+          fi
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C /tmp
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-live-covers'
+          "${DOCKER[@]}" cp /tmp/drielo-live-covers/. make-wp:/tmp/drielo-live-covers/
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-live-covers/update-collections.php
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $expected=array(
+              "baby-nursery"=>array("Baby & Nursery","Bebé e Infantil","assets/baby-nursery-collection-cover-v2.jpg"),
+              "animals"=>array("Animals","Animales","assets/animals-collection-cover-v2.jpg"),
+              "iconic-destinations"=>array("Iconic Destinations","Destinos icónicos","assets/iconic-destinations-collection-cover.png"),
+              "pop-art-25"=>array("Retratos Pop Art","Retratos Pop Art","assets/retratos-pop-art-collection-cover.png")
+            );
+            foreach($expected as $slug=>$e){
+              $t=get_term_by("slug",$slug,"product_collection");
+              if(!$t instanceof WP_Term){fwrite(STDERR,"Missing collection ".$slug.PHP_EOL);exit(2);}
+              $es=(string)get_term_meta($t->term_id,"drielo_name_es",true);
+              $cover=(int)get_term_meta($t->term_id,"drielo_collection_cover_id",true);
+              $source=$cover?(string)get_post_meta($cover,"_drielo_source_asset",true):"";
+              echo "VERIFY_COLLECTION slug=".$slug." name=".$t->name." es=".$es." cover=".$cover." source=".$source." count=".$t->count.PHP_EOL;
+              if($t->name!==$e[0] || $es!==$e[1] || !$cover || $source!==$e[2]){exit(3);}
+            }
+          '
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-live-covers'
+          REMOTE
