@@ -11,6 +11,8 @@ import zipfile
 from collections import Counter, deque
 from pathlib import Path
 
+import cv2
+import numpy as np
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 ROOT = Path.cwd()
@@ -306,20 +308,91 @@ def select_bg_colour(im, mask, candidate_colours, palette_rgb, index):
     pool = ranked[:min(4, len(ranked))]
     return pool[index % len(pool)]
 
+def grabcut_background_mask(im, candidates):
+    """Return True for background pixels using GrabCut plus Pop Art cues."""
+    arr_rgb = np.array(im.convert("RGB"))
+    arr_bgr = cv2.cvtColor(arr_rgb, cv2.COLOR_RGB2BGR)
+
+    gc = np.full((H, W), cv2.GC_PR_BGD, dtype=np.uint8)
+
+    # Definite outer background band.
+    gc[:3, :] = cv2.GC_BGD
+    gc[-3:, :] = cv2.GC_BGD
+    gc[:, :3] = cv2.GC_BGD
+    gc[:, -3:] = cv2.GC_BGD
+
+    # Broad probable portrait region.
+    cv2.ellipse(gc, (W // 2, H // 2 + 2), (39, 56), 0, 0, 360, cv2.GC_PR_FGD, -1)
+
+    # Existing border-connected bright blocks are very likely background.
+    rough = border_reachable_mask(im, candidates)
+    for y in range(H):
+        for x in range(W):
+            if rough[y][x] and 3 <= x < W-3 and 3 <= y < H-3:
+                gc[y, x] = cv2.GC_PR_BGD
+
+    # Dark linework in the central area is strong foreground evidence.
+    for y in range(5, H-4):
+        for x in range(8, W-8):
+            r, g, b = arr_rgb[y, x]
+            lum = 0.2126*r + 0.7152*g + 0.0722*b
+            if lum <= 88:
+                gc[y, x] = cv2.GC_FGD
+
+    # Protect a small face core as probable foreground, but not definite so
+    # GrabCut can still remove genuine background visible beside the face.
+    gc[30:84, 30:70] = np.where(
+        gc[30:84, 30:70] == cv2.GC_BGD,
+        cv2.GC_BGD,
+        cv2.GC_PR_FGD,
+    )
+
+    bg_model = np.zeros((1, 65), np.float64)
+    fg_model = np.zeros((1, 65), np.float64)
+    cv2.grabCut(arr_bgr, gc, None, bg_model, fg_model, 6, cv2.GC_INIT_WITH_MASK)
+
+    fg = np.isin(gc, [cv2.GC_FGD, cv2.GC_PR_FGD]).astype(np.uint8)
+
+    # Keep foreground components that meaningfully belong to the central
+    # portrait. Tiny isolated specks are discarded.
+    n, labels, stats, centroids = cv2.connectedComponentsWithStats(fg, 8)
+    keep = np.zeros_like(fg)
+    for label in range(1, n):
+        area = int(stats[label, cv2.CC_STAT_AREA])
+        x = int(stats[label, cv2.CC_STAT_LEFT])
+        y = int(stats[label, cv2.CC_STAT_TOP])
+        w = int(stats[label, cv2.CC_STAT_WIDTH])
+        h = int(stats[label, cv2.CC_STAT_HEIGHT])
+        intersects_core = not (x+w < 24 or x > 76 or y+h < 16 or y > 108)
+        if area >= 45 and intersects_core:
+            keep[labels == label] = 1
+
+    # Preserve facial linework and close tiny segmentation holes.
+    dark_core = np.zeros_like(fg)
+    for y in range(8, 104):
+        for x in range(15, 85):
+            r, g, b = arr_rgb[y, x]
+            if 0.2126*r + 0.7152*g + 0.0722*b <= 80:
+                dark_core[y, x] = 1
+    keep = np.maximum(keep, dark_core)
+    kernel = np.ones((3, 3), np.uint8)
+    keep = cv2.morphologyEx(keep, cv2.MORPH_CLOSE, kernel, iterations=1)
+    keep = cv2.dilate(keep, kernel, iterations=1)
+
+    # Always keep a conservative central face ellipse.
+    face = np.zeros_like(keep)
+    cv2.ellipse(face, (W//2, 58), (24, 37), 0, 0, 360, 1, -1)
+    keep = np.maximum(keep, face)
+
+    bg = keep == 0
+    bg[0, :] = True; bg[-1, :] = True
+    bg[:, 0] = True; bg[:, -1] = True
+    return bg.tolist()
+
 def harmonise_one(im, palette_rgb, candidates, index):
     # Legacy replacements are first snapped to the exact current 30-colour palette.
     im = quantize_to_palette(im, palette_rgb)
-    mask = border_reachable_mask(im, candidates)
-    mask = enlarge_bg_mask(mask, im, candidates)
-
-    # Anything outside the portrait support becomes background. This removes
-    # residual multicolour wedges/speckles that were disconnected from the
-    # canvas edge while preserving the dense outlined portrait itself.
-    support = portrait_support_mask(im, mask)
-    for y in range(H):
-        for x in range(W):
-            if not support[y][x]:
-                mask[y][x] = True
+    mask = grabcut_background_mask(im, candidates)
 
     bg = select_bg_colour(im, mask, candidates, palette_rgb, index)
     px = im.load()
