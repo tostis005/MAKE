@@ -26,7 +26,11 @@ STORE_FILES = ROOT / "content" / "products" / "files"
 sys.path.insert(0, str((SYSTEM / "multitech").resolve()))
 import bulk_generate as bg  # noqa: E402
 
-SUFFIXES = ("CS", "C2C", "TC", "LH")
+DEFAULT_SUFFIXES = ("CS", "C2C", "TC", "LH")
+_requested_suffixes = [s.strip().upper() for s in os.environ.get("DRIELO_SUFFIXES", "").split(",") if s.strip()]
+SUFFIXES = tuple(_requested_suffixes) if _requested_suffixes else DEFAULT_SUFFIXES
+if not SUFFIXES or any(s not in DEFAULT_SUFFIXES for s in SUFFIXES):
+    raise RuntimeError(f"Invalid DRIELO_SUFFIXES: {SUFFIXES}")
 SYMBOLS = list("ABCDEFGHJKLMNPQRSTUVWXYZ23456789")
 TECH_ES = {
     "CS": "punto de cruz",
@@ -206,6 +210,8 @@ def prepare_renderer_assets(collection: dict):
         "LH": "cover-rug.webp",
     }
     for suffix, target in targets.items():
+        if suffix not in SUFFIXES:
+            continue
         rel = collection["mockup_spec"]["technique_assets"][suffix]
         src = (COL_DIR / rel).resolve()
         if not src.is_file():
@@ -225,6 +231,15 @@ def render_design(base_id: str, design: dict, collection: dict):
         data = bg.pattern_data(code, design["title_en"], suffix, pattern["matrix"], pattern["threads"])
         data["collection"] = collection["name_en"]
         data["collection_id"] = "animals"
+        if suffix == "CS":
+            data["cover_overlay"] = {
+                "left": 28.5156,
+                "top": 13.8021,
+                "width": 44.5964,
+                "height": 53.5156,
+                "opacity": 0.96,
+                "safe_inset_pct": 0.0,
+            }
         result = bg.render_one((code, suffix, data))
 
         pdf = STORE_FILES / f"Drielo_{code}.pdf"
