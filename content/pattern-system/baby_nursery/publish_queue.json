@@ -447,9 +447,10 @@
       "slug": "raccoon",
       "input_png": "../source-images/collections/baby-nursery/products/I0034-raccoon.png",
       "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36441905626",
+      "last_error": "Automatic CS publish run failed; see GitHub Actions logs.",
+      "failed_at": "2026-09-28T15:14:42+00:00"
     },
     {
       "order": 35,
