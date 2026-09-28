@@ -808,13 +808,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        2,
-        189,
-        247
+        243,
+        13,
+        104
       ],
-      "background_hex": "#02BDF7",
-      "background_stitches": 3428,
-      "stitches_without_background": 8572,
+      "background_hex": "#F30D68",
+      "background_stitches": 3478,
+      "stitches_without_background": 8522,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -1401,8 +1401,8 @@
         158
       ],
       "background_hex": "#F71B9E",
-      "background_stitches": 3417,
-      "stitches_without_background": 8583,
+      "background_stitches": 3446,
+      "stitches_without_background": 8554,
       "portrait": true,
       "solid_background": true,
       "replacement": true
