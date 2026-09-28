@@ -1,0 +1,94 @@
+name: Compare Baby Nursery Source History
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/compare-baby-source-history.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            content/source-images/collections/baby-nursery/products/
+            .github/workflows/compare-baby-source-history.yml
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - run: python3 -m pip install --quiet Pillow
+
+      - name: Build historical comparison sheets
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/baby-history/current /tmp/baby-history/fbf /tmp/baby-history/dmc
+          declare -A files=(
+            [I0021]=I0021-whale.png
+            [I0025]=I0025-seahorse.png
+            [I0026]=I0026-long-neck-dinosaur.png
+            [I0027]=I0027-triceratops.png
+            [I0029]=I0029-stegosaurus.png
+            [I0043]=I0043-rainbow-clouds.png
+            [I0044]=I0044-sun.png
+            [I0057]=I0057-rattle.png
+          )
+          for id in "${!files[@]}"; do
+            f="${files[$id]}"
+            cp "content/source-images/collections/baby-nursery/products/$f" "/tmp/baby-history/current/$f"
+            git show "fbf67f7425153f1955abc6cd87dedd2953e5fc56:content/source-images/collections/baby-nursery/products/$f" > "/tmp/baby-history/fbf/$f"
+            git show "1812ca21d8a0c09bbd3e3b66e4c9a47ef2e424eb:content/source-images/collections/baby-nursery/products/$f" > "/tmp/baby-history/dmc/$f"
+          done
+
+          python3 - <<'PY'
+          from PIL import Image,ImageDraw,ImageFont
+          from pathlib import Path
+          ids=[
+            ("I0021","I0021-whale.png"),
+            ("I0025","I0025-seahorse.png"),
+            ("I0026","I0026-long-neck-dinosaur.png"),
+            ("I0027","I0027-triceratops.png"),
+            ("I0029","I0029-stegosaurus.png"),
+            ("I0043","I0043-rainbow-clouds.png"),
+            ("I0044","I0044-sun.png"),
+            ("I0057","I0057-rattle.png"),
+          ]
+          versions=[("original-fbf","fbf"),("dmc-before-repair","dmc"),("current","current")]
+          font=ImageFont.load_default()
+          cellw,cellh=430,560
+          sheet=Image.new("RGB",(len(versions)*cellw,len(ids)*cellh),"white")
+          d=ImageDraw.Draw(sheet)
+          for ri,(id,fname) in enumerate(ids):
+              for ci,(label,folder) in enumerate(versions):
+                  p=Path("/tmp/baby-history")/folder/fname
+                  im=Image.open(p).convert("RGBA")
+                  a=im.getchannel("A")
+                  bbox=a.getbbox()
+                  margins=None if not bbox else [bbox[0],bbox[1],im.width-bbox[2],im.height-bbox[3]]
+                  # checker/neutral background
+                  bg=Image.new("RGBA",im.size,(245,245,245,255))
+                  bg.alpha_composite(im)
+                  big=bg.convert("RGB").resize((400,480),Image.Resampling.NEAREST)
+                  x=ci*cellw+15;y=ri*cellh+50
+                  sheet.paste(big,(x,y))
+                  d.text((ci*cellw+10,ri*cellh+8),f"{id} {label}",fill="black",font=font)
+                  d.text((ci*cellw+10,ri*cellh+26),f"bbox={bbox} margins={margins}",fill="black",font=font)
+          sheet.save("/tmp/baby-history/history-comparison.png")
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: baby-source-history-comparison
+          path: /tmp/baby-history
+          retention-days: 7
