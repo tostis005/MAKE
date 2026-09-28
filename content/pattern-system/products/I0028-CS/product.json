@@ -13,10 +13,11 @@
   "pattern_file": "patterns/I0028-CS/pattern.json",
   "template": "cross-stitch.html",
   "website": "www.drielo.com",
-  "status": "draft",
-  "render_ready": false,
+  "status": "active",
+  "render_ready": true,
   "renderer": "multitech",
   "source_artwork": "../source-images/collections/baby-nursery/products/I0028-t-rex.png",
   "page_1_asset": "collections/baby-nursery/assets/cover-cross-stitch.jpg",
-  "palette_mode": "shared-30-source-colours-to-dmc"
+  "palette_mode": "exact-dmc50-source-no-requantization",
+  "mapped_artwork": "collections/baby-nursery/mapped-designs/I0028-t-rex-dmc.png"
 }
