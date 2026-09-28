@@ -25,9 +25,10 @@
       "slug": "bunny",
       "input_png": "../source-images/collections/baby-nursery/products/I0002-bunny.png",
       "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36429331371",
+      "last_error": "Automatic CS publish run failed; see GitHub Actions logs.",
+      "failed_at": "2026-09-28T13:33:51+00:00"
     },
     {
       "order": 3,
