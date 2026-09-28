@@ -1,0 +1,19 @@
+{
+  "code": "P0023-LH",
+  "base_design_id": "P0023",
+  "technique_code": "LH",
+  "collection": "pop-art-25",
+  "title": "Princess Diana Portrait",
+  "title_en": "Princess Diana Portrait",
+  "title_es": "Retrato de la princesa Diana",
+  "design_slug": "princess-diana-portrait",
+  "technique": "latch-hook",
+  "pattern_file": "patterns/P0023-LH/pattern.json",
+  "template": "rug.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "renderer": "multitech",
+  "source_artwork": null,
+  "page_1_asset": "multitech/assets/cover-rug.webp"
+}

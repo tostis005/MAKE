@@ -1,0 +1,19 @@
+{
+  "code": "P0007-LH",
+  "base_design_id": "P0007",
+  "technique_code": "LH",
+  "collection": "pop-art-25",
+  "title": "Frida Kahlo Floral Crown",
+  "title_en": "Frida Kahlo Floral Crown",
+  "title_es": "Frida Kahlo con corona floral",
+  "design_slug": "frida-kahlo-floral-crown",
+  "technique": "latch-hook",
+  "pattern_file": "patterns/P0007-LH/pattern.json",
+  "template": "rug.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "renderer": "multitech",
+  "source_artwork": null,
+  "page_1_asset": "multitech/assets/cover-rug.webp"
+}

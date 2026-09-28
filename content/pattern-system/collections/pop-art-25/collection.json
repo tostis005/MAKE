@@ -5,182 +5,159 @@
   "name_es": "Retratos Pop Art",
   "slug": "pop-art-25",
   "code_prefix": "P",
-  "description": "60 vivid Pop Art portrait designs built from one verified shared palette of exactly 30 colours.",
-  "description_en": "60 vivid Pop Art portrait designs built from one verified shared palette of exactly 30 colours.",
-  "description_es": "60 retratos Pop Art vibrantes construidos con una única paleta compartida verificada de exactamente 30 colores.",
-  "palette_mode": "shared",
-  "show_collection_palette": true,
+  "description": "A new 26-design Pop Art portrait collection built on one strict shared palette of 25 colours and four grid-based craft techniques.",
+  "description_en": "A new 26-design Pop Art portrait collection built on one strict shared palette of 25 colours and four grid-based craft techniques.",
+  "description_es": "Nueva colección Pop Art de 26 diseños construida con una única paleta estricta de 25 colores y cuatro técnicas artesanales basadas en cuadrícula.",
   "palette": [
     {
       "dmc": "310",
-      "hex": "#020202",
+      "hex": "#000000",
       "name": "Black"
     },
     {
-      "dmc": "796",
-      "hex": "#02327F",
-      "name": "Royal Blue Dark"
+      "dmc": "3799",
+      "hex": "#404040",
+      "name": "Very Dark Pewter Gray"
     },
     {
-      "dmc": "996",
-      "hex": "#02BDF7",
-      "name": "Electric Blue Medium"
+      "dmc": "414",
+      "hex": "#8C8C8C",
+      "name": "Dark Steel Gray"
     },
     {
-      "dmc": "3371",
-      "hex": "#03040E",
-      "name": "Black Brown"
+      "dmc": "B5200",
+      "hex": "#FFFFFF",
+      "name": "Snow White"
     },
     {
-      "dmc": "938",
-      "hex": "#030D23",
-      "name": "Coffee Brown Ult Dk"
+      "dmc": "3865",
+      "hex": "#F5ECDF",
+      "name": "Winter White"
     },
     {
-      "dmc": "898",
-      "hex": "#0B0809",
-      "name": "Coffee Brown Vy Dk"
+      "dmc": "948",
+      "hex": "#FEE7DA",
+      "name": "Very Light Peach"
     },
     {
-      "dmc": "934",
-      "hex": "#221717",
-      "name": "Avocado Grn Black"
+      "dmc": "754",
+      "hex": "#F7CBBF",
+      "name": "Light Peach"
     },
     {
-      "dmc": "154",
-      "hex": "#25070E",
-      "name": "Grape Very Dark"
+      "dmc": "437",
+      "hex": "#E4BB8E",
+      "name": "Light Tan"
     },
     {
-      "dmc": "3760",
-      "hex": "#2983AC",
-      "name": "Wedgewood Med"
+      "dmc": "761",
+      "hex": "#FC9F8B",
+      "name": "Light Salmon"
     },
     {
-      "dmc": "3031",
-      "hex": "#363433",
-      "name": "Mocha Brown Vy Dk"
+      "dmc": "604",
+      "hex": "#E996B8",
+      "name": "Light Cranberry"
     },
     {
-      "dmc": "959",
-      "hex": "#67C6B9",
-      "name": "Sea Green Med"
+      "dmc": "351",
+      "hex": "#E96A67",
+      "name": "Coral"
     },
     {
-      "dmc": "221",
-      "hex": "#85453A",
-      "name": "Shell Pink Vy Dk"
+      "dmc": "321",
+      "hex": "#C72B3B",
+      "name": "Red"
     },
     {
-      "dmc": "917",
-      "hex": "#9E134A",
-      "name": "Plum Medium"
+      "dmc": "970",
+      "hex": "#F78B2D",
+      "name": "Light Pumpkin"
     },
     {
-      "dmc": "3826",
-      "hex": "#A46834",
-      "name": "Golden Brown"
+      "dmc": "3820",
+      "hex": "#DFB65B",
+      "name": "Dark Straw"
     },
     {
-      "dmc": "831",
-      "hex": "#B08F4B",
-      "name": "Golden Olive Md"
+      "dmc": "444",
+      "hex": "#FFD600",
+      "name": "Dark Lemon"
     },
     {
-      "dmc": "3853",
-      "hex": "#EE8945",
-      "name": "Autumn Gold Dk"
+      "dmc": "434",
+      "hex": "#985B3B",
+      "name": "Light Brown"
     },
     {
-      "dmc": "721",
-      "hex": "#EF6949",
-      "name": "Orange Spice Med"
+      "dmc": "801",
+      "hex": "#653919",
+      "name": "Dark Coffee Brown"
     },
     {
-      "dmc": "742",
-      "hex": "#F0B84B",
-      "name": "Tangerine Light"
+      "dmc": "905",
+      "hex": "#627650",
+      "name": "Dark Parrot Green"
     },
     {
-      "dmc": "726",
-      "hex": "#F0D35D",
-      "name": "Topaz Light"
+      "dmc": "890",
+      "hex": "#17492F",
+      "name": "Ultra Dark Pistachio Green"
     },
     {
-      "dmc": "741",
-      "hex": "#F2A33C",
-      "name": "Tangerine Med"
+      "dmc": "598",
+      "hex": "#8EB8BC",
+      "name": "Light Turquoise"
     },
     {
-      "dmc": "3804",
-      "hex": "#F30D68",
-      "name": "Cyclamen Pink Dark"
+      "dmc": "3325",
+      "hex": "#86B1D0",
+      "name": "Light Baby Blue"
     },
     {
-      "dmc": "3805",
-      "hex": "#F71B9E",
-      "name": "Cyclamen Pink"
+      "dmc": "797",
+      "hex": "#3157A4",
+      "name": "Royal Blue"
     },
     {
-      "dmc": "402",
-      "hex": "#F7A976",
-      "name": "Mahogany Vy Lt"
+      "dmc": "820",
+      "hex": "#0E365C",
+      "name": "Very Dark Royal Blue"
     },
     {
-      "dmc": "602",
-      "hex": "#F83392",
-      "name": "Cranberry Medium"
+      "dmc": "550",
+      "hex": "#5C295F",
+      "name": "Very Dark Violet"
     },
     {
-      "dmc": "3854",
-      "hex": "#FCB563",
-      "name": "Autumn Gold Med"
-    },
-    {
-      "dmc": "3827",
-      "hex": "#FCB884",
-      "name": "Golden Brown Pale"
-    },
-    {
-      "dmc": "3825",
-      "hex": "#FCBB8E",
-      "name": "Pumpkin Pale"
-    },
-    {
-      "dmc": "3821",
-      "hex": "#FCC367",
-      "name": "Straw"
-    },
-    {
-      "dmc": "725",
-      "hex": "#FCCB39",
-      "name": "Topaz Med Lt"
-    },
-    {
-      "dmc": "307",
-      "hex": "#FDDF52",
-      "name": "Lemon"
+      "dmc": "729",
+      "hex": "#D0A53E",
+      "name": "Medium Old Gold"
     }
   ],
-  "design_count": 60,
+  "design_count": 26,
   "techniques": [
-    "cross-stitch"
+    "cross-stitch",
+    "c2c-crochet",
+    "tapestry-crochet",
+    "latch-hook"
   ],
   "mockup_spec": {
-    "asset": "../../../products/assets/pop-art-25-collection-cover.webp",
+    "asset": "../../multitech/assets/cover-cross-stitch.webp",
     "technique_assets": {
-      "CS": "../../../products/assets/pop-art-25-collection-cover.webp"
+      "CS": "../../multitech/assets/cover-cross-stitch.webp",
+      "C2C": "../../multitech/assets/cover-crochet.webp",
+      "TC": "../../multitech/assets/cover-c2c-crochet.webp",
+      "LH": "../../multitech/assets/cover-rug.webp"
     },
     "frame": {
       "enabled": false
-    },
-    "approved_background_source_commit": "58e89fb2e14a02eca6ee7a3700a17cc099d21fed"
+    }
   },
   "preview_rules": {
     "palette_mode": "strict",
-    "allowed_palette_size": 30,
+    "allowed_palette_size": 25,
     "gradients": false,
-    "extra_colours": false,
-    "transparent_background": false
+    "extra_colours": false
   }
 }
