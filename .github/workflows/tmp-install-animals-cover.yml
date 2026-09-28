@@ -63,7 +63,7 @@ jobs:
           data['updated_at'] = '2026-09-28'
           source = data.setdefault('source', {})
           source['transport'] = 'gmail-temporary-handoff'
-          source['gmail_message_id'] = '1a0e9c14f64516c5'
+          source['gmail_message_id'] = '1a0e9c2a9ee1cf23'
           source['note'] = (
               'Approved collection cover images supplied by the user and relayed through Gmail before installation in GitHub. '
               'Animals cover refreshed with exact 1536x1536 mockup geometry; Aida opening x438 y212 w685 h822.'
@@ -71,7 +71,7 @@ jobs:
           for item in data.get('collections', []):
               if item.get('slug') == 'animals':
                   item['cover_asset'] = 'assets/animals-collection-cover-v3.webp'
-                  item['source_filename'] = 'animals-webp-60.webp'
+                  item['source_filename'] = 'animals-webp-20.webp'
                   item['technical_geometry'] = {
                       'source_px': {'width': 1536, 'height': 1536},
                       'area_px': {'x': 438, 'y': 212, 'width': 685, 'height': 822}
