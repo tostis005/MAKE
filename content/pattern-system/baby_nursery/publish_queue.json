@@ -338,10 +338,11 @@
       "title_es": "Dinosaurio de cuello largo",
       "slug": "long-neck-dinosaur",
       "input_png": "../source-images/collections/baby-nursery/products/I0026-long-neck-dinosaur.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36437221344",
+      "last_error": null,
+      "published_at": "2026-09-28T14:37:58+00:00"
     },
     {
       "order": 27,
