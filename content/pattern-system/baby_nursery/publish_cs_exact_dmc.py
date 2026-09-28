@@ -209,6 +209,72 @@ def build_pattern(base_id: str, design: dict):
     }
 
 
+def collection_mockup_config():
+    """Return the exact Iconic-aligned Baby Nursery cover geometry."""
+    collection = read_json(COLLECTION_PATH)
+    spec = collection.get("mockup_spec") or {}
+    frame = spec.get("frame") or {}
+    source = frame.get("source_px") or {}
+    area = frame.get("area_px") or {}
+
+    sw = int(source.get("width") or 0)
+    sh = int(source.get("height") or 0)
+    x = int(area.get("x") or 0)
+    y = int(area.get("y") or 0)
+    width = int(area.get("width") or 0)
+    height = int(area.get("height") or 0)
+
+    if not frame.get("enabled") or (sw, sh) != (1536, 1536):
+        raise RuntimeError(f"Baby Nursery frame must be enabled at 1536x1536, got {sw}x{sh}")
+    if (x, y, width, height) != (438, 212, 685, 822):
+        raise RuntimeError(
+            f"Baby Nursery frame must match Iconic Destinations exactly, got {(x, y, width, height)}"
+        )
+
+    asset_rel = (spec.get("technique_assets") or {}).get("CS") or spec.get("asset")
+    cover_asset = (SYSTEM / asset_rel).resolve() if asset_rel else None
+    if cover_asset is None or not cover_asset.is_file():
+        raise RuntimeError(f"Missing Baby Nursery cover asset: {cover_asset}")
+
+    overlay = {
+        "left": round(x / sw * 100.0, 4),
+        "top": round(y / sh * 100.0, 4),
+        "width": round(width / sw * 100.0, 4),
+        "height": round(height / sh * 100.0, 4),
+        "opacity": 0.96,
+        "safe_inset_pct": 0.0,
+    }
+    return {
+        "cover_asset": cover_asset,
+        "frame_box": (x, y, width, height),
+        "overlay": overlay,
+    }
+
+
+def build_storefront_image(background_path: Path, design_preview_path: Path, frame_box, target: Path):
+    """Build the WooCommerce hero exactly like Iconic Destinations.
+
+    Preserve the full 1536x1536 lifestyle background and replace only the
+    measured Aida opening with the finished 1000x1200 stitched preview.
+    """
+    x, y, width, height = frame_box
+    with Image.open(background_path) as source:
+        background = source.convert("RGB")
+    if background.size != (1536, 1536):
+        raise RuntimeError(f"Baby Nursery background must be 1536x1536, got {background.size}")
+    if (x, y, width, height) != (438, 212, 685, 822):
+        raise RuntimeError(f"Unexpected Baby Nursery frame box: {frame_box}")
+
+    with Image.open(design_preview_path) as source:
+        design_preview = source.convert("RGB")
+    rendered = design_preview.resize((width, height), Image.Resampling.LANCZOS)
+    background.paste(rendered, (x, y))
+
+    target.parent.mkdir(parents=True, exist_ok=True)
+    background.save(target, "WEBP", quality=94, method=6)
+    return target
+
+
 def prepare_renderer_assets(collection: dict):
     temp = Path("/tmp/drielo-baby-exact-dmc-assets")
     if temp.exists():
@@ -228,13 +294,14 @@ def prepare_renderer_assets(collection: dict):
 def render(base_id: str, design: dict, built: dict):
     code = f"{base_id}-CS"
     collection = read_json(COLLECTION_PATH)
+    mockup = collection_mockup_config()
     prepare_renderer_assets(collection)
+
     data = bg.pattern_data(code, design["title_en"], "CS", built["matrix"], built["threads"])
     data["collection"] = collection.get("name_en", "Baby & Nursery")
     data["collection_id"] = COLLECTION_ID
-    layout = collection["mockup_spec"]["technique_layouts"]["CS"]
-    data["cover_overlay"] = layout["cover_overlay"]
-    data["cover_stage_scale"] = layout["cover_stage_scale"]
+    data["cover_overlay"] = mockup["overlay"]
+    data["cover_stage_scale"] = bg.TECHS["CS"]["cover_stage_scale"]
 
     result = bg.render_one((code, "CS", data))
     STORE_ASSETS.mkdir(parents=True, exist_ok=True)
@@ -243,7 +310,16 @@ def render(base_id: str, design: dict, built: dict):
     pdf = STORE_FILES / f"Drielo_{code}.pdf"
     image = STORE_ASSETS / f"{code}-product.webp"
     shutil.copy2(result["pdf"], pdf)
-    shutil.copy2(result["image"], image)
+
+    # Match Iconic Destinations exactly for the WooCommerce hero:
+    # no cover-stage screenshot and no 4:5 crop. Keep the native square
+    # background and paste the Aida-backed design into the measured opening.
+    build_storefront_image(
+        mockup["cover_asset"],
+        Path(result["design_preview"]),
+        mockup["frame_box"],
+        image,
+    )
 
     gallery = []
     sources = result.get("gallery", [])
@@ -258,6 +334,10 @@ def render(base_id: str, design: dict, built: dict):
         raise RuntimeError(f"{code}: invalid PDF")
     if not image.is_file() or image.stat().st_size < 30000:
         raise RuntimeError(f"{code}: invalid product image")
+    with Image.open(image) as check:
+        if check.size != (1536, 1536):
+            raise RuntimeError(f"{code}: product image must be 1536x1536, got {check.size}")
+
     return {"pdf": pdf, "image": image, "gallery": gallery}
 
 
