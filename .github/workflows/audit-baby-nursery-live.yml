@@ -1,0 +1,133 @@
+name: Audit Live Baby Nursery WooCommerce Images
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/audit-baby-nursery-live.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  audit-live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_key
+          chmod 600 ~/.ssh/drielo_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Export live featured images
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "make-wp container not found" >&2
+            exit 1
+          fi
+
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/baby-live-audit && mkdir -p /tmp/baby-live-audit/images'
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $out=array();
+            for($i=1;$i<=60;$i++){
+              $base=sprintf("I%04d",$i);
+              $sku="DRIELO-".$base."-CS";
+              $id=wc_get_product_id_by_sku($sku);
+              if(!$id){$out[]=array("base"=>$base,"sku"=>$sku,"missing"=>true);continue;}
+              $p=wc_get_product($id);
+              $imgid=$p->get_image_id();
+              $path=$imgid ? get_attached_file($imgid) : "";
+              $dest="/tmp/baby-live-audit/images/".$base."-CS-product.".($path ? pathinfo($path,PATHINFO_EXTENSION) : "missing");
+              $copied=false;
+              if($path && is_file($path)){$copied=copy($path,$dest);}
+              $out[]=array(
+                "base"=>$base,
+                "sku"=>$sku,
+                "id"=>$id,
+                "status"=>$p->get_status(),
+                "image_id"=>$imgid,
+                "image_path"=>$path,
+                "copied"=>$copied,
+                "gallery"=>count($p->get_gallery_image_ids()),
+                "downloads"=>count($p->get_downloads()),
+                "url"=>get_permalink($id)
+              );
+            }
+            file_put_contents("/tmp/baby-live-audit/products.json",json_encode($out,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
+          '
+          rm -rf /tmp/baby-live-audit-host
+          mkdir -p /tmp/baby-live-audit-host
+          "${DOCKER[@]}" cp make-wp:/tmp/baby-live-audit/. /tmp/baby-live-audit-host/
+          tar -czf /tmp/baby-live-audit.tgz -C /tmp/baby-live-audit-host .
+          REMOTE
+          scp -i ~/.ssh/drielo_key "$VPS_USER@$VPS_HOST:/tmp/baby-live-audit.tgz" /tmp/baby-live-audit.tgz
+
+      - name: Build live contact sheets
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/baby-live
+          tar -xzf /tmp/baby-live-audit.tgz -C /tmp/baby-live
+          python3 -m pip install --quiet Pillow
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image,ImageDraw,ImageFont
+          root=Path('/tmp/baby-live')
+          imgs=root/'images'
+          meta=json.loads((root/'products.json').read_text())
+          out=Path('tmp/baby-nursery-live-audit')
+          out.mkdir(parents=True,exist_ok=True)
+          (out/'products.json').write_text(json.dumps(meta,indent=2)+'\n')
+          font=ImageFont.load_default()
+          W,H=560,690
+          for start in range(0,60,10):
+              sheet=Image.new('RGB',(5*W,2*H),(248,248,248))
+              d=ImageDraw.Draw(sheet)
+              for k in range(10):
+                  i=start+k+1
+                  row=meta[i-1]
+                  c=k%5;r=k//5;x0=c*W;y0=r*H
+                  files=list(imgs.glob(f'I{i:04d}-CS-product.*'))
+                  d.text((x0+12,y0+10),f"I{i:04d} id={row.get('id')} image={row.get('image_id')}",fill='black',font=font)
+                  if files:
+                      with Image.open(files[0]) as im:
+                          rgb=im.convert('RGB')
+                          # show full actual featured image, preserving aspect ratio
+                          rgb.thumbnail((520,610),Image.Resampling.LANCZOS)
+                      sheet.paste(rgb,(x0+(W-rgb.width)//2,y0+55+(610-rgb.height)//2))
+                  else:
+                      d.text((x0+50,y0+300),'MISSING LIVE IMAGE',fill='red',font=font)
+                  d.rectangle([x0,y0,x0+W-1,y0+H-1],outline=(180,180,180))
+              sheet.save(out/f'live_sheet_{start//10+1:02d}_I{start+1:04d}_I{min(start+10,60):04d}.jpg',quality=90)
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: baby-nursery-live-audit
+          path: tmp/baby-nursery-live-audit
+          retention-days: 7
