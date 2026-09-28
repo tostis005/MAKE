@@ -52,15 +52,16 @@
       "product_title_es": "Patrón de punto de cruz: Coliseo, Roma",
       "slug": "rome-colosseum",
       "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0033-rome-colosseum.png",
-      "status": "pending",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36437982129",
-      "last_error": "Automatic Iconic Destinations publish run failed; see GitHub Actions logs.",
+      "status": "published",
+      "attempts": 3,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36438811971",
+      "last_error": null,
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_manifest_item": "D0033",
       "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
       "source_zip_member": "D0033-rome-colosseum.png",
-      "failed_at": "2026-09-28T14:46:28+00:00"
+      "failed_at": "2026-09-28T14:46:28+00:00",
+      "published_at": "2026-09-28T14:50:53+00:00"
     },
     {
       "base_design_id": "D0034",
