@@ -49,9 +49,22 @@ jobs:
         run: |
           set -euo pipefail
           cp content/products/catalog.json /tmp/catalog-before-visual-repair.json
+          rm -rf /tmp/baby-repair-rows && mkdir -p /tmp/baby-repair-rows
           for id in I0021 I0022 I0026 I0027 I0028 I0030 I0044; do
             echo "Regenerating $id"
             python3 content/pattern-system/baby_nursery/publish_cs_exact_dmc.py "$id"
+            python3 - "$id" <<'PYROW'
+import json,sys
+from pathlib import Path
+base=sys.argv[1]
+code=f"{base}-CS"
+catalog=json.loads(Path("content/products/catalog.json").read_text(encoding="utf-8"))
+row=next((p for p in catalog.get("products",[]) if p.get("code")==code),None)
+if not row:
+    raise SystemExit(f"{code}: publisher did not emit catalog row")
+Path(f"/tmp/baby-repair-rows/{base}.json").write_text(json.dumps(row,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+print("CAPTURED_ROW",code)
+PYROW
           done
 
           # Force fresh bytes for the two user-reported cases whose source artwork
@@ -110,11 +123,12 @@ jobs:
               if n!=1: raise SystemExit(f"{base}: still has {n} disconnected components")
               print(base,"SOURCE_CLEAN")
 
-          catalog=json.loads((root/"content/products/catalog.json").read_text())
-          rows={p.get("code"):p for p in catalog.get("products",[])}
           for base in rebuild:
               code=f"{base}-CS"
-              if code not in rows: raise SystemExit(f"{code}: missing generated catalog row")
+              row_path=Path("/tmp/baby-repair-rows")/f"{base}.json"
+              if not row_path.is_file(): raise SystemExit(f"{code}: missing captured catalog row")
+              row=json.loads(row_path.read_text(encoding="utf-8"))
+              if row.get("code")!=code: raise SystemExit(f"{code}: wrong captured catalog row")
               pat=json.loads((root/"content/pattern-system/patterns"/code/"pattern.json").read_text())
               if (pat.get("stitch_width"),pat.get("stitch_height"))!=(100,120):
                   raise SystemExit(f"{code}: wrong grid")
@@ -147,15 +161,16 @@ jobs:
           ids=("I0021","I0022","I0026","I0027","I0028","I0030","I0044")
           codes={f"{x}-CS" for x in ids}
           src=json.loads(Path("content/products/catalog.json").read_text(encoding="utf-8"))
-          rows=[p for p in src.get("products",[]) if p.get("code") in codes]
+          rows=[json.loads((Path("/tmp/baby-repair-rows")/f"{x}.json").read_text(encoding="utf-8")) for x in ids]
           if {p.get("code") for p in rows}!=codes:
               raise SystemExit("Selected repair catalog rows are incomplete")
           revision=os.environ["REPAIR_REVISION"]
           for p in rows:
               p["gallery_revision"]=revision
-          coll=next(c for c in src.get("collections",[]) if c.get("slug")=="baby-nursery")
-          cats=[c for c in src.get("categories",[]) if c.get("slug") in {"cross-stitch-patterns","cross-stitch-baby-nursery"}]
-          out=dict(src)
+          base_catalog=json.loads(Path("/tmp/catalog-before-visual-repair.json").read_text(encoding="utf-8"))
+          coll=next(c for c in base_catalog.get("collections",[]) if c.get("slug")=="baby-nursery")
+          cats=[c for c in base_catalog.get("categories",[]) if c.get("slug") in {"cross-stitch-patterns","cross-stitch-baby-nursery"}]
+          out=dict(base_catalog)
           out["products"]=rows
           out["collections"]=[coll]
           out["categories"]=cats
@@ -297,3 +312,5 @@ jobs:
             git pull --rebase origin main
             git push origin HEAD:main
           fi
+
+# captured-row-fix-1
