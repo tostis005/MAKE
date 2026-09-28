@@ -668,10 +668,11 @@
       "title_es": "Avión",
       "slug": "airplane",
       "input_png": "../source-images/collections/baby-nursery/products/I0051-airplane.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36447985299",
+      "last_error": null,
+      "published_at": "2026-09-28T16:03:27+00:00"
     },
     {
       "order": 52,
