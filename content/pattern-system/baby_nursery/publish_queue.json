@@ -551,10 +551,11 @@
       "title_es": "Unicornio floral",
       "slug": "floral-unicorn",
       "input_png": "../source-images/collections/baby-nursery/products/I0042-floral-unicorn.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36445290598",
+      "last_error": null,
+      "published_at": "2026-09-28T15:42:05+00:00"
     },
     {
       "order": 43,
