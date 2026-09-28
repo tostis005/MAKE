@@ -34,14 +34,15 @@
       "product_title_es": "Patrón de punto de cruz: Big Ben, Londres",
       "slug": "london-big-ben",
       "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0032-london-big-ben.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36437356725",
       "last_error": null,
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_manifest_item": "D0032",
       "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
-      "source_zip_member": "D0032-london-big-ben.png"
+      "source_zip_member": "D0032-london-big-ben.png",
+      "published_at": "2026-09-28T14:40:15+00:00"
     },
     {
       "base_design_id": "D0033",
