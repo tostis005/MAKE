@@ -220,7 +220,7 @@ jobs:
           rm -rf "$HOST_STAGE"; mkdir -p "$HOST_STAGE"; tar -xzf "$ARCHIVE" -C "$HOST_STAGE"
           if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
 
-          PRE_JSON=$("${DOCKER[@]}" exec make-wp php -r '
+          PRE_JSON=$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
             require "/var/www/html/wp-load.php";
             $o=array(); foreach(array("I0021","I0026","I0027","I0029","I0043") as $b){$o[$b]=(int)wc_get_product_id_by_sku("DRIELO-".$b."-CS");}
             echo json_encode($o);
