@@ -211,12 +211,12 @@
     },
     {
       "filename": "infantil_021_whale.png",
-      "colors_used": 6,
+      "colors_used": 17,
       "margins": {
-        "left": 15,
-        "top": 36,
-        "right": 15,
-        "bottom": 37
+        "left": 11,
+        "top": 24,
+        "right": 11,
+        "bottom": 25
       }
     },
     {
@@ -261,22 +261,22 @@
     },
     {
       "filename": "infantil_026_long_neck_dinosaur.png",
-      "colors_used": 5,
+      "colors_used": 24,
       "margins": {
-        "left": 18,
-        "top": 22,
-        "right": 18,
-        "bottom": 22
+        "left": 11,
+        "top": 24,
+        "right": 11,
+        "bottom": 24
       }
     },
     {
       "filename": "infantil_027_triceratops.png",
-      "colors_used": 6,
+      "colors_used": 28,
       "margins": {
         "left": 11,
-        "top": 34,
-        "right": 12,
-        "bottom": 34
+        "top": 27,
+        "right": 11,
+        "bottom": 28
       }
     },
     {
@@ -291,12 +291,12 @@
     },
     {
       "filename": "infantil_029_stegosaurus.png",
-      "colors_used": 6,
+      "colors_used": 28,
       "margins": {
-        "left": 13,
-        "top": 32,
-        "right": 14,
-        "bottom": 32
+        "left": 11,
+        "top": 28,
+        "right": 11,
+        "bottom": 29
       }
     },
     {
@@ -431,12 +431,12 @@
     },
     {
       "filename": "infantil_043_rainbow_clouds.png",
-      "colors_used": 8,
+      "colors_used": 32,
       "margins": {
-        "left": 13,
-        "top": 31,
-        "right": 14,
-        "bottom": 31
+        "left": 11,
+        "top": 29,
+        "right": 11,
+        "bottom": 30
       }
     },
     {
