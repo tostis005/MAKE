@@ -1332,7 +1332,7 @@ function make_render_collection_grid(): void {
                 $design_id = sanitize_text_field( (string) ( $record['design_id'] ?? '' ) );
                 $hidden = $index >= $initial_thumb_limit ? ' hidden' : '';
                 echo '<span class="drielo-collection-thumb" data-collection-thumb data-technique="' . esc_attr( $technique ) . '" data-design="' . esc_attr( $design_id ) . '"' . $hidden . '>';
-                echo wp_kses_post( make_static_attachment_image_html( (int) $record['image_id'], 'make-collection-preview-small', 'drielo-collection-preview drielo-collection-preview--context' ) );
+                echo wp_kses_post( make_static_attachment_image_html( (int) $record['image_id'], 'make-collection-preview-context', 'drielo-collection-preview drielo-collection-preview--context' ) );
                 echo '</span>';
             }
 
@@ -1343,7 +1343,7 @@ function make_render_collection_grid(): void {
 
             echo '</span>';
         } elseif ( $product_id && has_post_thumbnail( $product_id ) && function_exists( 'make_static_attachment_image_html' ) ) {
-            echo wp_kses_post( make_static_attachment_image_html( (int) get_post_thumbnail_id( $product_id ), 'make-collection-preview-small', 'drielo-collection-preview' ) );
+            echo wp_kses_post( make_static_attachment_image_html( (int) get_post_thumbnail_id( $product_id ), 'make-collection-preview-context', 'drielo-collection-preview' ) );
         } else {
             echo '<span class="drielo-collection-placeholder" aria-hidden="true"><b>×</b><b>×</b><b>×</b><b>×</b><b>×</b></span>';
         }
