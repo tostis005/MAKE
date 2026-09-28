@@ -1,16 +1,30 @@
-name: Flush Drielo store cache once
+name: Refresh I0001 image and flush Drielo store cache
+
 on:
   push:
     branches: [main]
     paths:
       - '.github/workflows/flush-store-cache-once.yml'
+
 permissions:
   contents: read
+
 jobs:
-  flush:
+  refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 12
     steps:
+      - name: Checkout current storefront asset
+        uses: actions/checkout@v4
+
+      - name: Validate I0001 source
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s content/products/assets/I0001-CS-product.webp
+          echo "I0001_SOURCE_BYTES=$(wc -c < content/products/assets/I0001-CS-product.webp)"
+          echo "I0001_SOURCE_MD5=$(md5sum content/products/assets/I0001-CS-product.webp | awk '{print $1}')"
+
       - name: Configure SSH
         env:
           VPS_HOST: ${{ secrets.VPS_HOST }}
@@ -23,15 +37,30 @@ jobs:
           chmod 600 ~/.ssh/drielo_cache_key
           ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
 
-      - name: Flush WordPress and WooCommerce caches
+      - name: Upload current I0001 source
         env:
           VPS_HOST: ${{ secrets.VPS_HOST }}
           VPS_USER: ${{ secrets.VPS_USER }}
         shell: bash
         run: |
           set -euo pipefail
-          ssh -i ~/.ssh/drielo_cache_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          scp -i ~/.ssh/drielo_cache_key \
+            content/products/assets/I0001-CS-product.webp \
+            "$VPS_USER@$VPS_HOST:/tmp/drielo-I0001-CS-product-${GITHUB_RUN_ID}.webp"
+
+      - name: Refresh only I0001 attachment and purge caches
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
           set -euo pipefail
+          EXPECTED_HASH="$(md5sum content/products/assets/I0001-CS-product.webp | awk '{print $1}')"
+          ssh -i ~/.ssh/drielo_cache_key "$VPS_USER@$VPS_HOST" \
+            "EXPECTED_HASH='$EXPECTED_HASH' GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          HOST_SOURCE="/tmp/drielo-I0001-CS-product-${GITHUB_RUN_ID}.webp"
+
           if docker inspect make-wp >/dev/null 2>&1; then
             DOCKER=(docker)
           elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
@@ -40,16 +69,69 @@ jobs:
             echo "ERROR: make-wp container not found"
             exit 1
           fi
-          "${DOCKER[@]}" exec make-wp php -d memory_limit=512M -r '
+
+          test -s "$HOST_SOURCE"
+          "${DOCKER[@]}" cp "$HOST_SOURCE" make-wp:/tmp/drielo-I0001-CS-product.webp
+
+          "${DOCKER[@]}" exec -e DRIELO_EXPECTED_HASH="$EXPECTED_HASH" make-wp php -d memory_limit=768M -r '
             require "/var/www/html/wp-load.php";
-            if (function_exists("wc_delete_product_transients")) wc_delete_product_transients();
+            require_once ABSPATH . "wp-admin/includes/image.php";
+
+            $sku="DRIELO-I0001-CS";
+            $product_id=(int)wc_get_product_id_by_sku($sku);
+            if($product_id<=0){fwrite(STDERR,"Missing ".$sku.PHP_EOL);exit(2);}
+            $product=wc_get_product($product_id);
+            $image_id=$product instanceof WC_Product ? (int)$product->get_image_id() : 0;
+            if($image_id<=0){fwrite(STDERR,"Missing I0001 featured image".PHP_EOL);exit(3);}
+
+            $target=get_attached_file($image_id);
+            if(!$target){fwrite(STDERR,"Missing attached file path".PHP_EOL);exit(4);}
+            $source="/tmp/drielo-I0001-CS-product.webp";
+            if(!is_file($source)){fwrite(STDERR,"Uploaded source is missing".PHP_EOL);exit(5);}
+
+            $dims=@getimagesize($source);
+            if(!is_array($dims) || (int)$dims[0]!==1536 || (int)$dims[1]!==1536){
+              fwrite(STDERR,"Unexpected I0001 source geometry".PHP_EOL);exit(6);
+            }
+
+            $before=is_file($target) ? (md5_file($target) ?: "") : "";
+            wp_mkdir_p(dirname($target));
+            if(!copy($source,$target)){fwrite(STDERR,"Could not refresh I0001 attachment".PHP_EOL);exit(7);}
+            clearstatcache(true,$target);
+            $after=md5_file($target) ?: "";
+            $expected=(string)getenv("DRIELO_EXPECTED_HASH");
+            if($expected!=="" && !hash_equals($expected,$after)){
+              fwrite(STDERR,"I0001 hash mismatch expected=".$expected." actual=".$after.PHP_EOL);exit(8);
+            }
+
+            $metadata=wp_generate_attachment_metadata($image_id,$target);
+            if(is_array($metadata)){wp_update_attachment_metadata($image_id,$metadata);}
+            update_post_meta($image_id,"_drielo_source_hash",$after);
+            update_post_meta($image_id,"_drielo_source_revision","cache-refresh-".gmdate("YmdHis"));
+            clean_post_cache($image_id);
+            clean_post_cache($product_id);
+
+            if(function_exists("wc_delete_product_transients")) wc_delete_product_transients($product_id);
             delete_transient("wc_products_onsale");
             delete_transient("wc_featured_products");
             wp_cache_flush();
-            if (function_exists("rocket_clean_domain")) rocket_clean_domain();
-            if (function_exists("w3tc_flush_all")) w3tc_flush_all();
-            if (function_exists("sg_cachepress_purge_cache")) sg_cachepress_purge_cache();
+            if(function_exists("rocket_clean_domain")) rocket_clean_domain();
+            if(function_exists("wp_cache_clear_cache")) wp_cache_clear_cache();
+            if(function_exists("w3tc_flush_all")) w3tc_flush_all();
+            if(function_exists("sg_cachepress_purge_cache")) sg_cachepress_purge_cache();
             do_action("litespeed_purge_all");
+
+            $full=wp_get_attachment_image_src($image_id,"full");
+            $card=wp_get_attachment_image_src($image_id,"make-store-card-context");
+            $single=wp_get_attachment_image_src($image_id,"make-single-product-context");
+            echo "I0001_REFRESHED product_id=".$product_id." image_id=".$image_id.PHP_EOL;
+            echo "I0001_HASH before=".$before." after=".$after.PHP_EOL;
+            echo "I0001_FULL=".(is_array($full)?$full[1]."x".$full[2]:"missing").PHP_EOL;
+            echo "I0001_CARD=".(is_array($card)?$card[1]."x".$card[2]:"missing").PHP_EOL;
+            echo "I0001_SINGLE=".(is_array($single)?$single[1]."x".$single[2]:"missing").PHP_EOL;
             echo "STORE_CACHE_FLUSHED".PHP_EOL;
           '
+
+          "${DOCKER[@]}" exec make-wp rm -f /tmp/drielo-I0001-CS-product.webp || true
+          rm -f "$HOST_SOURCE"
           REMOTE
