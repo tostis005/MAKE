@@ -147,6 +147,11 @@ jobs:
           row=next((p for p in cat.get('products',[]) if p.get('code')==code),None)
           if not row or row.get('collection')!='iconic-destinations':
               raise SystemExit(f'{code}: wrong catalog routing')
+          expected_gallery=[f"assets/{code}-gallery-{i}.webp" for i in (2,3,4)]
+          if row.get('gallery')!=expected_gallery:
+              raise SystemExit(f"{code}: expected exactly three gallery assets, got {row.get('gallery')}")
+          if row.get('gallery_preview_pages')!={'facts':3,'colour_a1':8,'symbol_a1':12}:
+              raise SystemExit(f"{code}: gallery preview page metadata differs from Baby policy")
           expected_suffix=f"-r{os.environ['GITHUB_RUN_ID']}.webp"
           if not str(row.get('featured_image','')).endswith(expected_suffix):
               raise SystemExit(f"{code}: featured image is not revisioned for this run")
@@ -241,7 +246,7 @@ jobs:
             $actual_hash=$attached&&is_file($attached)?(string)md5_file($attached):"";
             $url=$image_id?(string)wp_get_attachment_url($image_id):"";
             echo $sku." id=".$id." status=".$p->get_status()." image=".$image_id." source=".$source." image_url=".$url." hash=".$actual_hash." gallery=".count($p->get_gallery_image_ids())." downloads=".count($p->get_downloads())." collection=".implode(",",is_wp_error($cols)?array():$cols)." url=".get_permalink($id).PHP_EOL;
-            if($p->get_status()!=="publish"||!$image_id||count($p->get_downloads())<1||!in_array("iconic-destinations",is_wp_error($cols)?array():$cols,true)){fwrite(STDERR,"Incomplete ".$sku.PHP_EOL);exit(3);}
+            if($p->get_status()!=="publish"||!$image_id||count($p->get_gallery_image_ids())!==3||count($p->get_downloads())<1||!in_array("iconic-destinations",is_wp_error($cols)?array():$cols,true)){fwrite(STDERR,"Incomplete ".$sku." expected featured+3 gallery images+download".PHP_EOL);exit(3);}
             if($source!==$expected){fwrite(STDERR,"Wrong featured source ".$source." expected ".$expected.PHP_EOL);exit(4);}
             if(!$known_hash||!$actual_hash||!hash_equals($known_hash,$actual_hash)){fwrite(STDERR,"Featured image hash mismatch".PHP_EOL);exit(5);}
           '
