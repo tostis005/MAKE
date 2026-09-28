@@ -452,14 +452,16 @@ def update_pattern_and_product(base_id: str, design: dict, built: dict):
     write_json(pattern_path, pattern)
 
     product = read_json(product_path)
+    product_title_en = design.get("product_title_en") or design["title_en"]
+    product_title_es = design.get("product_title_es") or design["title_es"]
     product.update({
         "code": code,
         "base_design_id": base_id,
         "technique_code": "CS",
         "collection": COLLECTION_ID,
-        "title": design["title_en"],
-        "title_en": design["title_en"],
-        "title_es": design["title_es"],
+        "title": product_title_en,
+        "title_en": product_title_en,
+        "title_es": product_title_es,
         "design_slug": design["slug"],
         "technique": "cross-stitch",
         "pattern_file": f"patterns/{code}/pattern.json",
@@ -478,8 +480,8 @@ def update_pattern_and_product(base_id: str, design: dict, built: dict):
 
 def product_catalog_row(base_id: str, design: dict, built: dict):
     code = f"{base_id}-CS"
-    title_en = f"{design['title_en']} Cross Stitch Pattern PDF"
-    title_es = f"Patrón PDF de punto de cruz: {design['title_es']}"
+    title_en = design.get("product_title_en") or f"{design['title_en']} Cross Stitch Pattern PDF"
+    title_es = design.get("product_title_es") or f"Patrón PDF de punto de cruz: {design['title_es']}"
     colours = len(built["threads"])
     short_en = (
         f"Downloadable {design['title_en']} cross-stitch pattern from the Iconic Destinations collection. "
