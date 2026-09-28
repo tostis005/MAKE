@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Drielo Etsy Sync
  * Description: Centraliza la selección y sincronización de productos WooCommerce con Etsy, incluidos productos digitales, imágenes y PDFs.
- * Version: 1.4.10
+ * Version: 1.4.9
  * Author: Drielo
  * Requires Plugins: woocommerce
  * Requires PHP: 8.0
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 final class Drielo_Etsy_Sync {
-    const VERSION = '1.4.10';
+    const VERSION = '1.4.9';
     const OPTION_SETTINGS = 'drielo_etsy_settings';
     const OPTION_TOKENS   = 'drielo_etsy_tokens';
     const OPTION_SYNC_RUN = 'drielo_etsy_sync_run';
