@@ -23,28 +23,33 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Rebuild approved Animals cover
+      - name: Rebuild approved Animals source
         shell: bash
         run: |
           set -euo pipefail
           cat tmp/animals-cover/cover.part* > /tmp/animals-cover.b64
-          base64 -d /tmp/animals-cover.b64 > /tmp/animals-collection-cover-v3.webp
-          test -s /tmp/animals-collection-cover-v3.webp
+          base64 -d /tmp/animals-cover.b64 > /tmp/animals-source.avif
+          test -s /tmp/animals-source.avif
 
-      - name: Verify final image
+      - name: Verify and convert final image
         shell: bash
         run: |
           set -euo pipefail
-          python3 -m pip install --disable-pip-version-check --quiet Pillow
+          python3 -m pip install --disable-pip-version-check --quiet Pillow pillow-avif-plugin
           python3 - <<'PY'
           from PIL import Image
-          p='/tmp/animals-collection-cover-v3.webp'
-          im=Image.open(p)
+          import pillow_avif
+
+          src='/tmp/animals-source.avif'
+          dst='/tmp/animals-collection-cover-v3.jpg'
+          im=Image.open(src)
           if im.size != (1536, 1536):
-              raise SystemExit(f'Unexpected Animals cover size: {im.size}')
-          if im.format != 'WEBP':
-              raise SystemExit(f'Unexpected Animals cover format: {im.format}')
-          print('VERIFIED', im.format, im.size)
+              raise SystemExit(f'Unexpected Animals source size: {im.size}')
+          im.convert('RGB').save(dst, 'JPEG', quality=92, optimize=True, subsampling=0)
+          check=Image.open(dst)
+          if check.size != (1536, 1536) or check.format != 'JPEG':
+              raise SystemExit(f'Unexpected final Animals cover: {check.format} {check.size}')
+          print('VERIFIED_FINAL', check.format, check.size)
           PY
 
       - name: Install cover and update repository references
@@ -52,7 +57,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p content/products/assets
-          cp /tmp/animals-collection-cover-v3.webp content/products/assets/animals-collection-cover-v3.webp
+          cp /tmp/animals-collection-cover-v3.jpg content/products/assets/animals-collection-cover-v3.jpg
 
           python3 - <<'PY'
           import json
@@ -63,15 +68,15 @@ jobs:
           data['updated_at'] = '2026-09-28'
           source = data.setdefault('source', {})
           source['transport'] = 'gmail-temporary-handoff'
-          source['gmail_message_id'] = '1a0e9c2a9ee1cf23'
+          source['gmail_message_id'] = '1a0e9c14f64516c5'
           source['note'] = (
-              'Approved collection cover images supplied by the user and relayed through Gmail before installation in GitHub. '
-              'Animals cover refreshed with exact 1536x1536 mockup geometry; Aida opening x438 y212 w685 h822.'
+              'Approved Animals cover supplied through temporary Gmail handoff and installed in GitHub. '
+              'Final asset is 1536x1536; Aida opening x438 y212 w685 h822.'
           )
           for item in data.get('collections', []):
               if item.get('slug') == 'animals':
-                  item['cover_asset'] = 'assets/animals-collection-cover-v3.webp'
-                  item['source_filename'] = 'animals-webp-20.webp'
+                  item['cover_asset'] = 'assets/animals-collection-cover-v3.jpg'
+                  item['source_filename'] = 'animals-webp-60.webp'
                   item['technical_geometry'] = {
                       'source_px': {'width': 1536, 'height': 1536},
                       'area_px': {'x': 438, 'y': 212, 'width': 685, 'height': 822}
@@ -83,14 +88,16 @@ jobs:
 
           sync = Path('.github/workflows/tmp-sync-collection-covers-live.yml')
           text = sync.read_text(encoding='utf-8')
-          text = text.replace(
+          for old in (
               'content/products/assets/animals-collection-cover-v2.jpg',
-              'content/products/assets/animals-collection-cover-v3.webp'
-          )
-          text = text.replace(
+              'content/products/assets/animals-collection-cover-v3.webp',
+          ):
+              text = text.replace(old, 'content/products/assets/animals-collection-cover-v3.jpg')
+          for old in (
               'assets/animals-collection-cover-v2.jpg',
-              'assets/animals-collection-cover-v3.webp'
-          )
+              'assets/animals-collection-cover-v3.webp',
+          ):
+              text = text.replace(old, 'assets/animals-collection-cover-v3.jpg')
           sync.write_text(text, encoding='utf-8')
           PY
 
@@ -100,7 +107,7 @@ jobs:
           set -euo pipefail
           git config user.name 'Drielo Automation'
           git config user.email 'actions@users.noreply.github.com'
-          git add content/products/assets/animals-collection-cover-v3.webp
+          git add content/products/assets/animals-collection-cover-v3.jpg
           git add content/products/collection-covers.json
           git add .github/workflows/tmp-sync-collection-covers-live.yml
           git rm -r tmp/animals-cover
