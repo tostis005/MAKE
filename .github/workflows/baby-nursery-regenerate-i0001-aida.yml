@@ -45,24 +45,27 @@ jobs:
           import json
 
           template=Path('content/pattern-system/multitech/templates/cross-stitch.html').read_text(encoding='utf-8')
-          renderer=Path('content/pattern-system/multitech/bulk_generate.py').read_text(encoding='utf-8')
+          publisher=Path('content/pattern-system/baby_nursery/publish_cs_exact_dmc.py').read_text(encoding='utf-8')
           collection=json.loads(Path('content/pattern-system/collections/baby-nursery/collection.json').read_text(encoding='utf-8'))
 
-          required_template=[
-              'renderer_version:"aida-relief-v4"',
-              'window.__drieloProductCoverVectorWithAida=svgData(stitchedSvg(MATRIX,0,0,W,H,true))',
-              'const coverVector=svgData(stitchedSvg(MATRIX,0,0,W,H,false))',
-          ]
-          for marker in required_template:
-              if marker not in template:
-                  raise SystemExit(f'Missing template marker: {marker}')
+          if 'renderer_version:"aida-relief-v4"' not in template:
+              raise SystemExit('Aida relief renderer is missing')
 
-          if "productOverlay.src=window.__drieloProductCoverVectorWithAida" not in renderer:
-              raise SystemExit('Ecommerce capture does not swap to Aida-backed vector')
+          frame=collection.get('mockup_spec',{}).get('frame',{})
+          if frame.get('enabled') is not True:
+              raise SystemExit('Baby Nursery measured frame geometry is not enabled')
+          if frame.get('source_px') != {'width':1536,'height':1536}:
+              raise SystemExit(f"Wrong source geometry: {frame.get('source_px')}")
+          if frame.get('area_px') != {'x':438,'y':212,'width':685,'height':822}:
+              raise SystemExit(f"Wrong Aida opening: {frame.get('area_px')}")
+          if 'def build_storefront_image' not in publisher:
+              raise SystemExit('Baby Nursery is not using the Iconic-style storefront builder')
+          if 'background.paste(rendered, (x, y))' not in publisher:
+              raise SystemExit('Measured-frame paste is missing')
           if collection.get('preview_rules',{}).get('product_image_aida_background') is not True:
-              raise SystemExit('Baby Nursery collection is not marked Aida-backed for product images')
+              raise SystemExit('Baby Nursery product image is not marked Aida-backed')
 
-          print('AIDA_PRODUCT_CAPTURE_VALID pdf_cover=transparent ecommerce_cover=aida-relief-v4')
+          print('BABY_ICONIC_GEOMETRY_VALID source=1536x1536 frame=438,212,685,822 renderer=aida-relief-v4')
           PY
 
       - name: Regenerate only I0001 cross-stitch product
@@ -102,6 +105,10 @@ jobs:
               raise SystemExit('Invalid I0001 PDF')
           if not hero.is_file() or hero.stat().st_size<30000:
               raise SystemExit('Invalid I0001 product image')
+          from PIL import Image
+          with Image.open(hero) as him:
+              if him.size != (1536,1536):
+                  raise SystemExit(f'I0001 hero must preserve native 1536x1536 background, got {him.size}')
           if any(not g.is_file() or g.stat().st_size<10000 for g in galleries):
               raise SystemExit('Invalid I0001 gallery')
 
