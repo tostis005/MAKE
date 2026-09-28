@@ -1,32 +1,34 @@
 # Iconic Destinations / Destinos icónicos
 
-This collection contains 60 cross-stitch products generated from one approved ZIP of 60 individual PNG files.
+The canonical artwork source for this collection is now the **manifest-driven source image structure**:
 
-## Production source policy
+`content/pattern-system/collections/iconic-destinations/source-images/`
 
-The only production artwork source is:
+## Canonical source structure
 
-`assets/iconic-60-pngs-q50.zip`
+- `source-images/manifest.json` is the source of truth for design identity and product naming.
+- Every PNG listed by the manifest is a standalone source image. Mosaics, collage crops and inferred image positions are forbidden.
+- The importer must read `id`, `filename`, `slug`, `title_en`, `title_es`, `product_title_en` and `product_title_es` from the manifest. It must never infer a title or slug from image content, file order or a mosaic position.
+- Files under `source-images/package/` are transport/audit packages only. They are not a naming source.
+- `input-pngs-q50/current/` is generated staging created by the manifest importer.
+- `source-designs/` is derived output after DMC mapping; it is not the canonical input artwork.
 
-The ZIP must contain exactly:
+The shared schema contract is documented by:
 
-- `destino_01_01.png` through `destino_06_10.png`
-- 60 unique PNG files
-- each file exactly 100 × 120 pixels
-- each file with no more than 50 source colours
+`content/pattern-system/collections/source-images-manifest.schema.json`
 
-The import step extracts those files byte-for-byte to `input-pngs-q50/`. Each product then reads its own `input_png` directly.
+## Current image contract
 
-Forbidden production sources:
+Each current Iconic Destinations source image must be:
 
-- mosaics
-- reference boards
-- board crops
-- collage crops
-- `.pixz` intermediates
-- any generated image used as replacement source artwork
+- PNG
+- exactly **100 × 120 pixels**
+- exactly **50 source colours**
+- no dithering
+- an independent palette per design
+- listed exactly once in `source-images/manifest.json`
 
-Derived DMC-mapped images, PDF previews and WooCommerce mockups may be generated only after the individual ZIP PNG has passed byte and dimension validation.
+The current manifest contains 100 audited designs. Only manifest-listed designs are eligible for a new import run.
 
 ## Pattern format
 
@@ -42,11 +44,15 @@ The WooCommerce hero is a lifestyle mockup generated from the validated pattern 
 
 ## Guardrails
 
-The importer and publisher fail if:
+A manifest import must fail if:
 
-- the queue is not in hardened ZIP-PNG-only mode
-- a product's `input_png` does not match its queue record
-- the extracted PNG differs byte-for-byte from its ZIP member
-- a legacy mosaic/reference-board field is present
-- the source image is not exactly 100 × 120
-- the source image exceeds 50 colours
+- an image is missing from the manifest or the manifest points to a missing image
+- IDs, filenames or slugs are duplicated
+- a title required for the web is missing
+- a PNG is not exactly 100 × 120
+- a PNG does not contain exactly 50 source colours
+- a queue/design record disagrees with the manifest
+- an extracted staging PNG differs byte-for-byte from its canonical source image
+- a mosaic, collage crop, PDF page or inferred filename/title is used as source artwork
+
+Publication is deliberately separate from source installation. Uploading or updating `source-images/` must **not** publish products by itself.
