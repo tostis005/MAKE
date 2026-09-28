@@ -358,7 +358,7 @@ def main() -> None:
         "show_collection_palette": True,
         "palette_hex": [p["hex"] for p in palette],
         "thread_codes": [p["dmc"] for p in palette],
-        "cover_asset": "assets/pop-art-25-collection-cover.webp",
+        "cover_asset": "assets/retratos-pop-art-collection-cover.png",
         "techniques": ["cross-stitch"],
         "visible": True,
         "force_visibility_sync": True,
