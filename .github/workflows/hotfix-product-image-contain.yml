@@ -1,0 +1,79 @@
+name: Hotfix Product Image No-Clipping CSS
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'style.css'
+      - '.github/workflows/hotfix-product-image-contain.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: drielo-style-hotfix
+  cancel-in-progress: true
+
+jobs:
+  deploy-style:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            style.css
+          sparse-checkout-cone-mode: false
+          fetch-depth: 1
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_style_key
+          chmod 600 ~/.ssh/drielo_style_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Upload and install style.css only
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          scp -i ~/.ssh/drielo_style_key style.css "$VPS_USER@$VPS_HOST:/tmp/drielo-style-${GITHUB_RUN_ID}.css"
+          ssh -i ~/.ssh/drielo_style_key "$VPS_USER@$VPS_HOST" "RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          SRC="/tmp/drielo-style-${RUN_ID}.css"
+          TARGET="/var/www/html/wp-content/themes/make/style.css"
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          "${DOCKER[@]}" cp "$SRC" "make-wp:$TARGET"
+          "${DOCKER[@]}" exec make-wp sh -lc "chown www-data:www-data '$TARGET' && chmod 644 '$TARGET' && grep -q 'Drielo product-image no-clipping invariant' '$TARGET'"
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=512M -r '
+            require "/var/www/html/wp-load.php";
+            if(function_exists("wp_cache_flush")){wp_cache_flush();}
+            if(function_exists("rocket_clean_domain")){rocket_clean_domain();}
+            if(function_exists("wp_cache_clear_cache")){wp_cache_clear_cache();}
+            if(function_exists("w3tc_flush_all")){w3tc_flush_all();}
+            do_action("litespeed_purge_all");
+            echo "STYLE_FILEMTIME=".filemtime(get_stylesheet_directory()."/style.css").PHP_EOL;
+          '
+          "${DOCKER[@]}" exec make-wp sh -lc 'if [ -d /var/www/html/wp-content/cache ]; then find /var/www/html/wp-content/cache -mindepth 1 -maxdepth 1 -exec rm -rf {} + || true; fi'
+          rm -f "$SRC"
+          REMOTE
+
+      - name: Verify public CSS has no-clipping invariant
+        shell: bash
+        run: |
+          set -euo pipefail
+          url="https://drielo.com/wp-content/themes/make/style.css?hotfix=${GITHUB_RUN_ID}"
+          body=/tmp/live-style.css
+          curl -fL --retry 5 --retry-delay 2 -H 'Cache-Control: no-cache' "$url" -o "$body"
+          grep -q 'Drielo product-image no-clipping invariant' "$body"
+          grep -q 'object-fit:contain!important' "$body"
+          echo "PUBLIC_STYLE_HOTFIX_OK"
