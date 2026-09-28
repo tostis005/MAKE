@@ -1,0 +1,203 @@
+name: Audit Etsy Iconic Destinations reuse
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/audit-etsy-iconic-reuse.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_etsy_audit_key
+          chmod 600 ~/.ssh/drielo_etsy_audit_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Audit local targets and reusable Etsy listings
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          mkdir -p ops/etsy
+          ssh -i ~/.ssh/drielo_etsy_audit_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE' > ops/etsy/iconic-reuse-audit.json
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo '{"error":"make-wp container not found"}'; exit 1
+          fi
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M -d max_execution_time=0 -r '
+            require "/var/www/html/wp-load.php";
+            if(!class_exists("Drielo_Etsy_Sync")){echo wp_json_encode(["error"=>"Etsy plugin unavailable"]); exit(2);}
+            $sync=Drielo_Etsy_Sync::instance();
+            $ref=new ReflectionClass($sync);
+            $get=function($name)use($ref,$sync){$m=$ref->getMethod($name);$m->setAccessible(true);return [$m,$sync];};
+            [$settings_m,$obj]=$get("settings");
+            [$request,$obj]=$get("etsy_request");
+            [$technique_m,$obj]=$get("product_technique");
+            $settings=$settings_m->invoke($sync);
+            $shop=(string)($settings["shop_id"]??"");
+            if($shop===""){echo wp_json_encode(["error"=>"Shop ID missing"]); exit(3);}
+
+            $ids=get_posts([
+              "post_type"=>"product",
+              "post_status"=>["publish","draft","private","pending"],
+              "posts_per_page"=>-1,
+              "fields"=>"ids",
+              "orderby"=>"ID",
+              "order"=>"ASC"
+            ]);
+
+            $targets=[];
+            $linked_by_listing=[];
+            $linked_cross_stitch=[];
+            $linked_non_cross_stitch=[];
+            foreach($ids as $id){
+              $p=wc_get_product($id);
+              if(!$p) continue;
+              $listing=(string)get_post_meta($id,"_drielo_etsy_listing_id",true);
+              $tech=(string)$technique_m->invoke($sync,$p);
+              $sku=(string)$p->get_sku();
+              if($tech==="" && preg_match("/-CS$/",$sku)) $tech="cross-stitch";
+              if($listing!==""){
+                $linked_by_listing[$listing]=[
+                  "product_id"=>(int)$id,
+                  "sku"=>$sku,
+                  "title"=>(string)$p->get_name(),
+                  "technique"=>$tech
+                ];
+                if($tech==="cross-stitch") $linked_cross_stitch[$listing]=true;
+                else $linked_non_cross_stitch[$listing]=true;
+              }
+
+              $terms=taxonomy_exists("product_collection")?wp_get_post_terms($id,"product_collection",["fields"=>"slugs"]):[];
+              if(is_wp_error($terms) || !in_array("iconic-destinations",(array)$terms,true)) continue;
+              if($tech!=="cross-stitch" && !preg_match("/^DRIELO-D\\d{4}-CS$/",$sku)) continue;
+
+              $downloads=$p->get_downloads();
+              $targets[]=[
+                "product_id"=>(int)$id,
+                "sku"=>$sku,
+                "title"=>(string)$p->get_name(),
+                "listing_id"=>$listing,
+                "image_count"=>($p->get_image_id()?1:0)+count($p->get_gallery_image_ids()),
+                "download_count"=>count($downloads),
+                "status"=>$p->get_status()
+              ];
+            }
+
+            usort($targets,fn($a,$b)=>strcmp($a["sku"],$b["sku"]));
+
+            $remote=[];
+            foreach(["active","inactive"] as $state){
+              for($offset=0;$offset<2000;$offset+=100){
+                $res=$request->invoke($sync,"GET","/v3/application/shops/".rawurlencode($shop)."/listings?state=".$state."&limit=100&offset=".$offset,[],true);
+                if(is_wp_error($res)){echo wp_json_encode(["error"=>"Remote listing fetch failed","detail"=>$res->get_error_message()]);exit(4);}
+                $rows=(array)($res["results"]??[]);
+                foreach($rows as $r){
+                  $lid=(string)($r["listing_id"]??"");
+                  if($lid==="") continue;
+                  $remote[$lid]=[
+                    "listing_id"=>$lid,
+                    "state"=>(string)($r["state"]??$state),
+                    "title"=>(string)($r["title"]??""),
+                    "taxonomy_id"=>(int)($r["taxonomy_id"]??0),
+                    "should_auto_renew"=>(bool)($r["should_auto_renew"]??false)
+                  ];
+                }
+                if(count($rows)<100) break;
+              }
+            }
+
+            $own=[];
+            $candidates=[];
+            $excluded=[];
+            foreach($remote as $lid=>$r){
+              if(isset($linked_cross_stitch[$lid])){
+                $own[]=$r+["local"=>$linked_by_listing[$lid]??null];
+                continue;
+              }
+              $title_norm=strtolower(remove_accents((string)$r["title"]));
+              $looks_cs=str_contains($title_norm,"cross stitch") || str_contains($title_norm,"punto de cruz") || ((int)$r["taxonomy_id"]===87);
+              if($looks_cs){
+                $excluded[]=$r+["reason"=>"looks-cross-stitch","local"=>$linked_by_listing[$lid]??null];
+                continue;
+              }
+              $priority=0;
+              if(isset($linked_non_cross_stitch[$lid])) $priority+=100;
+              if($r["state"]==="active") $priority+=10;
+              $candidates[]=$r+[
+                "priority"=>$priority,
+                "local"=>$linked_by_listing[$lid]??null
+              ];
+            }
+            usort($candidates,function($a,$b){
+              if($a["priority"]!==$b["priority"]) return $b["priority"]<=>$a["priority"];
+              return ((int)$a["listing_id"])<=>((int)$b["listing_id"]);
+            });
+
+            $already_linked_target_count=0;
+            foreach($targets as $t){ if($t["listing_id"]!=="") $already_linked_target_count++; }
+            $need=count($targets)-$already_linked_target_count;
+            $asset_failures=array_values(array_filter($targets,fn($t)=>$t["image_count"]<1 || $t["download_count"]<1));
+
+            $report=[
+              "generated_at"=>gmdate("c"),
+              "shop_id"=>$shop,
+              "plugin_version"=>defined("Drielo_Etsy_Sync::VERSION")?Drielo_Etsy_Sync::VERSION:null,
+              "settings"=>[
+                "auto_renew"=>(int)($settings["auto_renew"]??0),
+                "sync_images"=>(int)($settings["sync_images"]??0),
+                "sync_files"=>(int)($settings["sync_files"]??0),
+                "sync_tags"=>(int)($settings["sync_tags"]??0)
+              ],
+              "summary"=>[
+                "iconic_cross_stitch_targets"=>count($targets),
+                "already_linked_iconic_targets"=>$already_linked_target_count,
+                "unlinked_iconic_targets_needed"=>$need,
+                "reusable_non_cross_stitch_listings"=>count($candidates),
+                "enough_reusable_listings"=>count($candidates)>=$need,
+                "asset_failures"=>count($asset_failures),
+                "remote_active_or_inactive"=>count($remote),
+                "remote_cross_stitch_excluded"=>count($excluded)
+              ],
+              "targets"=>$targets,
+              "reusable_candidates"=>$candidates,
+              "existing_cross_stitch_listings"=>$own,
+              "asset_failures"=>$asset_failures,
+              "excluded_cross_stitch_like"=>$excluded
+            ];
+            echo wp_json_encode($report,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+          '
+          REMOTE
+
+      - name: Commit audit report
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ops/etsy/iconic-reuse-audit.json
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "Audit Etsy reuse capacity for Iconic Destinations [skip ci]"
+          git push
