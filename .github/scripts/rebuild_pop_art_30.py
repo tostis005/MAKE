@@ -305,9 +305,9 @@ def main():
 
     collection = {
         "id":CID,
-        "name":"Pop Art",
-        "name_en":"Pop Art",
-        "name_es":"Pop Art",
+        "name":"Retratos Pop Art",
+        "name_en":"Pop Art Portraits",
+        "name_es":"Retratos Pop Art",
         "slug":CID,
         "code_prefix":"P",
         "description":"26 vivid Pop Art portrait designs sharing one coordinated 30-colour palette across four grid-based craft techniques.",
@@ -379,7 +379,7 @@ def main():
             write_json(PATTERNS_DIR / code / "pattern.json", pattern_json(base,suffix,matrix,threads))
             write_json(PRODUCTS_DIR / code / "product.json", product_json(base,en,es,slug,suffix))
             data = bulk.pattern_data(code,en,suffix,matrix,threads)
-            data["collection"] = "Pop Art"
+            data["collection"] = "Retratos Pop Art"
             data["collection_id"] = CID
             tasks.append((code,suffix,data))
             new_rows.append(row_for(base,en,es,slug,suffix,data))
@@ -392,10 +392,10 @@ def main():
         c for c in catalog.get("collections",[]) if c.get("slug") != CID
     ] + [{
         "id":CID,
-        "name":"Pop Art",
+        "name":"Retratos Pop Art",
         "slug":CID,
-        "name_en":"Pop Art",
-        "name_es":"Pop Art",
+        "name_en":"Pop Art Portraits",
+        "name_es":"Retratos Pop Art",
         "description":collection["description_en"],
         "description_en":collection["description_en"],
         "description_es":collection["description_es"],
