@@ -415,7 +415,10 @@ def render_design(base_id: str, design: dict, built: dict):
     result["image"] = str(stable_storefront)
 
     shutil.copy2(result["pdf"], STORE_FILES / f"Drielo_{code}.pdf")
-    for n, src in enumerate(result["gallery"], start=2):
+    gallery_sources = result.get("gallery", [])
+    if len(gallery_sources) != 3:
+        raise RuntimeError(f"{code}: expected three gallery images, got {len(gallery_sources)}")
+    for n, src in enumerate(gallery_sources, start=2):
         shutil.copy2(src, STORE_ASSETS / f"{code}-gallery-{n}.webp")
 
     exact_preview = STORE_ASSETS / f"{code}-design.webp"
@@ -544,11 +547,10 @@ def product_catalog_row(base_id: str, design: dict, built: dict):
         "description": desc_en,
         "description_en": desc_en,
         "description_es": desc_es,
-        # Iconic Destinations intentionally shows one clean storefront image.
-        # Technical/chart previews remain in the generated PDF but are not
-        # exposed as WooCommerce gallery images.
-        "gallery": [],
-        "gallery_preview_pages": {},
+        # Match Baby & Nursery: one featured storefront image plus exactly
+        # three technical/chart gallery images derived from the rendered PDF.
+        "gallery": [f"assets/{code}-gallery-{i}.webp" for i in (2, 3, 4)],
+        "gallery_preview_pages": {"facts": 3, "colour_a1": 8, "symbol_a1": 12},
         "download": f"files/Drielo_{code}.pdf",
         "featured_image": f"assets/{code}-{design['slug']}-product-r{os.environ.get('GITHUB_RUN_ID', 'local')}.webp",
         "gallery_revision": str(os.environ.get("GITHUB_RUN_ID", "local")),
