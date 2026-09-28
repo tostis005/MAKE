@@ -647,10 +647,11 @@
       "source_zip_member": "D0040-colmar-canals.png",
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_image": "collections/iconic-destinations/source-images/D0040-colmar-canals.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36411913430",
+      "last_error": null,
+      "published_at": "2026-09-28T10:50:30+00:00"
     },
     {
       "base_design_id": "D0041",
