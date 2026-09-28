@@ -10,7 +10,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: drielo-animals-cover-install
+  group: drielo-animals-cover-install-fast
   cancel-in-progress: true
 
 jobs:
