@@ -1527,11 +1527,12 @@
       "source_zip_member": "D0095-iguazu-falls.png",
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_image": "collections/iconic-destinations/source-images/D0095-iguazu-falls.png",
-      "status": "pending",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36422604870",
-      "last_error": "Automatic Iconic Destinations publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-28T12:35:19+00:00"
+      "status": "published",
+      "attempts": 2,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36422797324",
+      "last_error": null,
+      "failed_at": "2026-09-28T12:35:19+00:00",
+      "published_at": "2026-09-28T12:37:15+00:00"
     },
     {
       "base_design_id": "D0096",
