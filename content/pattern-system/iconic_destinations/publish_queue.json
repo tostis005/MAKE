@@ -1027,14 +1027,15 @@
       "product_title_es": "Patrón de punto de cruz: Avenida de los Baobabs, Madagascar",
       "slug": "avenue-of-the-baobabs",
       "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0107-avenue-of-the-baobabs.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36466800836",
       "last_error": null,
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_manifest_item": "D0107",
       "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
-      "source_zip_member": "D0107-avenue-of-the-baobabs.png"
+      "source_zip_member": "D0107-avenue-of-the-baobabs.png",
+      "published_at": "2026-09-28T18:42:23+00:00"
     },
     {
       "base_design_id": "D0108",
