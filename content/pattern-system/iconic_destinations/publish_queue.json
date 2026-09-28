@@ -865,14 +865,15 @@
       "product_title_es": "Patrón de punto de cruz: Iglesia negra y aurora, Islandia",
       "slug": "iceland-black-church-aurora",
       "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0098-iceland-black-church-aurora.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36464015848",
       "last_error": null,
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_manifest_item": "D0098",
       "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
-      "source_zip_member": "D0098-iceland-black-church-aurora.png"
+      "source_zip_member": "D0098-iceland-black-church-aurora.png",
+      "published_at": "2026-09-28T18:18:32+00:00"
     },
     {
       "base_design_id": "D0099",
