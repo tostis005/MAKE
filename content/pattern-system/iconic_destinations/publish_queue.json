@@ -1127,10 +1127,11 @@
       "source_zip_member": "D0070-gyeongbokgung-palace.png",
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_image": "collections/iconic-destinations/source-images/D0070-gyeongbokgung-palace.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36417741444",
+      "last_error": null,
+      "published_at": "2026-09-28T11:48:51+00:00"
     },
     {
       "base_design_id": "D0071",
