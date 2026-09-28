@@ -238,7 +238,7 @@ def main():
  collection_row={'id':CID,'name':'Retratos Pop Art','slug':'pop-art-25','name_en':'Pop Art Portraits','name_es':'Retratos Pop Art',
    'description':collection['description_en'],'description_en':collection['description_en'],'description_es':collection['description_es'],
    'palette_hex':[p['hex'] for p in PALETTE],'thread_codes':[p['dmc'] for p in PALETTE],
-   'cover_asset':'assets/P0001-CS-product.webp','techniques':collection['techniques']}
+   'cover_asset':'assets/retratos-pop-art-collection-cover.png','techniques':collection['techniques']}
  catalog['collections']=[c for c in catalog.get('collections',[]) if c.get('slug')!='pop-art-25']+[collection_row]
  def family(p):
   return p.get('base_design_id') or re.sub(r'-.*$','',p.get('code',''))
