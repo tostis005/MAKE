@@ -1,0 +1,87 @@
+name: Finalize Retratos Pop Art after legacy bootstrap
+
+on:
+  workflow_run:
+    workflows: ["Bootstrap Pop Art 25 collection"]
+    types: [completed]
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: ${{ github.event.workflow_run.head_branch == 'main' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout: |
+            content/products/catalog.json
+            content/pattern-system/collections/pop-art-25/collection.json
+            content/pattern-system/collections/pop-art-25/designs.json
+            .github/workflows/finalize-retratos-pop-art-after-bootstrap.yml
+          sparse-checkout-cone-mode: false
+
+      - name: Restore the active 60-design portrait collection
+        shell: bash
+        run: |
+          set -euo pipefail
+          GOOD=02a2f1e17fc6adc4377b6a07acd4df1dc7a9acd7
+          git fetch --no-tags --depth=1 origin "$GOOD"
+          git show "$GOOD:content/products/catalog.json" > /tmp/good-catalog.json
+          git show "$GOOD:content/pattern-system/collections/pop-art-25/collection.json" > content/pattern-system/collections/pop-art-25/collection.json
+          git show "$GOOD:content/pattern-system/collections/pop-art-25/designs.json" > content/pattern-system/collections/pop-art-25/designs.json
+          python3 - <<'PY'
+          import json, re
+          from pathlib import Path
+
+          path = Path("content/products/catalog.json")
+          current = json.loads(path.read_text(encoding="utf-8"))
+          good = json.loads(Path("/tmp/good-catalog.json").read_text(encoding="utf-8"))
+          canonical = next(c for c in good["collections"] if c.get("slug") == "pop-art-25")
+
+          current["collections"] = [
+              canonical if c.get("slug") == "pop-art-25" else c
+              for c in current.get("collections", [])
+          ]
+
+          active_re = re.compile(r"^P10(?:0[1-9]|[1-5][0-9]|60)-CS$")
+          legacy = [
+              p for p in current.get("products", [])
+              if p.get("collection") == "pop-art-25" and not active_re.fullmatch(str(p.get("code", "")))
+          ]
+          current["products"] = [
+              p for p in current.get("products", [])
+              if p.get("collection") != "pop-art-25" or active_re.fullmatch(str(p.get("code", "")))
+          ]
+
+          retired = set(current.get("retired_products", []))
+          retired.update(str(p.get("sku")) for p in legacy if p.get("sku"))
+          current["retired_products"] = sorted(retired)
+
+          pop = [p for p in current["products"] if p.get("collection") == "pop-art-25"]
+          if len(pop) != 60:
+              raise SystemExit(f"Expected 60 active Retratos Pop Art products, got {len(pop)}")
+          if len(canonical.get("palette_hex", [])) != 30:
+              raise SystemExit("Canonical Retratos Pop Art palette must contain 30 colours")
+          if canonical.get("cover_asset") != "assets/retratos-pop-art-collection-cover.png":
+              raise SystemExit("Canonical Retratos Pop Art cover mapping is wrong")
+
+          path.write_text(json.dumps(current, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          print("LEGACY_ROWS_REMOVED=" + ",".join(str(p.get("code")) for p in legacy))
+          print("ACTIVE_RETRATOS_POP_ART=60")
+          PY
+
+      - name: Commit one-shot cleanup
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/products/catalog.json                   content/pattern-system/collections/pop-art-25/collection.json                   content/pattern-system/collections/pop-art-25/designs.json
+          git rm .github/workflows/finalize-retratos-pop-art-after-bootstrap.yml
+          git commit -m "Finalize 60-product Retratos Pop Art after legacy bootstrap"
+          git pull --rebase origin main
+          git push origin HEAD:main
