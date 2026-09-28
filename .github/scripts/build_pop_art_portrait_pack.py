@@ -262,8 +262,10 @@ def portrait_support_mask(im, rough_bg_mask):
             if keep[y][x]:
                 mp[x,y] = 255
 
-    # About 12 pixels of dilation around retained outlines.
-    for _ in range(3):
+    # Keep the portrait support tight: about 8 pixels around retained outlines.
+    # A tighter mask removes old multicolour background wedges that sit close
+    # to the subject without damaging the dense facial linework.
+    for _ in range(2):
         mask_img = mask_img.filter(ImageFilter.MaxFilter(9))
 
     support = [[False] * W for _ in range(H)]
@@ -272,10 +274,11 @@ def portrait_support_mask(im, rough_bg_mask):
         for x in range(W):
             support[y][x] = mp[x,y] > 0
 
-    # Protect the central portrait core only where rough background detection
-    # did not already identify background.
-    for y in range(16, 100):
-        for x in range(18, 82):
+    # Protect only the central face core where rough background detection did
+    # not already identify background. Hair, shoulders and accessories are
+    # retained primarily by their actual dark outlines rather than a broad box.
+    for y in range(28, 84):
+        for x in range(31, 69):
             if not rough_bg_mask[y][x]:
                 support[y][x] = True
     return support
