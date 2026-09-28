@@ -538,10 +538,11 @@
       "title_es": "Unicornio",
       "slug": "unicorn",
       "input_png": "../source-images/collections/baby-nursery/products/I0041-unicorn.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36444577677",
+      "last_error": null,
+      "published_at": "2026-09-28T15:39:46+00:00"
     },
     {
       "order": 42,
