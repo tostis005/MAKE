@@ -393,10 +393,10 @@
       "slug": "baby-dragon",
       "input_png": "../source-images/collections/baby-nursery/products/I0030-baby-dragon.png",
       "status": "pending",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36439201309",
+      "attempts": 2,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36439444458",
       "last_error": "Automatic CS publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-28T14:53:54+00:00"
+      "failed_at": "2026-09-28T14:57:13+00:00"
     },
     {
       "order": 31,
