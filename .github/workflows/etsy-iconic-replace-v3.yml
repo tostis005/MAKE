@@ -143,14 +143,28 @@ jobs:
             usort($cand,function($a,$b){return $a["priority"]===$b["priority"]?(((int)$a["listing_id"])<=>((int)$b["listing_id"])):($b["priority"]<=>$a["priority"]);});
             if(count($cand)<count($need)){fwrite(STDERR,"PREFLIGHT_FAIL need ".count($need)." candidates, have ".count($cand)."\n");exit(8);}
 
-            foreach($need as $j=>$idx){
-              $c=$cand[$j];
-              $targets[$idx]["listing_id"]=(string)$c["listing_id"];
-              $targets[$idx]["reused"]=true;
-              $targets[$idx]["old_product_id"]=(int)$c["old_product_id"];
-              $targets[$idx]["old_sku"]=(string)$c["old_sku"];
-              $targets[$idx]["candidate_title"]=(string)$c["title"];
-              $targets[$idx]["candidate_taxonomy"]=(int)$c["taxonomy_id"];
+            $candidate_cursor=0;
+            foreach($need as $idx){
+              $assigned=false;
+              while($candidate_cursor<count($cand)){
+                $c=$cand[$candidate_cursor++];
+                $probe=$request->invoke($sync,"GET","/v3/application/listings/".rawurlencode((string)$c["listing_id"]),[],true);
+                if(is_wp_error($probe)) continue;
+                $state=strtolower((string)($probe["state"]??""));
+                if(!in_array($state,["active","inactive"],true) || $looks_cs($probe)) continue;
+                $targets[$idx]["listing_id"]=(string)$c["listing_id"];
+                $targets[$idx]["reused"]=true;
+                $targets[$idx]["old_product_id"]=(int)$c["old_product_id"];
+                $targets[$idx]["old_sku"]=(string)$c["old_sku"];
+                $targets[$idx]["candidate_title"]=(string)($probe["title"]??"");
+                $targets[$idx]["candidate_taxonomy"]=(int)($probe["taxonomy_id"]??0);
+                $assigned=true;
+                break;
+              }
+              if(!$assigned){
+                fwrite(STDERR,"PREFLIGHT_FAIL exhausted verified non-cross-stitch candidates at target ".$targets[$idx]["sku"]."\n");
+                exit(8);
+              }
             }
 
             // Last read-only recheck before any Etsy write can happen in the matrix.
