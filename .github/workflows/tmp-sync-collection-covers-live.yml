@@ -5,7 +5,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/tmp-sync-collection-covers-live.yml'
-      - 'content/products/assets/animals-collection-cover-v2.jpg'
+      - 'content/products/assets/animals-collection-cover-v3.jpg'
 
 permissions:
   contents: read
@@ -20,7 +20,7 @@ jobs:
           fetch-depth: 1
           filter: blob:none
           sparse-checkout: |
-            content/products/assets/animals-collection-cover-v2.jpg
+            content/products/assets/animals-collection-cover-v3.jpg
             content/products/assets/baby-nursery-collection-cover-v2.jpg
             content/products/assets/iconic-destinations-collection-cover.png
             content/products/assets/retratos-pop-art-collection-cover.png
@@ -32,7 +32,7 @@ jobs:
           set -euo pipefail
           rm -rf /tmp/drielo-live-covers
           mkdir -p /tmp/drielo-live-covers/assets
-          cp content/products/assets/animals-collection-cover-v2.jpg /tmp/drielo-live-covers/assets/
+          cp content/products/assets/animals-collection-cover-v3.jpg /tmp/drielo-live-covers/assets/
           cp content/products/assets/baby-nursery-collection-cover-v2.jpg /tmp/drielo-live-covers/assets/
           cp content/products/assets/iconic-destinations-collection-cover.png /tmp/drielo-live-covers/assets/
           cp content/products/assets/retratos-pop-art-collection-cover.png /tmp/drielo-live-covers/assets/
@@ -118,7 +118,7 @@ jobs:
                   'description' => 'Animal-inspired digital pattern collection.',
                   'description_es' => 'Colección de patrones digitales inspirados en animales.',
                   'description_en' => 'Animal-inspired digital pattern collection.',
-                  'asset' => 'assets/animals-collection-cover-v2.jpg',
+                  'asset' => 'assets/animals-collection-cover-v3.jpg',
               ),
               array(
                   'slug' => 'iconic-destinations',
@@ -232,7 +232,7 @@ jobs:
             require "/var/www/html/wp-load.php";
             $expected=array(
               "baby-nursery"=>array("Baby & Nursery","Bebé e Infantil","assets/baby-nursery-collection-cover-v2.jpg"),
-              "animals"=>array("Animals","Animales","assets/animals-collection-cover-v2.jpg"),
+              "animals"=>array("Animals","Animales","assets/animals-collection-cover-v3.jpg"),
               "iconic-destinations"=>array("Iconic Destinations","Destinos icónicos","assets/iconic-destinations-collection-cover.png"),
               "pop-art-25"=>array("Retratos Pop Art","Retratos Pop Art","assets/retratos-pop-art-collection-cover.png")
             );
