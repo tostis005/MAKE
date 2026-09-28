@@ -180,14 +180,15 @@
       "product_title_es": "Patrón de punto de cruz: Table Mountain, Ciudad del Cabo",
       "slug": "cape-town-table-mountain",
       "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0046-cape-town-table-mountain.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36442549060",
       "last_error": null,
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_manifest_item": "D0046",
       "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
-      "source_zip_member": "D0046-cape-town-table-mountain.png"
+      "source_zip_member": "D0046-cape-town-table-mountain.png",
+      "published_at": "2026-09-28T15:20:40+00:00"
     },
     {
       "base_design_id": "D0061",
