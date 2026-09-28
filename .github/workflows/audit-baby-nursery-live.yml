@@ -15,10 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
-
       - name: Configure SSH
         env:
           VPS_HOST: ${{ secrets.VPS_HOST }}
