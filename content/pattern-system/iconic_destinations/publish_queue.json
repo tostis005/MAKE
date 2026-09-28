@@ -119,10 +119,11 @@
       "source_zip_member": "D0007-rio-christ-redeemer.png",
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_image": "collections/iconic-destinations/source-images/D0007-rio-christ-redeemer.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36405735507",
+      "last_error": null,
+      "published_at": "2026-09-28T09:49:11+00:00"
     },
     {
       "base_design_id": "D0008",
