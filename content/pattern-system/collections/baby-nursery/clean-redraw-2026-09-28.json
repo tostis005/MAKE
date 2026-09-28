@@ -1,0 +1,136 @@
+{
+  "version": "full-redraw-v1",
+  "method": "drawn from scratch; no geometry copied from prior damaged PNGs",
+  "canvas": [
+    100,
+    120
+  ],
+  "targets": [
+    {
+      "id": "I0021",
+      "file": "I0021-whale.png",
+      "bbox": [
+        15,
+        36,
+        85,
+        83
+      ],
+      "margins": {
+        "left": 15,
+        "top": 36,
+        "right": 15,
+        "bottom": 37
+      },
+      "colors": 6,
+      "dmc_codes": [
+        "310",
+        "322",
+        "939",
+        "3706",
+        "3752",
+        "3755"
+      ]
+    },
+    {
+      "id": "I0026",
+      "file": "I0026-long-neck-dinosaur.png",
+      "bbox": [
+        18,
+        22,
+        82,
+        98
+      ],
+      "margins": {
+        "left": 18,
+        "top": 22,
+        "right": 18,
+        "bottom": 22
+      },
+      "colors": 5,
+      "dmc_codes": [
+        "310",
+        "470",
+        "738",
+        "905",
+        "934"
+      ]
+    },
+    {
+      "id": "I0027",
+      "file": "I0027-triceratops.png",
+      "bbox": [
+        11,
+        34,
+        88,
+        86
+      ],
+      "margins": {
+        "left": 11,
+        "top": 34,
+        "right": 12,
+        "bottom": 34
+      },
+      "colors": 6,
+      "dmc_codes": [
+        "310",
+        "351",
+        "738",
+        "741",
+        "922",
+        "938"
+      ]
+    },
+    {
+      "id": "I0029",
+      "file": "I0029-stegosaurus.png",
+      "bbox": [
+        13,
+        32,
+        86,
+        88
+      ],
+      "margins": {
+        "left": 13,
+        "top": 32,
+        "right": 14,
+        "bottom": 32
+      },
+      "colors": 6,
+      "dmc_codes": [
+        "310",
+        "322",
+        "738",
+        "922",
+        "939",
+        "3755"
+      ]
+    },
+    {
+      "id": "I0043",
+      "file": "I0043-rainbow-clouds.png",
+      "bbox": [
+        13,
+        31,
+        86,
+        89
+      ],
+      "margins": {
+        "left": 13,
+        "top": 31,
+        "right": 14,
+        "bottom": 31
+      },
+      "colors": 8,
+      "dmc_codes": [
+        "322",
+        "350",
+        "470",
+        "726",
+        "741",
+        "762",
+        "939",
+        "3752"
+      ]
+    }
+  ]
+}
