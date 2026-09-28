@@ -1,0 +1,77 @@
+name: Validate Iconic source manifest importer
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/pattern-system/collections/iconic-destinations/source-images/**'
+      - '.github/scripts/import_iconic_source_manifest.py'
+      - 'content/pattern-system/iconic_destinations/publish_design.py'
+      - '.github/workflows/validate-iconic-source-manifest.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - run: python3 -m pip install --disable-pip-version-check --quiet Pillow
+
+      - name: Exercise manifest importer without publishing
+        run: python3 .github/scripts/import_iconic_source_manifest.py
+
+      - name: Assert exact manifest identity and technical contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, zipfile
+          from pathlib import Path
+          from PIL import Image
+
+          root=Path('content/pattern-system')
+          col=root/'collections'/'iconic-destinations'
+          manifest=json.loads((col/'source-images'/'manifest.json').read_text(encoding='utf-8'))
+          designs=json.loads((col/'designs.json').read_text(encoding='utf-8'))
+          queue=json.loads((root/'iconic_destinations'/'publish_queue.json').read_text(encoding='utf-8'))
+
+          items=manifest['items']
+          assert len(items)==100
+          assert designs['count']==100
+          assert len(queue['items'])==100
+          assert queue['mode']=='direct-zip-png-manifest-v1'
+          assert queue['auto_continue'] is True
+
+          mby={x['id']:x for x in items}
+          dby={x['base_design_id']:x for x in designs['designs']}
+          qby={x['base_design_id']:x for x in queue['items']}
+          assert set(mby)==set(dby)==set(qby)
+
+          with zipfile.ZipFile(root/queue['source_zip'],'r') as z:
+              for base,m in mby.items():
+                  d=dby[base]; q=qby[base]
+                  assert d['slug']==q['slug']==m['slug']
+                  assert d['title_en']==m['title_en']
+                  assert d['title_es']==m['title_es']
+                  assert d['product_title_en']==m['product_title_en']
+                  assert d['product_title_es']==m['product_title_es']
+                  canonical=col/'source-images'/m['filename']
+                  staged=root/d['input_png']
+                  assert canonical.read_bytes()==staged.read_bytes()==z.read(m['filename'])
+                  with Image.open(canonical) as im:
+                      rgb=im.convert('RGB')
+                      assert im.format=='PNG'
+                      assert rgb.size==(100,120)
+                      assert len(set(rgb.getdata()))==50
+
+          print('ICONIC_SOURCE_MANIFEST_VALIDATED count=100 no-publication=true')
+          PY
