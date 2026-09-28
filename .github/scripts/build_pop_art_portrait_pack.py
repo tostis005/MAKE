@@ -442,16 +442,62 @@ def harmonise_one(im, palette_rgb, candidates, index):
     return im, bg, bg_stitches
 
 def load_design_metadata():
-    data = json.loads(DESIGNS_JSON.read_text(encoding="utf-8"))
     rows = {}
-    for d in data.get("designs", []):
-        code = d.get("code")
-        if code and re.fullmatch(r"P10\d{2}", code):
-            rows[code] = {
-                "title_en": d.get("title_en") or code,
-                "title_es": d.get("title_es") or d.get("title_en") or code,
-                "slug": d.get("slug") or code.lower(),
-            }
+
+    if DESIGNS_JSON.is_file():
+        try:
+            data = json.loads(DESIGNS_JSON.read_text(encoding="utf-8"))
+            for d in data.get("designs", []):
+                code = d.get("code")
+                if code and re.fullmatch(r"P10\\d{2}", code):
+                    rows[code] = {
+                        "title_en": d.get("title_en") or code,
+                        "title_es": d.get("title_es") or d.get("title_en") or code,
+                        "slug": d.get("slug") or code.lower(),
+                    }
+        except Exception:
+            pass
+
+    # Fall back to the previous self-contained export manifest. This keeps the
+    # 60-image pack stable even if the active collection is concurrently rebuilt
+    # with older P000x codes.
+    previous_manifest = OUT_DIR / "manifest.json"
+    if previous_manifest.is_file():
+        try:
+            prev = json.loads(previous_manifest.read_text(encoding="utf-8"))
+            for d in prev.get("designs", []):
+                code = d.get("code")
+                if code and re.fullmatch(r"P10\\d{2}", code) and code not in rows:
+                    rows[code] = {
+                        "title_en": d.get("title_en") or code,
+                        "title_es": d.get("title_es") or d.get("title_en") or code,
+                        "slug": d.get("slug") or code.lower(),
+                    }
+        except Exception:
+            pass
+
+    if ZIP_PATH.is_file():
+        try:
+            with zipfile.ZipFile(ZIP_PATH) as zf:
+                prev = json.loads(zf.read("manifest.json").decode("utf-8"))
+            for d in prev.get("designs", []):
+                code = d.get("code")
+                if code and re.fullmatch(r"P10\\d{2}", code) and code not in rows:
+                    rows[code] = {
+                        "title_en": d.get("title_en") or code,
+                        "title_es": d.get("title_es") or d.get("title_en") or code,
+                        "slug": d.get("slug") or code.lower(),
+                    }
+        except Exception:
+            pass
+
+    for i in range(1001, 1061):
+        code = f"P{i:04d}"
+        rows.setdefault(code, {
+            "title_en": f"Pop Art Portrait {i-1000:02d}",
+            "title_es": f"Retrato Pop Art {i-1000:02d}",
+            "slug": f"pop-art-portrait-{i-1000:02d}",
+        })
     return rows
 
 def save_preview(processed, metadata):
@@ -475,6 +521,8 @@ def save_preview(processed, metadata):
 
 def main():
     OUT_DIR.mkdir(parents=True, exist_ok=True)
+    metadata = load_design_metadata()
+
     for p in OUT_DIR.glob("*"):
         if p.is_file():
             p.unlink()
@@ -482,8 +530,6 @@ def main():
     current = load_current_images()
     palette_rgb = current_palette(current)
     candidates, border_counts = choose_background_candidates(current, palette_rgb)
-
-    metadata = load_design_metadata()
 
     working = dict(current)
     for code, spec in REPLACEMENTS.items():
