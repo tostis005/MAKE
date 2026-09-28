@@ -1802,14 +1802,15 @@
       "product_title_es": "Patrón de punto de cruz: Mezquita Azul, Estambul",
       "slug": "istanbul-blue-mosque",
       "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0150-istanbul-blue-mosque.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36480336474",
       "last_error": null,
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_manifest_item": "D0150",
       "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
-      "source_zip_member": "D0150-istanbul-blue-mosque.png"
+      "source_zip_member": "D0150-istanbul-blue-mosque.png",
+      "published_at": "2026-09-28T20:37:55+00:00"
     }
   ],
   "notes": [
