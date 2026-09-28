@@ -13,6 +13,7 @@ on:
       - 'content/source-images/collections/baby-nursery/products/I0043-rainbow-clouds.png'
       - 'content/source-images/collections/baby-nursery/products/I0044-sun.png'
       - 'content/source-images/collections/baby-nursery/products/I0057-rattle.png'
+      - 'content/pattern-system/baby_nursery/new-baby-sources-2026-09-28.zip'
       - '.github/workflows/install-new-baby-artwork.yml'
 
 permissions:
@@ -81,11 +82,16 @@ jobs:
           python3 -m pip install --disable-pip-version-check --quiet Pillow playwright
           python3 -m playwright install --with-deps chromium
 
-      - name: Confirm the eight newly generated source PNGs
+      - name: Install and confirm the eight exact source PNGs
         shell: bash
         run: |
           set -euo pipefail
+          ZIP="content/pattern-system/baby_nursery/new-baby-sources-2026-09-28.zip"
           DEST="content/source-images/collections/baby-nursery/products"
+          test -s "$ZIP"
+          rm -rf /tmp/new-baby-eight
+          mkdir -p /tmp/new-baby-eight
+          unzip -q -o "$ZIP" -d /tmp/new-baby-eight
           for file in \
             I0021-whale.png \
             I0025-seahorse.png \
@@ -95,8 +101,9 @@ jobs:
             I0043-rainbow-clouds.png \
             I0044-sun.png \
             I0057-rattle.png; do
-            test -s "$DEST/$file"
-            echo "SOURCE_PRESENT $file $(sha256sum "$DEST/$file" | cut -d' ' -f1)"
+            test -s "/tmp/new-baby-eight/$file"
+            cp "/tmp/new-baby-eight/$file" "$DEST/$file"
+            echo "SOURCE_INSTALLED $file $(sha256sum "$DEST/$file" | cut -d' ' -f1)"
           done
 
       - name: Validate sources and refresh metadata
