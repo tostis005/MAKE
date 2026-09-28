@@ -7914,116 +7914,6 @@
       }
     },
     {
-      "code": "I0035-CS",
-      "sku": "DRIELO-I0035-CS",
-      "price": 2.99,
-      "categories": [
-        "cross-stitch-patterns",
-        "cross-stitch-baby-nursery"
-      ],
-      "purchase_note_en": "Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.",
-      "purchase_note_es": "Tu PDF digital estará disponible desde la confirmación del pedido y en Mi cuenta > Descargas una vez completado el pago.",
-      "title": "Owl Cross Stitch Pattern PDF",
-      "title_en": "Owl Cross Stitch Pattern PDF",
-      "title_es": "Patrón PDF de punto de cruz: Búho",
-      "slug": "owl-cross-stitch-pattern",
-      "collection": "baby-nursery",
-      "stitches": 5740,
-      "grid": "100 × 120 stitches",
-      "colours": 13,
-      "color_count": 13,
-      "grid_width": 100,
-      "grid_height": 120,
-      "skill": "Beginner friendly",
-      "skill_en": "Beginner friendly",
-      "skill_es": "Apto para principiantes",
-      "stitch_type": "Full cross stitch",
-      "stitch_type_en": "Full cross stitch",
-      "stitch_type_es": "Punto de cruz completo",
-      "short_description": "Downloadable Owl cross-stitch pattern PDF from the Baby & Nursery collection. Exact 100 × 120 source grid; transparent pixels remain unstitched; 5,740 full cross stitches and 13 exact DMC colours. Code: I0035-CS.",
-      "short_description_en": "Downloadable Owl cross-stitch pattern PDF from the Baby & Nursery collection. Exact 100 × 120 source grid; transparent pixels remain unstitched; 5,740 full cross stitches and 13 exact DMC colours. Code: I0035-CS.",
-      "short_description_es": "Patrón PDF descargable de búho para punto de cruz. Cuadrícula fuente exacta de 100 × 120; los píxeles transparentes quedan sin bordar; 5,740 cruces completas y 13 colores DMC exactos. Código: I0035-CS.",
-      "description": "<p><strong>Owl Cross Stitch Pattern PDF</strong> is a digital counted cross-stitch pattern from the Baby & Nursery collection.</p><p>The approved 100 × 120 PNG is read pixel-for-pixel. Transparent pixels stay as blank Aida canvas, and every visible RGB value is already tied directly to its DMC thread. No second colour quantization is applied.</p><h3>Pattern details</h3><ul><li>Code: I0035-CS</li><li>Grid: 100 × 120</li><li>Full cross stitches: 5,740</li><li>DMC colours: 13</li><li>Skill level: Beginner friendly</li></ul><p>Includes printable PDF, DMC key, colour and symbol charts and enlarged working sections. Digital product only.</p>",
-      "description_en": "<p><strong>Owl Cross Stitch Pattern PDF</strong> is a digital counted cross-stitch pattern from the Baby & Nursery collection.</p><p>The approved 100 × 120 PNG is read pixel-for-pixel. Transparent pixels stay as blank Aida canvas, and every visible RGB value is already tied directly to its DMC thread. No second colour quantization is applied.</p><h3>Pattern details</h3><ul><li>Code: I0035-CS</li><li>Grid: 100 × 120</li><li>Full cross stitches: 5,740</li><li>DMC colours: 13</li><li>Skill level: Beginner friendly</li></ul><p>Includes printable PDF, DMC key, colour and symbol charts and enlarged working sections. Digital product only.</p>",
-      "description_es": "<p><strong>Patrón PDF de punto de cruz: Búho</strong> es un patrón digital de punto de cruz de la colección Bebé e Infantil.</p><p>El PNG aprobado de 100 × 120 se lee píxel a píxel. Los píxeles transparentes quedan como lienzo Aida sin bordar y cada RGB visible ya corresponde directamente a su hilo DMC. No se realiza una segunda cuantización de color.</p><h3>Detalles</h3><ul><li>Código: I0035-CS</li><li>Cuadrícula: 100 × 120</li><li>Puntadas completas: 5,740</li><li>Colores DMC: 13</li><li>Nivel: apto para principiantes</li></ul><p>Incluye PDF imprimible, clave DMC, gráficos a color y con símbolos y secciones ampliadas. Producto digital.</p>",
-      "gallery": [
-        "assets/I0035-CS-gallery-2.webp",
-        "assets/I0035-CS-gallery-3.webp",
-        "assets/I0035-CS-gallery-4.webp"
-      ],
-      "gallery_preview_pages": {
-        "facts": 3,
-        "colour_a1": 8,
-        "symbol_a1": 12
-      },
-      "download": "files/Drielo_I0035-CS.pdf",
-      "featured_image": "assets/I0035-CS-product.webp",
-      "seo_title": "Owl Cross Stitch Pattern PDF | Drielo",
-      "seo_title_en": "Owl Cross Stitch Pattern PDF | Drielo",
-      "seo_title_es": "Patrón PDF de punto de cruz: Búho | Drielo",
-      "meta_description": "Downloadable Owl cross-stitch pattern PDF from the Baby & Nursery collection. Exact 100 × 120 source grid; transparent pixels remain unstitched; 5,740 full",
-      "meta_description_en": "Downloadable Owl cross-stitch pattern PDF from the Baby & Nursery collection. Exact 100 × 120 source grid; transparent pixels remain unstitched; 5,740 full",
-      "meta_description_es": "Patrón PDF descargable de búho para punto de cruz. Cuadrícula fuente exacta de 100 × 120; los píxeles transparentes quedan sin bordar; 5,740 cruces complet",
-      "tags": [
-        "owl",
-        "baby nursery",
-        "cross stitch pdf",
-        "counted cross stitch",
-        "dmc pattern",
-        "digital pattern"
-      ],
-      "etsy_tags_en": [
-        "owl",
-        "baby nursery",
-        "cross stitch pdf",
-        "counted cross stitch",
-        "dmc pattern",
-        "digital pattern"
-      ],
-      "etsy_tags_es": [
-        "búho",
-        "bebé",
-        "infantil",
-        "punto de cruz",
-        "patrón digital",
-        "descarga pdf"
-      ],
-      "design_id": "I0035-CS",
-      "base_design_id": "I0035",
-      "technique_code": "CS",
-      "technique": "cross-stitch",
-      "size_attribute_label": "Pattern size",
-      "colour_attribute_label": "DMC colours",
-      "type_attribute_label": "Technique",
-      "count_attribute_label": "Total stitches",
-      "filters": {
-        "technique": [
-          "cross-stitch"
-        ],
-        "theme": [
-          "baby-nursery"
-        ],
-        "style": [
-          "cute",
-          "soft",
-          "nursery"
-        ],
-        "project": [
-          "wall-art"
-        ],
-        "orientation": [
-          "portrait"
-        ],
-        "difficulty": [
-          "beginner"
-        ],
-        "color-family": [
-          "multicolor"
-        ],
-        "season": []
-      }
-    },
-    {
       "code": "D0039-CS",
       "sku": "DRIELO-D0039-CS",
       "price": 2.99,
@@ -8248,6 +8138,116 @@
         ],
         "difficulty": [
           "intermediate"
+        ],
+        "color-family": [
+          "multicolor"
+        ],
+        "season": []
+      }
+    },
+    {
+      "code": "I0036-CS",
+      "sku": "DRIELO-I0036-CS",
+      "price": 2.99,
+      "categories": [
+        "cross-stitch-patterns",
+        "cross-stitch-baby-nursery"
+      ],
+      "purchase_note_en": "Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.",
+      "purchase_note_es": "Tu PDF digital estará disponible desde la confirmación del pedido y en Mi cuenta > Descargas una vez completado el pago.",
+      "title": "Penguin Cross Stitch Pattern PDF",
+      "title_en": "Penguin Cross Stitch Pattern PDF",
+      "title_es": "Patrón PDF de punto de cruz: Pingüino",
+      "slug": "penguin-cross-stitch-pattern",
+      "collection": "baby-nursery",
+      "stitches": 5123,
+      "grid": "100 × 120 stitches",
+      "colours": 8,
+      "color_count": 8,
+      "grid_width": 100,
+      "grid_height": 120,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Full cross stitch",
+      "stitch_type_en": "Full cross stitch",
+      "stitch_type_es": "Punto de cruz completo",
+      "short_description": "Downloadable Penguin cross-stitch pattern PDF from the Baby & Nursery collection. Exact 100 × 120 source grid; transparent pixels remain unstitched; 5,123 full cross stitches and 8 exact DMC colours. Code: I0036-CS.",
+      "short_description_en": "Downloadable Penguin cross-stitch pattern PDF from the Baby & Nursery collection. Exact 100 × 120 source grid; transparent pixels remain unstitched; 5,123 full cross stitches and 8 exact DMC colours. Code: I0036-CS.",
+      "short_description_es": "Patrón PDF descargable de pingüino para punto de cruz. Cuadrícula fuente exacta de 100 × 120; los píxeles transparentes quedan sin bordar; 5,123 cruces completas y 8 colores DMC exactos. Código: I0036-CS.",
+      "description": "<p><strong>Penguin Cross Stitch Pattern PDF</strong> is a digital counted cross-stitch pattern from the Baby & Nursery collection.</p><p>The approved 100 × 120 PNG is read pixel-for-pixel. Transparent pixels stay as blank Aida canvas, and every visible RGB value is already tied directly to its DMC thread. No second colour quantization is applied.</p><h3>Pattern details</h3><ul><li>Code: I0036-CS</li><li>Grid: 100 × 120</li><li>Full cross stitches: 5,123</li><li>DMC colours: 8</li><li>Skill level: Beginner friendly</li></ul><p>Includes printable PDF, DMC key, colour and symbol charts and enlarged working sections. Digital product only.</p>",
+      "description_en": "<p><strong>Penguin Cross Stitch Pattern PDF</strong> is a digital counted cross-stitch pattern from the Baby & Nursery collection.</p><p>The approved 100 × 120 PNG is read pixel-for-pixel. Transparent pixels stay as blank Aida canvas, and every visible RGB value is already tied directly to its DMC thread. No second colour quantization is applied.</p><h3>Pattern details</h3><ul><li>Code: I0036-CS</li><li>Grid: 100 × 120</li><li>Full cross stitches: 5,123</li><li>DMC colours: 8</li><li>Skill level: Beginner friendly</li></ul><p>Includes printable PDF, DMC key, colour and symbol charts and enlarged working sections. Digital product only.</p>",
+      "description_es": "<p><strong>Patrón PDF de punto de cruz: Pingüino</strong> es un patrón digital de punto de cruz de la colección Bebé e Infantil.</p><p>El PNG aprobado de 100 × 120 se lee píxel a píxel. Los píxeles transparentes quedan como lienzo Aida sin bordar y cada RGB visible ya corresponde directamente a su hilo DMC. No se realiza una segunda cuantización de color.</p><h3>Detalles</h3><ul><li>Código: I0036-CS</li><li>Cuadrícula: 100 × 120</li><li>Puntadas completas: 5,123</li><li>Colores DMC: 8</li><li>Nivel: apto para principiantes</li></ul><p>Incluye PDF imprimible, clave DMC, gráficos a color y con símbolos y secciones ampliadas. Producto digital.</p>",
+      "gallery": [
+        "assets/I0036-CS-gallery-2.webp",
+        "assets/I0036-CS-gallery-3.webp",
+        "assets/I0036-CS-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_I0036-CS.pdf",
+      "featured_image": "assets/I0036-CS-product.webp",
+      "seo_title": "Penguin Cross Stitch Pattern PDF | Drielo",
+      "seo_title_en": "Penguin Cross Stitch Pattern PDF | Drielo",
+      "seo_title_es": "Patrón PDF de punto de cruz: Pingüino | Drielo",
+      "meta_description": "Downloadable Penguin cross-stitch pattern PDF from the Baby & Nursery collection. Exact 100 × 120 source grid; transparent pixels remain unstitched; 5,123 ",
+      "meta_description_en": "Downloadable Penguin cross-stitch pattern PDF from the Baby & Nursery collection. Exact 100 × 120 source grid; transparent pixels remain unstitched; 5,123 ",
+      "meta_description_es": "Patrón PDF descargable de pingüino para punto de cruz. Cuadrícula fuente exacta de 100 × 120; los píxeles transparentes quedan sin bordar; 5,123 cruces com",
+      "tags": [
+        "penguin",
+        "baby nursery",
+        "cross stitch pdf",
+        "counted cross stitch",
+        "dmc pattern",
+        "digital pattern"
+      ],
+      "etsy_tags_en": [
+        "penguin",
+        "baby nursery",
+        "cross stitch pdf",
+        "counted cross stitch",
+        "dmc pattern",
+        "digital pattern"
+      ],
+      "etsy_tags_es": [
+        "pingüino",
+        "bebé",
+        "infantil",
+        "punto de cruz",
+        "patrón digital",
+        "descarga pdf"
+      ],
+      "design_id": "I0036-CS",
+      "base_design_id": "I0036",
+      "technique_code": "CS",
+      "technique": "cross-stitch",
+      "size_attribute_label": "Pattern size",
+      "colour_attribute_label": "DMC colours",
+      "type_attribute_label": "Technique",
+      "count_attribute_label": "Total stitches",
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "baby-nursery"
+        ],
+        "style": [
+          "cute",
+          "soft",
+          "nursery"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
         ],
         "color-family": [
           "multicolor"
