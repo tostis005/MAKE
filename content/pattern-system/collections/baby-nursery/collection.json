@@ -235,7 +235,9 @@
     "palette_style": "approved-preview-v2",
     "avoid_neon_or_electric_substitutions": false,
     "canonical_master_source": "reference-library/Ixxxx-slug.json",
-    "reconstruct_verbatim": true
+    "reconstruct_verbatim": true,
+    "product_image_aida_background": true,
+    "product_image_aida_renderer": "aida-relief-v4"
   },
   "pattern_rules": {
     "external_outline": {
