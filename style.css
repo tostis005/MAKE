@@ -1140,9 +1140,7 @@ body{background:var(--mk-cream);color:var(--mk-ink)}
   justify-self:center!important;
   height:auto!important;min-height:0!important
 }
-.woocommerce-shell--single .woocommerce-product-gallery__wrapper,
 .woocommerce-shell--single .woocommerce-product-gallery__image{
-  width:100%!important;
   height:auto!important;min-height:0!important;max-height:none!important;
   aspect-ratio:auto!important
 }
@@ -1155,7 +1153,7 @@ body{background:var(--mk-cream);color:var(--mk-ink)}
   margin:0 auto!important;padding:0!important;transform:none!important
 }
 .woocommerce-shell--single .woocommerce-product-gallery__wrapper{
-  background:transparent!important;overflow:hidden!important
+  background:transparent!important
 }
 @media(max-width:1040px){
   .woocommerce-shell--single .woocommerce-product-gallery{
@@ -1798,10 +1796,28 @@ body.drielo-gallery-lightbox-open{overflow:hidden!important}
   font:400 30px/1 Arial,sans-serif;cursor:pointer;
   box-shadow:0 8px 24px rgba(0,0,0,.24)
 }
+.woocommerce-product-gallery.drielo-gallery-fallback .flex-viewport{
+  height:auto!important;overflow:visible!important
+}
+.woocommerce-product-gallery.drielo-gallery-fallback .woocommerce-product-gallery__wrapper{
+  width:100%!important;transform:none!important
+}
 .woocommerce-product-gallery.drielo-gallery-fallback .woocommerce-product-gallery__image{
-  display:none!important
+  display:none!important;float:none!important;width:100%!important;margin:0!important
 }
 .woocommerce-product-gallery.drielo-gallery-fallback .woocommerce-product-gallery__image.drielo-gallery-fallback-active{
+  display:block!important
+}
+.woocommerce-product-gallery.drielo-gallery-direct .flex-viewport{
+  height:auto!important;overflow:visible!important
+}
+.woocommerce-product-gallery.drielo-gallery-direct .woocommerce-product-gallery__wrapper{
+  width:100%!important;transform:none!important
+}
+.woocommerce-product-gallery.drielo-gallery-direct .woocommerce-product-gallery__image{
+  display:none!important;float:none!important;width:100%!important;margin:0!important
+}
+.woocommerce-product-gallery.drielo-gallery-direct .woocommerce-product-gallery__image:first-child{
   display:block!important
 }
 @media(max-width:640px){
