@@ -11,7 +11,7 @@ import zipfile
 from collections import Counter, deque
 from pathlib import Path
 
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 ROOT = Path.cwd()
 SRC = ROOT / "content" / "pattern-system" / "collections" / "pop-art-25" / "sources"
@@ -221,6 +221,65 @@ def nearest_other_colour(rgb, palette_rgb, forbidden):
     choices = [c for c in palette_rgb if c != forbidden]
     return min(choices, key=lambda c: rgb_distance(rgb, c))
 
+def portrait_support_mask(im, rough_bg_mask):
+    # Build a robust portrait support region from meaningful dark Pop Art
+    # outlines. Tiny isolated dark halftone dots in the old background are
+    # discarded, then the retained outline is dilated enough to cover skin,
+    # hair, accessories and shoulders.
+    px = im.load()
+    dark = [[False] * W for _ in range(H)]
+    for y in range(H):
+        for x in range(W):
+            r, g, b = px[x, y]
+            lum = 0.2126*r + 0.7152*g + 0.0722*b
+            dark[y][x] = (lum <= 72 or max(r,g,b) <= 95) and not rough_bg_mask[y][x]
+
+    visited = [[False] * W for _ in range(H)]
+    keep = [[False] * W for _ in range(H)]
+    for y in range(H):
+        for x in range(W):
+            if visited[y][x] or not dark[y][x]:
+                continue
+            comp = []
+            q = deque([(x,y)])
+            visited[y][x] = True
+            while q:
+                cx, cy = q.popleft()
+                comp.append((cx,cy))
+                for nx, ny in ((cx-1,cy),(cx+1,cy),(cx,cy-1),(cx,cy+1)):
+                    if 0 <= nx < W and 0 <= ny < H and not visited[ny][nx] and dark[ny][nx]:
+                        visited[ny][nx] = True
+                        q.append((nx,ny))
+            central = any(14 <= cx <= 86 and 5 <= cy <= 114 for cx,cy in comp)
+            if len(comp) >= 22 or (central and len(comp) >= 5):
+                for cx,cy in comp:
+                    keep[cy][cx] = True
+
+    mask_img = Image.new("L", (W,H), 0)
+    mp = mask_img.load()
+    for y in range(H):
+        for x in range(W):
+            if keep[y][x]:
+                mp[x,y] = 255
+
+    # About 12 pixels of dilation around retained outlines.
+    for _ in range(3):
+        mask_img = mask_img.filter(ImageFilter.MaxFilter(9))
+
+    support = [[False] * W for _ in range(H)]
+    mp = mask_img.load()
+    for y in range(H):
+        for x in range(W):
+            support[y][x] = mp[x,y] > 0
+
+    # Protect the central portrait core only where rough background detection
+    # did not already identify background.
+    for y in range(16, 100):
+        for x in range(18, 82):
+            if not rough_bg_mask[y][x]:
+                support[y][x] = True
+    return support
+
 def select_bg_colour(im, mask, candidate_colours, palette_rgb, index):
     # Prefer vivid palette colours with very low foreground usage. This makes
     # background colour exclusive, so "stitches without background" can be
@@ -249,6 +308,15 @@ def harmonise_one(im, palette_rgb, candidates, index):
     im = quantize_to_palette(im, palette_rgb)
     mask = border_reachable_mask(im, candidates)
     mask = enlarge_bg_mask(mask, im, candidates)
+
+    # Anything outside the portrait support becomes background. This removes
+    # residual multicolour wedges/speckles that were disconnected from the
+    # canvas edge while preserving the dense outlined portrait itself.
+    support = portrait_support_mask(im, mask)
+    for y in range(H):
+        for x in range(W):
+            if not support[y][x]:
+                mask[y][x] = True
 
     bg = select_bg_colour(im, mask, candidates, palette_rgb, index)
     px = im.load()
