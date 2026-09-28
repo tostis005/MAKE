@@ -286,14 +286,14 @@ def main() -> None:
 
     collection = {
         "id": CID,
-        "name": "Pop Art",
-        "name_en": "Pop Art",
-        "name_es": "Pop Art",
+        "name": "Retratos Pop Art",
+        "name_en": "Pop Art Portraits",
+        "name_es": "Retratos Pop Art",
         "slug": CID,
         "code_prefix": "P",
-        "description": "60 vivid Pop Art designs built from one verified shared palette of exactly 30 colours.",
-        "description_en": "60 vivid Pop Art designs built from one verified shared palette of exactly 30 colours.",
-        "description_es": "60 diseños Pop Art vibrantes construidos con una única paleta compartida verificada de exactamente 30 colores.",
+        "description": "60 vivid Pop Art portrait designs built from one verified shared palette of exactly 30 colours.",
+        "description_en": "60 vivid Pop Art portrait designs built from one verified shared palette of exactly 30 colours.",
+        "description_es": "60 retratos Pop Art vibrantes construidos con una única paleta compartida verificada de exactamente 30 colores.",
         "palette_mode": "shared",
         "show_collection_palette": True,
         "palette": palette,
@@ -347,10 +347,10 @@ def main() -> None:
     existing_collection = next((dict(c) for c in catalog.get("collections", []) if c.get("slug") == CID), {})
     existing_collection.update({
         "id": CID,
-        "name": "Pop Art",
+        "name": "Retratos Pop Art",
         "slug": CID,
-        "name_en": "Pop Art",
-        "name_es": "Pop Art",
+        "name_en": "Pop Art Portraits",
+        "name_es": "Retratos Pop Art",
         "description": collection["description_en"],
         "description_en": collection["description_en"],
         "description_es": collection["description_es"],
@@ -376,7 +376,7 @@ def main() -> None:
         write_json(PRODUCTS_DIR / f"{code}-CS" / "product.json", product)
 
         data = bulk.pattern_data(f"{code}-CS", en, "CS", matrix, threads)
-        data["collection"] = "Pop Art"
+        data["collection"] = "Retratos Pop Art"
         data["collection_id"] = CID
         # Use the last explicitly approved Pop Art room/background image for
         # every product/PDF cover instead of the generic multitech cover.
