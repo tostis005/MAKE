@@ -306,4 +306,6 @@ jobs:
             echo "NEXT_ICONIC_RUN_DISPATCHED"
           else
             echo "ICONIC_QUEUE_COMPLETE"
+            gh api --method POST "repos/${GITHUB_REPOSITORY}/actions/workflows/audit-iconic-products.yml/dispatches" -f ref=main
+            echo "FINAL_ICONIC_AUDIT_DISPATCHED"
           fi
