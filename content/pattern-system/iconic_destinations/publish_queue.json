@@ -144,15 +144,15 @@
       "product_title_es": "Patrón de punto de cruz: Pirámides de Guiza, Egipto",
       "slug": "pyramids-giza",
       "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0038-pyramids-giza.png",
-      "status": "pending",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36441633351",
+      "status": "failed",
+      "attempts": 3,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36442078228",
       "last_error": "Automatic Iconic Destinations publish run failed; see GitHub Actions logs.",
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_manifest_item": "D0038",
       "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
       "source_zip_member": "D0038-pyramids-giza.png",
-      "failed_at": "2026-09-28T15:14:32+00:00"
+      "failed_at": "2026-09-28T15:16:03+00:00"
     },
     {
       "base_design_id": "D0039",
