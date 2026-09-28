@@ -143,6 +143,8 @@ jobs:
             usort($cand,function($a,$b){return $a["priority"]===$b["priority"]?(((int)$a["listing_id"])<=>((int)$b["listing_id"])):($b["priority"]<=>$a["priority"]);});
             if(count($cand)<count($need)){fwrite(STDERR,"PREFLIGHT_FAIL need ".count($need)." candidates, have ".count($cand)."\n");exit(8);}
 
+            echo "LIVE_LINK_STATE targets=".count($targets)." linked=".(count($targets)-count($need))." need=".count($need)." candidates=".count($cand)."\\n";
+
             $candidate_cursor=0;
             foreach($need as $idx){
               $assigned=false;
