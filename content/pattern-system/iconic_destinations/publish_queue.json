@@ -199,14 +199,14 @@
       "slug": "meteora-monasteries",
       "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0061-meteora-monasteries.png",
       "status": "pending",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36442872651",
+      "attempts": 2,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36443135387",
       "last_error": "Automatic Iconic Destinations publish run failed; see GitHub Actions logs.",
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_manifest_item": "D0061",
       "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
       "source_zip_member": "D0061-meteora-monasteries.png",
-      "failed_at": "2026-09-28T15:22:50+00:00"
+      "failed_at": "2026-09-28T15:23:52+00:00"
     },
     {
       "base_design_id": "D0062",
