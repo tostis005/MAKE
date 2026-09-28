@@ -1847,11 +1847,11 @@
       "variants": [
         "D0110-CS"
       ],
-      "artwork_status": "approved-manifest-individual-png-100x120",
+      "artwork_status": "production-ready-from-approved-clean-zip",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0110-sagrada-familia-barcelona.png",
       "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0110-sagrada-familia-barcelona.png",
       "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
+      "palette_status": "mapped-directly-from-zip-png-to-dmc",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -1859,12 +1859,13 @@
       },
       "target_chart_pages": 4,
       "source_colour_count": 50,
-      "dmc_colour_count": null,
+      "dmc_colour_count": 37,
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_manifest_item": "D0110",
       "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
       "source_zip_member": "D0110-sagrada-familia-barcelona.png",
-      "source_style": "audited-vivid-premium-cross-stitch"
+      "source_style": "audited-vivid-premium-cross-stitch",
+      "dmc_mapped_asset": "collections/iconic-destinations/source-designs/D0110-sagrada-familia-barcelona.png"
     },
     {
       "order": 61,
