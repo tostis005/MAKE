@@ -392,11 +392,12 @@
       "title_es": "Dragón bebé",
       "slug": "baby-dragon",
       "input_png": "../source-images/collections/baby-nursery/products/I0030-baby-dragon.png",
-      "status": "pending",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36439444458",
-      "last_error": "Automatic CS publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-28T14:57:13+00:00"
+      "status": "published",
+      "attempts": 3,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36439870949",
+      "last_error": null,
+      "failed_at": "2026-09-28T14:57:13+00:00",
+      "published_at": "2026-09-28T14:58:47+00:00"
     },
     {
       "order": 31,
