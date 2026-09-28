@@ -1,0 +1,21 @@
+name: Export legacy Sagrada once
+on:
+  push:
+    branches: [iconic-batch01-conceptual-v2]
+    paths:
+      - '.github/workflows/export-legacy-sagrada-once.yml'
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: iconic-batch01-conceptual-v2
+      - uses: actions/upload-artifact@v4
+        with:
+          name: legacy-sagrada-png
+          path: content/pattern-system/collections/iconic-destinations/approved-pixel-designs/D0021-barcelona-sagrada-familia.png
+          if-no-files-found: error
+          compression-level: 0
