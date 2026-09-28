@@ -64,10 +64,11 @@
       "title_es": "León",
       "slug": "lion",
       "input_png": "../source-images/collections/baby-nursery/products/I0005-lion.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36430405120",
+      "last_error": null,
+      "published_at": "2026-09-28T13:43:55+00:00"
     },
     {
       "order": 6,
