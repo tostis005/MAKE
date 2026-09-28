@@ -698,6 +698,10 @@ function renderPages() {
   // Vector graphics.
   const stitched=svgData(stitchedSvg(MATRIX,0,0,W,H,true));
   const coverVector=svgData(stitchedSvg(MATRIX,0,0,W,H,false));
+  // Ecommerce-only product capture: same exact geometry, but include the
+  // protected Aida-relief-v4 fabric in empty cells. The PDF cover remains
+  // transparent over the lifestyle mockup.
+  window.__drieloProductCoverVectorWithAida=svgData(stitchedSvg(MATRIX,0,0,W,H,true));
   document.getElementById("finished-design").src=stitched;
   document.getElementById("facts-preview").src=stitched;
   document.getElementById("layout-preview").src=stitched;
