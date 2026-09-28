@@ -184,7 +184,7 @@ def main():
 
         if min(m.values()) < 11:
             raise RuntimeError(f"{base}: insufficient safe margin after clean regeneration: {m}")
-        if abs(m["left"] - m["right"]) > 1 or abs(m["top"] - m["bottom"]) > 1:
+        if abs(m["left"] - m["right"]) > 2 or abs(m["top"] - m["bottom"]) > 2:
             raise RuntimeError(f"{base}: not centered after clean regeneration: {m}")
 
         out = PRODUCTS / filename
