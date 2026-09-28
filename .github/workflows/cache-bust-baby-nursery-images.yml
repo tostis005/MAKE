@@ -1,0 +1,213 @@
+name: Cache Bust Repaired Baby Nursery Images
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/cache-bust-baby-nursery-images.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  cache-bust:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Download corrected assets from main
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/baby-cache-bust/assets
+          for base in I0021 I0022 I0026 I0027 I0028 I0030 I0044; do
+            code="${base}-CS"
+            for asset in "${code}-product.webp" "${code}-gallery-2.webp" "${code}-gallery-3.webp" "${code}-gallery-4.webp"; do
+              url="https://raw.githubusercontent.com/tostis005/MAKE/main/content/products/assets/${asset}"
+              echo "Downloading ${asset}"
+              curl -fL --retry 3 --retry-delay 2 "$url" -o "/tmp/baby-cache-bust/assets/${asset}"
+              test "$(stat -c%s "/tmp/baby-cache-bust/assets/${asset}")" -gt 10000
+            done
+          done
+          tar -czf /tmp/baby-cache-bust.tgz -C /tmp/baby-cache-bust .
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_cache_bust_key
+          chmod 600 ~/.ssh/drielo_cache_bust_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Upload corrected images
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          scp -i ~/.ssh/drielo_cache_bust_key /tmp/baby-cache-bust.tgz "$VPS_USER@$VPS_HOST:/tmp/baby-cache-bust-${GITHUB_RUN_ID}.tgz"
+
+      - name: Replace attachments with versioned URLs and purge caches
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_cache_bust_key "$VPS_USER@$VPS_HOST" "RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/baby-cache-bust-${RUN_ID}.tgz"
+          HOST_STAGE="/tmp/baby-cache-bust-${RUN_ID}"
+          rm -rf "$HOST_STAGE"
+          mkdir -p "$HOST_STAGE"
+          tar -xzf "$ARCHIVE" -C "$HOST_STAGE"
+
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"; exit 1
+          fi
+
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/baby-cache-bust && mkdir -p /tmp/baby-cache-bust'
+          "${DOCKER[@]}" cp "$HOST_STAGE/assets/." make-wp:/tmp/baby-cache-bust/
+
+          # Inspect cache stack before changing anything.
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            echo "external_object_cache=".(wp_using_ext_object_cache()?"yes":"no").PHP_EOL;
+            echo "active_plugins=".json_encode((array)get_option("active_plugins",array())).PHP_EOL;
+            foreach(array("WP_CACHE","WPCACHEHOME") as $c){echo $c."=".(defined($c)?constant($c):"undefined").PHP_EOL;}
+          '
+
+          "${DOCKER[@]}" exec -e RUN_ID="$RUN_ID" make-wp php -d memory_limit=1024M -r '
+            require "/var/www/html/wp-load.php";
+            require_once ABSPATH."wp-admin/includes/file.php";
+            require_once ABSPATH."wp-admin/includes/image.php";
+            require_once ABSPATH."wp-admin/includes/media.php";
+
+            $run=preg_replace("/[^0-9A-Za-z_-]/","",getenv("RUN_ID"));
+            $bases=array("I0021","I0022","I0026","I0027","I0028","I0030","I0044");
+            $all_new=array();
+
+            function drielo_cache_bust_media($src,$canonical_key,$title,$run){
+              if(!is_file($src)){throw new RuntimeException("Missing ".$src);}
+              $stem=pathinfo(basename($canonical_key),PATHINFO_FILENAME);
+              $ext=pathinfo(basename($canonical_key),PATHINFO_EXTENSION);
+              $filename=$stem."-cb".$run.".".$ext;
+              $bits=wp_upload_bits($filename,null,(string)file_get_contents($src));
+              if(!empty($bits["error"])){throw new RuntimeException($bits["error"]);}
+              $type=wp_check_filetype($filename,null);
+              $id=wp_insert_attachment(array(
+                "post_mime_type"=>$type["type"]?:"image/webp",
+                "post_title"=>$title,
+                "post_status"=>"inherit",
+              ),$bits["file"]);
+              if(is_wp_error($id)){throw new RuntimeException($id->get_error_message());}
+              $meta=wp_generate_attachment_metadata($id,$bits["file"]);
+              if(is_array($meta)){wp_update_attachment_metadata($id,$meta);}
+              update_post_meta($id,"_drielo_source_asset",$canonical_key);
+              update_post_meta($id,"_drielo_source_hash",md5_file($src)?:"");
+              update_post_meta($id,"_drielo_source_revision","cache-bust-".$run);
+              return (int)$id;
+            }
+
+            foreach($bases as $base){
+              $sku="DRIELO-".$base."-CS";
+              $pid=(int)wc_get_product_id_by_sku($sku);
+              $p=$pid?wc_get_product($pid):false;
+              if(!$p){throw new RuntimeException("Missing product ".$sku);}
+
+              $old_featured=(int)$p->get_image_id();
+              $old_gallery=array_map("intval",$p->get_gallery_image_ids());
+
+              $hero_key="assets/".$base."-CS-product.webp";
+              $hero_src="/tmp/baby-cache-bust/".$base."-CS-product.webp";
+              $new_featured=drielo_cache_bust_media($hero_src,$hero_key,$p->get_name()." featured cache-bust",$run);
+
+              $new_gallery=array();
+              foreach(array(2,3,4) as $n){
+                $key="assets/".$base."-CS-gallery-".$n.".webp";
+                $src="/tmp/baby-cache-bust/".$base."-CS-gallery-".$n.".webp";
+                $new_gallery[]=drielo_cache_bust_media($src,$key,$p->get_name()." gallery ".$n." cache-bust",$run);
+              }
+
+              $p->set_image_id($new_featured);
+              $p->set_gallery_image_ids($new_gallery);
+              $p->save();
+
+              // Prevent any future importer from finding the stale attachments.
+              foreach(array_merge(array($old_featured),$old_gallery) as $old){
+                if($old>0){
+                  delete_post_meta($old,"_drielo_source_asset");
+                  delete_post_meta($old,"_drielo_source_hash");
+                  delete_post_meta($old,"_drielo_source_revision");
+                }
+              }
+
+              $all_new=array_merge($all_new,array($new_featured),$new_gallery);
+              echo $sku." product_id=".$pid.
+                   " old_featured=".$old_featured.
+                   " new_featured=".$new_featured.
+                   " new_url=".wp_get_attachment_url($new_featured).
+                   " gallery=".implode(",",$new_gallery).PHP_EOL;
+            }
+
+            // Core/object/transient cache purge.
+            wp_cache_flush();
+            global $wpdb;
+            $wpdb->query("DELETE FROM {$wpdb->options} WHERE option_name LIKE '_transient_%' OR option_name LIKE '_site_transient_%'");
+
+            // Common WordPress page/cache plugins, only when actually available.
+            if(function_exists("rocket_clean_domain")){rocket_clean_domain(); echo "PURGED WP Rocket".PHP_EOL;}
+            if(function_exists("w3tc_flush_all")){w3tc_flush_all(); echo "PURGED W3 Total Cache".PHP_EOL;}
+            if(function_exists("wp_cache_clear_cache")){wp_cache_clear_cache(); echo "PURGED WP Super Cache".PHP_EOL;}
+            if(class_exists("autoptimizeCache") && method_exists("autoptimizeCache","clearall")){autoptimizeCache::clearall(); echo "PURGED Autoptimize".PHP_EOL;}
+            do_action("litespeed_purge_all");
+            do_action("litespeed_purge_all_object");
+            echo "PURGED core/object/transients".PHP_EOL;
+
+            // Verify every target now points to a cache-busted attachment URL.
+            foreach($bases as $base){
+              $sku="DRIELO-".$base."-CS";
+              $pid=(int)wc_get_product_id_by_sku($sku);
+              $p=wc_get_product($pid);
+              $fid=(int)$p->get_image_id();
+              $url=wp_get_attachment_url($fid);
+              if(strpos((string)$url,"-cb".$run.".webp")===false){
+                throw new RuntimeException("Cache-bust URL missing for ".$sku.": ".$url);
+              }
+              if(count($p->get_gallery_image_ids())<3){throw new RuntimeException("Gallery incomplete ".$sku);}
+              echo "VERIFIED ".$sku." id=".$pid." featured=".$fid." url=".$url.PHP_EOL;
+            }
+
+            $ids=get_posts(array(
+              "post_type"=>"product",
+              "post_status"=>"publish",
+              "posts_per_page"=>-1,
+              "fields"=>"ids",
+              "tax_query"=>array(array(
+                "taxonomy"=>"product_collection",
+                "field"=>"slug",
+                "terms"=>array("baby-nursery"),
+              )),
+            ));
+            echo "BABY_PUBLISHED_COUNT=".count($ids).PHP_EOL;
+            if(count($ids)!==60){throw new RuntimeException("Expected 60 Baby Nursery products");}
+          '
+
+          # Host/container cache diagnostics and best-effort filesystem cache purge.
+          if "${DOCKER[@]}" exec make-wp sh -lc 'test -d /var/www/html/wp-content/cache'; then
+            echo "Clearing wp-content/cache contents"
+            "${DOCKER[@]}" exec make-wp sh -lc 'find /var/www/html/wp-content/cache -mindepth 1 -maxdepth 1 -exec rm -rf {} + || true'
+          fi
+
+          rm -rf "$ARCHIVE" "$HOST_STAGE"
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/baby-cache-bust'
+          REMOTE
