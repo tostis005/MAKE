@@ -2,7 +2,7 @@
   "id": "pop-art-portraits",
   "name": "Pop Art Portraits",
   "slug": "pop-art-portraits",
-  "visible": true,
+  "visible": false,
   "palette": [
     {
       "dmc": "948",
@@ -168,5 +168,8 @@
       "dot": "#DDD8CF",
       "dot_radius": 0.05
     }
-  }
+  },
+  "status": "deprecated",
+  "superseded_by": "pop-art-25",
+  "notes": "Legacy draft only. The active portrait collection is pop-art-25, displayed as Retratos Pop Art / Pop Art Portraits."
 }
