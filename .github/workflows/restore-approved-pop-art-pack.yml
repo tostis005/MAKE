@@ -1,0 +1,45 @@
+name: Restore approved Retratos Pop Art pack
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/restore-approved-pop-art-pack.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sparse checkout current files
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          sparse-checkout: |
+            .github/scripts/build_pop_art_portrait_pack.py
+            .github/workflows/restore-approved-pop-art-pack.yml
+            exports/pop-art-portraits-final
+            exports/pop-art-portraits-60-100x120.zip
+            exports/pop-art-portraits-60-preview.png
+          sparse-checkout-cone-mode: false
+
+      - name: Restore best reviewed pack
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --depth=1 origin 406420bb8b89b59b429213d1c6dfa5f4e864c66c
+          git checkout 406420bb8b89b59b429213d1c6dfa5f4e864c66c --             .github/scripts/build_pop_art_portrait_pack.py             exports/pop-art-portraits-final             exports/pop-art-portraits-60-100x120.zip             exports/pop-art-portraits-60-preview.png
+
+      - name: Commit restored export and remove workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/scripts/build_pop_art_portrait_pack.py exports/pop-art-portraits-final exports/pop-art-portraits-60-100x120.zip exports/pop-art-portraits-60-preview.png
+          git rm .github/workflows/restore-approved-pop-art-pack.yml
+          git commit -m "Restore reviewed Retratos Pop Art export [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
