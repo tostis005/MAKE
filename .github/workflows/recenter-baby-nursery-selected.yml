@@ -245,6 +245,15 @@ jobs:
             echo "ERROR: make-wp container not found"; exit 1
           fi
 
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $id=(int)wc_get_product_id_by_sku("DRIELO-D0102-CS");
+            if($id===6970){
+              wp_delete_post($id,true);
+              echo "REMOVED_ACCIDENTAL_DRIELO-D0102-CS id=".$id.PHP_EOL;
+            }
+          '
+
           PRE_JSON=$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
             require "/var/www/html/wp-load.php";
             $out=array();
@@ -265,10 +274,10 @@ jobs:
 
           rm -rf "$STAGE" && mkdir -p "$STAGE"
           tar -xzf "$ARCHIVE" -C "$STAGE"
-          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php && mkdir -p /tmp/drielo-products'
-          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products
-          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
-          "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
+          "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '/tmp/drielo-products-${RUN_ID}' '/tmp/drielo-import-products-${RUN_ID}.php' && mkdir -p '/tmp/drielo-products-${RUN_ID}'"
+          "${DOCKER[@]}" cp "$STAGE/content/products/." "make-wp:/tmp/drielo-products-${RUN_ID}"
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" "make-wp:/tmp/drielo-import-products-${RUN_ID}.php"
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M "/tmp/drielo-import-products-${RUN_ID}.php" /var/www/html "/tmp/drielo-products-${RUN_ID}"
 
           # Create brand-new versioned media URLs, so browser/CDN cache cannot reuse
           # any previously published hero or gallery image.
@@ -313,11 +322,11 @@ jobs:
               $old_gallery=array_map("intval",$p->get_gallery_image_ids());
 
               $hero_key="assets/".$base."-CS-product.webp";
-              $new_featured=layout_media("/tmp/drielo-products/assets/".$base."-CS-product.webp",$hero_key,$p->get_name()." centered featured",$run);
+              $new_featured=layout_media("/tmp/drielo-products-".$run."/assets/".$base."-CS-product.webp",$hero_key,$p->get_name()." centered featured",$run);
               $new_gallery=array();
               foreach(array(2,3,4) as $n){
                 $key="assets/".$base."-CS-gallery-".$n.".webp";
-                $new_gallery[]=layout_media("/tmp/drielo-products/assets/".$base."-CS-gallery-".$n.".webp",$key,$p->get_name()." centered gallery ".$n,$run);
+                $new_gallery[]=layout_media("/tmp/drielo-products-".$run."/assets/".$base."-CS-gallery-".$n.".webp",$key,$p->get_name()." centered gallery ".$n,$run);
               }
 
               $p->set_image_id($new_featured);
@@ -348,7 +357,7 @@ jobs:
           '
 
           "${DOCKER[@]}" exec make-wp sh -lc 'if [ -d /var/www/html/wp-content/cache ]; then find /var/www/html/wp-content/cache -mindepth 1 -maxdepth 1 -exec rm -rf {} + || true; fi'
-          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
+          "${DOCKER[@]}" exec make-wp sh -lc "rm -rf '/tmp/drielo-products-${RUN_ID}' '/tmp/drielo-import-products-${RUN_ID}.php'"
           REMOTE
 
       - name: Verify public hero bytes
