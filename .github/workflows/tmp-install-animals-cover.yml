@@ -11,7 +11,7 @@ permissions:
 
 concurrency:
   group: drielo-animals-cover-install
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   install:
@@ -21,7 +21,7 @@ jobs:
       - name: Checkout main
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
       - name: Rebuild approved Animals source
         shell: bash
