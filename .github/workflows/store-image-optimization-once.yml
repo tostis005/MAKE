@@ -25,7 +25,10 @@ jobs:
           php -l front-page.php
           php -l inc/store.php
           test -s style.css
-          tar -czf /tmp/drielo-image-theme-patch.tgz functions.php front-page.php style.css inc/store.php
+          node --check assets/js/site.js
+          grep -q 'initDrieloProductGalleryLightbox' assets/js/site.js
+          grep -q 'Drielo product gallery lightbox' style.css
+          tar -czf /tmp/drielo-image-theme-patch.tgz functions.php front-page.php style.css inc/store.php assets/js/site.js
 
       - name: Configure SSH
         env:
@@ -80,7 +83,8 @@ jobs:
           "${DOCKER[@]}" cp "$STAGE/front-page.php" "make-wp:$TARGET/front-page.php"
           "${DOCKER[@]}" cp "$STAGE/style.css" "make-wp:$TARGET/style.css"
           "${DOCKER[@]}" cp "$STAGE/inc/store.php" "make-wp:$TARGET/inc/store.php"
-          "${DOCKER[@]}" exec make-wp sh -lc "chown www-data:www-data '$TARGET/functions.php' '$TARGET/front-page.php' '$TARGET/style.css' '$TARGET/inc/store.php' && php -l '$TARGET/functions.php' && php -l '$TARGET/front-page.php' && php -l '$TARGET/inc/store.php'"
+          "${DOCKER[@]}" cp "$STAGE/assets/js/site.js" "make-wp:$TARGET/assets/js/site.js"
+          "${DOCKER[@]}" exec make-wp sh -lc "chown www-data:www-data '$TARGET/functions.php' '$TARGET/front-page.php' '$TARGET/style.css' '$TARGET/inc/store.php' '$TARGET/assets/js/site.js' && php -l '$TARGET/functions.php' && php -l '$TARGET/front-page.php' && php -l '$TARGET/inc/store.php' && grep -q 'initDrieloProductGalleryLightbox' '$TARGET/assets/js/site.js' && grep -q 'Drielo product gallery lightbox' '$TARGET/style.css'"
 
           "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
             require "/var/www/html/wp-load.php";
@@ -128,5 +132,6 @@ jobs:
             do_action("litespeed_purge_all");
 
             echo "IMAGE_OPTIMIZATION_DEPLOYED".PHP_EOL;
+            echo "PRODUCT_GALLERY_INTERACTION_READY".PHP_EOL;
           '
           REMOTE
