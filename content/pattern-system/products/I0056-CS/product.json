@@ -1,0 +1,22 @@
+{
+  "code": "I0056-CS",
+  "base_design_id": "I0056",
+  "technique_code": "CS",
+  "collection": "baby-nursery",
+  "title": "Rocking Horse Cross Stitch Pattern PDF",
+  "title_en": "Rocking Horse Cross Stitch Pattern PDF",
+  "title_es": "Patrón PDF de punto de cruz: Caballito balancín",
+  "design_title_en": "Rocking Horse",
+  "design_title_es": "Caballito balancín",
+  "design_slug": "rocking-horse",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/I0056-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "renderer": "multitech",
+  "source_artwork": "../source-images/collections/baby-nursery/products/I0056-rocking-horse.png",
+  "page_1_asset": "collections/baby-nursery/assets/cover-cross-stitch.jpg",
+  "palette_mode": "shared-30-source-colours-to-dmc"
+}

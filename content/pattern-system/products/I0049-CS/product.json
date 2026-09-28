@@ -1,0 +1,22 @@
+{
+  "code": "I0049-CS",
+  "base_design_id": "I0049",
+  "technique_code": "CS",
+  "collection": "baby-nursery",
+  "title": "Kite Cross Stitch Pattern PDF",
+  "title_en": "Kite Cross Stitch Pattern PDF",
+  "title_es": "Patrón PDF de punto de cruz: Cometa",
+  "design_title_en": "Kite",
+  "design_title_es": "Cometa",
+  "design_slug": "kite",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/I0049-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "renderer": "multitech",
+  "source_artwork": "../source-images/collections/baby-nursery/products/I0049-kite.png",
+  "page_1_asset": "collections/baby-nursery/assets/cover-cross-stitch.jpg",
+  "palette_mode": "shared-30-source-colours-to-dmc"
+}

@@ -1,457 +1,1029 @@
 {
   "collection": "baby-nursery",
   "code_prefix": "I",
-  "count": 30,
+  "count": 60,
+  "source_policy": "canonical-100x120-transparent-pngs",
+  "technique_policy": "cross-stitch-only",
   "designs": [
     {
       "order": 1,
       "base_design_id": "I0001",
       "title_en": "Teddy Bear",
       "title_es": "Osito de peluche",
+      "product_title_en": "Teddy Bear Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Osito de peluche",
       "slug": "teddy-bear",
       "variants": [
-        "I0001-CS",
-        "I0001-C2C",
-        "I0001-TC",
-        "I0001-LH"
+        "I0001-CS"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0001-teddy-bear.png"
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0001-teddy-bear.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0001-teddy-bear.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
     },
     {
       "order": 2,
       "base_design_id": "I0002",
-      "title_en": "Baby Elephant",
-      "title_es": "Elefantito",
-      "slug": "baby-elephant",
+      "title_en": "Bunny",
+      "title_es": "Conejito",
+      "product_title_en": "Bunny Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Conejito",
+      "slug": "bunny",
       "variants": [
-        "I0002-CS",
-        "I0002-C2C",
-        "I0002-TC",
-        "I0002-LH"
+        "I0002-CS"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0002-baby-elephant.png"
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0002-bunny.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0002-bunny.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
     },
     {
       "order": 3,
       "base_design_id": "I0003",
-      "title_en": "Giraffe",
-      "title_es": "Jirafa",
-      "slug": "giraffe",
+      "title_en": "Elephant",
+      "title_es": "Elefante",
+      "product_title_en": "Elephant Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Elefante",
+      "slug": "elephant",
       "variants": [
-        "I0003-CS",
-        "I0003-C2C",
-        "I0003-TC",
-        "I0003-LH"
+        "I0003-CS"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0003-giraffe.png"
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0003-elephant.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0003-elephant.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
     },
     {
       "order": 4,
       "base_design_id": "I0004",
-      "title_en": "Crescent Moon",
-      "title_es": "Luna creciente",
-      "slug": "crescent-moon",
+      "title_en": "Giraffe",
+      "title_es": "Jirafa",
+      "product_title_en": "Giraffe Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Jirafa",
+      "slug": "giraffe",
       "variants": [
-        "I0004-CS",
-        "I0004-C2C",
-        "I0004-TC",
-        "I0004-LH"
+        "I0004-CS"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0004-crescent-moon.png"
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0004-giraffe.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0004-giraffe.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
     },
     {
       "order": 5,
       "base_design_id": "I0005",
-      "title_en": "Smiling Cloud",
-      "title_es": "Nube sonriente",
-      "slug": "smiling-cloud",
+      "title_en": "Lion",
+      "title_es": "León",
+      "product_title_en": "Lion Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: León",
+      "slug": "lion",
       "variants": [
-        "I0005-CS",
-        "I0005-C2C",
-        "I0005-TC",
-        "I0005-LH"
+        "I0005-CS"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0005-smiling-cloud.png"
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0005-lion.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0005-lion.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
     },
     {
       "order": 6,
       "base_design_id": "I0006",
-      "title_en": "Bunny with Heart",
-      "title_es": "Conejito con corazón",
-      "slug": "bunny-heart",
+      "title_en": "Zebra",
+      "title_es": "Cebra",
+      "product_title_en": "Zebra Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Cebra",
+      "slug": "zebra",
       "variants": [
-        "I0006-CS",
-        "I0006-C2C",
-        "I0006-TC",
-        "I0006-LH"
+        "I0006-CS"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0006-bunny-heart.png"
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0006-zebra.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0006-zebra.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
     },
     {
       "order": 7,
       "base_design_id": "I0007",
-      "title_en": "Rainbow with Clouds",
-      "title_es": "Arcoíris con nubes",
-      "slug": "rainbow-clouds",
+      "title_en": "Hippo",
+      "title_es": "Hipopótamo",
+      "product_title_en": "Hippo Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Hipopótamo",
+      "slug": "hippo",
       "variants": [
-        "I0007-CS",
-        "I0007-C2C",
-        "I0007-TC",
-        "I0007-LH"
+        "I0007-CS"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0007-rainbow-clouds.png"
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0007-hippo.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0007-hippo.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
     },
     {
       "order": 8,
       "base_design_id": "I0008",
-      "title_en": "Cute Dinosaur",
-      "title_es": "Dinosaurio infantil",
-      "slug": "cute-dinosaur",
+      "title_en": "Panda",
+      "title_es": "Panda",
+      "product_title_en": "Panda Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Panda",
+      "slug": "panda",
       "variants": [
-        "I0008-CS",
-        "I0008-C2C",
-        "I0008-TC",
-        "I0008-LH"
+        "I0008-CS"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0008-cute-dinosaur.png"
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0008-panda.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0008-panda.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
     },
     {
       "order": 9,
       "base_design_id": "I0009",
-      "title_en": "Hot Air Balloon",
-      "title_es": "Globo aerostático",
-      "slug": "hot-air-balloon",
+      "title_en": "Koala",
+      "title_es": "Koala",
+      "product_title_en": "Koala Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Koala",
+      "slug": "koala",
       "variants": [
-        "I0009-CS",
-        "I0009-C2C",
-        "I0009-TC",
-        "I0009-LH"
+        "I0009-CS"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0009-hot-air-balloon.png"
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0009-koala.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0009-koala.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
     },
     {
       "order": 10,
       "base_design_id": "I0010",
-      "title_en": "Toy Sailboat",
-      "title_es": "Velero infantil",
-      "slug": "toy-sailboat",
+      "title_en": "Fox",
+      "title_es": "Zorro",
+      "product_title_en": "Fox Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Zorro",
+      "slug": "fox",
       "variants": [
-        "I0010-CS",
-        "I0010-C2C",
-        "I0010-TC",
-        "I0010-LH"
+        "I0010-CS"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0010-toy-sailboat.png"
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0010-fox.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0010-fox.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
     },
     {
       "order": 11,
       "base_design_id": "I0011",
-      "title_en": "Unicorn",
-      "title_es": "Unicornio",
-      "slug": "unicorn",
+      "title_en": "Cottage",
+      "title_es": "Casita",
+      "product_title_en": "Cottage Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Casita",
+      "slug": "cottage",
       "variants": [
-        "I0011-CS",
-        "I0011-C2C",
-        "I0011-TC",
-        "I0011-LH"
+        "I0011-CS"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0011-unicorn.png"
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0011-cottage.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0011-cottage.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
     },
     {
       "order": 12,
       "base_design_id": "I0012",
-      "title_en": "Baby Bottle",
-      "title_es": "Biberón",
-      "slug": "baby-bottle",
+      "title_en": "Tree Swing",
+      "title_es": "Árbol con columpio",
+      "product_title_en": "Tree Swing Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Árbol con columpio",
+      "slug": "swing-tree",
       "variants": [
-        "I0012-CS",
-        "I0012-C2C",
-        "I0012-TC",
-        "I0012-LH"
+        "I0012-CS"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0012-baby-bottle.png"
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0012-swing-tree.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0012-swing-tree.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
     },
     {
       "order": 13,
       "base_design_id": "I0013",
-      "title_en": "Pacifier",
-      "title_es": "Chupete",
-      "slug": "pacifier",
+      "title_en": "Flower Bouquet",
+      "title_es": "Ramo de flores",
+      "product_title_en": "Flower Bouquet Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Ramo de flores",
+      "slug": "flower-bouquet",
       "variants": [
-        "I0013-CS",
-        "I0013-C2C",
-        "I0013-TC",
-        "I0013-LH"
+        "I0013-CS"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0013-pacifier.png"
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0013-flower-bouquet.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0013-flower-bouquet.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
     },
     {
       "order": 14,
       "base_design_id": "I0014",
-      "title_en": "Baby Stroller",
-      "title_es": "Cochecito de bebé",
-      "slug": "baby-stroller",
+      "title_en": "Sunflower",
+      "title_es": "Girasol",
+      "product_title_en": "Sunflower Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Girasol",
+      "slug": "sunflower",
       "variants": [
-        "I0014-CS",
-        "I0014-C2C",
-        "I0014-TC",
-        "I0014-LH"
+        "I0014-CS"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0014-baby-stroller.png"
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0014-sunflower.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0014-sunflower.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
     },
     {
       "order": 15,
       "base_design_id": "I0015",
-      "title_en": "Rocking Horse",
-      "title_es": "Caballito balancín",
-      "slug": "rocking-horse",
+      "title_en": "Mushroom",
+      "title_es": "Seta",
+      "product_title_en": "Mushroom Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Seta",
+      "slug": "mushroom",
       "variants": [
-        "I0015-CS",
-        "I0015-C2C",
-        "I0015-TC",
-        "I0015-LH"
+        "I0015-CS"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0015-rocking-horse.png"
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0015-mushroom.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0015-mushroom.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
     },
     {
       "order": 16,
       "base_design_id": "I0016",
-      "title_en": "Teddy Bear Baby Onesie",
-      "title_es": "Body de bebé con osito",
-      "slug": "teddy-bear-onesie",
+      "title_en": "Ladybug",
+      "title_es": "Mariquita",
+      "product_title_en": "Ladybug Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Mariquita",
+      "slug": "ladybug",
       "variants": [
-        "I0016-CS",
-        "I0016-C2C",
-        "I0016-TC",
-        "I0016-LH"
+        "I0016-CS"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0016-teddy-bear-onesie.png"
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0016-ladybug.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0016-ladybug.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
     },
     {
       "order": 17,
       "base_design_id": "I0017",
-      "title_en": "Rubber Duck",
-      "title_es": "Patito de goma",
-      "slug": "rubber-duck",
+      "title_en": "Bee",
+      "title_es": "Abeja",
+      "product_title_en": "Bee Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Abeja",
+      "slug": "bee",
       "variants": [
-        "I0017-CS",
-        "I0017-C2C",
-        "I0017-TC",
-        "I0017-LH"
+        "I0017-CS"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0017-rubber-duck.png"
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0017-bee.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0017-bee.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
     },
     {
       "order": 18,
       "base_design_id": "I0018",
-      "title_en": "ABC Blocks",
-      "title_es": "Bloques ABC",
-      "slug": "abc-blocks",
+      "title_en": "Butterfly",
+      "title_es": "Mariposa",
+      "product_title_en": "Butterfly Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Mariposa",
+      "slug": "butterfly",
       "variants": [
-        "I0018-CS",
-        "I0018-C2C",
-        "I0018-TC",
-        "I0018-LH"
+        "I0018-CS"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0018-abc-blocks.png"
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0018-butterfly.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0018-butterfly.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
     },
     {
       "order": 19,
       "base_design_id": "I0019",
-      "title_en": "Nursery Mobile",
-      "title_es": "Móvil de cuna",
-      "slug": "nursery-mobile",
+      "title_en": "Snail",
+      "title_es": "Caracol",
+      "product_title_en": "Snail Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Caracol",
+      "slug": "snail",
       "variants": [
-        "I0019-CS",
-        "I0019-C2C",
-        "I0019-TC",
-        "I0019-LH"
+        "I0019-CS"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0019-nursery-mobile.png"
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0019-snail.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0019-snail.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
     },
     {
       "order": 20,
       "base_design_id": "I0020",
-      "title_en": "Smiling Star",
-      "title_es": "Estrella sonriente",
-      "slug": "smiling-star",
+      "title_en": "Castle",
+      "title_es": "Castillo",
+      "product_title_en": "Castle Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Castillo",
+      "slug": "castle",
       "variants": [
-        "I0020-CS",
-        "I0020-C2C",
-        "I0020-TC",
-        "I0020-LH"
+        "I0020-CS"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0020-smiling-star.png"
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0020-castle.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0020-castle.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
     },
     {
       "order": 21,
       "base_design_id": "I0021",
-      "title_en": "Sleeping Owl",
-      "title_es": "Búho dormido",
-      "slug": "sleeping-owl",
+      "title_en": "Whale",
+      "title_es": "Ballena",
+      "product_title_en": "Whale Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Ballena",
+      "slug": "whale",
       "variants": [
-        "I0021-CS",
-        "I0021-C2C",
-        "I0021-TC",
-        "I0021-LH"
+        "I0021-CS"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0021-sleeping-owl.png"
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0021-whale.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0021-whale.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
     },
     {
       "order": 22,
       "base_design_id": "I0022",
-      "title_en": "Floral Baby Bib",
-      "title_es": "Babero floral",
-      "slug": "floral-baby-bib",
+      "title_en": "Dolphin",
+      "title_es": "Delfín",
+      "product_title_en": "Dolphin Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Delfín",
+      "slug": "dolphin",
       "variants": [
-        "I0022-CS",
-        "I0022-C2C",
-        "I0022-TC",
-        "I0022-LH"
+        "I0022-CS"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0022-floral-baby-bib.png"
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0022-dolphin.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0022-dolphin.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
     },
     {
       "order": 23,
       "base_design_id": "I0023",
-      "title_en": "Plush Lamb",
-      "title_es": "Corderito de peluche",
-      "slug": "plush-lamb",
+      "title_en": "Octopus",
+      "title_es": "Pulpo",
+      "product_title_en": "Octopus Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Pulpo",
+      "slug": "octopus",
       "variants": [
-        "I0023-CS",
-        "I0023-C2C",
-        "I0023-TC",
-        "I0023-LH"
+        "I0023-CS"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0023-plush-lamb.png"
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0023-octopus.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0023-octopus.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
     },
     {
       "order": 24,
       "base_design_id": "I0024",
-      "title_en": "Toy Train",
-      "title_es": "Tren de juguete",
-      "slug": "toy-train",
+      "title_en": "Clownfish",
+      "title_es": "Pez payaso",
+      "product_title_en": "Clownfish Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Pez payaso",
+      "slug": "clownfish",
       "variants": [
-        "I0024-CS",
-        "I0024-C2C",
-        "I0024-TC",
-        "I0024-LH"
+        "I0024-CS"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0024-toy-train.png"
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0024-clownfish.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0024-clownfish.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
     },
     {
       "order": 25,
       "base_design_id": "I0025",
-      "title_en": "Stacking Rings",
-      "title_es": "Anillas apilables",
-      "slug": "stacking-rings",
+      "title_en": "Seahorse",
+      "title_es": "Caballito de mar",
+      "product_title_en": "Seahorse Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Caballito de mar",
+      "slug": "seahorse",
       "variants": [
-        "I0025-CS",
-        "I0025-C2C",
-        "I0025-TC",
-        "I0025-LH"
+        "I0025-CS"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0025-stacking-rings.png"
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0025-seahorse.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0025-seahorse.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
     },
     {
       "order": 26,
       "base_design_id": "I0026",
-      "title_en": "Baby Crib",
-      "title_es": "Cuna de bebé",
-      "slug": "baby-crib",
+      "title_en": "Long-Neck Dinosaur",
+      "title_es": "Dinosaurio de cuello largo",
+      "product_title_en": "Long-Neck Dinosaur Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Dinosaurio de cuello largo",
+      "slug": "long-neck-dinosaur",
       "variants": [
-        "I0026-CS",
-        "I0026-C2C",
-        "I0026-TC",
-        "I0026-LH"
+        "I0026-CS"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0026-baby-crib.png"
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0026-long-neck-dinosaur.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0026-long-neck-dinosaur.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
     },
     {
       "order": 27,
       "base_design_id": "I0027",
-      "title_en": "Pink Floral Baby Onesie",
-      "title_es": "Body rosa floral de bebé",
-      "slug": "pink-floral-onesie",
+      "title_en": "Triceratops",
+      "title_es": "Triceratops",
+      "product_title_en": "Triceratops Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Triceratops",
+      "slug": "triceratops",
       "variants": [
-        "I0027-CS",
-        "I0027-C2C",
-        "I0027-TC",
-        "I0027-LH"
+        "I0027-CS"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0027-pink-floral-onesie.png"
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0027-triceratops.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0027-triceratops.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
     },
     {
       "order": 28,
       "base_design_id": "I0028",
-      "title_en": "Rocket",
-      "title_es": "Cohete",
-      "slug": "rocket",
+      "title_en": "T-Rex",
+      "title_es": "T-Rex",
+      "product_title_en": "T-Rex Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: T-Rex",
+      "slug": "t-rex",
       "variants": [
-        "I0028-CS",
-        "I0028-C2C",
-        "I0028-TC",
-        "I0028-LH"
+        "I0028-CS"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0028-rocket.png"
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0028-t-rex.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0028-t-rex.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
     },
     {
       "order": 29,
       "base_design_id": "I0029",
-      "title_en": "Kite",
-      "title_es": "Cometa",
-      "slug": "kite",
+      "title_en": "Stegosaurus",
+      "title_es": "Estegosaurio",
+      "product_title_en": "Stegosaurus Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Estegosaurio",
+      "slug": "stegosaurus",
       "variants": [
-        "I0029-CS",
-        "I0029-C2C",
-        "I0029-TC",
-        "I0029-LH"
+        "I0029-CS"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0029-kite.png"
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0029-stegosaurus.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0029-stegosaurus.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
     },
     {
       "order": 30,
       "base_design_id": "I0030",
-      "title_en": "Fairytale Castle",
-      "title_es": "Castillo de cuento",
-      "slug": "fairytale-castle",
+      "title_en": "Baby Dragon",
+      "title_es": "Dragón bebé",
+      "product_title_en": "Baby Dragon Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Dragón bebé",
+      "slug": "baby-dragon",
       "variants": [
-        "I0030-CS",
-        "I0030-C2C",
-        "I0030-TC",
-        "I0030-LH"
+        "I0030-CS"
       ],
-      "artwork_status": "canonical-pattern-ready",
-      "source_asset": "collections/baby-nursery/source-designs/I0030-fairytale-castle.png"
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0030-baby-dragon.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0030-baby-dragon.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+    },
+    {
+      "order": 31,
+      "base_design_id": "I0031",
+      "title_en": "Deer",
+      "title_es": "Ciervo",
+      "product_title_en": "Deer Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Ciervo",
+      "slug": "deer",
+      "variants": [
+        "I0031-CS"
+      ],
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0031-deer.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0031-deer.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+    },
+    {
+      "order": 32,
+      "base_design_id": "I0032",
+      "title_en": "Squirrel",
+      "title_es": "Ardilla",
+      "product_title_en": "Squirrel Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Ardilla",
+      "slug": "squirrel",
+      "variants": [
+        "I0032-CS"
+      ],
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0032-squirrel.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0032-squirrel.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+    },
+    {
+      "order": 33,
+      "base_design_id": "I0033",
+      "title_en": "Hedgehog",
+      "title_es": "Erizo",
+      "product_title_en": "Hedgehog Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Erizo",
+      "slug": "hedgehog",
+      "variants": [
+        "I0033-CS"
+      ],
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0033-hedgehog.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0033-hedgehog.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+    },
+    {
+      "order": 34,
+      "base_design_id": "I0034",
+      "title_en": "Raccoon",
+      "title_es": "Mapache",
+      "product_title_en": "Raccoon Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Mapache",
+      "slug": "raccoon",
+      "variants": [
+        "I0034-CS"
+      ],
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0034-raccoon.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0034-raccoon.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+    },
+    {
+      "order": 35,
+      "base_design_id": "I0035",
+      "title_en": "Owl",
+      "title_es": "Búho",
+      "product_title_en": "Owl Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Búho",
+      "slug": "owl",
+      "variants": [
+        "I0035-CS"
+      ],
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0035-owl.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0035-owl.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+    },
+    {
+      "order": 36,
+      "base_design_id": "I0036",
+      "title_en": "Penguin",
+      "title_es": "Pingüino",
+      "product_title_en": "Penguin Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Pingüino",
+      "slug": "penguin",
+      "variants": [
+        "I0036-CS"
+      ],
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0036-penguin.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0036-penguin.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+    },
+    {
+      "order": 37,
+      "base_design_id": "I0037",
+      "title_en": "Seal",
+      "title_es": "Foca",
+      "product_title_en": "Seal Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Foca",
+      "slug": "seal",
+      "variants": [
+        "I0037-CS"
+      ],
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0037-seal.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0037-seal.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+    },
+    {
+      "order": 38,
+      "base_design_id": "I0038",
+      "title_en": "Frog Prince",
+      "title_es": "Príncipe rana",
+      "product_title_en": "Frog Prince Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Príncipe rana",
+      "slug": "frog-prince",
+      "variants": [
+        "I0038-CS"
+      ],
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0038-frog-prince.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0038-frog-prince.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+    },
+    {
+      "order": 39,
+      "base_design_id": "I0039",
+      "title_en": "Axolotl",
+      "title_es": "Ajolote",
+      "product_title_en": "Axolotl Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Ajolote",
+      "slug": "axolotl",
+      "variants": [
+        "I0039-CS"
+      ],
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0039-axolotl.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0039-axolotl.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+    },
+    {
+      "order": 40,
+      "base_design_id": "I0040",
+      "title_en": "Turtle",
+      "title_es": "Tortuga",
+      "product_title_en": "Turtle Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Tortuga",
+      "slug": "turtle",
+      "variants": [
+        "I0040-CS"
+      ],
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0040-turtle.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0040-turtle.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+    },
+    {
+      "order": 41,
+      "base_design_id": "I0041",
+      "title_en": "Unicorn",
+      "title_es": "Unicornio",
+      "product_title_en": "Unicorn Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Unicornio",
+      "slug": "unicorn",
+      "variants": [
+        "I0041-CS"
+      ],
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0041-unicorn.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0041-unicorn.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+    },
+    {
+      "order": 42,
+      "base_design_id": "I0042",
+      "title_en": "Floral Unicorn",
+      "title_es": "Unicornio floral",
+      "product_title_en": "Floral Unicorn Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Unicornio floral",
+      "slug": "floral-unicorn",
+      "variants": [
+        "I0042-CS"
+      ],
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0042-floral-unicorn.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0042-floral-unicorn.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+    },
+    {
+      "order": 43,
+      "base_design_id": "I0043",
+      "title_en": "Rainbow with Clouds",
+      "title_es": "Arcoíris con nubes",
+      "product_title_en": "Rainbow with Clouds Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Arcoíris con nubes",
+      "slug": "rainbow-clouds",
+      "variants": [
+        "I0043-CS"
+      ],
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0043-rainbow-clouds.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0043-rainbow-clouds.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+    },
+    {
+      "order": 44,
+      "base_design_id": "I0044",
+      "title_en": "Sun",
+      "title_es": "Sol",
+      "product_title_en": "Sun Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Sol",
+      "slug": "sun",
+      "variants": [
+        "I0044-CS"
+      ],
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0044-sun.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0044-sun.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+    },
+    {
+      "order": 45,
+      "base_design_id": "I0045",
+      "title_en": "Moon",
+      "title_es": "Luna",
+      "product_title_en": "Moon Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Luna",
+      "slug": "moon",
+      "variants": [
+        "I0045-CS"
+      ],
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0045-moon.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0045-moon.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+    },
+    {
+      "order": 46,
+      "base_design_id": "I0046",
+      "title_en": "Star",
+      "title_es": "Estrella",
+      "product_title_en": "Star Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Estrella",
+      "slug": "star",
+      "variants": [
+        "I0046-CS"
+      ],
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0046-star.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0046-star.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+    },
+    {
+      "order": 47,
+      "base_design_id": "I0047",
+      "title_en": "Hanging Cloud",
+      "title_es": "Nube colgante",
+      "product_title_en": "Hanging Cloud Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Nube colgante",
+      "slug": "hanging-cloud",
+      "variants": [
+        "I0047-CS"
+      ],
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0047-hanging-cloud.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0047-hanging-cloud.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+    },
+    {
+      "order": 48,
+      "base_design_id": "I0048",
+      "title_en": "Hot Air Balloon",
+      "title_es": "Globo aerostático",
+      "product_title_en": "Hot Air Balloon Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Globo aerostático",
+      "slug": "hot-air-balloon",
+      "variants": [
+        "I0048-CS"
+      ],
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0048-hot-air-balloon.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0048-hot-air-balloon.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+    },
+    {
+      "order": 49,
+      "base_design_id": "I0049",
+      "title_en": "Kite",
+      "title_es": "Cometa",
+      "product_title_en": "Kite Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Cometa",
+      "slug": "kite",
+      "variants": [
+        "I0049-CS"
+      ],
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0049-kite.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0049-kite.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+    },
+    {
+      "order": 50,
+      "base_design_id": "I0050",
+      "title_en": "Rocket",
+      "title_es": "Cohete",
+      "product_title_en": "Rocket Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Cohete",
+      "slug": "rocket",
+      "variants": [
+        "I0050-CS"
+      ],
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0050-rocket.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0050-rocket.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+    },
+    {
+      "order": 51,
+      "base_design_id": "I0051",
+      "title_en": "Airplane",
+      "title_es": "Avión",
+      "product_title_en": "Airplane Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Avión",
+      "slug": "airplane",
+      "variants": [
+        "I0051-CS"
+      ],
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0051-airplane.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0051-airplane.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+    },
+    {
+      "order": 52,
+      "base_design_id": "I0052",
+      "title_en": "Toy Train",
+      "title_es": "Tren de juguete",
+      "product_title_en": "Toy Train Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Tren de juguete",
+      "slug": "train",
+      "variants": [
+        "I0052-CS"
+      ],
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0052-train.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0052-train.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+    },
+    {
+      "order": 53,
+      "base_design_id": "I0053",
+      "title_en": "Toy Car",
+      "title_es": "Coche de juguete",
+      "product_title_en": "Toy Car Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Coche de juguete",
+      "slug": "car",
+      "variants": [
+        "I0053-CS"
+      ],
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0053-car.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0053-car.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+    },
+    {
+      "order": 54,
+      "base_design_id": "I0054",
+      "title_en": "Sailboat",
+      "title_es": "Velero",
+      "product_title_en": "Sailboat Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Velero",
+      "slug": "sailboat",
+      "variants": [
+        "I0054-CS"
+      ],
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0054-sailboat.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0054-sailboat.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+    },
+    {
+      "order": 55,
+      "base_design_id": "I0055",
+      "title_en": "Baby Blocks",
+      "title_es": "Bloques infantiles",
+      "product_title_en": "Baby Blocks Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Bloques infantiles",
+      "slug": "baby-blocks",
+      "variants": [
+        "I0055-CS"
+      ],
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0055-baby-blocks.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0055-baby-blocks.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+    },
+    {
+      "order": 56,
+      "base_design_id": "I0056",
+      "title_en": "Rocking Horse",
+      "title_es": "Caballito balancín",
+      "product_title_en": "Rocking Horse Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Caballito balancín",
+      "slug": "rocking-horse",
+      "variants": [
+        "I0056-CS"
+      ],
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0056-rocking-horse.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0056-rocking-horse.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+    },
+    {
+      "order": 57,
+      "base_design_id": "I0057",
+      "title_en": "Rattle",
+      "title_es": "Sonajero",
+      "product_title_en": "Rattle Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Sonajero",
+      "slug": "rattle",
+      "variants": [
+        "I0057-CS"
+      ],
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0057-rattle.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0057-rattle.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+    },
+    {
+      "order": 58,
+      "base_design_id": "I0058",
+      "title_en": "Rubber Duck",
+      "title_es": "Patito de goma",
+      "product_title_en": "Rubber Duck Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Patito de goma",
+      "slug": "rubber-duck",
+      "variants": [
+        "I0058-CS"
+      ],
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0058-rubber-duck.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0058-rubber-duck.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+    },
+    {
+      "order": 59,
+      "base_design_id": "I0059",
+      "title_en": "Baby Bottle",
+      "title_es": "Biberón",
+      "product_title_en": "Baby Bottle Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Biberón",
+      "slug": "baby-bottle",
+      "variants": [
+        "I0059-CS"
+      ],
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0059-baby-bottle.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0059-baby-bottle.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
+    },
+    {
+      "order": 60,
+      "base_design_id": "I0060",
+      "title_en": "Crown",
+      "title_es": "Corona",
+      "product_title_en": "Crown Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón PDF de punto de cruz: Corona",
+      "slug": "crown",
+      "variants": [
+        "I0060-CS"
+      ],
+      "artwork_status": "approved-source-png-100x120",
+      "source_asset": "../source-images/collections/baby-nursery/products/I0060-crown.png",
+      "input_png": "../source-images/collections/baby-nursery/products/I0060-crown.png",
+      "palette_mode": "shared-30-source-colours-to-dmc",
+      "source_manifest": "../source-images/collections/baby-nursery/source-manifest.json"
     }
   ]
 }

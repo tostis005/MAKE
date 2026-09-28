@@ -1,0 +1,22 @@
+{
+  "code": "I0059-CS",
+  "base_design_id": "I0059",
+  "technique_code": "CS",
+  "collection": "baby-nursery",
+  "title": "Baby Bottle Cross Stitch Pattern PDF",
+  "title_en": "Baby Bottle Cross Stitch Pattern PDF",
+  "title_es": "Patrón PDF de punto de cruz: Biberón",
+  "design_title_en": "Baby Bottle",
+  "design_title_es": "Biberón",
+  "design_slug": "baby-bottle",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/I0059-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "renderer": "multitech",
+  "source_artwork": "../source-images/collections/baby-nursery/products/I0059-baby-bottle.png",
+  "page_1_asset": "collections/baby-nursery/assets/cover-cross-stitch.jpg",
+  "palette_mode": "shared-30-source-colours-to-dmc"
+}

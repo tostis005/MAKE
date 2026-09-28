@@ -3,9 +3,11 @@
   "base_design_id": "I0001",
   "technique_code": "CS",
   "collection": "baby-nursery",
-  "title": "Teddy Bear",
-  "title_en": "Teddy Bear",
-  "title_es": "Osito de peluche",
+  "title": "Teddy Bear Cross Stitch Pattern PDF",
+  "title_en": "Teddy Bear Cross Stitch Pattern PDF",
+  "title_es": "Patrón PDF de punto de cruz: Osito de peluche",
+  "design_title_en": "Teddy Bear",
+  "design_title_es": "Osito de peluche",
   "design_slug": "teddy-bear",
   "technique": "cross-stitch",
   "pattern_file": "patterns/I0001-CS/pattern.json",
@@ -13,7 +15,9 @@
   "website": "www.drielo.com",
   "status": "active",
   "render_ready": true,
-  "source_artwork": "collections/baby-nursery/source-designs/I0001-teddy-bear.png",
+  "renderer": "multitech",
+  "source_artwork": "../source-images/collections/baby-nursery/products/I0001-teddy-bear.png",
   "page_1_asset": "collections/baby-nursery/assets/cover-cross-stitch.jpg",
-  "reference_artwork": "collections/baby-nursery/reference-masters/I0001-teddy-bear-reference.png"
+  "palette_mode": "shared-30-source-colours-to-dmc",
+  "mapped_artwork": "collections/baby-nursery/mapped-designs/I0001-teddy-bear-dmc.png"
 }

@@ -1,0 +1,22 @@
+{
+  "code": "I0042-CS",
+  "base_design_id": "I0042",
+  "technique_code": "CS",
+  "collection": "baby-nursery",
+  "title": "Floral Unicorn Cross Stitch Pattern PDF",
+  "title_en": "Floral Unicorn Cross Stitch Pattern PDF",
+  "title_es": "Patrón PDF de punto de cruz: Unicornio floral",
+  "design_title_en": "Floral Unicorn",
+  "design_title_es": "Unicornio floral",
+  "design_slug": "floral-unicorn",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/I0042-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "renderer": "multitech",
+  "source_artwork": "../source-images/collections/baby-nursery/products/I0042-floral-unicorn.png",
+  "page_1_asset": "collections/baby-nursery/assets/cover-cross-stitch.jpg",
+  "palette_mode": "shared-30-source-colours-to-dmc"
+}

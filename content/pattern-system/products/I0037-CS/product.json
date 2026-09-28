@@ -1,0 +1,22 @@
+{
+  "code": "I0037-CS",
+  "base_design_id": "I0037",
+  "technique_code": "CS",
+  "collection": "baby-nursery",
+  "title": "Seal Cross Stitch Pattern PDF",
+  "title_en": "Seal Cross Stitch Pattern PDF",
+  "title_es": "Patrón PDF de punto de cruz: Foca",
+  "design_title_en": "Seal",
+  "design_title_es": "Foca",
+  "design_slug": "seal",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/I0037-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "renderer": "multitech",
+  "source_artwork": "../source-images/collections/baby-nursery/products/I0037-seal.png",
+  "page_1_asset": "collections/baby-nursery/assets/cover-cross-stitch.jpg",
+  "palette_mode": "shared-30-source-colours-to-dmc"
+}

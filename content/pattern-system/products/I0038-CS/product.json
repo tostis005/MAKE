@@ -1,0 +1,22 @@
+{
+  "code": "I0038-CS",
+  "base_design_id": "I0038",
+  "technique_code": "CS",
+  "collection": "baby-nursery",
+  "title": "Frog Prince Cross Stitch Pattern PDF",
+  "title_en": "Frog Prince Cross Stitch Pattern PDF",
+  "title_es": "Patrón PDF de punto de cruz: Príncipe rana",
+  "design_title_en": "Frog Prince",
+  "design_title_es": "Príncipe rana",
+  "design_slug": "frog-prince",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/I0038-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "renderer": "multitech",
+  "source_artwork": "../source-images/collections/baby-nursery/products/I0038-frog-prince.png",
+  "page_1_asset": "collections/baby-nursery/assets/cover-cross-stitch.jpg",
+  "palette_mode": "shared-30-source-colours-to-dmc"
+}

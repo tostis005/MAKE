@@ -1,0 +1,22 @@
+{
+  "code": "I0055-CS",
+  "base_design_id": "I0055",
+  "technique_code": "CS",
+  "collection": "baby-nursery",
+  "title": "Baby Blocks Cross Stitch Pattern PDF",
+  "title_en": "Baby Blocks Cross Stitch Pattern PDF",
+  "title_es": "Patrón PDF de punto de cruz: Bloques infantiles",
+  "design_title_en": "Baby Blocks",
+  "design_title_es": "Bloques infantiles",
+  "design_slug": "baby-blocks",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/I0055-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "renderer": "multitech",
+  "source_artwork": "../source-images/collections/baby-nursery/products/I0055-baby-blocks.png",
+  "page_1_asset": "collections/baby-nursery/assets/cover-cross-stitch.jpg",
+  "palette_mode": "shared-30-source-colours-to-dmc"
+}

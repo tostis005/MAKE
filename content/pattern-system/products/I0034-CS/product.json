@@ -1,0 +1,22 @@
+{
+  "code": "I0034-CS",
+  "base_design_id": "I0034",
+  "technique_code": "CS",
+  "collection": "baby-nursery",
+  "title": "Raccoon Cross Stitch Pattern PDF",
+  "title_en": "Raccoon Cross Stitch Pattern PDF",
+  "title_es": "Patrón PDF de punto de cruz: Mapache",
+  "design_title_en": "Raccoon",
+  "design_title_es": "Mapache",
+  "design_slug": "raccoon",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/I0034-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "renderer": "multitech",
+  "source_artwork": "../source-images/collections/baby-nursery/products/I0034-raccoon.png",
+  "page_1_asset": "collections/baby-nursery/assets/cover-cross-stitch.jpg",
+  "palette_mode": "shared-30-source-colours-to-dmc"
+}
