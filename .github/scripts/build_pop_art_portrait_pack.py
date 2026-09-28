@@ -91,9 +91,13 @@ def load_current_images():
     return images
 
 def load_legacy(code):
-    path = f"content/pattern-system/collections/pop-art-25/sources/{code}.png"
-    raw = subprocess.check_output(["git", "show", f"{LEGACY_REF}:{path}"])
-    im = Image.open(io.BytesIO(raw)).convert("RGB")
+    staged = ROOT / "tmp" / "pop-art-legacy" / f"{code}.png"
+    if staged.is_file():
+        im = Image.open(staged).convert("RGB")
+    else:
+        path = f"content/pattern-system/collections/pop-art-25/sources/{code}.png"
+        raw = subprocess.check_output(["git", "show", f"{LEGACY_REF}:{path}"])
+        im = Image.open(io.BytesIO(raw)).convert("RGB")
     if im.size != (W, H):
         raise RuntimeError(f"Legacy {code}: expected {W}x{H}, got {im.size}")
     return im
