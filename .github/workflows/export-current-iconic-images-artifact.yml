@@ -1,0 +1,34 @@
+name: Export current Iconic Destinations images artifact
+
+on:
+  push:
+    branches: [iconic-batch01-conceptual-v2]
+    paths:
+      - '.github/workflows/export-current-iconic-images-artifact.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current Iconic branch
+        uses: actions/checkout@v4
+        with:
+          ref: iconic-batch01-conceptual-v2
+
+      - name: Verify ZIP exists
+        run: |
+          set -euo pipefail
+          test -s content/pattern-system/collections/iconic-destinations/assets/iconic-destinations-current-100-images.zip
+          ls -lh content/pattern-system/collections/iconic-destinations/assets/iconic-destinations-current-100-images.zip
+
+      - name: Upload current Iconic images ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: iconic-destinations-current-100-images
+          path: content/pattern-system/collections/iconic-destinations/assets/iconic-destinations-current-100-images.zip
+          if-no-files-found: error
+          compression-level: 0
