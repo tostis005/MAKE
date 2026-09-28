@@ -583,10 +583,11 @@
       "source_zip_member": "D0036-cesky-krumlov.png",
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_image": "collections/iconic-destinations/source-images/D0036-cesky-krumlov.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36411149099",
+      "last_error": null,
+      "published_at": "2026-09-28T10:42:46+00:00"
     },
     {
       "base_design_id": "D0037",
