@@ -427,10 +427,82 @@ def grabcut_background_mask(im, candidates):
     bg[:, 0] = True; bg[:, -1] = True
     return bg.tolist()
 
+def lineart_background_mask(im):
+    """Find background by flood-filling from the canvas edge around dark line art."""
+    arr = np.array(im.convert("RGB"))
+    lum = 0.2126*arr[:,:,0] + 0.7152*arr[:,:,1] + 0.0722*arr[:,:,2]
+    dark = (lum <= 82).astype(np.uint8)
+
+    # Keep meaningful dark linework; discard tiny isolated background halftone dots.
+    n, labels, stats, centroids = cv2.connectedComponentsWithStats(dark, 8)
+    barrier = np.zeros_like(dark)
+    for label in range(1, n):
+        area = int(stats[label, cv2.CC_STAT_AREA])
+        x = int(stats[label, cv2.CC_STAT_LEFT])
+        y = int(stats[label, cv2.CC_STAT_TOP])
+        w = int(stats[label, cv2.CC_STAT_WIDTH])
+        h = int(stats[label, cv2.CC_STAT_HEIGHT])
+        intersects_portrait = not (x+w < 10 or x > 90 or y+h < 3 or y > 117)
+        intersects_face = not (x+w < 22 or x > 78 or y+h < 12 or y > 103)
+        if area >= 18 or (intersects_face and area >= 4) or (intersects_portrait and area >= 10):
+            barrier[labels == label] = 1
+
+    # Close one-pixel gaps in the exterior contour.
+    kernel = np.ones((3,3), np.uint8)
+    barrier = cv2.dilate(barrier, kernel, iterations=1)
+
+    # Protect only the central facial core from accidental flood leakage.
+    protected = np.zeros_like(barrier)
+    cv2.ellipse(protected, (W//2, 57), (20, 30), 0, 0, 360, 1, -1)
+    walls = np.maximum(barrier, protected)
+
+    reached = np.zeros_like(barrier)
+    q = deque()
+    def seed(x, y):
+        if walls[y, x] == 0 and reached[y, x] == 0:
+            reached[y, x] = 1
+            q.append((x,y))
+    for x in range(W):
+        seed(x,0); seed(x,H-1)
+    for y in range(H):
+        seed(0,y); seed(W-1,y)
+
+    while q:
+        x,y = q.popleft()
+        for nx,ny in ((x-1,y),(x+1,y),(x,y-1),(x,y+1)):
+            if 0 <= nx < W and 0 <= ny < H and reached[ny,nx] == 0 and walls[ny,nx] == 0:
+                reached[ny,nx] = 1
+                q.append((nx,ny))
+
+    bg = reached.astype(bool)
+
+    # Foreground must belong to the central portrait. Remove trapped tiny islands.
+    fg = (~bg).astype(np.uint8)
+    n, labels, stats, centroids = cv2.connectedComponentsWithStats(fg, 8)
+    kept = np.zeros_like(fg)
+    for label in range(1,n):
+        area = int(stats[label, cv2.CC_STAT_AREA])
+        x = int(stats[label, cv2.CC_STAT_LEFT])
+        y = int(stats[label, cv2.CC_STAT_TOP])
+        w = int(stats[label, cv2.CC_STAT_WIDTH])
+        h = int(stats[label, cv2.CC_STAT_HEIGHT])
+        core = not (x+w < 19 or x > 81 or y+h < 8 or y > 112)
+        if core and area >= 30:
+            kept[labels == label] = 1
+
+    # Ensure the protected face core and meaningful line art remain foreground.
+    kept = np.maximum(kept, protected)
+    kept = np.maximum(kept, barrier)
+    bg = kept == 0
+
+    bg[0,:] = True; bg[-1,:] = True
+    bg[:,0] = True; bg[:,-1] = True
+    return bg.tolist()
+
 def harmonise_one(im, palette_rgb, candidates, index):
     # Legacy replacements are first snapped to the exact current 30-colour palette.
     im = quantize_to_palette(im, palette_rgb)
-    mask = grabcut_background_mask(im, candidates)
+    mask = lineart_background_mask(im)
 
     bg = select_bg_colour(im, mask, candidates, palette_rgb, index)
     px = im.load()
