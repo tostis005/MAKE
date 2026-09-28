@@ -14,10 +14,27 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout full history
+      - name: Sparse checkout only required current files
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 1
+          sparse-checkout: |
+            .github/scripts/build_pop_art_portrait_pack.py
+            .github/workflows/build-pop-art-portraits-pack.yml
+            content/pattern-system/collections/pop-art-25/sources
+            content/pattern-system/collections/pop-art-25/designs.json
+            exports
+          sparse-checkout-cone-mode: false
+
+      - name: Download six approved legacy portrait sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p tmp/pop-art-legacy
+          base="https://raw.githubusercontent.com/tostis005/MAKE/ecdabb6f62722ac3533c31f375f0053e46cbac75/content/pattern-system/collections/pop-art-25/sources"
+          for code in P0003 P0004 P0008 P0011 P0019 P0022; do
+            curl --fail --location --retry 3 "$base/$code.png" --output "tmp/pop-art-legacy/$code.png"
+          done
 
       - name: Install Pillow
         run: python -m pip install --disable-pip-version-check pillow
