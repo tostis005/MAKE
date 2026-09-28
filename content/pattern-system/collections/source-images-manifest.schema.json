@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "drielo://source-images-manifest.schema.json",
+  "title": "Drielo collection source-images manifest",
+  "type": "object",
+  "required": ["schema_version", "collection", "image_spec", "items"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "collection": {
+      "type": "object",
+      "required": ["slug", "name_es", "name_en"],
+      "properties": {
+        "slug": {"type": "string", "minLength": 1},
+        "name_es": {"type": "string", "minLength": 1},
+        "name_en": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": true
+    },
+    "image_spec": {
+      "type": "object",
+      "required": ["format", "width", "height", "color_count", "palette_mode", "dithering"],
+      "properties": {
+        "format": {"const": "PNG"},
+        "width": {"type": "integer", "minimum": 1},
+        "height": {"type": "integer", "minimum": 1},
+        "color_count": {"type": "integer", "minimum": 1},
+        "palette_mode": {"enum": ["independent_per_image"]},
+        "dithering": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id", "filename", "slug",
+          "title_en", "title_es",
+          "product_title_en", "product_title_es",
+          "width", "height", "format", "color_count"
+        ],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[A-Z][0-9]{4}$"},
+          "filename": {"type": "string", "pattern": "^[A-Z][0-9]{4}-.+\\.png$"},
+          "slug": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+          "title_en": {"type": "string", "minLength": 1},
+          "title_es": {"type": "string", "minLength": 1},
+          "product_title_en": {"type": "string", "minLength": 1},
+          "product_title_es": {"type": "string", "minLength": 1},
+          "width": {"type": "integer", "minimum": 1},
+          "height": {"type": "integer", "minimum": 1},
+          "format": {"const": "PNG"},
+          "color_count": {"type": "integer", "minimum": 1},
+          "audited": {"type": "boolean"}
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}
