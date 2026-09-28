@@ -1369,14 +1369,15 @@
       "product_title_es": "Patrón de punto de cruz: Ciudad amurallada de Cartagena, Colombia",
       "slug": "cartagena-walled-city",
       "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0126-cartagena-walled-city.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36472921871",
       "last_error": null,
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_manifest_item": "D0126",
       "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
-      "source_zip_member": "D0126-cartagena-walled-city.png"
+      "source_zip_member": "D0126-cartagena-walled-city.png",
+      "published_at": "2026-09-28T19:34:18+00:00"
     },
     {
       "base_design_id": "D0127",
