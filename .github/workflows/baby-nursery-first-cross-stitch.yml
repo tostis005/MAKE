@@ -1,0 +1,236 @@
+name: Baby Nursery First Cross Stitch Preview
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/triggers/baby-nursery-first-cross-stitch.txt'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-baby-nursery-first-cross-stitch
+  cancel-in-progress: false
+
+jobs:
+  import-first:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install renderer dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow playwright
+          python3 -m playwright install --with-deps chromium
+
+      - name: Prepare 60 approved sources as cross-stitch only
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 .github/scripts/prepare_baby_nursery_cross_stitch.py
+
+      - name: Generate I0001 cross-stitch product only
+        env:
+          DRIELO_GALLERY_REVISION: ${{ github.run_id }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/baby_nursery/publish_cs_from_source.py I0001
+
+      - name: Validate I0001 is cross-stitch only
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+
+          root=Path('.')
+          system=root/'content'/'pattern-system'
+          designs=json.loads((system/'collections'/'baby-nursery'/'designs.json').read_text(encoding='utf-8'))
+          if designs.get('count')!=60:
+              raise SystemExit('Expected 60 Baby Nursery designs')
+          d=next(x for x in designs['designs'] if x['base_design_id']=='I0001')
+          if d.get('variants')!=['I0001-CS']:
+              raise SystemExit(f"I0001 variants must be CS only: {d.get('variants')}")
+
+          source=(system/d['source_asset']).resolve()
+          with Image.open(source) as im:
+              if im.size!=(100,120) or im.format!='PNG':
+                  raise SystemExit('I0001 source is not an exact 100x120 PNG')
+
+          pat=json.loads((system/'patterns'/'I0001-CS'/'pattern.json').read_text(encoding='utf-8'))
+          prod=json.loads((system/'products'/'I0001-CS'/'product.json').read_text(encoding='utf-8'))
+          if pat.get('technique_code')!='CS' or prod.get('technique')!='cross-stitch':
+              raise SystemExit('I0001 is not cross-stitch only')
+          if (pat.get('stitch_width'),pat.get('stitch_height'))!=(100,120):
+              raise SystemExit('I0001 grid is not 100x120')
+          if len(pat.get('matrix',[]))!=120 or any(len(r)!=100 for r in pat['matrix']):
+              raise SystemExit('I0001 matrix malformed')
+          if not (1<=len(pat.get('threads',[]))<=30):
+              raise SystemExit(f"Unexpected thread count: {len(pat.get('threads',[]))}")
+          if pat.get('total_stitches',0)<=0:
+              raise SystemExit('I0001 has no stitches')
+
+          catalog=json.loads((root/'content'/'products'/'catalog.json').read_text(encoding='utf-8'))
+          baby=[p for p in catalog.get('products',[]) if p.get('collection')=='baby-nursery']
+          if [p.get('code') for p in baby] != ['I0001-CS']:
+              raise SystemExit(f"Catalog must contain only I0001-CS for Baby Nursery: {[p.get('code') for p in baby]}")
+          row=baby[0]
+          if row.get('technique')!='cross-stitch' or row.get('categories')!=['cross-stitch-patterns','cross-stitch-baby-nursery']:
+              raise SystemExit('Catalog routing is not cross-stitch only')
+
+          pdf=root/'content'/'products'/'files'/'Drielo_I0001-CS.pdf'
+          image=root/'content'/'products'/'assets'/'I0001-CS-product.webp'
+          galleries=[root/'content'/'products'/'assets'/f'I0001-CS-gallery-{i}.webp' for i in (2,3,4)]
+          if not pdf.is_file() or pdf.stat().st_size<100000 or pdf.read_bytes()[:4]!=b'%PDF':
+              raise SystemExit('Invalid I0001 PDF')
+          if not image.is_file() or image.stat().st_size<30000:
+              raise SystemExit('Invalid I0001 product image')
+          if any(not g.is_file() or g.stat().st_size<10000 for g in galleries):
+              raise SystemExit('Invalid I0001 gallery')
+          print('I0001_CS_BUNDLE_VALID', 'stitches',pat['total_stitches'],'colours',len(pat['threads']))
+          PY
+
+      - name: Build one-product WooCommerce package
+        shell: bash
+        run: |
+          set -euo pipefail
+          CODE="I0001-CS"
+          STAGE="/tmp/drielo-${CODE}"
+          rm -rf "$STAGE"
+          mkdir -p "$STAGE/content/products/assets" "$STAGE/content/products/files" "$STAGE/content/tools"
+          python3 - "$CODE" "$STAGE" <<'PY'
+          import json,sys
+          from pathlib import Path
+          code=sys.argv[1]; stage=Path(sys.argv[2])
+          src=json.loads(Path('content/products/catalog.json').read_text(encoding='utf-8'))
+          row=next(p for p in src['products'] if p.get('code')==code)
+          collection=next(c for c in src['collections'] if c.get('slug')=='baby-nursery')
+          cat_slugs={'cross-stitch-patterns','cross-stitch-baby-nursery'}
+          cats=[c for c in src.get('categories',[]) if c.get('slug') in cat_slugs]
+          out=dict(src)
+          out['products']=[row]
+          out['collections']=[collection]
+          out['categories']=cats
+          out['retired_products']=[]
+          out['retired_collections']=[]
+          (stage/'content/products/catalog.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+          cp "content/products/assets/${CODE}-product.webp" "$STAGE/content/products/assets/"
+          cp "content/products/assets/${CODE}-gallery-2.webp" "$STAGE/content/products/assets/"
+          cp "content/products/assets/${CODE}-gallery-3.webp" "$STAGE/content/products/assets/"
+          cp "content/products/assets/${CODE}-gallery-4.webp" "$STAGE/content/products/assets/"
+          cp "content/products/files/Drielo_${CODE}.pdf" "$STAGE/content/products/files/"
+          cp content/tools/import-products.php "$STAGE/content/tools/"
+          tar -czf "/tmp/drielo-${CODE}.tgz" -C "$STAGE" content
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_products_key
+          chmod 600 ~/.ssh/drielo_products_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Upload package
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          scp -i ~/.ssh/drielo_products_key /tmp/drielo-I0001-CS.tgz "$VPS_USER@$VPS_HOST:/tmp/drielo-I0001-CS-${GITHUB_RUN_ID}.tgz"
+
+      - name: Publish I0001-CS and verify it is the only Baby Nursery product
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_products_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-I0001-CS-${GITHUB_RUN_ID}.tgz"
+          STAGE="/tmp/drielo-I0001-CS-${GITHUB_RUN_ID}"
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE"; }
+          trap cleanup EXIT
+
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $sku="DRIELO-I0001-CS";
+            $id=wc_get_product_id_by_sku($sku);
+            $p=$id?wc_get_product($id):false;
+            if(!$p){fwrite(STDERR,"Missing ".$sku.PHP_EOL);exit(2);}
+            $cols=wp_get_object_terms($id,"product_collection",array("fields"=>"slugs"));
+            $cats=wp_get_object_terms($id,"product_cat",array("fields"=>"slugs"));
+            $baby=get_posts(array(
+              "post_type"=>"product",
+              "post_status"=>array("publish","draft","pending","private","future","trash"),
+              "posts_per_page"=>-1,
+              "fields"=>"ids",
+              "tax_query"=>array(array(
+                "taxonomy"=>"product_collection",
+                "field"=>"slug",
+                "terms"=>array("baby-nursery"),
+              )),
+            ));
+            echo $sku." id=".$id." status=".$p->get_status()." gallery=".count($p->get_gallery_image_ids())." downloads=".count($p->get_downloads())." collection=".implode(",",is_wp_error($cols)?array():$cols)." categories=".implode(",",is_wp_error($cats)?array():$cats)." url=".get_permalink($id).PHP_EOL;
+            echo "Baby Nursery product count: ".count($baby).PHP_EOL;
+            if($p->get_status()!=="publish" || !$p->get_image_id() || count($p->get_gallery_image_ids())<3 || count($p->get_downloads())<1){fwrite(STDERR,"Incomplete product".PHP_EOL);exit(3);}
+            if(!in_array("baby-nursery",is_wp_error($cols)?array():$cols,true)){fwrite(STDERR,"Wrong collection".PHP_EOL);exit(4);}
+            $catlist=is_wp_error($cats)?array():$cats;
+            if(!in_array("cross-stitch-patterns",$catlist,true) || !in_array("cross-stitch-baby-nursery",$catlist,true)){fwrite(STDERR,"Missing cross-stitch categories".PHP_EOL);exit(5);}
+            foreach($catlist as $cat){if(strpos($cat,"crochet")!==false || strpos($cat,"latch")!==false){fwrite(STDERR,"Forbidden non-CS category ".$cat.PHP_EOL);exit(6);}}
+            if(count($baby)!==1 || (int)$baby[0]!==$id){fwrite(STDERR,"Expected exactly one Baby Nursery product".PHP_EOL);exit(7);}
+          '
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
+          REMOTE
+
+      - name: Mark I0001 published and commit generated files
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/baby_nursery/queue_state.py success I0001 --run-url "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add             content/pattern-system/collections/baby-nursery/designs.json             content/pattern-system/collections/baby-nursery/collection.json             content/pattern-system/collections/baby-nursery/palette30.json             content/pattern-system/collections/baby-nursery/mapped-designs/I0001-teddy-bear-dmc.png             content/pattern-system/baby_nursery/publish_queue.json             content/pattern-system/patterns/I*-CS             content/pattern-system/products/I*-CS             content/products/catalog.json             content/products/assets/I0001-CS-product.webp             content/products/assets/I0001-CS-gallery-2.webp             content/products/assets/I0001-CS-gallery-3.webp             content/products/assets/I0001-CS-gallery-4.webp             content/products/files/Drielo_I0001-CS.pdf
+          if git diff --cached --quiet; then
+            echo "Nothing new to commit."
+          else
+            git commit -m "Import Baby Nursery I0001 cross stitch preview [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
