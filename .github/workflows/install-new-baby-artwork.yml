@@ -5,7 +5,14 @@ on:
   push:
     branches: [main]
     paths:
-      - 'content/pattern-system/baby_nursery/new-baby-sources-2026-09-28.zip'
+      - 'content/source-images/collections/baby-nursery/products/I0021-whale.png'
+      - 'content/source-images/collections/baby-nursery/products/I0025-seahorse.png'
+      - 'content/source-images/collections/baby-nursery/products/I0026-long-neck-dinosaur.png'
+      - 'content/source-images/collections/baby-nursery/products/I0027-triceratops.png'
+      - 'content/source-images/collections/baby-nursery/products/I0029-stegosaurus.png'
+      - 'content/source-images/collections/baby-nursery/products/I0043-rainbow-clouds.png'
+      - 'content/source-images/collections/baby-nursery/products/I0044-sun.png'
+      - 'content/source-images/collections/baby-nursery/products/I0057-rattle.png'
       - '.github/workflows/install-new-baby-artwork.yml'
 
 permissions:
@@ -74,19 +81,22 @@ jobs:
           python3 -m pip install --disable-pip-version-check --quiet Pillow playwright
           python3 -m playwright install --with-deps chromium
 
-      - name: Install the eight newly generated source PNGs
+      - name: Confirm the eight newly generated source PNGs
         shell: bash
         run: |
           set -euo pipefail
-          ZIP="content/pattern-system/baby_nursery/new-baby-sources-2026-09-28.zip"
           DEST="content/source-images/collections/baby-nursery/products"
-          test -f "$ZIP"
-          rm -rf /tmp/new-baby-eight
-          mkdir -p /tmp/new-baby-eight
-          unzip -q "$ZIP" -d /tmp/new-baby-eight
-          for file in             I0021-whale.png             I0025-seahorse.png             I0026-long-neck-dinosaur.png             I0027-triceratops.png             I0029-stegosaurus.png             I0043-rainbow-clouds.png             I0044-sun.png             I0057-rattle.png; do
-            test -f "/tmp/new-baby-eight/$file"
-            cp "/tmp/new-baby-eight/$file" "$DEST/$file"
+          for file in \
+            I0021-whale.png \
+            I0025-seahorse.png \
+            I0026-long-neck-dinosaur.png \
+            I0027-triceratops.png \
+            I0029-stegosaurus.png \
+            I0043-rainbow-clouds.png \
+            I0044-sun.png \
+            I0057-rattle.png; do
+            test -s "$DEST/$file"
+            echo "SOURCE_PRESENT $file $(sha256sum "$DEST/$file" | cut -d' ' -f1)"
           done
 
       - name: Validate sources and refresh metadata
