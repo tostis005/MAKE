@@ -1766,14 +1766,15 @@
       "product_title_es": "Patrón de punto de cruz: Alhambra, Granada",
       "slug": "alhambra-granada",
       "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0148-alhambra-granada.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36479809340",
       "last_error": null,
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_manifest_item": "D0148",
       "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
-      "source_zip_member": "D0148-alhambra-granada.png"
+      "source_zip_member": "D0148-alhambra-granada.png",
+      "published_at": "2026-09-28T20:33:48+00:00"
     },
     {
       "base_design_id": "D0149",
