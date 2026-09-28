@@ -1,5 +1,5 @@
 name: Etsy Iconic replacement parallel v3
-# live-observe-probe: 2
+# live-observe-probe: 3
 
 on:
   push:
