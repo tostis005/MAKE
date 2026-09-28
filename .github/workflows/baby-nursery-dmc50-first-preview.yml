@@ -1,0 +1,417 @@
+name: Baby Nursery DMC50 Replace and First Preview
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tmp/baby-nursery-upload/READY-DMC50'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-baby-nursery-dmc50-first-preview
+  cancel-in-progress: false
+
+jobs:
+  replace-and-publish-first:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install renderer dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow playwright
+          python3 -m playwright install --with-deps chromium
+
+      - name: Validate ZIP and replace canonical Baby Nursery sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, re, shutil, zipfile, io
+          from pathlib import Path
+          from PIL import Image
+
+          root=Path('.')
+          zpath=root/'tmp'/'baby-nursery-upload'/'coleccion_infantil_60_pngs_dmc50_adaptativa_final.zip'
+          if not zpath.is_file():
+              raise SystemExit(f'Missing staged ZIP: {zpath}')
+
+          source_root=root/'content'/'source-images'/'collections'/'baby-nursery'
+          products_dir=source_root/'products'
+          manifest_path=source_root/'source-manifest.json'
+          existing=json.loads(manifest_path.read_text(encoding='utf-8'))
+          current=existing.get('products') or []
+          if len(current)!=60:
+              raise SystemExit(f'Expected existing 60-product identity manifest, got {len(current)}')
+
+          with zipfile.ZipFile(zpath,'r') as z:
+              names=set(z.namelist())
+              palette_name='coleccion_infantil/palette50_dmc.json'
+              qa_name='coleccion_infantil/qa_report.json'
+              manifest_name='coleccion_infantil/manifest.json'
+              for required in (palette_name,qa_name,manifest_name):
+                  if required not in names:
+                      raise SystemExit(f'Missing {required} in ZIP')
+
+              palette=json.loads(z.read(palette_name).decode('utf-8'))
+              colors=palette.get('colors') or []
+              if len(colors)!=50:
+                  raise SystemExit(f'Expected 50 DMC palette rows, got {len(colors)}')
+              rgb_to_dmc={}
+              dmc_codes=set()
+              for row in colors:
+                  rgb=tuple(int(x) for x in row['rgb'])
+                  dmc=str(row['dmc'])
+                  if rgb in rgb_to_dmc or dmc in dmc_codes:
+                      raise SystemExit('Palette contains duplicate RGB or DMC')
+                  rgb_to_dmc[rgb]=dmc
+                  dmc_codes.add(dmc)
+
+              zip_manifest=json.loads(z.read(manifest_name).decode('utf-8'))
+              zip_items=zip_manifest.get('files') or []
+              by_zip_filename={x['filename']:x for x in zip_items}
+              if len(by_zip_filename)!=60:
+                  raise SystemExit(f'Expected 60 ZIP manifest files, got {len(by_zip_filename)}')
+
+              staged=[]
+              for index, identity in enumerate(current,start=1):
+                  base=identity['id']
+                  slug=identity['slug']
+                  target_name=identity['filename']
+                  pattern=re.compile(rf'^coleccion_infantil/pngs/infantil_{index:03d}_(.+)\.png$')
+                  members=[n for n in names if pattern.match(n)]
+                  if len(members)!=1:
+                      raise SystemExit(f'{base}: expected one ZIP PNG, found {members}')
+                  member=members[0]
+                  source_name=Path(member).name
+                  suffix=pattern.match(member).group(1).replace('_','-')
+                  if suffix!=slug:
+                      raise SystemExit(f'{base}: slug mismatch ZIP={suffix} manifest={slug}')
+                  raw=z.read(member)
+                  with Image.open(io.BytesIO(raw)) as im:
+                      rgba=im.convert('RGBA')
+                      if im.format!='PNG' or rgba.size!=(100,120):
+                          raise SystemExit(f'{base}: invalid PNG format/size {im.format} {rgba.size}')
+                      pixels=list(rgba.getdata())
+                  alphas={a for _,_,_,a in pixels}
+                  if not alphas.issubset({0,255}):
+                      raise SystemExit(f'{base}: non-binary alpha values {sorted(alphas)[:10]}')
+                  visible=[(r,g,b) for r,g,b,a in pixels if a==255]
+                  used=set(visible)
+                  if not used:
+                      raise SystemExit(f'{base}: empty design')
+                  if not used.issubset(rgb_to_dmc):
+                      missing=sorted(used-set(rgb_to_dmc))[:5]
+                      raise SystemExit(f'{base}: colors outside DMC50 palette: {missing}')
+                  if (255,255,255) in used:
+                      raise SystemExit(f'{base}: opaque pure white is forbidden')
+                  color_count=len(used)
+                  zip_row=by_zip_filename.get(source_name)
+                  if not zip_row:
+                      raise SystemExit(f'{base}: missing ZIP manifest entry for {source_name}')
+                  if int(zip_row.get('colors_used',-1))!=color_count:
+                      raise SystemExit(f'{base}: color-count mismatch ZIP manifest={zip_row.get("colors_used")} actual={color_count}')
+                  if not (1<=color_count<=20):
+                      raise SystemExit(f'{base}: unexpected per-design colour count {color_count}')
+                  staged.append((identity,raw,color_count,sorted({rgb_to_dmc[c] for c in used})))
+
+              if products_dir.exists():
+                  for p in products_dir.glob('*.png'):
+                      p.unlink()
+              products_dir.mkdir(parents=True,exist_ok=True)
+              new_products=[]
+              for identity,raw,color_count,codes in staged:
+                  (products_dir/identity['filename']).write_bytes(raw)
+                  row=dict(identity)
+                  row.update({
+                      'width':100,
+                      'height':120,
+                      'background':'transparent',
+                      'palette_mode':'exact-dmc50',
+                      'color_count':color_count,
+                      'dmc_codes':codes,
+                  })
+                  new_products.append(row)
+
+              (source_root/'palette50_dmc.json').write_bytes(z.read(palette_name))
+              (source_root/'qa_report.json').write_bytes(z.read(qa_name))
+
+              new_manifest={
+                  'schema_version':'2.0',
+                  'collection_id':'baby-nursery',
+                  'source':'approved-dmc50-adaptive-60-zip',
+                  'count':60,
+                  'palette_file':'palette50_dmc.json',
+                  'palette_mode':'exact-dmc50-no-requantization',
+                  'products':new_products,
+              }
+              manifest_path.write_text(json.dumps(new_manifest,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+          # Update pattern-system metadata while preserving identities/titles.
+          designs_path=root/'content'/'pattern-system'/'collections'/'baby-nursery'/'designs.json'
+          designs=json.loads(designs_path.read_text(encoding='utf-8'))
+          if len(designs.get('designs',[]))!=60:
+              raise SystemExit('Expected 60 Baby Nursery designs')
+          by_id={x['id']:x for x in new_products}
+          for d in designs['designs']:
+              base=d['base_design_id']
+              src=by_id[base]
+              d['variants']=[base+'-CS']
+              d['artwork_status']='approved-exact-dmc50-png-100x120'
+              d['source_asset']='../source-images/collections/baby-nursery/products/'+src['filename']
+              d['input_png']=d['source_asset']
+              d['palette_mode']='exact-dmc50-source-no-requantization'
+              d['source_colour_count']=src['color_count']
+          designs['source_policy']='canonical-exact-dmc50-transparent-pngs'
+          designs['technique_policy']='cross-stitch-only'
+          designs_path.write_text(json.dumps(designs,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+          collection_path=root/'content'/'pattern-system'/'collections'/'baby-nursery'/'collection.json'
+          collection=json.loads(collection_path.read_text(encoding='utf-8'))
+          collection['design_count']=60
+          collection['techniques']=['cross-stitch']
+          collection['source_palette']='../source-images/collections/baby-nursery/palette50_dmc.json'
+          collection['source_palette_mode']='exact-dmc50-adaptive-per-design'
+          collection['transparent_pixels_are_stitches']=False
+          collection_path.write_text(json.dumps(collection,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+          queue_path=root/'content'/'pattern-system'/'baby_nursery'/'publish_queue.json'
+          queue=json.loads(queue_path.read_text(encoding='utf-8'))
+          queue['mode']='exact-dmc50-cross-stitch-only-manual'
+          queue['auto_continue']=False
+          for item in queue.get('items',[]):
+              item['status']='pending'
+              item['attempts']=0
+              item['last_run']=None
+              item['last_error']=None
+              item.pop('published_at',None)
+              item.pop('failed_at',None)
+          queue_path.write_text(json.dumps(queue,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+          old_palette=root/'content'/'pattern-system'/'collections'/'baby-nursery'/'palette30.json'
+          if old_palette.exists():
+              old_palette.unlink()
+
+          print('BABY_DMC50_SOURCES_VALIDATED designs=60 palette=50')
+          PY
+
+      - name: Generate I0001 directly from exact DMC pixels
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/baby_nursery/publish_cs_exact_dmc.py I0001
+
+      - name: Validate one-to-one source-to-pattern mapping
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+
+          root=Path('.')
+          system=root/'content'/'pattern-system'
+          source_root=root/'content'/'source-images'/'collections'/'baby-nursery'
+          manifest=json.loads((source_root/'source-manifest.json').read_text(encoding='utf-8'))
+          first=manifest['products'][0]
+          src=source_root/'products'/first['filename']
+          palette=json.loads((source_root/'palette50_dmc.json').read_text(encoding='utf-8'))
+          rgb_to_dmc={tuple(x['rgb']):str(x['dmc']) for x in palette['colors']}
+
+          with Image.open(src) as im:
+              rgba=im.convert('RGBA')
+              pixels=list(rgba.getdata())
+          visible=[(r,g,b) for r,g,b,a in pixels if a==255]
+
+          pat=json.loads((system/'patterns'/'I0001-CS'/'pattern.json').read_text(encoding='utf-8'))
+          if pat.get('palette_mode')!='exact-dmc50-source-no-requantization':
+              raise SystemExit('I0001 pattern was requantized')
+          if (pat.get('stitch_width'),pat.get('stitch_height'))!=(100,120):
+              raise SystemExit('I0001 wrong grid')
+          if pat.get('total_stitches')!=len(visible):
+              raise SystemExit(f"I0001 stitch mismatch pattern={pat.get('total_stitches')} source={len(visible)}")
+          source_dmcs={rgb_to_dmc[x] for x in set(visible)}
+          pattern_dmcs={str(x['dmc']) for x in pat.get('threads',[])}
+          if source_dmcs!=pattern_dmcs:
+              raise SystemExit(f'I0001 DMC mismatch source={source_dmcs} pattern={pattern_dmcs}')
+          if len(pat.get('threads',[]))!=first['color_count']:
+              raise SystemExit(f"I0001 color-count mismatch pattern={len(pat.get('threads',[]))} manifest={first['color_count']}")
+          if len(pat.get('matrix',[]))!=120 or any(len(r)!=100 for r in pat['matrix']):
+              raise SystemExit('I0001 malformed matrix')
+
+          catalog=json.loads((root/'content'/'products'/'catalog.json').read_text(encoding='utf-8'))
+          baby=[p for p in catalog.get('products',[]) if p.get('collection')=='baby-nursery']
+          if [p.get('code') for p in baby]!=['I0001-CS']:
+              raise SystemExit(f'Catalog must contain only I0001-CS, got {[p.get("code") for p in baby]}')
+          row=baby[0]
+          if row.get('technique')!='cross-stitch':
+              raise SystemExit('I0001 is not cross-stitch only')
+
+          pdf=root/'content'/'products'/'files'/'Drielo_I0001-CS.pdf'
+          hero=root/'content'/'products'/'assets'/'I0001-CS-product.webp'
+          galleries=[root/'content'/'products'/'assets'/f'I0001-CS-gallery-{i}.webp' for i in (2,3,4)]
+          if not pdf.is_file() or pdf.stat().st_size<100000 or pdf.read_bytes()[:4]!=b'%PDF':
+              raise SystemExit('Invalid I0001 PDF')
+          if not hero.is_file() or hero.stat().st_size<30000:
+              raise SystemExit('Invalid I0001 hero')
+          if any(not g.is_file() or g.stat().st_size<10000 for g in galleries):
+              raise SystemExit('Invalid I0001 gallery')
+          print('I0001_EXACT_DMC_VALID stitches',len(visible),'colors',len(source_dmcs))
+          PY
+
+      - name: Build one-product WooCommerce package
+        shell: bash
+        run: |
+          set -euo pipefail
+          CODE="I0001-CS"
+          STAGE="/tmp/drielo-${CODE}"
+          rm -rf "$STAGE"
+          mkdir -p "$STAGE/content/products/assets" "$STAGE/content/products/files" "$STAGE/content/tools"
+          python3 - "$CODE" "$STAGE" <<'PY'
+          import json,sys
+          from pathlib import Path
+          code=sys.argv[1]; stage=Path(sys.argv[2])
+          src=json.loads(Path('content/products/catalog.json').read_text(encoding='utf-8'))
+          row=next(p for p in src['products'] if p.get('code')==code)
+          collection=next(c for c in src['collections'] if c.get('slug')=='baby-nursery')
+          cat_slugs={'cross-stitch-patterns','cross-stitch-baby-nursery'}
+          cats=[c for c in src.get('categories',[]) if c.get('slug') in cat_slugs]
+          out=dict(src)
+          out['products']=[row]
+          out['collections']=[collection]
+          out['categories']=cats
+          out['retired_products']=[]
+          out['retired_collections']=[]
+          (stage/'content/products/catalog.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+          cp "content/products/assets/${CODE}-product.webp" "$STAGE/content/products/assets/"
+          cp "content/products/assets/${CODE}-gallery-2.webp" "$STAGE/content/products/assets/"
+          cp "content/products/assets/${CODE}-gallery-3.webp" "$STAGE/content/products/assets/"
+          cp "content/products/assets/${CODE}-gallery-4.webp" "$STAGE/content/products/assets/"
+          cp "content/products/files/Drielo_${CODE}.pdf" "$STAGE/content/products/files/"
+          cp content/tools/import-products.php "$STAGE/content/tools/"
+          tar -czf "/tmp/drielo-${CODE}.tgz" -C "$STAGE" content
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_products_key
+          chmod 600 ~/.ssh/drielo_products_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Upload package
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          scp -i ~/.ssh/drielo_products_key /tmp/drielo-I0001-CS.tgz "$VPS_USER@$VPS_HOST:/tmp/drielo-I0001-CS-${GITHUB_RUN_ID}.tgz"
+
+      - name: Overwrite I0001-CS in WooCommerce
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_products_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-I0001-CS-${GITHUB_RUN_ID}.tgz"
+          STAGE="/tmp/drielo-I0001-CS-${GITHUB_RUN_ID}"
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE"; }
+          trap cleanup EXIT
+
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          PRE_ID=$("${DOCKER[@]}" exec make-wp php -r 'require "/var/www/html/wp-load.php"; echo (int)wc_get_product_id_by_sku("DRIELO-I0001-CS");')
+          echo "Existing I0001-CS product id: $PRE_ID"
+
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
+          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
+
+          POST_ID=$("${DOCKER[@]}" exec make-wp php -r 'require "/var/www/html/wp-load.php"; echo (int)wc_get_product_id_by_sku("DRIELO-I0001-CS");')
+          echo "Updated I0001-CS product id: $POST_ID"
+          if [ "$PRE_ID" -gt 0 ] && [ "$POST_ID" != "$PRE_ID" ]; then
+            echo "ERROR: expected overwrite of existing product id $PRE_ID, got $POST_ID"
+            exit 9
+          fi
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $sku="DRIELO-I0001-CS";
+            $id=wc_get_product_id_by_sku($sku);
+            $p=$id?wc_get_product($id):false;
+            if(!$p){fwrite(STDERR,"Missing ".$sku.PHP_EOL);exit(2);}
+            $cols=wp_get_object_terms($id,"product_collection",array("fields"=>"slugs"));
+            $cats=wp_get_object_terms($id,"product_cat",array("fields"=>"slugs"));
+            $baby=get_posts(array(
+              "post_type"=>"product",
+              "post_status"=>array("publish","draft","pending","private","future","trash"),
+              "posts_per_page"=>-1,
+              "fields"=>"ids",
+              "tax_query"=>array(array(
+                "taxonomy"=>"product_collection",
+                "field"=>"slug",
+                "terms"=>array("baby-nursery"),
+              )),
+            ));
+            echo $sku." id=".$id." status=".$p->get_status()." gallery=".count($p->get_gallery_image_ids())." downloads=".count($p->get_downloads())." collection=".implode(",",is_wp_error($cols)?array():$cols)." categories=".implode(",",is_wp_error($cats)?array():$cats)." url=".get_permalink($id).PHP_EOL;
+            echo "Baby Nursery product count: ".count($baby).PHP_EOL;
+            if($p->get_status()!=="publish" || !$p->get_image_id() || count($p->get_gallery_image_ids())<3 || count($p->get_downloads())<1){fwrite(STDERR,"Incomplete product".PHP_EOL);exit(3);}
+            if(!in_array("baby-nursery",is_wp_error($cols)?array():$cols,true)){fwrite(STDERR,"Wrong collection".PHP_EOL);exit(4);}
+            $catlist=is_wp_error($cats)?array():$cats;
+            if(!in_array("cross-stitch-patterns",$catlist,true) || !in_array("cross-stitch-baby-nursery",$catlist,true)){fwrite(STDERR,"Missing cross-stitch categories".PHP_EOL);exit(5);}
+            foreach($catlist as $cat){if(strpos($cat,"crochet")!==false || strpos($cat,"latch")!==false){fwrite(STDERR,"Forbidden non-CS category ".$cat.PHP_EOL);exit(6);}}
+            if(count($baby)!==1 || (int)$baby[0]!==$id){fwrite(STDERR,"Expected exactly one Baby Nursery product".PHP_EOL);exit(7);}
+          '
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
+          REMOTE
+
+      - name: Mark I0001 published and commit final source/product state
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/baby_nursery/queue_state.py success I0001 --run-url "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          rm -f tmp/baby-nursery-upload/coleccion_infantil_60_pngs_dmc50_adaptativa_final.zip
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A             content/source-images/collections/baby-nursery             content/pattern-system/collections/baby-nursery             content/pattern-system/baby_nursery/publish_queue.json             content/pattern-system/patterns/I0001-CS             content/pattern-system/products/I0001-CS             content/products/catalog.json             content/products/assets/I0001-CS-product.webp             content/products/assets/I0001-CS-gallery-2.webp             content/products/assets/I0001-CS-gallery-3.webp             content/products/assets/I0001-CS-gallery-4.webp             content/products/files/Drielo_I0001-CS.pdf             tmp/baby-nursery-upload/coleccion_infantil_60_pngs_dmc50_adaptativa_final.zip
+          if git diff --cached --quiet; then
+            echo "Nothing new to commit."
+          else
+            git commit -m "Replace Baby Nursery with exact DMC50 sources and refresh I0001 [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
