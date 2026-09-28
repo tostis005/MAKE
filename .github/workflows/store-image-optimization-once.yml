@@ -12,7 +12,7 @@ permissions:
 jobs:
   deploy-image-optimization:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 10
     steps:
       - name: Checkout current theme files
         uses: actions/checkout@v4
@@ -49,7 +49,7 @@ jobs:
           scp -i ~/.ssh/drielo_image_patch_key /tmp/drielo-image-theme-patch.tgz \
             "$VPS_USER@$VPS_HOST:/tmp/drielo-image-theme-patch-${GITHUB_RUN_ID}.tgz"
 
-      - name: Install patch, regenerate sizes and verify
+      - name: Install patch and verify existing responsive sizes
         env:
           VPS_HOST: ${{ secrets.VPS_HOST }}
           VPS_USER: ${{ secrets.VPS_USER }}
@@ -84,32 +84,6 @@ jobs:
 
           "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
             require "/var/www/html/wp-load.php";
-            require_once ABSPATH . "wp-admin/includes/image.php";
-
-            $ids=get_posts(array(
-              "post_type"=>"product",
-              "post_status"=>"publish",
-              "posts_per_page"=>-1,
-              "fields"=>"ids",
-              "meta_key"=>"_drielo_managed_product",
-              "meta_value"=>"1"
-            ));
-            $attachments=array();
-            foreach($ids as $id){
-              $image_id=(int)get_post_thumbnail_id($id);
-              if($image_id>0){$attachments[$image_id]=true;}
-            }
-            foreach(array_keys($attachments) as $attachment_id){
-              if(function_exists("wp_update_image_subsizes")){
-                wp_update_image_subsizes((int)$attachment_id);
-              } else {
-                $file=get_attached_file((int)$attachment_id);
-                if($file){
-                  $metadata=wp_generate_attachment_metadata((int)$attachment_id,$file);
-                  if(is_array($metadata)){wp_update_attachment_metadata((int)$attachment_id,$metadata);}
-                }
-              }
-            }
 
             $id=(int)wc_get_product_id_by_sku("DRIELO-I0001-CS");
             if($id<=0){fwrite(STDERR,"I0001 product missing".PHP_EOL);exit(2);}
@@ -118,9 +92,9 @@ jobs:
 
             $sizes=array(
               "shop"=>"make-store-card-context",
-              "home"=>"make-home-product-square",
-              "single"=>"make-single-product-context",
-              "collection"=>"make-collection-preview-small"
+              "home"=>"make-store-card-context",
+              "single"=>"large",
+              "collection"=>"make-collection-preview-context"
             );
             foreach($sizes as $label=>$size){
               $img=wp_get_attachment_image_src($image_id,$size);
@@ -128,11 +102,20 @@ jobs:
               echo "I0001_SIZE ".$label."=".$img[1]."x".$img[2]." url=".$img[0].PHP_EOL;
             }
 
+            $shop=wp_get_attachment_image_src($image_id,"make-store-card-context");
+            $single=wp_get_attachment_image_src($image_id,"large");
+            $collection=wp_get_attachment_image_src($image_id,"make-collection-preview-context");
+            if((int)$shop[1]>560 || (int)$shop[2]>700 || (int)$single[1]>1024 || (int)$single[2]>1024 || (int)$collection[1]>300 || (int)$collection[2]>300){
+              fwrite(STDERR,"Responsive image dimensions exceed limits".PHP_EOL);exit(5);
+            }
+
             $html=make_static_attachment_image_html($image_id,"make-store-card-context","attachment-make-store-card-context size-make-store-card-context drielo-store-product-image");
-            if(strpos($html,"size-make-store-card-context")===false){fwrite(STDERR,"Optimized shop markup missing".PHP_EOL);exit(5);}
+            if(strpos($html,"size-make-store-card-context")===false){fwrite(STDERR,"Optimized shop markup missing".PHP_EOL);exit(6);}
 
             $single_html=apply_filters("woocommerce_single_product_image_thumbnail_html","placeholder",$image_id);
-            if(strpos($single_html,"size-make-single-product-context")===false){fwrite(STDERR,"Optimized single markup missing".PHP_EOL);exit(6);}
+            if(strpos($single_html,"size-large")===false || strpos($single_html,"size-full")!==false){
+              fwrite(STDERR,"Optimized single markup missing".PHP_EOL);exit(7);
+            }
 
             if(function_exists("wc_delete_product_transients")) wc_delete_product_transients();
             delete_transient("wc_products_onsale");
@@ -144,6 +127,6 @@ jobs:
             if(function_exists("sg_cachepress_purge_cache")) sg_cachepress_purge_cache();
             do_action("litespeed_purge_all");
 
-            echo "IMAGE_OPTIMIZATION_DEPLOYED attachments=".count($attachments).PHP_EOL;
+            echo "IMAGE_OPTIMIZATION_DEPLOYED".PHP_EOL;
           '
           REMOTE
