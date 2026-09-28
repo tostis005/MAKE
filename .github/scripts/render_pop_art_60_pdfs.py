@@ -51,7 +51,7 @@ def main() -> None:
         pattern = json.loads(pattern_path.read_text(encoding="utf-8"))
         product = json.loads(product_path.read_text(encoding="utf-8"))
         data = bulk.pattern_data(code, product["title"], "CS", pattern["matrix"], pattern["threads"])
-        data["collection"] = "Pop Art"
+        data["collection"] = "Retratos Pop Art"
         data["collection_id"] = "pop-art-25"
 
         html = re.sub(
