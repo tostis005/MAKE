@@ -1431,10 +1431,11 @@
       "source_zip_member": "D0089-mostar-old-bridge.png",
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_image": "collections/iconic-destinations/source-images/D0089-mostar-old-bridge.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36421408595",
+      "last_error": null,
+      "published_at": "2026-09-28T12:24:14+00:00"
     },
     {
       "base_design_id": "D0090",
