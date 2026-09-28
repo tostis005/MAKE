@@ -1,0 +1,57 @@
+name: Etsy Iconic replacement status
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/etsy-iconic-status.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  status:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/status_key
+          chmod 600 ~/.ssh/status_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+      - name: Read replacement status
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/status_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          "${DOCKER[@]}" exec make-wp php -r '
+            require "/var/www/html/wp-load.php";
+            $ids=get_posts(["post_type"=>"product","post_status"=>["publish","draft","private","pending"],"posts_per_page"=>-1,"fields"=>"ids"]);
+            $targets=0;$linked=0;$renew_no=0;$errors=0;$last=[];
+            foreach($ids as $id){
+              $p=wc_get_product($id); if(!$p) continue;
+              $terms=taxonomy_exists("product_collection")?wp_get_post_terms($id,"product_collection",["fields"=>"slugs"]):[];
+              if(is_wp_error($terms)||!in_array("iconic-destinations",(array)$terms,true)) continue;
+              $sku=(string)$p->get_sku();
+              if(!preg_match("/^DRIELO-D\\d{4}-CS$/",$sku)) continue;
+              $targets++;
+              $lid=(string)get_post_meta($id,"_drielo_etsy_listing_id",true);
+              if($lid!=="") $linked++;
+              if(strtolower((string)get_post_meta($id,"_drielo_etsy_auto_renew",true))==="no") $renew_no++;
+              $err=(string)get_post_meta($id,"_drielo_etsy_last_error",true);
+              if($err!==""){$errors++;$last[]=[$sku,$lid,$err];}
+            }
+            echo "STATUS targets=".$targets." linked=".$linked." renew_no=".$renew_no." errors=".$errors.PHP_EOL;
+            if($last) echo "ERRORS=".wp_json_encode(array_slice($last,-10),JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES).PHP_EOL;
+          '
+          REMOTE
