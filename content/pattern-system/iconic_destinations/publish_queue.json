@@ -451,13 +451,14 @@
       "slug": "moraine-lake",
       "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0075-moraine-lake.png",
       "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null,
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36452153922",
+      "last_error": "Automatic Iconic Destinations publish run failed; see GitHub Actions logs.",
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_manifest_item": "D0075",
       "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
-      "source_zip_member": "D0075-moraine-lake.png"
+      "source_zip_member": "D0075-moraine-lake.png",
+      "failed_at": "2026-09-28T16:36:44+00:00"
     },
     {
       "base_design_id": "D0076",
