@@ -385,6 +385,44 @@ def grabcut_background_mask(im, candidates):
     keep = np.maximum(keep, face)
 
     bg = keep == 0
+
+    # Final controlled cleanup: old Pop Art background blocks are vivid exact
+    # palette colours. Remove only vivid same-colour components that touch the
+    # outer edge and do not meaningfully enter the facial core. This strips
+    # leftover pink/cyan/yellow wedges without punching holes in the portrait.
+    pix = im.load()
+    cleanup_colours = []
+    for colour in candidates:
+        h, s, v = hsv(colour)
+        if s >= 0.68 and v >= 0.68:
+            cleanup_colours.append(colour)
+
+    visited = [[False] * W for _ in range(H)]
+    for colour in cleanup_colours:
+        for yy in range(H):
+            for xx in range(W):
+                if visited[yy][xx] or pix[xx, yy] != colour or bg[yy, xx]:
+                    continue
+                comp = []
+                q = deque([(xx, yy)])
+                visited[yy][xx] = True
+                touches_edge = False
+                core_hits = 0
+                while q:
+                    cx, cy = q.popleft()
+                    comp.append((cx, cy))
+                    if cx == 0 or cy == 0 or cx == W-1 or cy == H-1:
+                        touches_edge = True
+                    if 27 <= cx <= 73 and 20 <= cy <= 92:
+                        core_hits += 1
+                    for nx, ny in ((cx-1,cy),(cx+1,cy),(cx,cy-1),(cx,cy+1)):
+                        if 0 <= nx < W and 0 <= ny < H and not visited[ny][nx] and not bg[ny, nx] and pix[nx, ny] == colour:
+                            visited[ny][nx] = True
+                            q.append((nx, ny))
+                if touches_edge and len(comp) >= 8 and core_hits <= max(2, int(len(comp) * 0.08)):
+                    for cx, cy in comp:
+                        bg[cy, cx] = True
+
     bg[0, :] = True; bg[-1, :] = True
     bg[:, 0] = True; bg[:, -1] = True
     return bg.tolist()
