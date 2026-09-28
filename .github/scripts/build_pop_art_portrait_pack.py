@@ -111,14 +111,22 @@ def current_palette(images):
     return sorted(colors)
 
 def quantize_to_palette(im, palette_rgb):
-    pal = Image.new("P", (1, 1))
-    flat = []
-    for c in palette_rgb:
-        flat.extend(c)
-    flat += [0] * (768 - len(flat))
-    pal.putpalette(flat)
-    q = im.convert("RGB").quantize(palette=pal, dither=Image.Dither.NONE)
-    return q.convert("RGB")
+    # Map every source RGB directly to the nearest one of the exact 30 master
+    # colours. Avoid Pillow's 256-entry indexed-palette padding entirely.
+    src = im.convert("RGB")
+    cache = {}
+    out = Image.new("RGB", src.size)
+    src_px = src.load()
+    out_px = out.load()
+    for y in range(src.height):
+        for x in range(src.width):
+            rgb = src_px[x, y]
+            mapped = cache.get(rgb)
+            if mapped is None:
+                mapped = min(palette_rgb, key=lambda c: rgb_distance(rgb, c))
+                cache[rgb] = mapped
+            out_px[x, y] = mapped
+    return out
 
 def border_pixels(im):
     px = im.load()
