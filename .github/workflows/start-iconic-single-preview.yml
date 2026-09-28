@@ -1,0 +1,24 @@
+name: Start Iconic single preview
+
+on:
+  push:
+    branches:
+      - iconic-batch01-conceptual-v2
+    paths:
+      - '.github/workflows/start-iconic-single-preview.yml'
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch Iconic publisher
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh api --method POST             "repos/${GITHUB_REPOSITORY}/actions/workflows/iconic-destinations-auto-publish.yml/dispatches"             -f ref=iconic-batch01-conceptual-v2
+          echo "ICONIC_SINGLE_PREVIEW_DISPATCHED"
