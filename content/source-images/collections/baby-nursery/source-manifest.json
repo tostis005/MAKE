@@ -1,0 +1,488 @@
+{
+  "schema_version": "1.0",
+  "collection_id": "baby-nursery",
+  "source": "approved-final-60-design-zip",
+  "count": 60,
+  "products": [
+    {
+      "id": "I0001",
+      "slug": "teddy-bear",
+      "filename": "I0001-teddy-bear.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0002",
+      "slug": "bunny",
+      "filename": "I0002-bunny.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0003",
+      "slug": "elephant",
+      "filename": "I0003-elephant.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0004",
+      "slug": "giraffe",
+      "filename": "I0004-giraffe.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0005",
+      "slug": "lion",
+      "filename": "I0005-lion.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0006",
+      "slug": "zebra",
+      "filename": "I0006-zebra.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0007",
+      "slug": "hippo",
+      "filename": "I0007-hippo.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0008",
+      "slug": "panda",
+      "filename": "I0008-panda.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0009",
+      "slug": "koala",
+      "filename": "I0009-koala.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0010",
+      "slug": "fox",
+      "filename": "I0010-fox.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0011",
+      "slug": "cottage",
+      "filename": "I0011-cottage.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0012",
+      "slug": "swing-tree",
+      "filename": "I0012-swing-tree.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0013",
+      "slug": "flower-bouquet",
+      "filename": "I0013-flower-bouquet.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0014",
+      "slug": "sunflower",
+      "filename": "I0014-sunflower.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0015",
+      "slug": "mushroom",
+      "filename": "I0015-mushroom.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0016",
+      "slug": "ladybug",
+      "filename": "I0016-ladybug.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0017",
+      "slug": "bee",
+      "filename": "I0017-bee.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0018",
+      "slug": "butterfly",
+      "filename": "I0018-butterfly.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0019",
+      "slug": "snail",
+      "filename": "I0019-snail.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0020",
+      "slug": "castle",
+      "filename": "I0020-castle.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0021",
+      "slug": "whale",
+      "filename": "I0021-whale.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0022",
+      "slug": "dolphin",
+      "filename": "I0022-dolphin.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0023",
+      "slug": "octopus",
+      "filename": "I0023-octopus.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0024",
+      "slug": "clownfish",
+      "filename": "I0024-clownfish.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0025",
+      "slug": "seahorse",
+      "filename": "I0025-seahorse.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0026",
+      "slug": "long-neck-dinosaur",
+      "filename": "I0026-long-neck-dinosaur.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0027",
+      "slug": "triceratops",
+      "filename": "I0027-triceratops.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0028",
+      "slug": "t-rex",
+      "filename": "I0028-t-rex.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0029",
+      "slug": "stegosaurus",
+      "filename": "I0029-stegosaurus.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0030",
+      "slug": "baby-dragon",
+      "filename": "I0030-baby-dragon.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0031",
+      "slug": "deer",
+      "filename": "I0031-deer.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0032",
+      "slug": "squirrel",
+      "filename": "I0032-squirrel.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0033",
+      "slug": "hedgehog",
+      "filename": "I0033-hedgehog.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0034",
+      "slug": "raccoon",
+      "filename": "I0034-raccoon.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0035",
+      "slug": "owl",
+      "filename": "I0035-owl.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0036",
+      "slug": "penguin",
+      "filename": "I0036-penguin.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0037",
+      "slug": "seal",
+      "filename": "I0037-seal.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0038",
+      "slug": "frog-prince",
+      "filename": "I0038-frog-prince.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0039",
+      "slug": "axolotl",
+      "filename": "I0039-axolotl.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0040",
+      "slug": "turtle",
+      "filename": "I0040-turtle.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0041",
+      "slug": "unicorn",
+      "filename": "I0041-unicorn.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0042",
+      "slug": "floral-unicorn",
+      "filename": "I0042-floral-unicorn.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0043",
+      "slug": "rainbow-clouds",
+      "filename": "I0043-rainbow-clouds.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0044",
+      "slug": "sun",
+      "filename": "I0044-sun.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0045",
+      "slug": "moon",
+      "filename": "I0045-moon.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0046",
+      "slug": "star",
+      "filename": "I0046-star.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0047",
+      "slug": "hanging-cloud",
+      "filename": "I0047-hanging-cloud.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0048",
+      "slug": "hot-air-balloon",
+      "filename": "I0048-hot-air-balloon.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0049",
+      "slug": "kite",
+      "filename": "I0049-kite.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0050",
+      "slug": "rocket",
+      "filename": "I0050-rocket.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0051",
+      "slug": "airplane",
+      "filename": "I0051-airplane.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0052",
+      "slug": "train",
+      "filename": "I0052-train.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0053",
+      "slug": "car",
+      "filename": "I0053-car.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0054",
+      "slug": "sailboat",
+      "filename": "I0054-sailboat.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0055",
+      "slug": "baby-blocks",
+      "filename": "I0055-baby-blocks.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0056",
+      "slug": "rocking-horse",
+      "filename": "I0056-rocking-horse.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0057",
+      "slug": "rattle",
+      "filename": "I0057-rattle.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0058",
+      "slug": "rubber-duck",
+      "filename": "I0058-rubber-duck.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0059",
+      "slug": "baby-bottle",
+      "filename": "I0059-baby-bottle.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    },
+    {
+      "id": "I0060",
+      "slug": "crown",
+      "filename": "I0060-crown.png",
+      "width": 100,
+      "height": 120,
+      "background": "transparent"
+    }
+  ]
+}
