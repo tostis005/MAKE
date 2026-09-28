@@ -1,720 +1,28 @@
 {
   "collection": "iconic-destinations",
   "code_prefix": "D",
-  "count": 60,
+  "count": 100,
+  "source_policy": "individual-pngs-from-approved-clean-batch-zips-only",
+  "identity_policy": "manifest-is-source-of-truth-no-title-inference",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+  "source_manifest_schema": "collections/source-images-manifest.schema.json",
   "designs": [
     {
       "order": 1,
-      "base_design_id": "D0001",
-      "title_en": "Mount Rushmore",
-      "title_es": "Monte Rushmore",
-      "slug": "mount-rushmore",
-      "variants": [
-        "D0001-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_01.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_01.png",
-      "dmc_mapped_asset": "collections/iconic-destinations/source-designs/D0001-mount-rushmore.png"
-    },
-    {
-      "order": 2,
-      "base_design_id": "D0002",
-      "title_en": "Hollywood Sign",
-      "title_es": "Letrero de Hollywood",
-      "slug": "hollywood-sign",
-      "variants": [
-        "D0002-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_02.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_02.png",
-      "dmc_mapped_asset": "collections/iconic-destinations/source-designs/D0002-hollywood-sign.png"
-    },
-    {
-      "order": 3,
-      "base_design_id": "D0003",
-      "title_en": "Times Square New York",
-      "title_es": "Times Square de Nueva York",
-      "slug": "times-square-new-york",
-      "variants": [
-        "D0003-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_03.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_03.png",
-      "dmc_mapped_asset": "collections/iconic-destinations/source-designs/D0003-times-square-new-york.png"
-    },
-    {
-      "order": 4,
-      "base_design_id": "D0004",
-      "title_en": "Brandenburg Gate Berlin",
-      "title_es": "Puerta de Brandeburgo de Berlín",
-      "slug": "brandenburg-gate-berlin",
-      "variants": [
-        "D0004-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_04.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_04.png",
-      "dmc_mapped_asset": "collections/iconic-destinations/source-designs/D0004-brandenburg-gate-berlin.png"
-    },
-    {
-      "order": 5,
-      "base_design_id": "D0005",
-      "title_en": "Osaka Castle",
-      "title_es": "Castillo de Osaka",
-      "slug": "osaka-castle",
-      "variants": [
-        "D0005-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_05.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_05.png",
-      "dmc_mapped_asset": "collections/iconic-destinations/source-designs/D0005-osaka-castle.png"
-    },
-    {
-      "order": 6,
-      "base_design_id": "D0006",
-      "title_en": "Toronto CN Tower",
-      "title_es": "Torre CN de Toronto",
-      "slug": "toronto-cn-tower",
-      "variants": [
-        "D0006-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_06.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_06.png",
-      "dmc_mapped_asset": "collections/iconic-destinations/source-designs/D0006-toronto-cn-tower.png"
-    },
-    {
-      "order": 7,
-      "base_design_id": "D0007",
-      "title_en": "Quebec City Chateau Frontenac",
-      "title_es": "Château Frontenac de Quebec",
-      "slug": "quebec-chateau-frontenac",
-      "variants": [
-        "D0007-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_07.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_07.png",
-      "dmc_mapped_asset": "collections/iconic-destinations/source-designs/D0007-quebec-chateau-frontenac.png"
-    },
-    {
-      "order": 8,
-      "base_design_id": "D0008",
-      "title_en": "Hallstatt Lakeside Village",
-      "title_es": "Hallstatt junto al lago",
-      "slug": "hallstatt-lakeside-village",
-      "variants": [
-        "D0008-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_08.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_08.png",
-      "dmc_mapped_asset": "collections/iconic-destinations/source-designs/D0008-hallstatt-lakeside-village.png"
-    },
-    {
-      "order": 9,
-      "base_design_id": "D0009",
-      "title_en": "Dubrovnik Old Town",
-      "title_es": "Casco antiguo de Dubrovnik",
-      "slug": "dubrovnik-old-town",
-      "variants": [
-        "D0009-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_09.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_09.png",
-      "dmc_mapped_asset": "collections/iconic-destinations/source-designs/D0009-dubrovnik-old-town.png"
-    },
-    {
-      "order": 10,
-      "base_design_id": "D0010",
-      "title_en": "Capri Faraglioni",
-      "title_es": "Faraglioni de Capri",
-      "slug": "capri-faraglioni",
-      "variants": [
-        "D0010-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_01_10.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_01_10.png"
-    },
-    {
-      "order": 11,
-      "base_design_id": "D0011",
-      "title_en": "Golden Gate Bridge",
-      "title_es": "Puente Golden Gate",
-      "slug": "golden-gate-bridge",
-      "variants": [
-        "D0011-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_02_01.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_02_01.png"
-    },
-    {
-      "order": 12,
-      "base_design_id": "D0012",
-      "title_en": "London Tower Bridge",
-      "title_es": "Tower Bridge de Londres",
-      "slug": "london-tower-bridge",
-      "variants": [
-        "D0012-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_02_02.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_02_02.png"
-    },
-    {
-      "order": 13,
-      "base_design_id": "D0013",
-      "title_en": "Mont Saint-Michel",
-      "title_es": "Mont Saint-Michel",
-      "slug": "mont-saint-michel",
-      "variants": [
-        "D0013-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_02_03.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_02_03.png"
-    },
-    {
-      "order": 14,
-      "base_design_id": "D0014",
-      "title_en": "Neuschwanstein Castle",
-      "title_es": "Castillo de Neuschwanstein",
-      "slug": "neuschwanstein-castle",
-      "variants": [
-        "D0014-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_02_04.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_02_04.png"
-    },
-    {
-      "order": 15,
-      "base_design_id": "D0015",
-      "title_en": "Athens Acropolis",
-      "title_es": "Acrópolis de Atenas",
-      "slug": "athens-acropolis",
-      "variants": [
-        "D0015-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_02_05.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_02_05.png"
-    },
-    {
-      "order": 16,
-      "base_design_id": "D0016",
-      "title_en": "Angkor Wat",
-      "title_es": "Angkor Wat",
-      "slug": "angkor-wat",
-      "variants": [
-        "D0016-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_02_06.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_02_06.png"
-    },
-    {
-      "order": 17,
-      "base_design_id": "D0017",
-      "title_en": "Ha Long Bay",
-      "title_es": "Bahía de Ha Long",
-      "slug": "ha-long-bay",
-      "variants": [
-        "D0017-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_02_07.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_02_07.png"
-    },
-    {
-      "order": 18,
-      "base_design_id": "D0018",
-      "title_en": "Cappadocia Balloons",
-      "title_es": "Globos de Capadocia",
-      "slug": "cappadocia-balloons",
-      "variants": [
-        "D0018-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_02_08.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_02_08.png"
-    },
-    {
-      "order": 19,
-      "base_design_id": "D0019",
-      "title_en": "Chichen Itza",
-      "title_es": "Chichén Itzá",
-      "slug": "chichen-itza",
-      "variants": [
-        "D0019-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_02_09.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_02_09.png"
-    },
-    {
-      "order": 20,
-      "base_design_id": "D0020",
-      "title_en": "Istanbul Blue Mosque",
-      "title_es": "Mezquita Azul de Estambul",
-      "slug": "istanbul-blue-mosque",
-      "variants": [
-        "D0020-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_02_10.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_02_10.png"
-    },
-    {
-      "order": 21,
-      "base_design_id": "D0021",
-      "title_en": "Barcelona Sagrada Familia",
-      "title_es": "Sagrada Familia de Barcelona",
-      "slug": "barcelona-sagrada-familia",
-      "variants": [
-        "D0021-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_03_01.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_01.png"
-    },
-    {
-      "order": 22,
-      "base_design_id": "D0022",
-      "title_en": "Prague Castle",
-      "title_es": "Castillo de Praga",
-      "slug": "prague-castle",
-      "variants": [
-        "D0022-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_03_02.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_02.png"
-    },
-    {
-      "order": 23,
-      "base_design_id": "D0023",
-      "title_en": "Niagara Falls",
-      "title_es": "Cataratas del Niágara",
-      "slug": "niagara-falls",
-      "variants": [
-        "D0023-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_03_03.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_03.png"
-    },
-    {
-      "order": 24,
-      "base_design_id": "D0024",
-      "title_en": "Mount Fuji",
-      "title_es": "Monte Fuji",
-      "slug": "mount-fuji",
-      "variants": [
-        "D0024-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_03_04.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_04.png"
-    },
-    {
-      "order": 25,
-      "base_design_id": "D0025",
-      "title_en": "Machu Picchu",
-      "title_es": "Machu Picchu",
-      "slug": "machu-picchu",
-      "variants": [
-        "D0025-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_03_05.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_05.png"
-    },
-    {
-      "order": 26,
-      "base_design_id": "D0026",
-      "title_en": "Petra Treasury",
-      "title_es": "El Tesoro de Petra",
-      "slug": "petra-treasury",
-      "variants": [
-        "D0026-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_03_06.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_06.png"
-    },
-    {
-      "order": 27,
-      "base_design_id": "D0027",
-      "title_en": "Dubai Burj Khalifa",
-      "title_es": "Burj Khalifa de Dubái",
-      "slug": "dubai-burj-khalifa",
-      "variants": [
-        "D0027-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_03_07.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 49,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_07.png"
-    },
-    {
-      "order": 28,
-      "base_design_id": "D0028",
-      "title_en": "Venice Grand Canal",
-      "title_es": "Gran Canal de Venecia",
-      "slug": "venice-grand-canal",
-      "variants": [
-        "D0028-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_03_08.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_08.png"
-    },
-    {
-      "order": 29,
-      "base_design_id": "D0029",
-      "title_en": "Prague Charles Bridge",
-      "title_es": "Puente de Carlos de Praga",
-      "slug": "prague-charles-bridge",
-      "variants": [
-        "D0029-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_03_09.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_09.png"
-    },
-    {
-      "order": 30,
-      "base_design_id": "D0030",
-      "title_en": "Amsterdam Canals",
-      "title_es": "Canales de Ámsterdam",
-      "slug": "amsterdam-canals",
-      "variants": [
-        "D0030-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_03_10.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_03_10.png"
-    },
-    {
-      "order": 31,
       "base_design_id": "D0031",
-      "title_en": "Paris Eiffel Tower",
-      "title_es": "Torre Eiffel de París",
+      "title_en": "Eiffel Tower, Paris",
+      "title_es": "Torre Eiffel, París",
+      "product_title_en": "Eiffel Tower, Paris Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Torre Eiffel, París",
       "slug": "paris-eiffel-tower",
       "variants": [
         "D0031-CS"
       ],
-      "artwork_status": "production-ready-from-approved-clean-zip",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_01.png",
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0031-paris-eiffel-tower.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0031-paris-eiffel-tower.png",
       "palette_mode": "per-design",
-      "palette_status": "mapped-directly-from-zip-png-to-dmc",
+      "palette_status": "ready-for-direct-png-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -722,53 +30,59 @@
       },
       "target_chart_pages": 4,
       "source_colour_count": 50,
-      "dmc_colour_count": 28,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_01.png",
-      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0031",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
       "source_zip_member": "D0031-paris-eiffel-tower.png",
-      "dmc_mapped_asset": "collections/iconic-destinations/source-designs/D0031-paris-eiffel-tower.png",
-      "source_style": "conceptual-realistic-illustration"
+      "source_style": "audited-vivid-premium-cross-stitch"
     },
     {
-      "order": 32,
+      "order": 2,
       "base_design_id": "D0032",
-      "title_en": "London Big Ben",
-      "title_es": "Big Ben de Londres",
+      "title_en": "Big Ben, London",
+      "title_es": "Big Ben, Londres",
+      "product_title_en": "Big Ben, London Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Big Ben, Londres",
       "slug": "london-big-ben",
       "variants": [
         "D0032-CS"
       ],
-      "artwork_status": "production-ready-from-approved-clean-zip",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_02.png",
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0032-london-big-ben.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0032-london-big-ben.png",
       "palette_mode": "per-design",
-      "palette_status": "mapped-directly-from-zip-png-to-dmc",
+      "palette_status": "ready-for-direct-png-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
       "target_chart_pages": 4,
-      "source_colour_count": 49,
-      "dmc_colour_count": 26,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_02.png",
-      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0032",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
       "source_zip_member": "D0032-london-big-ben.png",
-      "dmc_mapped_asset": "collections/iconic-destinations/source-designs/D0032-london-big-ben.png",
-      "source_style": "conceptual-realistic-illustration"
+      "source_style": "audited-vivid-premium-cross-stitch"
     },
     {
-      "order": 33,
+      "order": 3,
       "base_design_id": "D0033",
-      "title_en": "Rome Colosseum",
-      "title_es": "Coliseo de Roma",
+      "title_en": "Colosseum, Rome",
+      "title_es": "Coliseo, Roma",
+      "product_title_en": "Colosseum, Rome Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Coliseo, Roma",
       "slug": "rome-colosseum",
       "variants": [
         "D0033-CS"
       ],
-      "artwork_status": "production-ready-from-approved-clean-zip",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_03.png",
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0033-rome-colosseum.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0033-rome-colosseum.png",
       "palette_mode": "per-design",
-      "palette_status": "mapped-directly-from-zip-png-to-dmc",
+      "palette_status": "ready-for-direct-png-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -776,51 +90,57 @@
       },
       "target_chart_pages": 4,
       "source_colour_count": 50,
-      "dmc_colour_count": 25,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_03.png",
-      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0033",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
       "source_zip_member": "D0033-rome-colosseum.png",
-      "dmc_mapped_asset": "collections/iconic-destinations/source-designs/D0033-rome-colosseum.png",
-      "source_style": "conceptual-realistic-illustration"
+      "source_style": "audited-vivid-premium-cross-stitch"
     },
     {
-      "order": 34,
+      "order": 4,
       "base_design_id": "D0034",
-      "title_en": "New York Statue of Liberty",
-      "title_es": "Estatua de la Libertad de Nueva York",
+      "title_en": "Statue of Liberty, New York",
+      "title_es": "Estatua de la Libertad, Nueva York",
+      "product_title_en": "Statue of Liberty, New York Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Estatua de la Libertad, Nueva York",
       "slug": "new-york-statue-liberty",
       "variants": [
         "D0034-CS"
       ],
-      "artwork_status": "production-ready-from-approved-clean-zip",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_04.png",
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0034-new-york-statue-liberty.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0034-new-york-statue-liberty.png",
       "palette_mode": "per-design",
-      "palette_status": "mapped-directly-from-zip-png-to-dmc",
+      "palette_status": "ready-for-direct-png-dmc-map",
       "target_master_grid": {
         "width": 100,
         "height": 120,
         "max_long_side_stitches": 120
       },
       "target_chart_pages": 4,
-      "source_colour_count": 49,
-      "dmc_colour_count": 26,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_04.png",
-      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0034",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
       "source_zip_member": "D0034-new-york-statue-liberty.png",
-      "dmc_mapped_asset": "collections/iconic-destinations/source-designs/D0034-new-york-statue-liberty.png",
-      "source_style": "conceptual-realistic-illustration"
+      "source_style": "audited-vivid-premium-cross-stitch"
     },
     {
-      "order": 35,
+      "order": 5,
       "base_design_id": "D0035",
-      "title_en": "Taj Mahal",
-      "title_es": "Taj Mahal",
+      "title_en": "Taj Mahal, Agra",
+      "title_es": "Taj Mahal, Agra",
+      "product_title_en": "Taj Mahal, Agra Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Taj Mahal, Agra",
       "slug": "taj-mahal",
       "variants": [
         "D0035-CS"
       ],
-      "artwork_status": "approved-conceptual-realistic-zip-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_05.png",
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0035-taj-mahal.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0035-taj-mahal.png",
       "palette_mode": "per-design",
       "palette_status": "ready-for-direct-png-dmc-map",
       "target_master_grid": {
@@ -829,25 +149,28 @@
         "max_long_side_stitches": 120
       },
       "target_chart_pages": 4,
-      "source_colour_count": 49,
-      "dmc_colour_count": 18,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_05.png",
-      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0035",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
       "source_zip_member": "D0035-taj-mahal.png",
-      "dmc_mapped_asset": "collections/iconic-destinations/source-designs/D0035-taj-mahal.png",
-      "source_style": "conceptual-realistic-illustration"
+      "source_style": "audited-vivid-premium-cross-stitch"
     },
     {
-      "order": 36,
+      "order": 6,
       "base_design_id": "D0036",
       "title_en": "Great Wall of China",
       "title_es": "Gran Muralla China",
+      "product_title_en": "Great Wall of China Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Gran Muralla China",
       "slug": "great-wall-china",
       "variants": [
         "D0036-CS"
       ],
-      "artwork_status": "approved-conceptual-realistic-zip-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_06.png",
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0036-great-wall-china.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0036-great-wall-china.png",
       "palette_mode": "per-design",
       "palette_status": "ready-for-direct-png-dmc-map",
       "target_master_grid": {
@@ -858,22 +181,26 @@
       "target_chart_pages": 4,
       "source_colour_count": 50,
       "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_06.png",
-      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0036",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
       "source_zip_member": "D0036-great-wall-china.png",
-      "source_style": "conceptual-realistic-illustration"
+      "source_style": "audited-vivid-premium-cross-stitch"
     },
     {
-      "order": 37,
+      "order": 7,
       "base_design_id": "D0037",
-      "title_en": "Rio Christ the Redeemer",
-      "title_es": "Cristo Redentor de Río",
+      "title_en": "Christ the Redeemer, Rio de Janeiro",
+      "title_es": "Cristo Redentor, Río de Janeiro",
+      "product_title_en": "Christ the Redeemer, Rio de Janeiro Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Cristo Redentor, Río de Janeiro",
       "slug": "rio-christ-redeemer",
       "variants": [
         "D0037-CS"
       ],
-      "artwork_status": "approved-conceptual-realistic-zip-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_07.png",
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0037-rio-christ-redeemer.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0037-rio-christ-redeemer.png",
       "palette_mode": "per-design",
       "palette_status": "ready-for-direct-png-dmc-map",
       "target_master_grid": {
@@ -882,24 +209,28 @@
         "max_long_side_stitches": 120
       },
       "target_chart_pages": 4,
-      "source_colour_count": 49,
+      "source_colour_count": 50,
       "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_07.png",
-      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0037",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
       "source_zip_member": "D0037-rio-christ-redeemer.png",
-      "source_style": "conceptual-realistic-illustration"
+      "source_style": "audited-vivid-premium-cross-stitch"
     },
     {
-      "order": 38,
+      "order": 8,
       "base_design_id": "D0038",
-      "title_en": "Pyramids of Giza",
-      "title_es": "Pirámides de Guiza",
+      "title_en": "Pyramids of Giza, Egypt",
+      "title_es": "Pirámides de Guiza, Egipto",
+      "product_title_en": "Pyramids of Giza, Egypt Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Pirámides de Guiza, Egipto",
       "slug": "pyramids-giza",
       "variants": [
         "D0038-CS"
       ],
-      "artwork_status": "approved-conceptual-realistic-zip-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_08.png",
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0038-pyramids-giza.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0038-pyramids-giza.png",
       "palette_mode": "per-design",
       "palette_status": "ready-for-direct-png-dmc-map",
       "target_master_grid": {
@@ -908,24 +239,28 @@
         "max_long_side_stitches": 120
       },
       "target_chart_pages": 4,
-      "source_colour_count": 49,
+      "source_colour_count": 50,
       "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_08.png",
-      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0038",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
       "source_zip_member": "D0038-pyramids-giza.png",
-      "source_style": "conceptual-realistic-illustration"
+      "source_style": "audited-vivid-premium-cross-stitch"
     },
     {
-      "order": 39,
+      "order": 9,
       "base_design_id": "D0039",
-      "title_en": "Sydney Opera House",
-      "title_es": "Ópera de Sídney",
+      "title_en": "Sydney Opera House, Sydney",
+      "title_es": "Ópera de Sídney, Sídney",
+      "product_title_en": "Sydney Opera House, Sydney Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Ópera de Sídney, Sídney",
       "slug": "sydney-opera-house",
       "variants": [
         "D0039-CS"
       ],
-      "artwork_status": "approved-conceptual-realistic-zip-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_09.png",
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0039-sydney-opera-house.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0039-sydney-opera-house.png",
       "palette_mode": "per-design",
       "palette_status": "ready-for-direct-png-dmc-map",
       "target_master_grid": {
@@ -934,162 +269,28 @@
         "max_long_side_stitches": 120
       },
       "target_chart_pages": 4,
-      "source_colour_count": 49,
+      "source_colour_count": 50,
       "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_09.png",
-      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0039",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
       "source_zip_member": "D0039-sydney-opera-house.png",
-      "source_style": "conceptual-realistic-illustration"
+      "source_style": "audited-vivid-premium-cross-stitch"
     },
     {
-      "order": 40,
-      "base_design_id": "D0040",
-      "title_en": "Santorini Blue Domes",
-      "title_es": "Cúpulas azules de Santorini",
-      "slug": "santorini-blue-domes",
-      "variants": [
-        "D0040-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_04_10.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_04_10.png"
-    },
-    {
-      "order": 41,
-      "base_design_id": "D0041",
-      "title_en": "Cartagena Colorful Streets",
-      "title_es": "Calles coloridas de Cartagena",
-      "slug": "cartagena-colorful-streets",
-      "variants": [
-        "D0041-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_01.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_01.png"
-    },
-    {
-      "order": 42,
-      "base_design_id": "D0042",
-      "title_en": "Havana Capitol",
-      "title_es": "Capitolio de La Habana",
-      "slug": "havana-capitol",
-      "variants": [
-        "D0042-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_02.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_02.png"
-    },
-    {
-      "order": 43,
-      "base_design_id": "D0043",
-      "title_en": "Easter Island Moai",
-      "title_es": "Moáis de la Isla de Pascua",
-      "slug": "easter-island-moai",
-      "variants": [
-        "D0043-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_03.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_03.png"
-    },
-    {
-      "order": 44,
-      "base_design_id": "D0044",
-      "title_en": "Bali Temple Gate",
-      "title_es": "Puerta de templo de Bali",
-      "slug": "bali-temple-gate",
-      "variants": [
-        "D0044-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_04.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_04.png"
-    },
-    {
-      "order": 45,
-      "base_design_id": "D0045",
-      "title_en": "Mykonos Windmills",
-      "title_es": "Molinos de Mykonos",
-      "slug": "mykonos-windmills",
-      "variants": [
-        "D0045-CS"
-      ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_05.png",
-      "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
-      "target_master_grid": {
-        "width": 100,
-        "height": 120,
-        "max_long_side_stitches": 120
-      },
-      "target_chart_pages": 4,
-      "source_colour_count": 50,
-      "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_05.png"
-    },
-    {
-      "order": 46,
+      "order": 10,
       "base_design_id": "D0046",
-      "title_en": "Cape Town Table Mountain",
-      "title_es": "Montaña de la Mesa de Ciudad del Cabo",
+      "title_en": "Table Mountain, Cape Town",
+      "title_es": "Table Mountain, Ciudad del Cabo",
+      "product_title_en": "Table Mountain, Cape Town Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Table Mountain, Ciudad del Cabo",
       "slug": "cape-town-table-mountain",
       "variants": [
         "D0046-CS"
       ],
-      "artwork_status": "approved-conceptual-realistic-zip-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_06.png",
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0046-cape-town-table-mountain.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0046-cape-town-table-mountain.png",
       "palette_mode": "per-design",
       "palette_status": "ready-for-direct-png-dmc-map",
       "target_master_grid": {
@@ -1098,24 +299,1108 @@
         "max_long_side_stitches": 120
       },
       "target_chart_pages": 4,
-      "source_colour_count": 48,
+      "source_colour_count": 50,
       "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_06.png",
-      "source_zip": "collections/iconic-destinations/assets/iconic-batch-01-clean-q50.zip",
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0046",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
       "source_zip_member": "D0046-cape-town-table-mountain.png",
-      "source_style": "conceptual-realistic-illustration"
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 11,
+      "base_design_id": "D0061",
+      "title_en": "Meteora Monasteries, Greece",
+      "title_es": "Monasterios de Meteora, Grecia",
+      "product_title_en": "Meteora Monasteries, Greece Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Monasterios de Meteora, Grecia",
+      "slug": "meteora-monasteries",
+      "variants": [
+        "D0061-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0061-meteora-monasteries.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0061-meteora-monasteries.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0061",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0061-meteora-monasteries.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 12,
+      "base_design_id": "D0062",
+      "title_en": "Lake Bled, Slovenia",
+      "title_es": "Lago Bled, Eslovenia",
+      "product_title_en": "Lake Bled, Slovenia Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Lago Bled, Eslovenia",
+      "slug": "lake-bled",
+      "variants": [
+        "D0062-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0062-lake-bled.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0062-lake-bled.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0062",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0062-lake-bled.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 13,
+      "base_design_id": "D0063",
+      "title_en": "The Treasury, Petra",
+      "title_es": "El Tesoro de Petra, Jordania",
+      "product_title_en": "The Treasury, Petra Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: El Tesoro de Petra, Jordania",
+      "slug": "petra-treasury",
+      "variants": [
+        "D0063-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0063-petra-treasury.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0063-petra-treasury.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0063",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0063-petra-treasury.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 14,
+      "base_design_id": "D0064",
+      "title_en": "Angkor Wat, Cambodia",
+      "title_es": "Angkor Wat, Camboya",
+      "product_title_en": "Angkor Wat, Cambodia Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Angkor Wat, Camboya",
+      "slug": "angkor-wat",
+      "variants": [
+        "D0064-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0064-angkor-wat.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0064-angkor-wat.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0064",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0064-angkor-wat.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 15,
+      "base_design_id": "D0065",
+      "title_en": "Mont-Saint-Michel, France",
+      "title_es": "Mont-Saint-Michel, Francia",
+      "product_title_en": "Mont-Saint-Michel, France Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Mont-Saint-Michel, Francia",
+      "slug": "mont-saint-michel",
+      "variants": [
+        "D0065-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0065-mont-saint-michel.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0065-mont-saint-michel.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0065",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0065-mont-saint-michel.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 16,
+      "base_design_id": "D0066",
+      "title_en": "Hallstatt, Austria",
+      "title_es": "Hallstatt, Austria",
+      "product_title_en": "Hallstatt, Austria Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Hallstatt, Austria",
+      "slug": "hallstatt-lakeside-village",
+      "variants": [
+        "D0066-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0066-hallstatt-lakeside-village.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0066-hallstatt-lakeside-village.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0066",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0066-hallstatt-lakeside-village.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 17,
+      "base_design_id": "D0067",
+      "title_en": "Neuschwanstein Castle, Germany",
+      "title_es": "Castillo de Neuschwanstein, Alemania",
+      "product_title_en": "Neuschwanstein Castle, Germany Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Castillo de Neuschwanstein, Alemania",
+      "slug": "neuschwanstein-castle",
+      "variants": [
+        "D0067-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0067-neuschwanstein-castle.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0067-neuschwanstein-castle.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0067",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0067-neuschwanstein-castle.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 18,
+      "base_design_id": "D0068",
+      "title_en": "Cinque Terre, Italy",
+      "title_es": "Cinque Terre, Italia",
+      "product_title_en": "Cinque Terre, Italy Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Cinque Terre, Italia",
+      "slug": "cinque-terre-village",
+      "variants": [
+        "D0068-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0068-cinque-terre-village.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0068-cinque-terre-village.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0068",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0068-cinque-terre-village.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 19,
+      "base_design_id": "D0069",
+      "title_en": "Canals of Bruges, Belgium",
+      "title_es": "Canales de Brujas, Bélgica",
+      "product_title_en": "Canals of Bruges, Belgium Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Canales de Brujas, Bélgica",
+      "slug": "bruges-canals",
+      "variants": [
+        "D0069-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0069-bruges-canals.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0069-bruges-canals.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0069",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0069-bruges-canals.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 20,
+      "base_design_id": "D0070",
+      "title_en": "Bagan Temples, Myanmar",
+      "title_es": "Templos de Bagan, Myanmar",
+      "product_title_en": "Bagan Temples, Myanmar Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Templos de Bagan, Myanmar",
+      "slug": "bagan-temples-and-balloons",
+      "variants": [
+        "D0070-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0070-bagan-temples-and-balloons.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0070-bagan-temples-and-balloons.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0070",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0070-bagan-temples-and-balloons.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 21,
+      "base_design_id": "D0071",
+      "title_en": "Salar de Uyuni, Bolivia",
+      "title_es": "Salar de Uyuni, Bolivia",
+      "product_title_en": "Salar de Uyuni, Bolivia Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Salar de Uyuni, Bolivia",
+      "slug": "salar-de-uyuni",
+      "variants": [
+        "D0071-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0071-salar-de-uyuni.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0071-salar-de-uyuni.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0071",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0071-salar-de-uyuni.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 22,
+      "base_design_id": "D0072",
+      "title_en": "Ha Long Bay, Vietnam",
+      "title_es": "Bahía de Ha Long, Vietnam",
+      "product_title_en": "Ha Long Bay, Vietnam Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Bahía de Ha Long, Vietnam",
+      "slug": "ha-long-bay",
+      "variants": [
+        "D0072-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0072-ha-long-bay.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0072-ha-long-bay.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0072",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0072-ha-long-bay.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 23,
+      "base_design_id": "D0073",
+      "title_en": "Pamukkale Terraces, Turkey",
+      "title_es": "Terrazas de Pamukkale, Turquía",
+      "product_title_en": "Pamukkale Terraces, Turkey Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Terrazas de Pamukkale, Turquía",
+      "slug": "pamukkale-terraces",
+      "variants": [
+        "D0073-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0073-pamukkale-terraces.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0073-pamukkale-terraces.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0073",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0073-pamukkale-terraces.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 24,
+      "base_design_id": "D0074",
+      "title_en": "Bay of Kotor, Montenegro",
+      "title_es": "Bahía de Kotor, Montenegro",
+      "product_title_en": "Bay of Kotor, Montenegro Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Bahía de Kotor, Montenegro",
+      "slug": "kotor-bay",
+      "variants": [
+        "D0074-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0074-kotor-bay.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0074-kotor-bay.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0074",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0074-kotor-bay.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 25,
+      "base_design_id": "D0075",
+      "title_en": "Moraine Lake, Canada",
+      "title_es": "Lago Moraine, Canadá",
+      "product_title_en": "Moraine Lake, Canada Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Lago Moraine, Canadá",
+      "slug": "moraine-lake",
+      "variants": [
+        "D0075-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0075-moraine-lake.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0075-moraine-lake.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0075",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0075-moraine-lake.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 26,
+      "base_design_id": "D0076",
+      "title_en": "Plitvice Lakes, Croatia",
+      "title_es": "Lagos de Plitvice, Croacia",
+      "product_title_en": "Plitvice Lakes, Croatia Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Lagos de Plitvice, Croacia",
+      "slug": "plitvice-lakes",
+      "variants": [
+        "D0076-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0076-plitvice-lakes.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0076-plitvice-lakes.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0076",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0076-plitvice-lakes.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 27,
+      "base_design_id": "D0077",
+      "title_en": "Giant's Causeway, Northern Ireland",
+      "title_es": "Calzada del Gigante, Irlanda del Norte",
+      "product_title_en": "Giant's Causeway, Northern Ireland Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Calzada del Gigante, Irlanda del Norte",
+      "slug": "giant-s-causeway",
+      "variants": [
+        "D0077-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0077-giant-s-causeway.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0077-giant-s-causeway.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0077",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0077-giant-s-causeway.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 28,
+      "base_design_id": "D0078",
+      "title_en": "Cappadocia, Turkey",
+      "title_es": "Capadocia, Turquía",
+      "product_title_en": "Cappadocia, Turkey Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Capadocia, Turquía",
+      "slug": "cappadocia-balloons",
+      "variants": [
+        "D0078-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0078-cappadocia-balloons.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0078-cappadocia-balloons.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0078",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0078-cappadocia-balloons.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 29,
+      "base_design_id": "D0079",
+      "title_en": "Ait Ben Haddou, Morocco",
+      "title_es": "Ait Ben Haddou, Marruecos",
+      "product_title_en": "Ait Ben Haddou, Morocco Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Ait Ben Haddou, Marruecos",
+      "slug": "ait-ben-haddou",
+      "variants": [
+        "D0079-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0079-ait-ben-haddou.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0079-ait-ben-haddou.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0079",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0079-ait-ben-haddou.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 30,
+      "base_design_id": "D0080",
+      "title_en": "Registan, Samarkand",
+      "title_es": "Registán, Samarcanda",
+      "product_title_en": "Registan, Samarkand Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Registán, Samarcanda",
+      "slug": "registan-samarkand",
+      "variants": [
+        "D0080-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0080-registan-samarkand.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0080-registan-samarkand.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0080",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0080-registan-samarkand.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 31,
+      "base_design_id": "D0081",
+      "title_en": "Hawa Mahal, Jaipur",
+      "title_es": "Hawa Mahal, Jaipur",
+      "product_title_en": "Hawa Mahal, Jaipur Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Hawa Mahal, Jaipur",
+      "slug": "hawa-mahal-jaipur",
+      "variants": [
+        "D0081-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0081-hawa-mahal-jaipur.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0081-hawa-mahal-jaipur.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0081",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0081-hawa-mahal-jaipur.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 32,
+      "base_design_id": "D0082",
+      "title_en": "Sheikh Zayed Grand Mosque, Abu Dhabi",
+      "title_es": "Gran Mezquita Sheikh Zayed, Abu Dabi",
+      "product_title_en": "Sheikh Zayed Grand Mosque, Abu Dhabi Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Gran Mezquita Sheikh Zayed, Abu Dabi",
+      "slug": "sheikh-zayed-grand-mosque",
+      "variants": [
+        "D0082-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0082-sheikh-zayed-grand-mosque.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0082-sheikh-zayed-grand-mosque.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0082",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0082-sheikh-zayed-grand-mosque.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 33,
+      "base_design_id": "D0083",
+      "title_en": "Blue City of Jodhpur, India",
+      "title_es": "Ciudad Azul de Jodhpur, India",
+      "product_title_en": "Blue City of Jodhpur, India Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Ciudad Azul de Jodhpur, India",
+      "slug": "jodhpur-blue-city",
+      "variants": [
+        "D0083-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0083-jodhpur-blue-city.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0083-jodhpur-blue-city.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0083",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0083-jodhpur-blue-city.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 34,
+      "base_design_id": "D0084",
+      "title_en": "Rila Monastery, Bulgaria",
+      "title_es": "Monasterio de Rila, Bulgaria",
+      "product_title_en": "Rila Monastery, Bulgaria Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Monasterio de Rila, Bulgaria",
+      "slug": "rila-monastery",
+      "variants": [
+        "D0084-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0084-rila-monastery.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0084-rila-monastery.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0084",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0084-rila-monastery.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 35,
+      "base_design_id": "D0085",
+      "title_en": "Old Town Dubrovnik, Croatia",
+      "title_es": "Casco antiguo de Dubrovnik, Croacia",
+      "product_title_en": "Old Town Dubrovnik, Croatia Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Casco antiguo de Dubrovnik, Croacia",
+      "slug": "dubrovnik-old-town",
+      "variants": [
+        "D0085-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0085-dubrovnik-old-town.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0085-dubrovnik-old-town.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0085",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0085-dubrovnik-old-town.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 36,
+      "base_design_id": "D0086",
+      "title_en": "Český Krumlov, Czech Republic",
+      "title_es": "Český Krumlov, República Checa",
+      "product_title_en": "Český Krumlov, Czech Republic Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Český Krumlov, República Checa",
+      "slug": "cesky-krumlov",
+      "variants": [
+        "D0086-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0086-cesky-krumlov.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0086-cesky-krumlov.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0086",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0086-cesky-krumlov.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 37,
+      "base_design_id": "D0087",
+      "title_en": "Pena Palace, Sintra",
+      "title_es": "Palacio da Pena, Sintra",
+      "product_title_en": "Pena Palace, Sintra Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Palacio da Pena, Sintra",
+      "slug": "pena-palace-sintra",
+      "variants": [
+        "D0087-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0087-pena-palace-sintra.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0087-pena-palace-sintra.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0087",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0087-pena-palace-sintra.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 38,
+      "base_design_id": "D0088",
+      "title_en": "Sighișoara, Romania",
+      "title_es": "Sighișoara, Rumanía",
+      "product_title_en": "Sighișoara, Romania Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Sighișoara, Rumanía",
+      "slug": "sighisoara-old-town",
+      "variants": [
+        "D0088-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0088-sighisoara-old-town.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0088-sighisoara-old-town.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0088",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0088-sighisoara-old-town.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 39,
+      "base_design_id": "D0089",
+      "title_en": "Rothenburg ob der Tauber, Germany",
+      "title_es": "Rothenburg ob der Tauber, Alemania",
+      "product_title_en": "Rothenburg ob der Tauber, Germany Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Rothenburg ob der Tauber, Alemania",
+      "slug": "rothenburg-ob-der-tauber",
+      "variants": [
+        "D0089-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0089-rothenburg-ob-der-tauber.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0089-rothenburg-ob-der-tauber.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0089",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0089-rothenburg-ob-der-tauber.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 40,
+      "base_design_id": "D0090",
+      "title_en": "Colmar, France",
+      "title_es": "Colmar, Francia",
+      "product_title_en": "Colmar, France Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Colmar, Francia",
+      "slug": "colmar-canals",
+      "variants": [
+        "D0090-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0090-colmar-canals.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0090-colmar-canals.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0090",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0090-colmar-canals.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 41,
+      "base_design_id": "D0091",
+      "title_en": "Bryce Canyon, Utah",
+      "title_es": "Bryce Canyon, Utah",
+      "product_title_en": "Bryce Canyon, Utah Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Bryce Canyon, Utah",
+      "slug": "bryce-canyon",
+      "variants": [
+        "D0091-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0091-bryce-canyon.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0091-bryce-canyon.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0091",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0091-bryce-canyon.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 42,
+      "base_design_id": "D0092",
+      "title_en": "Antelope Canyon, Arizona",
+      "title_es": "Antelope Canyon, Arizona",
+      "product_title_en": "Antelope Canyon, Arizona Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Antelope Canyon, Arizona",
+      "slug": "antelope-canyon",
+      "variants": [
+        "D0092-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0092-antelope-canyon.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0092-antelope-canyon.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0092",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0092-antelope-canyon.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 43,
+      "base_design_id": "D0093",
+      "title_en": "Monument Valley, USA",
+      "title_es": "Monument Valley, EE. UU.",
+      "product_title_en": "Monument Valley, USA Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Monument Valley, EE. UU.",
+      "slug": "monument-valley",
+      "variants": [
+        "D0093-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0093-monument-valley.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0093-monument-valley.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0093",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0093-monument-valley.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 44,
+      "base_design_id": "D0094",
+      "title_en": "Nā Pali Coast, Kauaʻi",
+      "title_es": "Costa Nā Pali, Kauaʻi",
+      "product_title_en": "Nā Pali Coast, Kauaʻi Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Costa Nā Pali, Kauaʻi",
+      "slug": "na-pali-coast-kauai",
+      "variants": [
+        "D0094-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0094-na-pali-coast-kauai.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0094-na-pali-coast-kauai.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0094",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0094-na-pali-coast-kauai.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 45,
+      "base_design_id": "D0095",
+      "title_en": "Bora Bora, French Polynesia",
+      "title_es": "Bora Bora, Polinesia Francesa",
+      "product_title_en": "Bora Bora, French Polynesia Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Bora Bora, Polinesia Francesa",
+      "slug": "bora-bora-lagoon",
+      "variants": [
+        "D0095-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0095-bora-bora-lagoon.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0095-bora-bora-lagoon.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0095",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0095-bora-bora-lagoon.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 46,
+      "base_design_id": "D0096",
+      "title_en": "Faroe Islands Village",
+      "title_es": "Pueblo de las Islas Feroe",
+      "product_title_en": "Faroe Islands Village Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Pueblo de las Islas Feroe",
+      "slug": "faroe-islands-village",
+      "variants": [
+        "D0096-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0096-faroe-islands-village.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0096-faroe-islands-village.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0096",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0096-faroe-islands-village.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
     },
     {
       "order": 47,
-      "base_design_id": "D0047",
-      "title_en": "Vatican St Peter Basilica",
-      "title_es": "Basílica de San Pedro del Vaticano",
-      "slug": "vatican-st-peter-basilica",
+      "base_design_id": "D0097",
+      "title_en": "Lofoten Islands, Norway",
+      "title_es": "Islas Lofoten, Noruega",
+      "product_title_en": "Lofoten Islands, Norway Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Islas Lofoten, Noruega",
+      "slug": "lofoten-islands",
       "variants": [
-        "D0047-CS"
+        "D0097-CS"
       ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_07.png",
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0097-lofoten-islands.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0097-lofoten-islands.png",
       "palette_mode": "per-design",
       "palette_status": "ready-for-direct-png-dmc-map",
       "target_master_grid": {
@@ -1126,19 +1411,26 @@
       "target_chart_pages": 4,
       "source_colour_count": 50,
       "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_07.png"
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0097",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0097-lofoten-islands.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
     },
     {
       "order": 48,
-      "base_design_id": "D0048",
-      "title_en": "Leaning Tower of Pisa",
-      "title_es": "Torre inclinada de Pisa",
-      "slug": "leaning-tower-pisa",
+      "base_design_id": "D0098",
+      "title_en": "Black Church and Aurora, Iceland",
+      "title_es": "Iglesia negra y aurora, Islandia",
+      "product_title_en": "Black Church and Aurora, Iceland Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Iglesia negra y aurora, Islandia",
+      "slug": "iceland-black-church-aurora",
       "variants": [
-        "D0048-CS"
+        "D0098-CS"
       ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_08.png",
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0098-iceland-black-church-aurora.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0098-iceland-black-church-aurora.png",
       "palette_mode": "per-design",
       "palette_status": "ready-for-direct-png-dmc-map",
       "target_master_grid": {
@@ -1149,19 +1441,26 @@
       "target_chart_pages": 4,
       "source_colour_count": 50,
       "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_08.png"
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0098",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0098-iceland-black-church-aurora.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
     },
     {
       "order": 49,
-      "base_design_id": "D0049",
-      "title_en": "Stonehenge",
-      "title_es": "Stonehenge",
-      "slug": "stonehenge",
+      "base_design_id": "D0099",
+      "title_en": "Geirangerfjord, Norway",
+      "title_es": "Geirangerfjord, Noruega",
+      "product_title_en": "Geirangerfjord, Norway Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Geirangerfjord, Noruega",
+      "slug": "geirangerfjord",
       "variants": [
-        "D0049-CS"
+        "D0099-CS"
       ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_09.png",
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0099-geirangerfjord.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0099-geirangerfjord.png",
       "palette_mode": "per-design",
       "palette_status": "ready-for-direct-png-dmc-map",
       "target_master_grid": {
@@ -1172,19 +1471,26 @@
       "target_chart_pages": 4,
       "source_colour_count": 50,
       "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_09.png"
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0099",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0099-geirangerfjord.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
     },
     {
       "order": 50,
-      "base_design_id": "D0050",
-      "title_en": "Moscow Saint Basil Cathedral",
-      "title_es": "Catedral de San Basilio de Moscú",
-      "slug": "moscow-saint-basil-cathedral",
+      "base_design_id": "D0100",
+      "title_en": "Torres del Paine, Chile",
+      "title_es": "Torres del Paine, Chile",
+      "product_title_en": "Torres del Paine, Chile Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Torres del Paine, Chile",
+      "slug": "torres-del-paine",
       "variants": [
-        "D0050-CS"
+        "D0100-CS"
       ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_05_10.png",
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0100-torres-del-paine.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0100-torres-del-paine.png",
       "palette_mode": "per-design",
       "palette_status": "ready-for-direct-png-dmc-map",
       "target_master_grid": {
@@ -1195,19 +1501,26 @@
       "target_chart_pages": 4,
       "source_colour_count": 50,
       "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_05_10.png"
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0100",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0100-torres-del-paine.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
     },
     {
       "order": 51,
-      "base_design_id": "D0051",
-      "title_en": "Positano Amalfi Coast",
-      "title_es": "Positano en la Costa Amalfitana",
-      "slug": "positano-amalfi-coast",
+      "base_design_id": "D0101",
+      "title_en": "Mount Kilimanjaro, Tanzania",
+      "title_es": "Monte Kilimanjaro, Tanzania",
+      "product_title_en": "Mount Kilimanjaro, Tanzania Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Monte Kilimanjaro, Tanzania",
+      "slug": "mount-kilimanjaro",
       "variants": [
-        "D0051-CS"
+        "D0101-CS"
       ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_06_01.png",
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0101-mount-kilimanjaro.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0101-mount-kilimanjaro.png",
       "palette_mode": "per-design",
       "palette_status": "ready-for-direct-png-dmc-map",
       "target_master_grid": {
@@ -1218,19 +1531,26 @@
       "target_chart_pages": 4,
       "source_colour_count": 50,
       "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_01.png"
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0101",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0101-mount-kilimanjaro.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
     },
     {
       "order": 52,
-      "base_design_id": "D0052",
-      "title_en": "Cinque Terre Village",
-      "title_es": "Pueblo de Cinque Terre",
-      "slug": "cinque-terre-village",
+      "base_design_id": "D0102",
+      "title_en": "Victoria Falls, Zambia / Zimbabwe",
+      "title_es": "Cataratas Victoria, Zambia / Zimbabue",
+      "product_title_en": "Victoria Falls, Zambia / Zimbabwe Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Cataratas Victoria, Zambia / Zimbabue",
+      "slug": "victoria-falls",
       "variants": [
-        "D0052-CS"
+        "D0102-CS"
       ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_06_02.png",
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0102-victoria-falls.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0102-victoria-falls.png",
       "palette_mode": "per-design",
       "palette_status": "ready-for-direct-png-dmc-map",
       "target_master_grid": {
@@ -1241,19 +1561,26 @@
       "target_chart_pages": 4,
       "source_colour_count": 50,
       "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_02.png"
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0102",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0102-victoria-falls.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
     },
     {
       "order": 53,
-      "base_design_id": "D0053",
-      "title_en": "Tokyo Tower and Fuji",
-      "title_es": "Torre de Tokio y Monte Fuji",
-      "slug": "tokyo-tower-fuji",
+      "base_design_id": "D0103",
+      "title_en": "Chefchaouen, Morocco",
+      "title_es": "Chefchaouen, Marruecos",
+      "product_title_en": "Chefchaouen, Morocco Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Chefchaouen, Marruecos",
+      "slug": "chefchaouen-blue-city",
       "variants": [
-        "D0053-CS"
+        "D0103-CS"
       ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_06_03.png",
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0103-chefchaouen-blue-city.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0103-chefchaouen-blue-city.png",
       "palette_mode": "per-design",
       "palette_status": "ready-for-direct-png-dmc-map",
       "target_master_grid": {
@@ -1264,19 +1591,26 @@
       "target_chart_pages": 4,
       "source_colour_count": 50,
       "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_03.png"
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0103",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0103-chefchaouen-blue-city.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
     },
     {
       "order": 54,
-      "base_design_id": "D0054",
-      "title_en": "Singapore Marina Bay",
-      "title_es": "Marina Bay de Singapur",
-      "slug": "singapore-marina-bay",
+      "base_design_id": "D0104",
+      "title_en": "Lalibela Rock Churches, Ethiopia",
+      "title_es": "Iglesias excavadas de Lalibela, Etiopía",
+      "product_title_en": "Lalibela Rock Churches, Ethiopia Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Iglesias excavadas de Lalibela, Etiopía",
+      "slug": "lalibela-rock-churches",
       "variants": [
-        "D0054-CS"
+        "D0104-CS"
       ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_06_04.png",
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0104-lalibela-rock-churches.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0104-lalibela-rock-churches.png",
       "palette_mode": "per-design",
       "palette_status": "ready-for-direct-png-dmc-map",
       "target_master_grid": {
@@ -1287,19 +1621,26 @@
       "target_chart_pages": 4,
       "source_colour_count": 50,
       "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_04.png"
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0104",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0104-lalibela-rock-churches.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
     },
     {
       "order": 55,
-      "base_design_id": "D0055",
-      "title_en": "Hong Kong Victoria Harbour",
-      "title_es": "Victoria Harbour de Hong Kong",
-      "slug": "hong-kong-victoria-harbour",
+      "base_design_id": "D0105",
+      "title_en": "Stone Town, Zanzibar",
+      "title_es": "Stone Town, Zanzíbar",
+      "product_title_en": "Stone Town, Zanzibar Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Stone Town, Zanzíbar",
+      "slug": "zanzibar-stone-town",
       "variants": [
-        "D0055-CS"
+        "D0105-CS"
       ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_06_05.png",
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0105-zanzibar-stone-town.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0105-zanzibar-stone-town.png",
       "palette_mode": "per-design",
       "palette_status": "ready-for-direct-png-dmc-map",
       "target_master_grid": {
@@ -1310,19 +1651,26 @@
       "target_chart_pages": 4,
       "source_colour_count": 50,
       "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_05.png"
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0105",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0105-zanzibar-stone-town.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
     },
     {
       "order": 56,
-      "base_design_id": "D0056",
-      "title_en": "Shanghai Pudong Skyline",
-      "title_es": "Skyline de Pudong en Shanghái",
-      "slug": "shanghai-pudong-skyline",
+      "base_design_id": "D0106",
+      "title_en": "Namib Desert, Namibia",
+      "title_es": "Desierto del Namib, Namibia",
+      "product_title_en": "Namib Desert, Namibia Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Desierto del Namib, Namibia",
+      "slug": "namib-desert",
       "variants": [
-        "D0056-CS"
+        "D0106-CS"
       ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_06_06.png",
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0106-namib-desert.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0106-namib-desert.png",
       "palette_mode": "per-design",
       "palette_status": "ready-for-direct-png-dmc-map",
       "target_master_grid": {
@@ -1333,19 +1681,26 @@
       "target_chart_pages": 4,
       "source_colour_count": 50,
       "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_06.png"
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0106",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0106-namib-desert.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
     },
     {
       "order": 57,
-      "base_design_id": "D0057",
-      "title_en": "Seoul Gyeongbokgung Palace",
-      "title_es": "Palacio Gyeongbokgung de Seúl",
-      "slug": "seoul-gyeongbokgung-palace",
+      "base_design_id": "D0107",
+      "title_en": "Avenue of the Baobabs, Madagascar",
+      "title_es": "Avenida de los Baobabs, Madagascar",
+      "product_title_en": "Avenue of the Baobabs, Madagascar Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Avenida de los Baobabs, Madagascar",
+      "slug": "avenue-of-the-baobabs",
       "variants": [
-        "D0057-CS"
+        "D0107-CS"
       ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_06_07.png",
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0107-avenue-of-the-baobabs.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0107-avenue-of-the-baobabs.png",
       "palette_mode": "per-design",
       "palette_status": "ready-for-direct-png-dmc-map",
       "target_master_grid": {
@@ -1356,19 +1711,26 @@
       "target_chart_pages": 4,
       "source_colour_count": 50,
       "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_07.png"
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0107",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0107-avenue-of-the-baobabs.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
     },
     {
       "order": 58,
-      "base_design_id": "D0058",
-      "title_en": "Chefchaouen Blue City",
-      "title_es": "Ciudad azul de Chefchaouen",
-      "slug": "chefchaouen-blue-city",
+      "base_design_id": "D0108",
+      "title_en": "Blyde River Canyon, South Africa",
+      "title_es": "Blyde River Canyon, Sudáfrica",
+      "product_title_en": "Blyde River Canyon, South Africa Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Blyde River Canyon, Sudáfrica",
+      "slug": "blyde-river-canyon",
       "variants": [
-        "D0058-CS"
+        "D0108-CS"
       ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_06_08.png",
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0108-blyde-river-canyon.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0108-blyde-river-canyon.png",
       "palette_mode": "per-design",
       "palette_status": "ready-for-direct-png-dmc-map",
       "target_master_grid": {
@@ -1379,19 +1741,26 @@
       "target_chart_pages": 4,
       "source_colour_count": 50,
       "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_08.png"
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0108",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0108-blyde-river-canyon.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
     },
     {
       "order": 59,
-      "base_design_id": "D0059",
-      "title_en": "Marrakech Koutoubia Mosque",
-      "title_es": "Mezquita Koutoubia de Marrakech",
-      "slug": "marrakech-koutoubia-mosque",
+      "base_design_id": "D0109",
+      "title_en": "Le Morne Brabant, Mauritius",
+      "title_es": "Le Morne Brabant, Mauricio",
+      "product_title_en": "Le Morne Brabant, Mauritius Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Le Morne Brabant, Mauricio",
+      "slug": "le-morne-mauritius",
       "variants": [
-        "D0059-CS"
+        "D0109-CS"
       ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_06_09.png",
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0109-le-morne-mauritius.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0109-le-morne-mauritius.png",
       "palette_mode": "per-design",
       "palette_status": "ready-for-direct-png-dmc-map",
       "target_master_grid": {
@@ -1402,19 +1771,26 @@
       "target_chart_pages": 4,
       "source_colour_count": 50,
       "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_09.png"
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0109",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0109-le-morne-mauritius.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
     },
     {
       "order": 60,
-      "base_design_id": "D0060",
-      "title_en": "Bagan Temples and Balloons",
-      "title_es": "Templos y globos de Bagan",
-      "slug": "bagan-temples-balloons",
+      "base_design_id": "D0110",
+      "title_en": "Sagrada Familia, Barcelona",
+      "title_es": "Sagrada Família, Barcelona",
+      "product_title_en": "Sagrada Família, Barcelona Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Sagrada Família, Barcelona",
+      "slug": "sagrada-familia-barcelona",
       "variants": [
-        "D0060-CS"
+        "D0110-CS"
       ],
-      "artwork_status": "approved-zip-individual-png-100x120",
-      "source_asset": "collections/iconic-destinations/input-pngs-q50/destino_06_10.png",
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0110-sagrada-familia-barcelona.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0110-sagrada-familia-barcelona.png",
       "palette_mode": "per-design",
       "palette_status": "ready-for-direct-png-dmc-map",
       "target_master_grid": {
@@ -1425,8 +1801,1211 @@
       "target_chart_pages": 4,
       "source_colour_count": 50,
       "dmc_colour_count": null,
-      "input_png": "collections/iconic-destinations/input-pngs-q50/destino_06_10.png"
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0110",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0110-sagrada-familia-barcelona.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 61,
+      "base_design_id": "D0111",
+      "title_en": "Fushimi Inari, Kyoto",
+      "title_es": "Fushimi Inari, Kioto",
+      "product_title_en": "Fushimi Inari, Kyoto Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Fushimi Inari, Kioto",
+      "slug": "fushimi-inari-kyoto",
+      "variants": [
+        "D0111-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0111-fushimi-inari-kyoto.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0111-fushimi-inari-kyoto.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0111",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0111-fushimi-inari-kyoto.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 62,
+      "base_design_id": "D0112",
+      "title_en": "Himeji Castle, Japan",
+      "title_es": "Castillo de Himeji, Japón",
+      "product_title_en": "Himeji Castle, Japan Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Castillo de Himeji, Japón",
+      "slug": "himeji-castle",
+      "variants": [
+        "D0112-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0112-himeji-castle.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0112-himeji-castle.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0112",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0112-himeji-castle.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 63,
+      "base_design_id": "D0113",
+      "title_en": "Seongsan Ilchulbong, Jeju",
+      "title_es": "Seongsan Ilchulbong, Jeju",
+      "product_title_en": "Seongsan Ilchulbong, Jeju Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Seongsan Ilchulbong, Jeju",
+      "slug": "jeju-seongsan-ilchulbong",
+      "variants": [
+        "D0113-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0113-jeju-seongsan-ilchulbong.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0113-jeju-seongsan-ilchulbong.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0113",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0113-jeju-seongsan-ilchulbong.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 64,
+      "base_design_id": "D0114",
+      "title_en": "Durbar Square, Kathmandu",
+      "title_es": "Plaza Durbar, Katmandú",
+      "product_title_en": "Durbar Square, Kathmandu Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Plaza Durbar, Katmandú",
+      "slug": "kathmandu-durbar-square",
+      "variants": [
+        "D0114-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0114-kathmandu-durbar-square.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0114-kathmandu-durbar-square.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0114",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0114-kathmandu-durbar-square.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 65,
+      "base_design_id": "D0115",
+      "title_en": "Luang Prabang Temple, Laos",
+      "title_es": "Templo de Luang Prabang, Laos",
+      "product_title_en": "Luang Prabang Temple, Laos Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Templo de Luang Prabang, Laos",
+      "slug": "luang-prabang-temple",
+      "variants": [
+        "D0115-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0115-luang-prabang-temple.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0115-luang-prabang-temple.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0115",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0115-luang-prabang-temple.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 66,
+      "base_design_id": "D0116",
+      "title_en": "Borobudur, Indonesia",
+      "title_es": "Borobudur, Indonesia",
+      "product_title_en": "Borobudur, Indonesia Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Borobudur, Indonesia",
+      "slug": "borobudur-temple",
+      "variants": [
+        "D0116-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0116-borobudur-temple.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0116-borobudur-temple.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0116",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0116-borobudur-temple.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 67,
+      "base_design_id": "D0117",
+      "title_en": "Jiufen Old Street, Taiwan",
+      "title_es": "Jiufen Old Street, Taiwán",
+      "product_title_en": "Jiufen Old Street, Taiwan Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Jiufen Old Street, Taiwán",
+      "slug": "jiufen-old-street",
+      "variants": [
+        "D0117-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0117-jiufen-old-street.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0117-jiufen-old-street.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0117",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0117-jiufen-old-street.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 68,
+      "base_design_id": "D0118",
+      "title_en": "Victoria Harbour, Hong Kong",
+      "title_es": "Victoria Harbour, Hong Kong",
+      "product_title_en": "Victoria Harbour, Hong Kong Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Victoria Harbour, Hong Kong",
+      "slug": "hong-kong-victoria-harbour",
+      "variants": [
+        "D0118-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0118-hong-kong-victoria-harbour.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0118-hong-kong-victoria-harbour.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0118",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0118-hong-kong-victoria-harbour.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 69,
+      "base_design_id": "D0119",
+      "title_en": "Palawan Lagoons, Philippines",
+      "title_es": "Lagunas de Palawan, Filipinas",
+      "product_title_en": "Palawan Lagoons, Philippines Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Lagunas de Palawan, Filipinas",
+      "slug": "palawan-lagoons",
+      "variants": [
+        "D0119-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0119-palawan-lagoons.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0119-palawan-lagoons.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0119",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0119-palawan-lagoons.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 70,
+      "base_design_id": "D0120",
+      "title_en": "Gyeongbokgung Palace, Seoul",
+      "title_es": "Palacio Gyeongbokgung, Seúl",
+      "product_title_en": "Gyeongbokgung Palace, Seoul Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Palacio Gyeongbokgung, Seúl",
+      "slug": "gyeongbokgung-palace",
+      "variants": [
+        "D0120-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0120-gyeongbokgung-palace.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0120-gyeongbokgung-palace.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0120",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0120-gyeongbokgung-palace.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 71,
+      "base_design_id": "D0121",
+      "title_en": "Yosemite Valley, California",
+      "title_es": "Valle de Yosemite, California",
+      "product_title_en": "Yosemite Valley, California Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Valle de Yosemite, California",
+      "slug": "yosemite-valley",
+      "variants": [
+        "D0121-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0121-yosemite-valley.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0121-yosemite-valley.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0121",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0121-yosemite-valley.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 72,
+      "base_design_id": "D0122",
+      "title_en": "Horseshoe Bend, Arizona",
+      "title_es": "Horseshoe Bend, Arizona",
+      "product_title_en": "Horseshoe Bend, Arizona Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Horseshoe Bend, Arizona",
+      "slug": "horseshoe-bend",
+      "variants": [
+        "D0122-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0122-horseshoe-bend.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0122-horseshoe-bend.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0122",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0122-horseshoe-bend.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 73,
+      "base_design_id": "D0123",
+      "title_en": "Sedona Red Rocks, Arizona",
+      "title_es": "Rocas rojas de Sedona, Arizona",
+      "product_title_en": "Sedona Red Rocks, Arizona Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Rocas rojas de Sedona, Arizona",
+      "slug": "sedona-red-rocks",
+      "variants": [
+        "D0123-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0123-sedona-red-rocks.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0123-sedona-red-rocks.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0123",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0123-sedona-red-rocks.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 74,
+      "base_design_id": "D0124",
+      "title_en": "Château Frontenac, Québec City",
+      "title_es": "Château Frontenac, Ciudad de Québec",
+      "product_title_en": "Château Frontenac, Québec City Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Château Frontenac, Ciudad de Québec",
+      "slug": "chateau-frontenac-quebec",
+      "variants": [
+        "D0124-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0124-chateau-frontenac-quebec.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0124-chateau-frontenac-quebec.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0124",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0124-chateau-frontenac-quebec.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 75,
+      "base_design_id": "D0125",
+      "title_en": "Old Havana, Cuba",
+      "title_es": "La Habana Vieja, Cuba",
+      "product_title_en": "Old Havana, Cuba Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: La Habana Vieja, Cuba",
+      "slug": "havana-old-town",
+      "variants": [
+        "D0125-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0125-havana-old-town.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0125-havana-old-town.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0125",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0125-havana-old-town.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 76,
+      "base_design_id": "D0126",
+      "title_en": "Cartagena Walled City, Colombia",
+      "title_es": "Ciudad amurallada de Cartagena, Colombia",
+      "product_title_en": "Cartagena Walled City, Colombia Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Ciudad amurallada de Cartagena, Colombia",
+      "slug": "cartagena-walled-city",
+      "variants": [
+        "D0126-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0126-cartagena-walled-city.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0126-cartagena-walled-city.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0126",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0126-cartagena-walled-city.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 77,
+      "base_design_id": "D0127",
+      "title_en": "Chichén Itzá, Mexico",
+      "title_es": "Chichén Itzá, México",
+      "product_title_en": "Chichén Itzá, Mexico Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Chichén Itzá, México",
+      "slug": "chichen-itza",
+      "variants": [
+        "D0127-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0127-chichen-itza.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0127-chichen-itza.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0127",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0127-chichen-itza.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 78,
+      "base_design_id": "D0128",
+      "title_en": "Tikal, Guatemala",
+      "title_es": "Tikal, Guatemala",
+      "product_title_en": "Tikal, Guatemala Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Tikal, Guatemala",
+      "slug": "tikal-mayan-temples",
+      "variants": [
+        "D0128-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0128-tikal-mayan-temples.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0128-tikal-mayan-temples.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0128",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0128-tikal-mayan-temples.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 79,
+      "base_design_id": "D0129",
+      "title_en": "Moai of Easter Island, Chile",
+      "title_es": "Moáis de Isla de Pascua, Chile",
+      "product_title_en": "Moai of Easter Island, Chile Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Moáis de Isla de Pascua, Chile",
+      "slug": "easter-island-moai",
+      "variants": [
+        "D0129-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0129-easter-island-moai.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0129-easter-island-moai.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0129",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0129-easter-island-moai.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 80,
+      "base_design_id": "D0130",
+      "title_en": "Golden Gate Bridge, San Francisco",
+      "title_es": "Golden Gate Bridge, San Francisco",
+      "product_title_en": "Golden Gate Bridge, San Francisco Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Golden Gate Bridge, San Francisco",
+      "slug": "golden-gate-bridge",
+      "variants": [
+        "D0130-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0130-golden-gate-bridge.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0130-golden-gate-bridge.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0130",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0130-golden-gate-bridge.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 81,
+      "base_design_id": "D0131",
+      "title_en": "Positano, Amalfi Coast",
+      "title_es": "Positano, Costa Amalfitana",
+      "product_title_en": "Positano, Amalfi Coast Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Positano, Costa Amalfitana",
+      "slug": "positano-amalfi-coast",
+      "variants": [
+        "D0131-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0131-positano-amalfi-coast.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0131-positano-amalfi-coast.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0131",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0131-positano-amalfi-coast.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 82,
+      "base_design_id": "D0132",
+      "title_en": "Alberobello, Italy",
+      "title_es": "Alberobello, Italia",
+      "product_title_en": "Alberobello, Italy Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Alberobello, Italia",
+      "slug": "alberobello-trulli",
+      "variants": [
+        "D0132-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0132-alberobello-trulli.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0132-alberobello-trulli.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0132",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0132-alberobello-trulli.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 83,
+      "base_design_id": "D0133",
+      "title_en": "Sete Cidades, Azores",
+      "title_es": "Sete Cidades, Azores",
+      "product_title_en": "Sete Cidades, Azores Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Sete Cidades, Azores",
+      "slug": "sete-cidades-azores",
+      "variants": [
+        "D0133-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0133-sete-cidades-azores.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0133-sete-cidades-azores.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0133",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0133-sete-cidades-azores.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 84,
+      "base_design_id": "D0134",
+      "title_en": "Bryggen, Bergen",
+      "title_es": "Bryggen, Bergen",
+      "product_title_en": "Bryggen, Bergen Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Bryggen, Bergen",
+      "slug": "bergen-bryggen",
+      "variants": [
+        "D0134-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0134-bergen-bryggen.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0134-bergen-bryggen.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0134",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0134-bergen-bryggen.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 85,
+      "base_design_id": "D0135",
+      "title_en": "Old Town Tallinn, Estonia",
+      "title_es": "Casco antiguo de Tallin, Estonia",
+      "product_title_en": "Old Town Tallinn, Estonia Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Casco antiguo de Tallin, Estonia",
+      "slug": "tallinn-old-town",
+      "variants": [
+        "D0135-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0135-tallinn-old-town.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0135-tallinn-old-town.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0135",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0135-tallinn-old-town.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 86,
+      "base_design_id": "D0136",
+      "title_en": "Charles Bridge, Prague",
+      "title_es": "Puente de Carlos, Praga",
+      "product_title_en": "Charles Bridge, Prague Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Puente de Carlos, Praga",
+      "slug": "prague-charles-bridge",
+      "variants": [
+        "D0136-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0136-prague-charles-bridge.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0136-prague-charles-bridge.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0136",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0136-prague-charles-bridge.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 87,
+      "base_design_id": "D0137",
+      "title_en": "Hungarian Parliament, Budapest",
+      "title_es": "Parlamento de Hungría, Budapest",
+      "product_title_en": "Hungarian Parliament, Budapest Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Parlamento de Hungría, Budapest",
+      "slug": "budapest-parliament",
+      "variants": [
+        "D0137-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0137-budapest-parliament.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0137-budapest-parliament.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0137",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0137-budapest-parliament.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 88,
+      "base_design_id": "D0138",
+      "title_en": "Lauterbrunnen Valley, Switzerland",
+      "title_es": "Valle de Lauterbrunnen, Suiza",
+      "product_title_en": "Lauterbrunnen Valley, Switzerland Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Valle de Lauterbrunnen, Suiza",
+      "slug": "lauterbrunnen-valley",
+      "variants": [
+        "D0138-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0138-lauterbrunnen-valley.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0138-lauterbrunnen-valley.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0138",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0138-lauterbrunnen-valley.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 89,
+      "base_design_id": "D0139",
+      "title_en": "Stari Most, Mostar",
+      "title_es": "Stari Most, Mostar",
+      "product_title_en": "Stari Most, Mostar Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Stari Most, Mostar",
+      "slug": "mostar-old-bridge",
+      "variants": [
+        "D0139-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0139-mostar-old-bridge.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0139-mostar-old-bridge.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0139",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0139-mostar-old-bridge.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 90,
+      "base_design_id": "D0140",
+      "title_en": "Portofino, Italy",
+      "title_es": "Portofino, Italia",
+      "product_title_en": "Portofino, Italy Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Portofino, Italia",
+      "slug": "portofino-harbor",
+      "variants": [
+        "D0140-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0140-portofino-harbor.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0140-portofino-harbor.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0140",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0140-portofino-harbor.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 91,
+      "base_design_id": "D0141",
+      "title_en": "Wadi Rum, Jordan",
+      "title_es": "Wadi Rum, Jordania",
+      "product_title_en": "Wadi Rum, Jordan Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Wadi Rum, Jordania",
+      "slug": "wadi-rum",
+      "variants": [
+        "D0141-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0141-wadi-rum.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0141-wadi-rum.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0141",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0141-wadi-rum.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 92,
+      "base_design_id": "D0142",
+      "title_en": "Acropolis, Athens",
+      "title_es": "Acrópolis de Atenas, Grecia",
+      "product_title_en": "Acropolis, Athens Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Acrópolis de Atenas, Grecia",
+      "slug": "athens-acropolis",
+      "variants": [
+        "D0142-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0142-athens-acropolis.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0142-athens-acropolis.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0142",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0142-athens-acropolis.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 93,
+      "base_design_id": "D0143",
+      "title_en": "Old City of Jerusalem",
+      "title_es": "Ciudad Vieja de Jerusalén",
+      "product_title_en": "Old City of Jerusalem Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Ciudad Vieja de Jerusalén",
+      "slug": "jerusalem-old-city",
+      "variants": [
+        "D0143-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0143-jerusalem-old-city.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0143-jerusalem-old-city.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0143",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0143-jerusalem-old-city.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 94,
+      "base_design_id": "D0144",
+      "title_en": "Machu Picchu, Peru",
+      "title_es": "Machu Picchu, Perú",
+      "product_title_en": "Machu Picchu, Peru Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Machu Picchu, Perú",
+      "slug": "machu-picchu",
+      "variants": [
+        "D0144-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0144-machu-picchu.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0144-machu-picchu.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0144",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0144-machu-picchu.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 95,
+      "base_design_id": "D0145",
+      "title_en": "Iguazú Falls, Argentina / Brazil",
+      "title_es": "Cataratas del Iguazú, Argentina / Brasil",
+      "product_title_en": "Iguazú Falls, Argentina / Brazil Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Cataratas del Iguazú, Argentina / Brasil",
+      "slug": "iguazu-falls",
+      "variants": [
+        "D0145-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0145-iguazu-falls.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0145-iguazu-falls.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0145",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0145-iguazu-falls.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 96,
+      "base_design_id": "D0146",
+      "title_en": "Perito Moreno Glacier, Argentina",
+      "title_es": "Glaciar Perito Moreno, Argentina",
+      "product_title_en": "Perito Moreno Glacier, Argentina Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Glaciar Perito Moreno, Argentina",
+      "slug": "perito-moreno-glacier",
+      "variants": [
+        "D0146-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0146-perito-moreno-glacier.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0146-perito-moreno-glacier.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0146",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0146-perito-moreno-glacier.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 97,
+      "base_design_id": "D0147",
+      "title_en": "Saint Basil's Cathedral, Moscow",
+      "title_es": "Catedral de San Basilio, Moscú",
+      "product_title_en": "Saint Basil's Cathedral, Moscow Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Catedral de San Basilio, Moscú",
+      "slug": "saint-basil-cathedral",
+      "variants": [
+        "D0147-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0147-saint-basil-cathedral.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0147-saint-basil-cathedral.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0147",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0147-saint-basil-cathedral.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 98,
+      "base_design_id": "D0148",
+      "title_en": "Alhambra, Granada",
+      "title_es": "Alhambra, Granada",
+      "product_title_en": "Alhambra, Granada Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Alhambra, Granada",
+      "slug": "alhambra-granada",
+      "variants": [
+        "D0148-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0148-alhambra-granada.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0148-alhambra-granada.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0148",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0148-alhambra-granada.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 99,
+      "base_design_id": "D0149",
+      "title_en": "Persepolis, Iran",
+      "title_es": "Persépolis, Irán",
+      "product_title_en": "Persepolis, Iran Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Persépolis, Irán",
+      "slug": "persepolis",
+      "variants": [
+        "D0149-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0149-persepolis.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0149-persepolis.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0149",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0149-persepolis.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
+    },
+    {
+      "order": 100,
+      "base_design_id": "D0150",
+      "title_en": "Blue Mosque, Istanbul",
+      "title_es": "Mezquita Azul, Estambul",
+      "product_title_en": "Blue Mosque, Istanbul Cross Stitch Pattern PDF",
+      "product_title_es": "Patrón de punto de cruz: Mezquita Azul, Estambul",
+      "slug": "istanbul-blue-mosque",
+      "variants": [
+        "D0150-CS"
+      ],
+      "artwork_status": "approved-manifest-individual-png-100x120",
+      "source_asset": "collections/iconic-destinations/input-pngs-q50/current/D0150-istanbul-blue-mosque.png",
+      "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0150-istanbul-blue-mosque.png",
+      "palette_mode": "per-design",
+      "palette_status": "ready-for-direct-png-dmc-map",
+      "target_master_grid": {
+        "width": 100,
+        "height": 120,
+        "max_long_side_stitches": 120
+      },
+      "target_chart_pages": 4,
+      "source_colour_count": 50,
+      "dmc_colour_count": null,
+      "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+      "source_manifest_item": "D0150",
+      "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
+      "source_zip_member": "D0150-istanbul-blue-mosque.png",
+      "source_style": "audited-vivid-premium-cross-stitch"
     }
-  ],
-  "source_policy": "individual-pngs-from-approved-clean-batch-zips-only"
+  ]
 }

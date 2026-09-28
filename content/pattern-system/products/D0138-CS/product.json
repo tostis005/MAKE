@@ -1,0 +1,23 @@
+{
+  "code": "D0138-CS",
+  "base_design_id": "D0138",
+  "technique_code": "CS",
+  "collection": "iconic-destinations",
+  "title": "Lauterbrunnen Valley, Switzerland Cross Stitch Pattern PDF",
+  "title_en": "Lauterbrunnen Valley, Switzerland Cross Stitch Pattern PDF",
+  "title_es": "Patrón de punto de cruz: Valle de Lauterbrunnen, Suiza",
+  "design_title_en": "Lauterbrunnen Valley, Switzerland",
+  "design_title_es": "Valle de Lauterbrunnen, Suiza",
+  "design_slug": "lauterbrunnen-valley",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/D0138-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "renderer": "multitech",
+  "source_artwork": null,
+  "page_1_asset": null,
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
+}

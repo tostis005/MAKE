@@ -1,0 +1,23 @@
+{
+  "code": "D0140-CS",
+  "base_design_id": "D0140",
+  "technique_code": "CS",
+  "collection": "iconic-destinations",
+  "title": "Portofino, Italy Cross Stitch Pattern PDF",
+  "title_en": "Portofino, Italy Cross Stitch Pattern PDF",
+  "title_es": "Patrón de punto de cruz: Portofino, Italia",
+  "design_title_en": "Portofino, Italy",
+  "design_title_es": "Portofino, Italia",
+  "design_slug": "portofino-harbor",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/D0140-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "renderer": "multitech",
+  "source_artwork": null,
+  "page_1_asset": null,
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
+}

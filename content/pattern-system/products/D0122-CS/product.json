@@ -1,0 +1,23 @@
+{
+  "code": "D0122-CS",
+  "base_design_id": "D0122",
+  "technique_code": "CS",
+  "collection": "iconic-destinations",
+  "title": "Horseshoe Bend, Arizona Cross Stitch Pattern PDF",
+  "title_en": "Horseshoe Bend, Arizona Cross Stitch Pattern PDF",
+  "title_es": "Patrón de punto de cruz: Horseshoe Bend, Arizona",
+  "design_title_en": "Horseshoe Bend, Arizona",
+  "design_title_es": "Horseshoe Bend, Arizona",
+  "design_slug": "horseshoe-bend",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/D0122-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "renderer": "multitech",
+  "source_artwork": null,
+  "page_1_asset": null,
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
+}

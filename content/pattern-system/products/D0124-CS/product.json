@@ -1,0 +1,23 @@
+{
+  "code": "D0124-CS",
+  "base_design_id": "D0124",
+  "technique_code": "CS",
+  "collection": "iconic-destinations",
+  "title": "Château Frontenac, Québec City Cross Stitch Pattern PDF",
+  "title_en": "Château Frontenac, Québec City Cross Stitch Pattern PDF",
+  "title_es": "Patrón de punto de cruz: Château Frontenac, Ciudad de Québec",
+  "design_title_en": "Château Frontenac, Québec City",
+  "design_title_es": "Château Frontenac, Ciudad de Québec",
+  "design_slug": "chateau-frontenac-quebec",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/D0124-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "renderer": "multitech",
+  "source_artwork": null,
+  "page_1_asset": null,
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
+}

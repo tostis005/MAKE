@@ -1,0 +1,23 @@
+{
+  "code": "D0150-CS",
+  "base_design_id": "D0150",
+  "technique_code": "CS",
+  "collection": "iconic-destinations",
+  "title": "Blue Mosque, Istanbul Cross Stitch Pattern PDF",
+  "title_en": "Blue Mosque, Istanbul Cross Stitch Pattern PDF",
+  "title_es": "Patrón de punto de cruz: Mezquita Azul, Estambul",
+  "design_title_en": "Blue Mosque, Istanbul",
+  "design_title_es": "Mezquita Azul, Estambul",
+  "design_slug": "istanbul-blue-mosque",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/D0150-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "renderer": "multitech",
+  "source_artwork": null,
+  "page_1_asset": null,
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
+}

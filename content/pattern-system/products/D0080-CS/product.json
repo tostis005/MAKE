@@ -1,0 +1,23 @@
+{
+  "code": "D0080-CS",
+  "base_design_id": "D0080",
+  "technique_code": "CS",
+  "collection": "iconic-destinations",
+  "title": "Registan, Samarkand Cross Stitch Pattern PDF",
+  "title_en": "Registan, Samarkand Cross Stitch Pattern PDF",
+  "title_es": "Patrón de punto de cruz: Registán, Samarcanda",
+  "design_title_en": "Registan, Samarkand",
+  "design_title_es": "Registán, Samarcanda",
+  "design_slug": "registan-samarkand",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/D0080-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "renderer": "multitech",
+  "source_artwork": null,
+  "page_1_asset": null,
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
+}

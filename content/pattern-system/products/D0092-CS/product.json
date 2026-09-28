@@ -1,0 +1,23 @@
+{
+  "code": "D0092-CS",
+  "base_design_id": "D0092",
+  "technique_code": "CS",
+  "collection": "iconic-destinations",
+  "title": "Antelope Canyon, Arizona Cross Stitch Pattern PDF",
+  "title_en": "Antelope Canyon, Arizona Cross Stitch Pattern PDF",
+  "title_es": "Patrón de punto de cruz: Antelope Canyon, Arizona",
+  "design_title_en": "Antelope Canyon, Arizona",
+  "design_title_es": "Antelope Canyon, Arizona",
+  "design_slug": "antelope-canyon",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/D0092-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "renderer": "multitech",
+  "source_artwork": null,
+  "page_1_asset": null,
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
+}

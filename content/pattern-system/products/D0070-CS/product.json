@@ -1,0 +1,23 @@
+{
+  "code": "D0070-CS",
+  "base_design_id": "D0070",
+  "technique_code": "CS",
+  "collection": "iconic-destinations",
+  "title": "Bagan Temples, Myanmar Cross Stitch Pattern PDF",
+  "title_en": "Bagan Temples, Myanmar Cross Stitch Pattern PDF",
+  "title_es": "Patrón de punto de cruz: Templos de Bagan, Myanmar",
+  "design_title_en": "Bagan Temples, Myanmar",
+  "design_title_es": "Templos de Bagan, Myanmar",
+  "design_slug": "bagan-temples-and-balloons",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/D0070-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "draft",
+  "render_ready": false,
+  "renderer": "multitech",
+  "source_artwork": null,
+  "page_1_asset": null,
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
+}

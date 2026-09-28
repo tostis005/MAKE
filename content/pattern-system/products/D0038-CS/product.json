@@ -3,9 +3,11 @@
   "base_design_id": "D0038",
   "technique_code": "CS",
   "collection": "iconic-destinations",
-  "title": "Pyramids of Giza",
-  "title_en": "Pyramids of Giza",
-  "title_es": "Pirámides de Guiza",
+  "title": "Pyramids of Giza, Egypt Cross Stitch Pattern PDF",
+  "title_en": "Pyramids of Giza, Egypt Cross Stitch Pattern PDF",
+  "title_es": "Patrón de punto de cruz: Pirámides de Guiza, Egipto",
+  "design_title_en": "Pyramids of Giza, Egypt",
+  "design_title_es": "Pirámides de Guiza, Egipto",
   "design_slug": "pyramids-giza",
   "technique": "cross-stitch",
   "pattern_file": "patterns/D0038-CS/pattern.json",
@@ -16,5 +18,6 @@
   "renderer": "multitech",
   "source_artwork": null,
   "page_1_asset": null,
-  "palette_mode": "per-design"
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
 }
