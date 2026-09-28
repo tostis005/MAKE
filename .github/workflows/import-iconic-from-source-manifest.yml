@@ -1,0 +1,121 @@
+name: Import Iconic Destinations from source manifest
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/triggers/import-iconic-from-source-manifest.txt'
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: drielo-iconic-manifest-import
+  cancel-in-progress: false
+
+jobs:
+  prepare-and-start:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Pillow
+        run: python3 -m pip install --disable-pip-version-check --quiet Pillow
+
+      - name: Prepare products strictly from manifest
+        run: python3 .github/scripts/import_iconic_source_manifest.py
+
+      - name: Validate prepared manifest import
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, zipfile
+          from pathlib import Path
+          from PIL import Image
+
+          root=Path('content/pattern-system')
+          col=root/'collections'/'iconic-destinations'
+          manifest=json.loads((col/'source-images'/'manifest.json').read_text(encoding='utf-8'))
+          designs=json.loads((col/'designs.json').read_text(encoding='utf-8'))
+          queue=json.loads((root/'iconic_destinations'/'publish_queue.json').read_text(encoding='utf-8'))
+
+          items=manifest['items']
+          if len(items)!=100 or designs.get('count')!=100 or len(designs.get('designs',[]))!=100:
+              raise SystemExit('Expected exactly 100 manifest-driven designs')
+          if queue.get('mode')!='direct-zip-png-manifest-v1':
+              raise SystemExit('Wrong queue mode')
+          if queue.get('source_manifest')!='collections/iconic-destinations/source-images/manifest.json':
+              raise SystemExit('Queue does not point to canonical manifest')
+          if len(queue.get('items',[]))!=100 or any(x.get('status')!='pending' for x in queue['items']):
+              raise SystemExit('Expected exactly 100 pending queue items')
+
+          mby={x['id']:x for x in items}
+          dby={x['base_design_id']:x for x in designs['designs']}
+          qby={x['base_design_id']:x for x in queue['items']}
+          if set(mby)!=set(dby) or set(mby)!=set(qby):
+              raise SystemExit('Manifest/design/queue identity sets differ')
+
+          zpath=root/queue['source_zip']
+          with zipfile.ZipFile(zpath,'r') as z:
+              for base,m in mby.items():
+                  d=dby[base]; q=qby[base]
+                  if d['title_en']!=m['title_en'] or d['title_es']!=m['title_es']:
+                      raise SystemExit(f'{base}: design titles differ from manifest')
+                  if d['product_title_en']!=m['product_title_en'] or d['product_title_es']!=m['product_title_es']:
+                      raise SystemExit(f'{base}: product titles differ from manifest')
+                  if d['slug']!=m['slug'] or q['slug']!=m['slug']:
+                      raise SystemExit(f'{base}: slug differs from manifest')
+                  src=col/'source-images'/m['filename']
+                  staged=root/d['input_png']
+                  if src.read_bytes()!=staged.read_bytes() or z.read(m['filename'])!=src.read_bytes():
+                      raise SystemExit(f'{base}: canonical/staging/ZIP bytes differ')
+                  with Image.open(src) as im:
+                      rgb=im.convert('RGB')
+                      if rgb.size!=(100,120) or len(set(rgb.getdata()))!=50:
+                          raise SystemExit(f'{base}: invalid canonical PNG')
+          print('ICONIC_MANIFEST_PREP_VALID designs=100 pending=100')
+          PY
+
+      - name: Commit prepared queue and product sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            content/pattern-system/collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip \
+            content/pattern-system/collections/iconic-destinations/input-pngs-q50/current \
+            content/pattern-system/collections/iconic-destinations/designs.json \
+            content/pattern-system/iconic_destinations/publish_queue.json \
+            content/pattern-system/patterns \
+            content/pattern-system/products
+          if git diff --cached --quiet; then
+            echo "Manifest import preparation already current"
+          else
+            git commit -m "Prepare Iconic products from canonical source manifest [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Start Iconic publication queue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api --method POST \
+            "repos/${GITHUB_REPOSITORY}/actions/workflows/iconic-destinations-auto-publish.yml/dispatches" \
+            -f ref=main
+          echo "ICONIC_MANIFEST_PUBLICATION_STARTED"
