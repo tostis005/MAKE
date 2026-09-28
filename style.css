@@ -1825,3 +1825,27 @@ body.drielo-gallery-lightbox-open{overflow:hidden!important}
   .drielo-gallery-lightbox__dialog{width:96vw;height:88vh}
   .drielo-gallery-lightbox__close{right:2px;top:2px}
 }
+
+
+/* Drielo product-image no-clipping invariant — 2026-09-28 */
+.woocommerce ul.products li.product a img,
+.woocommerce ul.products li.product img,
+.product-card .product-media img,
+.drielo-collection-thumb img,
+.drielo-collection-thumbs img,
+.article-commerce-product-media img{
+  width:100%!important;
+  max-width:100%!important;
+  height:auto!important;
+  max-height:none!important;
+  aspect-ratio:auto!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+  transform:none!important;
+}
+.woocommerce ul.products li.product a,
+.woocommerce ul.products li.product .woocommerce-LoopProduct-link,
+.product-card .product-media,
+.drielo-collection-thumb{
+  overflow:visible!important;
+}
