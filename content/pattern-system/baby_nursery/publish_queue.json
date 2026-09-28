@@ -433,10 +433,10 @@
       "slug": "hedgehog",
       "input_png": "../source-images/collections/baby-nursery/products/I0033-hedgehog.png",
       "status": "pending",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36440830624",
+      "attempts": 2,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36441148338",
       "last_error": "Automatic CS publish run failed; see GitHub Actions logs.",
-      "failed_at": "2026-09-28T15:07:07+00:00"
+      "failed_at": "2026-09-28T15:10:59+00:00"
     },
     {
       "order": 34,
