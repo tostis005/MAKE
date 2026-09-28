@@ -190,7 +190,7 @@ def main():
  modpath=SYSTEM/'multitech'/'bulk_generate.py'
  spec=importlib.util.spec_from_file_location('drielo_bulk',modpath); bulk=importlib.util.module_from_spec(spec); spec.loader.exec_module(bulk)
 
- collection={'id':CID,'name':'Pop Art','name_en':'Pop Art','name_es':'Pop Art','slug':'pop-art-25','code_prefix':'P',
+ collection={'id':CID,'name':'Retratos Pop Art','name_en':'Pop Art Portraits','name_es':'Retratos Pop Art','slug':'pop-art-25','code_prefix':'P',
   'description':'A new 26-design Pop Art portrait collection built on one strict shared palette of 25 colours and four grid-based craft techniques.',
   'description_en':'A new 26-design Pop Art portrait collection built on one strict shared palette of 25 colours and four grid-based craft techniques.',
   'description_es':'Nueva colección Pop Art de 26 diseños construida con una única paleta estricta de 25 colores y cuatro técnicas artesanales basadas en cuadrícula.',
@@ -223,7 +223,7 @@ def main():
    write_json(PATTERNS_DIR/f'{base}-{suf}'/'pattern.json',pattern_json(base,suf,m,t))
    write_json(PRODUCTS_DIR/f'{base}-{suf}'/'product.json',product_json(base,en,es,slug,suf,base in TEST))
    if base in TEST:
-    data=bulk.pattern_data(f'{base}-{suf}',en,suf,m,t); data['collection']='Pop Art'; data['collection_id']=CID
+    data=bulk.pattern_data(f'{base}-{suf}',en,suf,m,t); data['collection']='Retratos Pop Art'; data['collection_id']=CID
     prepared[(base,suf)]=data
 
  # Render the 8 test products using the existing Pop Art covers.
@@ -235,7 +235,7 @@ def main():
 
  # Update WooCommerce catalogue: keep the old collection for comparison, but replace P0001/P0012 families.
  catalog=json.loads(CATALOG.read_text(encoding='utf-8'))
- collection_row={'id':CID,'name':'Pop Art','slug':'pop-art-25','name_en':'Pop Art','name_es':'Pop Art',
+ collection_row={'id':CID,'name':'Retratos Pop Art','slug':'pop-art-25','name_en':'Pop Art Portraits','name_es':'Retratos Pop Art',
    'description':collection['description_en'],'description_en':collection['description_en'],'description_es':collection['description_es'],
    'palette_hex':[p['hex'] for p in PALETTE],'thread_codes':[p['dmc'] for p in PALETTE],
    'cover_asset':'assets/P0001-CS-product.webp','techniques':collection['techniques']}
