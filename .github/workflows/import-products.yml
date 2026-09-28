@@ -367,8 +367,8 @@ jobs:
                   raise SystemExit(label + ': public page contains no product links')
               if label == 'SHOP' and ('shop-hero' not in html or 'drielo-shop-views' not in html):
                   raise SystemExit('Drielo shop template is not being rendered')
-              if label == 'POP_ART' and 'Pop Art' not in html:
-                  raise SystemExit('Pop Art collection page is not being rendered')
+              if label == 'POP_ART' and 'Retratos Pop Art' not in html:
+                  raise SystemExit('Retratos Pop Art collection page is not being rendered')
           PY
 
 
