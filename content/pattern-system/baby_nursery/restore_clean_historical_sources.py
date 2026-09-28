@@ -60,6 +60,19 @@ def nearest(rgb, pal):
     )
 
 
+def threshold_alpha(im: Image.Image):
+    rgba = im.convert("RGBA")
+    px = rgba.load()
+    for y in range(rgba.height):
+        for x in range(rgba.width):
+            r, g, b, a = px[x, y]
+            if a < 128:
+                px[x, y] = (0, 0, 0, 0)
+            else:
+                px[x, y] = (r, g, b, 255)
+    return rgba
+
+
 def connected_components(im: Image.Image):
     a = list(im.getchannel("A").getdata())
     w, h = im.size
@@ -177,7 +190,8 @@ def main():
         # Historical I0027 contains a tiny detached residue at the far left.
         # Removing tiny disconnected islands preserves the complete animal while
         # eliminating that artifact. No pixels are cloned or moved.
-        cleaned, removed = remove_tiny_islands(original, 40 if base == "I0027" else 12)
+        thresholded = threshold_alpha(original)
+        cleaned, removed = remove_tiny_islands(thresholded, 40 if base == "I0027" else 12)
         normalized, scale = normalize_full_art(cleaned)
         mapped, codes = map_to_dmc(normalized, pal)
         bbox, m = metrics(mapped)
