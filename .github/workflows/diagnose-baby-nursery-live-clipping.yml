@@ -1,0 +1,177 @@
+name: Diagnose Baby Nursery Live Clipping
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/diagnose-baby-nursery-live-clipping.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install browser tools
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --quiet playwright Pillow requests
+          python3 -m playwright install --with-deps chromium
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_diag_key
+          chmod 600 ~/.ssh/drielo_diag_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Read exact live product and image URLs
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/baby-clipping
+          ssh -i ~/.ssh/drielo_diag_key "$VPS_USER@$VPS_HOST" 'bash -s' > /tmp/baby-clipping/live.json <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $bases=array("I0021","I0025","I0026","I0027","I0029","I0043","I0044","I0057");
+            $out=array("products"=>array());
+            foreach($bases as $b){
+              $sku="DRIELO-".$b."-CS";
+              $id=(int)wc_get_product_id_by_sku($sku);
+              $p=$id?wc_get_product($id):false;
+              if(!$p){continue;}
+              $fid=(int)$p->get_image_id();
+              $out["products"][]=array(
+                "base"=>$b,
+                "sku"=>$sku,
+                "id"=>$id,
+                "url"=>get_permalink($id),
+                "featured"=>wp_get_attachment_url($fid),
+                "full"=>wp_get_attachment_image_src($fid,"full"),
+                "single"=>wp_get_attachment_image_src($fid,"woocommerce_single"),
+                "thumbnail"=>wp_get_attachment_image_src($fid,"woocommerce_thumbnail"),
+                "gallery"=>array_map(function($gid){return wp_get_attachment_url($gid);},$p->get_gallery_image_ids())
+              );
+            }
+            $term=get_term_by("slug","baby-nursery","product_collection");
+            $out["collection_url"]=($term && !is_wp_error($term))?get_term_link($term):null;
+            echo json_encode($out,JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES);
+          '
+          REMOTE
+          cat /tmp/baby-clipping/live.json
+
+      - name: Capture direct image variants and storefront
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, re, time
+          from pathlib import Path
+          import requests
+          from PIL import Image,ImageOps,ImageDraw,ImageFont
+          from playwright.sync_api import sync_playwright
+
+          root=Path('/tmp/baby-clipping')
+          data=json.loads((root/'live.json').read_text())
+          raw=root/'raw'; shots=root/'screens'
+          raw.mkdir(exist_ok=True); shots.mkdir(exist_ok=True)
+
+          sess=requests.Session()
+          sess.headers.update({'User-Agent':'Mozilla/5.0 Drielo visual QA'})
+          rows=[]
+          for p in data['products']:
+              row={'base':p['base'],'id':p['id'],'url':p['url']}
+              for kind in ('featured','full','single','thumbnail'):
+                  val=p.get(kind)
+                  url=val[0] if isinstance(val,list) else val
+                  if not url: continue
+                  r=sess.get(url,headers={'Cache-Control':'no-cache'},timeout=30)
+                  r.raise_for_status()
+                  ext='.webp'
+                  fp=raw/f"{p['base']}-{kind}{ext}"
+                  fp.write_bytes(r.content)
+                  with Image.open(fp) as im:
+                      row[kind]={'url':url,'size':list(im.size)}
+              rows.append(row)
+
+          # Contact sheet of full/single/thumbnail variants.
+          font=ImageFont.load_default()
+          cw,ch=500,470
+          sheet=Image.new('RGB',(4*cw,len(rows)*ch),(248,248,248))
+          d=ImageDraw.Draw(sheet)
+          for ri,row in enumerate(rows):
+              for ci,kind in enumerate(('featured','full','single','thumbnail')):
+                  x0=ci*cw; y0=ri*ch
+                  fp=raw/f"{row['base']}-{kind}.webp"
+                  d.rectangle([x0,y0,x0+cw-1,y0+ch-1],outline=(180,180,180))
+                  d.text((x0+8,y0+8),f"{row['base']} {kind}",fill='black',font=font)
+                  if fp.exists():
+                      with Image.open(fp) as im:
+                          pic=im.convert('RGB')
+                          pic.thumbnail((460,410),Image.Resampling.LANCZOS)
+                      sheet.paste(pic,(x0+(cw-pic.width)//2,y0+45+(410-pic.height)//2))
+          sheet.save(root/'variants_contact.jpg',quality=92)
+
+          with sync_playwright() as pw:
+              browser=pw.chromium.launch()
+              page=browser.new_page(viewport={'width':1440,'height':1200},device_scale_factor=1)
+              page.set_default_timeout(20000)
+
+              cu=data.get('collection_url')
+              if cu:
+                  page.goto(cu,wait_until='networkidle')
+                  page.screenshot(path=str(shots/'collection-full.png'),full_page=True)
+                  # capture product-card region if possible
+                  for sel in ['ul.products','.products','.woocommerce']:
+                      loc=page.locator(sel)
+                      if loc.count():
+                          try:
+                              loc.first.screenshot(path=str(shots/'collection-products.png'))
+                              break
+                          except: pass
+
+              for p in data['products']:
+                  page.goto(p['url'],wait_until='networkidle')
+                  page.screenshot(path=str(shots/f"{p['base']}-page.png"),full_page=False)
+                  for idx,sel in enumerate([
+                      '.woocommerce-product-gallery',
+                      '.woocommerce-product-gallery__wrapper',
+                      '.woocommerce-product-gallery__image',
+                      '.wp-post-image',
+                      'img.attachment-woocommerce_single'
+                  ]):
+                      loc=page.locator(sel)
+                      if loc.count():
+                          try:
+                              loc.first.screenshot(path=str(shots/f"{p['base']}-main-{idx}.png"))
+                              break
+                          except: pass
+
+              browser.close()
+
+          (root/'summary.json').write_text(json.dumps({'rows':rows,'collection_url':data.get('collection_url')},indent=2))
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: baby-nursery-live-clipping-diagnostic
+          path: /tmp/baby-clipping
+          retention-days: 7
