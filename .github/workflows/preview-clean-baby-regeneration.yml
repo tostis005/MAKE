@@ -1,0 +1,70 @@
+name: Preview Clean Baby Nursery Regeneration
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/preview-clean-baby-regeneration.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            content/pattern-system/baby_nursery/restore_clean_historical_sources.py
+            content/pattern-system/collections/baby-nursery/designs.json
+            content/source-images/collections/baby-nursery/
+            .github/workflows/preview-clean-baby-regeneration.yml
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 -m pip install --quiet Pillow
+      - name: Regenerate clean sources
+        run: python3 content/pattern-system/baby_nursery/restore_clean_historical_sources.py
+      - name: Build enlarged preview
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image,ImageDraw,ImageFont
+          files=[
+            ("I0021","I0021-whale.png"),
+            ("I0026","I0026-long-neck-dinosaur.png"),
+            ("I0027","I0027-triceratops.png"),
+            ("I0029","I0029-stegosaurus.png"),
+            ("I0043","I0043-rainbow-clouds.png"),
+          ]
+          src=Path("content/source-images/collections/baby-nursery/products")
+          out=Path("/tmp/clean-baby-preview")
+          out.mkdir(parents=True,exist_ok=True)
+          font=ImageFont.load_default()
+          cellw,cellh=620,760
+          sheet=Image.new("RGB",(5*cellw,cellh),(248,248,248))
+          d=ImageDraw.Draw(sheet)
+          for i,(base,fname) in enumerate(files):
+              im=Image.open(src/fname).convert("RGBA")
+              bg=Image.new("RGBA",im.size,(245,245,245,255))
+              bg.alpha_composite(im)
+              big=bg.convert("RGB").resize((500,600),Image.Resampling.NEAREST)
+              x=i*cellw+60
+              sheet.paste(big,(x,100))
+              bbox=im.getchannel("A").getbbox()
+              d.text((i*cellw+20,20),base,fill="black",font=font)
+              d.text((i*cellw+20,45),f"bbox={bbox}",fill="black",font=font)
+              d.rectangle([i*cellw,0,i*cellw+cellw-1,cellh-1],outline=(180,180,180))
+          sheet.save(out/"clean-regenerated-5.png")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: clean-baby-regeneration-preview
+          path: /tmp/clean-baby-preview
+          retention-days: 7
