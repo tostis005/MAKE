@@ -362,7 +362,7 @@ jobs:
             echo "DRIELO_CARD_DERIVATIVES=" . count($attachments) . PHP_EOL;
             if (!empty($attachments)) {
               $sample_id=(int)array_key_first($attachments);
-              foreach(array("make-store-card-small-context","make-store-card-context","make-home-product-square","make-single-product-context","make-collection-preview-small") as $sample_size){
+              foreach(array("make-store-card-small-context","make-store-card-context","make-collection-preview-context","large") as $sample_size){
                 $sample=wp_get_attachment_image_src($sample_id,$sample_size);
                 $meta=wp_get_attachment_metadata($sample_id);
                 $bytes=0;
@@ -601,19 +601,19 @@ jobs:
             $image_id=get_post_thumbnail_id($id);
             $preview=wp_get_attachment_image_src($image_id,"medium_large");
             $shop_card=wp_get_attachment_image_src($image_id,"make-store-card-context");
-            $home_card=wp_get_attachment_image_src($image_id,"make-home-product-square");
-            $single_card=wp_get_attachment_image_src($image_id,"make-single-product-context");
-            $collection_card=wp_get_attachment_image_src($image_id,"make-collection-preview-small");
+            $home_card=wp_get_attachment_image_src($image_id,"make-store-card-context");
+            $single_card=wp_get_attachment_image_src($image_id,"large");
+            $collection_card=wp_get_attachment_image_src($image_id,"make-collection-preview-context");
             $html=apply_filters("woocommerce_single_product_image_thumbnail_html","placeholder",(int)$image_id);
             if ($usd_symbol!=="$" || $eur_symbol!=="€") {
                 fwrite(STDERR,"Currency symbol verification failed USD=".$usd_symbol." EUR=".$eur_symbol.PHP_EOL);
                 exit(2);
             }
-            if (!is_array($preview) || (int)$preview[1]>800 || strpos($html,"data-large_image")!==false || strpos($html,"<a ")!==false || strpos($html,"srcset=")!==false || strpos($html,"size-make-single-product-context")===false) {
+            if (!is_array($preview) || (int)$preview[1]>800 || strpos($html,"data-large_image")!==false || strpos($html,"<a ")!==false || strpos($html,"srcset=")!==false || strpos($html,"size-large")===false) {
                 fwrite(STDERR,"Protected image verification failed".PHP_EOL);
                 exit(2);
             }
-            if (!is_array($shop_card) || (int)$shop_card[1]>560 || (int)$shop_card[2]>700 || !is_array($home_card) || (int)$home_card[1]>560 || (int)$home_card[2]>560 || !is_array($single_card) || (int)$single_card[1]>1040 || (int)$single_card[2]>1040 || !is_array($collection_card) || (int)$collection_card[1]>180 || (int)$collection_card[2]>180) {
+            if (!is_array($shop_card) || (int)$shop_card[1]>560 || (int)$shop_card[2]>700 || !is_array($home_card) || (int)$home_card[1]>560 || (int)$home_card[2]>700 || !is_array($single_card) || (int)$single_card[1]>1024 || (int)$single_card[2]>1024 || !is_array($collection_card) || (int)$collection_card[1]>300 || (int)$collection_card[2]>300) {
                 fwrite(STDERR,"Store card derivative verification failed".PHP_EOL);
                 exit(2);
             }
