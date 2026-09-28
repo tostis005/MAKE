@@ -1,7 +1,7 @@
 {
   "collection": "baby-nursery",
-  "mode": "exact-dmc50-cross-stitch-only-auto",
-  "auto_continue": true,
+  "mode": "exact-dmc50-cross-stitch-only-paused-for-single-run",
+  "auto_continue": false,
   "max_attempts_per_design": 3,
   "items": [
     {
