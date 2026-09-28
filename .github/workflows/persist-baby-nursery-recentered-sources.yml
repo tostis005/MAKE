@@ -1,0 +1,63 @@
+name: Persist Baby Nursery Recentered Sources
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/persist-baby-nursery-recentered-sources.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  persist:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            content/pattern-system/baby_nursery/normalize_selected_layout.py
+            content/pattern-system/collections/baby-nursery/designs.json
+            content/source-images/collections/baby-nursery/
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - run: python3 -m pip install --quiet Pillow
+
+      - name: Normalize and validate sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/baby_nursery/normalize_selected_layout.py
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          report=json.loads(Path('content/pattern-system/collections/baby-nursery/layout-normalization-2026-09-28.json').read_text())
+          for row in report['items']:
+              m=row['after_margins']
+              assert min(m.values())>=10, (row['id'],m)
+              assert abs(m['left']-m['right'])<=1, (row['id'],m)
+              assert abs(m['top']-m['bottom'])<=1, (row['id'],m)
+              print(row['id'],m)
+          PY
+
+      - name: Commit normalized source of truth
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add --sparse             content/source-images/collections/baby-nursery/products/I0021-whale.png             content/source-images/collections/baby-nursery/products/I0025-seahorse.png             content/source-images/collections/baby-nursery/products/I0026-long-neck-dinosaur.png             content/source-images/collections/baby-nursery/products/I0027-triceratops.png             content/source-images/collections/baby-nursery/products/I0029-stegosaurus.png             content/source-images/collections/baby-nursery/products/I0043-rainbow-clouds.png             content/source-images/collections/baby-nursery/products/I0044-sun.png             content/source-images/collections/baby-nursery/products/I0057-rattle.png             content/source-images/collections/baby-nursery/source-manifest.json             content/source-images/collections/baby-nursery/qa_report.json             content/pattern-system/collections/baby-nursery/designs.json             content/pattern-system/collections/baby-nursery/layout-normalization-2026-09-28.json
+          if git diff --cached --quiet; then
+            echo "No source changes to persist"
+          else
+            git commit -m "Persist Baby Nursery recentered source artwork [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
