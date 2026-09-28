@@ -205,7 +205,7 @@ def row_for(base,en,es,slug,suffix,data):
         f"apto para principiantes. Código: {code}."
     )
     desc = (
-        f"<p><strong>{title}</strong> is a downloadable digital pattern from Drielo’s Pop Art collection.</p>"
+        f"<p><strong>{title}</strong> is a downloadable digital pattern from Drielo’s Pop Art Portraits collection.</p>"
         f"<p><strong>Pattern code:</strong> {code}</p>"
         f"<p>Every design in this collection is built from the same coordinated 30-colour master palette.</p>"
         f"<h3>Pattern details</h3><ul><li>Chart: {grid}</li><li>{cfg['count_en']}: {total:,}</li>"
@@ -215,7 +215,7 @@ def row_for(base,en,es,slug,suffix,data):
         f"<p>Digital product only. Personal use only.</p>"
     )
     desc_es = (
-        f"<p><strong>{title_es}</strong> es un patrón digital descargable de la colección Pop Art de Drielo.</p>"
+        f"<p><strong>{title_es}</strong> es un patrón digital descargable de la colección Retratos Pop Art de Drielo.</p>"
         f"<p><strong>Código:</strong> {code}</p>"
         f"<p>Todos los diseños de esta colección se construyen con la misma paleta maestra coordinada de 30 colores.</p>"
         f"<h3>Detalles</h3><ul><li>Gráfico: {cfg['w']} × {cfg['h']} {cfg['unit_es']}</li>"
