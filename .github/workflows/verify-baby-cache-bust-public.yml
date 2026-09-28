@@ -1,0 +1,36 @@
+name: Verify Public Baby Nursery Cache Bust
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/verify-baby-cache-bust-public.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Compare public image bytes with corrected GitHub assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          RUN=36460588823
+          mkdir -p /tmp/verify
+          for base in I0021 I0022 I0026 I0027 I0028 I0030 I0044; do
+            asset="${base}-CS-product.webp"
+            github="https://raw.githubusercontent.com/tostis005/MAKE/main/content/products/assets/${asset}"
+            public="https://drielo.com/wp-content/uploads/2026/09/${base}-CS-product-cb${RUN}.webp"
+            curl -fL --retry 3 "$github" -o "/tmp/verify/${base}-github.webp"
+            curl -fL --retry 3 -H 'Cache-Control: no-cache' "$public" -o "/tmp/verify/${base}-public.webp"
+            gh=$(sha256sum "/tmp/verify/${base}-github.webp" | awk '{print $1}')
+            live=$(sha256sum "/tmp/verify/${base}-public.webp" | awk '{print $1}')
+            echo "${base} github=${gh} public=${live}"
+            [ "$gh" = "$live" ] || { echo "HASH_MISMATCH ${base}"; exit 2; }
+            curl -fsSI -H 'Cache-Control: no-cache' "$public" | sed -n '1,20p'
+            echo "PUBLIC_MATCH ${base}"
+          done
