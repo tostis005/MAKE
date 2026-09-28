@@ -12,7 +12,7 @@ permissions:
   actions: write
 
 concurrency:
-  group: drielo-baby-nursery-auto-publish-cs
+  group: drielo-baby-nursery-auto-publish-cs-v2
   cancel-in-progress: true
 
 jobs:
