@@ -339,8 +339,8 @@ jobs:
             }
 
             wp_cache_flush();
-            global $wpdb;
-            $wpdb->query("DELETE FROM {$wpdb->options} WHERE option_name LIKE \'_transient_%\' OR option_name LIKE \'_site_transient_%\'");
+            // New versioned attachment URLs are the cache-bust source of truth.
+            // Avoid raw SQL here; Woo/WordPress caches are flushed below as well.
 
             $ids=get_posts(array("post_type"=>"product","post_status"=>"publish","posts_per_page"=>-1,"fields"=>"ids","tax_query"=>array(array("taxonomy"=>"product_collection","field"=>"slug","terms"=>array("baby-nursery")))));
             echo "Baby Nursery published after: ".count($ids).PHP_EOL;
