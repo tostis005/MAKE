@@ -1,0 +1,318 @@
+name: Export current WooCommerce Pop Art portraits
+
+on:
+  push:
+    branches: [chatgpt-pop-art-export]
+    paths:
+      - '.github/workflows/export-current-pop-art-portraits.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_export_key
+          chmod 600 ~/.ssh/drielo_export_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Export the 60 live WooCommerce design images
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          REMOTE_STAGE="/tmp/drielo-pop-art-live-${GITHUB_RUN_ID}"
+          LOCAL_STAGE="$RUNNER_TEMP/live-pop-art"
+          mkdir -p "$LOCAL_STAGE"
+
+          ssh -i ~/.ssh/drielo_export_key "$VPS_USER@$VPS_HOST" "REMOTE_STAGE='$REMOTE_STAGE' bash -s" <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          rm -rf "$REMOTE_STAGE"
+          mkdir -p "$REMOTE_STAGE"
+
+          cat > "$REMOTE_STAGE/export.php" <<'PHP'
+          <?php
+          require '/var/www/html/wp-load.php';
+          $out = '/tmp/drielo-pop-art-live-export';
+          if (is_dir($out)) {
+              foreach (glob($out.'/*') ?: array() as $f) @unlink($f);
+          } else {
+              mkdir($out, 0777, true);
+          }
+
+          $term = get_term_by('slug', 'pop-art-25', 'product_collection');
+          if (!$term) { fwrite(STDERR, "Missing pop-art-25 collection\n"); exit(2); }
+
+          $ids = get_posts(array(
+              'post_type' => 'product',
+              'post_status' => 'publish',
+              'posts_per_page' => -1,
+              'fields' => 'ids',
+              'tax_query' => array(array(
+                  'taxonomy' => 'product_collection',
+                  'field' => 'term_id',
+                  'terms' => array((int)$term->term_id),
+              )),
+          ));
+
+          $rows = array();
+          foreach ($ids as $id) {
+              $p = wc_get_product($id);
+              if (!$p) continue;
+              $sku = (string)$p->get_sku();
+              if (!preg_match('/^DRIELO-(P10(?:0[1-9]|[1-5][0-9]|60))-CS$/', $sku, $m)) continue;
+              $code = $m[1];
+              $gallery = $p->get_gallery_image_ids();
+              if (!$gallery) { fwrite(STDERR, "$sku has no gallery\n"); exit(3); }
+
+              $chosen = 0;
+              foreach ($gallery as $aid) {
+                  $path = get_attached_file($aid);
+                  $base = $path ? basename($path) : '';
+                  if ($path && is_file($path) && stripos($base, '-design') !== false) {
+                      $chosen = (int)$aid;
+                      break;
+                  }
+              }
+              if (!$chosen) $chosen = (int)$gallery[0];
+              $src = get_attached_file($chosen);
+              if (!$src || !is_file($src)) {
+                  fwrite(STDERR, "$sku design attachment missing\n"); exit(4);
+              }
+              $ext = strtolower(pathinfo($src, PATHINFO_EXTENSION));
+              if (!$ext) $ext = 'webp';
+              $dest = $out . '/' . $code . '.' . $ext;
+              if (!copy($src, $dest)) {
+                  fwrite(STDERR, "Could not copy $sku image\n"); exit(5);
+              }
+              $rows[$sku] = array($sku, $code, (string)$chosen, basename($src));
+          }
+          ksort($rows, SORT_NATURAL);
+          if (count($rows) !== 60) {
+              fwrite(STDERR, 'Expected 60 live Pop Art products; got ' . count($rows) . "\n");
+              exit(6);
+          }
+          $fh = fopen($out . '/manifest.tsv', 'w');
+          fwrite($fh, "sku\tcode\tattachment_id\tsource_file\n");
+          foreach ($rows as $row) fwrite($fh, implode("\t", $row) . "\n");
+          fclose($fh);
+          echo "EXPORTED=" . count($rows) . "\n";
+          PHP
+
+          "${DOCKER[@]}" cp "$REMOTE_STAGE/export.php" make-wp:/tmp/drielo-export-pop-art.php
+          "${DOCKER[@]}" exec make-wp rm -rf /tmp/drielo-pop-art-live-export
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=512M /tmp/drielo-export-pop-art.php
+          "${DOCKER[@]}" cp make-wp:/tmp/drielo-pop-art-live-export/. "$REMOTE_STAGE/"
+          "${DOCKER[@]}" exec make-wp rm -rf /tmp/drielo-pop-art-live-export /tmp/drielo-export-pop-art.php
+          rm -f "$REMOTE_STAGE/export.php"
+
+          count=$(find "$REMOTE_STAGE" -maxdepth 1 -type f ! -name manifest.tsv | wc -l | tr -d ' ')
+          test "$count" = "60"
+          tar -czf "$REMOTE_STAGE.tar.gz" -C "$REMOTE_STAGE" .
+          REMOTE
+
+          scp -i ~/.ssh/drielo_export_key "$VPS_USER@$VPS_HOST:$REMOTE_STAGE.tar.gz" "$RUNNER_TEMP/live-pop-art.tar.gz"
+          ssh -i ~/.ssh/drielo_export_key "$VPS_USER@$VPS_HOST" "rm -rf '$REMOTE_STAGE' '$REMOTE_STAGE.tar.gz'"
+          tar -xzf "$RUNNER_TEMP/live-pop-art.tar.gz" -C "$LOCAL_STAGE"
+          test "$(find "$LOCAL_STAGE" -maxdepth 1 -type f ! -name manifest.tsv | wc -l | tr -d ' ')" = "60"
+
+      - name: Build transparent 100x120 shared-30 palette pack
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow numpy opencv-python-headless
+          python3 - <<'PY'
+          from pathlib import Path
+          import zipfile, json, math
+          import numpy as np
+          import cv2
+          from PIL import Image, ImageOps
+
+          src = Path(__import__('os').environ['RUNNER_TEMP']) / 'live-pop-art'
+          out = Path(__import__('os').environ['RUNNER_TEMP']) / 'optimized'
+          out.mkdir(parents=True, exist_ok=True)
+
+          files = sorted([p for p in src.iterdir() if p.is_file() and p.name != 'manifest.tsv'])
+          if len(files) != 60:
+              raise SystemExit(f'Expected 60 inputs, got {len(files)}')
+
+          def fit_rgb(path):
+              im = Image.open(path).convert('RGB')
+              if im.size != (100,120):
+                  im = ImageOps.fit(im, (100,120), method=Image.Resampling.LANCZOS, centering=(0.5,0.5))
+              return np.array(im, dtype=np.uint8)
+
+          def clean_mask(rgb):
+              h,w,_ = rgb.shape
+              bgr = cv2.cvtColor(rgb, cv2.COLOR_RGB2BGR)
+              mask = np.full((h,w), cv2.GC_PR_BGD, np.uint8)
+
+              # Border: likely background, but preserve the central lower edge where shoulders may touch.
+              mask[0:2,:] = cv2.GC_BGD
+              mask[:,0:2] = cv2.GC_BGD
+              mask[:,-2:] = cv2.GC_BGD
+              mask[-2:,:] = cv2.GC_BGD
+              mask[-2:,28:72] = cv2.GC_PR_FGD
+
+              # Central portrait priors.
+              yy,xx = np.ogrid[:h,:w]
+              ellipse = ((xx-w*0.50)/(w*0.22))**2 + ((yy-h*0.46)/(h*0.34))**2 <= 1.0
+              mask[ellipse] = cv2.GC_FGD
+              broad = ((xx-w*0.50)/(w*0.37))**2 + ((yy-h*0.55)/(h*0.48))**2 <= 1.0
+              mask[broad & (mask != cv2.GC_FGD)] = cv2.GC_PR_FGD
+
+              # Mark colours strongly represented on the outer edge as probable background.
+              edge = np.concatenate([
+                  rgb[0:3,:,:].reshape(-1,3),
+                  rgb[-3:,:,:].reshape(-1,3),
+                  rgb[:,0:3,:].reshape(-1,3),
+                  rgb[:,-3:,:].reshape(-1,3)
+              ], axis=0)
+              # Small k-means on edge colours captures multicolour Pop Art backgrounds.
+              K = min(6, max(2, len(np.unique(edge, axis=0))))
+              data = edge.astype(np.float32)
+              cv2.setRNGSeed(12345)
+              _,_,centers = cv2.kmeans(data, K, None,
+                  (cv2.TERM_CRITERIA_EPS+cv2.TERM_CRITERIA_MAX_ITER, 30, 0.5),
+                  5, cv2.KMEANS_PP_CENTERS)
+              pix = rgb.reshape(-1,3).astype(np.float32)
+              d2 = ((pix[:,None,:]-centers[None,:,:])**2).sum(axis=2)
+              near_edge_colour = (d2.min(axis=1) < (18.0**2)).reshape(h,w)
+              mask[near_edge_colour & ~ellipse] = cv2.GC_PR_BGD
+
+              bgd = np.zeros((1,65), np.float64)
+              fgd = np.zeros((1,65), np.float64)
+              try:
+                  cv2.grabCut(bgr, mask, None, bgd, fgd, 7, cv2.GC_INIT_WITH_MASK)
+                  fg = (mask==cv2.GC_FGD) | (mask==cv2.GC_PR_FGD)
+              except cv2.error:
+                  fg = broad.copy()
+
+              # Keep meaningful connected components, favoring the centered portrait.
+              num, labels, stats, cents = cv2.connectedComponentsWithStats(fg.astype(np.uint8), 8)
+              keep = np.zeros_like(fg, dtype=bool)
+              comps = []
+              for i in range(1,num):
+                  area = int(stats[i, cv2.CC_STAT_AREA])
+                  cx,cy = cents[i]
+                  x,y,ww,hh = [int(stats[i,j]) for j in (cv2.CC_STAT_LEFT,cv2.CC_STAT_TOP,cv2.CC_STAT_WIDTH,cv2.CC_STAT_HEIGHT)]
+                  central = (12 <= cx <= 88 and 5 <= cy <= 118)
+                  score = area + (400 if central else 0)
+                  comps.append((score, area, i, x,y,ww,hh,cx,cy))
+              comps.sort(reverse=True)
+              for rank,c in enumerate(comps):
+                  _,area,i,x,y,ww,hh,cx,cy = c
+                  if rank == 0 or area >= 18 or (area >= 6 and 18 <= cx <= 82 and 6 <= cy <= 116):
+                      keep |= (labels==i)
+
+              # Remove tiny isolated edge remnants without eroding portrait details.
+              keep[0,:] = False
+              keep[:,0] = False
+              keep[:,-1] = False
+              # Keep bottom-center contact for shoulders.
+              keep[-1,:28] = False
+              keep[-1,72:] = False
+              return keep
+
+          rgbs = []
+          masks = []
+          codes = []
+          for p in files:
+              code = p.stem.split('.')[0]
+              # stem is already P1001 etc.
+              rgb = fit_rgb(p)
+              m = clean_mask(rgb)
+              if m.sum() < 1200:
+                  raise SystemExit(f'{code}: segmentation kept too little ({m.sum()} px)')
+              rgbs.append(rgb); masks.append(m); codes.append(code)
+
+          # Shared 30-colour palette from all visible portrait pixels.
+          samples = np.concatenate([im[m] for im,m in zip(rgbs,masks)], axis=0)
+          if len(samples) > 300000:
+              idx = np.linspace(0, len(samples)-1, 300000, dtype=np.int64)
+              samples = samples[idx]
+          data = samples.astype(np.float32)
+          cv2.setRNGSeed(20260928)
+          criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 80, 0.35)
+          _,_,centers = cv2.kmeans(data, 30, None, criteria, 12, cv2.KMEANS_PP_CENTERS)
+          palette = np.clip(np.rint(centers),0,255).astype(np.uint8)
+
+          # Stable palette order by perceived lightness then hue-ish RGB order.
+          lum = palette[:,0]*0.2126 + palette[:,1]*0.7152 + palette[:,2]*0.0722
+          order = np.lexsort((palette[:,2], palette[:,1], palette[:,0], lum))
+          palette = palette[order]
+
+          stats = []
+          for code,rgb,m in zip(codes,rgbs,masks):
+              pix = rgb[m].astype(np.int16)
+              pal = palette.astype(np.int16)
+              d = ((pix[:,None,:]-pal[None,:,:])**2).sum(axis=2)
+              nearest = d.argmin(axis=1)
+              rgba = np.zeros((120,100,4), dtype=np.uint8)
+              rgba[m,:3] = palette[nearest]
+              rgba[m,3] = 255
+              img = Image.fromarray(rgba, 'RGBA')
+              target = out / f'{code}.png'
+              img.save(target, optimize=True)
+              used = sorted(set(int(x) for x in nearest.tolist()))
+              stats.append({'code':code,'visible_pixels':int(m.sum()),'colours_used':len(used)})
+
+          if len(list(out.glob('P1*.png'))) != 60:
+              raise SystemExit('Output PNG count is not 60')
+          for p in out.glob('*.png'):
+              im = Image.open(p)
+              if im.size != (100,120) or im.mode != 'RGBA':
+                  raise SystemExit(f'{p.name}: invalid output geometry/mode')
+
+          package = Path(__import__('os').environ['RUNNER_TEMP']) / 'pop-art-60-transparent-100x120-palette30.zip'
+          with zipfile.ZipFile(package,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as z:
+              for p in sorted(out.glob('P1*.png')):
+                  z.write(p, p.name)
+
+          report = Path(__import__('os').environ['RUNNER_TEMP']) / 'quality-report.json'
+          report.write_text(json.dumps({
+              'source':'live WooCommerce production gallery design attachments',
+              'count':60,
+              'size':[100,120],
+              'background':'transparent',
+              'shared_palette_rgb':[list(map(int,c)) for c in palette],
+              'images':stats
+          }, indent=2), encoding='utf-8')
+          print('PACKAGE=' + str(package))
+          print('MIN_VISIBLE=' + str(min(x['visible_pixels'] for x in stats)))
+          print('MAX_VISIBLE=' + str(max(x['visible_pixels'] for x in stats)))
+          print('MIN_COLOURS=' + str(min(x['colours_used'] for x in stats)))
+          print('MAX_COLOURS=' + str(max(x['colours_used'] for x in stats)))
+          PY
+
+      - name: Upload ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: pop-art-60-transparent-100x120-palette30
+          path: |
+            ${{ runner.temp }}/pop-art-60-transparent-100x120-palette30.zip
+            ${{ runner.temp }}/quality-report.json
+          retention-days: 7
