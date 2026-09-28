@@ -243,7 +243,7 @@ jobs:
               $cover=(int)get_term_meta($t->term_id,"drielo_collection_cover_id",true);
               $source=$cover?(string)get_post_meta($cover,"_drielo_source_asset",true):"";
               echo "VERIFY_COLLECTION slug=".$slug." name=".$t->name." es=".$es." cover=".$cover." source=".$source." count=".$t->count.PHP_EOL;
-              if($t->name!==$e[0] || $es!==$e[1] || !$cover || $source!==$e[2]){exit(3);}
+              if(html_entity_decode($t->name, ENT_QUOTES | ENT_HTML5, "UTF-8")!==$e[0] || $es!==$e[1] || !$cover || $source!==$e[2]){exit(3);}
             }
           '
           "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-live-covers'
