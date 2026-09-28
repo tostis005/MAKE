@@ -3,10 +3,12 @@
   "base_design_id": "D0045",
   "technique_code": "CS",
   "collection": "iconic-destinations",
-  "title": "Mykonos Windmills",
-  "title_en": "Mykonos Windmills",
-  "title_es": "Molinos de Mykonos",
-  "design_slug": "mykonos-windmills",
+  "title": "Bora Bora, French Polynesia",
+  "title_en": "Bora Bora, French Polynesia",
+  "title_es": "Bora Bora, Polinesia Francesa",
+  "product_title_en": "Bora Bora, French Polynesia Cross Stitch Pattern PDF",
+  "product_title_es": "Patrón de punto de cruz: Bora Bora, Polinesia Francesa",
+  "design_slug": "bora-bora-lagoon",
   "technique": "cross-stitch",
   "pattern_file": "patterns/D0045-CS/pattern.json",
   "template": "cross-stitch.html",
@@ -14,7 +16,8 @@
   "status": "draft",
   "render_ready": false,
   "renderer": "multitech",
-  "source_artwork": null,
+  "source_artwork": "collections/iconic-destinations/input-pngs-q50/canonical-100/D0045-bora-bora-lagoon.png",
   "page_1_asset": null,
-  "palette_mode": "per-design"
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
 }

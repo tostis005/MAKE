@@ -3,10 +3,12 @@
   "base_design_id": "D0014",
   "technique_code": "CS",
   "collection": "iconic-destinations",
-  "title": "Neuschwanstein Castle",
-  "title_en": "Neuschwanstein Castle",
-  "title_es": "Castillo de Neuschwanstein",
-  "design_slug": "neuschwanstein-castle",
+  "title": "Angkor Wat, Cambodia",
+  "title_en": "Angkor Wat, Cambodia",
+  "title_es": "Angkor Wat, Camboya",
+  "product_title_en": "Angkor Wat, Cambodia Cross Stitch Pattern PDF",
+  "product_title_es": "Patrón de punto de cruz: Angkor Wat, Camboya",
+  "design_slug": "angkor-wat",
   "technique": "cross-stitch",
   "pattern_file": "patterns/D0014-CS/pattern.json",
   "template": "cross-stitch.html",
@@ -14,7 +16,8 @@
   "status": "draft",
   "render_ready": false,
   "renderer": "multitech",
-  "source_artwork": null,
+  "source_artwork": "collections/iconic-destinations/input-pngs-q50/canonical-100/D0014-angkor-wat.png",
   "page_1_asset": null,
-  "palette_mode": "per-design"
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
 }

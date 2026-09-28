@@ -3,10 +3,12 @@
   "base_design_id": "D0015",
   "technique_code": "CS",
   "collection": "iconic-destinations",
-  "title": "Athens Acropolis",
-  "title_en": "Athens Acropolis",
-  "title_es": "Acrópolis de Atenas",
-  "design_slug": "athens-acropolis",
+  "title": "Mont-Saint-Michel, France",
+  "title_en": "Mont-Saint-Michel, France",
+  "title_es": "Mont-Saint-Michel, Francia",
+  "product_title_en": "Mont-Saint-Michel, France Cross Stitch Pattern PDF",
+  "product_title_es": "Patrón de punto de cruz: Mont-Saint-Michel, Francia",
+  "design_slug": "mont-saint-michel",
   "technique": "cross-stitch",
   "pattern_file": "patterns/D0015-CS/pattern.json",
   "template": "cross-stitch.html",
@@ -14,7 +16,8 @@
   "status": "draft",
   "render_ready": false,
   "renderer": "multitech",
-  "source_artwork": null,
+  "source_artwork": "collections/iconic-destinations/input-pngs-q50/canonical-100/D0015-mont-saint-michel.png",
   "page_1_asset": null,
-  "palette_mode": "per-design"
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
 }

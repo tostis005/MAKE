@@ -3,10 +3,12 @@
   "base_design_id": "D0043",
   "technique_code": "CS",
   "collection": "iconic-destinations",
-  "title": "Easter Island Moai",
-  "title_en": "Easter Island Moai",
-  "title_es": "Moáis de la Isla de Pascua",
-  "design_slug": "easter-island-moai",
+  "title": "Monument Valley, USA",
+  "title_en": "Monument Valley, USA",
+  "title_es": "Monument Valley, EE. UU.",
+  "product_title_en": "Monument Valley, USA Cross Stitch Pattern PDF",
+  "product_title_es": "Patrón de punto de cruz: Monument Valley, EE. UU.",
+  "design_slug": "monument-valley",
   "technique": "cross-stitch",
   "pattern_file": "patterns/D0043-CS/pattern.json",
   "template": "cross-stitch.html",
@@ -14,7 +16,8 @@
   "status": "draft",
   "render_ready": false,
   "renderer": "multitech",
-  "source_artwork": null,
+  "source_artwork": "collections/iconic-destinations/input-pngs-q50/canonical-100/D0043-monument-valley.png",
   "page_1_asset": null,
-  "palette_mode": "per-design"
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
 }

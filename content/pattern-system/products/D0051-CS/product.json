@@ -3,10 +3,12 @@
   "base_design_id": "D0051",
   "technique_code": "CS",
   "collection": "iconic-destinations",
-  "title": "Positano Amalfi Coast",
-  "title_en": "Positano Amalfi Coast",
-  "title_es": "Positano en la Costa Amalfitana",
-  "design_slug": "positano-amalfi-coast",
+  "title": "Mount Kilimanjaro, Tanzania",
+  "title_en": "Mount Kilimanjaro, Tanzania",
+  "title_es": "Monte Kilimanjaro, Tanzania",
+  "product_title_en": "Mount Kilimanjaro, Tanzania Cross Stitch Pattern PDF",
+  "product_title_es": "Patrón de punto de cruz: Monte Kilimanjaro, Tanzania",
+  "design_slug": "mount-kilimanjaro",
   "technique": "cross-stitch",
   "pattern_file": "patterns/D0051-CS/pattern.json",
   "template": "cross-stitch.html",
@@ -14,7 +16,8 @@
   "status": "draft",
   "render_ready": false,
   "renderer": "multitech",
-  "source_artwork": null,
+  "source_artwork": "collections/iconic-destinations/input-pngs-q50/canonical-100/D0051-mount-kilimanjaro.png",
   "page_1_asset": null,
-  "palette_mode": "per-design"
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
 }

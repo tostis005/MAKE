@@ -3,10 +3,12 @@
   "base_design_id": "D0016",
   "technique_code": "CS",
   "collection": "iconic-destinations",
-  "title": "Angkor Wat",
-  "title_en": "Angkor Wat",
-  "title_es": "Angkor Wat",
-  "design_slug": "angkor-wat",
+  "title": "Hallstatt, Austria",
+  "title_en": "Hallstatt, Austria",
+  "title_es": "Hallstatt, Austria",
+  "product_title_en": "Hallstatt, Austria Cross Stitch Pattern PDF",
+  "product_title_es": "Patrón de punto de cruz: Hallstatt, Austria",
+  "design_slug": "hallstatt-lakeside-village",
   "technique": "cross-stitch",
   "pattern_file": "patterns/D0016-CS/pattern.json",
   "template": "cross-stitch.html",
@@ -14,7 +16,8 @@
   "status": "draft",
   "render_ready": false,
   "renderer": "multitech",
-  "source_artwork": null,
+  "source_artwork": "collections/iconic-destinations/input-pngs-q50/canonical-100/D0016-hallstatt-lakeside-village.png",
   "page_1_asset": null,
-  "palette_mode": "per-design"
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
 }

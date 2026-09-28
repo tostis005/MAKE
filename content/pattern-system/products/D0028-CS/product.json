@@ -3,10 +3,12 @@
   "base_design_id": "D0028",
   "technique_code": "CS",
   "collection": "iconic-destinations",
-  "title": "Venice Grand Canal",
-  "title_en": "Venice Grand Canal",
-  "title_es": "Gran Canal de Venecia",
-  "design_slug": "venice-grand-canal",
+  "title": "Cappadocia, Turkey",
+  "title_en": "Cappadocia, Turkey",
+  "title_es": "Capadocia, Turquía",
+  "product_title_en": "Cappadocia, Turkey Cross Stitch Pattern PDF",
+  "product_title_es": "Patrón de punto de cruz: Capadocia, Turquía",
+  "design_slug": "cappadocia-balloons",
   "technique": "cross-stitch",
   "pattern_file": "patterns/D0028-CS/pattern.json",
   "template": "cross-stitch.html",
@@ -14,7 +16,8 @@
   "status": "draft",
   "render_ready": false,
   "renderer": "multitech",
-  "source_artwork": null,
+  "source_artwork": "collections/iconic-destinations/input-pngs-q50/canonical-100/D0028-cappadocia-balloons.png",
   "page_1_asset": null,
-  "palette_mode": "per-design"
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
 }

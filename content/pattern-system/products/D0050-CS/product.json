@@ -3,10 +3,12 @@
   "base_design_id": "D0050",
   "technique_code": "CS",
   "collection": "iconic-destinations",
-  "title": "Moscow Saint Basil Cathedral",
-  "title_en": "Moscow Saint Basil Cathedral",
-  "title_es": "Catedral de San Basilio de Moscú",
-  "design_slug": "moscow-saint-basil-cathedral",
+  "title": "Torres del Paine, Chile",
+  "title_en": "Torres del Paine, Chile",
+  "title_es": "Torres del Paine, Chile",
+  "product_title_en": "Torres del Paine, Chile Cross Stitch Pattern PDF",
+  "product_title_es": "Patrón de punto de cruz: Torres del Paine, Chile",
+  "design_slug": "torres-del-paine",
   "technique": "cross-stitch",
   "pattern_file": "patterns/D0050-CS/pattern.json",
   "template": "cross-stitch.html",
@@ -14,7 +16,8 @@
   "status": "draft",
   "render_ready": false,
   "renderer": "multitech",
-  "source_artwork": null,
+  "source_artwork": "collections/iconic-destinations/input-pngs-q50/canonical-100/D0050-torres-del-paine.png",
   "page_1_asset": null,
-  "palette_mode": "per-design"
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
 }

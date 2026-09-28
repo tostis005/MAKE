@@ -3,10 +3,12 @@
   "base_design_id": "D0023",
   "technique_code": "CS",
   "collection": "iconic-destinations",
-  "title": "Niagara Falls",
-  "title_en": "Niagara Falls",
-  "title_es": "Cataratas del Niágara",
-  "design_slug": "niagara-falls",
+  "title": "Pamukkale Terraces, Turkey",
+  "title_en": "Pamukkale Terraces, Turkey",
+  "title_es": "Terrazas de Pamukkale, Turquía",
+  "product_title_en": "Pamukkale Terraces, Turkey Cross Stitch Pattern PDF",
+  "product_title_es": "Patrón de punto de cruz: Terrazas de Pamukkale, Turquía",
+  "design_slug": "pamukkale-terraces",
   "technique": "cross-stitch",
   "pattern_file": "patterns/D0023-CS/pattern.json",
   "template": "cross-stitch.html",
@@ -14,7 +16,8 @@
   "status": "draft",
   "render_ready": false,
   "renderer": "multitech",
-  "source_artwork": null,
+  "source_artwork": "collections/iconic-destinations/input-pngs-q50/canonical-100/D0023-pamukkale-terraces.png",
   "page_1_asset": null,
-  "palette_mode": "per-design"
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
 }

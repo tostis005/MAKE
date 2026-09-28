@@ -3,10 +3,12 @@
   "base_design_id": "D0057",
   "technique_code": "CS",
   "collection": "iconic-destinations",
-  "title": "Seoul Gyeongbokgung Palace",
-  "title_en": "Seoul Gyeongbokgung Palace",
-  "title_es": "Palacio Gyeongbokgung de Seúl",
-  "design_slug": "seoul-gyeongbokgung-palace",
+  "title": "Avenue of the Baobabs, Madagascar",
+  "title_en": "Avenue of the Baobabs, Madagascar",
+  "title_es": "Avenida de los Baobabs, Madagascar",
+  "product_title_en": "Avenue of the Baobabs, Madagascar Cross Stitch Pattern PDF",
+  "product_title_es": "Patrón de punto de cruz: Avenida de los Baobabs, Madagascar",
+  "design_slug": "avenue-of-the-baobabs",
   "technique": "cross-stitch",
   "pattern_file": "patterns/D0057-CS/pattern.json",
   "template": "cross-stitch.html",
@@ -14,7 +16,8 @@
   "status": "draft",
   "render_ready": false,
   "renderer": "multitech",
-  "source_artwork": null,
+  "source_artwork": "collections/iconic-destinations/input-pngs-q50/canonical-100/D0057-avenue-of-the-baobabs.png",
   "page_1_asset": null,
-  "palette_mode": "per-design"
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
 }

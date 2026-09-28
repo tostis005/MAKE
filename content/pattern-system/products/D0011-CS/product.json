@@ -3,10 +3,12 @@
   "base_design_id": "D0011",
   "technique_code": "CS",
   "collection": "iconic-destinations",
-  "title": "Golden Gate Bridge",
-  "title_en": "Golden Gate Bridge",
-  "title_es": "Puente Golden Gate",
-  "design_slug": "golden-gate-bridge",
+  "title": "Meteora Monasteries, Greece",
+  "title_en": "Meteora Monasteries, Greece",
+  "title_es": "Monasterios de Meteora, Grecia",
+  "product_title_en": "Meteora Monasteries, Greece Cross Stitch Pattern PDF",
+  "product_title_es": "Patrón de punto de cruz: Monasterios de Meteora, Grecia",
+  "design_slug": "meteora-monasteries",
   "technique": "cross-stitch",
   "pattern_file": "patterns/D0011-CS/pattern.json",
   "template": "cross-stitch.html",
@@ -14,7 +16,8 @@
   "status": "draft",
   "render_ready": false,
   "renderer": "multitech",
-  "source_artwork": null,
+  "source_artwork": "collections/iconic-destinations/input-pngs-q50/canonical-100/D0011-meteora-monasteries.png",
   "page_1_asset": null,
-  "palette_mode": "per-design"
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
 }

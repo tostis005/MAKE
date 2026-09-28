@@ -3,10 +3,12 @@
   "base_design_id": "D0012",
   "technique_code": "CS",
   "collection": "iconic-destinations",
-  "title": "London Tower Bridge",
-  "title_en": "London Tower Bridge",
-  "title_es": "Tower Bridge de Londres",
-  "design_slug": "london-tower-bridge",
+  "title": "Lake Bled, Slovenia",
+  "title_en": "Lake Bled, Slovenia",
+  "title_es": "Lago Bled, Eslovenia",
+  "product_title_en": "Lake Bled, Slovenia Cross Stitch Pattern PDF",
+  "product_title_es": "Patrón de punto de cruz: Lago Bled, Eslovenia",
+  "design_slug": "lake-bled",
   "technique": "cross-stitch",
   "pattern_file": "patterns/D0012-CS/pattern.json",
   "template": "cross-stitch.html",
@@ -14,7 +16,8 @@
   "status": "draft",
   "render_ready": false,
   "renderer": "multitech",
-  "source_artwork": null,
+  "source_artwork": "collections/iconic-destinations/input-pngs-q50/canonical-100/D0012-lake-bled.png",
   "page_1_asset": null,
-  "palette_mode": "per-design"
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
 }

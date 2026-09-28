@@ -3,10 +3,12 @@
   "base_design_id": "D0044",
   "technique_code": "CS",
   "collection": "iconic-destinations",
-  "title": "Bali Temple Gate",
-  "title_en": "Bali Temple Gate",
-  "title_es": "Puerta de templo de Bali",
-  "design_slug": "bali-temple-gate",
+  "title": "Nā Pali Coast, Kauaʻi",
+  "title_en": "Nā Pali Coast, Kauaʻi",
+  "title_es": "Costa Nā Pali, Kauaʻi",
+  "product_title_en": "Nā Pali Coast, Kauaʻi Cross Stitch Pattern PDF",
+  "product_title_es": "Patrón de punto de cruz: Costa Nā Pali, Kauaʻi",
+  "design_slug": "na-pali-coast-kauai",
   "technique": "cross-stitch",
   "pattern_file": "patterns/D0044-CS/pattern.json",
   "template": "cross-stitch.html",
@@ -14,7 +16,8 @@
   "status": "draft",
   "render_ready": false,
   "renderer": "multitech",
-  "source_artwork": null,
+  "source_artwork": "collections/iconic-destinations/input-pngs-q50/canonical-100/D0044-na-pali-coast-kauai.png",
   "page_1_asset": null,
-  "palette_mode": "per-design"
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
 }

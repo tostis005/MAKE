@@ -3,10 +3,12 @@
   "base_design_id": "D0053",
   "technique_code": "CS",
   "collection": "iconic-destinations",
-  "title": "Tokyo Tower and Fuji",
-  "title_en": "Tokyo Tower and Fuji",
-  "title_es": "Torre de Tokio y Monte Fuji",
-  "design_slug": "tokyo-tower-fuji",
+  "title": "Chefchaouen, Morocco",
+  "title_en": "Chefchaouen, Morocco",
+  "title_es": "Chefchaouen, Marruecos",
+  "product_title_en": "Chefchaouen, Morocco Cross Stitch Pattern PDF",
+  "product_title_es": "Patrón de punto de cruz: Chefchaouen, Marruecos",
+  "design_slug": "chefchaouen-blue-city",
   "technique": "cross-stitch",
   "pattern_file": "patterns/D0053-CS/pattern.json",
   "template": "cross-stitch.html",
@@ -14,7 +16,8 @@
   "status": "draft",
   "render_ready": false,
   "renderer": "multitech",
-  "source_artwork": null,
+  "source_artwork": "collections/iconic-destinations/input-pngs-q50/canonical-100/D0053-chefchaouen-blue-city.png",
   "page_1_asset": null,
-  "palette_mode": "per-design"
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
 }

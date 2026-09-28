@@ -3,10 +3,12 @@
   "base_design_id": "D0020",
   "technique_code": "CS",
   "collection": "iconic-destinations",
-  "title": "Istanbul Blue Mosque",
-  "title_en": "Istanbul Blue Mosque",
-  "title_es": "Mezquita Azul de Estambul",
-  "design_slug": "istanbul-blue-mosque",
+  "title": "Bagan Temples, Myanmar",
+  "title_en": "Bagan Temples, Myanmar",
+  "title_es": "Templos de Bagan, Myanmar",
+  "product_title_en": "Bagan Temples, Myanmar Cross Stitch Pattern PDF",
+  "product_title_es": "Patrón de punto de cruz: Templos de Bagan, Myanmar",
+  "design_slug": "bagan-temples-and-balloons",
   "technique": "cross-stitch",
   "pattern_file": "patterns/D0020-CS/pattern.json",
   "template": "cross-stitch.html",
@@ -14,7 +16,8 @@
   "status": "draft",
   "render_ready": false,
   "renderer": "multitech",
-  "source_artwork": null,
+  "source_artwork": "collections/iconic-destinations/input-pngs-q50/canonical-100/D0020-bagan-temples-and-balloons.png",
   "page_1_asset": null,
-  "palette_mode": "per-design"
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
 }

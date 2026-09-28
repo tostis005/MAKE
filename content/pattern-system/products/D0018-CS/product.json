@@ -3,10 +3,12 @@
   "base_design_id": "D0018",
   "technique_code": "CS",
   "collection": "iconic-destinations",
-  "title": "Cappadocia Balloons",
-  "title_en": "Cappadocia Balloons",
-  "title_es": "Globos de Capadocia",
-  "design_slug": "cappadocia-balloons",
+  "title": "Cinque Terre, Italy",
+  "title_en": "Cinque Terre, Italy",
+  "title_es": "Cinque Terre, Italia",
+  "product_title_en": "Cinque Terre, Italy Cross Stitch Pattern PDF",
+  "product_title_es": "Patrón de punto de cruz: Cinque Terre, Italia",
+  "design_slug": "cinque-terre-village",
   "technique": "cross-stitch",
   "pattern_file": "patterns/D0018-CS/pattern.json",
   "template": "cross-stitch.html",
@@ -14,7 +16,8 @@
   "status": "draft",
   "render_ready": false,
   "renderer": "multitech",
-  "source_artwork": null,
+  "source_artwork": "collections/iconic-destinations/input-pngs-q50/canonical-100/D0018-cinque-terre-village.png",
   "page_1_asset": null,
-  "palette_mode": "per-design"
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
 }

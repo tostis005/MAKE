@@ -3,10 +3,12 @@
   "base_design_id": "D0010",
   "technique_code": "CS",
   "collection": "iconic-destinations",
-  "title": "Capri Faraglioni",
-  "title_en": "Capri Faraglioni",
-  "title_es": "Faraglioni de Capri",
-  "design_slug": "capri-faraglioni",
+  "title": "Table Mountain, Cape Town",
+  "title_en": "Table Mountain, Cape Town",
+  "title_es": "Table Mountain, Ciudad del Cabo",
+  "product_title_en": "Table Mountain, Cape Town Cross Stitch Pattern PDF",
+  "product_title_es": "Patrón de punto de cruz: Table Mountain, Ciudad del Cabo",
+  "design_slug": "cape-town-table-mountain",
   "technique": "cross-stitch",
   "pattern_file": "patterns/D0010-CS/pattern.json",
   "template": "cross-stitch.html",
@@ -14,7 +16,8 @@
   "status": "draft",
   "render_ready": false,
   "renderer": "multitech",
-  "source_artwork": null,
+  "source_artwork": "collections/iconic-destinations/input-pngs-q50/canonical-100/D0010-cape-town-table-mountain.png",
   "page_1_asset": null,
-  "palette_mode": "per-design"
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
 }

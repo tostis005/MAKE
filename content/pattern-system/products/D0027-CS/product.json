@@ -3,10 +3,12 @@
   "base_design_id": "D0027",
   "technique_code": "CS",
   "collection": "iconic-destinations",
-  "title": "Dubai Burj Khalifa",
-  "title_en": "Dubai Burj Khalifa",
-  "title_es": "Burj Khalifa de Dubái",
-  "design_slug": "dubai-burj-khalifa",
+  "title": "Giant's Causeway, Northern Ireland",
+  "title_en": "Giant's Causeway, Northern Ireland",
+  "title_es": "Calzada del Gigante, Irlanda del Norte",
+  "product_title_en": "Giant's Causeway, Northern Ireland Cross Stitch Pattern PDF",
+  "product_title_es": "Patrón de punto de cruz: Calzada del Gigante, Irlanda del Norte",
+  "design_slug": "giant-s-causeway",
   "technique": "cross-stitch",
   "pattern_file": "patterns/D0027-CS/pattern.json",
   "template": "cross-stitch.html",
@@ -14,7 +16,8 @@
   "status": "draft",
   "render_ready": false,
   "renderer": "multitech",
-  "source_artwork": null,
+  "source_artwork": "collections/iconic-destinations/input-pngs-q50/canonical-100/D0027-giant-s-causeway.png",
   "page_1_asset": null,
-  "palette_mode": "per-design"
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
 }

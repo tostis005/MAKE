@@ -3,10 +3,12 @@
   "base_design_id": "D0017",
   "technique_code": "CS",
   "collection": "iconic-destinations",
-  "title": "Ha Long Bay",
-  "title_en": "Ha Long Bay",
-  "title_es": "Bahía de Ha Long",
-  "design_slug": "ha-long-bay",
+  "title": "Neuschwanstein Castle, Germany",
+  "title_en": "Neuschwanstein Castle, Germany",
+  "title_es": "Castillo de Neuschwanstein, Alemania",
+  "product_title_en": "Neuschwanstein Castle, Germany Cross Stitch Pattern PDF",
+  "product_title_es": "Patrón de punto de cruz: Castillo de Neuschwanstein, Alemania",
+  "design_slug": "neuschwanstein-castle",
   "technique": "cross-stitch",
   "pattern_file": "patterns/D0017-CS/pattern.json",
   "template": "cross-stitch.html",
@@ -14,7 +16,8 @@
   "status": "draft",
   "render_ready": false,
   "renderer": "multitech",
-  "source_artwork": null,
+  "source_artwork": "collections/iconic-destinations/input-pngs-q50/canonical-100/D0017-neuschwanstein-castle.png",
   "page_1_asset": null,
-  "palette_mode": "per-design"
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
 }

@@ -3,10 +3,12 @@
   "base_design_id": "D0052",
   "technique_code": "CS",
   "collection": "iconic-destinations",
-  "title": "Cinque Terre Village",
-  "title_en": "Cinque Terre Village",
-  "title_es": "Pueblo de Cinque Terre",
-  "design_slug": "cinque-terre-village",
+  "title": "Victoria Falls, Zambia / Zimbabwe",
+  "title_en": "Victoria Falls, Zambia / Zimbabwe",
+  "title_es": "Cataratas Victoria, Zambia / Zimbabue",
+  "product_title_en": "Victoria Falls, Zambia / Zimbabwe Cross Stitch Pattern PDF",
+  "product_title_es": "Patrón de punto de cruz: Cataratas Victoria, Zambia / Zimbabue",
+  "design_slug": "victoria-falls",
   "technique": "cross-stitch",
   "pattern_file": "patterns/D0052-CS/pattern.json",
   "template": "cross-stitch.html",
@@ -14,7 +16,8 @@
   "status": "draft",
   "render_ready": false,
   "renderer": "multitech",
-  "source_artwork": null,
+  "source_artwork": "collections/iconic-destinations/input-pngs-q50/canonical-100/D0052-victoria-falls.png",
   "page_1_asset": null,
-  "palette_mode": "per-design"
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
 }

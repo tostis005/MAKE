@@ -3,10 +3,12 @@
   "base_design_id": "D0059",
   "technique_code": "CS",
   "collection": "iconic-destinations",
-  "title": "Marrakech Koutoubia Mosque",
-  "title_en": "Marrakech Koutoubia Mosque",
-  "title_es": "Mezquita Koutoubia de Marrakech",
-  "design_slug": "marrakech-koutoubia-mosque",
+  "title": "Le Morne Brabant, Mauritius",
+  "title_en": "Le Morne Brabant, Mauritius",
+  "title_es": "Le Morne Brabant, Mauricio",
+  "product_title_en": "Le Morne Brabant, Mauritius Cross Stitch Pattern PDF",
+  "product_title_es": "Patrón de punto de cruz: Le Morne Brabant, Mauricio",
+  "design_slug": "le-morne-mauritius",
   "technique": "cross-stitch",
   "pattern_file": "patterns/D0059-CS/pattern.json",
   "template": "cross-stitch.html",
@@ -14,7 +16,8 @@
   "status": "draft",
   "render_ready": false,
   "renderer": "multitech",
-  "source_artwork": null,
+  "source_artwork": "collections/iconic-destinations/input-pngs-q50/canonical-100/D0059-le-morne-mauritius.png",
   "page_1_asset": null,
-  "palette_mode": "per-design"
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
 }

@@ -3,10 +3,12 @@
   "base_design_id": "D0040",
   "technique_code": "CS",
   "collection": "iconic-destinations",
-  "title": "Santorini Blue Domes",
-  "title_en": "Santorini Blue Domes",
-  "title_es": "Cúpulas azules de Santorini",
-  "design_slug": "santorini-blue-domes",
+  "title": "Colmar, France",
+  "title_en": "Colmar, France",
+  "title_es": "Colmar, Francia",
+  "product_title_en": "Colmar, France Cross Stitch Pattern PDF",
+  "product_title_es": "Patrón de punto de cruz: Colmar, Francia",
+  "design_slug": "colmar-canals",
   "technique": "cross-stitch",
   "pattern_file": "patterns/D0040-CS/pattern.json",
   "template": "cross-stitch.html",
@@ -14,7 +16,8 @@
   "status": "draft",
   "render_ready": false,
   "renderer": "multitech",
-  "source_artwork": null,
+  "source_artwork": "collections/iconic-destinations/input-pngs-q50/canonical-100/D0040-colmar-canals.png",
   "page_1_asset": null,
-  "palette_mode": "per-design"
+  "palette_mode": "per-design",
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
 }
