@@ -12,17 +12,70 @@ permissions:
 
 concurrency:
   group: drielo-baby-nursery-recenter-selected
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   recenter:
     runs-on: ubuntu-latest
     timeout-minutes: 75
     steps:
-      - name: Checkout main
+      - name: Checkout only Baby Nursery repair paths
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            .github/workflows/recenter-baby-nursery-selected.yml
+            content/pattern-system/baby_nursery/
+            content/pattern-system/multitech/
+            content/pattern-system/collections/baby-nursery/collection.json
+            content/pattern-system/collections/baby-nursery/designs.json
+            content/pattern-system/collections/baby-nursery/assets/
+            content/pattern-system/collections/baby-nursery/mapped-designs/I0021-whale-dmc.png
+            content/pattern-system/collections/baby-nursery/mapped-designs/I0025-seahorse-dmc.png
+            content/pattern-system/collections/baby-nursery/mapped-designs/I0026-long-neck-dinosaur-dmc.png
+            content/pattern-system/collections/baby-nursery/mapped-designs/I0027-triceratops-dmc.png
+            content/pattern-system/collections/baby-nursery/mapped-designs/I0029-stegosaurus-dmc.png
+            content/pattern-system/collections/baby-nursery/mapped-designs/I0043-rainbow-clouds-dmc.png
+            content/pattern-system/collections/baby-nursery/mapped-designs/I0044-sun-dmc.png
+            content/pattern-system/collections/baby-nursery/mapped-designs/I0057-rattle-dmc.png
+            content/pattern-system/patterns/I0021-CS/
+            content/pattern-system/patterns/I0025-CS/
+            content/pattern-system/patterns/I0026-CS/
+            content/pattern-system/patterns/I0027-CS/
+            content/pattern-system/patterns/I0029-CS/
+            content/pattern-system/patterns/I0043-CS/
+            content/pattern-system/patterns/I0044-CS/
+            content/pattern-system/patterns/I0057-CS/
+            content/pattern-system/products/I0021-CS/
+            content/pattern-system/products/I0025-CS/
+            content/pattern-system/products/I0026-CS/
+            content/pattern-system/products/I0027-CS/
+            content/pattern-system/products/I0029-CS/
+            content/pattern-system/products/I0043-CS/
+            content/pattern-system/products/I0044-CS/
+            content/pattern-system/products/I0057-CS/
+            content/source-images/collections/baby-nursery/
+            content/products/catalog.json
+            content/products/assets/baby-nursery-collection-cover-v2.jpg
+            content/products/assets/I0021-CS-*
+            content/products/assets/I0025-CS-*
+            content/products/assets/I0026-CS-*
+            content/products/assets/I0027-CS-*
+            content/products/assets/I0029-CS-*
+            content/products/assets/I0043-CS-*
+            content/products/assets/I0044-CS-*
+            content/products/assets/I0057-CS-*
+            content/products/files/Drielo_I0021-CS.pdf
+            content/products/files/Drielo_I0025-CS.pdf
+            content/products/files/Drielo_I0026-CS.pdf
+            content/products/files/Drielo_I0027-CS.pdf
+            content/products/files/Drielo_I0029-CS.pdf
+            content/products/files/Drielo_I0043-CS.pdf
+            content/products/files/Drielo_I0044-CS.pdf
+            content/products/files/Drielo_I0057-CS.pdf
+            content/tools/import-products.php
 
       - name: Set up Python
         uses: actions/setup-python@v5
