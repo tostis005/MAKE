@@ -265,7 +265,19 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add             content/products/assets/I0001-CS-product.webp             content/pattern-system/patterns/I0001-CS/pattern.json             content/pattern-system/products/I0001-CS/product.json             content/products/catalog.json
+          # Keep this repository change ecommerce-only. The workflow regenerates
+          # the full bundle for validation/import, but only the product hero
+          # should be committed; PDF/gallery/catalog remain unchanged in git.
+          git restore \
+            content/products/assets/I0001-CS-gallery-2.webp \
+            content/products/assets/I0001-CS-gallery-3.webp \
+            content/products/assets/I0001-CS-gallery-4.webp \
+            content/products/files/Drielo_I0001-CS.pdf \
+            content/pattern-system/patterns/I0001-CS/pattern.json \
+            content/pattern-system/products/I0001-CS/product.json \
+            content/products/catalog.json || true
+
+          git add content/products/assets/I0001-CS-product.webp
 
           if git diff --cached --quiet; then
             echo "No repository artefact changes to commit."
