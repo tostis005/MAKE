@@ -1,0 +1,299 @@
+name: Repair Baby Nursery Visual Defects
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/repair-baby-nursery-visual-defects.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-baby-nursery-visual-repair
+  cancel-in-progress: false
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install renderer dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow playwright
+          python3 -m playwright install --with-deps chromium
+
+      - name: Repair audited source PNG defects
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/baby_nursery/repair_visual_defects.py
+
+      - name: Regenerate only audited products
+        env:
+          DRIELO_GALLERY_REVISION: visual-repair-${{ github.run_id }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp content/products/catalog.json /tmp/catalog-before-visual-repair.json
+          for id in I0021 I0022 I0026 I0027 I0028 I0030 I0044; do
+            echo "Regenerating $id"
+            python3 content/pattern-system/baby_nursery/publish_cs_exact_dmc.py "$id"
+          done
+
+          # Force fresh bytes for the two user-reported cases whose source artwork
+          # is already complete, so WooCommerce/CDN receives a genuinely refreshed hero.
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          for base in ("I0021","I0026"):
+              p=Path("content/products/assets")/f"{base}-CS-product.webp"
+              with Image.open(p) as im:
+                  rgb=im.convert("RGB")
+              rgb.save(p,"WEBP",quality=95,method=6)
+              print("FORCE_REFRESH",base,p.stat().st_size)
+          PY
+
+      - name: Validate repaired sources and generated bundles
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from collections import deque
+          from pathlib import Path
+          from PIL import Image
+
+          root=Path(".")
+          source=root/"content/source-images/collections/baby-nursery/products"
+          designs=json.loads((root/"content/pattern-system/collections/baby-nursery/designs.json").read_text())
+          byid={d["base_design_id"]:d for d in designs["designs"]}
+          repaired=("I0022","I0027","I0028","I0030","I0044")
+          rebuild=("I0021","I0022","I0026","I0027","I0028","I0030","I0044")
+
+          def component_count(im):
+              a=list(im.convert("RGBA").getchannel("A").getdata())
+              w,h=im.size; mask=[v>=128 for v in a]; seen=set(); n=0
+              for y in range(h):
+                  for x in range(w):
+                      if not mask[y*w+x] or (x,y) in seen: continue
+                      n+=1; q=deque([(x,y)]); seen.add((x,y))
+                      while q:
+                          px,py=q.popleft()
+                          for dy in (-1,0,1):
+                              for dx in (-1,0,1):
+                                  if dx==dy==0: continue
+                                  nx,ny=px+dx,py+dy
+                                  if 0<=nx<w and 0<=ny<h and mask[ny*w+nx] and (nx,ny) not in seen:
+                                      seen.add((nx,ny)); q.append((nx,ny))
+              return n
+
+          for base in repaired:
+              d=byid[base]
+              p=source/f"{base}-{d['slug']}.png"
+              with Image.open(p) as im:
+                  if im.size!=(100,120): raise SystemExit(f"{base}: wrong source size")
+                  n=component_count(im)
+              if n!=1: raise SystemExit(f"{base}: still has {n} disconnected components")
+              print(base,"SOURCE_CLEAN")
+
+          catalog=json.loads((root/"content/products/catalog.json").read_text())
+          rows={p.get("code"):p for p in catalog.get("products",[])}
+          for base in rebuild:
+              code=f"{base}-CS"
+              if code not in rows: raise SystemExit(f"{code}: missing generated catalog row")
+              pat=json.loads((root/"content/pattern-system/patterns"/code/"pattern.json").read_text())
+              if (pat.get("stitch_width"),pat.get("stitch_height"))!=(100,120):
+                  raise SystemExit(f"{code}: wrong grid")
+              hero=root/"content/products/assets"/f"{code}-product.webp"
+              gallery=[root/"content/products/assets"/f"{code}-gallery-{i}.webp" for i in (2,3,4)]
+              pdf=root/"content/products/files"/f"Drielo_{code}.pdf"
+              with Image.open(hero) as im:
+                  if im.size!=(1536,1536): raise SystemExit(f"{code}: wrong hero size {im.size}")
+              if any(not g.is_file() or g.stat().st_size<10000 for g in gallery):
+                  raise SystemExit(f"{code}: gallery invalid")
+              if not pdf.is_file() or pdf.stat().st_size<100000:
+                  raise SystemExit(f"{code}: PDF invalid")
+              print(code,"BUNDLE_VALID")
+          PY
+
+      - name: Build seven-product WooCommerce package
+        env:
+          REPAIR_REVISION: visual-repair-${{ github.run_id }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          STAGE="/tmp/drielo-baby-visual-repair"
+          rm -rf "$STAGE"
+          mkdir -p "$STAGE/content/products/assets" "$STAGE/content/products/files" "$STAGE/content/tools"
+
+          python3 - "$STAGE" <<'PY'
+          import json,os,sys
+          from pathlib import Path
+          stage=Path(sys.argv[1])
+          ids=("I0021","I0022","I0026","I0027","I0028","I0030","I0044")
+          codes={f"{x}-CS" for x in ids}
+          src=json.loads(Path("content/products/catalog.json").read_text(encoding="utf-8"))
+          rows=[p for p in src.get("products",[]) if p.get("code") in codes]
+          if {p.get("code") for p in rows}!=codes:
+              raise SystemExit("Selected repair catalog rows are incomplete")
+          revision=os.environ["REPAIR_REVISION"]
+          for p in rows:
+              p["gallery_revision"]=revision
+          coll=next(c for c in src.get("collections",[]) if c.get("slug")=="baby-nursery")
+          cats=[c for c in src.get("categories",[]) if c.get("slug") in {"cross-stitch-patterns","cross-stitch-baby-nursery"}]
+          out=dict(src)
+          out["products"]=rows
+          out["collections"]=[coll]
+          out["categories"]=cats
+          out["retired_products"]=[]
+          out["retired_collections"]=[]
+          (stage/"content/products/catalog.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          PY
+
+          for base in I0021 I0022 I0026 I0027 I0028 I0030 I0044; do
+            code="${base}-CS"
+            cp "content/products/assets/${code}-product.webp" "$STAGE/content/products/assets/"
+            cp "content/products/assets/${code}-gallery-2.webp" "$STAGE/content/products/assets/"
+            cp "content/products/assets/${code}-gallery-3.webp" "$STAGE/content/products/assets/"
+            cp "content/products/assets/${code}-gallery-4.webp" "$STAGE/content/products/assets/"
+            cp "content/products/files/Drielo_${code}.pdf" "$STAGE/content/products/files/"
+          done
+          cp content/products/assets/baby-nursery-collection-cover-v2.jpg "$STAGE/content/products/assets/"
+          cp content/tools/import-products.php "$STAGE/content/tools/"
+          test -f "$STAGE/content/products/catalog.json"
+          tar -czf /tmp/drielo-baby-visual-repair.tgz -C "$STAGE" content
+          tar -tzf /tmp/drielo-baby-visual-repair.tgz | grep -qx 'content/products/catalog.json'
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_repair_key
+          chmod 600 ~/.ssh/drielo_repair_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Upload repair package
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          scp -i ~/.ssh/drielo_repair_key /tmp/drielo-baby-visual-repair.tgz "$VPS_USER@$VPS_HOST:/tmp/drielo-baby-visual-repair-${GITHUB_RUN_ID}.tgz"
+
+      - name: Overwrite only seven audited products and verify all 60 remain
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_repair_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-baby-visual-repair-${GITHUB_RUN_ID}.tgz"
+          STAGE="/tmp/drielo-baby-visual-repair-${GITHUB_RUN_ID}"
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE"; }
+          trap cleanup EXIT
+
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"; exit 1
+          fi
+
+          PRE_JSON=$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $out=array();
+            foreach(array("I0021","I0022","I0026","I0027","I0028","I0030","I0044") as $b){
+              $out[$b]=(int)wc_get_product_id_by_sku("DRIELO-".$b."-CS");
+            }
+            echo json_encode($out);
+          ')
+          echo "PRE_IDS=$PRE_JSON"
+
+          PRE_COUNT=$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $ids=get_posts(array("post_type"=>"product","post_status"=>"publish","posts_per_page"=>-1,"fields"=>"ids","tax_query"=>array(array("taxonomy"=>"product_collection","field"=>"slug","terms"=>array("baby-nursery")))));
+            echo count($ids);
+          ')
+          echo "Baby Nursery published before: $PRE_COUNT"
+          [ "$PRE_COUNT" = "60" ] || { echo "Expected 60 published before repair"; exit 8; }
+
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php && mkdir -p /tmp/drielo-products'
+          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          "${DOCKER[@]}" exec make-wp sh -lc 'test -f /tmp/drielo-products/catalog.json'
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
+
+          "${DOCKER[@]}" exec -e PRE_JSON="$PRE_JSON" make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $pre=json_decode(getenv("PRE_JSON"),true);
+            foreach(array("I0021","I0022","I0026","I0027","I0028","I0030","I0044") as $b){
+              $sku="DRIELO-".$b."-CS";
+              $id=(int)wc_get_product_id_by_sku($sku);
+              $p=$id?wc_get_product($id):false;
+              if(!$p){fwrite(STDERR,"Missing ".$sku.PHP_EOL);exit(2);}
+              if($id!==(int)$pre[$b]){fwrite(STDERR,"Product ID changed for ".$sku.PHP_EOL);exit(3);}
+              if($p->get_status()!=="publish" || !$p->get_image_id() || count($p->get_gallery_image_ids())<3 || count($p->get_downloads())<1){
+                fwrite(STDERR,"Incomplete ".$sku.PHP_EOL);exit(4);
+              }
+              echo $sku." id=".$id." image=".$p->get_image_id()." gallery=".count($p->get_gallery_image_ids())." downloads=".count($p->get_downloads())." url=".get_permalink($id).PHP_EOL;
+            }
+            $ids=get_posts(array("post_type"=>"product","post_status"=>"publish","posts_per_page"=>-1,"fields"=>"ids","tax_query"=>array(array("taxonomy"=>"product_collection","field"=>"slug","terms"=>array("baby-nursery")))));
+            echo "Baby Nursery published after: ".count($ids).PHP_EOL;
+            if(count($ids)!==60){fwrite(STDERR,"Expected 60 Baby Nursery products after repair".PHP_EOL);exit(5);}
+          '
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
+          REMOTE
+
+      - name: Preserve corrected repository assets without replacing full catalog
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp /tmp/catalog-before-visual-repair.json content/products/catalog.json
+
+          # The live downloads were regenerated and imported, but the repository's
+          # large PDFs are not part of this visual source/image repair commit.
+          for base in I0021 I0022 I0026 I0027 I0028 I0030 I0044; do
+            git restore "content/products/files/Drielo_${base}-CS.pdf" 2>/dev/null || true
+          done
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add             content/source-images/collections/baby-nursery/products/I0022-dolphin.png             content/source-images/collections/baby-nursery/products/I0027-triceratops.png             content/source-images/collections/baby-nursery/products/I0028-t-rex.png             content/source-images/collections/baby-nursery/products/I0030-baby-dragon.png             content/source-images/collections/baby-nursery/products/I0044-sun.png             content/source-images/collections/baby-nursery/source-manifest.json             content/source-images/collections/baby-nursery/qa_report.json             content/pattern-system/collections/baby-nursery/designs.json             content/pattern-system/collections/baby-nursery/repair-report-2026-09-28.json
+
+          for base in I0021 I0022 I0026 I0027 I0028 I0030 I0044; do
+            code="${base}-CS"
+            git add               "content/pattern-system/collections/baby-nursery/mapped-designs/${base}-"*"-dmc.png"               "content/pattern-system/patterns/${code}/pattern.json"               "content/pattern-system/products/${code}/product.json"               "content/products/assets/${code}-product.webp"               "content/products/assets/${code}-gallery-2.webp"               "content/products/assets/${code}-gallery-3.webp"               "content/products/assets/${code}-gallery-4.webp"
+          done
+
+          if git diff --cached --quiet; then
+            echo "No corrected repository assets changed."
+          else
+            git commit -m "Repair audited Baby Nursery visual defects [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
