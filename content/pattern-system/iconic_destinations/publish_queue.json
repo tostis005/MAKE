@@ -126,14 +126,15 @@
       "product_title_es": "Patrón de punto de cruz: Cristo Redentor, Río de Janeiro",
       "slug": "rio-christ-redeemer",
       "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0037-rio-christ-redeemer.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36440504432",
       "last_error": null,
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_manifest_item": "D0037",
       "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
-      "source_zip_member": "D0037-rio-christ-redeemer.png"
+      "source_zip_member": "D0037-rio-christ-redeemer.png",
+      "published_at": "2026-09-28T15:05:22+00:00"
     },
     {
       "base_design_id": "D0038",
