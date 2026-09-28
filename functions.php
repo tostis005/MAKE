@@ -25,18 +25,22 @@ function make_theme_setup(): void {
     add_image_size( 'make-store-card-small-context', 320, 400, false );
     add_image_size( 'make-store-card-context', 560, 700, false );
     add_image_size( 'make-home-product-card', 560, 700, true );
+    add_image_size( 'make-home-product-square', 560, 560, false );
+    add_image_size( 'make-single-product-context', 1040, 1040, false );
     add_image_size( 'make-collection-preview', 240, 240, true );
     add_image_size( 'make-collection-preview-context', 300, 300, false );
+    add_image_size( 'make-collection-preview-small', 180, 180, false );
     add_image_size( 'make-product-card', 700, 700, true );
     add_image_size( 'make-journal', 900, 560, true );
     register_nav_menus( array( 'primary' => __( 'Primary menu', 'make' ), 'footer' => __( 'Footer menu', 'make' ) ) );
 }
 add_action( 'after_setup_theme', 'make_theme_setup' );
 
-// Store cards use the exact uploaded source image. This avoids any generated
-// WooCommerce/WordPress derivative becoming the visible storefront asset.
+// Store cards use a proportional derivative sized for their real display box.
+// This preserves the complete source composition without downloading 1536px
+// originals into a ~250–560px catalogue card.
 add_filter( 'single_product_archive_thumbnail_size', static function (): string {
-    return 'full';
+    return 'make-store-card-context';
 }, 20 );
 
 function make_attachment_cache_busted_url( int $attachment_id, string $url ): string {
@@ -75,7 +79,7 @@ function make_loop_product_thumbnail(): void {
 
     $image_id = $product->get_image_id();
     if ( $image_id ) {
-        echo wp_kses_post( make_static_attachment_image_html( $image_id, 'full', 'attachment-full size-full drielo-store-product-image' ) );
+        echo wp_kses_post( make_static_attachment_image_html( $image_id, 'make-store-card-context', 'attachment-make-store-card-context size-make-store-card-context drielo-store-product-image' ) );
         return;
     }
 
@@ -87,7 +91,7 @@ add_action( 'woocommerce_before_shop_loop_item_title', 'make_loop_product_thumbn
 function make_protected_single_product_image_html( string $html, int $attachment_id ): string {
     if ( $attachment_id <= 0 ) { return $html; }
 
-    $image = wp_get_attachment_image_src( $attachment_id, 'full' );
+    $image = wp_get_attachment_image_src( $attachment_id, 'make-single-product-context' );
     if ( ! is_array( $image ) || empty( $image[0] ) ) { return $html; }
 
     $thumb = wp_get_attachment_image_src( $attachment_id, 'thumbnail' );
@@ -96,7 +100,7 @@ function make_protected_single_product_image_html( string $html, int $attachment
 
     global $product;
     $classes = 'woocommerce-product-gallery__image';
-    $img_class = 'attachment-full size-full drielo-single-product-image';
+    $img_class = 'attachment-make-single-product-context size-make-single-product-context drielo-single-product-image';
     if ( $product instanceof WC_Product && (int) $product->get_image_id() === $attachment_id ) {
         $img_class .= ' wp-post-image';
     }
