@@ -3,8 +3,8 @@
   "updated_at": "2026-09-28",
   "source": {
     "transport": "gmail-temporary-handoff",
-    "gmail_message_id": "1a0e6e17bd4c59c2",
-    "note": "Approved collection cover images supplied by the user and relayed through Gmail before installation in GitHub."
+    "gmail_message_id": "1a0e9c14f64516c5",
+    "note": "Approved Animals cover supplied through temporary Gmail handoff and installed in GitHub. Final asset is 1536x1536; Aida opening x438 y212 w685 h822."
   },
   "collections": [
     {
@@ -18,8 +18,20 @@
       "slug": "animals",
       "display_es": "Animales",
       "display_en": "Animals",
-      "cover_asset": "assets/animals-collection-cover-v2.jpg",
-      "source_filename": "coleccion-animales.jpg"
+      "cover_asset": "assets/animals-collection-cover-v3.jpg",
+      "source_filename": "animals-webp-60.webp",
+      "technical_geometry": {
+        "source_px": {
+          "width": 1536,
+          "height": 1536
+        },
+        "area_px": {
+          "x": 438,
+          "y": 212,
+          "width": 685,
+          "height": 822
+        }
+      }
     },
     {
       "slug": "iconic-destinations",
