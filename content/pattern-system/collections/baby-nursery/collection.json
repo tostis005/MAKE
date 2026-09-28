@@ -135,45 +135,46 @@
     }
   ],
   "mockup_spec": {
-    "asset": null,
+    "asset": "collections/baby-nursery/assets/cover-cross-stitch.jpg",
     "technique_assets": {
       "CS": "collections/baby-nursery/assets/cover-cross-stitch.jpg",
       "C2C": "collections/baby-nursery/assets/cover-c2c-crochet.jpg",
       "TC": "collections/baby-nursery/assets/cover-crochet.jpg",
       "LH": "collections/baby-nursery/assets/cover-rug.jpg"
     },
-    "status": "approved-page-1-images",
+    "status": "approved-square-iconic-aligned",
     "generation": {
       "purpose": "Reusable page-1 lifestyle/ambient images for the Baby & Nursery collection.",
       "frame_requirement": "Leave the craft display area empty so the final vector pattern can be inserted by the renderer.",
       "post_generation_measurement": "Record exact source dimensions and usable area geometry after approval."
     },
     "frame": {
-      "enabled": false,
+      "enabled": true,
       "source_px": {
-        "width": 0,
-        "height": 0
+        "width": 1536,
+        "height": 1536
       },
       "area_px": {
-        "x": 0,
-        "y": 0,
-        "width": 0,
-        "height": 0
+        "x": 438,
+        "y": 212,
+        "width": 685,
+        "height": 822
       },
-      "padding_ratio": 0.055,
+      "padding_ratio": 0,
       "fabric": {
-        "color": "#F7F3EA",
+        "color": "transparent",
         "kind": "aida",
-        "count_visual_reference": 14
+        "count_visual_reference": 14,
+        "texture_css": "none"
       }
     },
     "technique_layouts": {
       "CS": {
         "cover_overlay": {
-          "left": 29,
-          "top": 12,
-          "width": 48,
-          "height": 58,
+          "left": 28.5156,
+          "top": 13.8021,
+          "width": 44.5964,
+          "height": 53.5156,
           "opacity": 0.96,
           "safe_inset_pct": 0
         },
@@ -213,12 +214,12 @@
         "cover_stage_scale": 125
       }
     },
-    "layout_source": "Exact copy of the approved Pop Art multitech cover placement values; do not recalculate per collection.",
+    "layout_source": "Exact Iconic Destinations measured frame geometry: source 1536x1536; Aida opening x438 y212 w685 h822.",
     "crochet_asset_mapping_note": "Canonical mapping: C2C uses cover-c2c-crochet.jpg; tapestry crochet (TC) uses cover-crochet.jpg. Keep this mapping for future executions."
   },
   "preview_rules": {
     "vector": true,
-    "transparent_pattern_background_on_cover": true,
+    "transparent_pattern_background_on_cover": false,
     "cross_margin_ratio": 0.02,
     "stroke_width_ratio": 0.34,
     "linecap": "round",
