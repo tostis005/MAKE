@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Drielo Etsy Sync
  * Description: Centraliza la selección y sincronización de productos WooCommerce con Etsy, incluidos productos digitales, imágenes y PDFs.
- * Version: 1.4.9
+ * Version: 1.4.10
  * Author: Drielo
  * Requires Plugins: woocommerce
  * Requires PHP: 8.0
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 final class Drielo_Etsy_Sync {
-    const VERSION = '1.4.9';
+    const VERSION = '1.4.10';
     const OPTION_SETTINGS = 'drielo_etsy_settings';
     const OPTION_TOKENS   = 'drielo_etsy_tokens';
     const OPTION_SYNC_RUN = 'drielo_etsy_sync_run';
@@ -27,6 +27,7 @@ final class Drielo_Etsy_Sync {
     const META_LAST_ERROR    = '_drielo_etsy_last_error';
     const META_ASSET_HASH    = '_drielo_etsy_asset_hash';
     const META_CONTENT_HASH  = '_drielo_etsy_content_hash';
+    const META_AUTO_RENEW    = '_drielo_etsy_auto_renew';
     const META_QUEUE_STATE      = '_drielo_etsy_queue_state';
     const META_BATCH_ID         = '_drielo_etsy_batch_id';
     const META_BATCH_STATE      = '_drielo_etsy_batch_state';
@@ -1511,7 +1512,7 @@ final class Drielo_Etsy_Sync {
             'is_supply'         => 'true',
             'type'              => 'download',
             'is_customizable'   => 'false',
-            'should_auto_renew' => ! empty( $settings['auto_renew'] ) ? 'true' : 'false',
+            'should_auto_renew' => $this->product_auto_renew( $product ) ? 'true' : 'false',
         ];
 
         if ( ! empty( $settings['sync_tags'] ) ) {
@@ -1522,6 +1523,18 @@ final class Drielo_Etsy_Sync {
         }
 
         return $payload;
+    }
+
+    private function product_auto_renew( WC_Product $product ): bool {
+        $override = strtolower( trim( (string) get_post_meta( $product->get_id(), self::META_AUTO_RENEW, true ) ) );
+        if ( in_array( $override, [ 'no', '0', 'false', 'off' ], true ) ) {
+            return false;
+        }
+        if ( in_array( $override, [ 'yes', '1', 'true', 'on' ], true ) ) {
+            return true;
+        }
+        $settings = $this->settings();
+        return ! empty( $settings['auto_renew'] );
     }
 
     private function listing_language(): string {
@@ -1930,7 +1943,7 @@ final class Drielo_Etsy_Sync {
             'quantity'       => (int) $settings['quantity'],
             'language'       => $this->listing_language(),
             'when_made'      => (string) $settings['when_made'],
-            'auto_renew'     => ! empty( $settings['auto_renew'] ),
+            'auto_renew'     => $this->product_auto_renew( $product ),
             'auto_taxonomy'  => ! empty( $settings['auto_taxonomy'] ),
         ];
         return hash( 'sha256', wp_json_encode( $data ) );
