@@ -1640,14 +1640,15 @@
       "product_title_es": "Patrón de punto de cruz: Wadi Rum, Jordania",
       "slug": "wadi-rum",
       "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0141-wadi-rum.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36477580956",
       "last_error": null,
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_manifest_item": "D0141",
       "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
-      "source_zip_member": "D0141-wadi-rum.png"
+      "source_zip_member": "D0141-wadi-rum.png",
+      "published_at": "2026-09-28T20:15:00+00:00"
     },
     {
       "base_design_id": "D0142",
