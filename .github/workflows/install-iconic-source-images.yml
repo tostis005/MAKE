@@ -1,0 +1,116 @@
+name: Install audited Iconic source images
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/pattern-system/collections/iconic-destinations/source-images/package/iconic-destinations-audited-100-q50.zip'
+      - '.github/workflows/install-iconic-source-images.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-install-iconic-source-images
+  cancel-in-progress: false
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Pillow
+        run: python3 -m pip install --disable-pip-version-check --quiet Pillow
+
+      - name: Validate and install canonical source images
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          import io, json, re, shutil, zipfile
+
+          col = Path('content/pattern-system/collections/iconic-destinations')
+          package = col/'source-images'/'package'/'iconic-destinations-audited-100-q50.zip'
+          target = col/'source-images'
+
+          with zipfile.ZipFile(package, 'r') as z:
+              names = z.namelist()
+              if 'manifest.json' not in names:
+                  raise SystemExit('manifest.json missing from source package')
+              manifest = json.loads(z.read('manifest.json').decode('utf-8'))
+              items = manifest.get('items') or []
+              if len(items) != 100:
+                  raise SystemExit(f'Expected 100 manifest items, got {len(items)}')
+              if (manifest.get('collection') or {}).get('slug') != 'iconic-destinations':
+                  raise SystemExit('Wrong collection slug in manifest')
+              spec = manifest.get('image_spec') or {}
+              if spec.get('width') != 100 or spec.get('height') != 120 or spec.get('color_count') != 50:
+                  raise SystemExit(f'Wrong image_spec: {spec}')
+              if spec.get('palette_mode') != 'independent_per_image':
+                  raise SystemExit('Palette must be independent per image')
+
+              ids=set(); filenames=set(); slugs=set(); titles=set()
+              expected_files=[]
+              for item in items:
+                  for key in ('id','filename','slug','title_es','title_en','product_title_en','product_title_es'):
+                      if not str(item.get(key) or '').strip():
+                          raise SystemExit(f"Missing {key} in item {item.get('id')}")
+                  base=item['id']
+                  fn=item['filename']
+                  if not re.fullmatch(r'D\d{4}', base):
+                      raise SystemExit(f'Invalid id: {base}')
+                  if not fn.startswith(base+'-') or not fn.endswith('.png'):
+                      raise SystemExit(f'{base}: filename must start with id and end .png: {fn}')
+                  if base in ids or fn in filenames or item['slug'] in slugs:
+                      raise SystemExit(f'Duplicate manifest identity: {base} {fn}')
+                  ids.add(base); filenames.add(fn); slugs.add(item['slug'])
+                  expected_files.append(fn)
+
+                  raw=z.read(fn)
+                  with Image.open(io.BytesIO(raw)) as im:
+                      rgb=im.convert('RGB')
+                      colours=len(set(rgb.getdata()))
+                      if im.format!='PNG' or rgb.size!=(100,120) or colours!=50:
+                          raise SystemExit(f'{fn}: format={im.format} size={rgb.size} colours={colours}')
+                  if item.get('width') != 100 or item.get('height') != 120 or item.get('color_count') != 50:
+                      raise SystemExit(f'{base}: item technical metadata does not match image')
+
+              png_members=sorted(n for n in names if n.lower().endswith('.png'))
+              if sorted(expected_files) != png_members:
+                  raise SystemExit('ZIP PNG set does not exactly match manifest filenames')
+
+              # Remove only canonical top-level PNGs; keep package/ and docs.
+              for old in target.glob('D*.png'):
+                  old.unlink()
+              for fn in expected_files:
+                  (target/fn).write_bytes(z.read(fn))
+              (target/'manifest.json').write_text(
+                  json.dumps(manifest, ensure_ascii=False, indent=2) + '\n',
+                  encoding='utf-8'
+              )
+
+          print('ICONIC_SOURCE_IMAGES_INSTALLED count=100 size=100x120 colours=50 palette=per-image')
+          PY
+
+      - name: Commit canonical image structure
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/pattern-system/collections/iconic-destinations/source-images
+          if git diff --cached --quiet; then
+            echo "Canonical source images already current"
+          else
+            git commit -m "Install audited Iconic source images [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
