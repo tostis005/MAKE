@@ -1,0 +1,149 @@
+name: Deploy storefront image optimization once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/store-image-optimization-once.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  deploy-image-optimization:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout current theme files
+        uses: actions/checkout@v4
+
+      - name: Validate changed theme files
+        shell: bash
+        run: |
+          set -euo pipefail
+          php -l functions.php
+          php -l front-page.php
+          php -l inc/store.php
+          test -s style.css
+          tar -czf /tmp/drielo-image-theme-patch.tgz functions.php front-page.php style.css inc/store.php
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_image_patch_key
+          chmod 600 ~/.ssh/drielo_image_patch_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Upload lightweight theme patch
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          scp -i ~/.ssh/drielo_image_patch_key /tmp/drielo-image-theme-patch.tgz \
+            "$VPS_USER@$VPS_HOST:/tmp/drielo-image-theme-patch-${GITHUB_RUN_ID}.tgz"
+
+      - name: Install patch, regenerate sizes and verify
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_image_patch_key "$VPS_USER@$VPS_HOST" \
+            "GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-image-theme-patch-${GITHUB_RUN_ID}.tgz"
+          STAGE="/tmp/drielo-image-theme-patch-${GITHUB_RUN_ID}"
+          TARGET="/var/www/html/wp-content/themes/make"
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE"; }
+          trap cleanup EXIT
+
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+          "${DOCKER[@]}" cp "$STAGE/functions.php" "make-wp:$TARGET/functions.php"
+          "${DOCKER[@]}" cp "$STAGE/front-page.php" "make-wp:$TARGET/front-page.php"
+          "${DOCKER[@]}" cp "$STAGE/style.css" "make-wp:$TARGET/style.css"
+          "${DOCKER[@]}" cp "$STAGE/inc/store.php" "make-wp:$TARGET/inc/store.php"
+          "${DOCKER[@]}" exec make-wp sh -lc "chown www-data:www-data '$TARGET/functions.php' '$TARGET/front-page.php' '$TARGET/style.css' '$TARGET/inc/store.php' && php -l '$TARGET/functions.php' && php -l '$TARGET/front-page.php' && php -l '$TARGET/inc/store.php'"
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            require_once ABSPATH . "wp-admin/includes/image.php";
+
+            $ids=get_posts(array(
+              "post_type"=>"product",
+              "post_status"=>"publish",
+              "posts_per_page"=>-1,
+              "fields"=>"ids",
+              "meta_key"=>"_drielo_managed_product",
+              "meta_value"=>"1"
+            ));
+            $attachments=array();
+            foreach($ids as $id){
+              $image_id=(int)get_post_thumbnail_id($id);
+              if($image_id>0){$attachments[$image_id]=true;}
+            }
+            foreach(array_keys($attachments) as $attachment_id){
+              if(function_exists("wp_update_image_subsizes")){
+                wp_update_image_subsizes((int)$attachment_id);
+              } else {
+                $file=get_attached_file((int)$attachment_id);
+                if($file){
+                  $metadata=wp_generate_attachment_metadata((int)$attachment_id,$file);
+                  if(is_array($metadata)){wp_update_attachment_metadata((int)$attachment_id,$metadata);}
+                }
+              }
+            }
+
+            $id=(int)wc_get_product_id_by_sku("DRIELO-I0001-CS");
+            if($id<=0){fwrite(STDERR,"I0001 product missing".PHP_EOL);exit(2);}
+            $image_id=(int)get_post_thumbnail_id($id);
+            if($image_id<=0){fwrite(STDERR,"I0001 image missing".PHP_EOL);exit(3);}
+
+            $sizes=array(
+              "shop"=>"make-store-card-context",
+              "home"=>"make-home-product-square",
+              "single"=>"make-single-product-context",
+              "collection"=>"make-collection-preview-small"
+            );
+            foreach($sizes as $label=>$size){
+              $img=wp_get_attachment_image_src($image_id,$size);
+              if(!is_array($img)){fwrite(STDERR,"Missing ".$label." derivative".PHP_EOL);exit(4);}
+              echo "I0001_SIZE ".$label."=".$img[1]."x".$img[2]." url=".$img[0].PHP_EOL;
+            }
+
+            $html=make_static_attachment_image_html($image_id,"make-store-card-context","attachment-make-store-card-context size-make-store-card-context drielo-store-product-image");
+            if(strpos($html,"size-make-store-card-context")===false){fwrite(STDERR,"Optimized shop markup missing".PHP_EOL);exit(5);}
+
+            $single_html=apply_filters("woocommerce_single_product_image_thumbnail_html","placeholder",$image_id);
+            if(strpos($single_html,"size-make-single-product-context")===false){fwrite(STDERR,"Optimized single markup missing".PHP_EOL);exit(6);}
+
+            if(function_exists("wc_delete_product_transients")) wc_delete_product_transients();
+            delete_transient("wc_products_onsale");
+            delete_transient("wc_featured_products");
+            wp_cache_flush();
+            if(function_exists("rocket_clean_domain")) rocket_clean_domain();
+            if(function_exists("wp_cache_clear_cache")) wp_cache_clear_cache();
+            if(function_exists("w3tc_flush_all")) w3tc_flush_all();
+            if(function_exists("sg_cachepress_purge_cache")) sg_cachepress_purge_cache();
+            do_action("litespeed_purge_all");
+
+            echo "IMAGE_OPTIMIZATION_DEPLOYED attachments=".count($attachments).PHP_EOL;
+          '
+          REMOTE
