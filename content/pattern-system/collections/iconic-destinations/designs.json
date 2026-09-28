@@ -2272,10 +2272,10 @@
       "variants": [
         "D0076-CS"
       ],
-      "artwork_status": "approved-manifest-individual-png-100x120",
+      "artwork_status": "production-ready-from-approved-clean-zip",
       "source_asset": "collections/iconic-destinations/input-pngs-q50/canonical-100/D0076-cartagena-walled-city.png",
       "palette_mode": "per-design",
-      "palette_status": "ready-for-direct-png-dmc-map",
+      "palette_status": "mapped-directly-from-zip-png-to-dmc",
       "target_master_grid": {
         "width": 100,
         "height": 120,
@@ -2283,7 +2283,8 @@
       },
       "target_chart_pages": 4,
       "source_colour_count": 50,
-      "dmc_colour_count": null
+      "dmc_colour_count": 41,
+      "dmc_mapped_asset": "collections/iconic-destinations/source-designs/D0076-cartagena-walled-city.png"
     },
     {
       "order": 77,
