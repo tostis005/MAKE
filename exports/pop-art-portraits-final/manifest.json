@@ -1,0 +1,1474 @@
+{
+  "schema": "drielo.pop-art-portraits.v1",
+  "collection_id": "pop-art-25",
+  "collection_title_en": "Pop Art Portraits",
+  "collection_title_es": "Retratos Pop Art",
+  "design_count": 60,
+  "image_size": [
+    100,
+    120
+  ],
+  "shared_palette_size": 30,
+  "palette_rgb": [
+    [
+      2,
+      2,
+      2
+    ],
+    [
+      2,
+      50,
+      127
+    ],
+    [
+      2,
+      189,
+      247
+    ],
+    [
+      3,
+      4,
+      14
+    ],
+    [
+      3,
+      13,
+      35
+    ],
+    [
+      11,
+      8,
+      9
+    ],
+    [
+      34,
+      23,
+      23
+    ],
+    [
+      37,
+      7,
+      14
+    ],
+    [
+      41,
+      131,
+      172
+    ],
+    [
+      54,
+      52,
+      51
+    ],
+    [
+      103,
+      198,
+      185
+    ],
+    [
+      133,
+      69,
+      58
+    ],
+    [
+      158,
+      19,
+      74
+    ],
+    [
+      164,
+      104,
+      52
+    ],
+    [
+      176,
+      143,
+      75
+    ],
+    [
+      238,
+      137,
+      69
+    ],
+    [
+      239,
+      105,
+      73
+    ],
+    [
+      240,
+      184,
+      75
+    ],
+    [
+      240,
+      211,
+      93
+    ],
+    [
+      242,
+      163,
+      60
+    ],
+    [
+      243,
+      13,
+      104
+    ],
+    [
+      247,
+      27,
+      158
+    ],
+    [
+      247,
+      169,
+      118
+    ],
+    [
+      248,
+      51,
+      146
+    ],
+    [
+      252,
+      181,
+      99
+    ],
+    [
+      252,
+      184,
+      132
+    ],
+    [
+      252,
+      187,
+      142
+    ],
+    [
+      252,
+      195,
+      103
+    ],
+    [
+      252,
+      203,
+      57
+    ],
+    [
+      253,
+      223,
+      82
+    ]
+  ],
+  "palette_hex": [
+    "#020202",
+    "#02327F",
+    "#02BDF7",
+    "#03040E",
+    "#030D23",
+    "#0B0809",
+    "#221717",
+    "#25070E",
+    "#2983AC",
+    "#363433",
+    "#67C6B9",
+    "#85453A",
+    "#9E134A",
+    "#A46834",
+    "#B08F4B",
+    "#EE8945",
+    "#EF6949",
+    "#F0B84B",
+    "#F0D35D",
+    "#F2A33C",
+    "#F30D68",
+    "#F71B9E",
+    "#F7A976",
+    "#F83392",
+    "#FCB563",
+    "#FCB884",
+    "#FCBB8E",
+    "#FCC367",
+    "#FCCB39",
+    "#FDDF52"
+  ],
+  "all_portraits": true,
+  "solid_background_per_design": true,
+  "outer_black_frame": false,
+  "stitch_count_rule": {
+    "total": 12000,
+    "without_background": "total pixels minus the design's solid background pixels",
+    "background_colour_is_exclusive": true
+  },
+  "replaced_non_portrait_codes": [
+    "P1031",
+    "P1032",
+    "P1043",
+    "P1057",
+    "P1059",
+    "P1060"
+  ],
+  "designs": [
+    {
+      "code": "P1001",
+      "filename": "P1001.png",
+      "title_en": "Glam Blonde Icon",
+      "title_es": "Icono rubia glam",
+      "slug": "pop-art-01-glam-blonde-icon",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        247,
+        27,
+        158
+      ],
+      "background_hex": "#F71B9E",
+      "background_stitches": 5180,
+      "stitches_without_background": 6820,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1002",
+      "filename": "P1002.png",
+      "title_en": "Elegant Bubble Gum Brunette",
+      "title_es": "Morena elegante con chicle",
+      "slug": "pop-art-02-elegant-bubble-gum-brunette",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        252,
+        203,
+        57
+      ],
+      "background_hex": "#FCCB39",
+      "background_stitches": 4447,
+      "stitches_without_background": 7553,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1003",
+      "filename": "P1003.png",
+      "title_en": "Rockabilly Singer Portrait",
+      "title_es": "Retrato de cantante rockabilly",
+      "slug": "pop-art-03-rockabilly-singer-portrait",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        239,
+        105,
+        73
+      ],
+      "background_hex": "#EF6949",
+      "background_stitches": 1809,
+      "stitches_without_background": 10191,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1004",
+      "filename": "P1004.png",
+      "title_en": "Floral Crown Artist",
+      "title_es": "Artista con corona floral",
+      "slug": "pop-art-04-floral-crown-artist",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        252,
+        203,
+        57
+      ],
+      "background_hex": "#FCCB39",
+      "background_stitches": 4358,
+      "stitches_without_background": 7642,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1005",
+      "filename": "P1005.png",
+      "title_en": "Wild-Haired Scientist",
+      "title_es": "Científico de cabello alborotado",
+      "slug": "pop-art-05-wild-haired-scientist",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        247,
+        27,
+        158
+      ],
+      "background_hex": "#F71B9E",
+      "background_stitches": 2612,
+      "stitches_without_background": 9388,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1006",
+      "filename": "P1006.png",
+      "title_en": "Crowned Royal Portrait",
+      "title_es": "Retrato real con corona",
+      "slug": "pop-art-06-crowned-royal-portrait",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        2,
+        189,
+        247
+      ],
+      "background_hex": "#02BDF7",
+      "background_stitches": 4044,
+      "stitches_without_background": 7956,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1007",
+      "filename": "P1007.png",
+      "title_en": "Lightning Glam Rocker",
+      "title_es": "Rocker glam con rayo",
+      "slug": "pop-art-07-lightning-glam-rocker",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        176,
+        143,
+        75
+      ],
+      "background_hex": "#B08F4B",
+      "background_stitches": 3338,
+      "stitches_without_background": 8662,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1008",
+      "filename": "P1008.png",
+      "title_en": "Round Glasses Musician",
+      "title_es": "Músico con gafas redondas",
+      "slug": "pop-art-08-round-glasses-musician",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        248,
+        51,
+        146
+      ],
+      "background_hex": "#F83392",
+      "background_stitches": 3043,
+      "stitches_without_background": 8957,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1009",
+      "filename": "P1009.png",
+      "title_en": "Moustached Stage Singer",
+      "title_es": "Cantante de escenario con bigote",
+      "slug": "pop-art-09-moustached-stage-singer",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        243,
+        13,
+        104
+      ],
+      "background_hex": "#F30D68",
+      "background_stitches": 1684,
+      "stitches_without_background": 10316,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1010",
+      "filename": "P1010.png",
+      "title_en": "Curly-Haired Pop Performer",
+      "title_es": "Artista pop de cabello rizado",
+      "slug": "pop-art-10-curly-haired-pop-performer",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        252,
+        203,
+        57
+      ],
+      "background_hex": "#FCCB39",
+      "background_stitches": 2555,
+      "stitches_without_background": 9445,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1011",
+      "filename": "P1011.png",
+      "title_en": "Bowler Hat Comedian",
+      "title_es": "Comediante con bombín",
+      "slug": "pop-art-11-bowler-hat-comedian",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        252,
+        203,
+        57
+      ],
+      "background_hex": "#FCCB39",
+      "background_stitches": 3589,
+      "stitches_without_background": 8411,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1012",
+      "filename": "P1012.png",
+      "title_en": "Classic Renaissance Lady",
+      "title_es": "Dama clásica renacentista",
+      "slug": "pop-art-12-classic-renaissance-lady",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        252,
+        203,
+        57
+      ],
+      "background_hex": "#FCCB39",
+      "background_stitches": 2850,
+      "stitches_without_background": 9150,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1013",
+      "filename": "P1013.png",
+      "title_en": "Elegant Sunglasses Lady",
+      "title_es": "Dama elegante con gafas",
+      "slug": "pop-art-13-elegant-sunglasses-lady",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        2,
+        189,
+        247
+      ],
+      "background_hex": "#02BDF7",
+      "background_stitches": 4326,
+      "stitches_without_background": 7674,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1014",
+      "filename": "P1014.png",
+      "title_en": "Rebel Movie Star",
+      "title_es": "Estrella rebelde de cine",
+      "slug": "pop-art-14-rebel-movie-star",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        252,
+        203,
+        57
+      ],
+      "background_hex": "#FCCB39",
+      "background_stitches": 3295,
+      "stitches_without_background": 8705,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1015",
+      "filename": "P1015.png",
+      "title_en": "Heart Glasses Blonde",
+      "title_es": "Rubia con gafas de corazón",
+      "slug": "pop-art-15-heart-glasses-blonde",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        247,
+        27,
+        158
+      ],
+      "background_hex": "#F71B9E",
+      "background_stitches": 4755,
+      "stitches_without_background": 7245,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1016",
+      "filename": "P1016.png",
+      "title_en": "Pearl Earring Girl",
+      "title_es": "Joven con pendiente de perla",
+      "slug": "pop-art-16-pearl-earring-girl",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        242,
+        163,
+        60
+      ],
+      "background_hex": "#F2A33C",
+      "background_stitches": 1899,
+      "stitches_without_background": 10101,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1017",
+      "filename": "P1017.png",
+      "title_en": "Bubble Gum Blonde",
+      "title_es": "Rubia con chicle",
+      "slug": "pop-art-17-bubble-gum-blonde",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        2,
+        189,
+        247
+      ],
+      "background_hex": "#02BDF7",
+      "background_stitches": 4787,
+      "stitches_without_background": 7213,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1018",
+      "filename": "P1018.png",
+      "title_en": "Surreal Moustache Artist",
+      "title_es": "Artista surrealista con bigote",
+      "slug": "pop-art-18-surreal-moustache-artist",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        247,
+        27,
+        158
+      ],
+      "background_hex": "#F71B9E",
+      "background_stitches": 3627,
+      "stitches_without_background": 8373,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1019",
+      "filename": "P1019.png",
+      "title_en": "Royal Tiara Lady",
+      "title_es": "Dama real con tiara",
+      "slug": "pop-art-19-royal-tiara-lady",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        243,
+        13,
+        104
+      ],
+      "background_hex": "#F30D68",
+      "background_stitches": 2412,
+      "stitches_without_background": 9588,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1020",
+      "filename": "P1020.png",
+      "title_en": "Smiling Elder Statesman",
+      "title_es": "Estadista sonriente",
+      "slug": "pop-art-20-smiling-elder-statesman",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        252,
+        203,
+        57
+      ],
+      "background_hex": "#FCCB39",
+      "background_stitches": 3661,
+      "stitches_without_background": 8339,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1021",
+      "filename": "P1021.png",
+      "title_en": "Floral Crown Profile",
+      "title_es": "Perfil con corona floral",
+      "slug": "pop-art-21-floral-crown-profile",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        2,
+        189,
+        247
+      ],
+      "background_hex": "#02BDF7",
+      "background_stitches": 4265,
+      "stitches_without_background": 7735,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1022",
+      "filename": "P1022.png",
+      "title_en": "Riveter Heroine",
+      "title_es": "Heroína obrera",
+      "slug": "pop-art-22-riveter-heroine",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        248,
+        51,
+        146
+      ],
+      "background_hex": "#F83392",
+      "background_stitches": 4336,
+      "stitches_without_background": 7664,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1023",
+      "filename": "P1023.png",
+      "title_en": "Reggae Singer",
+      "title_es": "Cantante de reggae",
+      "slug": "pop-art-23-reggae-singer",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        243,
+        13,
+        104
+      ],
+      "background_hex": "#F30D68",
+      "background_stitches": 2172,
+      "stitches_without_background": 9828,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1024",
+      "filename": "P1024.png",
+      "title_en": "Surprised Blonde",
+      "title_es": "Rubia sorprendida",
+      "slug": "pop-art-24-surprised-blonde",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        242,
+        163,
+        60
+      ],
+      "background_hex": "#F2A33C",
+      "background_stitches": 4457,
+      "stitches_without_background": 7543,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1025",
+      "filename": "P1025.png",
+      "title_en": "Headscarf Sunglasses Lady",
+      "title_es": "Dama con pañuelo y gafas",
+      "slug": "pop-art-25-headscarf-sunglasses-lady",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        247,
+        27,
+        158
+      ],
+      "background_hex": "#F71B9E",
+      "background_stitches": 4462,
+      "stitches_without_background": 7538,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1026",
+      "filename": "P1026.png",
+      "title_en": "White-Haired Pop Artist",
+      "title_es": "Artista pop de cabello blanco",
+      "slug": "pop-art-26-white-haired-pop-artist",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        252,
+        203,
+        57
+      ],
+      "background_hex": "#FCCB39",
+      "background_stitches": 3021,
+      "stitches_without_background": 8979,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1027",
+      "filename": "P1027.png",
+      "title_en": "Rockabilly Profile",
+      "title_es": "Perfil rockabilly",
+      "slug": "pop-art-27-rockabilly-profile",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        248,
+        51,
+        146
+      ],
+      "background_hex": "#F83392",
+      "background_stitches": 3381,
+      "stitches_without_background": 8619,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1028",
+      "filename": "P1028.png",
+      "title_en": "Blue-Haired Comic Lady",
+      "title_es": "Dama comic de cabello azul",
+      "slug": "pop-art-28-blue-haired-comic-lady",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        243,
+        13,
+        104
+      ],
+      "background_hex": "#F30D68",
+      "background_stitches": 2452,
+      "stitches_without_background": 9548,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1029",
+      "filename": "P1029.png",
+      "title_en": "Apple Face Surreal Gentleman",
+      "title_es": "Caballero surrealista de la manzana",
+      "slug": "pop-art-29-apple-face-surreal-gentleman",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        2,
+        189,
+        247
+      ],
+      "background_hex": "#02BDF7",
+      "background_stitches": 4189,
+      "stitches_without_background": 7811,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1030",
+      "filename": "P1030.png",
+      "title_en": "Dark-Haired Glamour Lady",
+      "title_es": "Dama glam de cabello oscuro",
+      "slug": "pop-art-30-dark-haired-glamour-lady",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        248,
+        51,
+        146
+      ],
+      "background_hex": "#F83392",
+      "background_stitches": 2452,
+      "stitches_without_background": 9548,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1031",
+      "filename": "P1031.png",
+      "title_en": "Bubble Gum Elegance Portrait",
+      "title_es": "Retrato elegante con chicle",
+      "slug": "bubble-gum-elegance-portrait",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        164,
+        104,
+        52
+      ],
+      "background_hex": "#A46834",
+      "background_stitches": 4385,
+      "stitches_without_background": 7615,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": true
+    },
+    {
+      "code": "P1032",
+      "filename": "P1032.png",
+      "title_en": "Elegant Profile Portrait",
+      "title_es": "Retrato elegante de perfil",
+      "slug": "elegant-profile-portrait",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        248,
+        51,
+        146
+      ],
+      "background_hex": "#F83392",
+      "background_stitches": 3944,
+      "stitches_without_background": 8056,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": true
+    },
+    {
+      "code": "P1033",
+      "filename": "P1033.png",
+      "title_en": "Shh Bob Hair Lady",
+      "title_es": "Dama bob haciendo silencio",
+      "slug": "pop-art-33-shh-bob-hair-lady",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        2,
+        189,
+        247
+      ],
+      "background_hex": "#02BDF7",
+      "background_stitches": 2590,
+      "stitches_without_background": 9410,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1034",
+      "filename": "P1034.png",
+      "title_en": "Red-Bearded Painter with Sunflowers",
+      "title_es": "Pintor pelirrojo con girasoles",
+      "slug": "pop-art-34-red-bearded-painter-with-sunflowers",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        243,
+        13,
+        104
+      ],
+      "background_hex": "#F30D68",
+      "background_stitches": 5712,
+      "stitches_without_background": 6288,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1035",
+      "filename": "P1035.png",
+      "title_en": "Crying Blonde Comic",
+      "title_es": "Rubia comic llorando",
+      "slug": "pop-art-35-crying-blonde-comic",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        252,
+        203,
+        57
+      ],
+      "background_hex": "#FCCB39",
+      "background_stitches": 5124,
+      "stitches_without_background": 6876,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1036",
+      "filename": "P1036.png",
+      "title_en": "Elegant Profile Lady",
+      "title_es": "Dama elegante de perfil",
+      "slug": "pop-art-36-elegant-profile-lady",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        242,
+        163,
+        60
+      ],
+      "background_hex": "#F2A33C",
+      "background_stitches": 3402,
+      "stitches_without_background": 8598,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1037",
+      "filename": "P1037.png",
+      "title_en": "Bubble Gum Blonde Portrait",
+      "title_es": "Retrato de rubia con chicle",
+      "slug": "pop-art-37-bubble-gum-blonde-portrait",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        2,
+        189,
+        247
+      ],
+      "background_hex": "#02BDF7",
+      "background_stitches": 4899,
+      "stitches_without_background": 7101,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1038",
+      "filename": "P1038.png",
+      "title_en": "Sunglasses Rebel Man",
+      "title_es": "Hombre rebelde con gafas",
+      "slug": "pop-art-38-sunglasses-rebel-man",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        252,
+        203,
+        57
+      ],
+      "background_hex": "#FCCB39",
+      "background_stitches": 3095,
+      "stitches_without_background": 8905,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1039",
+      "filename": "P1039.png",
+      "title_en": "Egyptian Queen",
+      "title_es": "Reina egipcia",
+      "slug": "pop-art-39-egyptian-queen",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        248,
+        51,
+        146
+      ],
+      "background_hex": "#F83392",
+      "background_stitches": 2972,
+      "stitches_without_background": 9028,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1040",
+      "filename": "P1040.png",
+      "title_en": "Western Cowboy",
+      "title_es": "Vaquero del oeste",
+      "slug": "pop-art-40-western-cowboy",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        243,
+        13,
+        104
+      ],
+      "background_hex": "#F30D68",
+      "background_stitches": 4315,
+      "stitches_without_background": 7685,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1041",
+      "filename": "P1041.png",
+      "title_en": "Heart Sunglasses Glam Blonde",
+      "title_es": "Rubia glam con gafas de corazón",
+      "slug": "pop-art-41-heart-sunglasses-glam-blonde",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        247,
+        27,
+        158
+      ],
+      "background_hex": "#F71B9E",
+      "background_stitches": 4523,
+      "stitches_without_background": 7477,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1042",
+      "filename": "P1042.png",
+      "title_en": "Round Glasses Rocker",
+      "title_es": "Rocker con gafas redondas",
+      "slug": "pop-art-42-round-glasses-rocker",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        247,
+        27,
+        158
+      ],
+      "background_hex": "#F71B9E",
+      "background_stitches": 2956,
+      "stitches_without_background": 9044,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1043",
+      "filename": "P1043.png",
+      "title_en": "Blowing Kiss Glam Portrait",
+      "title_es": "Retrato glam lanzando un beso",
+      "slug": "blowing-kiss-glam-portrait",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        248,
+        51,
+        146
+      ],
+      "background_hex": "#F83392",
+      "background_stitches": 4300,
+      "stitches_without_background": 7700,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": true
+    },
+    {
+      "code": "P1044",
+      "filename": "P1044.png",
+      "title_en": "Winking Blonde",
+      "title_es": "Rubia guiñando un ojo",
+      "slug": "pop-art-44-winking-blonde",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        252,
+        203,
+        57
+      ],
+      "background_hex": "#FCCB39",
+      "background_stitches": 4843,
+      "stitches_without_background": 7157,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1045",
+      "filename": "P1045.png",
+      "title_en": "Polka Scarf Cat-Eye Lady",
+      "title_es": "Dama con pañuelo de lunares",
+      "slug": "pop-art-45-polka-scarf-cat-eye-lady",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        2,
+        189,
+        247
+      ],
+      "background_hex": "#02BDF7",
+      "background_stitches": 2933,
+      "stitches_without_background": 9067,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1046",
+      "filename": "P1046.png",
+      "title_en": "Comic Superhero",
+      "title_es": "Superhéroe comic",
+      "slug": "pop-art-46-comic-superhero",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        248,
+        51,
+        146
+      ],
+      "background_hex": "#F83392",
+      "background_stitches": 4343,
+      "stitches_without_background": 7657,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1047",
+      "filename": "P1047.png",
+      "title_en": "Warrior Heroine",
+      "title_es": "Heroína guerrera",
+      "slug": "pop-art-47-warrior-heroine",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        247,
+        27,
+        158
+      ],
+      "background_hex": "#F71B9E",
+      "background_stitches": 1596,
+      "stitches_without_background": 10404,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1048",
+      "filename": "P1048.png",
+      "title_en": "Young Rockabilly Man",
+      "title_es": "Joven rockabilly",
+      "slug": "pop-art-48-young-rockabilly-man",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        252,
+        203,
+        57
+      ],
+      "background_hex": "#FCCB39",
+      "background_stitches": 3573,
+      "stitches_without_background": 8427,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1049",
+      "filename": "P1049.png",
+      "title_en": "Hibiscus Glamour Lady",
+      "title_es": "Dama glam con hibisco",
+      "slug": "pop-art-49-hibiscus-glamour-lady",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        247,
+        27,
+        158
+      ],
+      "background_hex": "#F71B9E",
+      "background_stitches": 2972,
+      "stitches_without_background": 9028,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1050",
+      "filename": "P1050.png",
+      "title_en": "Oversized Sunglasses Fashion Lady",
+      "title_es": "Dama fashion con gafas grandes",
+      "slug": "pop-art-50-oversized-sunglasses-fashion-lady",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        247,
+        27,
+        158
+      ],
+      "background_hex": "#F71B9E",
+      "background_stitches": 3624,
+      "stitches_without_background": 8376,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1051",
+      "filename": "P1051.png",
+      "title_en": "Red-Haired Crying Comic",
+      "title_es": "Pelirroja comic llorando",
+      "slug": "pop-art-51-red-haired-crying-comic",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        248,
+        51,
+        146
+      ],
+      "background_hex": "#F83392",
+      "background_stitches": 1988,
+      "stitches_without_background": 10012,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1052",
+      "filename": "P1052.png",
+      "title_en": "Bubble Gum Blonde Profile",
+      "title_es": "Perfil rubio con chicle",
+      "slug": "pop-art-52-bubble-gum-blonde-profile",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        239,
+        105,
+        73
+      ],
+      "background_hex": "#EF6949",
+      "background_stitches": 3317,
+      "stitches_without_background": 8683,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1053",
+      "filename": "P1053.png",
+      "title_en": "Afro Sunglasses Lady",
+      "title_es": "Dama afro con gafas",
+      "slug": "pop-art-53-afro-sunglasses-lady",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        2,
+        189,
+        247
+      ],
+      "background_hex": "#02BDF7",
+      "background_stitches": 3580,
+      "stitches_without_background": 8420,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1054",
+      "filename": "P1054.png",
+      "title_en": "Punk Rocker",
+      "title_es": "Rocker punk",
+      "slug": "pop-art-54-punk-rocker",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        248,
+        51,
+        146
+      ],
+      "background_hex": "#F83392",
+      "background_stitches": 1959,
+      "stitches_without_background": 10041,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1055",
+      "filename": "P1055.png",
+      "title_en": "Royal Blonde with Tiara",
+      "title_es": "Rubia real con tiara",
+      "slug": "pop-art-55-royal-blonde-with-tiara",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        252,
+        203,
+        57
+      ],
+      "background_hex": "#FCCB39",
+      "background_stitches": 3645,
+      "stitches_without_background": 8355,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1056",
+      "filename": "P1056.png",
+      "title_en": "Bearded Hat and Glasses Man",
+      "title_es": "Hombre barbudo con sombrero y gafas",
+      "slug": "pop-art-56-bearded-hat-and-glasses-man",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        2,
+        189,
+        247
+      ],
+      "background_hex": "#02BDF7",
+      "background_stitches": 2974,
+      "stitches_without_background": 9026,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1057",
+      "filename": "P1057.png",
+      "title_en": "Post-Impressionist Artist Portrait",
+      "title_es": "Retrato de artista postimpresionista",
+      "slug": "post-impressionist-artist-portrait",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        247,
+        27,
+        158
+      ],
+      "background_hex": "#F71B9E",
+      "background_stitches": 3849,
+      "stitches_without_background": 8151,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": true
+    },
+    {
+      "code": "P1058",
+      "filename": "P1058.png",
+      "title_en": "Tropical Flower Glamour Lady",
+      "title_es": "Dama glam con flor tropical",
+      "slug": "pop-art-58-tropical-flower-glamour-lady",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        247,
+        27,
+        158
+      ],
+      "background_hex": "#F71B9E",
+      "background_stitches": 2284,
+      "stitches_without_background": 9716,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": false
+    },
+    {
+      "code": "P1059",
+      "filename": "P1059.png",
+      "title_en": "Royal Bubble Gum Portrait",
+      "title_es": "Retrato real con chicle",
+      "slug": "royal-bubble-gum-portrait",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        239,
+        105,
+        73
+      ],
+      "background_hex": "#EF6949",
+      "background_stitches": 3380,
+      "stitches_without_background": 8620,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": true
+    },
+    {
+      "code": "P1060",
+      "filename": "P1060.png",
+      "title_en": "Pearl Earring Bubble Gum Portrait",
+      "title_es": "Retrato con pendiente de perla y chicle",
+      "slug": "pearl-earring-bubble-gum-portrait",
+      "width": 100,
+      "height": 120,
+      "stitches_total": 12000,
+      "background_rgb": [
+        41,
+        131,
+        172
+      ],
+      "background_hex": "#2983AC",
+      "background_stitches": 1454,
+      "stitches_without_background": 10546,
+      "portrait": true,
+      "solid_background": true,
+      "replacement": true
+    }
+  ]
+}
