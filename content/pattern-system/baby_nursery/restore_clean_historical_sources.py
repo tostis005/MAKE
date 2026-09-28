@@ -177,7 +177,7 @@ def main():
         # Historical I0027 contains a tiny detached residue at the far left.
         # Removing tiny disconnected islands preserves the complete animal while
         # eliminating that artifact. No pixels are cloned or moved.
-        cleaned, removed = remove_tiny_islands(original, 12)
+        cleaned, removed = remove_tiny_islands(original, 40 if base == "I0027" else 12)
         normalized, scale = normalize_full_art(cleaned)
         mapped, codes = map_to_dmc(normalized, pal)
         bbox, m = metrics(mapped)
