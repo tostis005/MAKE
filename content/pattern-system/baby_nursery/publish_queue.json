@@ -525,10 +525,11 @@
       "title_es": "Tortuga",
       "slug": "turtle",
       "input_png": "../source-images/collections/baby-nursery/products/I0040-turtle.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36444353848",
+      "last_error": null,
+      "published_at": "2026-09-28T15:34:09+00:00"
     },
     {
       "order": 41,
