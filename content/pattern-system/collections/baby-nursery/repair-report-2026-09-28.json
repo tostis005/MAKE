@@ -1,0 +1,330 @@
+{
+  "collection": "baby-nursery",
+  "audit_scope": "60 source PNGs + 60 live WooCommerce featured images",
+  "source_repairs": [
+    {
+      "id": "I0022",
+      "title_en": "Dolphin",
+      "file": "I0022-dolphin.png",
+      "before_components": [
+        {
+          "size": 3223,
+          "bbox": [
+            12,
+            23,
+            94,
+            96
+          ]
+        },
+        {
+          "size": 54,
+          "bbox": [
+            5,
+            56,
+            10,
+            69
+          ]
+        }
+      ],
+      "removed_components": [
+        {
+          "size": 54,
+          "bbox": [
+            5,
+            56,
+            10,
+            69
+          ]
+        }
+      ],
+      "removed_pixels": 54,
+      "after_components": 1,
+      "after_bbox": [
+        12,
+        23,
+        94,
+        96
+      ],
+      "after_margins": {
+        "left": 12,
+        "top": 23,
+        "right": 6,
+        "bottom": 24
+      },
+      "after_color_count": 7,
+      "after_dmc_codes": [
+        "310",
+        "322",
+        "803",
+        "939",
+        "3706",
+        "3755",
+        "3770"
+      ]
+    },
+    {
+      "id": "I0027",
+      "title_en": "Triceratops",
+      "file": "I0027-triceratops.png",
+      "before_components": [
+        {
+          "size": 4128,
+          "bbox": [
+            10,
+            24,
+            95,
+            95
+          ]
+        },
+        {
+          "size": 32,
+          "bbox": [
+            5,
+            74,
+            11,
+            82
+          ]
+        }
+      ],
+      "removed_components": [
+        {
+          "size": 32,
+          "bbox": [
+            5,
+            74,
+            11,
+            82
+          ]
+        }
+      ],
+      "removed_pixels": 32,
+      "after_components": 1,
+      "after_bbox": [
+        10,
+        24,
+        95,
+        95
+      ],
+      "after_margins": {
+        "left": 10,
+        "top": 24,
+        "right": 5,
+        "bottom": 25
+      },
+      "after_color_count": 12,
+      "after_dmc_codes": [
+        "310",
+        "738",
+        "741",
+        "801",
+        "898",
+        "919",
+        "922",
+        "934",
+        "938",
+        "3706",
+        "3776",
+        "3854"
+      ]
+    },
+    {
+      "id": "I0028",
+      "title_en": "T-Rex",
+      "file": "I0028-t-rex.png",
+      "before_components": [
+        {
+          "size": 5194,
+          "bbox": [
+            9,
+            12,
+            94,
+            108
+          ]
+        },
+        {
+          "size": 30,
+          "bbox": [
+            6,
+            83,
+            10,
+            93
+          ]
+        }
+      ],
+      "removed_components": [
+        {
+          "size": 30,
+          "bbox": [
+            6,
+            83,
+            10,
+            93
+          ]
+        }
+      ],
+      "removed_pixels": 30,
+      "after_components": 1,
+      "after_bbox": [
+        9,
+        12,
+        94,
+        108
+      ],
+      "after_margins": {
+        "left": 9,
+        "top": 12,
+        "right": 6,
+        "bottom": 12
+      },
+      "after_color_count": 8,
+      "after_dmc_codes": [
+        "310",
+        "470",
+        "646",
+        "738",
+        "890",
+        "905",
+        "934",
+        "3706"
+      ]
+    },
+    {
+      "id": "I0030",
+      "title_en": "Baby Dragon",
+      "file": "I0030-baby-dragon.png",
+      "before_components": [
+        {
+          "size": 4421,
+          "bbox": [
+            15,
+            17,
+            94,
+            99
+          ]
+        },
+        {
+          "size": 88,
+          "bbox": [
+            5,
+            65,
+            12,
+            83
+          ]
+        }
+      ],
+      "removed_components": [
+        {
+          "size": 88,
+          "bbox": [
+            5,
+            65,
+            12,
+            83
+          ]
+        }
+      ],
+      "removed_pixels": 88,
+      "after_components": 1,
+      "after_bbox": [
+        15,
+        17,
+        94,
+        99
+      ],
+      "after_margins": {
+        "left": 15,
+        "top": 17,
+        "right": 6,
+        "bottom": 21
+      },
+      "after_color_count": 11,
+      "after_dmc_codes": [
+        "310",
+        "350",
+        "608",
+        "743",
+        "801",
+        "893",
+        "938",
+        "3755",
+        "3776",
+        "3777",
+        "3854"
+      ]
+    },
+    {
+      "id": "I0044",
+      "title_en": "Sun",
+      "file": "I0044-sun.png",
+      "before_components": [
+        {
+          "size": 3893,
+          "bbox": [
+            17,
+            21,
+            94,
+            98
+          ]
+        },
+        {
+          "size": 262,
+          "bbox": [
+            5,
+            62,
+            18,
+            97
+          ]
+        }
+      ],
+      "removed_components": [
+        {
+          "size": 262,
+          "bbox": [
+            5,
+            62,
+            18,
+            97
+          ]
+        }
+      ],
+      "removed_pixels": 262,
+      "after_components": 1,
+      "after_bbox": [
+        17,
+        21,
+        94,
+        98
+      ],
+      "after_margins": {
+        "left": 17,
+        "top": 21,
+        "right": 6,
+        "bottom": 22
+      },
+      "after_color_count": 8,
+      "after_dmc_codes": [
+        "310",
+        "434",
+        "741",
+        "743",
+        "893",
+        "898",
+        "922",
+        "3770"
+      ]
+    }
+  ],
+  "refresh_without_source_change": [
+    "I0021",
+    "I0026"
+  ],
+  "rebuild_ids": [
+    "I0021",
+    "I0022",
+    "I0026",
+    "I0027",
+    "I0028",
+    "I0030",
+    "I0044"
+  ]
+}

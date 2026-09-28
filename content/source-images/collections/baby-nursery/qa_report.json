@@ -223,7 +223,7 @@
       "filename": "infantil_022_dolphin.png",
       "colors_used": 7,
       "margins": {
-        "left": 5,
+        "left": 12,
         "top": 23,
         "right": 6,
         "bottom": 24
@@ -273,7 +273,7 @@
       "filename": "infantil_027_triceratops.png",
       "colors_used": 12,
       "margins": {
-        "left": 5,
+        "left": 10,
         "top": 24,
         "right": 5,
         "bottom": 25
@@ -283,7 +283,7 @@
       "filename": "infantil_028_t_rex.png",
       "colors_used": 8,
       "margins": {
-        "left": 6,
+        "left": 9,
         "top": 12,
         "right": 6,
         "bottom": 12
@@ -303,7 +303,7 @@
       "filename": "infantil_030_baby_dragon.png",
       "colors_used": 11,
       "margins": {
-        "left": 5,
+        "left": 15,
         "top": 17,
         "right": 6,
         "bottom": 21
@@ -443,7 +443,7 @@
       "filename": "infantil_044_sun.png",
       "colors_used": 8,
       "margins": {
-        "left": 5,
+        "left": 17,
         "top": 21,
         "right": 6,
         "bottom": 22
