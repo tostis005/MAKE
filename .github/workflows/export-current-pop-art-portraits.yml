@@ -139,6 +139,21 @@ jobs:
           tar -xzf "$RUNNER_TEMP/live-pop-art.tar.gz" -C "$LOCAL_STAGE"
           test "$(find "$LOCAL_STAGE" -maxdepth 1 -type f ! -name manifest.tsv | wc -l | tr -d ' ')" = "60"
 
+      - name: Package live originals for review
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$RUNNER_TEMP/live-pop-art"
+          zip -q -r "$RUNNER_TEMP/live-pop-art-originals.zip" .
+          test -s "$RUNNER_TEMP/live-pop-art-originals.zip"
+
+      - name: Upload live originals
+        uses: actions/upload-artifact@v4
+        with:
+          name: pop-art-60-live-originals
+          path: ${{ runner.temp }}/live-pop-art-originals.zip
+          retention-days: 7
+
       - name: Build transparent 100x120 shared-30 palette pack
         shell: bash
         run: |
