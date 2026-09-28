@@ -1586,14 +1586,15 @@
       "product_title_es": "Patrón de punto de cruz: Valle de Lauterbrunnen, Suiza",
       "slug": "lauterbrunnen-valley",
       "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0138-lauterbrunnen-valley.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36476807727",
       "last_error": null,
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_manifest_item": "D0138",
       "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
-      "source_zip_member": "D0138-lauterbrunnen-valley.png"
+      "source_zip_member": "D0138-lauterbrunnen-valley.png",
+      "published_at": "2026-09-28T20:07:58+00:00"
     },
     {
       "base_design_id": "D0139",
