@@ -378,15 +378,15 @@
       "product_title_es": "Patrón de punto de cruz: Salar de Uyuni, Bolivia",
       "slug": "salar-de-uyuni",
       "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0071-salar-de-uyuni.png",
-      "status": "pending",
-      "attempts": 2,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36449930792",
+      "status": "failed",
+      "attempts": 3,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36450074650",
       "last_error": "Automatic Iconic Destinations publish run failed; see GitHub Actions logs.",
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_manifest_item": "D0071",
       "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
       "source_zip_member": "D0071-salar-de-uyuni.png",
-      "failed_at": "2026-09-28T16:18:26+00:00"
+      "failed_at": "2026-09-28T16:20:09+00:00"
     },
     {
       "base_design_id": "D0072",
