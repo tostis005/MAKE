@@ -220,13 +220,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        2,
-        189,
-        247
+        41,
+        131,
+        172
       ],
-      "background_hex": "#02BDF7",
-      "background_stitches": 3000,
-      "stitches_without_background": 9000,
+      "background_hex": "#2983AC",
+      "background_stitches": 2335,
+      "stitches_without_background": 9665,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -241,13 +241,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        239,
-        105,
-        73
+        243,
+        13,
+        104
       ],
-      "background_hex": "#EF6949",
-      "background_stitches": 3950,
-      "stitches_without_background": 8050,
+      "background_hex": "#F30D68",
+      "background_stitches": 436,
+      "stitches_without_background": 11564,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -267,8 +267,8 @@
         73
       ],
       "background_hex": "#EF6949",
-      "background_stitches": 3034,
-      "stitches_without_background": 8966,
+      "background_stitches": 1240,
+      "stitches_without_background": 10760,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -283,13 +283,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        176,
-        143,
-        75
+        252,
+        203,
+        57
       ],
-      "background_hex": "#B08F4B",
-      "background_stitches": 3073,
-      "stitches_without_background": 8927,
+      "background_hex": "#FCCB39",
+      "background_stitches": 1637,
+      "stitches_without_background": 10363,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -309,8 +309,8 @@
         247
       ],
       "background_hex": "#02BDF7",
-      "background_stitches": 2432,
-      "stitches_without_background": 9568,
+      "background_stitches": 1884,
+      "stitches_without_background": 10116,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -325,13 +325,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        41,
-        131,
-        172
+        239,
+        105,
+        73
       ],
-      "background_hex": "#2983AC",
-      "background_stitches": 2951,
-      "stitches_without_background": 9049,
+      "background_hex": "#EF6949",
+      "background_stitches": 2150,
+      "stitches_without_background": 9850,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -351,8 +351,8 @@
         60
       ],
       "background_hex": "#F2A33C",
-      "background_stitches": 2533,
-      "stitches_without_background": 9467,
+      "background_stitches": 1564,
+      "stitches_without_background": 10436,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -372,8 +372,8 @@
         73
       ],
       "background_hex": "#EF6949",
-      "background_stitches": 2719,
-      "stitches_without_background": 9281,
+      "background_stitches": 2557,
+      "stitches_without_background": 9443,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -388,13 +388,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        2,
-        189,
-        247
+        243,
+        13,
+        104
       ],
-      "background_hex": "#02BDF7",
-      "background_stitches": 3007,
-      "stitches_without_background": 8993,
+      "background_hex": "#F30D68",
+      "background_stitches": 436,
+      "stitches_without_background": 11564,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -414,8 +414,8 @@
         158
       ],
       "background_hex": "#F71B9E",
-      "background_stitches": 2353,
-      "stitches_without_background": 9647,
+      "background_stitches": 1779,
+      "stitches_without_background": 10221,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -435,8 +435,8 @@
         73
       ],
       "background_hex": "#EF6949",
-      "background_stitches": 2955,
-      "stitches_without_background": 9045,
+      "background_stitches": 3361,
+      "stitches_without_background": 8639,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -451,13 +451,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        176,
-        143,
-        75
+        247,
+        27,
+        158
       ],
-      "background_hex": "#B08F4B",
-      "background_stitches": 2784,
-      "stitches_without_background": 9216,
+      "background_hex": "#F71B9E",
+      "background_stitches": 3503,
+      "stitches_without_background": 8497,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -472,13 +472,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        2,
-        189,
-        247
+        242,
+        163,
+        60
       ],
-      "background_hex": "#02BDF7",
-      "background_stitches": 3476,
-      "stitches_without_background": 8524,
+      "background_hex": "#F2A33C",
+      "background_stitches": 4264,
+      "stitches_without_background": 7736,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -493,13 +493,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        252,
-        203,
-        57
+        239,
+        105,
+        73
       ],
-      "background_hex": "#FCCB39",
-      "background_stitches": 2630,
-      "stitches_without_background": 9370,
+      "background_hex": "#EF6949",
+      "background_stitches": 3494,
+      "stitches_without_background": 8506,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -519,8 +519,8 @@
         73
       ],
       "background_hex": "#EF6949",
-      "background_stitches": 4713,
-      "stitches_without_background": 7287,
+      "background_stitches": 5076,
+      "stitches_without_background": 6924,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -540,8 +540,8 @@
         75
       ],
       "background_hex": "#B08F4B",
-      "background_stitches": 2920,
-      "stitches_without_background": 9080,
+      "background_stitches": 1475,
+      "stitches_without_background": 10525,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -556,13 +556,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        41,
-        131,
-        172
+        243,
+        13,
+        104
       ],
-      "background_hex": "#2983AC",
-      "background_stitches": 4639,
-      "stitches_without_background": 7361,
+      "background_hex": "#F30D68",
+      "background_stitches": 4802,
+      "stitches_without_background": 7198,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -582,8 +582,8 @@
         104
       ],
       "background_hex": "#F30D68",
-      "background_stitches": 2526,
-      "stitches_without_background": 9474,
+      "background_stitches": 3598,
+      "stitches_without_background": 8402,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -603,8 +603,8 @@
         146
       ],
       "background_hex": "#F83392",
-      "background_stitches": 3126,
-      "stitches_without_background": 8874,
+      "background_stitches": 1992,
+      "stitches_without_background": 10008,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -624,8 +624,8 @@
         73
       ],
       "background_hex": "#EF6949",
-      "background_stitches": 2845,
-      "stitches_without_background": 9155,
+      "background_stitches": 3414,
+      "stitches_without_background": 8586,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -645,8 +645,8 @@
         146
       ],
       "background_hex": "#F83392",
-      "background_stitches": 3406,
-      "stitches_without_background": 8594,
+      "background_stitches": 4869,
+      "stitches_without_background": 7131,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -661,13 +661,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        242,
-        163,
-        60
+        247,
+        27,
+        158
       ],
-      "background_hex": "#F2A33C",
-      "background_stitches": 3195,
-      "stitches_without_background": 8805,
+      "background_hex": "#F71B9E",
+      "background_stitches": 3372,
+      "stitches_without_background": 8628,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -687,8 +687,8 @@
         104
       ],
       "background_hex": "#F30D68",
-      "background_stitches": 2092,
-      "stitches_without_background": 9908,
+      "background_stitches": 1903,
+      "stitches_without_background": 10097,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -708,8 +708,8 @@
         172
       ],
       "background_hex": "#2983AC",
-      "background_stitches": 2269,
-      "stitches_without_background": 9731,
+      "background_stitches": 4890,
+      "stitches_without_background": 7110,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -724,13 +724,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        176,
-        143,
-        75
+        248,
+        51,
+        146
       ],
-      "background_hex": "#B08F4B",
-      "background_stitches": 3439,
-      "stitches_without_background": 8561,
+      "background_hex": "#F83392",
+      "background_stitches": 3711,
+      "stitches_without_background": 8289,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -745,13 +745,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        164,
-        104,
-        52
+        242,
+        163,
+        60
       ],
-      "background_hex": "#A46834",
-      "background_stitches": 1958,
-      "stitches_without_background": 10042,
+      "background_hex": "#F2A33C",
+      "background_stitches": 4636,
+      "stitches_without_background": 7364,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -771,8 +771,8 @@
         73
       ],
       "background_hex": "#EF6949",
-      "background_stitches": 3241,
-      "stitches_without_background": 8759,
+      "background_stitches": 2809,
+      "stitches_without_background": 9191,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -787,13 +787,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        242,
-        163,
-        60
+        243,
+        13,
+        104
       ],
-      "background_hex": "#F2A33C",
-      "background_stitches": 2045,
-      "stitches_without_background": 9955,
+      "background_hex": "#F30D68",
+      "background_stitches": 2307,
+      "stitches_without_background": 9693,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -808,13 +808,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        243,
-        13,
-        104
+        2,
+        189,
+        247
       ],
-      "background_hex": "#F30D68",
-      "background_stitches": 3478,
-      "stitches_without_background": 8522,
+      "background_hex": "#02BDF7",
+      "background_stitches": 3889,
+      "stitches_without_background": 8111,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -829,13 +829,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        248,
-        51,
-        146
+        243,
+        13,
+        104
       ],
-      "background_hex": "#F83392",
-      "background_stitches": 2909,
-      "stitches_without_background": 9091,
+      "background_hex": "#F30D68",
+      "background_stitches": 3052,
+      "stitches_without_background": 8948,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -850,13 +850,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        252,
-        203,
-        57
+        243,
+        13,
+        104
       ],
-      "background_hex": "#FCCB39",
-      "background_stitches": 4164,
-      "stitches_without_background": 7836,
+      "background_hex": "#F30D68",
+      "background_stitches": 4599,
+      "stitches_without_background": 7401,
       "portrait": true,
       "solid_background": true,
       "replacement": true
@@ -871,13 +871,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        252,
-        203,
-        57
+        243,
+        13,
+        104
       ],
-      "background_hex": "#FCCB39",
-      "background_stitches": 3175,
-      "stitches_without_background": 8825,
+      "background_hex": "#F30D68",
+      "background_stitches": 4258,
+      "stitches_without_background": 7742,
       "portrait": true,
       "solid_background": true,
       "replacement": true
@@ -897,8 +897,8 @@
         146
       ],
       "background_hex": "#F83392",
-      "background_stitches": 2647,
-      "stitches_without_background": 9353,
+      "background_stitches": 2213,
+      "stitches_without_background": 9787,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -913,13 +913,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        247,
-        27,
-        158
+        243,
+        13,
+        104
       ],
-      "background_hex": "#F71B9E",
-      "background_stitches": 5194,
-      "stitches_without_background": 6806,
+      "background_hex": "#F30D68",
+      "background_stitches": 3727,
+      "stitches_without_background": 8273,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -934,13 +934,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        2,
-        189,
-        247
+        248,
+        51,
+        146
       ],
-      "background_hex": "#02BDF7",
-      "background_stitches": 3952,
-      "stitches_without_background": 8048,
+      "background_hex": "#F83392",
+      "background_stitches": 3540,
+      "stitches_without_background": 8460,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -960,8 +960,8 @@
         172
       ],
       "background_hex": "#2983AC",
-      "background_stitches": 2516,
-      "stitches_without_background": 9484,
+      "background_stitches": 3918,
+      "stitches_without_background": 8082,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -981,8 +981,8 @@
         104
       ],
       "background_hex": "#F30D68",
-      "background_stitches": 3364,
-      "stitches_without_background": 8636,
+      "background_stitches": 5675,
+      "stitches_without_background": 6325,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -1002,8 +1002,8 @@
         172
       ],
       "background_hex": "#2983AC",
-      "background_stitches": 2748,
-      "stitches_without_background": 9252,
+      "background_stitches": 3564,
+      "stitches_without_background": 8436,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -1018,13 +1018,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        41,
-        131,
-        172
+        248,
+        51,
+        146
       ],
-      "background_hex": "#2983AC",
-      "background_stitches": 2627,
-      "stitches_without_background": 9373,
+      "background_hex": "#F83392",
+      "background_stitches": 1985,
+      "stitches_without_background": 10015,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -1039,13 +1039,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        176,
-        143,
-        75
+        248,
+        51,
+        146
       ],
-      "background_hex": "#B08F4B",
-      "background_stitches": 3037,
-      "stitches_without_background": 8963,
+      "background_hex": "#F83392",
+      "background_stitches": 3338,
+      "stitches_without_background": 8662,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -1065,8 +1065,8 @@
         146
       ],
       "background_hex": "#F83392",
-      "background_stitches": 2420,
-      "stitches_without_background": 9580,
+      "background_stitches": 2841,
+      "stitches_without_background": 9159,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -1081,13 +1081,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        243,
-        13,
-        104
+        247,
+        27,
+        158
       ],
-      "background_hex": "#F30D68",
-      "background_stitches": 2871,
-      "stitches_without_background": 9129,
+      "background_hex": "#F71B9E",
+      "background_stitches": 1699,
+      "stitches_without_background": 10301,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -1107,8 +1107,8 @@
         172
       ],
       "background_hex": "#2983AC",
-      "background_stitches": 4678,
-      "stitches_without_background": 7322,
+      "background_stitches": 5027,
+      "stitches_without_background": 6973,
       "portrait": true,
       "solid_background": true,
       "replacement": true
@@ -1123,13 +1123,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        243,
-        13,
-        104
+        247,
+        27,
+        158
       ],
-      "background_hex": "#F30D68",
-      "background_stitches": 2480,
-      "stitches_without_background": 9520,
+      "background_hex": "#F71B9E",
+      "background_stitches": 5146,
+      "stitches_without_background": 6854,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -1144,13 +1144,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        2,
-        189,
-        247
+        242,
+        163,
+        60
       ],
-      "background_hex": "#02BDF7",
-      "background_stitches": 2275,
-      "stitches_without_background": 9725,
+      "background_hex": "#F2A33C",
+      "background_stitches": 2366,
+      "stitches_without_background": 9634,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -1170,8 +1170,8 @@
         146
       ],
       "background_hex": "#F83392",
-      "background_stitches": 3728,
-      "stitches_without_background": 8272,
+      "background_stitches": 3118,
+      "stitches_without_background": 8882,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -1186,13 +1186,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        247,
-        27,
-        158
+        239,
+        105,
+        73
       ],
-      "background_hex": "#F71B9E",
-      "background_stitches": 2619,
-      "stitches_without_background": 9381,
+      "background_hex": "#EF6949",
+      "background_stitches": 2161,
+      "stitches_without_background": 9839,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -1212,8 +1212,8 @@
         60
       ],
       "background_hex": "#F2A33C",
-      "background_stitches": 2611,
-      "stitches_without_background": 9389,
+      "background_stitches": 4147,
+      "stitches_without_background": 7853,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -1233,8 +1233,8 @@
         158
       ],
       "background_hex": "#F71B9E",
-      "background_stitches": 3021,
-      "stitches_without_background": 8979,
+      "background_stitches": 2578,
+      "stitches_without_background": 9422,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -1254,8 +1254,8 @@
         172
       ],
       "background_hex": "#2983AC",
-      "background_stitches": 3611,
-      "stitches_without_background": 8389,
+      "background_stitches": 3694,
+      "stitches_without_background": 8306,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -1275,8 +1275,8 @@
         60
       ],
       "background_hex": "#F2A33C",
-      "background_stitches": 2037,
-      "stitches_without_background": 9963,
+      "background_stitches": 941,
+      "stitches_without_background": 11059,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -1291,13 +1291,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        2,
-        189,
-        247
+        41,
+        131,
+        172
       ],
-      "background_hex": "#02BDF7",
-      "background_stitches": 4101,
-      "stitches_without_background": 7899,
+      "background_hex": "#2983AC",
+      "background_stitches": 3477,
+      "stitches_without_background": 8523,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -1317,8 +1317,8 @@
         247
       ],
       "background_hex": "#02BDF7",
-      "background_stitches": 2655,
-      "stitches_without_background": 9345,
+      "background_stitches": 2005,
+      "stitches_without_background": 9995,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -1333,13 +1333,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        252,
-        203,
-        57
+        243,
+        13,
+        104
       ],
-      "background_hex": "#FCCB39",
-      "background_stitches": 1821,
-      "stitches_without_background": 10179,
+      "background_hex": "#F30D68",
+      "background_stitches": 870,
+      "stitches_without_background": 11130,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -1354,13 +1354,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        239,
-        105,
-        73
+        248,
+        51,
+        146
       ],
-      "background_hex": "#EF6949",
-      "background_stitches": 3997,
-      "stitches_without_background": 8003,
+      "background_hex": "#F83392",
+      "background_stitches": 4236,
+      "stitches_without_background": 7764,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -1375,13 +1375,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        239,
-        105,
-        73
+        242,
+        163,
+        60
       ],
-      "background_hex": "#EF6949",
-      "background_stitches": 2712,
-      "stitches_without_background": 9288,
+      "background_hex": "#F2A33C",
+      "background_stitches": 1187,
+      "stitches_without_background": 10813,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -1401,8 +1401,8 @@
         158
       ],
       "background_hex": "#F71B9E",
-      "background_stitches": 3446,
-      "stitches_without_background": 8554,
+      "background_stitches": 3505,
+      "stitches_without_background": 8495,
       "portrait": true,
       "solid_background": true,
       "replacement": true
@@ -1417,13 +1417,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        247,
-        27,
-        158
+        239,
+        105,
+        73
       ],
-      "background_hex": "#F71B9E",
-      "background_stitches": 3205,
-      "stitches_without_background": 8795,
+      "background_hex": "#EF6949",
+      "background_stitches": 2692,
+      "stitches_without_background": 9308,
       "portrait": true,
       "solid_background": true,
       "replacement": false
@@ -1438,13 +1438,13 @@
       "height": 120,
       "stitches_total": 12000,
       "background_rgb": [
-        252,
-        203,
-        57
+        41,
+        131,
+        172
       ],
-      "background_hex": "#FCCB39",
-      "background_stitches": 2954,
-      "stitches_without_background": 9046,
+      "background_hex": "#2983AC",
+      "background_stitches": 4040,
+      "stitches_without_background": 7960,
       "portrait": true,
       "solid_background": true,
       "replacement": true
@@ -1464,8 +1464,8 @@
         172
       ],
       "background_hex": "#2983AC",
-      "background_stitches": 2712,
-      "stitches_without_background": 9288,
+      "background_stitches": 1556,
+      "stitches_without_background": 10444,
       "portrait": true,
       "solid_background": true,
       "replacement": true
