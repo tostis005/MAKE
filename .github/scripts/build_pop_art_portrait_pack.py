@@ -499,10 +499,64 @@ def lineart_background_mask(im):
     bg[:,0] = True; bg[:,-1] = True
     return bg.tolist()
 
+_REMBG_SESSION = None
+
+def semantic_background_mask(im):
+    """Use a lightweight foreground model to isolate the portrait semantically."""
+    global _REMBG_SESSION
+    from rembg import remove, new_session
+
+    if _REMBG_SESSION is None:
+        _REMBG_SESSION = new_session("u2netp")
+
+    # Upscale pixel art before inference so facial silhouette cues are easier
+    # for the segmentation model to recognize.
+    up = im.convert("RGB").resize((W*5, H*5), Image.Resampling.NEAREST)
+    cut = remove(up, session=_REMBG_SESSION, alpha_matting=False, post_process_mask=True)
+    if cut.mode != "RGBA":
+        cut = cut.convert("RGBA")
+    alpha = cut.getchannel("A").resize((W, H), Image.Resampling.LANCZOS)
+    a = np.array(alpha)
+
+    # Conservative threshold and light closing preserve fine hair/accessories.
+    fg = (a >= 72).astype(np.uint8)
+    kernel = np.ones((3,3), np.uint8)
+    fg = cv2.morphologyEx(fg, cv2.MORPH_CLOSE, kernel, iterations=1)
+
+    # Retain foreground components that belong to the central portrait.
+    n, labels, stats, centroids = cv2.connectedComponentsWithStats(fg, 8)
+    keep = np.zeros_like(fg)
+    for label in range(1,n):
+        area = int(stats[label, cv2.CC_STAT_AREA])
+        x = int(stats[label, cv2.CC_STAT_LEFT])
+        y = int(stats[label, cv2.CC_STAT_TOP])
+        w = int(stats[label, cv2.CC_STAT_WIDTH])
+        h = int(stats[label, cv2.CC_STAT_HEIGHT])
+        core = not (x+w < 18 or x > 82 or y+h < 4 or y > 116)
+        if core and area >= 25:
+            keep[labels == label] = 1
+
+    # Never lose the central face if the stylized art confuses the model.
+    face = np.zeros_like(keep)
+    cv2.ellipse(face, (W//2, 57), (19, 29), 0, 0, 360, 1, -1)
+    keep = np.maximum(keep, face)
+
+    # Preserve meaningful dark linework immediately around retained foreground.
+    arr = np.array(im.convert("RGB"))
+    lum = 0.2126*arr[:,:,0] + 0.7152*arr[:,:,1] + 0.0722*arr[:,:,2]
+    dark = (lum <= 80).astype(np.uint8)
+    near = cv2.dilate(keep, np.ones((5,5),np.uint8), iterations=1)
+    keep = np.maximum(keep, dark * near)
+
+    bg = keep == 0
+    bg[0,:] = True; bg[-1,:] = True
+    bg[:,0] = True; bg[:,-1] = True
+    return bg.tolist()
+
 def harmonise_one(im, palette_rgb, candidates, index):
     # Legacy replacements are first snapped to the exact current 30-colour palette.
     im = quantize_to_palette(im, palette_rgb)
-    mask = lineart_background_mask(im)
+    mask = semantic_background_mask(im)
 
     bg = select_bg_colour(im, mask, candidates, palette_rgb, index)
     px = im.load()
