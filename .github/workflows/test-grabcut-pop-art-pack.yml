@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - '.github/workflows/test-grabcut-pop-art-pack.yml'
+      - '.github/workflows/test-grabcut-pop-art-pack.yml'\n      - '.github/scripts/build_pop_art_portrait_pack.py'
 
 permissions:
   contents: write
