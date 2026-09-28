@@ -232,3 +232,123 @@
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initDrieloStorePresentation);
   else initDrieloStorePresentation();
 })();
+
+
+(function(){
+  'use strict';
+
+  function initDrieloProductGalleryLightbox(){
+    var galleries=Array.prototype.slice.call(document.querySelectorAll('.woocommerce-product-gallery'));
+    if(!galleries.length)return;
+
+    var overlay=document.querySelector('[data-drielo-gallery-lightbox]');
+    if(!overlay){
+      overlay=document.createElement('div');
+      overlay.className='drielo-gallery-lightbox';
+      overlay.setAttribute('data-drielo-gallery-lightbox','');
+      overlay.setAttribute('aria-hidden','true');
+      overlay.innerHTML='<div class="drielo-gallery-lightbox__backdrop" data-drielo-gallery-close></div><div class="drielo-gallery-lightbox__dialog" role="dialog" aria-modal="true" aria-label="Product image"><button type="button" class="drielo-gallery-lightbox__close" data-drielo-gallery-close aria-label="Close">×</button><img class="drielo-gallery-lightbox__image" alt=""></div>';
+      document.body.appendChild(overlay);
+    }
+
+    var largeImage=overlay.querySelector('.drielo-gallery-lightbox__image');
+    var lastFocused=null;
+
+    function closeLightbox(){
+      overlay.classList.remove('is-open');
+      overlay.setAttribute('aria-hidden','true');
+      document.body.classList.remove('drielo-gallery-lightbox-open');
+      if(largeImage){largeImage.removeAttribute('src');largeImage.alt='';}
+      if(lastFocused&&lastFocused.focus)lastFocused.focus();
+    }
+
+    function openLightbox(img){
+      if(!img||!largeImage)return;
+      var src=img.currentSrc||img.getAttribute('src')||'';
+      if(!src)return;
+      lastFocused=document.activeElement;
+      largeImage.src=src;
+      largeImage.alt=img.getAttribute('alt')||'';
+      overlay.classList.add('is-open');
+      overlay.setAttribute('aria-hidden','false');
+      document.body.classList.add('drielo-gallery-lightbox-open');
+      var closeButton=overlay.querySelector('.drielo-gallery-lightbox__close');
+      if(closeButton&&closeButton.focus)closeButton.focus();
+    }
+
+    function gallerySlides(gallery){
+      return Array.prototype.slice.call(gallery.querySelectorAll('.woocommerce-product-gallery__wrapper > .woocommerce-product-gallery__image'));
+    }
+
+    function selectGalleryImage(gallery,index){
+      var slides=gallerySlides(gallery);
+      if(index<0||index>=slides.length)return;
+
+      if(window.jQuery){
+        var $wrapper=window.jQuery(gallery).find('.woocommerce-product-gallery__wrapper');
+        var flex=$wrapper.data('flexslider');
+        if(flex&&typeof flex.flexAnimate==='function'){
+          flex.flexAnimate(index,true);
+          return;
+        }
+      }
+
+      for(var i=0;i<slides.length;i++){
+        slides[i].classList.toggle('drielo-gallery-fallback-active',i===index);
+      }
+      gallery.classList.add('drielo-gallery-fallback');
+    }
+
+    for(var g=0;g<galleries.length;g++){
+      var images=galleries[g].querySelectorAll('.woocommerce-product-gallery__image img');
+      for(var x=0;x<images.length;x++){
+        images[x].setAttribute('tabindex','0');
+        images[x].setAttribute('role','button');
+        images[x].setAttribute('aria-label',(document.documentElement.lang||'es').toLowerCase().indexOf('en')===0?'View image larger':'Ver imagen ampliada');
+      }
+    }
+
+    document.addEventListener('click',function(e){
+      var closeTarget=e.target.closest('[data-drielo-gallery-close]');
+      if(closeTarget&&overlay.contains(closeTarget)){
+        e.preventDefault();
+        closeLightbox();
+        return;
+      }
+
+      var thumb=e.target.closest('.flex-control-thumbs img');
+      if(thumb){
+        var gallery=thumb.closest('.woocommerce-product-gallery');
+        if(gallery){
+          var thumbs=Array.prototype.slice.call(gallery.querySelectorAll('.flex-control-thumbs img'));
+          var index=thumbs.indexOf(thumb);
+          if(index>=0){
+            window.setTimeout(function(){selectGalleryImage(gallery,index);},0);
+          }
+        }
+        return;
+      }
+
+      var main=e.target.closest('.woocommerce-product-gallery__image img');
+      if(main){
+        e.preventDefault();
+        openLightbox(main);
+      }
+    });
+
+    document.addEventListener('keydown',function(e){
+      if(e.key==='Escape'&&overlay.classList.contains('is-open')){
+        e.preventDefault();
+        closeLightbox();
+        return;
+      }
+      if((e.key==='Enter'||e.key===' ')&&e.target&&e.target.matches('.woocommerce-product-gallery__image img')){
+        e.preventDefault();
+        openLightbox(e.target);
+      }
+    });
+  }
+
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initDrieloProductGalleryLightbox);
+  else initDrieloProductGalleryLightbox();
+})();
