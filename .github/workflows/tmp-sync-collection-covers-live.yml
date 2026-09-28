@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/tmp-sync-collection-covers-live.yml'
+      - 'content/products/assets/animals-collection-cover-v2.jpg'
 
 permissions:
   contents: read
