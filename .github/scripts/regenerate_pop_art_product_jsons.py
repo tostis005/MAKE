@@ -155,9 +155,9 @@ def main() -> None:
 
     collection = {
         "id": COLLECTION_ID,
-        "name": "Pop Art",
-        "name_en": "Pop Art",
-        "name_es": "Pop Art",
+        "name": "Retratos Pop Art",
+        "name_en": "Pop Art Portraits",
+        "name_es": "Retratos Pop Art",
         "slug": "pop-art-25",
         "code_prefix": "P",
         "description": "26 colourful Pop Art designs sharing one strict 25-colour palette across four grid-based craft techniques.",
