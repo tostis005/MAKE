@@ -1,0 +1,113 @@
+name: Prepare and import canonical Iconic 100
+
+on:
+  push:
+    branches:
+      - iconic-batch01-conceptual-v2
+    paths:
+      - 'content/pattern-system/collections/iconic-destinations/assets/iconic-destinations-canonical-100.zip'
+      - '.github/scripts/prepare_iconic_canonical_100.py'
+      - '.github/workflows/prepare-import-iconic-canonical-100.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: drielo-iconic-canonical-100-import
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout canonical branch
+        uses: actions/checkout@v4
+        with:
+          ref: iconic-batch01-conceptual-v2
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Pillow
+        run: python3 -m pip install --disable-pip-version-check --quiet Pillow
+
+      - name: Build canonical source structure from manifest
+        run: python3 .github/scripts/prepare_iconic_canonical_100.py
+
+      - name: Validate source-images manifest and clean queue
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, json, zipfile
+          from pathlib import Path
+          from PIL import Image
+
+          root=Path('content/pattern-system')
+          col=root/'collections'/'iconic-destinations'
+          manifest=json.loads((col/'source-images'/'manifest.json').read_text(encoding='utf-8'))
+          designs=json.loads((col/'designs.json').read_text(encoding='utf-8'))
+          queue=json.loads((root/'iconic_destinations'/'publish_queue.json').read_text(encoding='utf-8'))
+
+          items=manifest['items']
+          expected=[f'D{i:04d}' for i in range(1,101)]
+          if [x['id'] for x in items] != expected:
+              raise SystemExit('Manifest is not D0001-D0100')
+          if designs.get('count') != 100 or [x['base_design_id'] for x in designs['designs']] != expected:
+              raise SystemExit('designs.json is not canonical 100')
+          if [x['base_design_id'] for x in queue['items']] != expected:
+              raise SystemExit('queue is not canonical 100')
+          if any(x.get('status')!='pending' for x in queue['items']):
+              raise SystemExit('all 100 canonical products must start pending')
+          if not queue.get('auto_continue'):
+              raise SystemExit('canonical queue auto_continue must be enabled')
+          if queue.get('source_manifest')!='collections/iconic-destinations/source-images/manifest.json':
+              raise SystemExit('queue manifest routing is wrong')
+
+          zpath=col/'assets'/'iconic-destinations-canonical-100.zip'
+          with zipfile.ZipFile(zpath,'r') as z:
+              for item in items:
+                  fn=item['filename']
+                  raw=z.read(fn)
+                  source=col/'source-images'/fn
+                  inputp=col/'input-pngs-q50'/'canonical-100'/fn
+                  if source.read_bytes()!=raw or inputp.read_bytes()!=raw:
+                      raise SystemExit(f"{item['id']}: source/input bytes differ from canonical ZIP")
+                  if hashlib.sha256(raw).hexdigest()!=item['source_sha256']:
+                      raise SystemExit(f"{item['id']}: manifest SHA mismatch")
+                  with Image.open(source) as im:
+                      rgb=im.convert('RGB')
+                      if im.format!='PNG' or rgb.size!=(100,120) or len(rgb.getcolors(maxcolors=1000000))!=50:
+                          raise SystemExit(f"{item['id']}: invalid source PNG")
+          print('ICONIC_CANONICAL_100_VALID ids=D0001-D0100 png=100 size=100x120 colours=50')
+          PY
+
+      - name: Persist canonical source structure
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A --             content/pattern-system/collections/iconic-destinations             content/pattern-system/iconic_destinations/publish_queue.json             content/pattern-system/patterns             content/pattern-system/products             content/products/catalog.json
+          if git diff --cached --quiet; then
+            echo "Canonical structure already current"
+          else
+            git commit -m "Prepare canonical Iconic D0001-D0100 sources [skip ci]"
+            git pull --rebase origin iconic-batch01-conceptual-v2
+            git push origin HEAD:iconic-batch01-conceptual-v2
+          fi
+
+      - name: Start full canonical WooCommerce publication
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api --method POST             "repos/${GITHUB_REPOSITORY}/actions/workflows/iconic-destinations-auto-publish.yml/dispatches"             -f ref=iconic-batch01-conceptual-v2
+          echo "ICONIC_CANONICAL_100_PUBLICATION_STARTED"
