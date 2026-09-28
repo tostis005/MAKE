@@ -1,0 +1,276 @@
+name: Regenerate Baby Nursery I0001 with Aida Product Background
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/triggers/baby-nursery-regenerate-i0001-aida.txt'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-baby-nursery-i0001-aida
+  cancel-in-progress: false
+
+jobs:
+  regenerate-i0001:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install renderer dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow playwright
+          python3 -m playwright install --with-deps chromium
+
+      - name: Validate Aida ecommerce renderer switch
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+
+          template=Path('content/pattern-system/multitech/templates/cross-stitch.html').read_text(encoding='utf-8')
+          renderer=Path('content/pattern-system/multitech/bulk_generate.py').read_text(encoding='utf-8')
+          collection=json.loads(Path('content/pattern-system/collections/baby-nursery/collection.json').read_text(encoding='utf-8'))
+
+          required_template=[
+              'renderer_version:"aida-relief-v4"',
+              'window.__drieloProductCoverVectorWithAida=svgData(stitchedSvg(MATRIX,0,0,W,H,true))',
+              'const coverVector=svgData(stitchedSvg(MATRIX,0,0,W,H,false))',
+          ]
+          for marker in required_template:
+              if marker not in template:
+                  raise SystemExit(f'Missing template marker: {marker}')
+
+          if "productOverlay.src=window.__drieloProductCoverVectorWithAida" not in renderer:
+              raise SystemExit('Ecommerce capture does not swap to Aida-backed vector')
+          if collection.get('preview_rules',{}).get('product_image_aida_background') is not True:
+              raise SystemExit('Baby Nursery collection is not marked Aida-backed for product images')
+
+          print('AIDA_PRODUCT_CAPTURE_VALID pdf_cover=transparent ecommerce_cover=aida-relief-v4')
+          PY
+
+      - name: Regenerate only I0001 cross-stitch product
+        env:
+          DRIELO_GALLERY_REVISION: ${{ github.run_id }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/baby_nursery/publish_cs_exact_dmc.py I0001
+
+      - name: Validate I0001 bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          root=Path('.')
+          pat=json.loads((root/'content/pattern-system/patterns/I0001-CS/pattern.json').read_text(encoding='utf-8'))
+          prod=json.loads((root/'content/pattern-system/products/I0001-CS/product.json').read_text(encoding='utf-8'))
+          catalog=json.loads((root/'content/products/catalog.json').read_text(encoding='utf-8'))
+
+          if pat.get('technique_code')!='CS' or prod.get('technique')!='cross-stitch':
+              raise SystemExit('I0001 must remain cross-stitch only')
+          if (pat.get('stitch_width'),pat.get('stitch_height'))!=(100,120):
+              raise SystemExit('I0001 grid changed unexpectedly')
+
+          baby=[p for p in catalog.get('products',[]) if p.get('collection')=='baby-nursery']
+          if [p.get('code') for p in baby] != ['I0001-CS']:
+              raise SystemExit(f'Expected only I0001-CS in Baby Nursery catalog, got {[p.get("code") for p in baby]}')
+
+          pdf=root/'content/products/files/Drielo_I0001-CS.pdf'
+          hero=root/'content/products/assets/I0001-CS-product.webp'
+          galleries=[root/'content/products/assets'/f'I0001-CS-gallery-{i}.webp' for i in (2,3,4)]
+          if not pdf.is_file() or pdf.stat().st_size<100000 or pdf.read_bytes()[:4]!=b'%PDF':
+              raise SystemExit('Invalid I0001 PDF')
+          if not hero.is_file() or hero.stat().st_size<30000:
+              raise SystemExit('Invalid I0001 product image')
+          if any(not g.is_file() or g.stat().st_size<10000 for g in galleries):
+              raise SystemExit('Invalid I0001 gallery')
+
+          print('I0001_AIDA_BUNDLE_VALID',
+                'stitches',pat.get('total_stitches'),
+                'colors',len(pat.get('threads',[])),
+                'hero_bytes',hero.stat().st_size)
+          PY
+
+      - name: Build one-product WooCommerce package
+        shell: bash
+        run: |
+          set -euo pipefail
+          CODE="I0001-CS"
+          STAGE="/tmp/drielo-${CODE}"
+          rm -rf "$STAGE"
+          mkdir -p "$STAGE/content/products/assets" "$STAGE/content/products/files" "$STAGE/content/tools"
+
+          python3 - "$CODE" "$STAGE" <<'PY'
+          import json,sys
+          from pathlib import Path
+
+          code=sys.argv[1]
+          stage=Path(sys.argv[2])
+          src=json.loads(Path('content/products/catalog.json').read_text(encoding='utf-8'))
+          row=next(p for p in src['products'] if p.get('code')==code)
+          collection=next(c for c in src['collections'] if c.get('slug')=='baby-nursery')
+          cat_slugs={'cross-stitch-patterns','cross-stitch-baby-nursery'}
+          cats=[c for c in src.get('categories',[]) if c.get('slug') in cat_slugs]
+
+          out=dict(src)
+          out['products']=[row]
+          out['collections']=[collection]
+          out['categories']=cats
+          out['retired_products']=[]
+          out['retired_collections']=[]
+          (stage/'content/products/catalog.json').write_text(
+              json.dumps(out,ensure_ascii=False,indent=2)+'\n',
+              encoding='utf-8'
+          )
+          PY
+
+          cp "content/products/assets/${CODE}-product.webp" "$STAGE/content/products/assets/"
+          cp "content/products/assets/${CODE}-gallery-2.webp" "$STAGE/content/products/assets/"
+          cp "content/products/assets/${CODE}-gallery-3.webp" "$STAGE/content/products/assets/"
+          cp "content/products/assets/${CODE}-gallery-4.webp" "$STAGE/content/products/assets/"
+          cp "content/products/files/Drielo_${CODE}.pdf" "$STAGE/content/products/files/"
+          cp content/tools/import-products.php "$STAGE/content/tools/"
+          tar -czf "/tmp/drielo-${CODE}.tgz" -C "$STAGE" content
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_products_key
+          chmod 600 ~/.ssh/drielo_products_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Upload package
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          scp -i ~/.ssh/drielo_products_key /tmp/drielo-I0001-CS.tgz "$VPS_USER@$VPS_HOST:/tmp/drielo-I0001-CS-${GITHUB_RUN_ID}.tgz"
+
+      - name: Overwrite I0001-CS in WooCommerce
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_products_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='${GITHUB_RUN_ID}' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-I0001-CS-${GITHUB_RUN_ID}.tgz"
+          STAGE="/tmp/drielo-I0001-CS-${GITHUB_RUN_ID}"
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE"; }
+          trap cleanup EXIT
+
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          PRE_ID=$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; echo (int)wc_get_product_id_by_sku("DRIELO-I0001-CS");')
+          echo "Existing I0001-CS product id: $PRE_ID"
+          if [ "$PRE_ID" -le 0 ]; then
+            echo "ERROR: I0001-CS must already exist so this run overwrites it"
+            exit 8
+          fi
+
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
+          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
+
+          POST_ID=$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; echo (int)wc_get_product_id_by_sku("DRIELO-I0001-CS");')
+          echo "Updated I0001-CS product id: $POST_ID"
+          if [ "$POST_ID" != "$PRE_ID" ]; then
+            echo "ERROR: expected overwrite of product ID $PRE_ID, got $POST_ID"
+            exit 9
+          fi
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $sku="DRIELO-I0001-CS";
+            $id=wc_get_product_id_by_sku($sku);
+            $p=$id?wc_get_product($id):false;
+            if(!$p){fwrite(STDERR,"Missing ".$sku.PHP_EOL);exit(2);}
+
+            $baby=get_posts(array(
+              "post_type"=>"product",
+              "post_status"=>array("publish","draft","pending","private","future","trash"),
+              "posts_per_page"=>-1,
+              "fields"=>"ids",
+              "tax_query"=>array(array(
+                "taxonomy"=>"product_collection",
+                "field"=>"slug",
+                "terms"=>array("baby-nursery"),
+              )),
+            ));
+
+            echo $sku
+              ." id=".$id
+              ." status=".$p->get_status()
+              ." image_id=".$p->get_image_id()
+              ." gallery=".count($p->get_gallery_image_ids())
+              ." downloads=".count($p->get_downloads())
+              ." url=".get_permalink($id)
+              .PHP_EOL;
+            echo "Baby Nursery product count: ".count($baby).PHP_EOL;
+
+            if($p->get_status()!=="publish" || !$p->get_image_id() || count($p->get_gallery_image_ids())<3 || count($p->get_downloads())<1){
+              fwrite(STDERR,"Incomplete I0001-CS product".PHP_EOL);exit(3);
+            }
+            if(count($baby)!==1 || (int)$baby[0]!==$id){
+              fwrite(STDERR,"Expected exactly one Baby Nursery product".PHP_EOL);exit(7);
+            }
+          '
+
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
+          REMOTE
+
+      - name: Commit regenerated ecommerce image
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add             content/products/assets/I0001-CS-product.webp             content/pattern-system/patterns/I0001-CS/pattern.json             content/pattern-system/products/I0001-CS/product.json             content/products/catalog.json
+
+          if git diff --cached --quiet; then
+            echo "No repository artefact changes to commit."
+          else
+            git commit -m "Regenerate I0001 ecommerce image with Aida background [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
