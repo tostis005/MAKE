@@ -419,10 +419,11 @@
       "title_es": "Ardilla",
       "slug": "squirrel",
       "input_png": "../source-images/collections/baby-nursery/products/I0032-squirrel.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36440419735",
+      "last_error": null,
+      "published_at": "2026-09-28T15:04:40+00:00"
     },
     {
       "order": 33,
