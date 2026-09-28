@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[3]
 SOURCE = ROOT / "content" / "source-images" / "collections" / "baby-nursery" / "products"
 DESIGNS = ROOT / "content" / "pattern-system" / "collections" / "baby-nursery" / "designs.json"
 OUT = ROOT / "tmp" / "baby-nursery-visual-audit"
+PRODUCT_ASSETS = ROOT / "content" / "products" / "assets"
 OUT.mkdir(parents=True, exist_ok=True)
 
 SCALE = 5
@@ -155,6 +156,49 @@ def main():
         for gy in range(0,1201,10):
             fd.line((ox,oy+gy,ox+1000,oy+gy),fill=(210,210,210),width=1)
     focus.save(OUT/"focus_I0021_I0022_I0026.png")
+
+    # Audit the actual ecommerce hero frame for every published product asset.
+    hero_rows=[]
+    for row in rows:
+        hero=PRODUCT_ASSETS/f"{row['id']}-CS-product.webp"
+        hero_rows.append({**row,"hero_exists":hero.is_file()})
+    for sidx in range(0,len(hero_rows),10):
+        subset=hero_rows[sidx:sidx+10]
+        sheet=Image.new("RGB",(COLS*TILE_W,ROWS*TILE_H),(248,248,248))
+        draw=ImageDraw.Draw(sheet)
+        for idx,row in enumerate(subset):
+            col=idx%COLS; rr=idx//COLS
+            x0=col*TILE_W; y0=rr*TILE_H
+            hero=PRODUCT_ASSETS/f"{row['id']}-CS-product.webp"
+            if hero.is_file():
+                with Image.open(hero) as im:
+                    rgb=im.convert("RGB")
+                    if rgb.size==(1536,1536):
+                        crop=rgb.crop((438,212,1123,1034))
+                    else:
+                        crop=rgb
+                    prev=crop.resize((500,600),Image.Resampling.LANCZOS)
+                sheet.paste(prev,(x0+30,y0+55))
+            else:
+                draw.text((x0+30,y0+300),"MISSING HERO",fill="red",font=font)
+            draw.text((x0+12,y0+10),f"{row['id']}  {row['title_en']}",fill="black",font=font)
+            draw.text((x0+12,y0+28),f"hero={'yes' if hero.is_file() else 'NO'}",fill="black",font=font)
+            draw.rectangle([x0,y0,x0+TILE_W-1,y0+TILE_H-1],outline=(180,180,180))
+        sheet.save(OUT/f"hero_sheet_{sidx//10+1:02d}_{subset[0]['id']}_{subset[-1]['id']}.png")
+
+    hero_focus=Image.new("RGB",(3*1080,1420),(250,250,250))
+    hfd=ImageDraw.Draw(hero_focus)
+    for j,base in enumerate(focus_ids):
+        row=next(x for x in rows if x["id"]==base)
+        hero=PRODUCT_ASSETS/f"{base}-CS-product.webp"
+        if hero.is_file():
+            with Image.open(hero) as im:
+                rgb=im.convert("RGB")
+                crop=rgb.crop((438,212,1123,1034)) if rgb.size==(1536,1536) else rgb
+                prev=crop.resize((1000,1200),Image.Resampling.LANCZOS)
+            hero_focus.paste(prev,(j*1080+40,120))
+        hfd.text((j*1080+40,30),f"{base} {row['title_en']} hero",fill="black",font=font)
+    hero_focus.save(OUT/"hero_focus_I0021_I0022_I0026.png")
 
     print(json.dumps({
         "audited":len(rows),
