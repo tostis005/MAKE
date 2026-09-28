@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: drielo-baby-nursery-recenter-selected
+  group: drielo-baby-nursery-recenter-selected-v2
   cancel-in-progress: true
 
 jobs:
