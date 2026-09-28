@@ -15,15 +15,16 @@
       "product_title_es": "Patrón de punto de cruz: Torre Eiffel, París",
       "slug": "paris-eiffel-tower",
       "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0031-paris-eiffel-tower.png",
-      "status": "pending",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36436425901",
-      "last_error": "Automatic Iconic Destinations publish run failed; see GitHub Actions logs.",
+      "status": "published",
+      "attempts": 2,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36436665167",
+      "last_error": null,
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_manifest_item": "D0031",
       "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
       "source_zip_member": "D0031-paris-eiffel-tower.png",
-      "failed_at": "2026-09-28T14:31:46+00:00"
+      "failed_at": "2026-09-28T14:31:46+00:00",
+      "published_at": "2026-09-28T14:37:09+00:00"
     },
     {
       "base_design_id": "D0032",
