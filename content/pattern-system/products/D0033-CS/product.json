@@ -13,11 +13,12 @@
   "pattern_file": "patterns/D0033-CS/pattern.json",
   "template": "cross-stitch.html",
   "website": "www.drielo.com",
-  "status": "draft",
-  "render_ready": false,
+  "status": "ready",
+  "render_ready": true,
   "renderer": "multitech",
   "source_artwork": "collections/iconic-destinations/input-pngs-q50/canonical-100/D0033-jodhpur-blue-city.png",
-  "page_1_asset": null,
+  "page_1_asset": "../../multitech/assets/cover-cross-stitch.webp",
   "palette_mode": "per-design",
-  "source_manifest": "collections/iconic-destinations/source-images/manifest.json"
+  "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
+  "mapped_artwork": "collections/iconic-destinations/source-designs/D0033-jodhpur-blue-city.png"
 }
