@@ -384,7 +384,7 @@ def update_catalog(base_id: str, design: dict, built: dict):
         "description_en": collection.get("description", ""),
         "description_es": collection.get("description_es", ""),
         "techniques": ["cross-stitch"],
-        "cover_asset": f"assets/{code}-product.webp",
+        "cover_asset": "assets/baby-nursery-collection-cover-v2.jpg",
         "visible": bool(collection.get("visible", False)),
         "palette_mode": "exact-dmc50-source-no-requantization",
     })
