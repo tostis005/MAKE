@@ -1,0 +1,54 @@
+name: Temporary install collection covers
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tmp-install-collection-covers.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tmp-install-collection-covers
+  cancel-in-progress: false
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download approved collection covers from temporary Gmail handoff
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p content/products/assets
+          curl --fail --location --retry 3 --silent --show-error 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-4ef8-820e-a944-571e3970958d/raw?se=2026-09-28T07%3A30%3A16Z&sp=r&sv=2026-02-06&sr=b&scid=420648fd-aae7-5b77-a09b-b247597a5057&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-27T23%3A12%3A07Z&ske=2026-09-28T23%3A12%3A07Z&sks=b&skv=2026-02-06&sig=LyxpH0ki5kkLojqWZPnI3%2BirI0f1ZyNgqCgqXYb1YhY%3D' -o content/products/assets/baby-nursery-collection-cover-v2.jpg
+          curl --fail --location --retry 3 --silent --show-error 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-2b94-820e-a5c8-6f7b6770783c/raw?se=2026-09-28T07%3A30%3A17Z&sp=r&sv=2026-02-06&sr=b&scid=a18f854f-0a4c-53ef-ac8a-06c874355dd3&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-28T07%3A01%3A52Z&ske=2026-09-29T07%3A01%3A52Z&sks=b&skv=2026-02-06&sig=Ua7bz53nTibjUrGbGay2pYm8CQtc3o2FBoGyUiJTefk%3D' -o content/products/assets/animals-collection-cover-v2.jpg
+          curl --fail --location --retry 3 --silent --show-error 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-34d4-820e-9948-aa0bcd78a78e/raw?se=2026-09-28T07%3A30%3A19Z&sp=r&sv=2026-02-06&sr=b&scid=fb8f1150-74f6-5607-add7-079e44746bfa&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-28T00%3A27%3A26Z&ske=2026-09-29T00%3A27%3A26Z&sks=b&skv=2026-02-06&sig=wuwnz6iQZgiDuMeQEP0/NTkHQ203QO5GlOLlU5Er6h8%3D' -o content/products/assets/retratos-pop-art-collection-cover.png
+          curl --fail --location --retry 3 --silent --show-error 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-89ac-820e-814e-d2657fa2cc60/raw?se=2026-09-28T07%3A30%3A20Z&sp=r&sv=2026-02-06&sr=b&scid=b382468e-c553-5b8b-a1c0-408d305480d1&skoid=4a431cd2-eafd-49c7-90be-bbb4d45e696d&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-28T06%3A18%3A00Z&ske=2026-09-29T06%3A18%3A00Z&sks=b&skv=2026-02-06&sig=11hO/P%2Beir6zjb9L6w4ubJ/oLmt11a8Dyqj7p3fEH7w%3D' -o content/products/assets/iconic-destinations-collection-cover.png
+          for f in             content/products/assets/baby-nursery-collection-cover-v2.jpg             content/products/assets/animals-collection-cover-v2.jpg             content/products/assets/retratos-pop-art-collection-cover.png             content/products/assets/iconic-destinations-collection-cover.png
+          do
+            test -s "$f"
+            test "$(stat -c %s "$f")" -gt 500000
+            file "$f"
+            sha256sum "$f"
+          done
+
+      - name: Commit covers
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add             content/products/assets/baby-nursery-collection-cover-v2.jpg             content/products/assets/animals-collection-cover-v2.jpg             content/products/assets/retratos-pop-art-collection-cover.png             content/products/assets/iconic-destinations-collection-cover.png
+          if git diff --cached --quiet; then
+            echo "Collection covers already current."
+            exit 0
+          fi
+          git commit -m "Install approved collection covers [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main
