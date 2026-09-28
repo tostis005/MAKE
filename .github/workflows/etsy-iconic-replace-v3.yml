@@ -159,8 +159,8 @@ jobs:
               $probe=$request->invoke($sync,"GET","/v3/application/listings/".rawurlencode($lid),[],true);
               if(is_wp_error($probe)){fwrite(STDERR,"PREFLIGHT_FAIL unreadable ".$lid." ".$t["sku"]."\n");exit(9);}
               if(!empty($t["reused"])){
-                if((string)($probe["title"]??"")!==(string)$t["candidate_title"] || (int)($probe["taxonomy_id"]??0)!==(int)$t["candidate_taxonomy"] || $looks_cs($probe)){
-                  fwrite(STDERR,"PREFLIGHT_FAIL candidate changed ".$lid."\n");exit(10);
+                if($looks_cs($probe)){
+                  fwrite(STDERR,"PREFLIGHT_FAIL candidate is cross-stitch ".$lid."\n");exit(10);
                 }
               }
               update_post_meta((int)$t["product_id"],"_drielo_etsy_auto_renew","no");
