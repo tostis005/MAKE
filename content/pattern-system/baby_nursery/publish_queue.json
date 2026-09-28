@@ -655,10 +655,11 @@
       "title_es": "Cohete",
       "slug": "rocket",
       "input_png": "../source-images/collections/baby-nursery/products/I0050-rocket.png",
-      "status": "pending",
-      "attempts": 0,
-      "last_run": null,
-      "last_error": null
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36447752878",
+      "last_error": null,
+      "published_at": "2026-09-28T16:01:20+00:00"
     },
     {
       "order": 51,
