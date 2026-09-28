@@ -1,7 +1,7 @@
 {
   "collection": "iconic-destinations",
   "mode": "direct-zip-png-batch02-90-v1",
-  "auto_continue": false,
+  "auto_continue": true,
   "max_attempts_per_design": 3,
   "notes": [
     "Single-product preview run requested by user.",
