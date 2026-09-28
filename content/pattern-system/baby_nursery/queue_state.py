@@ -50,6 +50,9 @@ def cmd_next(args):
 def cmd_success(args):
     doc = load()
     item = get_item(doc, args.design_id)
+    if item.get("status") == "published":
+        print(f"ALREADY_PUBLISHED {args.design_id}")
+        return
     item["attempts"] = int(item.get("attempts", 0)) + 1
     item["status"] = "published"
     item["last_run"] = args.run_url or None
@@ -62,6 +65,9 @@ def cmd_success(args):
 def cmd_fail(args):
     doc = load()
     item = get_item(doc, args.design_id)
+    if item.get("status") == "published":
+        print(f"IGNORE_FAILURE_ALREADY_PUBLISHED {args.design_id}")
+        return
     item["attempts"] = int(item.get("attempts", 0)) + 1
     max_attempts = int(doc.get("max_attempts_per_design", 2))
     retry = item["attempts"] < max_attempts
