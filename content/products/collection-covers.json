@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-09-28",
+  "source": {
+    "transport": "gmail-temporary-handoff",
+    "gmail_message_id": "1a0e6e17bd4c59c2",
+    "note": "Approved collection cover images supplied by the user and relayed through Gmail before installation in GitHub."
+  },
+  "collections": [
+    {
+      "slug": "baby-nursery",
+      "display_es": "Bebé e Infantil",
+      "display_en": "Baby & Nursery",
+      "cover_asset": "assets/baby-nursery-collection-cover-v2.jpg",
+      "source_filename": "coleccion-infantil.jpg"
+    },
+    {
+      "slug": "animals",
+      "display_es": "Animales",
+      "display_en": "Animals",
+      "cover_asset": "assets/animals-collection-cover-v2.jpg",
+      "source_filename": "coleccion-animales.jpg"
+    },
+    {
+      "slug": "iconic-destinations",
+      "display_es": "Destinos icónicos",
+      "display_en": "Iconic Destinations",
+      "cover_asset": "assets/iconic-destinations-collection-cover.png",
+      "source_filename": "coleccion-destinos-iconicos.png"
+    },
+    {
+      "slug": "pop-art-25",
+      "display_es": "Retratos Pop Art",
+      "display_en": "Pop Art Portraits",
+      "cover_asset": "assets/retratos-pop-art-collection-cover.png",
+      "source_filename": "coleccion-retratos-pop-art.png",
+      "compatibility_note": "Technical slug remains pop-art-25 so existing products and workflows keep stable references. The generic pop-art namespace remains available for a future non-portrait collection."
+    }
+  ]
+}
