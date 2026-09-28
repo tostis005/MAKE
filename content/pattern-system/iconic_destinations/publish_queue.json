@@ -307,14 +307,14 @@
       "slug": "neuschwanstein-castle",
       "input_png": "collections/iconic-destinations/input-pngs-q50/current/D0067-neuschwanstein-castle.png",
       "status": "pending",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36447676773",
+      "attempts": 2,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36447814168",
       "last_error": "Automatic Iconic Destinations publish run failed; see GitHub Actions logs.",
       "source_manifest": "collections/iconic-destinations/source-images/manifest.json",
       "source_manifest_item": "D0067",
       "source_zip": "collections/iconic-destinations/assets/iconic-current-manifest-source-q50.zip",
       "source_zip_member": "D0067-neuschwanstein-castle.png",
-      "failed_at": "2026-09-28T16:00:01+00:00"
+      "failed_at": "2026-09-28T16:01:14+00:00"
     },
     {
       "base_design_id": "D0068",
