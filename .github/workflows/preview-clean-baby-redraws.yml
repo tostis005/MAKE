@@ -1,0 +1,82 @@
+name: Preview Clean Baby Nursery Redraws
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/preview-clean-baby-redraws.yml'
+      - 'content/pattern-system/baby_nursery/regenerate_clean_artwork.py'
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            content/pattern-system/baby_nursery/regenerate_clean_artwork.py
+            content/pattern-system/collections/baby-nursery/designs.json
+            content/source-images/collections/baby-nursery/
+            .github/workflows/preview-clean-baby-redraws.yml
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - run: python3 -m pip install --quiet Pillow
+
+      - name: Generate clean redraws
+        run: python3 content/pattern-system/baby_nursery/regenerate_clean_artwork.py
+
+      - name: Build enlarged review sheet
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/baby-clean-preview
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image,ImageDraw,ImageFont
+          src=Path("content/source-images/collections/baby-nursery/products")
+          items=[
+            ("I0021","Whale","I0021-whale.png"),
+            ("I0026","Long-Neck Dinosaur","I0026-long-neck-dinosaur.png"),
+            ("I0027","Triceratops","I0027-triceratops.png"),
+            ("I0029","Stegosaurus","I0029-stegosaurus.png"),
+            ("I0043","Rainbow with Clouds","I0043-rainbow-clouds.png"),
+          ]
+          W,H=700,900
+          sheet=Image.new("RGB",(5*W,H),(246,246,246))
+          d=ImageDraw.Draw(sheet); font=ImageFont.load_default()
+          for i,(base,title,fname) in enumerate(items):
+              im=Image.open(src/fname).convert("RGBA")
+              checker=Image.new("RGB",(600,720),"white")
+              cd=ImageDraw.Draw(checker)
+              for y in range(0,720,20):
+                  for x in range(0,600,20):
+                      if ((x//20)+(y//20))%2:
+                          cd.rectangle([x,y,x+19,y+19],fill=(235,235,235))
+              big=im.resize((600,720),Image.Resampling.NEAREST)
+              checker.paste(big,(0,0),big)
+              x0=i*W
+              sheet.paste(checker,(x0+50,100))
+              bbox=im.getchannel("A").getbbox()
+              d.text((x0+30,25),f"{base} {title}",fill="black",font=font)
+              d.text((x0+30,50),f"bbox={bbox}",fill="black",font=font)
+              d.rectangle([x0,0,x0+W-1,H-1],outline=(170,170,170))
+              im.save(Path("/tmp/baby-clean-preview")/fname)
+          sheet.save("/tmp/baby-clean-preview/clean-redraws-contact.png")
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: baby-clean-redraws-preview
+          path: /tmp/baby-clean-preview
+          retention-days: 7
