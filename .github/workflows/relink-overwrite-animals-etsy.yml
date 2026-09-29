@@ -137,8 +137,11 @@ jobs:
               foreach((array)($inv["products"]??[]) as $rp){
                 $s=trim((string)($rp["sku"]??"")); if($s!=="")$remote_skus[$s]=true;
               }
-              if(!isset($remote_skus[$expected_sku])){
-                fwrite(STDERR,"ERROR exact Etsy SKU missing listing=".$listing." sku=".$expected_sku."\n");exit(16);
+              if($remote_skus && !isset($remote_skus[$expected_sku])){
+                fwrite(STDERR,"ERROR Etsy SKU belongs to another product listing=".$listing." expected=".$expected_sku." got=".implode(",",array_keys($remote_skus))."\n");exit(16);
+              }
+              if(!$remote_skus){
+                echo "SKU_REPAIR_REQUIRED listing=".$listing." sku=".$expected_sku.PHP_EOL;
               }
               $expected_title=(string)($row["remote_title"]??"");
               if($expected_title!=="" && (string)($remote["title"]??"")!==$expected_title){
