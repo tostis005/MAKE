@@ -1,0 +1,217 @@
+name: Audit animal Etsy relink
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/audit-animal-etsy-relink.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_animal_etsy_key
+          chmod 600 ~/.ssh/drielo_animal_etsy_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Build read-only mapping audit
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ops/etsy
+          ssh -o ServerAliveInterval=30 -i ~/.ssh/drielo_animal_etsy_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE' > ops/etsy/animal-relink-audit.json
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=1536M -d max_execution_time=0 -r '
+            require "/var/www/html/wp-load.php";
+            require_once ABSPATH."wp-admin/includes/plugin.php";
+            if(!class_exists("Drielo_Etsy_Sync")){echo wp_json_encode(["error"=>"Etsy plugin unavailable"]);exit(2);}
+            $sync=Drielo_Etsy_Sync::instance();
+            $ref=new ReflectionClass($sync);
+            $m=function($n)use($ref,$sync){$x=$ref->getMethod($n);$x->setAccessible(true);return $x;};
+            $settings=$m("settings")->invoke($sync);
+            $request=$m("etsy_request");
+            $tech=$m("product_technique");
+            $shop=(string)($settings["shop_id"]??"");
+            if($shop===""){echo wp_json_encode(["error"=>"Shop ID missing"]);exit(3);}
+
+            $norm=static function($s){
+              $s=strtolower(remove_accents(trim((string)$s)));
+              $s=preg_replace("/\b(cross\s*stitch|cross-stitch|punto\s+de\s+cruz|pattern|patron|pdf|digital|download|instant|embroidery|chart|grafico|dmc|printable|counted)\b/u"," ",$s);
+              $s=preg_replace("/[^a-z0-9]+/"," ",$s);
+              return trim(preg_replace("/\s+/"," ",$s));
+            };
+            $token_score=static function($a,$b)use($norm){
+              $aa=array_values(array_unique(array_filter(explode(" ",$norm($a)),fn($x)=>strlen($x)>=3)));
+              $bb=array_values(array_unique(array_filter(explode(" ",$norm($b)),fn($x)=>strlen($x)>=3)));
+              if(!$aa||!$bb)return 0.0;
+              $inter=count(array_intersect($aa,$bb));
+              $union=count(array_unique(array_merge($aa,$bb)));
+              return $union?round($inter/$union,4):0.0;
+            };
+
+            $collections=[];
+            if(taxonomy_exists("product_collection")){
+              foreach(get_terms(["taxonomy"=>"product_collection","hide_empty"=>false]) as $t){
+                if(is_wp_error($t))continue;
+                $collections[]=["term_id"=>(int)$t->term_id,"slug"=>(string)$t->slug,"name"=>(string)$t->name,"count"=>(int)$t->count];
+              }
+            }
+
+            $ids=get_posts(["post_type"=>"product","post_status"=>["publish","draft","private","pending"],"posts_per_page"=>-1,"fields"=>"ids","orderby"=>"ID","order"=>"ASC"]);
+            $targets=[];$all_linked=[];$animal_slugs=[];
+            foreach($collections as $c){
+              $hay=strtolower(remove_accents($c["slug"]." ".$c["name"]));
+              if(strpos($hay,"animal")!==false)$animal_slugs[]=$c["slug"];
+            }
+            foreach($ids as $id){
+              $p=wc_get_product($id); if(!$p)continue;
+              $sku=(string)$p->get_sku();
+              $t=(string)$tech->invoke($sync,$p);
+              if($t==="" && preg_match("/-CS$/",$sku))$t="cross-stitch";
+              $listing=(string)get_post_meta($id,"_drielo_etsy_listing_id",true);
+              if($listing!=="")$all_linked[$listing]=["product_id"=>(int)$id,"sku"=>$sku,"title"=>(string)$p->get_name(),"technique"=>$t];
+              $slugs=taxonomy_exists("product_collection")?wp_get_post_terms($id,"product_collection",["fields"=>"slugs"]):[];
+              if(is_wp_error($slugs))$slugs=[];
+              $is_animal=(bool)array_intersect($animal_slugs,(array)$slugs);
+              if(!$is_animal || ($t!=="cross-stitch" && !preg_match("/-CS$/",$sku)))continue;
+              $imgs=array_values(array_filter(array_unique(array_merge([$p->get_image_id()],$p->get_gallery_image_ids()))));
+              $downloads=$p->get_downloads();
+              $targets[]=[
+                "product_id"=>(int)$id,
+                "sku"=>$sku,
+                "title"=>(string)$p->get_name(),
+                "etsy_title_en"=>(string)get_post_meta($id,"_drielo_etsy_title_en",true),
+                "etsy_title_es"=>(string)get_post_meta($id,"_drielo_etsy_title_es",true),
+                "listing_id"=>$listing,
+                "collections"=>array_values((array)$slugs),
+                "image_count"=>count($imgs),
+                "download_count"=>count($downloads),
+                "target_state"=>(string)get_post_meta($id,"_drielo_etsy_target_state",true),
+                "enabled"=>(string)get_post_meta($id,"_drielo_etsy_enabled",true)
+              ];
+            }
+            usort($targets,fn($a,$b)=>strcmp($a["sku"],$b["sku"]));
+
+            $remote=[];
+            foreach(["active","inactive","draft"] as $state){
+              for($offset=0;$offset<3000;$offset+=100){
+                $res=$request->invoke($sync,"GET","/v3/application/shops/".rawurlencode($shop)."/listings?state=".$state."&limit=100&offset=".$offset,[],true);
+                if(is_wp_error($res))break;
+                $rows=(array)($res["results"]??[]);
+                foreach($rows as $r){
+                  $lid=(string)($r["listing_id"]??""); if($lid==="")continue;
+                  $remote[$lid]=[
+                    "listing_id"=>$lid,
+                    "state"=>(string)($r["state"]??$state),
+                    "title"=>(string)($r["title"]??""),
+                    "taxonomy_id"=>(int)($r["taxonomy_id"]??0),
+                    "should_auto_renew"=>!empty($r["should_auto_renew"]),
+                    "shop_section_id"=>(int)($r["shop_section_id"]??0)
+                  ];
+                }
+                if(count($rows)<100)break;
+              }
+            }
+
+            $candidates=[];
+            foreach($remote as $lid=>$r){
+              $title_norm=$norm($r["title"]);
+              $looks_cs=((int)$r["taxonomy_id"]===87)||str_contains(strtolower(remove_accents($r["title"])),"cross stitch")||str_contains(strtolower(remove_accents($r["title"])),"punto de cruz");
+              if(!$looks_cs)continue;
+              $inv=$request->invoke($sync,"GET","/v3/application/listings/".rawurlencode($lid)."/inventory",[],true);
+              $skus=[];
+              if(!is_wp_error($inv)){
+                foreach((array)($inv["products"]??[]) as $pr){
+                  $s=trim((string)($pr["sku"]??"")); if($s!=="")$skus[$s]=true;
+                }
+              }
+              $candidates[$lid]=$r+[
+                "normalized_title"=>$title_norm,
+                "inventory_skus"=>array_keys($skus),
+                "linked_local"=>$all_linked[$lid]??null
+              ];
+            }
+
+            $pairs=[];$ambiguous=[];$unmatched=[];
+            $used=[];
+            foreach($targets as $t){
+              $scores=[];
+              foreach($candidates as $lid=>$c){
+                if(isset($used[$lid]))continue;
+                $score=0.0;$why=[];
+                if($t["sku"]!=="" && in_array($t["sku"],$c["inventory_skus"],true)){$score=1000.0;$why[]="exact-sku";}
+                foreach([$t["title"],$t["etsy_title_en"],$t["etsy_title_es"]] as $tt){
+                  if(trim((string)$tt)==="")continue;
+                  if($norm($tt)!=="" && $norm($tt)===$c["normalized_title"]){$score=max($score,900.0);$why[]="exact-normalized-title";}
+                  $score=max($score,100.0*$token_score($tt,$c["title"]));
+                }
+                $scores[]=["listing_id"=>$lid,"score"=>$score,"why"=>array_values(array_unique($why)),"remote_title"=>$c["title"],"remote_skus"=>$c["inventory_skus"],"state"=>$c["state"]];
+              }
+              usort($scores,function($a,$b){if($a["score"]===$b["score"])return ((int)$a["listing_id"])<=>((int)$b["listing_id"]);return $b["score"]<=>$a["score"];});
+              $best=$scores[0]??null;$second=$scores[1]??null;
+              if(!$best || $best["score"]<55){
+                $unmatched[]=["target"=>$t,"top"=>array_slice($scores,0,5)];
+                continue;
+              }
+              $gap=$second?($best["score"]-$second["score"]):$best["score"];
+              if($best["score"]<850 && $gap<15){
+                $ambiguous[]=["target"=>$t,"top"=>array_slice($scores,0,5)];
+                continue;
+              }
+              $used[$best["listing_id"]]=true;
+              $pairs[]=["product_id"=>$t["product_id"],"sku"=>$t["sku"],"title"=>$t["title"],"listing_id"=>$best["listing_id"],"remote_title"=>$best["remote_title"],"remote_skus"=>$best["remote_skus"],"score"=>$best["score"],"why"=>$best["why"],"remote_state"=>$best["state"]];
+            }
+
+            $report=[
+              "generated_at"=>gmdate("c"),
+              "shop_id"=>$shop,
+              "plugin_version"=>defined("Drielo_Etsy_Sync::VERSION")?Drielo_Etsy_Sync::VERSION:"",
+              "animal_collection_slugs"=>$animal_slugs,
+              "collections"=>$collections,
+              "summary"=>[
+                "targets"=>count($targets),
+                "cross_stitch_candidates"=>count($candidates),
+                "auto_pairs"=>count($pairs),
+                "ambiguous"=>count($ambiguous),
+                "unmatched"=>count($unmatched),
+                "all_assets_ready"=>count(array_filter($targets,fn($t)=>$t["image_count"]>0&&$t["download_count"]>0))===count($targets)
+              ],
+              "targets"=>$targets,
+              "pairs"=>$pairs,
+              "ambiguous"=>$ambiguous,
+              "unmatched"=>$unmatched,
+              "candidates"=>array_values($candidates)
+            ];
+            echo wp_json_encode($report,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+          '
+          REMOTE
+
+      - name: Commit audit report
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ops/etsy/animal-relink-audit.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Audit Etsy animal relink mapping [skip ci]"
+          git push
