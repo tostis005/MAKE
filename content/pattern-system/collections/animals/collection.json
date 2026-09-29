@@ -176,7 +176,7 @@
       "TC": "mockups/animals-cover-tapestry-crochet.png",
       "LH": "mockups/animals-cover-latch-hook.png"
     },
-    "status": "approved-exact-aligned-cross-stitch-2026-09-29",
+    "status": "approved-clean-final-2026-09-29",
     "frame": {
       "enabled": false
     },
@@ -186,7 +186,7 @@
       "post_generation_measurement": "Record source dimensions and usable placement geometry after approval."
     },
     "source_uploads": {
-      "CS": "animals-collection-cover-v3.jpg",
+      "CS": "coleccion-animales-github-fixed4.jpg",
       "C2C": "114974.png",
       "TC": "114975.png",
       "LH": "114977.png"
