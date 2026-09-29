@@ -57,8 +57,6 @@ jobs:
             $settings_method->setAccessible(true);
             $etsy_method=$ref->getMethod("etsy_request");
             $etsy_method->setAccessible(true);
-            $inventory_method=$ref->getMethod("sync_inventory");
-            $inventory_method->setAccessible(true);
             $downloads_method=$ref->getMethod("sync_downloads");
             $downloads_method->setAccessible(true);
             $snapshot_method=$ref->getMethod("sync_run_snapshot");
@@ -177,15 +175,9 @@ jobs:
               try {
                 $manual_prop->setValue($sync,true);
 
-                // Etsy requires a single-product inventory before a physical
-                // listing with variations can be converted to a download.
-                $inv=$inventory_method->invoke($sync,$product,(int)$lid);
-                if(is_wp_error($inv)){
-                  $failed[$lid]="Inventario: ".$inv->get_error_message();
-                  continue;
-                }
-
-                // Ensure the current Drielo digital file(s) are attached.
+                // Current Etsy API behavior: uploading/associating a digital
+                // file with a physical listing converts it to digital and
+                // removes shipping/inventory variations automatically.
                 $files=$downloads_method->invoke($sync,$product,(int)$lid);
                 if(is_wp_error($files)){
                   $failed[$lid]="Archivos: ".$files->get_error_message();
