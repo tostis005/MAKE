@@ -59,6 +59,8 @@ jobs:
             $etsy_method->setAccessible(true);
             $downloads_method=$ref->getMethod("sync_downloads");
             $downloads_method->setAccessible(true);
+            $upload_method=$ref->getMethod("etsy_upload_file");
+            $upload_method->setAccessible(true);
             $local_path_method=$ref->getMethod("local_path_from_url");
             $local_path_method->setAccessible(true);
             $snapshot_method=$ref->getMethod("sync_run_snapshot");
@@ -200,9 +202,117 @@ jobs:
                 // Current Etsy API behavior: uploading/associating a digital
                 // file with a physical listing converts it to digital and
                 // removes shipping/inventory variations automatically.
-                $files=$downloads_method->invoke($sync,$product,(int)$lid);
-                if(is_wp_error($files)){
-                  $failed[$lid]="Archivos: ".$files->get_error_message();
+                // Etsy caps each instant-download file at 20 MB. These four
+                // legacy PDFs are only slightly above the cap, so create a
+                // temporary Etsy-only compressed PDF when needed. The Drielo
+                // source file is never modified.
+                $rank=1;
+                $uploaded=0;
+                $temp_files=array();
+                foreach($downloads as $download){
+                  if($rank>5) break;
+                  $source=(string)$download->get_file();
+                  $path=$source;
+                  if(preg_match("#^https?://#i",$source)){
+                    $path=(string)$local_path_method->invoke($sync,$source);
+                  }
+                  if(!$path || !is_file($path)){
+                    $failed[$lid]="No se encuentra el PDF local para Etsy";
+                    break;
+                  }
+
+                  $filename=sanitize_file_name((string)$download->get_name());
+                  if(!preg_match("/\\.[A-Za-z0-9]{2,5}$/",$filename)){
+                    $filename=basename(parse_url($source,PHP_URL_PATH) ?: $path);
+                  }
+                  $upload_path=$path;
+                  $original_size=(int)filesize($path);
+                  $target_bytes=19500000;
+
+                  if($original_size>$target_bytes){
+                    if(strtolower(pathinfo($path,PATHINFO_EXTENSION))!=="pdf"){
+                      $failed[$lid]="Archivo superior a 20 MB y no es PDF: ".$filename;
+                      break;
+                    }
+                    $gs=trim((string)shell_exec("command -v gs 2>/dev/null"));
+                    if($gs===""){
+                      $failed[$lid]="Ghostscript no disponible para comprimir ".$filename;
+                      break;
+                    }
+
+                    $base=tempnam(sys_get_temp_dir(),"etsy_pdf_");
+                    if($base===false){
+                      $failed[$lid]="No se pudo crear archivo temporal";
+                      break;
+                    }
+                    @unlink($base);
+                    $candidate=$base.".pdf";
+                    $profiles=array(
+                      array("printer",240,240,600),
+                      array("ebook",180,180,600),
+                      array("ebook",150,150,600)
+                    );
+                    $best="";
+                    $best_size=PHP_INT_MAX;
+                    foreach($profiles as $profile){
+                      @unlink($candidate);
+                      $cmd=escapeshellarg($gs)
+                        ." -sDEVICE=pdfwrite -dCompatibilityLevel=1.6 -dNOPAUSE -dBATCH -dQUIET"
+                        ." -dDetectDuplicateImages=true -dCompressFonts=true -dSubsetFonts=true"
+                        ." -dPDFSETTINGS=/".$profile[0]
+                        ." -dColorImageResolution=".$profile[1]
+                        ." -dGrayImageResolution=".$profile[2]
+                        ." -dMonoImageResolution=".$profile[3]
+                        ." -sOutputFile=".escapeshellarg($candidate)
+                        ." ".escapeshellarg($path)." 2>&1";
+                      $out=array(); $code=0; exec($cmd,$out,$code);
+                      if($code===0 && is_file($candidate)){
+                        $sz=(int)filesize($candidate);
+                        if($sz<$best_size){
+                          if($best && is_file($best)) @unlink($best);
+                          $best=tempnam(sys_get_temp_dir(),"etsy_best_");
+                          if($best!==false){
+                            @unlink($best);
+                            $best.=".pdf";
+                            @copy($candidate,$best);
+                            $best_size=$sz;
+                          }
+                        }
+                        if($sz<=$target_bytes) break;
+                      }
+                    }
+                    @unlink($candidate);
+                    if(!$best || !is_file($best) || $best_size>$target_bytes){
+                      if($best && is_file($best)) @unlink($best);
+                      $failed[$lid]="No se pudo reducir el PDF por debajo de 20 MB";
+                      break;
+                    }
+                    $upload_path=$best;
+                    $temp_files[]=$best;
+                    echo "COMPRESSED_DETAIL listing=".$lid." name=".$filename." original_bytes=".$original_size." etsy_bytes=".$best_size.PHP_EOL;
+                  }
+
+                  $mime="application/pdf";
+                  $up=$upload_method->invoke(
+                    $sync,
+                    "/v3/application/shops/".rawurlencode($shop_id)."/listings/".rawurlencode($lid)."/files",
+                    array("name"=>$filename,"rank"=>$rank),
+                    $upload_path,
+                    "file",
+                    $mime,
+                    $filename
+                  );
+                  if(is_wp_error($up)){
+                    $failed[$lid]="Archivos: ".$up->get_error_message();
+                    break;
+                  }
+                  $uploaded++;
+                  $rank++;
+                }
+                foreach($temp_files as $tmp){ if(is_file($tmp)) @unlink($tmp); }
+                if(isset($failed[$lid])) continue;
+                if($uploaded<1){
+                  $failed[$lid]="No se subió ningún archivo digital";
                   continue;
                 }
 
