@@ -1439,13 +1439,6 @@ final class Drielo_Etsy_Sync {
             $remote_state = sanitize_text_field( $remote['state'] ?? ( get_post_meta( $product_id, self::META_REMOTE_STATE, true ) ?: 'draft' ) );
         }
 
-        if ( ( $is_new || $overwrite ) && $product->get_sku() ) {
-            $inventory_result = $this->sync_inventory( $product, $listing_id );
-            if ( is_wp_error( $inventory_result ) ) {
-                return $this->record_error( $product_id, $inventory_result );
-            }
-        }
-
         if ( $is_new || $overwrite ) {
             $asset_hash = $this->product_asset_hash( $product );
             if ( ! empty( $settings['sync_images'] ) ) {
@@ -1460,6 +1453,18 @@ final class Drielo_Etsy_Sync {
                     return $this->record_error( $product_id, $file_result );
                 }
             }
+
+            // Uploading/associating a digital file can make Etsy normalize the
+            // listing inventory during conversion to a download and clear the
+            // product SKU. Write inventory after files so the canonical Drielo
+            // SKU is the final inventory state on Etsy.
+            if ( $product->get_sku() ) {
+                $inventory_result = $this->sync_inventory( $product, $listing_id );
+                if ( is_wp_error( $inventory_result ) ) {
+                    return $this->record_error( $product_id, $inventory_result );
+                }
+            }
+
             update_post_meta( $product_id, self::META_ASSET_HASH, $asset_hash );
             update_post_meta( $product_id, self::META_CONTENT_HASH, $content_hash );
         }
