@@ -1,7 +1,7 @@
 {
   "collection": "animals",
   "branch": "feature/animals-auto-publish",
-  "auto_continue": false,
+  "auto_continue": true,
   "max_attempts_per_design": 3,
   "recovery_attempts_per_design": 5,
   "created_from": "canonical Animals A0001-A0030 references",
@@ -11,11 +11,8 @@
       "title_en": "Sleeping Tabby on Quilts",
       "title_es": "Gato atigrado dormido sobre mantas",
       "slug": "sleeping-tabby-quilts",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36528413713",
-      "last_error": null,
-      "published_at": "2026-09-29T05:57:12+00:00"
+      "status": "pending",
+      "attempts": 0
     },
     {
       "base_design_id": "A0002",
@@ -253,7 +250,7 @@
   "restarted_at": "2026-09-29T05:48:00Z",
   "restart_reason": "Delete every live Animals product and regenerate A0001-A0030 as Cross Stitch only.",
   "restart_from": "A0001",
-  "paused_reason": "Installing corrected final Animals cover before restarting full regeneration.",
+  "paused_reason": null,
   "a0014_replacement_reason": "Regenerate A0014 after removing exterior-connected pure-white contour pixels.",
   "mode": "cross-stitch-only"
 }
