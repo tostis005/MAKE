@@ -1,7 +1,7 @@
 {
   "collection": "animals",
   "branch": "feature/animals-auto-publish",
-  "auto_continue": true,
+  "auto_continue": false,
   "max_attempts_per_design": 3,
   "recovery_attempts_per_design": 5,
   "created_from": "canonical Animals A0001-A0030 references",
@@ -340,7 +340,7 @@
   "restarted_at": "2026-09-29T00:50:00+02:00",
   "restart_reason": "Delete every live Animals product, then regenerate A0001-A0030 as Cross Stitch only with the new exact 1536x1536 Animals cover.",
   "restart_from": "A0001",
-  "paused_reason": null,
+  "paused_reason": "User requested a full Animals reset before regeneration.",
   "a0014_replacement_reason": "Regenerate A0014 after removing exterior-connected pure-white contour pixels.",
   "mode": "cross-stitch-only"
 }
