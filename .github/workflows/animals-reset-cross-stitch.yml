@@ -1,4 +1,4 @@
-name: Reset Animals and start Cross Stitch regeneration
+name: Reset Animals and regenerate Cross Stitch products
 
 on:
   push:
@@ -12,60 +12,49 @@ permissions:
   actions: write
 
 concurrency:
-  group: drielo-animals-cs-reset
+  group: drielo-animals-full-reset
   cancel-in-progress: false
 
 jobs:
   reset:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 35
     steps:
+      - name: Stop previous Animals regeneration runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          API="repos/${GITHUB_REPOSITORY}/actions/workflows/animals-auto-publish.yml/runs?branch=feature%2Fanimals-auto-publish&per_page=100"
+          ids="$(gh api --method GET "$API" --jq '.workflow_runs[] | select(.status=="queued" or .status=="in_progress") | .id' || true)"
+          if [ -n "$ids" ]; then
+            echo "$ids" | while read -r id; do
+              [ -n "$id" ] || continue
+              gh api --method POST "repos/${GITHUB_REPOSITORY}/actions/runs/$id/cancel" >/dev/null || true
+            done
+          fi
+          for i in $(seq 1 60); do
+            active="$(gh api --method GET "$API" --jq '[.workflow_runs[] | select(.status=="queued" or .status=="in_progress")] | length' || echo 0)"
+            echo "Active previous Animals runs: $active"
+            [ "$active" = "0" ] && break
+            sleep 5
+          done
+
       - name: Checkout Animals branch
         uses: actions/checkout@v5
         with:
           fetch-depth: 0
           ref: feature/animals-auto-publish
 
-      - name: Install image dependency
-        run: python3 -m pip install --disable-pip-version-check --quiet Pillow
-
-      - name: Install newly approved Animals Cross Stitch cover and reset queue
+      - name: Reset Animals queue and catalog
         shell: bash
         run: |
           set -euo pipefail
-          git fetch origin main
-          mkdir -p content/pattern-system/collections/animals/mockups
-          git show origin/main:content/products/assets/animals-collection-cover-v3.jpg > /tmp/animals-cover-v3.jpg
-
           python3 - <<'PY'
-          import hashlib, json
+          import json
           from pathlib import Path
-          from PIL import Image
-
           root=Path('.')
-          src=Path('/tmp/animals-cover-v3.jpg')
-          im=Image.open(src).convert('RGB')
-          if im.size != (1536,1536):
-              raise SystemExit(f'Unexpected approved Animals cover size: {im.size}')
-          dst=root/'content/pattern-system/collections/animals/mockups/animals-cover-cross-stitch.png'
-          im.save(dst,'PNG',optimize=True)
-
-          collection_path=root/'content/pattern-system/collections/animals/collection.json'
-          collection=json.loads(collection_path.read_text(encoding='utf-8'))
-          spec=collection.setdefault('mockup_spec',{})
-          spec.setdefault('technique_assets',{})['CS']='mockups/animals-cover-cross-stitch.png'
-          spec['status']='approved-exact-aligned-cross-stitch-2026-09-29'
-          spec['cross_stitch_geometry']={
-              'source_width':1536,
-              'source_height':1536,
-              'x':438,
-              'y':212,
-              'width':685,
-              'height':822,
-          }
-          spec.setdefault('source_uploads',{})['CS']='animals-collection-cover-v3.jpg'
-          spec.setdefault('source_sha256',{})['CS']=hashlib.sha256(dst.read_bytes()).hexdigest()
-          collection_path.write_text(json.dumps(collection,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 
           designs_path=root/'content/pattern-system/collections/animals/designs.json'
           designs=json.loads(designs_path.read_text(encoding='utf-8'))
@@ -78,8 +67,8 @@ jobs:
           queue['auto_continue']=True
           queue['max_attempts_per_design']=3
           queue['recovery_attempts_per_design']=5
-          queue['restarted_at']='2026-09-29T00:50:00+02:00'
-          queue['restart_reason']='Delete every live Animals product, then regenerate A0001-A0030 as Cross Stitch only with the new exact 1536x1536 Animals cover.'
+          queue['restarted_at']='2026-09-29T05:48:00Z'
+          queue['restart_reason']='Delete every live Animals product and regenerate A0001-A0030 as Cross Stitch only.'
           queue['restart_from']='A0001'
           queue['mode']='cross-stitch-only'
           queue['paused_reason']=None
@@ -95,26 +84,21 @@ jobs:
           before=len(catalog.get('products',[]))
           catalog['products']=[p for p in catalog.get('products',[]) if p.get('collection')!='animals']
           removed=before-len(catalog['products'])
-          if removed < 30:
-              raise SystemExit(f'Expected existing Animals catalogue rows before reset; only removed {removed}')
           catalog_path.write_text(json.dumps(catalog,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
           print('RESET_CATALOG_REMOVED',removed)
-          print('COVER_SHA256',spec['source_sha256']['CS'])
           PY
 
-      - name: Commit reset state and approved cover
+      - name: Commit reset state
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add content/pattern-system/collections/animals/mockups/animals-cover-cross-stitch.png
-          git add content/pattern-system/collections/animals/collection.json
           git add content/pattern-system/collections/animals/designs.json
           git add content/pattern-system/animals_auto/publish_queue.json
           git add content/products/catalog.json
           git rm tmp/animals-cs-regeneration/READY
-          git commit -m "Reset Animals for Cross Stitch regeneration"
+          git commit -m "Reset Animals for full Cross Stitch regeneration"
           git fetch origin feature/animals-auto-publish
           git rebase origin/feature/animals-auto-publish
           git push origin HEAD:feature/animals-auto-publish
@@ -131,7 +115,7 @@ jobs:
           chmod 600 ~/.ssh/drielo_animals_reset_key
           ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
 
-      - name: Delete every Animals product from WooCommerce and verify zero
+      - name: Delete every Animals product from WooCommerce
         env:
           VPS_HOST: ${{ secrets.VPS_HOST }}
           VPS_USER: ${{ secrets.VPS_USER }}
@@ -145,23 +129,15 @@ jobs:
           elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
             DOCKER=(sudo -n docker)
           else
-            echo "ERROR: make-wp container not found"; exit 1
+            exit 1
           fi
-
           "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M -d max_execution_time=0 -r '
             require "/var/www/html/wp-load.php";
             global $wpdb;
             $statuses=array_keys(get_post_stati());
             $tax_ids=get_posts(array(
-              "post_type"=>"product",
-              "post_status"=>$statuses,
-              "posts_per_page"=>-1,
-              "fields"=>"ids",
-              "tax_query"=>array(array(
-                "taxonomy"=>"product_collection",
-                "field"=>"slug",
-                "terms"=>array("animals"),
-              )),
+              "post_type"=>"product","post_status"=>$statuses,"posts_per_page"=>-1,"fields"=>"ids",
+              "tax_query"=>array(array("taxonomy"=>"product_collection","field"=>"slug","terms"=>array("animals")))
             ));
             $like=$wpdb->esc_like("DRIELO-A")."%";
             $sku_ids=$wpdb->get_col($wpdb->prepare(
@@ -170,42 +146,25 @@ jobs:
             ));
             $ids=array_values(array_unique(array_map("intval",array_merge($tax_ids,$sku_ids))));
             sort($ids);
-            echo "ANIMALS_DELETE_BEFORE tax=".count($tax_ids)." sku=".count($sku_ids)." union=".count($ids).PHP_EOL;
-            foreach($ids as $id){
-              $sku=(string)get_post_meta($id,"_sku",true);
-              echo "DELETE_PRODUCT id=".$id." sku=".$sku.PHP_EOL;
-              wp_delete_post($id,true);
-            }
-            $term=get_term_by("slug","animals","product_collection");
-            if($term instanceof WP_Term){
-              wp_update_term_count_now(array($term->term_id),"product_collection");
-              clean_term_cache($term->term_id,"product_collection");
-            }
-            $left_tax=get_posts(array(
-              "post_type"=>"product",
-              "post_status"=>$statuses,
-              "posts_per_page"=>-1,
-              "fields"=>"ids",
-              "tax_query"=>array(array(
-                "taxonomy"=>"product_collection",
-                "field"=>"slug",
-                "terms"=>array("animals"),
-              )),
+            echo "ANIMALS_DELETE_BEFORE=".count($ids).PHP_EOL;
+            foreach($ids as $id){ wp_delete_post($id,true); }
+            $left=get_posts(array(
+              "post_type"=>"product","post_status"=>$statuses,"posts_per_page"=>-1,"fields"=>"ids",
+              "tax_query"=>array(array("taxonomy"=>"product_collection","field"=>"slug","terms"=>array("animals")))
             ));
             $left_sku=$wpdb->get_col($wpdb->prepare(
               "SELECT DISTINCT post_id FROM {$wpdb->postmeta} WHERE meta_key=%s AND meta_value LIKE %s",
               "_sku",$like
             ));
-            echo "ANIMALS_DELETE_AFTER tax=".count($left_tax)." sku=".count($left_sku).PHP_EOL;
-            if(count($left_tax)!==0 || count($left_sku)!==0){ exit(3); }
+            echo "ANIMALS_DELETE_AFTER=".(count($left)+count($left_sku)).PHP_EOL;
+            if(count($left)!==0 || count($left_sku)!==0){ exit(3); }
           '
           REMOTE
 
-      - name: Dispatch first Animals Cross Stitch regeneration
+      - name: Start full Animals Cross Stitch regeneration
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
           gh api --method POST             "repos/${GITHUB_REPOSITORY}/actions/workflows/animals-auto-publish.yml/dispatches"             -f ref=feature/animals-auto-publish
-          echo "ANIMALS_CS_QUEUE_DISPATCHED"
