@@ -220,8 +220,11 @@
       "title_en": "Squirrel with Acorn",
       "title_es": "Ardilla con bellota",
       "slug": "squirrel-acorn",
-      "status": "pending",
-      "attempts": 0
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36534346613",
+      "last_error": null,
+      "published_at": "2026-09-29T07:05:31+00:00"
     },
     {
       "base_design_id": "A0021",
