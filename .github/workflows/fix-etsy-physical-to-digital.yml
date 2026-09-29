@@ -125,13 +125,13 @@ jobs:
             $unknown=array();
             $digital_count=0;
             foreach($listings as $lid=>$listing){
-              $type=strtolower(trim((string)($listing["type"]??"")));
+              $type=strtolower(trim((string)($listing["listing_type"]??"")));
               if($type===""){
                 $full=$etsy_method->invoke($sync,"GET","/v3/application/listings/".rawurlencode($lid),array(),true);
                 if(!is_wp_error($full)){
                   $listing=$full;
                   $listings[$lid]=$full;
-                  $type=strtolower(trim((string)($full["type"]??"")));
+                  $type=strtolower(trim((string)($full["listing_type"]??"")));
                 }
               }
               if($type==="download"){
@@ -212,7 +212,7 @@ jobs:
 
               $verify=$etsy_method->invoke($sync,"GET","/v3/application/listings/".rawurlencode($lid),array(),true);
               $verify_files=$etsy_method->invoke($sync,"GET","/v3/application/shops/".rawurlencode($shop_id)."/listings/".rawurlencode($lid)."/files",array(),true);
-              $verify_type=is_wp_error($verify)?"":strtolower(trim((string)($verify["type"]??"")));
+              $verify_type=is_wp_error($verify)?"":strtolower(trim((string)($verify["listing_type"]??"")));
               $file_count=is_wp_error($verify_files)?0:count((array)($verify_files["results"]??array()));
               if($verify_type==="download" && $file_count>0){
                 $fixed[$lid]=array(
@@ -237,7 +237,7 @@ jobs:
                 $remaining[$lid]="GET error: ".$verify->get_error_message();
                 continue;
               }
-              $type=strtolower(trim((string)($verify["type"]??"")));
+              $type=strtolower(trim((string)($verify["listing_type"]??"")));
               if($type!=="download") $remaining[$lid]=$type;
             }
 
