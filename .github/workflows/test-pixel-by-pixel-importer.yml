@@ -1,0 +1,32 @@
+name: Test pixel-by-pixel importer
+
+on:
+  pull_request:
+    paths:
+      - 'content/pattern-system/pixel_importer/**'
+      - '.github/workflows/pixel-by-pixel-import.yml'
+      - '.github/workflows/test-pixel-by-pixel-importer.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Pillow
+        run: python -m pip install pillow
+
+      - name: Compile importer
+        run: python -m py_compile content/pattern-system/pixel_importer/import_pixel_sheet.py
+
+      - name: Run exactness tests
+        run: python3 content/pattern-system/pixel_importer/test_pixel_importer.py

@@ -1,0 +1,133 @@
+name: Pixel-by-pixel cross-stitch import
+
+on:
+  workflow_dispatch:
+    inputs:
+      sheet_path:
+        description: Repository path to the source sheet PNG/JPG/WebP
+        required: true
+        type: string
+      tile_width:
+        description: Width of each design in source pixels
+        required: true
+        type: number
+      tile_height:
+        description: Height of each design in source pixels
+        required: true
+        type: number
+      rows:
+        description: Number of design rows
+        required: true
+        type: number
+      cols:
+        description: Number of design columns
+        required: true
+        type: number
+      origin_x:
+        description: Starting X coordinate in pixels
+        required: false
+        default: 0
+        type: number
+      origin_y:
+        description: Starting Y coordinate in pixels
+        required: false
+        default: 0
+        type: number
+      gap_x:
+        description: Horizontal gap between tiles in pixels
+        required: false
+        default: 0
+        type: number
+      gap_y:
+        description: Vertical gap between tiles in pixels
+        required: false
+        default: 0
+        type: number
+      code_prefix:
+        description: Internal PDF code prefix
+        required: false
+        default: PX
+        type: string
+      start_number:
+        description: First internal sequence number
+        required: false
+        default: 1
+        type: number
+      title_prefix:
+        description: PDF title prefix
+        required: false
+        default: Pixel pattern
+        type: string
+      run_id:
+        description: Output run name
+        required: false
+        default: pixel-import
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-import:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install renderer dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install pillow playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Test exact importer
+        run: python3 content/pattern-system/pixel_importer/test_pixel_importer.py
+
+      - name: Import sheet exactly
+        shell: bash
+        env:
+          SHEET_PATH: ${{ inputs.sheet_path }}
+          TILE_WIDTH: ${{ inputs.tile_width }}
+          TILE_HEIGHT: ${{ inputs.tile_height }}
+          ROWS: ${{ inputs.rows }}
+          COLS: ${{ inputs.cols }}
+          ORIGIN_X: ${{ inputs.origin_x }}
+          ORIGIN_Y: ${{ inputs.origin_y }}
+          GAP_X: ${{ inputs.gap_x }}
+          GAP_Y: ${{ inputs.gap_y }}
+          CODE_PREFIX: ${{ inputs.code_prefix }}
+          START_NUMBER: ${{ inputs.start_number }}
+          TITLE_PREFIX: ${{ inputs.title_prefix }}
+          RUN_ID: ${{ inputs.run_id }}
+        run: |
+          set -euo pipefail
+          test -f "$SHEET_PATH"
+          python3 content/pattern-system/pixel_importer/import_pixel_sheet.py \
+            --image "$SHEET_PATH" \
+            --tile-width "$TILE_WIDTH" \
+            --tile-height "$TILE_HEIGHT" \
+            --rows "$ROWS" \
+            --cols "$COLS" \
+            --origin-x "$ORIGIN_X" \
+            --origin-y "$ORIGIN_Y" \
+            --gap-x "$GAP_X" \
+            --gap-y "$GAP_Y" \
+            --code-prefix "$CODE_PREFIX" \
+            --start-number "$START_NUMBER" \
+            --title-prefix "$TITLE_PREFIX" \
+            --run-id "$RUN_ID"
+
+      - name: Upload exact patterns and PDFs
+        uses: actions/upload-artifact@v4
+        with:
+          name: drielo-pixel-import-${{ inputs.run_id }}-${{ github.run_number }}
+          path: content/pattern-system/pixel_importer/output/${{ inputs.run_id }}/
+          if-no-files-found: error
+          retention-days: 30
