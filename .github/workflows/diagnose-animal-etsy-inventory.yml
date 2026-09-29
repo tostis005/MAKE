@@ -1,0 +1,60 @@
+name: Diagnose Animals Etsy inventory response
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/diagnose-animal-etsy-inventory.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_diag_inventory_key
+          chmod 600 ~/.ssh/drielo_diag_inventory_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+      - name: Print live inventory shape for first three Animals listings
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          MAP_B64="$(jq -c '.pairs[0:3]' ops/etsy/animal-relink-audit.json | base64 -w0)"
+          ssh -i ~/.ssh/drielo_diag_inventory_key "$VPS_USER@$VPS_HOST" "MAP_B64='$MAP_B64' bash -s" <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          "${DOCKER[@]}" exec -e MAP_B64="$MAP_B64" make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $pairs=json_decode(base64_decode((string)getenv("MAP_B64")),true);
+            $sync=Drielo_Etsy_Sync::instance();
+            $ref=new ReflectionClass($sync);
+            $m=$ref->getMethod("etsy_request");$m->setAccessible(true);
+            $s=$ref->getMethod("settings");$s->setAccessible(true);
+            $settings=$s->invoke($sync);$shop=(string)$settings["shop_id"];
+            foreach($pairs as $row){
+              $lid=(string)$row["listing_id"];$sku=(string)$row["sku"];
+              $inv=$m->invoke($sync,"GET","/v3/application/listings/".rawurlencode($lid)."/inventory",[],true);
+              $imgs=$m->invoke($sync,"GET","/v3/application/listings/".rawurlencode($lid)."/images",[],true);
+              $files=$m->invoke($sync,"GET","/v3/application/shops/".rawurlencode($shop)."/listings/".rawurlencode($lid)."/files",[],true);
+              echo "SKU=".$sku." LISTING=".$lid.PHP_EOL;
+              echo "INVENTORY=".wp_json_encode($inv,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES).PHP_EOL;
+              echo "IMAGE_COUNT=".(is_wp_error($imgs)?-1:count((array)($imgs["results"]??[]))).PHP_EOL;
+              echo "FILE_COUNT=".(is_wp_error($files)?-1:count((array)($files["results"]??[]))).PHP_EOL;
+            }
+          '
+          REMOTE
