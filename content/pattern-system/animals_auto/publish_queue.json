@@ -132,8 +132,11 @@
       "title_en": "Raccoon with Heart",
       "title_es": "Mapache con corazón",
       "slug": "raccoon-heart",
-      "status": "pending",
-      "attempts": 0
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36532006546",
+      "last_error": null,
+      "published_at": "2026-09-29T06:41:04+00:00"
     },
     {
       "base_design_id": "A0013",
