@@ -187,8 +187,11 @@
       "title_en": "Koala with Eucalyptus",
       "title_es": "Koala con eucalipto",
       "slug": "koala-eucalyptus",
-      "status": "pending",
-      "attempts": 0
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36501014576",
+      "last_error": null,
+      "published_at": "2026-09-29T00:04:33+00:00"
     },
     {
       "base_design_id": "A0018",
