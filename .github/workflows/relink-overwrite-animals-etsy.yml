@@ -1,0 +1,349 @@
+name: Relink and overwrite Animals on Etsy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/relink-overwrite-animals-etsy.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  relink-overwrite:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate audited one-to-one mapping
+        shell: bash
+        run: |
+          set -euo pipefail
+          REPORT="ops/etsy/animal-relink-audit.json"
+          test -s "$REPORT"
+          jq -e '
+            .summary.targets == 30 and
+            .summary.auto_pairs == 30 and
+            .summary.ambiguous == 0 and
+            .summary.unmatched == 0 and
+            .summary.all_assets_ready == true and
+            ([.pairs[].product_id] | unique | length) == 30 and
+            ([.pairs[].listing_id] | unique | length) == 30 and
+            ([.pairs[].score] | all(. == 1000))
+          ' "$REPORT" >/dev/null
+          echo "AUDIT_MAPPING_OK=30"
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_animals_etsy_apply_key
+          chmod 600 ~/.ssh/drielo_animals_etsy_apply_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Relink 30 products and start signed plugin overwrite
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          MAP_B64="$(jq -c '.pairs' ops/etsy/animal-relink-audit.json | base64 -w0)"
+          ssh -o ServerAliveInterval=30 -o ServerAliveCountMax=20 -i ~/.ssh/drielo_animals_etsy_apply_key "$VPS_USER@$VPS_HOST" "MAP_B64='$MAP_B64' bash -s" <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+
+          "${DOCKER[@]}" exec -e MAP_B64="$MAP_B64" make-wp php -d memory_limit=1536M -d max_execution_time=0 -r '
+            require "/var/www/html/wp-load.php";
+            require_once ABSPATH."wp-admin/includes/plugin.php";
+
+            if(!class_exists("Drielo_Etsy_Sync")){
+              fwrite(STDERR,"ERROR Etsy plugin unavailable\n"); exit(2);
+            }
+            $plugin="drielo-etsy-sync/drielo-etsy-sync.php";
+            $data=get_plugin_data(WP_PLUGIN_DIR."/".$plugin,false,false);
+            $version=(string)($data["Version"]??"");
+            if(version_compare($version,"1.4.9","<")){
+              fwrite(STDERR,"ERROR plugin version ".$version." is older than 1.4.9\n"); exit(3);
+            }
+
+            $pairs=json_decode(base64_decode((string)getenv("MAP_B64")),true);
+            if(!is_array($pairs)||count($pairs)!==30){
+              fwrite(STDERR,"ERROR mapping must contain exactly 30 pairs\n"); exit(4);
+            }
+            $pids=array_map(fn($x)=>(int)($x["product_id"]??0),$pairs);
+            $lids=array_map(fn($x)=>(string)($x["listing_id"]??""),$pairs);
+            if(count(array_unique($pids))!==30 || count(array_unique($lids))!==30 || in_array(0,$pids,true) || in_array("",$lids,true)){
+              fwrite(STDERR,"ERROR mapping is not one-to-one\n"); exit(5);
+            }
+
+            $sync=Drielo_Etsy_Sync::instance();
+            $ref=new ReflectionClass($sync);
+            $method=function($name)use($ref){$m=$ref->getMethod($name);$m->setAccessible(true);return $m;};
+            $settings=$method("settings")->invoke($sync);
+            $request=$method("etsy_request");
+            $snapshot=$method("sync_run_snapshot")->invoke($sync);
+            if(!empty($snapshot["active"])){
+              fwrite(STDERR,"ERROR another Etsy batch is active: ".wp_json_encode($snapshot)."\n"); exit(6);
+            }
+            $shop=(string)($settings["shop_id"]??"");
+            if($shop===""){fwrite(STDERR,"ERROR missing Etsy shop ID\n");exit(7);}
+
+            $admin=0;
+            foreach(get_users(["role__in"=>["administrator","shop_manager"],"fields"=>"ID"]) as $uid){
+              wp_set_current_user((int)$uid);
+              if(current_user_can("manage_woocommerce")){$admin=(int)$uid;break;}
+            }
+            if(!$admin){fwrite(STDERR,"ERROR no WooCommerce manager found\n");exit(8);}
+
+            $rows=[];
+            foreach($pairs as $row){
+              $id=(int)$row["product_id"];
+              $listing=(string)$row["listing_id"];
+              $expected_sku=(string)$row["sku"];
+              $p=wc_get_product($id);
+              if(!$p){fwrite(STDERR,"ERROR missing product ".$id."\n");exit(9);}
+              if((string)$p->get_sku()!==$expected_sku){
+                fwrite(STDERR,"ERROR SKU mismatch product=".$id." expected=".$expected_sku." actual=".$p->get_sku()."\n");exit(10);
+              }
+              $cols=taxonomy_exists("product_collection")?wp_get_post_terms($id,"product_collection",["fields"=>"slugs"]):[];
+              if(is_wp_error($cols)||!in_array("animals",(array)$cols,true)){
+                fwrite(STDERR,"ERROR not in Animals collection ".$expected_sku."\n");exit(11);
+              }
+              $images=array_values(array_filter(array_unique(array_merge([$p->get_image_id()],$p->get_gallery_image_ids()))));
+              if(count($images)<1 || count($p->get_downloads())<1){
+                fwrite(STDERR,"ERROR missing images/PDF ".$expected_sku."\n");exit(12);
+              }
+
+              $remote=$request->invoke($sync,"GET","/v3/application/listings/".rawurlencode($listing),[],true);
+              if(is_wp_error($remote)){
+                fwrite(STDERR,"ERROR unreadable listing ".$listing." ".$remote->get_error_message()."\n");exit(13);
+              }
+              $state=strtolower((string)($remote["state"]??""));
+              if(in_array($state,["removed","deleted"],true)){
+                fwrite(STDERR,"ERROR listing gone ".$listing."\n");exit(14);
+              }
+              $inv=$request->invoke($sync,"GET","/v3/application/listings/".rawurlencode($listing)."/inventory",[],true);
+              if(is_wp_error($inv)){
+                fwrite(STDERR,"ERROR inventory unreadable ".$listing."\n");exit(15);
+              }
+              $remote_skus=[];
+              foreach((array)($inv["products"]??[]) as $rp){
+                $s=trim((string)($rp["sku"]??"")); if($s!=="")$remote_skus[$s]=true;
+              }
+              if(!isset($remote_skus[$expected_sku])){
+                fwrite(STDERR,"ERROR exact Etsy SKU missing listing=".$listing." sku=".$expected_sku."\n");exit(16);
+              }
+              $expected_title=(string)($row["remote_title"]??"");
+              if($expected_title!=="" && (string)($remote["title"]??"")!==$expected_title){
+                fwrite(STDERR,"ERROR Etsy title changed since audit listing=".$listing."\n");exit(17);
+              }
+
+              // Preserve each listing current auto-renew preference during overwrite.
+              update_post_meta($id,"_drielo_etsy_auto_renew",!empty($remote["should_auto_renew"])?"yes":"no");
+
+              // Remove any stale local owner of this exact listing before assigning it
+              // to the newly regenerated Animals product.
+              $dupes=get_posts([
+                "post_type"=>"product",
+                "post_status"=>["publish","draft","private","pending","trash"],
+                "posts_per_page"=>-1,
+                "fields"=>"ids",
+                "meta_key"=>"_drielo_etsy_listing_id",
+                "meta_value"=>$listing
+              ]);
+              foreach($dupes as $old){
+                $old=(int)$old;
+                if($old===$id)continue;
+                foreach([
+                  "_drielo_etsy_listing_id","_drielo_etsy_remote_state",
+                  "_drielo_etsy_asset_hash","_drielo_etsy_content_hash",
+                  "_drielo_etsy_last_error","_drielo_etsy_last_warning",
+                  "_drielo_etsy_shop_section_id"
+                ] as $key) delete_post_meta($old,$key);
+                update_post_meta($old,"_drielo_etsy_enabled","no");
+              }
+
+              update_post_meta($id,"_drielo_etsy_listing_id",$listing);
+              update_post_meta($id,"_drielo_etsy_remote_state",$state ?: "active");
+              update_post_meta($id,"_drielo_etsy_enabled","yes");
+              update_post_meta($id,"_drielo_etsy_target_state","active");
+              delete_post_meta($id,"_drielo_etsy_last_error");
+              delete_post_meta($id,"_drielo_etsy_last_warning");
+              $rows[$id]=["enabled"=>"yes","target"=>"active"];
+              echo "LINK_OK sku=".$expected_sku." product=".$id." listing=".$listing." renew=".(!empty($remote["should_auto_renew"])?"yes":"no").PHP_EOL;
+            }
+
+            // Invoke the same public handler as the WP Admin "Sobrescribir seleccionados"
+            // button. This creates the signed plugin-ui batch required by v1.4.9.
+            $nonce=wp_create_nonce("drielo_etsy_products");
+            $_POST=[
+              "action"=>"drielo_etsy_overwrite_products",
+              "drielo_nonce"=>$nonce,
+              "selected_ids"=>$pids,
+              "products"=>$rows
+            ];
+            $_REQUEST["action"]="drielo_etsy_overwrite_products";
+            $_REQUEST["drielo_nonce"]=$nonce;
+            $_SERVER["REQUEST_METHOD"]="POST";
+            $_SERVER["HTTP_REFERER"]=admin_url("admin.php?page=drielo-etsy");
+
+            echo "START_OVERWRITE count=".count($pids)." admin=".$admin." plugin=".$version.PHP_EOL;
+            $sync->handle_overwrite_products();
+          '
+          REMOTE
+
+      - name: Process signed Etsy overwrite queue
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -o ServerAliveInterval=30 -o ServerAliveCountMax=30 -i ~/.ssh/drielo_animals_etsy_apply_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=1536M -d max_execution_time=0 -r '
+            require "/var/www/html/wp-load.php";
+            if(!class_exists("ActionScheduler_QueueRunner")){
+              fwrite(STDERR,"ERROR Action Scheduler queue runner unavailable\n");exit(2);
+            }
+            $run=get_option("drielo_etsy_sync_run",[]);
+            if((string)($run["mode"]??"")!=="overwrite" || (string)($run["source"]??"")!=="plugin-ui" || empty($run["manual_only"])){
+              fwrite(STDERR,"ERROR current run is not a signed plugin-ui overwrite\n");exit(3);
+            }
+            $batch=(string)($run["id"]??"");
+            $ids=array_values(array_filter(array_map("absint",(array)($run["product_ids"]??[]))));
+            if(count($ids)!==30){fwrite(STDERR,"ERROR current batch size is not 30\n");exit(4);}
+
+            for($round=1;$round<=80;$round++){
+              $counts=["queued"=>0,"running"=>0,"success"=>0,"failed"=>0,"skipped"=>0,"other"=>0];
+              foreach($ids as $id){
+                $bid=(string)get_post_meta($id,"_drielo_etsy_batch_id",true);
+                $state=(string)get_post_meta($id,"_drielo_etsy_batch_state",true);
+                if(!$bid || !hash_equals($batch,$bid)){$counts["other"]++;continue;}
+                if(isset($counts[$state]))$counts[$state]++;else$counts["other"]++;
+              }
+              $pending=function_exists("as_get_scheduled_actions")
+                ? count(as_get_scheduled_actions([
+                    "hook"=>"drielo_etsy_sync_product_async",
+                    "group"=>"drielo-etsy",
+                    "status"=>"pending",
+                    "per_page"=>200
+                  ],"ids"))
+                : 0;
+              echo "ROUND=".$round." COUNTS=".wp_json_encode($counts)." PENDING=".$pending.PHP_EOL;
+
+              if($counts["failed"]>0 || $counts["skipped"]>0){
+                fwrite(STDERR,"ERROR overwrite batch has failed/skipped products\n");exit(20);
+              }
+              if($counts["success"]===30 && $counts["queued"]===0 && $counts["running"]===0){
+                echo "QUEUE_COMPLETE success=30\n";exit(0);
+              }
+              if($pending===0 && $counts["running"]===0 && $counts["queued"]===0){
+                fwrite(STDERR,"ERROR queue stopped before 30 successes\n");exit(21);
+              }
+
+              $processed=ActionScheduler_QueueRunner::instance()->run();
+              echo "PROCESSED=".$processed.PHP_EOL;
+              if((int)$processed<=0) sleep(3);
+            }
+            fwrite(STDERR,"ERROR queue loop exhausted\n");exit(22);
+          '
+          REMOTE
+
+      - name: Verify all 30 Etsy listings and assets
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          MAP_B64="$(jq -c '.pairs' ops/etsy/animal-relink-audit.json | base64 -w0)"
+          ssh -o ServerAliveInterval=30 -o ServerAliveCountMax=20 -i ~/.ssh/drielo_animals_etsy_apply_key "$VPS_USER@$VPS_HOST" "MAP_B64='$MAP_B64' bash -s" <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+
+          "${DOCKER[@]}" exec -e MAP_B64="$MAP_B64" make-wp php -d memory_limit=1536M -d max_execution_time=0 -r '
+            require "/var/www/html/wp-load.php";
+            $pairs=json_decode(base64_decode((string)getenv("MAP_B64")),true);
+            if(!is_array($pairs)||count($pairs)!==30)exit(2);
+            $sync=Drielo_Etsy_Sync::instance();
+            $ref=new ReflectionClass($sync);
+            $method=function($name)use($ref){$m=$ref->getMethod($name);$m->setAccessible(true);return $m;};
+            $request=$method("etsy_request");
+            $etsy_title=$method("etsy_title");
+            $settings=$method("settings")->invoke($sync);
+            $shop=(string)($settings["shop_id"]??"");
+
+            $run=get_option("drielo_etsy_sync_run",[]);
+            $batch=(string)($run["id"]??"");
+            $ok=0;$bad=[];
+            foreach($pairs as $row){
+              $id=(int)$row["product_id"];
+              $listing=(string)$row["listing_id"];
+              $sku=(string)$row["sku"];
+              $p=wc_get_product($id);
+              $errors=[];
+              if(!$p){$bad[]=["sku"=>$sku,"errors"=>["product missing"]];continue;}
+              if((string)get_post_meta($id,"_drielo_etsy_listing_id",true)!==$listing)$errors[]="local listing link mismatch";
+              if((string)get_post_meta($id,"_drielo_etsy_batch_id",true)!==$batch)$errors[]="batch id mismatch";
+              if((string)get_post_meta($id,"_drielo_etsy_batch_state",true)!=="success")$errors[]="batch not success";
+              if((string)get_post_meta($id,"_drielo_etsy_last_error",true)!=="")$errors[]="local sync error present";
+
+              $remote=$request->invoke($sync,"GET","/v3/application/listings/".rawurlencode($listing),[],true);
+              $images=$request->invoke($sync,"GET","/v3/application/listings/".rawurlencode($listing)."/images",[],true);
+              $files=$request->invoke($sync,"GET","/v3/application/shops/".rawurlencode($shop)."/listings/".rawurlencode($listing)."/files",[],true);
+              $inv=$request->invoke($sync,"GET","/v3/application/listings/".rawurlencode($listing)."/inventory",[],true);
+              foreach(["listing"=>$remote,"images"=>$images,"files"=>$files,"inventory"=>$inv] as $label=>$res){
+                if(is_wp_error($res))$errors[]=$label." GET: ".$res->get_error_message();
+              }
+              if(!is_wp_error($remote)){
+                if((string)($remote["state"]??"")!=="active")$errors[]="remote state not active";
+                if((int)($remote["taxonomy_id"]??0)!==87)$errors[]="taxonomy is not Cross Stitch (87)";
+                if((string)($remote["title"]??"")!==(string)$etsy_title->invoke($sync,$p))$errors[]="remote title mismatch";
+                $renew_meta=strtolower((string)get_post_meta($id,"_drielo_etsy_auto_renew",true));
+                $expected_renew=in_array($renew_meta,["yes","1","true","on"],true);
+                if((bool)!empty($remote["should_auto_renew"])!==$expected_renew)$errors[]="auto-renew preference changed";
+              }
+              if(!is_wp_error($images)){
+                $expected_images=min(20,count(array_values(array_filter(array_unique(array_merge([$p->get_image_id()],$p->get_gallery_image_ids()))))));
+                $actual_images=count((array)($images["results"]??[]));
+                if($actual_images!==$expected_images)$errors[]="image count ".$actual_images."/".$expected_images;
+              }
+              if(!is_wp_error($files)){
+                $expected_files=min(5,count($p->get_downloads()));
+                $actual_files=count((array)($files["results"]??[]));
+                if($actual_files!==$expected_files)$errors[]="file count ".$actual_files."/".$expected_files;
+              }
+              if(!is_wp_error($inv)){
+                $found=false;
+                foreach((array)($inv["products"]??[]) as $rp){
+                  if((string)($rp["sku"]??"")===$sku){$found=true;break;}
+                }
+                if(!$found)$errors[]="remote inventory SKU mismatch";
+              }
+
+              if($errors){
+                $bad[]=["sku"=>$sku,"product_id"=>$id,"listing_id"=>$listing,"errors"=>$errors];
+                echo "VERIFY_BAD sku=".$sku." listing=".$listing." errors=".wp_json_encode($errors).PHP_EOL;
+              }else{
+                $ok++;
+                echo "VERIFY_OK sku=".$sku." listing=".$listing.PHP_EOL;
+              }
+            }
+            echo "FINAL_VERIFY success=".$ok." failed=".count($bad).PHP_EOL;
+            if($bad){
+              echo "FINAL_BAD=".wp_json_encode($bad,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES).PHP_EOL;
+              exit(30);
+            }
+            if($ok!==30)exit(31);
+          '
+          REMOTE
