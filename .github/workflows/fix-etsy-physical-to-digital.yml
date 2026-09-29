@@ -65,14 +65,19 @@ jobs:
             $manual_prop->setAccessible(true);
 
             $snapshot=$snapshot_method->invoke($sync,null);
+            $busy_ids=array();
             if (!empty($snapshot["active"])) {
-              fwrite(STDERR, "ABORT_ACTIVE_SYNC=".wp_json_encode(array(
+              $current_run=get_option("drielo_etsy_sync_run",array());
+              foreach((array)($current_run["product_ids"]??array()) as $busy_id){
+                $busy_ids[(int)$busy_id]=true;
+              }
+              echo "ACTIVE_SYNC_DETECTED=".wp_json_encode(array(
                 "id"=>$snapshot["id"]??"",
                 "status"=>$snapshot["status"]??"",
                 "completed"=>$snapshot["completed"]??0,
-                "total"=>$snapshot["total"]??0
-              )).PHP_EOL);
-              exit(3);
+                "total"=>$snapshot["total"]??0,
+                "busy_products"=>count($busy_ids)
+              )).PHP_EOL;
             }
 
             $settings=$settings_method->invoke($sync);
@@ -161,6 +166,10 @@ jobs:
             $fixed=array();
             $failed=array();
             foreach($linked as $lid=>$pid){
+              if(isset($busy_ids[(int)$pid])){
+                $failed[$lid]="Omitido porque el producto está dentro de otro lote Etsy activo";
+                continue;
+              }
               $product=wc_get_product($pid);
               if(!$product){
                 $failed[$lid]="Producto WooCommerce no disponible";
