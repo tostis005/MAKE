@@ -59,6 +59,8 @@ jobs:
             $etsy_method->setAccessible(true);
             $downloads_method=$ref->getMethod("sync_downloads");
             $downloads_method->setAccessible(true);
+            $local_path_method=$ref->getMethod("local_path_from_url");
+            $local_path_method->setAccessible(true);
             $snapshot_method=$ref->getMethod("sync_run_snapshot");
             $snapshot_method->setAccessible(true);
             $manual_prop=$ref->getProperty("manual_sync_context");
@@ -176,6 +178,17 @@ jobs:
                 continue;
               }
               $downloads=$product->get_downloads();
+              echo "PHYSICAL_DETAIL listing=".$lid." product=".$pid." sku=".(string)$product->get_sku()." title=".sanitize_text_field($product->get_name()).PHP_EOL;
+              foreach($downloads as $dkey=>$download){
+                $source=(string)$download->get_file();
+                $path=$source;
+                if(preg_match("#^https?://#i",$source)){
+                  $path=(string)$local_path_method->invoke($sync,$source);
+                }
+                $size=($path && is_file($path))?(int)filesize($path):-1;
+                echo "DOWNLOAD_DETAIL listing=".$lid." key=".$dkey." name=".sanitize_file_name((string)$download->get_name())." bytes=".$size.PHP_EOL;
+              }
+              echo "TOOLS gs=".trim((string)shell_exec("command -v gs 2>/dev/null"))." qpdf=".trim((string)shell_exec("command -v qpdf 2>/dev/null"))." pdfseparate=".trim((string)shell_exec("command -v pdfseparate 2>/dev/null"))." pdfunite=".trim((string)shell_exec("command -v pdfunite 2>/dev/null"))." zip=".trim((string)shell_exec("command -v zip 2>/dev/null"))." ziparchive=".(class_exists("ZipArchive")?"yes":"no").PHP_EOL;
               if(empty($downloads)){
                 $failed[$lid]="El producto Drielo vinculado no tiene archivo descargable";
                 continue;
