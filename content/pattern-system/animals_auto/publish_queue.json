@@ -1,7 +1,7 @@
 {
   "collection": "animals",
   "branch": "feature/animals-auto-publish",
-  "auto_continue": false,
+  "auto_continue": true,
   "max_attempts_per_design": 3,
   "recovery_attempts_per_design": 5,
   "created_from": "canonical Animals A0001-A0030 references",
@@ -11,336 +11,246 @@
       "title_en": "Sleeping Tabby on Quilts",
       "title_es": "Gato atigrado dormido sobre mantas",
       "slug": "sleeping-tabby-quilts",
-      "status": "published",
-      "attempts": 105,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36527865271",
-      "last_error": null,
-      "published_at": "2026-09-29T05:50:44+00:00"
+      "status": "pending",
+      "attempts": 0
     },
     {
       "base_design_id": "A0002",
       "title_en": "Black Cat with Red Bow",
       "title_es": "Gato negro con lazo rojo",
       "slug": "black-cat-red-bow",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36495837639",
-      "last_error": null,
-      "published_at": "2026-09-28T23:06:11+00:00"
+      "status": "pending",
+      "attempts": 0
     },
     {
       "base_design_id": "A0003",
       "title_en": "Puppy with Heart",
       "title_es": "Perrito con corazón",
       "slug": "puppy-heart",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36496198061",
-      "last_error": null,
-      "published_at": "2026-09-28T23:09:27+00:00"
+      "status": "pending",
+      "attempts": 0
     },
     {
       "base_design_id": "A0004",
       "title_en": "Kitten in Teacup",
       "title_es": "Gatito en taza",
       "slug": "kitten-teacup",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36496488371",
-      "last_error": null,
-      "published_at": "2026-09-28T23:12:11+00:00"
+      "status": "pending",
+      "attempts": 0
     },
     {
       "base_design_id": "A0005",
       "title_en": "Lovebirds on Branch",
       "title_es": "Agapornis en rama",
       "slug": "lovebirds-branch",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36496730981",
-      "last_error": null,
-      "published_at": "2026-09-28T23:15:13+00:00"
+      "status": "pending",
+      "attempts": 0
     },
     {
       "base_design_id": "A0006",
       "title_en": "Floral Bunny",
       "title_es": "Conejito floral",
       "slug": "floral-bunny",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36497011656",
-      "last_error": null,
-      "published_at": "2026-09-28T23:18:53+00:00"
+      "status": "pending",
+      "attempts": 0
     },
     {
       "base_design_id": "A0007",
       "title_en": "Hedgehog with Flowers",
       "title_es": "Erizo con flores",
       "slug": "hedgehog-flowers",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36497341253",
-      "last_error": null,
-      "published_at": "2026-09-28T23:21:48+00:00"
+      "status": "pending",
+      "attempts": 0
     },
     {
       "base_design_id": "A0008",
       "title_en": "Frog on Mushroom",
       "title_es": "Rana sobre seta",
       "slug": "frog-mushroom",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36497603849",
-      "last_error": null,
-      "published_at": "2026-09-28T23:24:35+00:00"
+      "status": "pending",
+      "attempts": 0
     },
     {
       "base_design_id": "A0009",
       "title_en": "Fox with Butterfly",
       "title_es": "Zorro con mariposa",
       "slug": "fox-butterfly",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36497857715",
-      "last_error": null,
-      "published_at": "2026-09-28T23:30:06+00:00"
+      "status": "pending",
+      "attempts": 0
     },
     {
       "base_design_id": "A0010",
       "title_en": "Penguin with Red Scarf",
       "title_es": "Pingüino con bufanda roja",
       "slug": "penguin-red-scarf",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36498346865",
-      "last_error": null,
-      "published_at": "2026-09-28T23:32:43+00:00"
+      "status": "pending",
+      "attempts": 0
     },
     {
       "base_design_id": "A0011",
       "title_en": "Owl on Floral Branch",
       "title_es": "Búho en rama floral",
       "slug": "owl-floral-branch",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36498576868",
-      "last_error": null,
-      "published_at": "2026-09-28T23:35:24+00:00"
+      "status": "pending",
+      "attempts": 0
     },
     {
       "base_design_id": "A0012",
       "title_en": "Raccoon with Heart",
       "title_es": "Mapache con corazón",
       "slug": "raccoon-heart",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36498818611",
-      "last_error": null,
-      "published_at": "2026-09-28T23:47:16+00:00"
+      "status": "pending",
+      "attempts": 0
     },
     {
       "base_design_id": "A0013",
       "title_en": "Teddy Bear with Blue Bow",
       "title_es": "Osito con lazo azul",
       "slug": "teddy-blue-bow",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36499825477",
-      "last_error": null,
-      "published_at": "2026-09-28T23:50:00+00:00"
+      "status": "pending",
+      "attempts": 0
     },
     {
       "base_design_id": "A0014",
       "title_en": "Elephant with Heart Balloon",
       "title_es": "Elefante con globo corazón",
       "slug": "elephant-heart-balloon",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36500056709",
-      "last_error": null,
-      "published_at": "2026-09-28T23:52:42+00:00"
+      "status": "pending",
+      "attempts": 0
     },
     {
       "base_design_id": "A0015",
       "title_en": "Giraffe with Daisies",
       "title_es": "Jirafa con margaritas",
       "slug": "giraffe-daisies",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36500278476",
-      "last_error": null,
-      "published_at": "2026-09-28T23:58:17+00:00"
+      "status": "pending",
+      "attempts": 0
     },
     {
       "base_design_id": "A0016",
       "title_en": "Lamb with Flower Crown",
       "title_es": "Corderito con corona de flores",
       "slug": "lamb-flower-crown",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36500751334",
-      "last_error": null,
-      "published_at": "2026-09-29T00:01:25+00:00"
+      "status": "pending",
+      "attempts": 0
     },
     {
       "base_design_id": "A0017",
       "title_en": "Koala with Eucalyptus",
       "title_es": "Koala con eucalipto",
       "slug": "koala-eucalyptus",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36501014576",
-      "last_error": null,
-      "published_at": "2026-09-29T00:04:33+00:00"
+      "status": "pending",
+      "attempts": 0
     },
     {
       "base_design_id": "A0018",
       "title_en": "Panda with Bamboo",
       "title_es": "Panda con bambú",
       "slug": "panda-bamboo",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36501284828",
-      "last_error": null,
-      "published_at": "2026-09-29T00:07:20+00:00"
+      "status": "pending",
+      "attempts": 0
     },
     {
       "base_design_id": "A0019",
       "title_en": "Fawn with Red Scarf",
       "title_es": "Cervatillo con bufanda roja",
       "slug": "fawn-red-scarf",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36501516812",
-      "last_error": null,
-      "published_at": "2026-09-29T00:10:02+00:00"
+      "status": "pending",
+      "attempts": 0
     },
     {
       "base_design_id": "A0020",
       "title_en": "Squirrel with Acorn",
       "title_es": "Ardilla con bellota",
       "slug": "squirrel-acorn",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36501741407",
-      "last_error": null,
-      "published_at": "2026-09-29T00:12:25+00:00"
+      "status": "pending",
+      "attempts": 0
     },
     {
       "base_design_id": "A0021",
       "title_en": "Mouse in Teacup",
       "title_es": "Ratón en taza",
       "slug": "mouse-teacup",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36501941234",
-      "last_error": null,
-      "published_at": "2026-09-29T00:15:15+00:00"
+      "status": "pending",
+      "attempts": 0
     },
     {
       "base_design_id": "A0022",
       "title_en": "Duckling with Tulips",
       "title_es": "Patito con tulipanes",
       "slug": "duckling-tulips",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36502181978",
-      "last_error": null,
-      "published_at": "2026-09-29T00:18:11+00:00"
+      "status": "pending",
+      "attempts": 0
     },
     {
       "base_design_id": "A0023",
       "title_en": "Calf with Heart",
       "title_es": "Ternerito con corazón",
       "slug": "calf-heart",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36502423174",
-      "last_error": null,
-      "published_at": "2026-09-29T00:21:06+00:00"
+      "status": "pending",
+      "attempts": 0
     },
     {
       "base_design_id": "A0024",
       "title_en": "Piglet with Daisies",
       "title_es": "Cerdito con margaritas",
       "slug": "piglet-daisies",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36502668031",
-      "last_error": null,
-      "published_at": "2026-09-29T00:24:30+00:00"
+      "status": "pending",
+      "attempts": 0
     },
     {
       "base_design_id": "A0025",
       "title_en": "Red Panda with Flowers",
       "title_es": "Panda rojo con flores",
       "slug": "red-panda-flowers",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36502957343",
-      "last_error": null,
-      "published_at": "2026-09-29T00:27:50+00:00"
+      "status": "pending",
+      "attempts": 0
     },
     {
       "base_design_id": "A0026",
       "title_en": "Hamster with Strawberry",
       "title_es": "Hámster con fresa",
       "slug": "hamster-strawberry",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36503225404",
-      "last_error": null,
-      "published_at": "2026-09-29T00:31:08+00:00"
+      "status": "pending",
+      "attempts": 0
     },
     {
       "base_design_id": "A0027",
       "title_en": "Chick with Daisy",
       "title_es": "Pollito con margarita",
       "slug": "chick-daisy",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36503507358",
-      "last_error": null,
-      "published_at": "2026-09-29T00:33:53+00:00"
+      "status": "pending",
+      "attempts": 0
     },
     {
       "base_design_id": "A0028",
       "title_en": "Baby Goat with Flower Crown",
       "title_es": "Cabritillo con corona de flores",
       "slug": "baby-goat-flower-crown",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36503726991",
-      "last_error": null,
-      "published_at": "2026-09-29T00:36:38+00:00"
+      "status": "pending",
+      "attempts": 0
     },
     {
       "base_design_id": "A0029",
       "title_en": "Polar Bear with Blue Scarf",
       "title_es": "Oso polar con bufanda azul",
       "slug": "polar-bear-blue-scarf",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36503945463",
-      "last_error": null,
-      "published_at": "2026-09-29T00:42:02+00:00"
+      "status": "pending",
+      "attempts": 0
     },
     {
       "base_design_id": "A0030",
       "title_en": "Otter with Seashell Heart",
       "title_es": "Nutria con concha corazón",
       "slug": "otter-seashell-heart",
-      "status": "published",
-      "attempts": 1,
-      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36504374232",
-      "last_error": null,
-      "published_at": "2026-09-29T00:44:45+00:00"
+      "status": "pending",
+      "attempts": 0
     }
   ],
-  "restarted_at": "2026-09-29T00:50:00+02:00",
-  "restart_reason": "Delete every live Animals product, then regenerate A0001-A0030 as Cross Stitch only with the new exact 1536x1536 Animals cover.",
+  "restarted_at": "2026-09-29T05:48:00Z",
+  "restart_reason": "Delete every live Animals product and regenerate A0001-A0030 as Cross Stitch only.",
   "restart_from": "A0001",
-  "paused_reason": "User requested a full Animals reset before regeneration.",
+  "paused_reason": null,
   "a0014_replacement_reason": "Regenerate A0014 after removing exterior-connected pure-white contour pixels.",
   "mode": "cross-stitch-only"
 }
