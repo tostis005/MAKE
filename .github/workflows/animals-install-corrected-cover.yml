@@ -1,0 +1,60 @@
+name: Install corrected Animals cover
+
+on:
+  push:
+    branches:
+      - feature/animals-auto-publish
+    paths:
+      - 'tmp/animals-cover/INSTALL'
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+          ref: feature/animals-auto-publish
+      - run: python3 -m pip install --disable-pip-version-check --quiet Pillow
+      - name: Install corrected cover
+        shell: bash
+        run: |
+          set -euo pipefail
+          COVER_URL="$(tr -d '\r\n' < tmp/animals-cover/source-url.txt)"
+          curl -fL --retry 4 --retry-delay 2 "$COVER_URL" -o /tmp/animals-cover-final.jpg
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+          root=Path('.')
+          im=Image.open('/tmp/animals-cover-final.jpg').convert('RGB')
+          if im.size != (1536,1536):
+              raise SystemExit(f'Unexpected size: {im.size}')
+          dst=root/'content/pattern-system/collections/animals/mockups/animals-cover-cross-stitch.png'
+          im.save(dst,'PNG',optimize=True)
+          cp=root/'content/pattern-system/collections/animals/collection.json'
+          data=json.loads(cp.read_text(encoding='utf-8'))
+          spec=data.setdefault('mockup_spec',{})
+          spec.setdefault('technique_assets',{})['CS']='mockups/animals-cover-cross-stitch.png'
+          spec['status']='approved-clean-final-2026-09-29'
+          spec['cross_stitch_geometry']={'source_width':1536,'source_height':1536,'x':438,'y':212,'width':685,'height':822}
+          spec.setdefault('source_uploads',{})['CS']='coleccion-animales-github-fixed4.jpg'
+          cp.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          print('COVER_OK',im.size,spec['cross_stitch_geometry'])
+          PY
+      - name: Commit cover
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/pattern-system/collections/animals/mockups/animals-cover-cross-stitch.png
+          git add content/pattern-system/collections/animals/collection.json
+          git rm tmp/animals-cover/source-url.txt tmp/animals-cover/INSTALL
+          git commit -m "Install corrected final Animals cover"
+          git pull --rebase origin feature/animals-auto-publish
+          git push origin HEAD:feature/animals-auto-publish
