@@ -1,0 +1,259 @@
+name: Fix Etsy physical listings to digital
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-etsy-physical-to-digital.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_etsy_digital_key
+          chmod 600 ~/.ssh/drielo_etsy_digital_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Audit Etsy and convert physical listings
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_etsy_digital_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -d max_execution_time=0 -r '
+            require "/var/www/html/wp-load.php";
+            require_once ABSPATH."wp-admin/includes/plugin.php";
+
+            if (!class_exists("Drielo_Etsy_Sync")) {
+              fwrite(STDERR, "Drielo_Etsy_Sync is not available".PHP_EOL);
+              exit(2);
+            }
+
+            $plugin=get_plugin_data(WP_PLUGIN_DIR."/drielo-etsy-sync/drielo-etsy-sync.php",false,false);
+            echo "PLUGIN_VERSION=".(string)($plugin["Version"]??"").PHP_EOL;
+
+            $sync=Drielo_Etsy_Sync::instance();
+            $ref=new ReflectionClass($sync);
+
+            $settings_method=$ref->getMethod("settings");
+            $settings_method->setAccessible(true);
+            $etsy_method=$ref->getMethod("etsy_request");
+            $etsy_method->setAccessible(true);
+            $inventory_method=$ref->getMethod("sync_inventory");
+            $inventory_method->setAccessible(true);
+            $downloads_method=$ref->getMethod("sync_downloads");
+            $downloads_method->setAccessible(true);
+            $snapshot_method=$ref->getMethod("sync_run_snapshot");
+            $snapshot_method->setAccessible(true);
+            $manual_prop=$ref->getProperty("manual_sync_context");
+            $manual_prop->setAccessible(true);
+
+            $snapshot=$snapshot_method->invoke($sync,null);
+            if (!empty($snapshot["active"])) {
+              fwrite(STDERR, "ABORT_ACTIVE_SYNC=".wp_json_encode(array(
+                "id"=>$snapshot["id"]??"",
+                "status"=>$snapshot["status"]??"",
+                "completed"=>$snapshot["completed"]??0,
+                "total"=>$snapshot["total"]??0
+              )).PHP_EOL);
+              exit(3);
+            }
+
+            $settings=$settings_method->invoke($sync);
+            $shop_id=(string)($settings["shop_id"]??"");
+            if ($shop_id==="") {
+              fwrite(STDERR, "Missing Etsy shop_id".PHP_EOL);
+              exit(4);
+            }
+
+            $local_map=array();
+            $ids=get_posts(array(
+              "post_type"=>"product",
+              "post_status"=>array("publish","draft","private","pending"),
+              "posts_per_page"=>-1,
+              "fields"=>"ids"
+            ));
+            foreach($ids as $pid){
+              $lid=absint(get_post_meta($pid,"_drielo_etsy_listing_id",true));
+              if($lid) $local_map[(string)$lid]=(int)$pid;
+            }
+
+            $states=array("active","draft","inactive","sold_out","expired");
+            $listings=array();
+            $state_errors=array();
+            foreach($states as $state){
+              for($offset=0;$offset<=12000;$offset+=100){
+                $path="/v3/application/shops/".rawurlencode($shop_id)."/listings?state=".rawurlencode($state)."&limit=100&offset=".$offset;
+                $page=$etsy_method->invoke($sync,"GET",$path,array(),true);
+                if(is_wp_error($page)){
+                  $state_errors[$state]=$page->get_error_message();
+                  break;
+                }
+                $results=(array)($page["results"]??array());
+                foreach($results as $listing){
+                  $lid=(string)absint($listing["listing_id"]??0);
+                  if($lid!=="0") $listings[$lid]=$listing;
+                }
+                $count=absint($page["count"]??count($results));
+                if(count($results)<100 || $offset+100 >= $count) break;
+              }
+            }
+
+            if($state_errors){
+              echo "STATE_ERRORS=".wp_json_encode($state_errors).PHP_EOL;
+            }
+
+            $physical=array();
+            $unknown=array();
+            $digital_count=0;
+            foreach($listings as $lid=>$listing){
+              $type=strtolower(trim((string)($listing["type"]??"")));
+              if($type===""){
+                $full=$etsy_method->invoke($sync,"GET","/v3/application/listings/".rawurlencode($lid),array(),true);
+                if(!is_wp_error($full)){
+                  $listing=$full;
+                  $listings[$lid]=$full;
+                  $type=strtolower(trim((string)($full["type"]??"")));
+                }
+              }
+              if($type==="download"){
+                $digital_count++;
+              } elseif($type==="physical"){
+                $physical[$lid]=$listing;
+              } else {
+                $unknown[$lid]=$type;
+              }
+            }
+
+            echo "AUDIT_TOTAL=".count($listings).PHP_EOL;
+            echo "AUDIT_DIGITAL=".$digital_count.PHP_EOL;
+            echo "AUDIT_PHYSICAL=".count($physical).PHP_EOL;
+            echo "AUDIT_UNKNOWN=".count($unknown).PHP_EOL;
+
+            $linked=array();
+            $unlinked=array();
+            foreach($physical as $lid=>$listing){
+              if(isset($local_map[$lid])) $linked[$lid]=$local_map[$lid];
+              else $unlinked[$lid]=(string)($listing["title"]??"");
+            }
+            echo "LINKED_PHYSICAL=".count($linked).PHP_EOL;
+            echo "UNLINKED_PHYSICAL=".count($unlinked).PHP_EOL;
+            if($unlinked){
+              echo "UNLINKED_IDS=".wp_json_encode(array_keys($unlinked)).PHP_EOL;
+            }
+
+            $fixed=array();
+            $failed=array();
+            foreach($linked as $lid=>$pid){
+              $product=wc_get_product($pid);
+              if(!$product){
+                $failed[$lid]="Producto WooCommerce no disponible";
+                continue;
+              }
+              $downloads=$product->get_downloads();
+              if(empty($downloads)){
+                $failed[$lid]="El producto Drielo vinculado no tiene archivo descargable";
+                continue;
+              }
+
+              try {
+                $manual_prop->setValue($sync,true);
+
+                // Etsy requires a single-product inventory before a physical
+                // listing with variations can be converted to a download.
+                $inv=$inventory_method->invoke($sync,$product,(int)$lid);
+                if(is_wp_error($inv)){
+                  $failed[$lid]="Inventario: ".$inv->get_error_message();
+                  continue;
+                }
+
+                // Ensure the current Drielo digital file(s) are attached.
+                $files=$downloads_method->invoke($sync,$product,(int)$lid);
+                if(is_wp_error($files)){
+                  $failed[$lid]="Archivos: ".$files->get_error_message();
+                  continue;
+                }
+
+                $patch=$etsy_method->invoke(
+                  $sync,
+                  "PATCH",
+                  "/v3/application/shops/".rawurlencode($shop_id)."/listings/".rawurlencode($lid),
+                  array("type"=>"download"),
+                  true
+                );
+                if(is_wp_error($patch)){
+                  $failed[$lid]="Conversión: ".$patch->get_error_message();
+                  continue;
+                }
+              } catch(Throwable $e) {
+                $failed[$lid]="Excepción: ".$e->getMessage();
+                continue;
+              } finally {
+                $manual_prop->setValue($sync,false);
+              }
+
+              $verify=$etsy_method->invoke($sync,"GET","/v3/application/listings/".rawurlencode($lid),array(),true);
+              $verify_files=$etsy_method->invoke($sync,"GET","/v3/application/shops/".rawurlencode($shop_id)."/listings/".rawurlencode($lid)."/files",array(),true);
+              $verify_type=is_wp_error($verify)?"":strtolower(trim((string)($verify["type"]??"")));
+              $file_count=is_wp_error($verify_files)?0:count((array)($verify_files["results"]??array()));
+              if($verify_type==="download" && $file_count>0){
+                $fixed[$lid]=array(
+                  "product_id"=>$pid,
+                  "sku"=>(string)$product->get_sku(),
+                  "files"=>$file_count,
+                  "state"=>(string)($verify["state"]??"")
+                );
+                update_post_meta($pid,"_drielo_etsy_last_sync",current_time("mysql"));
+                update_post_meta($pid,"_drielo_etsy_remote_state",sanitize_text_field((string)($verify["state"]??"")));
+                delete_post_meta($pid,"_drielo_etsy_last_error");
+              } else {
+                $failed[$lid]="Verificación fallida: type=".$verify_type.", files=".$file_count;
+              }
+            }
+
+            // Re-audit the exact listings that were physical before the run.
+            $remaining=array();
+            foreach($physical as $lid=>$listing){
+              $verify=$etsy_method->invoke($sync,"GET","/v3/application/listings/".rawurlencode($lid),array(),true);
+              if(is_wp_error($verify)){
+                $remaining[$lid]="GET error: ".$verify->get_error_message();
+                continue;
+              }
+              $type=strtolower(trim((string)($verify["type"]??"")));
+              if($type!=="download") $remaining[$lid]=$type;
+            }
+
+            echo "FIXED=".count($fixed).PHP_EOL;
+            echo "FAILED=".count($failed).PHP_EOL;
+            echo "REMAINING_PHYSICAL_OR_UNKNOWN=".count($remaining).PHP_EOL;
+            echo "FIXED_DETAILS=".wp_json_encode($fixed).PHP_EOL;
+            if($failed) echo "FAILED_DETAILS=".wp_json_encode($failed).PHP_EOL;
+            if($remaining) echo "REMAINING_DETAILS=".wp_json_encode($remaining).PHP_EOL;
+
+            // Fail the workflow if a Drielo-linked physical listing could not
+            // be converted. Unlinked listings are reported separately because
+            // Drielo has no safe digital file source for them.
+            $linked_remaining=array_intersect_key($remaining,$linked);
+            if($linked_remaining){
+              exit(5);
+            }
+          '
+          REMOTE
