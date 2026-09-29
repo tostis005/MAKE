@@ -319,8 +319,11 @@
       "title_en": "Polar Bear with Blue Scarf",
       "title_es": "Oso polar con bufanda azul",
       "slug": "polar-bear-blue-scarf",
-      "status": "pending",
-      "attempts": 0
+      "status": "published",
+      "attempts": 1,
+      "last_run": "https://github.com/tostis005/MAKE/actions/runs/36537505105",
+      "last_error": null,
+      "published_at": "2026-09-29T07:38:06+00:00"
     },
     {
       "base_design_id": "A0030",
