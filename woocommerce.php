@@ -19,27 +19,46 @@ else :
     $is_collection_view = $is_shop_archive && function_exists( 'make_store_view' ) && 'collections' === make_store_view();
 
     if ( $is_collection_view ) {
-        $title = make_t( 'Colecciones de patrones', 'Pattern collections' );
+        $title = make_t( 'Colecciones de patrones digitales', 'Digital Pattern Collections' );
+    } elseif ( $is_shop_archive ) {
+        $title = make_t( 'Patrones PDF de punto de cruz y manualidades', 'Cross Stitch & Craft Pattern PDFs' );
     }
 
-    $intro = make_t(
-        'Explora cada patrón por separado o descubre colecciones temáticas creadas para reunir diseños relacionados.',
-        'Browse each pattern individually or explore themed collections built around related designs.'
-    );
-    $hero_kicker = make_t( 'Patrones digitales', 'Digital patterns' );
+    $intro = function_exists( 'make_store_seo_archive_description' )
+        ? make_store_seo_archive_description()
+        : make_t(
+            'Explora patrones digitales descargables con gráficos claros y detalles prácticos para cada proyecto.',
+            'Browse downloadable digital patterns with clear charts and practical details for every project.'
+        );
+    $hero_kicker = make_t( 'Patrones digitales descargables', 'Downloadable digital patterns' );
 
     if ( is_tax( 'product_collection' ) ) {
         $term = get_queried_object();
         if ( $term instanceof WP_Term ) {
-            if ( function_exists( 'make_collection_display_name' ) ) {
-                $title = make_collection_display_name( $term );
-            }
+            $name = function_exists( 'make_collection_display_name' ) ? make_collection_display_name( $term ) : (string) $term->name;
+            $techniques = function_exists( 'make_store_seo_collection_techniques' ) ? make_store_seo_collection_techniques( $term ) : array();
+            $title = 1 === count( $techniques ) && 'cross-stitch' === reset( $techniques )
+                ? sprintf( make_t( '%s · Patrones de punto de cruz PDF', '%s Cross Stitch Patterns PDF' ), $name )
+                : sprintf( make_t( '%s · Patrones PDF', '%s Pattern PDFs' ), $name );
             if ( function_exists( 'make_collection_stats_label' ) ) {
                 $hero_kicker = make_collection_stats_label( $term );
             }
-            if ( function_exists( 'make_collection_stats_description' ) ) {
-                $intro = make_collection_stats_description( $term );
-            }
+        }
+    } elseif ( is_tax( 'pa_technique' ) ) {
+        $term = get_queried_object();
+        if ( $term instanceof WP_Term ) {
+            $label = function_exists( 'make_store_technique_label' )
+                ? make_store_technique_label( (string) $term->slug, make_current_language() )
+                : (string) $term->name;
+            $title = 'cross-stitch' === $term->slug
+                ? make_t( 'Patrones de Punto de Cruz PDF', 'Cross Stitch Patterns PDF' )
+                : sprintf( make_t( 'Patrones PDF de %s', '%s Patterns PDF' ), $label );
+            $hero_kicker = make_t( 'Descarga digital · gráficos imprimibles', 'Digital download · printable charts' );
+        }
+    } elseif ( is_tax( 'product_cat' ) ) {
+        $term = get_queried_object();
+        if ( $term instanceof WP_Term ) {
+            $title = sprintf( make_t( '%s · Patrones PDF', '%s Pattern PDFs' ), $term->name );
         }
     }
 ?>
