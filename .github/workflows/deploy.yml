@@ -474,6 +474,7 @@ jobs:
           check_html "/" "Patrones digitales de punto de cruz | Drielo" "home-seo-title-es"
           check_html "/en/" "Digital Cross Stitch Patterns | Drielo" "home-seo-title-en"
           check_html "/en/" "\"@type\":\"WebSite\"" "home-website-schema-en"
+          check_html "/en/" "property=\"og:title\"" "home-open-graph-en"
           check_html "/en/" "hreflang=\"es-ES\"" "home-hreflang-en"
 
           check_html "/tienda/" "Tienda de patrones" "shop-patterns-es"
@@ -581,6 +582,8 @@ jobs:
           check_html "$PRODUCT_ES_ROUTE" "drielo-product-reference" "product-copy-es"
           check_html "$PRODUCT_EN_ROUTE" "drielo-product-reference" "product-copy-en"
           check_html "$PRODUCT_EN_ROUTE" "Add to cart" "product-commerce-ui-en" "Añadir al carrito"
+          check_html "$PRODUCT_EN_ROUTE" "\"@type\":\"BreadcrumbList\"" "product-breadcrumb-schema-en"
+          check_html "$PRODUCT_EN_ROUTE" "property=\"og:image\"" "product-open-graph-image-en"
           check_html "/en/shop/" "Pattern shop" "shop-patterns-en" "make_lang="
           check_html "/en/shop/" "Craft Pattern PDFs | Drielo" "shop-seo-title-en"
           check_html "/en/shop/" "\"@type\":\"CollectionPage\"" "shop-collectionpage-schema-en"
