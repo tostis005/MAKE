@@ -106,7 +106,7 @@ function make_sitemap_urls( string $language ): array {
     }
 
     if ( function_exists( 'make_store_term_url' ) ) {
-        foreach ( array( 'product_collection', 'product_cat' ) as $taxonomy ) {
+        foreach ( array( 'product_collection', 'product_cat', 'pa_technique' ) as $taxonomy ) {
             if ( ! taxonomy_exists( $taxonomy ) ) { continue; }
             $terms = get_terms( array( 'taxonomy' => $taxonomy, 'hide_empty' => true ) );
             if ( is_wp_error( $terms ) ) { continue; }
