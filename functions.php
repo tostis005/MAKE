@@ -1005,6 +1005,19 @@ function make_editorial_document_title( string $title ): string {
         if ( '' !== $seo_title ) { return $seo_title; }
     }
 
+    if ( is_category() ) {
+        $term = get_queried_object();
+        if ( $term instanceof WP_Term ) {
+            $section_id = (string) get_term_meta( $term->term_id, '_make_section_id', true );
+            $sections   = make_editorial_section_config();
+            $language   = make_current_language();
+            if ( '' !== $section_id && isset( $sections[ $section_id ][ $language ]['label'] ) ) {
+                return $sections[ $section_id ][ $language ]['label'] . ' · ' .
+                    make_t( 'Guías y tutoriales', 'Guides & tutorials' ) . ' | ' . make_brand_name();
+            }
+        }
+    }
+
     if ( (int) get_query_var( 'make_journal' ) === 1 ) {
         $craft = function_exists( 'make_current_editorial_craft' ) ? make_current_editorial_craft() : '';
         $crafts = function_exists( 'make_editorial_craft_config' ) ? make_editorial_craft_config() : array();
@@ -1091,6 +1104,23 @@ function make_editorial_head_meta(): void {
         $post_id  = get_queried_object_id();
         $language = make_current_language();
         $description = trim( (string) get_post_meta( $post_id, '_drielo_meta_description_' . $language, true ) );
+        if ( '' === $description ) {
+            $fallback = trim( (string) get_post_meta( $post_id, '_drielo_short_description_' . $language, true ) );
+            if ( '' === $fallback ) {
+                $fallback = (string) get_post_field( 'post_excerpt', $post_id );
+            }
+            $fallback = trim( wp_strip_all_tags( $fallback ) );
+            if ( '' !== $fallback ) {
+                $description = wp_html_excerpt( $fallback, 158, '…' );
+            } else {
+                $title = function_exists( 'make_product_localized_meta' )
+                    ? make_product_localized_meta( $post_id, 'title', get_the_title( $post_id ) )
+                    : get_the_title( $post_id );
+                $description = 'en' === $language
+                    ? sprintf( 'Download %s as a clear printable digital pattern PDF from Drielo.', $title )
+                    : sprintf( 'Descarga %s como patrón PDF digital e imprimible de Drielo.', $title );
+            }
+        }
         $canonical = function_exists( 'make_product_url' ) ? make_product_url( $post_id, $language ) : get_permalink( $post_id );
 
         if ( ! function_exists( 'pll_current_language' ) ) {
@@ -1099,6 +1129,32 @@ function make_editorial_head_meta(): void {
             echo '<link rel="alternate" hreflang="es-ES" href="' . esc_url( $es_url ) . '">' . "\n";
             echo '<link rel="alternate" hreflang="en-US" href="' . esc_url( $en_url ) . '">' . "\n";
             echo '<link rel="alternate" hreflang="x-default" href="' . esc_url( $es_url ) . '">' . "\n";
+        }
+    } elseif ( is_category() ) {
+        $term = get_queried_object();
+        if ( $term instanceof WP_Term ) {
+            $section_id = (string) get_term_meta( $term->term_id, '_make_section_id', true );
+            $sections   = make_editorial_section_config();
+            $language   = make_current_language();
+
+            if ( '' !== $section_id && isset( $sections[ $section_id ][ $language ] ) ) {
+                $description = (string) ( $sections[ $section_id ][ $language ]['description'] ?? '' );
+                $slug = (string) ( $sections[ $section_id ][ $language ]['slug'] ?? $term->slug );
+                $base = 'en' === $language ? '/en/articles/section/' : '/articulos/seccion/';
+                $canonical = home_url( $base . rawurlencode( $slug ) . '/' );
+
+                if ( ! function_exists( 'pll_current_language' ) ) {
+                    foreach ( array( 'es' => 'es-ES', 'en' => 'en-US' ) as $lang => $hreflang ) {
+                        if ( empty( $sections[ $section_id ][ $lang ]['slug'] ) ) { continue; }
+                        $alt_base = 'en' === $lang ? '/en/articles/section/' : '/articulos/seccion/';
+                        $url = home_url( $alt_base . rawurlencode( (string) $sections[ $section_id ][ $lang ]['slug'] ) . '/' );
+                        echo '<link rel="alternate" hreflang="' . esc_attr( $hreflang ) . '" href="' . esc_url( $url ) . '">' . "\n";
+                        if ( 'es' === $lang ) {
+                            echo '<link rel="alternate" hreflang="x-default" href="' . esc_url( $url ) . '">' . "\n";
+                        }
+                    }
+                }
+            }
         }
     } elseif ( (int) get_query_var( 'make_journal' ) === 1 ) {
         $page = max( 1, (int) get_query_var( 'paged' ) );
