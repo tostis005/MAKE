@@ -63,9 +63,29 @@ function make_store_routes(): void {
     add_rewrite_rule( '^en/shop/collections/?$', 'index.php?post_type=product&make_store_view=collections&make_lang=en', 'top' );
 
     add_rewrite_rule( '^tienda/coleccion/([a-z0-9-]+)/?$', 'index.php?make_collection_local=$matches[1]&make_lang=es', 'top' );
+    add_rewrite_rule( '^tienda/coleccion/([a-z0-9-]+)/page/([0-9]+)/?$', 'index.php?make_collection_local=$matches[1]&make_lang=es&paged=$matches[2]', 'top' );
     add_rewrite_rule( '^en/shop/collection/([a-z0-9-]+)/?$', 'index.php?make_collection_local=$matches[1]&make_lang=en', 'top' );
-    add_rewrite_rule( '^tienda/categoria/([a-z0-9-]+)/?
-    add_rewrite_rule( '^en/shop/(?!collections/?$|collection/|category/|technique/)([a-z0-9-]+)/?
+    add_rewrite_rule( '^en/shop/collection/([a-z0-9-]+)/page/([0-9]+)/?$', 'index.php?make_collection_local=$matches[1]&make_lang=en&paged=$matches[2]', 'top' );
+
+    add_rewrite_rule( '^tienda/categoria/([a-z0-9-]+)/?$', 'index.php?make_product_cat_local=$matches[1]&make_lang=es', 'top' );
+    add_rewrite_rule( '^tienda/categoria/([a-z0-9-]+)/page/([0-9]+)/?$', 'index.php?make_product_cat_local=$matches[1]&make_lang=es&paged=$matches[2]', 'top' );
+    add_rewrite_rule( '^en/shop/category/([a-z0-9-]+)/?$', 'index.php?make_product_cat_local=$matches[1]&make_lang=en', 'top' );
+    add_rewrite_rule( '^en/shop/category/([a-z0-9-]+)/page/([0-9]+)/?$', 'index.php?make_product_cat_local=$matches[1]&make_lang=en&paged=$matches[2]', 'top' );
+
+    if ( function_exists( 'make_store_technique_config' ) ) {
+        foreach ( array_keys( make_store_technique_config() ) as $technique_slug ) {
+            $technique_slug = sanitize_title( (string) $technique_slug );
+            $es_slug = make_store_technique_local_slug( $technique_slug, 'es' );
+            $en_slug = make_store_technique_local_slug( $technique_slug, 'en' );
+            add_rewrite_rule( '^tienda/tecnica/' . preg_quote( $es_slug, '#' ) . '/?$', 'index.php?pa_technique=' . $technique_slug . '&make_lang=es', 'top' );
+            add_rewrite_rule( '^tienda/tecnica/' . preg_quote( $es_slug, '#' ) . '/page/([0-9]+)/?$', 'index.php?pa_technique=' . $technique_slug . '&make_lang=es&paged=$matches[1]', 'top' );
+            add_rewrite_rule( '^en/shop/technique/' . preg_quote( $en_slug, '#' ) . '/?$', 'index.php?pa_technique=' . $technique_slug . '&make_lang=en', 'top' );
+            add_rewrite_rule( '^en/shop/technique/' . preg_quote( $en_slug, '#' ) . '/page/([0-9]+)/?$', 'index.php?pa_technique=' . $technique_slug . '&make_lang=en&paged=$matches[1]', 'top' );
+        }
+    }
+
+    add_rewrite_rule( '^tienda/(?!colecciones/?$|coleccion/|categoria/|tecnica/)([a-z0-9-]+)/?$', 'index.php?post_type=product&make_product_slug=$matches[1]&make_lang=es', 'top' );
+    add_rewrite_rule( '^en/shop/(?!collections/?$|collection/|category/|technique/)([a-z0-9-]+)/?$', 'index.php?post_type=product&make_product_slug=$matches[1]&make_lang=en', 'top' );
 
     add_rewrite_rule( '^tienda/collections/?$', 'index.php?post_type=product&make_store_view=collections&make_lang=en', 'top' );
 
@@ -112,7 +132,7 @@ function make_store_query_vars( array $vars ): array {
 add_filter( 'query_vars', 'make_store_query_vars' );
 
 function make_store_maybe_flush_rewrites(): void {
-    $schema_version = '5';
+    $schema_version = '6';
     if ( $schema_version === (string) get_option( 'drielo_store_schema_version', '' ) ) { return; }
     flush_rewrite_rules( false );
     update_option( 'drielo_store_schema_version', $schema_version, false );
