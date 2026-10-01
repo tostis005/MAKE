@@ -269,7 +269,7 @@ function make_language_switch_url( string $language ): string {
         return make_product_url( get_queried_object_id(), $language );
     }
 
-    if ( is_tax( array( 'product_collection', 'product_cat' ) ) && function_exists( 'make_store_term_url' ) ) {
+    if ( is_tax( array( 'product_collection', 'product_cat', 'pa_technique' ) ) && function_exists( 'make_store_term_url' ) ) {
         $term = get_queried_object();
         if ( $term instanceof WP_Term ) { return make_store_term_url( $term, $language ); }
     }
@@ -409,6 +409,40 @@ function make_language_attributes( string $output ): string {
     return trim( $output . ' lang="' . esc_attr( $lang ) . '"' );
 }
 add_filter( 'language_attributes', 'make_language_attributes', 20 );
+
+/**
+ * WooCommerce runs under the site's Spanish locale, while Drielo serves its
+ * own /en/ storefront without switching WordPress locale. On English routes,
+ * use WooCommerce's original source strings so native commerce UI (result
+ * counts, cart buttons, reviews, categories, etc.) stays consistently English.
+ */
+function make_woocommerce_english_gettext( string $translation, string $text, string $domain ): string {
+    if ( 'woocommerce' !== $domain || ! make_is_english() ) { return $translation; }
+    if ( is_admin() && ! wp_doing_ajax() ) { return $translation; }
+    return $text;
+}
+add_filter( 'gettext', 'make_woocommerce_english_gettext', 99, 3 );
+
+function make_woocommerce_english_ngettext( string $translation, string $single, string $plural, int $number, string $domain ): string {
+    if ( 'woocommerce' !== $domain || ! make_is_english() ) { return $translation; }
+    if ( is_admin() && ! wp_doing_ajax() ) { return $translation; }
+    return 1 === $number ? $single : $plural;
+}
+add_filter( 'ngettext', 'make_woocommerce_english_ngettext', 99, 5 );
+
+function make_woocommerce_english_gettext_context( string $translation, string $text, string $context, string $domain ): string {
+    if ( 'woocommerce' !== $domain || ! make_is_english() ) { return $translation; }
+    if ( is_admin() && ! wp_doing_ajax() ) { return $translation; }
+    return $text;
+}
+add_filter( 'gettext_with_context', 'make_woocommerce_english_gettext_context', 99, 4 );
+
+function make_woocommerce_english_ngettext_context( string $translation, string $single, string $plural, int $number, string $context, string $domain ): string {
+    if ( 'woocommerce' !== $domain || ! make_is_english() ) { return $translation; }
+    if ( is_admin() && ! wp_doing_ajax() ) { return $translation; }
+    return 1 === $number ? $single : $plural;
+}
+add_filter( 'ngettext_with_context', 'make_woocommerce_english_ngettext_context', 99, 6 );
 
 function make_body_classes( array $classes ): array { $classes[] = 'make-lang-' . make_current_language(); return $classes; }
 add_filter( 'body_class', 'make_body_classes' );
