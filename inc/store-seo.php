@@ -250,7 +250,13 @@ function make_store_seo_robots( array $robots ): array {
         return $robots;
     }
 
-    if ( ( ( function_exists( 'is_shop' ) && is_shop() ) || is_tax( array( 'product_collection', 'product_cat', 'pa_technique' ) ) ) && make_store_seo_has_filter_query() ) {
+    if ( is_tax( 'product_cat' ) ) {
+        $robots['noindex'] = true;
+        $robots['follow']  = true;
+        return $robots;
+    }
+
+    if ( ( ( function_exists( 'is_shop' ) && is_shop() ) || is_tax( array( 'product_collection', 'pa_technique' ) ) ) && make_store_seo_has_filter_query() ) {
         $robots['noindex'] = true;
         $robots['follow']  = true;
     }
