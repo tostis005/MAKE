@@ -522,6 +522,7 @@ jobs:
           check_html "/tienda/colecciones/" "Colecciones de patrones" "hidden-baby-not-listed-es" "Bebé e Infantil"
           check_html "/en/shop/collections/" "Iconic Destinations" "visible-iconic-listed-en"
           check_html "/en/shop/collections/" "Pattern collections" "hidden-baby-not-listed-en" "Baby & Nursery"
+          check_html "/en/shop/collection/pop-art-portraits/page/2/" "Pop Art Portraits" "collection-page-2-en" "Make something worth keeping."
 
           HIDDEN_ICONIC_COLLECTION_ROUTE="$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; $t=get_term_by("slug","iconic-destinations","product_collection"); $u=$t instanceof WP_Term ? make_store_term_url($t,"es") : ""; echo $u ? parse_url($u,PHP_URL_PATH) : "";')"
           HIDDEN_BABY_COLLECTION_ROUTE="$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; $t=get_term_by("slug","baby-nursery","product_collection"); $u=$t instanceof WP_Term ? make_store_term_url($t,"es") : ""; echo $u ? parse_url($u,PHP_URL_PATH) : "";')"
