@@ -449,8 +449,27 @@ jobs:
               '
           }
 
-          PRODUCT_ES_ROUTE="$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; $id=wc_get_product_id_by_sku("DRIELO-P0001-CS"); $u=make_product_url($id,"es"); echo parse_url($u,PHP_URL_PATH);')"
-          PRODUCT_EN_ROUTE="$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; $id=wc_get_product_id_by_sku("DRIELO-P0001-CS"); $u=make_product_url($id,"en"); echo parse_url($u,PHP_URL_PATH);')"
+          PRODUCT_SAMPLE_ID="$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $ids=get_posts(array(
+              "post_type"=>"product",
+              "post_status"=>"publish",
+              "posts_per_page"=>50,
+              "fields"=>"ids",
+              "meta_key"=>"_drielo_managed_product",
+              "meta_value"=>"1",
+              "orderby"=>"ID",
+              "order"=>"DESC"
+            ));
+            foreach($ids as $id){
+              if(function_exists("make_store_product_in_hidden_collection") && make_store_product_in_hidden_collection((int)$id)){continue;}
+              echo (int)$id;
+              break;
+            }
+          ')"
+          if [ -z "$PRODUCT_SAMPLE_ID" ]; then echo "No visible managed product available for smoke tests"; exit 2; fi
+          PRODUCT_ES_ROUTE="$("${DOCKER[@]}" exec -e MAKE_PRODUCT_SAMPLE_ID="$PRODUCT_SAMPLE_ID" make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; $id=(int)getenv("MAKE_PRODUCT_SAMPLE_ID"); $u=make_product_url($id,"es"); echo parse_url($u,PHP_URL_PATH);')"
+          PRODUCT_EN_ROUTE="$("${DOCKER[@]}" exec -e MAKE_PRODUCT_SAMPLE_ID="$PRODUCT_SAMPLE_ID" make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; $id=(int)getenv("MAKE_PRODUCT_SAMPLE_ID"); $u=make_product_url($id,"en"); echo parse_url($u,PHP_URL_PATH);')"
 
           check_html "/tienda/" "Tienda de patrones" "shop-patterns-es"
           SHOP_FIRST_PAGE="/tmp/drielo-shop-first-page.html"
@@ -554,8 +573,8 @@ jobs:
           '
 
           check_html "$PRODUCT_ES_ROUTE" "drielo-shop-views" "single-product-shop-switch"
-          check_html "$PRODUCT_ES_ROUTE" "Albert Einstein" "product-copy-es"
-          check_html "$PRODUCT_EN_ROUTE" "Albert Einstein" "product-copy-en"
+          check_html "$PRODUCT_ES_ROUTE" "drielo-product-reference" "product-copy-es"
+          check_html "$PRODUCT_EN_ROUTE" "drielo-product-reference" "product-copy-en"
           check_html "$PRODUCT_EN_ROUTE" "Add to cart" "product-commerce-ui-en" "Añadir al carrito"
           check_html "/en/shop/" "Pattern shop" "shop-patterns-en" "make_lang="
           check_html "/en/shop/" "Cross Stitch &amp; Craft Pattern PDFs | Drielo" "shop-seo-title-en"
