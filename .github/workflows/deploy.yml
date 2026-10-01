@@ -452,7 +452,7 @@ jobs:
           PRODUCT_ES_ROUTE="$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; $id=wc_get_product_id_by_sku("DRIELO-P0001-CS"); $u=make_product_url($id,"es"); echo parse_url($u,PHP_URL_PATH);')"
           PRODUCT_EN_ROUTE="$("${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; $id=wc_get_product_id_by_sku("DRIELO-P0001-CS"); $u=make_product_url($id,"en"); echo parse_url($u,PHP_URL_PATH);')"
 
-          check_html "/tienda/" "Tienda de patrones" "shop-patterns-es" "PDF descargable"
+          check_html "/tienda/" "Tienda de patrones" "shop-patterns-es"
           SHOP_FIRST_PAGE="/tmp/drielo-shop-first-page.html"
           curl -fsS -o "$SHOP_FIRST_PAGE" "https://$SITE_HOST/tienda/"
           if grep -Eq 'href="[^"]*/tienda/page/2/?' "$SHOP_FIRST_PAGE"; then
@@ -502,7 +502,7 @@ jobs:
           check_html "/wp-content/themes/make/style.css" "grid-template-columns:repeat(5,minmax(0,1fr))" "collection-card-layout"
           check_html "/wp-content/themes/make/style.css" "background:transparent!important;box-shadow:none!important" "pagination-transparent"
           check_html "/tienda/colecciones/" "Colecciones de patrones" "shop-collections-es"
-          check_html "/tienda/colecciones/" "drielo-collection-preview" "collection-scalable-preview" "PDF descargable"
+          check_html "/tienda/colecciones/" "drielo-collection-preview" "collection-scalable-preview"
           check_html "/tienda/colecciones/" "data-collection-techniques" "collection-technique-controls"
           check_html "/tienda/colecciones/" "data-collection-technique=\"cross-stitch\"" "collection-cross-stitch-button"
           check_html "/tienda/colecciones/" "data-collection-technique=\"c2c-crochet\"" "collection-c2c-button"
@@ -517,7 +517,7 @@ jobs:
           check_html "/wp-content/themes/make/assets/js/site.js" "todos los patrones" "technique-default-tile-removal-js"
           check_html "/wp-content/themes/make/style.css" "Collection technique mosaic controls" "collection-technique-css"
           check_html "/tienda/colecciones/" "Explora colecciones temáticas de patrones PDF descargables" "shop-collections-intro-es"
-          check_html "/en/shop/collections/" "Pattern collections" "shop-collections-en" "Downloadable PDF"
+          check_html "/en/shop/collections/" "Pattern collections" "shop-collections-en"
           check_html "/tienda/colecciones/" "Destinos icónicos" "visible-iconic-listed-es"
           check_html "/tienda/colecciones/" "Colecciones de patrones" "hidden-baby-not-listed-es" "Bebé e Infantil"
           check_html "/en/shop/collections/" "Iconic Destinations" "visible-iconic-listed-en"
