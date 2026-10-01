@@ -19,9 +19,9 @@ else :
     $is_collection_view = $is_shop_archive && function_exists( 'make_store_view' ) && 'collections' === make_store_view();
 
     if ( $is_collection_view ) {
-        $title = make_t( 'Colecciones de patrones digitales', 'Digital Pattern Collections' );
+        $title = make_t( 'Colecciones de patrones digitales', 'Pattern collections · digital PDFs' );
     } elseif ( $is_shop_archive ) {
-        $title = make_t( 'Patrones PDF de punto de cruz y manualidades', 'Cross Stitch & Craft Pattern PDFs' );
+        $title = make_t( 'Tienda de patrones PDF · punto de cruz y manualidades', 'Pattern shop · Cross Stitch & Craft PDFs' );
     }
 
     $intro = function_exists( 'make_store_seo_archive_description' )
