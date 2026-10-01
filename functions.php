@@ -55,13 +55,38 @@ function make_attachment_cache_busted_url( int $attachment_id, string $url ): st
     return '' !== $hash ? add_query_arg( 'v', substr( $hash, 0, 12 ), $url ) : $url;
 }
 
+function make_attachment_accessible_alt( int $attachment_id ): string {
+    if ( $attachment_id <= 0 ) { return ''; }
+
+    $saved = trim( (string) get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ) );
+    if ( '' !== $saved ) { return $saved; }
+
+    $attachment = get_post( $attachment_id );
+    $parent_id  = $attachment instanceof WP_Post ? (int) $attachment->post_parent : 0;
+    if ( $parent_id > 0 && 'product' === get_post_type( $parent_id ) ) {
+        $title = get_the_title( $parent_id );
+        if ( function_exists( 'make_product_localized_meta' ) ) {
+            $title = make_product_localized_meta( $parent_id, 'title', $title );
+        }
+        $title = trim( wp_strip_all_tags( (string) $title ) );
+        if ( '' !== $title ) {
+            return sprintf(
+                make_t( '%s · vista previa del patrón digital', '%s · digital pattern preview' ),
+                $title
+            );
+        }
+    }
+
+    return make_t( 'Vista previa de patrón digital Drielo', 'Drielo digital pattern preview' );
+}
+
 function make_static_attachment_image_html( int $attachment_id, string $size = 'medium_large', string $class = '' ): string {
     if ( $attachment_id <= 0 ) { return ''; }
 
     $image = wp_get_attachment_image_src( $attachment_id, $size );
     if ( ! is_array( $image ) || empty( $image[0] ) ) { return ''; }
 
-    $alt = trim( (string) get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ) );
+    $alt = make_attachment_accessible_alt( $attachment_id );
     return sprintf(
         '<img src="%1$s" width="%2$d" height="%3$d" class="%4$s" alt="%5$s" loading="lazy" decoding="async">',
         esc_url( make_attachment_cache_busted_url( $attachment_id, $image[0] ) ),
@@ -94,7 +119,7 @@ function make_protected_single_product_image_html( string $html, int $attachment
 
     $thumb = wp_get_attachment_image_src( $attachment_id, 'thumbnail' );
     $thumb_url = is_array( $thumb ) && ! empty( $thumb[0] ) ? $thumb[0] : $image[0];
-    $alt = trim( (string) get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ) );
+    $alt = make_attachment_accessible_alt( $attachment_id );
 
     global $product;
     $classes = 'woocommerce-product-gallery__image';
