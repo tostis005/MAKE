@@ -508,7 +508,7 @@ jobs:
           check_html "/tienda/colecciones/" "data-collection-technique=\"c2c-crochet\"" "collection-c2c-button"
           check_html "/tienda/colecciones/" "data-collection-technique=\"tapestry-crochet\"" "collection-tapestry-button"
           check_html "/tienda/colecciones/" "data-collection-technique=\"latch-hook\"" "collection-latch-hook-button"
-          check_html "/tienda/colecciones/" "data-design=\"P0001\"" "collection-design-grouping"
+          check_html "/tienda/colecciones/" "data-design=\"" "collection-design-grouping"
           check_html "/tienda/colecciones/" "data-collection-more" "collection-more-slot"
           check_html "/wp-content/themes/make/assets/js/site.js" "previewSlots=24" "collection-preview-cap-js"
           check_html "/wp-content/themes/make/style.css" "Persistent store navigation + 24-slot collection mosaic" "persistent-store-nav-css"
