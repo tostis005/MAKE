@@ -471,6 +471,11 @@ jobs:
           PRODUCT_ES_ROUTE="$("${DOCKER[@]}" exec -e MAKE_PRODUCT_SAMPLE_ID="$PRODUCT_SAMPLE_ID" make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; $id=(int)getenv("MAKE_PRODUCT_SAMPLE_ID"); $u=make_product_url($id,"es"); echo parse_url($u,PHP_URL_PATH);')"
           PRODUCT_EN_ROUTE="$("${DOCKER[@]}" exec -e MAKE_PRODUCT_SAMPLE_ID="$PRODUCT_SAMPLE_ID" make-wp php -d memory_limit=768M -r 'require "/var/www/html/wp-load.php"; $id=(int)getenv("MAKE_PRODUCT_SAMPLE_ID"); $u=make_product_url($id,"en"); echo parse_url($u,PHP_URL_PATH);')"
 
+          check_html "/" "Patrones digitales de punto de cruz | Drielo" "home-seo-title-es"
+          check_html "/en/" "Digital Cross Stitch Patterns | Drielo" "home-seo-title-en"
+          check_html "/en/" "\"@type\":\"WebSite\"" "home-website-schema-en"
+          check_html "/en/" "hreflang=\"es-ES\"" "home-hreflang-en"
+
           check_html "/tienda/" "Tienda de patrones" "shop-patterns-es"
           SHOP_FIRST_PAGE="/tmp/drielo-shop-first-page.html"
           curl -fsS -o "$SHOP_FIRST_PAGE" "https://$SITE_HOST/tienda/"
