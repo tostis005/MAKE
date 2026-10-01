@@ -582,7 +582,7 @@ jobs:
           check_html "$PRODUCT_EN_ROUTE" "drielo-product-reference" "product-copy-en"
           check_html "$PRODUCT_EN_ROUTE" "Add to cart" "product-commerce-ui-en" "Añadir al carrito"
           check_html "/en/shop/" "Pattern shop" "shop-patterns-en" "make_lang="
-          check_html "/en/shop/" "Cross Stitch &amp; Craft Pattern PDFs | Drielo" "shop-seo-title-en"
+          check_html "/en/shop/" "Craft Pattern PDFs | Drielo" "shop-seo-title-en"
           check_html "/en/shop/" "\"@type\":\"CollectionPage\"" "shop-collectionpage-schema-en"
           check_html "/buscar/?s=P0001" "P0001" "search-es" "make_lang="
           check_html "/en/search/?s=P0001" "P0001" "search-en" "make_lang="
