@@ -5,6 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 require_once get_template_directory() . '/inc/sitemap.php';
 require_once get_template_directory() . '/inc/category-art.php';
 require_once get_template_directory() . '/inc/store.php';
+require_once get_template_directory() . '/inc/store-seo.php';
 require_once get_template_directory() . '/inc/store-pagination.php';
 require_once get_template_directory() . '/inc/pdf-library.php';
 require_once get_template_directory() . '/inc/editorial-crafts.php';
@@ -1082,10 +1083,28 @@ function make_editorial_head_meta(): void {
 add_action( 'wp_head', 'make_editorial_head_meta', 6 );
 
 function make_editorial_robots( array $robots ): array {
-    if ( is_search() || is_author() || is_date() || is_category() || is_tag() ) {
+    if ( is_search() || is_author() || is_date() || is_tag() ) {
+        $robots['noindex'] = true;
+        $robots['follow']  = true;
+        return $robots;
+    }
+
+    if ( is_category() ) {
+        $term = get_queried_object();
+        $managed_section = $term instanceof WP_Term && '' !== trim( (string) get_term_meta( $term->term_id, '_make_section_id', true ) );
+        if ( ! $managed_section ) {
+            $robots['noindex'] = true;
+            $robots['follow']  = true;
+        } else {
+            unset( $robots['noindex'] );
+        }
+    }
+
+    if ( is_tax( 'product_tag' ) ) {
         $robots['noindex'] = true;
         $robots['follow']  = true;
     }
+
     return $robots;
 }
 add_filter( 'wp_robots', 'make_editorial_robots', 20 );
