@@ -1,0 +1,70 @@
+name: Install Christmas First Preview Assets
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tmp-install-christmas-first-preview.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download approved N0001 preview assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p content/products/assets content/products/files content/pattern-system/christmas/generated
+          curl -L --fail --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-4438-820e-8f6c-0a511adea71e/raw?se=2026-10-03T21%3A51%3A57Z&sp=r&sv=2026-02-06&sr=b&scid=524e98b1-822f-5196-b5d3-620f2ea0b4d8&skoid=bdd24bd8-9af5-4138-bfb1-19fba97a8611&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-03T11%3A30%3A18Z&ske=2026-10-04T11%3A30%3A18Z&sks=b&skv=2026-02-06&sig=os2WPnTwIEbRzFfgeAicK40BTzzhVV5sgJujj4BLdHU%3D' -o content/products/assets/N0001-CS-product.webp
+          curl -L --fail --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-1384-820e-b55f-2898172cf15f/raw?se=2026-10-03T21%3A51%3A58Z&sp=r&sv=2026-02-06&sr=b&scid=6513da6e-6e58-5140-8a8f-a0a9fba08852&skoid=bdd24bd8-9af5-4138-bfb1-19fba97a8611&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-03T13%3A27%3A41Z&ske=2026-10-04T13%3A27%3A41Z&sks=b&skv=2026-02-06&sig=ID0y5elQjwZZq%2BFbBq38uTBEBo7kXPCdnKdspxuUWnA%3D' -o content/products/files/Drielo_N0001-CS.pdf
+          curl -L --fail --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-60e0-820e-84e0-211fccd380f6/raw?se=2026-10-03T21%3A51%3A59Z&sp=r&sv=2026-02-06&sr=b&scid=91aa410c-2aa2-5d80-af82-f18b3bc3cee8&skoid=bdd24bd8-9af5-4138-bfb1-19fba97a8611&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-03T11%3A30%3A17Z&ske=2026-10-04T11%3A30%3A17Z&sks=b&skv=2026-02-06&sig=64JKAJ3JwViFn2XGqMjk/HF0reD/YZHxpysu6IkwFP0%3D' -o content/pattern-system/christmas/generated/N0001-christmas-tree-100x120.png
+
+      - name: Verify exact files
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo 'edd47d7fc765c424712e601d0456105f1cc772f0c080ce5c4f6bb97c36158ed3  content/products/assets/N0001-CS-product.webp' | sha256sum -c -
+          echo '4619a1680a83364203e726900d4dc8bc3d08ea5466032b1da977797b46a08bf4  content/products/files/Drielo_N0001-CS.pdf' | sha256sum -c -
+          echo '887ba2e6342238bd4b4fba2e716b2c0b54eee891849efbfdd97ede173a2ef3ab  content/pattern-system/christmas/generated/N0001-christmas-tree-100x120.png' | sha256sum -c -
+          python3 -m pip install --disable-pip-version-check --quiet Pillow
+          python3 - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          with Image.open('content/products/assets/N0001-CS-product.webp') as im:
+              assert im.size == (1536,1536), im.size
+          with Image.open('content/pattern-system/christmas/generated/N0001-christmas-tree-100x120.png') as im:
+              assert im.size == (100,120), im.size
+          pdf=Path('content/products/files/Drielo_N0001-CS.pdf')
+          assert pdf.read_bytes()[:4] == b'%PDF'
+          print('ASSETS_VALID hero=1536x1536 padded=100x120 pdf=one-page-source')
+          PY
+
+      - name: Add first Christmas product to catalogue
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/christmas/install_first_catalog.py
+
+      - name: Commit product for WooCommerce importer
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/products/assets/N0001-CS-product.webp
+          git add content/products/files/Drielo_N0001-CS.pdf
+          git add content/products/catalog.json
+          git add content/pattern-system/christmas/generated/N0001-christmas-tree-100x120.png
+          if git diff --cached --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "Add first Christmas WooCommerce preview"
+            git push origin HEAD:main
+          fi
