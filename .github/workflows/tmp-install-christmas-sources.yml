@@ -45,23 +45,23 @@ jobs:
         run: |
           set -euo pipefail
           cat > /tmp/christmas.sha256 <<'EOF'
-d2d479e67ec39584f389b2dc0c1f4b99d7fed58e9448a259912adb7c09564b17  content/source-images/collections/christmas/background/christmas-collection-background.png
-c35cd77d1b148ca6021f19a21bea1092667fd522308c33e43cfe80b34875bf88  content/source-images/collections/christmas/products/N0001-christmas-tree.png
-47d5b8ddf10142f5328d1eedfc671c6af471ae5c0be7519dc87c16a316a4c865  content/source-images/collections/christmas/products/N0002-snowman.png
-23117ecd868c2316b013a335d89586479410d5f901f7857052399dfe5f727ed0  content/source-images/collections/christmas/products/N0003-santa-face.png
-146b0a265db8e05bbfb45e7afe9353029b7d3d23bc5b1a9e04d63f18c2f0ebba  content/source-images/collections/christmas/products/N0004-reindeer.png
-00870d3413b6e3bc7282cf0791186a7b2f410c8c9b27ca00ab34a90faf99605b  content/source-images/collections/christmas/products/N0005-christmas-stocking.png
-6d10c278abbbe17000872b095165c0ab4fa1e43b2424e6fe667dedacb82c364a  content/source-images/collections/christmas/products/N0006-gingerbread-house.png
-516e1c73455959a02409885a7b71c2273adbd4830c1f07e9093b02d71f576276  content/source-images/collections/christmas/products/N0007-christmas-wreath.png
-912ffb0be13b0446248b4c5ffbf29b71fa2e5a31dedd4ceca95e6a756cabc004  content/source-images/collections/christmas/products/N0008-candy-cane-mug.png
-b4cb2cf0d26a33cef8ff8bf7f81225cfe3dee4eb4bf0f8e59e37264c5d3dc717  content/source-images/collections/christmas/products/N0009-nutcracker.png
-0c36a05bc99b6f7f46c5476cd05ab5f954096bdcdcf3095630d9da55660be825  content/source-images/collections/christmas/products/N0010-ornament-bauble.png
-206909216d1d649a12c42582c3580fa420e7dd8ef01732cbab5b0c01d0ac528d  content/source-images/collections/christmas/products/N0011-christmas-gnome.png
-39fae0ad57ca5a4242d6eda8e5f547d1d1751e3914d57f62dcb5dfa991ea83e6  content/source-images/collections/christmas/products/N0012-poinsettia.png
-24cbfc5f17e36e34a811ed32bf6e3a9b1e772fbc68dc784d0f8ef66f3c89c03c  content/source-images/collections/christmas/products/N0013-robin-on-holly.png
-4955d68d0488ba83fa278fe41042013ccce4aeda63f08f259b8b416c85b4360d  content/source-images/collections/christmas/products/N0014-polar-bear-with-scarf.png
-58def6e650e1caaad3659c897987c08792b60822336674e87aabbbba5d596aa7  content/source-images/collections/christmas/products/N0015-holiday-church.png
-EOF
+          d2d479e67ec39584f389b2dc0c1f4b99d7fed58e9448a259912adb7c09564b17  content/source-images/collections/christmas/background/christmas-collection-background.png
+          c35cd77d1b148ca6021f19a21bea1092667fd522308c33e43cfe80b34875bf88  content/source-images/collections/christmas/products/N0001-christmas-tree.png
+          47d5b8ddf10142f5328d1eedfc671c6af471ae5c0be7519dc87c16a316a4c865  content/source-images/collections/christmas/products/N0002-snowman.png
+          23117ecd868c2316b013a335d89586479410d5f901f7857052399dfe5f727ed0  content/source-images/collections/christmas/products/N0003-santa-face.png
+          146b0a265db8e05bbfb45e7afe9353029b7d3d23bc5b1a9e04d63f18c2f0ebba  content/source-images/collections/christmas/products/N0004-reindeer.png
+          00870d3413b6e3bc7282cf0791186a7b2f410c8c9b27ca00ab34a90faf99605b  content/source-images/collections/christmas/products/N0005-christmas-stocking.png
+          6d10c278abbbe17000872b095165c0ab4fa1e43b2424e6fe667dedacb82c364a  content/source-images/collections/christmas/products/N0006-gingerbread-house.png
+          516e1c73455959a02409885a7b71c2273adbd4830c1f07e9093b02d71f576276  content/source-images/collections/christmas/products/N0007-christmas-wreath.png
+          912ffb0be13b0446248b4c5ffbf29b71fa2e5a31dedd4ceca95e6a756cabc004  content/source-images/collections/christmas/products/N0008-candy-cane-mug.png
+          b4cb2cf0d26a33cef8ff8bf7f81225cfe3dee4eb4bf0f8e59e37264c5d3dc717  content/source-images/collections/christmas/products/N0009-nutcracker.png
+          0c36a05bc99b6f7f46c5476cd05ab5f954096bdcdcf3095630d9da55660be825  content/source-images/collections/christmas/products/N0010-ornament-bauble.png
+          206909216d1d649a12c42582c3580fa420e7dd8ef01732cbab5b0c01d0ac528d  content/source-images/collections/christmas/products/N0011-christmas-gnome.png
+          39fae0ad57ca5a4242d6eda8e5f547d1d1751e3914d57f62dcb5dfa991ea83e6  content/source-images/collections/christmas/products/N0012-poinsettia.png
+          24cbfc5f17e36e34a811ed32bf6e3a9b1e772fbc68dc784d0f8ef66f3c89c03c  content/source-images/collections/christmas/products/N0013-robin-on-holly.png
+          4955d68d0488ba83fa278fe41042013ccce4aeda63f08f259b8b416c85b4360d  content/source-images/collections/christmas/products/N0014-polar-bear-with-scarf.png
+          58def6e650e1caaad3659c897987c08792b60822336674e87aabbbba5d596aa7  content/source-images/collections/christmas/products/N0015-holiday-church.png
+          EOF
           sha256sum -c /tmp/christmas.sha256
 
       - name: Verify PNG dimensions
