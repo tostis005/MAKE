@@ -35,57 +35,51 @@ def getfont(size,bold=False):
     return ImageFont.load_default()
 
 def clean_mask(src):
-    px=src.load(); w,h=src.size
-    greens={(45,75,51),(55,91,60),(109,134,75),(116,151,117)}
-    reds={(154,13,16),(161,4,7),(204,87,82),(246,168,152)}
-    gold={(202,139,51)}
-    browns={(41,21,14),(73,38,20),(124,69,38),(164,99,57)}
-    lights={(238,232,220),(245,237,226),(228,198,165),(226,185,147),(161,159,160),(155,156,151)}
+    """Pixel-by-pixel background separation.
 
-    def bounds(y):
-        if y<=8: return 20,30
-        if y<=15:
-            t=(y-9)/6; return round(19-2*t),round(31+2*t)
-        if y<=25:
-            t=(y-16)/9; return round(16-5*t),round(34+5*t)
-        if y<=38:
-            t=(y-26)/12; return round(11-7*t),round(39+7*t)
-        return 3,47
+    Background is detected only from exact palette colours that actually touch
+    the outer border of the 50x60 source. A 4-neighbour flood fill marks only
+    border-connected pixels of those exact colours as blank. Every other pixel
+    is preserved 1:1 as a stitch. No shape mask, no silhouette heuristic and no
+    colour approximation is used for deciding whether a source pixel is stitched.
+    """
+    from collections import deque
+    px=src.load()
+    w,h=src.size
 
-    allowed=[[False]*w for _ in range(h)]
+    border_colours=set()
+    for x in range(w):
+        border_colours.add(px[x,0])
+        border_colours.add(px[x,h-1])
     for y in range(h):
-        a,b=bounds(y)
-        for x in range(max(0,a),min(w,b+1)): allowed[y][x]=True
+        border_colours.add(px[0,y])
+        border_colours.add(px[w-1,y])
 
-    mask=[[False]*w for _ in range(h)]
+    blank=[[False]*w for _ in range(h)]
+    q=deque()
+
+    def seed(x,y):
+        if not blank[y][x] and px[x,y] in border_colours:
+            blank[y][x]=True
+            q.append((x,y))
+
+    for x in range(w):
+        seed(x,0)
+        seed(x,h-1)
     for y in range(h):
-        for x in range(w):
-            c=px[x,y]
-            mask[y][x]=allowed[y][x] and (c in greens or c in reds or c in gold)
+        seed(0,y)
+        seed(w-1,y)
 
-    def neighbours(x,y,m):
-        n=0
-        for dy in (-1,0,1):
-            for dx in (-1,0,1):
-                if not (dx or dy): continue
-                xx,yy=x+dx,y+dy
-                if 0<=xx<w and 0<=yy<h and m[yy][xx]: n+=1
-        return n
+    while q:
+        x,y=q.popleft()
+        for dx,dy in ((1,0),(-1,0),(0,1),(0,-1)):
+            nx,ny=x+dx,y+dy
+            if 0<=nx<w and 0<=ny<h and not blank[ny][nx] and px[nx,ny] in border_colours:
+                blank[ny][nx]=True
+                q.append((nx,ny))
 
-    for _ in range(3):
-        new=[r[:] for r in mask]
-        for y in range(h):
-            for x in range(w):
-                if not mask[y][x] and allowed[y][x] and px[x,y] in browns and neighbours(x,y,mask)>=1:
-                    new[y][x]=True
-        mask=new
-
-    new=[r[:] for r in mask]
-    for y in range(h):
-        for x in range(w):
-            if not mask[y][x] and allowed[y][x] and px[x,y] in lights and neighbours(x,y,mask)>=4:
-                new[y][x]=True
-    return new
+    # True means: one exact source pixel -> one cross stitch.
+    return [[not blank[y][x] for x in range(w)] for y in range(h)]
 
 def dmc_rows():
     out=[]; seen=set()
@@ -200,10 +194,10 @@ row['stitches']=total; row['colours']=len(threads); row['color_count']=len(threa
 row['grid']='100 x 120 stitches'; row['grid_width']=100; row['grid_height']=120
 row['motif_width']=50; row['motif_height']=60
 row['short_description_en']=row['short_description']=(
-    f'Mini Christmas tree cross-stitch PDF. A cleaned 50 x 60 motif area is centered on a 100 x 120 chart, '
+    f'Mini Christmas tree cross-stitch PDF. The 50 x 60 source is converted pixel by pixel and centered on a 100 x 120 chart, '
     f'leaving genuine blank Aida around and through the design. {total:,} stitched cells and {len(threads)} colours.')
 row['short_description_es']=(
-    f'Mini patrón PDF de árbol de Navidad. El motivo limpio de 50 x 60 está centrado en una cuadrícula de 100 x 120, '
+    f'Mini patrón PDF de árbol de Navidad. La fuente de 50 x 60 se convierte píxel a píxel y se centra en una cuadrícula de 100 x 120, '
     f'dejando Aida realmente en blanco alrededor y dentro del diseño. {total:,} puntadas y {len(threads)} colores.')
 row['gallery']=[]
 coll=next(c for c in cat['collections'] if c.get('slug')=='christmas')
