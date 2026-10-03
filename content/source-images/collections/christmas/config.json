@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "collection_id": "christmas",
+  "product_size_px": [50, 60],
+  "product_format": "png",
+  "background_mode": "single",
+  "background_directory": "background",
+  "product_directory": "products",
+  "filename_examples": ["N0001-christmas-tree.png"],
+  "legacy_background_fallbacks": [],
+  "notes": "Christmas Minis source set: 15 approved 50x60 PNG designs using one shared palette of at most 20 RGB colors. Background is the approved 1536x1536 Christmas mockup with the protected frame/canvas geometry preserved."
+}

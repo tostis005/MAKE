@@ -24,6 +24,11 @@
       "id": "animals",
       "config": "animals/config.json",
       "catalogued": false
+    },
+    {
+      "id": "christmas",
+      "config": "christmas/config.json",
+      "catalogued": false
     }
   ]
 }
