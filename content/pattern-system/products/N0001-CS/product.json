@@ -1,0 +1,16 @@
+{
+  "code": "N0001-CS",
+  "base_design_id": "N0001",
+  "technique_code": "CS",
+  "collection": "christmas",
+  "title": "Christmas Tree Mini Cross Stitch Pattern PDF",
+  "title_en": "Christmas Tree Mini Cross Stitch Pattern PDF",
+  "title_es": "Patrón Mini de Árbol de Navidad en Punto de Cruz PDF",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/N0001-CS/pattern.json",
+  "template": "single-page-100x120-centered-mini",
+  "status": "active",
+  "render_ready": true,
+  "source_artwork": "source-images/collections/christmas/products/N0001-christmas-tree.png",
+  "page_1_asset": "source-images/collections/christmas/background/christmas-collection-background.png"
+}

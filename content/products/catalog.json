@@ -204,6 +204,67 @@
       ],
       "visible": true,
       "force_visibility_sync": true
+    },
+    {
+      "id": "christmas",
+      "slug": "christmas",
+      "name": "Christmas",
+      "name_en": "Christmas",
+      "name_es": "Navidad",
+      "description": "Mini Christmas cross-stitch patterns designed as quick, beginner-friendly seasonal projects.",
+      "description_en": "Mini Christmas cross-stitch patterns designed as quick, beginner-friendly seasonal projects.",
+      "description_es": "Mini patrones navideños de punto de cruz pensados como proyectos rápidos y aptos para principiantes.",
+      "techniques": [
+        "cross-stitch"
+      ],
+      "cover_asset": "assets/N0001-CS-product.webp",
+      "visible": true,
+      "force_visibility_sync": true,
+      "palette_mode": "shared",
+      "show_collection_palette": true,
+      "palette_hex": [
+        "#F5EDE2",
+        "#E4C6A5",
+        "#E2B993",
+        "#A46339",
+        "#7C4526",
+        "#492614",
+        "#29150E",
+        "#F6A898",
+        "#A10407",
+        "#CC5752",
+        "#9A0D10",
+        "#2D4B33",
+        "#375B3C",
+        "#6D864B",
+        "#749775",
+        "#CA8B33",
+        "#7890A4",
+        "#EEE8DC",
+        "#A19FA0",
+        "#9B9C97"
+      ],
+      "thread_codes": [
+        "Ecru",
+        "3770",
+        "613",
+        "647",
+        "437",
+        "647",
+        "783",
+        "433",
+        "434",
+        "3363",
+        "3371",
+        "986",
+        "986",
+        "3052",
+        "898",
+        "3830",
+        "3341",
+        "816",
+        "816"
+      ]
     }
   ],
   "categories": [
@@ -318,6 +379,13 @@
       "parent": "latch-hook-rug-patterns",
       "name_en": "Baby & Nursery",
       "name_es": "Bebé e Infantil"
+    },
+    {
+      "slug": "cross-stitch-christmas",
+      "name": "Christmas Cross Stitch",
+      "name_en": "Christmas Cross Stitch",
+      "name_es": "Punto de cruz de Navidad",
+      "parent": "cross-stitch-patterns"
     }
   ],
   "products": [
@@ -18809,6 +18877,109 @@
           "multicolor"
         ],
         "season": []
+      }
+    },
+    {
+      "code": "N0001-CS",
+      "sku": "DRIELO-N0001-CS",
+      "price": 2.99,
+      "categories": [
+        "cross-stitch-patterns",
+        "cross-stitch-christmas"
+      ],
+      "purchase_note_en": "Your digital PDF will be available from the order confirmation and My Account > Downloads after payment is complete.",
+      "purchase_note_es": "Tu PDF digital estará disponible desde la confirmación del pedido y en Mi cuenta > Descargas una vez completado el pago.",
+      "title": "Christmas Tree Mini Cross Stitch Pattern PDF",
+      "title_en": "Christmas Tree Mini Cross Stitch Pattern PDF",
+      "title_es": "Patrón Mini de Árbol de Navidad en Punto de Cruz PDF",
+      "slug": "christmas-tree-mini-cross-stitch-pattern",
+      "collection": "christmas",
+      "stitches": 3000,
+      "grid": "100 × 120 stitches",
+      "colours": 19,
+      "color_count": 19,
+      "grid_width": 100,
+      "grid_height": 120,
+      "motif_width": 50,
+      "motif_height": 60,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Full cross stitch",
+      "stitch_type_en": "Full cross stitch",
+      "stitch_type_es": "Punto de cruz completo",
+      "short_description": "Mini Christmas tree cross-stitch PDF. A 50 × 60 full-coverage motif is centered on a 100 × 120 chart, leaving generous blank canvas around it. 3,000 stitches and 19 colours.",
+      "short_description_en": "Mini Christmas tree cross-stitch PDF. A 50 × 60 full-coverage motif is centered on a 100 × 120 chart, leaving generous blank canvas around it. 3,000 stitches and 19 colours.",
+      "short_description_es": "Mini patrón PDF de árbol de Navidad. El motivo de 50 × 60 queda centrado en una cuadrícula de 100 × 120, dejando bastante lienzo en blanco alrededor. 3,000 puntadas y 19 colores.",
+      "description": "<p><strong>Christmas Tree Mini Cross Stitch Pattern PDF</strong> is a digital counted cross-stitch pattern from the Christmas Minis collection.</p><p>The artwork itself is 50 × 60 stitches and is centered inside a 100 × 120 chart. The extra area stays blank, so the storefront mockup keeps the same physical scale as Drielo's existing 100 × 120 patterns.</p><h3>Pattern details</h3><ul><li>Code: N0001-CS</li><li>Chart: 100 × 120 stitches</li><li>Stitched motif: 50 × 60 stitches</li><li>Total stitched cells: 3,000</li><li>Colours: 19</li><li>PDF: 1 page</li><li>Skill level: Beginner friendly</li></ul><p>Digital product only.</p>",
+      "description_en": "<p><strong>Christmas Tree Mini Cross Stitch Pattern PDF</strong> is a digital counted cross-stitch pattern from the Christmas Minis collection.</p><p>The artwork itself is 50 × 60 stitches and is centered inside a 100 × 120 chart. The extra area stays blank, so the storefront mockup keeps the same physical scale as Drielo's existing 100 × 120 patterns.</p><h3>Pattern details</h3><ul><li>Code: N0001-CS</li><li>Chart: 100 × 120 stitches</li><li>Stitched motif: 50 × 60 stitches</li><li>Total stitched cells: 3,000</li><li>Colours: 19</li><li>PDF: 1 page</li><li>Skill level: Beginner friendly</li></ul><p>Digital product only.</p>",
+      "description_es": "<p><strong>Patrón Mini de Árbol de Navidad en Punto de Cruz PDF</strong> es un patrón digital contado de la colección Christmas Minis.</p><p>El dibujo ocupa 50 × 60 puntos y está centrado dentro de una cuadrícula de 100 × 120. La zona adicional queda en blanco para conservar en el mockup la misma escala física que los patrones Drielo de 100 × 120.</p><h3>Detalles</h3><ul><li>Código: N0001-CS</li><li>Cuadrícula: 100 × 120</li><li>Motivo bordado: 50 × 60</li><li>Puntadas: 3,000</li><li>Colores: 19</li><li>PDF: 1 página</li><li>Nivel: apto para principiantes</li></ul><p>Producto exclusivamente digital.</p>",
+      "gallery": [],
+      "download": "files/Drielo_N0001-CS.pdf",
+      "featured_image": "assets/N0001-CS-product.webp",
+      "seo_title": "Christmas Tree Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_en": "Christmas Tree Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_es": "Patrón Mini de Árbol de Navidad en Punto de Cruz PDF | Drielo",
+      "meta_description": "Mini Christmas tree cross-stitch PDF. A 50 × 60 full-coverage motif is centered on a 100 × 120 chart, leaving generous blank canvas around it. 3,000 stitch",
+      "meta_description_en": "Mini Christmas tree cross-stitch PDF. A 50 × 60 full-coverage motif is centered on a 100 × 120 chart, leaving generous blank canvas around it. 3,000 stitch",
+      "meta_description_es": "Mini patrón PDF de árbol de Navidad. El motivo de 50 × 60 queda centrado en una cuadrícula de 100 × 120, dejando bastante lienzo en blanco alrededor. 3,000",
+      "tags": [
+        "christmas tree",
+        "christmas cross stitch",
+        "mini cross stitch",
+        "cross stitch pdf",
+        "counted cross stitch",
+        "digital pattern"
+      ],
+      "etsy_tags_en": [
+        "christmas tree",
+        "christmas cross stitch",
+        "mini cross stitch",
+        "cross stitch pdf",
+        "counted cross stitch",
+        "digital pattern"
+      ],
+      "etsy_tags_es": [
+        "árbol de navidad",
+        "punto de cruz navidad",
+        "mini punto de cruz",
+        "patrón pdf",
+        "punto de cruz",
+        "patrón digital"
+      ],
+      "design_id": "N0001-CS",
+      "base_design_id": "N0001",
+      "technique_code": "CS",
+      "technique": "cross-stitch",
+      "size_attribute_label": "Pattern size",
+      "colour_attribute_label": "Colours",
+      "type_attribute_label": "Technique",
+      "count_attribute_label": "Total stitches",
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "holidays-seasons"
+        ],
+        "style": [
+          "cute"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "multicolor"
+        ],
+        "season": [
+          "christmas"
+        ]
       }
     }
   ],
