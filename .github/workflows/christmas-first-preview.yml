@@ -1,0 +1,240 @@
+name: Christmas First WooCommerce Preview
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/christmas-first-preview.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-christmas-first-preview
+  cancel-in-progress: false
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install renderer dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow
+
+      - name: Build N0001 50x60 motif on 100x120 canvas
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/christmas/build_first_preview.py
+
+      - name: Validate generated preview bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+
+          root=Path('.')
+          pat=json.loads((root/'content/pattern-system/patterns/N0001-CS/pattern.json').read_text(encoding='utf-8'))
+          if (pat.get('stitch_width'),pat.get('stitch_height')) != (100,120):
+              raise SystemExit('Expected virtual grid 100x120')
+          if (pat.get('source_motif_width'),pat.get('source_motif_height')) != (50,60):
+              raise SystemExit('Expected source motif 50x60')
+          if pat.get('motif_offset') != {'x':25,'y':30}:
+              raise SystemExit(f"Wrong centering offset: {pat.get('motif_offset')}")
+          if pat.get('total_stitches') != 3000:
+              raise SystemExit(f"Expected 3000 stitched cells, got {pat.get('total_stitches')}")
+          if len(pat.get('threads',[])) > 20:
+              raise SystemExit('More than 20 colours')
+          matrix=pat.get('matrix',[])
+          if len(matrix)!=120 or any(len(r)!=100 for r in matrix):
+              raise SystemExit('Malformed 100x120 matrix')
+          for y,row in enumerate(matrix):
+              for x,v in enumerate(row):
+                  inside=(25 <= x < 75 and 30 <= y < 90)
+                  if inside and v is None:
+                      raise SystemExit(f'Missing stitched cell at {x},{y}')
+                  if not inside and v is not None:
+                      raise SystemExit(f'Unexpected stitch outside centered motif at {x},{y}')
+
+          hero=root/'content/products/assets/N0001-CS-product.webp'
+          with Image.open(hero) as im:
+              if im.size != (1536,1536):
+                  raise SystemExit(f'Hero must be 1536x1536, got {im.size}')
+
+          pdf=root/'content/products/files/Drielo_N0001-CS.pdf'
+          if not pdf.is_file() or pdf.stat().st_size < 1000 or pdf.read_bytes()[:4] != b'%PDF':
+              raise SystemExit('Invalid one-page PDF')
+
+          print('CHRISTMAS_N0001_VALID',
+                'grid=100x120',
+                'motif=50x60',
+                'offset=25,30',
+                'stitches=3000',
+                'colours='+str(len(pat['threads'])),
+                'hero=1536x1536')
+          PY
+
+      - name: Build one-product WooCommerce package
+        shell: bash
+        run: |
+          set -euo pipefail
+          CODE="N0001-CS"
+          STAGE="/tmp/drielo-$CODE"
+          rm -rf "$STAGE"
+          mkdir -p "$STAGE/content/products/assets" "$STAGE/content/products/files" "$STAGE/content/tools"
+
+          python3 - "$CODE" "$STAGE" <<'PY'
+          import json,sys
+          from pathlib import Path
+
+          code=sys.argv[1]
+          stage=Path(sys.argv[2])
+          src=json.loads(Path('content/products/catalog.json').read_text(encoding='utf-8'))
+          row=next(p for p in src['products'] if p.get('code')==code)
+          collection=next(c for c in src['collections'] if c.get('slug')=='christmas')
+          wanted={'cross-stitch-patterns','cross-stitch-christmas'}
+          cats=[c for c in src.get('categories',[]) if c.get('slug') in wanted]
+
+          slugs={c.get('slug') for c in cats}
+          if 'cross-stitch-patterns' not in slugs:
+              cats.insert(0,{
+                  'slug':'cross-stitch-patterns',
+                  'name':'Cross Stitch Patterns',
+                  'name_en':'Cross Stitch Patterns',
+                  'name_es':'Patrones de punto de cruz',
+              })
+
+          out=dict(src)
+          out['products']=[row]
+          out['collections']=[collection]
+          out['categories']=cats
+          out['retired_products']=[]
+          out['retired_collections']=[]
+          (stage/'content/products/catalog.json').write_text(
+              json.dumps(out,ensure_ascii=False,indent=2)+'\n',
+              encoding='utf-8'
+          )
+          PY
+
+          cp "content/products/assets/$CODE-product.webp" "$STAGE/content/products/assets/"
+          cp "content/products/files/Drielo_$CODE.pdf" "$STAGE/content/products/files/"
+          cp content/tools/import-products.php "$STAGE/content/tools/"
+          tar -czf "/tmp/drielo-$CODE.tgz" -C "$STAGE" content
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_products_key
+          chmod 600 ~/.ssh/drielo_products_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Upload package
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          scp -i ~/.ssh/drielo_products_key /tmp/drielo-N0001-CS.tgz "$VPS_USER@$VPS_HOST:/tmp/drielo-N0001-CS-$GITHUB_RUN_ID.tgz"
+
+      - name: Publish N0001-CS to WooCommerce and verify
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/drielo_products_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='$GITHUB_RUN_ID' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-N0001-CS-$GITHUB_RUN_ID.tgz"
+          STAGE="/tmp/drielo-N0001-CS-$GITHUB_RUN_ID"
+          cleanup(){ rm -rf "$ARCHIVE" "$STAGE"; }
+          trap cleanup EXIT
+
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $sku="DRIELO-N0001-CS";
+            $id=wc_get_product_id_by_sku($sku);
+            $p=$id?wc_get_product($id):false;
+            if(!$p){fwrite(STDERR,"Missing ".$sku.PHP_EOL);exit(2);}
+            $cols=wp_get_object_terms($id,"product_collection",array("fields"=>"slugs"));
+            $cats=wp_get_object_terms($id,"product_cat",array("fields"=>"slugs"));
+            $downloads=$p->get_downloads();
+            echo $sku." id=".$id
+              ." status=".$p->get_status()
+              ." image=".$p->get_image_id()
+              ." downloads=".count($downloads)
+              ." virtual=".($p->is_virtual()?"yes":"no")
+              ." downloadable=".($p->is_downloadable()?"yes":"no")
+              ." collection=".implode(",",is_wp_error($cols)?array():$cols)
+              ." categories=".implode(",",is_wp_error($cats)?array():$cats)
+              ." url=".get_permalink($id).PHP_EOL;
+            if($p->get_status()!=="publish" || !$p->get_image_id() || count($downloads)<1 || !$p->is_virtual() || !$p->is_downloadable()){
+              fwrite(STDERR,"Incomplete product".PHP_EOL);exit(3);
+            }
+            if(!in_array("christmas",is_wp_error($cols)?array():$cols,true)){
+              fwrite(STDERR,"Wrong collection".PHP_EOL);exit(4);
+            }
+            $catlist=is_wp_error($cats)?array():$cats;
+            if(!in_array("cross-stitch-patterns",$catlist,true) || !in_array("cross-stitch-christmas",$catlist,true)){
+              fwrite(STDERR,"Missing Christmas cross-stitch categories".PHP_EOL);exit(5);
+            }
+          '
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
+          REMOTE
+
+      - name: Commit generated Christmas preview assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            content/pattern-system/patterns/N0001-CS/pattern.json \
+            content/pattern-system/products/N0001-CS/product.json \
+            content/products/assets/N0001-CS-product.webp \
+            content/products/files/Drielo_N0001-CS.pdf \
+            content/products/catalog.json
+          if git diff --cached --quiet; then
+            echo "Nothing new to commit."
+          else
+            git commit -m "Publish Christmas N0001 WooCommerce preview [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
