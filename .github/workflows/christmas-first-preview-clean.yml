@@ -1,4 +1,4 @@
-name: Fix Christmas First WooCommerce Preview
+name: Fix Christmas First WooCommerce Preview Pixel Exact
 
 on:
   push:
@@ -46,14 +46,46 @@ jobs:
           assert pat['motif_offset']=={'x':25,'y':30}
           assert (pat['source_motif_width'],pat['source_motif_height'])==(50,60)
           total=pat['total_stitches']
-          assert 1000 < total < 2200, total
           matrix=pat['matrix']
           assert sum(v is not None for row in matrix for v in row)==total
           outer=[matrix[y][x] for y in range(120) for x in range(100)
                  if not (25<=x<75 and 30<=y<90)]
           assert all(v is None for v in outer)
-          inner=[matrix[y][x] for y in range(30,90) for x in range(25,75)]
-          assert any(v is None for v in inner), 'The 50x60 source background is still being stitched'
+
+          # Recompute the exact pixel-by-pixel rule from the 50x60 source:
+          # only exact border-connected background pixels are blank; every
+          # other source pixel must map to exactly one stitch at +25,+30.
+          from collections import deque
+          src=Image.open('content/source-images/collections/christmas/products/N0001-christmas-tree.png').convert('RGB')
+          px=src.load(); w,h=src.size
+          bg=set()
+          for x in range(w):
+              bg.add(px[x,0]); bg.add(px[x,h-1])
+          for y in range(h):
+              bg.add(px[0,y]); bg.add(px[w-1,y])
+          blank=[[False]*w for _ in range(h)]
+          q=deque()
+          def seed(x,y):
+              if not blank[y][x] and px[x,y] in bg:
+                  blank[y][x]=True; q.append((x,y))
+          for x in range(w):
+              seed(x,0); seed(x,h-1)
+          for y in range(h):
+              seed(0,y); seed(w-1,y)
+          while q:
+              x,y=q.popleft()
+              for dx,dy in ((1,0),(-1,0),(0,1),(0,-1)):
+                  xx,yy=x+dx,y+dy
+                  if 0<=xx<w and 0<=yy<h and not blank[yy][xx] and px[xx,yy] in bg:
+                      blank[yy][xx]=True; q.append((xx,yy))
+          expected=0
+          for sy in range(h):
+              for sx in range(w):
+                  should_stitch=not blank[sy][sx]
+                  actual=matrix[30+sy][25+sx] is not None
+                  assert actual==should_stitch, (sx,sy,actual,should_stitch)
+                  expected += int(should_stitch)
+          assert total==expected, (total,expected)
           with Image.open('content/products/assets/N0001-CS-product.webp') as im:
               assert im.size==(1536,1536),im.size
           pdf=Path('content/products/files/Drielo_N0001-CS.pdf')
