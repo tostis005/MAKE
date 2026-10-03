@@ -1,0 +1,153 @@
+name: Fix Christmas First WooCommerce Preview
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/christmas-first-preview-clean.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-christmas-first-preview-clean
+  cancel-in-progress: false
+
+jobs:
+  fix-and-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build cleaned N0001 preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow
+          python3 content/pattern-system/christmas/fix_first_preview_clean.py
+
+      - name: Validate blank-Aida result
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+          pat=json.loads(Path('content/pattern-system/patterns/N0001-CS/pattern.json').read_text())
+          assert (pat['stitch_width'],pat['stitch_height'])==(100,120)
+          assert pat['motif_offset']=={'x':25,'y':30}
+          assert (pat['source_motif_width'],pat['source_motif_height'])==(50,60)
+          total=pat['total_stitches']
+          assert 1000 < total < 2200, total
+          matrix=pat['matrix']
+          assert sum(v is not None for row in matrix for v in row)==total
+          outer=[matrix[y][x] for y in range(120) for x in range(100)
+                 if not (25<=x<75 and 30<=y<90)]
+          assert all(v is None for v in outer)
+          inner=[matrix[y][x] for y in range(30,90) for x in range(25,75)]
+          assert any(v is None for v in inner), 'The 50x60 source background is still being stitched'
+          with Image.open('content/products/assets/N0001-CS-product.webp') as im:
+              assert im.size==(1536,1536),im.size
+          pdf=Path('content/products/files/Drielo_N0001-CS.pdf')
+          assert pdf.is_file() and pdf.read_bytes()[:4]==b'%PDF' and pdf.stat().st_size>1000
+          print('CLEAN_CHRISTMAS_N0001_VALID', 'stitches='+str(total), 'colours='+str(len(pat['threads'])))
+          PY
+
+      - name: Build one-product package
+        shell: bash
+        run: |
+          set -euo pipefail
+          CODE=N0001-CS
+          STAGE="/tmp/drielo-$CODE"
+          rm -rf "$STAGE"
+          mkdir -p "$STAGE/content/products/assets" "$STAGE/content/products/files" "$STAGE/content/tools"
+          python3 - "$STAGE" <<'PY'
+          import json,sys
+          from pathlib import Path
+          stage=Path(sys.argv[1])
+          src=json.loads(Path('content/products/catalog.json').read_text())
+          row=next(p for p in src['products'] if p.get('code')=='N0001-CS')
+          collection=next(c for c in src['collections'] if c.get('slug')=='christmas')
+          wanted={'cross-stitch-patterns','cross-stitch-christmas'}
+          cats=[c for c in src.get('categories',[]) if c.get('slug') in wanted]
+          out=dict(src)
+          out['products']=[row]
+          out['collections']=[collection]
+          out['categories']=cats
+          out['retired_products']=[]
+          out['retired_collections']=[]
+          (stage/'content/products/catalog.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
+          PY
+          cp content/products/assets/N0001-CS-product.webp "$STAGE/content/products/assets/"
+          cp content/products/files/Drielo_N0001-CS.pdf "$STAGE/content/products/files/"
+          cp content/tools/import-products.php "$STAGE/content/tools/"
+          tar -czf /tmp/drielo-N0001-CS-clean.tgz -C "$STAGE" content
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_products_key
+          chmod 600 ~/.ssh/drielo_products_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Upload and publish corrected product
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          scp -i ~/.ssh/drielo_products_key /tmp/drielo-N0001-CS-clean.tgz "$VPS_USER@$VPS_HOST:/tmp/drielo-N0001-CS-clean-$GITHUB_RUN_ID.tgz"
+          ssh -i ~/.ssh/drielo_products_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='$GITHUB_RUN_ID' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-N0001-CS-clean-$GITHUB_RUN_ID.tgz"
+          STAGE="/tmp/drielo-N0001-CS-clean-$GITHUB_RUN_ID"
+          trap 'rm -rf "$ARCHIVE" "$STAGE"' EXIT
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
+          "${DOCKER[@]}" exec make-wp php -r '
+            require "/var/www/html/wp-load.php";
+            $id=wc_get_product_id_by_sku("DRIELO-N0001-CS");
+            $p=$id?wc_get_product($id):false;
+            if(!$p){fwrite(STDERR,"Missing product\n");exit(2);}
+            $cols=wp_get_object_terms($id,"product_collection",array("fields"=>"slugs"));
+            echo "CORRECTED id=".$id." status=".$p->get_status()." image=".$p->get_image_id()." downloads=".count($p->get_downloads())." collection=".implode(",",is_wp_error($cols)?array():$cols)." url=".get_permalink($id).PHP_EOL;
+            if($p->get_status()!=="publish" || !$p->get_image_id() || count($p->get_downloads())<1){exit(3);}
+          '
+          REMOTE
+
+      - name: Persist corrected assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/pattern-system/patterns/N0001-CS/pattern.json
+          git add content/pattern-system/products/N0001-CS/product.json
+          git add content/products/assets/N0001-CS-product.webp
+          git add content/products/files/Drielo_N0001-CS.pdf
+          git add content/products/catalog.json
+          if git diff --cached --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "Fix Christmas N0001 blank canvas preview [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
