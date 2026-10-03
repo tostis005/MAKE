@@ -1,0 +1,142 @@
+name: Install Christmas source assets
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tmp-install-christmas-sources.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download approved source assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p content/source-images/collections/christmas/background
+          mkdir -p content/source-images/collections/christmas/products
+          curl -L --fail --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-18f4-820e-b1c3-398a288b8395/raw?se=2026-10-03T21%3A36%3A15Z&sp=r&sv=2026-02-06&sr=b&scid=d0b64b4e-2eac-561e-80ab-dcc402c564ca&skoid=bdd24bd8-9af5-4138-bfb1-19fba97a8611&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-03T13%3A27%3A40Z&ske=2026-10-04T13%3A27%3A40Z&sks=b&skv=2026-02-06&sig=VsnXXgmzVIWGDFfjGzimL4kz1wd5p3V6Ns6YrD5w4qw%3D' -o 'content/source-images/collections/christmas/background/christmas-collection-background.png'
+          curl -L --fail --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-84fc-820e-9d59-5e6fc5e55aef/raw?se=2026-10-03T21%3A36%3A16Z&sp=r&sv=2026-02-06&sr=b&scid=2e0d5f75-ff81-5d82-a48e-46b3326d0dd5&skoid=bdd24bd8-9af5-4138-bfb1-19fba97a8611&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-03T11%3A30%3A18Z&ske=2026-10-04T11%3A30%3A18Z&sks=b&skv=2026-02-06&sig=zdcEizjBfGkCKSIbaSNhqbi%2B6baQghfUDD2HnyLH4MU%3D' -o 'content/source-images/collections/christmas/products/N0001-christmas-tree.png'
+          curl -L --fail --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-f3d4-820e-a641-1bca506a0a3c/raw?se=2026-10-03T21%3A36%3A16Z&sp=r&sv=2026-02-06&sr=b&scid=e8670deb-b513-5692-8cb7-8194ae582be9&skoid=bdd24bd8-9af5-4138-bfb1-19fba97a8611&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-03T18%3A53%3A11Z&ske=2026-10-04T18%3A53%3A11Z&sks=b&skv=2026-02-06&sig=jsVf3MIyM9/tqR4bR1L/HZD9TZFqBvp7Ai33DGM7Pio%3D' -o 'content/source-images/collections/christmas/products/N0002-snowman.png'
+          curl -L --fail --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-4980-820e-9b0a-079fbb372a82/raw?se=2026-10-03T21%3A36%3A17Z&sp=r&sv=2026-02-06&sr=b&scid=f68fcca5-479a-5a3b-b5a4-dfd154cd5aba&skoid=bdd24bd8-9af5-4138-bfb1-19fba97a8611&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-03T19%3A04%3A41Z&ske=2026-10-04T19%3A04%3A41Z&sks=b&skv=2026-02-06&sig=vQuLvtCY6DwbrxDMRobDBF3mPIY7cFQ7TSDzKO4Ky0I%3D' -o 'content/source-images/collections/christmas/products/N0003-santa-face.png'
+          curl -L --fail --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-7b88-820e-85d9-d4d69fb8df4e/raw?se=2026-10-03T21%3A36%3A18Z&sp=r&sv=2026-02-06&sr=b&scid=3bac1f5d-2ee7-5d89-8d29-624e618e0570&skoid=bdd24bd8-9af5-4138-bfb1-19fba97a8611&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-03T19%3A06%3A48Z&ske=2026-10-04T19%3A06%3A48Z&sks=b&skv=2026-02-06&sig=Mkw2cQmrTL9e5TAYge83uEKLmZXGkuXz40liyshl2io%3D' -o 'content/source-images/collections/christmas/products/N0004-reindeer.png'
+          curl -L --fail --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-d110-820e-b323-d9a12d2f1d16/raw?se=2026-10-03T21%3A36%3A19Z&sp=r&sv=2026-02-06&sr=b&scid=c7774e5a-9ae7-5aa4-8b16-3b9c4114283c&skoid=bdd24bd8-9af5-4138-bfb1-19fba97a8611&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-03T11%3A30%3A18Z&ske=2026-10-04T11%3A30%3A18Z&sks=b&skv=2026-02-06&sig=nD3s5d61TxqMqR%2BtoaT%2B5CzfKC6IeFqHQJBORH4QjN4%3D' -o 'content/source-images/collections/christmas/products/N0005-christmas-stocking.png'
+          curl -L --fail --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-f844-820e-837e-9fd55f49d9ff/raw?se=2026-10-03T21%3A36%3A20Z&sp=r&sv=2026-02-06&sr=b&scid=1f7a8f84-148d-5b27-8f32-8a7bc85ea793&skoid=bdd24bd8-9af5-4138-bfb1-19fba97a8611&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-03T17%3A58%3A34Z&ske=2026-10-04T17%3A58%3A34Z&sks=b&skv=2026-02-06&sig=knwZRTua%2Bo%2BINjGPeRiv2CwUCzs%2BI58dSVDekxUgdFM%3D' -o 'content/source-images/collections/christmas/products/N0006-gingerbread-house.png'
+          curl -L --fail --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-6ef8-820e-8921-a97b6777d8e7/raw?se=2026-10-03T21%3A36%3A20Z&sp=r&sv=2026-02-06&sr=b&scid=a6ff849c-6830-586f-be6d-7bd271ec59ac&skoid=bdd24bd8-9af5-4138-bfb1-19fba97a8611&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-03T13%3A27%3A40Z&ske=2026-10-04T13%3A27%3A40Z&sks=b&skv=2026-02-06&sig=Raw/0jV5ddZJlut3yKLPQ3wfgD8BSyJAODn1o91hEa4%3D' -o 'content/source-images/collections/christmas/products/N0007-christmas-wreath.png'
+          curl -L --fail --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-1e2c-820e-b597-2377702ec9e9/raw?se=2026-10-03T21%3A36%3A21Z&sp=r&sv=2026-02-06&sr=b&scid=c9ec4d51-f3b0-5bec-8257-dd3fc9ccc029&skoid=bdd24bd8-9af5-4138-bfb1-19fba97a8611&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-03T12%3A02%3A54Z&ske=2026-10-04T12%3A02%3A54Z&sks=b&skv=2026-02-06&sig=iMoX4niHJacgn/cFZ6ZxMrBTBPC3WXlg92EQXIzyjn0%3D' -o 'content/source-images/collections/christmas/products/N0008-candy-cane-mug.png'
+          curl -L --fail --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-1748-820e-9a90-19cdf38b8dcf/raw?se=2026-10-03T21%3A36%3A22Z&sp=r&sv=2026-02-06&sr=b&scid=c8ace3cd-0b33-5e55-a746-4b98319b84a4&skoid=bdd24bd8-9af5-4138-bfb1-19fba97a8611&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-03T19%3A02%3A15Z&ske=2026-10-04T19%3A02%3A15Z&sks=b&skv=2026-02-06&sig=2VbFiI%2Bcucm90QpFjh1405aGiBMvkIcesB3k1B6yxBU%3D' -o 'content/source-images/collections/christmas/products/N0009-nutcracker.png'
+          curl -L --fail --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-a948-820e-b9f5-7300ef1474bf/raw?se=2026-10-03T21%3A36%3A23Z&sp=r&sv=2026-02-06&sr=b&scid=c244d674-a8f7-52a1-9754-977b355097ff&skoid=bdd24bd8-9af5-4138-bfb1-19fba97a8611&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-03T11%3A01%3A25Z&ske=2026-10-04T11%3A01%3A25Z&sks=b&skv=2026-02-06&sig=eBOP73kZKdJmGWHVWOfCC7jkxwEFWWoYVFS3zeaNTWk%3D' -o 'content/source-images/collections/christmas/products/N0010-ornament-bauble.png'
+          curl -L --fail --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-8060-820e-99e3-79f56c6aed19/raw?se=2026-10-03T21%3A36%3A24Z&sp=r&sv=2026-02-06&sr=b&scid=d1202eba-a26e-5cc7-99c6-740aa94b918f&skoid=bdd24bd8-9af5-4138-bfb1-19fba97a8611&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-03T17%3A54%3A06Z&ske=2026-10-04T17%3A54%3A06Z&sks=b&skv=2026-02-06&sig=ZiL2IIzRLkfEggPNhG/CivlP960SOu2j9nosYN1K/AA%3D' -o 'content/source-images/collections/christmas/products/N0011-christmas-gnome.png'
+          curl -L --fail --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-d114-820e-a025-2d674c5eba77/raw?se=2026-10-03T21%3A36%3A24Z&sp=r&sv=2026-02-06&sr=b&scid=bacc4130-9230-5587-a537-f76013d1da4d&skoid=bdd24bd8-9af5-4138-bfb1-19fba97a8611&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-03T18%3A56%3A16Z&ske=2026-10-04T18%3A56%3A16Z&sks=b&skv=2026-02-06&sig=DHNWAZ0yWMPs5txB3qKCdmpBzD7cYhUHlRekEvrWgIE%3D' -o 'content/source-images/collections/christmas/products/N0012-poinsettia.png'
+          curl -L --fail --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-a01c-820e-a572-dbdc4eed60d5/raw?se=2026-10-03T21%3A36%3A25Z&sp=r&sv=2026-02-06&sr=b&scid=f12d156a-184a-521a-b44b-af0222505dbd&skoid=bdd24bd8-9af5-4138-bfb1-19fba97a8611&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-03T11%3A30%3A18Z&ske=2026-10-04T11%3A30%3A18Z&sks=b&skv=2026-02-06&sig=iuN1KaLut8KmLj7RoNjMXufQ5b4OJAw3NUvgP9/L3ms%3D' -o 'content/source-images/collections/christmas/products/N0013-robin-on-holly.png'
+          curl -L --fail --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-94b8-820e-b0c4-b13495fa6416/raw?se=2026-10-03T21%3A36%3A26Z&sp=r&sv=2026-02-06&sr=b&scid=9a890bc3-1c7d-5434-b433-94cb1c8dbf2f&skoid=bdd24bd8-9af5-4138-bfb1-19fba97a8611&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-03T13%3A27%3A40Z&ske=2026-10-04T13%3A27%3A40Z&sks=b&skv=2026-02-06&sig=YBlUnihSDEAgBHX20mNiWjhmctHZy3ob7kxx8vxIkE4%3D' -o 'content/source-images/collections/christmas/products/N0014-polar-bear-with-scarf.png'
+          curl -L --fail --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-e618-820e-9513-cc221bc87e09/raw?se=2026-10-03T21%3A36%3A26Z&sp=r&sv=2026-02-06&sr=b&scid=b42259b6-01f9-54a3-b0b1-bacd774c6eeb&skoid=bdd24bd8-9af5-4138-bfb1-19fba97a8611&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-03T17%3A54%3A06Z&ske=2026-10-04T17%3A54%3A06Z&sks=b&skv=2026-02-06&sig=nX4g3UIu64jalU9O4RB3r4Jrw78R1g6XJpc9HWMlijA%3D' -o 'content/source-images/collections/christmas/products/N0015-holiday-church.png'
+
+      - name: Verify exact source hashes
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > /tmp/christmas.sha256 <<'EOF'
+d2d479e67ec39584f389b2dc0c1f4b99d7fed58e9448a259912adb7c09564b17  content/source-images/collections/christmas/background/christmas-collection-background.png
+c35cd77d1b148ca6021f19a21bea1092667fd522308c33e43cfe80b34875bf88  content/source-images/collections/christmas/products/N0001-christmas-tree.png
+47d5b8ddf10142f5328d1eedfc671c6af471ae5c0be7519dc87c16a316a4c865  content/source-images/collections/christmas/products/N0002-snowman.png
+23117ecd868c2316b013a335d89586479410d5f901f7857052399dfe5f727ed0  content/source-images/collections/christmas/products/N0003-santa-face.png
+146b0a265db8e05bbfb45e7afe9353029b7d3d23bc5b1a9e04d63f18c2f0ebba  content/source-images/collections/christmas/products/N0004-reindeer.png
+00870d3413b6e3bc7282cf0791186a7b2f410c8c9b27ca00ab34a90faf99605b  content/source-images/collections/christmas/products/N0005-christmas-stocking.png
+6d10c278abbbe17000872b095165c0ab4fa1e43b2424e6fe667dedacb82c364a  content/source-images/collections/christmas/products/N0006-gingerbread-house.png
+516e1c73455959a02409885a7b71c2273adbd4830c1f07e9093b02d71f576276  content/source-images/collections/christmas/products/N0007-christmas-wreath.png
+912ffb0be13b0446248b4c5ffbf29b71fa2e5a31dedd4ceca95e6a756cabc004  content/source-images/collections/christmas/products/N0008-candy-cane-mug.png
+b4cb2cf0d26a33cef8ff8bf7f81225cfe3dee4eb4bf0f8e59e37264c5d3dc717  content/source-images/collections/christmas/products/N0009-nutcracker.png
+0c36a05bc99b6f7f46c5476cd05ab5f954096bdcdcf3095630d9da55660be825  content/source-images/collections/christmas/products/N0010-ornament-bauble.png
+206909216d1d649a12c42582c3580fa420e7dd8ef01732cbab5b0c01d0ac528d  content/source-images/collections/christmas/products/N0011-christmas-gnome.png
+39fae0ad57ca5a4242d6eda8e5f547d1d1751e3914d57f62dcb5dfa991ea83e6  content/source-images/collections/christmas/products/N0012-poinsettia.png
+24cbfc5f17e36e34a811ed32bf6e3a9b1e772fbc68dc784d0f8ef66f3c89c03c  content/source-images/collections/christmas/products/N0013-robin-on-holly.png
+4955d68d0488ba83fa278fe41042013ccce4aeda63f08f259b8b416c85b4360d  content/source-images/collections/christmas/products/N0014-polar-bear-with-scarf.png
+58def6e650e1caaad3659c897987c08792b60822336674e87aabbbba5d596aa7  content/source-images/collections/christmas/products/N0015-holiday-church.png
+EOF
+          sha256sum -c /tmp/christmas.sha256
+
+      - name: Verify PNG dimensions
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import struct
+          def png_size(p):
+              b=Path(p).read_bytes()
+              assert b[:8] == b'\x89PNG\r\n\x1a\n', p
+              return struct.unpack(">II", b[16:24])
+          bg=Path("content/source-images/collections/christmas/background/christmas-collection-background.png")
+          assert png_size(bg)==(1536,1536), png_size(bg)
+          products=sorted(Path("content/source-images/collections/christmas/products").glob("*.png"))
+          assert len(products)==15, len(products)
+          for p in products:
+              assert png_size(p)==(50,60), (p, png_size(p))
+          print("OK: background 1536x1536 and 15 products 50x60")
+          PY
+
+      - name: Write collection config and palette
+        shell: bash
+        run: |
+          cat > content/source-images/collections/christmas/config.json <<'EOF'
+          {
+            "schema_version": "1.0",
+            "collection_id": "christmas",
+            "product_size_px": [50, 60],
+            "product_format": "png",
+            "background_mode": "single",
+            "background_directory": "background",
+            "product_directory": "products",
+            "filename_examples": ["N0001-christmas-tree.png"],
+            "legacy_background_fallbacks": [],
+            "notes": "Christmas Minis source set: 15 approved 50x60 PNG designs using one shared palette of at most 20 RGB colors. Background is the approved 1536x1536 Christmas mockup with the protected frame/canvas geometry preserved."
+          }
+          EOF
+          cat > content/source-images/collections/christmas/palette20_rgb.json <<'EOF'
+          {
+            "schema_version": "1.0",
+            "collection_id": "christmas",
+            "palette_rgb": [
+              [245,237,226],[228,198,165],[226,185,147],[164,99,57],[124,69,38],
+              [73,38,20],[41,21,14],[246,168,152],[161,4,7],[204,87,82],
+              [154,13,16],[45,75,51],[55,91,60],[109,134,75],[116,151,117],
+              [202,139,51],[120,144,164],[238,232,220],[161,159,160],[155,156,151]
+            ]
+          }
+          EOF
+
+      - name: Register Christmas source collection
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("content/source-images/collections/registry.json")
+          data=json.loads(p.read_text())
+          entry={"id":"christmas","config":"christmas/config.json","catalogued":False}
+          data["collections"]=[x for x in data.get("collections",[]) if x.get("id")!="christmas"]
+          data["collections"].append(entry)
+          p.write_text(json.dumps(data,indent=2,ensure_ascii=False)+"\n")
+          PY
+
+      - name: Commit source assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/source-images/collections/christmas content/source-images/collections/registry.json
+          if git diff --cached --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "Add Christmas collection source assets"
+            git push
+          fi
