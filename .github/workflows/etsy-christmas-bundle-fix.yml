@@ -1,0 +1,207 @@
+name: Fix and Publish Christmas Etsy Bundle
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/etsy-christmas-bundle-fix.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-etsy-christmas-bundle-fix
+  cancel-in-progress: false
+
+jobs:
+  publish-bundle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 20
+
+      - name: Build bundle assets and metadata
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Generate Etsy-safe split bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow
+          python3 content/pattern-system/christmas/optimize_etsy_christmas.py
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('.')
+          cat=json.loads((root/'content/products/catalog.json').read_text())
+          b=next(p for p in cat['products'] if p.get('code')=='XMAS15-CS')
+          assert float(b['price'])==9.99
+          assert b.get('fixed_price') is True
+          assert len(b.get('downloads',[]))==3
+          for rel in b['downloads']:
+              p=root/'content/products'/rel
+              assert p.is_file()
+              assert p.stat().st_size < 20_000_000, (rel,p.stat().st_size)
+              print(rel,p.stat().st_size)
+          PY
+
+      - name: Build bundle-only WooCommerce package
+        shell: bash
+        run: |
+          set -euo pipefail
+          STAGE=/tmp/drielo-etsy-bundle
+          rm -rf "$STAGE"
+          mkdir -p "$STAGE/content/products/assets" "$STAGE/content/products/files" "$STAGE/content/tools"
+          python3 - "$STAGE" <<'PY'
+          import json,sys,shutil
+          from pathlib import Path
+          root=Path('.')
+          stage=Path(sys.argv[1])
+          src=json.loads((root/'content/products/catalog.json').read_text())
+          row=next(p for p in src['products'] if p.get('code')=='XMAS15-CS')
+          coll=next(c for c in src['collections'] if c.get('slug')=='christmas')
+          cats=[c for c in src.get('categories',[]) if c.get('slug') in {'cross-stitch-patterns','cross-stitch-christmas'}]
+          out=dict(src)
+          out['products']=[row]
+          out['collections']=[coll]
+          out['categories']=cats
+          out['retired_products']=[]
+          out['retired_collections']=[]
+          (stage/'content/products/catalog.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
+
+          rels=[row.get('featured_image'),*(row.get('gallery') or []),*(row.get('downloads') or [])]
+          for rel in rels:
+              if not rel: continue
+              s=root/'content/products'/rel
+              d=stage/'content/products'/rel
+              d.parent.mkdir(parents=True,exist_ok=True)
+              shutil.copy2(s,d)
+
+          # Christmas collection cover referenced by the collection metadata.
+          cover=coll.get('cover_asset')
+          if cover:
+              s=root/'content/products'/cover
+              d=stage/'content/products'/cover
+              d.parent.mkdir(parents=True,exist_ok=True)
+              shutil.copy2(s,d)
+          shutil.copy2(root/'content/tools/import-products.php',stage/'content/tools/import-products.php')
+          PY
+          tar -czf /tmp/drielo-etsy-bundle.tgz -C "$STAGE" content
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_bundle_key
+          chmod 600 ~/.ssh/drielo_bundle_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Import bundle into WooCommerce
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          scp -i ~/.ssh/drielo_bundle_key /tmp/drielo-etsy-bundle.tgz "$VPS_USER@$VPS_HOST:/tmp/drielo-etsy-bundle-$GITHUB_RUN_ID.tgz"
+          ssh -i ~/.ssh/drielo_bundle_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='$GITHUB_RUN_ID' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-etsy-bundle-$GITHUB_RUN_ID.tgz"
+          STAGE="/tmp/drielo-etsy-bundle-$GITHUB_RUN_ID"
+          trap 'rm -rf "$ARCHIVE" "$STAGE"' EXIT
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M -d max_execution_time=0 /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
+          "${DOCKER[@]}" exec make-wp php -r '
+            require "/var/www/html/wp-load.php";
+            $p=wc_get_product(wc_get_product_id_by_sku("DRIELO-XMAS15-CS"));
+            if(!$p){exit(2);}
+            echo "BUNDLE_WOO price=".$p->get_price()." downloads=".count($p->get_downloads())." images=".(1+count($p->get_gallery_image_ids())).PHP_EOL;
+            if(abs((float)$p->get_price()-9.99)>0.001 || count($p->get_downloads())!==3 || !$p->get_image_id()) exit(3);
+          '
+          REMOTE
+
+      - name: Publish bundle to Etsy
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -o ServerAliveInterval=30 -i ~/.ssh/drielo_bundle_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M -d max_execution_time=0 -r '
+            require "/var/www/html/wp-load.php";
+            if(!class_exists("Drielo_Etsy_Sync")) exit(2);
+            $id=wc_get_product_id_by_sku("DRIELO-XMAS15-CS");
+            $p=$id?wc_get_product($id):false;
+            if(!$p) exit(3);
+
+            update_post_meta($id,"_drielo_etsy_enabled","yes");
+            update_post_meta($id,"_drielo_etsy_target_state","active");
+            update_post_meta($id,"_drielo_etsy_auto_renew","no");
+
+            $sync=Drielo_Etsy_Sync::instance();
+            $ref=new ReflectionClass($sync);
+            $sm=$ref->getMethod("sync_product");$sm->setAccessible(true);
+            $req=$ref->getMethod("etsy_request");$req->setAccessible(true);
+            $settings_m=$ref->getMethod("settings");$settings_m->setAccessible(true);
+            $manual=$ref->getProperty("manual_sync_context");$manual->setAccessible(true);$manual->setValue($sync,true);
+            $r=$sm->invoke($sync,$id,true);
+            $manual->setValue($sync,false);
+            if(is_wp_error($r)){fwrite(STDERR,$r->get_error_message().PHP_EOL);exit(4);}
+
+            $shop=(string)(($settings_m->invoke($sync))["shop_id"]??"");
+            $lid=(string)get_post_meta($id,"_drielo_etsy_listing_id",true);
+            $remote=$req->invoke($sync,"GET","/v3/application/listings/".rawurlencode($lid),[],true);
+            $files=$req->invoke($sync,"GET","/v3/application/shops/".rawurlencode($shop)."/listings/".rawurlencode($lid)."/files",[],true);
+            $imgs=$req->invoke($sync,"GET","/v3/application/listings/".rawurlencode($lid)."/images",[],true);
+            if(is_wp_error($remote)||is_wp_error($files)||is_wp_error($imgs)) exit(5);
+            $fc=count((array)($files["results"]??[]));
+            $ic=count((array)($imgs["results"]??[]));
+            $state=(string)($remote["state"]??"");
+            $tax=(int)($remote["taxonomy_id"]??0);
+            $title=(string)($remote["title"]??"");
+            $expected=(string)get_post_meta($id,"_drielo_etsy_title_en",true);
+            $renew=!empty($remote["should_auto_renew"]);
+            echo "BUNDLE_ETSY listing=".$lid." state=".$state." tax=".$tax." files=".$fc." images=".$ic." price=".$p->get_price()." renew=".($renew?"yes":"no").PHP_EOL;
+            if($state!=="active" || $tax!==87 || $fc!==3 || $ic<1 || $renew || $title!==$expected || abs((float)$p->get_price()-9.99)>0.001) exit(6);
+          '
+          REMOTE
+
+      - name: Persist optimized metadata and split bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/products/catalog.json
+          git add content/products/assets/XMAS15-CS-product.webp
+          git add content/products/assets/XMAS15-CS-gallery-2.webp
+          git add content/products/assets/XMAS15-CS-gallery-3.webp
+          git add content/products/assets/XMAS15-CS-gallery-4.webp
+          git add -f content/products/files/Drielo_XMAS15-CS_Part1.zip
+          git add -f content/products/files/Drielo_XMAS15-CS_Part2.zip
+          git add -f content/products/files/Drielo_XMAS15-CS_Part3.zip
+          if git diff --cached --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "Publish Etsy Christmas metadata and 15-pattern bundle [skip ci]"
+            git fetch origin main --depth=20
+            git rebase origin/main
+            git push origin HEAD:main
+          fi
