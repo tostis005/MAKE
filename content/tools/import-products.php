@@ -568,26 +568,32 @@ foreach ( (array) ( $catalog['products'] ?? array() ) as $row ) {
     }
     $product->set_gallery_image_ids( array_values( array_unique( $gallery_ids ) ) );
 
-    $download_rel = (string) ( $row['download'] ?? '' );
-    $download_abs = $download_rel ? rtrim( $source, '/' ) . '/' . $download_rel : '';
+    $download_rels = array_values( array_filter( array_map( 'strval', (array) ( $row['downloads'] ?? array() ) ) ) );
+    if ( empty( $download_rels ) && ! empty( $row['download'] ) ) {
+        $download_rels[] = (string) $row['download'];
+    }
     $prepared_downloads = array();
-    if ( $download_abs && is_file( $download_abs ) && filesize( $download_abs ) > 1000 ) {
-        $prepared_downloads = drielo_install_download( $download_abs, wp_basename( $download_abs ) );
+    foreach ( $download_rels as $download_rel ) {
+        $download_abs = rtrim( $source, '/' ) . '/' . ltrim( $download_rel, '/\\' );
+        if ( is_file( $download_abs ) && filesize( $download_abs ) > 1000 ) {
+            $prepared_downloads = array_merge( $prepared_downloads, drielo_install_download( $download_abs, wp_basename( $download_abs ) ) );
+            continue;
+        }
+        $existing_protected = drielo_existing_download( wp_basename( $download_rel ) );
+        if ( ! empty( $existing_protected ) ) {
+            $prepared_downloads = array_merge( $prepared_downloads, $existing_protected );
+        }
+    }
+    if ( ! empty( $prepared_downloads ) ) {
         $product->set_stock_status( 'instock' );
     } else {
-        $existing_protected = $download_rel ? drielo_existing_download( wp_basename( $download_rel ) ) : array();
-        if ( ! empty( $existing_protected ) ) {
-            $prepared_downloads = $existing_protected;
+        $existing_downloads = $existing_id ? $product->get_downloads() : array();
+        if ( ! empty( $existing_downloads ) ) {
+            $prepared_downloads = $existing_downloads;
             $product->set_stock_status( 'instock' );
         } else {
-            $existing_downloads = $existing_id ? $product->get_downloads() : array();
-            if ( ! empty( $existing_downloads ) ) {
-                $prepared_downloads = $existing_downloads;
-                $product->set_stock_status( 'instock' );
-            } else {
-                $product->set_stock_status( 'outofstock' );
-                $pending++;
-            }
+            $product->set_stock_status( 'outofstock' );
+            $pending++;
         }
     }
 
