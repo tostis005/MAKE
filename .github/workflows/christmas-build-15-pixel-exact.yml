@@ -21,7 +21,7 @@ jobs:
       - name: Checkout main
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -166,7 +166,7 @@ jobs:
           git add content/pattern-system/patterns/N*-CS/pattern.json
           git add content/pattern-system/products/N*-CS/product.json
           git add content/pattern-system/christmas/generated/N*-100x120.png
-          git add content/pattern-system/christmas/pattern-pdfs/Drielo_N*-CS.pdf
+          git add -f content/pattern-system/christmas/pattern-pdfs/Drielo_N*-CS.pdf
           git add content/pattern-system/christmas/pixel-exact-build-report.json
           if git diff --cached --quiet; then
             echo "Nothing to commit"
