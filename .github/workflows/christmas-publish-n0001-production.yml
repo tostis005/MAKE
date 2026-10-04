@@ -1,0 +1,270 @@
+name: Publish Christmas N0001 Pixel Exact Production
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/christmas-publish-n0001-production.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-christmas-n0001-production
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build exact WooCommerce assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow
+          python3 - <<'PY'
+          import json, shutil
+          from pathlib import Path
+          from PIL import Image, ImageDraw
+
+          root=Path('.')
+          src_path=root/'content/source-images/collections/christmas/products/N0001-christmas-tree.png'
+          pat_path=root/'content/pattern-system/patterns/N0001-CS/pattern.json'
+          bg_path=root/'content/source-images/collections/christmas/background/christmas-collection-background.png'
+          pdf_src=root/'content/pattern-system/christmas/pattern-pdfs/Drielo_N0001-CS.pdf'
+          asset=root/'content/products/assets/N0001-CS-product.webp'
+          pdf_dst=root/'content/products/files/Drielo_N0001-CS.pdf'
+
+          src=Image.open(src_path).convert('RGB')
+          assert src.size==(50,60), src.size
+          pat=json.loads(pat_path.read_text(encoding='utf-8'))
+          assert pat.get('algorithm')=='pixel-exact-1px-1stitch'
+          assert pat.get('total_stitches')==3000
+          assert pat.get('source_width')==50 and pat.get('source_height')==60
+          assert pat.get('stitch_width')==100 and pat.get('stitch_height')==120
+          assert pat.get('source_offset')=={'x':25,'y':30}
+
+          # Verify every source pixel maps to exactly one matrix cell.
+          palette=[tuple(c) for c in pat['shared_palette_rgb']]
+          symbols=list("ABCDEFGHJKLMNPQRSTUV")
+          symbol_for={c:symbols[i] for i,c in enumerate(palette)}
+          matrix=pat['matrix']
+          for y in range(120):
+              for x in range(100):
+                  inside=25<=x<75 and 30<=y<90
+                  if not inside:
+                      assert matrix[y][x] is None, (x,y,'expected blank')
+                  else:
+                      expected=symbol_for[src.getpixel((x-25,y-30))]
+                      assert matrix[y][x]==expected, (x,y,matrix[y][x],expected)
+
+          # Rebuild the storefront mockup from the exact 50x60 PNG:
+          # one source pixel -> one X stitch, centered in the virtual 100x120 canvas.
+          bg=Image.open(bg_path).convert('RGB')
+          assert bg.size==(1536,1536), bg.size
+          draw=ImageDraw.Draw(bg)
+          FRAME_X,FRAME_Y,FRAME_W,FRAME_H=438,212,685,822
+          cw=FRAME_W/100
+          ch=FRAME_H/120
+          for sy in range(60):
+              for sx in range(50):
+                  gx=25+sx
+                  gy=30+sy
+                  c=src.getpixel((sx,sy))
+                  x0=FRAME_X+gx*cw
+                  y0=FRAME_Y+gy*ch
+                  x1=FRAME_X+(gx+1)*cw
+                  y1=FRAME_Y+(gy+1)*ch
+                  pad=max(.8,min(cw,ch)*.16)
+                  width=max(2,round(min(cw,ch)*.36))
+                  draw.line((x0+pad,y0+pad,x1-pad,y1-pad),fill=c,width=width)
+                  draw.line((x1-pad,y0+pad,x0+pad,y1-pad),fill=c,width=width)
+
+          asset.parent.mkdir(parents=True,exist_ok=True)
+          bg.save(asset,'WEBP',quality=95,method=6)
+
+          pdf_dst.parent.mkdir(parents=True,exist_ok=True)
+          shutil.copy2(pdf_src,pdf_dst)
+          assert pdf_dst.read_bytes()[:4]==b'%PDF' and pdf_dst.stat().st_size>1000
+
+          print('N0001_EXACT_ASSETS_READY',
+                'source=50x60','grid=100x120','offset=25,30',
+                'stitches=3000','colours='+str(len(pat['threads'])),
+                'hero=1536x1536')
+          PY
+
+      - name: Refresh catalogue row
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/christmas/install_first_catalog.py
+
+      - name: Validate publish payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+
+          pat=json.loads(Path('content/pattern-system/patterns/N0001-CS/pattern.json').read_text())
+          assert pat['algorithm']=='pixel-exact-1px-1stitch'
+          assert pat['total_stitches']==3000
+          assert len(pat['threads'])==19
+
+          cat=json.loads(Path('content/products/catalog.json').read_text())
+          row=next(p for p in cat['products'] if p.get('sku')=='DRIELO-N0001-CS')
+          assert row['stitches']==3000
+          assert row['grid_width']==100 and row['grid_height']==120
+          assert row['motif_width']==50 and row['motif_height']==60
+          assert row['colours']==19
+          assert row['download']=='files/Drielo_N0001-CS.pdf'
+          assert row['featured_image']=='assets/N0001-CS-product.webp'
+          assert row['collection']=='christmas'
+
+          with Image.open('content/products/assets/N0001-CS-product.webp') as im:
+              assert im.size==(1536,1536), im.size
+          pdf=Path('content/products/files/Drielo_N0001-CS.pdf')
+          assert pdf.read_bytes()[:4]==b'%PDF' and pdf.stat().st_size>1000
+          print('N0001_PRODUCTION_PAYLOAD_VALID')
+          PY
+
+      - name: Build one-product production package
+        shell: bash
+        run: |
+          set -euo pipefail
+          STAGE=/tmp/drielo-N0001-CS-prod
+          rm -rf "$STAGE"
+          mkdir -p "$STAGE/content/products/assets" "$STAGE/content/products/files" "$STAGE/content/tools"
+
+          python3 - "$STAGE" <<'PY'
+          import json,sys
+          from pathlib import Path
+          stage=Path(sys.argv[1])
+          src=json.loads(Path('content/products/catalog.json').read_text())
+          row=next(p for p in src['products'] if p.get('sku')=='DRIELO-N0001-CS')
+          collection=next(c for c in src['collections'] if c.get('slug')=='christmas')
+          wanted={'cross-stitch-patterns','cross-stitch-christmas'}
+          cats=[c for c in src.get('categories',[]) if c.get('slug') in wanted]
+          slugs={c.get('slug') for c in cats}
+          if 'cross-stitch-patterns' not in slugs:
+              cats.insert(0,{
+                'slug':'cross-stitch-patterns',
+                'name':'Cross Stitch Patterns',
+                'name_en':'Cross Stitch Patterns',
+                'name_es':'Patrones de punto de cruz'
+              })
+          out=dict(src)
+          out['products']=[row]
+          out['collections']=[collection]
+          out['categories']=cats
+          out['retired_products']=[]
+          out['retired_collections']=[]
+          (stage/'content/products/catalog.json').write_text(
+              json.dumps(out,ensure_ascii=False,indent=2)+'\n',
+              encoding='utf-8'
+          )
+          PY
+
+          cp content/products/assets/N0001-CS-product.webp "$STAGE/content/products/assets/"
+          cp content/products/files/Drielo_N0001-CS.pdf "$STAGE/content/products/files/"
+          cp content/tools/import-products.php "$STAGE/content/tools/"
+          tar -czf /tmp/drielo-N0001-CS-prod.tgz -C "$STAGE" content
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_products_key
+          chmod 600 ~/.ssh/drielo_products_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Overwrite N0001 in production
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          scp -i ~/.ssh/drielo_products_key /tmp/drielo-N0001-CS-prod.tgz "$VPS_USER@$VPS_HOST:/tmp/drielo-N0001-CS-prod-$GITHUB_RUN_ID.tgz"
+          ssh -i ~/.ssh/drielo_products_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='$GITHUB_RUN_ID' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-N0001-CS-prod-$GITHUB_RUN_ID.tgz"
+          STAGE="/tmp/drielo-N0001-CS-prod-$GITHUB_RUN_ID"
+          trap 'rm -rf "$ARCHIVE" "$STAGE"' EXIT
+
+          if docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(docker)
+          elif sudo -n docker inspect make-wp >/dev/null 2>&1; then
+            DOCKER=(sudo -n docker)
+          else
+            echo "ERROR: make-wp container not found"
+            exit 1
+          fi
+
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
+
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $sku="DRIELO-N0001-CS";
+            $id=wc_get_product_id_by_sku($sku);
+            $p=$id?wc_get_product($id):false;
+            if(!$p){fwrite(STDERR,"Missing product\n");exit(2);}
+            if((int)$id!==7433){fwrite(STDERR,"Expected overwrite of product 7433, got ".$id."\n");exit(3);}
+            $cols=wp_get_object_terms($id,"product_collection",array("fields"=>"slugs"));
+            $cats=wp_get_object_terms($id,"product_cat",array("fields"=>"slugs"));
+            $downloads=$p->get_downloads();
+            echo "PRODUCTION_OVERWRITE"
+              ." id=".$id
+              ." sku=".$sku
+              ." status=".$p->get_status()
+              ." image=".$p->get_image_id()
+              ." downloads=".count($downloads)
+              ." virtual=".($p->is_virtual()?"yes":"no")
+              ." downloadable=".($p->is_downloadable()?"yes":"no")
+              ." collection=".implode(",",is_wp_error($cols)?array():$cols)
+              ." categories=".implode(",",is_wp_error($cats)?array():$cats)
+              ." url=".get_permalink($id).PHP_EOL;
+            if($p->get_status()!=="publish" || !$p->get_image_id() || count($downloads)!==1 || !$p->is_virtual() || !$p->is_downloadable()){exit(4);}
+            if(!in_array("christmas",is_wp_error($cols)?array():$cols,true)){exit(5);}
+          '
+          "${DOCKER[@]}" exec make-wp sh -lc 'rm -rf /tmp/drielo-products /tmp/drielo-import-products.php'
+          REMOTE
+
+      - name: Persist exact production assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/products/assets/N0001-CS-product.webp
+          git add -f content/products/files/Drielo_N0001-CS.pdf
+          git add content/products/catalog.json
+          if git diff --cached --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "Publish Christmas N0001 pixel-exact production [skip ci]"
+            git fetch origin main --depth=10
+            git rebase origin/main
+            git push origin HEAD:main
+          fi
