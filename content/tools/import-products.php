@@ -459,7 +459,8 @@ foreach ( (array) ( $catalog['products'] ?? array() ) as $row ) {
             'tapestry-crochet'  => 2.49,
             'latch-hook'        => 2.49,
         );
-    if ( isset( $technique_prices[ $row_technique ] ) ) {
+    $fixed_price = ! empty( $row['fixed_price'] );
+    if ( ! $fixed_price && isset( $technique_prices[ $row_technique ] ) ) {
         $catalogue_price = (float) $technique_prices[ $row_technique ];
     }
     $product->set_regular_price( number_format( $catalogue_price, 2, '.', '' ) );
