@@ -1,0 +1,177 @@
+name: Build 15 Christmas Pixel-Exact Patterns
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/christmas-build-15-pixel-exact.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-christmas-15-pixel-exact
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Pillow
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow
+
+      - name: Download exact 15-PNG ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL='https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-458c-820e-a640-769ecb56ec1e/raw?se=2026-10-04T05%3A37%3A30Z&sp=r&sv=2026-02-06&sr=b&scid=5a1f2bfc-8ad9-5a17-a617-ba2765563614&skoid=bdd24bd8-9af5-4138-bfb1-19fba97a8611&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-03T18%3A48%3A58Z&ske=2026-10-04T18%3A48%3A58Z&sks=b&skv=2026-02-06&sig=9lRNvfhuytudpcfpc8IfPfsJg1jGR2WpZvw1vwib2jU%3D'
+          curl -L --fail --retry 3 "$URL" -o /tmp/christmas.zip.b64
+          base64 --decode /tmp/christmas.zip.b64 > /tmp/christmas-minis.zip
+          echo '52b6d03d3b68422227f266090291998b8688df96c08c1e3609a263648a3ca865  /tmp/christmas-minis.zip' | sha256sum -c -
+          mkdir -p content/source-images/collections/christmas
+          cp /tmp/christmas-minis.zip content/source-images/collections/christmas/christmas-minis-15-50x60-palette20.zip
+
+      - name: Extract exact PNG sources into Christmas collection
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/christmas-exact
+          mkdir -p /tmp/christmas-exact
+          unzip -q /tmp/christmas-minis.zip -d /tmp/christmas-exact
+          test "$(find /tmp/christmas-exact -maxdepth 1 -type f -name '*.png' | wc -l)" -eq 15
+
+          mkdir -p content/source-images/collections/christmas/products
+          cp /tmp/christmas-exact/01_christmas_tree.png content/source-images/collections/christmas/products/N0001-christmas-tree.png
+          cp /tmp/christmas-exact/02_snowman.png content/source-images/collections/christmas/products/N0002-snowman.png
+          cp /tmp/christmas-exact/03_santa_face.png content/source-images/collections/christmas/products/N0003-santa-face.png
+          cp /tmp/christmas-exact/04_reindeer.png content/source-images/collections/christmas/products/N0004-reindeer.png
+          cp /tmp/christmas-exact/05_christmas_stocking.png content/source-images/collections/christmas/products/N0005-christmas-stocking.png
+          cp /tmp/christmas-exact/06_gingerbread_house.png content/source-images/collections/christmas/products/N0006-gingerbread-house.png
+          cp /tmp/christmas-exact/07_christmas_wreath.png content/source-images/collections/christmas/products/N0007-christmas-wreath.png
+          cp /tmp/christmas-exact/08_candy_cane_mug.png content/source-images/collections/christmas/products/N0008-candy-cane-mug.png
+          cp /tmp/christmas-exact/09_nutcracker.png content/source-images/collections/christmas/products/N0009-nutcracker.png
+          cp /tmp/christmas-exact/10_ornament_bauble.png content/source-images/collections/christmas/products/N0010-ornament-bauble.png
+          cp /tmp/christmas-exact/11_christmas_gnome.png content/source-images/collections/christmas/products/N0011-christmas-gnome.png
+          cp /tmp/christmas-exact/12_poinsettia.png content/source-images/collections/christmas/products/N0012-poinsettia.png
+          cp /tmp/christmas-exact/13_robin_on_holly.png content/source-images/collections/christmas/products/N0013-robin-on-holly.png
+          cp /tmp/christmas-exact/14_polar_bear_with_scarf.png content/source-images/collections/christmas/products/N0014-polar-bear-with-scarf.png
+          cp /tmp/christmas-exact/15_holiday_church.png content/source-images/collections/christmas/products/N0015-holiday-church.png
+
+      - name: Verify exact 50x60 shared 20-colour source set
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+
+          root=Path('content/source-images/collections/christmas')
+          palette=[tuple(x) for x in json.loads((root/'palette20_rgb.json').read_text())['palette_rgb']]
+          assert len(palette)==20 and len(set(palette))==20
+          files=sorted((root/'products').glob('N*.png'))
+          christmas=[p for p in files if p.stem[:5] in {f'N{i:04d}' for i in range(1,16)}]
+          assert len(christmas)==15, len(christmas)
+
+          union=set()
+          for p in christmas:
+              with Image.open(p) as im:
+                  im=im.convert('RGB')
+                  assert im.size==(50,60), (p.name,im.size)
+                  colors=set(im.getdata())
+                  extra=colors-set(palette)
+                  assert not extra, (p.name,sorted(extra))
+                  union |= colors
+          assert union==set(palette), {'union':len(union),'palette':len(palette),'missing':set(palette)-union}
+          print('SOURCE_SET_VALID designs=15 size=50x60 palette_union=20 exact=true')
+          PY
+
+      - name: Generate 15 patterns pixel by pixel
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/christmas/build_all_15_pixel_exact.py
+
+      - name: Validate 1 pixel equals 1 stitch for all 15
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+
+          root=Path('.')
+          palette=[tuple(x) for x in json.loads((root/'content/source-images/collections/christmas/palette20_rgb.json').read_text())['palette_rgb']]
+          symbols=list("ABCDEFGHJKLMNPQRSTUV")
+          symbol_for={c:symbols[i] for i,c in enumerate(palette)}
+
+          mapping=[
+              ('N0001','christmas-tree'),('N0002','snowman'),('N0003','santa-face'),
+              ('N0004','reindeer'),('N0005','christmas-stocking'),('N0006','gingerbread-house'),
+              ('N0007','christmas-wreath'),('N0008','candy-cane-mug'),('N0009','nutcracker'),
+              ('N0010','ornament-bauble'),('N0011','christmas-gnome'),('N0012','poinsettia'),
+              ('N0013','robin-on-holly'),('N0014','polar-bear-with-scarf'),('N0015','holiday-church')
+          ]
+          for base,slug in mapping:
+              src=Image.open(root/f'content/source-images/collections/christmas/products/{base}-{slug}.png').convert('RGB')
+              pat=json.loads((root/f'content/pattern-system/patterns/{base}-CS/pattern.json').read_text())
+              assert pat['algorithm']=='pixel-exact-1px-1stitch'
+              assert (pat['source_width'],pat['source_height'])==(50,60)
+              assert (pat['stitch_width'],pat['stitch_height'])==(100,120)
+              assert pat['source_offset']=={'x':25,'y':30}
+              assert pat['total_stitches']==3000
+              matrix=pat['matrix']
+              assert len(matrix)==120 and all(len(row)==100 for row in matrix)
+
+              for y in range(120):
+                  for x in range(100):
+                      inside=25<=x<75 and 30<=y<90
+                      if not inside:
+                          assert matrix[y][x] is None, (base,x,y,'outer-not-blank')
+                      else:
+                          expected=symbol_for[src.getpixel((x-25,y-30))]
+                          assert matrix[y][x]==expected, (base,x,y,matrix[y][x],expected)
+
+              padded=Image.open(root/f'content/pattern-system/christmas/generated/{base}-{slug}-100x120.png').convert('RGB')
+              assert padded.size==(100,120)
+              assert list(padded.crop((25,30,75,90)).getdata())==list(src.getdata())
+              pdf=root/f'content/pattern-system/christmas/pattern-pdfs/Drielo_{base}-CS.pdf'
+              assert pdf.is_file() and pdf.read_bytes()[:4]==b'%PDF' and pdf.stat().st_size>1000
+          print('PIXEL_EXACT_VALID designs=15 each=3000stitches source=50x60 grid=100x120 offset=25,30')
+          PY
+
+      - name: Commit ZIP, exact sources and generated patterns
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/source-images/collections/christmas/christmas-minis-15-50x60-palette20.zip
+          git add content/source-images/collections/christmas/products/N*.png
+          git add content/pattern-system/patterns/N*-CS/pattern.json
+          git add content/pattern-system/products/N*-CS/product.json
+          git add content/pattern-system/christmas/generated/N*-100x120.png
+          git add content/pattern-system/christmas/pattern-pdfs/Drielo_N*-CS.pdf
+          git add content/pattern-system/christmas/pixel-exact-build-report.json
+          if git diff --cached --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "Build 15 Christmas patterns pixel exact [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
