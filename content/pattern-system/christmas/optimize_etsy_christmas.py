@@ -227,9 +227,7 @@ def make_bundle_images():
 
 def make_bundle_zip():
     FILES.mkdir(parents=True, exist_ok=True)
-    out = FILES / "Drielo_XMAS15-CS.zip"
-    with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as zf:
-        readme = """DRIELO — 15 Mini Christmas Cross Stitch Patterns
+    readme = """DRIELO — 15 Mini Christmas Cross Stitch Patterns
 
 This bundle contains 15 individual PDF cross stitch patterns.
 Each PDF includes colour charts, black-and-white symbol charts, DMC colour information and finished-design previews.
@@ -237,13 +235,21 @@ Each PDF includes colour charts, black-and-white symbol charts, DMC colour infor
 Digital patterns only. No physical materials are included.
 Personal use only. Please do not resell, redistribute or share the digital files.
 """
-        zf.writestr("README.txt", readme)
-        for i in range(1,16):
-            p = FILES / f"Drielo_N{i:04d}-CS.pdf"
-            if not p.is_file():
-                raise SystemExit(f"Missing PDF: {p}")
-            zf.write(p, arcname=p.name)
-    return out
+    outs = []
+    groups = [(1,5),(6,10),(11,15)]
+    for part,(start,end) in enumerate(groups, start=1):
+        out = FILES / f"Drielo_XMAS15-CS_Part{part}.zip"
+        with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as zf:
+            zf.writestr("README.txt", readme)
+            for i in range(start,end+1):
+                p = FILES / f"Drielo_N{i:04d}-CS.pdf"
+                if not p.is_file():
+                    raise SystemExit(f"Missing PDF: {p}")
+                zf.write(p, arcname=p.name)
+        if out.stat().st_size > 19_500_000:
+            raise SystemExit(f"Etsy ZIP part too large: {out} {out.stat().st_size}")
+        outs.append(out)
+    return outs
 
 def main():
     cat = readj(CATALOG)
@@ -304,7 +310,7 @@ def main():
         })
 
     make_bundle_images()
-    make_bundle_zip()
+    bundle_parts = make_bundle_zip()
 
     bundle_desc_en = """🎄 15 MINI CHRISTMAS CROSS STITCH PATTERNS — DIGITAL PDF BUNDLE
 
@@ -425,7 +431,12 @@ Solo para uso personal. No se permite revender, redistribuir ni compartir los ar
             "assets/XMAS15-CS-gallery-3.webp",
             "assets/XMAS15-CS-gallery-4.webp"
         ],
-        "download":"files/Drielo_XMAS15-CS.zip",
+        "download":"files/Drielo_XMAS15-CS_Part1.zip",
+        "downloads":[
+            "files/Drielo_XMAS15-CS_Part1.zip",
+            "files/Drielo_XMAS15-CS_Part2.zip",
+            "files/Drielo_XMAS15-CS_Part3.zip"
+        ],
         "featured_image":"assets/XMAS15-CS-product.webp",
         "seo_title":"15 Mini Christmas Cross Stitch Patterns Bundle PDF | Drielo",
         "seo_title_en":"15 Mini Christmas Cross Stitch Patterns Bundle PDF | Drielo",
