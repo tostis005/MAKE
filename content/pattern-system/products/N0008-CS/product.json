@@ -1,0 +1,17 @@
+{
+  "code": "N0008-CS",
+  "base_design_id": "N0008",
+  "technique_code": "CS",
+  "collection": "christmas",
+  "title": "Candy Cane Mug Mini Cross Stitch Pattern PDF",
+  "title_en": "Candy Cane Mug Mini Cross Stitch Pattern PDF",
+  "title_es": "Patrón Mini de Taza con Bastón de Caramelo en Punto de Cruz PDF",
+  "design_slug": "candy-cane-mug",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/N0008-CS/pattern.json",
+  "status": "ready",
+  "render_ready": true,
+  "renderer": "christmas-pixel-exact",
+  "source_artwork": "source-images/collections/christmas/products/N0008-candy-cane-mug.png",
+  "palette_mode": "shared-exact-20-rgb"
+}

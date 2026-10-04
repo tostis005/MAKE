@@ -1,0 +1,17 @@
+{
+  "code": "N0015-CS",
+  "base_design_id": "N0015",
+  "technique_code": "CS",
+  "collection": "christmas",
+  "title": "Christmas Chapel Mini Cross Stitch Pattern PDF",
+  "title_en": "Christmas Chapel Mini Cross Stitch Pattern PDF",
+  "title_es": "Patrón Mini de Capilla de Navidad en Punto de Cruz PDF",
+  "design_slug": "holiday-church",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/N0015-CS/pattern.json",
+  "status": "ready",
+  "render_ready": true,
+  "renderer": "christmas-pixel-exact",
+  "source_artwork": "source-images/collections/christmas/products/N0015-holiday-church.png",
+  "palette_mode": "shared-exact-20-rgb"
+}

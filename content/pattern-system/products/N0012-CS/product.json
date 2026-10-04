@@ -1,0 +1,17 @@
+{
+  "code": "N0012-CS",
+  "base_design_id": "N0012",
+  "technique_code": "CS",
+  "collection": "christmas",
+  "title": "Poinsettia Mini Cross Stitch Pattern PDF",
+  "title_en": "Poinsettia Mini Cross Stitch Pattern PDF",
+  "title_es": "Patrón Mini de Flor de Pascua en Punto de Cruz PDF",
+  "design_slug": "poinsettia",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/N0012-CS/pattern.json",
+  "status": "ready",
+  "render_ready": true,
+  "renderer": "christmas-pixel-exact",
+  "source_artwork": "source-images/collections/christmas/products/N0012-poinsettia.png",
+  "palette_mode": "shared-exact-20-rgb"
+}

@@ -1,0 +1,17 @@
+{
+  "code": "N0011-CS",
+  "base_design_id": "N0011",
+  "technique_code": "CS",
+  "collection": "christmas",
+  "title": "Christmas Gnome Mini Cross Stitch Pattern PDF",
+  "title_en": "Christmas Gnome Mini Cross Stitch Pattern PDF",
+  "title_es": "Patrón Mini de Gnomo de Navidad en Punto de Cruz PDF",
+  "design_slug": "christmas-gnome",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/N0011-CS/pattern.json",
+  "status": "ready",
+  "render_ready": true,
+  "renderer": "christmas-pixel-exact",
+  "source_artwork": "source-images/collections/christmas/products/N0011-christmas-gnome.png",
+  "palette_mode": "shared-exact-20-rgb"
+}

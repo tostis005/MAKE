@@ -1,0 +1,17 @@
+{
+  "code": "N0002-CS",
+  "base_design_id": "N0002",
+  "technique_code": "CS",
+  "collection": "christmas",
+  "title": "Snowman Mini Cross Stitch Pattern PDF",
+  "title_en": "Snowman Mini Cross Stitch Pattern PDF",
+  "title_es": "Patrón Mini de Muñeco de Nieve en Punto de Cruz PDF",
+  "design_slug": "snowman",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/N0002-CS/pattern.json",
+  "status": "ready",
+  "render_ready": true,
+  "renderer": "christmas-pixel-exact",
+  "source_artwork": "source-images/collections/christmas/products/N0002-snowman.png",
+  "palette_mode": "shared-exact-20-rgb"
+}

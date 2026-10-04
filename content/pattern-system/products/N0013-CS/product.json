@@ -1,0 +1,17 @@
+{
+  "code": "N0013-CS",
+  "base_design_id": "N0013",
+  "technique_code": "CS",
+  "collection": "christmas",
+  "title": "Robin on Holly Mini Cross Stitch Pattern PDF",
+  "title_en": "Robin on Holly Mini Cross Stitch Pattern PDF",
+  "title_es": "Patrón Mini de Petirrojo sobre Acebo en Punto de Cruz PDF",
+  "design_slug": "robin-on-holly",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/N0013-CS/pattern.json",
+  "status": "ready",
+  "render_ready": true,
+  "renderer": "christmas-pixel-exact",
+  "source_artwork": "source-images/collections/christmas/products/N0013-robin-on-holly.png",
+  "palette_mode": "shared-exact-20-rgb"
+}

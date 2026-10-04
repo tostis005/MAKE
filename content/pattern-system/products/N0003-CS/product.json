@@ -1,0 +1,17 @@
+{
+  "code": "N0003-CS",
+  "base_design_id": "N0003",
+  "technique_code": "CS",
+  "collection": "christmas",
+  "title": "Santa Face Mini Cross Stitch Pattern PDF",
+  "title_en": "Santa Face Mini Cross Stitch Pattern PDF",
+  "title_es": "Patrón Mini de Cara de Papá Noel en Punto de Cruz PDF",
+  "design_slug": "santa-face",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/N0003-CS/pattern.json",
+  "status": "ready",
+  "render_ready": true,
+  "renderer": "christmas-pixel-exact",
+  "source_artwork": "source-images/collections/christmas/products/N0003-santa-face.png",
+  "palette_mode": "shared-exact-20-rgb"
+}

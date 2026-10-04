@@ -1,0 +1,17 @@
+{
+  "code": "N0009-CS",
+  "base_design_id": "N0009",
+  "technique_code": "CS",
+  "collection": "christmas",
+  "title": "Nutcracker Mini Cross Stitch Pattern PDF",
+  "title_en": "Nutcracker Mini Cross Stitch Pattern PDF",
+  "title_es": "Patrón Mini de Cascanueces en Punto de Cruz PDF",
+  "design_slug": "nutcracker",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/N0009-CS/pattern.json",
+  "status": "ready",
+  "render_ready": true,
+  "renderer": "christmas-pixel-exact",
+  "source_artwork": "source-images/collections/christmas/products/N0009-nutcracker.png",
+  "palette_mode": "shared-exact-20-rgb"
+}

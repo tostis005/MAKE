@@ -1,0 +1,17 @@
+{
+  "code": "N0014-CS",
+  "base_design_id": "N0014",
+  "technique_code": "CS",
+  "collection": "christmas",
+  "title": "Polar Bear with Scarf Mini Cross Stitch Pattern PDF",
+  "title_en": "Polar Bear with Scarf Mini Cross Stitch Pattern PDF",
+  "title_es": "Patrón Mini de Oso Polar con Bufanda en Punto de Cruz PDF",
+  "design_slug": "polar-bear-with-scarf",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/N0014-CS/pattern.json",
+  "status": "ready",
+  "render_ready": true,
+  "renderer": "christmas-pixel-exact",
+  "source_artwork": "source-images/collections/christmas/products/N0014-polar-bear-with-scarf.png",
+  "palette_mode": "shared-exact-20-rgb"
+}

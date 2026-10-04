@@ -1,0 +1,453 @@
+{
+  "collection": "christmas",
+  "algorithm": "pixel-exact-1px-1stitch",
+  "design_count": 15,
+  "source_size": [
+    50,
+    60
+  ],
+  "grid_size": [
+    100,
+    120
+  ],
+  "offset": [
+    25,
+    30
+  ],
+  "shared_palette_rgb": [
+    [
+      245,
+      237,
+      226
+    ],
+    [
+      228,
+      198,
+      165
+    ],
+    [
+      226,
+      185,
+      147
+    ],
+    [
+      164,
+      99,
+      57
+    ],
+    [
+      124,
+      69,
+      38
+    ],
+    [
+      73,
+      38,
+      20
+    ],
+    [
+      41,
+      21,
+      14
+    ],
+    [
+      246,
+      168,
+      152
+    ],
+    [
+      161,
+      4,
+      7
+    ],
+    [
+      204,
+      87,
+      82
+    ],
+    [
+      154,
+      13,
+      16
+    ],
+    [
+      45,
+      75,
+      51
+    ],
+    [
+      55,
+      91,
+      60
+    ],
+    [
+      109,
+      134,
+      75
+    ],
+    [
+      116,
+      151,
+      117
+    ],
+    [
+      202,
+      139,
+      51
+    ],
+    [
+      120,
+      144,
+      164
+    ],
+    [
+      238,
+      232,
+      220
+    ],
+    [
+      161,
+      159,
+      160
+    ],
+    [
+      155,
+      156,
+      151
+    ]
+  ],
+  "shared_palette_count": 20,
+  "union_palette_count": 20,
+  "patterns": [
+    {
+      "base_design_id": "N0001",
+      "slug": "christmas-tree",
+      "source": "N0001-christmas-tree.png",
+      "source_size": [
+        50,
+        60
+      ],
+      "grid_size": [
+        100,
+        120
+      ],
+      "offset": [
+        25,
+        30
+      ],
+      "stitches": 3000,
+      "used_colours": 19,
+      "pattern": "content/pattern-system/patterns/N0001-CS/pattern.json",
+      "pdf": "content/pattern-system/christmas/pattern-pdfs/Drielo_N0001-CS.pdf",
+      "padded_png": "content/pattern-system/christmas/generated/N0001-christmas-tree-100x120.png"
+    },
+    {
+      "base_design_id": "N0002",
+      "slug": "snowman",
+      "source": "N0002-snowman.png",
+      "source_size": [
+        50,
+        60
+      ],
+      "grid_size": [
+        100,
+        120
+      ],
+      "offset": [
+        25,
+        30
+      ],
+      "stitches": 3000,
+      "used_colours": 20,
+      "pattern": "content/pattern-system/patterns/N0002-CS/pattern.json",
+      "pdf": "content/pattern-system/christmas/pattern-pdfs/Drielo_N0002-CS.pdf",
+      "padded_png": "content/pattern-system/christmas/generated/N0002-snowman-100x120.png"
+    },
+    {
+      "base_design_id": "N0003",
+      "slug": "santa-face",
+      "source": "N0003-santa-face.png",
+      "source_size": [
+        50,
+        60
+      ],
+      "grid_size": [
+        100,
+        120
+      ],
+      "offset": [
+        25,
+        30
+      ],
+      "stitches": 3000,
+      "used_colours": 19,
+      "pattern": "content/pattern-system/patterns/N0003-CS/pattern.json",
+      "pdf": "content/pattern-system/christmas/pattern-pdfs/Drielo_N0003-CS.pdf",
+      "padded_png": "content/pattern-system/christmas/generated/N0003-santa-face-100x120.png"
+    },
+    {
+      "base_design_id": "N0004",
+      "slug": "reindeer",
+      "source": "N0004-reindeer.png",
+      "source_size": [
+        50,
+        60
+      ],
+      "grid_size": [
+        100,
+        120
+      ],
+      "offset": [
+        25,
+        30
+      ],
+      "stitches": 3000,
+      "used_colours": 19,
+      "pattern": "content/pattern-system/patterns/N0004-CS/pattern.json",
+      "pdf": "content/pattern-system/christmas/pattern-pdfs/Drielo_N0004-CS.pdf",
+      "padded_png": "content/pattern-system/christmas/generated/N0004-reindeer-100x120.png"
+    },
+    {
+      "base_design_id": "N0005",
+      "slug": "christmas-stocking",
+      "source": "N0005-christmas-stocking.png",
+      "source_size": [
+        50,
+        60
+      ],
+      "grid_size": [
+        100,
+        120
+      ],
+      "offset": [
+        25,
+        30
+      ],
+      "stitches": 3000,
+      "used_colours": 19,
+      "pattern": "content/pattern-system/patterns/N0005-CS/pattern.json",
+      "pdf": "content/pattern-system/christmas/pattern-pdfs/Drielo_N0005-CS.pdf",
+      "padded_png": "content/pattern-system/christmas/generated/N0005-christmas-stocking-100x120.png"
+    },
+    {
+      "base_design_id": "N0006",
+      "slug": "gingerbread-house",
+      "source": "N0006-gingerbread-house.png",
+      "source_size": [
+        50,
+        60
+      ],
+      "grid_size": [
+        100,
+        120
+      ],
+      "offset": [
+        25,
+        30
+      ],
+      "stitches": 3000,
+      "used_colours": 19,
+      "pattern": "content/pattern-system/patterns/N0006-CS/pattern.json",
+      "pdf": "content/pattern-system/christmas/pattern-pdfs/Drielo_N0006-CS.pdf",
+      "padded_png": "content/pattern-system/christmas/generated/N0006-gingerbread-house-100x120.png"
+    },
+    {
+      "base_design_id": "N0007",
+      "slug": "christmas-wreath",
+      "source": "N0007-christmas-wreath.png",
+      "source_size": [
+        50,
+        60
+      ],
+      "grid_size": [
+        100,
+        120
+      ],
+      "offset": [
+        25,
+        30
+      ],
+      "stitches": 3000,
+      "used_colours": 2,
+      "pattern": "content/pattern-system/patterns/N0007-CS/pattern.json",
+      "pdf": "content/pattern-system/christmas/pattern-pdfs/Drielo_N0007-CS.pdf",
+      "padded_png": "content/pattern-system/christmas/generated/N0007-christmas-wreath-100x120.png"
+    },
+    {
+      "base_design_id": "N0008",
+      "slug": "candy-cane-mug",
+      "source": "N0008-candy-cane-mug.png",
+      "source_size": [
+        50,
+        60
+      ],
+      "grid_size": [
+        100,
+        120
+      ],
+      "offset": [
+        25,
+        30
+      ],
+      "stitches": 3000,
+      "used_colours": 2,
+      "pattern": "content/pattern-system/patterns/N0008-CS/pattern.json",
+      "pdf": "content/pattern-system/christmas/pattern-pdfs/Drielo_N0008-CS.pdf",
+      "padded_png": "content/pattern-system/christmas/generated/N0008-candy-cane-mug-100x120.png"
+    },
+    {
+      "base_design_id": "N0009",
+      "slug": "nutcracker",
+      "source": "N0009-nutcracker.png",
+      "source_size": [
+        50,
+        60
+      ],
+      "grid_size": [
+        100,
+        120
+      ],
+      "offset": [
+        25,
+        30
+      ],
+      "stitches": 3000,
+      "used_colours": 2,
+      "pattern": "content/pattern-system/patterns/N0009-CS/pattern.json",
+      "pdf": "content/pattern-system/christmas/pattern-pdfs/Drielo_N0009-CS.pdf",
+      "padded_png": "content/pattern-system/christmas/generated/N0009-nutcracker-100x120.png"
+    },
+    {
+      "base_design_id": "N0010",
+      "slug": "ornament-bauble",
+      "source": "N0010-ornament-bauble.png",
+      "source_size": [
+        50,
+        60
+      ],
+      "grid_size": [
+        100,
+        120
+      ],
+      "offset": [
+        25,
+        30
+      ],
+      "stitches": 3000,
+      "used_colours": 2,
+      "pattern": "content/pattern-system/patterns/N0010-CS/pattern.json",
+      "pdf": "content/pattern-system/christmas/pattern-pdfs/Drielo_N0010-CS.pdf",
+      "padded_png": "content/pattern-system/christmas/generated/N0010-ornament-bauble-100x120.png"
+    },
+    {
+      "base_design_id": "N0011",
+      "slug": "christmas-gnome",
+      "source": "N0011-christmas-gnome.png",
+      "source_size": [
+        50,
+        60
+      ],
+      "grid_size": [
+        100,
+        120
+      ],
+      "offset": [
+        25,
+        30
+      ],
+      "stitches": 3000,
+      "used_colours": 2,
+      "pattern": "content/pattern-system/patterns/N0011-CS/pattern.json",
+      "pdf": "content/pattern-system/christmas/pattern-pdfs/Drielo_N0011-CS.pdf",
+      "padded_png": "content/pattern-system/christmas/generated/N0011-christmas-gnome-100x120.png"
+    },
+    {
+      "base_design_id": "N0012",
+      "slug": "poinsettia",
+      "source": "N0012-poinsettia.png",
+      "source_size": [
+        50,
+        60
+      ],
+      "grid_size": [
+        100,
+        120
+      ],
+      "offset": [
+        25,
+        30
+      ],
+      "stitches": 3000,
+      "used_colours": 2,
+      "pattern": "content/pattern-system/patterns/N0012-CS/pattern.json",
+      "pdf": "content/pattern-system/christmas/pattern-pdfs/Drielo_N0012-CS.pdf",
+      "padded_png": "content/pattern-system/christmas/generated/N0012-poinsettia-100x120.png"
+    },
+    {
+      "base_design_id": "N0013",
+      "slug": "robin-on-holly",
+      "source": "N0013-robin-on-holly.png",
+      "source_size": [
+        50,
+        60
+      ],
+      "grid_size": [
+        100,
+        120
+      ],
+      "offset": [
+        25,
+        30
+      ],
+      "stitches": 3000,
+      "used_colours": 2,
+      "pattern": "content/pattern-system/patterns/N0013-CS/pattern.json",
+      "pdf": "content/pattern-system/christmas/pattern-pdfs/Drielo_N0013-CS.pdf",
+      "padded_png": "content/pattern-system/christmas/generated/N0013-robin-on-holly-100x120.png"
+    },
+    {
+      "base_design_id": "N0014",
+      "slug": "polar-bear-with-scarf",
+      "source": "N0014-polar-bear-with-scarf.png",
+      "source_size": [
+        50,
+        60
+      ],
+      "grid_size": [
+        100,
+        120
+      ],
+      "offset": [
+        25,
+        30
+      ],
+      "stitches": 3000,
+      "used_colours": 2,
+      "pattern": "content/pattern-system/patterns/N0014-CS/pattern.json",
+      "pdf": "content/pattern-system/christmas/pattern-pdfs/Drielo_N0014-CS.pdf",
+      "padded_png": "content/pattern-system/christmas/generated/N0014-polar-bear-with-scarf-100x120.png"
+    },
+    {
+      "base_design_id": "N0015",
+      "slug": "holiday-church",
+      "source": "N0015-holiday-church.png",
+      "source_size": [
+        50,
+        60
+      ],
+      "grid_size": [
+        100,
+        120
+      ],
+      "offset": [
+        25,
+        30
+      ],
+      "stitches": 3000,
+      "used_colours": 2,
+      "pattern": "content/pattern-system/patterns/N0015-CS/pattern.json",
+      "pdf": "content/pattern-system/christmas/pattern-pdfs/Drielo_N0015-CS.pdf",
+      "padded_png": "content/pattern-system/christmas/generated/N0015-holiday-church-100x120.png"
+    }
+  ]
+}
