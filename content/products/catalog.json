@@ -264,6 +264,88 @@
         "946",
         "932"
       ]
+    },
+    {
+      "id": "pop-art-mini",
+      "slug": "pop-art-mini",
+      "name": "Pop Art Mini",
+      "name_en": "Pop Art Mini",
+      "name_es": "Pop Art Mini",
+      "description": "Mini Pop Art portrait cross-stitch patterns built from transparent 50 × 60 pixel sources and one strict shared 30-colour palette.",
+      "description_en": "Mini Pop Art portrait cross-stitch patterns built from transparent 50 × 60 pixel sources and one strict shared 30-colour palette.",
+      "description_es": "Mini retratos Pop Art para punto de cruz creados desde fuentes transparentes de 50 × 60 píxeles y una paleta estricta compartida de 30 colores.",
+      "palette_mode": "shared",
+      "show_collection_palette": true,
+      "palette_hex": [
+        "#000000",
+        "#141414",
+        "#262626",
+        "#3A3A3A",
+        "#505050",
+        "#686868",
+        "#808080",
+        "#999999",
+        "#B3B3B3",
+        "#CCCCCC",
+        "#E5E5E5",
+        "#F6F2E8",
+        "#3A231A",
+        "#5A3423",
+        "#7A4931",
+        "#9D6544",
+        "#C08A62",
+        "#DDB18A",
+        "#F0D0AE",
+        "#C80D1E",
+        "#FF4F9A",
+        "#FF6B5A",
+        "#E7A61A",
+        "#FFD84A",
+        "#1E7A38",
+        "#70B93A",
+        "#148C8C",
+        "#2CAFE3",
+        "#1F63C5",
+        "#7B3FA1"
+      ],
+      "thread_codes": [
+        "310",
+        "3371",
+        "934",
+        "3799",
+        "309",
+        "317",
+        "169",
+        "414",
+        "648",
+        "168",
+        "3072",
+        "819",
+        "938",
+        "801",
+        "433",
+        "420",
+        "3828",
+        "437",
+        "3856",
+        "817",
+        "3805",
+        "351",
+        "741",
+        "726",
+        "909",
+        "906",
+        "3812",
+        "996",
+        "825",
+        "208"
+      ],
+      "cover_asset": "assets/pop-art-mini-collection-cover.webp",
+      "techniques": [
+        "cross-stitch"
+      ],
+      "visible": true,
+      "force_visibility_sync": true
     }
   ],
   "categories": [
@@ -20248,6 +20330,273 @@
         "season": [
           "christmas"
         ]
+      }
+    },
+    {
+      "code": "PM0001-CS",
+      "sku": "DRIELO-PM0001-CS",
+      "price": 2.99,
+      "categories": [
+        "cross-stitch-patterns",
+        "portraits",
+        "pop-art"
+      ],
+      "title": "Marilyn Monroe Bubble Gum Mini Cross Stitch Pattern PDF",
+      "title_en": "Marilyn Monroe Bubble Gum Mini Cross Stitch Pattern PDF",
+      "title_es": "Marilyn Monroe con chicle - patrón mini de punto de cruz PDF",
+      "slug": "marilyn-bubblegum-mini-cross-stitch-pattern",
+      "collection": "pop-art-mini",
+      "stitches": 2030,
+      "grid": "100 × 120 stitches",
+      "colours": 17,
+      "color_count": 17,
+      "grid_width": 100,
+      "grid_height": 120,
+      "motif_width": 50,
+      "motif_height": 60,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Full cross stitch",
+      "stitch_type_en": "Full cross stitch",
+      "stitch_type_es": "Punto de cruz completo",
+      "short_description": "Marilyn Monroe Bubble Gum mini cross-stitch PDF from a transparent 50 × 60 pixel source, centered on a 100 × 120 chart. 2,030 full cross stitches and 17 colours from the shared 30-colour Pop Art Mini palette.",
+      "short_description_en": "Marilyn Monroe Bubble Gum mini cross-stitch PDF from a transparent 50 × 60 pixel source, centered on a 100 × 120 chart. 2,030 full cross stitches and 17 colours from the shared 30-colour Pop Art Mini palette.",
+      "short_description_es": "Marilyn Monroe con chicle: patrón mini PDF creado desde una fuente transparente de 50 × 60 y centrado en una cuadrícula de 100 × 120. 2,030 puntadas completas y 17 colores de la paleta compartida de 30 colores Pop Art Mini.",
+      "description": "<p><strong>Marilyn Monroe Bubble Gum Mini Cross Stitch Pattern PDF</strong></p><p>Pixel-exact mini pattern: every opaque pixel from the transparent 50 × 60 source becomes one full cross stitch. Transparent pixels remain blank Aida. The motif is centered inside a 100 × 120 chart.</p><p>2,030 stitches · 17 colours · shared 30-colour Pop Art Mini palette.</p>",
+      "description_en": "<p><strong>Marilyn Monroe Bubble Gum Mini Cross Stitch Pattern PDF</strong></p><p>Pixel-exact mini pattern: every opaque pixel from the transparent 50 × 60 source becomes one full cross stitch. Transparent pixels remain blank Aida. The motif is centered inside a 100 × 120 chart.</p><p>2,030 stitches · 17 colours · shared 30-colour Pop Art Mini palette.</p>",
+      "description_es": "<p><strong>Marilyn Monroe con chicle - patrón mini de punto de cruz PDF</strong></p><p>Patrón mini exacto píxel a píxel: cada píxel opaco de la fuente transparente 50 × 60 se convierte en una cruz completa. Los píxeles transparentes quedan como Aida en blanco. El motivo se centra dentro de una cuadrícula de 100 × 120.</p><p>2,030 puntadas · 17 colores · paleta compartida Pop Art Mini de 30 colores.</p>",
+      "gallery": [
+        "assets/PM0001-CS-gallery-2.webp",
+        "assets/PM0001-CS-gallery-3.webp",
+        "assets/PM0001-CS-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_PM0001-CS.pdf",
+      "featured_image": "assets/PM0001-CS-product.webp",
+      "seo_title": "Marilyn Monroe Bubble Gum Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_en": "Marilyn Monroe Bubble Gum Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_es": "Marilyn Monroe con chicle - patrón mini de punto de cruz PDF | Drielo",
+      "meta_description": "Marilyn Monroe Bubble Gum mini cross-stitch PDF from a transparent 50 × 60 pixel source, centered on a 100 × 120 chart. 2,030 full cross stitches and 17 co",
+      "meta_description_en": "Marilyn Monroe Bubble Gum mini cross-stitch PDF from a transparent 50 × 60 pixel source, centered on a 100 × 120 chart. 2,030 full cross stitches and 17 co",
+      "meta_description_es": "Marilyn Monroe con chicle: patrón mini PDF creado desde una fuente transparente de 50 × 60 y centrado en una cuadrícula de 100 × 120. 2,030 puntadas comple",
+      "tags": [
+        "pop art",
+        "portrait cross stitch",
+        "mini cross stitch",
+        "cross stitch pdf",
+        "counted cross stitch",
+        "digital pattern"
+      ],
+      "design_id": "PM0001-CS",
+      "base_design_id": "PM0001",
+      "technique_code": "CS",
+      "technique": "cross-stitch",
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "people-portraits"
+        ],
+        "style": [
+          "pop-art"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "multicolor"
+        ],
+        "season": []
+      }
+    },
+    {
+      "code": "PM0016-CS",
+      "sku": "DRIELO-PM0016-CS",
+      "price": 2.99,
+      "categories": [
+        "cross-stitch-patterns",
+        "portraits",
+        "pop-art"
+      ],
+      "title": "Joker Pop Art Mini Cross Stitch Pattern PDF",
+      "title_en": "Joker Pop Art Mini Cross Stitch Pattern PDF",
+      "title_es": "Joker Pop Art - patrón mini de punto de cruz PDF",
+      "slug": "joker-pop-art-mini-cross-stitch-pattern",
+      "collection": "pop-art-mini",
+      "stitches": 2085,
+      "grid": "100 × 120 stitches",
+      "colours": 25,
+      "color_count": 25,
+      "grid_width": 100,
+      "grid_height": 120,
+      "motif_width": 50,
+      "motif_height": 60,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Full cross stitch",
+      "stitch_type_en": "Full cross stitch",
+      "stitch_type_es": "Punto de cruz completo",
+      "short_description": "Joker Pop Art mini cross-stitch PDF from a transparent 50 × 60 pixel source, centered on a 100 × 120 chart. 2,085 full cross stitches and 25 colours from the shared 30-colour Pop Art Mini palette.",
+      "short_description_en": "Joker Pop Art mini cross-stitch PDF from a transparent 50 × 60 pixel source, centered on a 100 × 120 chart. 2,085 full cross stitches and 25 colours from the shared 30-colour Pop Art Mini palette.",
+      "short_description_es": "Joker Pop Art: patrón mini PDF creado desde una fuente transparente de 50 × 60 y centrado en una cuadrícula de 100 × 120. 2,085 puntadas completas y 25 colores de la paleta compartida de 30 colores Pop Art Mini.",
+      "description": "<p><strong>Joker Pop Art Mini Cross Stitch Pattern PDF</strong></p><p>Pixel-exact mini pattern: every opaque pixel from the transparent 50 × 60 source becomes one full cross stitch. Transparent pixels remain blank Aida. The motif is centered inside a 100 × 120 chart.</p><p>2,085 stitches · 25 colours · shared 30-colour Pop Art Mini palette.</p>",
+      "description_en": "<p><strong>Joker Pop Art Mini Cross Stitch Pattern PDF</strong></p><p>Pixel-exact mini pattern: every opaque pixel from the transparent 50 × 60 source becomes one full cross stitch. Transparent pixels remain blank Aida. The motif is centered inside a 100 × 120 chart.</p><p>2,085 stitches · 25 colours · shared 30-colour Pop Art Mini palette.</p>",
+      "description_es": "<p><strong>Joker Pop Art - patrón mini de punto de cruz PDF</strong></p><p>Patrón mini exacto píxel a píxel: cada píxel opaco de la fuente transparente 50 × 60 se convierte en una cruz completa. Los píxeles transparentes quedan como Aida en blanco. El motivo se centra dentro de una cuadrícula de 100 × 120.</p><p>2,085 puntadas · 25 colores · paleta compartida Pop Art Mini de 30 colores.</p>",
+      "gallery": [
+        "assets/PM0016-CS-gallery-2.webp",
+        "assets/PM0016-CS-gallery-3.webp",
+        "assets/PM0016-CS-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_PM0016-CS.pdf",
+      "featured_image": "assets/PM0016-CS-product.webp",
+      "seo_title": "Joker Pop Art Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_en": "Joker Pop Art Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_es": "Joker Pop Art - patrón mini de punto de cruz PDF | Drielo",
+      "meta_description": "Joker Pop Art mini cross-stitch PDF from a transparent 50 × 60 pixel source, centered on a 100 × 120 chart. 2,085 full cross stitches and 25 colours from t",
+      "meta_description_en": "Joker Pop Art mini cross-stitch PDF from a transparent 50 × 60 pixel source, centered on a 100 × 120 chart. 2,085 full cross stitches and 25 colours from t",
+      "meta_description_es": "Joker Pop Art: patrón mini PDF creado desde una fuente transparente de 50 × 60 y centrado en una cuadrícula de 100 × 120. 2,085 puntadas completas y 25 col",
+      "tags": [
+        "pop art",
+        "portrait cross stitch",
+        "mini cross stitch",
+        "cross stitch pdf",
+        "counted cross stitch",
+        "digital pattern"
+      ],
+      "design_id": "PM0016-CS",
+      "base_design_id": "PM0016",
+      "technique_code": "CS",
+      "technique": "cross-stitch",
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "people-portraits"
+        ],
+        "style": [
+          "pop-art"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "multicolor"
+        ],
+        "season": []
+      }
+    },
+    {
+      "code": "PM0021-CS",
+      "sku": "DRIELO-PM0021-CS",
+      "price": 2.99,
+      "categories": [
+        "cross-stitch-patterns",
+        "portraits",
+        "pop-art"
+      ],
+      "title": "Van Gogh Sunflower Mini Cross Stitch Pattern PDF",
+      "title_en": "Van Gogh Sunflower Mini Cross Stitch Pattern PDF",
+      "title_es": "Van Gogh con girasol - patrón mini de punto de cruz PDF",
+      "slug": "van-gogh-sunflower-mini-cross-stitch-pattern",
+      "collection": "pop-art-mini",
+      "stitches": 1855,
+      "grid": "100 × 120 stitches",
+      "colours": 25,
+      "color_count": 25,
+      "grid_width": 100,
+      "grid_height": 120,
+      "motif_width": 50,
+      "motif_height": 60,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Full cross stitch",
+      "stitch_type_en": "Full cross stitch",
+      "stitch_type_es": "Punto de cruz completo",
+      "short_description": "Van Gogh Sunflower mini cross-stitch PDF from a transparent 50 × 60 pixel source, centered on a 100 × 120 chart. 1,855 full cross stitches and 25 colours from the shared 30-colour Pop Art Mini palette.",
+      "short_description_en": "Van Gogh Sunflower mini cross-stitch PDF from a transparent 50 × 60 pixel source, centered on a 100 × 120 chart. 1,855 full cross stitches and 25 colours from the shared 30-colour Pop Art Mini palette.",
+      "short_description_es": "Van Gogh con girasol: patrón mini PDF creado desde una fuente transparente de 50 × 60 y centrado en una cuadrícula de 100 × 120. 1,855 puntadas completas y 25 colores de la paleta compartida de 30 colores Pop Art Mini.",
+      "description": "<p><strong>Van Gogh Sunflower Mini Cross Stitch Pattern PDF</strong></p><p>Pixel-exact mini pattern: every opaque pixel from the transparent 50 × 60 source becomes one full cross stitch. Transparent pixels remain blank Aida. The motif is centered inside a 100 × 120 chart.</p><p>1,855 stitches · 25 colours · shared 30-colour Pop Art Mini palette.</p>",
+      "description_en": "<p><strong>Van Gogh Sunflower Mini Cross Stitch Pattern PDF</strong></p><p>Pixel-exact mini pattern: every opaque pixel from the transparent 50 × 60 source becomes one full cross stitch. Transparent pixels remain blank Aida. The motif is centered inside a 100 × 120 chart.</p><p>1,855 stitches · 25 colours · shared 30-colour Pop Art Mini palette.</p>",
+      "description_es": "<p><strong>Van Gogh con girasol - patrón mini de punto de cruz PDF</strong></p><p>Patrón mini exacto píxel a píxel: cada píxel opaco de la fuente transparente 50 × 60 se convierte en una cruz completa. Los píxeles transparentes quedan como Aida en blanco. El motivo se centra dentro de una cuadrícula de 100 × 120.</p><p>1,855 puntadas · 25 colores · paleta compartida Pop Art Mini de 30 colores.</p>",
+      "gallery": [
+        "assets/PM0021-CS-gallery-2.webp",
+        "assets/PM0021-CS-gallery-3.webp",
+        "assets/PM0021-CS-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_PM0021-CS.pdf",
+      "featured_image": "assets/PM0021-CS-product.webp",
+      "seo_title": "Van Gogh Sunflower Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_en": "Van Gogh Sunflower Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_es": "Van Gogh con girasol - patrón mini de punto de cruz PDF | Drielo",
+      "meta_description": "Van Gogh Sunflower mini cross-stitch PDF from a transparent 50 × 60 pixel source, centered on a 100 × 120 chart. 1,855 full cross stitches and 25 colours f",
+      "meta_description_en": "Van Gogh Sunflower mini cross-stitch PDF from a transparent 50 × 60 pixel source, centered on a 100 × 120 chart. 1,855 full cross stitches and 25 colours f",
+      "meta_description_es": "Van Gogh con girasol: patrón mini PDF creado desde una fuente transparente de 50 × 60 y centrado en una cuadrícula de 100 × 120. 1,855 puntadas completas y",
+      "tags": [
+        "pop art",
+        "portrait cross stitch",
+        "mini cross stitch",
+        "cross stitch pdf",
+        "counted cross stitch",
+        "digital pattern"
+      ],
+      "design_id": "PM0021-CS",
+      "base_design_id": "PM0021",
+      "technique_code": "CS",
+      "technique": "cross-stitch",
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "people-portraits"
+        ],
+        "style": [
+          "pop-art"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "multicolor"
+        ],
+        "season": []
       }
     }
   ],

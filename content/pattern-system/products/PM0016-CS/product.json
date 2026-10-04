@@ -1,0 +1,18 @@
+{
+  "code": "PM0016-CS",
+  "base_design_id": "PM0016",
+  "technique_code": "CS",
+  "collection": "pop-art-mini",
+  "title": "Joker Pop Art Mini Cross Stitch Pattern PDF",
+  "title_en": "Joker Pop Art Mini Cross Stitch Pattern PDF",
+  "title_es": "Joker Pop Art - patrón mini de punto de cruz PDF",
+  "technique": "cross-stitch",
+  "pattern_file": "patterns/PM0016-CS/pattern.json",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "status": "active",
+  "render_ready": true,
+  "renderer": "multitech-aida-relief-v4",
+  "source_artwork": "source-images/collections/pop-art-mini/products/PM0016-joker-pop-art.png",
+  "palette_mode": "shared-exact-30-rgb"
+}

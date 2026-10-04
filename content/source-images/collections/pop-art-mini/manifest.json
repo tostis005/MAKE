@@ -1,0 +1,338 @@
+{
+  "collection": "pop-art-mini",
+  "design_count": 24,
+  "source_size": [
+    50,
+    60
+  ],
+  "grid_size": [
+    100,
+    120
+  ],
+  "offset": [
+    25,
+    30
+  ],
+  "palette_rgb": [
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      20,
+      20,
+      20
+    ],
+    [
+      38,
+      38,
+      38
+    ],
+    [
+      58,
+      58,
+      58
+    ],
+    [
+      80,
+      80,
+      80
+    ],
+    [
+      104,
+      104,
+      104
+    ],
+    [
+      128,
+      128,
+      128
+    ],
+    [
+      153,
+      153,
+      153
+    ],
+    [
+      179,
+      179,
+      179
+    ],
+    [
+      204,
+      204,
+      204
+    ],
+    [
+      229,
+      229,
+      229
+    ],
+    [
+      246,
+      242,
+      232
+    ],
+    [
+      58,
+      35,
+      26
+    ],
+    [
+      90,
+      52,
+      35
+    ],
+    [
+      122,
+      73,
+      49
+    ],
+    [
+      157,
+      101,
+      68
+    ],
+    [
+      192,
+      138,
+      98
+    ],
+    [
+      221,
+      177,
+      138
+    ],
+    [
+      240,
+      208,
+      174
+    ],
+    [
+      200,
+      13,
+      30
+    ],
+    [
+      255,
+      79,
+      154
+    ],
+    [
+      255,
+      107,
+      90
+    ],
+    [
+      231,
+      166,
+      26
+    ],
+    [
+      255,
+      216,
+      74
+    ],
+    [
+      30,
+      122,
+      56
+    ],
+    [
+      112,
+      185,
+      58
+    ],
+    [
+      20,
+      140,
+      140
+    ],
+    [
+      44,
+      175,
+      227
+    ],
+    [
+      31,
+      99,
+      197
+    ],
+    [
+      123,
+      63,
+      161
+    ]
+  ],
+  "designs": [
+    {
+      "code": "PM0001",
+      "slug": "marilyn-bubblegum",
+      "title_en": "Marilyn Monroe Bubble Gum",
+      "title_es": "Marilyn Monroe con chicle",
+      "file": "PM0001-marilyn-bubblegum.png"
+    },
+    {
+      "code": "PM0002",
+      "slug": "elvis-blue-sunglasses",
+      "title_en": "Elvis Blue Sunglasses",
+      "title_es": "Elvis con gafas azules",
+      "file": "PM0002-elvis-blue-sunglasses.png"
+    },
+    {
+      "code": "PM0003",
+      "slug": "michael-jordan-tongue",
+      "title_en": "Michael Jordan Tongue",
+      "title_es": "Michael Jordan sacando la lengua",
+      "file": "PM0003-michael-jordan-tongue.png"
+    },
+    {
+      "code": "PM0004",
+      "slug": "einstein-tongue",
+      "title_en": "Albert Einstein Tongue",
+      "title_es": "Albert Einstein sacando la lengua",
+      "file": "PM0004-einstein-tongue.png"
+    },
+    {
+      "code": "PM0005",
+      "slug": "mona-lisa-heart-glasses",
+      "title_en": "Mona Lisa Heart Glasses",
+      "title_es": "Mona Lisa con gafas de corazón",
+      "file": "PM0005-mona-lisa-heart-glasses.png"
+    },
+    {
+      "code": "PM0006",
+      "slug": "girl-pearl-earring",
+      "title_en": "Girl with a Pearl Earring",
+      "title_es": "La joven de la perla",
+      "file": "PM0006-girl-pearl-earring.png"
+    },
+    {
+      "code": "PM0007",
+      "slug": "venus-flower",
+      "title_en": "Venus Flower Portrait",
+      "title_es": "Venus con flor",
+      "file": "PM0007-venus-flower.png"
+    },
+    {
+      "code": "PM0008",
+      "slug": "apple-man",
+      "title_en": "Apple Man",
+      "title_es": "Hombre de la manzana",
+      "file": "PM0008-apple-man.png"
+    },
+    {
+      "code": "PM0009",
+      "slug": "frida-kahlo-flowers",
+      "title_en": "Frida Kahlo Flowers",
+      "title_es": "Frida Kahlo con flores",
+      "file": "PM0009-frida-kahlo-flowers.png"
+    },
+    {
+      "code": "PM0010",
+      "slug": "audrey-hepburn",
+      "title_en": "Audrey Hepburn Portrait",
+      "title_es": "Retrato de Audrey Hepburn",
+      "file": "PM0010-audrey-hepburn.png"
+    },
+    {
+      "code": "PM0011",
+      "slug": "david-bowie-lightning",
+      "title_en": "David Bowie Lightning",
+      "title_es": "David Bowie con rayo",
+      "file": "PM0011-david-bowie-lightning.png"
+    },
+    {
+      "code": "PM0012",
+      "slug": "michael-jackson-glove",
+      "title_en": "Michael Jackson Gold Glove",
+      "title_es": "Michael Jackson con guante dorado",
+      "file": "PM0012-michael-jackson-glove.png"
+    },
+    {
+      "code": "PM0013",
+      "slug": "charlie-chaplin-rose",
+      "title_en": "Charlie Chaplin Rose",
+      "title_es": "Charlie Chaplin con rosa",
+      "file": "PM0013-charlie-chaplin-rose.png"
+    },
+    {
+      "code": "PM0014",
+      "slug": "classical-statue-pink-glasses",
+      "title_en": "Classical Statue Pink Glasses",
+      "title_es": "Estatua clásica con gafas rosas",
+      "file": "PM0014-classical-statue-pink-glasses.png"
+    },
+    {
+      "code": "PM0015",
+      "slug": "bubblegum-elegance",
+      "title_en": "Bubble Gum Elegance",
+      "title_es": "Retrato elegante con chicle",
+      "file": "PM0015-bubblegum-elegance.png"
+    },
+    {
+      "code": "PM0016",
+      "slug": "joker-pop-art",
+      "title_en": "Joker Pop Art",
+      "title_es": "Joker Pop Art",
+      "file": "PM0016-joker-pop-art.png"
+    },
+    {
+      "code": "PM0017",
+      "slug": "james-dean",
+      "title_en": "James Dean Portrait",
+      "title_es": "Retrato de James Dean",
+      "file": "PM0017-james-dean.png"
+    },
+    {
+      "code": "PM0018",
+      "slug": "bruce-lee",
+      "title_en": "Bruce Lee Portrait",
+      "title_es": "Retrato de Bruce Lee",
+      "file": "PM0018-bruce-lee.png"
+    },
+    {
+      "code": "PM0019",
+      "slug": "salvador-dali",
+      "title_en": "Salvador Dali Portrait",
+      "title_es": "Retrato de Salvador Dalí",
+      "file": "PM0019-salvador-dali.png"
+    },
+    {
+      "code": "PM0020",
+      "slug": "john-lennon-yellow-glasses",
+      "title_en": "John Lennon Yellow Glasses",
+      "title_es": "John Lennon con gafas amarillas",
+      "file": "PM0020-john-lennon-yellow-glasses.png"
+    },
+    {
+      "code": "PM0021",
+      "slug": "van-gogh-sunflower",
+      "title_en": "Van Gogh Sunflower",
+      "title_es": "Van Gogh con girasol",
+      "file": "PM0021-van-gogh-sunflower.png"
+    },
+    {
+      "code": "PM0022",
+      "slug": "catrina-flowers",
+      "title_en": "Catrina Flowers",
+      "title_es": "Catrina con flores",
+      "file": "PM0022-catrina-flowers.png"
+    },
+    {
+      "code": "PM0023",
+      "slug": "statue-liberty-bubblegum",
+      "title_en": "Statue of Liberty Bubble Gum",
+      "title_es": "Estatua de la Libertad con chicle",
+      "file": "PM0023-statue-liberty-bubblegum.png"
+    },
+    {
+      "code": "PM0024",
+      "slug": "mozart-headphones",
+      "title_en": "Mozart Headphones",
+      "title_es": "Mozart con auriculares",
+      "file": "PM0024-mozart-headphones.png"
+    }
+  ]
+}
