@@ -6,12 +6,14 @@
   "title": "Christmas Stocking Mini Cross Stitch Pattern PDF",
   "title_en": "Christmas Stocking Mini Cross Stitch Pattern PDF",
   "title_es": "Patrón Mini de Calcetín de Navidad en Punto de Cruz PDF",
-  "design_slug": "christmas-stocking",
+  "design_slug": "stocking",
   "technique": "cross-stitch",
   "pattern_file": "patterns/N0005-CS/pattern.json",
-  "status": "ready",
+  "status": "active",
   "render_ready": true,
-  "renderer": "christmas-pixel-exact",
-  "source_artwork": "source-images/collections/christmas/products/N0005-christmas-stocking.png",
-  "palette_mode": "shared-exact-20-rgb"
+  "renderer": "multitech-aida-relief-v4",
+  "source_artwork": "source-images/collections/christmas/products/N0005-stocking.png",
+  "palette_mode": "shared-exact-20-rgb",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com"
 }

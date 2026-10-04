@@ -9,9 +9,11 @@
   "design_slug": "reindeer",
   "technique": "cross-stitch",
   "pattern_file": "patterns/N0004-CS/pattern.json",
-  "status": "ready",
+  "status": "active",
   "render_ready": true,
-  "renderer": "christmas-pixel-exact",
+  "renderer": "multitech-aida-relief-v4",
   "source_artwork": "source-images/collections/christmas/products/N0004-reindeer.png",
-  "palette_mode": "shared-exact-20-rgb"
+  "palette_mode": "shared-exact-20-rgb",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com"
 }

@@ -14,5 +14,6 @@
   "source_artwork": "source-images/collections/christmas/products/N0001-christmas-tree.png",
   "template": "cross-stitch.html",
   "website": "www.drielo.com",
-  "palette_mode": "shared-exact-20-rgb"
+  "palette_mode": "shared-exact-20-rgb",
+  "design_slug": "christmas-tree"
 }

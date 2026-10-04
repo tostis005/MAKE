@@ -18893,10 +18893,10 @@
       "title_es": "Patrón Mini de Árbol de Navidad en Punto de Cruz PDF",
       "slug": "christmas-tree-mini-cross-stitch-pattern",
       "collection": "christmas",
-      "stitches": 1400,
+      "stitches": 1522,
       "grid": "100 × 120 stitches",
-      "colours": 18,
-      "color_count": 18,
+      "colours": 20,
+      "color_count": 20,
       "grid_width": 100,
       "grid_height": 120,
       "motif_width": 50,
@@ -18907,12 +18907,12 @@
       "stitch_type": "Full cross stitch",
       "stitch_type_en": "Full cross stitch",
       "stitch_type_es": "Punto de cruz completo",
-      "short_description": "Mini Christmas tree cross-stitch PDF rendered with the same pixel-by-pixel Aida/X algorithm used by Drielo's established patterns. Transparent cells remain blank Aida; 1,400 full cross stitches and 18 colours.",
-      "short_description_en": "Mini Christmas tree cross-stitch PDF rendered with the same pixel-by-pixel Aida/X algorithm used by Drielo's established patterns. Transparent cells remain blank Aida; 1,400 full cross stitches and 18 colours.",
-      "short_description_es": "Mini patrón PDF de árbol de Navidad renderizado con el mismo algoritmo píxel a píxel de Aida y cruces usado en los patrones de Drielo. Las celdas transparentes quedan como Aida en blanco; 1,400 puntadas completas y 18 colores.",
-      "description": "<p><strong>Christmas Tree Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero are rendered with the same Aida-relief-v4 stitch engine.</p><p>1,400 stitches · 18 colours.</p>",
-      "description_en": "<p><strong>Christmas Tree Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero are rendered with the same Aida-relief-v4 stitch engine.</p><p>1,400 stitches · 18 colours.</p>",
-      "description_es": "<p><strong>Patrón Mini de Árbol de Navidad en Punto de Cruz PDF</strong></p><p>La fuente transparente de 50 × 60 se lee píxel a píxel y se centra dentro de una matriz de 100 × 120. Cada píxel opaco se convierte en una cruz completa y cada píxel transparente queda como Aida en blanco. El PDF, la vista terminada y la imagen de WooCommerce se renderizan con el mismo motor Aida-relief-v4.</p><p>1,400 puntadas · 18 colores.</p>",
+      "short_description": "Mini christmas tree cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,522 full cross stitches and 20 colours.",
+      "short_description_en": "Mini christmas tree cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,522 full cross stitches and 20 colours.",
+      "short_description_es": "Mini patrón PDF de árbol de navidad renderizado con el motor píxel a píxel de Aida y cruces de Drielo. Las celdas transparentes quedan como Aida en blanco; 1,522 puntadas completas y 20 colores.",
+      "description": "<p><strong>Christmas Tree Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero use the same Aida-relief-v4 stitch engine.</p><p>1,522 stitches · 20 colours.</p>",
+      "description_en": "<p><strong>Christmas Tree Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero use the same Aida-relief-v4 stitch engine.</p><p>1,522 stitches · 20 colours.</p>",
+      "description_es": "<p><strong>Patrón Mini de Árbol de Navidad en Punto de Cruz PDF</strong></p><p>La fuente transparente de 50 × 60 se lee píxel a píxel y se centra dentro de una matriz de 100 × 120. Cada píxel opaco se convierte en una cruz completa y cada píxel transparente queda como Aida en blanco. El PDF, la vista terminada y la imagen de WooCommerce usan el mismo motor Aida-relief-v4.</p><p>1,522 puntadas · 20 colores.</p>",
       "gallery": [
         "assets/N0001-CS-gallery-2.webp",
         "assets/N0001-CS-gallery-3.webp",
@@ -18923,9 +18923,9 @@
       "seo_title": "Christmas Tree Mini Cross Stitch Pattern PDF | Drielo",
       "seo_title_en": "Christmas Tree Mini Cross Stitch Pattern PDF | Drielo",
       "seo_title_es": "Patrón Mini de Árbol de Navidad en Punto de Cruz PDF | Drielo",
-      "meta_description": "Mini Christmas tree cross-stitch PDF rendered with the same pixel-by-pixel Aida/X algorithm used by Drielo's established patterns. Transparent cells remain",
-      "meta_description_en": "Mini Christmas tree cross-stitch PDF rendered with the same pixel-by-pixel Aida/X algorithm used by Drielo's established patterns. Transparent cells remain",
-      "meta_description_es": "Mini patrón PDF de árbol de Navidad renderizado con el mismo algoritmo píxel a píxel de Aida y cruces usado en los patrones de Drielo. Las celdas transpare",
+      "meta_description": "Mini christmas tree cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,522 full cross stitches an",
+      "meta_description_en": "Mini christmas tree cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,522 full cross stitches an",
+      "meta_description_es": "Mini patrón PDF de árbol de navidad renderizado con el motor píxel a píxel de Aida y cruces de Drielo. Las celdas transparentes quedan como Aida en blanco;",
       "tags": [
         "christmas tree",
         "christmas cross stitch",
@@ -18988,6 +18988,1266 @@
         "facts": 3,
         "colour_a1": 8,
         "symbol_a1": 12
+      }
+    },
+    {
+      "code": "N0002-CS",
+      "sku": "DRIELO-N0002-CS",
+      "price": 2.99,
+      "categories": [
+        "cross-stitch-patterns",
+        "cross-stitch-christmas"
+      ],
+      "title": "Santa Claus Mini Cross Stitch Pattern PDF",
+      "title_en": "Santa Claus Mini Cross Stitch Pattern PDF",
+      "title_es": "Patrón Mini de Papá Noel en Punto de Cruz PDF",
+      "slug": "santa-mini-cross-stitch-pattern",
+      "collection": "christmas",
+      "stitches": 1722,
+      "grid": "100 × 120 stitches",
+      "colours": 14,
+      "color_count": 14,
+      "grid_width": 100,
+      "grid_height": 120,
+      "motif_width": 50,
+      "motif_height": 60,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Full cross stitch",
+      "stitch_type_en": "Full cross stitch",
+      "stitch_type_es": "Punto de cruz completo",
+      "short_description": "Mini santa claus cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,722 full cross stitches and 14 colours.",
+      "short_description_en": "Mini santa claus cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,722 full cross stitches and 14 colours.",
+      "short_description_es": "Mini patrón PDF de papá noel renderizado con el motor píxel a píxel de Aida y cruces de Drielo. Las celdas transparentes quedan como Aida en blanco; 1,722 puntadas completas y 14 colores.",
+      "description": "<p><strong>Santa Claus Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero use the same Aida-relief-v4 stitch engine.</p><p>1,722 stitches · 14 colours.</p>",
+      "description_en": "<p><strong>Santa Claus Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero use the same Aida-relief-v4 stitch engine.</p><p>1,722 stitches · 14 colours.</p>",
+      "description_es": "<p><strong>Patrón Mini de Papá Noel en Punto de Cruz PDF</strong></p><p>La fuente transparente de 50 × 60 se lee píxel a píxel y se centra dentro de una matriz de 100 × 120. Cada píxel opaco se convierte en una cruz completa y cada píxel transparente queda como Aida en blanco. El PDF, la vista terminada y la imagen de WooCommerce usan el mismo motor Aida-relief-v4.</p><p>1,722 puntadas · 14 colores.</p>",
+      "gallery": [
+        "assets/N0002-CS-gallery-2.webp",
+        "assets/N0002-CS-gallery-3.webp",
+        "assets/N0002-CS-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_N0002-CS.pdf",
+      "featured_image": "assets/N0002-CS-product.webp",
+      "seo_title": "Santa Claus Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_en": "Santa Claus Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_es": "Patrón Mini de Papá Noel en Punto de Cruz PDF | Drielo",
+      "meta_description": "Mini santa claus cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,722 full cross stitches and 1",
+      "meta_description_en": "Mini santa claus cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,722 full cross stitches and 1",
+      "meta_description_es": "Mini patrón PDF de papá noel renderizado con el motor píxel a píxel de Aida y cruces de Drielo. Las celdas transparentes quedan como Aida en blanco; 1,722 ",
+      "tags": [
+        "santa",
+        "christmas cross stitch",
+        "mini cross stitch",
+        "cross stitch pdf",
+        "counted cross stitch",
+        "digital pattern"
+      ],
+      "design_id": "N0002-CS",
+      "base_design_id": "N0002",
+      "technique_code": "CS",
+      "technique": "cross-stitch",
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "holidays-seasons"
+        ],
+        "style": [
+          "cute"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "multicolor"
+        ],
+        "season": [
+          "christmas"
+        ]
+      }
+    },
+    {
+      "code": "N0003-CS",
+      "sku": "DRIELO-N0003-CS",
+      "price": 2.99,
+      "categories": [
+        "cross-stitch-patterns",
+        "cross-stitch-christmas"
+      ],
+      "title": "Snowman Mini Cross Stitch Pattern PDF",
+      "title_en": "Snowman Mini Cross Stitch Pattern PDF",
+      "title_es": "Patrón Mini de Muñeco de Nieve en Punto de Cruz PDF",
+      "slug": "snowman-mini-cross-stitch-pattern",
+      "collection": "christmas",
+      "stitches": 1436,
+      "grid": "100 × 120 stitches",
+      "colours": 18,
+      "color_count": 18,
+      "grid_width": 100,
+      "grid_height": 120,
+      "motif_width": 50,
+      "motif_height": 60,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Full cross stitch",
+      "stitch_type_en": "Full cross stitch",
+      "stitch_type_es": "Punto de cruz completo",
+      "short_description": "Mini snowman cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,436 full cross stitches and 18 colours.",
+      "short_description_en": "Mini snowman cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,436 full cross stitches and 18 colours.",
+      "short_description_es": "Mini patrón PDF de muñeco de nieve renderizado con el motor píxel a píxel de Aida y cruces de Drielo. Las celdas transparentes quedan como Aida en blanco; 1,436 puntadas completas y 18 colores.",
+      "description": "<p><strong>Snowman Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero use the same Aida-relief-v4 stitch engine.</p><p>1,436 stitches · 18 colours.</p>",
+      "description_en": "<p><strong>Snowman Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero use the same Aida-relief-v4 stitch engine.</p><p>1,436 stitches · 18 colours.</p>",
+      "description_es": "<p><strong>Patrón Mini de Muñeco de Nieve en Punto de Cruz PDF</strong></p><p>La fuente transparente de 50 × 60 se lee píxel a píxel y se centra dentro de una matriz de 100 × 120. Cada píxel opaco se convierte en una cruz completa y cada píxel transparente queda como Aida en blanco. El PDF, la vista terminada y la imagen de WooCommerce usan el mismo motor Aida-relief-v4.</p><p>1,436 puntadas · 18 colores.</p>",
+      "gallery": [
+        "assets/N0003-CS-gallery-2.webp",
+        "assets/N0003-CS-gallery-3.webp",
+        "assets/N0003-CS-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_N0003-CS.pdf",
+      "featured_image": "assets/N0003-CS-product.webp",
+      "seo_title": "Snowman Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_en": "Snowman Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_es": "Patrón Mini de Muñeco de Nieve en Punto de Cruz PDF | Drielo",
+      "meta_description": "Mini snowman cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,436 full cross stitches and 18 co",
+      "meta_description_en": "Mini snowman cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,436 full cross stitches and 18 co",
+      "meta_description_es": "Mini patrón PDF de muñeco de nieve renderizado con el motor píxel a píxel de Aida y cruces de Drielo. Las celdas transparentes quedan como Aida en blanco; ",
+      "tags": [
+        "snowman",
+        "christmas cross stitch",
+        "mini cross stitch",
+        "cross stitch pdf",
+        "counted cross stitch",
+        "digital pattern"
+      ],
+      "design_id": "N0003-CS",
+      "base_design_id": "N0003",
+      "technique_code": "CS",
+      "technique": "cross-stitch",
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "holidays-seasons"
+        ],
+        "style": [
+          "cute"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "multicolor"
+        ],
+        "season": [
+          "christmas"
+        ]
+      }
+    },
+    {
+      "code": "N0004-CS",
+      "sku": "DRIELO-N0004-CS",
+      "price": 2.99,
+      "categories": [
+        "cross-stitch-patterns",
+        "cross-stitch-christmas"
+      ],
+      "title": "Reindeer Mini Cross Stitch Pattern PDF",
+      "title_en": "Reindeer Mini Cross Stitch Pattern PDF",
+      "title_es": "Patrón Mini de Reno en Punto de Cruz PDF",
+      "slug": "reindeer-mini-cross-stitch-pattern",
+      "collection": "christmas",
+      "stitches": 1366,
+      "grid": "100 × 120 stitches",
+      "colours": 19,
+      "color_count": 19,
+      "grid_width": 100,
+      "grid_height": 120,
+      "motif_width": 50,
+      "motif_height": 60,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Full cross stitch",
+      "stitch_type_en": "Full cross stitch",
+      "stitch_type_es": "Punto de cruz completo",
+      "short_description": "Mini reindeer cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,366 full cross stitches and 19 colours.",
+      "short_description_en": "Mini reindeer cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,366 full cross stitches and 19 colours.",
+      "short_description_es": "Mini patrón PDF de reno renderizado con el motor píxel a píxel de Aida y cruces de Drielo. Las celdas transparentes quedan como Aida en blanco; 1,366 puntadas completas y 19 colores.",
+      "description": "<p><strong>Reindeer Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero use the same Aida-relief-v4 stitch engine.</p><p>1,366 stitches · 19 colours.</p>",
+      "description_en": "<p><strong>Reindeer Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero use the same Aida-relief-v4 stitch engine.</p><p>1,366 stitches · 19 colours.</p>",
+      "description_es": "<p><strong>Patrón Mini de Reno en Punto de Cruz PDF</strong></p><p>La fuente transparente de 50 × 60 se lee píxel a píxel y se centra dentro de una matriz de 100 × 120. Cada píxel opaco se convierte en una cruz completa y cada píxel transparente queda como Aida en blanco. El PDF, la vista terminada y la imagen de WooCommerce usan el mismo motor Aida-relief-v4.</p><p>1,366 puntadas · 19 colores.</p>",
+      "gallery": [
+        "assets/N0004-CS-gallery-2.webp",
+        "assets/N0004-CS-gallery-3.webp",
+        "assets/N0004-CS-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_N0004-CS.pdf",
+      "featured_image": "assets/N0004-CS-product.webp",
+      "seo_title": "Reindeer Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_en": "Reindeer Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_es": "Patrón Mini de Reno en Punto de Cruz PDF | Drielo",
+      "meta_description": "Mini reindeer cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,366 full cross stitches and 19 c",
+      "meta_description_en": "Mini reindeer cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,366 full cross stitches and 19 c",
+      "meta_description_es": "Mini patrón PDF de reno renderizado con el motor píxel a píxel de Aida y cruces de Drielo. Las celdas transparentes quedan como Aida en blanco; 1,366 punta",
+      "tags": [
+        "reindeer",
+        "christmas cross stitch",
+        "mini cross stitch",
+        "cross stitch pdf",
+        "counted cross stitch",
+        "digital pattern"
+      ],
+      "design_id": "N0004-CS",
+      "base_design_id": "N0004",
+      "technique_code": "CS",
+      "technique": "cross-stitch",
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "holidays-seasons"
+        ],
+        "style": [
+          "cute"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "multicolor"
+        ],
+        "season": [
+          "christmas"
+        ]
+      }
+    },
+    {
+      "code": "N0005-CS",
+      "sku": "DRIELO-N0005-CS",
+      "price": 2.99,
+      "categories": [
+        "cross-stitch-patterns",
+        "cross-stitch-christmas"
+      ],
+      "title": "Christmas Stocking Mini Cross Stitch Pattern PDF",
+      "title_en": "Christmas Stocking Mini Cross Stitch Pattern PDF",
+      "title_es": "Patrón Mini de Calcetín de Navidad en Punto de Cruz PDF",
+      "slug": "stocking-mini-cross-stitch-pattern",
+      "collection": "christmas",
+      "stitches": 1387,
+      "grid": "100 × 120 stitches",
+      "colours": 20,
+      "color_count": 20,
+      "grid_width": 100,
+      "grid_height": 120,
+      "motif_width": 50,
+      "motif_height": 60,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Full cross stitch",
+      "stitch_type_en": "Full cross stitch",
+      "stitch_type_es": "Punto de cruz completo",
+      "short_description": "Mini christmas stocking cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,387 full cross stitches and 20 colours.",
+      "short_description_en": "Mini christmas stocking cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,387 full cross stitches and 20 colours.",
+      "short_description_es": "Mini patrón PDF de calcetín de navidad renderizado con el motor píxel a píxel de Aida y cruces de Drielo. Las celdas transparentes quedan como Aida en blanco; 1,387 puntadas completas y 20 colores.",
+      "description": "<p><strong>Christmas Stocking Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero use the same Aida-relief-v4 stitch engine.</p><p>1,387 stitches · 20 colours.</p>",
+      "description_en": "<p><strong>Christmas Stocking Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero use the same Aida-relief-v4 stitch engine.</p><p>1,387 stitches · 20 colours.</p>",
+      "description_es": "<p><strong>Patrón Mini de Calcetín de Navidad en Punto de Cruz PDF</strong></p><p>La fuente transparente de 50 × 60 se lee píxel a píxel y se centra dentro de una matriz de 100 × 120. Cada píxel opaco se convierte en una cruz completa y cada píxel transparente queda como Aida en blanco. El PDF, la vista terminada y la imagen de WooCommerce usan el mismo motor Aida-relief-v4.</p><p>1,387 puntadas · 20 colores.</p>",
+      "gallery": [
+        "assets/N0005-CS-gallery-2.webp",
+        "assets/N0005-CS-gallery-3.webp",
+        "assets/N0005-CS-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_N0005-CS.pdf",
+      "featured_image": "assets/N0005-CS-product.webp",
+      "seo_title": "Christmas Stocking Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_en": "Christmas Stocking Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_es": "Patrón Mini de Calcetín de Navidad en Punto de Cruz PDF | Drielo",
+      "meta_description": "Mini christmas stocking cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,387 full cross stitche",
+      "meta_description_en": "Mini christmas stocking cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,387 full cross stitche",
+      "meta_description_es": "Mini patrón PDF de calcetín de navidad renderizado con el motor píxel a píxel de Aida y cruces de Drielo. Las celdas transparentes quedan como Aida en blan",
+      "tags": [
+        "stocking",
+        "christmas cross stitch",
+        "mini cross stitch",
+        "cross stitch pdf",
+        "counted cross stitch",
+        "digital pattern"
+      ],
+      "design_id": "N0005-CS",
+      "base_design_id": "N0005",
+      "technique_code": "CS",
+      "technique": "cross-stitch",
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "holidays-seasons"
+        ],
+        "style": [
+          "cute"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "multicolor"
+        ],
+        "season": [
+          "christmas"
+        ]
+      }
+    },
+    {
+      "code": "N0006-CS",
+      "sku": "DRIELO-N0006-CS",
+      "price": 2.99,
+      "categories": [
+        "cross-stitch-patterns",
+        "cross-stitch-christmas"
+      ],
+      "title": "Gingerbread House Mini Cross Stitch Pattern PDF",
+      "title_en": "Gingerbread House Mini Cross Stitch Pattern PDF",
+      "title_es": "Patrón Mini de Casa de Jengibre en Punto de Cruz PDF",
+      "slug": "gingerbread-house-mini-cross-stitch-pattern",
+      "collection": "christmas",
+      "stitches": 1776,
+      "grid": "100 × 120 stitches",
+      "colours": 20,
+      "color_count": 20,
+      "grid_width": 100,
+      "grid_height": 120,
+      "motif_width": 50,
+      "motif_height": 60,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Full cross stitch",
+      "stitch_type_en": "Full cross stitch",
+      "stitch_type_es": "Punto de cruz completo",
+      "short_description": "Mini gingerbread house cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,776 full cross stitches and 20 colours.",
+      "short_description_en": "Mini gingerbread house cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,776 full cross stitches and 20 colours.",
+      "short_description_es": "Mini patrón PDF de casa de jengibre renderizado con el motor píxel a píxel de Aida y cruces de Drielo. Las celdas transparentes quedan como Aida en blanco; 1,776 puntadas completas y 20 colores.",
+      "description": "<p><strong>Gingerbread House Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero use the same Aida-relief-v4 stitch engine.</p><p>1,776 stitches · 20 colours.</p>",
+      "description_en": "<p><strong>Gingerbread House Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero use the same Aida-relief-v4 stitch engine.</p><p>1,776 stitches · 20 colours.</p>",
+      "description_es": "<p><strong>Patrón Mini de Casa de Jengibre en Punto de Cruz PDF</strong></p><p>La fuente transparente de 50 × 60 se lee píxel a píxel y se centra dentro de una matriz de 100 × 120. Cada píxel opaco se convierte en una cruz completa y cada píxel transparente queda como Aida en blanco. El PDF, la vista terminada y la imagen de WooCommerce usan el mismo motor Aida-relief-v4.</p><p>1,776 puntadas · 20 colores.</p>",
+      "gallery": [
+        "assets/N0006-CS-gallery-2.webp",
+        "assets/N0006-CS-gallery-3.webp",
+        "assets/N0006-CS-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_N0006-CS.pdf",
+      "featured_image": "assets/N0006-CS-product.webp",
+      "seo_title": "Gingerbread House Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_en": "Gingerbread House Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_es": "Patrón Mini de Casa de Jengibre en Punto de Cruz PDF | Drielo",
+      "meta_description": "Mini gingerbread house cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,776 full cross stitches",
+      "meta_description_en": "Mini gingerbread house cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,776 full cross stitches",
+      "meta_description_es": "Mini patrón PDF de casa de jengibre renderizado con el motor píxel a píxel de Aida y cruces de Drielo. Las celdas transparentes quedan como Aida en blanco;",
+      "tags": [
+        "gingerbread house",
+        "christmas cross stitch",
+        "mini cross stitch",
+        "cross stitch pdf",
+        "counted cross stitch",
+        "digital pattern"
+      ],
+      "design_id": "N0006-CS",
+      "base_design_id": "N0006",
+      "technique_code": "CS",
+      "technique": "cross-stitch",
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "holidays-seasons"
+        ],
+        "style": [
+          "cute"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "multicolor"
+        ],
+        "season": [
+          "christmas"
+        ]
+      }
+    },
+    {
+      "code": "N0007-CS",
+      "sku": "DRIELO-N0007-CS",
+      "price": 2.99,
+      "categories": [
+        "cross-stitch-patterns",
+        "cross-stitch-christmas"
+      ],
+      "title": "Gingerbread Man Mini Cross Stitch Pattern PDF",
+      "title_en": "Gingerbread Man Mini Cross Stitch Pattern PDF",
+      "title_es": "Patrón Mini de Muñeco de Jengibre en Punto de Cruz PDF",
+      "slug": "gingerbread-man-mini-cross-stitch-pattern",
+      "collection": "christmas",
+      "stitches": 1865,
+      "grid": "100 × 120 stitches",
+      "colours": 16,
+      "color_count": 16,
+      "grid_width": 100,
+      "grid_height": 120,
+      "motif_width": 50,
+      "motif_height": 60,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Full cross stitch",
+      "stitch_type_en": "Full cross stitch",
+      "stitch_type_es": "Punto de cruz completo",
+      "short_description": "Mini gingerbread man cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,865 full cross stitches and 16 colours.",
+      "short_description_en": "Mini gingerbread man cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,865 full cross stitches and 16 colours.",
+      "short_description_es": "Mini patrón PDF de muñeco de jengibre renderizado con el motor píxel a píxel de Aida y cruces de Drielo. Las celdas transparentes quedan como Aida en blanco; 1,865 puntadas completas y 16 colores.",
+      "description": "<p><strong>Gingerbread Man Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero use the same Aida-relief-v4 stitch engine.</p><p>1,865 stitches · 16 colours.</p>",
+      "description_en": "<p><strong>Gingerbread Man Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero use the same Aida-relief-v4 stitch engine.</p><p>1,865 stitches · 16 colours.</p>",
+      "description_es": "<p><strong>Patrón Mini de Muñeco de Jengibre en Punto de Cruz PDF</strong></p><p>La fuente transparente de 50 × 60 se lee píxel a píxel y se centra dentro de una matriz de 100 × 120. Cada píxel opaco se convierte en una cruz completa y cada píxel transparente queda como Aida en blanco. El PDF, la vista terminada y la imagen de WooCommerce usan el mismo motor Aida-relief-v4.</p><p>1,865 puntadas · 16 colores.</p>",
+      "gallery": [
+        "assets/N0007-CS-gallery-2.webp",
+        "assets/N0007-CS-gallery-3.webp",
+        "assets/N0007-CS-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_N0007-CS.pdf",
+      "featured_image": "assets/N0007-CS-product.webp",
+      "seo_title": "Gingerbread Man Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_en": "Gingerbread Man Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_es": "Patrón Mini de Muñeco de Jengibre en Punto de Cruz PDF | Drielo",
+      "meta_description": "Mini gingerbread man cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,865 full cross stitches a",
+      "meta_description_en": "Mini gingerbread man cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,865 full cross stitches a",
+      "meta_description_es": "Mini patrón PDF de muñeco de jengibre renderizado con el motor píxel a píxel de Aida y cruces de Drielo. Las celdas transparentes quedan como Aida en blanc",
+      "tags": [
+        "gingerbread man",
+        "christmas cross stitch",
+        "mini cross stitch",
+        "cross stitch pdf",
+        "counted cross stitch",
+        "digital pattern"
+      ],
+      "design_id": "N0007-CS",
+      "base_design_id": "N0007",
+      "technique_code": "CS",
+      "technique": "cross-stitch",
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "holidays-seasons"
+        ],
+        "style": [
+          "cute"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "multicolor"
+        ],
+        "season": [
+          "christmas"
+        ]
+      }
+    },
+    {
+      "code": "N0008-CS",
+      "sku": "DRIELO-N0008-CS",
+      "price": 2.99,
+      "categories": [
+        "cross-stitch-patterns",
+        "cross-stitch-christmas"
+      ],
+      "title": "Christmas Wreath Mini Cross Stitch Pattern PDF",
+      "title_en": "Christmas Wreath Mini Cross Stitch Pattern PDF",
+      "title_es": "Patrón Mini de Corona de Navidad en Punto de Cruz PDF",
+      "slug": "wreath-mini-cross-stitch-pattern",
+      "collection": "christmas",
+      "stitches": 1685,
+      "grid": "100 × 120 stitches",
+      "colours": 19,
+      "color_count": 19,
+      "grid_width": 100,
+      "grid_height": 120,
+      "motif_width": 50,
+      "motif_height": 60,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Full cross stitch",
+      "stitch_type_en": "Full cross stitch",
+      "stitch_type_es": "Punto de cruz completo",
+      "short_description": "Mini christmas wreath cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,685 full cross stitches and 19 colours.",
+      "short_description_en": "Mini christmas wreath cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,685 full cross stitches and 19 colours.",
+      "short_description_es": "Mini patrón PDF de corona de navidad renderizado con el motor píxel a píxel de Aida y cruces de Drielo. Las celdas transparentes quedan como Aida en blanco; 1,685 puntadas completas y 19 colores.",
+      "description": "<p><strong>Christmas Wreath Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero use the same Aida-relief-v4 stitch engine.</p><p>1,685 stitches · 19 colours.</p>",
+      "description_en": "<p><strong>Christmas Wreath Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero use the same Aida-relief-v4 stitch engine.</p><p>1,685 stitches · 19 colours.</p>",
+      "description_es": "<p><strong>Patrón Mini de Corona de Navidad en Punto de Cruz PDF</strong></p><p>La fuente transparente de 50 × 60 se lee píxel a píxel y se centra dentro de una matriz de 100 × 120. Cada píxel opaco se convierte en una cruz completa y cada píxel transparente queda como Aida en blanco. El PDF, la vista terminada y la imagen de WooCommerce usan el mismo motor Aida-relief-v4.</p><p>1,685 puntadas · 19 colores.</p>",
+      "gallery": [
+        "assets/N0008-CS-gallery-2.webp",
+        "assets/N0008-CS-gallery-3.webp",
+        "assets/N0008-CS-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_N0008-CS.pdf",
+      "featured_image": "assets/N0008-CS-product.webp",
+      "seo_title": "Christmas Wreath Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_en": "Christmas Wreath Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_es": "Patrón Mini de Corona de Navidad en Punto de Cruz PDF | Drielo",
+      "meta_description": "Mini christmas wreath cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,685 full cross stitches ",
+      "meta_description_en": "Mini christmas wreath cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,685 full cross stitches ",
+      "meta_description_es": "Mini patrón PDF de corona de navidad renderizado con el motor píxel a píxel de Aida y cruces de Drielo. Las celdas transparentes quedan como Aida en blanco",
+      "tags": [
+        "wreath",
+        "christmas cross stitch",
+        "mini cross stitch",
+        "cross stitch pdf",
+        "counted cross stitch",
+        "digital pattern"
+      ],
+      "design_id": "N0008-CS",
+      "base_design_id": "N0008",
+      "technique_code": "CS",
+      "technique": "cross-stitch",
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "holidays-seasons"
+        ],
+        "style": [
+          "cute"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "multicolor"
+        ],
+        "season": [
+          "christmas"
+        ]
+      }
+    },
+    {
+      "code": "N0009-CS",
+      "sku": "DRIELO-N0009-CS",
+      "price": 2.99,
+      "categories": [
+        "cross-stitch-patterns",
+        "cross-stitch-christmas"
+      ],
+      "title": "Candy Cane Mug Mini Cross Stitch Pattern PDF",
+      "title_en": "Candy Cane Mug Mini Cross Stitch Pattern PDF",
+      "title_es": "Patrón Mini de Taza con Bastón de Caramelo en Punto de Cruz PDF",
+      "slug": "candy-cane-mug-mini-cross-stitch-pattern",
+      "collection": "christmas",
+      "stitches": 1742,
+      "grid": "100 × 120 stitches",
+      "colours": 16,
+      "color_count": 16,
+      "grid_width": 100,
+      "grid_height": 120,
+      "motif_width": 50,
+      "motif_height": 60,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Full cross stitch",
+      "stitch_type_en": "Full cross stitch",
+      "stitch_type_es": "Punto de cruz completo",
+      "short_description": "Mini candy cane mug cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,742 full cross stitches and 16 colours.",
+      "short_description_en": "Mini candy cane mug cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,742 full cross stitches and 16 colours.",
+      "short_description_es": "Mini patrón PDF de taza con bastón de caramelo renderizado con el motor píxel a píxel de Aida y cruces de Drielo. Las celdas transparentes quedan como Aida en blanco; 1,742 puntadas completas y 16 colores.",
+      "description": "<p><strong>Candy Cane Mug Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero use the same Aida-relief-v4 stitch engine.</p><p>1,742 stitches · 16 colours.</p>",
+      "description_en": "<p><strong>Candy Cane Mug Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero use the same Aida-relief-v4 stitch engine.</p><p>1,742 stitches · 16 colours.</p>",
+      "description_es": "<p><strong>Patrón Mini de Taza con Bastón de Caramelo en Punto de Cruz PDF</strong></p><p>La fuente transparente de 50 × 60 se lee píxel a píxel y se centra dentro de una matriz de 100 × 120. Cada píxel opaco se convierte en una cruz completa y cada píxel transparente queda como Aida en blanco. El PDF, la vista terminada y la imagen de WooCommerce usan el mismo motor Aida-relief-v4.</p><p>1,742 puntadas · 16 colores.</p>",
+      "gallery": [
+        "assets/N0009-CS-gallery-2.webp",
+        "assets/N0009-CS-gallery-3.webp",
+        "assets/N0009-CS-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_N0009-CS.pdf",
+      "featured_image": "assets/N0009-CS-product.webp",
+      "seo_title": "Candy Cane Mug Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_en": "Candy Cane Mug Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_es": "Patrón Mini de Taza con Bastón de Caramelo en Punto de Cruz PDF | Drielo",
+      "meta_description": "Mini candy cane mug cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,742 full cross stitches an",
+      "meta_description_en": "Mini candy cane mug cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,742 full cross stitches an",
+      "meta_description_es": "Mini patrón PDF de taza con bastón de caramelo renderizado con el motor píxel a píxel de Aida y cruces de Drielo. Las celdas transparentes quedan como Aida",
+      "tags": [
+        "candy cane mug",
+        "christmas cross stitch",
+        "mini cross stitch",
+        "cross stitch pdf",
+        "counted cross stitch",
+        "digital pattern"
+      ],
+      "design_id": "N0009-CS",
+      "base_design_id": "N0009",
+      "technique_code": "CS",
+      "technique": "cross-stitch",
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "holidays-seasons"
+        ],
+        "style": [
+          "cute"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "multicolor"
+        ],
+        "season": [
+          "christmas"
+        ]
+      }
+    },
+    {
+      "code": "N0010-CS",
+      "sku": "DRIELO-N0010-CS",
+      "price": 2.99,
+      "categories": [
+        "cross-stitch-patterns",
+        "cross-stitch-christmas"
+      ],
+      "title": "Nutcracker Mini Cross Stitch Pattern PDF",
+      "title_en": "Nutcracker Mini Cross Stitch Pattern PDF",
+      "title_es": "Patrón Mini de Cascanueces en Punto de Cruz PDF",
+      "slug": "nutcracker-mini-cross-stitch-pattern",
+      "collection": "christmas",
+      "stitches": 1296,
+      "grid": "100 × 120 stitches",
+      "colours": 20,
+      "color_count": 20,
+      "grid_width": 100,
+      "grid_height": 120,
+      "motif_width": 50,
+      "motif_height": 60,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Full cross stitch",
+      "stitch_type_en": "Full cross stitch",
+      "stitch_type_es": "Punto de cruz completo",
+      "short_description": "Mini nutcracker cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,296 full cross stitches and 20 colours.",
+      "short_description_en": "Mini nutcracker cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,296 full cross stitches and 20 colours.",
+      "short_description_es": "Mini patrón PDF de cascanueces renderizado con el motor píxel a píxel de Aida y cruces de Drielo. Las celdas transparentes quedan como Aida en blanco; 1,296 puntadas completas y 20 colores.",
+      "description": "<p><strong>Nutcracker Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero use the same Aida-relief-v4 stitch engine.</p><p>1,296 stitches · 20 colours.</p>",
+      "description_en": "<p><strong>Nutcracker Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero use the same Aida-relief-v4 stitch engine.</p><p>1,296 stitches · 20 colours.</p>",
+      "description_es": "<p><strong>Patrón Mini de Cascanueces en Punto de Cruz PDF</strong></p><p>La fuente transparente de 50 × 60 se lee píxel a píxel y se centra dentro de una matriz de 100 × 120. Cada píxel opaco se convierte en una cruz completa y cada píxel transparente queda como Aida en blanco. El PDF, la vista terminada y la imagen de WooCommerce usan el mismo motor Aida-relief-v4.</p><p>1,296 puntadas · 20 colores.</p>",
+      "gallery": [
+        "assets/N0010-CS-gallery-2.webp",
+        "assets/N0010-CS-gallery-3.webp",
+        "assets/N0010-CS-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_N0010-CS.pdf",
+      "featured_image": "assets/N0010-CS-product.webp",
+      "seo_title": "Nutcracker Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_en": "Nutcracker Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_es": "Patrón Mini de Cascanueces en Punto de Cruz PDF | Drielo",
+      "meta_description": "Mini nutcracker cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,296 full cross stitches and 20",
+      "meta_description_en": "Mini nutcracker cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,296 full cross stitches and 20",
+      "meta_description_es": "Mini patrón PDF de cascanueces renderizado con el motor píxel a píxel de Aida y cruces de Drielo. Las celdas transparentes quedan como Aida en blanco; 1,29",
+      "tags": [
+        "nutcracker",
+        "christmas cross stitch",
+        "mini cross stitch",
+        "cross stitch pdf",
+        "counted cross stitch",
+        "digital pattern"
+      ],
+      "design_id": "N0010-CS",
+      "base_design_id": "N0010",
+      "technique_code": "CS",
+      "technique": "cross-stitch",
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "holidays-seasons"
+        ],
+        "style": [
+          "cute"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "multicolor"
+        ],
+        "season": [
+          "christmas"
+        ]
+      }
+    },
+    {
+      "code": "N0011-CS",
+      "sku": "DRIELO-N0011-CS",
+      "price": 2.99,
+      "categories": [
+        "cross-stitch-patterns",
+        "cross-stitch-christmas"
+      ],
+      "title": "Christmas Bauble Mini Cross Stitch Pattern PDF",
+      "title_en": "Christmas Bauble Mini Cross Stitch Pattern PDF",
+      "title_es": "Patrón Mini de Bola de Navidad en Punto de Cruz PDF",
+      "slug": "ornament-bauble-mini-cross-stitch-pattern",
+      "collection": "christmas",
+      "stitches": 1834,
+      "grid": "100 × 120 stitches",
+      "colours": 20,
+      "color_count": 20,
+      "grid_width": 100,
+      "grid_height": 120,
+      "motif_width": 50,
+      "motif_height": 60,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Full cross stitch",
+      "stitch_type_en": "Full cross stitch",
+      "stitch_type_es": "Punto de cruz completo",
+      "short_description": "Mini christmas bauble cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,834 full cross stitches and 20 colours.",
+      "short_description_en": "Mini christmas bauble cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,834 full cross stitches and 20 colours.",
+      "short_description_es": "Mini patrón PDF de bola de navidad renderizado con el motor píxel a píxel de Aida y cruces de Drielo. Las celdas transparentes quedan como Aida en blanco; 1,834 puntadas completas y 20 colores.",
+      "description": "<p><strong>Christmas Bauble Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero use the same Aida-relief-v4 stitch engine.</p><p>1,834 stitches · 20 colours.</p>",
+      "description_en": "<p><strong>Christmas Bauble Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero use the same Aida-relief-v4 stitch engine.</p><p>1,834 stitches · 20 colours.</p>",
+      "description_es": "<p><strong>Patrón Mini de Bola de Navidad en Punto de Cruz PDF</strong></p><p>La fuente transparente de 50 × 60 se lee píxel a píxel y se centra dentro de una matriz de 100 × 120. Cada píxel opaco se convierte en una cruz completa y cada píxel transparente queda como Aida en blanco. El PDF, la vista terminada y la imagen de WooCommerce usan el mismo motor Aida-relief-v4.</p><p>1,834 puntadas · 20 colores.</p>",
+      "gallery": [
+        "assets/N0011-CS-gallery-2.webp",
+        "assets/N0011-CS-gallery-3.webp",
+        "assets/N0011-CS-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_N0011-CS.pdf",
+      "featured_image": "assets/N0011-CS-product.webp",
+      "seo_title": "Christmas Bauble Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_en": "Christmas Bauble Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_es": "Patrón Mini de Bola de Navidad en Punto de Cruz PDF | Drielo",
+      "meta_description": "Mini christmas bauble cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,834 full cross stitches ",
+      "meta_description_en": "Mini christmas bauble cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,834 full cross stitches ",
+      "meta_description_es": "Mini patrón PDF de bola de navidad renderizado con el motor píxel a píxel de Aida y cruces de Drielo. Las celdas transparentes quedan como Aida en blanco; ",
+      "tags": [
+        "ornament bauble",
+        "christmas cross stitch",
+        "mini cross stitch",
+        "cross stitch pdf",
+        "counted cross stitch",
+        "digital pattern"
+      ],
+      "design_id": "N0011-CS",
+      "base_design_id": "N0011",
+      "technique_code": "CS",
+      "technique": "cross-stitch",
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "holidays-seasons"
+        ],
+        "style": [
+          "cute"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "multicolor"
+        ],
+        "season": [
+          "christmas"
+        ]
+      }
+    },
+    {
+      "code": "N0012-CS",
+      "sku": "DRIELO-N0012-CS",
+      "price": 2.99,
+      "categories": [
+        "cross-stitch-patterns",
+        "cross-stitch-christmas"
+      ],
+      "title": "Christmas Gnome Mini Cross Stitch Pattern PDF",
+      "title_en": "Christmas Gnome Mini Cross Stitch Pattern PDF",
+      "title_es": "Patrón Mini de Gnomo de Navidad en Punto de Cruz PDF",
+      "slug": "christmas-gnome-mini-cross-stitch-pattern",
+      "collection": "christmas",
+      "stitches": 1782,
+      "grid": "100 × 120 stitches",
+      "colours": 20,
+      "color_count": 20,
+      "grid_width": 100,
+      "grid_height": 120,
+      "motif_width": 50,
+      "motif_height": 60,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Full cross stitch",
+      "stitch_type_en": "Full cross stitch",
+      "stitch_type_es": "Punto de cruz completo",
+      "short_description": "Mini christmas gnome cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,782 full cross stitches and 20 colours.",
+      "short_description_en": "Mini christmas gnome cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,782 full cross stitches and 20 colours.",
+      "short_description_es": "Mini patrón PDF de gnomo de navidad renderizado con el motor píxel a píxel de Aida y cruces de Drielo. Las celdas transparentes quedan como Aida en blanco; 1,782 puntadas completas y 20 colores.",
+      "description": "<p><strong>Christmas Gnome Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero use the same Aida-relief-v4 stitch engine.</p><p>1,782 stitches · 20 colours.</p>",
+      "description_en": "<p><strong>Christmas Gnome Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero use the same Aida-relief-v4 stitch engine.</p><p>1,782 stitches · 20 colours.</p>",
+      "description_es": "<p><strong>Patrón Mini de Gnomo de Navidad en Punto de Cruz PDF</strong></p><p>La fuente transparente de 50 × 60 se lee píxel a píxel y se centra dentro de una matriz de 100 × 120. Cada píxel opaco se convierte en una cruz completa y cada píxel transparente queda como Aida en blanco. El PDF, la vista terminada y la imagen de WooCommerce usan el mismo motor Aida-relief-v4.</p><p>1,782 puntadas · 20 colores.</p>",
+      "gallery": [
+        "assets/N0012-CS-gallery-2.webp",
+        "assets/N0012-CS-gallery-3.webp",
+        "assets/N0012-CS-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_N0012-CS.pdf",
+      "featured_image": "assets/N0012-CS-product.webp",
+      "seo_title": "Christmas Gnome Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_en": "Christmas Gnome Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_es": "Patrón Mini de Gnomo de Navidad en Punto de Cruz PDF | Drielo",
+      "meta_description": "Mini christmas gnome cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,782 full cross stitches a",
+      "meta_description_en": "Mini christmas gnome cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,782 full cross stitches a",
+      "meta_description_es": "Mini patrón PDF de gnomo de navidad renderizado con el motor píxel a píxel de Aida y cruces de Drielo. Las celdas transparentes quedan como Aida en blanco;",
+      "tags": [
+        "christmas gnome",
+        "christmas cross stitch",
+        "mini cross stitch",
+        "cross stitch pdf",
+        "counted cross stitch",
+        "digital pattern"
+      ],
+      "design_id": "N0012-CS",
+      "base_design_id": "N0012",
+      "technique_code": "CS",
+      "technique": "cross-stitch",
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "holidays-seasons"
+        ],
+        "style": [
+          "cute"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "multicolor"
+        ],
+        "season": [
+          "christmas"
+        ]
+      }
+    },
+    {
+      "code": "N0013-CS",
+      "sku": "DRIELO-N0013-CS",
+      "price": 2.99,
+      "categories": [
+        "cross-stitch-patterns",
+        "cross-stitch-christmas"
+      ],
+      "title": "Poinsettia Mini Cross Stitch Pattern PDF",
+      "title_en": "Poinsettia Mini Cross Stitch Pattern PDF",
+      "title_es": "Patrón Mini de Flor de Pascua en Punto de Cruz PDF",
+      "slug": "poinsettia-mini-cross-stitch-pattern",
+      "collection": "christmas",
+      "stitches": 1327,
+      "grid": "100 × 120 stitches",
+      "colours": 20,
+      "color_count": 20,
+      "grid_width": 100,
+      "grid_height": 120,
+      "motif_width": 50,
+      "motif_height": 60,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Full cross stitch",
+      "stitch_type_en": "Full cross stitch",
+      "stitch_type_es": "Punto de cruz completo",
+      "short_description": "Mini poinsettia cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,327 full cross stitches and 20 colours.",
+      "short_description_en": "Mini poinsettia cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,327 full cross stitches and 20 colours.",
+      "short_description_es": "Mini patrón PDF de flor de pascua renderizado con el motor píxel a píxel de Aida y cruces de Drielo. Las celdas transparentes quedan como Aida en blanco; 1,327 puntadas completas y 20 colores.",
+      "description": "<p><strong>Poinsettia Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero use the same Aida-relief-v4 stitch engine.</p><p>1,327 stitches · 20 colours.</p>",
+      "description_en": "<p><strong>Poinsettia Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero use the same Aida-relief-v4 stitch engine.</p><p>1,327 stitches · 20 colours.</p>",
+      "description_es": "<p><strong>Patrón Mini de Flor de Pascua en Punto de Cruz PDF</strong></p><p>La fuente transparente de 50 × 60 se lee píxel a píxel y se centra dentro de una matriz de 100 × 120. Cada píxel opaco se convierte en una cruz completa y cada píxel transparente queda como Aida en blanco. El PDF, la vista terminada y la imagen de WooCommerce usan el mismo motor Aida-relief-v4.</p><p>1,327 puntadas · 20 colores.</p>",
+      "gallery": [
+        "assets/N0013-CS-gallery-2.webp",
+        "assets/N0013-CS-gallery-3.webp",
+        "assets/N0013-CS-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_N0013-CS.pdf",
+      "featured_image": "assets/N0013-CS-product.webp",
+      "seo_title": "Poinsettia Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_en": "Poinsettia Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_es": "Patrón Mini de Flor de Pascua en Punto de Cruz PDF | Drielo",
+      "meta_description": "Mini poinsettia cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,327 full cross stitches and 20",
+      "meta_description_en": "Mini poinsettia cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,327 full cross stitches and 20",
+      "meta_description_es": "Mini patrón PDF de flor de pascua renderizado con el motor píxel a píxel de Aida y cruces de Drielo. Las celdas transparentes quedan como Aida en blanco; 1",
+      "tags": [
+        "poinsettia",
+        "christmas cross stitch",
+        "mini cross stitch",
+        "cross stitch pdf",
+        "counted cross stitch",
+        "digital pattern"
+      ],
+      "design_id": "N0013-CS",
+      "base_design_id": "N0013",
+      "technique_code": "CS",
+      "technique": "cross-stitch",
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "holidays-seasons"
+        ],
+        "style": [
+          "cute"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "multicolor"
+        ],
+        "season": [
+          "christmas"
+        ]
+      }
+    },
+    {
+      "code": "N0014-CS",
+      "sku": "DRIELO-N0014-CS",
+      "price": 2.99,
+      "categories": [
+        "cross-stitch-patterns",
+        "cross-stitch-christmas"
+      ],
+      "title": "Robin on Holly Mini Cross Stitch Pattern PDF",
+      "title_en": "Robin on Holly Mini Cross Stitch Pattern PDF",
+      "title_es": "Patrón Mini de Petirrojo sobre Acebo en Punto de Cruz PDF",
+      "slug": "robin-on-holly-mini-cross-stitch-pattern",
+      "collection": "christmas",
+      "stitches": 1117,
+      "grid": "100 × 120 stitches",
+      "colours": 16,
+      "color_count": 16,
+      "grid_width": 100,
+      "grid_height": 120,
+      "motif_width": 50,
+      "motif_height": 60,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Full cross stitch",
+      "stitch_type_en": "Full cross stitch",
+      "stitch_type_es": "Punto de cruz completo",
+      "short_description": "Mini robin on holly cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,117 full cross stitches and 16 colours.",
+      "short_description_en": "Mini robin on holly cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,117 full cross stitches and 16 colours.",
+      "short_description_es": "Mini patrón PDF de petirrojo sobre acebo renderizado con el motor píxel a píxel de Aida y cruces de Drielo. Las celdas transparentes quedan como Aida en blanco; 1,117 puntadas completas y 16 colores.",
+      "description": "<p><strong>Robin on Holly Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero use the same Aida-relief-v4 stitch engine.</p><p>1,117 stitches · 16 colours.</p>",
+      "description_en": "<p><strong>Robin on Holly Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero use the same Aida-relief-v4 stitch engine.</p><p>1,117 stitches · 16 colours.</p>",
+      "description_es": "<p><strong>Patrón Mini de Petirrojo sobre Acebo en Punto de Cruz PDF</strong></p><p>La fuente transparente de 50 × 60 se lee píxel a píxel y se centra dentro de una matriz de 100 × 120. Cada píxel opaco se convierte en una cruz completa y cada píxel transparente queda como Aida en blanco. El PDF, la vista terminada y la imagen de WooCommerce usan el mismo motor Aida-relief-v4.</p><p>1,117 puntadas · 16 colores.</p>",
+      "gallery": [
+        "assets/N0014-CS-gallery-2.webp",
+        "assets/N0014-CS-gallery-3.webp",
+        "assets/N0014-CS-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_N0014-CS.pdf",
+      "featured_image": "assets/N0014-CS-product.webp",
+      "seo_title": "Robin on Holly Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_en": "Robin on Holly Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_es": "Patrón Mini de Petirrojo sobre Acebo en Punto de Cruz PDF | Drielo",
+      "meta_description": "Mini robin on holly cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,117 full cross stitches an",
+      "meta_description_en": "Mini robin on holly cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 1,117 full cross stitches an",
+      "meta_description_es": "Mini patrón PDF de petirrojo sobre acebo renderizado con el motor píxel a píxel de Aida y cruces de Drielo. Las celdas transparentes quedan como Aida en bl",
+      "tags": [
+        "robin on holly",
+        "christmas cross stitch",
+        "mini cross stitch",
+        "cross stitch pdf",
+        "counted cross stitch",
+        "digital pattern"
+      ],
+      "design_id": "N0014-CS",
+      "base_design_id": "N0014",
+      "technique_code": "CS",
+      "technique": "cross-stitch",
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "holidays-seasons"
+        ],
+        "style": [
+          "cute"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "multicolor"
+        ],
+        "season": [
+          "christmas"
+        ]
+      }
+    },
+    {
+      "code": "N0015-CS",
+      "sku": "DRIELO-N0015-CS",
+      "price": 2.99,
+      "categories": [
+        "cross-stitch-patterns",
+        "cross-stitch-christmas"
+      ],
+      "title": "Snow Globe Mini Cross Stitch Pattern PDF",
+      "title_en": "Snow Globe Mini Cross Stitch Pattern PDF",
+      "title_es": "Patrón Mini de Bola de Nieve en Punto de Cruz PDF",
+      "slug": "snow-globe-mini-cross-stitch-pattern",
+      "collection": "christmas",
+      "stitches": 2188,
+      "grid": "100 × 120 stitches",
+      "colours": 20,
+      "color_count": 20,
+      "grid_width": 100,
+      "grid_height": 120,
+      "motif_width": 50,
+      "motif_height": 60,
+      "skill": "Beginner friendly",
+      "skill_en": "Beginner friendly",
+      "skill_es": "Apto para principiantes",
+      "stitch_type": "Full cross stitch",
+      "stitch_type_en": "Full cross stitch",
+      "stitch_type_es": "Punto de cruz completo",
+      "short_description": "Mini snow globe cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 2,188 full cross stitches and 20 colours.",
+      "short_description_en": "Mini snow globe cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 2,188 full cross stitches and 20 colours.",
+      "short_description_es": "Mini patrón PDF de bola de nieve renderizado con el motor píxel a píxel de Aida y cruces de Drielo. Las celdas transparentes quedan como Aida en blanco; 2,188 puntadas completas y 20 colores.",
+      "description": "<p><strong>Snow Globe Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero use the same Aida-relief-v4 stitch engine.</p><p>2,188 stitches · 20 colours.</p>",
+      "description_en": "<p><strong>Snow Globe Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero use the same Aida-relief-v4 stitch engine.</p><p>2,188 stitches · 20 colours.</p>",
+      "description_es": "<p><strong>Patrón Mini de Bola de Nieve en Punto de Cruz PDF</strong></p><p>La fuente transparente de 50 × 60 se lee píxel a píxel y se centra dentro de una matriz de 100 × 120. Cada píxel opaco se convierte en una cruz completa y cada píxel transparente queda como Aida en blanco. El PDF, la vista terminada y la imagen de WooCommerce usan el mismo motor Aida-relief-v4.</p><p>2,188 puntadas · 20 colores.</p>",
+      "gallery": [
+        "assets/N0015-CS-gallery-2.webp",
+        "assets/N0015-CS-gallery-3.webp",
+        "assets/N0015-CS-gallery-4.webp"
+      ],
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
+      },
+      "download": "files/Drielo_N0015-CS.pdf",
+      "featured_image": "assets/N0015-CS-product.webp",
+      "seo_title": "Snow Globe Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_en": "Snow Globe Mini Cross Stitch Pattern PDF | Drielo",
+      "seo_title_es": "Patrón Mini de Bola de Nieve en Punto de Cruz PDF | Drielo",
+      "meta_description": "Mini snow globe cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 2,188 full cross stitches and 20",
+      "meta_description_en": "Mini snow globe cross-stitch PDF rendered with Drielo's pixel-by-pixel Aida/X engine. Transparent cells remain blank Aida; 2,188 full cross stitches and 20",
+      "meta_description_es": "Mini patrón PDF de bola de nieve renderizado con el motor píxel a píxel de Aida y cruces de Drielo. Las celdas transparentes quedan como Aida en blanco; 2,",
+      "tags": [
+        "snow globe",
+        "christmas cross stitch",
+        "mini cross stitch",
+        "cross stitch pdf",
+        "counted cross stitch",
+        "digital pattern"
+      ],
+      "design_id": "N0015-CS",
+      "base_design_id": "N0015",
+      "technique_code": "CS",
+      "technique": "cross-stitch",
+      "filters": {
+        "technique": [
+          "cross-stitch"
+        ],
+        "theme": [
+          "holidays-seasons"
+        ],
+        "style": [
+          "cute"
+        ],
+        "project": [
+          "wall-art"
+        ],
+        "orientation": [
+          "portrait"
+        ],
+        "difficulty": [
+          "beginner"
+        ],
+        "color-family": [
+          "multicolor"
+        ],
+        "season": [
+          "christmas"
+        ]
       }
     }
   ],
