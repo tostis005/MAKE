@@ -1,4 +1,3 @@
-# rerun-after-n0001-binary-fix-20261004
 name: Publish All Christmas Minis Aida Relief
 
 on:
@@ -37,6 +36,46 @@ jobs:
           set -euo pipefail
           python3 -m pip install --disable-pip-version-check --quiet Pillow playwright
           python3 -m playwright install --with-deps chromium
+
+      - name: Install approved final 15 Christmas sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          ZIP=content/source-images/collections/christmas/christmas-approved15-v2.zip
+          test -f "$ZIP"
+          TMP=/tmp/christmas-approved15-v2
+          rm -rf "$TMP"
+          mkdir -p "$TMP"
+          unzip -q "$ZIP" -d "$TMP"
+          test "$(find "$TMP" -maxdepth 1 -type f -name 'N*.png' | wc -l)" -eq 15
+
+          DEST=content/source-images/collections/christmas/products
+          mkdir -p "$DEST"
+          rm -f "$DEST"/N*.png
+          cp "$TMP"/N*.png "$DEST"/
+
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+
+          root=Path('content/source-images/collections/christmas')
+          palette={tuple(x) for x in json.loads((root/'palette20_rgb.json').read_text())['palette_rgb']}
+          files=sorted((root/'products').glob('N*.png'))
+          assert len(files)==15, len(files)
+          union=set()
+          for p in files:
+              with Image.open(p) as im:
+                  im=im.convert('RGBA')
+                  assert im.size==(50,60), (p.name,im.size)
+                  opaque={(r,g,b) for r,g,b,a in im.getdata() if a>=128}
+                  assert opaque, p.name
+                  assert opaque <= palette, (p.name, sorted(opaque-palette)[:5])
+                  assert any(a<128 for *_,a in im.getdata()), (p.name,'missing transparency')
+                  union |= opaque
+          assert union==palette, {'union':len(union),'expected':len(palette),'missing':palette-union}
+          print('APPROVED_CHRISTMAS_SOURCES_VALID count=15 size=50x60 palette=20 transparent=true')
+          PY
 
       - name: Render N0001 through N0015 with Aida relief
         shell: bash
@@ -198,7 +237,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          for i in $(seq 2 15); do
+          for i in $(seq 1 15); do
             CODE="N$(printf '%04d' "$i")-CS"
             git add "content/pattern-system/patterns/${CODE}/pattern.json"
             git add "content/pattern-system/products/${CODE}/product.json"
@@ -209,6 +248,8 @@ jobs:
             git add "content/products/assets/${CODE}-gallery-4.webp"
             git add -f "content/products/files/Drielo_${CODE}.pdf"
           done
+          git add -A content/source-images/collections/christmas/products
+          git add content/source-images/collections/christmas/christmas-approved15-v2.zip
           git add content/products/catalog.json
 
           if git diff --cached --quiet; then
