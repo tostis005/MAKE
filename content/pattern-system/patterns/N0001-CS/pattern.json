@@ -4,7 +4,7 @@
   "technique_code": "CS",
   "collection": "christmas",
   "status": "ready",
-  "algorithm": "pixel-exact-alpha-1px-1stitch",
+  "algorithm": "pixel-exact-alpha-1px-1stitch-aida-relief-v4",
   "source_asset": "source-images/collections/christmas/products/N0001-christmas-tree.png",
   "palette_mode": "shared-exact-20-rgb",
   "shared_palette_rgb": [
@@ -121,218 +121,236 @@
   "threads": [
     {
       "symbol": "A",
+      "dmc": "938",
+      "name": "Coffee Brown Ult Dk",
+      "color": "#29201C",
       "source_rgb": [
         41,
         32,
         28
       ],
       "source_hex": "#29201C",
-      "dmc": "938",
-      "name": "Coffee Brown Ult Dk",
       "stitches": 1
     },
     {
       "symbol": "B",
+      "dmc": "898",
+      "name": "Coffee Brown Vy Dk",
+      "color": "#4B2A19",
       "source_rgb": [
         75,
         42,
         25
       ],
       "source_hex": "#4B2A19",
-      "dmc": "898",
-      "name": "Coffee Brown Vy Dk",
       "stitches": 26
     },
     {
       "symbol": "C",
+      "dmc": "433",
+      "name": "Brown Med",
+      "color": "#7E4A27",
       "source_rgb": [
         126,
         74,
         39
       ],
       "source_hex": "#7E4A27",
-      "dmc": "433",
-      "name": "Brown Med",
       "stitches": 47
     },
     {
       "symbol": "D",
+      "dmc": "3826",
+      "name": "Golden Brown",
+      "color": "#B4743E",
       "source_rgb": [
         180,
         116,
         62
       ],
       "source_hex": "#B4743E",
-      "dmc": "3826",
-      "name": "Golden Brown",
       "stitches": 10
     },
     {
       "symbol": "E",
+      "dmc": "890",
+      "name": "Pistachio Grn Ult V D",
+      "color": "#1C482D",
       "source_rgb": [
         28,
         72,
         45
       ],
       "source_hex": "#1C482D",
-      "dmc": "890",
-      "name": "Pistachio Grn Ult V D",
       "stitches": 505
     },
     {
       "symbol": "F",
+      "dmc": "561",
+      "name": "Celadon Green VD",
+      "color": "#30663B",
       "source_rgb": [
         48,
         102,
         59
       ],
       "source_hex": "#30663B",
-      "dmc": "561",
-      "name": "Celadon Green VD",
       "stitches": 198
     },
     {
       "symbol": "G",
+      "dmc": "320",
+      "name": "Pistachio Green Med",
+      "color": "#5B8B4A",
       "source_rgb": [
         91,
         139,
         74
       ],
       "source_hex": "#5B8B4A",
-      "dmc": "320",
-      "name": "Pistachio Green Med",
       "stitches": 11
     },
     {
       "symbol": "H",
+      "dmc": "815",
+      "name": "Garnet Medium",
+      "color": "#910611",
       "source_rgb": [
         145,
         6,
         17
       ],
       "source_hex": "#910611",
-      "dmc": "815",
-      "name": "Garnet Medium",
       "stitches": 19
     },
     {
       "symbol": "J",
+      "dmc": "817",
+      "name": "Coral Red Very Dark",
+      "color": "#CD0E1D",
       "source_rgb": [
         205,
         14,
         29
       ],
       "source_hex": "#CD0E1D",
-      "dmc": "817",
-      "name": "Coral Red Very Dark",
       "stitches": 245
     },
     {
       "symbol": "K",
+      "dmc": "666",
+      "name": "Bright Red",
+      "color": "#F4323D",
       "source_rgb": [
         244,
         50,
         61
       ],
       "source_hex": "#F4323D",
-      "dmc": "666",
-      "name": "Bright Red",
       "stitches": 12
     },
     {
       "symbol": "L",
+      "dmc": "956",
+      "name": "Geranium",
+      "color": "#F58C8F",
       "source_rgb": [
         245,
         140,
         143
       ],
       "source_hex": "#F58C8F",
-      "dmc": "956",
-      "name": "Geranium",
       "stitches": 3
     },
     {
       "symbol": "M",
+      "dmc": "782",
+      "name": "Topaz Dark",
+      "color": "#C47915",
       "source_rgb": [
         196,
         121,
         21
       ],
       "source_hex": "#C47915",
-      "dmc": "782",
-      "name": "Topaz Dark",
       "stitches": 85
     },
     {
       "symbol": "N",
+      "dmc": "741",
+      "name": "Tangerine Med",
+      "color": "#EEA92A",
       "source_rgb": [
         238,
         169,
         42
       ],
       "source_hex": "#EEA92A",
-      "dmc": "741",
-      "name": "Tangerine Med",
       "stitches": 183
     },
     {
       "symbol": "P",
+      "dmc": "726",
+      "name": "Topaz Light",
+      "color": "#FFD35B",
       "source_rgb": [
         255,
         211,
         91
       ],
       "source_hex": "#FFD35B",
-      "dmc": "726",
-      "name": "Topaz Light",
       "stitches": 2
     },
     {
       "symbol": "Q",
+      "dmc": "543",
+      "name": "Beige Brown Ult Vy Lt",
+      "color": "#EFE1C9",
       "source_rgb": [
         239,
         225,
         201
       ],
       "source_hex": "#EFE1C9",
-      "dmc": "543",
-      "name": "Beige Brown Ult Vy Lt",
       "stitches": 11
     },
     {
       "symbol": "R",
+      "dmc": "3823",
+      "name": "Yellow Ultra Pale",
+      "color": "#FFF8E8",
       "source_rgb": [
         255,
         248,
         232
       ],
       "source_hex": "#FFF8E8",
-      "dmc": "3823",
-      "name": "Yellow Ultra Pale",
       "stitches": 15
     },
     {
       "symbol": "T",
+      "dmc": "946",
+      "name": "Burnt Orange Med",
+      "color": "#E66714",
       "source_rgb": [
         230,
         103,
         20
       ],
       "source_hex": "#E66714",
-      "dmc": "946",
-      "name": "Burnt Orange Med",
       "stitches": 20
     },
     {
       "symbol": "V",
+      "dmc": "932",
+      "name": "Antique Blue Light",
+      "color": "#ACB5B8",
       "source_rgb": [
         172,
         181,
         184
       ],
       "source_hex": "#ACB5B8",
-      "dmc": "932",
-      "name": "Antique Blue Light",
       "stitches": 7
     }
   ],

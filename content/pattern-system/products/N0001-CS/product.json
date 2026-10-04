@@ -10,6 +10,9 @@
   "pattern_file": "patterns/N0001-CS/pattern.json",
   "status": "active",
   "render_ready": true,
-  "renderer": "pixel-exact-alpha",
-  "source_artwork": "source-images/collections/christmas/products/N0001-christmas-tree.png"
+  "renderer": "multitech-aida-relief-v4",
+  "source_artwork": "source-images/collections/christmas/products/N0001-christmas-tree.png",
+  "template": "cross-stitch.html",
+  "website": "www.drielo.com",
+  "palette_mode": "shared-exact-20-rgb"
 }

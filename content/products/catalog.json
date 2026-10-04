@@ -18907,21 +18907,25 @@
       "stitch_type": "Full cross stitch",
       "stitch_type_en": "Full cross stitch",
       "stitch_type_es": "Punto de cruz completo",
-      "short_description": "Mini Christmas tree cross-stitch PDF created pixel by pixel from a transparent 50 x 60 source, centered on a 100 x 120 chart. 1,400 full cross stitches and 18 colours.",
-      "short_description_en": "Mini Christmas tree cross-stitch PDF created pixel by pixel from a transparent 50 x 60 source, centered on a 100 x 120 chart. 1,400 full cross stitches and 18 colours.",
-      "short_description_es": "Mini patrón PDF de árbol de Navidad creado píxel a píxel desde una fuente transparente de 50 x 60, centrada en una cuadrícula de 100 x 120. 1,400 puntadas completas y 18 colores.",
-      "description": "<p><strong>Christmas Tree Mini Cross Stitch Pattern PDF</strong></p><p>Pixel-exact pattern: each opaque pixel in the 50 × 60 source becomes one full cross stitch. Transparent pixels remain blank Aida. The motif is centered in a 100 × 120 chart.</p><p>1,400 stitches · 18 colours · 1-page PDF.</p>",
-      "description_en": "<p><strong>Christmas Tree Mini Cross Stitch Pattern PDF</strong></p><p>Pixel-exact pattern: each opaque pixel in the 50 × 60 source becomes one full cross stitch. Transparent pixels remain blank Aida. The motif is centered in a 100 × 120 chart.</p><p>1,400 stitches · 18 colours · 1-page PDF.</p>",
-      "description_es": "<p><strong>Patrón Mini de Árbol de Navidad en Punto de Cruz PDF</strong></p><p>Patrón exacto píxel a píxel: cada píxel opaco de la fuente 50 × 60 se convierte en una puntada completa. Los píxeles transparentes quedan como Aida en blanco. El motivo queda centrado en una cuadrícula de 100 × 120.</p><p>1,400 puntadas · 18 colores · PDF de 1 página.</p>",
-      "gallery": [],
+      "short_description": "Mini Christmas tree cross-stitch PDF rendered with the same pixel-by-pixel Aida/X algorithm used by Drielo's established patterns. Transparent cells remain blank Aida; 1,400 full cross stitches and 18 colours.",
+      "short_description_en": "Mini Christmas tree cross-stitch PDF rendered with the same pixel-by-pixel Aida/X algorithm used by Drielo's established patterns. Transparent cells remain blank Aida; 1,400 full cross stitches and 18 colours.",
+      "short_description_es": "Mini patrón PDF de árbol de Navidad renderizado con el mismo algoritmo píxel a píxel de Aida y cruces usado en los patrones de Drielo. Las celdas transparentes quedan como Aida en blanco; 1,400 puntadas completas y 18 colores.",
+      "description": "<p><strong>Christmas Tree Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero are rendered with the same Aida-relief-v4 stitch engine.</p><p>1,400 stitches · 18 colours.</p>",
+      "description_en": "<p><strong>Christmas Tree Mini Cross Stitch Pattern PDF</strong></p><p>The transparent 50 × 60 source is read pixel by pixel and centered inside a 100 × 120 matrix. Every opaque pixel becomes one full X stitch and every transparent pixel remains blank Aida. The PDF, finished preview and WooCommerce hero are rendered with the same Aida-relief-v4 stitch engine.</p><p>1,400 stitches · 18 colours.</p>",
+      "description_es": "<p><strong>Patrón Mini de Árbol de Navidad en Punto de Cruz PDF</strong></p><p>La fuente transparente de 50 × 60 se lee píxel a píxel y se centra dentro de una matriz de 100 × 120. Cada píxel opaco se convierte en una cruz completa y cada píxel transparente queda como Aida en blanco. El PDF, la vista terminada y la imagen de WooCommerce se renderizan con el mismo motor Aida-relief-v4.</p><p>1,400 puntadas · 18 colores.</p>",
+      "gallery": [
+        "assets/N0001-CS-gallery-2.webp",
+        "assets/N0001-CS-gallery-3.webp",
+        "assets/N0001-CS-gallery-4.webp"
+      ],
       "download": "files/Drielo_N0001-CS.pdf",
       "featured_image": "assets/N0001-CS-product.webp",
       "seo_title": "Christmas Tree Mini Cross Stitch Pattern PDF | Drielo",
       "seo_title_en": "Christmas Tree Mini Cross Stitch Pattern PDF | Drielo",
       "seo_title_es": "Patrón Mini de Árbol de Navidad en Punto de Cruz PDF | Drielo",
-      "meta_description": "Mini Christmas tree cross-stitch PDF created pixel by pixel from a transparent 50 x 60 source, centered on a 100 x 120 chart. 1,400 full cross stitches and",
-      "meta_description_en": "Mini Christmas tree cross-stitch PDF created pixel by pixel from a transparent 50 x 60 source, centered on a 100 x 120 chart. 1,400 full cross stitches and",
-      "meta_description_es": "Mini patrón PDF de árbol de Navidad creado píxel a píxel desde una fuente transparente de 50 x 60, centrada en una cuadrícula de 100 x 120. 1,400 puntadas ",
+      "meta_description": "Mini Christmas tree cross-stitch PDF rendered with the same pixel-by-pixel Aida/X algorithm used by Drielo's established patterns. Transparent cells remain",
+      "meta_description_en": "Mini Christmas tree cross-stitch PDF rendered with the same pixel-by-pixel Aida/X algorithm used by Drielo's established patterns. Transparent cells remain",
+      "meta_description_es": "Mini patrón PDF de árbol de Navidad renderizado con el mismo algoritmo píxel a píxel de Aida y cruces usado en los patrones de Drielo. Las celdas transpare",
       "tags": [
         "christmas tree",
         "christmas cross stitch",
@@ -18979,6 +18983,11 @@
         "season": [
           "christmas"
         ]
+      },
+      "gallery_preview_pages": {
+        "facts": 3,
+        "colour_a1": 8,
+        "symbol_a1": 12
       }
     }
   ],
