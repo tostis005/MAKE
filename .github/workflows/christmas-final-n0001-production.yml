@@ -39,10 +39,13 @@ jobs:
         run: |
           set -euo pipefail
           ZIP=content/source-images/collections/christmas/christmas-final15-50x60-palette20.zip
-          test -f "$ZIP"
+          curl -L --fail --retry 3 'https://sdmntprbrazilsouth.oaiusercontent.com/files/00000000-3710-820e-972a-e2159a25026b/raw?se=2026-10-04T07%3A07%3A33Z&sp=r&sv=2026-02-06&sr=b&scid=7149dd43-1c4d-5f10-bd8b-603f847f05cb&skoid=bdd24bd8-9af5-4138-bfb1-19fba97a8611&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-10-03T18%3A48%3A58Z&ske=2026-10-04T18%3A48%3A58Z&sks=b&skv=2026-02-06&sig=A1RRwtgt/FdR9vKVP1IRETx6QHUoQXP%2Bxx83sUkX4Ho%3D' -o /tmp/christmas-final.zip.b64
+          base64 --decode /tmp/christmas-final.zip.b64 > /tmp/christmas-final.zip
+          echo 'c43dbd65b9631b0aa7cb0067657ecf797ee0893c4e6f2bba84035d3c65849392  /tmp/christmas-final.zip' | sha256sum -c -
+          cp /tmp/christmas-final.zip "$ZIP"
           rm -rf /tmp/christmas-final
           mkdir -p /tmp/christmas-final
-          unzip -q "$ZIP" -d /tmp/christmas-final
+          unzip -q /tmp/christmas-final.zip -d /tmp/christmas-final
           test "$(find /tmp/christmas-final -maxdepth 1 -type f -name 'N*.png' | wc -l)" -eq 15
           mkdir -p content/source-images/collections/christmas/products
           rm -f content/source-images/collections/christmas/products/N*.png
