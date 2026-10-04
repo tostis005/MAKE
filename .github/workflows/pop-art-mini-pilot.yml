@@ -1,0 +1,268 @@
+name: Publish Pop Art Mini Pilot
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/pop-art-mini-pilot.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-pop-art-mini-pilot
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install renderer dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow playwright
+          python3 -m playwright install --with-deps chromium
+
+      - name: Install final Pop Art Mini sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          ZIP=content/source-images/collections/pop-art-mini/pop-art-mini-final24-v3.zip
+          test -f "$ZIP"
+          TMP=/tmp/pop-art-mini-final24
+          DEST=content/source-images/collections/pop-art-mini
+          rm -rf "$TMP"
+          mkdir -p "$TMP" "$DEST/products"
+          unzip -q "$ZIP" -d "$TMP"
+          test "$(find "$TMP" -maxdepth 1 -type f -name 'PM*.png' | wc -l)" -eq 24
+          rm -f "$DEST/products"/PM*.png
+          cp "$TMP"/PM*.png "$DEST/products/"
+          cp "$TMP/manifest.json" "$DEST/manifest.json"
+          cp "$TMP/palette30_rgb.json" "$DEST/palette30_rgb.json"
+
+      - name: Validate exact 50x60 transparent sources and 30-colour palette
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+
+          root=Path('content/source-images/collections/pop-art-mini')
+          palette={tuple(x) for x in json.loads((root/'palette30_rgb.json').read_text())['palette_rgb']}
+          assert len(palette)==30
+          files=sorted((root/'products').glob('PM*.png'))
+          assert len(files)==24, len(files)
+          union=set()
+          for p in files:
+              im=Image.open(p).convert('RGBA')
+              assert im.size==(50,60), (p.name,im.size)
+              data=list(im.getdata())
+              assert any(a<128 for *_,a in data), (p.name,'no transparent background')
+              opaque={(r,g,b) for r,g,b,a in data if a>=128}
+              assert opaque and opaque <= palette, (p.name, opaque-palette)
+              # No motif is allowed to touch the edge; prevents crop loss in real stitch rendering.
+              alpha=im.getchannel('A')
+              bbox=alpha.getbbox()
+              assert bbox is not None
+              assert bbox[0]>=1 and bbox[1]>=1 and bbox[2]<=49 and bbox[3]<=59, (p.name,bbox)
+              union |= opaque
+          assert union==palette, {'used':len(union),'expected':30,'missing':palette-union}
+          print('POP_ART_MINI_SOURCES_VALID count=24 size=50x60 palette=30 transparent=true')
+          PY
+
+      - name: Build three pilot products
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/pop_art_mini/publish_pop_art_mini.py PM0001 PM0016 PM0021
+
+      - name: Validate pilot outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+
+          root=Path('.')
+          codes=['PM0001-CS','PM0016-CS','PM0021-CS']
+          for code in codes:
+              p=json.loads((root/f'content/pattern-system/patterns/{code}/pattern.json').read_text())
+              assert p['algorithm']=='pixel-exact-alpha-1px-1stitch-aida-relief-v4'
+              assert (p['source_width'],p['source_height'])==(50,60)
+              assert (p['stitch_width'],p['stitch_height'])==(100,120)
+              assert p['source_offset']=={'x':25,'y':30}
+              matrix=p['matrix']
+              total=sum(v is not None for row in matrix for v in row)
+              assert total==p['total_stitches']
+              assert 0<total<3000
+              for y in range(120):
+                  for x in range(100):
+                      if not (25<=x<75 and 30<=y<90):
+                          assert matrix[y][x] is None, (code,x,y)
+              pdf=root/f'content/products/files/Drielo_{code}.pdf'
+              hero=root/f'content/products/assets/{code}-product.webp'
+              assert pdf.is_file() and pdf.read_bytes()[:4]==b'%PDF' and pdf.stat().st_size>100000
+              with Image.open(hero) as im:
+                  assert im.size==(1200,1500), (code,im.size)
+              for n in (2,3,4):
+                  gp=root/f'content/products/assets/{code}-gallery-{n}.webp'
+                  assert gp.is_file() and gp.stat().st_size>30000, gp
+              print('VALID',code,'stitches',total,'blank',12000-total,'colours',len(p['threads']))
+          cat=json.loads((root/'content/products/catalog.json').read_text())
+          col=next(c for c in cat['collections'] if c.get('slug')=='pop-art-mini')
+          assert col['cover_asset']=='assets/pop-art-mini-collection-cover.webp'
+          assert len(col['palette_hex'])==30
+          print('POP_ART_MINI_PILOT_VALID count=3')
+          PY
+
+      - name: Build pilot WooCommerce package
+        shell: bash
+        run: |
+          set -euo pipefail
+          STAGE=/tmp/drielo-pop-art-mini-pilot
+          rm -rf "$STAGE"
+          mkdir -p "$STAGE/content/products/assets" "$STAGE/content/products/files" "$STAGE/content/tools"
+
+          python3 - "$STAGE" <<'PY'
+          import json,sys
+          from pathlib import Path
+          stage=Path(sys.argv[1])
+          src=json.loads(Path('content/products/catalog.json').read_text())
+          wanted={'PM0001-CS','PM0016-CS','PM0021-CS'}
+          rows=[p for p in src['products'] if p.get('code') in wanted]
+          if len(rows)!=3:
+              raise SystemExit(f'Expected 3 Pop Art Mini pilot rows, got {len(rows)}')
+          collection=next(c for c in src['collections'] if c.get('slug')=='pop-art-mini')
+          cats=[c for c in src.get('categories',[]) if c.get('slug') in {'cross-stitch-patterns','portraits','pop-art'}]
+          out=dict(src)
+          out['products']=rows
+          out['collections']=[collection]
+          out['categories']=cats
+          out['retired_products']=[]
+          out['retired_collections']=[]
+          (stage/'content/products/catalog.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
+          PY
+
+          cp content/products/assets/pop-art-mini-collection-cover.webp "$STAGE/content/products/assets/"
+          for CODE in PM0001-CS PM0016-CS PM0021-CS; do
+            cp "content/products/assets/${CODE}-product.webp" "$STAGE/content/products/assets/"
+            cp "content/products/assets/${CODE}-design.webp" "$STAGE/content/products/assets/"
+            cp "content/products/assets/${CODE}-gallery-2.webp" "$STAGE/content/products/assets/"
+            cp "content/products/assets/${CODE}-gallery-3.webp" "$STAGE/content/products/assets/"
+            cp "content/products/assets/${CODE}-gallery-4.webp" "$STAGE/content/products/assets/"
+            cp "content/products/files/Drielo_${CODE}.pdf" "$STAGE/content/products/files/"
+          done
+          cp content/tools/import-products.php "$STAGE/content/tools/"
+          tar -czf /tmp/drielo-pop-art-mini-pilot.tgz -C "$STAGE" content
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_products_key
+          chmod 600 ~/.ssh/drielo_products_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Publish three pilot products to production
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          scp -i ~/.ssh/drielo_products_key /tmp/drielo-pop-art-mini-pilot.tgz "$VPS_USER@$VPS_HOST:/tmp/drielo-pop-art-mini-pilot-$GITHUB_RUN_ID.tgz"
+          ssh -i ~/.ssh/drielo_products_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='$GITHUB_RUN_ID' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-pop-art-mini-pilot-$GITHUB_RUN_ID.tgz"
+          STAGE="/tmp/drielo-pop-art-mini-pilot-$GITHUB_RUN_ID"
+          trap 'rm -rf "$ARCHIVE" "$STAGE"' EXIT
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $codes=array("PM0001-CS","PM0016-CS","PM0021-CS");
+            $ok=0;
+            foreach($codes as $code){
+              $sku="DRIELO-".$code;
+              $id=wc_get_product_id_by_sku($sku);
+              $p=$id?wc_get_product($id):false;
+              if(!$p){fwrite(STDERR,"Missing ".$sku."\n");continue;}
+              $cols=wp_get_object_terms($id,"product_collection",array("fields"=>"slugs"));
+              $valid=$p->get_status()==="publish"
+                && $p->get_image_id()
+                && count($p->get_gallery_image_ids())===3
+                && count($p->get_downloads())>=1
+                && $p->is_virtual()
+                && $p->is_downloadable()
+                && in_array("pop-art-mini",is_wp_error($cols)?array():$cols,true);
+              echo "POP_ART_MINI_PRODUCTION"
+                ." id=".$id
+                ." sku=".$sku
+                ." status=".$p->get_status()
+                ." image=".$p->get_image_id()
+                ." gallery=".count($p->get_gallery_image_ids())
+                ." downloads=".count($p->get_downloads())
+                ." valid=".($valid?"yes":"no")
+                ." url=".get_permalink($id).PHP_EOL;
+              if($valid)$ok++;
+            }
+            if($ok!==3){fwrite(STDERR,"Expected 3 valid pilot products, got ".$ok."\n");exit(3);}
+            echo "POP_ART_MINI_PILOT_PRODUCTION_VALID count=".$ok.PHP_EOL;
+          '
+          REMOTE
+
+      - name: Persist Pop Art Mini pilot assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A content/source-images/collections/pop-art-mini/products
+          git add content/source-images/collections/pop-art-mini/manifest.json
+          git add content/source-images/collections/pop-art-mini/palette30_rgb.json
+          git add content/products/assets/pop-art-mini-collection-cover.webp
+          for CODE in PM0001-CS PM0016-CS PM0021-CS; do
+            git add "content/pattern-system/patterns/${CODE}/pattern.json"
+            git add "content/pattern-system/products/${CODE}/product.json"
+            git add "content/products/assets/${CODE}-product.webp"
+            git add "content/products/assets/${CODE}-design.webp"
+            git add "content/products/assets/${CODE}-gallery-2.webp"
+            git add "content/products/assets/${CODE}-gallery-3.webp"
+            git add "content/products/assets/${CODE}-gallery-4.webp"
+            git add -f "content/products/files/Drielo_${CODE}.pdf"
+          done
+          git add content/products/catalog.json
+          if git diff --cached --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "Build Pop Art Mini pilot products [skip ci]"
+            git fetch origin main --depth=20
+            git rebase origin/main
+            git push origin HEAD:main
+          fi
