@@ -420,6 +420,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/source-images/collections/christmas/christmas-final15-50x60-palette20.zip
           git add -A content/source-images/collections/christmas/products
           git add content/source-images/collections/christmas/palette20_rgb.json
           git add content/pattern-system/patterns/N0001-CS/pattern.json
