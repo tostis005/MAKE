@@ -34,6 +34,10 @@ jobs:
         run: |
           set -euo pipefail
           python3 -m pip install --disable-pip-version-check --quiet Pillow
+          if ! command -v gs >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq ghostscript
+          fi
           python3 content/pattern-system/christmas/optimize_etsy_christmas.py
           python3 - <<'PY'
           import json
@@ -43,7 +47,7 @@ jobs:
           b=next(p for p in cat['products'] if p.get('code')=='XMAS15-CS')
           assert float(b['price'])==9.99
           assert b.get('fixed_price') is True
-          assert len(b.get('downloads',[]))==3
+          assert len(b.get('downloads',[]))==5
           for rel in b['downloads']:
               p=root/'content/products'/rel
               assert p.is_file()
@@ -130,7 +134,7 @@ jobs:
             $p=wc_get_product(wc_get_product_id_by_sku("DRIELO-XMAS15-CS"));
             if(!$p){exit(2);}
             echo "BUNDLE_WOO price=".$p->get_price()." downloads=".count($p->get_downloads())." images=".(1+count($p->get_gallery_image_ids())).PHP_EOL;
-            if(abs((float)$p->get_price()-9.99)>0.001 || count($p->get_downloads())!==3 || !$p->get_image_id()) exit(3);
+            if(abs((float)$p->get_price()-9.99)>0.001 || count($p->get_downloads())!==5 || !$p->get_image_id()) exit(3);
           '
           REMOTE
 
@@ -179,7 +183,7 @@ jobs:
             $expected=(string)get_post_meta($id,"_drielo_etsy_title_en",true);
             $renew=!empty($remote["should_auto_renew"]);
             echo "BUNDLE_ETSY listing=".$lid." state=".$state." tax=".$tax." files=".$fc." images=".$ic." price=".$p->get_price()." renew=".($renew?"yes":"no").PHP_EOL;
-            if($state!=="active" || $tax!==87 || $fc!==3 || $ic<1 || $renew || $title!==$expected || abs((float)$p->get_price()-9.99)>0.001) exit(6);
+            if($state!=="active" || $tax!==87 || $fc!==5 || $ic<1 || $renew || $title!==$expected || abs((float)$p->get_price()-9.99)>0.001) exit(6);
           '
           REMOTE
 
@@ -197,6 +201,8 @@ jobs:
           git add -f content/products/files/Drielo_XMAS15-CS_Part1.zip
           git add -f content/products/files/Drielo_XMAS15-CS_Part2.zip
           git add -f content/products/files/Drielo_XMAS15-CS_Part3.zip
+          git add -f content/products/files/Drielo_XMAS15-CS_Part4.zip
+          git add -f content/products/files/Drielo_XMAS15-CS_Part5.zip
           if git diff --cached --quiet; then
             echo "Nothing to commit"
           else
