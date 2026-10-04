@@ -1,0 +1,201 @@
+name: Publish Christmas N0001 With Aida Relief
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/christmas-publish-n0001-aida-relief.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-christmas-n0001-aida-relief
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install renderer dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow playwright
+          python3 -m playwright install --with-deps chromium
+
+      - name: Render N0001 with standard pixel-by-pixel Aida relief engine
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 content/pattern-system/christmas/publish_n0001_aida_relief.py
+
+      - name: Validate renderer parity
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+
+          root=Path('.')
+          pat=json.loads((root/'content/pattern-system/patterns/N0001-CS/pattern.json').read_text())
+          assert pat['algorithm']=='pixel-exact-alpha-1px-1stitch-aida-relief-v4'
+          assert (pat['source_width'],pat['source_height'])==(50,60)
+          assert (pat['stitch_width'],pat['stitch_height'])==(100,120)
+          assert pat['source_offset']=={'x':25,'y':30}
+          matrix=pat['matrix']
+          total=sum(v is not None for row in matrix for v in row)
+          assert total==pat['total_stitches']
+          for y in range(120):
+              for x in range(100):
+                  if not (25<=x<75 and 30<=y<90):
+                      assert matrix[y][x] is None, (x,y)
+
+          pdf=root/'content/products/files/Drielo_N0001-CS.pdf'
+          hero=root/'content/products/assets/N0001-CS-product.webp'
+          design=root/'content/products/assets/N0001-CS-design.webp'
+          galleries=[root/f'content/products/assets/N0001-CS-gallery-{i}.webp' for i in (2,3,4)]
+
+          assert pdf.is_file() and pdf.read_bytes()[:4]==b'%PDF' and pdf.stat().st_size>100000
+          with Image.open(hero) as im:
+              assert im.size==(1536,1536), im.size
+          with Image.open(design) as im:
+              assert im.size==(1000,1200), im.size
+          assert all(p.is_file() and p.stat().st_size>10000 for p in galleries)
+
+          cat=json.loads((root/'content/products/catalog.json').read_text())
+          row=next(p for p in cat['products'] if p.get('sku')=='DRIELO-N0001-CS')
+          assert row['featured_image']=='assets/N0001-CS-product.webp'
+          assert row['gallery']==[f'assets/N0001-CS-gallery-{i}.webp' for i in (2,3,4)]
+          print('AIDA_RELIEF_PARITY_VALID',
+                'stitches='+str(total),
+                'colours='+str(len(pat['threads'])),
+                'blank_cells='+str(12000-total),
+                'renderer=aida-relief-v4')
+          PY
+
+      - name: Build one-product WooCommerce package
+        shell: bash
+        run: |
+          set -euo pipefail
+          STAGE=/tmp/drielo-N0001-aida-relief
+          rm -rf "$STAGE"
+          mkdir -p "$STAGE/content/products/assets" "$STAGE/content/products/files" "$STAGE/content/tools"
+
+          python3 - "$STAGE" <<'PY'
+          import json,sys
+          from pathlib import Path
+          stage=Path(sys.argv[1])
+          src=json.loads(Path('content/products/catalog.json').read_text())
+          row=next(p for p in src['products'] if p.get('sku')=='DRIELO-N0001-CS')
+          collection=next(c for c in src['collections'] if c.get('slug')=='christmas')
+          wanted={'cross-stitch-patterns','cross-stitch-christmas'}
+          cats=[c for c in src.get('categories',[]) if c.get('slug') in wanted]
+          out=dict(src)
+          out['products']=[row]
+          out['collections']=[collection]
+          out['categories']=cats
+          out['retired_products']=[]
+          out['retired_collections']=[]
+          (stage/'content/products/catalog.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
+          PY
+
+          cp content/products/assets/N0001-CS-product.webp "$STAGE/content/products/assets/"
+          cp content/products/assets/N0001-CS-gallery-2.webp "$STAGE/content/products/assets/"
+          cp content/products/assets/N0001-CS-gallery-3.webp "$STAGE/content/products/assets/"
+          cp content/products/assets/N0001-CS-gallery-4.webp "$STAGE/content/products/assets/"
+          cp content/products/files/Drielo_N0001-CS.pdf "$STAGE/content/products/files/"
+          cp content/tools/import-products.php "$STAGE/content/tools/"
+          tar -czf /tmp/drielo-N0001-aida-relief.tgz -C "$STAGE" content
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_products_key
+          chmod 600 ~/.ssh/drielo_products_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Overwrite first Christmas product in production
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          scp -i ~/.ssh/drielo_products_key /tmp/drielo-N0001-aida-relief.tgz "$VPS_USER@$VPS_HOST:/tmp/drielo-N0001-aida-relief-$GITHUB_RUN_ID.tgz"
+          ssh -i ~/.ssh/drielo_products_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='$GITHUB_RUN_ID' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-N0001-aida-relief-$GITHUB_RUN_ID.tgz"
+          STAGE="/tmp/drielo-N0001-aida-relief-$GITHUB_RUN_ID"
+          trap 'rm -rf "$ARCHIVE" "$STAGE"' EXIT
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $sku="DRIELO-N0001-CS";
+            $id=wc_get_product_id_by_sku($sku);
+            $p=$id?wc_get_product($id):false;
+            if(!$p){fwrite(STDERR,"Missing product\n");exit(2);}
+            $cols=wp_get_object_terms($id,"product_collection",array("fields"=>"slugs"));
+            echo "AIDA_RELIEF_PRODUCTION"
+              ." id=".$id
+              ." sku=".$sku
+              ." status=".$p->get_status()
+              ." image=".$p->get_image_id()
+              ." gallery=".count($p->get_gallery_image_ids())
+              ." downloads=".count($p->get_downloads())
+              ." virtual=".($p->is_virtual()?"yes":"no")
+              ." downloadable=".($p->is_downloadable()?"yes":"no")
+              ." collection=".implode(",",is_wp_error($cols)?array():$cols)
+              ." url=".get_permalink($id).PHP_EOL;
+            if((int)$id!==7433){fwrite(STDERR,"Expected product 7433, got ".$id."\n");exit(3);}
+            if($p->get_status()!=="publish" || !$p->get_image_id() || count($p->get_downloads())<1 || !$p->is_virtual() || !$p->is_downloadable()){exit(4);}
+            if(!in_array("christmas",is_wp_error($cols)?array():$cols,true)){exit(5);}
+          '
+          REMOTE
+
+      - name: Persist Aida-relief generated assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/pattern-system/patterns/N0001-CS/pattern.json
+          git add content/pattern-system/products/N0001-CS/product.json
+          git add content/products/assets/N0001-CS-product.webp
+          git add content/products/assets/N0001-CS-design.webp
+          git add content/products/assets/N0001-CS-gallery-2.webp
+          git add content/products/assets/N0001-CS-gallery-3.webp
+          git add content/products/assets/N0001-CS-gallery-4.webp
+          git add -f content/products/files/Drielo_N0001-CS.pdf
+          git add content/products/catalog.json
+          if git diff --cached --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "Render Christmas N0001 with Aida relief pixel engine [skip ci]"
+            git fetch origin main --depth=10
+            git rebase origin/main
+            git push origin HEAD:main
+          fi
