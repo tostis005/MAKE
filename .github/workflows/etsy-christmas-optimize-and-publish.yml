@@ -1,0 +1,264 @@
+name: Optimize and Publish Christmas Etsy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/etsy-christmas-optimize-and-publish.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-etsy-christmas-optimize
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 20
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build Etsy-optimized Christmas metadata and bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow
+          python3 content/pattern-system/christmas/optimize_etsy_christmas.py
+
+      - name: Validate Christmas Etsy package
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, zipfile
+          from pathlib import Path
+          from PIL import Image
+
+          root=Path('.')
+          cat=json.loads((root/'content/products/catalog.json').read_text())
+          wanted={f'N{i:04d}-CS' for i in range(1,16)}
+          rows={p.get('code'):p for p in cat.get('products',[]) if p.get('code') in wanted or p.get('code')=='XMAS15-CS'}
+          assert wanted <= set(rows), sorted(wanted-set(rows))
+          assert 'XMAS15-CS' in rows
+          bundle=rows['XMAS15-CS']
+          assert float(bundle['price'])==9.99
+          assert bundle.get('fixed_price') is True
+          assert len(bundle['etsy_tags_en'])==13
+          assert len(bundle['etsy_title_en'])<=140
+          for code in wanted:
+              row=rows[code]
+              assert 'black-and-white' in row['etsy_description_en'].lower()
+              assert 'full-colour' in row['etsy_description_en'].lower()
+              assert 'beginner' in row['etsy_description_en'].lower()
+              assert len(row['etsy_tags_en'])==13
+              assert len(row['etsy_title_en'])<=140
+          z=root/'content/products/files/Drielo_XMAS15-CS.zip'
+          assert z.is_file() and z.stat().st_size>100000
+          with zipfile.ZipFile(z) as zf:
+              pdfs=[n for n in zf.namelist() if n.lower().endswith('.pdf')]
+              assert len(pdfs)==15, len(pdfs)
+          for name in ['XMAS15-CS-product.webp','XMAS15-CS-gallery-2.webp','XMAS15-CS-gallery-3.webp','XMAS15-CS-gallery-4.webp']:
+              p=root/'content/products/assets'/name
+              assert p.is_file() and p.stat().st_size>10000
+              with Image.open(p) as im:
+                  assert im.size==(2000,1600), (name,im.size)
+          print('CHRISTMAS_ETSY_PACKAGE_VALID singles=15 bundle=1 bundle_price=9.99')
+          PY
+
+      - name: Build 16-product WooCommerce import package
+        shell: bash
+        run: |
+          set -euo pipefail
+          STAGE=/tmp/drielo-etsy-christmas
+          rm -rf "$STAGE"
+          mkdir -p "$STAGE/content/products/assets" "$STAGE/content/products/files" "$STAGE/content/tools"
+          python3 - "$STAGE" <<'PY'
+          import json,sys,shutil
+          from pathlib import Path
+
+          root=Path('.')
+          stage=Path(sys.argv[1])
+          src=json.loads((root/'content/products/catalog.json').read_text())
+          wanted={f'N{i:04d}-CS' for i in range(1,16)} | {'XMAS15-CS'}
+          rows=[p for p in src['products'] if p.get('code') in wanted]
+          if len(rows)!=16:
+              raise SystemExit(f'Expected 16 Christmas Etsy rows, got {len(rows)}')
+
+          coll=next(c for c in src['collections'] if c.get('slug')=='christmas')
+          cats=[c for c in src.get('categories',[]) if c.get('slug') in {'cross-stitch-patterns','cross-stitch-christmas'}]
+          out=dict(src)
+          out['products']=rows
+          out['collections']=[coll]
+          out['categories']=cats
+          out['retired_products']=[]
+          out['retired_collections']=[]
+          (stage/'content/products/catalog.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
+
+          for row in rows:
+              for rel in [row.get('featured_image'), *(row.get('gallery') or [])]:
+                  if not rel: continue
+                  s=root/'content/products'/rel
+                  d=stage/'content/products'/rel
+                  d.parent.mkdir(parents=True,exist_ok=True)
+                  shutil.copy2(s,d)
+              rel=row.get('download')
+              if rel:
+                  s=root/'content/products'/rel
+                  d=stage/'content/products'/rel
+                  d.parent.mkdir(parents=True,exist_ok=True)
+                  shutil.copy2(s,d)
+          shutil.copy2(root/'content/tools/import-products.php',stage/'content/tools/import-products.php')
+          PY
+          tar -czf /tmp/drielo-etsy-christmas.tgz -C "$STAGE" content
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_etsy_christmas_key
+          chmod 600 ~/.ssh/drielo_etsy_christmas_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Import optimized products into WooCommerce
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          scp -i ~/.ssh/drielo_etsy_christmas_key /tmp/drielo-etsy-christmas.tgz "$VPS_USER@$VPS_HOST:/tmp/drielo-etsy-christmas-$GITHUB_RUN_ID.tgz"
+          ssh -o ServerAliveInterval=30 -i ~/.ssh/drielo_etsy_christmas_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='$GITHUB_RUN_ID' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-etsy-christmas-$GITHUB_RUN_ID.tgz"
+          STAGE="/tmp/drielo-etsy-christmas-$GITHUB_RUN_ID"
+          trap 'rm -rf "$ARCHIVE" "$STAGE"' EXIT
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M -d max_execution_time=0 /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=512M -r '
+            require "/var/www/html/wp-load.php";
+            $bundle=wc_get_product(wc_get_product_id_by_sku("DRIELO-XMAS15-CS"));
+            if(!$bundle){fwrite(STDERR,"Bundle missing after import\n");exit(2);}
+            echo "BUNDLE_WOO id=".$bundle->get_id()." price=".$bundle->get_price()." downloads=".count($bundle->get_downloads())." images=".(1+count($bundle->get_gallery_image_ids())).PHP_EOL;
+            if(abs((float)$bundle->get_price()-9.99)>0.001 || count($bundle->get_downloads())<1 || !$bundle->get_image_id()){exit(3);}
+          '
+          REMOTE
+
+      - name: Publish or overwrite all Christmas listings on Etsy
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -o ServerAliveInterval=30 -o ServerAliveCountMax=30 -i ~/.ssh/drielo_etsy_christmas_key "$VPS_USER@$VPS_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=1536M -d max_execution_time=0 -r '
+            require "/var/www/html/wp-load.php";
+            if(!class_exists("Drielo_Etsy_Sync")){fwrite(STDERR,"Etsy plugin unavailable\n");exit(2);}
+            $sync=Drielo_Etsy_Sync::instance();
+            $ref=new ReflectionClass($sync);
+            $sync_m=$ref->getMethod("sync_product"); $sync_m->setAccessible(true);
+            $request=$ref->getMethod("etsy_request"); $request->setAccessible(true);
+            $settings_m=$ref->getMethod("settings"); $settings_m->setAccessible(true);
+            $price_m=$ref->getMethod("etsy_price_eur"); $price_m->setAccessible(true);
+            $manual=$ref->getProperty("manual_sync_context"); $manual->setAccessible(true);
+            $manual->setValue($sync,true);
+            $settings=$settings_m->invoke($sync);
+            $shop=(string)($settings["shop_id"]??"");
+            if($shop===""){fwrite(STDERR,"Missing Etsy shop id\n");exit(3);}
+
+            $skus=[];
+            for($i=1;$i<=15;$i++) $skus[]="DRIELO-N".str_pad((string)$i,4,"0",STR_PAD_LEFT)."-CS";
+            $skus[]="DRIELO-XMAS15-CS";
+            $ok=0;$failed=[];
+
+            foreach($skus as $sku){
+              $id=wc_get_product_id_by_sku($sku);
+              $p=$id?wc_get_product($id):false;
+              if(!$p){$failed[$sku]="Woo product missing";continue;}
+              update_post_meta($id,"_drielo_etsy_enabled","yes");
+              update_post_meta($id,"_drielo_etsy_target_state","active");
+              update_post_meta($id,"_drielo_etsy_auto_renew","no");
+
+              $r=$sync_m->invoke($sync,$id,true);
+              if(is_wp_error($r)){
+                $failed[$sku]=$r->get_error_message();
+                echo "ETSY_FAIL sku=".$sku." error=".$r->get_error_message().PHP_EOL;
+                continue;
+              }
+
+              $lid=(string)get_post_meta($id,"_drielo_etsy_listing_id",true);
+              if($lid===""){$failed[$sku]="No listing id";continue;}
+              $remote=$request->invoke($sync,"GET","/v3/application/listings/".rawurlencode($lid),[],true);
+              $imgs=$request->invoke($sync,"GET","/v3/application/listings/".rawurlencode($lid)."/images",[],true);
+              $files=$request->invoke($sync,"GET","/v3/application/shops/".rawurlencode($shop)."/listings/".rawurlencode($lid)."/files",[],true);
+              $inv=$request->invoke($sync,"GET","/v3/application/listings/".rawurlencode($lid)."/inventory",[],true);
+              if(is_wp_error($remote)||is_wp_error($imgs)||is_wp_error($files)||is_wp_error($inv)){
+                $failed[$sku]="Verification GET failed";continue;
+              }
+              $state=(string)($remote["state"]??"");
+              $tax=(int)($remote["taxonomy_id"]??0);
+              $renew=!empty($remote["should_auto_renew"]);
+              $type=strtolower((string)($remote["listing_type"]??$remote["type"]??""));
+              $ic=count((array)($imgs["results"]??[]));
+              $fc=count((array)($files["results"]??[]));
+              $title=(string)($remote["title"]??"");
+              $expected=(string)get_post_meta($id,"_drielo_etsy_title_en",true);
+              $price=(float)$p->get_price();
+              $expected_eur=(float)$price_m->invoke($sync,$p);
+
+              $valid=$state==="active" && $tax===87 && !$renew && $ic>=1 && $fc>=1 && $title===$expected;
+              if($sku==="DRIELO-XMAS15-CS"){
+                $valid=$valid && abs($price-9.99)<0.001;
+              }
+              echo "ETSY_OK_CHECK sku=".$sku." listing=".$lid." state=".$state." tax=".$tax." type=".$type." images=".$ic." files=".$fc." woo_price=".$price." expected_base_eur=".$expected_eur." valid=".($valid?"yes":"no").PHP_EOL;
+              if($valid)$ok++; else $failed[$sku]="Verification mismatch";
+              sleep(1);
+            }
+            $manual->setValue($sync,false);
+            echo "ETSY_CHRISTMAS_FINAL success=".$ok." failed=".count($failed)." details=".wp_json_encode($failed).PHP_EOL;
+            if($ok!==16 || $failed) exit(20);
+          '
+          REMOTE
+
+      - name: Persist optimized Christmas catalogue and bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/products/catalog.json
+          git add content/products/assets/XMAS15-CS-product.webp
+          git add content/products/assets/XMAS15-CS-gallery-2.webp
+          git add content/products/assets/XMAS15-CS-gallery-3.webp
+          git add content/products/assets/XMAS15-CS-gallery-4.webp
+          git add -f content/products/files/Drielo_XMAS15-CS.zip
+          if git diff --cached --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "Optimize Christmas Etsy listings and add 15-pattern bundle [skip ci]"
+            git fetch origin main --depth=20
+            git rebase origin/main
+            git push origin HEAD:main
+          fi
