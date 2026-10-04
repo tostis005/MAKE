@@ -5,6 +5,8 @@ import json
 import math
 import shutil
 import zipfile
+import subprocess
+import tempfile
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
@@ -235,21 +237,64 @@ Each PDF includes colour charts, black-and-white symbol charts, DMC colour infor
 Digital patterns only. No physical materials are included.
 Personal use only. Please do not resell, redistribute or share the digital files.
 """
-    outs = []
-    groups = [(1,5),(6,10),(11,15)]
-    for part,(start,end) in enumerate(groups, start=1):
-        out = FILES / f"Drielo_XMAS15-CS_Part{part}.zip"
-        with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as zf:
-            zf.writestr("README.txt", readme)
-            for i in range(start,end+1):
-                p = FILES / f"Drielo_N{i:04d}-CS.pdf"
-                if not p.is_file():
-                    raise SystemExit(f"Missing PDF: {p}")
-                zf.write(p, arcname=p.name)
-        if out.stat().st_size > 19_500_000:
-            raise SystemExit(f"Etsy ZIP part too large: {out} {out.stat().st_size}")
-        outs.append(out)
-    return outs
+    gs = shutil.which("gs")
+    if not gs:
+        raise SystemExit("Ghostscript is required to build Etsy-safe bundle files")
+
+    tmpdir = Path(tempfile.mkdtemp(prefix="drielo_etsy_bundle_"))
+    compressed = {}
+    try:
+        profiles = [
+            (120, 120, 300),
+            (100, 100, 240),
+            (85, 85, 200),
+            (72, 72, 180),
+        ]
+        for i in range(1,16):
+            src = FILES / f"Drielo_N{i:04d}-CS.pdf"
+            if not src.is_file():
+                raise SystemExit(f"Missing PDF: {src}")
+            best = None
+            for n,(cr,gr,mr) in enumerate(profiles, start=1):
+                out = tmpdir / f"N{i:04d}-compressed-{n}.pdf"
+                cmd = [
+                    gs, "-sDEVICE=pdfwrite", "-dCompatibilityLevel=1.4",
+                    "-dNOPAUSE", "-dQUIET", "-dBATCH",
+                    "-dDetectDuplicateImages=true",
+                    "-dCompressFonts=true",
+                    "-dSubsetFonts=true",
+                    "-dDownsampleColorImages=true",
+                    "-dDownsampleGrayImages=true",
+                    "-dDownsampleMonoImages=true",
+                    f"-dColorImageResolution={cr}",
+                    f"-dGrayImageResolution={gr}",
+                    f"-dMonoImageResolution={mr}",
+                    f"-sOutputFile={out}", str(src)
+                ]
+                subprocess.run(cmd, check=True)
+                if best is None or out.stat().st_size < best.stat().st_size:
+                    best = out
+                if out.stat().st_size <= 6_000_000:
+                    break
+            if best is None:
+                raise SystemExit(f"Could not compress {src}")
+            compressed[i] = best
+
+        outs = []
+        groups = [(1,3),(4,6),(7,9),(10,12),(13,15)]
+        for part,(start_i,end_i) in enumerate(groups, start=1):
+            out = FILES / f"Drielo_XMAS15-CS_Part{part}.zip"
+            with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
+                zf.writestr("README.txt", readme)
+                for i in range(start_i,end_i+1):
+                    zf.write(compressed[i], arcname=f"Drielo_N{i:04d}-CS.pdf")
+            if out.stat().st_size > 19_500_000:
+                raise SystemExit(f"Etsy ZIP part too large after compression: {out} {out.stat().st_size}")
+            outs.append(out)
+        return outs
+    finally:
+        shutil.rmtree(tmpdir, ignore_errors=True)
+
 
 def main():
     cat = readj(CATALOG)
@@ -334,7 +379,7 @@ INCLUDED DESIGNS
 • Snow Globe
 
 WHAT YOU RECEIVE
-• 15 individual PDF cross stitch patterns inside one ZIP download
+• 15 individual PDF cross stitch patterns supplied across five ZIP downloads
 • Full-colour charts with symbols
 • Black-and-white symbol charts
 • DMC colour keys and stitch information
@@ -435,7 +480,9 @@ Solo para uso personal. No se permite revender, redistribuir ni compartir los ar
         "downloads":[
             "files/Drielo_XMAS15-CS_Part1.zip",
             "files/Drielo_XMAS15-CS_Part2.zip",
-            "files/Drielo_XMAS15-CS_Part3.zip"
+            "files/Drielo_XMAS15-CS_Part3.zip",
+            "files/Drielo_XMAS15-CS_Part4.zip",
+            "files/Drielo_XMAS15-CS_Part5.zip"
         ],
         "featured_image":"assets/XMAS15-CS-product.webp",
         "seo_title":"15 Mini Christmas Cross Stitch Patterns Bundle PDF | Drielo",
