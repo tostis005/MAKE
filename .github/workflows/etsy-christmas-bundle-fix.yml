@@ -129,7 +129,7 @@ jobs:
           "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
           "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
           "${DOCKER[@]}" exec make-wp php -d memory_limit=1024M -d max_execution_time=0 /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
-          "${DOCKER[@]}" exec make-wp php -r '
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=512M -r '
             require "/var/www/html/wp-load.php";
             $p=wc_get_product(wc_get_product_id_by_sku("DRIELO-XMAS15-CS"));
             if(!$p){exit(2);}
