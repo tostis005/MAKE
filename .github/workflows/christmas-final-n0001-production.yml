@@ -1,0 +1,435 @@
+name: Publish Final Christmas N0001 Production
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/christmas-final-n0001-production.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drielo-christmas-final-n0001-production
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install renderer dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install --disable-pip-version-check --quiet Pillow
+
+      - name: Install final 15 transparent 50x60 sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          ZIP=content/source-images/collections/christmas/christmas-final15-50x60-palette20.zip
+          test -f "$ZIP"
+          rm -rf /tmp/christmas-final
+          mkdir -p /tmp/christmas-final
+          unzip -q "$ZIP" -d /tmp/christmas-final
+          test "$(find /tmp/christmas-final -maxdepth 1 -type f -name 'N*.png' | wc -l)" -eq 15
+          mkdir -p content/source-images/collections/christmas/products
+          rm -f content/source-images/collections/christmas/products/N*.png
+          cp /tmp/christmas-final/N*.png content/source-images/collections/christmas/products/
+
+      - name: Validate exact source set and palette
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from PIL import Image
+
+          root=Path('content/source-images/collections/christmas')
+          palette=[tuple(x) for x in json.loads((root/'palette20_rgb.json').read_text())['palette_rgb']]
+          assert len(palette)==20 and len(set(palette))==20
+          files=sorted((root/'products').glob('N*.png'))
+          assert len(files)==15, len(files)
+          union=set()
+          for p in files:
+              with Image.open(p) as im:
+                  im=im.convert('RGBA')
+                  assert im.size==(50,60), (p.name, im.size)
+                  opaque={(r,g,b) for r,g,b,a in im.getdata() if a>=128}
+                  extra=opaque-set(palette)
+                  assert not extra, (p.name, extra)
+                  union |= opaque
+          assert union==set(palette), {'union':len(union),'missing':set(palette)-union}
+          print('FINAL_CHRISTMAS_SOURCES_VALID designs=15 size=50x60 shared_palette=20 transparent=true')
+          PY
+
+      - name: Build N0001 pixel-exact pattern, PDF and mockup
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          from collections import Counter
+          from pathlib import Path
+          from PIL import Image, ImageDraw, ImageFont
+
+          ROOT=Path('.')
+          SRC=ROOT/'content/source-images/collections/christmas/products/N0001-christmas-tree.png'
+          PAL=ROOT/'content/source-images/collections/christmas/palette20_rgb.json'
+          DMC=ROOT/'content/pattern-system/data/dmc-colors.json'
+          BG=ROOT/'content/source-images/collections/christmas/background/christmas-collection-background.png'
+          PAT=ROOT/'content/pattern-system/patterns/N0001-CS/pattern.json'
+          PROD=ROOT/'content/pattern-system/products/N0001-CS/product.json'
+          ASSET=ROOT/'content/products/assets/N0001-CS-product.webp'
+          PDF=ROOT/'content/products/files/Drielo_N0001-CS.pdf'
+          PAD=ROOT/'content/pattern-system/christmas/generated/N0001-christmas-tree-100x120.png'
+          CAT=ROOT/'content/products/catalog.json'
+
+          GRID_W,GRID_H=100,120
+          OFF_X,OFF_Y=25,30
+          FRAME_X,FRAME_Y,FRAME_W,FRAME_H=438,212,685,822
+          SYMBOLS=list("ABCDEFGHJKLMNPQRSTUV")
+
+          def readj(p): return json.loads(p.read_text(encoding='utf-8'))
+          def writej(p,d):
+              p.parent.mkdir(parents=True,exist_ok=True)
+              p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          def font(size,bold=False):
+              cands=[
+                  '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf' if bold else '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',
+                  '/usr/share/fonts/truetype/liberation2/LiberationSans-Bold.ttf' if bold else '/usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf'
+              ]
+              for p in cands:
+                  if Path(p).is_file(): return ImageFont.truetype(p,size)
+              return ImageFont.load_default()
+          def load_dmc():
+              out=[]; seen=set()
+              for r in readj(DMC):
+                  code=str(r.get('floss','')).strip()
+                  if not code or code in seen: continue
+                  try: rgb=(int(r['r']),int(r['g']),int(r['b']))
+                  except Exception: continue
+                  out.append({'dmc':code,'name':str(r.get('description') or f'DMC {code}'),'rgb':rgb})
+                  seen.add(code)
+              return out
+          def nearest(rgb, rows):
+              r,g,b=rgb
+              return min(rows,key=lambda p:2*(r-p['rgb'][0])**2+4*(g-p['rgb'][1])**2+3*(b-p['rgb'][2])**2)
+
+          src=Image.open(SRC).convert('RGBA')
+          assert src.size==(50,60)
+          palette=[tuple(x) for x in readj(PAL)['palette_rgb']]
+          assert len(palette)==20 and len(set(palette))==20
+          symbol_for={c:SYMBOLS[i] for i,c in enumerate(palette)}
+
+          matrix=[[None]*GRID_W for _ in range(GRID_H)]
+          counts=Counter()
+          used=set()
+          opaque=0
+          for sy in range(60):
+              for sx in range(50):
+                  r,g,b,a=src.getpixel((sx,sy))
+                  if a<128:
+                      continue
+                  c=(r,g,b)
+                  assert c in symbol_for, (sx,sy,c)
+                  sym=symbol_for[c]
+                  matrix[OFF_Y+sy][OFF_X+sx]=sym
+                  counts[sym]+=1
+                  used.add(c)
+                  opaque+=1
+          assert opaque>0 and opaque<3000
+
+          dmc_rows=load_dmc()
+          threads=[]
+          for c in palette:
+              sym=symbol_for[c]
+              if counts[sym]==0: continue
+              m=nearest(c,dmc_rows)
+              threads.append({
+                  'symbol':sym,
+                  'source_rgb':list(c),
+                  'source_hex':'#%02X%02X%02X'%c,
+                  'dmc':m['dmc'],
+                  'name':m['name'],
+                  'stitches':counts[sym]
+              })
+
+          pattern={
+              'code':'N0001-CS','base_design_id':'N0001','technique_code':'CS','collection':'christmas',
+              'status':'ready','algorithm':'pixel-exact-alpha-1px-1stitch',
+              'source_asset':'source-images/collections/christmas/products/N0001-christmas-tree.png',
+              'palette_mode':'shared-exact-20-rgb',
+              'shared_palette_rgb':[list(c) for c in palette],
+              'source_width':50,'source_height':60,
+              'stitch_width':100,'stitch_height':120,
+              'source_offset':{'x':25,'y':30},
+              'total_stitches':opaque,
+              'threads':threads,
+              'matrix':matrix
+          }
+          writej(PAT,pattern)
+          writej(PROD,{
+              'code':'N0001-CS','base_design_id':'N0001','technique_code':'CS','collection':'christmas',
+              'title':'Christmas Tree Mini Cross Stitch Pattern PDF',
+              'title_en':'Christmas Tree Mini Cross Stitch Pattern PDF',
+              'title_es':'Patrón Mini de Árbol de Navidad en Punto de Cruz PDF',
+              'technique':'cross-stitch','pattern_file':'patterns/N0001-CS/pattern.json',
+              'status':'active','render_ready':True,'renderer':'pixel-exact-alpha',
+              'source_artwork':'source-images/collections/christmas/products/N0001-christmas-tree.png'
+          })
+
+          # 100x120 transparent padded source for audit.
+          padded=Image.new('RGBA',(100,120),(0,0,0,0))
+          padded.alpha_composite(src,(25,30))
+          PAD.parent.mkdir(parents=True,exist_ok=True)
+          padded.save(PAD,'PNG',optimize=True)
+
+          # Storefront mockup: one opaque source pixel -> one full cross stitch.
+          bg=Image.open(BG).convert('RGB')
+          assert bg.size==(1536,1536)
+          d=ImageDraw.Draw(bg)
+          cw=FRAME_W/100
+          ch=FRAME_H/120
+          for sy in range(60):
+              for sx in range(50):
+                  r,g,b,a=src.getpixel((sx,sy))
+                  if a<128: continue
+                  gx,gy=OFF_X+sx,OFF_Y+sy
+                  x0=FRAME_X+gx*cw; y0=FRAME_Y+gy*ch
+                  x1=FRAME_X+(gx+1)*cw; y1=FRAME_Y+(gy+1)*ch
+                  pad=max(.8,min(cw,ch)*.16)
+                  width=max(2,round(min(cw,ch)*.36))
+                  d.line((x0+pad,y0+pad,x1-pad,y1-pad),fill=(r,g,b),width=width)
+                  d.line((x1-pad,y0+pad,x0+pad,y1-pad),fill=(r,g,b),width=width)
+          ASSET.parent.mkdir(parents=True,exist_ok=True)
+          bg.save(ASSET,'WEBP',quality=95,method=6)
+
+          # One-page printable chart.
+          W,H=2480,3508
+          page=Image.new('RGB',(W,H),'white')
+          dr=ImageDraw.Draw(page)
+          dr.text((140,90),'Christmas Tree Mini Cross Stitch Pattern',font=font(58,True),fill=(30,30,30))
+          dr.text((140,170),f'50 x 60 transparent pixel source centered on 100 x 120 · {opaque:,} full cross stitches',
+                  font=font(31),fill=(75,75,75))
+          cell=16
+          ox=(W-100*cell)//2
+          oy=270
+          fcell=font(12,True)
+          for y in range(120):
+              for x in range(100):
+                  sym=matrix[y][x]
+                  if sym is None: continue
+                  r,g,b,a=src.getpixel((x-25,y-30))
+                  x0=ox+x*cell; y0=oy+y*cell
+                  dr.rectangle((x0,y0,x0+cell-1,y0+cell-1),fill=(r,g,b))
+                  lum=.2126*r+.7152*g+.0722*b
+                  tc=(20,20,20) if lum>145 else (255,255,255)
+                  bb=dr.textbbox((0,0),sym,font=fcell)
+                  dr.text((x0+(cell-(bb[2]-bb[0]))/2,y0+(cell-(bb[3]-bb[1]))/2-1),sym,font=fcell,fill=tc)
+          for x in range(101):
+              xx=ox+x*cell; major=x%10==0
+              dr.line((xx,oy,xx,oy+120*cell),fill=(80,80,80) if major else (195,195,195),width=3 if major else 1)
+          for y in range(121):
+              yy=oy+y*cell; major=y%10==0
+              dr.line((ox,yy,ox+100*cell,yy),fill=(80,80,80) if major else (195,195,195),width=3 if major else 1)
+          ly=oy+120*cell+65
+          dr.text((140,ly),'Colour key',font=font(26,True),fill=(30,30,30)); ly+=50
+          for i,t in enumerate(threads):
+              col=i%2; row=i//2; x=140+col*1100; y=ly+row*54
+              c=tuple(t['source_rgb'])
+              dr.rectangle((x,y+5,x+34,y+39),fill=c,outline=(80,80,80))
+              dr.text((x+50,y),f"{t['symbol']}   DMC {t['dmc']}   {t['name']}   · {t['stitches']}",
+                      font=font(22),fill=(40,40,40))
+          dr.text((140,H-130),'Digital counted cross-stitch pattern · Drielo',font=font(30),fill=(90,90,90))
+          PDF.parent.mkdir(parents=True,exist_ok=True)
+          page.save(PDF,'PDF',resolution=300.0,quality=95)
+
+          # Update the existing WooCommerce catalogue row in place.
+          cat=readj(CAT)
+          cats=cat.setdefault('categories',[])
+          child={'slug':'cross-stitch-christmas','name':'Christmas Cross Stitch','name_en':'Christmas Cross Stitch',
+                 'name_es':'Punto de cruz de Navidad','parent':'cross-stitch-patterns'}
+          ci=next((i for i,c in enumerate(cats) if c.get('slug')==child['slug']),None)
+          if ci is None: cats.append(child)
+          else: cats[ci].update(child)
+
+          coll=next((c for c in cat.setdefault('collections',[]) if c.get('slug')=='christmas'),None)
+          if coll is None:
+              coll={'id':'christmas','slug':'christmas','name':'Christmas','name_en':'Christmas','name_es':'Navidad',
+                    'techniques':['cross-stitch'],'visible':True,'force_visibility_sync':True}
+              cat['collections'].append(coll)
+          coll.update({
+              'cover_asset':'assets/N0001-CS-product.webp',
+              'palette_mode':'shared','show_collection_palette':True,
+              'palette_hex':['#%02X%02X%02X'%c for c in palette],
+              'thread_codes':[str(t['dmc']) for t in threads],
+              'visible':True,'force_visibility_sync':True
+          })
+
+          products=cat.setdefault('products',[])
+          row=next((p for p in products if p.get('sku')=='DRIELO-N0001-CS' or p.get('code')=='N0001-CS'),None)
+          if row is None:
+              row={'code':'N0001-CS','sku':'DRIELO-N0001-CS','price':2.99}
+              products.append(row)
+          short_en=f'Mini Christmas tree cross-stitch PDF created pixel by pixel from a transparent 50 x 60 source, centered on a 100 x 120 chart. {opaque:,} full cross stitches and {len(threads)} colours.'
+          short_es=f'Mini patrón PDF de árbol de Navidad creado píxel a píxel desde una fuente transparente de 50 x 60, centrada en una cuadrícula de 100 x 120. {opaque:,} puntadas completas y {len(threads)} colores.'
+          row.update({
+              'code':'N0001-CS','sku':'DRIELO-N0001-CS',
+              'price':row.get('price',2.99),
+              'categories':['cross-stitch-patterns','cross-stitch-christmas'],
+              'title':'Christmas Tree Mini Cross Stitch Pattern PDF',
+              'title_en':'Christmas Tree Mini Cross Stitch Pattern PDF',
+              'title_es':'Patrón Mini de Árbol de Navidad en Punto de Cruz PDF',
+              'slug':'christmas-tree-mini-cross-stitch-pattern',
+              'collection':'christmas',
+              'stitches':opaque,'grid':'100 × 120 stitches','colours':len(threads),'color_count':len(threads),
+              'grid_width':100,'grid_height':120,'motif_width':50,'motif_height':60,
+              'skill':'Beginner friendly','skill_en':'Beginner friendly','skill_es':'Apto para principiantes',
+              'stitch_type':'Full cross stitch','stitch_type_en':'Full cross stitch','stitch_type_es':'Punto de cruz completo',
+              'short_description':short_en,'short_description_en':short_en,'short_description_es':short_es,
+              'description':f'<p><strong>Christmas Tree Mini Cross Stitch Pattern PDF</strong></p><p>Pixel-exact pattern: each opaque pixel in the 50 × 60 source becomes one full cross stitch. Transparent pixels remain blank Aida. The motif is centered in a 100 × 120 chart.</p><p>{opaque:,} stitches · {len(threads)} colours · 1-page PDF.</p>',
+              'description_en':f'<p><strong>Christmas Tree Mini Cross Stitch Pattern PDF</strong></p><p>Pixel-exact pattern: each opaque pixel in the 50 × 60 source becomes one full cross stitch. Transparent pixels remain blank Aida. The motif is centered in a 100 × 120 chart.</p><p>{opaque:,} stitches · {len(threads)} colours · 1-page PDF.</p>',
+              'description_es':f'<p><strong>Patrón Mini de Árbol de Navidad en Punto de Cruz PDF</strong></p><p>Patrón exacto píxel a píxel: cada píxel opaco de la fuente 50 × 60 se convierte en una puntada completa. Los píxeles transparentes quedan como Aida en blanco. El motivo queda centrado en una cuadrícula de 100 × 120.</p><p>{opaque:,} puntadas · {len(threads)} colores · PDF de 1 página.</p>',
+              'gallery':[],
+              'download':'files/Drielo_N0001-CS.pdf',
+              'featured_image':'assets/N0001-CS-product.webp',
+              'seo_title':'Christmas Tree Mini Cross Stitch Pattern PDF | Drielo',
+              'seo_title_en':'Christmas Tree Mini Cross Stitch Pattern PDF | Drielo',
+              'seo_title_es':'Patrón Mini de Árbol de Navidad en Punto de Cruz PDF | Drielo',
+              'meta_description':short_en[:155],'meta_description_en':short_en[:155],'meta_description_es':short_es[:155],
+              'tags':['christmas tree','christmas cross stitch','mini cross stitch','cross stitch pdf','counted cross stitch','digital pattern'],
+              'design_id':'N0001-CS','base_design_id':'N0001','technique_code':'CS','technique':'cross-stitch',
+              'filters':{'technique':['cross-stitch'],'theme':['holidays-seasons'],'style':['cute'],'project':['wall-art'],
+                         'orientation':['portrait'],'difficulty':['beginner'],'color-family':['multicolor'],'season':['christmas']}
+          })
+          cat['retired_products']=[x for x in cat.get('retired_products',[]) if x!='DRIELO-N0001-CS']
+          writej(CAT,cat)
+
+          print('FINAL_N0001_BUILT',
+                'stitches='+str(opaque),
+                'used_colours='+str(len(threads)),
+                'source=50x60',
+                'grid=100x120',
+                'offset=25,30')
+          PY
+
+      - name: Build one-product production package
+        shell: bash
+        run: |
+          set -euo pipefail
+          STAGE=/tmp/drielo-final-N0001
+          rm -rf "$STAGE"
+          mkdir -p "$STAGE/content/products/assets" "$STAGE/content/products/files" "$STAGE/content/tools"
+          python3 - "$STAGE" <<'PY'
+          import json,sys
+          from pathlib import Path
+          stage=Path(sys.argv[1])
+          src=json.loads(Path('content/products/catalog.json').read_text())
+          row=next(p for p in src['products'] if p.get('sku')=='DRIELO-N0001-CS')
+          collection=next(c for c in src['collections'] if c.get('slug')=='christmas')
+          wanted={'cross-stitch-patterns','cross-stitch-christmas'}
+          cats=[c for c in src.get('categories',[]) if c.get('slug') in wanted]
+          if not any(c.get('slug')=='cross-stitch-patterns' for c in cats):
+              cats.insert(0,{'slug':'cross-stitch-patterns','name':'Cross Stitch Patterns',
+                             'name_en':'Cross Stitch Patterns','name_es':'Patrones de punto de cruz'})
+          out=dict(src)
+          out['products']=[row]
+          out['collections']=[collection]
+          out['categories']=cats
+          out['retired_products']=[]
+          out['retired_collections']=[]
+          (stage/'content/products/catalog.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')
+          PY
+          cp content/products/assets/N0001-CS-product.webp "$STAGE/content/products/assets/"
+          cp content/products/files/Drielo_N0001-CS.pdf "$STAGE/content/products/files/"
+          cp content/tools/import-products.php "$STAGE/content/tools/"
+          tar -czf /tmp/drielo-final-N0001.tgz -C "$STAGE" content
+
+      - name: Configure SSH
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/drielo_products_key
+          chmod 600 ~/.ssh/drielo_products_key
+          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+
+      - name: Overwrite first Christmas product in production
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          scp -i ~/.ssh/drielo_products_key /tmp/drielo-final-N0001.tgz "$VPS_USER@$VPS_HOST:/tmp/drielo-final-N0001-$GITHUB_RUN_ID.tgz"
+          ssh -i ~/.ssh/drielo_products_key "$VPS_USER@$VPS_HOST" "GITHUB_RUN_ID='$GITHUB_RUN_ID' bash -s" <<'REMOTE'
+          set -euo pipefail
+          ARCHIVE="/tmp/drielo-final-N0001-$GITHUB_RUN_ID.tgz"
+          STAGE="/tmp/drielo-final-N0001-$GITHUB_RUN_ID"
+          trap 'rm -rf "$ARCHIVE" "$STAGE"' EXIT
+          if docker inspect make-wp >/dev/null 2>&1; then DOCKER=(docker); else DOCKER=(sudo -n docker); fi
+          rm -rf "$STAGE" && mkdir -p "$STAGE"
+          tar -xzf "$ARCHIVE" -C "$STAGE"
+          "${DOCKER[@]}" cp "$STAGE/content/products/." make-wp:/tmp/drielo-products/
+          "${DOCKER[@]}" cp "$STAGE/content/tools/import-products.php" make-wp:/tmp/drielo-import-products.php
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M /tmp/drielo-import-products.php /var/www/html /tmp/drielo-products
+          "${DOCKER[@]}" exec make-wp php -d memory_limit=768M -r '
+            require "/var/www/html/wp-load.php";
+            $sku="DRIELO-N0001-CS";
+            $id=wc_get_product_id_by_sku($sku);
+            $p=$id?wc_get_product($id):false;
+            if(!$p){fwrite(STDERR,"Missing product\n");exit(2);}
+            $cols=wp_get_object_terms($id,"product_collection",array("fields"=>"slugs"));
+            echo "FINAL_PRODUCTION_OVERWRITE"
+              ." id=".$id
+              ." sku=".$sku
+              ." status=".$p->get_status()
+              ." image=".$p->get_image_id()
+              ." downloads=".count($p->get_downloads())
+              ." virtual=".($p->is_virtual()?"yes":"no")
+              ." downloadable=".($p->is_downloadable()?"yes":"no")
+              ." collection=".implode(",",is_wp_error($cols)?array():$cols)
+              ." url=".get_permalink($id).PHP_EOL;
+            if($p->get_status()!=="publish" || !$p->get_image_id() || count($p->get_downloads())<1 || !$p->is_virtual() || !$p->is_downloadable()){exit(3);}
+            if(!in_array("christmas",is_wp_error($cols)?array():$cols,true)){exit(4);}
+          '
+          REMOTE
+
+      - name: Persist final Christmas sources and N0001 assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A content/source-images/collections/christmas/products
+          git add content/source-images/collections/christmas/palette20_rgb.json
+          git add content/pattern-system/patterns/N0001-CS/pattern.json
+          git add content/pattern-system/products/N0001-CS/product.json
+          git add content/pattern-system/christmas/generated/N0001-christmas-tree-100x120.png
+          git add content/products/assets/N0001-CS-product.webp
+          git add -f content/products/files/Drielo_N0001-CS.pdf
+          git add content/products/catalog.json
+          if git diff --cached --quiet; then
+            echo "Nothing to commit"
+          else
+            git commit -m "Install final Christmas sources and publish N0001 [skip ci]"
+            git fetch origin main --depth=10
+            git rebase origin/main
+            git push origin HEAD:main
+          fi
